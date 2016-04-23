@@ -14,6 +14,12 @@
 		1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */; };
 		1A944E1D1CCB4567007EB5BD /* TraveLibroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E1C1CCB4567007EB5BD /* TraveLibroTests.swift */; };
 		1A944E281CCB4567007EB5BD /* TraveLibroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E271CCB4567007EB5BD /* TraveLibroUITests.swift */; };
+		1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E371CCB5AFA007EB5BD /* FooterView.xib */; };
+		1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E391CCB5B88007EB5BD /* FooterView.swift */; };
+		1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E3C1CCB5D92007EB5BD /* OrangeButton.xib */; };
+		1A944E401CCB62C1007EB5BD /* Avenir-Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E3F1CCB62C1007EB5BD /* Avenir-Roman.ttf */; };
+		1A944E421CCB62D8007EB5BD /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E411CCB62D8007EB5BD /* FontAwesome.ttf */; };
+		1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E431CCB668C007EB5BD /* OrangeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +53,12 @@
 		1A944E231CCB4567007EB5BD /* TraveLibroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraveLibroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A944E271CCB4567007EB5BD /* TraveLibroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraveLibroUITests.swift; sourceTree = "<group>"; };
 		1A944E291CCB4567007EB5BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A944E371CCB5AFA007EB5BD /* FooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
+		1A944E391CCB5B88007EB5BD /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		1A944E3C1CCB5D92007EB5BD /* OrangeButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrangeButton.xib; sourceTree = "<group>"; };
+		1A944E3F1CCB62C1007EB5BD /* Avenir-Roman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir-Roman.ttf"; path = "../../../extras/fonts/Avenir/Avenir-Roman.ttf"; sourceTree = "<group>"; };
+		1A944E411CCB62D8007EB5BD /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../../../extras/fonts/font-awesome-4.6.1/fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		1A944E431CCB668C007EB5BD /* OrangeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +109,10 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
+				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
 				1A944E091CCB4567007EB5BD /* ViewController.swift */,
+				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
@@ -123,6 +137,42 @@
 				1A944E291CCB4567007EB5BD /* Info.plist */,
 			);
 			path = TraveLibroUITests;
+			sourceTree = "<group>";
+		};
+		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				1A944E3B1CCB5D79007EB5BD /* OrangeButton */,
+				1A944E361CCB5AA7007EB5BD /* FooterView */,
+			);
+			name = UIViews;
+			sourceTree = "<group>";
+		};
+		1A944E361CCB5AA7007EB5BD /* FooterView */ = {
+			isa = PBXGroup;
+			children = (
+				1A944E371CCB5AFA007EB5BD /* FooterView.xib */,
+				1A944E391CCB5B88007EB5BD /* FooterView.swift */,
+			);
+			name = FooterView;
+			sourceTree = "<group>";
+		};
+		1A944E3B1CCB5D79007EB5BD /* OrangeButton */ = {
+			isa = PBXGroup;
+			children = (
+				1A944E3C1CCB5D92007EB5BD /* OrangeButton.xib */,
+				1A944E431CCB668C007EB5BD /* OrangeButton.swift */,
+			);
+			name = OrangeButton;
+			sourceTree = "<group>";
+		};
+		1A944E3E1CCB6297007EB5BD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1A944E3F1CCB62C1007EB5BD /* Avenir-Roman.ttf */,
+				1A944E411CCB62D8007EB5BD /* FontAwesome.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +281,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
+				1A944E421CCB62D8007EB5BD /* FontAwesome.ttf in Resources */,
+				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
+				1A944E401CCB62C1007EB5BD /* Avenir-Roman.ttf in Resources */,
+				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
 				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +311,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
 				1A944E0A1CCB4567007EB5BD /* ViewController.swift in Sources */,
+				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
