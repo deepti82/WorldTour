@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E071CCB4567007EB5BD /* AppDelegate.swift */; };
+		1A944E0A1CCB4567007EB5BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E091CCB4567007EB5BD /* ViewController.swift */; };
+		1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E0B1CCB4567007EB5BD /* Main.storyboard */; };
+		1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E0E1CCB4567007EB5BD /* Assets.xcassets */; };
+		1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */; };
+		1A944E1D1CCB4567007EB5BD /* TraveLibroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E1C1CCB4567007EB5BD /* TraveLibroTests.swift */; };
+		1A944E281CCB4567007EB5BD /* TraveLibroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E271CCB4567007EB5BD /* TraveLibroUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1A944E191CCB4567007EB5BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A944DFC1CCB4567007EB5BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A944E031CCB4567007EB5BD;
+			remoteInfo = TraveLibro;
+		};
+		1A944E241CCB4567007EB5BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A944DFC1CCB4567007EB5BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A944E031CCB4567007EB5BD;
+			remoteInfo = TraveLibro;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A944E041CCB4567007EB5BD /* TraveLibro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraveLibro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A944E071CCB4567007EB5BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1A944E091CCB4567007EB5BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1A944E0C1CCB4567007EB5BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1A944E0E1CCB4567007EB5BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A944E111CCB4567007EB5BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1A944E131CCB4567007EB5BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A944E181CCB4567007EB5BD /* TraveLibroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraveLibroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A944E1C1CCB4567007EB5BD /* TraveLibroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraveLibroTests.swift; sourceTree = "<group>"; };
+		1A944E1E1CCB4567007EB5BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A944E231CCB4567007EB5BD /* TraveLibroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraveLibroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A944E271CCB4567007EB5BD /* TraveLibroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraveLibroUITests.swift; sourceTree = "<group>"; };
+		1A944E291CCB4567007EB5BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A944E011CCB4567007EB5BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A944E151CCB4567007EB5BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A944E201CCB4567007EB5BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A944DFB1CCB4567007EB5BD = {
+			isa = PBXGroup;
+			children = (
+				1A944E061CCB4567007EB5BD /* TraveLibro */,
+				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
+				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
+				1A944E051CCB4567007EB5BD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A944E051CCB4567007EB5BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A944E041CCB4567007EB5BD /* TraveLibro.app */,
+				1A944E181CCB4567007EB5BD /* TraveLibroTests.xctest */,
+				1A944E231CCB4567007EB5BD /* TraveLibroUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
+			isa = PBXGroup;
+			children = (
+				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
+				1A944E091CCB4567007EB5BD /* ViewController.swift */,
+				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
+				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
+				1A944E131CCB4567007EB5BD /* Info.plist */,
+			);
+			path = TraveLibro;
+			sourceTree = "<group>";
+		};
+		1A944E1B1CCB4567007EB5BD /* TraveLibroTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A944E1C1CCB4567007EB5BD /* TraveLibroTests.swift */,
+				1A944E1E1CCB4567007EB5BD /* Info.plist */,
+			);
+			path = TraveLibroTests;
+			sourceTree = "<group>";
+		};
+		1A944E261CCB4567007EB5BD /* TraveLibroUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1A944E271CCB4567007EB5BD /* TraveLibroUITests.swift */,
+				1A944E291CCB4567007EB5BD /* Info.plist */,
+			);
+			path = TraveLibroUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A944E031CCB4567007EB5BD /* TraveLibro */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A944E2C1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibro" */;
+			buildPhases = (
+				1A944E001CCB4567007EB5BD /* Sources */,
+				1A944E011CCB4567007EB5BD /* Frameworks */,
+				1A944E021CCB4567007EB5BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TraveLibro;
+			productName = TraveLibro;
+			productReference = 1A944E041CCB4567007EB5BD /* TraveLibro.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1A944E171CCB4567007EB5BD /* TraveLibroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A944E2F1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroTests" */;
+			buildPhases = (
+				1A944E141CCB4567007EB5BD /* Sources */,
+				1A944E151CCB4567007EB5BD /* Frameworks */,
+				1A944E161CCB4567007EB5BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A944E1A1CCB4567007EB5BD /* PBXTargetDependency */,
+			);
+			name = TraveLibroTests;
+			productName = TraveLibroTests;
+			productReference = 1A944E181CCB4567007EB5BD /* TraveLibroTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1A944E221CCB4567007EB5BD /* TraveLibroUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A944E321CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroUITests" */;
+			buildPhases = (
+				1A944E1F1CCB4567007EB5BD /* Sources */,
+				1A944E201CCB4567007EB5BD /* Frameworks */,
+				1A944E211CCB4567007EB5BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A944E251CCB4567007EB5BD /* PBXTargetDependency */,
+			);
+			name = TraveLibroUITests;
+			productName = TraveLibroUITests;
+			productReference = 1A944E231CCB4567007EB5BD /* TraveLibroUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A944DFC1CCB4567007EB5BD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Wohlig Technology";
+				TargetAttributes = {
+					1A944E031CCB4567007EB5BD = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					1A944E171CCB4567007EB5BD = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 1A944E031CCB4567007EB5BD;
+					};
+					1A944E221CCB4567007EB5BD = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 1A944E031CCB4567007EB5BD;
+					};
+				};
+			};
+			buildConfigurationList = 1A944DFF1CCB4567007EB5BD /* Build configuration list for PBXProject "TraveLibro" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A944DFB1CCB4567007EB5BD;
+			productRefGroup = 1A944E051CCB4567007EB5BD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A944E031CCB4567007EB5BD /* TraveLibro */,
+				1A944E171CCB4567007EB5BD /* TraveLibroTests */,
+				1A944E221CCB4567007EB5BD /* TraveLibroUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A944E021CCB4567007EB5BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
+				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
+				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A944E161CCB4567007EB5BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A944E211CCB4567007EB5BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A944E001CCB4567007EB5BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A944E0A1CCB4567007EB5BD /* ViewController.swift in Sources */,
+				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A944E141CCB4567007EB5BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A944E1D1CCB4567007EB5BD /* TraveLibroTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A944E1F1CCB4567007EB5BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A944E281CCB4567007EB5BD /* TraveLibroUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A944E1A1CCB4567007EB5BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A944E031CCB4567007EB5BD /* TraveLibro */;
+			targetProxy = 1A944E191CCB4567007EB5BD /* PBXContainerItemProxy */;
+		};
+		1A944E251CCB4567007EB5BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A944E031CCB4567007EB5BD /* TraveLibro */;
+			targetProxy = 1A944E241CCB4567007EB5BD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1A944E0B1CCB4567007EB5BD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A944E0C1CCB4567007EB5BD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A944E111CCB4567007EB5BD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A944E2A1CCB4567007EB5BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1A944E2B1CCB4567007EB5BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1A944E2D1CCB4567007EB5BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TraveLibro/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1A944E2E1CCB4567007EB5BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TraveLibro/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		1A944E301CCB4567007EB5BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TraveLibroTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraveLibro.app/TraveLibro";
+			};
+			name = Debug;
+		};
+		1A944E311CCB4567007EB5BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = TraveLibroTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibroTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraveLibro.app/TraveLibro";
+			};
+			name = Release;
+		};
+		1A944E331CCB4567007EB5BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TraveLibroUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TraveLibro;
+			};
+			name = Debug;
+		};
+		1A944E341CCB4567007EB5BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = TraveLibroUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibroUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = TraveLibro;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A944DFF1CCB4567007EB5BD /* Build configuration list for PBXProject "TraveLibro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A944E2A1CCB4567007EB5BD /* Debug */,
+				1A944E2B1CCB4567007EB5BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A944E2C1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibro" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A944E2D1CCB4567007EB5BD /* Debug */,
+				1A944E2E1CCB4567007EB5BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1A944E2F1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A944E301CCB4567007EB5BD /* Debug */,
+				1A944E311CCB4567007EB5BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1A944E321CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A944E331CCB4567007EB5BD /* Debug */,
+				1A944E341CCB4567007EB5BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A944DFC1CCB4567007EB5BD /* Project object */;
+}
