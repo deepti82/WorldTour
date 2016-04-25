@@ -8,14 +8,25 @@
 
 import UIKit
 
+let mainBlueColor = UIColor(red: 0.1725, green: 0.2175, blue: 0.3412, alpha: 1) // #2C3757
+let mainOrangeColor = UIColor(red: 1, green: 0.408, blue: 0.345, alpha: 1) // #FF6858
+let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
+let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
+
+var faicon = [String: UniChar]()
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        faicon["clock"] = 0xf017
+        faicon["calender"] = 0xf073
+        
         return true
     }
 

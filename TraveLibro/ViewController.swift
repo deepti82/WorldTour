@@ -10,11 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let mainBlueColor = UIColor(red: 0.1725, green: 0.2175, blue: 0.3412, alpha: 1) // #2C3757
-    let mainOrangeColor = UIColor(red: 1, green: 0.408, blue: 0.345, alpha: 1) // #FF6858
-    let avenirFont = UIFont(name: "AvenirRoman", size: 14)
-    let FoneAwesomeFont = UIFont(name: "FontAwesome", size: 14)
-    
     let button: UIButton = UIButton()
 
     override func viewDidLoad() {
@@ -27,8 +22,17 @@ class ViewController: UIViewController {
         self.view.addSubview(view)
         
         // appling avenir font to label and button
-        UILabel.appearance().font = avenirFont
-        button.titleLabel!.font = avenirFont        
+        //UILabel.appearance().font = avenirFont
+        button.titleLabel!.font = avenirFont
+        
+        let journey = JourneyTitleView(frame: CGRectMake(0, 0, self.view.frame.size.width, 70))
+        journey.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+        self.view.addSubview(journey)
+        
+        let circle = AddCircle(frame: CGRectMake(0, 0, 50, 50))
+        circle.center = CGPointMake(self.view.frame.size.width - 40, self.view.frame.size.height - 100)
+        self.view.addSubview(circle)
+        
     }
 
     override func didReceiveMemoryWarning() {

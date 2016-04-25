@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */; };
+		1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */; };
 		1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E071CCB4567007EB5BD /* AppDelegate.swift */; };
 		1A944E0A1CCB4567007EB5BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E091CCB4567007EB5BD /* ViewController.swift */; };
 		1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E0B1CCB4567007EB5BD /* Main.storyboard */; };
@@ -18,8 +20,10 @@
 		1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E391CCB5B88007EB5BD /* FooterView.swift */; };
 		1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E3C1CCB5D92007EB5BD /* OrangeButton.xib */; };
 		1A944E401CCB62C1007EB5BD /* Avenir-Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E3F1CCB62C1007EB5BD /* Avenir-Roman.ttf */; };
-		1A944E421CCB62D8007EB5BD /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E411CCB62D8007EB5BD /* FontAwesome.ttf */; };
 		1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E431CCB668C007EB5BD /* OrangeButton.swift */; };
+		1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */; };
+		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
+		1A944E511CCBA2AF007EB5BD /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E501CCBA2AF007EB5BD /* fontawesome-webfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCircle.xib; sourceTree = "<group>"; };
+		1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCircle.swift; sourceTree = "<group>"; };
 		1A944E041CCB4567007EB5BD /* TraveLibro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraveLibro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A944E071CCB4567007EB5BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A944E091CCB4567007EB5BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -57,8 +63,10 @@
 		1A944E391CCB5B88007EB5BD /* FooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		1A944E3C1CCB5D92007EB5BD /* OrangeButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrangeButton.xib; sourceTree = "<group>"; };
 		1A944E3F1CCB62C1007EB5BD /* Avenir-Roman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Avenir-Roman.ttf"; path = "../../../extras/fonts/Avenir/Avenir-Roman.ttf"; sourceTree = "<group>"; };
-		1A944E411CCB62D8007EB5BD /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../../../extras/fonts/font-awesome-4.6.1/fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		1A944E431CCB668C007EB5BD /* OrangeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeButton.swift; sourceTree = "<group>"; };
+		1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JourneyTitleView.xib; sourceTree = "<group>"; };
+		1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
+		1A944E501CCBA2AF007EB5BD /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "fontawesome-webfont.ttf"; path = "../../../extras/fonts/font-awesome-4.6.1/fonts/fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A4CA11C1CCE17F900EE9A90 /* AddCircle */ = {
+			isa = PBXGroup;
+			children = (
+				1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */,
+				1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */,
+			);
+			name = AddCircle;
+			sourceTree = "<group>";
+		};
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +159,8 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				1A4CA11C1CCE17F900EE9A90 /* AddCircle */,
+				1A944E451CCB8862007EB5BD /* JourneyTitleView */,
 				1A944E3B1CCB5D79007EB5BD /* OrangeButton */,
 				1A944E361CCB5AA7007EB5BD /* FooterView */,
 			);
@@ -169,10 +188,19 @@
 		1A944E3E1CCB6297007EB5BD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				1A944E501CCBA2AF007EB5BD /* fontawesome-webfont.ttf */,
 				1A944E3F1CCB62C1007EB5BD /* Avenir-Roman.ttf */,
-				1A944E411CCB62D8007EB5BD /* FontAwesome.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		1A944E451CCB8862007EB5BD /* JourneyTitleView */ = {
+			isa = PBXGroup;
+			children = (
+				1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */,
+				1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */,
+			);
+			name = JourneyTitleView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,11 +309,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
-				1A944E421CCB62D8007EB5BD /* FontAwesome.ttf in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
 				1A944E401CCB62C1007EB5BD /* Avenir-Roman.ttf in Resources */,
+				1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */,
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
+				1A944E511CCBA2AF007EB5BD /* fontawesome-webfont.ttf in Resources */,
+				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
 				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,7 +342,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
+				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
 				1A944E0A1CCB4567007EB5BD /* ViewController.swift in Sources */,
+				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
 			);
@@ -543,6 +575,7 @@
 				1A944E2E1CCB4567007EB5BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A944E2F1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroTests" */ = {
 			isa = XCConfigurationList;
@@ -551,6 +584,7 @@
 				1A944E311CCB4567007EB5BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A944E321CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroUITests" */ = {
 			isa = XCConfigurationList;
@@ -559,6 +593,7 @@
 				1A944E341CCB4567007EB5BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

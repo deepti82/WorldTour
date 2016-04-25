@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="fontawesome-webfont.ttf">
+            <string>FontAwesome</string>
+            <string>FontAwesome</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JourneyTitleView" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="calenderIcon" destination="48Y-ZC-ZH2" id="Qsi-D3-5tB"/>
+                <outlet property="calenderTitle" destination="vMU-oH-atr" id="J9j-W2-8LG"/>
+                <outlet property="clockIcon" destination="Fbu-S1-gpJ" id="Tnu-Ut-I8b"/>
+                <outlet property="clockTitle" destination="2BA-1b-W6Y" id="u9i-It-yOW"/>
+                <outlet property="titleLabel" destination="kLv-iY-qM8" id="l2y-Un-Ldx"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="537" height="94"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCv-jy-xFn">
+                    <rect key="frame" x="169" y="64" width="200" height="20"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48Y-ZC-ZH2">
+                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="dx0-xb-VDo"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="16"/>
+                            <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Sept 2014" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMU-oH-atr">
+                            <rect key="frame" x="20" y="0.0" width="90" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="6pb-uM-5pm"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xty-IL-lBh">
+                            <rect key="frame" x="110" y="0.0" width="10" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="10" id="c8f-46-B2v"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fbu-S1-gpJ">
+                            <rect key="frame" x="120" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="cRh-fq-NEj"/>
+                                <constraint firstAttribute="width" constant="20" id="eI8-va-V6M"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="15"/>
+                            <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="eI8-va-V6M"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:20 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2BA-1b-W6Y">
+                            <rect key="frame" x="140" y="0.0" width="60" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="n1U-GB-AVr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="6w8-Mf-s37"/>
+                        <constraint firstAttribute="width" constant="360" id="Yn6-El-YTK"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="uDe-Fr-35V"/>
+                        <constraint firstAttribute="width" constant="215" id="wa0-62-ymc"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Yn6-El-YTK"/>
+                            <exclude reference="uDe-Fr-35V"/>
+                            <exclude reference="wa0-62-ymc"/>
+                        </mask>
+                    </variation>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLv-iY-qM8">
+                    <rect key="frame" x="0.0" y="10" width="537" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="BrY-IN-rRm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="BrY-IN-rRm"/>
+                        </mask>
+                    </variation>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="0.40784313729999999" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="fCv-jy-xFn" firstAttribute="top" secondItem="kLv-iY-qM8" secondAttribute="bottom" constant="4" id="0T7-dj-Kg3"/>
+                <constraint firstItem="kLv-iY-qM8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="3q8-MM-4cN"/>
+                <constraint firstItem="kLv-iY-qM8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="W6n-0T-vsj"/>
+                <constraint firstItem="fCv-jy-xFn" firstAttribute="top" secondItem="kLv-iY-qM8" secondAttribute="bottom" constant="8" id="a8w-W5-ZlL"/>
+                <constraint firstAttribute="trailing" secondItem="kLv-iY-qM8" secondAttribute="trailing" id="fUi-aY-PQH"/>
+                <constraint firstItem="kLv-iY-qM8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="iC4-At-Hvm"/>
+                <constraint firstAttribute="bottom" secondItem="fCv-jy-xFn" secondAttribute="bottom" constant="16" id="muW-2M-gzl"/>
+                <constraint firstAttribute="bottom" secondItem="fCv-jy-xFn" secondAttribute="bottom" constant="10" id="q3B-Nl-dsA"/>
+                <constraint firstItem="fCv-jy-xFn" firstAttribute="centerX" secondItem="kLv-iY-qM8" secondAttribute="centerX" id="qY1-99-aMb"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="3q8-MM-4cN"/>
+                    <exclude reference="0T7-dj-Kg3"/>
+                    <exclude reference="a8w-W5-ZlL"/>
+                    <exclude reference="muW-2M-gzl"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="571.5" y="192"/>
+        </view>
+    </objects>
+</document>

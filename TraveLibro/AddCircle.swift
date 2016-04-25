@@ -1,14 +1,14 @@
 //
-//  OrangeButton.swift
+//  AddCircle.swift
 //  TraveLibro
 //
-//  Created by Wohlig Technology on 23/04/16.
+//  Created by Wohlig Technology on 25/04/16.
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-class OrangeButton: UIView {
+class AddCircle: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,7 +21,7 @@ class OrangeButton: UIView {
     
     func loadViewFromNib() {
         let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: "OrangeButton", bundle: bundle)
+        let nib = UINib(nibName: "AddCircle", bundle: bundle)
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
