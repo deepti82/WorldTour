@@ -10,6 +10,9 @@ import UIKit
 
 class FooterView: UIView {
     
+    @IBOutlet weak var footerImage: UIImageView!
+    @IBOutlet weak var footerText: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -26,6 +29,9 @@ class FooterView: UIView {
         view.frame = bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.addSubview(view);
+        
+        footerText.font = UIFont(name: "Avenir-Roman", size: 12)
+        footerText.textColor = UIColor.whiteColor()
     }
     
 }

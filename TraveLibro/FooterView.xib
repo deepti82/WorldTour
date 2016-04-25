@@ -5,14 +5,55 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterView" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="footerImage" destination="srG-Vy-T98" id="80a-OO-KWT"/>
+                <outlet property="footerText" destination="cHY-Sk-bhT" id="QKg-ZP-1Wn"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FooterView" customModule="TraveLibro" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="48"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="srG-Vy-T98">
+                    <rect key="frame" x="80" y="15" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="6Ob-FS-C0U"/>
+                        <constraint firstAttribute="width" constant="40" id="8K0-Ma-bp5"/>
+                        <constraint firstAttribute="height" constant="40" id="gEM-NB-fbM"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="gEM-NB-fbM"/>
+                        </mask>
+                    </variation>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHY-Sk-bhT">
+                    <rect key="frame" x="82" y="63" width="37" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="l9Y-bJ-EWe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="cHY-Sk-bhT" firstAttribute="centerX" secondItem="srG-Vy-T98" secondAttribute="centerX" id="36q-lo-jDF"/>
+                <constraint firstAttribute="bottom" secondItem="cHY-Sk-bhT" secondAttribute="bottom" constant="15" id="3ZO-Ss-8zr"/>
+                <constraint firstItem="srG-Vy-T98" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="5nq-27-20w"/>
+                <constraint firstAttribute="bottom" secondItem="srG-Vy-T98" secondAttribute="bottom" constant="5" id="QIL-PZ-8St"/>
+                <constraint firstItem="srG-Vy-T98" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="80" id="gJg-Mh-G6O"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="265" y="173"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="QIL-PZ-8St"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="165" y="199"/>
         </view>
     </objects>
 </document>

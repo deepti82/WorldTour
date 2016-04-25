@@ -49,6 +49,48 @@ class ViewController: UIViewController {
 //        infocircle.center = CGPointMake(40, self.view.frame.size.height - 95)
 //        self.view.addSubview(infocircle)
         
+        let footer = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 45))
+        footer.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height)
+        
+        let footerDown = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 45))
+        footerDown.center = CGPointMake(footer.frame.size.width / 2, 0)
+        footerDown.backgroundColor = mainBlueColor
+        footer.addSubview(footerDown)
+        
+        let footerFeed = FooterView(frame: CGRectMake(0, 0, footer.frame.size.width / 4, 50))
+        footerFeed.footerText.text = "Feeed"
+        //footerFeed.footerImage.image = UIImage(named: "info_circle")
+        footerFeed.center = CGPointMake(0, 30)
+        footerDown.addSubview(footerFeed)
+        
+        let footerNotification = FooterView(frame: CGRectMake(0, 0, footer.frame.size.width / 4, 50))
+        footerNotification.footerText.text = "Notification"
+        //footerNotification.footerImage.image = UIImage(named: "info_circle")
+        footerNotification.center = CGPointMake(footer.frame.size.width - (footer.frame.size.width / 4), 30)
+        footerDown.addSubview(footerNotification)
+        
+        let footerUp = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width / 2, 50))
+        footerUp.center = CGPointMake(self.view.frame.size.width / 2, -10)
+        footerUp.backgroundColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 255/255) // #232d4a
+        footerUp.layer.borderWidth = 1
+        footerUp.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 255/255).CGColor // #39426a
+        footerUp.layer.cornerRadius = footerUp.frame.self.width / 10
+        footer.addSubview(footerUp)
+        
+        let footerTravel = FooterView(frame: CGRectMake(0, 0, footer.frame.size.width / 4, 50))
+        footerTravel.footerText.text = "Travel Life"
+        //footerTravel.footerImage.image = UIImage(named: "info_circle")
+        footerTravel.center = CGPointMake(0, 35)
+        footerUp.addSubview(footerTravel)
+        
+        let footerLocal = FooterView(frame: CGRectMake(0, 0, footer.frame.size.width / 4, 50))
+        footerLocal.footerText.text = "Local Life"
+        //footerLocal.footerImage.image = UIImage(named: "info_circle")
+        footerLocal.center = CGPointMake(footerUp.frame.size.width / 2 - 10, 35)
+        footerUp.addSubview(footerLocal)
+        
+        self.view.addSubview(footer)
+        
     }
 
     override func didReceiveMemoryWarning() {
