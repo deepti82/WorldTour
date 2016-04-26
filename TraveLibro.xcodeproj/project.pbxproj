@@ -11,6 +11,7 @@
 		1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */; };
 		1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CA1281CCE234200EE9A90 /* InfoCircle.xib */; };
 		1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CA12A1CCE239000EE9A90 /* InfoCircle.swift */; };
+		1A6C0D961CCF915C00AB8B85 /* VideoPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C0D951CCF915C00AB8B85 /* VideoPost.xib */; };
 		1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E071CCB4567007EB5BD /* AppDelegate.swift */; };
 		1A944E0A1CCB4567007EB5BD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E091CCB4567007EB5BD /* ViewController.swift */; };
 		1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E0B1CCB4567007EB5BD /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCircle.swift; sourceTree = "<group>"; };
 		1A4CA1281CCE234200EE9A90 /* InfoCircle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoCircle.xib; sourceTree = "<group>"; };
 		1A4CA12A1CCE239000EE9A90 /* InfoCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCircle.swift; sourceTree = "<group>"; };
+		1A6C0D951CCF915C00AB8B85 /* VideoPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPost.xib; sourceTree = "<group>"; };
 		1A944E041CCB4567007EB5BD /* TraveLibro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraveLibro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A944E071CCB4567007EB5BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A944E091CCB4567007EB5BD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +118,14 @@
 			name = InfoCircle;
 			sourceTree = "<group>";
 		};
+		1A6C0D941CCF912100AB8B85 /* VideoPost */ = {
+			isa = PBXGroup;
+			children = (
+				1A6C0D951CCF915C00AB8B85 /* VideoPost.xib */,
+			);
+			name = VideoPost;
+			sourceTree = "<group>";
+		};
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				1A6C0D941CCF912100AB8B85 /* VideoPost */,
 				1A4CA1271CCE22CF00EE9A90 /* InfoCircle */,
 				1A4CA11C1CCE17F900EE9A90 /* AddCircle */,
 				1A944E451CCB8862007EB5BD /* JourneyTitleView */,
@@ -323,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
+				1A6C0D961CCF915C00AB8B85 /* VideoPost.xib in Resources */,
 				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,

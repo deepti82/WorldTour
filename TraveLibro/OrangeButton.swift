@@ -10,6 +10,8 @@ import UIKit
 
 class OrangeButton: UIView {
     
+    @IBOutlet weak var orangeButtonTitle: UIButton!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -26,6 +28,8 @@ class OrangeButton: UIView {
         view.frame = bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.addSubview(view);
+        
+        orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 14)
     }
     
 }

@@ -49,6 +49,17 @@ class ViewController: UIViewController {
 //        infocircle.center = CGPointMake(40, self.view.frame.size.height - 95)
 //        self.view.addSubview(infocircle)
         
+        let orangeButton = OrangeButton(frame: CGRectMake(0, 0, self.view.frame.size.width - 200, 50))
+        orangeButton.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+        orangeButton.orangeButtonTitle.layer.cornerRadius = 3
+        let buttonIcon = UILabel(frame: CGRectMake(0, 0, 20, 20))
+        buttonIcon.font = FontAwesomeFont
+        buttonIcon.text = String(format: "%C", faicon["clock"]!)
+        let buttonIconText: String = String(format: "%C", faicon["clock"]!)
+        print(buttonIconText)
+        orangeButton.orangeButtonTitle.setTitle(buttonIconText + " Happy Journey", forState: UIControlState.Normal)
+        //self.view.addSubview(orangeButton)
+        
         let footer = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 45))
         footer.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height)
         
@@ -66,7 +77,7 @@ class ViewController: UIViewController {
         let footerNotification = FooterView(frame: CGRectMake(0, 0, footer.frame.size.width / 4, 50))
         footerNotification.footerText.text = "Notification"
         //footerNotification.footerImage.image = UIImage(named: "info_circle")
-        footerNotification.center = CGPointMake(footer.frame.size.width - (footer.frame.size.width / 4), 30)
+        footerNotification.center = CGPointMake(footer.frame.size.width - (footer.frame.size.width / 4) - 5, 30)
         footerDown.addSubview(footerNotification)
         
         let footerUp = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width / 2, 50))
