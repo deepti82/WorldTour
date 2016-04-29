@@ -102,6 +102,10 @@ class ViewController: UIViewController {
         
         self.view.addSubview(footer)
         
+        // video post
+//        let videoPost = VideoPost(frame: CGRectMake(0, 0, self.view.frame.size.width, 350))
+//        videoPost.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+//        self.view.addSubview(videoPost)
     }
 
     override func didReceiveMemoryWarning() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A3E4DC31CD33B8F00105C3D /* VideoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E4DC21CD33B8F00105C3D /* VideoPost.swift */; };
 		1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */; };
 		1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */; };
 		1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CA1281CCE234200EE9A90 /* InfoCircle.xib */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A3E4DC21CD33B8F00105C3D /* VideoPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPost.swift; sourceTree = "<group>"; };
 		1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCircle.xib; sourceTree = "<group>"; };
 		1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCircle.swift; sourceTree = "<group>"; };
 		1A4CA1281CCE234200EE9A90 /* InfoCircle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoCircle.xib; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				1A6C0D951CCF915C00AB8B85 /* VideoPost.xib */,
+				1A3E4DC21CD33B8F00105C3D /* VideoPost.swift */,
 			);
 			name = VideoPost;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
+				1A3E4DC31CD33B8F00105C3D /* VideoPost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
