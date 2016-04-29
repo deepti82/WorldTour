@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A3E4DC31CD33B8F00105C3D /* VideoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E4DC21CD33B8F00105C3D /* VideoPost.swift */; };
+		1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A3E4DC51CD3970000105C3D /* TripSummaryProfile.xib */; };
+		1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E4DC71CD398BB00105C3D /* TripSummaryProfile.swift */; };
 		1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */; };
 		1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */; };
 		1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CA1281CCE234200EE9A90 /* InfoCircle.xib */; };
@@ -49,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		1A3E4DC21CD33B8F00105C3D /* VideoPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPost.swift; sourceTree = "<group>"; };
+		1A3E4DC51CD3970000105C3D /* TripSummaryProfile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryProfile.xib; sourceTree = "<group>"; };
+		1A3E4DC71CD398BB00105C3D /* TripSummaryProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryProfile.swift; sourceTree = "<group>"; };
 		1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCircle.xib; sourceTree = "<group>"; };
 		1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCircle.swift; sourceTree = "<group>"; };
 		1A4CA1281CCE234200EE9A90 /* InfoCircle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoCircle.xib; sourceTree = "<group>"; };
@@ -102,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A3E4DC41CD396C600105C3D /* TripSummaryProfile */ = {
+			isa = PBXGroup;
+			children = (
+				1A3E4DC51CD3970000105C3D /* TripSummaryProfile.xib */,
+				1A3E4DC71CD398BB00105C3D /* TripSummaryProfile.swift */,
+			);
+			name = TripSummaryProfile;
+			sourceTree = "<group>";
+		};
 		1A4CA11C1CCE17F900EE9A90 /* AddCircle */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +198,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				1A3E4DC41CD396C600105C3D /* TripSummaryProfile */,
 				1A6C0D941CCF912100AB8B85 /* VideoPost */,
 				1A4CA1271CCE22CF00EE9A90 /* InfoCircle */,
 				1A4CA11C1CCE17F900EE9A90 /* AddCircle */,
@@ -341,6 +355,7 @@
 				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
+				1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */,
 				1A944E401CCB62C1007EB5BD /* Avenir-Roman.ttf in Resources */,
 				1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */,
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
@@ -376,6 +391,7 @@
 				1A944E0A1CCB4567007EB5BD /* ViewController.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
+				1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */,
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
 				1A3E4DC31CD33B8F00105C3D /* VideoPost.swift in Sources */,
