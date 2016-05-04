@@ -40,12 +40,12 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>fontawesome-webfont.ttf</string>
 		<string>Avenir-Roman.ttf</string>
 		<string>Avenir-Black.ttf</string>
 		<string>Avenir-Heavy.ttf</string>
 		<string>Avenir-Light.ttf</string>
 		<string>Avenir-Medium.ttf</string>
-		<string>fontawesome-webfont.ttf</string>
 	</array>
 </dict>
 </plist>

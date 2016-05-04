@@ -13,7 +13,7 @@ let mainOrangeColor = UIColor(red: 1, green: 0.408, blue: 0.345, alpha: 1) // #F
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 
-var faicon = [String: UniChar]()
+var faicon = [String: UInt32]()
 
 
 @UIApplicationMain
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         faicon["clock"] = 0xf017
-        faicon["calender"] = 0xf073
+        faicon["calendar"] = 0xf073
         
         return true
     }

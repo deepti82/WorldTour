@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Add New View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="OTGAddNewViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -31,18 +31,69 @@
                                     <navigationItem title="On The Go" id="faS-kn-8vA"/>
                                 </items>
                             </navigationBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahe-Zn-KcV">
+                                <rect key="frame" x="0.0" y="48" width="320" height="520"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ahe-Zn-KcV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="28" id="E1F-r7-Hbz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6tJ-x7-0P7" secondAttribute="trailing" constant="-20" id="GqY-eK-Dyf"/>
+                            <constraint firstItem="ahe-Zn-KcV" firstAttribute="centerX" secondItem="6tJ-x7-0P7" secondAttribute="centerX" id="Qca-L5-Vkt"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ahe-Zn-KcV" secondAttribute="bottom" id="U7Z-W2-Wnc"/>
+                            <constraint firstItem="ahe-Zn-KcV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VWj-0n-hrh"/>
                             <constraint firstItem="6tJ-x7-0P7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="Vre-09-rSU"/>
                             <constraint firstItem="6tJ-x7-0P7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="nmO-NI-Iwk"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="navigationBar" destination="6tJ-x7-0P7" id="hDc-MU-tcd"/>
+                        <outlet property="scrollView" destination="ahe-Zn-KcV" id="5dx-1g-ogu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="205" y="432"/>
+        </scene>
+        <!--On The Go View Controller-->
+        <scene sceneID="3if-DI-10d">
+            <objects>
+                <viewController id="DoK-1J-Uqn" customClass="OnTheGoViewController" customModule="TraveLibro" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cf0-Vw-HzR"/>
+                        <viewControllerLayoutGuide type="bottom" id="8c6-I8-zfU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GP7-tz-T8I">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBr-0v-qPF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Ce8-Fs-GI1"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="On The Go" id="KH2-zl-jDo"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="CBr-0v-qPF" secondAttribute="trailing" id="CbB-Ud-PCY"/>
+                            <constraint firstItem="CBr-0v-qPF" firstAttribute="top" secondItem="GP7-tz-T8I" secondAttribute="top" id="lHQ-Sd-ueM"/>
+                            <constraint firstItem="CBr-0v-qPF" firstAttribute="leading" secondItem="GP7-tz-T8I" secondAttribute="leading" id="x7n-Ut-UCx"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M7X-CL-Pj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="742" y="437"/>
         </scene>
     </scenes>
 </document>

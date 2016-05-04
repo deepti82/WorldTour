@@ -1,38 +1,31 @@
 //
-//  FooterView.swift
+//  ShoesOTG.swift
 //  TraveLibro
 //
-//  Created by Wohlig Technology on 23/04/16.
+//  Created by Chintan Shah on 02/05/16.
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-class FooterView: UIView {
-    
-    @IBOutlet weak var footerImage: UIImageView!
-    @IBOutlet weak var footerText: UILabel!
-    
+class ShoesOTG: UIView {
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     func loadViewFromNib() {
         let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: "FooterView", bundle: bundle)
+        let nib = UINib(nibName: "ShoesOTG", bundle: bundle)
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.addSubview(view);
-        
-        footerText.font = UIFont(name: "Avenir-Roman", size: 12)
-        footerImage.tintColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
-        //footerImage.tintColor = UIColor.redColor()
     }
     
 }
