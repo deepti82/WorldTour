@@ -99,7 +99,7 @@ class OTGAddNewViewController: UIViewController {
         footerUp.layer.cornerRadius = footerUp.frame.self.width / 10
         footer.addSubview(footerUp)
         
-        let drawPartition = drawFooterLine(frame: CGRect(x: self.view.frame.size.width/4 + 3, y: 0, width: 20, height: 45))
+        let drawPartition = drawFooterLine(frame: CGRect(x: self.view.frame.size.width/4, y: 0, width: 20, height: 45))
         drawPartition.backgroundColor = UIColor.clearColor()
         footerUp.addSubview(drawPartition)
         
@@ -146,11 +146,11 @@ class OTGAddNewViewController: UIViewController {
 //        enterJourneyNameView.addSubview(enterJourneyNameText)
 //        self.view.addSubview(enterJourneyNameView)
         
-        let drawView = drawLine(frame: CGRect(x: 190, y: 550, width: 10, height: 1000))
+        let drawView = drawLine(frame: CGRect(x: self.view.frame.size.width/2, y: 550, width: 10, height: 1000))
         drawView.backgroundColor = UIColor.clearColor()
         self.scrollView.addSubview(drawView)
         
-        let shoesStartJourney = UIImageView(frame: CGRect(x: 170, y: 500, width: 50, height: 59.5))
+        let shoesStartJourney = UIImageView(frame: CGRect(x: self.view.frame.size.width/2 - 25, y: 500, width: 50, height: 59.5))
         shoesStartJourney.image = UIImage(named: "journey_shoes")
         self.scrollView.addSubview(shoesStartJourney)
         
@@ -162,30 +162,45 @@ class OTGAddNewViewController: UIViewController {
 //                }, completion: { finished in
 //            })
         
-        let orangeButton = OrangeButton(frame: CGRectMake(0, 0, self.view.frame.size.width - 200, 50))
-        orangeButton.center = CGPointMake(190, 650)
-        orangeButton.orangeButtonTitle.layer.cornerRadius = 3
-        let buttonIcon = Character(UnicodeScalar(UInt32(0xf10d)))
-        //let buttonIconText = String(buttonIcon.text)
-        print(buttonIcon)
-        orangeButton.orangeButtonTitle.setTitle("\u{f170} Start Journey", forState: .Normal)
-        self.scrollView.addSubview(orangeButton)
+        //Button for: Start Journey
+//        let orangeButton = OrangeButton(frame: CGRectMake(0, 0, self.view.frame.size.width - 200, 50))
+//        orangeButton.center = CGPointMake(self.view.frame.size.width/2, 650)
+//        orangeButton.orangeButtonTitle.layer.cornerRadius = 3
+//        let buttonIcon = Character(UnicodeScalar(UInt32(0xf10d)))
+//        //let buttonIconText = String(buttonIcon.text)
+//        print(buttonIcon)
+//        orangeButton.orangeButtonTitle.setTitle("\u{f170} Start Journey", forState: .Normal)
+//        self.scrollView.addSubview(orangeButton)
         
-        let enterJourneyNameView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width - 25, 60))
-        enterJourneyNameView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
-        enterJourneyNameView.layer.cornerRadius = 5
-        enterJourneyNameView.backgroundColor = UIColor.whiteColor()
-        enterJourneyNameView.layer.shadowRadius = 1
-        enterJourneyNameView.layer.shadowOffset = CGSizeZero
-        enterJourneyNameView.layer.shadowColor = UIColor.blackColor().CGColor
-        enterJourneyNameView.layer.shadowOpacity = 0.2
-        //enterJourneyNameView.bounds = CGRectInset(view.frame, 10, 20)
-        let enterJourneyNameText = UITextField(frame: CGRectMake(0, 0, enterJourneyNameView.frame.size.width - 20, enterJourneyNameView.frame.size.height))
-        enterJourneyNameText.center = CGPointMake(enterJourneyNameView.frame.size.width / 2 + 5, enterJourneyNameView.frame.size.height / 2)
-        enterJourneyNameText.attributedPlaceholder = NSAttributedString(string:"Name Your Journey", attributes:[NSForegroundColorAttributeName: UIColor.blackColor()])
-        enterJourneyNameText.textAlignment = .Center
-        enterJourneyNameView.addSubview(enterJourneyNameText)
-        self.view.addSubview(enterJourneyNameView)
+        //Text field for: entering journey name
+//        let enterJourneyNameView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width - 25, 60))
+//        enterJourneyNameView.center = CGPointMake(self.view.frame.size.width/2, 650)
+//        enterJourneyNameView.layer.cornerRadius = 5
+//        enterJourneyNameView.backgroundColor = UIColor.whiteColor()
+//        enterJourneyNameView.layer.shadowRadius = 1
+//        enterJourneyNameView.layer.shadowOffset = CGSizeZero
+//        enterJourneyNameView.layer.shadowColor = UIColor.blackColor().CGColor
+//        enterJourneyNameView.layer.shadowOpacity = 0.2
+//        //enterJourneyNameView.bounds = CGRectInset(view.frame, 10, 20)
+//        let enterJourneyNameText = UITextField(frame: CGRectMake(0, 0, enterJourneyNameView.frame.size.width - 20, enterJourneyNameView.frame.size.height))
+//        enterJourneyNameText.font = avenirFont
+//        enterJourneyNameText.center = CGPointMake(enterJourneyNameView.frame.size.width / 2 + 5, enterJourneyNameView.frame.size.height / 2)
+//        enterJourneyNameText.attributedPlaceholder = NSAttributedString(string:"Name Your Journey", attributes:[NSForegroundColorAttributeName: UIColor.blackColor()])
+//        enterJourneyNameText.textAlignment = .Center
+//        enterJourneyNameView.addSubview(enterJourneyNameText)
+//        self.scrollView.addSubview(enterJourneyNameView)
+        
+        let journeyLabel = TextLabelView(frame: CGRectMake(0, 0, self.view.frame.size.width - 40, 50))
+        journeyLabel.center = CGPointMake(self.view.frame.size.width/2, 650)
+        journeyLabel.label.text = "Exploring United Kingdom"
+        self.scrollView.addSubview(journeyLabel)
+        
+//        let locationTextField = TextField(frame: CGRectMake(0, 0, self.view.frame.size.width - 25, 60))
+//        locationTextField.center = CGPointMake(self.view.frame.size.width/2, 800)
+//        locationTextField.field.text = "London"
+//        self.scrollView.addSubview(locationTextField)
+
+        
         
     }
 

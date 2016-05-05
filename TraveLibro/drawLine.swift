@@ -16,13 +16,12 @@ class drawLine: UIView {
         CGContextSetLineWidth(context, 5.0)
         CGContextSetStrokeColorWithColor(context, UIColor.orangeColor().CGColor)
         CGContextSetLineDash(context, 0, [7.5], 1)
-        //CGContextSetLineCap(context, kCGLineCapRound)
+        CGContextSetLineCap(context, CGLineCap(rawValue: 500)!)
         
         CGContextMoveToPoint(context, 0, 0)
         CGContextAddLineToPoint(context, 0, 1000)
         
         CGContextStrokePath(context)
-        
     }
 
 }
