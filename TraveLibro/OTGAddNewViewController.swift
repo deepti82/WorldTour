@@ -36,10 +36,10 @@ class OTGAddNewViewController: UIViewController {
         //UILabel.appearance().font = avenirFont
 //        button.titleLabel!.font = avenirFont
 //        
-//        let journey = JourneyTitleView(frame: CGRectMake(0, 0, self.view.frame.size.width, 65))
-//        journey.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 - 75)
-//        self.view.addSubview(journey)
-//        
+        let journey = JourneyTitleView(frame: CGRectMake(0, 0, self.view.frame.size.width, 65))
+        journey.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 - 75)
+        self.view.addSubview(journey)
+//
 //        let journeyImageView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 180))
 //        journeyImageView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 + 125 - 80)
 //        let image = UIImage(named: "london_image")
@@ -81,13 +81,17 @@ class OTGAddNewViewController: UIViewController {
         
         let footerFeed = FooterView(frame: CGRectMake(0, 0, footer.frame.size.width/3, 30))
         footerFeed.footerText.text = "Feed"
+        footerFeed.footerText.textColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
         footerFeed.footerImage.image = UIImage(named: "feed_icon")
+        footerFeed.footerImage.tintColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
         footerFeed.center = CGPointMake(footer.frame.size.width/8, footer.frame.size.height/4+5)
         footerDown.addSubview(footerFeed)
         
         let footerNotification = FooterView(frame: CGRectMake(0, 0, footer.frame.size.width/3, 50))
         footerNotification.footerText.text = "Notifications"
+        footerNotification.footerText.textColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
         footerNotification.footerImage.image = UIImage(named: "notification_icon")
+        footerNotification.footerImage.tintColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
         footerNotification.center = CGPointMake((footer.frame.size.width/8) * 7, footer.frame.size.height/4+5)
         footerDown.addSubview(footerNotification)
         
@@ -146,13 +150,13 @@ class OTGAddNewViewController: UIViewController {
 //        enterJourneyNameView.addSubview(enterJourneyNameText)
 //        self.view.addSubview(enterJourneyNameView)
         
-        let drawView = drawLine(frame: CGRect(x: self.view.frame.size.width/2, y: 550, width: 10, height: 1000))
-        drawView.backgroundColor = UIColor.clearColor()
-        self.scrollView.addSubview(drawView)
-        
-        let shoesStartJourney = UIImageView(frame: CGRect(x: self.view.frame.size.width/2 - 25, y: 500, width: 50, height: 59.5))
-        shoesStartJourney.image = UIImage(named: "journey_shoes")
-        self.scrollView.addSubview(shoesStartJourney)
+//        let drawView = drawLine(frame: CGRect(x: self.view.frame.size.width/2, y: 550, width: 10, height: 1000))
+//        drawView.backgroundColor = UIColor.clearColor()
+//        self.scrollView.addSubview(drawView)
+//        
+//        let shoesStartJourney = UIImageView(frame: CGRect(x: self.view.frame.size.width/2 - 25, y: 500, width: 50, height: 59.5))
+//        shoesStartJourney.image = UIImage(named: "journey_shoes")
+//        self.scrollView.addSubview(shoesStartJourney)
         
 //        self.addColorPattern.animation.makeY((self.view.frame.height)).easeInOut.animateWithCompletion(5000, {
 //            self.addColorPattern.removeFromSuperview()
@@ -190,17 +194,101 @@ class OTGAddNewViewController: UIViewController {
 //        enterJourneyNameView.addSubview(enterJourneyNameText)
 //        self.scrollView.addSubview(enterJourneyNameView)
         
-        let journeyLabel = TextLabelView(frame: CGRectMake(0, 0, self.view.frame.size.width - 40, 50))
-        journeyLabel.center = CGPointMake(self.view.frame.size.width/2, 650)
-        journeyLabel.label.text = "Exploring United Kingdom"
-        self.scrollView.addSubview(journeyLabel)
+//        let journeyLabel = TextLabelView(frame: CGRectMake(0, 0, self.view.frame.size.width - 40, 50))
+//        journeyLabel.center = CGPointMake(self.view.frame.size.width/2, 650)
+//        journeyLabel.label.text = "Exploring United Kingdom"
+//        self.scrollView.addSubview(journeyLabel)
         
 //        let locationTextField = TextField(frame: CGRectMake(0, 0, self.view.frame.size.width - 25, 60))
 //        locationTextField.center = CGPointMake(self.view.frame.size.width/2, 800)
 //        locationTextField.field.text = "London"
 //        self.scrollView.addSubview(locationTextField)
 
+        let checkBoxGroup1 = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/4))
+        checkBoxGroup1.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/3) - 50)
+        self.view.addSubview(checkBoxGroup1)
         
+        let adventureCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        adventureCheckBox.center = CGPointMake(checkBoxGroup1.frame.size.width/4 - 35, checkBoxGroup1.frame.size.height/3 - 9)
+        adventureCheckBox.label.text = "Adventure"
+        checkBoxGroup1.addSubview(adventureCheckBox)
+        
+        let backpackingCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        backpackingCheckBox.center = CGPointMake(checkBoxGroup1.frame.size.width/2, checkBoxGroup1.frame.size.height/3 - 9)
+        backpackingCheckBox.label.text = "Backpacking"
+        checkBoxGroup1.addSubview(backpackingCheckBox)
+        
+        let businessCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        businessCheckBox.center = CGPointMake((checkBoxGroup1.frame.size.width/4 * 3) + 35, checkBoxGroup1.frame.size.height/3 - 9)
+        businessCheckBox.label.text = "Business"
+        checkBoxGroup1.addSubview(businessCheckBox)
+        
+        let religiousCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        religiousCheckBox.center = CGPointMake(checkBoxGroup1.frame.size.width/3, checkBoxGroup1.frame.size.height/4 * 3 + 9)
+        religiousCheckBox.label.text = "Religious"
+        checkBoxGroup1.addSubview(religiousCheckBox)
+        
+        let romanticGetawayCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        romanticGetawayCheckBox.center = CGPointMake(checkBoxGroup1.frame.size.width/3 * 2, checkBoxGroup1.frame.size.height/4 * 3 + 9)
+        romanticGetawayCheckBox.label.text = "Romantic Getaway"
+        checkBoxGroup1.addSubview(romanticGetawayCheckBox)
+        
+        let drawSeperator1 = drawSeperatorLine(frame: CGRect(x: self.view.frame.size.width/6, y: self.view.frame.size.height/3 * 1.2, width: self.view.frame.size.width/1.5, height: 10))
+        drawSeperator1.backgroundColor = UIColor.clearColor()
+        self.view.addSubview(drawSeperator1)
+        
+        
+        let checkBoxGroup2 = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/8))
+        checkBoxGroup2.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/2) - 15)
+        self.view.addSubview(checkBoxGroup2)
+        
+        let budgetCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        budgetCheckBox.center = CGPointMake(checkBoxGroup2.frame.size.width/3, checkBoxGroup2.frame.size.height/2)
+        budgetCheckBox.label.text = "Budget"
+        checkBoxGroup2.addSubview(budgetCheckBox)
+        
+        let luxuryCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        luxuryCheckBox.center = CGPointMake(checkBoxGroup2.frame.size.width/3 * 2, checkBoxGroup2.frame.size.height/2)
+        luxuryCheckBox.label.text = "Luxury"
+        checkBoxGroup2.addSubview(luxuryCheckBox)
+        
+        let drawSeperator2 = drawSeperatorLine(frame: CGRect(x: self.view.frame.size.width/6, y: self.view.frame.size.height/3 * 1.65, width: self.view.frame.size.width/1.5, height: 10))
+        drawSeperator2.backgroundColor = UIColor.clearColor()
+        self.view.addSubview(drawSeperator2)
+        
+        
+        let checkBoxGroup3 = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/4))
+        checkBoxGroup3.center = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height/3 * 2) + 20)
+        self.view.addSubview(checkBoxGroup3)
+        
+        let familyCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        familyCheckBox.center = CGPointMake(checkBoxGroup3.frame.size.width/4 - 35, checkBoxGroup3.frame.size.height/3 - 15)
+        familyCheckBox.label.text = "Family"
+        checkBoxGroup3.addSubview(familyCheckBox)
+        
+        let friendsCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        friendsCheckBox.center = CGPointMake(checkBoxGroup3.frame.size.width/2, checkBoxGroup3.frame.size.height/3 - 15)
+        friendsCheckBox.label.text = "Friends"
+        checkBoxGroup3.addSubview(friendsCheckBox)
+        
+        let soleCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        soleCheckBox.center = CGPointMake((checkBoxGroup3.frame.size.width/4 * 3) + 35, checkBoxGroup3.frame.size.height/3 - 15)
+        soleCheckBox.label.text = "Sole"
+        checkBoxGroup3.addSubview(soleCheckBox)
+        
+        let betterHalfCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        betterHalfCheckBox.center = CGPointMake(checkBoxGroup3.frame.size.width/3, checkBoxGroup3.frame.size.height/4 * 3)
+        betterHalfCheckBox.label.text = "Better Half"
+        checkBoxGroup3.addSubview(betterHalfCheckBox)
+        
+        let colleaguesCheckBox = TypeOfJourney(frame: CGRect(x: 0, y: 0, width: 85, height: 65))
+        colleaguesCheckBox.center = CGPointMake(checkBoxGroup3.frame.size.width/3 * 2, checkBoxGroup3.frame.size.height/4 * 3)
+        colleaguesCheckBox.label.text = "Colleagues"
+        checkBoxGroup3.addSubview(colleaguesCheckBox)
+        
+        let doneButton = OrangeButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width * 0.75, height: 40))
+        doneButton.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3 * 2.6)
+        self.view.addSubview(doneButton)
         
     }
 

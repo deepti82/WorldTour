@@ -3,41 +3,42 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TypeOfJourney" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="image" destination="AZN-7z-olK" id="1Li-F8-EHS"/>
+                <outlet property="label" destination="am7-6W-4wV" id="Uu2-K9-Zmf"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="74" height="98"/>
+            <rect key="frame" x="0.0" y="0.0" width="122" height="83"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hearts_icon" translatesAutoresizingMaskIntoConstraints="NO" id="AZN-7z-olK">
-                    <rect key="frame" x="0.0" y="0.0" width="75" height="73"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="AZN-7z-olK" secondAttribute="height" multiplier="60:59" id="oit-pR-pkB"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="am7-6W-4wV">
-                    <rect key="frame" x="0.0" y="81" width="74" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Romantic Getaway" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="am7-6W-4wV">
+                    <rect key="frame" x="0.0" y="63" width="122" height="20"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" image="hearts_icon" translatesAutoresizingMaskIntoConstraints="NO" id="AZN-7z-olK">
+                    <rect key="frame" x="8" y="0.0" width="69" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="4eO-eX-Ers"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="AZN-7z-olK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JBm-SM-YbH"/>
-                <constraint firstAttribute="bottom" secondItem="am7-6W-4wV" secondAttribute="bottom" id="M50-BI-VP0"/>
-                <constraint firstAttribute="trailing" secondItem="am7-6W-4wV" secondAttribute="trailing" id="O4c-at-aS3"/>
-                <constraint firstItem="AZN-7z-olK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bSt-xO-qwh"/>
-                <constraint firstAttribute="trailing" secondItem="AZN-7z-olK" secondAttribute="trailing" constant="-1" id="dnW-1F-oRx"/>
-                <constraint firstItem="am7-6W-4wV" firstAttribute="top" secondItem="AZN-7z-olK" secondAttribute="bottom" constant="8" id="hbn-Ck-uKN"/>
-                <constraint firstItem="am7-6W-4wV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hhF-TT-0jL"/>
+                <constraint firstItem="am7-6W-4wV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CaQ-vs-iDL"/>
+                <constraint firstAttribute="trailing" secondItem="am7-6W-4wV" secondAttribute="trailing" id="JDd-2u-vdn"/>
+                <constraint firstItem="AZN-7z-olK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JVA-i4-Dzt"/>
+                <constraint firstAttribute="bottom" secondItem="am7-6W-4wV" secondAttribute="bottom" id="cqJ-ms-Lzs"/>
+                <constraint firstItem="AZN-7z-olK" firstAttribute="leading" secondItem="am7-6W-4wV" secondAttribute="leading" constant="8" id="deQ-s2-JBZ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="156" y="185"/>
+            <point key="canvasLocation" x="-156" y="-256.5"/>
         </view>
     </objects>
     <resources>

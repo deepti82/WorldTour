@@ -39,7 +39,7 @@ class JourneyTitleView: UIView {
         clockTitle.font = UIFont(name: "Avenir-Roman", size: 12)
         
         calenderIcon.font = FontAwesomeFont
-        calenderIcon.text = String(format: "%C", faicon["calender"]!)
+        calenderIcon.text = String(format: "%C", faicon["calendar"]!)
         clockIcon.font = FontAwesomeFont
         clockIcon.text = String(format: "%C", faicon["clock"]!)
     }

@@ -39,6 +39,7 @@
 		C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25443541CD75F2900C2C6CD /* drawLine.swift */; };
 		C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2776A271CD785DF00FE066A /* ShoesOTG.xib */; };
 		C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */; };
+		C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE37D01CDC62EB00A47E70 /* TypeOfJourney.swift */; };
 		C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */; };
 		C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A131CDB228F00122941 /* TextLabelView.swift */; };
 		C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A151CDB3B9900122941 /* TextField.swift */; };
@@ -102,6 +103,7 @@
 		C25443541CD75F2900C2C6CD /* drawLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawLine.swift; sourceTree = "<group>"; };
 		C2776A271CD785DF00FE066A /* ShoesOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoesOTG.xib; sourceTree = "<group>"; };
 		C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesOTG.swift; sourceTree = "<group>"; };
+		C2CE37D01CDC62EB00A47E70 /* TypeOfJourney.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOfJourney.swift; sourceTree = "<group>"; };
 		C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextLabelView.xib; path = ../TextLabelView.xib; sourceTree = "<group>"; };
 		C2EA3A131CDB228F00122941 /* TextLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLabelView.swift; sourceTree = "<group>"; };
 		C2EA3A151CDB3B9900122941 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */,
+				C2CE37D01CDC62EB00A47E70 /* TypeOfJourney.swift */,
 			);
 			name = TypeOfJourney;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
 				C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */,
+				C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
 				1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */,
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,

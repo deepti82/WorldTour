@@ -1,24 +1,23 @@
 //
-//  OrangeButton.swift
+//  TypeOfJourney.swift
 //  TraveLibro
 //
-//  Created by Wohlig Technology on 23/04/16.
+//  Created by Chintan Shah on 06/05/16.
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-class OrangeButton: UIView {
-    
-    @IBOutlet weak var orangeButtonTitle: UIButton!
-    @IBOutlet weak var fontAwesomeLabel: UILabel!
+class TypeOfJourney: UIView {
+
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var image: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        orangeButtonTitle.layer.cornerRadius = 5
-        fontAwesomeLabel.font = FontAwesomeFont
-        fontAwesomeLabel.text = String(format: "%C", faicon["rocket"]!)
+        label.textColor = mainBlueColor
+        image.tintColor = mainBlueColor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,13 +26,11 @@ class OrangeButton: UIView {
     
     func loadViewFromNib() {
         let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: "OrangeButton", bundle: bundle)
+        let nib = UINib(nibName: "TypeOfJourney", bundle: bundle)
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.addSubview(view);
-        
-        orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 14)
     }
-    
+
 }

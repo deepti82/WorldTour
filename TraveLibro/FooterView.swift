@@ -16,6 +16,10 @@ class FooterView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        
+        footerText.font = UIFont(name: "Avenir-Roman", size: 12)
+        footerImage.tintColor = UIColor(red: 123/255, green: 128/255, blue: 148/255, alpha: 1)
+        footerText.textColor = UIColor(red: 123/255, green: 128/255, blue: 148/255, alpha: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,10 +33,6 @@ class FooterView: UIView {
         view.frame = bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.addSubview(view);
-        
-        footerText.font = UIFont(name: "Avenir-Roman", size: 12)
-        footerImage.tintColor = UIColor(red: 211/255, green: 211/255, blue: 211/255, alpha: 1)
-        //footerImage.tintColor = UIColor.redColor()
     }
     
 }
