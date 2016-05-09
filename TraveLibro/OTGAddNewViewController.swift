@@ -73,7 +73,7 @@ class OTGAddNewViewController: UIViewController {
         icon3.center = CGPointMake(TypeOfJourneyIcons.frame.size.width/6 * 5 + 20, TypeOfJourneyIcons.frame.size.height/2)
         icon3.image = UIImage(named: "hearts_icon")
         icon3.tintColor = mainOrangeColor
-        TypeOfJourneyIcons.addSubview(icon3)
+        TypeOfJourneyIcons.addSubview(icon3)	
         
 //        let addcircle = AddCircle(frame: CGRectMake(0, 0, 50, 50))
 //        addcircle.center = CGPointMake(self.view.frame.size.width - 40, self.view.frame.size.height - 100)
