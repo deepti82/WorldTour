@@ -73,7 +73,13 @@ class OTGAddNewViewController: UIViewController {
         icon3.center = CGPointMake(TypeOfJourneyIcons.frame.size.width/6 * 5 + 20, TypeOfJourneyIcons.frame.size.height/2)
         icon3.image = UIImage(named: "hearts_icon")
         icon3.tintColor = mainOrangeColor
-        TypeOfJourneyIcons.addSubview(icon3)	
+        TypeOfJourneyIcons.addSubview(icon3)
+        
+        let addBuddiesButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 40, height: 50))
+        makeButtonGreyTranslucent(addBuddiesButton, textData: "Add Buddies")
+        addBuddiesButton.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height / 3 * 2.43)
+        self.view.addSubview(addBuddiesButton)
+        
         
 //        let addcircle = AddCircle(frame: CGRectMake(0, 0, 50, 50))
 //        addcircle.center = CGPointMake(self.view.frame.size.width - 40, self.view.frame.size.height - 100)
