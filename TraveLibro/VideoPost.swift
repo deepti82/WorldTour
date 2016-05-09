@@ -12,6 +12,7 @@ class VideoPost: UIView {
     
     @IBOutlet weak var mainPostView: UIView!
     @IBOutlet weak var dayImage: UIImageView!
+    @IBOutlet weak var videoTime: UILabel!
     @IBOutlet weak var videoImage: UIImageView!
     @IBOutlet weak var likeImage: UIImageView!
     @IBOutlet weak var commentImage: UIImageView!
@@ -43,6 +44,7 @@ class VideoPost: UIView {
         dayImage.image = UIImage(named: "add_circle")
         //likeText.text = "like"
         likeText.font = UIFont(name: "Avenir-Roman", size: 10)
+        videoTime.font = UIFont(name: "Avenir-Roman", size: 10)
         
         mainPostView.layer.shadowColor = UIColor.blackColor().CGColor
         mainPostView.layer.shadowOpacity = 0.3
