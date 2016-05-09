@@ -3,12 +3,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrangeButton" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="fontAwesomeLabel" destination="cT0-bW-ytB" id="euy-OT-dNP"/>
                 <outlet property="orangeButtonTitle" destination="bA0-Kh-NvQ" id="P3u-e4-KLd"/>
             </connections>
         </placeholder>
@@ -24,24 +22,12 @@
                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Start Journey"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cT0-bW-ytB">
-                    <rect key="frame" x="0.0" y="0.0" width="78" height="70"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="cT0-bW-ytB" secondAttribute="height" multiplier="39:35" id="BoB-6J-lOa"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <constraints>
-                <constraint firstItem="cT0-bW-ytB" firstAttribute="leading" secondItem="bA0-Kh-NvQ" secondAttribute="leading" id="CvR-bW-wzj"/>
                 <constraint firstAttribute="trailing" secondItem="bA0-Kh-NvQ" secondAttribute="trailing" id="NrP-Kb-gGs"/>
-                <constraint firstItem="cT0-bW-ytB" firstAttribute="top" secondItem="bA0-Kh-NvQ" secondAttribute="top" id="WFu-aR-dGc"/>
                 <constraint firstAttribute="bottom" secondItem="bA0-Kh-NvQ" secondAttribute="bottom" id="aQf-9n-ski"/>
                 <constraint firstItem="bA0-Kh-NvQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="frz-uU-OQu"/>
                 <constraint firstItem="bA0-Kh-NvQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="h8W-2U-h9m"/>
-                <constraint firstItem="cT0-bW-ytB" firstAttribute="bottom" secondItem="bA0-Kh-NvQ" secondAttribute="bottom" id="mOy-kw-J2z"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
