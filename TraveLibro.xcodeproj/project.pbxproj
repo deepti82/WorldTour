@@ -40,6 +40,8 @@
 		C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2776A271CD785DF00FE066A /* ShoesOTG.xib */; };
 		C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */; };
 		C284277C1CE07445003672E9 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C284277B1CE07445003672E9 /* Styles.swift */; };
+		C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */; };
+		C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */; };
 		C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE37D01CDC62EB00A47E70 /* TypeOfJourney.swift */; };
 		C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */; };
 		C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A131CDB228F00122941 /* TextLabelView.swift */; };
@@ -105,6 +107,8 @@
 		C2776A271CD785DF00FE066A /* ShoesOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoesOTG.xib; sourceTree = "<group>"; };
 		C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesOTG.swift; sourceTree = "<group>"; };
 		C284277B1CE07445003672E9 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
+		C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewCell.swift; sourceTree = "<group>"; };
 		C2CE37D01CDC62EB00A47E70 /* TypeOfJourney.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOfJourney.swift; sourceTree = "<group>"; };
 		C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextLabelView.xib; path = ../TextLabelView.xib; sourceTree = "<group>"; };
 		C2EA3A131CDB228F00122941 /* TextLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLabelView.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */,
 				C25443521CD740D200C2C6CD /* StartJourneyImage.xib */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
@@ -293,6 +298,7 @@
 				1A944E091CCB4567007EB5BD /* OTGAddNewViewController.swift */,
 				C284277B1CE07445003672E9 /* Styles.swift */,
 				C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */,
+				C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -495,8 +501,10 @@
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
 				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
+				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
+				C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */,
 				C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */,
 				C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,

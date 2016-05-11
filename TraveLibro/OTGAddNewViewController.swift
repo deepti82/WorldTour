@@ -26,59 +26,64 @@ class OTGAddNewViewController: UIViewController {
         self.scrollView.contentSize.height = 1000
         
         // adding status bar view
-        let view = UIView(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width, height: 20.0))
-        view.backgroundColor = mainBlueColor
-        self.view.addSubview(view)
-        
-        navigationBar.layer.zPosition = 10000
+//        let view = UIView(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width, height: 20.0))
+//        view.backgroundColor = mainBlueColor
+//        self.view.addSubview(view)
+//        
+//        navigationBar.layer.zPosition = 10000
         
         // appling avenir font to label and button
         //UILabel.appearance().font = avenirFont
 //        button.titleLabel!.font = avenirFont
 //        
-        let journey = JourneyTitleView(frame: CGRectMake(0, 0, self.view.frame.size.width, 65))
-        journey.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 - 75)
-        journey.layer.cornerRadius = 5
-        self.view.addSubview(journey)
+//        let journey = JourneyTitleView(frame: CGRectMake(0, 0, self.view.frame.size.width, 65))
+//        journey.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 - 75)
+//        journey.layer.cornerRadius = 5
+//        self.view.addSubview(journey)
+//        
+//        let journeyImage = UIImageView(frame: CGRectMake(0, 0, self.view.frame.size.width, 180))
+//        journeyImage.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 + 125 - 80)
+//        journeyImage.image = UIImage(named: "london_image")
+//        self.view.addSubview(journeyImage)
+//        addShadow(journeyImage, offset: CGSize(width: 2, height: 2), opacity: 0.2, shadowRadius: 1, cornerRadius: 3)
+//        
+//        let bottomTabforTypeOfJourney = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
+//        bottomTabforTypeOfJourney.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 3 * 2.2)
+//        bottomTabforTypeOfJourney.backgroundColor = UIColor.whiteColor()
+//        addShadow(bottomTabforTypeOfJourney, offset: CGSize(width: 2, height: 2), opacity: 0.2, shadowRadius: 1, cornerRadius: 2)
+//        self.view.addSubview(bottomTabforTypeOfJourney)
+//        
+//        let TypeOfJourneyIcons = UIView(frame: CGRect(x: 0, y: 0, width: bottomTabforTypeOfJourney.frame.size.width/4, height: bottomTabforTypeOfJourney.frame.size.height))
+//        TypeOfJourneyIcons.center = CGPointMake(bottomTabforTypeOfJourney.frame.size.width/8, bottomTabforTypeOfJourney.frame.size.height/2)
+//        bottomTabforTypeOfJourney.addSubview(TypeOfJourneyIcons)
+//        
+//        let icon1 = UIImageView(frame: CGRect(x: 0, y: 0, width: TypeOfJourneyIcons.frame.size.width/3, height: TypeOfJourneyIcons.frame.size.height/2))
+//        icon1.center = CGPointMake(TypeOfJourneyIcons.frame.size.width/6 + 10, TypeOfJourneyIcons.frame.size.height/2)
+//        icon1.image = UIImage(named: "hearts_icon")
+//        icon1.tintColor = mainOrangeColor
+//        TypeOfJourneyIcons.addSubview(icon1)
+//        
+//        let icon2 = UIImageView(frame: CGRect(x: 0, y: 0, width: TypeOfJourneyIcons.frame.size.width/3, height: TypeOfJourneyIcons.frame.size.height/2))
+//        icon2.center = CGPointMake(TypeOfJourneyIcons.frame.size.width/2 + 15, TypeOfJourneyIcons.frame.size.height/2)
+//        icon2.image = UIImage(named: "hearts_icon")
+//        icon2.tintColor = mainOrangeColor
+//        TypeOfJourneyIcons.addSubview(icon2)
+//        
+//        let icon3 = UIImageView(frame: CGRect(x: 0, y: 0, width: TypeOfJourneyIcons.frame.size.width/3, height: TypeOfJourneyIcons.frame.size.height/2))
+//        icon3.center = CGPointMake(TypeOfJourneyIcons.frame.size.width/6 * 5 + 20, TypeOfJourneyIcons.frame.size.height/2)
+//        icon3.image = UIImage(named: "hearts_icon")
+//        icon3.tintColor = mainOrangeColor
+//        TypeOfJourneyIcons.addSubview(icon3)
+//        
+//        let addBuddiesButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 40, height: 50))
+//        makeButtonGreyTranslucent(addBuddiesButton, textData: "Add Buddies")
+//        addBuddiesButton.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height / 3 * 2.43)
+//        self.view.addSubview(addBuddiesButton)
         
-        let journeyImage = UIImageView(frame: CGRectMake(0, 0, self.view.frame.size.width, 180))
-        journeyImage.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 + 125 - 80)
-        journeyImage.image = UIImage(named: "london_image")
-        self.view.addSubview(journeyImage)
-        addShadow(journeyImage, offset: CGSize(width: 2, height: 2), opacity: 0.2, shadowRadius: 1, cornerRadius: 3)
+//        let addNewFriends = AddFriends(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height * 0.75))
+//        addNewFriends.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3 * 2)
+//        self.view.addSubview(addNewFriends)
         
-        let bottomTabforTypeOfJourney = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 40))
-        bottomTabforTypeOfJourney.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 3 * 2.2)
-        bottomTabforTypeOfJourney.backgroundColor = UIColor.whiteColor()
-        addShadow(bottomTabforTypeOfJourney, offset: CGSize(width: 2, height: 2), opacity: 0.2, shadowRadius: 1, cornerRadius: 2)
-        self.view.addSubview(bottomTabforTypeOfJourney)
-        
-        let TypeOfJourneyIcons = UIView(frame: CGRect(x: 0, y: 0, width: bottomTabforTypeOfJourney.frame.size.width/4, height: bottomTabforTypeOfJourney.frame.size.height))
-        TypeOfJourneyIcons.center = CGPointMake(bottomTabforTypeOfJourney.frame.size.width/8, bottomTabforTypeOfJourney.frame.size.height/2)
-        bottomTabforTypeOfJourney.addSubview(TypeOfJourneyIcons)
-        
-        let icon1 = UIImageView(frame: CGRect(x: 0, y: 0, width: TypeOfJourneyIcons.frame.size.width/3, height: TypeOfJourneyIcons.frame.size.height/2))
-        icon1.center = CGPointMake(TypeOfJourneyIcons.frame.size.width/6 + 10, TypeOfJourneyIcons.frame.size.height/2)
-        icon1.image = UIImage(named: "hearts_icon")
-        icon1.tintColor = mainOrangeColor
-        TypeOfJourneyIcons.addSubview(icon1)
-        
-        let icon2 = UIImageView(frame: CGRect(x: 0, y: 0, width: TypeOfJourneyIcons.frame.size.width/3, height: TypeOfJourneyIcons.frame.size.height/2))
-        icon2.center = CGPointMake(TypeOfJourneyIcons.frame.size.width/2 + 15, TypeOfJourneyIcons.frame.size.height/2)
-        icon2.image = UIImage(named: "hearts_icon")
-        icon2.tintColor = mainOrangeColor
-        TypeOfJourneyIcons.addSubview(icon2)
-        
-        let icon3 = UIImageView(frame: CGRect(x: 0, y: 0, width: TypeOfJourneyIcons.frame.size.width/3, height: TypeOfJourneyIcons.frame.size.height/2))
-        icon3.center = CGPointMake(TypeOfJourneyIcons.frame.size.width/6 * 5 + 20, TypeOfJourneyIcons.frame.size.height/2)
-        icon3.image = UIImage(named: "hearts_icon")
-        icon3.tintColor = mainOrangeColor
-        TypeOfJourneyIcons.addSubview(icon3)
-        
-        let addBuddiesButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 40, height: 50))
-        makeButtonGreyTranslucent(addBuddiesButton, textData: "Add Buddies")
-        addBuddiesButton.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height / 3 * 2.43)
-        self.view.addSubview(addBuddiesButton)
         
         
 //        let addcircle = AddCircle(frame: CGRectMake(0, 0, 50, 50))

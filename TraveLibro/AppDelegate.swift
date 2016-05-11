@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import Contacts
 
+let contactsObject = CNContactStore()
 let mainBlueColor = UIColor(red: 0.1725, green: 0.2175, blue: 0.3412, alpha: 1) // #2C3757
 let mainOrangeColor = UIColor(red: 1, green: 0.408, blue: 0.345, alpha: 1) // #FF6858
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
