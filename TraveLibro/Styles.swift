@@ -30,3 +30,9 @@ func makeButtonGreyTranslucent(button: UIButton, textData: String) -> Void {
     button.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 18)
     
 }
+
+func getBackGround(myVC: UIViewController) -> Void {
+    
+    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
+    
+}

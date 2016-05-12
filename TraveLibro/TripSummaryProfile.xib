@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripSummaryProfile" customModule="TraveLibro" customModuleProvider="target">
@@ -24,17 +25,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N8t-5w-Suk">
-                    <rect key="frame" x="238" y="0.0" width="100" height="100"/>
+                    <rect key="frame" x="249" y="8" width="78" height="78"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="FZb-lj-owG"/>
-                        <constraint firstAttribute="height" constant="100" id="WPs-Vq-Qzn"/>
+                        <constraint firstAttribute="width" secondItem="N8t-5w-Suk" secondAttribute="height" multiplier="1:1" id="6GW-En-nNJ"/>
+                        <constraint firstAttribute="height" constant="78" id="iRg-V2-zHv"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="az6-ZB-Xtc">
                     <rect key="frame" x="0.0" y="60" width="576" height="300"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manan Vora" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaQ-QC-sOW">
-                            <rect key="frame" x="245" y="50" width="86" height="28"/>
+                            <rect key="frame" x="245" y="25" width="86" height="28"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="Glr-SY-eam"/>
                             </constraints>
@@ -48,7 +49,7 @@
                             </variation>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KJj-LF-O5l">
-                            <rect key="frame" x="48" y="94" width="480" height="30"/>
+                            <rect key="frame" x="48" y="61" width="480" height="30"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="URQ-m3-1tO">
                                     <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
@@ -163,9 +164,9 @@
                         <constraint firstItem="KJj-LF-O5l" firstAttribute="leading" secondItem="az6-ZB-Xtc" secondAttribute="leading" constant="48" id="PcW-7v-EXY"/>
                         <constraint firstItem="HaQ-QC-sOW" firstAttribute="centerX" secondItem="az6-ZB-Xtc" secondAttribute="centerX" id="UbF-B9-yW6"/>
                         <constraint firstItem="KJj-LF-O5l" firstAttribute="centerX" secondItem="HaQ-QC-sOW" secondAttribute="centerX" id="Y9N-Uo-B9r"/>
-                        <constraint firstItem="HaQ-QC-sOW" firstAttribute="top" secondItem="az6-ZB-Xtc" secondAttribute="top" constant="50" id="cRU-v2-7kb"/>
-                        <constraint firstItem="KJj-LF-O5l" firstAttribute="top" secondItem="az6-ZB-Xtc" secondAttribute="top" constant="94" id="fVd-jq-p9A"/>
-                        <constraint firstItem="KJj-LF-O5l" firstAttribute="top" secondItem="HaQ-QC-sOW" secondAttribute="bottom" constant="16" id="ifZ-0g-iHb"/>
+                        <constraint firstItem="HaQ-QC-sOW" firstAttribute="top" secondItem="az6-ZB-Xtc" secondAttribute="top" constant="25" id="cRU-v2-7kb"/>
+                        <constraint firstItem="KJj-LF-O5l" firstAttribute="top" secondItem="az6-ZB-Xtc" secondAttribute="top" constant="61" id="fVd-jq-p9A"/>
+                        <constraint firstItem="KJj-LF-O5l" firstAttribute="top" secondItem="HaQ-QC-sOW" secondAttribute="bottom" constant="8" id="ifZ-0g-iHb"/>
                     </constraints>
                 </view>
             </subviews>
@@ -177,12 +178,11 @@
                 <constraint firstAttribute="bottom" secondItem="az6-ZB-Xtc" secondAttribute="bottom" id="g61-nZ-moZ"/>
                 <constraint firstAttribute="trailing" secondItem="az6-ZB-Xtc" secondAttribute="trailing" id="i9F-Tr-QrS"/>
                 <constraint firstItem="az6-ZB-Xtc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iDN-7l-mF8"/>
-                <constraint firstItem="N8t-5w-Suk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="sa2-41-4qT"/>
-                <constraint firstItem="az6-ZB-Xtc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="w5R-vd-Bec"/>
+                <constraint firstItem="N8t-5w-Suk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="sa2-41-4qT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="436" y="297"/>
+            <point key="canvasLocation" x="302" y="296"/>
         </view>
     </objects>
 </document>

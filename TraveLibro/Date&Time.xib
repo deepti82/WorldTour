@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="fontawesome-webfont.ttf">
+            <string>FontAwesome</string>
+            <string>FontAwesome</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DateAndTime" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="calendarIcon" destination="uAf-QN-DJF" id="ubR-bb-32S"/>
+                <outlet property="clockIcon" destination="K5G-fw-V4F" id="rc3-cp-37N"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="20"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4n-hM-ywG">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="20"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAf-QN-DJF">
+                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="kgy-dY-PGn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="16"/>
+                            <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 Sept 2014" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dK0-wz-OVv">
+                            <rect key="frame" x="20" y="0.0" width="90" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="cVF-sn-0SV"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="StG-lY-GJ9">
+                            <rect key="frame" x="110" y="0.0" width="10" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="10" id="ZoN-5n-ced"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5G-fw-V4F">
+                            <rect key="frame" x="120" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="DFl-vi-NDF"/>
+                                <constraint firstAttribute="width" constant="20" id="scL-Lf-cmQ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="15"/>
+                            <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="scL-Lf-cmQ"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09:20 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eW-Jq-dwF">
+                            <rect key="frame" x="140" y="0.0" width="60" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="fWM-o0-l5R"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="360" id="345-EQ-HSD"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="E3d-3D-lfk"/>
+                        <constraint firstAttribute="height" constant="20" id="rr0-tg-CJI"/>
+                        <constraint firstAttribute="width" constant="215" id="wOJ-HR-wvK"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="345-EQ-HSD"/>
+                            <exclude reference="E3d-3D-lfk"/>
+                            <exclude reference="wOJ-HR-wvK"/>
+                        </mask>
+                    </variation>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="k4n-hM-ywG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3yP-Vp-CFC"/>
+                <constraint firstItem="k4n-hM-ywG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6tf-fR-EGM"/>
+                <constraint firstItem="k4n-hM-ywG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Lsd-ha-WsX"/>
+                <constraint firstAttribute="bottom" secondItem="k4n-hM-ywG" secondAttribute="bottom" id="V6F-iQ-7xC"/>
+                <constraint firstItem="k4n-hM-ywG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Xtg-8w-mK0"/>
+                <constraint firstAttribute="trailing" secondItem="k4n-hM-ywG" secondAttribute="trailing" id="cAp-Ue-0eV"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="132" y="29"/>
+        </view>
+    </objects>
+</document>

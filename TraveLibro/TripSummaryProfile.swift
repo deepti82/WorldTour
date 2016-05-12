@@ -40,7 +40,6 @@ class TripSummaryProfile: UIView {
         
         profileImage.image = UIImage(named: "london_image")
         profileImage.layer.zPosition = 10
-        profileImage.layer.cornerRadius = 40
         profileImage.clipsToBounds = true
         profileImage.layer.borderColor = UIColor.whiteColor().CGColor
         profileImage.layer.borderWidth = 6
@@ -55,9 +54,6 @@ class TripSummaryProfile: UIView {
         tripLikesTitle.font = UIFont(name: "Avenir-Roman", size: 10)
         tripLikes.font = UIFont(name: "Avenir-Roman", size: 10)
         
-        mainSummaryView.layer.shadowColor = UIColor.blackColor().CGColor
-        mainSummaryView.layer.shadowRadius = 1
-        mainSummaryView.layer.shadowOpacity = 0.3
     }
 
     /*

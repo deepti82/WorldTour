@@ -34,6 +34,8 @@
 		1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E431CCB668C007EB5BD /* OrangeButton.swift */; };
 		1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */; };
 		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
+		C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A39951CE34AD0002EF1E6 /* FriendView.xib */; };
+		C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A39971CE34C8D002EF1E6 /* FriendView.swift */; };
 		C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */; };
 		C25443531CD740D200C2C6CD /* StartJourneyImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25443521CD740D200C2C6CD /* StartJourneyImage.xib */; };
 		C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25443541CD75F2900C2C6CD /* drawLine.swift */; };
@@ -42,7 +44,13 @@
 		C284277C1CE07445003672E9 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C284277B1CE07445003672E9 /* Styles.swift */; };
 		C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */; };
 		C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */; };
+		C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C965951CE458B7007BDA34 /* Date&Time.xib */; };
+		C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C965981CE45A51007BDA34 /* Date&Time.swift */; };
+		C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C9659A1CE4979D007BDA34 /* CheckInViewController.swift */; };
+		C2C9659D1CE4AEB2007BDA34 /* ThoughtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */; };
 		C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE37D01CDC62EB00A47E70 /* TypeOfJourney.swift */; };
+		C2DCB2371CE30ED0000E40DD /* TripSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB2361CE30ED0000E40DD /* TripSummaryViewController.swift */; };
+		C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB2381CE32152000E40DD /* GetFooter.swift */; };
 		C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */; };
 		C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A131CDB228F00122941 /* TextLabelView.swift */; };
 		C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A151CDB3B9900122941 /* TextField.swift */; };
@@ -101,6 +109,8 @@
 		1A944E431CCB668C007EB5BD /* OrangeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeButton.swift; sourceTree = "<group>"; };
 		1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JourneyTitleView.xib; sourceTree = "<group>"; };
 		1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
+		C20A39951CE34AD0002EF1E6 /* FriendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendView.xib; path = ../FriendView.xib; sourceTree = "<group>"; };
+		C20A39971CE34C8D002EF1E6 /* FriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendView.swift; path = ../FriendView.swift; sourceTree = "<group>"; };
 		C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheGoViewController.swift; sourceTree = "<group>"; };
 		C25443521CD740D200C2C6CD /* StartJourneyImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartJourneyImage.xib; sourceTree = "<group>"; };
 		C25443541CD75F2900C2C6CD /* drawLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawLine.swift; sourceTree = "<group>"; };
@@ -109,7 +119,13 @@
 		C284277B1CE07445003672E9 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewCell.swift; sourceTree = "<group>"; };
+		C2C965951CE458B7007BDA34 /* Date&Time.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Date&Time.xib"; sourceTree = "<group>"; };
+		C2C965981CE45A51007BDA34 /* Date&Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date&Time.swift"; sourceTree = "<group>"; };
+		C2C9659A1CE4979D007BDA34 /* CheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
+		C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThoughtsViewController.swift; sourceTree = "<group>"; };
 		C2CE37D01CDC62EB00A47E70 /* TypeOfJourney.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOfJourney.swift; sourceTree = "<group>"; };
+		C2DCB2361CE30ED0000E40DD /* TripSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryViewController.swift; sourceTree = "<group>"; };
+		C2DCB2381CE32152000E40DD /* GetFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFooter.swift; sourceTree = "<group>"; };
 		C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextLabelView.xib; path = ../TextLabelView.xib; sourceTree = "<group>"; };
 		C2EA3A131CDB228F00122941 /* TextLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLabelView.swift; sourceTree = "<group>"; };
 		C2EA3A151CDB3B9900122941 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -206,7 +222,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */,
+				C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */,
 				C25443521CD740D200C2C6CD /* StartJourneyImage.xib */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
@@ -236,6 +252,9 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2C965971CE459BB007BDA34 /* Date&Time */,
+				C20A39991CE34CA6002EF1E6 /* FriendView */,
+				C20A39941CE348D3002EF1E6 /* Footer */,
 				C2EA3A1C1CDB81CE00122941 /* TypeOfJourney */,
 				C2EA3A171CDB3BE300122941 /* TextField */,
 				C2EA3A0E1CDB1E6400122941 /* TextLabel */,
@@ -247,7 +266,6 @@
 				1A4CA11C1CCE17F900EE9A90 /* AddCircle */,
 				1A944E451CCB8862007EB5BD /* JourneyTitleView */,
 				1A944E3B1CCB5D79007EB5BD /* OrangeButton */,
-				1A944E361CCB5AA7007EB5BD /* FooterView */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -292,6 +310,24 @@
 			name = JourneyTitleView;
 			sourceTree = "<group>";
 		};
+		C20A39941CE348D3002EF1E6 /* Footer */ = {
+			isa = PBXGroup;
+			children = (
+				C2DCB2381CE32152000E40DD /* GetFooter.swift */,
+				1A944E361CCB5AA7007EB5BD /* FooterView */,
+			);
+			name = Footer;
+			sourceTree = "<group>";
+		};
+		C20A39991CE34CA6002EF1E6 /* FriendView */ = {
+			isa = PBXGroup;
+			children = (
+				C20A39951CE34AD0002EF1E6 /* FriendView.xib */,
+				C20A39971CE34C8D002EF1E6 /* FriendView.swift */,
+			);
+			name = FriendView;
+			sourceTree = "<group>";
+		};
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +335,9 @@
 				C284277B1CE07445003672E9 /* Styles.swift */,
 				C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */,
 				C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */,
+				C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */,
+				C2DCB2361CE30ED0000E40DD /* TripSummaryViewController.swift */,
+				C2C9659A1CE4979D007BDA34 /* CheckInViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -318,6 +357,15 @@
 				C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */,
 			);
 			name = ShoesOTG;
+			sourceTree = "<group>";
+		};
+		C2C965971CE459BB007BDA34 /* Date&Time */ = {
+			isa = PBXGroup;
+			children = (
+				C2C965951CE458B7007BDA34 /* Date&Time.xib */,
+				C2C965981CE45A51007BDA34 /* Date&Time.swift */,
+			);
+			name = "Date&Time";
 			sourceTree = "<group>";
 		};
 		C2EA3A0E1CDB1E6400122941 /* TextLabel */ = {
@@ -469,9 +517,11 @@
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
 				C25443531CD740D200C2C6CD /* StartJourneyImage.xib in Resources */,
 				C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */,
+				C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */,
 				C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */,
 				C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
+				C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */,
 				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,11 +548,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
+				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
+				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
+				C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */,
 				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
 				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
+				C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
 				C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */,
 				C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */,
@@ -512,6 +566,8 @@
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				C284277C1CE07445003672E9 /* Styles.swift in Sources */,
 				C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */,
+				C2DCB2371CE30ED0000E40DD /* TripSummaryViewController.swift in Sources */,
+				C2C9659D1CE4AEB2007BDA34 /* ThoughtsViewController.swift in Sources */,
 				C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
 				1A3E4DC31CD33B8F00105C3D /* VideoPost.swift in Sources */,
@@ -657,10 +713,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TraveLibro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -670,10 +728,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TraveLibro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

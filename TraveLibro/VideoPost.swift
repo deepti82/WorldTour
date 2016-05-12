@@ -65,9 +65,10 @@ class VideoPost: UIView {
         self.addSubview(line2)
         
         // video icon image
-        let videoIconImage = UIImageView(frame: CGRectMake(0, 0, 25, 25))
+        let videoIconImage = UIImageView(frame: CGRectMake(0, 0, 60, 40))
         videoIconImage.center = CGPointMake(self.frame.size.width / 2, videoImage.frame.size.height / 2)
         videoIconImage.image = UIImage(named: "add_circle")
+        videoIconImage.backgroundColor = UIColor.redColor()
         self.addSubview(videoIconImage)
     }
 
