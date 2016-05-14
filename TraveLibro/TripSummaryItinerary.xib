@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripSummaryItinerary" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="checkInImage" destination="vlx-BB-kJx" id="AS8-TM-dJ0"/>
+                <outlet property="checkedInLabel" destination="tdJ-s5-rpY" id="EYO-a3-p8X"/>
+                <outlet property="dayLabel" destination="sAD-iR-EH1" id="UYd-k1-Iin"/>
+                <outlet property="dayNumberLabel" destination="8zq-95-Bhd" id="zse-3B-cGm"/>
+                <outlet property="dayView" destination="QvM-9Q-eLs" id="LMt-Gw-Cy4"/>
+                <outlet property="taggedPeopleLabel" destination="Bb2-qu-4p6" id="56E-3s-kyh"/>
+                <outlet property="titleLabel" destination="Mpd-aa-IyO" id="sa8-Mw-aGr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="599" height="115"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evening by the beach! :)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpd-aa-IyO">
+                    <rect key="frame" x="89" y="9" width="152" height="20"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="with Sarvesh Brahme and 1 other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bb2-qu-4p6">
+                    <rect key="frame" x="89" y="37" width="179" height="20"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vlx-BB-kJx">
+                    <rect key="frame" x="276" y="37" width="22" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="9tD-PF-prN"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="HIZ-BR-VQT"/>
+                        <constraint firstAttribute="width" constant="22" id="RUh-7B-0wq"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QvM-9Q-eLs">
+                    <rect key="frame" x="8" y="0.0" width="73" height="115"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAD-iR-EH1">
+                            <rect key="frame" x="0.0" y="8" width="73" height="56"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="73" id="emT-Uk-v6n"/>
+                                <constraint firstAttribute="height" constant="56" id="uRS-ky-I5w"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zq-95-Bhd">
+                            <rect key="frame" x="0.0" y="33" width="73" height="82"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="82" id="4oe-lz-G65"/>
+                                <constraint firstAttribute="width" constant="73" id="CdA-9b-Ony"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="24"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="sAD-iR-EH1" secondAttribute="trailing" id="ACr-d0-k1T"/>
+                        <constraint firstItem="8zq-95-Bhd" firstAttribute="leading" secondItem="QvM-9Q-eLs" secondAttribute="leading" id="U9V-h0-tfJ"/>
+                        <constraint firstAttribute="trailing" secondItem="8zq-95-Bhd" secondAttribute="trailing" id="V03-b4-bxT"/>
+                        <constraint firstItem="sAD-iR-EH1" firstAttribute="top" secondItem="QvM-9Q-eLs" secondAttribute="top" constant="8" id="VNM-gr-SwG"/>
+                        <constraint firstAttribute="bottom" secondItem="8zq-95-Bhd" secondAttribute="bottom" id="gqd-Yy-Yfu"/>
+                        <constraint firstItem="sAD-iR-EH1" firstAttribute="leading" secondItem="QvM-9Q-eLs" secondAttribute="leading" id="wln-ug-Up6"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- at Girgaon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdJ-s5-rpY">
+                    <rect key="frame" x="306" y="37" width="65" height="21"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Bb2-qu-4p6" firstAttribute="top" secondItem="Mpd-aa-IyO" secondAttribute="bottom" constant="8" id="03o-bh-jfi"/>
+                <constraint firstItem="Bb2-qu-4p6" firstAttribute="leading" secondItem="QvM-9Q-eLs" secondAttribute="trailing" constant="8" id="1uy-ku-nOA"/>
+                <constraint firstItem="QvM-9Q-eLs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="5Wa-rO-fYv"/>
+                <constraint firstItem="QvM-9Q-eLs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DKn-Un-HkN"/>
+                <constraint firstAttribute="bottom" secondItem="QvM-9Q-eLs" secondAttribute="bottom" id="EsQ-SL-Mtt"/>
+                <constraint firstItem="vlx-BB-kJx" firstAttribute="top" secondItem="tdJ-s5-rpY" secondAttribute="top" id="HWJ-Ht-IXe"/>
+                <constraint firstItem="tdJ-s5-rpY" firstAttribute="leading" secondItem="vlx-BB-kJx" secondAttribute="trailing" constant="8" id="K13-BC-Liy"/>
+                <constraint firstItem="Mpd-aa-IyO" firstAttribute="leading" secondItem="QvM-9Q-eLs" secondAttribute="trailing" constant="8" id="Ww8-ze-T6a"/>
+                <constraint firstItem="vlx-BB-kJx" firstAttribute="bottom" secondItem="tdJ-s5-rpY" secondAttribute="bottom" id="c4h-RW-qpc"/>
+                <constraint firstItem="vlx-BB-kJx" firstAttribute="centerY" secondItem="Bb2-qu-4p6" secondAttribute="centerY" id="cl8-Z9-R7G"/>
+                <constraint firstItem="vlx-BB-kJx" firstAttribute="leading" secondItem="Bb2-qu-4p6" secondAttribute="trailing" constant="8" id="dny-06-p6b"/>
+                <constraint firstItem="vlx-BB-kJx" firstAttribute="top" secondItem="Bb2-qu-4p6" secondAttribute="top" id="mv9-TT-qgt"/>
+                <constraint firstItem="Mpd-aa-IyO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="nB3-LP-IEg"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="245.5" y="317.5"/>
+        </view>
+    </objects>
+</document>

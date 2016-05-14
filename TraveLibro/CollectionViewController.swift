@@ -18,22 +18,47 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     var labels = ["Korea", "India"]
     var images = ["korean_flag", "indian_flag"]
     var labelsTwo = ["8 Restaurants & Bars", "8 Nature & Parks", "8 Beaches"]
-    var imagesTwo = ["korean_flag", "indian_flag", "korean_flag"]
+    var imagesTwo = ["martini_icon", "windmill_icon", "palm_trees_icon"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getBackGround(self)
 
         let tripSummary = TripSummaryProfile(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/3))
-        tripSummary.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
+        tripSummary.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3 - 50)
         self.view.addSubview(tripSummary)
         
         collectionView.backgroundColor = UIColor.whiteColor()
+        collectionViewTwo.layer.zPosition = 10
+        collectionView.layer.zPosition = 10
         collectionViewTwo.backgroundColor = UIColor.whiteColor()
         
-        collectionView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height/3)
-        collectionView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
-        self.view.addSubview(collectionView)
+        let countryCountLabel  = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
+        countryCountLabel.text = "2 Countries Visited"
+        countryCountLabel.font = UIFont(name: "Avenir-Roman", size: 10)
+        countryCountLabel.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.width + collectionView.frame.size.height - 50)
+        countryCountLabel.layer.zPosition = 10
+        self.view.addSubview(countryCountLabel)
+        
+        let background = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 150))
+        background.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)
+        background.backgroundColor = UIColor.whiteColor()
+        self.view.addSubview(background)
+        
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 200))
+        scrollView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3 * 2.5 - 20)
+        scrollView.contentSize.height = 1000
+        self.view.addSubview(scrollView)
+        
+        let dayOne = TripSummaryItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100))
+        dayOne.center = CGPointMake(self.view.frame.size.width/2, 50)
+        scrollView.addSubview(dayOne)
+        
+        let dayTwo = TripSummaryItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100))
+        dayTwo.center = CGPointMake(self.view.frame.size.width/2, dayOne.frame.size.height + 100)
+        scrollView  .addSubview(dayTwo)
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -61,6 +86,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             let cellTwo = collectionView.dequeueReusableCellWithReuseIdentifier("cellTwo", forIndexPath: indexPath) as! MyCollectionViewCell
             cellTwo.labelTwo.text = labelsTwo[indexPath.item]
             cellTwo.labelTwo.textColor = mainBlueColor
+            cellTwo.imageTwo.backgroundColor = UIColor(patternImage: UIImage(named: "halfnhalfbgGreen")!)
             cellTwo.imageTwo.image = UIImage(named: imagesTwo[indexPath.item])
             return cellTwo
         }
