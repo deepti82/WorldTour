@@ -34,6 +34,7 @@
 		1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E431CCB668C007EB5BD /* OrangeButton.swift */; };
 		1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */; };
 		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
+		3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AEEB0081CE6F64F0085EEF5 /* Rating.xib */; };
 		C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A39951CE34AD0002EF1E6 /* FriendView.xib */; };
 		C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A39971CE34C8D002EF1E6 /* FriendView.swift */; };
 		C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */; };
@@ -113,6 +114,7 @@
 		1A944E431CCB668C007EB5BD /* OrangeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeButton.swift; sourceTree = "<group>"; };
 		1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JourneyTitleView.xib; sourceTree = "<group>"; };
 		1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
+		3AEEB0081CE6F64F0085EEF5 /* Rating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Rating.xib; sourceTree = "<group>"; };
 		C20A39951CE34AD0002EF1E6 /* FriendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendView.xib; path = ../FriendView.xib; sourceTree = "<group>"; };
 		C20A39971CE34C8D002EF1E6 /* FriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendView.swift; path = ../FriendView.swift; sourceTree = "<group>"; };
 		C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheGoViewController.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				3AEEB0071CE6F63B0085EEF5 /* Rating */,
 				C2D67FF81CE5FDA000454A46 /* IconButton */,
 				C2C965971CE459BB007BDA34 /* Date&Time */,
 				C20A39991CE34CA6002EF1E6 /* FriendView */,
@@ -317,6 +320,14 @@
 				1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */,
 			);
 			name = JourneyTitleView;
+			sourceTree = "<group>";
+		};
+		3AEEB0071CE6F63B0085EEF5 /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				3AEEB0081CE6F64F0085EEF5 /* Rating.xib */,
+			);
+			name = Rating;
 			sourceTree = "<group>";
 		};
 		C20A39941CE348D3002EF1E6 /* Footer */ = {
@@ -533,6 +544,7 @@
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
 				1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */,
 				1A65E7AA1CD72F1F009374DA /* Avenir-Light.ttf in Resources */,
+				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
 				1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */,
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
