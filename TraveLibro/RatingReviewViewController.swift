@@ -14,9 +14,31 @@ class RatingReviewViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let friendName = FriendView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        friendName.center = CGPointMake(self.view.frame.size.width/2, 50)
-        self.view.addSubview(friendName)
+        getBackGround(self)
+        
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        scrollView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2 + 60)
+        scrollView.contentSize.height = self.view.frame.size.height * 2
+        self.view.addSubview(scrollView)
+        
+        let friendName = FriendView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        friendName.center = CGPointMake(self.view.frame.size.width/2, 150)
+        friendName.profileImage.image = UIImage(named: "profile_icon")
+        friendName.profileName.text = "Manan Vora"
+        scrollView.addSubview(friendName)
+        
+        let ratingOne = Rating(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 150))
+        ratingOne.center = CGPointMake(self.view.frame.size.width/2, 275)
+        scrollView.addSubview(ratingOne)
+        
+        let ratingTwo = Rating(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 150))
+        ratingTwo.center = CGPointMake(self.view.frame.size.width/2, ratingOne.frame.size.height + 300)
+        scrollView.addSubview(ratingTwo)
+        
+        let ratingThree = Rating(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 150))
+        ratingThree.center = CGPointMake(self.view.frame.size.width/2, ratingOne.frame.size.height * 2 + 325)
+        scrollView.addSubview(ratingThree)
+        
         
         
     }

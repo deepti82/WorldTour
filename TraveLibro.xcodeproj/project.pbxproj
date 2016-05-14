@@ -58,6 +58,13 @@
 		C2DCB36A1CE701A4006E5CBD /* TripSummaryItinerary.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DCB3691CE701A4006E5CBD /* TripSummaryItinerary.xib */; };
 		C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB36B1CE7043C006E5CBD /* TripSummaryItinerary.swift */; };
 		C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB36D1CE723C3006E5CBD /* RatingReviewViewController.swift */; };
+		C2DCB3701CE73650006E5CBD /* LocationCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB36F1CE73650006E5CBD /* LocationCategoryViewController.swift */; };
+		C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB3711CE7454F006E5CBD /* AddYourRatingViewController.swift */; };
+		C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DCB3731CE7470F006E5CBD /* AddRating.xib */; };
+		C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB3761CE7473A006E5CBD /* AddRating.swift */; };
+		C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB3781CE75365006E5CBD /* NotificationsViewController.swift */; };
+		C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DCB37A1CE759F5006E5CBD /* NotificationsHeader.xib */; };
+		C2DCB37D1CE75AB2006E5CBD /* NotificationsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB37C1CE75AB2006E5CBD /* NotificationsHeader.swift */; };
 		C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E45CE81CE5A1340096BDD1 /* IconButton.xib */; };
 		C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */; };
 		C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */; };
@@ -142,6 +149,13 @@
 		C2DCB3691CE701A4006E5CBD /* TripSummaryItinerary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryItinerary.xib; sourceTree = "<group>"; };
 		C2DCB36B1CE7043C006E5CBD /* TripSummaryItinerary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryItinerary.swift; sourceTree = "<group>"; };
 		C2DCB36D1CE723C3006E5CBD /* RatingReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingReviewViewController.swift; sourceTree = "<group>"; };
+		C2DCB36F1CE73650006E5CBD /* LocationCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCategoryViewController.swift; sourceTree = "<group>"; };
+		C2DCB3711CE7454F006E5CBD /* AddYourRatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddYourRatingViewController.swift; sourceTree = "<group>"; };
+		C2DCB3731CE7470F006E5CBD /* AddRating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddRating.xib; sourceTree = "<group>"; };
+		C2DCB3761CE7473A006E5CBD /* AddRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRating.swift; sourceTree = "<group>"; };
+		C2DCB3781CE75365006E5CBD /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		C2DCB37A1CE759F5006E5CBD /* NotificationsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationsHeader.xib; sourceTree = "<group>"; };
+		C2DCB37C1CE75AB2006E5CBD /* NotificationsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsHeader.swift; sourceTree = "<group>"; };
 		C2E45CE81CE5A1340096BDD1 /* IconButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconButton.xib; sourceTree = "<group>"; };
 		C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextLabelView.xib; path = ../TextLabelView.xib; sourceTree = "<group>"; };
@@ -217,6 +231,8 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
+				C2DCB37A1CE759F5006E5CBD /* NotificationsHeader.xib */,
+				C2DCB37C1CE75AB2006E5CBD /* NotificationsHeader.swift */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -242,9 +258,12 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C2DCB3781CE75365006E5CBD /* NotificationsViewController.swift */,
+				C2DCB36F1CE73650006E5CBD /* LocationCategoryViewController.swift */,
 				C2DCB36D1CE723C3006E5CBD /* RatingReviewViewController.swift */,
 				C25443521CD740D200C2C6CD /* StartJourneyImage.xib */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
+				C2DCB3711CE7454F006E5CBD /* AddYourRatingViewController.swift */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
 			);
@@ -272,6 +291,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2DCB3751CE74718006E5CBD /* AddRating */,
 				3AEEB0071CE6F63B0085EEF5 /* Rating */,
 				C2D67FF81CE5FDA000454A46 /* IconButton */,
 				C2C965971CE459BB007BDA34 /* Date&Time */,
@@ -409,6 +429,15 @@
 				C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */,
 			);
 			name = IconButton;
+			sourceTree = "<group>";
+		};
+		C2DCB3751CE74718006E5CBD /* AddRating */ = {
+			isa = PBXGroup;
+			children = (
+				C2DCB3731CE7470F006E5CBD /* AddRating.xib */,
+				C2DCB3761CE7473A006E5CBD /* AddRating.swift */,
+			);
+			name = AddRating;
 			sourceTree = "<group>";
 		};
 		C2EA3A0E1CDB1E6400122941 /* TextLabel */ = {
@@ -556,7 +585,9 @@
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
 				1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */,
 				1A65E7AA1CD72F1F009374DA /* Avenir-Light.ttf in Resources */,
+				C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */,
 				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
+				C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */,
 				1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */,
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
@@ -594,12 +625,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2D67FF71CE5FD7500454A46 /* CollectionViewController.swift in Sources */,
+				C2DCB3701CE73650006E5CBD /* LocationCategoryViewController.swift in Sources */,
+				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
+				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
+				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
 				C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */,
@@ -612,6 +647,7 @@
 				C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */,
 				C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */,
 				C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */,
+				C2DCB37D1CE75AB2006E5CBD /* NotificationsHeader.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
 				1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */,
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
