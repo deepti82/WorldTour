@@ -49,8 +49,12 @@
 		C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C9659A1CE4979D007BDA34 /* CheckInViewController.swift */; };
 		C2C9659D1CE4AEB2007BDA34 /* ThoughtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */; };
 		C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE37D01CDC62EB00A47E70 /* TypeOfJourney.swift */; };
+		C2D67FF71CE5FD7500454A46 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D67FF61CE5FD7500454A46 /* CollectionViewController.swift */; };
+		C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DA2B5A1CE6076600F15C5C /* MyCollectionViewCell.swift */; };
 		C2DCB2371CE30ED0000E40DD /* TripSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB2361CE30ED0000E40DD /* TripSummaryViewController.swift */; };
 		C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB2381CE32152000E40DD /* GetFooter.swift */; };
+		C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E45CE81CE5A1340096BDD1 /* IconButton.xib */; };
+		C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */; };
 		C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */; };
 		C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A131CDB228F00122941 /* TextLabelView.swift */; };
 		C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A151CDB3B9900122941 /* TextField.swift */; };
@@ -124,8 +128,12 @@
 		C2C9659A1CE4979D007BDA34 /* CheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
 		C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThoughtsViewController.swift; sourceTree = "<group>"; };
 		C2CE37D01CDC62EB00A47E70 /* TypeOfJourney.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeOfJourney.swift; sourceTree = "<group>"; };
+		C2D67FF61CE5FD7500454A46 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		C2DA2B5A1CE6076600F15C5C /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		C2DCB2361CE30ED0000E40DD /* TripSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryViewController.swift; sourceTree = "<group>"; };
 		C2DCB2381CE32152000E40DD /* GetFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFooter.swift; sourceTree = "<group>"; };
+		C2E45CE81CE5A1340096BDD1 /* IconButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconButton.xib; sourceTree = "<group>"; };
+		C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextLabelView.xib; path = ../TextLabelView.xib; sourceTree = "<group>"; };
 		C2EA3A131CDB228F00122941 /* TextLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLabelView.swift; sourceTree = "<group>"; };
 		C2EA3A151CDB3B9900122941 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -222,7 +230,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */,
+				C2DA2B5A1CE6076600F15C5C /* MyCollectionViewCell.swift */,
 				C25443521CD740D200C2C6CD /* StartJourneyImage.xib */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
@@ -252,6 +260,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2D67FF81CE5FDA000454A46 /* IconButton */,
 				C2C965971CE459BB007BDA34 /* Date&Time */,
 				C20A39991CE34CA6002EF1E6 /* FriendView */,
 				C20A39941CE348D3002EF1E6 /* Footer */,
@@ -334,8 +343,10 @@
 				1A944E091CCB4567007EB5BD /* OTGAddNewViewController.swift */,
 				C284277B1CE07445003672E9 /* Styles.swift */,
 				C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */,
+				C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */,
 				C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */,
 				C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */,
+				C2D67FF61CE5FD7500454A46 /* CollectionViewController.swift */,
 				C2DCB2361CE30ED0000E40DD /* TripSummaryViewController.swift */,
 				C2C9659A1CE4979D007BDA34 /* CheckInViewController.swift */,
 			);
@@ -366,6 +377,15 @@
 				C2C965981CE45A51007BDA34 /* Date&Time.swift */,
 			);
 			name = "Date&Time";
+			sourceTree = "<group>";
+		};
+		C2D67FF81CE5FDA000454A46 /* IconButton */ = {
+			isa = PBXGroup;
+			children = (
+				C2E45CE81CE5A1340096BDD1 /* IconButton.xib */,
+				C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */,
+			);
+			name = IconButton;
 			sourceTree = "<group>";
 		};
 		C2EA3A0E1CDB1E6400122941 /* TextLabel */ = {
@@ -504,6 +524,7 @@
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				1A6C0D961CCF915C00AB8B85 /* VideoPost.xib in Resources */,
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
+				C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */,
 				1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */,
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
 				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
@@ -547,9 +568,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2D67FF71CE5FD7500454A46 /* CollectionViewController.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
+				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
+				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
 				C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */,
 				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,

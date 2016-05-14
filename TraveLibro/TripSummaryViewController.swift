@@ -31,27 +31,27 @@ class TripSummaryViewController: UIViewController {
         
         
         //Adding Scroll View
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height - 50))
-        scrollView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)
-        scrollView.contentSize.height = 1000
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-//        scrollView.backgroundColor = UIColor.redColor()
-//        print("Is dragging? \(scrollView.dragging)")
-        self.view.addSubview(scrollView)
+//        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height - 50))
+//        scrollView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)
+//        scrollView.contentSize.height = 1000
+//        scrollView.showsVerticalScrollIndicator = false
+//        scrollView.showsHorizontalScrollIndicator = false
+////        scrollView.backgroundColor = UIColor.redColor()
+////        print("Is dragging? \(scrollView.dragging)")
+//        self.view.addSubview(scrollView)
         
         
         // video post
-        let videoPost = VideoPost(frame: CGRectMake(0, 0, self.view.frame.size.width, 350))
-        videoPost.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
-        scrollView.addSubview(videoPost)
-        
-        //line
-        let backdropLine = drawLine(frame: CGRect(x: 0, y: 0, width: 3, height: self.view.frame.size.height))
-        backdropLine.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)
-        backdropLine.layer.zPosition = -100
-        backdropLine.backgroundColor = UIColor.clearColor()
-        self.view.addSubview(backdropLine)
+//        let videoPost = VideoPost(frame: CGRectMake(0, 0, self.view.frame.size.width, 350))
+//        videoPost.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2)
+//        scrollView.addSubview(videoPost)
+//        
+//        //line
+//        let backdropLine = drawLine(frame: CGRect(x: 0, y: 0, width: 3, height: self.view.frame.size.height))
+//        backdropLine.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)
+//        backdropLine.layer.zPosition = -100
+//        backdropLine.backgroundColor = UIColor.clearColor()
+//        self.view.addSubview(backdropLine)
         
         //Plus Menu
 //        let plusMenu = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/3 + 75, height: self.view.frame.size.height/2.25))
@@ -204,6 +204,11 @@ class TripSummaryViewController: UIViewController {
 //        yourJourneyInfo4.profileImage.image = UIImage(named: "add_circle")
 //        yourJourneyInfo4.profileName.text = "Rating"
 //        infoMenuYourJourney.addSubview(yourJourneyInfo4)
+        
+        
+        let mainProfile = TripSummaryProfile(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/2))
+        mainProfile.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
+        self.view.addSubview(mainProfile)
         
         
     }

@@ -23,80 +23,233 @@ class ThoughtsViewController: UIViewController {
         self.view.addSubview(footer)
         
         //Check In status
-        let thoughtsView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.width/2))
-        thoughtsView.center = CGPointMake(self.view.frame.size.width/2, 225)
+//        let thoughtsView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.width/2 + 50))
+//        thoughtsView.center = CGPointMake(self.view.frame.size.width/2, 225)
+//        thoughtsView.backgroundColor = UIColor.whiteColor()
+//        self.view.addSubview(thoughtsView)
+//        print("Width: \(self.view.frame.size.width/2)")
+//        
+//        let profileImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+//        profileImage.center = CGPointMake(40, 100)
+//        profileImage.layer.cornerRadius = 20
+//        profileImage.layer.borderColor = UIColor.whiteColor().CGColor
+//        profileImage.layer.borderWidth = 3.5
+//        profileImage.image = UIImage(named: "profile_icon")
+//        self.view.addSubview(profileImage)
+//        
+//        let editImage = IconButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+//        editImage.center = CGPointMake(self.view.frame.width - 35, 106.3)
+//        self.view.addSubview(editImage)
+//        
+//        let thoughtBodyView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: thoughtsView.frame.size.height - 65))
+//        thoughtBodyView.center = CGPointMake(self.view.frame.size.width/2, thoughtsView.frame.size.height/3 * 1.5 - 12.5)
+//        thoughtsView.addSubview(thoughtBodyView)
+//        
+//        let thoughtStatus = UITextView(frame: CGRect(x: 0, y: 0, width: thoughtBodyView.frame.size.width - 60, height: 100))
+//        thoughtStatus.center = CGPointMake(thoughtBodyView.frame.size.width/2 - 10, thoughtBodyView.frame.size.height/3  + 12.5)
+//        thoughtStatus.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. with Sarvesh Brahme & Gayatri"
+//        thoughtBodyView.addSubview(thoughtStatus)
+//        
+//        let timestamp = DateAndTime(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+//        timestamp.center = CGPointMake(thoughtBodyView.frame.size.width/3 + 5, thoughtBodyView.frame.size.height/2 - 15)
+//        thoughtBodyView.addSubview(timestamp)
+//        
+//        let photoBar = UIView(frame: CGRect(x: 0, y: 0, width: thoughtBodyView.frame.size.width - 50, height: 70))
+//        photoBar.center = CGPointMake(thoughtBodyView.frame.size.width/3 + 60, thoughtBodyView.frame.size.height/3 * 2.5 - 20)
+//        thoughtBodyView.addSubview(photoBar)
+//        
+//        let photo1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+//        photo1.center = CGPointMake(photoBar.frame.size.width/8 - 15, photoBar.frame.size.height/2)
+//        photo1.image = UIImage(named: "photobar1")
+//        photoBar.addSubview(photo1)
+//        
+//        let photo2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+//        photo2.center = CGPointMake(photoBar.frame.size.width/4, photoBar.frame.size.height/2)
+//        photo2.image = UIImage(named: "photobar2")
+//        photoBar.addSubview(photo2)
+//        
+//        let photo3 = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+//        photo3.center = CGPointMake(photoBar.frame.size.width/2 - 23, photoBar.frame.size.height/2)
+//        photo3.image = UIImage(named: "photobar3")
+//        photoBar.addSubview(photo3)
+//        
+//        let photo4 = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+//        photo4.center = CGPointMake(photoBar.frame.size.width/2 + 30.5, photoBar.frame.size.height/2)
+//        photo4.image = UIImage(named: "photobar4")
+//        photoBar.addSubview(photo4)
+//        
+//        let buttonBar = UILabel(frame: CGRect(x: 0, y: 0, width: 210, height: 40))
+//        buttonBar.center = CGPointMake(thoughtsView.frame.size.width/2 - 50, thoughtsView.frame.size.height/2 + 100)
+//        //buttonBar.backgroundColor = UIColor.blackColor()
+//        thoughtsView.addSubview(buttonBar)
+//        
+//        let editLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 20))
+//        editLabel.text = "Edit or Remove Photos"
+//        editLabel.font = UIFont(name: "Avenir-Roman", size: 10)
+//        editLabel.textColor = UIColor.lightGrayColor()
+//        editLabel.center = CGPointMake(75, -10)
+//        buttonBar.addSubview(editLabel)
+//        
+//        let button1 = IconButton(frame: CGRect(x: 0, y: 0, width: 35, height: 30))
+//        button1.center = CGPointMake(20, buttonBar.frame.size.height/2 - 5)
+//        button1.view.backgroundColor = UIColor(patternImage: UIImage(named: "halfnhalfbg")!)
+//        button1.button.setImage(UIImage(named: "camera_icon"), forState: .Normal)
+//        buttonBar.addSubview(button1)
+//        
+//        let button2 = IconButton(frame: CGRect(x: 0, y: 0, width: 35, height: 30))
+//        button2.center = CGPointMake(75, buttonBar.frame.size.height/2 - 5)
+//        button2.view.backgroundColor = UIColor(patternImage: UIImage(named: "halfnhalfbg")!)
+//        button2.button.setImage(UIImage(named: "people_icon"), forState: .Normal)
+//        buttonBar.addSubview(button2)
+//        
+//        let thoughtTextView = UILabel(frame: CGRect(x: 0, y: 0, width: 175, height: 30))
+//        thoughtTextView.center = CGPointMake(thoughtsView.frame.size.width/2 - 20, 20)
+//        thoughtTextView.text = "Thought"
+//        thoughtsView.addSubview(thoughtTextView)
+
+        
+        //Add Thoughts view
+//        let AddThoughtsView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.width/2))
+//        AddThoughtsView.center = CGPointMake(self.view.frame.size.width/2, 225)
+//        AddThoughtsView.backgroundColor = UIColor.whiteColor()
+//        self.view.addSubview(AddThoughtsView)
+//        
+//        let profileImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+//        profileImage.center = CGPointMake(40, 130)
+//        profileImage.layer.cornerRadius = 20
+//        profileImage.layer.borderColor = UIColor.whiteColor().CGColor
+//        profileImage.layer.borderWidth = 3.5
+//        profileImage.image = UIImage(named: "profile_icon")
+//        self.view.addSubview(profileImage)
+//
+//        let editImage = IconButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+//        editImage.center = CGPointMake(self.view.frame.width - 35, 131.3)
+//        self.view.addSubview(editImage)
+//        
+//        let thoughtTextView = UILabel(frame: CGRect(x: 0, y: 0, width: 175, height: 30))
+//        thoughtTextView.center = CGPointMake(AddThoughtsView.frame.size.width/3 + 50, 20)
+//        thoughtTextView.text = "Thought"
+//        thoughtTextView.font = UIFont(name: "Avenir-Roman", size: 18)
+//        thoughtTextView.textColor = UIColor(red: 255/255, green: 104/255, blue: 88/255, alpha: 255/255)
+//        AddThoughtsView.addSubview(thoughtTextView)
+//        
+//        let thoughtStatus = UITextView(frame: CGRect(x: 0, y: 0, width: AddThoughtsView.frame.size.width - 60, height: 100))
+//        thoughtStatus.center = CGPointMake(AddThoughtsView.frame.size.width/2, AddThoughtsView.frame.size.height/3 + 30)
+//        thoughtStatus.font = avenirFont
+//        thoughtStatus.textColor = UIColor.lightGrayColor()
+//        thoughtStatus.text = "What's your inner traveller thinking?"
+//        AddThoughtsView.addSubview(thoughtStatus)
+//        
+//        let buttonBar = UILabel(frame: CGRect(x: 0, y: 0, width: 210, height: 40))
+//        
+//        buttonBar.center = CGPointMake(AddThoughtsView.frame.size.width/2 - 50, AddThoughtsView.frame.size.height/2 + 100)
+//        AddThoughtsView.addSubview(buttonBar)
+//
+//        let button1 = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
+//        button1.center = CGPointMake(20, buttonBar.frame.size.height/3 - 25)
+//        button1.view.backgroundColor = UIColor(patternImage: UIImage(named: "halfnhalfbg")!)
+//        button1.button.setImage(UIImage(named: "camera_icon"), forState: .Normal)
+//        buttonBar.addSubview(button1)
+//
+//        let button2 = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
+//        button2.center = CGPointMake(75, buttonBar.frame.size.height/3 - 25)
+//        button2.view.backgroundColor = UIColor(patternImage: UIImage(named: "halfnhalfbg")!)
+//        button2.button.setImage(UIImage(named: "people_icon"), forState: .Normal)
+//        buttonBar.addSubview(button2)
+        
+        
+        //photos view
+        let thoughtsView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/1.5))
+        thoughtsView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2 - 20)
         thoughtsView.backgroundColor = UIColor.whiteColor()
         self.view.addSubview(thoughtsView)
         print("Width: \(self.view.frame.size.width/2)")
         
-        let profileImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        profileImage.center = CGPointMake(40, 135)
-        profileImage.backgroundColor = UIColor.redColor()
+        let profileImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        profileImage.center = CGPointMake(40, 100)
+        profileImage.layer.cornerRadius = 20
+        profileImage.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImage.layer.borderWidth = 3.5
         profileImage.image = UIImage(named: "profile_icon")
         self.view.addSubview(profileImage)
         
-        let editImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        editImage.center = CGPointMake(self.view.frame.width - 35, 131.3)
-        editImage.backgroundColor = UIColor.redColor()
-        editImage.image = UIImage(named: "pen_icon")
+        let editImage = IconButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        editImage.center = CGPointMake(self.view.frame.width - 35, 95)
         self.view.addSubview(editImage)
         
-        let thoughtBodyView = UITextField(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: thoughtsView.frame.size.height - 65))
-        thoughtBodyView.center = CGPointMake(self.view.frame.size.width/2, thoughtsView.frame.size.height/3 * 1.5)
-        thoughtsView.addSubview(thoughtBodyView)
-        
-        let thoughtStatus = UITextView(frame: CGRect(x: 0, y: 0, width: thoughtBodyView.frame.size.width - 60, height: 100))
-        thoughtStatus.center = CGPointMake(thoughtBodyView.frame.size.width/2 - 10, thoughtBodyView.frame.size.height/3)
+        let thoughtStatus = UITextView(frame: CGRect(x: 0, y: 0, width: thoughtsView.frame.size.width/2 + 40, height: 100))
+        thoughtStatus.center = CGPointMake(thoughtsView.frame.size.width/2 - 10, thoughtsView.frame.size.height/4 - 60)
         thoughtStatus.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. with Sarvesh Brahme & Gayatri"
-        thoughtBodyView.addSubview(thoughtStatus)
+        thoughtsView.addSubview(thoughtStatus)
         
-        let timestamp = DateAndTime(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
-        timestamp.center = CGPointMake(thoughtBodyView.frame.size.width/3 + 10, thoughtBodyView.frame.size.height/2)
-        thoughtBodyView.addSubview(timestamp)
+        let timestamp = DateAndTime(frame: CGRect(x: 0, y: 0, width: 200, height: 25))
+        timestamp.center = CGPointMake(thoughtsView.frame.size.width/4 + 60, thoughtsView.frame.size.height/6 - 10)
+        thoughtsView.addSubview(timestamp)
         
-        let photoBar = UIView(frame: CGRect(x: 0, y: 0, width: thoughtBodyView.frame.size.width - 50, height: 70))
-        photoBar.center = CGPointMake(thoughtBodyView.frame.size.width/3 + 65, thoughtBodyView.frame.size.height/3 * 2.5)
-        thoughtBodyView.addSubview(photoBar)
+        let coverImage = UIImageView(frame: CGRect(x: 0, y: 0, width: thoughtsView.frame.size.width, height: thoughtsView.frame.size.height/2))
+        coverImage.center = CGPointMake(thoughtsView.frame.size.width/2, thoughtsView.frame.size.height/2 - 20)
+        coverImage.image = UIImage(named: "photobar1")
+        thoughtsView.addSubview(coverImage)
+
+        let photoBar = UIView(frame: CGRect(x: 0, y: 0, width: thoughtsView.frame.size.width - 50, height: 70))
+        photoBar.center = CGPointMake(thoughtsView.frame.size.width/3 + 60, thoughtsView.frame.size.height/3 * 2.5 - 20)
+        thoughtsView.addSubview(photoBar)
         
         let photo1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         photo1.center = CGPointMake(photoBar.frame.size.width/8 - 15, photoBar.frame.size.height/2)
-        photo1.backgroundColor = UIColor.redColor()
+        photo1.image = UIImage(named: "photobar1")
         photoBar.addSubview(photo1)
         
         let photo2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         photo2.center = CGPointMake(photoBar.frame.size.width/4, photoBar.frame.size.height/2)
-        photo2.backgroundColor = UIColor.redColor()
+        photo2.image = UIImage(named: "photobar2")
         photoBar.addSubview(photo2)
         
         let photo3 = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         photo3.center = CGPointMake(photoBar.frame.size.width/2 - 23, photoBar.frame.size.height/2)
-        photo3.backgroundColor = UIColor.redColor()
+        photo3.image = UIImage(named: "photobar3")
         photoBar.addSubview(photo3)
         
         let photo4 = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         photo4.center = CGPointMake(photoBar.frame.size.width/2 + 30.5, photoBar.frame.size.height/2)
-        photo4.backgroundColor = UIColor.redColor()
+        photo4.image = UIImage(named: "photobar4")
         photoBar.addSubview(photo4)
-        
-        let buttonBar = UILabel(frame: CGRect(x: 0, y: 0, width: 210, height: 40))
-        buttonBar.center = CGPointMake(thoughtsView.frame.size.width/2 - 50, thoughtsView.frame.size.height/2 + 85)
-        //buttonBar.backgroundColor = UIColor.blackColor()
+
+        let buttonBar = UILabel(frame: CGRect(x: 0, y: 0, width: thoughtsView.frame.size.width - 50, height: 30))
+        buttonBar.center = CGPointMake(thoughtsView.frame.size.width/2, thoughtsView.frame.size.height - 40)
         thoughtsView.addSubview(buttonBar)
         
-        let button1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        button1.center = CGPointMake(30, buttonBar.frame.size.height/2)
-        button1.backgroundColor = UIColor.blueColor()
-        button1.image = UIImage(named: "camera_icon")
+        let button1 = IconButton(frame: CGRect(x: 0, y: 0, width: 30, height: 25))
+        button1.center = CGPointMake(10, buttonBar.frame.size.height/2 - 5)
+        button1.view.backgroundColor = UIColor.whiteColor()
+        button1.button.setImage(UIImage(named: "like-empty_icon"), forState: .Normal)
         buttonBar.addSubview(button1)
         
-        let button2 = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        button2.center = CGPointMake(75, buttonBar.frame.size.height/2)
-        button2.backgroundColor = UIColor.blueColor()
+        let button2 = IconButton(frame: CGRect(x: 0, y: 0, width: 30, height: 25))
+        button2.center = CGPointMake(40, buttonBar.frame.size.height/2 - 5)
+        button2.view.backgroundColor = UIColor.whiteColor()
+        button2.button.setImage(UIImage(named: "speech_icon"), forState: .Normal)
         buttonBar.addSubview(button2)
         
+        let button3 = IconButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        button3.center = CGPointMake(70, buttonBar.frame.size.height/2 - 5)
+        button3.view.backgroundColor = UIColor.whiteColor()
+        button3.button.setImage(UIImage(named: "share_icon"), forState: .Normal)
+        buttonBar.addSubview(button3)
+        
+        let button4 = IconButton(frame: CGRect(x: 0, y: 0, width: 100, height: 25))
+        button4.center = CGPointMake(buttonBar.frame.size.width - 10, buttonBar.frame.size.height/2 - 5)
+        button4.view.backgroundColor = UIColor.whiteColor()
+        button4.button.setImage(UIImage(named: "options_icon"), forState: .Normal)
+        buttonBar.addSubview(button4)
+
         let thoughtTextView = UILabel(frame: CGRect(x: 0, y: 0, width: 175, height: 30))
-        thoughtTextView.center = CGPointMake(thoughtsView.frame.size.width/2 - 25, 15)
-        thoughtTextView.text = "Thought"
+        thoughtTextView.center = CGPointMake(130, thoughtsView.frame.size.height - 20)
+        thoughtTextView.text = "155660 Likes"
+        thoughtTextView.font = UIFont(name: "Avenir-Roman", size: 10)
+        thoughtTextView.textColor = mainBlueColor
         thoughtsView.addSubview(thoughtTextView)
+        
+    
     }
 }

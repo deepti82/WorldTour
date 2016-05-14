@@ -21,7 +21,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="576" height="360"/>
+            <rect key="frame" x="0.0" y="0.0" width="576" height="163"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N8t-5w-Suk">
@@ -175,14 +175,14 @@
                 <constraint firstItem="N8t-5w-Suk" firstAttribute="centerX" secondItem="az6-ZB-Xtc" secondAttribute="centerX" id="KNz-Wy-XHB"/>
                 <constraint firstItem="az6-ZB-Xtc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QjZ-os-WHr"/>
                 <constraint firstItem="N8t-5w-Suk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dIw-RC-L2p"/>
-                <constraint firstAttribute="bottom" secondItem="az6-ZB-Xtc" secondAttribute="bottom" id="g61-nZ-moZ"/>
+                <constraint firstAttribute="bottom" secondItem="az6-ZB-Xtc" secondAttribute="bottom" constant="-197" id="g61-nZ-moZ"/>
                 <constraint firstAttribute="trailing" secondItem="az6-ZB-Xtc" secondAttribute="trailing" id="i9F-Tr-QrS"/>
                 <constraint firstItem="az6-ZB-Xtc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iDN-7l-mF8"/>
                 <constraint firstItem="N8t-5w-Suk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="sa2-41-4qT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="302" y="296"/>
+            <point key="canvasLocation" x="302" y="197.5"/>
         </view>
     </objects>
 </document>
