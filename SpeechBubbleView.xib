@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SpeechBubbleView" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="timestamp" destination="hIi-gJ-1Je" id="Coy-pA-qOK"/>
+                <outlet property="title" destination="oXA-MX-vH0" id="86q-3x-8hG"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speech_bubble_bg" translatesAutoresizingMaskIntoConstraints="NO" id="JpO-dP-zMV">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan 2014. 01:20 pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIi-gJ-1Je">
+                    <rect key="frame" x="49" y="63" width="202" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="hIi-gJ-1Je" secondAttribute="height" multiplier="176:21" id="21l-wt-bcU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello London!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXA-MX-vH0">
+                    <rect key="frame" x="-42" y="21" width="384" height="34"/>
+                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="34"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="oXA-MX-vH0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="21" id="9Gh-Co-t7A"/>
+                <constraint firstItem="oXA-MX-vH0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-42" id="M9H-FS-s42"/>
+                <constraint firstItem="JpO-dP-zMV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MkH-qX-vDG"/>
+                <constraint firstItem="JpO-dP-zMV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QZa-g2-OLz"/>
+                <constraint firstItem="oXA-MX-vH0" firstAttribute="centerX" secondItem="JpO-dP-zMV" secondAttribute="centerX" id="QgP-Y5-v77"/>
+                <constraint firstItem="hIi-gJ-1Je" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="X2z-h6-sMc"/>
+                <constraint firstItem="hIi-gJ-1Je" firstAttribute="top" secondItem="oXA-MX-vH0" secondAttribute="bottom" constant="8" symbolic="YES" id="XGT-1J-yHP"/>
+                <constraint firstAttribute="bottom" secondItem="JpO-dP-zMV" secondAttribute="bottom" id="cEu-eT-7Qm"/>
+                <constraint firstItem="oXA-MX-vH0" firstAttribute="centerX" secondItem="hIi-gJ-1Je" secondAttribute="centerX" id="g6w-5v-Acu"/>
+                <constraint firstAttribute="trailing" secondItem="JpO-dP-zMV" secondAttribute="trailing" id="hnF-Ci-Mfd"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="182" y="447"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="speech_bubble_bg" width="624" height="237"/>
+    </resources>
+</document>

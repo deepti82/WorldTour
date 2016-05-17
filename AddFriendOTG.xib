@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddFriendOTG" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="addFriendButton" destination="zoa-dc-mKd" id="fnJ-iB-mGy"/>
+                <outlet property="hiImage" destination="KP9-gT-540" id="yqe-xk-x7g"/>
+                <outlet property="profileImage" destination="w50-mP-u9f" id="m8s-nU-kCC"/>
+                <outlet property="textView" destination="wN4-Sn-IZm" id="c9x-ke-RNc"/>
+                <outlet property="timestamp" destination="72t-nR-QmM" id="s4S-Sg-dFa"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="338" height="255"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="w50-mP-u9f">
+                    <rect key="frame" x="109" y="20" width="120" height="115"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="VpU-cn-qRa"/>
+                        <constraint firstAttribute="height" constant="115" id="uFG-cF-sBB"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hi_image" translatesAutoresizingMaskIntoConstraints="NO" id="KP9-gT-540">
+                    <rect key="frame" x="203" y="75" width="127" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="LqM-kL-Ozc"/>
+                        <constraint firstAttribute="width" constant="127" id="YPn-5M-uoK"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoa-dc-mKd">
+                    <rect key="frame" x="86" y="20" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="piu-03-TFP"/>
+                        <constraint firstAttribute="height" constant="40" id="uvn-qL-g70"/>
+                    </constraints>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wN4-Sn-IZm">
+                    <rect key="frame" x="8" y="127" width="322" height="102"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gayathri Padhye has joined this journey." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pep-Og-eYC">
+                            <rect key="frame" x="36" y="8" width="250" height="69"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="69" id="9bA-oP-wLY"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="261" id="Udf-kn-xcM"/>
+                                <constraint firstAttribute="width" constant="138" id="Uf6-3W-J0F"/>
+                                <constraint firstAttribute="width" constant="250" id="ejb-BR-gAb"/>
+                                <constraint firstAttribute="height" constant="83" id="vmb-8e-fGn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Udf-kn-xcM"/>
+                                    <exclude reference="Uf6-3W-J0F"/>
+                                    <exclude reference="vmb-8e-fGn"/>
+                                </mask>
+                            </variation>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="14 Jan 2014. 01:20 pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="72t-nR-QmM">
+                            <rect key="frame" x="0.0" y="77" width="322" height="25"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="pep-Og-eYC" firstAttribute="top" secondItem="wN4-Sn-IZm" secondAttribute="top" constant="8" id="5wQ-eW-t1d"/>
+                        <constraint firstAttribute="trailing" secondItem="72t-nR-QmM" secondAttribute="trailing" id="AMG-SB-HKo"/>
+                        <constraint firstItem="72t-nR-QmM" firstAttribute="top" secondItem="pep-Og-eYC" secondAttribute="bottom" id="Awu-7b-0fv"/>
+                        <constraint firstItem="72t-nR-QmM" firstAttribute="leading" secondItem="wN4-Sn-IZm" secondAttribute="leading" id="HlN-ZU-aPZ"/>
+                        <constraint firstItem="pep-Og-eYC" firstAttribute="centerX" secondItem="wN4-Sn-IZm" secondAttribute="centerX" id="J9V-t7-Swh"/>
+                        <constraint firstItem="72t-nR-QmM" firstAttribute="top" secondItem="pep-Og-eYC" secondAttribute="bottom" id="SAs-o4-s5D"/>
+                        <constraint firstAttribute="bottom" secondItem="72t-nR-QmM" secondAttribute="bottom" id="YlS-fG-yfE"/>
+                        <constraint firstItem="72t-nR-QmM" firstAttribute="top" secondItem="pep-Og-eYC" secondAttribute="bottom" constant="8" id="cmX-bt-ulj"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Awu-7b-0fv"/>
+                            <exclude reference="cmX-bt-ulj"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="wN4-Sn-IZm" firstAttribute="top" secondItem="KP9-gT-540" secondAttribute="bottom" constant="8" id="0El-ML-DHN"/>
+                <constraint firstAttribute="bottom" secondItem="wN4-Sn-IZm" secondAttribute="bottom" constant="26" id="5iQ-12-4jn"/>
+                <constraint firstAttribute="trailing" secondItem="KP9-gT-540" secondAttribute="trailing" constant="8" id="7ZK-ki-d9Z"/>
+                <constraint firstItem="wN4-Sn-IZm" firstAttribute="top" secondItem="zoa-dc-mKd" secondAttribute="bottom" constant="67" id="Ekd-7L-KTt"/>
+                <constraint firstItem="zoa-dc-mKd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="86" id="FdK-2D-KvP"/>
+                <constraint firstItem="wN4-Sn-IZm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="G03-QI-rMk"/>
+                <constraint firstItem="zoa-dc-mKd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="H5n-Xf-TIa"/>
+                <constraint firstAttribute="trailing" secondItem="wN4-Sn-IZm" secondAttribute="trailing" constant="8" id="VCA-mz-pFb"/>
+                <constraint firstItem="wN4-Sn-IZm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cn1-zT-i9t"/>
+                <constraint firstAttribute="trailing" secondItem="wN4-Sn-IZm" secondAttribute="trailing" id="iW4-LR-E0m"/>
+                <constraint firstItem="w50-mP-u9f" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="uli-vT-feo"/>
+                <constraint firstItem="w50-mP-u9f" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yBw-8R-drZ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="cn1-zT-i9t"/>
+                    <exclude reference="iW4-LR-E0m"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="140" y="627.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="hi_image" width="137" height="60"/>
+        <image name="profile_icon" width="59" height="60"/>
+    </resources>
+</document>

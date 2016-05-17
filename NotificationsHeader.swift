@@ -10,9 +10,15 @@ import UIKit
 
 class NotificationsHeader: UIView {
 
+    @IBOutlet var view: UIView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        
+        view.layer.shadowColor = UIColor.blackColor().CGColor
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+        view.layer.shadowRadius = 2
         
     }
     

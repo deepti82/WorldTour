@@ -65,3 +65,22 @@ class drawSeperatorLine: UIView {
     
 }
 
+class drawSeperatorLineTwo: UIView {
+    
+    override func drawRect(rect: CGRect) {
+        
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetLineWidth(context, 2.0)
+        CGContextSetStrokeColorWithColor(context, UIColor.lightGrayColor().CGColor)
+        //CGContextSetLineDash(context, 0, [7.5], 1)
+        //CGContextSetLineCap(context, kCGLineCapRound)
+        
+        CGContextMoveToPoint(context, 0, 0)
+        CGContextAddLineToPoint(context, 5000, 0)
+        
+        CGContextStrokePath(context)
+        
+    }
+    
+}
+

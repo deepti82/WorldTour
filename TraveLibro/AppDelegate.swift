@@ -29,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["clock"] = 0xf017
         faicon["calendar"] = 0xf073
         faicon["rocket"] = 0xf135
+        faicon["videoPlay"] = 0xf16a
+        faicon["likes"] = 0xf004
         
         return true
     }
