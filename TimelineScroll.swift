@@ -34,17 +34,18 @@ class TimelineScroll: UIView {
         bubble.center = CGPointMake(self.frame.size.width/2, 700)
         self.addSubview(bubble)
         
-        let photosOne = PhotosOTG(frame: CGRect(x: 0, y: 900, width: self.frame.size.width, height: 550))
+        let photosOne = PhotosOTG(frame: CGRect(x: 0, y: 900, width: self.frame.size.width, height: 535))
         self.addSubview(photosOne)
         
-        let photosTwo = PhotosOTG(frame: CGRect(x: 0, y: 1500, width: self.frame.size.width, height: 500))
-        photosTwo.photosStack.removeFromSuperview()
+        let photosTwo = OnlyPhoto(frame: CGRect(x: 0, y: 1500, width: self.frame.size.width, height: 475))
         self.addSubview(photosTwo)
         
         let ratingIcon = IconButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         ratingIcon.center = CGPointMake(self.frame.size.width/2, 2100)
         ratingIcon.button.backgroundColor = UIColor(red: 17/255, green: 211/255, blue: 205/255, alpha: 1)
         ratingIcon.button.setImage(UIImage(named: "sad_smiley_icon"), forState: .Normal)
+        ratingIcon.layer.cornerRadius = 15
+        ratingIcon.clipsToBounds = true
         self.addSubview(ratingIcon)
         
         let ratingIconLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
@@ -54,18 +55,16 @@ class TimelineScroll: UIView {
         ratingIconLabel.textColor = mainBlueColor
         self.addSubview(ratingIconLabel)
         
-        let photosThree = PhotosOTG(frame: CGRect(x: 0, y: 2250, width: self.frame.size.width, height: 150))
-        photosThree.photosStack.removeFromSuperview()
-        photosThree.mainPhoto.removeFromSuperview()
+        let photosThree = StatusView(frame: CGRect(x: 0, y: 2250, width: self.frame.size.width, height: 160))
         self.addSubview(photosThree)
         
         let ratingIconTwo = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        ratingIconTwo.center = CGPointMake(self.frame.size.width/2, 2450)
+        ratingIconTwo.center = CGPointMake(self.frame.size.width/2, 2500)
         ratingIconTwo.button.setImage(UIImage(named: "star_rate_icon"), forState: .Normal)
         self.addSubview(ratingIconTwo)
         
         let ratingIconLabelTwo = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 30))
-        ratingIconLabelTwo.center = CGPointMake(self.frame.size.width/2, 2490)
+        ratingIconLabelTwo.center = CGPointMake(self.frame.size.width/2, 2530)
         ratingIconLabelTwo.text = "Rate Girgaon?"
         ratingIconLabelTwo.textAlignment = .Center
         ratingIconLabelTwo.font = UIFont(name: "Avenir-Roman", size: 12)
@@ -76,8 +75,7 @@ class TimelineScroll: UIView {
         addFriend.center = CGPointMake(self.frame.size.width/2, 2750)
         self.addSubview(addFriend)
         
-        let photosFour = PhotosOTG(frame: CGRect(x: 0, y: 3000, width: self.frame.size.width, height: 500))
-        photosFour.photosStack.removeFromSuperview()
+        let photosFour = OnlyPhoto(frame: CGRect(x: 0, y: 3000, width: self.frame.size.width, height: 475))
         photosFour.photosTitle.removeFromSuperview()
         self.addSubview(photosFour)
         
@@ -99,8 +97,7 @@ class TimelineScroll: UIView {
         newPlaceTimestamp.center = CGPointMake(self.frame.size.width/2, 3600)
         self.addSubview(newPlaceTimestamp)
         
-        let photosFive = PhotosOTG(frame: CGRect(x: 0, y: 3750, width: self.frame.size.width, height: 500))
-        photosFive.photosStack.removeFromSuperview()
+        let photosFive = OnlyPhoto(frame: CGRect(x: 0, y: 3750, width: self.frame.size.width, height: 475))
         photosFive.photosTitle.removeFromSuperview()
         self.addSubview(photosFive)
         
@@ -116,8 +113,7 @@ class TimelineScroll: UIView {
         byeFriend.center = CGPointMake(self.frame.size.width/2, 4400)
         self.addSubview(byeFriend)
         
-        let photosSix = PhotosOTG(frame: CGRect(x: 0, y: 4600, width: self.frame.size.width, height: 500))
-        photosSix.photosStack.removeFromSuperview()
+        let photosSix = OnlyPhoto(frame: CGRect(x: 0, y: 4600, width: self.frame.size.width, height: 475))
         self.addSubview(photosSix)
         
         let ratingIconThree = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -151,9 +147,9 @@ class TimelineScroll: UIView {
         let ratingIconFour = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         ratingIconFour.center = CGPointMake(self.frame.size.width/2, 5450)
         ratingIconFour.button.setImage(UIImage(named: "flag_icon"), forState: .Normal)
-        ratingIconFour.layer.cornerRadius = 22
-        ratingIconFour.clipsToBounds = true
+        ratingIconFour.layer.cornerRadius = ratingIconFour.frame.size.height/2
         ratingIconFour.button.backgroundColor = mainBlueColor
+        ratingIconFour.clipsToBounds = true
         self.addSubview(ratingIconFour)
         
         let ratingIconLabelFour = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 30))

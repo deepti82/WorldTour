@@ -8,32 +8,25 @@
 
 import UIKit
 
-class CircleImageMask: UIImageView {
+class CircleImageMask: UIView {
     
     override func drawRect(rect: CGRect) {
         
-    }
-    
-    override func setNeedsLayout() {
+        var mask = CAShapeLayer()
+        mask.frame = rect
         
-        let path = UIBezierPath()
-        path.moveToPoint(CGPoint(x: self.frame.size.width/3, y: self.frame.size.height))
-//        path.addLineToPoint(CGPoint(x: self.frame.size.width, y: self.frame.size.height/2))
-//        path.addLineToPoint(CGPoint(x: self.frame.size.width/2, y: 0))
-        path.addArcWithCenter(CGPoint(x: self.frame.size.width/3, y: self.frame.size.height/2), radius: self.frame.size.height/2, startAngle:-CGFloat(M_PI_2), endAngle: -CGFloat(M_PI_2), clockwise: false)
+        let width = rect.width
+        let height = rect.height
         
-//        path.moveToPoint(CGPoint(x: self.frame.size.width/2, y: self.frame.size.height))
-        path.closePath()
-        UIColor.redColor().setFill()
-        path.stroke()
-        path.bezierPathByReversingPath()
-        let shapeLayer = CAShapeLayer()
-        shapeLayer.frame = self.bounds
-        shapeLayer.path = path.CGPath
-        shapeLayer.fillColor = UIColor.redColor().CGColor
-        self.layer.mask = shapeLayer;
-        self.layer.masksToBounds = true;
+        var path = CGPathCreateMutable()
         
+        CGPathMoveToPoint(path, nil, 30, 0)
+        CGPathAddLineToPoint(path, nil, width, 0)
+        CGPathAddLineToPoint(path, nil, width, height)
+        CGPathAddLineToPoint(path, nil, 0, height)
+        CGPathAddLineToPoint(path, nil, 30, 0)
+        
+        mask.path = path
         
     }
 }

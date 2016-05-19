@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jfg-yy-bnK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ywm-sm-lN1">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -668,6 +668,33 @@
             </objects>
             <point key="canvasLocation" x="2425" y="447"/>
         </scene>
+        <!--Trial View Controller-->
+        <scene sceneID="3cN-dW-SQi">
+            <objects>
+                <viewController id="3EA-F8-Z4Q" customClass="TrialViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KB7-cO-gjn"/>
+                        <viewControllerLayoutGuide type="bottom" id="PVk-h1-U1u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2cM-kQ-Vvl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cA8-B8-yJ9">
+                                <rect key="frame" x="40" y="164" width="240" height="240"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="newImage" destination="cA8-B8-yJ9" id="Xa6-LN-JGA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8on-hC-ZaF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2845" y="447"/>
+        </scene>
         <!--Notifications View Controller-->
         <scene sceneID="ys0-Zl-LDn">
             <objects>
@@ -894,6 +921,201 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E60-3r-lRd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2129" y="1151"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="jkO-RQ-Rw9">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="zZT-QX-W3G" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iv0-wT-MLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2578" y="1151"/>
+        </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="aal-Hg-8vr">
+            <objects>
+                <viewController id="qS8-Ff-1hL" customClass="SignInViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hg2-Pl-UeH"/>
+                        <viewControllerLayoutGuide type="bottom" id="jf6-OA-Igt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3yv-kO-7xX" customClass="SignInToolbar" customModule="TraveLibro" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sxh-gS-ynz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2994" y="1151"/>
+        </scene>
+        <!--Log In View Controller-->
+        <scene sceneID="saP-jQ-TKk">
+            <objects>
+                <viewController id="DhP-QC-3rc" customClass="LogInViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UsD-Sz-4jy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Csk-03-8Ta"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zuT-3G-ai1" customClass="LogInView" customModule="TraveLibro" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kcd-f6-VRC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3420" y="1151"/>
+        </scene>
+        <!--Sign In Page View Controller-->
+        <scene sceneID="sQi-9R-hds">
+            <objects>
+                <viewController id="dxb-f6-bzt" customClass="SignInPageViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zVL-3h-dtM"/>
+                        <viewControllerLayoutGuide type="bottom" id="KfK-bu-4mB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0KG-cc-CNy" customClass="SignInFullView" customModule="TraveLibro" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d4x-1k-fsZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3856" y="1151"/>
+        </scene>
+        <!--Verify Email View Controller-->
+        <scene sceneID="jBS-uY-KhT">
+            <objects>
+                <viewController id="Nuo-o3-bo1" customClass="VerifyEmailViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R6B-bD-0OG"/>
+                        <viewControllerLayoutGuide type="bottom" id="Avv-py-acQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xLx-rl-3FF" customClass="VerificationCodeView" customModule="TraveLibro" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TDt-eK-7ka" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4276" y="1146"/>
+        </scene>
+        <!--Select Country View Controller-->
+        <scene sceneID="SI0-dY-EcO">
+            <objects>
+                <viewController id="Ywm-sm-lN1" customClass="SelectCountryViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IPd-x5-tz9"/>
+                        <viewControllerLayoutGuide type="bottom" id="MIl-pb-nzs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Yr-UV-VfT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5dP-Tu-f39">
+                                <rect key="frame" x="-4" y="100" width="308" height="468"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="bge-E9-rtg" customClass="CountriesTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="308" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bge-E9-rtg" id="vu4-bA-nuF">
+                                            <rect key="frame" x="0.0" y="0.0" width="308" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K7u-mz-P1W">
+                                                    <rect key="frame" x="8" y="7" width="40" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="bWC-kb-7XY"/>
+                                                        <constraint firstAttribute="width" constant="40" id="sMT-u9-Hkn"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrx-R0-1GP">
+                                                    <rect key="frame" x="56" y="7" width="206" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="3JN-nI-6Aj"/>
+                                                        <constraint firstAttribute="width" constant="206" id="lv1-wf-yc9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssh-mU-Std">
+                                                    <rect key="frame" x="270" y="7" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="U5t-GQ-bbg"/>
+                                                        <constraint firstAttribute="width" constant="30" id="sq5-cM-giU"/>
+                                                    </constraints>
+                                                    <state key="normal" title="&gt;"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ssh-mU-Std" firstAttribute="leading" secondItem="qrx-R0-1GP" secondAttribute="trailing" constant="8" id="0gD-hP-IpX"/>
+                                                <constraint firstItem="qrx-R0-1GP" firstAttribute="leading" secondItem="K7u-mz-P1W" secondAttribute="trailing" constant="8" id="CZO-gv-r5f"/>
+                                                <constraint firstItem="qrx-R0-1GP" firstAttribute="centerY" secondItem="vu4-bA-nuF" secondAttribute="centerY" id="IHl-nF-L0p"/>
+                                                <constraint firstItem="Ssh-mU-Std" firstAttribute="centerY" secondItem="vu4-bA-nuF" secondAttribute="centerY" id="MA4-RR-DMP"/>
+                                                <constraint firstItem="Ssh-mU-Std" firstAttribute="leading" secondItem="qrx-R0-1GP" secondAttribute="trailing" constant="8" id="T6d-Jn-4xI"/>
+                                                <constraint firstItem="K7u-mz-P1W" firstAttribute="leading" secondItem="vu4-bA-nuF" secondAttribute="leadingMargin" id="TuZ-qP-neJ"/>
+                                                <constraint firstItem="K7u-mz-P1W" firstAttribute="top" secondItem="Ssh-mU-Std" secondAttribute="top" id="bzn-2Y-RVT"/>
+                                                <constraint firstItem="qrx-R0-1GP" firstAttribute="leading" secondItem="K7u-mz-P1W" secondAttribute="trailing" constant="8" symbolic="YES" id="elp-AV-hmc"/>
+                                                <constraint firstItem="K7u-mz-P1W" firstAttribute="centerY" secondItem="qrx-R0-1GP" secondAttribute="centerY" id="i1q-NW-UBR"/>
+                                                <constraint firstItem="Ssh-mU-Std" firstAttribute="trailing" secondItem="vu4-bA-nuF" secondAttribute="trailingMargin" id="lb4-bQ-I3z"/>
+                                                <constraint firstItem="K7u-mz-P1W" firstAttribute="centerY" secondItem="vu4-bA-nuF" secondAttribute="centerY" id="pQe-1e-2XZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkboxImage" destination="Ssh-mU-Std" id="lRD-Bt-2BO"/>
+                                            <outlet property="countryName" destination="qrx-R0-1GP" id="hEe-c7-RMZ"/>
+                                            <outlet property="flagImage" destination="K7u-mz-P1W" id="K3J-aG-t3R"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ywm-sm-lN1" id="dmf-FH-1kd"/>
+                                    <outlet property="delegate" destination="Ywm-sm-lN1" id="Rj1-nb-nuk"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5dP-Tu-f39" firstAttribute="leading" secondItem="5Yr-UV-VfT" secondAttribute="leadingMargin" constant="-20" id="2CT-qz-cpI"/>
+                            <constraint firstItem="5dP-Tu-f39" firstAttribute="top" secondItem="IPd-x5-tz9" secondAttribute="bottom" constant="80" id="92H-Nr-QP7"/>
+                            <constraint firstItem="5dP-Tu-f39" firstAttribute="trailing" secondItem="5Yr-UV-VfT" secondAttribute="trailingMargin" id="VaD-AI-PXe"/>
+                            <constraint firstItem="5dP-Tu-f39" firstAttribute="bottom" secondItem="MIl-pb-nzs" secondAttribute="top" id="boF-fy-got"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XbE-Wa-sKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4276" y="447"/>
+        </scene>
+        <!--Upload Display Pic View Controller-->
+        <scene sceneID="ufH-S9-kQj">
+            <objects>
+                <viewController id="Prn-zy-IkE" customClass="UploadDisplayPicViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UiB-tv-Zau"/>
+                        <viewControllerLayoutGuide type="bottom" id="dq4-Tg-dL7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XfK-Q6-OUe" customClass="AddDisplayPic" customModule="TraveLibro" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K1e-FX-18U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4683" y="1146"/>
         </scene>
     </scenes>
 </document>

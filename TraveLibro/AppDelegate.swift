@@ -32,6 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["videoPlay"] = 0xf16a
         faicon["likes"] = 0xf004
         
+        
+        var pageController = UIPageControl.appearance()
+        pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageController.currentPageIndicatorTintColor = UIColor.blackColor()
+        pageController.backgroundColor = UIColor.whiteColor()
+        
+        
         return true
     }
 

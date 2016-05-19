@@ -44,6 +44,22 @@
 		C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2776A271CD785DF00FE066A /* ShoesOTG.xib */; };
 		C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */; };
 		C284277C1CE07445003672E9 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C284277B1CE07445003672E9 /* Styles.swift */; };
+		C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */; };
+		C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */; };
+		C2A27A421CEDBAFF00F74DD1 /* SignInToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A411CEDBAFF00F74DD1 /* SignInToolbar.swift */; };
+		C2A27A451CEDC1F100F74DD1 /* LogInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A441CEDC1F100F74DD1 /* LogInView.xib */; };
+		C2A27A471CEDC27600F74DD1 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A461CEDC27600F74DD1 /* LogInView.swift */; };
+		C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A481CEDC66B00F74DD1 /* LogInViewController.swift */; };
+		C2A27A4C1CEDC99E00F74DD1 /* SignUpFullView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A4B1CEDC99E00F74DD1 /* SignUpFullView.xib */; };
+		C2A27A4E1CEDCE4C00F74DD1 /* SignInFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A4D1CEDCE4C00F74DD1 /* SignInFullView.swift */; };
+		C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */; };
+		C2A27A521CEDDF5D00F74DD1 /* VerificationCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A511CEDDF5D00F74DD1 /* VerificationCodeView.xib */; };
+		C2A27A541CEDE18300F74DD1 /* VerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A531CEDE18300F74DD1 /* VerificationCodeView.swift */; };
+		C2A27A561CEDE23300F74DD1 /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A551CEDE23300F74DD1 /* VerifyEmailViewController.swift */; };
+		C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */; };
+		C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */; };
+		C2A27A5C1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */; };
+		C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */; };
 		C2A6E2571CE9C13A00D3F845 /* OTGTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A6E2561CE9C13A00D3F845 /* OTGTimelineViewController.swift */; };
 		C2A6E2591CE9C22200D3F845 /* TimelineScroll.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A6E2581CE9C22200D3F845 /* TimelineScroll.xib */; };
 		C2A6E25B1CE9C27000D3F845 /* TimelineScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A6E25A1CE9C27000D3F845 /* TimelineScroll.swift */; };
@@ -55,6 +71,11 @@
 		C2A6E2691CE9DA8B00D3F845 /* PhotosOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A6E2681CE9DA8B00D3F845 /* PhotosOTG.swift */; };
 		C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A6E26A1CE9DF8D00D3F845 /* AddFriendOTG.xib */; };
 		C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A6E26C1CE9E2DB00D3F845 /* AddFriendOTG.swift */; };
+		C2ABDBAE1CEC4CB400D7542E /* OnlyPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2ABDBAD1CEC4CB400D7542E /* OnlyPhoto.xib */; };
+		C2ABDBB01CEC4F1400D7542E /* OnlyPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABDBAF1CEC4F1400D7542E /* OnlyPhoto.swift */; };
+		C2ABDBB21CEC53B000D7542E /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABDBB11CEC53B000D7542E /* StatusView.swift */; };
+		C2ABDBB41CEC53C300D7542E /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2ABDBB31CEC53C300D7542E /* StatusView.xib */; };
+		C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */; };
 		C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */; };
 		C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */; };
 		C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C965951CE458B7007BDA34 /* Date&Time.xib */; };
@@ -149,6 +170,22 @@
 		C2776A271CD785DF00FE066A /* ShoesOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoesOTG.xib; sourceTree = "<group>"; };
 		C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesOTG.swift; sourceTree = "<group>"; };
 		C284277B1CE07445003672E9 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
+		C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInToolbar.xib; path = ../SignInToolbar.xib; sourceTree = "<group>"; };
+		C2A27A411CEDBAFF00F74DD1 /* SignInToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInToolbar.swift; path = ../SignInToolbar.swift; sourceTree = "<group>"; };
+		C2A27A441CEDC1F100F74DD1 /* LogInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LogInView.xib; path = ../LogInView.xib; sourceTree = "<group>"; };
+		C2A27A461CEDC27600F74DD1 /* LogInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogInView.swift; path = ../LogInView.swift; sourceTree = "<group>"; };
+		C2A27A481CEDC66B00F74DD1 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		C2A27A4B1CEDC99E00F74DD1 /* SignUpFullView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpFullView.xib; sourceTree = "<group>"; };
+		C2A27A4D1CEDCE4C00F74DD1 /* SignInFullView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInFullView.swift; sourceTree = "<group>"; };
+		C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInPageViewController.swift; sourceTree = "<group>"; };
+		C2A27A511CEDDF5D00F74DD1 /* VerificationCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerificationCodeView.xib; sourceTree = "<group>"; };
+		C2A27A531CEDE18300F74DD1 /* VerificationCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationCodeView.swift; sourceTree = "<group>"; };
+		C2A27A551CEDE23300F74DD1 /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyEmailViewController.swift; sourceTree = "<group>"; };
+		C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDisplayPic.xib; sourceTree = "<group>"; };
+		C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDisplayPic.swift; sourceTree = "<group>"; };
+		C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadDisplayPicViewController.swift; sourceTree = "<group>"; };
+		C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
 		C2A6E2561CE9C13A00D3F845 /* OTGTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTGTimelineViewController.swift; sourceTree = "<group>"; };
 		C2A6E2581CE9C22200D3F845 /* TimelineScroll.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TimelineScroll.xib; path = ../TimelineScroll.xib; sourceTree = "<group>"; };
 		C2A6E25A1CE9C27000D3F845 /* TimelineScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineScroll.swift; path = ../TimelineScroll.swift; sourceTree = "<group>"; };
@@ -160,6 +197,11 @@
 		C2A6E2681CE9DA8B00D3F845 /* PhotosOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotosOTG.swift; path = ../PhotosOTG.swift; sourceTree = "<group>"; };
 		C2A6E26A1CE9DF8D00D3F845 /* AddFriendOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddFriendOTG.xib; path = ../AddFriendOTG.xib; sourceTree = "<group>"; };
 		C2A6E26C1CE9E2DB00D3F845 /* AddFriendOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendOTG.swift; sourceTree = "<group>"; };
+		C2ABDBAD1CEC4CB400D7542E /* OnlyPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnlyPhoto.xib; sourceTree = "<group>"; };
+		C2ABDBAF1CEC4F1400D7542E /* OnlyPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlyPhoto.swift; sourceTree = "<group>"; };
+		C2ABDBB11CEC53B000D7542E /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusView.swift; path = ../StatusView.swift; sourceTree = "<group>"; };
+		C2ABDBB31CEC53C300D7542E /* StatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StatusView.xib; path = ../StatusView.xib; sourceTree = "<group>"; };
+		C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrialViewController.swift; sourceTree = "<group>"; };
 		C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewCell.swift; sourceTree = "<group>"; };
 		C2C965951CE458B7007BDA34 /* Date&Time.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Date&Time.xib"; sourceTree = "<group>"; };
@@ -181,7 +223,7 @@
 		C2DCB3781CE75365006E5CBD /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		C2DCB37A1CE759F5006E5CBD /* NotificationsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotificationsHeader.xib; path = ../NotificationsHeader.xib; sourceTree = "<group>"; };
 		C2DCB37C1CE75AB2006E5CBD /* NotificationsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsHeader.swift; path = ../NotificationsHeader.swift; sourceTree = "<group>"; };
-		C2DD03231CEAFDD4001878DD /* SayBye.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SayBye.xib; sourceTree = "<group>"; };
+		C2DD03231CEAFDD4001878DD /* SayBye.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SayBye.xib; path = ../SayBye.xib; sourceTree = "<group>"; };
 		C2DD03251CEB008C001878DD /* SayBye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayBye.swift; sourceTree = "<group>"; };
 		C2DD03271CEB4D0F001878DD /* ImageMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMask.swift; sourceTree = "<group>"; };
 		C2E45CE81CE5A1340096BDD1 /* IconButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconButton.xib; sourceTree = "<group>"; };
@@ -259,7 +301,6 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
-				C2DD03231CEAFDD4001878DD /* SayBye.xib */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -283,12 +324,13 @@
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
 				C2DD03271CEB4D0F001878DD /* ImageMask.swift */,
+				C284277B1CE07445003672E9 /* Styles.swift */,
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */,
 				C25443521CD740D200C2C6CD /* StartJourneyImage.xib */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
-				C2DD03251CEB008C001878DD /* SayBye.swift */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
 			);
@@ -316,6 +358,14 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2A27A5F1CEDEFF700F74DD1 /* SignUpFullView */,
+				C2A27A5E1CEDEFCE00F74DD1 /* VerificationCodeView */,
+				C2A27A5D1CEDEFA500F74DD1 /* AddDisplayPic */,
+				C2A27A4A1CEDC8F700F74DD1 /* LogInView */,
+				C2A27A431CEDBD0100F74DD1 /* SignInToolbar */,
+				C2ABDBB71CEC5AC300D7542E /* SayBye */,
+				C2ABDBB61CEC5AAE00D7542E /* OnlyPhoto */,
+				C2ABDBB51CEC5A9C00D7542E /* StatusView */,
 				C2A6E2711CE9E7EE00D3F845 /* NotificationsHeader */,
 				C2A6E2701CE9E7D900D3F845 /* TimelineScroll */,
 				C2A6E26F1CE9E65700D3F845 /* AddFriendOTG */,
@@ -413,9 +463,9 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */,
 				C2A6E2561CE9C13A00D3F845 /* OTGTimelineViewController.swift */,
 				1A944E091CCB4567007EB5BD /* OTGAddNewViewController.swift */,
-				C284277B1CE07445003672E9 /* Styles.swift */,
 				C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */,
 				C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */,
 				C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */,
@@ -428,6 +478,11 @@
 				C2DCB36F1CE73650006E5CBD /* LocationCategoryViewController.swift */,
 				C2DCB36D1CE723C3006E5CBD /* RatingReviewViewController.swift */,
 				C2DCB3711CE7454F006E5CBD /* AddYourRatingViewController.swift */,
+				C2A27A481CEDC66B00F74DD1 /* LogInViewController.swift */,
+				C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */,
+				C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */,
+				C2A27A551CEDE23300F74DD1 /* VerifyEmailViewController.swift */,
+				C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -447,6 +502,51 @@
 				C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */,
 			);
 			name = ShoesOTG;
+			sourceTree = "<group>";
+		};
+		C2A27A431CEDBD0100F74DD1 /* SignInToolbar */ = {
+			isa = PBXGroup;
+			children = (
+				C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */,
+				C2A27A411CEDBAFF00F74DD1 /* SignInToolbar.swift */,
+			);
+			name = SignInToolbar;
+			sourceTree = "<group>";
+		};
+		C2A27A4A1CEDC8F700F74DD1 /* LogInView */ = {
+			isa = PBXGroup;
+			children = (
+				C2A27A441CEDC1F100F74DD1 /* LogInView.xib */,
+				C2A27A461CEDC27600F74DD1 /* LogInView.swift */,
+			);
+			name = LogInView;
+			sourceTree = "<group>";
+		};
+		C2A27A5D1CEDEFA500F74DD1 /* AddDisplayPic */ = {
+			isa = PBXGroup;
+			children = (
+				C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */,
+				C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */,
+			);
+			name = AddDisplayPic;
+			sourceTree = "<group>";
+		};
+		C2A27A5E1CEDEFCE00F74DD1 /* VerificationCodeView */ = {
+			isa = PBXGroup;
+			children = (
+				C2A27A511CEDDF5D00F74DD1 /* VerificationCodeView.xib */,
+				C2A27A531CEDE18300F74DD1 /* VerificationCodeView.swift */,
+			);
+			name = VerificationCodeView;
+			sourceTree = "<group>";
+		};
+		C2A27A5F1CEDEFF700F74DD1 /* SignUpFullView */ = {
+			isa = PBXGroup;
+			children = (
+				C2A27A4D1CEDCE4C00F74DD1 /* SignInFullView.swift */,
+				C2A27A4B1CEDC99E00F74DD1 /* SignUpFullView.xib */,
+			);
+			name = SignUpFullView;
 			sourceTree = "<group>";
 		};
 		C2A6E2601CE9D0F700D3F845 /* TripInfo */ = {
@@ -501,6 +601,33 @@
 				C2DCB37C1CE75AB2006E5CBD /* NotificationsHeader.swift */,
 			);
 			name = NotificationsHeader;
+			sourceTree = "<group>";
+		};
+		C2ABDBB51CEC5A9C00D7542E /* StatusView */ = {
+			isa = PBXGroup;
+			children = (
+				C2ABDBB11CEC53B000D7542E /* StatusView.swift */,
+				C2ABDBB31CEC53C300D7542E /* StatusView.xib */,
+			);
+			name = StatusView;
+			sourceTree = "<group>";
+		};
+		C2ABDBB61CEC5AAE00D7542E /* OnlyPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				C2ABDBAD1CEC4CB400D7542E /* OnlyPhoto.xib */,
+				C2ABDBAF1CEC4F1400D7542E /* OnlyPhoto.swift */,
+			);
+			name = OnlyPhoto;
+			sourceTree = "<group>";
+		};
+		C2ABDBB71CEC5AC300D7542E /* SayBye */ = {
+			isa = PBXGroup;
+			children = (
+				C2DD03251CEB008C001878DD /* SayBye.swift */,
+				C2DD03231CEAFDD4001878DD /* SayBye.xib */,
+			);
+			name = SayBye;
 			sourceTree = "<group>";
 		};
 		C2C965971CE459BB007BDA34 /* Date&Time */ = {
@@ -663,17 +790,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */,
+				C2ABDBAE1CEC4CB400D7542E /* OnlyPhoto.xib in Resources */,
+				C2A27A451CEDC1F100F74DD1 /* LogInView.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				1A6C0D961CCF915C00AB8B85 /* VideoPost.xib in Resources */,
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
 				C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */,
 				C2A6E2671CE9D48A00D3F845 /* PhotosOTG.xib in Resources */,
+				C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */,
 				1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */,
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
+				C2A27A521CEDDF5D00F74DD1 /* VerificationCodeView.xib in Resources */,
 				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
+				C2A27A4C1CEDC99E00F74DD1 /* SignUpFullView.xib in Resources */,
 				1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */,
 				1A65E7AA1CD72F1F009374DA /* Avenir-Light.ttf in Resources */,
 				C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */,
@@ -681,6 +813,7 @@
 				C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */,
 				C2A6E25D1CE9C88D00D3F845 /* TripInfoView.xib in Resources */,
 				1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */,
+				C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */,
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
 				C25443531CD740D200C2C6CD /* StartJourneyImage.xib in Resources */,
@@ -691,6 +824,7 @@
 				C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */,
 				C2A6E2621CE9D12800D3F845 /* SpeechBubbleView.xib in Resources */,
 				C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */,
+				C2ABDBB41CEC53C300D7542E /* StatusView.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
 				C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */,
@@ -724,6 +858,8 @@
 				C2A6E2691CE9DA8B00D3F845 /* PhotosOTG.swift in Sources */,
 				C2DCB3701CE73650006E5CBD /* LocationCategoryViewController.swift in Sources */,
 				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
+				C2A27A561CEDE23300F74DD1 /* VerifyEmailViewController.swift in Sources */,
+				C2A27A4E1CEDCE4C00F74DD1 /* SignInFullView.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
@@ -731,6 +867,7 @@
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
+				C2A27A5C1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift in Sources */,
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
@@ -739,9 +876,11 @@
 				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
 				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
+				C2A27A541CEDE18300F74DD1 /* VerificationCodeView.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				C2A6E2641CE9D2BB00D3F845 /* SpeechBubbleView.swift in Sources */,
 				C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */,
+				C2A27A471CEDC27600F74DD1 /* LogInView.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
 				C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */,
 				C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */,
@@ -749,19 +888,28 @@
 				C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */,
 				C2DCB37D1CE75AB2006E5CBD /* NotificationsHeader.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
+				C2ABDBB21CEC53B000D7542E /* StatusView.swift in Sources */,
 				C2A6E25F1CE9C8D900D3F845 /* TripInfoView.swift in Sources */,
 				C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */,
 				1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */,
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
+				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
+				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
 				C284277C1CE07445003672E9 /* Styles.swift in Sources */,
+				C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */,
+				C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */,
+				C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */,
 				C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */,
 				C2DCB2371CE30ED0000E40DD /* TripSummaryViewController.swift in Sources */,
+				C2A27A421CEDBAFF00F74DD1 /* SignInToolbar.swift in Sources */,
+				C2ABDBB01CEC4F1400D7542E /* OnlyPhoto.swift in Sources */,
 				C2C9659D1CE4AEB2007BDA34 /* ThoughtsViewController.swift in Sources */,
 				C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,
+				C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */,
 				1A3E4DC31CD33B8F00105C3D /* VideoPost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
