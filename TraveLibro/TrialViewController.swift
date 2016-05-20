@@ -15,7 +15,7 @@ class TrialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let image = UIImage(named: "disney-world.png")
+        let image = UIImage(named: "disney_world")
         let maskingImage = UIImage(named: "profile_mask.png")
         newImage.image = maskImage(image!, mask: maskingImage!)
     }
