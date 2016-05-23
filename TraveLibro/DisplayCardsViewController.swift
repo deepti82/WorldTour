@@ -15,7 +15,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.whiteColor()
+        getDarkBackGround(self)
         
         let myVC = viewControllerAtIndex(0) as! SignupCardsViewController
         let viewControllers = [myVC]

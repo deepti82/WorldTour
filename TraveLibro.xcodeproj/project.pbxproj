@@ -38,13 +38,22 @@
 		3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEB00A1CE7017E0085EEF5 /* Rating.swift */; };
 		C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */; };
 		C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */; };
+		C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */; };
 		C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A39951CE34AD0002EF1E6 /* FriendView.xib */; };
 		C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A39971CE34C8D002EF1E6 /* FriendView.swift */; };
+		C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2504E7E1CF3376100A84D78 /* PopularJourneyView.swift */; };
 		C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */; };
-		C25443531CD740D200C2C6CD /* StartJourneyImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25443521CD740D200C2C6CD /* StartJourneyImage.xib */; };
 		C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25443541CD75F2900C2C6CD /* drawLine.swift */; };
+		C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */; };
+		C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */; };
+		C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */; };
 		C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2776A271CD785DF00FE066A /* ShoesOTG.xib */; };
 		C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */; };
+		C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */; };
+		C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */; };
+		C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6C001CF03E280049F012 /* ProfileMainView.swift */; };
+		C27F6C031CF06A130049F012 /* MomentsTab.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6C021CF06A130049F012 /* MomentsTab.xib */; };
+		C27F6C051CF06AB10049F012 /* MomentsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6C041CF06AB10049F012 /* MomentsTab.swift */; };
 		C284277C1CE07445003672E9 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C284277B1CE07445003672E9 /* Styles.swift */; };
 		C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */; };
 		C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */; };
@@ -78,6 +87,8 @@
 		C2ABDBB21CEC53B000D7542E /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABDBB11CEC53B000D7542E /* StatusView.swift */; };
 		C2ABDBB41CEC53C300D7542E /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2ABDBB31CEC53C300D7542E /* StatusView.xib */; };
 		C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */; };
+		C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AC5D1A1CF32CE0008E5887 /* PopularJourneyView.xib */; };
+		C2BFA9761CF2D2A900DC2066 /* MyLifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BFA9751CF2D2A900DC2066 /* MyLifeViewController.swift */; };
 		C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */; };
 		C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */; };
 		C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C965951CE458B7007BDA34 /* Date&Time.xib */; };
@@ -166,13 +177,22 @@
 		3AEEB00A1CE7017E0085EEF5 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCardsViewController.swift; sourceTree = "<group>"; };
 		C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayCardsViewController.swift; sourceTree = "<group>"; };
+		C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideNavigationMenuViewController.swift; sourceTree = "<group>"; };
 		C20A39951CE34AD0002EF1E6 /* FriendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendView.xib; path = ../FriendView.xib; sourceTree = "<group>"; };
 		C20A39971CE34C8D002EF1E6 /* FriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendView.swift; path = ../FriendView.swift; sourceTree = "<group>"; };
+		C2504E7E1CF3376100A84D78 /* PopularJourneyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularJourneyView.swift; sourceTree = "<group>"; };
 		C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheGoViewController.swift; sourceTree = "<group>"; };
-		C25443521CD740D200C2C6CD /* StartJourneyImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartJourneyImage.xib; sourceTree = "<group>"; };
 		C25443541CD75F2900C2C6CD /* drawLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawLine.swift; sourceTree = "<group>"; };
+		C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsTableViewController.swift; sourceTree = "<group>"; };
+		C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsEachViewController.swift; sourceTree = "<group>"; };
+		C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelLifeMomentsViewController.swift; sourceTree = "<group>"; };
 		C2776A271CD785DF00FE066A /* ShoesOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoesOTG.xib; sourceTree = "<group>"; };
 		C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesOTG.swift; sourceTree = "<group>"; };
+		C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainView.xib; sourceTree = "<group>"; };
+		C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C27F6C001CF03E280049F012 /* ProfileMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainView.swift; sourceTree = "<group>"; };
+		C27F6C021CF06A130049F012 /* MomentsTab.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MomentsTab.xib; sourceTree = "<group>"; };
+		C27F6C041CF06AB10049F012 /* MomentsTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsTab.swift; sourceTree = "<group>"; };
 		C284277B1CE07445003672E9 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
 		C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInToolbar.xib; path = ../SignInToolbar.xib; sourceTree = "<group>"; };
@@ -206,6 +226,8 @@
 		C2ABDBB11CEC53B000D7542E /* StatusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusView.swift; path = ../StatusView.swift; sourceTree = "<group>"; };
 		C2ABDBB31CEC53C300D7542E /* StatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StatusView.xib; path = ../StatusView.xib; sourceTree = "<group>"; };
 		C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrialViewController.swift; sourceTree = "<group>"; };
+		C2AC5D1A1CF32CE0008E5887 /* PopularJourneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularJourneyView.xib; sourceTree = "<group>"; };
+		C2BFA9751CF2D2A900DC2066 /* MyLifeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeViewController.swift; sourceTree = "<group>"; };
 		C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewCell.swift; sourceTree = "<group>"; };
 		C2C965951CE458B7007BDA34 /* Date&Time.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Date&Time.xib"; sourceTree = "<group>"; };
@@ -305,6 +327,9 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
+				C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */,
+				C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */,
+				C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -327,15 +352,11 @@
 			children = (
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
-				C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */,
 				C2DD03271CEB4D0F001878DD /* ImageMask.swift */,
 				C284277B1CE07445003672E9 /* Styles.swift */,
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */,
-				C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */,
-				C25443521CD740D200C2C6CD /* StartJourneyImage.xib */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -364,6 +385,9 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2504E801CF33A0200A84D78 /* PopularJourneyView */,
+				C255C7C31CF30604009E41AF /* ProfileMainView */,
+				C255C7C21CF305C2009E41AF /* MomentsTab */,
 				C2A27A5F1CEDEFF700F74DD1 /* SignUpFullView */,
 				C2A27A5E1CEDEFCE00F74DD1 /* VerificationCodeView */,
 				C2A27A5D1CEDEFA500F74DD1 /* AddDisplayPic */,
@@ -466,11 +490,24 @@
 			name = FriendView;
 			sourceTree = "<group>";
 		};
+		C2504E801CF33A0200A84D78 /* PopularJourneyView */ = {
+			isa = PBXGroup;
+			children = (
+				C2AC5D1A1CF32CE0008E5887 /* PopularJourneyView.xib */,
+				C2504E7E1CF3376100A84D78 /* PopularJourneyView.swift */,
+			);
+			name = PopularJourneyView;
+			sourceTree = "<group>";
+		};
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C2BFA9751CF2D2A900DC2066 /* MyLifeViewController.swift */,
+				C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */,
+				C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */,
 				C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */,
 				C2A6E2561CE9C13A00D3F845 /* OTGTimelineViewController.swift */,
+				C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */,
 				1A944E091CCB4567007EB5BD /* OTGAddNewViewController.swift */,
 				C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */,
 				C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */,
@@ -487,10 +524,30 @@
 				C2A27A481CEDC66B00F74DD1 /* LogInViewController.swift */,
 				C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */,
 				C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */,
+				C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */,
+				C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */,
 				C2A27A551CEDE23300F74DD1 /* VerifyEmailViewController.swift */,
 				C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C255C7C21CF305C2009E41AF /* MomentsTab */ = {
+			isa = PBXGroup;
+			children = (
+				C27F6C021CF06A130049F012 /* MomentsTab.xib */,
+				C27F6C041CF06AB10049F012 /* MomentsTab.swift */,
+			);
+			name = MomentsTab;
+			sourceTree = "<group>";
+		};
+		C255C7C31CF30604009E41AF /* ProfileMainView */ = {
+			isa = PBXGroup;
+			children = (
+				C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */,
+				C27F6C001CF03E280049F012 /* ProfileMainView.swift */,
+			);
+			name = ProfileMainView;
 			sourceTree = "<group>";
 		};
 		C2776A261CD77DEE00FE066A /* DrawLineOTG */ = {
@@ -814,6 +871,7 @@
 				C2A27A4C1CEDC99E00F74DD1 /* SignUpFullView.xib in Resources */,
 				1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */,
 				1A65E7AA1CD72F1F009374DA /* Avenir-Light.ttf in Resources */,
+				C27F6C031CF06A130049F012 /* MomentsTab.xib in Resources */,
 				C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */,
 				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
 				C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */,
@@ -822,7 +880,6 @@
 				C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */,
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
-				C25443531CD740D200C2C6CD /* StartJourneyImage.xib in Resources */,
 				C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */,
 				C2DCB36A1CE701A4006E5CBD /* TripSummaryItinerary.xib in Resources */,
 				C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */,
@@ -830,7 +887,9 @@
 				C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */,
 				C2A6E2621CE9D12800D3F845 /* SpeechBubbleView.xib in Resources */,
 				C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */,
+				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
 				C2ABDBB41CEC53C300D7542E /* StatusView.xib in Resources */,
+				C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
 				C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */,
@@ -867,10 +926,13 @@
 				C2A27A561CEDE23300F74DD1 /* VerifyEmailViewController.swift in Sources */,
 				C2A27A4E1CEDCE4C00F74DD1 /* SignInFullView.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
+				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
+				C27F6C051CF06AB10049F012 /* MomentsTab.swift in Sources */,
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
+				C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
 				C2A27A5C1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift in Sources */,
@@ -881,6 +943,7 @@
 				C2A6E25B1CE9C27000D3F845 /* TimelineScroll.swift in Sources */,
 				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
+				C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */,
 				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
 				C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */,
 				C2A27A541CEDE18300F74DD1 /* VerificationCodeView.swift in Sources */,
@@ -894,15 +957,19 @@
 				C2A6E2571CE9C13A00D3F845 /* OTGTimelineViewController.swift in Sources */,
 				C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */,
 				C2DCB37D1CE75AB2006E5CBD /* NotificationsHeader.swift in Sources */,
+				C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
 				C2ABDBB21CEC53B000D7542E /* StatusView.swift in Sources */,
+				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
 				C2A6E25F1CE9C8D900D3F845 /* TripInfoView.swift in Sources */,
 				C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */,
+				C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */,
 				1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */,
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
 				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
+				C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
 				C284277C1CE07445003672E9 /* Styles.swift in Sources */,
 				C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */,
@@ -914,6 +981,7 @@
 				C2A27A421CEDBAFF00F74DD1 /* SignInToolbar.swift in Sources */,
 				C2ABDBB01CEC4F1400D7542E /* OnlyPhoto.swift in Sources */,
 				C2C9659D1CE4AEB2007BDA34 /* ThoughtsViewController.swift in Sources */,
+				C2BFA9761CF2D2A900DC2066 /* MyLifeViewController.swift in Sources */,
 				C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,

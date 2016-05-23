@@ -31,12 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["rocket"] = 0xf135
         faicon["videoPlay"] = 0xf16a
         faicon["likes"] = 0xf004
+        faicon["reviews"] = 0xf234
         
         
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageController.currentPageIndicatorTintColor = UIColor.blackColor()
-        pageController.backgroundColor = UIColor.whiteColor()
+        pageController.backgroundColor = UIColor.clearColor()
         
         
         return true

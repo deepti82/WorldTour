@@ -8,25 +8,27 @@
 
 import UIKit
 
-class CircleImageMask: UIView {
+class TagViewFrame: UIView {
     
     override func drawRect(rect: CGRect) {
         
-        var mask = CAShapeLayer()
-        mask.frame = rect
+        let mask = CAShapeLayer()
+        mask.frame = self.layer.bounds
         
-        let width = rect.width
-        let height = rect.height
+        let width = self.layer.bounds.width
+        let height = self.layer.bounds.height
         
-        var path = CGPathCreateMutable()
+        let path = CGPathCreateMutable()
         
-        CGPathMoveToPoint(path, nil, 30, 0)
+//        CGPathMoveToPoint(path, nil, 0, 0)
+//        CGPathAddCurveToPoint(path, nil, 15, 0, 15, 30, 0, 30)
+//        CGPathAddArc(path, nil, 20, height/2 - 5, height/2, 0, 90, false)
         CGPathAddLineToPoint(path, nil, width, 0)
         CGPathAddLineToPoint(path, nil, width, height)
-        CGPathAddLineToPoint(path, nil, 0, height)
+        CGPathAddLineToPoint(path, nil, 30, height)
         CGPathAddLineToPoint(path, nil, 30, 0)
         
         mask.path = path
-        
+        self.layer.mask = mask
     }
 }

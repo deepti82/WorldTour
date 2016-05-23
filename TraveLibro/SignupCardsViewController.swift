@@ -24,7 +24,6 @@ class SignupCardsViewController: UIViewController, UICollectionViewDataSource, U
         
         super.viewDidLoad()
         print("In the SignupCardsViewController")
-        getDarkBackGround(self)
         collectionView.backgroundColor = UIColor.whiteColor()
         cardTitle.text = cardText
         
