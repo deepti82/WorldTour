@@ -1,23 +1,24 @@
 //
-//  PopularJourneysView.swift
+//  BlogView.swift
 //  TraveLibro
 //
-//  Created by Midhet Sulemani on 23/05/16.
+//  Created by Midhet Sulemani on 24/05/16.
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-@IBDesignable class PopularJourneyView: UIView {
+class BlogView: UIView {
 
-    
-    @IBOutlet weak var reviewLabel: UILabel!
-    @IBOutlet weak var likeLabel: UILabel!
+    @IBOutlet weak var reviewsLabel: UILabel!
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var extraFlagsLabel: UILabel!
     @IBOutlet weak var flag3: UIImageView!
     @IBOutlet weak var flag2: UIImageView!
     @IBOutlet weak var flag1: UIImageView!
-    @IBOutlet weak var clockLabel: UILabel!
-    @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var blogDetailView: UIView!
+    @IBOutlet weak var tagView: UIView!
+    @IBOutlet weak var clockIcon: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,10 +39,12 @@ import UIKit
         flag1.layer.borderColor = UIColor.whiteColor().CGColor
         flag1.layer.borderWidth = CGFloat(1.5)
         
-        calendarLabel.text = String(format: "%C", faicon["calendar"]!)
-        clockLabel.text = String(format: "%C", faicon["clock"]!)
-        likeLabel.text = String(format: "%C", faicon["likes"]!)
-        reviewLabel.text = String(format: "%C", faicon["reviews"]!)
+        
+        likesLabel.text = String(format: "%C", faicon["likes"]!)
+        reviewsLabel.text = String(format: "%C", faicon["reviews"]!)
+        clockIcon.text = String(format: "%C", faicon["clock"]!)
+        
+        tagView.backgroundColor = mainBlueColor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +53,7 @@ import UIKit
     
     func loadViewFromNib() {
         let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: "PopularJourneyView", bundle: bundle)
+        let nib = UINib(nibName: "BlogView", bundle: bundle)
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]

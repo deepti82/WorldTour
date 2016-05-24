@@ -13,8 +13,11 @@ class MyLifeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let momentsView = MomentsTab(frame: CGRect(x: 0, y: 40, width: self.view.frame.size.width, height: self.view.frame.size.height - 100))
-        self.view.addSubview(momentsView)
+//        let momentsView = MomentsTab(frame: CGRect(x: 0, y: 40, width: self.view.frame.size.width, height: self.view.frame.size.height - 100))
+//        self.view.addSubview(momentsView)
+
+        let tabs = MyLifeTabs(frame: CGRect(x: 0, y: 40, width: self.view.frame.size.width, height: 100))
+        self.view.addSubview(tabs)
         
     }
 
