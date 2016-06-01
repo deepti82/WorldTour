@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddDisplayPic" customModule="TraveLibro" customModuleProvider="target">
@@ -22,38 +23,48 @@
                         <constraint firstAttribute="width" constant="250" id="t4c-60-9NT"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLe-M8-05h">
-                    <rect key="frame" x="95" y="98" width="100" height="100"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yash Chudasama" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfA-O1-YDE">
+                    <rect key="frame" x="54" y="218" width="182" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ApM-wH-0y0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="24"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLe-M8-05h">
+                    <rect key="frame" x="95" y="93" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="HoH-rA-PSU"/>
                         <constraint firstAttribute="height" constant="100" id="QGP-4L-kEC"/>
                     </constraints>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <state key="normal" title="+"/>
+                    <state key="normal" image="add_profile_pic"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yash Chudasama" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfA-O1-YDE">
-                    <rect key="frame" x="75" y="206" width="140" height="21"/>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="CfA-O1-YDE" firstAttribute="top" secondItem="XLe-M8-05h" secondAttribute="bottom" constant="8" id="3vC-3B-cSq"/>
-                <constraint firstItem="CfA-O1-YDE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FMn-EI-cAe"/>
-                <constraint firstAttribute="bottom" secondItem="CfA-O1-YDE" secondAttribute="bottom" constant="20" id="Mtc-gV-ZqA"/>
+                <constraint firstItem="CfA-O1-YDE" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="OES-RU-STY"/>
+                <constraint firstItem="CfA-O1-YDE" firstAttribute="top" secondItem="XLe-M8-05h" secondAttribute="bottom" constant="25" id="RHu-RB-ctW"/>
                 <constraint firstItem="XLe-M8-05h" firstAttribute="top" secondItem="bb7-15-dOZ" secondAttribute="bottom" constant="8" id="SJI-aG-Xu0"/>
                 <constraint firstItem="XLe-M8-05h" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UlH-Sw-SfZ"/>
                 <constraint firstItem="bb7-15-dOZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="W8L-lH-7iP"/>
                 <constraint firstItem="bb7-15-dOZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="aHp-G1-zgV"/>
+                <constraint firstItem="CfA-O1-YDE" firstAttribute="centerX" secondItem="XLe-M8-05h" secondAttribute="centerX" id="kXB-hX-MSB"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="SJI-aG-Xu0"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="266" y="311.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="add_profile_pic" width="200" height="210"/>
+    </resources>
 </document>

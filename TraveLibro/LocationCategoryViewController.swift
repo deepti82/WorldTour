@@ -18,7 +18,7 @@ class LocationCategoryViewController: UIViewController, UICollectionViewDelegate
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        getBackGround(self)
+        getDarkBackGround(self)
         collectionView.backgroundColor = UIColor.clearColor()
     }
 
@@ -28,9 +28,12 @@ class LocationCategoryViewController: UIViewController, UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! LCCollectionViewCell
-        cell.label.text = labels[indexPath.item]
-        cell.image.image = UIImage(named: images[indexPath.item])
-        cell.image.backgroundColor = UIColor(patternImage: UIImage(named: "halfnhalfbgGraySmall")!)
+        cell.theLabel.text = labels[indexPath.item]
+        
+        let myImage = UIImageView(frame: CGRect(x: -20, y: 0, width: 40, height: 40))
+        myImage.image = UIImage(named: images[indexPath.item])
+        myImage.contentMode = .ScaleAspectFit
+        cell.theButton.titleLabel?.addSubview(myImage)
         return cell
     }
     
@@ -58,7 +61,8 @@ class LocationCategoryViewController: UIViewController, UICollectionViewDelegate
 
 class LCCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var theButton: UIButton!
+    @IBOutlet weak var theLabel: UILabel!
+    
     
 }

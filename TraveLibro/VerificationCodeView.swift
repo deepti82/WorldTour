@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class VerificationCodeView: UIView {
+class VerificationCodeView: UIView {
 
     @IBOutlet weak var submitButton: UIButton!
     

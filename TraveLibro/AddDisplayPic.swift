@@ -8,14 +8,13 @@
 
 import UIKit
 
-@IBDesignable class AddDisplayPic: UIView {
+class AddDisplayPic: UIView {
 
     @IBOutlet weak var addButton: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        addButton.backgroundColor = mainBlueColor
         
     }
     

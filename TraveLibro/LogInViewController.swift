@@ -13,6 +13,8 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getDarkBackGround(self)
+        
         let logIn = LogInView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height/3))
         self.view.addSubview(logIn)
         

@@ -40,6 +40,11 @@ class TimelineScroll: UIView {
         let photosTwo = OnlyPhoto(frame: CGRect(x: 0, y: 1500, width: self.frame.size.width, height: 475))
         self.addSubview(photosTwo)
         
+        let cloudPatch = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 25))
+        cloudPatch.center = CGPointMake(self.frame.size.width/2, 2145)
+        cloudPatch.backgroundColor = UIColor(red: 207/255, green: 237/255, blue: 250/255, alpha: 1)
+        self.addSubview(cloudPatch)
+        
         let ratingIcon = IconButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         ratingIcon.center = CGPointMake(self.frame.size.width/2, 2100)
         ratingIcon.button.backgroundColor = UIColor(red: 17/255, green: 211/255, blue: 205/255, alpha: 1)
@@ -57,6 +62,11 @@ class TimelineScroll: UIView {
         
         let photosThree = StatusView(frame: CGRect(x: 0, y: 2250, width: self.frame.size.width, height: 160))
         self.addSubview(photosThree)
+        
+        let cloudPatchTwo = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 25))
+        cloudPatchTwo.center = CGPointMake(self.frame.size.width/2, 2535)
+        cloudPatchTwo.backgroundColor = UIColor(red: 207/255, green: 237/255, blue: 250/255, alpha: 1)
+        self.addSubview(cloudPatchTwo)
         
         let ratingIconTwo = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         ratingIconTwo.center = CGPointMake(self.frame.size.width/2, 2500)
@@ -116,6 +126,12 @@ class TimelineScroll: UIView {
         let photosSix = OnlyPhoto(frame: CGRect(x: 0, y: 4600, width: self.frame.size.width, height: 475))
         self.addSubview(photosSix)
         
+        
+        let cloudPatchThree = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 25))
+        cloudPatchThree.center = CGPointMake(self.frame.size.width/2, 5185)
+        cloudPatchThree.backgroundColor = UIColor(red: 207/255, green: 237/255, blue: 250/255, alpha: 1)
+        self.addSubview(cloudPatchThree)
+        
         let ratingIconThree = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         ratingIconThree.center = CGPointMake(self.frame.size.width/2, 5150)
         ratingIconThree.button.setImage(UIImage(named: "star_rate_icon"), forState: .Normal)
@@ -129,7 +145,7 @@ class TimelineScroll: UIView {
         ratingIconLabelThree.textColor = mainBlueColor
         self.addSubview(ratingIconLabelThree)
         
-        let newPlaceLabelTwo = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width - 40, height: 60))
+        let newPlaceLabelTwo = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 60))
         newPlaceLabelTwo.center = CGPointMake(self.frame.size.width/2, 5300)
         newPlaceLabelTwo.text = "Mumbai"
         newPlaceLabelTwo.font = UIFont(name: "Avenir-Black", size: 17)
@@ -141,8 +157,13 @@ class TimelineScroll: UIView {
         self.addSubview(newPlaceLabelTwo)
         
         let newPlaceTimestampTwo = DateAndTime(frame: CGRect(x: 0, y: 0, width: 200, height: 25))
-        newPlaceTimestampTwo.center = CGPointMake(self.frame.size.width/2, newPlaceLabelTwo.frame.size.height-10)
+        newPlaceTimestampTwo.center = CGPointMake(newPlaceLabelTwo .frame.size.width/2, newPlaceLabelTwo.frame.size.height-10)
         newPlaceLabelTwo.addSubview(newPlaceTimestampTwo)
+        
+        let cloudPatchFour = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 25))
+        cloudPatchFour.center = CGPointMake(self.frame.size.width/2, 5480)
+        cloudPatchFour.backgroundColor = UIColor(red: 207/255, green: 237/255, blue: 250/255, alpha: 1)
+        self.addSubview(cloudPatchFour)
         
         let ratingIconFour = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         ratingIconFour.center = CGPointMake(self.frame.size.width/2, 5450)

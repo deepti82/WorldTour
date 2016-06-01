@@ -32,7 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["videoPlay"] = 0xf16a
         faicon["likes"] = 0xf004
         faicon["reviews"] = 0xf234
-        
+        faicon["angle_up"] = 0xf106
+        faicon["facebook"] = 0xf09a
+        faicon["email"] = 0xf0e0
+        faicon["whatsapp"] = 0xf232
         
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EndLocalLife" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="speechView" destination="Ent-cD-8Xd" id="BtG-WZ-2fl"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="252" height="211"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ent-cD-8Xd">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="135"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speech_green_bubble" translatesAutoresizingMaskIntoConstraints="NO" id="nEC-CU-ojP">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="135"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you back home?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJK-LA-tbO">
+                            <rect key="frame" x="8" y="8" width="224" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="You can only start your local life once you end your current journey." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0f-Wb-vdR">
+                            <rect key="frame" x="8" y="38" width="224" height="89"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="nEC-CU-ojP" secondAttribute="trailing" id="0Uk-Uo-j0t"/>
+                        <constraint firstItem="I0f-Wb-vdR" firstAttribute="top" secondItem="eJK-LA-tbO" secondAttribute="bottom" constant="8" id="2J7-Op-aG8"/>
+                        <constraint firstItem="nEC-CU-ojP" firstAttribute="leading" secondItem="Ent-cD-8Xd" secondAttribute="leading" id="7w0-LV-hmf"/>
+                        <constraint firstAttribute="trailing" secondItem="I0f-Wb-vdR" secondAttribute="trailing" constant="8" id="GrB-oj-9HB"/>
+                        <constraint firstAttribute="trailing" secondItem="eJK-LA-tbO" secondAttribute="trailing" constant="8" id="WcC-H5-zc1"/>
+                        <constraint firstItem="eJK-LA-tbO" firstAttribute="top" secondItem="Ent-cD-8Xd" secondAttribute="top" constant="8" id="aB3-vl-Rxd"/>
+                        <constraint firstItem="nEC-CU-ojP" firstAttribute="top" secondItem="Ent-cD-8Xd" secondAttribute="top" id="bD2-oe-YXO"/>
+                        <constraint firstAttribute="bottom" secondItem="nEC-CU-ojP" secondAttribute="bottom" id="bSa-mV-z69"/>
+                        <constraint firstAttribute="bottom" secondItem="I0f-Wb-vdR" secondAttribute="bottom" constant="8" id="ne3-US-GqE"/>
+                        <constraint firstItem="I0f-Wb-vdR" firstAttribute="leading" secondItem="Ent-cD-8Xd" secondAttribute="leading" constant="8" id="qF2-ln-OyX"/>
+                        <constraint firstItem="eJK-LA-tbO" firstAttribute="leading" secondItem="Ent-cD-8Xd" secondAttribute="leading" constant="8" id="rcE-6R-V6q"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kmg-cu-Gmt">
+                    <rect key="frame" x="184" y="143" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="GRr-4X-DL3"/>
+                        <constraint firstAttribute="height" constant="60" id="nvn-V6-nba"/>
+                    </constraints>
+                    <state key="normal" image="close_local_life"/>
+                    <connections>
+                        <action selector="closeButtonTap:" destination="-1" eventType="touchUpInside" id="3zP-t2-FFV"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Kmg-cu-Gmt" secondAttribute="bottom" constant="8" id="3bB-4e-3wc"/>
+                <constraint firstItem="Ent-cD-8Xd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9Me-NT-GkJ"/>
+                <constraint firstAttribute="trailing" secondItem="Kmg-cu-Gmt" secondAttribute="trailing" constant="8" id="Jym-2r-Vkv"/>
+                <constraint firstItem="Kmg-cu-Gmt" firstAttribute="top" secondItem="Ent-cD-8Xd" secondAttribute="bottom" constant="8" id="K71-6Y-1NL"/>
+                <constraint firstAttribute="trailing" secondItem="Ent-cD-8Xd" secondAttribute="trailing" constant="12" id="Nbd-c5-1XT"/>
+                <constraint firstAttribute="bottom" secondItem="Ent-cD-8Xd" secondAttribute="bottom" constant="76" id="efp-JS-dF6"/>
+                <constraint firstItem="Ent-cD-8Xd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lNF-d4-V4b"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="344" y="693.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="close_local_life" width="115" height="115"/>
+        <image name="speech_green_bubble" width="370" height="225"/>
+    </resources>
+</document>

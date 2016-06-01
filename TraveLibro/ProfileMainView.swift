@@ -8,11 +8,21 @@
 
 import UIKit
 
-@IBDesignable class ProfileMainView: UIView {
+class ProfileMainView: UIView {
     
+    @IBOutlet weak var flagText: UILabel!
+    @IBOutlet weak var flagView: UIImageView!
+    @IBOutlet weak var ProfileImageView: UIView!
         override init(frame: CGRect) {
             super.init(frame: frame)
             loadViewFromNib ()
+            
+            let profile = ProfilePic(frame: CGRect(x: 0, y: 0, width: ProfileImageView.frame.width, height: ProfileImageView.frame.height))
+            ProfileImageView.addSubview(profile)
+            
+            self.bringSubviewToFront(flagView)
+            self.bringSubviewToFront(flagText)
+            
         }
         
         required init?(coder aDecoder: NSCoder) {

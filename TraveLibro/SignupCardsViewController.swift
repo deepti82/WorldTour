@@ -10,12 +10,14 @@ import UIKit
 
 class SignupCardsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileImage: UIView!
     @IBOutlet weak var cardTitle: UILabel!
     @IBOutlet weak var cardDescription: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var theScrollView: UIScrollView!
+    @IBOutlet weak var pageCard: UIView!
+    @IBOutlet weak var theCollectionView: UICollectionView!
     
-    var iconLabelArray = ["Island & Beach", "City", "Safari", "Mountains", "Cruise", "Countryside", "Island & Beach", "City", "Safari", "Mountains", "Cruise", "Countryside", "Island & Beach", "City", "Safari", "Mountains", "Cruise", "Countryside"]
+    var iconLabelArray = ["Island & Beach", "City", "Safari", "Mountains", "Cruise", "Countryside", "Island & Beach", "City", "Safari", "Mountains", "Cruise", "Countryside"]
     
     var cardText: String!
     var pageIndex: Int!
@@ -24,8 +26,18 @@ class SignupCardsViewController: UIViewController, UICollectionViewDataSource, U
         
         super.viewDidLoad()
         print("In the SignupCardsViewController")
-        collectionView.backgroundColor = UIColor.whiteColor()
         cardTitle.text = cardText
+        
+        let dp = ProfilePic(frame: CGRect(x: 0, y: 0, width: profileImage.frame.width, height: profileImage.frame.height))
+        profileImage.addSubview(dp)
+        
+        let myCount: CGFloat = CGFloat(iconLabelArray.count)
+        
+        theScrollView.contentSize.height = theScrollView.frame.size.height
+        
+        self.getCardHeight(myCount)
+        
+        print("page card height: \(pageCard.frame.size.height)")
         
     }
 
@@ -36,20 +48,31 @@ class SignupCardsViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! SignUpCardsCollectionViewCell
-        cell.iconImage.image = UIImage(named: "adventure_icon")
-        cell.iconLabel.text = iconLabelArray[indexPath.item]
-        print("in the cell collection view function")
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! PageViewControllerCollectionViewCell
+        cell.checkboxImage.image = UIImage(named: "palm_trees_icon")
+        cell.checkboxLabel.text = iconLabelArray[indexPath.item]
         return cell
         
     }
-
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return iconLabelArray.count
         
     }
     
+    func getCardHeight(count: CGFloat) -> Void {
+        
+        let heightIncrease: CGFloat = (count - 6)/2
+        
+        if (count > 6) {
+            
+            theCollectionView.frame.size.height += 500 * heightIncrease
+            theScrollView.contentSize.height += 500 * heightIncrease
+            pageCard.frame.size.height += 500 * heightIncrease
+            
+        }
+    }
     
     /*
     // MARK: - Navigation
@@ -63,10 +86,9 @@ class SignupCardsViewController: UIViewController, UICollectionViewDataSource, U
 
 }
 
-class SignUpCardsCollectionViewCell: UICollectionViewCell {
+class PageViewControllerCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var iconImage: UIImageView!
-    @IBOutlet weak var iconLabel: UILabel!
-    
+    @IBOutlet weak var checkboxImage: UIImageView!
+    @IBOutlet weak var checkboxLabel: UILabel!
     
 }

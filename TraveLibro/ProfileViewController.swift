@@ -18,14 +18,25 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         super.viewDidLoad()
         
         getDarkBackGround(self)
+         let footer = getFooter(frame: CGRect(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 45))
+        footer.layer.zPosition = 100
+        self.view.addSubview(footer)
         
-        let profileSquare = ProfileMainView(frame: CGRect(x: 10, y: self.view.frame.size.height/3, width: self.view.frame.size.width - 20,  height: 400))
+        let profileSquare = ProfileMainView(frame: CGRect(x: 10, y: self.view.frame.size.height/3 - 45, width: self.view.frame.size.width - 20,  height: 450))
         self.view.addSubview(profileSquare)
         
-        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 60, width: self.view.frame.size.width - 10, height: 40))
+        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 10, height: 55))
+        orangeTab.orangeButtonTitle.setTitle("My Life", forState: .Normal)
+        let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
+        fontAwesomeLabel.center = CGPointMake(orangeTab.frame.size.width/2 + 50, orangeTab.frame.size.height/2)
+        fontAwesomeLabel.font = FontAwesomeFont
+        fontAwesomeLabel.text = String(format: "%C", faicon["angle_up"]!)
+        fontAwesomeLabel.textColor = UIColor.whiteColor()
+        orangeTab.orangeButtonTitle.addSubview(fontAwesomeLabel)
         self.view.addSubview(orangeTab)
         
         self.view.bringSubviewToFront(profileCollectionView)
+        
     }
 
     override func didReceiveMemoryWarning() {

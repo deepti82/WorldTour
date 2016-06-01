@@ -40,7 +40,7 @@ func getBackGround(myVC: UIViewController) -> Void {
 
 func getDarkBackGround(myVC: UIViewController) -> Void {
     
-    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
+    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
     
 }
 

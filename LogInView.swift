@@ -8,19 +8,39 @@
 
 import UIKit
 
-@IBDesignable class LogInView: UIView {
+class LogInView: UIView {
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    
     @IBOutlet weak var logInButton: UIButton!
+    
+    let attributes = [
+        NSForegroundColorAttributeName: UIColor.whiteColor(),
+        NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 12)!,
+    ]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
+        let paddingView = UIView(frame: CGRectMake(0, 0, 15, self.nameField.frame.height))
+        
         logInButton.backgroundColor = mainOrangeColor
-        logInButton.layer.cornerRadius = 8
+        logInButton.layer.cornerRadius = 5
+        
+        nameField.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        nameField.borderStyle = .None
+        nameField.textColor = UIColor.whiteColor()
+        nameField.attributedPlaceholder = NSAttributedString(string: "Email Id", attributes:attributes)
+        nameField.leftView = paddingView
+        nameField.leftViewMode = .Always
+        
+        passwordField.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        passwordField.borderStyle = .None
+        passwordField.textColor = UIColor.whiteColor()
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes:attributes)
+        passwordField.leftView = paddingView
+        passwordField.leftViewMode = .Always
         
     }
     

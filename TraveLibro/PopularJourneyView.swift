@@ -8,16 +8,24 @@
 
 import UIKit
 
-@IBDesignable class PopularJourneyView: UIView {
+class PopularJourneyView: UIView {
 
-    
-    @IBOutlet weak var reviewLabel: UILabel!
+    @IBOutlet weak var follow: UIButton!
+    @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var mainPhoto: UIImageView!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var flag3: UIImageView!
     @IBOutlet weak var flag2: UIImageView!
     @IBOutlet weak var flag1: UIImageView!
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var TitleLabelView: UIView!
+    
+    @IBAction func followButton(sender: AnyObject) {
+        
+        follow.setTitle("Following", forState: .Normal)
+        
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,7 +49,13 @@ import UIKit
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         likeLabel.text = String(format: "%C", faicon["likes"]!)
-        reviewLabel.text = String(format: "%C", faicon["reviews"]!)
+        
+        TitleLabelView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        
+        mainPhoto.layer.zPosition = -10
+        
+        cardView.layer.cornerRadius = 5
+        //cardView.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {

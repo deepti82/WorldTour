@@ -10,6 +10,8 @@ import UIKit
 
 class AddRating: UIView {
 
+    @IBOutlet var mainView: UIView!
+    @IBOutlet weak var closeReview: UIButton!
     @IBOutlet weak var smileyIconView: UIView!
     @IBOutlet weak var smileyIcon: UIImageView!
     @IBOutlet weak var addReviewLink: UILabel!
@@ -27,6 +29,11 @@ class AddRating: UIView {
         smileyIconView.layer.cornerRadius = 40
         smileyIconView.backgroundColor = UIColor(red: 17/255, green: 211/255, blue: 204/255, alpha: 255/255)
         addReviewLink.textColor = UIColor(red: 17/255, green: 211/255, blue: 204/255, alpha: 255/255)
+        
+        closeReview.layer.cornerRadius = 5
+        closeReview.clipsToBounds = true
+        
+        mainView.layer.cornerRadius = 5
     }
     
     required init?(coder aDecoder: NSCoder) {

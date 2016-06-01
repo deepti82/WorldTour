@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GenderInfo" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="heButton" destination="FQh-Hn-bBZ" id="q4N-Iu-Waa"/>
+                <outlet property="sheButton" destination="Vh7-Gy-tZi" id="N01-1g-lK5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="283" height="307"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQh-Hn-bBZ">
+                    <rect key="frame" x="92" y="8" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="7YX-CT-NUt"/>
+                        <constraint firstAttribute="height" constant="100" id="8eH-Vx-o26"/>
+                    </constraints>
+                    <state key="normal" image="he_icon"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vh7-Gy-tZi">
+                    <rect key="frame" x="92" y="199" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="3wx-Rr-daH"/>
+                        <constraint firstAttribute="height" constant="100" id="r9Z-yh-TVf"/>
+                    </constraints>
+                    <state key="normal" image="she_icon"/>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="FQh-Hn-bBZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1ko-T9-aCa"/>
+                <constraint firstItem="FQh-Hn-bBZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="7L2-xN-tn9"/>
+                <constraint firstItem="Vh7-Gy-tZi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ROx-9Z-S0o"/>
+                <constraint firstAttribute="bottom" secondItem="Vh7-Gy-tZi" secondAttribute="bottom" constant="8" id="Rz8-lU-OdJ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="170.5" y="301.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="he_icon" width="150" height="150"/>
+        <image name="she_icon" width="150" height="150"/>
+    </resources>
+</document>

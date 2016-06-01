@@ -28,13 +28,17 @@ class TravelLifeMomentsViewController: UIViewController, UICollectionViewDataSou
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! TravelLifeMomentsCollectionViewCell
-        cell.bgImage.image = UIImage(named: "disney-world")
         cell.coverImage.layer.cornerRadius = cell.coverImage.frame.size.height/2
-        cell.coverImage.image = UIImage(named: "london_image")
         cell.coverImage.clipsToBounds = true
-        cell.fileImage.backgroundColor = UIColor.darkGrayColor()
         cell.albumTitle.text = titles[indexPath.item]
         cell.albumDated.text = titleDate[indexPath.item]
+        cell.bgImage.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.bgImage.layer.borderWidth = 3.0
+        cell.bgImage.layer.cornerRadius = 8.0
+        cell.bgImage.transform = CGAffineTransformMakeRotation(0.0349066)
+        //cell.bgImage.layer.shadowColor = UIColor.blackColor().CGColor
+        cell.bgImage.layer.shadowRadius = 10.0
+        cell.bgImage.layer.shadowOffset = CGSize(width: 10, height: 10)
         return cell
     }
     

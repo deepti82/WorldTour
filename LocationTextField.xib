@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationTextField" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="mainTextField" destination="HuZ-6v-CvI" id="Zkx-UX-v9F"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="159"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HuZ-6v-CvI">
+                    <rect key="frame" x="25" y="55" width="350" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="8HE-Gh-Sll"/>
+                        <constraint firstAttribute="width" constant="350" id="ssS-Mb-xgf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="HuZ-6v-CvI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="X03-Da-j31"/>
+                <constraint firstItem="HuZ-6v-CvI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="X5j-yd-DS4"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="233" y="562.5"/>
+        </view>
+    </objects>
+</document>

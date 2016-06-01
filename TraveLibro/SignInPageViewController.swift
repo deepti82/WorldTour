@@ -12,7 +12,9 @@ class SignInPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        getDarkBackGround(self)
+        
         let pageView = SignInFullView(frame: CGRect(x: 0, y: 30, width: self.view.frame.size.width, height: self.view.frame.size.height - 30))
         self.view.addSubview(pageView)
     }

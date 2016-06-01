@@ -13,10 +13,24 @@ class UploadDisplayPicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let uploadView = AddDisplayPic(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
-        uploadView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
-        self.view.addSubview(uploadView)
+        getDarkBackGround(self)
         
+//        let uploadView = AddDisplayPic(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
+//        uploadView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
+//        self.view.addSubview(uploadView)
+        
+        
+//        let genderView = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
+//        genderView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)
+//        self.view.addSubview(genderView)
+
+//        let addLocation = LocationTextField(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 160))
+//        addLocation.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+//        self.view.addSubview(addLocation)
+
+        let accountVerified = AccountVerified(frame: CGRect(x: 0, y: 0, width: self.view.frame.width/2, height: 200))
+        accountVerified.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        self.view.addSubview(accountVerified)
         
     }
 

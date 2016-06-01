@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class SignInToolbar: UIView {
+class SignInToolbar: UIView {
 
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var twitterButton: UIButton!
@@ -22,6 +22,28 @@ import UIKit
         super.init(frame: frame)
         loadViewFromNib ()
         
+        let fbImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        fbImage.center = CGPointMake(fbButton.frame.width/2 + 15, fbButton.frame.height/2)
+        fbImage.image = UIImage(named: "facebook_icon")
+        fbButton.addSubview(fbImage)
+        
+        let gplusImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        gplusImage.center = CGPointMake(googleButton.frame.width/2 + 15, googleButton.frame.height/2)
+        gplusImage.image = UIImage(named: "google_plus_icon")
+        googleButton.addSubview(gplusImage)
+        
+        let twitterImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        twitterImage.center = CGPointMake(twitterButton.frame.width/2 + 15, twitterButton.frame.height/2)
+        twitterImage.image = UIImage(named: "twitter_icon")
+        twitterButton.addSubview(twitterImage)
+        
+        signUpButton.layer.borderWidth = 1.0
+        signUpButton.layer.borderColor = UIColor.whiteColor().CGColor
+        signUpButton.layer.cornerRadius = 5.0
+        
+        signInButton.layer.borderWidth = 1.0
+        signInButton.layer.borderColor = UIColor.whiteColor().CGColor
+        signInButton.layer.cornerRadius = 5.0
         
     }
     

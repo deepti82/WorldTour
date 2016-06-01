@@ -41,12 +41,39 @@
 		C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */; };
 		C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A39951CE34AD0002EF1E6 /* FriendView.xib */; };
 		C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A39971CE34C8D002EF1E6 /* FriendView.swift */; };
+		C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */; };
+		C23EB1CD1CFEB044005B5CE8 /* CheckInLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1CC1CFEB044005B5CE8 /* CheckInLocalLife.swift */; };
+		C23EB1CF1CFEC731005B5CE8 /* PhotoBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1CE1CFEC731005B5CE8 /* PhotoBar.xib */; };
+		C23EB1D11CFEC865005B5CE8 /* PhotoBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1D01CFEC865005B5CE8 /* PhotoBar.swift */; };
+		C23EB1D51CFED110005B5CE8 /* LocalLifeRecommends.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1D41CFED110005B5CE8 /* LocalLifeRecommends.xib */; };
+		C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1D61CFED335005B5CE8 /* LocalLifeRecommends.swift */; };
+		C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1DA1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift */; };
+		C23EB1DD1CFEED9B005B5CE8 /* EndLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1DC1CFEED9B005B5CE8 /* EndLocalLife.xib */; };
+		C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */; };
+		C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */; };
+		C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */; };
+		C23EB1E71CFF12B1005B5CE8 /* CheckInLocalLifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1E61CFF12B1005B5CE8 /* CheckInLocalLifeViewController.swift */; };
 		C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2504E7E1CF3376100A84D78 /* PopularJourneyView.swift */; };
 		C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */; };
 		C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25443541CD75F2900C2C6CD /* drawLine.swift */; };
+		C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */; };
+		C25BE1F51CFC23EC00C98DD3 /* InProfileOTGPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25BE1F41CFC23EC00C98DD3 /* InProfileOTGPost.xib */; };
+		C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F61CFC2A2300C98DD3 /* InProfileOTGPost.swift */; };
+		C25BE1F91CFC3ED900C98DD3 /* ProfilePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F81CFC3ED900C98DD3 /* ProfilePostsViewController.swift */; };
+		C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1FA1CFC5DAF00C98DD3 /* AllReviewsViewController.swift */; };
 		C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */; };
 		C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */; };
 		C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */; };
+		C269077D1CF819BA00F827E6 /* GenderInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C269077C1CF819BA00F827E6 /* GenderInfo.xib */; };
+		C269077F1CF819EB00F827E6 /* GenderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269077E1CF819EB00F827E6 /* GenderInfo.swift */; };
+		C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26907811CF826B900F827E6 /* LocationTextField.xib */; };
+		C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26907831CF8275500F827E6 /* LocationTextField.swift */; };
+		C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26907861CF82DF200F827E6 /* AccountVerified.xib */; };
+		C26907891CF82E9100F827E6 /* AccountVerified.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26907881CF82E9100F827E6 /* AccountVerified.swift */; };
+		C269078B1CF8611F00F827E6 /* ProfilePic.xib in Resources */ = {isa = PBXBuildFile; fileRef = C269078A1CF8611F00F827E6 /* ProfilePic.xib */; };
+		C269078D1CF8633800F827E6 /* ProfilePic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269078C1CF8633800F827E6 /* ProfilePic.swift */; };
+		C269078F1CF86DDF00F827E6 /* ImageCheckbox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C269078E1CF86DDF00F827E6 /* ImageCheckbox.xib */; };
+		C26907911CF86F8200F827E6 /* ImageCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26907901CF86F8200F827E6 /* ImageCheckbox.swift */; };
 		C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2776A271CD785DF00FE066A /* ShoesOTG.xib */; };
 		C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */; };
 		C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */; };
@@ -75,6 +102,9 @@
 		C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */; };
 		C2A27A5C1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */; };
 		C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */; };
+		C2A5C1D51CF9A7F90035EF0E /* moreAboutMe.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D41CF9A7F90035EF0E /* moreAboutMe.xib */; };
+		C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D61CF9B09E0035EF0E /* TraveLifeVideoPost.xib */; };
+		C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A5C1D81CF9BA5E0035EF0E /* TraveLifeVideoPost.swift */; };
 		C2A6E2571CE9C13A00D3F845 /* OTGTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A6E2561CE9C13A00D3F845 /* OTGTimelineViewController.swift */; };
 		C2A6E2591CE9C22200D3F845 /* TimelineScroll.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A6E2581CE9C22200D3F845 /* TimelineScroll.xib */; };
 		C2A6E25B1CE9C27000D3F845 /* TimelineScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A6E25A1CE9C27000D3F845 /* TimelineScroll.swift */; };
@@ -93,6 +123,8 @@
 		C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */; };
 		C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AC5D1A1CF32CE0008E5887 /* PopularJourneyView.xib */; };
 		C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B4423C1CF41B0600967689 /* PopularJourneysViewController.swift */; };
+		C2BB45F01CFD96E300251E8C /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB45EF1CFD96E300251E8C /* FollowersViewController.swift */; };
+		C2BB45F21CFDB39800251E8C /* BucketListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB45F11CFDB39800251E8C /* BucketListTableViewController.swift */; };
 		C2BFA9761CF2D2A900DC2066 /* MyLifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BFA9751CF2D2A900DC2066 /* MyLifeViewController.swift */; };
 		C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */; };
 		C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */; };
@@ -127,6 +159,7 @@
 		C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A151CDB3B9900122941 /* TextField.swift */; };
 		C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A181CDB3C1200122941 /* TextField.xib */; };
 		C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */; };
+		C2FA008A1CF57EC100E6A7D7 /* SetProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,12 +220,39 @@
 		C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideNavigationMenuViewController.swift; sourceTree = "<group>"; };
 		C20A39951CE34AD0002EF1E6 /* FriendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendView.xib; path = ../FriendView.xib; sourceTree = "<group>"; };
 		C20A39971CE34C8D002EF1E6 /* FriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendView.swift; path = ../FriendView.swift; sourceTree = "<group>"; };
+		C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInLocalLife.xib; sourceTree = "<group>"; };
+		C23EB1CC1CFEB044005B5CE8 /* CheckInLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInLocalLife.swift; sourceTree = "<group>"; };
+		C23EB1CE1CFEC731005B5CE8 /* PhotoBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoBar.xib; sourceTree = "<group>"; };
+		C23EB1D01CFEC865005B5CE8 /* PhotoBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBar.swift; sourceTree = "<group>"; };
+		C23EB1D41CFED110005B5CE8 /* LocalLifeRecommends.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalLifeRecommends.xib; sourceTree = "<group>"; };
+		C23EB1D61CFED335005B5CE8 /* LocalLifeRecommends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLifeRecommends.swift; sourceTree = "<group>"; };
+		C23EB1DA1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLifeRecommendationViewController.swift; sourceTree = "<group>"; };
+		C23EB1DC1CFEED9B005B5CE8 /* EndLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndLocalLife.xib; sourceTree = "<group>"; };
+		C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndLocalLife.swift; sourceTree = "<group>"; };
+		C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPostsLocalLife.xib; sourceTree = "<group>"; };
+		C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPostsLocalLife.swift; sourceTree = "<group>"; };
+		C23EB1E61CFF12B1005B5CE8 /* CheckInLocalLifeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInLocalLifeViewController.swift; sourceTree = "<group>"; };
 		C2504E7E1CF3376100A84D78 /* PopularJourneyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularJourneyView.swift; sourceTree = "<group>"; };
 		C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheGoViewController.swift; sourceTree = "<group>"; };
 		C25443541CD75F2900C2C6CD /* drawLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawLine.swift; sourceTree = "<group>"; };
+		C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLifePostsViewController.swift; sourceTree = "<group>"; };
+		C25BE1F41CFC23EC00C98DD3 /* InProfileOTGPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InProfileOTGPost.xib; sourceTree = "<group>"; };
+		C25BE1F61CFC2A2300C98DD3 /* InProfileOTGPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InProfileOTGPost.swift; sourceTree = "<group>"; };
+		C25BE1F81CFC3ED900C98DD3 /* ProfilePostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewController.swift; sourceTree = "<group>"; };
+		C25BE1FA1CFC5DAF00C98DD3 /* AllReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllReviewsViewController.swift; sourceTree = "<group>"; };
 		C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MomentsTableViewController.swift; path = ../MomentsTableViewController.swift; sourceTree = "<group>"; };
 		C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MomentsEachViewController.swift; path = ../MomentsEachViewController.swift; sourceTree = "<group>"; };
 		C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TravelLifeMomentsViewController.swift; path = ../TravelLifeMomentsViewController.swift; sourceTree = "<group>"; };
+		C269077C1CF819BA00F827E6 /* GenderInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GenderInfo.xib; path = ../GenderInfo.xib; sourceTree = "<group>"; };
+		C269077E1CF819EB00F827E6 /* GenderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderInfo.swift; path = ../GenderInfo.swift; sourceTree = "<group>"; };
+		C26907811CF826B900F827E6 /* LocationTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationTextField.xib; path = ../LocationTextField.xib; sourceTree = "<group>"; };
+		C26907831CF8275500F827E6 /* LocationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationTextField.swift; path = ../LocationTextField.swift; sourceTree = "<group>"; };
+		C26907861CF82DF200F827E6 /* AccountVerified.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountVerified.xib; sourceTree = "<group>"; };
+		C26907881CF82E9100F827E6 /* AccountVerified.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountVerified.swift; sourceTree = "<group>"; };
+		C269078A1CF8611F00F827E6 /* ProfilePic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfilePic.xib; sourceTree = "<group>"; };
+		C269078C1CF8633800F827E6 /* ProfilePic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePic.swift; sourceTree = "<group>"; };
+		C269078E1CF86DDF00F827E6 /* ImageCheckbox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCheckbox.xib; sourceTree = "<group>"; };
+		C26907901CF86F8200F827E6 /* ImageCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCheckbox.swift; sourceTree = "<group>"; };
 		C2776A271CD785DF00FE066A /* ShoesOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoesOTG.xib; sourceTree = "<group>"; };
 		C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesOTG.swift; sourceTree = "<group>"; };
 		C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainView.xib; sourceTree = "<group>"; };
@@ -221,6 +281,11 @@
 		C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDisplayPic.swift; sourceTree = "<group>"; };
 		C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadDisplayPicViewController.swift; sourceTree = "<group>"; };
 		C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
+		C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DJB My Mood Ring Says Blah.ttf"; sourceTree = "<group>"; };
+		C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JennaSue.ttf; sourceTree = "<group>"; };
+		C2A5C1D41CF9A7F90035EF0E /* moreAboutMe.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moreAboutMe.xib; sourceTree = "<group>"; };
+		C2A5C1D61CF9B09E0035EF0E /* TraveLifeVideoPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TraveLifeVideoPost.xib; sourceTree = "<group>"; };
+		C2A5C1D81CF9BA5E0035EF0E /* TraveLifeVideoPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraveLifeVideoPost.swift; sourceTree = "<group>"; };
 		C2A6E2561CE9C13A00D3F845 /* OTGTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTGTimelineViewController.swift; sourceTree = "<group>"; };
 		C2A6E2581CE9C22200D3F845 /* TimelineScroll.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TimelineScroll.xib; path = ../TimelineScroll.xib; sourceTree = "<group>"; };
 		C2A6E25A1CE9C27000D3F845 /* TimelineScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimelineScroll.swift; path = ../TimelineScroll.swift; sourceTree = "<group>"; };
@@ -239,6 +304,8 @@
 		C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrialViewController.swift; sourceTree = "<group>"; };
 		C2AC5D1A1CF32CE0008E5887 /* PopularJourneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularJourneyView.xib; sourceTree = "<group>"; };
 		C2B4423C1CF41B0600967689 /* PopularJourneysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularJourneysViewController.swift; sourceTree = "<group>"; };
+		C2BB45EF1CFD96E300251E8C /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
+		C2BB45F11CFDB39800251E8C /* BucketListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketListTableViewController.swift; sourceTree = "<group>"; };
 		C2BFA9751CF2D2A900DC2066 /* MyLifeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeViewController.swift; sourceTree = "<group>"; };
 		C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewCell.swift; sourceTree = "<group>"; };
@@ -273,6 +340,7 @@
 		C2EA3A151CDB3B9900122941 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		C2EA3A181CDB3C1200122941 /* TextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextField.xib; sourceTree = "<group>"; };
 		C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeOfJourney.xib; sourceTree = "<group>"; };
+		C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetProfilePictureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,8 +373,6 @@
 			children = (
 				1A3E4DC51CD3970000105C3D /* TripSummaryProfile.xib */,
 				1A3E4DC71CD398BB00105C3D /* TripSummaryProfile.swift */,
-				C2DCB3691CE701A4006E5CBD /* TripSummaryItinerary.xib */,
-				C2DCB36B1CE7043C006E5CBD /* TripSummaryItinerary.swift */,
 			);
 			name = TripSummaryProfile;
 			sourceTree = "<group>";
@@ -341,6 +407,15 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
+				C23EB1DA1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift */,
+				C25BE1F41CFC23EC00C98DD3 /* InProfileOTGPost.xib */,
+				C25BE1F61CFC2A2300C98DD3 /* InProfileOTGPost.swift */,
+				C2A5C1D61CF9B09E0035EF0E /* TraveLifeVideoPost.xib */,
+				C2A5C1D81CF9BA5E0035EF0E /* TraveLifeVideoPost.swift */,
+				C269078E1CF86DDF00F827E6 /* ImageCheckbox.xib */,
+				C26907901CF86F8200F827E6 /* ImageCheckbox.swift */,
+				C26907861CF82DF200F827E6 /* AccountVerified.xib */,
+				C26907881CF82E9100F827E6 /* AccountVerified.swift */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -368,7 +443,13 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C23EB1E61CFF12B1005B5CE8 /* CheckInLocalLifeViewController.swift */,
+				C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */,
+				C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */,
+				C269078A1CF8611F00F827E6 /* ProfilePic.xib */,
+				C269078C1CF8633800F827E6 /* ProfilePic.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
+				C2A5C1D41CF9A7F90035EF0E /* moreAboutMe.xib */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
 			);
@@ -396,6 +477,13 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C23EB1E11CFEFF5B005B5CE8 /* LocalLifeRecommends */,
+				C23EB1E01CFEFF37005B5CE8 /* EndLocalLife */,
+				C23EB1D31CFECF87005B5CE8 /* CheckInLocalLife */,
+				C23EB1D21CFECF72005B5CE8 /* PhotoBar */,
+				C26907851CF82DAA00F827E6 /* LocationTextField */,
+				C26907801CF8263C00F827E6 /* GenderInfo */,
+				C269077B1CF8161600F827E6 /* TripSummaryItinerary */,
 				C2D594531CF4895F0007F50B /* MyLifeTabs */,
 				C2803BC91CF43493007A906E /* BlogView */,
 				C2504E801CF33A0200A84D78 /* PopularJourneyView */,
@@ -457,6 +545,8 @@
 		1A944E3E1CCB6297007EB5BD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */,
+				C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */,
 				1A65E7A11CD72EB3009374DA /* fontawesome-webfont.ttf */,
 				1A65E7A31CD72F1F009374DA /* Avenir-Black.ttf */,
 				1A65E7A41CD72F1F009374DA /* Avenir-Heavy.ttf */,
@@ -503,6 +593,42 @@
 			name = FriendView;
 			sourceTree = "<group>";
 		};
+		C23EB1D21CFECF72005B5CE8 /* PhotoBar */ = {
+			isa = PBXGroup;
+			children = (
+				C23EB1CE1CFEC731005B5CE8 /* PhotoBar.xib */,
+				C23EB1D01CFEC865005B5CE8 /* PhotoBar.swift */,
+			);
+			name = PhotoBar;
+			sourceTree = "<group>";
+		};
+		C23EB1D31CFECF87005B5CE8 /* CheckInLocalLife */ = {
+			isa = PBXGroup;
+			children = (
+				C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */,
+				C23EB1CC1CFEB044005B5CE8 /* CheckInLocalLife.swift */,
+			);
+			name = CheckInLocalLife;
+			sourceTree = "<group>";
+		};
+		C23EB1E01CFEFF37005B5CE8 /* EndLocalLife */ = {
+			isa = PBXGroup;
+			children = (
+				C23EB1DC1CFEED9B005B5CE8 /* EndLocalLife.xib */,
+				C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */,
+			);
+			name = EndLocalLife;
+			sourceTree = "<group>";
+		};
+		C23EB1E11CFEFF5B005B5CE8 /* LocalLifeRecommends */ = {
+			isa = PBXGroup;
+			children = (
+				C23EB1D41CFED110005B5CE8 /* LocalLifeRecommends.xib */,
+				C23EB1D61CFED335005B5CE8 /* LocalLifeRecommends.swift */,
+			);
+			name = LocalLifeRecommends;
+			sourceTree = "<group>";
+		};
 		C2504E801CF33A0200A84D78 /* PopularJourneyView */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,6 +642,7 @@
 			isa = PBXGroup;
 			children = (
 				C2803BCA1CF43504007A906E /* AccordionViewController.swift */,
+				C2BB45EF1CFD96E300251E8C /* FollowersViewController.swift */,
 				C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */,
 				C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */,
 				C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */,
@@ -547,6 +674,10 @@
 				C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */,
 				C2803BC71CF426A8007A906E /* BlogViewViewController.swift */,
 				C2B4423C1CF41B0600967689 /* PopularJourneysViewController.swift */,
+				C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */,
+				C25BE1FA1CFC5DAF00C98DD3 /* AllReviewsViewController.swift */,
+				C25BE1F81CFC3ED900C98DD3 /* ProfilePostsViewController.swift */,
+				C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -567,6 +698,33 @@
 				C27F6C001CF03E280049F012 /* ProfileMainView.swift */,
 			);
 			name = ProfileMainView;
+			sourceTree = "<group>";
+		};
+		C269077B1CF8161600F827E6 /* TripSummaryItinerary */ = {
+			isa = PBXGroup;
+			children = (
+				C2DCB3691CE701A4006E5CBD /* TripSummaryItinerary.xib */,
+				C2DCB36B1CE7043C006E5CBD /* TripSummaryItinerary.swift */,
+			);
+			name = TripSummaryItinerary;
+			sourceTree = "<group>";
+		};
+		C26907801CF8263C00F827E6 /* GenderInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C269077C1CF819BA00F827E6 /* GenderInfo.xib */,
+				C269077E1CF819EB00F827E6 /* GenderInfo.swift */,
+			);
+			name = GenderInfo;
+			sourceTree = "<group>";
+		};
+		C26907851CF82DAA00F827E6 /* LocationTextField */ = {
+			isa = PBXGroup;
+			children = (
+				C26907811CF826B900F827E6 /* LocationTextField.xib */,
+				C26907831CF8275500F827E6 /* LocationTextField.swift */,
+			);
+			name = LocationTextField;
 			sourceTree = "<group>";
 		};
 		C2776A261CD77DEE00FE066A /* DrawLineOTG */ = {
@@ -725,6 +883,7 @@
 			isa = PBXGroup;
 			children = (
 				C2C965951CE458B7007BDA34 /* Date&Time.xib */,
+				C2BB45F11CFDB39800251E8C /* BucketListTableViewController.swift */,
 				C2C965981CE45A51007BDA34 /* Date&Time.swift */,
 			);
 			name = "Date&Time";
@@ -890,6 +1049,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */,
+				C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */,
 				C2ABDBAE1CEC4CB400D7542E /* OnlyPhoto.xib in Resources */,
 				C2A27A451CEDC1F100F74DD1 /* LogInView.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
@@ -898,36 +1058,48 @@
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
 				C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */,
 				C2A6E2671CE9D48A00D3F845 /* PhotosOTG.xib in Resources */,
+				C269078F1CF86DDF00F827E6 /* ImageCheckbox.xib in Resources */,
 				C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */,
 				1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */,
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
 				C2A27A521CEDDF5D00F74DD1 /* VerificationCodeView.xib in Resources */,
 				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
+				C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */,
+				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
+				C25BE1F51CFC23EC00C98DD3 /* InProfileOTGPost.xib in Resources */,
 				C2A27A4C1CEDC99E00F74DD1 /* SignUpFullView.xib in Resources */,
 				1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */,
 				1A65E7AA1CD72F1F009374DA /* Avenir-Light.ttf in Resources */,
 				C27F6C031CF06A130049F012 /* MomentsTab.xib in Resources */,
+				C23EB1DD1CFEED9B005B5CE8 /* EndLocalLife.xib in Resources */,
 				C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */,
+				C269077D1CF819BA00F827E6 /* GenderInfo.xib in Resources */,
 				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
 				C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */,
+				C2A5C1D51CF9A7F90035EF0E /* moreAboutMe.xib in Resources */,
 				C2A6E25D1CE9C88D00D3F845 /* TripInfoView.xib in Resources */,
+				C23EB1D51CFED110005B5CE8 /* LocalLifeRecommends.xib in Resources */,
 				1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */,
 				C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */,
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
+				C23EB1CF1CFEC731005B5CE8 /* PhotoBar.xib in Resources */,
 				C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */,
 				C2DCB36A1CE701A4006E5CBD /* TripSummaryItinerary.xib in Resources */,
 				C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */,
+				C269078B1CF8611F00F827E6 /* ProfilePic.xib in Resources */,
 				C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */,
 				C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */,
 				C2A6E2621CE9D12800D3F845 /* SpeechBubbleView.xib in Resources */,
 				C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */,
+				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
 				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
 				C2ABDBB41CEC53C300D7542E /* StatusView.xib in Resources */,
 				C2D594501CF487960007F50B /* MyLifeTabs.xib in Resources */,
+				C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */,
 				C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
@@ -959,13 +1131,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2D67FF71CE5FD7500454A46 /* CollectionViewController.swift in Sources */,
+				C2BB45F21CFDB39800251E8C /* BucketListTableViewController.swift in Sources */,
 				C2A6E2691CE9DA8B00D3F845 /* PhotosOTG.swift in Sources */,
 				C2803BC61CF424EB007A906E /* BlogView.swift in Sources */,
 				C2DCB3701CE73650006E5CBD /* LocationCategoryViewController.swift in Sources */,
 				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
 				C2A27A561CEDE23300F74DD1 /* VerifyEmailViewController.swift in Sources */,
+				C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */,
+				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
 				C2D594521CF487B30007F50B /* MyLifeTabs.swift in Sources */,
 				C2A27A4E1CEDCE4C00F74DD1 /* SignInFullView.swift in Sources */,
+				C269078D1CF8633800F827E6 /* ProfilePic.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
 				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
@@ -974,6 +1150,7 @@
 				C27F6C051CF06AB10049F012 /* MomentsTab.swift in Sources */,
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
 				C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */,
+				C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
 				C2A27A5C1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift in Sources */,
@@ -984,18 +1161,27 @@
 				C2A6E25B1CE9C27000D3F845 /* TimelineScroll.swift in Sources */,
 				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
+				C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */,
 				C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */,
+				C23EB1CD1CFEB044005B5CE8 /* CheckInLocalLife.swift in Sources */,
 				C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */,
 				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
+				C26907911CF86F8200F827E6 /* ImageCheckbox.swift in Sources */,
 				C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */,
 				C2A27A541CEDE18300F74DD1 /* VerificationCodeView.swift in Sources */,
+				C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */,
+				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
+				C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */,
+				C25BE1F91CFC3ED900C98DD3 /* ProfilePostsViewController.swift in Sources */,
 				C2A6E2641CE9D2BB00D3F845 /* SpeechBubbleView.swift in Sources */,
 				C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */,
+				C2BB45F01CFD96E300251E8C /* FollowersViewController.swift in Sources */,
 				C2A27A471CEDC27600F74DD1 /* LogInView.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
 				C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */,
 				C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */,
+				C269077F1CF819EB00F827E6 /* GenderInfo.swift in Sources */,
 				C2A6E2571CE9C13A00D3F845 /* OTGTimelineViewController.swift in Sources */,
 				C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */,
 				C2DCB37D1CE75AB2006E5CBD /* NotificationsHeader.swift in Sources */,
@@ -1013,20 +1199,26 @@
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
 				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
 				C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */,
+				C23EB1E71CFF12B1005B5CE8 /* CheckInLocalLifeViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
 				C284277C1CE07445003672E9 /* Styles.swift in Sources */,
 				C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */,
 				C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */,
 				C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */,
+				C23EB1D11CFEC865005B5CE8 /* PhotoBar.swift in Sources */,
+				C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */,
 				C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */,
 				C2DCB2371CE30ED0000E40DD /* TripSummaryViewController.swift in Sources */,
+				C26907891CF82E9100F827E6 /* AccountVerified.swift in Sources */,
 				C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */,
 				C2A27A421CEDBAFF00F74DD1 /* SignInToolbar.swift in Sources */,
 				C2ABDBB01CEC4F1400D7542E /* OnlyPhoto.swift in Sources */,
 				C2C9659D1CE4AEB2007BDA34 /* ThoughtsViewController.swift in Sources */,
+				C2FA008A1CF57EC100E6A7D7 /* SetProfilePictureViewController.swift in Sources */,
 				C2BFA9761CF2D2A900DC2066 /* MyLifeViewController.swift in Sources */,
 				C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
+				C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */,
 				C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */,
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,
 				C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */,

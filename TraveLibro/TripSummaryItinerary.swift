@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class TripSummaryItinerary: UIView {
+class TripSummaryItinerary: UIView {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var taggedPeopleLabel: UILabel!
