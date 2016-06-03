@@ -1,22 +1,27 @@
 //
-//  VerifyEmailViewController.swift
+//  EditSettingsViewController.swift
 //  TraveLibro
 //
-//  Created by Midhet Sulemani on 19/05/16.
+//  Created by Midhet Sulemani on 02/06/16.
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-class VerifyEmailViewController: UIViewController {
+class EditSettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let codeView = VerificationCodeView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/3))
-        codeView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)
-        self.view.addSubview(codeView)
+//        let textView = MoreAboutMe(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 140))
+//        textView.backgroundColor = UIColor.blueColor()
+//        self.view.addSubview(textView)
+
+//        let resetpswd = ResetPassword(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 250))
+//        self.view.addSubview(resetpswd)
         
+        let report = ReportProblem(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 300))
+        self.view.addSubview(report)
     }
 
     override func didReceiveMemoryWarning() {

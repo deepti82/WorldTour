@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["facebook"] = 0xf09a
         faicon["email"] = 0xf0e0
         faicon["whatsapp"] = 0xf232
+        faicon["check"] = 0xf00c
         
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()

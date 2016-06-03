@@ -20,6 +20,14 @@ class SetProfilePictureViewController: UIViewController {
         pictureScroll.contentSize.width = profileImageView.frame.size.width * 2
         pictureScroll.maximumZoomScale = 5.0
         
+        let maskView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 320))
+        maskView.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        maskView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        self.view.addSubview(maskView)
+        
+        let peekView = UIView(frame: CGRect(x: 20, y: 40, width: 60, height: 60))
+        peekView.backgroundColor = UIColor.brownColor()
+        pictureScroll.addSubview(peekView)
         
     }
 

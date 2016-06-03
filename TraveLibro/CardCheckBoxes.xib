@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardCheckBoxes" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonLeft" destination="kAg-Tu-YkE" id="JMi-5A-iCE"/>
+                <outlet property="buttonRight" destination="7Kv-bY-zon" id="QAe-e0-twn"/>
+                <outlet property="labelLeft" destination="WO7-Al-qdv" id="RSp-TX-bih"/>
+                <outlet property="labelRight" destination="C4C-BU-vh4" id="JeV-ff-nam"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="406" height="120"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="gKQ-mb-OWW">
+                    <rect key="frame" x="103" y="10" width="200" height="100"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NP3-QQ-VMR">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="100"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Kv-bY-zon">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="6do-Az-PLc"/>
+                                        <constraint firstAttribute="height" constant="60" id="SAN-7s-mVp"/>
+                                    </constraints>
+                                    <color key="tintColor" red="0.13725490200000001" green="0.1764705882" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" backgroundImage="halfnhalfbgGray"/>
+                                    <connections>
+                                        <action selector="checkBoxTap:" destination="-1" eventType="touchUpInside" id="WZ8-6Z-AVW"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4C-BU-vh4">
+                                    <rect key="frame" x="0.0" y="60" width="60" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="LNx-Vp-XHK"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8vk-bQ-A2D">
+                            <rect key="frame" x="140" y="0.0" width="60" height="100"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAg-Tu-YkE">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="KJx-GL-d5k"/>
+                                        <constraint firstAttribute="width" constant="60" id="dEt-z0-Et9"/>
+                                    </constraints>
+                                    <color key="tintColor" red="0.13725490200000001" green="0.1764705882" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" backgroundImage="halfnhalfbgGray"/>
+                                    <connections>
+                                        <action selector="checkBoxTap:" destination="-1" eventType="touchUpInside" id="Vuz-H5-rcJ"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WO7-Al-qdv">
+                                    <rect key="frame" x="0.0" y="60" width="60" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="evV-Vj-fCB"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="gKQ-mb-OWW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2K2-w5-Mug"/>
+                <constraint firstItem="gKQ-mb-OWW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GP6-uu-wbQ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="180" y="361"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="halfnhalfbgGray" width="29" height="30"/>
+    </resources>
+</document>

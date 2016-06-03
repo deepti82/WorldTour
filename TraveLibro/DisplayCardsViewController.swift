@@ -9,7 +9,7 @@
 import UIKit
 
 class DisplayCardsViewController: UIPageViewController, UIPageViewControllerDataSource {
-    
+
     let titles = ["Your kind of a holiday", "You travel", "You usually go", "Prefer to travel", "Your ideal holiday type"]
     
     override func viewDidLoad() {
@@ -74,7 +74,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         }
         
         let myVC = storyboard?.instantiateViewControllerWithIdentifier("SignupCardsViewController") as! SignupCardsViewController
-        myVC.cardText = titles[index]
+        myVC.cardTitle = titles[index]
         myVC.pageIndex = index
         return myVC
     }
