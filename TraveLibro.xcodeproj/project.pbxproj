@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A3E4DC31CD33B8F00105C3D /* VideoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E4DC21CD33B8F00105C3D /* VideoPost.swift */; };
 		1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A3E4DC51CD3970000105C3D /* TripSummaryProfile.xib */; };
 		1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E4DC71CD398BB00105C3D /* TripSummaryProfile.swift */; };
 		1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */; };
@@ -20,7 +19,6 @@
 		1A65E7AA1CD72F1F009374DA /* Avenir-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A65E7A51CD72F1F009374DA /* Avenir-Light.ttf */; };
 		1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A65E7A61CD72F1F009374DA /* Avenir-Medium.ttf */; };
 		1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A65E7A71CD72F1F009374DA /* Avenir-Roman.ttf */; };
-		1A6C0D961CCF915C00AB8B85 /* VideoPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A6C0D951CCF915C00AB8B85 /* VideoPost.xib */; };
 		1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E071CCB4567007EB5BD /* AppDelegate.swift */; };
 		1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E091CCB4567007EB5BD /* OTGAddNewViewController.swift */; };
 		1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E0B1CCB4567007EB5BD /* Main.storyboard */; };
@@ -90,6 +88,8 @@
 		C269078D1CF8633800F827E6 /* ProfilePic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269078C1CF8633800F827E6 /* ProfilePic.swift */; };
 		C269078F1CF86DDF00F827E6 /* ImageCheckbox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C269078E1CF86DDF00F827E6 /* ImageCheckbox.xib */; };
 		C26907911CF86F8200F827E6 /* ImageCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26907901CF86F8200F827E6 /* ImageCheckbox.swift */; };
+		C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */; };
+		C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */; };
 		C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2776A271CD785DF00FE066A /* ShoesOTG.xib */; };
 		C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */; };
 		C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */; };
@@ -111,9 +111,6 @@
 		C2A27A4C1CEDC99E00F74DD1 /* SignUpFullView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A4B1CEDC99E00F74DD1 /* SignUpFullView.xib */; };
 		C2A27A4E1CEDCE4C00F74DD1 /* SignInFullView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A4D1CEDCE4C00F74DD1 /* SignInFullView.swift */; };
 		C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */; };
-		C2A27A521CEDDF5D00F74DD1 /* VerificationCodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A511CEDDF5D00F74DD1 /* VerificationCodeView.xib */; };
-		C2A27A541CEDE18300F74DD1 /* VerificationCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A531CEDE18300F74DD1 /* VerificationCodeView.swift */; };
-		C2A27A561CEDE23300F74DD1 /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A551CEDE23300F74DD1 /* VerifyEmailViewController.swift */; };
 		C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */; };
 		C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */; };
 		C2A27A5C1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */; };
@@ -196,7 +193,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A3E4DC21CD33B8F00105C3D /* VideoPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPost.swift; sourceTree = "<group>"; };
 		1A3E4DC51CD3970000105C3D /* TripSummaryProfile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryProfile.xib; sourceTree = "<group>"; };
 		1A3E4DC71CD398BB00105C3D /* TripSummaryProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryProfile.swift; sourceTree = "<group>"; };
 		1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCircle.xib; sourceTree = "<group>"; };
@@ -209,7 +205,6 @@
 		1A65E7A51CD72F1F009374DA /* Avenir-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Light.ttf"; sourceTree = "<group>"; };
 		1A65E7A61CD72F1F009374DA /* Avenir-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Medium.ttf"; sourceTree = "<group>"; };
 		1A65E7A71CD72F1F009374DA /* Avenir-Roman.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Roman.ttf"; sourceTree = "<group>"; };
-		1A6C0D951CCF915C00AB8B85 /* VideoPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPost.xib; sourceTree = "<group>"; };
 		1A944E041CCB4567007EB5BD /* TraveLibro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraveLibro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A944E071CCB4567007EB5BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A944E091CCB4567007EB5BD /* OTGAddNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTGAddNewViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +280,8 @@
 		C269078C1CF8633800F827E6 /* ProfilePic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePic.swift; sourceTree = "<group>"; };
 		C269078E1CF86DDF00F827E6 /* ImageCheckbox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageCheckbox.xib; path = ../ImageCheckbox.xib; sourceTree = "<group>"; };
 		C26907901CF86F8200F827E6 /* ImageCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCheckbox.swift; path = ../ImageCheckbox.swift; sourceTree = "<group>"; };
+		C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = ../VerifyEmailViewController.swift; sourceTree = "<group>"; };
+		C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C2776A271CD785DF00FE066A /* ShoesOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoesOTG.xib; sourceTree = "<group>"; };
 		C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesOTG.swift; sourceTree = "<group>"; };
 		C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainView.xib; sourceTree = "<group>"; };
@@ -306,9 +303,6 @@
 		C2A27A4B1CEDC99E00F74DD1 /* SignUpFullView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpFullView.xib; sourceTree = "<group>"; };
 		C2A27A4D1CEDCE4C00F74DD1 /* SignInFullView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInFullView.swift; sourceTree = "<group>"; };
 		C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInPageViewController.swift; sourceTree = "<group>"; };
-		C2A27A511CEDDF5D00F74DD1 /* VerificationCodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerificationCodeView.xib; sourceTree = "<group>"; };
-		C2A27A531CEDE18300F74DD1 /* VerificationCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationCodeView.swift; sourceTree = "<group>"; };
-		C2A27A551CEDE23300F74DD1 /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyEmailViewController.swift; sourceTree = "<group>"; };
 		C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDisplayPic.xib; sourceTree = "<group>"; };
 		C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDisplayPic.swift; sourceTree = "<group>"; };
 		C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadDisplayPicViewController.swift; sourceTree = "<group>"; };
@@ -427,15 +421,6 @@
 			name = InfoCircle;
 			sourceTree = "<group>";
 		};
-		1A6C0D941CCF912100AB8B85 /* VideoPost */ = {
-			isa = PBXGroup;
-			children = (
-				1A6C0D951CCF915C00AB8B85 /* VideoPost.xib */,
-				1A3E4DC21CD33B8F00105C3D /* VideoPost.swift */,
-			);
-			name = VideoPost;
-			sourceTree = "<group>";
-		};
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +451,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -520,7 +506,6 @@
 				C255C7C31CF30604009E41AF /* ProfileMainView */,
 				C255C7C21CF305C2009E41AF /* MomentsTab */,
 				C2A27A5F1CEDEFF700F74DD1 /* SignUpFullView */,
-				C2A27A5E1CEDEFCE00F74DD1 /* VerificationCodeView */,
 				C2A27A5D1CEDEFA500F74DD1 /* AddDisplayPic */,
 				C2A27A4A1CEDC8F700F74DD1 /* LogInView */,
 				C2A27A431CEDBD0100F74DD1 /* SignInToolbar */,
@@ -545,7 +530,6 @@
 				C2776A291CD7863F00FE066A /* ShoesOTG */,
 				C2776A261CD77DEE00FE066A /* DrawLineOTG */,
 				1A3E4DC41CD396C600105C3D /* TripSummaryProfile */,
-				1A6C0D941CCF912100AB8B85 /* VideoPost */,
 				1A4CA1271CCE22CF00EE9A90 /* InfoCircle */,
 				1A4CA11C1CCE17F900EE9A90 /* AddCircle */,
 				1A944E451CCB8862007EB5BD /* JourneyTitleView */,
@@ -788,6 +772,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */,
 				C24F84F31D0052B9002EA203 /* EmptyPagesViewController.swift */,
 				C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */,
 				C23EB1DA1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift */,
@@ -820,7 +805,6 @@
 				C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */,
 				C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */,
 				C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */,
-				C2A27A551CEDE23300F74DD1 /* VerifyEmailViewController.swift */,
 				C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */,
 				C2803BC71CF426A8007A906E /* BlogViewViewController.swift */,
 				C2B4423C1CF41B0600967689 /* PopularJourneysViewController.swift */,
@@ -931,15 +915,6 @@
 				C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */,
 			);
 			name = AddDisplayPic;
-			sourceTree = "<group>";
-		};
-		C2A27A5E1CEDEFCE00F74DD1 /* VerificationCodeView */ = {
-			isa = PBXGroup;
-			children = (
-				C2A27A511CEDDF5D00F74DD1 /* VerificationCodeView.xib */,
-				C2A27A531CEDE18300F74DD1 /* VerificationCodeView.swift */,
-			);
-			name = VerificationCodeView;
 			sourceTree = "<group>";
 		};
 		C2A27A5F1CEDEFF700F74DD1 /* SignUpFullView */ = {
@@ -1207,7 +1182,6 @@
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				C2803BC41CF41F99007A906E /* BlogView.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
-				1A6C0D961CCF915C00AB8B85 /* VideoPost.xib in Resources */,
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
 				C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */,
 				C24F85011D005FD2002EA203 /* TutorialCards.xib in Resources */,
@@ -1216,7 +1190,6 @@
 				C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */,
 				1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */,
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
-				C2A27A521CEDDF5D00F74DD1 /* VerificationCodeView.xib in Resources */,
 				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
 				C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */,
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
@@ -1295,11 +1268,11 @@
 				C2803BC61CF424EB007A906E /* BlogView.swift in Sources */,
 				C2DCB3701CE73650006E5CBD /* LocationCategoryViewController.swift in Sources */,
 				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
-				C2A27A561CEDE23300F74DD1 /* VerifyEmailViewController.swift in Sources */,
 				C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */,
 				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
 				C2D594521CF487B30007F50B /* MyLifeTabs.swift in Sources */,
 				C2A27A4E1CEDCE4C00F74DD1 /* SignInFullView.swift in Sources */,
+				C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */,
 				C269078D1CF8633800F827E6 /* ProfilePic.swift in Sources */,
 				C24F84E71D00252F002EA203 /* SettingsViewController.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
@@ -1331,8 +1304,8 @@
 				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
 				C26907911CF86F8200F827E6 /* ImageCheckbox.swift in Sources */,
 				C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */,
-				C2A27A541CEDE18300F74DD1 /* VerificationCodeView.swift in Sources */,
 				C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */,
+				C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */,
 				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */,
@@ -1390,7 +1363,6 @@
 				C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */,
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,
 				C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */,
-				1A3E4DC31CD33B8F00105C3D /* VideoPost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

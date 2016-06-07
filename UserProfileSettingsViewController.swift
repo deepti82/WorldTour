@@ -43,6 +43,13 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         
         else if indexPath.section == 1 {
             
+            if indexPath.row == 2 {
+                
+                let cell = tableView.dequeueReusableCellWithIdentifier("dataUploadCell") as! SettingsTableViewCell
+                return cell
+                
+            }
+            
            let cell = tableView.dequeueReusableCellWithIdentifier("settingsCell") as! SettingsTableViewCell
            cell.settingsLabel.text = labels[indexPath.item]
            return cell
@@ -80,6 +87,36 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         return 30
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.section == 0 {
+            
+//            let viewController = storyboard?.instantiateViewControllerWithIdentifier("EditProfileViewController")
+//            self.showViewController(viewController!, sender: nil)
+            self.performSegueWithIdentifier("editProfile", sender: nil)
+            
+        }
+        
+        if indexPath.section == 2 {
+           
+            print("Section 2 selected")
+            self.performSegueWithIdentifier("editSetting", sender: nil)
+            
+        }
+        
+        else {
+            
+            print("Section 1 selected")
+            
+            if indexPath.row == 2 {
+                
+                self.performSegueWithIdentifier("uploadSetting", sender: nil)
+            }
+            
+            self.performSegueWithIdentifier("editSettingSectionOne", sender: nil)
+        }
+        
+    }
     
     /*
     // MARK: - Navigation

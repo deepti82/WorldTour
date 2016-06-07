@@ -1,27 +1,19 @@
 //
-//  EditSettingsViewController.swift
+//  SettingsNavigationViewController.swift
 //  TraveLibro
 //
-//  Created by Midhet Sulemani on 02/06/16.
+//  Created by Midhet Sulemani on 06/06/16.
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-class EditSettingsViewController: UIViewController {
+class SettingsNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let textView = MoreAboutMe(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 140))
-        textView.backgroundColor = UIColor.blueColor()
-        self.view.addSubview(textView)
-
-//        let resetpswd = ResetPassword(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 250))
-//        self.view.addSubview(resetpswd)
         
-//        let report = ReportProblem(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 300))
-//        self.view.addSubview(report)
+        
     }
 
     override func didReceiveMemoryWarning() {
