@@ -84,3 +84,20 @@ class drawSeperatorLineTwo: UIView {
     
 }
 
+class drawSearchLine: UIView {
+    
+    override func drawRect(rect: CGRect) {
+        
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetLineWidth(context, 1.0)
+        CGContextSetStrokeColorWithColor(context, UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1).CGColor)
+        
+        CGContextMoveToPoint(context, 0, 0)
+        CGContextAddLineToPoint(context, 5000, 0)
+        
+        CGContextStrokePath(context)
+        
+    }
+    
+}
+
