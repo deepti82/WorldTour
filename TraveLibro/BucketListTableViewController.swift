@@ -36,15 +36,61 @@ class BucketListTableViewController: UITableViewController  {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return 20
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        if indexPath.row % 2 == 0 {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
+            return cell
+            
+        }
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("SeperatorCell", forIndexPath: indexPath) as! NoViewTableViewCell
         return cell
         
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if indexPath.row % 2 == 0 {
+            
+            return 72
+        }
+        
+        return 3
+        
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        if indexPath.row % 2 == 0 {
+            let delete = UITableViewRowAction(style: .Destructive, title: "             ") { (action, indexPath) in
+                // delete item at indexPath
+            }
+            delete.backgroundColor = UIColor(patternImage: UIImage(named: "trash")!)
+            return [delete]
+        }
+        
+        let delete = UITableViewRowAction(style: .Normal, title: "") { (action, indexPath) in
+            // delete item at indexPath
+        }
+        
+//        let share = UITableViewRowAction(style: .Normal, title: "Disable") { (action, indexPath) in
+//            // share item at indexPath
+//        }
+//        
+//        share.backgroundColor = UIColor.blueColor()
+        
+        return [delete]
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 80
     }
 
     /*
@@ -92,4 +138,18 @@ class BucketListTableViewController: UITableViewController  {
     }
     */
 
+}
+
+class BucketListTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var countryPicture: UIImageView!
+    @IBOutlet weak var countryName: UILabel!
+    @IBOutlet weak var yearOfVisit: UILabel!
+    
+}
+
+class NoViewTableViewCell: UITableViewCell {
+    
+    
+    
 }

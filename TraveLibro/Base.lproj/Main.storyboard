@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jOP-Ed-v1K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iLZ-LA-NI3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -9,7 +9,6 @@
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="fontawesome-webfont.ttf">
-            <string>FontAwesome</string>
             <string>FontAwesome</string>
             <string>FontAwesome</string>
             <string>FontAwesome</string>
@@ -127,17 +126,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="72" id="mJz-mh-wxq">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="72" id="mJz-mh-wxq" customClass="BucketListTableViewCell" customModule="TraveLibro" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mJz-mh-wxq" id="do8-Xd-MLk">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taj_mahal" translatesAutoresizingMaskIntoConstraints="NO" id="jn2-oC-83T">
-                                            <rect key="frame" x="0.0" y="-8" width="320" height="88"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="taj_mahal" translatesAutoresizingMaskIntoConstraints="NO" id="jn2-oC-83T">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INDIA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bn-ZA-1EA">
                                             <rect key="frame" x="135" y="23" width="51" height="25"/>
@@ -155,13 +154,26 @@
                                     <constraints>
                                         <constraint firstItem="F3q-6F-dSu" firstAttribute="top" secondItem="3bn-ZA-1EA" secondAttribute="bottom" id="FYd-gF-kbz"/>
                                         <constraint firstItem="3bn-ZA-1EA" firstAttribute="centerX" secondItem="do8-Xd-MLk" secondAttribute="centerX" id="GXx-W5-lGV"/>
-                                        <constraint firstAttribute="bottom" secondItem="jn2-oC-83T" secondAttribute="bottom" constant="-9" id="Mvb-s0-ND4"/>
+                                        <constraint firstAttribute="bottom" secondItem="jn2-oC-83T" secondAttribute="bottom" id="Mvb-s0-ND4"/>
                                         <constraint firstItem="jn2-oC-83T" firstAttribute="leading" secondItem="do8-Xd-MLk" secondAttribute="leading" id="XNf-Zp-8Iw"/>
                                         <constraint firstItem="F3q-6F-dSu" firstAttribute="centerX" secondItem="do8-Xd-MLk" secondAttribute="centerX" id="cda-4S-I3Q"/>
-                                        <constraint firstItem="jn2-oC-83T" firstAttribute="top" secondItem="do8-Xd-MLk" secondAttribute="top" constant="-8" id="kIG-zj-Yyx"/>
+                                        <constraint firstItem="jn2-oC-83T" firstAttribute="top" secondItem="do8-Xd-MLk" secondAttribute="top" id="kIG-zj-Yyx"/>
                                         <constraint firstAttribute="trailing" secondItem="jn2-oC-83T" secondAttribute="trailing" id="n5Z-sl-yWU"/>
                                         <constraint firstItem="3bn-ZA-1EA" firstAttribute="centerY" secondItem="do8-Xd-MLk" secondAttribute="centerY" id="zhq-SG-Agv"/>
                                     </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="countryName" destination="3bn-ZA-1EA" id="mLx-y1-sKF"/>
+                                    <outlet property="countryPicture" destination="jn2-oC-83T" id="gF1-Tt-epB"/>
+                                    <outlet property="yearOfVisit" destination="F3q-6F-dSu" id="bTc-bK-C4Y"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SeperatorCell" rowHeight="3" id="rWA-08-XWH" customClass="NoViewTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="100" width="320" height="3"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rWA-08-XWH" id="M08-v9-QgF">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="2"/>
+                                    <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -211,11 +223,11 @@
                                 <rect key="frame" x="0.0" y="40" width="320" height="528"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profileCell" rowHeight="97" id="Kxv-sI-0r0" customClass="MainProfileTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="profileCell" rowHeight="97" id="Kxv-sI-0r0" customClass="MainProfileTableViewCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="97"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kxv-sI-0r0" id="YRe-wm-BdC">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="7AX-VF-Hti">
@@ -251,26 +263,25 @@
                                             <outlet property="DoB" destination="ETT-rT-Wix" id="6A8-fj-hoS"/>
                                             <outlet property="profileImage" destination="7AX-VF-Hti" id="nZD-kq-Nxx"/>
                                             <outlet property="profileName" destination="OsY-Ny-hcq" id="RCf-Q2-Dtr"/>
-                                            <segue destination="nEB-6n-I6G" kind="showDetail" identifier="editProfile" action="showViewController:sender:" id="YkZ-rc-vIA"/>
+                                            <segue destination="nEB-6n-I6G" kind="show" identifier="editProfile" id="YkZ-rc-vIA"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingsCell" rowHeight="45" id="zee-j3-Nvb" customClass="SettingsTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingsCell" rowHeight="45" id="zee-j3-Nvb" customClass="SettingsTableViewCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="125" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zee-j3-Nvb" id="ObJ-Nz-YEa">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8bh-n5-TCU">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit_profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8bh-n5-TCU">
                                                     <rect key="frame" x="8" y="7" width="30" height="30"/>
-                                                    <color key="backgroundColor" red="0.60000002384185791" green="0.40000000596046448" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="ICR-bz-Xza"/>
                                                         <constraint firstAttribute="width" constant="30" id="ZHu-C3-TKn"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile - a little more about me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n53-d1-phH">
-                                                    <rect key="frame" x="46" y="12" width="266" height="20"/>
+                                                    <rect key="frame" x="46" y="12" width="233" height="20"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -292,14 +303,14 @@
                                             <segue destination="92v-nD-chT" kind="show" identifier="editSettingSectionOne" id="eob-d9-qmz"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dataUploadCell" rowHeight="45" id="nYw-QE-QIv" customClass="SettingsTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dataUploadCell" rowHeight="45" id="nYw-QE-QIv" customClass="SettingsTableViewCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="170" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nYw-QE-QIv" id="tbC-cd-vgO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OhY-Ty-5nJ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="data_upload_icon" translatesAutoresizingMaskIntoConstraints="NO" id="OhY-Ty-5nJ">
                                                     <rect key="frame" x="8" y="7" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="cnZ-Ym-MiK"/>
@@ -308,7 +319,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Upload" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zz-ln-3wn">
                                                     <rect key="frame" x="46" y="12" width="80" height="20"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -326,11 +337,11 @@
                                             <segue destination="ARi-gi-ncz" kind="show" identifier="uploadSetting" id="w67-kC-17W"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="aboutCell" rowHeight="45" id="m1l-a0-yKR" customClass="AboutTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="aboutCell" rowHeight="45" id="m1l-a0-yKR" customClass="AboutTableViewCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="215" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m1l-a0-yKR" id="e12-LN-Lgq">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4U-r2-WPX">
@@ -412,7 +423,7 @@
                                     <constraint firstAttribute="height" constant="180" id="4L3-gl-vVf"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingsCell" id="q0U-rK-IUD" customClass="EditSettingsTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingsCell" id="q0U-rK-IUD" customClass="EditSettingsTableViewCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q0U-rK-IUD" id="IgM-1j-eW1">
@@ -425,27 +436,14 @@
                                                     <color key="textColor" red="0.13725490196078433" green="0.1764705882352941" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhk-P8-38G">
-                                                    <rect key="frame" x="282" y="7" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="6PW-Go-CV9"/>
-                                                        <constraint firstAttribute="width" constant="30" id="6kQ-jt-gzy"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="15"/>
-                                                    <state key="normal" title=" ">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Jhk-P8-38G" firstAttribute="centerY" secondItem="IgM-1j-eW1" secondAttribute="centerY" id="Jkf-8D-fph"/>
-                                                <constraint firstItem="Jhk-P8-38G" firstAttribute="trailing" secondItem="IgM-1j-eW1" secondAttribute="trailingMargin" id="c2R-cq-n4j"/>
                                                 <constraint firstItem="0iG-X3-UL2" firstAttribute="leading" secondItem="IgM-1j-eW1" secondAttribute="leadingMargin" id="d0i-92-Tl4"/>
                                                 <constraint firstItem="0iG-X3-UL2" firstAttribute="centerY" secondItem="IgM-1j-eW1" secondAttribute="centerY" id="iAr-uD-Pd0"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="checkButton" destination="Jhk-P8-38G" id="DCt-NL-5M2"/>
                                             <outlet property="checkLabel" destination="0iG-X3-UL2" id="61X-pF-oET"/>
                                         </connections>
                                     </tableViewCell>
@@ -523,7 +521,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVW-KI-L05">
                                                     <rect key="frame" x="76" y="27" width="82" height="20"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -549,7 +547,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16 Jan 1988" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpZ-SR-FLU">
                                                     <rect key="frame" x="8" y="15" width="77" height="20"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -560,6 +558,31 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="editLabel" destination="RpZ-SR-FLU" id="opC-8C-Drb"/>
+                                            <segue destination="A9c-1N-kps" kind="show" identifier="editDateETC" id="JD6-bG-RtU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EditNationalityCell" rowHeight="50" id="diP-3Y-Io8" customClass="EditProfileTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="152" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="diP-3Y-Io8" id="NFE-S1-JsX">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nationality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ck-YI-xKL">
+                                                    <rect key="frame" x="8" y="15" width="69" height="20"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6ck-YI-xKL" firstAttribute="centerY" secondItem="NFE-S1-JsX" secondAttribute="centerY" id="gby-aq-hTA"/>
+                                                <constraint firstItem="6ck-YI-xKL" firstAttribute="leading" secondItem="NFE-S1-JsX" secondAttribute="leading" constant="8" id="x3B-ge-MTg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="editLabel" destination="6ck-YI-xKL" id="khI-pQ-En6"/>
+                                            <segue destination="Ywm-sm-lN1" kind="show" identifier="editNationality" id="WSY-qi-13t"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -582,6 +605,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9P-wf-Qwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="682" y="3295"/>
+        </scene>
+        <!--Edit Edit Profile View Controller-->
+        <scene sceneID="5gE-Lh-oC9">
+            <objects>
+                <viewController storyboardIdentifier="EditEdit" id="A9c-1N-kps" customClass="EditEditProfileViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NGV-ty-VSY"/>
+                        <viewControllerLayoutGuide type="bottom" id="LYI-IA-Zv7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pxC-rS-gWX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gO5-jx-Uj1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1195" y="3295"/>
         </scene>
         <!--Followers View Controller-->
         <scene sceneID="Pmb-IC-zrl">
@@ -1046,7 +1088,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhP-2G-0fP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1195" y="1151"/>
+            <point key="canvasLocation" x="1142" y="1151"/>
         </scene>
         <!--Rating Review View Controller-->
         <scene sceneID="8bT-dP-jzE">
@@ -2146,7 +2188,7 @@
                                 <rect key="frame" x="-4" y="100" width="308" height="468"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="bge-E9-rtg" customClass="CountriesTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="bge-E9-rtg" customClass="CountriesTableViewCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="308" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bge-E9-rtg" id="vu4-bA-nuF">
@@ -2161,40 +2203,28 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrx-R0-1GP">
-                                                    <rect key="frame" x="56" y="7" width="206" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="3JN-nI-6Aj"/>
-                                                        <constraint firstAttribute="width" constant="206" id="lv1-wf-yc9"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="56" y="12" width="34" height="20"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ssh-mU-Std">
-                                                    <rect key="frame" x="270" y="7" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="U5t-GQ-bbg"/>
-                                                        <constraint firstAttribute="width" constant="30" id="sq5-cM-giU"/>
-                                                    </constraints>
-                                                    <state key="normal" title="&gt;"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Ssh-mU-Std" firstAttribute="leading" secondItem="qrx-R0-1GP" secondAttribute="trailing" constant="8" id="0gD-hP-IpX"/>
                                                 <constraint firstItem="qrx-R0-1GP" firstAttribute="leading" secondItem="K7u-mz-P1W" secondAttribute="trailing" constant="8" id="CZO-gv-r5f"/>
                                                 <constraint firstItem="qrx-R0-1GP" firstAttribute="centerY" secondItem="vu4-bA-nuF" secondAttribute="centerY" id="IHl-nF-L0p"/>
-                                                <constraint firstItem="Ssh-mU-Std" firstAttribute="centerY" secondItem="vu4-bA-nuF" secondAttribute="centerY" id="MA4-RR-DMP"/>
-                                                <constraint firstItem="Ssh-mU-Std" firstAttribute="leading" secondItem="qrx-R0-1GP" secondAttribute="trailing" constant="8" id="T6d-Jn-4xI"/>
                                                 <constraint firstItem="K7u-mz-P1W" firstAttribute="leading" secondItem="vu4-bA-nuF" secondAttribute="leadingMargin" id="TuZ-qP-neJ"/>
-                                                <constraint firstItem="K7u-mz-P1W" firstAttribute="top" secondItem="Ssh-mU-Std" secondAttribute="top" id="bzn-2Y-RVT"/>
                                                 <constraint firstItem="qrx-R0-1GP" firstAttribute="leading" secondItem="K7u-mz-P1W" secondAttribute="trailing" constant="8" symbolic="YES" id="elp-AV-hmc"/>
                                                 <constraint firstItem="K7u-mz-P1W" firstAttribute="centerY" secondItem="qrx-R0-1GP" secondAttribute="centerY" id="i1q-NW-UBR"/>
-                                                <constraint firstItem="Ssh-mU-Std" firstAttribute="trailing" secondItem="vu4-bA-nuF" secondAttribute="trailingMargin" id="lb4-bQ-I3z"/>
                                                 <constraint firstItem="K7u-mz-P1W" firstAttribute="centerY" secondItem="vu4-bA-nuF" secondAttribute="centerY" id="pQe-1e-2XZ"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="i1q-NW-UBR"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
+                                        <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <outlet property="checkboxImage" destination="Ssh-mU-Std" id="lRD-Bt-2BO"/>
                                             <outlet property="countryName" destination="qrx-R0-1GP" id="hEe-c7-RMZ"/>
                                             <outlet property="flagImage" destination="K7u-mz-P1W" id="K3J-aG-t3R"/>
                                         </connections>
@@ -2218,7 +2248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbE-Wa-sKg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4183" y="447"/>
+            <point key="canvasLocation" x="205" y="3295"/>
         </scene>
         <!--Signup Cards View Controller-->
         <scene sceneID="V0K-qX-wGM">
@@ -2953,6 +2983,8 @@
     <resources>
         <image name="add_circle" width="166" height="166"/>
         <image name="album_style1" width="300" height="300"/>
+        <image name="data_upload_icon" width="60" height="60"/>
+        <image name="edit_profile_icon" width="60" height="60"/>
         <image name="info_circle" width="500" height="500"/>
         <image name="my_profile_bg" width="850" height="128"/>
         <image name="palm_trees_icon" width="61" height="60"/>

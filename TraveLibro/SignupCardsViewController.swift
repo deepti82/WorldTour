@@ -13,23 +13,26 @@ class SignupCardsViewController: UIViewController {
     
     var pageIndex = 0
     var cardTitle: String = ""
-    var cardDescription: String = ""
-    
+    var cardDescription: String = "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+    var checkBoxes: CGFloat =  6
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         let theScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        theScrollView.contentSize.height = 1000
         theScrollView.delaysContentTouches = false
         self.view.addSubview(theScrollView)
         
-        let cardView = TutorialCards(frame: CGRect(x: 37.5, y: 100, width: self.view.frame.width - 75, height: 800))
+        let cardView = TutorialCards(frame: CGRect(x: 37.5, y: 100, width: self.view.frame.width - 75, height: checkBoxes * 100 - 100))
         cardView.cardTitle.text = cardTitle
         cardView.cardDescription.text = cardDescription
         theScrollView.addSubview(cardView)
         
+        if checkBoxes > 6 {
+            
+            theScrollView.contentSize.height = cardView.frame.height + 50
+        }
     }
 
     override func didReceiveMemoryWarning() {

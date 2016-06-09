@@ -90,6 +90,9 @@
 		C26907911CF86F8200F827E6 /* ImageCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26907901CF86F8200F827E6 /* ImageCheckbox.swift */; };
 		C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */; };
 		C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */; };
+		C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */; };
+		C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */ = {isa = PBXBuildFile; fileRef = C276EDA91D06CBB800906FEC /* EditDOB.xib */; };
+		C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDAB1D06CCBC00906FEC /* EditDOB.swift */; };
 		C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2776A271CD785DF00FE066A /* ShoesOTG.xib */; };
 		C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */; };
 		C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */; };
@@ -102,6 +105,8 @@
 		C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2803BC71CF426A8007A906E /* BlogViewViewController.swift */; };
 		C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2803BCA1CF43504007A906E /* AccordionViewController.swift */; };
 		C284277C1CE07445003672E9 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C284277B1CE07445003672E9 /* Styles.swift */; };
+		C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29634E91D06F01300E9DF71 /* SearchLocation.xib */; };
+		C29634EC1D06F3B400E9DF71 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */; };
 		C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */; };
 		C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */; };
 		C2A27A421CEDBAFF00F74DD1 /* SignInToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A411CEDBAFF00F74DD1 /* SignInToolbar.swift */; };
@@ -282,6 +287,9 @@
 		C26907901CF86F8200F827E6 /* ImageCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCheckbox.swift; path = ../ImageCheckbox.swift; sourceTree = "<group>"; };
 		C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = ../VerifyEmailViewController.swift; sourceTree = "<group>"; };
 		C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditEditProfileViewController.swift; path = ../EditEditProfileViewController.swift; sourceTree = "<group>"; };
+		C276EDA91D06CBB800906FEC /* EditDOB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditDOB.xib; sourceTree = "<group>"; };
+		C276EDAB1D06CCBC00906FEC /* EditDOB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDOB.swift; sourceTree = "<group>"; };
 		C2776A271CD785DF00FE066A /* ShoesOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoesOTG.xib; sourceTree = "<group>"; };
 		C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesOTG.swift; sourceTree = "<group>"; };
 		C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainView.xib; sourceTree = "<group>"; };
@@ -294,6 +302,8 @@
 		C2803BC71CF426A8007A906E /* BlogViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogViewViewController.swift; sourceTree = "<group>"; };
 		C2803BCA1CF43504007A906E /* AccordionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionViewController.swift; sourceTree = "<group>"; };
 		C284277B1CE07445003672E9 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		C29634E91D06F01300E9DF71 /* SearchLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocation.xib; sourceTree = "<group>"; };
+		C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
 		C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
 		C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInToolbar.xib; path = ../SignInToolbar.xib; sourceTree = "<group>"; };
 		C2A27A411CEDBAFF00F74DD1 /* SignInToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInToolbar.swift; path = ../SignInToolbar.swift; sourceTree = "<group>"; };
@@ -424,6 +434,10 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
+				C29634E91D06F01300E9DF71 /* SearchLocation.xib */,
+				C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */,
+				C276EDA91D06CBB800906FEC /* EditDOB.xib */,
+				C276EDAB1D06CCBC00906FEC /* EditDOB.swift */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -772,6 +786,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */,
 				C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */,
 				C24F84F31D0052B9002EA203 /* EmptyPagesViewController.swift */,
 				C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */,
@@ -1177,6 +1192,7 @@
 			files = (
 				1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */,
 				C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */,
+				C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */,
 				C2ABDBAE1CEC4CB400D7542E /* OnlyPhoto.xib in Resources */,
 				C2A27A451CEDC1F100F74DD1 /* LogInView.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
@@ -1192,6 +1208,7 @@
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
 				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
 				C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */,
+				C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */,
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
@@ -1288,10 +1305,12 @@
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
 				C2A27A5C1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift in Sources */,
+				C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */,
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
 				C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */,
+				C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */,
 				C24F85031D0064D7002EA203 /* TutorialCards.swift in Sources */,
 				C2A6E25B1CE9C27000D3F845 /* TimelineScroll.swift in Sources */,
 				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,
@@ -1332,6 +1351,7 @@
 				C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */,
 				C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */,
 				C2A6E25F1CE9C8D900D3F845 /* TripInfoView.swift in Sources */,
+				C29634EC1D06F3B400E9DF71 /* SearchLocation.swift in Sources */,
 				C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */,
 				C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */,
 				1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */,

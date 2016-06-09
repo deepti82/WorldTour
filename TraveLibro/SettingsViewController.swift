@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, UITableViewDataSource {
+class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let labels = ["Cellular and WiFi", "WiFi", "Cellular"]
     
@@ -37,10 +37,28 @@ class SettingsViewController: UIViewController, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("settingsCell") as! EditSettingsTableViewCell
         cell.checkLabel.text = labels[indexPath.item]
-        cell.checkButton.setTitle(String(format: "%C", (faicon["check"])!), forState: .Normal)
+        //cell.checkButton.setTitle(String(format: "%C", (faicon["check"])!), forState: .Normal)
+        //ell.bringSubviewToFront(cell.checkButton)
         return cell
     }
-
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        
+        if selectedCell?.accessoryType == .Checkmark {
+            
+            selectedCell?.accessoryType = .None
+        }
+        
+        else {
+            
+            selectedCell?.accessoryType = .Checkmark
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -50,12 +68,26 @@ class SettingsViewController: UIViewController, UITableViewDataSource {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
 
 class EditSettingsTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var checkButton: UIButton!
+//    @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var checkLabel: UILabel!
+    
+//    @IBAction func optionChecked(sender: UIButton) {
+//        
+//        if sender.titleLabel!.tintColor == mainOrangeColor {
+//            
+//         sender.titleLabel!.tintColor = UIColor.lightGrayColor()
+//            
+//        }
+//        
+//        else {
+//            
+//            sender.titleLabel!.tintColor = mainOrangeColor
+//        }
+//    }
     
 }

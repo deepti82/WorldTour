@@ -11,7 +11,7 @@ import UIKit
 class UserProfileSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let labels = ["Edit Profile - a little more about me", "Change Password", "Data Upload", "Privacy", "Report a Problem"]
-    
+    let sideImages = ["edit_profile_icon", "change_pswd_icon", "data_upload_icon", "privacy_icon", "report_icon"]
     
     @IBOutlet weak var settingsTableView: UITableView!
     override func viewDidLoad() {
@@ -52,6 +52,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
             
            let cell = tableView.dequeueReusableCellWithIdentifier("settingsCell") as! SettingsTableViewCell
            cell.settingsLabel.text = labels[indexPath.item]
+           cell.LabelIcon.image = UIImage(named: sideImages[indexPath.item])
            return cell
         }
         

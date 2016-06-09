@@ -30,6 +30,7 @@
                         <constraint firstAttribute="width" constant="100" id="3wx-Rr-daH"/>
                         <constraint firstAttribute="height" constant="100" id="r9Z-yh-TVf"/>
                     </constraints>
+                    <color key="tintColor" red="0.4549019608" green="0.45882352939999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" image="she_icon"/>
                 </button>
             </subviews>

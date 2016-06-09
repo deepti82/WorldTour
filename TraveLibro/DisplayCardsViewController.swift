@@ -76,6 +76,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         let myVC = storyboard?.instantiateViewControllerWithIdentifier("SignupCardsViewController") as! SignupCardsViewController
         myVC.cardTitle = titles[index]
         myVC.pageIndex = index
+        myVC.checkBoxes = CGFloat(index)
         return myVC
     }
     

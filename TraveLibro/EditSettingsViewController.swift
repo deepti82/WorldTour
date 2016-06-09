@@ -13,7 +13,16 @@ class EditSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let textView = MoreAboutMe(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 140))
+        self.view.backgroundColor = UIColor.lightGrayColor()
+        
+        let titleView = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+        titleView.center = CGPointMake(self.view.frame.width/2 , 100)
+        titleView.text = "Click here to change your travel preferences"
+        titleView.font = avenirFont
+        titleView.textColor = mainBlueColor
+        self.view.addSubview(titleView)
+        
+        let textView = MoreAboutMe(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 140))
         textView.backgroundColor = UIColor.blueColor()
         self.view.addSubview(textView)
 
