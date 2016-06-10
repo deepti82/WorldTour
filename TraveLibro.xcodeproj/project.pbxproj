@@ -50,6 +50,12 @@
 		C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */; };
 		C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */; };
 		C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */; };
+		C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B45591D0ABDE4002EA009 /* Itineraries.xib */; };
+		C24B455C1D0ACAFA002EA009 /* Itineraries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B455B1D0ACAFA002EA009 /* Itineraries.swift */; };
+		C24B455F1D0ACF4F002EA009 /* FilterItineraries.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B455E1D0ACF4F002EA009 /* FilterItineraries.xib */; };
+		C24B45611D0ADAEB002EA009 /* FilterItineraries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B45601D0ADAEB002EA009 /* FilterItineraries.swift */; };
+		C24B45631D0AE664002EA009 /* PopularAgents.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B45621D0AE664002EA009 /* PopularAgents.xib */; };
+		C24B45651D0AE79A002EA009 /* PopularAgents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B45641D0AE79A002EA009 /* PopularAgents.swift */; };
 		C24F84DA1CFFFBF5002EA203 /* UserProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */; };
 		C24F84DC1D000CF5002EA203 /* MoreAboutMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F84DB1D000CF5002EA203 /* MoreAboutMe.swift */; };
 		C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */; };
@@ -251,6 +257,12 @@
 		C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndLocalLife.swift; sourceTree = "<group>"; };
 		C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPostsLocalLife.xib; sourceTree = "<group>"; };
 		C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPostsLocalLife.swift; sourceTree = "<group>"; };
+		C24B45591D0ABDE4002EA009 /* Itineraries.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Itineraries.xib; sourceTree = "<group>"; };
+		C24B455B1D0ACAFA002EA009 /* Itineraries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Itineraries.swift; sourceTree = "<group>"; };
+		C24B455E1D0ACF4F002EA009 /* FilterItineraries.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterItineraries.xib; sourceTree = "<group>"; };
+		C24B45601D0ADAEB002EA009 /* FilterItineraries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterItineraries.swift; sourceTree = "<group>"; };
+		C24B45621D0AE664002EA009 /* PopularAgents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularAgents.xib; sourceTree = "<group>"; };
+		C24B45641D0AE79A002EA009 /* PopularAgents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularAgents.swift; sourceTree = "<group>"; };
 		C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileSettingsViewController.swift; path = ../UserProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		C24F84DB1D000CF5002EA203 /* MoreAboutMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutMe.swift; sourceTree = "<group>"; };
 		C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsViewController.swift; sourceTree = "<group>"; };
@@ -473,9 +485,6 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */,
-				C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */,
-				C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -504,6 +513,9 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C24B45671D0AF3EA002EA009 /* FilterItineraries */,
+				C24B45661D0AF3D2002EA009 /* PopularAgents */,
+				C24B455D1D0ACB86002EA009 /* Itineraries */,
 				C25207351D0959AF008F0E51 /* SearchFieldView */,
 				C213BB751D01886F00B452AC /* CardCheckBoxes */,
 				C213BB741D01882200B452AC /* TutorialCards */,
@@ -686,6 +698,33 @@
 			name = LocalLifeRecommends;
 			sourceTree = "<group>";
 		};
+		C24B455D1D0ACB86002EA009 /* Itineraries */ = {
+			isa = PBXGroup;
+			children = (
+				C24B45591D0ABDE4002EA009 /* Itineraries.xib */,
+				C24B455B1D0ACAFA002EA009 /* Itineraries.swift */,
+			);
+			name = Itineraries;
+			sourceTree = "<group>";
+		};
+		C24B45661D0AF3D2002EA009 /* PopularAgents */ = {
+			isa = PBXGroup;
+			children = (
+				C24B45621D0AE664002EA009 /* PopularAgents.xib */,
+				C24B45641D0AE79A002EA009 /* PopularAgents.swift */,
+			);
+			name = PopularAgents;
+			sourceTree = "<group>";
+		};
+		C24B45671D0AF3EA002EA009 /* FilterItineraries */ = {
+			isa = PBXGroup;
+			children = (
+				C24B455E1D0ACF4F002EA009 /* FilterItineraries.xib */,
+				C24B45601D0ADAEB002EA009 /* FilterItineraries.swift */,
+			);
+			name = FilterItineraries;
+			sourceTree = "<group>";
+		};
 		C24F84E31D002357002EA203 /* MoreAboutMe */ = {
 			isa = PBXGroup;
 			children = (
@@ -806,6 +845,9 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */,
+				C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */,
+				C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */,
 				C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */,
 				C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */,
 				C24F84F31D0052B9002EA203 /* EmptyPagesViewController.swift */,
@@ -1232,11 +1274,14 @@
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
+				C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */,
+				C24B45631D0AE664002EA009 /* PopularAgents.xib in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
 				C25BE1F51CFC23EC00C98DD3 /* InProfileOTGPost.xib in Resources */,
 				C2A27A4C1CEDC99E00F74DD1 /* SignUpFullView.xib in Resources */,
 				1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */,
 				1A65E7AA1CD72F1F009374DA /* Avenir-Light.ttf in Resources */,
+				C24B455F1D0ACF4F002EA009 /* FilterItineraries.xib in Resources */,
 				C27F6C031CF06A130049F012 /* MomentsTab.xib in Resources */,
 				C24F85051D0065E2002EA203 /* CardCheckBoxes.xib in Resources */,
 				C23EB1DD1CFEED9B005B5CE8 /* EndLocalLife.xib in Resources */,
@@ -1343,9 +1388,11 @@
 				C25207391D09A4F7008F0E51 /* FeaturedCitiesViewController.swift in Sources */,
 				C24F84E21D001B91002EA203 /* ResetPassword.swift in Sources */,
 				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
+				C24B455C1D0ACAFA002EA009 /* Itineraries.swift in Sources */,
 				C26907911CF86F8200F827E6 /* ImageCheckbox.swift in Sources */,
 				C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */,
 				C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */,
+				C24B45651D0AE79A002EA009 /* PopularAgents.swift in Sources */,
 				C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */,
 				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
@@ -1383,6 +1430,7 @@
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
+				C24B45611D0ADAEB002EA009 /* FilterItineraries.swift in Sources */,
 				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
 				C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,

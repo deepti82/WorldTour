@@ -10,6 +10,7 @@ import UIKit
 
 class SearchFieldView: UIView {
 
+    @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var SearchView: UIView!
     override init(frame: CGRect) {
         super.init(frame: frame)

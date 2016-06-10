@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchFieldView" customModule="TraveLibro" customModuleProvider="target">
             <connections>
                 <outlet property="SearchView" destination="EYb-HI-fiX" id="tDQ-YP-Pga"/>
+                <outlet property="searchField" destination="W7O-51-EDd" id="hns-ZN-81q"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -59,7 +60,6 @@
                             <state key="normal" image="search"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="ERu-VR-h6g" secondAttribute="bottom" id="91H-8N-AL0"/>
                         <constraint firstAttribute="trailing" secondItem="NSV-aM-uEQ" secondAttribute="trailing" id="Bmk-Lw-z4h"/>
@@ -83,7 +83,6 @@
                     </variation>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="EYb-HI-fiX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="2M7-BL-si0"/>
                 <constraint firstItem="EYb-HI-fiX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FME-IN-eRe"/>
