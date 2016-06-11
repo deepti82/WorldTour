@@ -50,12 +50,21 @@
 		C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */; };
 		C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */; };
 		C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */; };
+		C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24870471D0BEAF7003CB0DD /* EachItineraryViewController.swift */; };
+		C248704A1D0BEE75003CB0DD /* MoreAboutTrip.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24870491D0BEE75003CB0DD /* MoreAboutTrip.xib */; };
+		C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C248704B1D0BF05B003CB0DD /* MoreAboutTrip.swift */; };
+		C248704F1D0C25B9003CB0DD /* ExploreHotelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C248704E1D0C25B9003CB0DD /* ExploreHotelsViewController.swift */; };
+		C24870511D0C2DA6003CB0DD /* HotelsCustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24870501D0C2DA6003CB0DD /* HotelsCustomHeader.xib */; };
+		C24870531D0C35C0003CB0DD /* HotelsCustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24870521D0C35C0003CB0DD /* HotelsCustomHeader.swift */; };
+		C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24870541D0C4458003CB0DD /* HotelTypeSelect.xib */; };
 		C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B45591D0ABDE4002EA009 /* Itineraries.xib */; };
 		C24B455C1D0ACAFA002EA009 /* Itineraries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B455B1D0ACAFA002EA009 /* Itineraries.swift */; };
 		C24B455F1D0ACF4F002EA009 /* FilterItineraries.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B455E1D0ACF4F002EA009 /* FilterItineraries.xib */; };
 		C24B45611D0ADAEB002EA009 /* FilterItineraries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B45601D0ADAEB002EA009 /* FilterItineraries.swift */; };
 		C24B45631D0AE664002EA009 /* PopularAgents.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B45621D0AE664002EA009 /* PopularAgents.xib */; };
 		C24B45651D0AE79A002EA009 /* PopularAgents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B45641D0AE79A002EA009 /* PopularAgents.swift */; };
+		C24B45691D0AF5C4002EA009 /* EachMustDo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B45681D0AF5C4002EA009 /* EachMustDo.xib */; };
+		C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B456A1D0AF674002EA009 /* EachMustDo.swift */; };
 		C24F84DA1CFFFBF5002EA203 /* UserProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */; };
 		C24F84DC1D000CF5002EA203 /* MoreAboutMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F84DB1D000CF5002EA203 /* MoreAboutMe.swift */; };
 		C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */; };
@@ -257,12 +266,21 @@
 		C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndLocalLife.swift; sourceTree = "<group>"; };
 		C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPostsLocalLife.xib; sourceTree = "<group>"; };
 		C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPostsLocalLife.swift; sourceTree = "<group>"; };
+		C24870471D0BEAF7003CB0DD /* EachItineraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachItineraryViewController.swift; sourceTree = "<group>"; };
+		C24870491D0BEE75003CB0DD /* MoreAboutTrip.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreAboutTrip.xib; sourceTree = "<group>"; };
+		C248704B1D0BF05B003CB0DD /* MoreAboutTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutTrip.swift; sourceTree = "<group>"; };
+		C248704E1D0C25B9003CB0DD /* ExploreHotelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreHotelsViewController.swift; sourceTree = "<group>"; };
+		C24870501D0C2DA6003CB0DD /* HotelsCustomHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelsCustomHeader.xib; sourceTree = "<group>"; };
+		C24870521D0C35C0003CB0DD /* HotelsCustomHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelsCustomHeader.swift; sourceTree = "<group>"; };
+		C24870541D0C4458003CB0DD /* HotelTypeSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelTypeSelect.xib; sourceTree = "<group>"; };
 		C24B45591D0ABDE4002EA009 /* Itineraries.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Itineraries.xib; sourceTree = "<group>"; };
 		C24B455B1D0ACAFA002EA009 /* Itineraries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Itineraries.swift; sourceTree = "<group>"; };
 		C24B455E1D0ACF4F002EA009 /* FilterItineraries.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterItineraries.xib; sourceTree = "<group>"; };
 		C24B45601D0ADAEB002EA009 /* FilterItineraries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterItineraries.swift; sourceTree = "<group>"; };
 		C24B45621D0AE664002EA009 /* PopularAgents.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularAgents.xib; sourceTree = "<group>"; };
 		C24B45641D0AE79A002EA009 /* PopularAgents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularAgents.swift; sourceTree = "<group>"; };
+		C24B45681D0AF5C4002EA009 /* EachMustDo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EachMustDo.xib; sourceTree = "<group>"; };
+		C24B456A1D0AF674002EA009 /* EachMustDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachMustDo.swift; sourceTree = "<group>"; };
 		C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileSettingsViewController.swift; path = ../UserProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		C24F84DB1D000CF5002EA203 /* MoreAboutMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutMe.swift; sourceTree = "<group>"; };
 		C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsViewController.swift; sourceTree = "<group>"; };
@@ -308,8 +326,8 @@
 		C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = ../VerifyEmailViewController.swift; sourceTree = "<group>"; };
 		C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditEditProfileViewController.swift; path = ../EditEditProfileViewController.swift; sourceTree = "<group>"; };
-		C276EDA91D06CBB800906FEC /* EditDOB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditDOB.xib; sourceTree = "<group>"; };
-		C276EDAB1D06CCBC00906FEC /* EditDOB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDOB.swift; sourceTree = "<group>"; };
+		C276EDA91D06CBB800906FEC /* EditDOB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDOB.xib; path = ../EditDOB.xib; sourceTree = "<group>"; };
+		C276EDAB1D06CCBC00906FEC /* EditDOB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDOB.swift; path = ../EditDOB.swift; sourceTree = "<group>"; };
 		C2776A271CD785DF00FE066A /* ShoesOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoesOTG.xib; sourceTree = "<group>"; };
 		C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesOTG.swift; sourceTree = "<group>"; };
 		C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainView.xib; sourceTree = "<group>"; };
@@ -322,8 +340,8 @@
 		C2803BC71CF426A8007A906E /* BlogViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogViewViewController.swift; sourceTree = "<group>"; };
 		C2803BCA1CF43504007A906E /* AccordionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionViewController.swift; sourceTree = "<group>"; };
 		C284277B1CE07445003672E9 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
-		C29634E91D06F01300E9DF71 /* SearchLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchLocation.xib; sourceTree = "<group>"; };
-		C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocation.swift; sourceTree = "<group>"; };
+		C29634E91D06F01300E9DF71 /* SearchLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchLocation.xib; path = ../SearchLocation.xib; sourceTree = "<group>"; };
+		C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchLocation.swift; path = ../SearchLocation.swift; sourceTree = "<group>"; };
 		C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
 		C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInToolbar.xib; path = ../SignInToolbar.xib; sourceTree = "<group>"; };
 		C2A27A411CEDBAFF00F74DD1 /* SignInToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInToolbar.swift; path = ../SignInToolbar.swift; sourceTree = "<group>"; };
@@ -454,10 +472,6 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
-				C29634E91D06F01300E9DF71 /* SearchLocation.xib */,
-				C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */,
-				C276EDA91D06CBB800906FEC /* EditDOB.xib */,
-				C276EDAB1D06CCBC00906FEC /* EditDOB.swift */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -485,6 +499,11 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C24870541D0C4458003CB0DD /* HotelTypeSelect.xib */,
+				C248704E1D0C25B9003CB0DD /* ExploreHotelsViewController.swift */,
+				C24870501D0C2DA6003CB0DD /* HotelsCustomHeader.xib */,
+				C24870521D0C35C0003CB0DD /* HotelsCustomHeader.swift */,
+				C24870471D0BEAF7003CB0DD /* EachItineraryViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -513,6 +532,10 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C248704D1D0BF09C003CB0DD /* MoreAboutTrip */,
+				C24870461D0BDDA0003CB0DD /* SearchLocation */,
+				C24870451D0BDD84003CB0DD /* EditDOB */,
+				C24B456C1D0AF692002EA009 /* EachMustDo */,
 				C24B45671D0AF3EA002EA009 /* FilterItineraries */,
 				C24B45661D0AF3D2002EA009 /* PopularAgents */,
 				C24B455D1D0ACB86002EA009 /* Itineraries */,
@@ -698,6 +721,33 @@
 			name = LocalLifeRecommends;
 			sourceTree = "<group>";
 		};
+		C24870451D0BDD84003CB0DD /* EditDOB */ = {
+			isa = PBXGroup;
+			children = (
+				C276EDA91D06CBB800906FEC /* EditDOB.xib */,
+				C276EDAB1D06CCBC00906FEC /* EditDOB.swift */,
+			);
+			name = EditDOB;
+			sourceTree = "<group>";
+		};
+		C24870461D0BDDA0003CB0DD /* SearchLocation */ = {
+			isa = PBXGroup;
+			children = (
+				C29634E91D06F01300E9DF71 /* SearchLocation.xib */,
+				C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */,
+			);
+			name = SearchLocation;
+			sourceTree = "<group>";
+		};
+		C248704D1D0BF09C003CB0DD /* MoreAboutTrip */ = {
+			isa = PBXGroup;
+			children = (
+				C24870491D0BEE75003CB0DD /* MoreAboutTrip.xib */,
+				C248704B1D0BF05B003CB0DD /* MoreAboutTrip.swift */,
+			);
+			name = MoreAboutTrip;
+			sourceTree = "<group>";
+		};
 		C24B455D1D0ACB86002EA009 /* Itineraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -723,6 +773,15 @@
 				C24B45601D0ADAEB002EA009 /* FilterItineraries.swift */,
 			);
 			name = FilterItineraries;
+			sourceTree = "<group>";
+		};
+		C24B456C1D0AF692002EA009 /* EachMustDo */ = {
+			isa = PBXGroup;
+			children = (
+				C24B45681D0AF5C4002EA009 /* EachMustDo.xib */,
+				C24B456A1D0AF674002EA009 /* EachMustDo.swift */,
+			);
+			name = EachMustDo;
 			sourceTree = "<group>";
 		};
 		C24F84E31D002357002EA203 /* MoreAboutMe */ = {
@@ -1275,9 +1334,11 @@
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
 				C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */,
+				C248704A1D0BEE75003CB0DD /* MoreAboutTrip.xib in Resources */,
 				C24B45631D0AE664002EA009 /* PopularAgents.xib in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
 				C25BE1F51CFC23EC00C98DD3 /* InProfileOTGPost.xib in Resources */,
+				C24B45691D0AF5C4002EA009 /* EachMustDo.xib in Resources */,
 				C2A27A4C1CEDC99E00F74DD1 /* SignUpFullView.xib in Resources */,
 				1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */,
 				1A65E7AA1CD72F1F009374DA /* Avenir-Light.ttf in Resources */,
@@ -1308,6 +1369,7 @@
 				C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */,
 				C25207321D094FAB008F0E51 /* SearchFieldView.xib in Resources */,
 				C24F84F01D004E59002EA203 /* NoFollowers.xib in Resources */,
+				C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
 				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
 				C2ABDBB41CEC53C300D7542E /* StatusView.xib in Resources */,
@@ -1319,6 +1381,7 @@
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
 				C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */,
 				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,
+				C24870511D0C2DA6003CB0DD /* HotelsCustomHeader.xib in Resources */,
 				C2A6E2591CE9C22200D3F845 /* TimelineScroll.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1367,6 +1430,7 @@
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
 				C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */,
 				C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */,
+				C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */,
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
@@ -1417,6 +1481,7 @@
 				C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
 				C2ABDBB21CEC53B000D7542E /* StatusView.swift in Sources */,
+				C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */,
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
 				C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */,
 				C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */,
@@ -1432,6 +1497,9 @@
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
 				C24B45611D0ADAEB002EA009 /* FilterItineraries.swift in Sources */,
 				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
+				C24870531D0C35C0003CB0DD /* HotelsCustomHeader.swift in Sources */,
+				C248704F1D0C25B9003CB0DD /* ExploreHotelsViewController.swift in Sources */,
+				C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */,
 				C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
 				C284277C1CE07445003672E9 /* Styles.swift in Sources */,

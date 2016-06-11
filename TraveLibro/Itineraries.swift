@@ -12,6 +12,11 @@ class Itineraries: UIView {
     @IBOutlet weak var profileIcon: UIImageView!
     @IBOutlet weak var profileName: UILabel!
 
+    @IBOutlet weak var reviewStack: UIStackView!
+    @IBOutlet weak var likeStack: UIStackView!
+    @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var options: UIImageView!
+    @IBOutlet weak var feedbackStack: UIStackView!
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var daysBG: UIImageView!
     @IBOutlet weak var gradientView: UIView!

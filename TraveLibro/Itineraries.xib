@@ -10,9 +10,14 @@
             <connections>
                 <outlet property="daysBG" destination="C75-t6-X4r" id="P1j-KH-UsC"/>
                 <outlet property="daysLabel" destination="sLH-Jz-NzF" id="1LY-Si-1MI"/>
+                <outlet property="feedbackStack" destination="ONO-5O-ESx" id="ndd-ur-kgG"/>
                 <outlet property="gradientView" destination="fDh-rd-WlE" id="zIS-oS-PEG"/>
+                <outlet property="likeStack" destination="wj5-Ap-gt6" id="5fC-av-MCZ"/>
+                <outlet property="options" destination="dZs-3t-70c" id="ms9-Iv-ix9"/>
                 <outlet property="profileIcon" destination="vqz-GO-RRW" id="O3a-YO-AvC"/>
                 <outlet property="profileName" destination="BiH-bf-lhn" id="9kx-fI-n4s"/>
+                <outlet property="reviewStack" destination="SZG-AQ-CI6" id="NIS-n2-4Ph"/>
+                <outlet property="separatorView" destination="NoI-U3-bZF" id="3Jl-bD-tAC"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -61,8 +66,8 @@
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21st September '16 to 31st October '16" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGB-UJ-1Qd">
-                            <rect key="frame" x="8" y="71" width="252" height="20"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <rect key="frame" x="8" y="71" width="198" height="16"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -101,6 +106,7 @@
                         <constraint firstItem="Kyy-CH-de7" firstAttribute="top" secondItem="4Kz-rZ-Kjk" secondAttribute="topMargin" id="Qtp-WP-mxW"/>
                         <constraint firstItem="GV2-TO-iaB" firstAttribute="leading" secondItem="3it-rc-SWm" secondAttribute="trailing" constant="8" id="Tc6-7l-Pbx"/>
                         <constraint firstItem="yGB-UJ-1Qd" firstAttribute="leading" secondItem="4Kz-rZ-Kjk" secondAttribute="leading" constant="8" id="UzR-02-58I"/>
+                        <constraint firstAttribute="height" constant="100" id="Wuq-CA-TxD"/>
                         <constraint firstAttribute="trailing" secondItem="dEV-2E-dt7" secondAttribute="trailing" constant="8" id="bNM-kS-EQy"/>
                         <constraint firstItem="Kyy-CH-de7" firstAttribute="leading" secondItem="4Kz-rZ-Kjk" secondAttribute="leadingMargin" id="eNt-0h-o4K"/>
                         <constraint firstItem="yGB-UJ-1Qd" firstAttribute="top" secondItem="3it-rc-SWm" secondAttribute="bottom" constant="8" id="fXX-b7-P2H"/>
@@ -196,7 +202,7 @@
                         </imageView>
                     </subviews>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoI-U3-bZF">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoI-U3-bZF" userLabel="Separator View">
                     <rect key="frame" x="8" y="443" width="384" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -287,7 +293,6 @@
                 <constraint firstAttribute="trailing" secondItem="NoI-U3-bZF" secondAttribute="trailing" constant="8" id="cUv-Lp-A1d"/>
                 <constraint firstItem="NoI-U3-bZF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="hie-7U-DdT"/>
                 <constraint firstAttribute="trailing" secondItem="dZs-3t-70c" secondAttribute="trailing" constant="8" id="lEf-8A-OQJ"/>
-                <constraint firstAttribute="bottom" secondItem="4Kz-rZ-Kjk" secondAttribute="bottom" constant="100" id="lbl-zd-Guq"/>
                 <constraint firstItem="fDh-rd-WlE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mEi-7y-X6P"/>
                 <constraint firstItem="ONO-5O-ESx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="o41-co-DYj"/>
                 <constraint firstItem="NoI-U3-bZF" firstAttribute="top" secondItem="ONO-5O-ESx" secondAttribute="bottom" constant="15" id="oQR-EX-Fb5"/>

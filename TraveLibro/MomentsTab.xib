@@ -411,7 +411,7 @@
         <image name="indian_flag" width="38" height="30"/>
         <image name="korean_flag" width="38" height="30"/>
         <image name="like_empty_icon" width="34" height="30"/>
-        <image name="location_icon" width="30" height="30"/>
+        <image name="location_icon" width="200" height="200"/>
         <image name="luxury_icon" width="51" height="60"/>
         <image name="options_icon" width="30" height="30"/>
         <image name="people_icon" width="70" height="60"/>
