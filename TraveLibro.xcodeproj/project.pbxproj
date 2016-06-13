@@ -124,6 +124,14 @@
 		C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2803BC71CF426A8007A906E /* BlogViewViewController.swift */; };
 		C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2803BCA1CF43504007A906E /* AccordionViewController.swift */; };
 		C284277C1CE07445003672E9 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C284277B1CE07445003672E9 /* Styles.swift */; };
+		C28A923F1D0E7E2E00CFEC7A /* HotelTypeSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A923E1D0E7E2E00CFEC7A /* HotelTypeSelect.swift */; };
+		C28A92431D0E839B00CFEC7A /* FilterRestaurants.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28A92421D0E839B00CFEC7A /* FilterRestaurants.xib */; };
+		C28A92451D0E83FD00CFEC7A /* FilterRestaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92441D0E83FD00CFEC7A /* FilterRestaurants.swift */; };
+		C28A92471D0E95ED00CFEC7A /* PopularBloggersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92461D0E95ED00CFEC7A /* PopularBloggersViewController.swift */; };
+		C28A92491D0EA12300CFEC7A /* BlogsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92481D0EA12300CFEC7A /* BlogsListViewController.swift */; };
+		C28A92511D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92501D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift */; };
+		C28A92531D0ECB4E00CFEC7A /* FilterBlogs.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28A92521D0ECB4E00CFEC7A /* FilterBlogs.xib */; };
+		C28A92551D0ECD4300CFEC7A /* FilterBlogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92541D0ECD4300CFEC7A /* FilterBlogs.swift */; };
 		C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29634E91D06F01300E9DF71 /* SearchLocation.xib */; };
 		C29634EC1D06F3B400E9DF71 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */; };
 		C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */; };
@@ -340,6 +348,14 @@
 		C2803BC71CF426A8007A906E /* BlogViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogViewViewController.swift; sourceTree = "<group>"; };
 		C2803BCA1CF43504007A906E /* AccordionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionViewController.swift; sourceTree = "<group>"; };
 		C284277B1CE07445003672E9 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
+		C28A923E1D0E7E2E00CFEC7A /* HotelTypeSelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelTypeSelect.swift; sourceTree = "<group>"; };
+		C28A92421D0E839B00CFEC7A /* FilterRestaurants.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterRestaurants.xib; sourceTree = "<group>"; };
+		C28A92441D0E83FD00CFEC7A /* FilterRestaurants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRestaurants.swift; sourceTree = "<group>"; };
+		C28A92461D0E95ED00CFEC7A /* PopularBloggersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularBloggersViewController.swift; sourceTree = "<group>"; };
+		C28A92481D0EA12300CFEC7A /* BlogsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsListViewController.swift; sourceTree = "<group>"; };
+		C28A92501D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCheckboxesViewController.swift; sourceTree = "<group>"; };
+		C28A92521D0ECB4E00CFEC7A /* FilterBlogs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterBlogs.xib; path = ../FilterBlogs.xib; sourceTree = "<group>"; };
+		C28A92541D0ECD4300CFEC7A /* FilterBlogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterBlogs.swift; path = ../FilterBlogs.swift; sourceTree = "<group>"; };
 		C29634E91D06F01300E9DF71 /* SearchLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchLocation.xib; path = ../SearchLocation.xib; sourceTree = "<group>"; };
 		C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchLocation.swift; path = ../SearchLocation.swift; sourceTree = "<group>"; };
 		C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
@@ -499,12 +515,8 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C24870541D0C4458003CB0DD /* HotelTypeSelect.xib */,
-				C248704E1D0C25B9003CB0DD /* ExploreHotelsViewController.swift */,
-				C24870501D0C2DA6003CB0DD /* HotelsCustomHeader.xib */,
-				C24870521D0C35C0003CB0DD /* HotelsCustomHeader.swift */,
-				C24870471D0BEAF7003CB0DD /* EachItineraryViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
+				C28A92461D0E95ED00CFEC7A /* PopularBloggersViewController.swift */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
 			);
@@ -532,6 +544,10 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C28A92571D0EED6C00CFEC7A /* FilterRestaurants */,
+				C28A92561D0ED3CF00CFEC7A /* FilterBlogs */,
+				C28A92411D0E7E6D00CFEC7A /* HotelsCustomHeader */,
+				C28A92401D0E7E4A00CFEC7A /* HotelTypeSelect */,
 				C248704D1D0BF09C003CB0DD /* MoreAboutTrip */,
 				C24870461D0BDDA0003CB0DD /* SearchLocation */,
 				C24870451D0BDD84003CB0DD /* EditDOB */,
@@ -621,6 +637,7 @@
 			children = (
 				C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */,
 				C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */,
+				C28A92481D0EA12300CFEC7A /* BlogsListViewController.swift */,
 				1A65E7A11CD72EB3009374DA /* fontawesome-webfont.ttf */,
 				1A65E7A31CD72F1F009374DA /* Avenir-Black.ttf */,
 				1A65E7A41CD72F1F009374DA /* Avenir-Heavy.ttf */,
@@ -904,6 +921,9 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C28A92501D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift */,
+				C248704E1D0C25B9003CB0DD /* ExploreHotelsViewController.swift */,
+				C24870471D0BEAF7003CB0DD /* EachItineraryViewController.swift */,
 				C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */,
 				C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */,
 				C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */,
@@ -1024,6 +1044,42 @@
 				C2803BC31CF41F99007A906E /* BlogView.xib */,
 			);
 			name = BlogView;
+			sourceTree = "<group>";
+		};
+		C28A92401D0E7E4A00CFEC7A /* HotelTypeSelect */ = {
+			isa = PBXGroup;
+			children = (
+				C24870541D0C4458003CB0DD /* HotelTypeSelect.xib */,
+				C28A923E1D0E7E2E00CFEC7A /* HotelTypeSelect.swift */,
+			);
+			name = HotelTypeSelect;
+			sourceTree = "<group>";
+		};
+		C28A92411D0E7E6D00CFEC7A /* HotelsCustomHeader */ = {
+			isa = PBXGroup;
+			children = (
+				C24870501D0C2DA6003CB0DD /* HotelsCustomHeader.xib */,
+				C24870521D0C35C0003CB0DD /* HotelsCustomHeader.swift */,
+			);
+			name = HotelsCustomHeader;
+			sourceTree = "<group>";
+		};
+		C28A92561D0ED3CF00CFEC7A /* FilterBlogs */ = {
+			isa = PBXGroup;
+			children = (
+				C28A92521D0ECB4E00CFEC7A /* FilterBlogs.xib */,
+				C28A92541D0ECD4300CFEC7A /* FilterBlogs.swift */,
+			);
+			name = FilterBlogs;
+			sourceTree = "<group>";
+		};
+		C28A92571D0EED6C00CFEC7A /* FilterRestaurants */ = {
+			isa = PBXGroup;
+			children = (
+				C28A92421D0E839B00CFEC7A /* FilterRestaurants.xib */,
+				C28A92441D0E83FD00CFEC7A /* FilterRestaurants.swift */,
+			);
+			name = FilterRestaurants;
 			sourceTree = "<group>";
 		};
 		C2A27A431CEDBD0100F74DD1 /* SignInToolbar */ = {
@@ -1326,11 +1382,13 @@
 				C269078F1CF86DDF00F827E6 /* ImageCheckbox.xib in Resources */,
 				C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */,
 				1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */,
+				C28A92431D0E839B00CFEC7A /* FilterRestaurants.xib in Resources */,
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
 				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
 				C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */,
 				C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */,
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
+				C28A92531D0ECB4E00CFEC7A /* FilterBlogs.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
 				C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */,
@@ -1412,6 +1470,7 @@
 				C2BB45F21CFDB39800251E8C /* BucketListTableViewController.swift in Sources */,
 				C2A6E2691CE9DA8B00D3F845 /* PhotosOTG.swift in Sources */,
 				C2803BC61CF424EB007A906E /* BlogView.swift in Sources */,
+				C28A92551D0ECD4300CFEC7A /* FilterBlogs.swift in Sources */,
 				C2DCB3701CE73650006E5CBD /* LocationCategoryViewController.swift in Sources */,
 				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
 				C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */,
@@ -1425,11 +1484,13 @@
 				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
+				C28A92491D0EA12300CFEC7A /* BlogsListViewController.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
 				C27F6C051CF06AB10049F012 /* MomentsTab.swift in Sources */,
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
 				C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */,
 				C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */,
+				C28A92511D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift in Sources */,
 				C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */,
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
@@ -1461,6 +1522,7 @@
 				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */,
+				C28A923F1D0E7E2E00CFEC7A /* HotelTypeSelect.swift in Sources */,
 				C25BE1F91CFC3ED900C98DD3 /* ProfilePostsViewController.swift in Sources */,
 				C2A6E2641CE9D2BB00D3F845 /* SpeechBubbleView.swift in Sources */,
 				C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */,
@@ -1476,6 +1538,7 @@
 				C24F85071D006670002EA203 /* CardCheckBoxes.swift in Sources */,
 				C24F84EB1D0045A1002EA203 /* ReportProblem.swift in Sources */,
 				C2DCB37D1CE75AB2006E5CBD /* NotificationsHeader.swift in Sources */,
+				C28A92471D0E95ED00CFEC7A /* PopularBloggersViewController.swift in Sources */,
 				C25207341D095442008F0E51 /* SearchFieldView.swift in Sources */,
 				C24F84DA1CFFFBF5002EA203 /* UserProfileSettingsViewController.swift in Sources */,
 				C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */,
@@ -1506,6 +1569,7 @@
 				C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */,
 				C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */,
 				C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */,
+				C28A92451D0E83FD00CFEC7A /* FilterRestaurants.swift in Sources */,
 				C23EB1D11CFEC865005B5CE8 /* PhotoBar.swift in Sources */,
 				C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */,
 				C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */,

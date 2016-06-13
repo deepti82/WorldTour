@@ -15,7 +15,24 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var myTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+//        let hotelTypesLayer = HotelTypeSelect(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+//        hotelTypesLayer.layer.zPosition = 100
+//        self.view.addSubview(hotelTypesLayer)
+        
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        scrollView.contentSize.height = 2500
+        scrollView.layer.zPosition = 100
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        self.view.addSubview(scrollView)
+        
+        let filterVC = storyboard?.instantiateViewControllerWithIdentifier("FilterViewController") as! FilterCheckboxesViewController
+        addChildViewController(filterVC)
+        filterVC.view.frame.size.height = scrollView.contentSize.height
+        scrollView.addSubview(filterVC.view)
+        filterVC.didMoveToParentViewController(self)
+        
         
     }
 
