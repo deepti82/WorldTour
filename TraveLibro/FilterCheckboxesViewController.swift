@@ -13,6 +13,7 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
     let labels = ["Beach & Party", "Adventure", "Romance", "Food", "Festivals", "Shopping", "Hotels", "Countries & Cities", "Road Trips", "Vacations", "Beach & Party", "Adventure", "Romance", "Food", "Festivals", "Shopping", "Hotels", "Countries & Cities", "Road Trips", "Vacations","Beach & Party", "Adventure", "Romance", "Food", "Festivals", "Shopping", "Hotels", "Countries & Cities", "Road Trips", "Vacations", "Beach & Party", "Adventure", "Romance", "Food", "Festivals", "Shopping", "Hotels", "Countries & Cities", "Road Trips", "Vacations", "Beach & Party", "Adventure", "Romance", "Food", "Festivals", "Shopping", "Hotels", "Countries & Cities", "Road Trips", "Vacations", "Beach & Party", "Adventure", "Romance", "Food", "Festivals", "Shopping", "Hotels", "Countries & Cities", "Road Trips", "Vacations", "Beach & Party", "Adventure", "Romance", "Food", "Festivals", "Shopping", "Hotels", "Countries & Cities", "Road Trips", "Vacations", "Beach & Party", "Adventure", "Romance", "Food", "Festivals", "Shopping", "Hotels", "Countries & Cities", "Road Trips", "Vacations", "Beach & Party", "Adventure", "Romance", "Food", "Festivals", "Shopping", "Hotels", "Countries & Cities", "Road Trips", "Vacations"]
     
     @IBOutlet weak var HeadView: UIView!
+    @IBOutlet weak var HeadViewHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,9 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
         blurView.layer.zPosition = -1
         self.view.addSubview(blurView)
         
-        let headerView = FilterBlogs(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 100))
+        HeadViewHeightConstraint.constant = 100
+        
+        let headerView = FilterBlogs(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: HeadViewHeightConstraint.constant))
         HeadView.addSubview(headerView)
         
     }

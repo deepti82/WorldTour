@@ -37,6 +37,10 @@
 		C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */; };
 		C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */; };
 		C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */; };
+		C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20938FB1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib */; };
+		C20938FE1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */; };
+		C20939011D11557B00CBA70F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20939001D11557B00CBA70F /* HomeViewController.swift */; };
+		C20939051D11655200CBA70F /* NavigationMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20939041D11655200CBA70F /* NavigationMainViewController.swift */; };
 		C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A39951CE34AD0002EF1E6 /* FriendView.xib */; };
 		C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A39971CE34C8D002EF1E6 /* FriendView.swift */; };
 		C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */; };
@@ -261,6 +265,10 @@
 		C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCardsViewController.swift; sourceTree = "<group>"; };
 		C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayCardsViewController.swift; sourceTree = "<group>"; };
 		C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideNavigationMenuViewController.swift; sourceTree = "<group>"; };
+		C20938FB1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreAboutMeScrollForProfile.xib; sourceTree = "<group>"; };
+		C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutMeScrollForProfile.swift; sourceTree = "<group>"; };
+		C20939001D11557B00CBA70F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
+		C20939041D11655200CBA70F /* NavigationMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationMainViewController.swift; sourceTree = "<group>"; };
 		C20A39951CE34AD0002EF1E6 /* FriendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendView.xib; path = ../FriendView.xib; sourceTree = "<group>"; };
 		C20A39971CE34C8D002EF1E6 /* FriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendView.swift; path = ../FriendView.swift; sourceTree = "<group>"; };
 		C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInLocalLife.xib; sourceTree = "<group>"; };
@@ -515,6 +523,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C20939041D11655200CBA70F /* NavigationMainViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				C28A92461D0E95ED00CFEC7A /* PopularBloggersViewController.swift */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
@@ -544,6 +553,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C20938FF1D1139E100CBA70F /* MoreAboutMeScrollForProfile */,
 				C28A92571D0EED6C00CFEC7A /* FilterRestaurants */,
 				C28A92561D0ED3CF00CFEC7A /* FilterBlogs */,
 				C28A92411D0E7E6D00CFEC7A /* HotelsCustomHeader */,
@@ -664,6 +674,15 @@
 				3AEEB00A1CE7017E0085EEF5 /* Rating.swift */,
 			);
 			name = Rating;
+			sourceTree = "<group>";
+		};
+		C20938FF1D1139E100CBA70F /* MoreAboutMeScrollForProfile */ = {
+			isa = PBXGroup;
+			children = (
+				C20938FB1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib */,
+				C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */,
+			);
+			name = MoreAboutMeScrollForProfile;
 			sourceTree = "<group>";
 		};
 		C20A39941CE348D3002EF1E6 /* Footer */ = {
@@ -921,6 +940,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C20939001D11557B00CBA70F /* HomeViewController.swift */,
 				C28A92501D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift */,
 				C248704E1D0C25B9003CB0DD /* ExploreHotelsViewController.swift */,
 				C24870471D0BEAF7003CB0DD /* EachItineraryViewController.swift */,
@@ -1436,6 +1456,7 @@
 				C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */,
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
+				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
 				C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */,
 				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,
@@ -1522,6 +1543,7 @@
 				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */,
+				C20939051D11655200CBA70F /* NavigationMainViewController.swift in Sources */,
 				C28A923F1D0E7E2E00CFEC7A /* HotelTypeSelect.swift in Sources */,
 				C25BE1F91CFC3ED900C98DD3 /* ProfilePostsViewController.swift in Sources */,
 				C2A6E2641CE9D2BB00D3F845 /* SpeechBubbleView.swift in Sources */,
@@ -1560,6 +1582,7 @@
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
 				C24B45611D0ADAEB002EA009 /* FilterItineraries.swift in Sources */,
 				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
+				C20939011D11557B00CBA70F /* HomeViewController.swift in Sources */,
 				C24870531D0C35C0003CB0DD /* HotelsCustomHeader.swift in Sources */,
 				C248704F1D0C25B9003CB0DD /* ExploreHotelsViewController.swift in Sources */,
 				C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */,
@@ -1569,6 +1592,7 @@
 				C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */,
 				C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */,
 				C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */,
+				C20938FE1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift in Sources */,
 				C28A92451D0E83FD00CFEC7A /* FilterRestaurants.swift in Sources */,
 				C23EB1D11CFEC865005B5CE8 /* PhotoBar.swift in Sources */,
 				C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */,

@@ -17,6 +17,7 @@ let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 
 var faicon = [String: UInt32]()
 
+var profileViewY:CGFloat = 45
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -44,8 +45,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageController.currentPageIndicatorTintColor = UIColor.blackColor()
         pageController.backgroundColor = UIColor.clearColor()
         
+//        self.addObserver(self, forKeyPath: "profileViewY", options: .New, context: nil)
         
         return true
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        
+        print("this function is getting called!!")
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
