@@ -15,13 +15,19 @@ class BlogViewViewController: UIViewController {
 
         getDarkBackGround(self)
         
+//        self.setNavigationBarItem()
         
-//        let blogView = BlogView(frame: CGRect(x: 0, y: 40, width: self.view.frame.size.width, height: 600))
+//        let blogView = BlogView(frame: CGRect(x: 0, y: 70, width: self.view.frame.size.width, height: 600))
 //        self.view.addSubview(blogView)
         
-        let iteneraryView = BlogView(frame: CGRect(x: 0, y: 40, width: self.view.frame.size.width, height: 600))
-        iteneraryView.blogDetailView.removeFromSuperview()
-        self.view.addSubview(iteneraryView)
+//        let iteneraryView = BlogView(frame: CGRect(x: 0, y: 40, width: self.view.frame.size.width, height: 600))
+//        iteneraryView.blogDetailView.removeFromSuperview()
+//        self.view.addSubview(iteneraryView)
+        
+        
+        let blogView = EachMustDo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(blogView)
+        
         
     }
 

@@ -8,11 +8,23 @@
 
 import UIKit
 
+var heightMoreABoutTrip: Int = 0
+
 class MoreAboutTrip: UIView {
 
+    @IBOutlet weak var dayDescription: UITextView!
+    @IBOutlet weak var dayNumberLabel: UILabel!
+    @IBOutlet weak var mainTitle: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        
+        heightMoreABoutTrip = 600
+        
+        dayNumberLabel.layer.cornerRadius = 5
+        dayNumberLabel.clipsToBounds = true
+        
         
     }
     

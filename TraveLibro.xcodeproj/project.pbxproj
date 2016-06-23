@@ -41,6 +41,8 @@
 		C20938FE1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */; };
 		C20939011D11557B00CBA70F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20939001D11557B00CBA70F /* HomeViewController.swift */; };
 		C20939051D11655200CBA70F /* NavigationMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20939041D11655200CBA70F /* NavigationMainViewController.swift */; };
+		C20939061D1180C100CBA70F /* DJB My Mood Ring Says Blah.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */; };
+		C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */; };
 		C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A39951CE34AD0002EF1E6 /* FriendView.xib */; };
 		C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A39971CE34C8D002EF1E6 /* FriendView.swift */; };
 		C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */; };
@@ -111,6 +113,11 @@
 		C269078D1CF8633800F827E6 /* ProfilePic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269078C1CF8633800F827E6 /* ProfilePic.swift */; };
 		C269078F1CF86DDF00F827E6 /* ImageCheckbox.xib in Resources */ = {isa = PBXBuildFile; fileRef = C269078E1CF86DDF00F827E6 /* ImageCheckbox.xib */; };
 		C26907911CF86F8200F827E6 /* ImageCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26907901CF86F8200F827E6 /* ImageCheckbox.swift */; };
+		C26B4DE71D13C88900213055 /* SlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B4DE61D13C88900213055 /* SlideMenuViewController.swift */; };
+		C26B4DE91D13E48200213055 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B4DE81D13E48200213055 /* Layout.swift */; };
+		C26B4DEB1D141D9D00213055 /* ConnectWithAgent.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26B4DEA1D141D9D00213055 /* ConnectWithAgent.xib */; };
+		C26B4DED1D14216700213055 /* ConnectWithAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B4DEC1D14216700213055 /* ConnectWithAgent.swift */; };
+		C26B4DEF1D14288900213055 /* ConnectWithAgentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B4DEE1D14288900213055 /* ConnectWithAgentViewController.swift */; };
 		C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */; };
 		C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */; };
 		C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */; };
@@ -138,6 +145,7 @@
 		C28A92551D0ECD4300CFEC7A /* FilterBlogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92541D0ECD4300CFEC7A /* FilterBlogs.swift */; };
 		C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29634E91D06F01300E9DF71 /* SearchLocation.xib */; };
 		C29634EC1D06F3B400E9DF71 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */; };
+		C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */; };
 		C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */; };
 		C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */; };
 		C2A27A421CEDBAFF00F74DD1 /* SignInToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A411CEDBAFF00F74DD1 /* SignInToolbar.swift */; };
@@ -186,6 +194,7 @@
 		C2D594521CF487B30007F50B /* MyLifeTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D594511CF487B30007F50B /* MyLifeTabs.swift */; };
 		C2D67FF71CE5FD7500454A46 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D67FF61CE5FD7500454A46 /* CollectionViewController.swift */; };
 		C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DA2B5A1CE6076600F15C5C /* MyCollectionViewCell.swift */; };
+		C2DCAE411D18063E00B35331 /* NavigationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCAE401D18063E00B35331 /* NavigationStyle.swift */; };
 		C2DCB2371CE30ED0000E40DD /* TripSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB2361CE30ED0000E40DD /* TripSummaryViewController.swift */; };
 		C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB2381CE32152000E40DD /* GetFooter.swift */; };
 		C2DCB36A1CE701A4006E5CBD /* TripSummaryItinerary.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DCB3691CE701A4006E5CBD /* TripSummaryItinerary.xib */; };
@@ -339,6 +348,11 @@
 		C269078C1CF8633800F827E6 /* ProfilePic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePic.swift; sourceTree = "<group>"; };
 		C269078E1CF86DDF00F827E6 /* ImageCheckbox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ImageCheckbox.xib; path = ../ImageCheckbox.xib; sourceTree = "<group>"; };
 		C26907901CF86F8200F827E6 /* ImageCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCheckbox.swift; path = ../ImageCheckbox.swift; sourceTree = "<group>"; };
+		C26B4DE61D13C88900213055 /* SlideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideMenuViewController.swift; path = ../SlideMenuViewController.swift; sourceTree = "<group>"; };
+		C26B4DE81D13E48200213055 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		C26B4DEA1D141D9D00213055 /* ConnectWithAgent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectWithAgent.xib; sourceTree = "<group>"; };
+		C26B4DEC1D14216700213055 /* ConnectWithAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectWithAgent.swift; sourceTree = "<group>"; };
+		C26B4DEE1D14288900213055 /* ConnectWithAgentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectWithAgentViewController.swift; sourceTree = "<group>"; };
 		C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = ../VerifyEmailViewController.swift; sourceTree = "<group>"; };
 		C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditEditProfileViewController.swift; path = ../EditEditProfileViewController.swift; sourceTree = "<group>"; };
@@ -366,6 +380,7 @@
 		C28A92541D0ECD4300CFEC7A /* FilterBlogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterBlogs.swift; path = ../FilterBlogs.swift; sourceTree = "<group>"; };
 		C29634E91D06F01300E9DF71 /* SearchLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchLocation.xib; path = ../SearchLocation.xib; sourceTree = "<group>"; };
 		C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchLocation.swift; path = ../SearchLocation.swift; sourceTree = "<group>"; };
+		C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCityViewController.swift; sourceTree = "<group>"; };
 		C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
 		C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInToolbar.xib; path = ../SignInToolbar.xib; sourceTree = "<group>"; };
 		C2A27A411CEDBAFF00F74DD1 /* SignInToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInToolbar.swift; path = ../SignInToolbar.swift; sourceTree = "<group>"; };
@@ -416,6 +431,7 @@
 		C2D594511CF487B30007F50B /* MyLifeTabs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeTabs.swift; sourceTree = "<group>"; };
 		C2D67FF61CE5FD7500454A46 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		C2DA2B5A1CE6076600F15C5C /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
+		C2DCAE401D18063E00B35331 /* NavigationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStyle.swift; sourceTree = "<group>"; };
 		C2DCB2361CE30ED0000E40DD /* TripSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryViewController.swift; sourceTree = "<group>"; };
 		C2DCB2381CE32152000E40DD /* GetFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFooter.swift; sourceTree = "<group>"; };
 		C2DCB3691CE701A4006E5CBD /* TripSummaryItinerary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryItinerary.xib; sourceTree = "<group>"; };
@@ -516,16 +532,14 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
+				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
-				C2DD03271CEB4D0F001878DD /* ImageMask.swift */,
-				C284277B1CE07445003672E9 /* Styles.swift */,
+				C2DCAE401D18063E00B35331 /* NavigationStyle.swift */,
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C20939041D11655200CBA70F /* NavigationMainViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
-				C28A92461D0E95ED00CFEC7A /* PopularBloggersViewController.swift */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
 			);
@@ -553,6 +567,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C29D2C121D1BFCC000FA0602 /* ConnectWithAgent */,
 				C20938FF1D1139E100CBA70F /* MoreAboutMeScrollForProfile */,
 				C28A92571D0EED6C00CFEC7A /* FilterRestaurants */,
 				C28A92561D0ED3CF00CFEC7A /* FilterBlogs */,
@@ -647,7 +662,6 @@
 			children = (
 				C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */,
 				C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */,
-				C28A92481D0EA12300CFEC7A /* BlogsListViewController.swift */,
 				1A65E7A11CD72EB3009374DA /* fontawesome-webfont.ttf */,
 				1A65E7A31CD72F1F009374DA /* Avenir-Black.ttf */,
 				1A65E7A41CD72F1F009374DA /* Avenir-Heavy.ttf */,
@@ -940,6 +954,10 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C26B4DEE1D14288900213055 /* ConnectWithAgentViewController.swift */,
+				C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */,
+				C28A92481D0EA12300CFEC7A /* BlogsListViewController.swift */,
+				C20939041D11655200CBA70F /* NavigationMainViewController.swift */,
 				C20939001D11557B00CBA70F /* HomeViewController.swift */,
 				C28A92501D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift */,
 				C248704E1D0C25B9003CB0DD /* ExploreHotelsViewController.swift */,
@@ -990,6 +1008,7 @@
 				C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */,
 				C2BB45F11CFDB39800251E8C /* BucketListTableViewController.swift */,
 				C24F84E61D00252F002EA203 /* SettingsViewController.swift */,
+				C28A92461D0E95ED00CFEC7A /* PopularBloggersViewController.swift */,
 				C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */,
 			);
 			name = Controllers;
@@ -1100,6 +1119,15 @@
 				C28A92441D0E83FD00CFEC7A /* FilterRestaurants.swift */,
 			);
 			name = FilterRestaurants;
+			sourceTree = "<group>";
+		};
+		C29D2C121D1BFCC000FA0602 /* ConnectWithAgent */ = {
+			isa = PBXGroup;
+			children = (
+				C26B4DEA1D141D9D00213055 /* ConnectWithAgent.xib */,
+				C26B4DEC1D14216700213055 /* ConnectWithAgent.swift */,
+			);
+			name = ConnectWithAgent;
 			sourceTree = "<group>";
 		};
 		C2A27A431CEDBD0100F74DD1 /* SignInToolbar */ = {
@@ -1246,6 +1274,17 @@
 			name = IconButton;
 			sourceTree = "<group>";
 		};
+		C2DCAE3F1D17FC9600B35331 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C26B4DE61D13C88900213055 /* SlideMenuViewController.swift */,
+				C2DD03271CEB4D0F001878DD /* ImageMask.swift */,
+				C284277B1CE07445003672E9 /* Styles.swift */,
+				C26B4DE81D13E48200213055 /* Layout.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		C2DCB3751CE74718006E5CBD /* AddRating */ = {
 			isa = PBXGroup;
 			children = (
@@ -1387,6 +1426,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */,
+				C20939061D1180C100CBA70F /* DJB My Mood Ring Says Blah.ttf in Resources */,
 				1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */,
 				C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */,
 				C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */,
@@ -1441,6 +1482,7 @@
 				C2DCB36A1CE701A4006E5CBD /* TripSummaryItinerary.xib in Resources */,
 				C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */,
 				C269078B1CF8611F00F827E6 /* ProfilePic.xib in Resources */,
+				C26B4DEB1D141D9D00213055 /* ConnectWithAgent.xib in Resources */,
 				C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */,
 				C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */,
 				C2A6E2621CE9D12800D3F845 /* SpeechBubbleView.xib in Resources */,
@@ -1496,6 +1538,7 @@
 				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
 				C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */,
 				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
+				C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */,
 				C2D594521CF487B30007F50B /* MyLifeTabs.swift in Sources */,
 				C2A27A4E1CEDCE4C00F74DD1 /* SignInFullView.swift in Sources */,
 				C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */,
@@ -1505,7 +1548,9 @@
 				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
+				C26B4DEF1D14288900213055 /* ConnectWithAgentViewController.swift in Sources */,
 				C28A92491D0EA12300CFEC7A /* BlogsListViewController.swift in Sources */,
+				C2DCAE411D18063E00B35331 /* NavigationStyle.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
 				C27F6C051CF06AB10049F012 /* MomentsTab.swift in Sources */,
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
@@ -1553,8 +1598,10 @@
 				C2A27A471CEDC27600F74DD1 /* LogInView.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
 				C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */,
+				C26B4DE71D13C88900213055 /* SlideMenuViewController.swift in Sources */,
 				C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */,
 				C269077F1CF819EB00F827E6 /* GenderInfo.swift in Sources */,
+				C26B4DED1D14216700213055 /* ConnectWithAgent.swift in Sources */,
 				C2A6E2571CE9C13A00D3F845 /* OTGTimelineViewController.swift in Sources */,
 				C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */,
 				C24F85071D006670002EA203 /* CardCheckBoxes.swift in Sources */,
@@ -1591,6 +1638,7 @@
 				C284277C1CE07445003672E9 /* Styles.swift in Sources */,
 				C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */,
 				C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */,
+				C26B4DE91D13E48200213055 /* Layout.swift in Sources */,
 				C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */,
 				C20938FE1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift in Sources */,
 				C28A92451D0E83FD00CFEC7A /* FilterRestaurants.swift in Sources */,

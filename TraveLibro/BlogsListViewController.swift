@@ -8,12 +8,12 @@
 
 import UIKit
 
-class BlogsListViewController: UIViewController, UITableViewDataSource {
+class BlogsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.setNavigationBarItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,15 +37,13 @@ class BlogsListViewController: UIViewController, UITableViewDataSource {
         
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let blogDescriptionVC = storyboard?.instantiateViewControllerWithIdentifier("blogs") as! BlogViewViewController
+        self.navigationController?.pushViewController(blogDescriptionVC, animated: true)
+        
+        
     }
-    */
 
 }
 

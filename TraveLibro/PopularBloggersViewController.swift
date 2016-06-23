@@ -8,12 +8,12 @@
 
 import UIKit
 
-class PopularBloggersViewController: UIViewController, UITableViewDataSource {
+class PopularBloggersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.setNavigationBarItem()
         
     }
 
@@ -30,10 +30,19 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("popularCell")
-        return cell!
+        let cell = tableView.dequeueReusableCellWithIdentifier("popularCell") as! PopularBloggerTableViewCell
+        cell.titleTag.layer.cornerRadius = 5
+        cell.titleTag.layer.borderColor = mainBlueColor.CGColor
+        cell.titleTag.layer.borderWidth = 1.5
+        return cell
         
     }
+    
+//    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        
+//        return 2
+//        
+//    }
 
     /*
     // MARK: - Navigation
@@ -45,4 +54,12 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource {
     }
     */
 
+}
+
+
+class PopularBloggerTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var titleTag: UIView!
+    
+    
 }

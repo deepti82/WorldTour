@@ -17,6 +17,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setNavigationBarItem()
+        
         let email = String(format: "%C", faicon["email"]!)
         
         mailShare.setTitle(email, forState: .Normal)

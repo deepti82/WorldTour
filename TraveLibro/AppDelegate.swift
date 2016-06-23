@@ -23,9 +23,38 @@ var profileViewY:CGFloat = 45
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    internal func createMenuView() {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var nvc: UINavigationController!
+        
+        let leftViewController = storyboard.instantiateViewControllerWithIdentifier("sideMenu") as! SideNavigationMenuViewController
+        
+        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        
+        nvc = UINavigationController(rootViewController: mainViewController)
+        
+        leftViewController.mainViewController = nvc
+        
+        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+        
+        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
+        self.window?.rootViewController = slideMenuController
+        
+        
+//        nvc.setNavigationBarItem()
+        nvc.navigationBar.barTintColor = mainBlueColor
+        nvc.navigationBar.barStyle = .Black
+        
+        
+    }
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        createMenuView()
         
         faicon["clock"] = 0xf017
         faicon["calendar"] = 0xf073

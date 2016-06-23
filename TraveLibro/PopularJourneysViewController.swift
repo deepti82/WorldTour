@@ -15,7 +15,9 @@ class PopularJourneysViewController: UIViewController {
         
         getDarkBackGround(self)
         
-        let popJourneyView = PopularJourneyView(frame: CGRect(x: 0, y: 40, width: self.view.frame.size.width, height: 580))
+        self.setNavigationBarItem()
+        
+        let popJourneyView = PopularJourneyView(frame: CGRect(x: 0, y: 90, width: self.view.frame.size.width, height: 580))
         self.view.addSubview(popJourneyView)
         
     }

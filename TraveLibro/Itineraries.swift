@@ -20,6 +20,8 @@ class Itineraries: UIView {
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var daysBG: UIImageView!
     @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var toTapView: UIView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

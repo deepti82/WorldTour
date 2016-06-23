@@ -8,9 +8,20 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+var GlobalHomeController: HomeViewController!
+
+class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    @IBOutlet weak var headerLabel: UILabel!
+    var activityController: UIViewController!
+    
+    func homeTap (sender: UITapGestureRecognizer? = nil) {
+        
+        let activityController = storyboard!.instantiateViewControllerWithIdentifier("Activity") as! ProfilePostsViewController
+        self.activityController = UINavigationController(rootViewController: activityController)
+        self.slideMenuController()?.changeMainViewController(self.activityController, close: true)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,8 +31,16 @@ class HomeViewController: UIViewController {
         footer.layer.zPosition = 100
         self.view.addSubview(footer)
         
+        self.setNavigationBarItem()
+        
         let signUpOne = storyboard?.instantiateViewControllerWithIdentifier("SignUpOne") as! SignInViewController
         self.addChildViewController(signUpOne)
+        
+        let myTouch = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.homeTap(_:)))
+        myTouch.delegate = self
+        self.view.addGestureRecognizer(myTouch)
+        
+//        self.resizeView(8);
         
     }
     
@@ -29,5 +48,11 @@ class HomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+//    func resizeView(offset:CGFloat)
+//    {
+//        self.verticalLayout.layoutSubviews()
+//        
+//    }
 
 }

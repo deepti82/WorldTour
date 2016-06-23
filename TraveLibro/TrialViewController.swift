@@ -15,9 +15,19 @@ class TrialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let image = UIImage(named: "disney_world")
-        let maskingImage = UIImage(named: "profile_mask.png")
-        newImage.image = maskImage(image!, mask: maskingImage!)
+//        let image = UIImage(named: "disney_world")
+//        let maskingImage = UIImage(named: "profile_mask.png")
+//        newImage.image = maskImage(image!, mask: maskingImage!)
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(scrollView)
+        
+        scrollView.contentSize.height = 1000
+        
+        let mustDoDescription = EachMustDo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: scrollView.contentSize.height))
+        scrollView.addSubview(mustDoDescription)
+        
+    
+    
     }
 
     override func didReceiveMemoryWarning() {

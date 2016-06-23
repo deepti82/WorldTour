@@ -37,10 +37,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBa-7S-2Sh">
                     <rect key="frame" x="0.0" y="24" width="400" height="527"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="0c9-58-812">
-                            <rect key="frame" x="8" y="-34" width="60" height="68"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_with_border" translatesAutoresizingMaskIntoConstraints="NO" id="0c9-58-812">
+                            <rect key="frame" x="8" y="-36" width="70" height="70"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="ffb-8u-vp1"/>
+                                <constraint firstAttribute="width" constant="70" id="ffb-8u-vp1"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disney-world" translatesAutoresizingMaskIntoConstraints="NO" id="dSK-58-ML0">
@@ -55,7 +55,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xt1-dd-ivu">
                                     <rect key="frame" x="8" y="37" width="384" height="30"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="video_icon" translatesAutoresizingMaskIntoConstraints="NO" id="b7I-aF-n8G">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="b7I-aF-n8G">
                                             <rect key="frame" x="75" y="3" width="20" height="20"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -98,6 +98,7 @@
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_icon" translatesAutoresizingMaskIntoConstraints="NO" id="UwX-Hj-LPl">
                                             <rect key="frame" x="8" y="5" width="20" height="20"/>
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="20" id="qz9-Tn-w4d"/>
                                             </constraints>
@@ -354,11 +355,30 @@
                                 <constraint firstAttribute="width" constant="20" id="C0f-5i-uxi"/>
                             </constraints>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manan Vora" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPg-OK-lRc">
+                            <rect key="frame" x="81" y="8" width="80" height="20"/>
+                            <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMw-EM-PZz">
+                            <rect key="frame" x="350" y="8" width="42" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="dOV-Mh-yDs"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <state key="normal" title="Follow">
+                                <color key="titleColor" red="0.25882352941176467" green="0.29019607843137252" blue="0.396078431372549" alpha="1" colorSpace="deviceRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="followButton:" destination="-1" eventType="touchUpInside" id="0xZ-pu-U6k"/>
+                            </connections>
+                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3M0-2z-lOO">
-                            <rect key="frame" x="76" y="26" width="189" height="33"/>
+                            <rect key="frame" x="81" y="26" width="189" height="25"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4v-nH-9bn">
-                                    <rect key="frame" x="0.0" y="8" width="189" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="189" height="25"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFQ-Ln-kT6">
                                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -398,34 +418,16 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="y4v-nH-9bn" firstAttribute="top" secondItem="3M0-2z-lOO" secondAttribute="top" constant="8" id="7Q3-Fe-Pu2"/>
+                                <constraint firstItem="y4v-nH-9bn" firstAttribute="top" secondItem="3M0-2z-lOO" secondAttribute="top" id="7Q3-Fe-Pu2"/>
                                 <constraint firstItem="y4v-nH-9bn" firstAttribute="leading" secondItem="3M0-2z-lOO" secondAttribute="leading" id="Mqz-RD-foY"/>
                                 <constraint firstAttribute="bottom" secondItem="y4v-nH-9bn" secondAttribute="bottom" id="Ncn-Es-6Lg"/>
                                 <constraint firstAttribute="trailing" secondItem="y4v-nH-9bn" secondAttribute="trailing" id="zAk-zn-WIr"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manan Vora" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPg-OK-lRc">
-                            <rect key="frame" x="76" y="8" width="80" height="20"/>
-                            <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="14"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMw-EM-PZz">
-                            <rect key="frame" x="350" y="8" width="42" height="20"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="dOV-Mh-yDs"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                            <state key="normal" title="Follow">
-                                <color key="titleColor" red="0.25882352941176467" green="0.29019607843137252" blue="0.396078431372549" alpha="1" colorSpace="deviceRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="followButton:" destination="-1" eventType="touchUpInside" id="0xZ-pu-U6k"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -434,7 +436,7 @@
                         <constraint firstItem="Bh4-z4-Jxd" firstAttribute="leading" secondItem="P1T-sM-aPK" secondAttribute="leading" id="58D-JI-Oz9"/>
                         <constraint firstItem="OSf-q5-DnA" firstAttribute="trailing" secondItem="dSK-58-ML0" secondAttribute="trailing" id="9vl-mV-wNI"/>
                         <constraint firstItem="3M0-2z-lOO" firstAttribute="leading" secondItem="uPg-OK-lRc" secondAttribute="leading" id="9x3-UC-usr"/>
-                        <constraint firstItem="uPg-OK-lRc" firstAttribute="leading" secondItem="0c9-58-812" secondAttribute="trailing" constant="8" symbolic="YES" id="DWn-OJ-DT4"/>
+                        <constraint firstItem="uPg-OK-lRc" firstAttribute="leading" secondItem="0c9-58-812" secondAttribute="trailing" constant="3" id="DWn-OJ-DT4"/>
                         <constraint firstAttribute="trailing" secondItem="dSK-58-ML0" secondAttribute="trailing" id="GHb-mS-4nJ"/>
                         <constraint firstItem="uPg-OK-lRc" firstAttribute="top" secondItem="VBa-7S-2Sh" secondAttribute="top" constant="8" id="MTM-a8-6dS"/>
                         <constraint firstItem="BMw-EM-PZz" firstAttribute="top" secondItem="VBa-7S-2Sh" secondAttribute="top" constant="8" id="Mt1-v6-H4E"/>
@@ -444,7 +446,7 @@
                         <constraint firstItem="mFt-Uz-Oec" firstAttribute="bottom" secondItem="XNW-Wj-uN9" secondAttribute="bottom" id="aDJ-aM-aAF"/>
                         <constraint firstItem="eFN-nq-iV8" firstAttribute="top" secondItem="dSK-58-ML0" secondAttribute="bottom" constant="26" id="aJn-6y-I75"/>
                         <constraint firstItem="BMw-EM-PZz" firstAttribute="top" secondItem="VBa-7S-2Sh" secondAttribute="top" constant="3" id="afp-eJ-Rf7"/>
-                        <constraint firstItem="XSp-h6-c0E" firstAttribute="top" secondItem="3M0-2z-lOO" secondAttribute="bottom" constant="8" symbolic="YES" id="cMH-c7-ad8"/>
+                        <constraint firstItem="XSp-h6-c0E" firstAttribute="top" secondItem="3M0-2z-lOO" secondAttribute="bottom" constant="16" id="cMH-c7-ad8"/>
                         <constraint firstItem="P1T-sM-aPK" firstAttribute="top" secondItem="Bh4-z4-Jxd" secondAttribute="bottom" constant="8" symbolic="YES" id="clH-du-OUz"/>
                         <constraint firstItem="3M0-2z-lOO" firstAttribute="top" secondItem="VBa-7S-2Sh" secondAttribute="top" constant="26" id="d9m-hq-dP0"/>
                         <constraint firstItem="eFN-nq-iV8" firstAttribute="trailing" secondItem="VBa-7S-2Sh" secondAttribute="trailingMargin" id="dGP-y6-bTc"/>
@@ -459,7 +461,7 @@
                         <constraint firstItem="mFt-Uz-Oec" firstAttribute="leading" secondItem="nSI-RJ-0vZ" secondAttribute="trailing" constant="42" id="nUD-kx-QAt"/>
                         <constraint firstItem="dSK-58-ML0" firstAttribute="leading" secondItem="VBa-7S-2Sh" secondAttribute="leading" id="nkF-uB-T4k"/>
                         <constraint firstItem="P1T-sM-aPK" firstAttribute="leading" secondItem="VBa-7S-2Sh" secondAttribute="leadingMargin" id="pfh-sl-4i9"/>
-                        <constraint firstItem="0c9-58-812" firstAttribute="top" secondItem="VBa-7S-2Sh" secondAttribute="top" constant="-34" id="qsU-Is-gQ2"/>
+                        <constraint firstItem="0c9-58-812" firstAttribute="top" secondItem="VBa-7S-2Sh" secondAttribute="top" constant="-36" id="qsU-Is-gQ2"/>
                         <constraint firstItem="eFN-nq-iV8" firstAttribute="top" secondItem="Bh4-z4-Jxd" secondAttribute="top" id="s7g-ng-8jA"/>
                         <constraint firstItem="mFt-Uz-Oec" firstAttribute="top" secondItem="XNW-Wj-uN9" secondAttribute="top" id="t5q-TB-L6c"/>
                         <constraint firstItem="P1T-sM-aPK" firstAttribute="leading" secondItem="XSp-h6-c0E" secondAttribute="leading" id="xaF-78-SV6"/>
@@ -494,11 +496,11 @@
         <image name="location_icon" width="200" height="200"/>
         <image name="luxury_icon" width="51" height="60"/>
         <image name="options_icon" width="30" height="30"/>
-        <image name="profile_icon" width="59" height="60"/>
+        <image name="profile_with_border" width="200" height="200"/>
         <image name="reviews" width="60" height="60"/>
         <image name="share_icon" width="21" height="30"/>
         <image name="speech_icon" width="30" height="30"/>
         <image name="travel_life" width="80" height="80"/>
-        <image name="video_icon" width="120" height="120"/>
+        <image name="video" width="51" height="51"/>
     </resources>
 </document>

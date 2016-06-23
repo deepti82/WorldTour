@@ -12,7 +12,9 @@ class EmptyPagesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.setNavigationBarItem()
+        
         let nofollow = NoFollowers(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 120))
         self.view.addSubview(nofollow)
         

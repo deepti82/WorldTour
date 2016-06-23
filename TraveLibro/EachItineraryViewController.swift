@@ -9,17 +9,54 @@
 import UIKit
 
 class EachItineraryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    
+    var prevSelectedTab: UIButton?
+    
+    
     @IBOutlet weak var tabSeven: UIButton!
     @IBOutlet weak var tabSix: UIButton!
     @IBOutlet weak var tabFive: UIButton!
-    @IBOutlet weak var tabFour: UIButton!
     @IBOutlet weak var TabThree: UIButton!
     @IBOutlet weak var tabTwo: UIButton!
     @IBOutlet weak var tabOne: UIButton!
+    @IBOutlet weak var theTableView: UITableView!
+    @IBAction func TapPhotos(sender: AnyObject) {
+        
+        let modalContent = self.storyboard?.instantiateViewControllerWithIdentifier("MomentsVC") as! MomentsEachViewController
+        
+        modalContent.modalPresentationStyle = .FullScreen
+        let modal = modalContent.popoverPresentationController
+        
+        self.presentViewController(modalContent, animated: true, completion: nil)
+        
+        
+    }
     
-    let cityLabels = ["", "Mumbai", "", "", "Pune", "Nagpur", "Nashik", "Aurangabad"]
-    let dayLabels = ["", "Day 1 to Day 3", "", "", "Day 3 to Day 5", "Day 5 to Day 7", "Day 8 to Day 9", "Day 9 to Day 10"]
+    @IBAction func panOnButton(sender: AnyObject) {
+        
+        let modalContent = self.storyboard?.instantiateViewControllerWithIdentifier("MomentsVC") as! MomentsEachViewController
+        
+        modalContent.modalPresentationStyle = .FullScreen
+        let modal = modalContent.popoverPresentationController
+        
+        self.presentViewController(modalContent, animated: true, completion: nil)
+        
+    }
+
+    @IBAction func tabTap(sender: UIButton) {
+       
+        prevSelectedTab?.backgroundColor = mainBlueColor
+        sender.backgroundColor = mainOrangeColor
+        prevSelectedTab = sender
+        
+    }
+    
+    var cityLabels = ["", "Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"]
+    var dayLabels = ["", "Day 1 to Day 3", "Day 3 to Day 5", "Day 5 to Day 7", "Day 8 to Day 9", "Day 9 to Day 10"]
+    var isSelectedIndex: Int?
+    var isExpanded = false
+    let childCells = 4
+    let childCellArray = ["Stayed At", "Ate At", "Must Do", "little more"]
     
     
     override func viewDidLoad() {
@@ -28,7 +65,6 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         makeTabs(tabSeven)
         makeTabs(tabSix)
         makeTabs(tabFive)
-        makeTabs(tabFour)
         makeTabs(TabThree)
         makeTabs(tabTwo)
         makeTabs(tabOne)
@@ -60,23 +96,28 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             itineraryView.separatorView.removeFromSuperview()
             itineraryView.options.removeFromSuperview()
             firstPostCell.myView.addSubview(itineraryView)
-            
+            firstPostCell.selectionStyle = .None
             return firstPostCell
             
         }
         
-        else if indexPath.row == 2 {
+        else if cityLabels[indexPath.row] == "Stayed At" ||  cityLabels[indexPath.row] == "Ate At" || cityLabels[indexPath.row] == "Must Do" {
             
             let childCell = tableView.dequeueReusableCellWithIdentifier("childCellOne") as! ItineraryAccordionChildCellTableViewCell
+//            childCell.selectionStyle = .None
             return childCell
             
         }
         
-        else if indexPath.row == 3 {
+        else if cityLabels[indexPath.row] == "little more" {
             
             let childCellTwo = tableView.dequeueReusableCellWithIdentifier("childCellTwo") as! ItineraryAccordionChildCellDescriptionTableViewCell
-            let sub = MoreAboutTrip(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 500))
-            childCellTwo.addSubview(sub)
+            let sub = MoreAboutTrip(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
+            let subTwo = MoreAboutTrip(frame: CGRect(x: 0, y: 300, width: self.view.frame.width, height: 300))
+            childCellTwo.descriptionCell.addSubview(subTwo)
+            childCellTwo.descriptionCell.addSubview(sub)
+            subTwo.mainTitle.removeFromSuperview()
+            childCellTwo.selectionStyle = .None
             return childCellTwo
             
         }
@@ -98,18 +139,107 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
             
-        else if indexPath.row == 2 {
+        else if cityLabels[indexPath.row] == "Stayed At" ||  cityLabels[indexPath.row] == "Ate At" || cityLabels[indexPath.row] == "Must Do" {
             
             return 60
         }
         
-        else if indexPath.row == 3 {
+        else if cityLabels[indexPath.row] == "little more" {
             
-            return 500
+            return 300 * 2
         }
         
         return 45
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+            
+        if indexPath.row != 0 && cityLabels[indexPath.row] != "little more" && cityLabels[indexPath.row] != "Ate At" && cityLabels[indexPath.row] != "Stayed At" && cityLabels[indexPath.row] != "Must Do" {
+            
+            if (isExpanded == true) {
+                if(isSelectedIndex == indexPath.row) {
+                    
+                    isExpanded = false
+                    print("in if statement 1")
+                    expandParent(isExpanded, index: isSelectedIndex!)
+                    
+                }
+                    
+                else {
+                    let prevIndex = isSelectedIndex
+                    expandParent(false, index: isSelectedIndex!)
+                    isExpanded = true
+                    if(prevIndex < indexPath.row) {
+                        isSelectedIndex = indexPath.row - childCells
+                        print("in if statement 2")
+                    } else {
+                        isSelectedIndex = indexPath.row
+                        print("in if statement 4")
+                    }
+                    
+                    expandParent(isExpanded, index: isSelectedIndex!)
+                    
+                }
+                
+                
+            }
+                
+        else {
+            isExpanded = true
+            isSelectedIndex = indexPath.item
+            print("in if statement 3")
+            expandParent(isExpanded, index: indexPath.item)
+        }
+            
+        }
+        
+        if cityLabels[indexPath.row] == "Ate At" || cityLabels[indexPath.row] == "Stayed At" || cityLabels[indexPath.row] == "Must Do" {
+            
+            let exploreHotelsVC = storyboard?.instantiateViewControllerWithIdentifier("ExploreHotelsVC") as! ExploreHotelsViewController
+            self.navigationController?.pushViewController(exploreHotelsVC, animated: true)
+            
+            
+        }
+        
+        
+    }
+    
+    func expandParent(isExpanded: Bool, index: Int) -> Void {
+        
+        if(isExpanded == true) {
+            
+            for j in 0 ..< childCells {
+                cityLabels.insert(childCellArray[j], atIndex: index + 1 + j)
+                dayLabels.insert(childCellArray[j], atIndex: index + 1 + j)
+            }
+            print("city labels: \(cityLabels)")
+            print("day labels: \(dayLabels)")
+            theTableView.reloadData()
+            
+            
+        }
+            
+        else if(isExpanded == false) {
+            
+            for _ in 0 ..< childCells {
+                if index ==  cityLabels.count {
+                    
+                    cityLabels.removeAtIndex(index)
+                    dayLabels.removeAtIndex(index)
+                }
+                
+                else {
+                    
+                    cityLabels.removeAtIndex(index+1)
+                    dayLabels.removeAtIndex(index+1)
+                }
+                
+            }
+            theTableView.reloadData()
+            
+        }
+    }
+    
 
     func makeTabs(myTab: UIButton) -> Void {
         

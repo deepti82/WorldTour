@@ -8,15 +8,55 @@
 
 import UIKit
 
-class SideNavigationMenuViewController: UIViewController, UITableViewDataSource {
-
+class SideNavigationMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var mainViewController: UIViewController!
+    var homeController:UIViewController!
+    var popJourneysController:UIViewController!
+    var exploreDestinationsController:UIViewController!
+    var popBloggersController:UIViewController!
+    var blogsController:UIViewController!
+    var inviteFriendsController:UIViewController!
+    var rateUsController:UIViewController!
+    var feedbackController:UIViewController!
+    var logOutController:UIViewController!
+    
+    
     let labels = ["Popular Journeys", "Explore Destinations", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out"]
     
     @IBOutlet weak var profileView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let homeController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        self.homeController = UINavigationController(rootViewController: homeController)
+        
+        let PJController = storyboard.instantiateViewControllerWithIdentifier("popularJourneys") as! PopularJourneysViewController
+        self.popJourneysController = UINavigationController(rootViewController: PJController)
+        
+        let EDController = storyboard.instantiateViewControllerWithIdentifier("exploreDestinations") as! ExploreDestinationsViewController
+        self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
+        
+        let PBController = storyboard.instantiateViewControllerWithIdentifier("popularBloggers") as! PopularBloggersViewController
+        self.popBloggersController = UINavigationController(rootViewController: PBController)
+        
+        let BlogsController = storyboard.instantiateViewControllerWithIdentifier("blogsList") as! BlogsListViewController
+        self.blogsController = UINavigationController(rootViewController: BlogsController)
+        
+        let inviteController = storyboard.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController
+        self.inviteFriendsController = UINavigationController(rootViewController: inviteController)
+        
+        let rateUsController = storyboard.instantiateViewControllerWithIdentifier("rating") as! RatingReviewViewController
+        self.rateUsController = UINavigationController(rootViewController: rateUsController)
+        
+        let FBController = storyboard.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+        self.feedbackController = UINavigationController(rootViewController: FBController)
+        
+        let logOutController = storyboard.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+        self.logOutController = UINavigationController(rootViewController: logOutController)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,15 +77,30 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource 
         return labels.count
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch(indexPath.row)
+        {
+        case 0:
+            self.slideMenuController()?.changeMainViewController(self.popJourneysController, close: true)
+        case 1:
+            self.slideMenuController()?.changeMainViewController(self.exploreDestinationsController, close: true)
+        case 2:
+            self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)
+        case 3:
+            self.slideMenuController()?.changeMainViewController(self.blogsController, close: true)
+        case 4:
+            self.slideMenuController()?.changeMainViewController(self.inviteFriendsController, close: true)
+        case 5:
+            self.slideMenuController()?.changeMainViewController(self.rateUsController, close: true)
+        case 6:
+            self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
+        case 7:
+            self.slideMenuController()?.changeMainViewController(self.logOutController, close: true)
+        default:
+            self.slideMenuController()?.changeMainViewController(self.homeController, close: true)
+        }
     }
-    */
 
 }
 

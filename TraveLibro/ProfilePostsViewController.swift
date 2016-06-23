@@ -14,6 +14,9 @@ class ProfilePostsViewController: UIViewController {
         super.viewDidLoad()
         getDarkBackGround(self)
         
+        self.setNavigationBarItem()
+//        self.setNavigationBarItemText("Activity")
+        
 //        let otgPost = InProfileOTGPost(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 520))
 //        self.view.addSubview(otgPost)
         

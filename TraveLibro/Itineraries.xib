@@ -18,6 +18,7 @@
                 <outlet property="profileName" destination="BiH-bf-lhn" id="9kx-fI-n4s"/>
                 <outlet property="reviewStack" destination="SZG-AQ-CI6" id="NIS-n2-4Ph"/>
                 <outlet property="separatorView" destination="NoI-U3-bZF" id="3Jl-bD-tAC"/>
+                <outlet property="toTapView" destination="bB1-p0-HPE" id="DW9-jh-nUM"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -224,13 +225,13 @@
                             <attributedString key="attributedText">
                                 <fragment content="15660">
                                     <attributes>
-                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <font key="NSFont" size="12" name="Avenir-Heavy"/>
                                     </attributes>
                                 </fragment>
                                 <fragment content=" Likes">
                                     <attributes>
-                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <font key="NSFont" size="12" name="Avenir-Roman"/>
                                     </attributes>
                                 </fragment>
@@ -254,14 +255,14 @@
                             <attributedString key="attributedText">
                                 <fragment content="355">
                                     <attributes>
-                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <font key="NSFont" size="12" name="Avenir-Heavy"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
                                 </fragment>
                                 <fragment content=" Reviews">
                                     <attributes>
-                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <font key="NSFont" size="12" name="Avenir-Roman"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
@@ -277,6 +278,10 @@
                         <constraint firstAttribute="width" constant="20" id="bcx-DM-oWZ"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bB1-p0-HPE">
+                    <rect key="frame" x="0.0" y="78" width="400" height="322"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -284,11 +289,15 @@
                 <constraint firstItem="dZs-3t-70c" firstAttribute="top" secondItem="4Kz-rZ-Kjk" secondAttribute="bottom" constant="8" id="4p0-On-eGh"/>
                 <constraint firstItem="ONO-5O-ESx" firstAttribute="top" secondItem="4Kz-rZ-Kjk" secondAttribute="bottom" constant="8" id="6Vw-4e-XHy"/>
                 <constraint firstItem="eGg-rX-882" firstAttribute="trailing" secondItem="4Kz-rZ-Kjk" secondAttribute="trailing" id="8Oh-C8-1RE"/>
+                <constraint firstItem="bB1-p0-HPE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8ho-lR-xS7"/>
+                <constraint firstAttribute="trailing" secondItem="bB1-p0-HPE" secondAttribute="trailing" id="BSv-xW-K7U"/>
+                <constraint firstItem="bB1-p0-HPE" firstAttribute="top" secondItem="fDh-rd-WlE" secondAttribute="bottom" constant="8" id="Gz2-pP-E1b"/>
                 <constraint firstItem="SZG-AQ-CI6" firstAttribute="top" secondItem="NoI-U3-bZF" secondAttribute="bottom" constant="8" id="Jav-L7-tNy"/>
                 <constraint firstItem="SZG-AQ-CI6" firstAttribute="leading" secondItem="wj5-Ap-gt6" secondAttribute="trailing" constant="20" id="NJ4-qa-1t6"/>
                 <constraint firstItem="4Kz-rZ-Kjk" firstAttribute="top" secondItem="fDh-rd-WlE" secondAttribute="bottom" constant="230" id="OIa-et-xFW"/>
                 <constraint firstItem="4Kz-rZ-Kjk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TVz-a6-0U7"/>
                 <constraint firstItem="wj5-Ap-gt6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="TiN-6p-5Hk"/>
+                <constraint firstItem="dZs-3t-70c" firstAttribute="top" secondItem="bB1-p0-HPE" secondAttribute="bottom" constant="8" id="UdA-r9-sTn"/>
                 <constraint firstAttribute="trailing" secondItem="fDh-rd-WlE" secondAttribute="trailing" id="b8R-bQ-wUn"/>
                 <constraint firstAttribute="trailing" secondItem="NoI-U3-bZF" secondAttribute="trailing" constant="8" id="cUv-Lp-A1d"/>
                 <constraint firstItem="NoI-U3-bZF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="hie-7U-DdT"/>
