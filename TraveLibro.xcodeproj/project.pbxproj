@@ -56,6 +56,8 @@
 		C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */; };
 		C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */; };
 		C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */; };
+		C245776C1D1D4F8200C6568C /* NewProfilePosts.xib in Resources */ = {isa = PBXBuildFile; fileRef = C245776B1D1D4F8200C6568C /* NewProfilePosts.xib */; };
+		C245776E1D1D5ACD00C6568C /* NewProfilePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C245776D1D1D5ACD00C6568C /* NewProfilePosts.swift */; };
 		C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24870471D0BEAF7003CB0DD /* EachItineraryViewController.swift */; };
 		C248704A1D0BEE75003CB0DD /* MoreAboutTrip.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24870491D0BEE75003CB0DD /* MoreAboutTrip.xib */; };
 		C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C248704B1D0BF05B003CB0DD /* MoreAboutTrip.swift */; };
@@ -291,6 +293,8 @@
 		C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndLocalLife.swift; sourceTree = "<group>"; };
 		C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPostsLocalLife.xib; sourceTree = "<group>"; };
 		C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPostsLocalLife.swift; sourceTree = "<group>"; };
+		C245776B1D1D4F8200C6568C /* NewProfilePosts.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewProfilePosts.xib; sourceTree = "<group>"; };
+		C245776D1D1D5ACD00C6568C /* NewProfilePosts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfilePosts.swift; sourceTree = "<group>"; };
 		C24870471D0BEAF7003CB0DD /* EachItineraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachItineraryViewController.swift; sourceTree = "<group>"; };
 		C24870491D0BEE75003CB0DD /* MoreAboutTrip.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreAboutTrip.xib; sourceTree = "<group>"; };
 		C248704B1D0BF05B003CB0DD /* MoreAboutTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutTrip.swift; sourceTree = "<group>"; };
@@ -1126,6 +1130,8 @@
 			children = (
 				C26B4DEA1D141D9D00213055 /* ConnectWithAgent.xib */,
 				C26B4DEC1D14216700213055 /* ConnectWithAgent.swift */,
+				C245776B1D1D4F8200C6568C /* NewProfilePosts.xib */,
+				C245776D1D1D5ACD00C6568C /* NewProfilePosts.swift */,
 			);
 			name = ConnectWithAgent;
 			sourceTree = "<group>";
@@ -1472,6 +1478,7 @@
 				C2A5C1D51CF9A7F90035EF0E /* MoreAboutMe.xib in Resources */,
 				C2A6E25D1CE9C88D00D3F845 /* TripInfoView.xib in Resources */,
 				C23EB1D51CFED110005B5CE8 /* LocalLifeRecommends.xib in Resources */,
+				C245776C1D1D4F8200C6568C /* NewProfilePosts.xib in Resources */,
 				C24F84E91D004304002EA203 /* ReportProblem.xib in Resources */,
 				1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */,
 				C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */,
@@ -1652,6 +1659,7 @@
 				C2ABDBB01CEC4F1400D7542E /* OnlyPhoto.swift in Sources */,
 				C2C9659D1CE4AEB2007BDA34 /* ThoughtsViewController.swift in Sources */,
 				C2FA008A1CF57EC100E6A7D7 /* SetProfilePictureViewController.swift in Sources */,
+				C245776E1D1D5ACD00C6568C /* NewProfilePosts.swift in Sources */,
 				C2BFA9761CF2D2A900DC2066 /* MyLifeViewController.swift in Sources */,
 				C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,

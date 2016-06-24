@@ -20,10 +20,16 @@ class ProfilePostsViewController: UIViewController {
 //        let otgPost = InProfileOTGPost(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 520))
 //        self.view.addSubview(otgPost)
         
-        let otgPostTwo = InProfileOTGPost(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 520))
-        otgPostTwo.iconButtonView.removeFromSuperview()
-        otgPostTwo.statusLabel.removeFromSuperview()
-        self.view.addSubview(otgPostTwo)
+//        let otgPostTwo = PhotosOTG(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 500))
+//        self.view.addSubview(otgPostTwo)
+        
+        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        scrollView.contentSize.height = 1000
+        self.view.addSubview(scrollView)
+        
+        let newProfile = NewProfilePosts(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: 775))
+        scrollView.addSubview(newProfile)
+        newProfile.videoPlayView.removeFromSuperview()
         
     }
 
