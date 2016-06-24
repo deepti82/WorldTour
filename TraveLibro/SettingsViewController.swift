@@ -10,13 +10,13 @@ import UIKit
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let labels = ["Cellular and WiFi", "WiFi", "Cellular"]
+    internal var labels = ["Cellular and WiFi", "WiFi", "Cellular"]
     
     @IBOutlet weak var heightConstraintTable: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         let count: CGFloat = CGFloat(labels.count)
-        heightConstraintTable.constant = count * 45
+        heightConstraintTable.constant = count * 75
         print("NSLayoutConstraint: \(heightConstraintTable)")
         
     }
@@ -29,7 +29,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return labels.count
         
     }
     
@@ -55,6 +55,17 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         else {
             
             selectedCell?.accessoryType = .Checkmark
+        }
+        
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        
+        if selectedCell?.accessoryType == .Checkmark {
+            
+            selectedCell?.accessoryType = .None
         }
         
     }

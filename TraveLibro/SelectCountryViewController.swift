@@ -10,6 +10,7 @@ import UIKit
 
 class SelectCountryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var searchView: UIView!
     var countries = ["India", "Kuwait", "Mumbai", "Australia", "Switzerland", "Hong Kong", "Malaysia", "Singapore", "Mauritius"]
     
     var selectedIndex: NSIndexPath = NSIndexPath()
@@ -17,6 +18,14 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let searchFieldView = SearchFieldView(frame: CGRect(x: 0, y: 0, width: searchView.frame.width + 60, height: searchView.frame.height))
+        searchFieldView.leftLine.backgroundColor = mainOrangeColor
+        searchFieldView.rightLine.backgroundColor = mainOrangeColor
+        searchFieldView.bottomLine.backgroundColor = mainOrangeColor
+        searchFieldView.searchButton.tintColor = mainOrangeColor
+        searchFieldView.searchField.placeholder = "Search"
+        searchView.addSubview(searchFieldView)
         
         
     }
@@ -66,6 +75,12 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CountriesTableViewCell
         cell.flagImage.image = UIImage(named: "indian_flag")
         cell.countryName.text = countries[indexPath.item]
+        
+        if indexPath.row % 2 == 0 {
+            
+            cell.backgroundColor = mainOrangeColor
+        }
+        
         return cell
     }
     

@@ -28,20 +28,20 @@ class ResetPassword: UIView {
         
         submitbutton.layer.cornerRadius = 5
         
-        confirmpswd.attributedPlaceholder = NSAttributedString(string: "Old Password", attributes: attributes)
-        confirmpswd.leftView = paddingView
-        confirmpswd.leftViewMode = .Always
-        confirmpswd.borderStyle = .None
-        
-        newpswd.attributedPlaceholder = NSAttributedString(string: "Old Password", attributes: attributes)
-        newpswd.leftView = paddingView
-        newpswd.leftViewMode = .Always
-        newpswd.borderStyle = .None
-        
-        oldpswd.attributedPlaceholder = NSAttributedString(string: "Old Password", attributes: attributes)
-        oldpswd.leftView = paddingView
-        oldpswd.leftViewMode = .Always
-        oldpswd.borderStyle = .None
+//        confirmpswd.attributedPlaceholder = NSAttributedString(string: "Old Password", attributes: attributes)
+//        confirmpswd.leftView = paddingView
+//        confirmpswd.leftViewMode = .Always
+//        confirmpswd.borderStyle = .None
+//        
+//        newpswd.attributedPlaceholder = NSAttributedString(string: "Old Password", attributes: attributes)
+//        newpswd.leftView = paddingView
+//        newpswd.leftViewMode = .Always
+//        newpswd.borderStyle = .None
+//        
+//        oldpswd.attributedPlaceholder = NSAttributedString(string: "Old Password", attributes: attributes)
+//        oldpswd.leftView = paddingView
+//        oldpswd.leftViewMode = .Always
+//        oldpswd.borderStyle = .None
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -20,15 +20,27 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var rateUsController:UIViewController!
     var feedbackController:UIViewController!
     var logOutController:UIViewController!
+    var settingsViewController: UIViewController!
+    
     
     
     let labels = ["Popular Journeys", "Explore Destinations", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out"]
     
     @IBOutlet weak var profileView: UIView!
+    
+    @IBAction func SettingsTap(sender: AnyObject) {
+        
+        self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let settingsVC = storyboard.instantiateViewControllerWithIdentifier("UserProfileSettings") as! UserProfileSettingsViewController
+        self.settingsViewController = UINavigationController(rootViewController: settingsVC)
         
         let homeController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         self.homeController = UINavigationController(rootViewController: homeController)
@@ -57,7 +69,22 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let logOutController = storyboard.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
         self.logOutController = UINavigationController(rootViewController: logOutController)
         
+        
+//        let tapForSettings = UIGestureRecognizer(target: self, action: #selector(self.profileTap(_:)))
+//        profileView.addGestureRecognizer(tapForSettings)
+        
     }
+    
+    @IBAction func profilTap(sender: AnyObject) {
+        
+        self.SettingsTap(sender)
+        
+    }
+//    func profileTap (sender: UITapGestureRecognizer? = nil) {
+//        
+//        
+//        
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

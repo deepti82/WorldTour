@@ -12,6 +12,12 @@ class SearchFieldView: UIView {
 
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var SearchView: UIView!
+    @IBOutlet weak var leftLine: UIView!
+    @IBOutlet weak var bottomLine: UIView!
+    @IBOutlet weak var rightLine: UIView!
+    @IBOutlet weak var searchButton: UIButton!
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

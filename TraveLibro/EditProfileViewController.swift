@@ -8,15 +8,21 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class EditProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var editTableViewCell: UITableView!
     let labels = ["Profile Photo", "16 Jan 1988", "Yash Chudasama", "Dream Destination", "Favourite City", "Nationality", "City", "Male"]
     var myView: Int = 0
+    let imagePicker = UIImagePickerController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        imagePicker.delegate = self
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +40,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             
         }
         
-        else if indexPath.section == 1 || indexPath.section == 6 {
+        else if indexPath.section == 1 || indexPath.section == 6 || indexPath.section == 7 {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("EditLabelCell") as! EditProfileTableViewCell
             cell.editLabel.text = labels[indexPath.section]
@@ -51,8 +57,10 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("EditLabelCell") as! EditProfileTableViewCell
-        cell.editLabel.text = labels[indexPath.section]
+        let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldTableViewCell
+        cell.textField.text = labels[indexPath.section]
+        cell.textField.delegate = self
+        cell.textField.contentVerticalAlignment = .Center
         cell.accessoryType = .None
         return cell
         
@@ -64,18 +72,84 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        print("jewjkhwerkjhwerkhwer")
+        textField.resignFirstResponder()
+        return false
+        
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        textField.resignFirstResponder()
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y -= keyboardSize.height
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += keyboardSize.height
+        }
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        myView = tableView.indexPathForSelectedRow!.section
+//        myView = tableView.indexPathForSelectedRow!.section
         
-        switch myView {
+        switch indexPath.section {
+        case 0:
+//            let moveAndScaleVC = storyboard?.instantiateViewControllerWithIdentifier("") as! SetProfilePictureViewController
+//            self.navigationController?.pushViewController(moveAndScaleVC, animated: true)
+            let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            
+            let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+                
+                
+            }
+            actionSheetControllerIOS8.addAction(cancelActionButton)
+            
+            let saveActionButton: UIAlertAction = UIAlertAction(title: "Take Photo", style: .Default)
+            { action -> Void in
+                
+                self.imagePicker.allowsEditing = true
+                self.imagePicker.sourceType = .Camera
+                self.presentViewController(self.imagePicker, animated: true, completion: nil)
+                
+            }
+            actionSheetControllerIOS8.addAction(saveActionButton)
+            
+            let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .Default)
+            { action -> Void in
+                
+                self.imagePicker.allowsEditing = true
+                self.imagePicker.sourceType = .PhotoLibrary
+                self.presentViewController(self.imagePicker, animated: true, completion: nil)
+                
+                
+            }
+            actionSheetControllerIOS8.addAction(deleteActionButton)
+            self.presentViewController(actionSheetControllerIOS8, animated: true, completion: nil)
         case 1, 7, 6:
-            print("in 1 switch case")
-            self.performSegueWithIdentifier("editDateETC", sender: nil)
+            let otherSettingsVC = storyboard?.instantiateViewControllerWithIdentifier("EditEdit") as! EditEditProfileViewController
+            otherSettingsVC.whichView = indexPath.section
+            self.navigationController?.pushViewController(otherSettingsVC, animated: true)
             break
+        
+//        case 2:
+//            becomeFirstResponder()
+//            break
             
         case 5:
-            self.performSegueWithIdentifier("editNationality", sender: nil)
+            let nationalityVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            self.navigationController?.pushViewController(nationalityVC, animated: true)
             break
             
         default:
@@ -105,22 +179,14 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
 //        
-//        
-//        
+//        if listItems != nil {
+//            listItems?.text = textField.text
+//        }
+//        return true
 //        
 //    }
-    
-    override func performSegueWithIdentifier(identifier: String, sender: AnyObject?) {
-        
-        if identifier == "editDateETC" {
-            print("In segue fn: \(myView)")
-            let childVC = storyboard?.instantiateViewControllerWithIdentifier("EditEdit")  as! EditEditProfileViewController
-            childVC.whichView = myView
-        }
-        
-    }
 }
 
 
@@ -135,5 +201,11 @@ class EditProfileTableViewCell: UITableViewCell {
 class ProfilePhotoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profilePhoto: UIImageView!
+    
+}
+
+class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
+    
+    @IBOutlet weak var textField: UITextField!
     
 }

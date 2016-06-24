@@ -9,6 +9,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchFieldView" customModule="TraveLibro" customModuleProvider="target">
             <connections>
                 <outlet property="SearchView" destination="EYb-HI-fiX" id="tDQ-YP-Pga"/>
+                <outlet property="bottomLine" destination="NSV-aM-uEQ" id="fzO-gJ-U6P"/>
+                <outlet property="leftLine" destination="DQR-CS-Qey" id="GYM-8i-Lv6"/>
+                <outlet property="rightLine" destination="ERu-VR-h6g" id="ufJ-Pa-YAa"/>
+                <outlet property="searchButton" destination="cat-5o-QAY" id="em5-WA-b2X"/>
                 <outlet property="searchField" destination="W7O-51-EDd" id="hns-ZN-81q"/>
             </connections>
         </placeholder>

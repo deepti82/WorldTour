@@ -9,28 +9,45 @@
 import UIKit
 
 class EditSettingsViewController: UIViewController {
-
+    
+    internal var whichView = "noView"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print("view: \(whichView)")
+        
         self.view.backgroundColor = UIColor.lightGrayColor()
         
-        let titleView = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
-        titleView.center = CGPointMake(self.view.frame.width/2 , 100)
-        titleView.text = "Click here to change your travel preferences"
-        titleView.font = avenirFont
-        titleView.textColor = mainBlueColor
-        self.view.addSubview(titleView)
+        switch whichView {
+        case "MAMView":
+            let titleView = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+            titleView.center = CGPointMake(self.view.frame.width/2 , 100)
+            titleView.text = "Click here to change your travel preferences"
+            titleView.font = avenirFont
+            titleView.textColor = mainBlueColor
+            self.view.addSubview(titleView)
+            
+            let textView = MoreAboutMe(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 225))
+            textView.backgroundColor = UIColor.blueColor()
+            self.view.addSubview(textView)
+            break
+            
+        case "NewPswdView":
+            print("in new pswd view")
+            let resetpswd = ResetPassword(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 250))
+            self.view.addSubview(resetpswd)
+            break
         
-        let textView = MoreAboutMe(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 140))
-        textView.backgroundColor = UIColor.blueColor()
-        self.view.addSubview(textView)
-
-//        let resetpswd = ResetPassword(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 250))
-//        self.view.addSubview(resetpswd)
+        case "ReportView":
+            let report = ReportProblem(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 300))
+            self.view.addSubview(report)
+            break
+            
+        default:
+            break
+        }
         
-//        let report = ReportProblem(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 300))
-//        self.view.addSubview(report)
     }
 
     override func didReceiveMemoryWarning() {

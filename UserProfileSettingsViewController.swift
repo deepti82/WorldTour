@@ -14,10 +14,13 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     let sideImages = ["edit_profile_icon", "change_pswd_icon", "data_upload_icon", "privacy_icon", "report_icon"]
     
     @IBOutlet weak var settingsTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         settingsTableView.tableFooterView = UIView()
+        self.setNavigationBarItem()
+        print("navigation controller: \(self.navigationController)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,31 +93,55 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.section == 0 {
-            
-//            let viewController = storyboard?.instantiateViewControllerWithIdentifier("EditProfileViewController")
-//            self.showViewController(viewController!, sender: nil)
-            self.performSegueWithIdentifier("editProfile", sender: nil)
-            
-        }
-        
-        if indexPath.section == 2 {
-           
-            print("Section 2 selected")
-            self.performSegueWithIdentifier("editSetting", sender: nil)
-            
-        }
-        
-        else {
-            
-            print("Section 1 selected")
-            
-            if indexPath.row == 2 {
-                
-                self.performSegueWithIdentifier("uploadSetting", sender: nil)
+        switch indexPath.section {
+        case 0:
+            print("selecting section 0 row 0")
+            let profileEditVC = storyboard?.instantiateViewControllerWithIdentifier("EditProfile") as! EditProfileViewController
+            self.navigationController?.pushViewController(profileEditVC, animated: true)
+            break
+        case 1:
+            switch indexPath.row {
+            case 0:
+                print("selecting section 1 row 0")
+                let editMAMVC = storyboard?.instantiateViewControllerWithIdentifier("EditSettings") as! EditSettingsViewController
+                editMAMVC.whichView = "MAMView"
+                self.navigationController?.pushViewController(editMAMVC, animated: true)
+                break
+            case 1:
+                print("selecting section 1 row 1")
+                let editNewPswdVC = storyboard?.instantiateViewControllerWithIdentifier("EditSettings") as! EditSettingsViewController
+                editNewPswdVC.whichView = "NewPswdView"
+                self.navigationController?.pushViewController(editNewPswdVC, animated: true)
+                break
+            case 2:
+                print("selecting section 1 row 2")
+                let dataUsageVC = storyboard?.instantiateViewControllerWithIdentifier("SettingsVC") as! SettingsViewController
+                dataUsageVC.labels = ["Cellular and WiFi", "WiFi", "Cellular"]
+                self.navigationController?.pushViewController(dataUsageVC, animated: true)
+                break
+            case 3:
+                print("selecting section 1 row 3")
+                let privacyVC = storyboard?.instantiateViewControllerWithIdentifier("SettingsVC") as! SettingsViewController
+                privacyVC.labels = ["Public - Everyone", "Private - My Followers"]
+                self.navigationController?.pushViewController(privacyVC, animated: true)
+                break
+            case 4:
+                print("selecting section 1 row 4")
+                let reportVC = storyboard?.instantiateViewControllerWithIdentifier("EditSettings") as! EditSettingsViewController
+                reportVC.whichView = "ReportView"
+                self.navigationController?.pushViewController(reportVC, animated: true)
+                break
+            default:
+                break
             }
-            
-            self.performSegueWithIdentifier("editSettingSectionOne", sender: nil)
+        case 2:
+            print("selecting section 2 row 0")
+            let aboutUsVC = storyboard?.instantiateViewControllerWithIdentifier("EditSettings") as! EditSettingsViewController
+            aboutUsVC.whichView = "NoView"
+            self.navigationController?.pushViewController(aboutUsVC, animated: true)
+            break
+        default:
+            break
         }
         
     }

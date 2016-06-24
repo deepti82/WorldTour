@@ -23,6 +23,9 @@
                         <constraint firstAttribute="height" constant="100" id="8eH-Vx-o26"/>
                     </constraints>
                     <state key="normal" image="he_icon"/>
+                    <connections>
+                        <action selector="heButtonTap:" destination="-1" eventType="touchUpInside" id="74i-Bh-YFy"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vh7-Gy-tZi">
                     <rect key="frame" x="92" y="199" width="100" height="100"/>
@@ -32,6 +35,9 @@
                     </constraints>
                     <color key="tintColor" red="0.4549019608" green="0.45882352939999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" image="she_icon"/>
+                    <connections>
+                        <action selector="sheButtonTap:" destination="-1" eventType="touchUpInside" id="4ed-4N-86a"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>

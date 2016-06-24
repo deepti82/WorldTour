@@ -10,7 +10,7 @@ import UIKit
 
 class EditEditProfileViewController: UIViewController {
     
-    var whichView: Int?
+    internal var whichView: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +35,10 @@ class EditEditProfileViewController: UIViewController {
         
         else if whichView == 7 {
             
-            let genderView = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 315))
+            let genderView = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 280))
             genderView.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+            genderView.heButton.tintColor = UIColor.lightGrayColor()
+            genderView.sheButton.tintColor = UIColor.lightGrayColor()
             self.view.addSubview(genderView)
         }
     }
