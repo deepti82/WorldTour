@@ -13,6 +13,7 @@ class NewProfilePosts: UIView {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var descriptiveText: UILabel!
     @IBOutlet weak var videoPlayView: UIView!
+    @IBOutlet weak var OTGLabelView: UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +40,9 @@ class NewProfilePosts: UIView {
         scrollView.addSubview(photobarFive)
         
         scrollView.contentSize.width = (scrollView.frame.height*5) + 45
+        
+        OTGLabelView.layer.cornerRadius = 5
+        OTGLabelView.clipsToBounds = true
         
     }
     

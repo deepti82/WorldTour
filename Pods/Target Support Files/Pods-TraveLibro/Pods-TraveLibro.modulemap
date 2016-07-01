@@ -1,0 +1,6 @@
+framework module Pods_TraveLibro {
+  umbrella header "Pods-TraveLibro-umbrella.h"
+
+  export *
+  module * { export * }
+}

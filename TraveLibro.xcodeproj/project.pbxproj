@@ -34,6 +34,8 @@
 		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
 		3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AEEB0081CE6F64F0085EEF5 /* Rating.xib */; };
 		3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEB00A1CE7017E0085EEF5 /* Rating.swift */; };
+		8644475487B77BD17AC161F6 /* Pods_TraveLibro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */; };
+		8985E87711B675E96A2FE376 /* Pods_TraveLibroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */; };
 		C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */; };
 		C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */; };
 		C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */; };
@@ -43,6 +45,12 @@
 		C20939051D11655200CBA70F /* NavigationMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20939041D11655200CBA70F /* NavigationMainViewController.swift */; };
 		C20939061D1180C100CBA70F /* DJB My Mood Ring Says Blah.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */; };
 		C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */; };
+		C20A18F41D224EF400760BF9 /* CheckInSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A18F31D224EF400760BF9 /* CheckInSearchViewController.swift */; };
+		C20A18F61D225E9C00760BF9 /* CategoriseCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A18F51D225E9C00760BF9 /* CategoriseCheckInViewController.swift */; };
+		C20A18F81D2294D900760BF9 /* AddCheckIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A18F71D2294D900760BF9 /* AddCheckIn.xib */; };
+		C20A18FA1D2299EE00760BF9 /* AddCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A18F91D2299EE00760BF9 /* AddCheckIn.swift */; };
+		C20A18FD1D229E1800760BF9 /* AddCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A18FC1D229E1800760BF9 /* AddCheckInViewController.swift */; };
+		C20A18FF1D22A67700760BF9 /* AddBuddiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */; };
 		C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A39951CE34AD0002EF1E6 /* FriendView.xib */; };
 		C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A39971CE34C8D002EF1E6 /* FriendView.swift */; };
 		C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */; };
@@ -95,6 +103,7 @@
 		C25207341D095442008F0E51 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207331D095442008F0E51 /* SearchFieldView.swift */; };
 		C25207371D096F27008F0E51 /* ExploreDestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */; };
 		C25207391D09A4F7008F0E51 /* FeaturedCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */; };
+		C2535F091D252DEC00F6B22D /* ELCImagePickerController-master in Resources */ = {isa = PBXBuildFile; fileRef = C2535F081D252DEC00F6B22D /* ELCImagePickerController-master */; };
 		C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */; };
 		C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25443541CD75F2900C2C6CD /* drawLine.swift */; };
 		C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */; };
@@ -105,6 +114,9 @@
 		C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */; };
 		C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */; };
 		C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */; };
+		C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263E3A41D1E5D0C00D274FE /* NewThoughtsView.swift */; };
+		C263E3A71D1E5D2300D274FE /* NewThoughtsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C263E3A61D1E5D2300D274FE /* NewThoughtsView.xib */; };
+		C263E3A91D1EAA4600D274FE /* FooterNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */; };
 		C269077D1CF819BA00F827E6 /* GenderInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C269077C1CF819BA00F827E6 /* GenderInfo.xib */; };
 		C269077F1CF819EB00F827E6 /* GenderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269077E1CF819EB00F827E6 /* GenderInfo.swift */; };
 		C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26907811CF826B900F827E6 /* LocationTextField.xib */; };
@@ -220,6 +232,7 @@
 		C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A181CDB3C1200122941 /* TextField.xib */; };
 		C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */; };
 		C2FA008A1CF57EC100E6A7D7 /* SetProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */; };
+		D49015CF8AB3E3F87B6DA0E7 /* Pods_TraveLibroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,6 +253,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A3E4DC51CD3970000105C3D /* TripSummaryProfile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryProfile.xib; sourceTree = "<group>"; };
 		1A3E4DC71CD398BB00105C3D /* TripSummaryProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryProfile.swift; sourceTree = "<group>"; };
 		1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCircle.xib; sourceTree = "<group>"; };
@@ -271,8 +285,15 @@
 		1A944E431CCB668C007EB5BD /* OrangeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeButton.swift; sourceTree = "<group>"; };
 		1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JourneyTitleView.xib; sourceTree = "<group>"; };
 		1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
+		277D58FAE80114C733768AB9 /* Pods-TraveLibroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests.release.xcconfig"; sourceTree = "<group>"; };
 		3AEEB0081CE6F64F0085EEF5 /* Rating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Rating.xib; sourceTree = "<group>"; };
 		3AEEB00A1CE7017E0085EEF5 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43CB194BAA34D7D019550B77 /* Pods-TraveLibroUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroUITests/Pods-TraveLibroUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
+		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80F3DB46F974DE0537A8651F /* Pods-TraveLibroUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroUITests/Pods-TraveLibroUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BAE3F40D9DEC49A23FC2BE7B /* Pods-TraveLibro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.release.xcconfig"; sourceTree = "<group>"; };
 		C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCardsViewController.swift; sourceTree = "<group>"; };
 		C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayCardsViewController.swift; sourceTree = "<group>"; };
 		C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideNavigationMenuViewController.swift; sourceTree = "<group>"; };
@@ -280,6 +301,12 @@
 		C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutMeScrollForProfile.swift; sourceTree = "<group>"; };
 		C20939001D11557B00CBA70F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
 		C20939041D11655200CBA70F /* NavigationMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationMainViewController.swift; sourceTree = "<group>"; };
+		C20A18F31D224EF400760BF9 /* CheckInSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInSearchViewController.swift; sourceTree = "<group>"; };
+		C20A18F51D225E9C00760BF9 /* CategoriseCheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriseCheckInViewController.swift; sourceTree = "<group>"; };
+		C20A18F71D2294D900760BF9 /* AddCheckIn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCheckIn.xib; sourceTree = "<group>"; };
+		C20A18F91D2299EE00760BF9 /* AddCheckIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCheckIn.swift; sourceTree = "<group>"; };
+		C20A18FC1D229E1800760BF9 /* AddCheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCheckInViewController.swift; sourceTree = "<group>"; };
+		C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBuddiesViewController.swift; sourceTree = "<group>"; };
 		C20A39951CE34AD0002EF1E6 /* FriendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendView.xib; path = ../FriendView.xib; sourceTree = "<group>"; };
 		C20A39971CE34C8D002EF1E6 /* FriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendView.swift; path = ../FriendView.swift; sourceTree = "<group>"; };
 		C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInLocalLife.xib; sourceTree = "<group>"; };
@@ -332,6 +359,7 @@
 		C25207331D095442008F0E51 /* SearchFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreDestinationsViewController.swift; sourceTree = "<group>"; };
 		C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCitiesViewController.swift; sourceTree = "<group>"; };
+		C2535F081D252DEC00F6B22D /* ELCImagePickerController-master */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "ELCImagePickerController-master"; path = "/Users/Wohlig/Documents/xcode/WorldTour/ELCImagePickerController-master"; sourceTree = "<absolute>"; };
 		C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheGoViewController.swift; sourceTree = "<group>"; };
 		C25443541CD75F2900C2C6CD /* drawLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawLine.swift; sourceTree = "<group>"; };
 		C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLifePostsViewController.swift; sourceTree = "<group>"; };
@@ -342,6 +370,9 @@
 		C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MomentsTableViewController.swift; path = ../MomentsTableViewController.swift; sourceTree = "<group>"; };
 		C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MomentsEachViewController.swift; path = ../MomentsEachViewController.swift; sourceTree = "<group>"; };
 		C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TravelLifeMomentsViewController.swift; path = ../TravelLifeMomentsViewController.swift; sourceTree = "<group>"; };
+		C263E3A41D1E5D0C00D274FE /* NewThoughtsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewThoughtsView.swift; path = ../NewThoughtsView.swift; sourceTree = "<group>"; };
+		C263E3A61D1E5D2300D274FE /* NewThoughtsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewThoughtsView.xib; path = ../NewThoughtsView.xib; sourceTree = "<group>"; };
+		C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterNavigation.swift; sourceTree = "<group>"; };
 		C269077C1CF819BA00F827E6 /* GenderInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GenderInfo.xib; path = ../GenderInfo.xib; sourceTree = "<group>"; };
 		C269077E1CF819EB00F827E6 /* GenderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderInfo.swift; path = ../GenderInfo.swift; sourceTree = "<group>"; };
 		C26907811CF826B900F827E6 /* LocationTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationTextField.xib; path = ../LocationTextField.xib; sourceTree = "<group>"; };
@@ -459,6 +490,7 @@
 		C2EA3A181CDB3C1200122941 /* TextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextField.xib; sourceTree = "<group>"; };
 		C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeOfJourney.xib; sourceTree = "<group>"; };
 		C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetProfilePictureViewController.swift; sourceTree = "<group>"; };
+		D43182820A0A3CF9711BB7D4 /* Pods-TraveLibroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -466,6 +498,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8644475487B77BD17AC161F6 /* Pods_TraveLibro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +506,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8985E87711B675E96A2FE376 /* Pods_TraveLibroTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +514,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D49015CF8AB3E3F87B6DA0E7 /* Pods_TraveLibroUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +555,8 @@
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
 				1A944E051CCB4567007EB5BD /* Products */,
+				2F49EC70A6B3483E008B511A /* Pods */,
+				70E6CB1E8C296A54FDB1A1A7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -539,10 +576,14 @@
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
+				C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */,
 				C2DCAE401D18063E00B35331 /* NavigationStyle.swift */,
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */,
+				C20A18FC1D229E1800760BF9 /* AddCheckInViewController.swift */,
+				C20A18F31D224EF400760BF9 /* CheckInSearchViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -571,6 +612,9 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2535F0B1D252E3F00F6B22D /* NewThoughtsView */,
+				C20A18FB1D229DC900760BF9 /* AddCheckIn */,
+				C263E3A31D1E5BE100D274FE /* NewProfilePosts */,
 				C29D2C121D1BFCC000FA0602 /* ConnectWithAgent */,
 				C20938FF1D1139E100CBA70F /* MoreAboutMeScrollForProfile */,
 				C28A92571D0EED6C00CFEC7A /* FilterRestaurants */,
@@ -685,6 +729,19 @@
 			name = JourneyTitleView;
 			sourceTree = "<group>";
 		};
+		2F49EC70A6B3483E008B511A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */,
+				BAE3F40D9DEC49A23FC2BE7B /* Pods-TraveLibro.release.xcconfig */,
+				D43182820A0A3CF9711BB7D4 /* Pods-TraveLibroTests.debug.xcconfig */,
+				277D58FAE80114C733768AB9 /* Pods-TraveLibroTests.release.xcconfig */,
+				43CB194BAA34D7D019550B77 /* Pods-TraveLibroUITests.debug.xcconfig */,
+				80F3DB46F974DE0537A8651F /* Pods-TraveLibroUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		3AEEB0071CE6F63B0085EEF5 /* Rating */ = {
 			isa = PBXGroup;
 			children = (
@@ -694,6 +751,16 @@
 			name = Rating;
 			sourceTree = "<group>";
 		};
+		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */,
+				7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */,
+				163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C20938FF1D1139E100CBA70F /* MoreAboutMeScrollForProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -701,6 +768,15 @@
 				C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */,
 			);
 			name = MoreAboutMeScrollForProfile;
+			sourceTree = "<group>";
+		};
+		C20A18FB1D229DC900760BF9 /* AddCheckIn */ = {
+			isa = PBXGroup;
+			children = (
+				C20A18F71D2294D900760BF9 /* AddCheckIn.xib */,
+				C20A18F91D2299EE00760BF9 /* AddCheckIn.swift */,
+			);
+			name = AddCheckIn;
 			sourceTree = "<group>";
 		};
 		C20A39941CE348D3002EF1E6 /* Footer */ = {
@@ -955,6 +1031,15 @@
 			name = SearchFieldView;
 			sourceTree = "<group>";
 		};
+		C2535F0B1D252E3F00F6B22D /* NewThoughtsView */ = {
+			isa = PBXGroup;
+			children = (
+				C263E3A41D1E5D0C00D274FE /* NewThoughtsView.swift */,
+				C263E3A61D1E5D2300D274FE /* NewThoughtsView.xib */,
+			);
+			name = NewThoughtsView;
+			sourceTree = "<group>";
+		};
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1014,6 +1099,7 @@
 				C24F84E61D00252F002EA203 /* SettingsViewController.swift */,
 				C28A92461D0E95ED00CFEC7A /* PopularBloggersViewController.swift */,
 				C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */,
+				C20A18F51D225E9C00760BF9 /* CategoriseCheckInViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1034,6 +1120,15 @@
 				C27F6C001CF03E280049F012 /* ProfileMainView.swift */,
 			);
 			name = ProfileMainView;
+			sourceTree = "<group>";
+		};
+		C263E3A31D1E5BE100D274FE /* NewProfilePosts */ = {
+			isa = PBXGroup;
+			children = (
+				C245776B1D1D4F8200C6568C /* NewProfilePosts.xib */,
+				C245776D1D1D5ACD00C6568C /* NewProfilePosts.swift */,
+			);
+			name = NewProfilePosts;
 			sourceTree = "<group>";
 		};
 		C269077B1CF8161600F827E6 /* TripSummaryItinerary */ = {
@@ -1130,8 +1225,6 @@
 			children = (
 				C26B4DEA1D141D9D00213055 /* ConnectWithAgent.xib */,
 				C26B4DEC1D14216700213055 /* ConnectWithAgent.swift */,
-				C245776B1D1D4F8200C6568C /* NewProfilePosts.xib */,
-				C245776D1D1D5ACD00C6568C /* NewProfilePosts.swift */,
 			);
 			name = ConnectWithAgent;
 			sourceTree = "<group>";
@@ -1334,9 +1427,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A944E2C1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibro" */;
 			buildPhases = (
+				3E39950EFBBFFDBD6411ED41 /* [CP] Check Pods Manifest.lock */,
 				1A944E001CCB4567007EB5BD /* Sources */,
 				1A944E011CCB4567007EB5BD /* Frameworks */,
 				1A944E021CCB4567007EB5BD /* Resources */,
+				3B7A621079EFA3061E0940AD /* [CP] Embed Pods Frameworks */,
+				48FC31CC8594F2E97A6F96C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1351,9 +1447,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A944E2F1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroTests" */;
 			buildPhases = (
+				654CCE18CFC9AB62CF810C07 /* [CP] Check Pods Manifest.lock */,
 				1A944E141CCB4567007EB5BD /* Sources */,
 				1A944E151CCB4567007EB5BD /* Frameworks */,
 				1A944E161CCB4567007EB5BD /* Resources */,
+				14470BBEAB94001E791386EF /* [CP] Embed Pods Frameworks */,
+				BE02BF245AD9F1B3CF9AA47A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1369,9 +1468,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A944E321CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroUITests" */;
 			buildPhases = (
+				DB475C85160DBE9607A2E0CA /* [CP] Check Pods Manifest.lock */,
 				1A944E1F1CCB4567007EB5BD /* Sources */,
 				1A944E201CCB4567007EB5BD /* Frameworks */,
 				1A944E211CCB4567007EB5BD /* Resources */,
+				403DE2127200E52A941D1F70 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1459,6 +1560,7 @@
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
 				C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */,
+				C2535F091D252DEC00F6B22D /* ELCImagePickerController-master in Resources */,
 				C248704A1D0BEE75003CB0DD /* MoreAboutTrip.xib in Resources */,
 				C24B45631D0AE664002EA009 /* PopularAgents.xib in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
@@ -1492,9 +1594,11 @@
 				C26B4DEB1D141D9D00213055 /* ConnectWithAgent.xib in Resources */,
 				C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */,
 				C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */,
+				C20A18F81D2294D900760BF9 /* AddCheckIn.xib in Resources */,
 				C2A6E2621CE9D12800D3F845 /* SpeechBubbleView.xib in Resources */,
 				C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */,
 				C25207321D094FAB008F0E51 /* SearchFieldView.xib in Resources */,
+				C263E3A71D1E5D2300D274FE /* NewThoughtsView.xib in Resources */,
 				C24F84F01D004E59002EA203 /* NoFollowers.xib in Resources */,
 				C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
@@ -1530,6 +1634,129 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		14470BBEAB94001E791386EF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B7A621079EFA3061E0940AD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E39950EFBBFFDBD6411ED41 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		403DE2127200E52A941D1F70 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroUITests/Pods-TraveLibroUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48FC31CC8594F2E97A6F96C6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		654CCE18CFC9AB62CF810C07 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BE02BF245AD9F1B3CF9AA47A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DB475C85160DBE9607A2E0CA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1A944E001CCB4567007EB5BD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1547,10 +1774,12 @@
 				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
 				C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */,
 				C2D594521CF487B30007F50B /* MyLifeTabs.swift in Sources */,
+				C20A18FD1D229E1800760BF9 /* AddCheckInViewController.swift in Sources */,
 				C2A27A4E1CEDCE4C00F74DD1 /* SignInFullView.swift in Sources */,
 				C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */,
 				C269078D1CF8633800F827E6 /* ProfilePic.swift in Sources */,
 				C24F84E71D00252F002EA203 /* SettingsViewController.swift in Sources */,
+				C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
 				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
@@ -1559,9 +1788,11 @@
 				C28A92491D0EA12300CFEC7A /* BlogsListViewController.swift in Sources */,
 				C2DCAE411D18063E00B35331 /* NavigationStyle.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
+				C20A18FF1D22A67700760BF9 /* AddBuddiesViewController.swift in Sources */,
 				C27F6C051CF06AB10049F012 /* MomentsTab.swift in Sources */,
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
 				C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */,
+				C263E3A91D1EAA4600D274FE /* FooterNavigation.swift in Sources */,
 				C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */,
 				C28A92511D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift in Sources */,
 				C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */,
@@ -1584,6 +1815,7 @@
 				C23EB1CD1CFEB044005B5CE8 /* CheckInLocalLife.swift in Sources */,
 				C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */,
 				C25207391D09A4F7008F0E51 /* FeaturedCitiesViewController.swift in Sources */,
+				C20A18FA1D2299EE00760BF9 /* AddCheckIn.swift in Sources */,
 				C24F84E21D001B91002EA203 /* ResetPassword.swift in Sources */,
 				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
 				C24B455C1D0ACAFA002EA009 /* Itineraries.swift in Sources */,
@@ -1614,6 +1846,8 @@
 				C24F85071D006670002EA203 /* CardCheckBoxes.swift in Sources */,
 				C24F84EB1D0045A1002EA203 /* ReportProblem.swift in Sources */,
 				C2DCB37D1CE75AB2006E5CBD /* NotificationsHeader.swift in Sources */,
+				C20A18F41D224EF400760BF9 /* CheckInSearchViewController.swift in Sources */,
+				C20A18F61D225E9C00760BF9 /* CategoriseCheckInViewController.swift in Sources */,
 				C28A92471D0E95ED00CFEC7A /* PopularBloggersViewController.swift in Sources */,
 				C25207341D095442008F0E51 /* SearchFieldView.swift in Sources */,
 				C24F84DA1CFFFBF5002EA203 /* UserProfileSettingsViewController.swift in Sources */,
@@ -1806,6 +2040,7 @@
 		};
 		1A944E2D1CCB4567007EB5BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1821,6 +2056,7 @@
 		};
 		1A944E2E1CCB4567007EB5BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAE3F40D9DEC49A23FC2BE7B /* Pods-TraveLibro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1836,6 +2072,7 @@
 		};
 		1A944E301CCB4567007EB5BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D43182820A0A3CF9711BB7D4 /* Pods-TraveLibroTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TraveLibroTests/Info.plist;
@@ -1848,6 +2085,7 @@
 		};
 		1A944E311CCB4567007EB5BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 277D58FAE80114C733768AB9 /* Pods-TraveLibroTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TraveLibroTests/Info.plist;
@@ -1860,6 +2098,7 @@
 		};
 		1A944E331CCB4567007EB5BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43CB194BAA34D7D019550B77 /* Pods-TraveLibroUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TraveLibroUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1871,6 +2110,7 @@
 		};
 		1A944E341CCB4567007EB5BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80F3DB46F974DE0537A8651F /* Pods-TraveLibroUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TraveLibroUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

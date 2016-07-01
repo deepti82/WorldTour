@@ -17,8 +17,14 @@ class BlogView: UIView {
     @IBOutlet weak var flag2: UIImageView!
     @IBOutlet weak var flag1: UIImageView!
     @IBOutlet weak var blogDetailView: UIView!
-    @IBOutlet weak var tagView: UIView!
-    @IBOutlet weak var clockIcon: UILabel!
+    @IBOutlet weak var tripDetailStack: UIStackView!
+    @IBOutlet weak var tripBudgetLabel: UILabel!
+    @IBOutlet weak var tripDays: UIView!
+    @IBOutlet weak var reviewsInStack: UIButton!
+    @IBOutlet weak var flagStack: UIStackView!
+    @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var clockLabel: UILabel!
+    @IBOutlet weak var TitleDetail: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,9 +48,21 @@ class BlogView: UIView {
         
         likesLabel.text = String(format: "%C", faicon["likes"]!)
         reviewsLabel.text = String(format: "%C", faicon["reviews"]!)
-        clockIcon.text = String(format: "%C", faicon["clock"]!)
         
-        tagView.backgroundColor = mainBlueColor
+        blogDetailView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        
+        UIGraphicsBeginImageContext(tripDays.frame.size)
+        
+        var image = UIImage(named: "bluebox")
+        image?.drawInRect(tripDays.bounds, blendMode: .Color, alpha: 1.0)
+        image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        tripDays.backgroundColor = UIColor(patternImage: image!)
+        
+        calendarLabel.text = String(format: "%C", faicon["calendar"]!)
+        clockLabel.text = String(format: "%C", faicon["clock"]!)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

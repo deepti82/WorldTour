@@ -21,10 +21,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var feedbackController:UIViewController!
     var logOutController:UIViewController!
     var settingsViewController: UIViewController!
+    var localLifeController: UIViewController!
     
     
     
-    let labels = ["Popular Journeys", "Explore Destinations", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out"]
+    let labels = ["Popular Journeys", "Explore Destinations", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life"]
     
     @IBOutlet weak var profileView: UIView!
     
@@ -69,6 +70,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let logOutController = storyboard.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
         self.logOutController = UINavigationController(rootViewController: logOutController)
         
+        let localLifeController = storyboard.instantiateViewControllerWithIdentifier("localLife") as! LocalLifeRecommendationViewController
+        self.localLifeController = UINavigationController(rootViewController: localLifeController)
         
 //        let tapForSettings = UIGestureRecognizer(target: self, action: #selector(self.profileTap(_:)))
 //        profileView.addGestureRecognizer(tapForSettings)
@@ -124,6 +127,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
         case 7:
             self.slideMenuController()?.changeMainViewController(self.logOutController, close: true)
+        case 8:
+            self.slideMenuController()?.changeMainViewController(self.localLifeController, close: true)
         default:
             self.slideMenuController()?.changeMainViewController(self.homeController, close: true)
         }

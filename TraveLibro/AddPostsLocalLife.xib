@@ -23,12 +23,14 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bC6-V9-w6w">
                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                            <color key="backgroundColor" red="0.3411764706" green="0.82745098039999998" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="gdq-Zm-H0v"/>
                                 <constraint firstAttribute="width" constant="60" id="wDT-0Z-56s"/>
                             </constraints>
-                            <state key="normal" title="   "/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="   " backgroundImage="halfnhalfbgGreen">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf9-JI-EUv">
                             <rect key="frame" x="0.0" y="68" width="60" height="20"/>
@@ -43,12 +45,14 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqc-4h-mlG">
                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                            <color key="backgroundColor" red="0.3411764706" green="0.82745098039999998" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="QtO-GI-QHA"/>
                                 <constraint firstAttribute="height" constant="60" id="dIt-F7-MEA"/>
                             </constraints>
-                            <state key="normal" title="   "/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="   " backgroundImage="halfnhalfbgGreen">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Videos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34A-S0-5em">
                             <rect key="frame" x="0.0" y="68" width="60" height="20"/>
@@ -63,12 +67,14 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="736-f2-nxh">
                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                            <color key="backgroundColor" red="0.3411764706" green="0.82745098039999998" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="PGw-95-5D2"/>
                                 <constraint firstAttribute="width" constant="60" id="xvw-fa-6pB"/>
                             </constraints>
-                            <state key="normal" title="   "/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="   " backgroundImage="halfnhalfbgGreen">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thoughts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uU-KE-Swv">
                             <rect key="frame" x="0.0" y="68" width="60" height="20"/>
@@ -92,12 +98,14 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m25-TE-y9b">
                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                            <color key="backgroundColor" red="0.3411764706" green="0.82745098039999998" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="TPV-6t-fA0"/>
                                 <constraint firstAttribute="height" constant="60" id="xSY-oo-0i3"/>
                             </constraints>
-                            <state key="normal" title="   "/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="   " backgroundImage="halfnhalfbgGreen">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vW0-JT-g9H">
                             <rect key="frame" x="0.0" y="68" width="60" height="20"/>
@@ -132,4 +140,7 @@
             <point key="canvasLocation" x="206.5" y="515.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="halfnhalfbgGreen" width="44" height="41"/>
+    </resources>
 </document>

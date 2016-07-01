@@ -27,9 +27,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         getDarkBackGround(self)
         
-        let footer = getFooter(frame: CGRect(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 45))
-        footer.layer.zPosition = 100
-        self.view.addSubview(footer)
+//        let footer = getFooter(frame: CGRect(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 45))
+//        footer.layer.zPosition = 100
+//        self.view.addSubview(footer)
         
         self.setNavigationBarItem()
         

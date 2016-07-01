@@ -9,7 +9,7 @@
 import UIKit
 
 
-class getFooter: UIView {
+class getFooter: UIView, UIGestureRecognizerDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -69,8 +69,37 @@ class getFooter: UIView {
         footerUp.addSubview(footerLocal)
         
         self.addSubview(footer)
-        print("Superview is 2: \(footer)")
+        
+        
+        
+        
     }
+    
+    func feedTap (sender: UITapGestureRecognizer? = nil) {
+        
+//        self.changeViewController("Feed")
+        
+        print("feed tapped")
+        
+    }
+//
+//    func notifyTap (sender: UITapGestureRecognizer? = nil) {
+//        
+//        self.changeViewController("Notify")
+//        
+//    }
+//    
+//    func localLifeTap (sender: UITapGestureRecognizer? = nil) {
+//        
+//        self.changeViewController("LocalLife")
+//        
+//    }
+//    
+//    func travelLifeTap (sender: UITapGestureRecognizer? = nil) {
+//        
+//        self.changeViewController("TravelLife")
+//        
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

@@ -19,6 +19,10 @@ var faicon = [String: UInt32]()
 
 var profileViewY:CGFloat = 45
 
+var feedViewController: UIViewController!
+var notificationsViewController: UIViewController!
+var travelLifeViewController: UIViewController!
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -47,8 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         nvc.navigationBar.barTintColor = mainBlueColor
         nvc.navigationBar.barStyle = .Black
         
-        
     }
+    
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -68,6 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["whatsapp"] = 0xf232
         faicon["check"] = 0xf00c
         faicon["trash"] = 0xf014
+        faicon["close"] = 0xf00d
+        faicon["next"] = 0xf105
         
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
@@ -75,6 +81,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageController.backgroundColor = UIColor.clearColor()
         
 //        self.addObserver(self, forKeyPath: "profileViewY", options: .New, context: nil)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = UITabBarController()
+        let homeVC = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        let feedVC = storyboard.instantiateViewControllerWithIdentifier("Activity") as! ProfilePostsViewController
+        tabBarController.viewControllers = [homeVC, feedVC]
+//        window?.rootViewController = tabBarController
+
+        let image = UIImage(named: "adventure_icon")
+
+        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
+        
         
         return true
     }

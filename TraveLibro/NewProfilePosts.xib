@@ -14,6 +14,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewProfilePosts" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="OTGLabelView" destination="OO3-Rb-pEe" id="D5R-n6-zHB"/>
                 <outlet property="descriptiveText" destination="vuX-Zt-tys" id="5Je-m3-AvX"/>
                 <outlet property="scrollView" destination="3bM-eJ-cFT" id="yMq-oY-5PX"/>
                 <outlet property="videoPlayView" destination="cGp-kG-47N" id="p8s-z5-RAX"/>
@@ -46,7 +47,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nargis Fakhri" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlx-hE-aLK">
                             <rect key="frame" x="76" y="8" width="112" height="25"/>
                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="90N-IV-Ka8">
@@ -240,15 +241,15 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGp-kG-47N">
                             <rect key="frame" x="0.0" y="149" width="400" height="350"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Udh-O5-Nyl">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_play_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Udh-O5-Nyl">
                                     <rect key="frame" x="160" y="135" width="80" height="80"/>
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="FfT-xE-4vx"/>
                                         <constraint firstAttribute="width" constant="80" id="yXK-Dm-Jx5"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="Udh-O5-Nyl" firstAttribute="centerY" secondItem="cGp-kG-47N" secondAttribute="centerY" id="f3B-tE-xFM"/>
                                 <constraint firstItem="Udh-O5-Nyl" firstAttribute="centerX" secondItem="cGp-kG-47N" secondAttribute="centerX" id="xUj-9e-fVW"/>
@@ -278,9 +279,28 @@
                                 </imageView>
                             </subviews>
                         </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OO3-Rb-pEe">
+                            <rect key="frame" x="305" y="135" width="100" height="25"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On-The-Go" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rk-Y0-gL8">
+                                    <rect key="frame" x="14" y="3" width="72" height="20"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="4rk-Y0-gL8" firstAttribute="centerY" secondItem="OO3-Rb-pEe" secondAttribute="centerY" id="Ebw-Kz-ug3"/>
+                                <constraint firstItem="4rk-Y0-gL8" firstAttribute="centerX" secondItem="OO3-Rb-pEe" secondAttribute="centerX" id="Zee-Zd-gtW"/>
+                                <constraint firstAttribute="height" constant="25" id="ffW-Ql-W97"/>
+                                <constraint firstAttribute="width" constant="100" id="vE1-tW-EhC"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" red="0.76862745099999996" green="0.94117647059999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="OO3-Rb-pEe" firstAttribute="top" secondItem="vuX-Zt-tys" secondAttribute="bottom" constant="24" id="0se-wt-fYv"/>
                         <constraint firstItem="VMI-hz-iPf" firstAttribute="top" secondItem="3bM-eJ-cFT" secondAttribute="bottom" constant="8" id="1xo-eh-9V5"/>
                         <constraint firstAttribute="trailing" secondItem="vhr-wA-Utd" secondAttribute="trailing" constant="8" id="2ml-jV-VKC"/>
                         <constraint firstItem="nlx-hE-aLK" firstAttribute="top" secondItem="VT0-AL-QL8" secondAttribute="top" constant="8" id="3eU-8m-aG2"/>
@@ -315,6 +335,7 @@
                         <constraint firstItem="f30-Ys-lh2" firstAttribute="top" secondItem="vuX-Zt-tys" secondAttribute="bottom" id="eKA-Lf-HdK"/>
                         <constraint firstAttribute="trailing" secondItem="owl-rf-h2D" secondAttribute="trailing" constant="8" id="emA-WO-Hlc"/>
                         <constraint firstItem="w29-p2-7Ey" firstAttribute="top" secondItem="90N-IV-Ka8" secondAttribute="bottom" constant="8" id="fEF-3m-Pbn"/>
+                        <constraint firstAttribute="trailing" secondItem="OO3-Rb-pEe" secondAttribute="trailing" constant="-5" id="gsJ-23-Yfq"/>
                         <constraint firstItem="vhr-wA-Utd" firstAttribute="top" secondItem="ftm-uA-XUO" secondAttribute="bottom" constant="6" id="kG4-kb-0vW"/>
                         <constraint firstAttribute="trailing" secondItem="f30-Ys-lh2" secondAttribute="trailing" constant="8" id="oNK-S1-3Mr"/>
                         <constraint firstItem="dLf-0q-Wmb" firstAttribute="centerY" secondItem="ndy-1K-NAw" secondAttribute="centerY" id="pud-Rp-1aJ"/>
@@ -354,5 +375,6 @@
         <image name="share_icon" width="21" height="30"/>
         <image name="speech_icon" width="30" height="30"/>
         <image name="star_check" width="27" height="25"/>
+        <image name="video_play_icon" width="142" height="100"/>
     </resources>
 </document>

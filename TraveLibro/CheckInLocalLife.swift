@@ -14,6 +14,10 @@ class CheckInLocalLife: UIView {
     @IBOutlet weak var iconButtonView: UIView!
     @IBOutlet weak var likeIcon: UILabel!
     @IBOutlet weak var myScroll: UIScrollView!
+    @IBOutlet weak var ratingStack: UIStackView!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var rateButton: UIButton!
+    @IBOutlet weak var optionsButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,6 +38,9 @@ class CheckInLocalLife: UIView {
         
         let photobar = PhotoBar(frame: CGRect(x: 0, y: 0, width: 450, height: myScroll.frame.height))
         myScroll.addSubview(photobar)
+        
+        ratingLabel.hidden = true
+        ratingStack.hidden = true
         
     }
     

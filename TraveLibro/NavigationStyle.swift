@@ -8,6 +8,9 @@
 
 import UIKit
 
+var checkInMainVC: UIViewController!
+
+
 extension UIViewController {
     
     func setNavigationBarItem() {
@@ -65,5 +68,87 @@ extension UIViewController {
         self.navigationItem.rightBarButtonItem = nil
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
+    }
+    
+    func setCheckInNavigationBarItem (viewController: UIViewController) {
+        
+        removeNavigationBarItem()
+        
+//        let font = UIFont(name: "Font-Awesome", size: 14)
+//        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : font!]
+        
+//        let close = String(format: "%C", faicon["close"]!)
+//        let next = String(format: "%C", faicon["next"]!)
+        
+        checkInMainVC = viewController
+        
+        print("storyboard: \(self.navigationController)")
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.toolbar.barTintColor = mainBlueColor
+        self.navigationController?.navigationBar.barTintColor = mainBlueColor
+        self.navigationController?.navigationBar.barStyle = .Black
+        
+        let leftButton = UIBarButtonItem(image: UIImage(named: "close_fa"), style: .Plain, target: self, action: #selector(UIViewController.closeController(_:)))
+        let rightButton = UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.nextController(_:)))
+        
+        self.navigationItem.setLeftBarButtonItem(leftButton, animated: true)
+        self.navigationItem.setRightBarButtonItem(rightButton, animated: true)
+        
+    }
+    
+    func setCheckInMainNavigationBarItem (viewController: UIViewController) {
+        
+        removeNavigationBarItem()
+        
+        //        let font = UIFont(name: "Font-Awesome", size: 14)
+        //        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : font!]
+        
+        //        let close = String(format: "%C", faicon["close"]!)
+        //        let next = String(format: "%C", faicon["next"]!)
+        
+        checkInMainVC = viewController
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.toolbar.barTintColor = mainBlueColor
+        self.navigationController?.navigationBar.barTintColor = mainBlueColor
+        self.navigationController?.navigationBar.barStyle = .Black
+        
+        let rightButton = UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.nextController(_:)))
+        
+        self.navigationItem.setRightBarButtonItem(rightButton, animated: true)
+        
+    }
+    
+    func closeController(sender: UIBarButtonItem) -> () {
+        
+        print("close controller called")
+        
+        let allVCs = self.navigationController?.viewControllers
+        print("all VCS: \(allVCs)")
+        let checkInVC = allVCs![(allVCs?.count)! - 2]
+        print("checkin vc: \(checkInVC)")
+        
+        self.navigationController?.popToViewController(checkInVC, animated: true)
+        
+    }
+    
+    func nextController(sender: UIBarButtonItem) -> () {
+        
+        print("next view controller called")
+        
+        self.navigationController?.pushViewController(checkInMainVC, animated: true)
+        
+    }
+    
+    
+    func setFooterTabBar(vc: UIViewController) {
+        
+        let footer = getFooter(frame: CGRect(x: 0, y: vc.view.frame.height - 45, width: vc.view.frame.width, height: 45))
+        vc.view.addSubview(footer)
+        footer.layer.zPosition = 100
+        
+        self.tabBarItem.title = "Feed"
+        
     }
 }
