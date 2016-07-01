@@ -26,6 +26,13 @@ class AddCheckIn: UIView, UITextViewDelegate {
         
         checkInDescription.delegate = self
         
+//        locationImageView.backgroundColor = UIColor(patternImage: UIImage(named: "green_bg_new_small")!)
+        
+        let bgImage = UIImageView(frame: CGRect(x: 0, y: 0, width: locationImageView.frame.width, height: locationImageView.frame.height))
+        bgImage.image = UIImage(named: "green_bg_new_small")
+        bgImage.layer.zPosition = -1
+        locationImageView.addSubview(bgImage)
+        
     }
     
     func textViewDidBeginEditing(textView: UITextView) {

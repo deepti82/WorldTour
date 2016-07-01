@@ -74,9 +74,9 @@ extension UIViewController {
         
         removeNavigationBarItem()
         
-//        let font = UIFont(name: "Font-Awesome", size: 14)
-//        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : font!]
-        
+//        let font = UIFont(name: "FontAwesome", size: 14)
+//        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : font!]
+//        
 //        let close = String(format: "%C", faicon["close"]!)
 //        let next = String(format: "%C", faicon["next"]!)
         
@@ -84,13 +84,22 @@ extension UIViewController {
         
         print("storyboard: \(self.navigationController)")
         
+        let closeImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        closeImage.image = UIImage(named: "close_fa")
+        
+        let nextImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        nextImage.image = UIImage(named: "arrow_next_fa")
+        
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.toolbar.barTintColor = mainBlueColor
         self.navigationController?.navigationBar.barTintColor = mainBlueColor
         self.navigationController?.navigationBar.barStyle = .Black
         
-        let leftButton = UIBarButtonItem(image: UIImage(named: "close_fa"), style: .Plain, target: self, action: #selector(UIViewController.closeController(_:)))
-        let rightButton = UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.nextController(_:)))
+        let leftButton = UIBarButtonItem(image: closeImage.image, style: .Plain, target: self, action: #selector(UIViewController.closeController(_:)))
+        leftButton.imageInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        
+        let rightButton = UIBarButtonItem(image: nextImage.image, style: .Plain, target: self, action: #selector(UIViewController.nextController(_:)))
+        rightButton.imageInsets = UIEdgeInsets(top: 15, left: 10, bottom: 5, right: 10)
         
         self.navigationItem.setLeftBarButtonItem(leftButton, animated: true)
         self.navigationItem.setRightBarButtonItem(rightButton, animated: true)
@@ -101,11 +110,8 @@ extension UIViewController {
         
         removeNavigationBarItem()
         
-        //        let font = UIFont(name: "Font-Awesome", size: 14)
-        //        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : font!]
-        
-        //        let close = String(format: "%C", faicon["close"]!)
-        //        let next = String(format: "%C", faicon["next"]!)
+        let nextImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        nextImage.image = UIImage(named: "arrow_next_fa")
         
         checkInMainVC = viewController
         
@@ -115,7 +121,7 @@ extension UIViewController {
         self.navigationController?.navigationBar.barStyle = .Black
         
         let rightButton = UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.nextController(_:)))
-        
+        rightButton.imageInsets = UIEdgeInsets(top: 15, left: 10, bottom: 5, right: 10)
         self.navigationItem.setRightBarButtonItem(rightButton, animated: true)
         
     }

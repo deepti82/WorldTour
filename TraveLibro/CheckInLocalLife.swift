@@ -29,7 +29,14 @@ class CheckInLocalLife: UIView {
         timestampView.addSubview(timestamp)
         
         let icon = IconButton(frame: CGRect(x: 0, y: 0, width: iconButtonView.frame.size.width, height: iconButtonView.frame.size.width))
+        icon.button.setBackgroundImage(UIImage(named: "green_bg_new_small"), forState: .Normal)
+        
         iconButtonView.addSubview(icon)
+        
+//        let iconBg = UIImageView(frame: CGRect(x: 0, y: 0, width: icon.frame.width, height: icon.frame.height))
+//        iconBg.image = UIImage(named: "green_bg_new_small")
+//        iconBg.layer.zPosition = 0
+//        icon.view.addSubview(iconBg)
         
         
         myScroll.contentSize = CGSizeMake(500, 95)

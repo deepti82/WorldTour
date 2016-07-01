@@ -60,25 +60,25 @@
                                     </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                    <state key="normal" image="camera_icon" backgroundImage="halfnhalfbgGreenSmall"/>
+                                    <state key="normal" image="camera_icon" backgroundImage="blue_bg_new_small"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAI-cT-U4z">
                                     <rect key="frame" x="75" y="0.0" width="25" height="25"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                    <state key="normal" image="add_friend_icon" backgroundImage="halfnhalfbgGreenSmall"/>
+                                    <state key="normal" image="add_friend_icon" backgroundImage="blue_bg_new_small"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxt-kC-BIr">
                                     <rect key="frame" x="150" y="0.0" width="25" height="25"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                    <state key="normal" image="video" backgroundImage="halfnhalfbgGreenSmall"/>
+                                    <state key="normal" image="video" backgroundImage="blue_bg_new_small"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jM8-Ne-EpE">
                                     <rect key="frame" x="225" y="0.0" width="25" height="25"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                    <state key="normal" image="location_icon" backgroundImage="halfnhalfbgGreenSmall"/>
+                                    <state key="normal" image="location_icon" backgroundImage="blue_bg_new_small"/>
                                 </button>
                             </subviews>
                         </stackView>
@@ -86,14 +86,13 @@
                             <rect key="frame" x="367" y="-15" width="25" height="25"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8Sh-Wz-FuX">
-                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                    <rect key="frame" x="3" y="3" width="20" height="20"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="25" id="SmO-dd-q53"/>
-                                        <constraint firstAttribute="width" constant="25" id="pwM-0U-lw2"/>
+                                        <constraint firstAttribute="height" constant="20" id="SmO-dd-q53"/>
+                                        <constraint firstAttribute="width" constant="20" id="pwM-0U-lw2"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" red="0.2941176593" green="0.79607844350000001" blue="0.73333334920000004" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="8Sh-Wz-FuX" firstAttribute="centerX" secondItem="OMo-GY-DC3" secondAttribute="centerX" id="AEO-q3-Bsp"/>
                                 <constraint firstAttribute="height" constant="25" id="RZe-UO-cjb"/>
@@ -131,8 +130,8 @@
     </objects>
     <resources>
         <image name="add_friend_icon" width="35" height="30"/>
+        <image name="blue_bg_new_small" width="100" height="100"/>
         <image name="camera_icon" width="67" height="60"/>
-        <image name="halfnhalfbgGreenSmall" width="19" height="20"/>
         <image name="location_icon" width="200" height="200"/>
         <image name="profile_pic_new" width="150" height="150"/>
         <image name="video" width="51" height="51"/>

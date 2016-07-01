@@ -90,12 +90,15 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9t-nF-Ngk">
                             <rect key="frame" x="8" y="60" width="30" height="30"/>
-                            <color key="backgroundColor" red="0.2941176593" green="0.79607844350000001" blue="0.73333334920000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="GdY-ZC-sfB"/>
                                 <constraint firstAttribute="height" constant="30" id="dcT-69-i9O"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
+                            <state key="normal">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                             <connections>
                                 <action selector="closeButtonUpTap:" destination="-1" eventType="touchUpInside" id="z6Y-Mk-cHG"/>
                             </connections>
@@ -114,7 +117,7 @@
                                             </constraints>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" title="   " image="camera_icon" backgroundImage="halfnhalfbgGreen">
+                                            <state key="normal" title="   " image="camera_icon" backgroundImage="green_bg_new_small">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -140,7 +143,7 @@
                                             </constraints>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" title="   " image="video" backgroundImage="halfnhalfbgGreen">
+                                            <state key="normal" title="   " image="video" backgroundImage="green_bg_new_small">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
@@ -163,7 +166,7 @@
                                             </constraints>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="imageEdgeInsets" minX="17" minY="15" maxX="17" maxY="15"/>
-                                            <state key="normal" title="   " image="pen_icon" backgroundImage="halfnhalfbgGreen">
+                                            <state key="normal" title="   " image="pen_icon" backgroundImage="green_bg_new_small">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
@@ -195,7 +198,7 @@
                                             </constraints>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" title="   " image="location_icon" backgroundImage="halfnhalfbgGreen">
+                                            <state key="normal" title="   " image="location_icon" backgroundImage="green_bg_new_small">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
@@ -254,7 +257,7 @@
     </objects>
     <resources>
         <image name="camera_icon" width="67" height="60"/>
-        <image name="halfnhalfbgGreen" width="44" height="41"/>
+        <image name="green_bg_new_small" width="60" height="60"/>
         <image name="location_icon" width="200" height="200"/>
         <image name="pen_icon" width="55" height="68"/>
         <image name="plusgreen" width="100" height="98"/>

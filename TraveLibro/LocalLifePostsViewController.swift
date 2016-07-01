@@ -12,8 +12,8 @@ class LocalLifePostsViewController: UIViewController {
     
     var blackBg: UIView!
     var checkInPost: CheckInLocalLife!
-    
-    
+    var datePickerView:UIDatePicker = UIDatePicker()
+    var changeDateTimeActionSheet: UIAlertController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +88,8 @@ class LocalLifePostsViewController: UIViewController {
         let editCheckInActionButton: UIAlertAction = UIAlertAction(title: "Edit Check In", style: .Default)
         { action -> Void in
             
+            let editCheckInVC = self.storyboard?.instantiateViewControllerWithIdentifier("addCheckIn") as! AddCheckInViewController
+            self.navigationController?.pushViewController(editCheckInVC, animated: true)
             
         }
         actionSheetControllerIOS8.addAction(editCheckInActionButton)
@@ -95,22 +97,87 @@ class LocalLifePostsViewController: UIViewController {
         let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .Default)
         { action -> Void in
             
+            self.changeDateTimeActionSheet = UIAlertController(title: nil, message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .ActionSheet)
+            self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 35, width: self.changeDateTimeActionSheet.view.frame.width, height: 200))
+            self.datePickerView.datePickerMode = .DateAndTime
+//            self.datePickerView.backgroundColor = UIColor.redColor()
+            
+            let viewDatePicker: UIView = UIView(frame: CGRectMake(0, 0, self.changeDateTimeActionSheet.view.frame.width, 300))
+            viewDatePicker.addSubview(self.datePickerView)
+            
+            let buttonView = UIView(frame: CGRect(x: 0, y: 0, width: self.changeDateTimeActionSheet.view.frame.width, height: 100))
+            viewDatePicker.addSubview(buttonView)
+            
+            let saveButton = UIButton(frame: CGRect(x: self.view.frame.width - 100, y: 10, width: 80, height: 40))
+            saveButton.titleLabel?.font = avenirFont
+            saveButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            saveButton.setTitle("Save", forState: .Normal)
+            saveButton.addTarget(self, action: #selector(LocalLifePostsViewController.saveDateChange(_:)), forControlEvents: .TouchUpInside)
+//            saveButton.backgroundColor = UIColor.brownColor()
+            buttonView.addSubview(saveButton)
+
+            let cancelButton = UIButton(frame: CGRect(x: 10, y: 10, width: 80, height: 40))
+            cancelButton.titleLabel?.font = avenirFont
+            cancelButton.setTitle("Cancel", forState: .Normal)
+            cancelButton.addTarget(self, action: #selector(LocalLifePostsViewController.cancelDateChange(_:)), forControlEvents: .TouchUpInside)
+            cancelButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            buttonView.addSubview(cancelButton)
+            
+//            viewDatePicker.backgroundColor = UIColor.blueColor()
+            viewDatePicker.clipsToBounds = true
+            self.changeDateTimeActionSheet.view.addSubview(viewDatePicker)
+            
+            self.presentViewController(self.changeDateTimeActionSheet, animated: true, completion: nil)
+            
+
             
         }
         actionSheetControllerIOS8.addAction(changeDateActionButton)
-        let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .Default)
+        let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .Default)
+        { action -> Void in
+            
+            let actionSheetForDelete: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            
+            let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+                
+                
+            }
+            actionSheetForDelete.addAction(cancelActionButton)
+            
+            let deletePostActionButton: UIAlertAction = UIAlertAction(title: "Delete Post", style: .Destructive) { action -> Void in
+                
+                
+            }
+            actionSheetForDelete.addAction(deletePostActionButton)
+            self.presentViewController(actionSheetForDelete, animated: true, completion: nil)
+            
+        }
+        actionSheetControllerIOS8.addAction(deleteActionButton)
+        let copyURLActionButton: UIAlertAction = UIAlertAction(title: "Copy Share URL", style: .Default)
         { action -> Void in
             
             
         }
-        actionSheetControllerIOS8.addAction(changeDateActionButton)
-        let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Copy Share URL", style: .Default)
-        { action -> Void in
-            
-            
-        }
-        actionSheetControllerIOS8.addAction(changeDateActionButton)
+        actionSheetControllerIOS8.addAction(copyURLActionButton)
         self.presentViewController(actionSheetControllerIOS8, animated: true, completion: nil)
+        
+        
+        
+        
+    }
+    
+    func cancelDateChange(sender: AnyObject) {
+        
+        print("In Cancel Date function")
+        self.changeDateTimeActionSheet.dismissViewControllerAnimated(true, completion: nil)
+        
+        
+    }
+    
+    func saveDateChange(sender: AnyObject) {
+        
+        print("In save Date function")
+        self.changeDateTimeActionSheet.dismissViewControllerAnimated(true, completion: nil)
         
     }
     
