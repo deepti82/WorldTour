@@ -58,15 +58,3 @@ class TravelLifeMomentsViewController: UIViewController, UICollectionViewDataSou
     */
 
 }
-
-
-class TravelLifeMomentsCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var bgImage: UIImageView!
-    @IBOutlet weak var fileImage: UIImageView!
-    @IBOutlet weak var coverImage: UIImageView!
-    @IBOutlet weak var albumTitle: UILabel!
-    @IBOutlet weak var albumDated: UILabel!
-    
-    
-}

@@ -22,10 +22,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var logOutController:UIViewController!
     var settingsViewController: UIViewController!
     var localLifeController: UIViewController!
+    var myProfileViewController: UIViewController!
     
     
     
-    let labels = ["Popular Journeys", "Explore Destinations", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life"]
+    let labels = ["Popular Journeys", "Explore Destinations", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
     
     @IBOutlet weak var profileView: UIView!
     
@@ -58,13 +59,13 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let BlogsController = storyboard.instantiateViewControllerWithIdentifier("blogsList") as! BlogsListViewController
         self.blogsController = UINavigationController(rootViewController: BlogsController)
         
-        let inviteController = storyboard.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController
+        let inviteController = storyboard.instantiateViewControllerWithIdentifier("inviteFriends") as! InviteFriendsViewController
         self.inviteFriendsController = UINavigationController(rootViewController: inviteController)
         
         let rateUsController = storyboard.instantiateViewControllerWithIdentifier("rating") as! RatingReviewViewController
         self.rateUsController = UINavigationController(rootViewController: rateUsController)
         
-        let FBController = storyboard.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+        let FBController = storyboard.instantiateViewControllerWithIdentifier("FeedbackVC") as! FeedbackViewController
         self.feedbackController = UINavigationController(rootViewController: FBController)
         
         let logOutController = storyboard.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
@@ -72,6 +73,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         let localLifeController = storyboard.instantiateViewControllerWithIdentifier("localLife") as! LocalLifeRecommendationViewController
         self.localLifeController = UINavigationController(rootViewController: localLifeController)
+        
+        let myProfileController = storyboard.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+        self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
 //        let tapForSettings = UIGestureRecognizer(target: self, action: #selector(self.profileTap(_:)))
 //        profileView.addGestureRecognizer(tapForSettings)

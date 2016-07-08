@@ -18,6 +18,19 @@ class SignInViewController: UIViewController {
         let signInFooter = SignInToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height - 120, width: self.view.frame.size.width, height: 150))
         self.view.addSubview(signInFooter)
         
+        signInFooter.signUpButton.addTarget(self, action: #selector(SignInViewController.goToSignUpPage(_:)), forControlEvents: .TouchUpInside)
+        
+        
+    }
+    
+    func goToSignUpPage(sender: AnyObject) {
+        
+        print("inside function!")
+        print("storyboard: \(self.navigationController)")
+        
+        let signUpFullVC = storyboard?.instantiateViewControllerWithIdentifier("signUpTwo") as! SignInPageViewController
+        self.navigationController?.pushViewController(signUpFullVC, animated: true)
+        
     }
 
     override func didReceiveMemoryWarning() {

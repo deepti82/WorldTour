@@ -16,8 +16,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func homeTap (sender: UITapGestureRecognizer? = nil) {
         
-        let activityController = storyboard!.instantiateViewControllerWithIdentifier("Activity") as! ProfilePostsViewController
-        self.activityController = UINavigationController(rootViewController: activityController)
+        let myProfileController = storyboard!.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+        self.activityController = UINavigationController(rootViewController: myProfileController)
         self.slideMenuController()?.changeMainViewController(self.activityController, close: true)
         
     }

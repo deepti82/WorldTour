@@ -11,25 +11,34 @@ import WebKit
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
 
-    let labelOne = ["300", "223", "10", "10", "20", "40", "50"]
-    let labelTwo = ["Following", "Followers", "Countries Visited", "Bucket List"]
+    let labels = ["300 Following", "223 Followers", "10 Countries Visited", "10 Bucket List", "20 Journeys Created", "3 Check Ins", "23 Photos", "1000 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
     
     private var kvoContext: UInt8 = 0
     
+    @IBOutlet weak var MAMatterView: UIView!
     var MAMScrollView: UIScrollView?
     
     @IBOutlet weak var profileCollectionView: UICollectionView!
+    
+    @IBAction func MAMTapped(sender: AnyObject) {
+        
+        
+        
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        getDarkBackGround(self)
+        getDarkBackGround(self)
+        MAMatterView.hidden = true
 //         let footer = getFooter(frame: CGRect(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 45))
 //        footer.layer.zPosition = 100
 //        self.view.addSubview(footer)
         
-        let profileSquare = ProfileMainView(frame: CGRect(x: 10, y: self.view.frame.size.height/3 - 100, width: self.view.frame.size.width - 20,  height: 650))
-        self.view.addSubview(profileSquare)
+//        let profileSquare = ProfileMainView(frame: CGRect(x: 10, y: self.view.frame.size.height/3 - 100, width: self.view.frame.size.width - 20,  height: 500))
+//        self.view.addSubview(profileSquare)
         
 //        MAMScrollView = UIScrollView(frame: CGRect(x: 10, y: self.view.frame.size.height/3 - 45, width: self.view.frame.size.width - 20, height: 600))
 //        MAMScrollView!.scrollEnabled = true
@@ -41,17 +50,20 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        MAMScrollView!.contentSize.height = 750
 //        MAMScrollView?.delegate = self
         
-//        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 10, height: 55))
-//        orangeTab.orangeButtonTitle.setTitle("My Life", forState: .Normal)
-//        let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
-//        fontAwesomeLabel.center = CGPointMake(orangeTab.frame.size.width/2 + 50, orangeTab.frame.size.height/2)
-//        fontAwesomeLabel.font = FontAwesomeFont
-//        fontAwesomeLabel.text = String(format: "%C", faicon["angle_up"]!)
-//        fontAwesomeLabel.textColor = UIColor.whiteColor()
-//        orangeTab.orangeButtonTitle.addSubview(fontAwesomeLabel)
-//        self.view.addSubview(orangeTab)
+        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 10, height: 55))
+        orangeTab.orangeButtonTitle.setTitle("My Life", forState: .Normal)
+        let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
+        fontAwesomeLabel.center = CGPointMake(orangeTab.frame.size.width/2 + 50, orangeTab.frame.size.height/2)
+        fontAwesomeLabel.font = FontAwesomeFont
+        fontAwesomeLabel.text = String(format: "%C", faicon["angle_up"]!)
+        fontAwesomeLabel.textColor = UIColor.whiteColor()
+        orangeTab.orangeButtonTitle.addSubview(fontAwesomeLabel)
+        self.view.addSubview(orangeTab)
         
-        self.view.bringSubviewToFront(profileCollectionView)
+        orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), forControlEvents: .TouchUpInside)
+        
+        
+//        self.view.bringSubviewToFront(profileCollectionView)
         
 //        self.addObserver(self, forKeyPath: "profileViewYPosition", options: .New, context: nil)
         
@@ -73,16 +85,33 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
+        let myValues = labels[indexPath.item]
+        let valueArray = myValues.characters.split{$0 == " "}.map(String.init)
+        
+        let textOne = NSAttributedString(string: valueArray[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+        let textTwo = NSMutableAttributedString(string: valueArray[1], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 12)!])
+        
+        if valueArray.count > 2 {
+        
+            let textThree = NSAttributedString(string: valueArray[2], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 12)!])
+            textTwo.appendAttributedString(NSAttributedString(string: " "))
+            textTwo.appendAttributedString(textThree)
+            
+        }
+        
+        let fullText = NSMutableAttributedString(attributedString: textOne)
+        fullText.appendAttributedString(NSAttributedString(string: "\n"))
+        fullText.appendAttributedString(textTwo)
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ProfileDetailCell
-        cell.LabelTop.text = labelOne[indexPath.item]
-        cell.LabelBottom.text = labelTwo[indexPath.item]
-        print("Loading \(indexPath.item)")
+        cell.infoLabel.attributedText = fullText
+        print("Loading \(cell.infoLabel.attributedText)")
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return labelTwo.count
+        return labels.count
         
     }
     
@@ -118,12 +147,19 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        
 //    }
     
+    func MyLifeDetailsShow(sender: AnyObject) {
+        
+        let myLifeVC = storyboard?.instantiateViewControllerWithIdentifier("myLife") as! MyLifeViewController
+        self.navigationController?.presentViewController(myLifeVC, animated: true, completion: nil)
+        
+    }
+    
+    
 }
 
 
 class ProfileDetailCell: UICollectionViewCell {
     
-    @IBOutlet weak var LabelTop: UILabel!
-    @IBOutlet weak var LabelBottom: UILabel!
+    @IBOutlet weak var infoLabel: UILabel!
     
 }

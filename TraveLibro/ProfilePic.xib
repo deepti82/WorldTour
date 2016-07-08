@@ -33,7 +33,7 @@
         </view>
     </objects>
     <resources>
-        <image name="profile_bg" width="638" height="580"/>
+        <image name="profile_bg" width="150" height="150"/>
         <image name="profile_icon" width="59" height="60"/>
     </resources>
 </document>

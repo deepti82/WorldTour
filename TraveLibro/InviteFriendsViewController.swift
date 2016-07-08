@@ -1,37 +1,30 @@
 //
-//  SignInPageViewController.swift
+//  InviteFriendsViewController.swift
 //  TraveLibro
 //
-//  Created by Midhet Sulemani on 19/05/16.
+//  Created by Midhet Sulemani on 02/07/16.
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-class SignInPageViewController: UIViewController {
+class InviteFriendsViewController: UIViewController {
 
+    @IBOutlet weak var mailButton: UIButton!
+    @IBOutlet weak var whatsappButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         getDarkBackGround(self)
-        
         setNavigationBarItem()
         
-        let pageView = SignInFullView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height - 60))
-        self.view.addSubview(pageView)
-        
-        pageView.signUpButton.addTarget(self, action: #selector(SignInPageViewController.signedUp(_:)), forControlEvents: .TouchUpInside)
-        
-    }
-    
-    func signedUp(sender: AnyObject) {
-        
-        let verifyVC = storyboard?.instantiateViewControllerWithIdentifier("verifyOne") as! VerifyEmailViewController
-        self.navigationController?.pushViewController(verifyVC, animated: true)
+        mailButton.setTitle(emailIcon, forState: .Normal)
+        whatsappButton.setTitle(whatsAppIcon, forState: .Normal)
+        facebookButton.setTitle(facebookIcon, forState: .Normal)
         
     }
-    
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

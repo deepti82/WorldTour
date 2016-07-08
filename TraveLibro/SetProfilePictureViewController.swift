@@ -8,27 +8,58 @@
 
 import UIKit
 
-class SetProfilePictureViewController: UIViewController {
+class SetProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var pictureScroll: UIScrollView!
-    @IBOutlet weak var closeButton: UIButton!
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        pictureScroll.contentSize.height = profileImageView.frame.size.height * 2
-        pictureScroll.contentSize.width = profileImageView.frame.size.width * 2
-        pictureScroll.maximumZoomScale = 5.0
         
-        let maskView = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 320))
-        maskView.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
-        maskView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        self.view.addSubview(maskView)
+        getDarkBackGround(self)
         
-        let peekView = UIView(frame: CGRect(x: 20, y: 40, width: 60, height: 60))
-        peekView.backgroundColor = UIColor.brownColor()
-        pictureScroll.addSubview(peekView)
+        let pagerVC = storyboard?.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
+        setCheckInNavigationBarItem(pagerVC)
         
+        let uploadView = AddDisplayPic(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
+        uploadView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
+        self.view.addSubview(uploadView)
+        
+        uploadView.addButton.addTarget(self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)), forControlEvents: .TouchUpInside)
+        
+        
+    }
+    
+    func chooseDisplayPic(sender: AnyObject) {
+        
+        let chooseSource: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+            
+            
+        }
+        chooseSource.addAction(cancelActionButton)
+        
+        let saveActionButton: UIAlertAction = UIAlertAction(title: "Take Photo", style: .Default)
+        { action -> Void in
+            
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = .Camera
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+            
+        }
+        chooseSource.addAction(saveActionButton)
+        
+        let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .Default)
+        { action -> Void in
+            
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = .PhotoLibrary
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+            
+            
+        }
+        chooseSource.addAction(deleteActionButton)
+        self.presentViewController(chooseSource, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

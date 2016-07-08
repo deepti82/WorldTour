@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccountVerified" customModule="TraveLibro" customModuleProvider="target"/>
@@ -12,14 +11,15 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="238"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="verified_account" translatesAutoresizingMaskIntoConstraints="NO" id="IU7-ub-udI">
-                    <rect key="frame" x="125" y="0.0" width="150" height="150"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addCountries" translatesAutoresizingMaskIntoConstraints="NO" id="IU7-ub-udI">
+                    <rect key="frame" x="138" y="0.0" width="125" height="125"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="IU7-ub-udI" secondAttribute="height" multiplier="1:1" id="XBT-dw-atg"/>
+                        <constraint firstAttribute="height" constant="125" id="1BA-YX-0VR"/>
+                        <constraint firstAttribute="width" constant="125" id="fIS-NG-hcV"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account has been successfully verified" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-SL-VoQ">
-                    <rect key="frame" x="100" y="158" width="200" height="80"/>
+                    <rect key="frame" x="100" y="133" width="200" height="105"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="2dx-Rb-fzZ"/>
                         <constraint firstAttribute="width" constant="200" id="QsC-Ca-MIX"/>
@@ -27,6 +27,11 @@
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="2dx-Rb-fzZ"/>
+                        </mask>
+                    </variation>
                 </label>
             </subviews>
             <constraints>
@@ -42,6 +47,6 @@
         </view>
     </objects>
     <resources>
-        <image name="verified_account" width="200" height="200"/>
+        <image name="addCountries" width="60" height="60"/>
     </resources>
 </document>

@@ -15,6 +15,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     var selectedIndex: NSIndexPath = NSIndexPath()
     var isSelected: Bool = false
+    var signUpCityVC: UIViewController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,10 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             selectedCountry?.accessoryType = .None
 //            selectedCountry?.backgroundColor = UIColor.lightGrayColor()
             isSelected = false
+            
+            signUpCityVC = storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
+            self.navigationController?.pushViewController(signUpCityVC, animated: true)
+            
             
         }
             

@@ -36,6 +36,9 @@
 		3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEB00A1CE7017E0085EEF5 /* Rating.swift */; };
 		8644475487B77BD17AC161F6 /* Pods_TraveLibro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */; };
 		8985E87711B675E96A2FE376 /* Pods_TraveLibroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */; };
+		C20163E01D26911C00A2F70B /* LocalDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163DF1D26911C00A2F70B /* LocalDB.swift */; };
+		C20163E21D26972B00A2F70B /* ProfileImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20163E11D26972B00A2F70B /* ProfileImage.xib */; };
+		C20163E41D26997600A2F70B /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163E31D26997600A2F70B /* ProfileImage.swift */; };
 		C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */; };
 		C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */; };
 		C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */; };
@@ -53,6 +56,8 @@
 		C20A18FF1D22A67700760BF9 /* AddBuddiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */; };
 		C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20A39951CE34AD0002EF1E6 /* FriendView.xib */; };
 		C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20A39971CE34C8D002EF1E6 /* FriendView.swift */; };
+		C212930E1D2E806B002D5A4A /* MyLifeContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C212930D1D2E806B002D5A4A /* MyLifeContainerViewController.swift */; };
+		C21293101D2E830B002D5A4A /* MyLifeMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C212930F1D2E830B002D5A4A /* MyLifeMomentsViewController.swift */; };
 		C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */; };
 		C23EB1CD1CFEB044005B5CE8 /* CheckInLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1CC1CFEB044005B5CE8 /* CheckInLocalLife.swift */; };
 		C23EB1CF1CFEC731005B5CE8 /* PhotoBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1CE1CFEC731005B5CE8 /* PhotoBar.xib */; };
@@ -117,6 +122,13 @@
 		C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263E3A41D1E5D0C00D274FE /* NewThoughtsView.swift */; };
 		C263E3A71D1E5D2300D274FE /* NewThoughtsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C263E3A61D1E5D2300D274FE /* NewThoughtsView.xib */; };
 		C263E3A91D1EAA4600D274FE /* FooterNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */; };
+		C267301F1D279D7900F2C822 /* AddNewOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C267301E1D279D7900F2C822 /* AddNewOTG.xib */; };
+		C26730211D27A21D00F2C822 /* AddNewOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26730201D27A21D00F2C822 /* AddNewOTG.swift */; };
+		C26730271D27A84C00F2C822 /* QuickItineraryOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26730251D27A84C00F2C822 /* QuickItineraryOne.xib */; };
+		C26730281D27A84C00F2C822 /* QuickItineraryOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26730261D27A84C00F2C822 /* QuickItineraryOne.swift */; };
+		C267302A1D27D30300F2C822 /* ChooseCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26730291D27D30300F2C822 /* ChooseCityViewController.swift */; };
+		C267302C1D27D49100F2C822 /* SelectGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C267302B1D27D49100F2C822 /* SelectGenderViewController.swift */; };
+		C267302E1D27E93900F2C822 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C267302D1D27E93900F2C822 /* InviteFriendsViewController.swift */; };
 		C269077D1CF819BA00F827E6 /* GenderInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C269077C1CF819BA00F827E6 /* GenderInfo.xib */; };
 		C269077F1CF819EB00F827E6 /* GenderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269077E1CF819EB00F827E6 /* GenderInfo.swift */; };
 		C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26907811CF826B900F827E6 /* LocationTextField.xib */; };
@@ -139,6 +151,7 @@
 		C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDAB1D06CCBC00906FEC /* EditDOB.swift */; };
 		C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2776A271CD785DF00FE066A /* ShoesOTG.xib */; };
 		C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */; };
+		C27E0F3A1D2A1EF10090880A /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */; };
 		C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */; };
 		C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */; };
 		C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6C001CF03E280049F012 /* ProfileMainView.swift */; };
@@ -171,7 +184,6 @@
 		C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */; };
 		C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */; };
 		C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */; };
-		C2A27A5C1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */; };
 		C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */; };
 		C2A5C1D51CF9A7F90035EF0E /* MoreAboutMe.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D41CF9A7F90035EF0E /* MoreAboutMe.xib */; };
 		C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D61CF9B09E0035EF0E /* TraveLifeVideoPost.xib */; };
@@ -294,6 +306,9 @@
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F3DB46F974DE0537A8651F /* Pods-TraveLibroUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroUITests/Pods-TraveLibroUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BAE3F40D9DEC49A23FC2BE7B /* Pods-TraveLibro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.release.xcconfig"; sourceTree = "<group>"; };
+		C20163DF1D26911C00A2F70B /* LocalDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDB.swift; sourceTree = "<group>"; };
+		C20163E11D26972B00A2F70B /* ProfileImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImage.xib; sourceTree = "<group>"; };
+		C20163E31D26997600A2F70B /* ProfileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCardsViewController.swift; sourceTree = "<group>"; };
 		C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayCardsViewController.swift; sourceTree = "<group>"; };
 		C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideNavigationMenuViewController.swift; sourceTree = "<group>"; };
@@ -309,6 +324,8 @@
 		C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBuddiesViewController.swift; sourceTree = "<group>"; };
 		C20A39951CE34AD0002EF1E6 /* FriendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendView.xib; path = ../FriendView.xib; sourceTree = "<group>"; };
 		C20A39971CE34C8D002EF1E6 /* FriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendView.swift; path = ../FriendView.swift; sourceTree = "<group>"; };
+		C212930D1D2E806B002D5A4A /* MyLifeContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeContainerViewController.swift; sourceTree = "<group>"; };
+		C212930F1D2E830B002D5A4A /* MyLifeMomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeMomentsViewController.swift; sourceTree = "<group>"; };
 		C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInLocalLife.xib; sourceTree = "<group>"; };
 		C23EB1CC1CFEB044005B5CE8 /* CheckInLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInLocalLife.swift; sourceTree = "<group>"; };
 		C23EB1CE1CFEC731005B5CE8 /* PhotoBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoBar.xib; sourceTree = "<group>"; };
@@ -373,6 +390,13 @@
 		C263E3A41D1E5D0C00D274FE /* NewThoughtsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewThoughtsView.swift; path = ../NewThoughtsView.swift; sourceTree = "<group>"; };
 		C263E3A61D1E5D2300D274FE /* NewThoughtsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewThoughtsView.xib; path = ../NewThoughtsView.xib; sourceTree = "<group>"; };
 		C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterNavigation.swift; sourceTree = "<group>"; };
+		C267301E1D279D7900F2C822 /* AddNewOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewOTG.xib; sourceTree = "<group>"; };
+		C26730201D27A21D00F2C822 /* AddNewOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewOTG.swift; sourceTree = "<group>"; };
+		C26730251D27A84C00F2C822 /* QuickItineraryOne.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickItineraryOne.xib; sourceTree = "<group>"; };
+		C26730261D27A84C00F2C822 /* QuickItineraryOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryOne.swift; sourceTree = "<group>"; };
+		C26730291D27D30300F2C822 /* ChooseCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCityViewController.swift; sourceTree = "<group>"; };
+		C267302B1D27D49100F2C822 /* SelectGenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectGenderViewController.swift; sourceTree = "<group>"; };
+		C267302D1D27E93900F2C822 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 		C269077C1CF819BA00F827E6 /* GenderInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GenderInfo.xib; path = ../GenderInfo.xib; sourceTree = "<group>"; };
 		C269077E1CF819EB00F827E6 /* GenderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderInfo.swift; path = ../GenderInfo.swift; sourceTree = "<group>"; };
 		C26907811CF826B900F827E6 /* LocationTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationTextField.xib; path = ../LocationTextField.xib; sourceTree = "<group>"; };
@@ -395,6 +419,7 @@
 		C276EDAB1D06CCBC00906FEC /* EditDOB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDOB.swift; path = ../EditDOB.swift; sourceTree = "<group>"; };
 		C2776A271CD785DF00FE066A /* ShoesOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoesOTG.xib; sourceTree = "<group>"; };
 		C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesOTG.swift; sourceTree = "<group>"; };
+		C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainView.xib; sourceTree = "<group>"; };
 		C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C27F6C001CF03E280049F012 /* ProfileMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainView.swift; sourceTree = "<group>"; };
@@ -427,7 +452,6 @@
 		C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInPageViewController.swift; sourceTree = "<group>"; };
 		C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDisplayPic.xib; sourceTree = "<group>"; };
 		C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDisplayPic.swift; sourceTree = "<group>"; };
-		C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadDisplayPicViewController.swift; sourceTree = "<group>"; };
 		C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
 		C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DJB My Mood Ring Says Blah.ttf"; sourceTree = "<group>"; };
 		C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JennaSue.ttf; sourceTree = "<group>"; };
@@ -578,12 +602,10 @@
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
 				C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */,
 				C2DCAE401D18063E00B35331 /* NavigationStyle.swift */,
+				C20163DE1D26910D00A2F70B /* Models */,
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */,
-				C20A18FC1D229E1800760BF9 /* AddCheckInViewController.swift */,
-				C20A18F31D224EF400760BF9 /* CheckInSearchViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -612,6 +634,9 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C26730241D27A84200F2C822 /* QuickItineraryOne */,
+				C26730231D27A52000F2C822 /* ProfileImage */,
+				C26730221D27A50500F2C822 /* AddNewOTG */,
 				C2535F0B1D252E3F00F6B22D /* NewThoughtsView */,
 				C20A18FB1D229DC900760BF9 /* AddCheckIn */,
 				C263E3A31D1E5BE100D274FE /* NewProfilePosts */,
@@ -759,6 +784,14 @@
 				163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C20163DE1D26910D00A2F70B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C20163DF1D26911C00A2F70B /* LocalDB.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		C20938FF1D1139E100CBA70F /* MoreAboutMeScrollForProfile */ = {
@@ -1043,6 +1076,15 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C212930D1D2E806B002D5A4A /* MyLifeContainerViewController.swift */,
+				C212930F1D2E830B002D5A4A /* MyLifeMomentsViewController.swift */,
+				C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */,
+				C267302D1D27E93900F2C822 /* InviteFriendsViewController.swift */,
+				C267302B1D27D49100F2C822 /* SelectGenderViewController.swift */,
+				C26730291D27D30300F2C822 /* ChooseCityViewController.swift */,
+				C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */,
+				C20A18FC1D229E1800760BF9 /* AddCheckInViewController.swift */,
+				C20A18F31D224EF400760BF9 /* CheckInSearchViewController.swift */,
 				C26B4DEE1D14288900213055 /* ConnectWithAgentViewController.swift */,
 				C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */,
 				C28A92481D0EA12300CFEC7A /* BlogsListViewController.swift */,
@@ -1085,7 +1127,6 @@
 				C2DCB3711CE7454F006E5CBD /* AddYourRatingViewController.swift */,
 				C2A27A481CEDC66B00F74DD1 /* LogInViewController.swift */,
 				C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */,
-				C2A27A5B1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift */,
 				C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */,
 				C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */,
 				C2A27A4F1CEDD5F300F74DD1 /* SignInPageViewController.swift */,
@@ -1129,6 +1170,33 @@
 				C245776D1D1D5ACD00C6568C /* NewProfilePosts.swift */,
 			);
 			name = NewProfilePosts;
+			sourceTree = "<group>";
+		};
+		C26730221D27A50500F2C822 /* AddNewOTG */ = {
+			isa = PBXGroup;
+			children = (
+				C267301E1D279D7900F2C822 /* AddNewOTG.xib */,
+				C26730201D27A21D00F2C822 /* AddNewOTG.swift */,
+			);
+			name = AddNewOTG;
+			sourceTree = "<group>";
+		};
+		C26730231D27A52000F2C822 /* ProfileImage */ = {
+			isa = PBXGroup;
+			children = (
+				C20163E11D26972B00A2F70B /* ProfileImage.xib */,
+				C20163E31D26997600A2F70B /* ProfileImage.swift */,
+			);
+			name = ProfileImage;
+			sourceTree = "<group>";
+		};
+		C26730241D27A84200F2C822 /* QuickItineraryOne */ = {
+			isa = PBXGroup;
+			children = (
+				C26730251D27A84C00F2C822 /* QuickItineraryOne.xib */,
+				C26730261D27A84C00F2C822 /* QuickItineraryOne.swift */,
+			);
+			name = QuickItineraryOne;
 			sourceTree = "<group>";
 		};
 		C269077B1CF8161600F827E6 /* TripSummaryItinerary */ = {
@@ -1536,6 +1604,7 @@
 				C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */,
 				C20939061D1180C100CBA70F /* DJB My Mood Ring Says Blah.ttf in Resources */,
 				1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */,
+				C26730271D27A84C00F2C822 /* QuickItineraryOne.xib in Resources */,
 				C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */,
 				C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */,
 				C2ABDBAE1CEC4CB400D7542E /* OnlyPhoto.xib in Resources */,
@@ -1554,6 +1623,7 @@
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
 				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
 				C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */,
+				C20163E21D26972B00A2F70B /* ProfileImage.xib in Resources */,
 				C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */,
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
 				C28A92531D0ECB4E00CFEC7A /* FilterBlogs.xib in Resources */,
@@ -1607,6 +1677,7 @@
 				C2D594501CF487960007F50B /* MyLifeTabs.xib in Resources */,
 				C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */,
 				C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */,
+				C267301F1D279D7900F2C822 /* AddNewOTG.xib in Resources */,
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
 				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
@@ -1763,6 +1834,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C24F84DC1D000CF5002EA203 /* MoreAboutMe.swift in Sources */,
+				C267302C1D27D49100F2C822 /* SelectGenderViewController.swift in Sources */,
 				C2D67FF71CE5FD7500454A46 /* CollectionViewController.swift in Sources */,
 				C2BB45F21CFDB39800251E8C /* BucketListTableViewController.swift in Sources */,
 				C2A6E2691CE9DA8B00D3F845 /* PhotosOTG.swift in Sources */,
@@ -1786,6 +1858,7 @@
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
 				C26B4DEF1D14288900213055 /* ConnectWithAgentViewController.swift in Sources */,
 				C28A92491D0EA12300CFEC7A /* BlogsListViewController.swift in Sources */,
+				C27E0F3A1D2A1EF10090880A /* FeedbackViewController.swift in Sources */,
 				C2DCAE411D18063E00B35331 /* NavigationStyle.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
 				C20A18FF1D22A67700760BF9 /* AddBuddiesViewController.swift in Sources */,
@@ -1799,7 +1872,6 @@
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
-				C2A27A5C1CEDE7DF00F74DD1 /* UploadDisplayPicViewController.swift in Sources */,
 				C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */,
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
@@ -1828,11 +1900,13 @@
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */,
 				C20939051D11655200CBA70F /* NavigationMainViewController.swift in Sources */,
+				C267302A1D27D30300F2C822 /* ChooseCityViewController.swift in Sources */,
 				C28A923F1D0E7E2E00CFEC7A /* HotelTypeSelect.swift in Sources */,
 				C25BE1F91CFC3ED900C98DD3 /* ProfilePostsViewController.swift in Sources */,
 				C2A6E2641CE9D2BB00D3F845 /* SpeechBubbleView.swift in Sources */,
 				C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */,
 				C2BB45F01CFD96E300251E8C /* FollowersViewController.swift in Sources */,
+				C26730281D27A84C00F2C822 /* QuickItineraryOne.swift in Sources */,
 				C24F84F21D005154002EA203 /* NoFollowers.swift in Sources */,
 				C2A27A471CEDC27600F74DD1 /* LogInView.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
@@ -1857,14 +1931,17 @@
 				C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */,
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
 				C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */,
+				C26730211D27A21D00F2C822 /* AddNewOTG.swift in Sources */,
 				C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */,
 				C2A6E25F1CE9C8D900D3F845 /* TripInfoView.swift in Sources */,
 				C29634EC1D06F3B400E9DF71 /* SearchLocation.swift in Sources */,
+				C267302E1D27E93900F2C822 /* InviteFriendsViewController.swift in Sources */,
 				C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */,
 				C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */,
 				1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */,
 				C25207371D096F27008F0E51 /* ExploreDestinationsViewController.swift in Sources */,
 				C24F84F91D00555C002EA203 /* NoCountriesVisited.swift in Sources */,
+				C20163E41D26997600A2F70B /* ProfileImage.swift in Sources */,
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
@@ -1876,6 +1953,7 @@
 				C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */,
 				C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
+				C21293101D2E830B002D5A4A /* MyLifeMomentsViewController.swift in Sources */,
 				C284277C1CE07445003672E9 /* Styles.swift in Sources */,
 				C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */,
 				C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */,
@@ -1887,7 +1965,9 @@
 				C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */,
 				C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */,
 				C2DCB2371CE30ED0000E40DD /* TripSummaryViewController.swift in Sources */,
+				C20163E01D26911C00A2F70B /* LocalDB.swift in Sources */,
 				C26907891CF82E9100F827E6 /* AccountVerified.swift in Sources */,
+				C212930E1D2E806B002D5A4A /* MyLifeContainerViewController.swift in Sources */,
 				C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */,
 				C2A27A421CEDBAFF00F74DD1 /* SignInToolbar.swift in Sources */,
 				C2ABDBB01CEC4F1400D7542E /* OnlyPhoto.swift in Sources */,

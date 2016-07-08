@@ -14,6 +14,7 @@ class NewProfilePosts: UIView {
     @IBOutlet weak var descriptiveText: UILabel!
     @IBOutlet weak var videoPlayView: UIView!
     @IBOutlet weak var OTGLabelView: UIView!
+    @IBOutlet weak var profileImageView: UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,6 +44,9 @@ class NewProfilePosts: UIView {
         
         OTGLabelView.layer.cornerRadius = 5
         OTGLabelView.clipsToBounds = true
+        
+        let profileImage = ProfileImage(frame: CGRect(x: 0, y: 0, width: profileImageView.frame.width, height: profileImageView.frame.height))
+        profileImageView.addSubview(profileImage)
         
     }
     

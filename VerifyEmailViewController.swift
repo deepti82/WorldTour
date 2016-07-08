@@ -13,9 +13,17 @@ class VerifyEmailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let codeView = VerificationCodeView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height/3))
-//        codeView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)
-//        self.view.addSubview(codeView)
+        getDarkBackGround(self)
+        
+        let nationality = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+        
+        setCheckInNavigationBarItem(nationality)
+        
+        let verified = AccountVerified(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200))
+        verified.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2 - 50)
+        self.view.addSubview(verified)
+        
+        
         
     }
     

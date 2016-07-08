@@ -198,3 +198,13 @@ class cityExploreTableViewCell: UITableViewCell {
     @IBOutlet weak var placeReviewDescription: UILabel!
     
 }
+
+class allReviewsMLTableViewCell: UITableViewCell {
+    
+    
+    @IBOutlet weak var placeTitle: UILabel!
+    @IBOutlet weak var ratingButton: UIButton!
+    @IBOutlet weak var locationLabel: UILabel!
+    
+    
+}

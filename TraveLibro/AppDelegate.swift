@@ -19,9 +19,15 @@ var faicon = [String: UInt32]()
 
 var profileViewY:CGFloat = 45
 
+var emailIcon: String = ""
+var whatsAppIcon: String = ""
+var facebookIcon: String = ""
+
 var feedViewController: UIViewController!
 var notificationsViewController: UIViewController!
 var travelLifeViewController: UIViewController!
+
+var hasLoggedInOnce = false
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,15 +43,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let mainViewController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         
-        nvc = UINavigationController(rootViewController: mainViewController)
+        let signInVC = storyboard.instantiateViewControllerWithIdentifier("SignUpOne") as! SignInViewController
+        
+        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
         
         leftViewController.mainViewController = nvc
         
-        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
         
-        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
-        self.window?.rootViewController = slideMenuController
-        
+        if hasLoggedInOnce {
+            
+            nvc = UINavigationController(rootViewController: mainViewController)
+            
+            let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+            
+            self.window?.rootViewController = slideMenuController
+            
+        }
+        else {
+            
+            nvc = UINavigationController(rootViewController: signInVC)
+            
+            let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+            
+            self.window?.rootViewController = slideMenuController
+            
+            hasLoggedInOnce = true
+        }
         
 //        nvc.setNavigationBarItem()
         nvc.navigationBar.barTintColor = mainBlueColor
@@ -75,6 +98,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["close"] = 0xf00d
         faicon["next"] = 0xf105
         
+        emailIcon = String(format: "%C", faicon["email"]!)
+        facebookIcon = String(format: "%C", faicon["facebook"]!)
+        whatsAppIcon = String(format: "%C", faicon["whatsapp"]!)
+        
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageController.currentPageIndicatorTintColor = UIColor.blackColor()
@@ -92,7 +119,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let image = UIImage(named: "adventure_icon")
 
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
-        
         
         return true
     }

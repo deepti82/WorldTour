@@ -20,6 +20,9 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         let myVC = viewControllerAtIndex(0) as! SignupCardsViewController
         let viewControllers = [myVC]
         
+        let home = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        
+        setCheckInNavigationBarItem(home)
         
         dataSource = self
         
