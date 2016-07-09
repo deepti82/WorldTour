@@ -17,9 +17,26 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     var isSelected: Bool = false
     var signUpCityVC: UIViewController!
     
+    internal var whichView: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if whichView == "addCountries" {
+            
+            let leftButton = UIButton()
+            leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+            leftButton.frame = CGRectMake(0, 0, 30, 30)
+            
+            let rightButton = UIButton()
+            rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+            rightButton.addTarget(self, action: #selector(SelectCountryViewController.addYear(_:)), forControlEvents: .TouchUpInside)
+            rightButton.frame = CGRectMake(0, 0, 30, 30)
+            
+            self.customNavigationBar(leftButton, right: rightButton)
+            
+        }
         
         let searchFieldView = SearchFieldView(frame: CGRect(x: 0, y: 0, width: searchView.frame.width + 60, height: searchView.frame.height))
         searchFieldView.leftLine.backgroundColor = mainOrangeColor
@@ -42,37 +59,67 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         let selectedCountry = tableView.cellForRowAtIndexPath(indexPath)
         
-        if selectedCountry?.accessoryType == .Checkmark {
+        if whichView == "addCountries" {
             
-            selectedCountry?.accessoryType = .None
-//            selectedCountry?.backgroundColor = UIColor.lightGrayColor()
-            isSelected = false
+            if selectedCountry?.accessoryType == .Checkmark {
+                
+                selectedCountry?.accessoryType = .None
+                
+            }
+                
+            else {
+                
+                selectedCountry?.accessoryType = .Checkmark
+                
+            }
             
-            signUpCityVC = storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
-            self.navigationController?.pushViewController(signUpCityVC, animated: true)
-            
-            
-        }
-            
-        else if isSelected == true {
-            
-            let prevSelected = tableView.cellForRowAtIndexPath(selectedIndex)
-//            prevSelected?.backgroundColor = UIColor.lightGrayColor()
-            prevSelected?.accessoryType = .None
-            
-            selectedCountry?.accessoryType = .Checkmark
-//            selectedCountry?.backgroundColor = mainOrangeColor
-            selectedIndex = indexPath
         }
         
         else {
             
-            selectedCountry?.accessoryType = .Checkmark
-//            selectedCountry?.backgroundColor = mainOrangeColor
-            selectedIndex = indexPath
-            isSelected = true
+            if selectedCountry?.accessoryType == .Checkmark {
+                
+                selectedCountry?.accessoryType = .None
+                //            selectedCountry?.backgroundColor = UIColor.lightGrayColor()
+                isSelected = false
+                
+                signUpCityVC = storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
+                self.navigationController?.pushViewController(signUpCityVC, animated: true)
+                
+                
+            }
+                
+            else if isSelected == true {
+                
+                let prevSelected = tableView.cellForRowAtIndexPath(selectedIndex)
+                //            prevSelected?.backgroundColor = UIColor.lightGrayColor()
+                prevSelected?.accessoryType = .None
+                
+                selectedCountry?.accessoryType = .Checkmark
+                //            selectedCountry?.backgroundColor = mainOrangeColor
+                selectedIndex = indexPath
+            }
+                
+            else {
+                
+                selectedCountry?.accessoryType = .Checkmark
+                //            selectedCountry?.backgroundColor = mainOrangeColor
+                selectedIndex = indexPath
+                isSelected = true
+                
+            }
             
         }
+        
+    }
+    
+    
+    
+    func addYear(sender: UIButton) {
+        
+        let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+        nextVC.whichView = ""
+        self.navigationController?.pushViewController(nextVC, animated: true)
         
     }
     
@@ -84,7 +131,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         if indexPath.row % 2 == 0 {
             
-            cell.backgroundColor = mainOrangeColor
+            cell.backgroundColor = mainOrangeColor.colorWithAlphaComponent(0.1)
         }
         
         return cell

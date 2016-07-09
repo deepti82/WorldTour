@@ -12,7 +12,19 @@ class BucketListTableViewController: UITableViewController  {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "add_fa_icon"), forState: .Normal)
+        rightButton.addTarget(self, action: #selector(BucketListTableViewController.addCountriesVisited(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 0, 30, 30)
+        
+        self.customNavigationBar(leftButton, right: rightButton)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -90,7 +102,12 @@ class BucketListTableViewController: UITableViewController  {
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return 80
+        return 35
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return "2016"
     }
 
     /*
@@ -137,6 +154,15 @@ class BucketListTableViewController: UITableViewController  {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func addCountriesVisited(sender: UIButton) {
+        
+       let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+        nextVC.whichView = "addCountries"
+        self.navigationController?.pushViewController(nextVC, animated: true)
+        
+        
+    }
 
 }
 

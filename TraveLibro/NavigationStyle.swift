@@ -9,7 +9,8 @@
 import UIKit
 
 var checkInMainVC: UIViewController!
-
+var previousVC: UIViewController!
+var nextVC: UIViewController!
 
 extension UIViewController {
     
@@ -126,6 +127,40 @@ extension UIViewController {
         
     }
     
+    func customNavigationBar(left: UIButton?, right: UIButton?) {
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.toolbar.barTintColor = mainBlueColor
+        self.navigationController?.navigationBar.barTintColor = mainBlueColor
+        self.navigationController?.navigationBar.barStyle = .Black
+        
+        let leftBarButton = UIBarButtonItem()
+        leftBarButton.customView = left
+        
+        let rightBarButton = UIBarButtonItem()
+        rightBarButton.customView = right
+        
+//        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: UIImage(named: "add_fa_icon"), style: .Plain, target: self, action: #selector(UIViewController.setForwardController(_:))), animated: true)
+        self.navigationItem.leftBarButtonItem = leftBarButton
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        
+//        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.setBackwardController(_:))), animated: true)
+//        self.navigationController?.toolbar.barTintColor = mainBlueColor
+//        self.navigationController?.navigationBar.barTintColor = mainBlueColor
+//        self.navigationController?.navigationBar.barStyle = .Black
+//        
+//        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.setBackwardController(_:))), animated: true)
+//        self.navigationController?.toolbar.barTintColor = mainBlueColor
+//        self.navigationController?.navigationBar.barTintColor = mainBlueColor
+//        self.navigationController?.navigationBar.barStyle = .Black
+        
+        //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
+        self.slideMenuController()?.removeLeftGestures()
+        self.slideMenuController()?.removeRightGestures()
+        
+    }
+    
     func closeController(sender: UIBarButtonItem) -> () {
         
         print("close controller called")
@@ -147,6 +182,23 @@ extension UIViewController {
         
     }
     
+    func setForwardController(sender: AnyObject?) {
+        
+        self.navigationController?.pushViewController(nextVC, animated: true)
+        
+    }
+    
+    func setBackwardController(sender: AnyObject?) {
+        
+        self.navigationController?.pushViewController(previousVC, animated: true)
+        
+    }
+    
+    func popVC(sender: UIButton) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
     
     func setFooterTabBar(vc: UIViewController) {
         

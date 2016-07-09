@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import WebKit
+import DKChainableAnimationKit
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
 
@@ -19,12 +19,26 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var MAMatterView: UIView!
     var MAMScrollView: UIScrollView?
     
+    @IBOutlet weak var mainProfileView: UIView!
     @IBOutlet weak var profileCollectionView: UICollectionView!
+    
+    var toggle = false
     
     @IBAction func MAMTapped(sender: AnyObject) {
         
+        if !toggle {
         
+            MAMatterView.hidden = false
+            mainProfileView.animation.moveY(-100.0).moveHeight(100.0).animate(1.0)
+            toggle = true
+        }
         
+        else {
+            
+            MAMatterView.hidden = true
+            mainProfileView.animation.moveY(100.0).moveHeight(-50.0).animate(1.0)
+            toggle = false
+        }
         
         
     }
@@ -44,9 +58,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        MAMScrollView!.scrollEnabled = true
 //        self.view.addSubview(MAMScrollView!)
 //        
-//        let MAM = MoreAboutMeScrollForProfile(frame: CGRect(x: 0, y: 325, width: self.view.frame.size.width - 20, height: 300))
-//        MAMScrollView!.addSubview(MAM)
-//        
+        let MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
+        MAM.backgroundColor = UIColor.clearColor()
+        MAMatterView!.addSubview(MAM)
+//
 //        MAMScrollView!.contentSize.height = 750
 //        MAMScrollView?.delegate = self
         
@@ -61,7 +76,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.view.addSubview(orangeTab)
         
         orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), forControlEvents: .TouchUpInside)
-        
         
 //        self.view.bringSubviewToFront(profileCollectionView)
         
@@ -115,12 +129,32 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
     }
     
-//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        
-//        print("Selected item: \(indexPath.item)")
-//        
-//    }
-//    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        print("Selected item: \(indexPath.item)")
+        switch indexPath.item {
+        case 0:
+            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController
+            followersVC.whichView = "Following"
+            self.navigationController?.pushViewController(followersVC, animated: true)
+            break
+        case 1:
+//            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController
+//            followersVC.whichView = "No Followers"
+//            self.navigationController?.pushViewController(followersVC, animated: true)
+            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("NoFollowing") as! NoFollowingViewController
+            self.navigationController?.pushViewController(followersVC, animated: true)
+            break
+        case 2:
+            let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+            self.navigationController?.pushViewController(bucketVC, animated: true)
+            break
+        default:
+            break
+        }
+        
+    }
+    
 //    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
 //        
 //        print("fn 2")
@@ -134,7 +168,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        
 //        MAMScrollView?.layer.zPosition = 0
 //    }
-    
+//    
 //    func scrollViewDidScrollToTop(scrollView: UIScrollView) {
 //        
 //        MAMScrollView?.layer.zPosition = 20

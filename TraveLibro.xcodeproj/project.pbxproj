@@ -86,6 +86,7 @@
 		C24B45651D0AE79A002EA009 /* PopularAgents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B45641D0AE79A002EA009 /* PopularAgents.swift */; };
 		C24B45691D0AF5C4002EA009 /* EachMustDo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B45681D0AF5C4002EA009 /* EachMustDo.xib */; };
 		C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B456A1D0AF674002EA009 /* EachMustDo.swift */; };
+		C24EB2EF1D30DE2E00EB95F6 /* NoFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24EB2EE1D30DE2E00EB95F6 /* NoFollowingViewController.swift */; };
 		C24F84DA1CFFFBF5002EA203 /* UserProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */; };
 		C24F84DC1D000CF5002EA203 /* MoreAboutMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F84DB1D000CF5002EA203 /* MoreAboutMe.swift */; };
 		C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */; };
@@ -354,6 +355,7 @@
 		C24B45641D0AE79A002EA009 /* PopularAgents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularAgents.swift; sourceTree = "<group>"; };
 		C24B45681D0AF5C4002EA009 /* EachMustDo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EachMustDo.xib; sourceTree = "<group>"; };
 		C24B456A1D0AF674002EA009 /* EachMustDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachMustDo.swift; sourceTree = "<group>"; };
+		C24EB2EE1D30DE2E00EB95F6 /* NoFollowingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoFollowingViewController.swift; sourceTree = "<group>"; };
 		C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileSettingsViewController.swift; path = ../UserProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		C24F84DB1D000CF5002EA203 /* MoreAboutMe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutMe.swift; sourceTree = "<group>"; };
 		C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsViewController.swift; sourceTree = "<group>"; };
@@ -606,6 +608,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C24EB2EE1D30DE2E00EB95F6 /* NoFollowingViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -1944,6 +1947,7 @@
 				C20163E41D26997600A2F70B /* ProfileImage.swift in Sources */,
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
+				C24EB2EF1D30DE2E00EB95F6 /* NoFollowingViewController.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
 				C24B45611D0ADAEB002EA009 /* FilterItineraries.swift in Sources */,
 				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
