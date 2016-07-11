@@ -46,7 +46,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         super.viewDidLoad()
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+        rightButton.setImage(UIImage(named: "search_toolbar"), forState: .Normal)
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), forControlEvents: .TouchUpInside)
         rightButton.frame = CGRectMake(0, 8, 30, 30)
         
@@ -159,6 +159,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             self.navigationController?.pushViewController(followersVC, animated: true)
             break
         case 2:
+//            let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+//            self.navigationController?.pushViewController(bucketVC, animated: true)
+            let noBucketVC = storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+            self.navigationController?.pushViewController(noBucketVC, animated: true)
+            break
+        case 3:
             let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
             self.navigationController?.pushViewController(bucketVC, animated: true)
             break

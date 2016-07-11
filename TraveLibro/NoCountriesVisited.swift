@@ -10,6 +10,8 @@ import UIKit
 
 class NoCountriesVisited: UIView {
 
+    @IBOutlet weak var addCountriesButton: UIButton!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

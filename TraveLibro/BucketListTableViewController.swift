@@ -161,7 +161,6 @@ class BucketListTableViewController: UITableViewController  {
         nextVC.whichView = "addCountries"
         self.navigationController?.pushViewController(nextVC, animated: true)
         
-        
     }
 
 }

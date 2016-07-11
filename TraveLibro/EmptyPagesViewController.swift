@@ -17,6 +17,17 @@ class EmptyPagesViewController: UIViewController {
         
         let nocountries = NoCountriesVisited(frame: CGRect(x: 0, y: 210, width: self.view.frame.width, height: 200))
         self.view.addSubview(nocountries)
+        
+        nocountries.addCountriesButton.addTarget(self, action: #selector(EmptyPagesViewController.addCountries(_:)), forControlEvents: .TouchUpInside)
+        
+    }
+    
+    func addCountries(sender: UIButton) {
+        
+        let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+        nextVC.whichView = "addCountries"
+        self.navigationController?.pushViewController(nextVC, animated: true)
+        
     }
 
     override func didReceiveMemoryWarning() {
