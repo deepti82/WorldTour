@@ -16,7 +16,7 @@ class GenderInfo: UIView {
     @IBAction func sheButtonTap(sender: UIButton) {
         
         heButton.tintColor = UIColor.lightGrayColor()
-        sheButton.tintColor = mainOrangeColor
+        sheButton.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
     }
     
     @IBAction func heButtonTap(sender: UIButton) {

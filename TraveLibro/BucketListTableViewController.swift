@@ -21,7 +21,7 @@ class BucketListTableViewController: UITableViewController  {
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "add_fa_icon"), forState: .Normal)
         rightButton.addTarget(self, action: #selector(BucketListTableViewController.addCountriesVisited(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 0, 30, 30)
+        rightButton.frame = CGRectMake(0, 8, 30, 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         

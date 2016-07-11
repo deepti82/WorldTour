@@ -608,7 +608,6 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C24EB2EE1D30DE2E00EB95F6 /* NoFollowingViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -1079,6 +1078,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C24EB2EE1D30DE2E00EB95F6 /* NoFollowingViewController.swift */,
 				C212930D1D2E806B002D5A4A /* MyLifeContainerViewController.swift */,
 				C212930F1D2E830B002D5A4A /* MyLifeMomentsViewController.swift */,
 				C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */,

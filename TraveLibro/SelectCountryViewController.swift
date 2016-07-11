@@ -22,19 +22,31 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        
+        let rightButton = UIButton()
+        
         if whichView == "addCountries" {
             
-            let leftButton = UIButton()
-            leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-            leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-            leftButton.frame = CGRectMake(0, 0, 30, 30)
-            
-            let rightButton = UIButton()
             rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.addYear(_:)), forControlEvents: .TouchUpInside)
+            rightButton.frame = CGRectMake(0, 8, 30, 30)
+            
+            self.customNavigationBar(leftButton, right: rightButton)
+            
+        }
+        
+        else if whichView == "selectNationality"{
+            
+            rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+            rightButton.addTarget(self, action: #selector(SelectCountryViewController.chooseCity(_:)), forControlEvents: .TouchUpInside)
             rightButton.frame = CGRectMake(0, 0, 30, 30)
             
             self.customNavigationBar(leftButton, right: rightButton)
+            
             
         }
         
@@ -46,6 +58,13 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         searchFieldView.searchField.placeholder = "Search"
         searchView.addSubview(searchFieldView)
         
+        
+    }
+    
+    func chooseCity(sender: UIButton) {
+        
+        signUpCityVC = storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
+        self.navigationController?.pushViewController(signUpCityVC, animated: true)
         
     }
 
@@ -82,10 +101,6 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 selectedCountry?.accessoryType = .None
                 //            selectedCountry?.backgroundColor = UIColor.lightGrayColor()
                 isSelected = false
-                
-                signUpCityVC = storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
-                self.navigationController?.pushViewController(signUpCityVC, animated: true)
-                
                 
             }
                 

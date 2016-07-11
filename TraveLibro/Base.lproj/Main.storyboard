@@ -1429,7 +1429,7 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="location"/>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Mumbai" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MDK-2z-An2">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mumbai" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MDK-2z-An2">
                                         <rect key="frame" x="20" y="8" width="222" height="29"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1455,6 +1455,10 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="cityTextField" destination="MDK-2z-An2" id="D3M-Zq-4Yq"/>
+                        <outlet property="locationView" destination="DNq-U0-2uW" id="aRx-wu-jVB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Md-fL-fju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3268,10 +3272,10 @@
             </objects>
             <point key="canvasLocation" x="4276" y="1146"/>
         </scene>
-        <!--My Profile-->
+        <!--Yash's Profile-->
         <scene sceneID="UW0-xu-VVa">
             <objects>
-                <viewController storyboardIdentifier="ProfileVC" title="My Profile" id="73T-Id-WOj" customClass="ProfileViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" title="Yash's Profile" id="73T-Id-WOj" customClass="ProfileViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xty-CO-MIL"/>
                         <viewControllerLayoutGuide type="bottom" id="jup-0Y-JP4"/>
@@ -3416,7 +3420,7 @@
                                         <rect key="frame" x="0.0" y="278" width="288" height="72"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="ogf-zC-WaX" firstAttribute="top" secondItem="hKw-kR-G0H" secondAttribute="top" constant="-30" id="1k0-Wu-2Uj"/>
                                     <constraint firstAttribute="height" constant="350" id="9Bc-Ni-e4O"/>
@@ -3751,7 +3755,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zNb-dj-fEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5119" y="447"/>
+            <point key="canvasLocation" x="5103" y="461"/>
         </scene>
         <!--Invite Friends-->
         <scene sceneID="ufH-S9-kQj">
@@ -6167,10 +6171,10 @@
         <image name="location_icon" width="200" height="200"/>
         <image name="my_profile_bg" width="850" height="128"/>
         <image name="options_icon" width="30" height="30"/>
-        <image name="palm_trees_icon" width="61" height="60"/>
+        <image name="palm_trees_icon" width="100" height="100"/>
         <image name="paris" width="811" height="563"/>
         <image name="photobar1" width="60" height="60"/>
-        <image name="photographer" width="85" height="67"/>
+        <image name="photographer" width="100" height="100"/>
         <image name="photos_icon" width="100" height="83"/>
         <image name="profile_icon" width="59" height="60"/>
         <image name="profile_pic_new" width="150" height="150"/>

@@ -29,14 +29,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if !toggle {
         
             MAMatterView.hidden = false
-            mainProfileView.animation.moveY(-100.0).moveHeight(100.0).animate(1.0)
+            mainProfileView.animation.moveY(-100.0).moveHeight(100.0).animate(0.5)
             toggle = true
         }
         
         else {
             
             MAMatterView.hidden = true
-            mainProfileView.animation.moveY(100.0).moveHeight(-50.0).animate(1.0)
+            mainProfileView.animation.moveY(100.0).moveHeight(-50.0).animate(0.5)
             toggle = false
         }
         
@@ -45,6 +45,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+        rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        
+        self.setOnlyRightNavigationButton(rightButton)
+//        self.setNavigationBarItemText("Yash's Profile")
         getDarkBackGround(self)
         MAMatterView.hidden = true
 //         let footer = getFooter(frame: CGRect(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 45))
@@ -95,6 +102,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func search(sender: AnyObject) {
+        
+        print("Search Tapped!")
+        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

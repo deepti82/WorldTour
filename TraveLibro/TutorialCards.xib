@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="cardDescription" destination="vpa-fl-yOC" id="ulB-lh-OiB"/>
                 <outlet property="cardTitle" destination="Q9k-KC-4dz" id="m2W-xW-k18"/>
+                <outlet property="checkBoxView" destination="LwY-Jg-Q4Q" id="aGN-HU-7fd"/>
                 <outlet property="profileImage" destination="6dN-V3-sXe" id="S1q-zG-I94"/>
             </connections>
         </placeholder>
@@ -39,27 +40,25 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMc-Km-rhS">
-                    <rect key="frame" x="0.0" y="125" width="406" height="120"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LwY-Jg-Q4Q">
+                    <rect key="frame" x="20" y="117" width="366" height="475"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="120" id="lYm-nw-JGk"/>
-                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="LwY-Jg-Q4Q" secondAttribute="bottom" constant="8" id="1Ds-e9-S8g"/>
                 <constraint firstItem="vpa-fl-yOC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5xo-BN-F42"/>
                 <constraint firstItem="Q9k-KC-4dz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8ab-Va-qzR"/>
                 <constraint firstItem="vpa-fl-yOC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="JBG-di-lpA"/>
-                <constraint firstItem="AMc-Km-rhS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Sa5-Ba-4KB"/>
+                <constraint firstItem="LwY-Jg-Q4Q" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="MpG-kW-lYH"/>
                 <constraint firstItem="6dN-V3-sXe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-45" id="V20-lb-xGn"/>
                 <constraint firstItem="6dN-V3-sXe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dqJ-yd-4ol"/>
-                <constraint firstAttribute="trailing" secondItem="AMc-Km-rhS" secondAttribute="trailing" id="mHd-uw-T0g"/>
                 <constraint firstItem="vpa-fl-yOC" firstAttribute="top" secondItem="Q9k-KC-4dz" secondAttribute="bottom" constant="5" id="mfZ-vx-1OG"/>
+                <constraint firstAttribute="trailing" secondItem="LwY-Jg-Q4Q" secondAttribute="trailing" constant="20" id="nkE-Mr-fuC"/>
                 <constraint firstAttribute="trailing" secondItem="vpa-fl-yOC" secondAttribute="trailing" constant="20" id="p7J-iX-6No"/>
-                <constraint firstItem="AMc-Km-rhS" firstAttribute="top" secondItem="vpa-fl-yOC" secondAttribute="bottom" constant="16" id="slT-ln-5zD"/>
                 <constraint firstItem="Q9k-KC-4dz" firstAttribute="top" secondItem="6dN-V3-sXe" secondAttribute="bottom" constant="8" id="v5n-gE-yvx"/>
+                <constraint firstItem="LwY-Jg-Q4Q" firstAttribute="top" secondItem="vpa-fl-yOC" secondAttribute="bottom" constant="8" id="v8u-fe-v2v"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

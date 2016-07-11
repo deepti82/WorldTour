@@ -8,19 +8,98 @@
 
 import UIKit
 
-class ChooseCityViewController: UIViewController {
+class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var cityTextField: UITextField!
+    @IBOutlet weak var locationView: UIView!
+    
+    let pickOption = ["one", "two", "three", "seven", "fifteen"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let attributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        let cityPicker = UIPickerView()
+        cityPicker.delegate = self
+        cityPicker.dataSource = self
+        
+        cityTextField.attributedPlaceholder = NSAttributedString(string: "Mumbai", attributes: attributes)
+        cityTextField.inputView = cityPicker
+        
+        
         getDarkBackGround(self)
         
-        let selectGenderVC = storyboard?.instantiateViewControllerWithIdentifier("selectGender") as! SelectGenderViewController
+        locationView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         
-        setCheckInNavigationBarItem(selectGenderVC)
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+        rightButton.addTarget(self, action: #selector(ChooseCityViewController.selectGender(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        
+        self.customNavigationBar(leftButton, right: rightButton)
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.translucent = true
+//        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChooseCityViewController.donePicker(_:)))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChooseCityViewController.cancelPicker(_:)))
+        
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        
+        cityTextField.inputAccessoryView = toolBar
         
     }
-
+    
+    func donePicker(sender: AnyObject) {
+        
+        cityTextField.resignFirstResponder()
+    }
+    
+    func cancelPicker(sender: AnyObject) {
+        
+        cityTextField.resignFirstResponder()
+        
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return pickOption[row]
+        
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return pickOption.count
+        
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        cityTextField.text = pickOption[row]
+    }
+    
+    func selectGender(sender: UIButton) {
+        
+        let selectGenderVC = storyboard?.instantiateViewControllerWithIdentifier("selectGender") as! SelectGenderViewController
+        self.navigationController?.pushViewController(selectGenderVC, animated: true)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

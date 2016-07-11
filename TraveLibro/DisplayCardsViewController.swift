@@ -10,7 +10,9 @@ import UIKit
 
 class DisplayCardsViewController: UIPageViewController, UIPageViewControllerDataSource {
 
-    let titles = ["Your kind of a holiday", "You travel", "You usually go", "Prefer to travel", "Your ideal holiday type"]
+    let titles = ["Your kind of a holiday", "You usually go", "Prefer to travel", "Your ideal holiday type"]
+    let checkBoxNumber = [6, 4, 8, 12]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +22,17 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         let myVC = viewControllerAtIndex(0) as! SignupCardsViewController
         let viewControllers = [myVC]
         
-        let home = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(0, 0, 30, 30)
         
-        setCheckInNavigationBarItem(home)
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+        rightButton.addTarget(self, action: #selector(DisplayCardsViewController.finishQuestions(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        
+        self.customNavigationBar(leftButton, right: rightButton)
         
         dataSource = self
         
@@ -35,6 +45,12 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         // Dispose of any resources that can be recreated.
     }
     
+    func finishQuestions(sender: AnyObject) {
+        
+        let home = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        self.navigationController?.pushViewController(home, animated: true)
+        
+    }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
@@ -79,7 +95,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         let myVC = storyboard?.instantiateViewControllerWithIdentifier("SignupCardsViewController") as! SignupCardsViewController
         myVC.cardTitle = titles[index]
         myVC.pageIndex = index
-        myVC.checkBoxes = CGFloat(index)
+        myVC.checkBoxes = CGFloat(checkBoxNumber[index])
         return myVC
     }
     

@@ -8,6 +8,8 @@
 
 import UIKit
 
+var checkBoxNumber: Int!
+
 class SignupCardsViewController: UIViewController {
     
     
@@ -15,16 +17,41 @@ class SignupCardsViewController: UIViewController {
     var cardTitle: String = ""
     var cardDescription: String = "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
     var checkBoxes: CGFloat =  6
+    var cardViewHeight: CGFloat!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        checkBoxNumber = Int(checkBoxes)
+        
         let theScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         theScrollView.delaysContentTouches = false
         self.view.addSubview(theScrollView)
         
-        let cardView = TutorialCards(frame: CGRect(x: 37.5, y: 100, width: self.view.frame.width - 75, height: checkBoxes * 100 - 100))
+        let view = TutorialCards()
+        view.cardDescription.text = "Lorem Ipsum is simply dummy"
+        
+        if checkBoxes < 6 {
+            
+            cardViewHeight = checkBoxes * 125 - 100
+            
+        }
+        
+        else if checkBoxes > 6 {
+            
+            cardViewHeight = checkBoxes * 100
+            
+        }
+        
+        else {
+            
+            cardViewHeight = checkBoxes * 125 - 75
+            
+        }
+        
+        
+        let cardView = TutorialCards(frame: CGRect(x: 37.5, y: 125, width: self.view.frame.width - 75, height: cardViewHeight))
         cardView.cardTitle.text = cardTitle
         cardView.cardDescription.text = cardDescription
         theScrollView.addSubview(cardView)

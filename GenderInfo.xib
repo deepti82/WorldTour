@@ -22,6 +22,7 @@
                         <constraint firstAttribute="width" constant="100" id="7YX-CT-NUt"/>
                         <constraint firstAttribute="height" constant="100" id="8eH-Vx-o26"/>
                     </constraints>
+                    <color key="tintColor" red="0.58823531866073608" green="0.58823531866073608" blue="0.58823531866073608" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" image="he_icon">
                         <color key="titleColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -35,8 +36,10 @@
                         <constraint firstAttribute="width" constant="100" id="3wx-Rr-daH"/>
                         <constraint firstAttribute="height" constant="100" id="r9Z-yh-TVf"/>
                     </constraints>
-                    <color key="tintColor" red="0.4549019608" green="0.45882352939999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" image="she_icon"/>
+                    <color key="tintColor" red="0.58823531870000001" green="0.58823531870000001" blue="0.58823531870000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" image="she_icon">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="sheButtonTap:" destination="-1" eventType="touchUpInside" id="4ed-4N-86a"/>
                     </connections>

@@ -17,12 +17,10 @@
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpS-gU-Nae">
                     <rect key="frame" x="20" y="10" width="360" height="280"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="vpS-gU-Nae" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="3aG-6j-1Ya"/>
                 <constraint firstItem="vpS-gU-Nae" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="87g-uE-Rna"/>

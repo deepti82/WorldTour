@@ -17,8 +17,19 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
         getDarkBackGround(self)
         
-        let pagerVC = storyboard?.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
-        setCheckInNavigationBarItem(pagerVC)
+        
+        
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+        rightButton.addTarget(self, action: #selector(SetProfilePictureViewController.choosePreferences(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        
+        self.customNavigationBar(leftButton, right: rightButton)
         
         let uploadView = AddDisplayPic(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
         uploadView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
@@ -26,6 +37,13 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
         uploadView.addButton.addTarget(self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)), forControlEvents: .TouchUpInside)
         
+        
+    }
+    
+    func choosePreferences(sender: AnyObject) {
+        
+        let pagerVC = storyboard?.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
+        self.navigationController?.pushViewController(pagerVC, animated: true)
         
     }
     
