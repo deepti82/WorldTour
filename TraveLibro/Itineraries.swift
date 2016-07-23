@@ -11,6 +11,7 @@ import UIKit
 class Itineraries: UIView {
     @IBOutlet weak var profileIcon: UIImageView!
     @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var coverImage: UIImageView!
 
     @IBOutlet weak var reviewStack: UIStackView!
     @IBOutlet weak var likeStack: UIStackView!
@@ -21,6 +22,10 @@ class Itineraries: UIView {
     @IBOutlet weak var daysBG: UIImageView!
     @IBOutlet weak var gradientView: UIView!
     @IBOutlet weak var toTapView: UIView!
+    
+    @IBOutlet weak var stackViewDetailOne: UIImageView!
+    @IBOutlet weak var stackViewDetailTwo: UIImageView!
+    @IBOutlet weak var stackViewDetailThree: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,6 +48,13 @@ class Itineraries: UIView {
         daysLabel.layer.zPosition = 10
         daysBG.layer.zPosition = 10
         
+        stackViewDetailOne.tintColor = UIColor.whiteColor()
+        stackViewDetailTwo.tintColor = UIColor.whiteColor()
+        stackViewDetailThree.tintColor = UIColor.whiteColor()
+        
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
+        coverImage.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {

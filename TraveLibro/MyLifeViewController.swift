@@ -35,6 +35,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     var firstTime = true
     var verticalLayout: VerticalLayout!
     let titleLabels = ["November 2015 (25)", "October 2015 (25)", "September 2015 (25)", "August 2015 (25)"]
+    var whatTab = "Journeys"
     
     
 //    @IBOutlet weak var TheScrollView: UIScrollView!
@@ -42,10 +43,42 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 //    @IBOutlet weak var TheCollectionViewDefault: UIView!
 //    @IBOutlet weak var theCollectionView: UICollectionView!
     
+    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var arrowDownButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getDarkBackGround(self)
+        
+        let leftButton = UIButton()
+        leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
+        let arrow = String(format: "%C", faicon["arrow-down"]!)
+        leftButton.setTitle(arrow, forState: .Normal)
+        leftButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        
+        let rightButton = UIButton()
+        leftButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 12)
+        rightButton.setTitle("Follow", forState: .Normal)
+        rightButton.addTarget(self, action: #selector(MyLifeViewController.follow(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 8, 100, 30)
+        
+        self.customNavigationBar(leftButton, right: rightButton)
+        
+        arrowDownButton.setTitle(arrow, forState: .Normal)
+        arrowDownButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), forControlEvents: .TouchUpInside)
+        
+        followButton.addTarget(self, action: #selector(MyLifeViewController.follow(_:)), forControlEvents: .TouchUpInside)
+        
+        let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
+        statusBar.layer.zPosition = -1
+        statusBar.backgroundColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+        self.view.addSubview(statusBar)
+        
+        
         let frameWidth = self.view.frame.width - 25
+        
+        print("in main my life")
         
         journeysWC.constant = frameWidth/3
         momentsWC.constant = frameWidth/3
@@ -93,8 +126,28 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         TLRadio.addTarget(self, action: #selector(MyLifeViewController.travelLifeRadioChecked(_:)), forControlEvents: .TouchUpInside)
         LLRadio.addTarget(self, action: #selector(MyLifeViewController.localLifeRadioChecked(_:)), forControlEvents: .TouchUpInside)
         
-        
+        self.setDefaults()
         self.allRadioChecked(nil)
+        
+        
+    }
+    
+    func exitMyLife(sender: UIButton) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    func follow(sender: UIButton) {
+        
+        sender.setTitle("Following", forState: .Normal)
+        
+    }
+    
+    func setDefaults() {
+        
+        let journeys = storyboard?.instantiateViewControllerWithIdentifier("myLifeSimple") as! MyLifeContainerViewController
+        journeys.whichView = "All"
         
     }
     
@@ -125,6 +178,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     func showJourneys(sender: UIButton) {
         
         print("Journeys")
+        whatTab = "Journeys"
         
 //        journeysHC.constant = 65.0
 //        momentsHC.constant = 60.0
@@ -138,6 +192,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         collectionContainer.alpha = 0
         tableContainer.alpha = 0
         
+        self.allRadioChecked(nil)
+        
 //        journeysButton.contentEdgeInsets.top = -15
 //        momentsButton.contentEdgeInsets.top = -15
 //        reviewsButton.contentEdgeInsets.top = -20
@@ -147,7 +203,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     func showMoments(sender: UIButton) {
         
         print("Moments")
-        
+        whatTab = "Moments"
 //        journeysHC.constant = 18.0
 //        momentsHC.constant = 65.0
 //        reviewsHC.constant = 60.0
@@ -157,9 +213,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         momentsButton.layer.zPosition = 3
         
         journeysContainerView.alpha = 0
-        collectionContainer.alpha = 0
-        tableContainer.alpha = 1
+        collectionContainer.alpha = 1
+        tableContainer.alpha = 0
         
+        self.allRadioChecked(nil)
 //        momentsButton.contentEdgeInsets.top = -15
 //        reviewsButton.contentEdgeInsets.top = -15
 //        journeysButton.contentEdgeInsets.top = -20
@@ -169,7 +226,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     func showReviews(sender: UIButton) {
         
         print("Reviews")
-        
+        whatTab = "Reviews"
 //        journeysHC.constant = 60.0
 //        momentsHC.constant = 18.0
 //        reviewsHC.constant = 65.0
@@ -179,9 +236,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         reviewsButton.layer.zPosition = 3
         
         journeysContainerView.alpha = 0
-        collectionContainer.alpha = 1
-        tableContainer.alpha = 0
+        collectionContainer.alpha = 0
+        tableContainer.alpha = 1
         
+        self.allRadioChecked(nil)
 //        reviewsButton.contentEdgeInsets.top = -15
 //        journeysButton.contentEdgeInsets.top = -15
 //        momentsButton.contentEdgeInsets.top = -20
@@ -237,6 +295,40 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         allRadio.titleLabel?.addSubview(radio)
         
+        if whatTab == "Journeys" {
+            
+             print("inside all life radio 2")
+            let simpleVC = self.childViewControllers[0] as! MyLifeContainerViewController
+            simpleVC.whichView = "All"
+            
+            journeysContainerView.alpha = 0
+            journeysContainerView.alpha = 1
+            
+            simpleVC.view.setNeedsDisplay()
+            
+        }
+        
+        else if whatTab == "Moments" {
+            
+//            let simpleVC = storyboard?.instantiateViewControllerWithIdentifier("multipleCollectionVC") as! MyLifeMomentsViewController
+            
+            
+            let simpleVC = self.childViewControllers[1] as! MyLifeMomentsViewController
+            simpleVC.whichView = "All"
+            simpleVC.mainView.reloadData()
+            
+        }
+        
+        else if whatTab == "Reviews" {
+            
+            tableContainer.alpha = 1
+            let simpleVC = self.childViewControllers[2] as! AccordionViewController
+            simpleVC.whichView = "All"
+            simpleVC.tableMainView.reloadData()
+            
+        }
+        
+        
     }
     
     func travelLifeRadioChecked(sender: AnyObject?) {
@@ -287,6 +379,36 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         TLRadio.titleLabel?.addSubview(radioTwo)
         
+        if whatTab == "Journeys" {
+            
+            print("inside travel life radio 2")
+            let simpleVC = self.childViewControllers.first as! MyLifeContainerViewController
+            simpleVC.whichView = "TL"
+            
+            journeysContainerView.alpha = 0
+            journeysContainerView.alpha = 1
+            
+            simpleVC.view.setNeedsDisplay()
+            
+        }
+            
+        else if whatTab == "Moments" {
+            
+            let simpleVC = self.childViewControllers[1] as! MyLifeMomentsViewController
+            simpleVC.whichView = "Travel Life"
+            simpleVC.mainView.reloadData()
+            
+        }
+            
+        else if whatTab == "Reviews" {
+            
+            tableContainer.alpha = 0
+            collectionContainer.alpha = 1
+            let simpleVC = self.childViewControllers[1] as! MyLifeMomentsViewController
+            simpleVC.whichView = "Reviews TL"
+            simpleVC.mainView.reloadData()
+            
+        }
         
     }
     
@@ -339,7 +461,36 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         LLRadio.titleLabel?.addSubview(radioThree)
         
-        
+        if whatTab == "Journeys" {
+            
+            print("inside all life radio 2")
+            
+            journeysContainerView.alpha = 0
+            journeysContainerView.alpha = 1
+            
+            let simpleVC = self.childViewControllers.first as! MyLifeContainerViewController
+            simpleVC.whichView = "LL"
+            simpleVC.view.setNeedsDisplay()
+            
+        }
+            
+        else if whatTab == "Moments" {
+            
+            let simpleVC = self.childViewControllers[1] as! MyLifeMomentsViewController
+            simpleVC.whichView = "Local Life"
+            simpleVC.mainView.reloadData()
+            
+        }
+            
+        else if whatTab == "Reviews" {
+            
+            tableContainer.alpha = 0
+            collectionContainer.alpha = 1
+            let simpleVC = self.childViewControllers[1] as! MyLifeMomentsViewController
+            simpleVC.whichView = "Reviews LL"
+            simpleVC.mainView.reloadData()
+            
+        }
     }
     
     func unSelectRadio(sender: UIButton) {
@@ -392,27 +543,27 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        switch segue.identifier! {
-        case "journeySegue":
-            let journeysVC = segue.destinationViewController as! MyLifeContainerViewController
-            journeysVC.whichView = radioValue
-            break
-        
-        case "tableSegue":
-            break
-        
-        case "collectionSegue":
-            break
-            
-        default:
-            break
-            
-        }
-        
-        
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        
+//        switch segue.identifier! {
+//        case "journeySegue":
+//            let journeysVC = segue.destinationViewController as! MyLifeContainerViewController
+//            journeysVC.whichView = radioValue
+//            break
+//        
+//        case "tableSegue":
+//            break
+//        
+//        case "collectionSegue":
+//            break
+//            
+//        default:
+//            break
+//            
+//        }
+//        
+//        
+//    }
     
     
 }

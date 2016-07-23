@@ -141,6 +141,6 @@
         </view>
     </objects>
     <resources>
-        <image name="halfnhalfbgGreen" width="44" height="41"/>
+        <image name="halfnhalfbgGreen" width="100" height="100"/>
     </resources>
 </document>

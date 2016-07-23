@@ -10,11 +10,20 @@ import UIKit
 
 class NewProfilePosts: UIView {
 
+    @IBOutlet weak var seperatorViewUp: UIView!
+    @IBOutlet weak var iconButton: UIButton!
+    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var timestamp: UIStackView!
+    @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var descriptiveText: UILabel!
     @IBOutlet weak var videoPlayView: UIView!
     @IBOutlet weak var OTGLabelView: UIView!
     @IBOutlet weak var profileImageView: UIView!
+    @IBOutlet weak var titleConstraint: NSLayoutConstraint!
+    @IBOutlet weak var iconButtonUpConstraint: NSLayoutConstraint!
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var mainView: UIView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,6 +56,11 @@ class NewProfilePosts: UIView {
         
         let profileImage = ProfileImage(frame: CGRect(x: 0, y: 0, width: profileImageView.frame.width, height: profileImageView.frame.height))
         profileImageView.addSubview(profileImage)
+        
+        likesLabel.text = String(format: "%C", faicon["likes"]!)
+        
+        mainView.layer.cornerRadius = 5
+        mainView.clipsToBounds = true
         
     }
     

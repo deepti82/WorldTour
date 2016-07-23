@@ -22,13 +22,13 @@ class FilterRestaurants: UIView {
         
         let searchBox = SearchFieldView(frame: CGRect(x: 0, y: 0, width: ForSearch.frame.width, height: 60))
         searchBox.center = CGPointMake(ForSearch.frame.width/2, ForSearch.frame.height/2)
-        self.addSubview(searchBox)
+        ForSearch.addSubview(searchBox)
         
         makeCurvedCorners(veganButton)
         makeCurvedCorners(vegButton)
         makeCurvedCorners(nonVegButton)
         makeCurvedCorners(AllButton)
-        makeCurvedCorners(doneButton)
+//        makeCurvedCorners(doneButton)
         
     }
     

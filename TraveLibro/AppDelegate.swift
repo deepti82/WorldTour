@@ -27,7 +27,7 @@ var feedViewController: UIViewController!
 var notificationsViewController: UIViewController!
 var travelLifeViewController: UIViewController!
 
-var hasLoggedInOnce = false
+var hasLoggedInOnce = true
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -97,6 +97,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["trash"] = 0xf014
         faicon["close"] = 0xf00d
         faicon["next"] = 0xf105
+        faicon["arrow-down"] = 0xf078
+        faicon["options"] = 0xf142
         
         emailIcon = String(format: "%C", faicon["email"]!)
         facebookIcon = String(format: "%C", faicon["facebook"]!)

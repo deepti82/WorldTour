@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReportProblem: UIView {
+class ReportProblem: UIView, UITextViewDelegate {
 
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var theTextView: UITextView!
@@ -19,6 +19,7 @@ class ReportProblem: UIView {
         theTextView.textColor = UIColor.lightGrayColor()
         theTextView.layer.borderWidth = 1.0
         theTextView.layer.borderColor = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1).CGColor
+        theTextView.delegate = self
         submitButton.layer.cornerRadius = 5
         
     }
@@ -38,16 +39,16 @@ class ReportProblem: UIView {
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
-        if textView.textColor == UIColor.lightGrayColor() {
-            textView.text = nil
-            textView.textColor = UIColor.blackColor()
+        if theTextView.textColor == UIColor.lightGrayColor() {
+            theTextView.text = nil
+            theTextView.textColor = UIColor.blackColor()
         }
     }
     
     func textViewDidEndEditing(textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Placeholder"
-            textView.textColor = UIColor.lightGrayColor()
+        if theTextView.text.isEmpty {
+            theTextView.text = "Comment"
+            theTextView.textColor = UIColor.lightGrayColor()
         }
     }
 

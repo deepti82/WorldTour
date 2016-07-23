@@ -7,25 +7,37 @@
 //
 
 import UIKit
+import DKChainableAnimationKit
 
 class ExploreDestinationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var flag: [Int] = []
-    var countries = ["India", "USA", "UK"]
-    var cities = [["Mumbai", "Pune", "Delhi", "Agra", "Chennai"], ["Illinois", "Denver", "California", "Washington", "Seattle"], ["London", "Birmigham", "Southampton", "Glasgow", "Scotland", "Newark"]]
-//    var cityImages = [""]
+    let countries = ["India", "USA", "UK"]
+    let cities = [["Mumbai", "Pune", "Delhi"], ["Illinois", "Denver", "California"], ["London", "Birmigham", "Southampton"]]
+    let cityImages = [["bandra_worli_sea_link", "pune_landmark", "agra_fort"], ["bandra_worli_sea_link", "pune_landmark", "agra_fort"], ["bandra_worli_sea_link", "pune_landmark", "agra_fort"]]
+    let countryImages = ["india_gate", "usa", "usa"]
     var currentTableRow = 0
     var cityFlag: [[Int]] = [[]]
+    var toggle = false
+    var addSubview = false
     
+    @IBOutlet weak var searchView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setNavigationBarItem()
+        let rightButton = UIButton()
+        let options = String(format: "%C", faicon["options"]!)
+        rightButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 22)
+        rightButton.setTitle(options, forState: .Normal)
+        rightButton.addTarget(self, action: #selector(ExploreDestinationsViewController.showFilter(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(30, 15, 30, 30)
         
-        let searchHeader = SearchFieldView(frame: CGRect(x: 0, y: 35, width: self.view.frame.width, height: 30))
+        self.setOnlyRightNavigationButton(rightButton)
+        
+        let searchHeader = SearchFieldView(frame: CGRect(x: 5, y: 30, width: self.view.frame.width - 10, height: 30))
 //        searchHeader.center = CGPointMake(self.view.frame.width/2, 20)
-        self.view.addSubview(searchHeader)
+        searchView.addSubview(searchHeader)
         
         for i in 0 ..< countries.count {
             
@@ -46,6 +58,48 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showFilter(sender: UIButton) {
+        
+        print("Show filter tapped")
+        
+        if !addSubview {
+            
+            let filter = FilterIntinerariesType(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+            filter.tag = 1
+            filter.layer.zPosition = 100
+            filter.layer.opacity = 0
+            self.view.addSubview(filter)
+            addSubview = true
+            
+        }
+        
+        var filterSubview: UIView!
+        
+        for subview in self.view.subviews {
+            
+            if subview.tag == 1 {
+                filterSubview = subview
+            }
+            
+        }
+        
+        if !toggle {
+            
+            filterSubview.animation.makeOpacity(1.0).animate(0.5)
+//            print("filter opacity: \()")
+            toggle = true
+            
+        }
+        
+        else {
+            
+            print("else toggle")
+            filterSubview.animation.makeOpacity(0.0).easeIn.animate(0.5)
+            toggle = false
+        }
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -74,6 +128,8 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
         }
         
         cell.countryLabel.text = countries[indexPath.row]
+        cell.countryImage.image = UIImage(named: countryImages[indexPath.row])
+        cell.selectionStyle = .None
         return cell
     }
     
@@ -123,6 +179,7 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
         }
         
         cell.cityText.text = cities[collectionView.tag][indexPath.item]
+        cell.cityImage.image = UIImage(named: cityImages[collectionView.tag][indexPath.item])
         cell.cityImage.layer.zPosition = -1
         return cell
         
@@ -130,10 +187,11 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        
-        let childVC = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
+//        let childVC = storyboard?.instantiateViewControllerWithIdentifier("pagerTab") as! PagerTabViewController
+//        self.navigationController?.pushViewController(childVC, animated: true)
+
+        let childVC = storyboard?.instantiateViewControllerWithIdentifier("featuredMain") as! FCMainViewController
         self.navigationController?.pushViewController(childVC, animated: true)
-        
         
     }
 

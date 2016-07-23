@@ -8,9 +8,11 @@
 
 import UIKit
 
-class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let hotelNames = ["The Taj", "Trident, Nariman Point", "The Taj", "Trident, Nariman Point"]
+    var whichView: String!
+    
+    let hotelNames = ["The Taj Mahal Palace", "Trident, Nariman Point", "The Taj Mahal Palace", "Trident, Nariman Point", "The Taj Mahal Palace", "Trident, Nariman Point"]
     let labelName = ["Must Do's", "Hotels", "Restaurants", "Popular Agents"]
 //    var animationHasBeenShown = false
     weak var transitionContext: UIViewControllerContextTransitioning?
@@ -19,7 +21,6 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         return 0.5
     }
     
-    @IBOutlet weak var navigationCollectionView: UICollectionView!
     @IBOutlet weak var myTableView: UITableView!
     
     @IBAction func filterTap(sender: UIButton) {
@@ -52,31 +53,42 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
 //        PanAnimation.delegate = self
 //        finalLayer.addAnimation(PanAnimation, forKey: "transform.scale")
         
-        let scrollView = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
-        scrollView.contentSize.height = 2500
-        scrollView.layer.zPosition = 100
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-//        scrollView.layer.addSublayer(finalLayer)
-//        scrollView.layer.addAnimation(PanAnimation, forKey: "transform.scale")
-        self.view.addSubview(scrollView)
+        if whichView == "Hotels" {
+            
+            
+            
+            
+        }
         
-        let filterVC = storyboard?.instantiateViewControllerWithIdentifier("FilterViewController") as! FilterCheckboxesViewController
-        addChildViewController(filterVC)
-        filterVC.view.frame.size.height = scrollView.contentSize.height
-//        filterVC.view.layer.addSublayer(finalLayer)
-//        filterVC.view.layer.addAnimation(PanAnimation, forKey: "transform.scale")
-        scrollView.addSubview(filterVC.view)
-        filterVC.didMoveToParentViewController(self)
+        else {
+            
+            let scrollView = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
+            scrollView.contentSize.height = 2500
+            scrollView.layer.zPosition = 100
+            scrollView.showsVerticalScrollIndicator = false
+            scrollView.showsHorizontalScrollIndicator = false
+            scrollView.layer.opacity = 0.0
+            self.view.addSubview(scrollView)
+            
+            let filterVC = storyboard?.instantiateViewControllerWithIdentifier("FilterViewController") as! FilterCheckboxesViewController
+            addChildViewController(filterVC)
+            filterVC.view.frame.size.height = scrollView.contentSize.height
+            //        filterVC.view.layer.addSublayer(finalLayer)
+            //        filterVC.view.layer.addAnimation(PanAnimation, forKey: "transform.scale")
+            scrollView.addSubview(filterVC.view)
+            filterVC.didMoveToParentViewController(self)
+            
+            scrollView.animation.makeOpacity(1.0).animate(0.5)
+            
+        }
+        
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationCollectionView.selectItemAtIndexPath(NSIndexPath(forItem: 1, inSection: 0), animated: true, scrollPosition: .None)
-        
-
+        getDarkBackGround(self)
         
         
     }
@@ -97,7 +109,7 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 4
+        return hotelNames.count
         
     }
     
@@ -105,6 +117,28 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         
         let cell = tableView.dequeueReusableCellWithIdentifier("hotelCell") as! HotelsTableViewCell
         cell.hotelNames.text = hotelNames[indexPath.row]
+        
+        if indexPath.row % 2 == 0 {
+            
+            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.9)
+        }
+        
+        else {
+            
+            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        }
+        
+        if whichView == "Hotels" {
+            
+            cell.restaurantCuisines.hidden = true
+            
+        }
+        else if whichView == "Rest" {
+            
+            cell.ratingStack.hidden = true
+            
+        }
+        
         return cell
     }
     
@@ -118,33 +152,33 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         return headerView
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return 4
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("navCell", forIndexPath: indexPath) as! NavigationCollectionViewCell
-        cell.navLabel.text = labelName[indexPath.item]
-        return cell
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NavigationCollectionViewCell
-        cell.selectionUnderline.backgroundColor = mainOrangeColor
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NavigationCollectionViewCell
-        cell.selectionUnderline.backgroundColor = UIColor.whiteColor()
-        
-    }
+//    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        
+//        return 4
+//        
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+//        
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("navCell", forIndexPath: indexPath) as! NavigationCollectionViewCell
+//        cell.navLabel.text = labelName[indexPath.item]
+//        return cell
+//        
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        
+//        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NavigationCollectionViewCell
+//        cell.selectionUnderline.backgroundColor = mainOrangeColor
+//        
+//    }
+//    
+//    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+//        
+//        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NavigationCollectionViewCell
+//        cell.selectionUnderline.backgroundColor = UIColor.whiteColor()
+//        
+//    }
 
 }
 
@@ -152,15 +186,17 @@ class HotelsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var hotelNames: UILabel!
     @IBOutlet weak var hotelExpense: UILabel!
+    @IBOutlet weak var ratingStack: UIStackView!
+    @IBOutlet weak var restaurantCuisines: UILabel!
     
 }
 
-class NavigationCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var navLabel: UILabel!
-    @IBOutlet weak var selectionUnderline: UIView!
-    
-}
+//class NavigationCollectionViewCell: UICollectionViewCell {
+//    
+//    @IBOutlet weak var navLabel: UILabel!
+//    @IBOutlet weak var selectionUnderline: UIView!
+//    
+//}
 
 //class CircleTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 //    

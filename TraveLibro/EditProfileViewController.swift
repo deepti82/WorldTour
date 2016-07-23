@@ -14,6 +14,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     let labels = ["Profile Photo", "16 Jan 1988", "Yash Chudasama", "Dream Destination", "Favourite City", "Nationality", "City", "Male"]
     var myView: Int = 0
     let imagePicker = UIImagePickerController()
+    var keyboardUp = false
     
     
     override func viewDidLoad() {
@@ -61,6 +62,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         cell.textField.text = labels[indexPath.section]
         cell.textField.delegate = self
         cell.textField.contentVerticalAlignment = .Center
+        cell.textField.returnKeyType = .Done
         cell.accessoryType = .None
         return cell
         
@@ -89,14 +91,29 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     func keyboardWillShow(notification: NSNotification) {
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y -= keyboardSize.height
+            
+            if !keyboardUp {
+                
+                self.view.frame.origin.y -= keyboardSize.height
+                keyboardUp = true
+                
+            }
+            
+            
         }
         
     }
     
     func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y += keyboardSize.height
+            
+            if keyboardUp {
+                
+                self.view.frame.origin.y += keyboardSize.height
+                keyboardUp = false
+                
+            }
+            
         }
     }
     
@@ -149,6 +166,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             
         case 5:
             let nationalityVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            nationalityVC.whichView = "selectNationality"
             self.navigationController?.pushViewController(nationalityVC, animated: true)
             break
             

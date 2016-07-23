@@ -11,6 +11,8 @@ import UIKit
 class EndLocalLife: UIView {
     
     var flag = false
+    var isTravelLife = false
+    var hasButtonRotated = false
     
     @IBOutlet weak var addPostButtonsView: UIView!
     @IBOutlet weak var addPostsView: UIView!
@@ -19,25 +21,50 @@ class EndLocalLife: UIView {
     //@IBOutlet weak var closeButtonUp: UIButton!
     @IBOutlet weak var closeButtonUp: UIButton!
     @IBOutlet weak var checkInButton: UIButton!
+    @IBOutlet weak var camera: UIStackView!
+    @IBOutlet weak var video: UIStackView!
+    @IBOutlet weak var thoughts: UIStackView!
+    @IBOutlet weak var checkIn: UIStackView!
     
     @IBAction func closeButtonTap(sender: AnyObject) {
         
         closeButton.transform = CGAffineTransformRotate(closeButton.transform, CGFloat(M_PI_4))
 //        print("inside close button tap")
+        if !hasButtonRotated {
+            
+            closeButtonUp.transform = CGAffineTransformRotate(closeButtonUp.transform, CGFloat(M_PI_4))
+            hasButtonRotated = true
+            
+        }
         
         if !flag {
             
-//            speechView.hidden = false
-            addPostsView.hidden = false
+//            addPostsView.layer.opacity = 0.0
+            addPostsView.animation.makeBounds(CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)).easeIn.makeOpacity(1.0).animate(0.3)
+            camera.animation.makeScale(1.1).thenAfter(0.1).makeScale(0.9).animate(0.2)
+            video.animation.makeScale(1.1).thenAfter(0.1).makeScale(0.9).animate(0.2)
+            thoughts.animation.makeScale(1.1).thenAfter(0.1).makeScale(0.9).animate(0.2)
+            checkIn.animation.makeScale(1.1).thenAfter(0.1).makeScale(0.9).animate(0.2)
             flag = true
+            
+        }
+        
+        else if flag {
+            
+//            speechView.hidden = true
+            addPostsView.animation.makeOpacity(0.0).animate(0.3)
+            flag = false
+        }
+        
+        if isTravelLife {
+            
+            speechView.hidden = false
             
         }
         
         else {
             
-//            speechView.hidden = true
-            addPostsView.hidden = true
-            flag = false
+            
         }
         
     }
@@ -58,7 +85,9 @@ class EndLocalLife: UIView {
     @IBAction func closeButtonUpTap(sender: AnyObject) {
         
         print("in close button Tap")
-        addPostsView.hidden = true
+        addPostsView.animation.makeOpacity(0.0).animate(0.3)
+        closeButton.transform = CGAffineTransformRotate(closeButton.transform, CGFloat(M_PI_4))
+        flag = false
         
     }
     
@@ -67,7 +96,7 @@ class EndLocalLife: UIView {
         loadViewFromNib ()
         
         speechView.hidden = true
-        addPostsView.hidden = true
+        addPostsView.layer.opacity = 0.0
         
         let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
@@ -80,6 +109,8 @@ class EndLocalLife: UIView {
         let closeButtonString = String(format: "%C", faicon["close"]!)
         closeButtonUp.setTitle(closeButtonString, forState: .Normal)
         closeButtonUp.layer.zPosition = 100
+        
+        closeButton.layer.zPosition = 10
         
 //        self.bringSubviewToFront(addPostsView)
         

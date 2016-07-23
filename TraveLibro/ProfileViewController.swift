@@ -24,18 +24,21 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     var toggle = false
     
+    @IBOutlet weak var MAMButton: UIButton!
     @IBAction func MAMTapped(sender: AnyObject) {
         
         if !toggle {
-        
-            MAMatterView.hidden = false
+            
+            MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
+            MAMatterView.animation.makeOpacity(1.0).animate(0.5)
             mainProfileView.animation.moveY(-100.0).moveHeight(100.0).animate(0.5)
             toggle = true
         }
         
         else {
             
-            MAMatterView.hidden = true
+            MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
+            MAMatterView.animation.makeOpacity(0.0).animate(0.5)
             mainProfileView.animation.moveY(100.0).moveHeight(-50.0).animate(0.5)
             toggle = false
         }
@@ -53,7 +56,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.setOnlyRightNavigationButton(rightButton)
 //        self.setNavigationBarItemText("Yash's Profile")
         getDarkBackGround(self)
-        MAMatterView.hidden = true
+        MAMatterView.layer.opacity = 0.0
 //         let footer = getFooter(frame: CGRect(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 45))
 //        footer.layer.zPosition = 100
 //        self.view.addSubview(footer)
@@ -64,7 +67,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        MAMScrollView = UIScrollView(frame: CGRect(x: 10, y: self.view.frame.size.height/3 - 45, width: self.view.frame.size.width - 20, height: 600))
 //        MAMScrollView!.scrollEnabled = true
 //        self.view.addSubview(MAMScrollView!)
-//        
+//      
+        MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
+        
         let MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
         MAM.backgroundColor = UIColor.clearColor()
         MAMatterView!.addSubview(MAM)
@@ -75,11 +80,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 10, height: 55))
         orangeTab.orangeButtonTitle.setTitle("My Life", forState: .Normal)
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
-        fontAwesomeLabel.center = CGPointMake(orangeTab.frame.size.width/2 + 50, orangeTab.frame.size.height/2)
+        fontAwesomeLabel.center = CGPointMake(75, orangeTab.orangeButtonTitle.titleLabel!.frame.size.height/2 + 10)
         fontAwesomeLabel.font = FontAwesomeFont
         fontAwesomeLabel.text = String(format: "%C", faicon["angle_up"]!)
         fontAwesomeLabel.textColor = UIColor.whiteColor()
-        orangeTab.orangeButtonTitle.addSubview(fontAwesomeLabel)
+        orangeTab.orangeButtonTitle.titleLabel!.addSubview(fontAwesomeLabel)
         self.view.addSubview(orangeTab)
         
         orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), forControlEvents: .TouchUpInside)

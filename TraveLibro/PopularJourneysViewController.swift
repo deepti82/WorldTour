@@ -17,7 +17,7 @@ class PopularJourneysViewController: UIViewController {
         
         self.setNavigationBarItem()
         
-        let popJourneyView = PopularJourneyView(frame: CGRect(x: 0, y: 90, width: self.view.frame.size.width, height: 580))
+        let popJourneyView = PopularJourneyView(frame: CGRect(x: 0, y: 90, width: self.view.frame.size.width, height: 550))
         self.view.addSubview(popJourneyView)
         
     }

@@ -10,7 +10,10 @@ import UIKit
 
 class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    let categories = ["Beaches", "Cinema & Theatre", "Restaurants", "Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants"]
+    let categories = ["Beaches", "Cinema & Theatre", "Restaurants", "Pubs & Bars", "Nature & Parks", "Sights & Landmarks", "Museums & Galleries", "Religious", "Shopping","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants", "Restaurants"]
+    let categoryImages = ["beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin"]
+    
+    var previousItem: NSIndexPath!
     
     
     override func viewDidLoad() {
@@ -33,16 +36,35 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
+        if indexPath.item == 0 {
+            
+            previousItem = indexPath
+            
+        }
+        
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! CheckInCategoryCollectionViewCell
-        cell.categoryLabel.text = categories[indexPath.item]
+        cell.categoryLabel.text = categories[indexPath.row]
+        cell.categoryIcon.setImage(UIImage(named: categoryImages[indexPath.row]), forState: .Normal)
         return cell
         
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let addCheckInVC = storyboard?.instantiateViewControllerWithIdentifier("addCheckIn") as! AddCheckInViewController
-        self.navigationController?.pushViewController(addCheckInVC, animated: true)
+//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! CheckInCategoryCollectionViewCell
+        
+        let deselectedCell = collectionView.cellForItemAtIndexPath(previousItem) as! CheckInCategoryCollectionViewCell
+        deselectedCell.categoryIcon.setBackgroundImage(UIImage(named: "checkinbgwhite"), forState: .Normal)
+        
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CheckInCategoryCollectionViewCell
+        cell.categoryIcon.setBackgroundImage(UIImage(named: "checkinbggreen"), forState: .Normal)
+        previousItem = indexPath
+        
+        
+        
+//        let addCheckInVC = storyboard?.instantiateViewControllerWithIdentifier("addCheckIn") as! AddCheckInViewController
+//        self.navigationController?.pushViewController(addCheckInVC, animated: true)
         
     }
     
@@ -61,7 +83,8 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
 
 class CheckInCategoryCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var categoryIcon: UIImageView!
+    
+    @IBOutlet weak var categoryIcon: UIButton!
     @IBOutlet weak var categoryLabel: UILabel!
     
 }

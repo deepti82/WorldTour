@@ -10,11 +10,14 @@ import UIKit
 
 class AccordionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableMainView: UITableView!
     @IBOutlet weak var accordionTableView: UITableView!
     var labels = ["Mumbai", "Delhi", "Chennai", "Kolkata", "Bengaluru", "Hyderabad"]
     var isExpanded = false
     var childCells = 0
     var selectedIndex: Int!
+    
+    var whichView = "All"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,15 +35,25 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
 //        print("labels: \(labels[indexPath.item])")
 //        print("label index: \(labels.endIndex)")
         
+        switch whichView {
+        case "All":
+            let cell = tableView.dequeueReusableCellWithIdentifier("allReviewsCell") as! allReviewsMLTableViewCell
+            cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
+            cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
+            return cell
+        default:
+            break
+        }
+        
         if(labels[indexPath.item] == "childCells") {
-                
+            
             let cell = tableView.dequeueReusableCellWithIdentifier("childCell") as! cityExploreTableViewCell
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
             return cell
             
         }
-            
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! cityLabelTableViewCell
         cell.nameLabel.text = labels[indexPath.item]
         if (isExpanded == true && selectedIndex == indexPath.item) {
@@ -49,8 +62,10 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         else {
             cell.buttonLabel.setTitle("+", forState: .Normal)
         }
+        if whichView == "Reviews LL" {
+            cell.seperatorView.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+        }
         return cell
-        
         
     }
     
@@ -83,6 +98,11 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             
             
         }
+            
+        else if whichView == "All" {
+            
+            
+        }
         
         else {
                 isExpanded = true
@@ -97,6 +117,11 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         if(labels[indexPath.item] == "childCells") {
             
             return 120
+        }
+        
+        else if whichView == "All" {
+            
+            return 100
         }
         
         return 45
@@ -185,7 +210,7 @@ class cityLabelTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var buttonLabel: UIButton!
-    
+    @IBOutlet weak var seperatorView: UIView!
     
 }
 
@@ -205,6 +230,8 @@ class allReviewsMLTableViewCell: UITableViewCell {
     @IBOutlet weak var placeTitle: UILabel!
     @IBOutlet weak var ratingButton: UIButton!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var clockLabel: UILabel!
     
     
 }

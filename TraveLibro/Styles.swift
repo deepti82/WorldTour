@@ -37,16 +37,30 @@ func getBackGround(myVC: UIViewController) -> Void {
     
 }
 
+func segueFromPagerStrip(vc: UINavigationController, nextVC: UIViewController) {
+    
+    print("inside global fn")
+//    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//    let edVC = storyboard.instantiateViewControllerWithIdentifier("exploreDestinations") as! ExploreDestinationsViewController
+    vc.pushViewController(nextVC, animated: true)
+    
+}
+
 
 func getDarkBackGround(myVC: UIViewController) -> Void {
     
-    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
+    let bgImage = UIImageView(frame: myVC.view.frame)
+    bgImage.image = UIImage(named: "darkBgNew")
+    bgImage.layer.zPosition = -1
+    myVC.view.addSubview(bgImage)
+    
+//    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
     
 }
 
 class LeftPaddedLabel:  UILabel {
     
-    let padding = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    let padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
     override func drawTextInRect(rect: CGRect) {
         super.drawTextInRect(UIEdgeInsetsInsetRect(rect, padding))
     }

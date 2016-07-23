@@ -35,7 +35,7 @@
                             <attributedString key="attributedText">
                                 <fragment content="Label">
                                     <attributes>
-                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <font key="NSFont" size="14" name="Avenir-Roman"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                     </attributes>
@@ -44,60 +44,58 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IbF-m0-P9V">
-                            <rect key="frame" x="15" y="36" width="377" height="283"/>
+                            <rect key="frame" x="15" y="36" width="377" height="273"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="q7Y-yg-lj7">
-                            <rect key="frame" x="15" y="327" width="250" height="25"/>
+                            <rect key="frame" x="15" y="317" width="290" height="35"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkV-0d-dR6">
-                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkV-0d-dR6">
+                                    <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="25" id="AFe-Qk-qJg"/>
-                                        <constraint firstAttribute="height" constant="25" id="CGi-df-12d"/>
+                                        <constraint firstAttribute="width" constant="35" id="AFe-Qk-qJg"/>
+                                        <constraint firstAttribute="height" constant="35" id="CGi-df-12d"/>
                                     </constraints>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                    <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                     <state key="normal" image="camera_icon" backgroundImage="blue_bg_new_small"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAI-cT-U4z">
-                                    <rect key="frame" x="75" y="0.0" width="25" height="25"/>
+                                <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAI-cT-U4z">
+                                    <rect key="frame" x="85" y="0.0" width="35" height="35"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                    <state key="normal" image="add_friend_icon" backgroundImage="blue_bg_new_small"/>
+                                    <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                    <state key="normal" image="add_people" backgroundImage="blue_bg_new_small"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxt-kC-BIr">
-                                    <rect key="frame" x="150" y="0.0" width="25" height="25"/>
+                                    <rect key="frame" x="170" y="0.0" width="35" height="35"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                    <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                     <state key="normal" image="video" backgroundImage="blue_bg_new_small"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jM8-Ne-EpE">
-                                    <rect key="frame" x="225" y="0.0" width="25" height="25"/>
+                                <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jM8-Ne-EpE">
+                                    <rect key="frame" x="255" y="0.0" width="35" height="35"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                                    <state key="normal" image="location_icon" backgroundImage="blue_bg_new_small"/>
+                                    <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                    <state key="normal" image="location_icon" backgroundImage="green_bg_new_small"/>
                                 </button>
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMo-GY-DC3">
-                            <rect key="frame" x="367" y="-15" width="25" height="25"/>
+                            <rect key="frame" x="357" y="-15" width="35" height="35"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_icon" translatesAutoresizingMaskIntoConstraints="NO" id="8Sh-Wz-FuX">
-                                    <rect key="frame" x="3" y="3" width="20" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="SmO-dd-q53"/>
-                                        <constraint firstAttribute="width" constant="20" id="pwM-0U-lw2"/>
-                                    </constraints>
+                                    <rect key="frame" x="8" y="8" width="19" height="19"/>
                                 </imageView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="8Sh-Wz-FuX" firstAttribute="centerX" secondItem="OMo-GY-DC3" secondAttribute="centerX" id="AEO-q3-Bsp"/>
-                                <constraint firstAttribute="height" constant="25" id="RZe-UO-cjb"/>
-                                <constraint firstItem="8Sh-Wz-FuX" firstAttribute="centerY" secondItem="OMo-GY-DC3" secondAttribute="centerY" id="YdY-PM-IfG"/>
-                                <constraint firstAttribute="width" constant="25" id="luA-aA-ynd"/>
+                                <constraint firstItem="8Sh-Wz-FuX" firstAttribute="top" secondItem="OMo-GY-DC3" secondAttribute="top" constant="8" id="AH4-n7-M4A"/>
+                                <constraint firstAttribute="trailing" secondItem="8Sh-Wz-FuX" secondAttribute="trailing" constant="8" id="DGC-OX-XwI"/>
+                                <constraint firstAttribute="height" constant="35" id="RZe-UO-cjb"/>
+                                <constraint firstAttribute="bottom" secondItem="8Sh-Wz-FuX" secondAttribute="bottom" constant="8" id="SJe-PD-65h"/>
+                                <constraint firstItem="8Sh-Wz-FuX" firstAttribute="leading" secondItem="OMo-GY-DC3" secondAttribute="leading" constant="8" id="cGS-ow-HCX"/>
+                                <constraint firstAttribute="width" constant="35" id="luA-aA-ynd"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -129,9 +127,10 @@
         </view>
     </objects>
     <resources>
-        <image name="add_friend_icon" width="35" height="30"/>
+        <image name="add_people" width="60" height="60"/>
         <image name="blue_bg_new_small" width="100" height="100"/>
         <image name="camera_icon" width="67" height="60"/>
+        <image name="green_bg_new_small" width="60" height="60"/>
         <image name="location_icon" width="200" height="200"/>
         <image name="profile_pic_new" width="150" height="150"/>
         <image name="video" width="51" height="51"/>

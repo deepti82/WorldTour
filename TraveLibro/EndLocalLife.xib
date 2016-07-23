@@ -4,20 +4,19 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="fontawesome-webfont.ttf">
-            <string>FontAwesome</string>
-        </mutableArray>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EndLocalLife" customModule="TraveLibro" customModuleProvider="target">
             <connections>
                 <outlet property="addPostButtonsView" destination="eqU-I4-waO" id="84I-Bl-OP8"/>
                 <outlet property="addPostsView" destination="KOj-FT-Go1" id="NP5-Ms-1A4"/>
+                <outlet property="camera" destination="A04-GW-zfy" id="6V6-5e-FBf"/>
+                <outlet property="checkIn" destination="IyE-CZ-LQO" id="bzn-zW-Sbp"/>
                 <outlet property="checkInButton" destination="JgU-I1-hoM" id="afT-at-zc4"/>
                 <outlet property="closeButton" destination="OWC-c2-bzm" id="GhD-lu-yl9"/>
                 <outlet property="closeButtonUp" destination="Y9t-nF-Ngk" id="P68-VR-SUb"/>
                 <outlet property="speechView" destination="nV9-Vh-92a" id="Byf-GH-Ppb"/>
+                <outlet property="thoughts" destination="f0H-YI-nJs" id="Zpl-7m-n41"/>
+                <outlet property="video" destination="Ljl-D9-p9H" id="DwR-bS-X3b"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -88,21 +87,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOj-FT-Go1">
                     <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9t-nF-Ngk">
-                            <rect key="frame" x="8" y="60" width="30" height="30"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="30" id="GdY-ZC-sfB"/>
-                                <constraint firstAttribute="height" constant="30" id="dcT-69-i9O"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="20"/>
-                            <state key="normal">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="closeButtonUpTap:" destination="-1" eventType="touchUpInside" id="z6Y-Mk-cHG"/>
-                            </connections>
-                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqU-I4-waO">
                             <rect key="frame" x="239" y="231" width="145" height="279"/>
                             <subviews>
@@ -116,7 +100,7 @@
                                                 <constraint firstAttribute="width" constant="60" id="zoh-MW-AmJ"/>
                                             </constraints>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <inset key="imageEdgeInsets" minX="15" minY="16" maxX="15" maxY="16"/>
                                             <state key="normal" title="   " image="camera_icon" backgroundImage="green_bg_new_small">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
@@ -142,7 +126,7 @@
                                                 <constraint firstAttribute="width" constant="60" id="sBM-gf-50j"/>
                                             </constraints>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <inset key="imageEdgeInsets" minX="15" minY="16" maxX="15" maxY="16"/>
                                             <state key="normal" title="   " image="video" backgroundImage="green_bg_new_small">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -165,7 +149,7 @@
                                                 <constraint firstAttribute="width" constant="60" id="r32-ZR-Rz7"/>
                                             </constraints>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <inset key="imageEdgeInsets" minX="17" minY="15" maxX="17" maxY="15"/>
+                                            <inset key="imageEdgeInsets" minX="18" minY="15" maxX="18" maxY="15"/>
                                             <state key="normal" title="   " image="pen_icon" backgroundImage="green_bg_new_small">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -197,7 +181,7 @@
                                                 <constraint firstAttribute="height" constant="60" id="qQN-hJ-pIZ"/>
                                             </constraints>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                            <inset key="imageEdgeInsets" minX="16" minY="15" maxX="16" maxY="15"/>
                                             <state key="normal" title="   " image="location_icon" backgroundImage="green_bg_new_small">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -233,12 +217,25 @@
                                 </mask>
                             </variation>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y9t-nF-Ngk">
+                            <rect key="frame" x="332" y="532" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="T7P-js-ZLO"/>
+                                <constraint firstAttribute="width" constant="60" id="YoD-eg-36n"/>
+                            </constraints>
+                            <state key="normal" image="plusgreen">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="closeButtonUpTap:" destination="-1" eventType="touchUpInside" id="z6Y-Mk-cHG"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="eqU-I4-waO" secondAttribute="bottom" constant="90" id="2It-4B-ycf"/>
+                        <constraint firstAttribute="trailing" secondItem="Y9t-nF-Ngk" secondAttribute="trailing" constant="8" id="4yj-Yz-53l"/>
                         <constraint firstAttribute="trailing" secondItem="eqU-I4-waO" secondAttribute="trailing" constant="16" id="71o-6n-2ZB"/>
-                        <constraint firstItem="Y9t-nF-Ngk" firstAttribute="leading" secondItem="KOj-FT-Go1" secondAttribute="leading" constant="8" id="7Fm-mn-ZQX"/>
-                        <constraint firstItem="Y9t-nF-Ngk" firstAttribute="top" secondItem="KOj-FT-Go1" secondAttribute="top" constant="60" id="IaI-pI-1aJ"/>
+                        <constraint firstAttribute="bottom" secondItem="Y9t-nF-Ngk" secondAttribute="bottom" constant="8" id="74V-Kh-wcn"/>
                     </constraints>
                 </view>
             </subviews>

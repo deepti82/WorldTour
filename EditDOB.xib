@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditDOB" customModule="TraveLibro" customModuleProvider="target">
             <connections>
                 <outlet property="datePicker" destination="A4P-c3-U8O" id="HP5-hG-Efl"/>
+                <outlet property="saveButton" destination="N3Y-ft-ma7" id="itk-w6-yAt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

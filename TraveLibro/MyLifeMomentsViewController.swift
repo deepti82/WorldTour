@@ -11,13 +11,31 @@ import UIKit
 class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let titleLabels = ["November 2015 (25)", "October 2015 (25)", "September 2015 (25)", "August 2015 (25)", "July 2015 (25)"]
+    let Month = "November 2015"
+    let reviewsLL = ["Mumbai", "London"]
+    let reviewsTL = ["India", "France"]
     
+    
+    var whichView = "All"
+    
+    @IBOutlet weak var mainView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+//        self.addObserver(self, forKeyPath: "whichView", options: .Prior, context: nil)
+        
     }
+    
+//    func reloadViews(sender: AnyObject) {
+//        
+//        mainView.reloadData()
+//        
+//    }
+//    
+//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+//        mainView.reloadData()
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -26,35 +44,146 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         
-        return titleLabels.count
+        if whichView == "All" {
+            return titleLabels.count
+        }
         
+        return 1
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 3*12
+        switch whichView {
+        case "All":
+            return 3*12
+        case "Monthly":
+            return 12
+        case "Local Life":
+            return 4
+        case "Travel Life":
+            return 4
+        default:
+            break
+        }
+        
+        return 2
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        
+        switch whichView {
+        case "All":
+            return CGSizeMake(30, 30)
+        case "Monthly":
+            return CGSizeMake(75, 75)
+        case "Local Life":
+            return CGSizeMake(152, 204)
+        case "Travel Life":
+            return CGSizeMake(152, 204)
+        default:
+            break
+        }
+        
+        return CGSizeMake(150, 75)
         
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as! photosCollectionViewCell
+        switch whichView {
+        case "All":
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as! photosCollectionViewCell
+            return cell
+        case "Monthly":
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MomentsLargeImageCell", forIndexPath: indexPath) as! photosTwoCollectionViewCell
+            return cell
+        case "Local Life":
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("localLifeMomentsCell", forIndexPath: indexPath) as! LocalLifeMomentsCollectionViewCell
+            cell.bgImage.transform = CGAffineTransformMakeRotation(0.0349066)
+            cell.bgImage.layer.cornerRadius = 5
+            cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
+            cell.coverImage.clipsToBounds = true
+            return cell
+        case "Travel Life":
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("travelLifeMomentsCell", forIndexPath: indexPath) as! TravelLifeMomentsCollectionViewCell
+            cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
+            cell.coverImage.clipsToBounds = true
+            cell.bgImage.layer.borderColor = UIColor.whiteColor().CGColor
+            cell.bgImage.layer.borderWidth = 5.0
+            cell.bgImage.layer.cornerRadius = 5
+            cell.bgImage.layer.shadowOffset = CGSize(width: 10, height: 10)
+            cell.bgImage.layer.shadowColor = UIColor.blackColor().CGColor
+            cell.bgImage.layer.shadowRadius = 10
+            cell.bgImage.transform = CGAffineTransformMakeRotation(0.0349066)
+            cell.bgImage.clipsToBounds = true
+            return cell
+        default:
+            break
+        }
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("reviewsCell", forIndexPath: indexPath) as! reviewsCollectionViewCell
+        if whichView == "Reviews TL" {
+            cell.bgImage.image = UIImage(named: "reviewsLocalLifeAlbum")
+            cell.placeName.text = reviewsLL[indexPath.row]
+            
+        }
+        else {
+            cell.bgImage.image = UIImage(named: "reviewsTLAlbum")
+            cell.placeName.text = reviewsTL[indexPath.row]
+        }
+        cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
+        cell.foregroundImage.clipsToBounds = true
+        cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).CGColor
+        cell.foregroundImage.layer.borderWidth = 3.0
         return cell
         
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         
+        if whichView == "All" {
+            
+            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "headerCell", forIndexPath: indexPath) as! TitleHeaderView
+            header.titleLabel.text = titleLabels[indexPath.section]
+            return header
+            
+        }
+        else if whichView == "Monthly"{
+            
+            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "headerCell", forIndexPath: indexPath) as! TitleHeaderView
+            header.titleLabel.text = Month
+            return header
+            
+        }
+        
         let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "headerCell", forIndexPath: indexPath) as! TitleHeaderView
-        header.titleLabel.text = titleLabels[indexPath.section]
+        header.titleLabel.text = ""
         return header
         
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        print("selected item at index path")
+        if whichView == "Local Life" || whichView == "Travel Life" || whichView == "All" {
+            whichView = "Monthly"
+            collectionView.reloadData()
+        }
         
+        else if whichView == "Reviews TL" || whichView == "Reviews LL" {
+            
+            let myLifeVC = self.parentViewController as! MyLifeViewController
+            myLifeVC.whatTab = "Reviews"
+            myLifeVC.collectionContainer.alpha = 0
+            myLifeVC.tableContainer.alpha = 1
+            myLifeVC.view.setNeedsDisplay()
+            
+            let tableVC = myLifeVC.childViewControllers.last as! AccordionViewController
+            tableVC.whichView = self.whichView
+            tableVC.accordionTableView.reloadData()
+        }
         
         
     }

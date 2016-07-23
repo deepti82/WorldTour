@@ -121,35 +121,35 @@
                             </constraints>
                         </imageView>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1JE-KN-wj5">
-                            <rect key="frame" x="0.0" y="501" width="400" height="95"/>
+                            <rect key="frame" x="0.0" y="501" width="400" height="100"/>
                         </scrollView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d37-UF-MSA">
-                            <rect key="frame" x="8" y="604" width="85" height="20"/>
+                            <rect key="frame" x="8" y="609" width="49" height="15"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                            <color key="textColor" red="0.3411764706" green="0.82745098039999998" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BVh-3t-dVp">
-                            <rect key="frame" x="101" y="604" width="140" height="20"/>
+                            <rect key="frame" x="65" y="609" width="115" height="15"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncheck" translatesAutoresizingMaskIntoConstraints="NO" id="4WM-N1-dN7">
-                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="BIp-ll-jun"/>
-                                        <constraint firstAttribute="width" constant="20" id="FSv-Ki-F5E"/>
+                                        <constraint firstAttribute="height" constant="15" id="BIp-ll-jun"/>
+                                        <constraint firstAttribute="width" constant="15" id="FSv-Ki-F5E"/>
                                     </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncheck" translatesAutoresizingMaskIntoConstraints="NO" id="NvN-Ri-f9k">
-                                    <rect key="frame" x="30" y="0.0" width="20" height="20"/>
+                                    <rect key="frame" x="25" y="0.0" width="15" height="15"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncheck" translatesAutoresizingMaskIntoConstraints="NO" id="X6e-Sc-TxC">
-                                    <rect key="frame" x="60" y="0.0" width="20" height="20"/>
+                                    <rect key="frame" x="50" y="0.0" width="15" height="15"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncheck" translatesAutoresizingMaskIntoConstraints="NO" id="qhb-Eh-351">
-                                    <rect key="frame" x="90" y="0.0" width="20" height="20"/>
+                                    <rect key="frame" x="75" y="0.0" width="15" height="15"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncheck" translatesAutoresizingMaskIntoConstraints="NO" id="GWT-m1-PVW">
-                                    <rect key="frame" x="120" y="0.0" width="20" height="20"/>
+                                    <rect key="frame" x="100" y="0.0" width="15" height="15"/>
                                 </imageView>
                             </subviews>
                         </stackView>
@@ -225,7 +225,7 @@
                             </subviews>
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9W-1s-BE6">
-                            <rect key="frame" x="8" y="599" width="85" height="30"/>
+                            <rect key="frame" x="8" y="604" width="85" height="25"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <state key="normal" title="Rate this now">
                                 <color key="titleColor" red="0.2941176593" green="0.79607844350000001" blue="0.73333334920000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -282,7 +282,7 @@
                         <constraint firstAttribute="trailing" secondItem="BZb-3d-cGB" secondAttribute="trailing" constant="8" id="gwG-nE-fJX"/>
                         <constraint firstItem="3NU-IW-reA" firstAttribute="leading" secondItem="ySe-FM-2bp" secondAttribute="leading" constant="8" id="hil-Gc-JwM"/>
                         <constraint firstItem="SPy-Cu-JZN" firstAttribute="leading" secondItem="ySe-FM-2bp" secondAttribute="leading" id="jut-uN-pHW"/>
-                        <constraint firstItem="BVh-3t-dVp" firstAttribute="leading" secondItem="I9W-1s-BE6" secondAttribute="trailing" constant="8" id="leu-ry-hiy"/>
+                        <constraint firstItem="BVh-3t-dVp" firstAttribute="leading" secondItem="d37-UF-MSA" secondAttribute="trailing" constant="8" id="maE-Uh-Dcp"/>
                         <constraint firstItem="2uZ-5Y-Xkx" firstAttribute="top" secondItem="WKt-gZ-MRg" secondAttribute="bottom" constant="8" id="nKG-ZG-b5M"/>
                         <constraint firstItem="EMm-ei-fwj" firstAttribute="top" secondItem="GBp-o6-pNV" secondAttribute="bottom" constant="8" id="nMB-K5-1mu"/>
                         <constraint firstItem="29D-AL-Ppj" firstAttribute="leading" secondItem="iTY-V2-kXJ" secondAttribute="leading" id="oMf-75-6Kv"/>

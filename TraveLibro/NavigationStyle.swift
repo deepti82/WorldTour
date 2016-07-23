@@ -64,10 +64,12 @@ extension UIViewController {
     }
     
     func removeNavigationBarItem() {
+        
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.rightBarButtonItem = nil
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
+        
     }
     
     func setCheckInNavigationBarItem (viewController: UIViewController) {

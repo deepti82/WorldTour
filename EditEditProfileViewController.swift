@@ -30,6 +30,7 @@ class EditEditProfileViewController: UIViewController {
             
             let DOBView = EditDOB(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
             DOBView.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+            DOBView.saveButton.addTarget(self, action: #selector(EditEditProfileViewController.editDate(_:)), forControlEvents: .TouchUpInside)
             self.view.addSubview(DOBView)
         }
         
@@ -47,6 +48,14 @@ class EditEditProfileViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func editDate(sender: UIButton) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+        
+    }
+    
     
     /*
     // MARK: - Navigation

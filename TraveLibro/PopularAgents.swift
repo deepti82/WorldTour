@@ -42,15 +42,15 @@ class PopularAgents: UIView {
         TitleView.bringSubviewToFront(agentName)
         TitleView.bringSubviewToFront(agentLocation)
         
-        gradientTwo.frame = FooterView.bounds
-        gradientTwo.frame.size.width = FooterView.frame.width + 100
-        gradientTwo.colors = [transparent, blackColour]
-        gradientTwo.locations = [0.0, 0.5]
-        
-        FooterView.layer.addSublayer(gradientTwo)
-        
-        FooterView.bringSubviewToFront(theStack)
-        FooterView.bringSubviewToFront(agentPicture)
+//        gradientTwo.frame = FooterView.bounds
+//        gradientTwo.frame.size.width = FooterView.frame.width + 100
+//        gradientTwo.colors = [transparent, blackColour]
+//        gradientTwo.locations = [0.0, 0.5]
+//        
+//        FooterView.layer.addSublayer(gradientTwo)
+//        
+//        FooterView.bringSubviewToFront(theStack)
+//        FooterView.bringSubviewToFront(agentPicture)
         
     }
     

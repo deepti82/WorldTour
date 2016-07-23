@@ -62,13 +62,13 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let inviteController = storyboard.instantiateViewControllerWithIdentifier("inviteFriends") as! InviteFriendsViewController
         self.inviteFriendsController = UINavigationController(rootViewController: inviteController)
         
-        let rateUsController = storyboard.instantiateViewControllerWithIdentifier("rating") as! RatingReviewViewController
+        let rateUsController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         self.rateUsController = UINavigationController(rootViewController: rateUsController)
         
         let FBController = storyboard.instantiateViewControllerWithIdentifier("FeedbackVC") as! FeedbackViewController
         self.feedbackController = UINavigationController(rootViewController: FBController)
         
-        let logOutController = storyboard.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+        let logOutController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         self.logOutController = UINavigationController(rootViewController: logOutController)
         
         let localLifeController = storyboard.instantiateViewControllerWithIdentifier("localLife") as! LocalLifeRecommendationViewController
@@ -77,19 +77,21 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let myProfileController = storyboard.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
-//        let tapForSettings = UIGestureRecognizer(target: self, action: #selector(self.profileTap(_:)))
-//        profileView.addGestureRecognizer(tapForSettings)
+//        let tapForProfile = UIGestureRecognizer(target: self, action: #selector(self.profileTap(_:)))
+//        profileView.addGestureRecognizer(tapForProfile)
         
     }
     
-    @IBAction func profilTap(sender: AnyObject) {
+    @IBAction func profileTap(sender: AnyObject) {
         
-        self.SettingsTap(sender)
+        self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)
         
     }
+    
 //    func profileTap (sender: UITapGestureRecognizer? = nil) {
 //        
-//        
+//        let myProfileController = storyboard!.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+//        self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
 //        
 //    }
 

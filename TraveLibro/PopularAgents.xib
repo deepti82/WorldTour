@@ -28,42 +28,43 @@
                     <rect key="frame" x="0.0" y="0.0" width="400" height="250"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBa-se-OVH">
-                    <rect key="frame" x="0.0" y="200" width="400" height="50"/>
+                    <rect key="frame" x="0.0" y="220" width="400" height="30"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DFl-1A-6bR">
-                            <rect key="frame" x="8" y="15" width="160" height="20"/>
+                            <rect key="frame" x="8" y="8" width="137" height="15"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="51 Followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKF-10-DPk">
-                                    <rect key="frame" x="0.0" y="0.0" width="69" height="20"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="57" height="15"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kdq-xk-5c4">
-                                    <rect key="frame" x="79" y="0.0" width="1" height="20"/>
+                                    <rect key="frame" x="67" y="0.0" width="1" height="15"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="1" id="5HM-2B-6BC"/>
-                                        <constraint firstAttribute="height" constant="20" id="kmf-3J-3l1"/>
+                                        <constraint firstAttribute="height" constant="15" id="kmf-3J-3l1"/>
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="92 Itineraries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Msp-rR-kCY">
-                                    <rect key="frame" x="90" y="0.0" width="70" height="20"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <rect key="frame" x="78" y="0.0" width="59" height="15"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                         </stackView>
                     </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="DFl-1A-6bR" firstAttribute="leading" secondItem="dBa-se-OVH" secondAttribute="leadingMargin" id="A6f-s5-lEt"/>
-                        <constraint firstItem="DFl-1A-6bR" firstAttribute="centerY" secondItem="dBa-se-OVH" secondAttribute="centerY" id="GvJ-ds-ho7"/>
-                        <constraint firstAttribute="height" constant="50" id="IaC-BD-oNe"/>
+                        <constraint firstAttribute="height" constant="30" id="IaC-BD-oNe"/>
+                        <constraint firstItem="DFl-1A-6bR" firstAttribute="centerY" secondItem="dBa-se-OVH" secondAttribute="centerY" id="MvM-KA-l4a"/>
+                        <constraint firstItem="DFl-1A-6bR" firstAttribute="leading" secondItem="dBa-se-OVH" secondAttribute="leadingMargin" id="olc-EW-CnH"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cinema_scene" translatesAutoresizingMaskIntoConstraints="NO" id="3Mc-qG-aH3">
-                    <rect key="frame" x="322" y="180" width="70" height="60"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="agents_1" translatesAutoresizingMaskIntoConstraints="NO" id="3Mc-qG-aH3">
+                    <rect key="frame" x="322" y="182" width="70" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="cGF-Fc-mHc"/>
                         <constraint firstAttribute="height" constant="60" id="l6W-BO-KHM"/>
@@ -80,18 +81,18 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGH-e5-brn">
-                            <rect key="frame" x="350" y="4" width="42" height="20"/>
+                            <rect key="frame" x="354" y="4" width="38" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="faN-DM-3cQ"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <state key="normal" title="Follow"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mumbai, India" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEE-qa-lRc">
-                            <rect key="frame" x="8" y="27" width="90" height="20"/>
+                            <rect key="frame" x="8" y="29" width="78" height="17"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -121,7 +122,7 @@
                 <constraint firstAttribute="trailing" secondItem="T5L-na-N5p" secondAttribute="trailing" id="8pC-w0-n2U"/>
                 <constraint firstItem="dBa-se-OVH" firstAttribute="leading" secondItem="rdV-mY-5Gh" secondAttribute="leading" id="CyB-qf-XjS"/>
                 <constraint firstAttribute="trailing" secondItem="dBa-se-OVH" secondAttribute="trailing" id="Fgp-U2-aKT"/>
-                <constraint firstAttribute="bottom" secondItem="3Mc-qG-aH3" secondAttribute="bottom" constant="10" id="HG6-Cu-Qb6"/>
+                <constraint firstAttribute="bottom" secondItem="3Mc-qG-aH3" secondAttribute="bottom" constant="8" id="HG6-Cu-Qb6"/>
                 <constraint firstItem="T5L-na-N5p" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JuW-oQ-Hqa"/>
                 <constraint firstItem="rdV-mY-5Gh" firstAttribute="top" secondItem="T5L-na-N5p" secondAttribute="top" id="VtB-2o-ons"/>
                 <constraint firstAttribute="bottom" secondItem="dBa-se-OVH" secondAttribute="bottom" id="guN-i3-za1"/>
@@ -136,7 +137,7 @@
         </view>
     </objects>
     <resources>
-        <image name="cinema_scene" width="531" height="352"/>
+        <image name="agents_1" width="188" height="146"/>
         <image name="scene_photo" width="892" height="500"/>
     </resources>
 </document>

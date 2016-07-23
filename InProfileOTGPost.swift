@@ -18,6 +18,10 @@ class InProfileOTGPost: UIView {
     @IBOutlet weak var flag2: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     
+    @IBOutlet weak var journeyIcon1: UIImageView!
+    @IBOutlet weak var journeyIcon2: UIImageView!
+    @IBOutlet weak var journeyIcon3: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -35,6 +39,13 @@ class InProfileOTGPost: UIView {
         styleFlags(flag1)
         styleFlags(flag2)
         styleFlags(flag3)
+        
+        journeyIcon1.tintColor = UIColor.whiteColor()
+        journeyIcon2.tintColor = UIColor.whiteColor()
+        journeyIcon3.tintColor = UIColor.whiteColor()
+        
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {

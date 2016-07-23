@@ -10,6 +10,7 @@ import UIKit
 
 class EditDOB: UIView {
 
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     override init(frame: CGRect) {
         super.init(frame: frame)

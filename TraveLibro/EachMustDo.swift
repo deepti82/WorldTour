@@ -10,6 +10,9 @@ import UIKit
 
 class EachMustDo: UIView {
 
+    @IBOutlet weak var titleImage: UIImageView!
+    @IBOutlet weak var descriptionText: UITextView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

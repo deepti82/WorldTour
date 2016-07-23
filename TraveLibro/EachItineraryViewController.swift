@@ -20,12 +20,13 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var tabTwo: UIButton!
     @IBOutlet weak var tabOne: UIButton!
     @IBOutlet weak var theTableView: UITableView!
+    
     @IBAction func TapPhotos(sender: AnyObject) {
         
-        let modalContent = self.storyboard?.instantiateViewControllerWithIdentifier("MomentsVC") as! MomentsEachViewController
+        let modalContent = self.storyboard?.instantiateViewControllerWithIdentifier("itineraryPhotos") as! EachItineraryPhotosViewController
         
         modalContent.modalPresentationStyle = .FullScreen
-        let modal = modalContent.popoverPresentationController
+        _ = modalContent.popoverPresentationController
         
         self.presentViewController(modalContent, animated: true, completion: nil)
         
@@ -37,7 +38,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         let modalContent = self.storyboard?.instantiateViewControllerWithIdentifier("MomentsVC") as! MomentsEachViewController
         
         modalContent.modalPresentationStyle = .FullScreen
-        let modal = modalContent.popoverPresentationController
+        _ = modalContent.popoverPresentationController
         
         self.presentViewController(modalContent, animated: true, completion: nil)
         
@@ -69,7 +70,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         makeTabs(tabTwo)
         makeTabs(tabOne)
         
-        
+        tabSeven.removeFromSuperview()
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,7 +105,28 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         else if cityLabels[indexPath.row] == "Stayed At" ||  cityLabels[indexPath.row] == "Ate At" || cityLabels[indexPath.row] == "Must Do" {
             
             let childCell = tableView.dequeueReusableCellWithIdentifier("childCellOne") as! ItineraryAccordionChildCellTableViewCell
-//            childCell.selectionStyle = .None
+            switch cityLabels[indexPath.row] {
+            case "Stayed At":
+                childCell.titleIcon.image = UIImage(named: "stayed_at")
+                childCell.title.text = "Stayed At"
+                childCell.value.text = "Astoria Hotel"
+                break
+                
+            case "Ate At":
+                childCell.titleIcon.image = UIImage(named: "ate_at")
+                childCell.title.text = "Ate At"
+                childCell.value.text = "Gulmarg Shalimar | Jewel of India | Moshes Pizza"
+                break
+                
+            case "Must Do":
+                childCell.titleIcon.image = UIImage(named: "must_do")
+                childCell.title.text = "Must Do's"
+                childCell.value.text = "1. Marine Drive 2. Gatewat of India 3. The Taj Mahal"
+                break
+                
+            default:
+                break
+            }
             return childCell
             
         }
@@ -195,7 +217,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         
         if cityLabels[indexPath.row] == "Ate At" || cityLabels[indexPath.row] == "Stayed At" || cityLabels[indexPath.row] == "Must Do" {
             
-            let exploreHotelsVC = storyboard?.instantiateViewControllerWithIdentifier("ExploreHotelsVC") as! ExploreHotelsViewController
+            let exploreHotelsVC = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
             self.navigationController?.pushViewController(exploreHotelsVC, animated: true)
             
             

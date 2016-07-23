@@ -20,7 +20,11 @@ class CheckInSearchViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let searchView = SearchFieldView(frame: CGRect(x: 45, y: 0, width: self.view.frame.width - 30, height: self.searchView.frame.height - 15))
+        let searchView = SearchFieldView(frame: CGRect(x: 55, y: 15, width: 300, height: 20))
+        searchView.bottomLine.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)
+        searchView.leftLine.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)
+        searchView.rightLine.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)
+        searchView.searchButton.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
         self.searchView.addSubview(searchView)
         
     }

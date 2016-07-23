@@ -14,6 +14,7 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
     
     @IBOutlet weak var HeadView: UIView!
     @IBOutlet weak var HeadViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var doneButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,11 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
         
         HeadViewHeightConstraint.constant = 100
         
-        let headerView = FilterBlogs(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: HeadViewHeightConstraint.constant))
+        let headerView = FilterRestaurants(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: HeadView.frame.height))
         HeadView.addSubview(headerView)
+        
+        doneButton.layer.cornerRadius = 5
+        doneButton.clipsToBounds = true
         
     }
 
@@ -50,7 +54,7 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
         cell.checkboxButton.setTitle("      " + labels[indexPath.item], forState: .Normal)
         
         let checkbox = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        checkbox.image = UIImage(named: "radio_for_button")
+        checkbox.image = UIImage(named: "checkbox_empty")
         checkbox.contentMode = .ScaleAspectFit
         cell.checkboxButton.titleLabel?.addSubview(checkbox)
         

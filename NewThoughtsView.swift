@@ -10,7 +10,17 @@ import UIKit
 
 class NewThoughtsView: UIView {
 
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var OTGLabelView: UIView!
+    @IBOutlet weak var titleDistanceConstraint: NSLayoutConstraint!
+    @IBOutlet weak var buttonDistanceConstraint: NSLayoutConstraint!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var timestamp: UIStackView!
+    @IBOutlet weak var iconButton: UIButton!
+    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var seperatorOne: UIView!
+    @IBOutlet weak var likesLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,6 +28,10 @@ class NewThoughtsView: UIView {
         
         OTGLabelView.layer.cornerRadius = 5
         OTGLabelView.clipsToBounds = true
+        likesLabel.text = String(format: "%C", faicon["likes"]!)
+        
+        mainView.layer.cornerRadius = 5
+        mainView.clipsToBounds = true
         
     }
     
