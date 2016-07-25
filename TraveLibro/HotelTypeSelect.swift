@@ -10,14 +10,20 @@ import UIKit
 
 class HotelTypeSelect: UIView {
 
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet var hotelFiltersButton: [UIButton]!
+    @IBOutlet var starButtons: [UIButton]!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
         let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame = self.bounds
+        blurView.frame = self.frame
+//        blurView.frame.size.height = self.frame.height + 300 
         blurView.layer.zPosition = -1
+        blurView.userInteractionEnabled = false
         self.addSubview(blurView)
         
     }

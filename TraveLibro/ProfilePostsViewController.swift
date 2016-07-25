@@ -18,7 +18,7 @@ class ProfilePostsViewController: UIViewController {
         super.viewDidLoad()
         getDarkBackGround(self)
         
-        self.setNavigationBarItem()
+//        self.setNavigationBarItem()
 //        self.setFooterTabBar(self)
         
 //        self.setNavigationBarItemText("Activity")

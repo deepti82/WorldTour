@@ -10,7 +10,6 @@ import UIKit
 
 class FilterRestaurants: UIView {
 
-    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var veganButton: UIButton!
     @IBOutlet weak var nonVegButton: UIButton!
     @IBOutlet weak var vegButton: UIButton!
@@ -22,6 +21,11 @@ class FilterRestaurants: UIView {
         
         let searchBox = SearchFieldView(frame: CGRect(x: 0, y: 0, width: ForSearch.frame.width, height: 60))
         searchBox.center = CGPointMake(ForSearch.frame.width/2, ForSearch.frame.height/2)
+        searchBox.leftLine.backgroundColor = UIColor.whiteColor()
+        searchBox.rightLine.backgroundColor = UIColor.whiteColor()
+        searchBox.bottomLine.backgroundColor = UIColor.whiteColor()
+        searchBox.searchButton.tintColor = UIColor.whiteColor()
+        searchBox.searchField.attributedPlaceholder  = NSAttributedString(string: "Search", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
         ForSearch.addSubview(searchBox)
         
         makeCurvedCorners(veganButton)

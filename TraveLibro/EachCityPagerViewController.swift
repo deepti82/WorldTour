@@ -12,6 +12,7 @@ import PageMenu
 class EachCityPagerViewController: UIViewController {
     
     var pageMenu : CAPSPageMenu?
+    var whichView : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -218,8 +218,8 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         if cityLabels[indexPath.row] == "Ate At" || cityLabels[indexPath.row] == "Stayed At" || cityLabels[indexPath.row] == "Must Do" {
             
             let exploreHotelsVC = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
+            exploreHotelsVC.whichView = cityLabels[indexPath.row]
             self.navigationController?.pushViewController(exploreHotelsVC, animated: true)
-            
             
         }
         

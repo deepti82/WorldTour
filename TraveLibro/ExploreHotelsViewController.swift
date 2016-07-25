@@ -11,6 +11,8 @@ import UIKit
 class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var whichView: String!
+    var scrollView: UIScrollView!
+    var hotels: HotelTypeSelect!
     
     let hotelNames = ["The Taj Mahal Palace", "Trident, Nariman Point", "The Taj Mahal Palace", "Trident, Nariman Point", "The Taj Mahal Palace", "Trident, Nariman Point"]
     let labelName = ["Must Do's", "Hotels", "Restaurants", "Popular Agents"]
@@ -55,15 +57,33 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         
         if whichView == "Hotels" {
             
+            hotels = HotelTypeSelect(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+            hotels.layer.opacity = 0.0
+            hotels.doneButton.layer.cornerRadius = 5
+            hotels.doneButton.addTarget(self, action: #selector(ExploreHotelsViewController.doneHotelFilter(_:)), forControlEvents: .TouchUpInside)
+            self.view.addSubview(hotels)
             
+            for button in hotels.hotelFiltersButton {
+                
+                button.layer.cornerRadius = 5
+                button.addTarget(self, action: #selector(ExploreHotelsViewController.hotelType(_:)), forControlEvents: .TouchUpInside)
+                
+            }
             
+            for button in hotels.starButtons {
+                
+                button.addTarget(self, action: #selector(ExploreHotelsViewController.starRating(_:)), forControlEvents: .TouchUpInside)
+                
+            }
+            
+            hotels.animation.makeOpacity(1.0).animate(0.3)
             
         }
         
         else {
             
-            let scrollView = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
-            scrollView.contentSize.height = 2500
+            scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+            scrollView.contentSize.height = 1650
             scrollView.layer.zPosition = 100
             scrollView.showsVerticalScrollIndicator = false
             scrollView.showsHorizontalScrollIndicator = false
@@ -71,14 +91,16 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
             self.view.addSubview(scrollView)
             
             let filterVC = storyboard?.instantiateViewControllerWithIdentifier("FilterViewController") as! FilterCheckboxesViewController
-            addChildViewController(filterVC)
+            self.addChildViewController(filterVC)
             filterVC.view.frame.size.height = scrollView.contentSize.height
-            //        filterVC.view.layer.addSublayer(finalLayer)
-            //        filterVC.view.layer.addAnimation(PanAnimation, forKey: "transform.scale")
+            filterVC.doneButton.addTarget(self, action: #selector(ExploreHotelsViewController.filterDone(_:)), forControlEvents: .TouchUpInside)
+            filterVC.whichView = "Restaurants"
             scrollView.addSubview(filterVC.view)
-            filterVC.didMoveToParentViewController(self)
-            
-            scrollView.animation.makeOpacity(1.0).animate(0.5)
+//            let filter = FilterCheckboxesViewController()
+//            filterVC.delegate = self
+//            filterVC.didMoveToParentViewController(self)
+//            self.registerForPreviewingWithDelegate(self, sourceView: scrollView)
+            scrollView.animation.makeOpacity(1.0).animate(0.3)
             
         }
         
@@ -90,7 +112,52 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         
         getDarkBackGround(self)
         
+    }
+    
+    func doneHotelFilter(sender: UIButton) {
         
+        print("inside done hotel filter button")
+        hotels.animation.makeOpacity(0.0).animate(0.3)
+        
+    }
+    
+    func hotelType(sender: UIButton) {
+        
+        if sender.tag == 0 {
+            
+            sender.backgroundColor = mainOrangeColor
+            sender.tag = 1
+        }
+        
+        else {
+            
+            sender.backgroundColor = mainBlueColor
+            sender.tag = 0
+            
+        }
+    }
+    
+    func filterDone(sender: UIButton) {
+        
+        scrollView.animation.makeOpacity(0.0).animate(0.3)
+        
+    }
+    
+    func starRating(sender: UIButton) {
+        
+        print("inside rating button")
+        
+        if sender.tag == 0 {
+            
+            sender.setImage(UIImage(named: "star_check"), forState: .Normal)
+            sender.tag = 1
+        }
+            
+        else {
+            
+            sender.setImage(UIImage(named: "star_uncheck"), forState: .Normal)
+            sender.tag = 0
+        }
     }
     
 //    override func viewDidAppear(animated: Bool) {
@@ -136,6 +203,12 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         else if whichView == "Rest" {
             
             cell.ratingStack.hidden = true
+            
+        }
+        
+        for image in cell.ratingStars {
+            
+            image.tintColor = mainBlueColor
             
         }
         
@@ -188,6 +261,7 @@ class HotelsTableViewCell: UITableViewCell {
     @IBOutlet weak var hotelExpense: UILabel!
     @IBOutlet weak var ratingStack: UIStackView!
     @IBOutlet weak var restaurantCuisines: UILabel!
+    @IBOutlet var ratingStars: [UIImageView]!
     
 }
 

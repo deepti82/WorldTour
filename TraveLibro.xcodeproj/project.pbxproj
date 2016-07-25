@@ -150,6 +150,7 @@
 		C26B4DEB1D141D9D00213055 /* ConnectWithAgent.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26B4DEA1D141D9D00213055 /* ConnectWithAgent.xib */; };
 		C26B4DED1D14216700213055 /* ConnectWithAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B4DEC1D14216700213055 /* ConnectWithAgent.swift */; };
 		C26B4DEF1D14288900213055 /* ConnectWithAgentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B4DEE1D14288900213055 /* ConnectWithAgentViewController.swift */; };
+		C26D619A1D43A9FF0036714C /* footerNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26D61991D43A9FF0036714C /* footerNew.xib */; };
 		C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */; };
 		C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */; };
 		C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */; };
@@ -167,6 +168,10 @@
 		C2803BC61CF424EB007A906E /* BlogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2803BC51CF424EB007A906E /* BlogView.swift */; };
 		C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2803BC71CF426A8007A906E /* BlogViewViewController.swift */; };
 		C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2803BCA1CF43504007A906E /* AccordionViewController.swift */; };
+		C2823AFE1D45E09C0065A76C /* FooterViewNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2823AFD1D45E09C0065A76C /* FooterViewNew.swift */; };
+		C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2823B001D4625830065A76C /* NotificationSubViewController.swift */; };
+		C2823B031D464AAD0065A76C /* startOTGView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2823B021D464AAD0065A76C /* startOTGView.xib */; };
+		C2823B051D464E800065A76C /* startOTGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2823B041D464E800065A76C /* startOTGView.swift */; };
 		C284277C1CE07445003672E9 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = C284277B1CE07445003672E9 /* Styles.swift */; };
 		C28521B71D364680001EF251 /* FilterItineraryType.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28521B51D364680001EF251 /* FilterItineraryType.xib */; };
 		C28521B81D364680001EF251 /* FilterIntinerariesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28521B61D364680001EF251 /* FilterIntinerariesType.swift */; };
@@ -430,6 +435,7 @@
 		C26B4DEA1D141D9D00213055 /* ConnectWithAgent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConnectWithAgent.xib; sourceTree = "<group>"; };
 		C26B4DEC1D14216700213055 /* ConnectWithAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectWithAgent.swift; sourceTree = "<group>"; };
 		C26B4DEE1D14288900213055 /* ConnectWithAgentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectWithAgentViewController.swift; sourceTree = "<group>"; };
+		C26D61991D43A9FF0036714C /* footerNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = footerNew.xib; sourceTree = "<group>"; };
 		C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = ../VerifyEmailViewController.swift; sourceTree = "<group>"; };
 		C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditEditProfileViewController.swift; path = ../EditEditProfileViewController.swift; sourceTree = "<group>"; };
@@ -447,6 +453,10 @@
 		C2803BC51CF424EB007A906E /* BlogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogView.swift; sourceTree = "<group>"; };
 		C2803BC71CF426A8007A906E /* BlogViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogViewViewController.swift; sourceTree = "<group>"; };
 		C2803BCA1CF43504007A906E /* AccordionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionViewController.swift; sourceTree = "<group>"; };
+		C2823AFD1D45E09C0065A76C /* FooterViewNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterViewNew.swift; sourceTree = "<group>"; };
+		C2823B001D4625830065A76C /* NotificationSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSubViewController.swift; sourceTree = "<group>"; };
+		C2823B021D464AAD0065A76C /* startOTGView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = startOTGView.xib; sourceTree = "<group>"; };
+		C2823B041D464E800065A76C /* startOTGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = startOTGView.swift; sourceTree = "<group>"; };
 		C284277B1CE07445003672E9 /* Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		C28521B51D364680001EF251 /* FilterItineraryType.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterItineraryType.xib; sourceTree = "<group>"; };
 		C28521B61D364680001EF251 /* FilterIntinerariesType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterIntinerariesType.swift; sourceTree = "<group>"; };
@@ -624,13 +634,15 @@
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
-				C23B3BDF1D4248F10075B733 /* EachCityPagerViewController.swift */,
 				C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */,
 				C2DCAE401D18063E00B35331 /* NavigationStyle.swift */,
 				C20163DE1D26910D00A2F70B /* Models */,
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C2823B001D4625830065A76C /* NotificationSubViewController.swift */,
+				C2823B021D464AAD0065A76C /* startOTGView.xib */,
+				C2823B041D464E800065A76C /* startOTGView.swift */,
 				C2E697B21D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift */,
 				C2E697B41D3E510900E76F1E /* FeaturedCitiesRestViewController.swift */,
 				C2E697B61D3E541500E76F1E /* FCMainViewController.swift */,
@@ -662,6 +674,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2823AFF1D45E1A80065A76C /* FooterNew */,
 				C266955B1D3CA5400068D9C7 /* TimestampTagViewOnScroll */,
 				C28521B41D364676001EF251 /* FilterIntinerariesType */,
 				C26730241D27A84200F2C822 /* QuickItineraryOne */,
@@ -1106,6 +1119,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C23B3BDF1D4248F10075B733 /* EachCityPagerViewController.swift */,
 				C23B3BDD1D423CDD0075B733 /* EachItineraryPhotosViewController.swift */,
 				C26962E31D377592004C0DE2 /* FeaturedCitiesNewViewController.swift */,
 				C28521B91D365FDF001EF251 /* PagerTabViewController.swift */,
@@ -1293,6 +1307,15 @@
 				C2803BC31CF41F99007A906E /* BlogView.xib */,
 			);
 			name = BlogView;
+			sourceTree = "<group>";
+		};
+		C2823AFF1D45E1A80065A76C /* FooterNew */ = {
+			isa = PBXGroup;
+			children = (
+				C26D61991D43A9FF0036714C /* footerNew.xib */,
+				C2823AFD1D45E09C0065A76C /* FooterViewNew.swift */,
+			);
+			name = FooterNew;
 			sourceTree = "<group>";
 		};
 		C28521B41D364676001EF251 /* FilterIntinerariesType */ = {
@@ -1668,6 +1691,7 @@
 				C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */,
 				C24F85011D005FD2002EA203 /* TutorialCards.xib in Resources */,
 				C2A6E2671CE9D48A00D3F845 /* PhotosOTG.xib in Resources */,
+				C2823B031D464AAD0065A76C /* startOTGView.xib in Resources */,
 				C269078F1CF86DDF00F827E6 /* ImageCheckbox.xib in Resources */,
 				C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */,
 				1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */,
@@ -1732,6 +1756,7 @@
 				C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */,
 				C267301F1D279D7900F2C822 /* AddNewOTG.xib in Resources */,
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
+				C26D619A1D43A9FF0036714C /* footerNew.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
 				C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */,
 				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
@@ -1954,6 +1979,7 @@
 				C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */,
 				C24B45651D0AE79A002EA009 /* PopularAgents.swift in Sources */,
 				C23B3BE01D4248F10075B733 /* EachCityPagerViewController.swift in Sources */,
+				C2823AFE1D45E09C0065A76C /* FooterViewNew.swift in Sources */,
 				C2E697B71D3E541500E76F1E /* FCMainViewController.swift in Sources */,
 				C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */,
 				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
@@ -2011,6 +2037,7 @@
 				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
 				C20939011D11557B00CBA70F /* HomeViewController.swift in Sources */,
 				C24870531D0C35C0003CB0DD /* HotelsCustomHeader.swift in Sources */,
+				C2823B051D464E800065A76C /* startOTGView.swift in Sources */,
 				C248704F1D0C25B9003CB0DD /* ExploreHotelsViewController.swift in Sources */,
 				C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */,
 				C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */,
@@ -2044,6 +2071,7 @@
 				C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */,
 				C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */,
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,
+				C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */,
 				C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -67,7 +67,6 @@
                     <constraints>
                         <constraint firstItem="ERu-VR-h6g" firstAttribute="leading" secondItem="cat-5o-QAY" secondAttribute="trailing" constant="8" id="2Ow-dG-LMV"/>
                         <constraint firstAttribute="bottom" secondItem="ERu-VR-h6g" secondAttribute="bottom" id="91H-8N-AL0"/>
-                        <constraint firstItem="cat-5o-QAY" firstAttribute="centerY" secondItem="EYb-HI-fiX" secondAttribute="centerY" id="9kD-po-JG0"/>
                         <constraint firstAttribute="trailing" secondItem="NSV-aM-uEQ" secondAttribute="trailing" id="Bmk-Lw-z4h"/>
                         <constraint firstAttribute="trailing" secondItem="ERu-VR-h6g" secondAttribute="trailing" id="RfV-5P-2Py"/>
                         <constraint firstItem="NSV-aM-uEQ" firstAttribute="leading" secondItem="EYb-HI-fiX" secondAttribute="leading" id="Spd-Yo-Ybt"/>
@@ -78,6 +77,7 @@
                         <constraint firstItem="NSV-aM-uEQ" firstAttribute="top" secondItem="W7O-51-EDd" secondAttribute="bottom" constant="3" id="ZX0-at-oQl"/>
                         <constraint firstItem="W7O-51-EDd" firstAttribute="leading" secondItem="EYb-HI-fiX" secondAttribute="leadingMargin" id="f4a-xF-SZr"/>
                         <constraint firstItem="W7O-51-EDd" firstAttribute="top" secondItem="EYb-HI-fiX" secondAttribute="top" constant="6" id="nzN-NB-nyG"/>
+                        <constraint firstItem="NSV-aM-uEQ" firstAttribute="top" secondItem="cat-5o-QAY" secondAttribute="bottom" constant="4" id="oiF-D3-4bj"/>
                         <constraint firstItem="cat-5o-QAY" firstAttribute="leading" secondItem="W7O-51-EDd" secondAttribute="trailing" constant="8" id="u5X-eA-5Kg"/>
                     </constraints>
                     <variation key="default">

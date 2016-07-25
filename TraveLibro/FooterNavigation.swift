@@ -10,29 +10,31 @@ import UIKit
 
 extension UIViewController {
     
-    public func changeViewController(view: String) {
+    func goToFeed (sender: UITapGestureRecognizer? = nil) {
         
-        switch view {
-        case "Feed":
-            let feedVC = storyboard!.instantiateViewControllerWithIdentifier("Activity") as! ProfilePostsViewController
-            navigationController?.showViewController(feedVC, sender: nil)
-            
-        case "Notify":
-//            let notifyVC = storyboard!.instantiateViewControllerWithIdentifier("Activity") as! ProfilePostsViewController
-//            navigationController?.showViewController(feedVC, sender: nil)
-            break
-        case "LocalLife":
-//            let feedVC = storyboard!.instantiateViewControllerWithIdentifier("Activity") as! ProfilePostsViewController
-//            navigationController?.showViewController(feedVC, sender: nil)
-            break
-        case "TravelLife":
-//            let feedVC = storyboard!.instantiateViewControllerWithIdentifier("Activity") as! ProfilePostsViewController
-//            navigationController?.showViewController(feedVC, sender: nil)
-            break
-        default:
-            break
-        }
+        let feedVC = storyboard!.instantiateViewControllerWithIdentifier("Activity") as! ProfilePostsViewController
+        navigationController?.pushViewController(feedVC, animated: true)
         
+    }
+    
+    func gotoNotifications(sender: UITapGestureRecognizer) {
+        
+        let notifyVC = storyboard!.instantiateViewControllerWithIdentifier("notifications") as! NotificationsViewController
+        navigationController?.pushViewController(notifyVC, animated: true)
+        
+    }
+    
+    func gotoLocalLife(sender: UITapGestureRecognizer) {
+        
+        let LLVC = storyboard!.instantiateViewControllerWithIdentifier("localLifePosts") as! LocalLifePostsViewController
+        navigationController?.pushViewController(LLVC, animated: true)
+        
+    }
+    
+    func gotoTravelLife(sender: UITapGestureRecognizer) {
+        
+        let TLVC = storyboard!.instantiateViewControllerWithIdentifier("travelLife") as! OTGTimelineViewController
+        navigationController?.pushViewController(TLVC, animated: true)
         
     }
     

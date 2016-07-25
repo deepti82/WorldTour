@@ -7,68 +7,51 @@
 //
 
 import UIKit
+import PageMenu
 
-class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NotificationsViewController: UIViewController {
+    
+    var pageMenu : CAPSPageMenu!
+    
+    let orangeColor = UIColor(red: 252/255, green: 80/255, blue: 71/255, alpha: 1)
+    let blueColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+    let hairlineColor = UIColor(red: 210/255, green: 211/255, blue: 211/255, alpha: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nvcTwo = self.navigationController
+        
+        var controllerArray : [UIViewController] = []
+        
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("notifySub") as! NotificationSubViewController
+        controller.whichView = "Notify"
+        controller.title = "Notifications"
+        controllerArray.append(controller)
+        
+        let controllerTwo = storyboard!.instantiateViewControllerWithIdentifier("notifySub") as! NotificationSubViewController
+        controllerTwo.whichView = "Messages"
+        controllerTwo.title = "Messages"
+        controllerArray.append(controllerTwo)
+        
+        let parameters: [CAPSPageMenuOption] = [
+            .MenuItemSeparatorWidth(1),
+            .MenuItemSeparatorPercentageHeight(20),
+            .UseMenuLikeSegmentedControl(true),
+            .MenuItemFont(UIFont(name: "Avenir-Roman", size: 14)!),
+            .ScrollMenuBackgroundColor(UIColor.whiteColor()),
+            .SelectionIndicatorColor(UIColor.clearColor()),
+            .UnselectedMenuItemLabelColor(blueColor),
+            .SelectedMenuItemLabelColor(orangeColor),
+            .MenuItemWidthBasedOnTitleTextWidth(true),
+            .MenuHeight(45.0),
+            .BottomMenuHairlineColor(hairlineColor),
+            .MenuItemSeparatorColor(hairlineColor)
+        ]
+        
+        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0, 60, self.view.frame.width, self.view.frame.height - 60), pageMenuOptions: parameters)
+        self.view.addSubview(pageMenu!.view)
 
-        // Do any additional setup after loading the view.
-//        let statusView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 20.0))
-//        statusView.backgroundColor = mainBlueColor
-//        self.view.addSubview(statusView)
-        
-        let header = NotificationsHeader(frame: CGRect(x: 0, y: 20, width: self.view.frame.size.width, height: 60))
-        header.backgroundColor = UIColor.whiteColor()
-        header.layer.zPosition = 20
-        self.view.addSubview(header)
-        
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        print(indexPath.item)
-        if (indexPath.item == 0) {
-            let cell = tableView.dequeueReusableCellWithIdentifier("cellAdd") as! NotificationAddAlbumViewCell
-            cell.profileImage.image = UIImage(named: "profile_icon")
-            cell.notifyText.text = "Manan Vora wants to tag you in his On the Go Journey - London Diaries. Accept Manan Vora's request to create your travel memories together."
-            cell.acceptButton.backgroundColor = mainOrangeColor
-            cell.decilneButton.backgroundColor = UIColor(red: 167/255, green: 167/255, blue: 167/255, alpha: 255/255)
-            cell.acceptButton.layer.cornerRadius = 5
-            cell.decilneButton.layer.cornerRadius = 5
-            let timestamp = DateAndTime(frame: CGRect(x: 60, y: 150, width: self.view.frame.size.width/2, height: 25))
-            cell.addSubview(timestamp)
-            return cell
-            
-        }
-        
-        
-        else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! NotificationViewCell
-            cell.profileImage.image = UIImage(named: "profile_icon")
-            cell.notificationText.text = "mananvora liked your photo 2m"
-            cell.thumbnail.image = UIImage(named: "photobar1")
-            let timestamp = DateAndTime(frame: CGRect(x: 60, y: 70, width: self.view.frame.size.width/2, height: 25))
-            cell.addSubview(timestamp)
-            return cell
-        }
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if(indexPath.item == 0) {
-            return 180
-        }
-        else {
-            return 120
-        }
     }
 
     override func didReceiveMemoryWarning() {

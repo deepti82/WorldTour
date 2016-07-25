@@ -20,8 +20,8 @@ class StatusView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        let timestamp = DateAndTime(frame: CGRect(x: 0, y: 0, width: 200, height: timestampView.frame.size.height))
-        timestampView.addSubview(timestamp)
+//        let timestamp = DateAndTime(frame: CGRect(x: 0, y: 0, width: 200, height: timestampView.frame.size.height))
+//        timestampView.addSubview(timestamp)
         
         let sideIcon = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         sideIcon.center = CGPointMake(self.frame.size.width - 30, 10)
