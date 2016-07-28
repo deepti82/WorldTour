@@ -33,7 +33,7 @@ extension UIViewController {
     
     func gotoTravelLife(sender: UITapGestureRecognizer) {
         
-        let TLVC = storyboard!.instantiateViewControllerWithIdentifier("travelLife") as! OTGTimelineViewController
+        let TLVC = storyboard!.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
         navigationController?.pushViewController(TLVC, animated: true)
         
     }

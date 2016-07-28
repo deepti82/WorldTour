@@ -80,6 +80,13 @@
 		C24870511D0C2DA6003CB0DD /* HotelsCustomHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24870501D0C2DA6003CB0DD /* HotelsCustomHeader.xib */; };
 		C24870531D0C35C0003CB0DD /* HotelsCustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24870521D0C35C0003CB0DD /* HotelsCustomHeader.swift */; };
 		C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24870541D0C4458003CB0DD /* HotelTypeSelect.xib */; };
+		C24909AD1D49D094007EB6B4 /* tripSummaryEach.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24909AC1D49D094007EB6B4 /* tripSummaryEach.xib */; };
+		C24909B11D49D616007EB6B4 /* tripSummaryEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909B01D49D616007EB6B4 /* tripSummaryEach.swift */; };
+		C24909B41D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909B31D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift */; };
+		C24909B61D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909B51D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift */; };
+		C24909B81D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909B71D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift */; };
+		C24909BA1D4A3852007EB6B4 /* AddPostsOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24909B91D4A3852007EB6B4 /* AddPostsOTG.xib */; };
+		C24909BC1D4A3E41007EB6B4 /* AddPostsOTGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909BB1D4A3E41007EB6B4 /* AddPostsOTGView.swift */; };
 		C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B45591D0ABDE4002EA009 /* Itineraries.xib */; };
 		C24B455C1D0ACAFA002EA009 /* Itineraries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24B455B1D0ACAFA002EA009 /* Itineraries.swift */; };
 		C24B455F1D0ACF4F002EA009 /* FilterItineraries.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24B455E1D0ACF4F002EA009 /* FilterItineraries.xib */; };
@@ -114,11 +121,16 @@
 		C2535F091D252DEC00F6B22D /* ELCImagePickerController-master in Resources */ = {isa = PBXBuildFile; fileRef = C2535F081D252DEC00F6B22D /* ELCImagePickerController-master */; };
 		C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */; };
 		C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25443541CD75F2900C2C6CD /* drawLine.swift */; };
+		C25649951D48C6F60046E36D /* TripInfoOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25649941D48C6F60046E36D /* TripInfoOTG.xib */; };
+		C25649971D48D7670046E36D /* TripInfoOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25649961D48D7670046E36D /* TripInfoOTG.swift */; };
+		C256499A1D48EE5E0046E36D /* SummarySubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25649991D48EE5E0046E36D /* SummarySubViewController.swift */; };
 		C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */; };
 		C25BE1F51CFC23EC00C98DD3 /* InProfileOTGPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25BE1F41CFC23EC00C98DD3 /* InProfileOTGPost.xib */; };
 		C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F61CFC2A2300C98DD3 /* InProfileOTGPost.swift */; };
 		C25BE1F91CFC3ED900C98DD3 /* ProfilePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F81CFC3ED900C98DD3 /* ProfilePostsViewController.swift */; };
 		C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1FA1CFC5DAF00C98DD3 /* AllReviewsViewController.swift */; };
+		C25C27EF1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25C27EE1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift */; };
+		C25C27F11D4747AA00C21F23 /* NewTLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25C27F01D4747AA00C21F23 /* NewTLViewController.swift */; };
 		C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */; };
 		C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */; };
 		C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */; };
@@ -365,6 +377,13 @@
 		C24870501D0C2DA6003CB0DD /* HotelsCustomHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelsCustomHeader.xib; sourceTree = "<group>"; };
 		C24870521D0C35C0003CB0DD /* HotelsCustomHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelsCustomHeader.swift; sourceTree = "<group>"; };
 		C24870541D0C4458003CB0DD /* HotelTypeSelect.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotelTypeSelect.xib; sourceTree = "<group>"; };
+		C24909AC1D49D094007EB6B4 /* tripSummaryEach.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tripSummaryEach.xib; sourceTree = "<group>"; };
+		C24909B01D49D616007EB6B4 /* tripSummaryEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripSummaryEach.swift; sourceTree = "<group>"; };
+		C24909B31D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryPhotosViewController.swift; sourceTree = "<group>"; };
+		C24909B51D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryPhotoGridViewController.swift; sourceTree = "<group>"; };
+		C24909B71D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryPhotoListViewController.swift; sourceTree = "<group>"; };
+		C24909B91D4A3852007EB6B4 /* AddPostsOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPostsOTG.xib; sourceTree = "<group>"; };
+		C24909BB1D4A3E41007EB6B4 /* AddPostsOTGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPostsOTGView.swift; sourceTree = "<group>"; };
 		C24B45591D0ABDE4002EA009 /* Itineraries.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Itineraries.xib; sourceTree = "<group>"; };
 		C24B455B1D0ACAFA002EA009 /* Itineraries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Itineraries.swift; sourceTree = "<group>"; };
 		C24B455E1D0ACF4F002EA009 /* FilterItineraries.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterItineraries.xib; sourceTree = "<group>"; };
@@ -399,11 +418,16 @@
 		C2535F081D252DEC00F6B22D /* ELCImagePickerController-master */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "ELCImagePickerController-master"; path = "/Users/Wohlig/Documents/xcode/WorldTour/ELCImagePickerController-master"; sourceTree = "<absolute>"; };
 		C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheGoViewController.swift; sourceTree = "<group>"; };
 		C25443541CD75F2900C2C6CD /* drawLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawLine.swift; sourceTree = "<group>"; };
+		C25649941D48C6F60046E36D /* TripInfoOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripInfoOTG.xib; sourceTree = "<group>"; };
+		C25649961D48D7670046E36D /* TripInfoOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripInfoOTG.swift; sourceTree = "<group>"; };
+		C25649991D48EE5E0046E36D /* SummarySubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummarySubViewController.swift; sourceTree = "<group>"; };
 		C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLifePostsViewController.swift; sourceTree = "<group>"; };
 		C25BE1F41CFC23EC00C98DD3 /* InProfileOTGPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InProfileOTGPost.xib; path = ../InProfileOTGPost.xib; sourceTree = "<group>"; };
 		C25BE1F61CFC2A2300C98DD3 /* InProfileOTGPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InProfileOTGPost.swift; path = ../InProfileOTGPost.swift; sourceTree = "<group>"; };
 		C25BE1F81CFC3ED900C98DD3 /* ProfilePostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePostsViewController.swift; sourceTree = "<group>"; };
 		C25BE1FA1CFC5DAF00C98DD3 /* AllReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllReviewsViewController.swift; sourceTree = "<group>"; };
+		C25C27EE1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KindOfJourneyOTGViewController.swift; sourceTree = "<group>"; };
+		C25C27F01D4747AA00C21F23 /* NewTLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTLViewController.swift; sourceTree = "<group>"; };
 		C25F48851CF310FB00C6C28C /* MomentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MomentsTableViewController.swift; path = ../MomentsTableViewController.swift; sourceTree = "<group>"; };
 		C25F48891CF31B1300C6C28C /* MomentsEachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MomentsEachViewController.swift; path = ../MomentsEachViewController.swift; sourceTree = "<group>"; };
 		C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TravelLifeMomentsViewController.swift; path = ../TravelLifeMomentsViewController.swift; sourceTree = "<group>"; };
@@ -593,6 +617,8 @@
 			children = (
 				1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */,
 				1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */,
+				C24909B91D4A3852007EB6B4 /* AddPostsOTG.xib */,
+				C24909BB1D4A3E41007EB6B4 /* AddPostsOTGView.swift */,
 			);
 			name = AddCircle;
 			sourceTree = "<group>";
@@ -640,6 +666,12 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C24909B51D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift */,
+				C24909B71D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift */,
+				C24909B31D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift */,
+				C25649991D48EE5E0046E36D /* SummarySubViewController.swift */,
+				C25C27F01D4747AA00C21F23 /* NewTLViewController.swift */,
+				C25C27EE1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift */,
 				C2823B001D4625830065A76C /* NotificationSubViewController.swift */,
 				C2823B021D464AAD0065A76C /* startOTGView.xib */,
 				C2823B041D464E800065A76C /* startOTGView.swift */,
@@ -674,6 +706,8 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C24909B21D49D9F0007EB6B4 /* tripSummaryEach */,
+				C25649981D48E7080046E36D /* TripInfoOTG */,
 				C2823AFF1D45E1A80065A76C /* FooterNew */,
 				C266955B1D3CA5400068D9C7 /* TimestampTagViewOnScroll */,
 				C28521B41D364676001EF251 /* FilterIntinerariesType */,
@@ -954,6 +988,15 @@
 			name = MoreAboutTrip;
 			sourceTree = "<group>";
 		};
+		C24909B21D49D9F0007EB6B4 /* tripSummaryEach */ = {
+			isa = PBXGroup;
+			children = (
+				C24909AC1D49D094007EB6B4 /* tripSummaryEach.xib */,
+				C24909B01D49D616007EB6B4 /* tripSummaryEach.swift */,
+			);
+			name = tripSummaryEach;
+			sourceTree = "<group>";
+		};
 		C24B455D1D0ACB86002EA009 /* Itineraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -1209,6 +1252,15 @@
 				C27F6C001CF03E280049F012 /* ProfileMainView.swift */,
 			);
 			name = ProfileMainView;
+			sourceTree = "<group>";
+		};
+		C25649981D48E7080046E36D /* TripInfoOTG */ = {
+			isa = PBXGroup;
+			children = (
+				C25649941D48C6F60046E36D /* TripInfoOTG.xib */,
+				C25649961D48D7670046E36D /* TripInfoOTG.swift */,
+			);
+			name = TripInfoOTG;
 			sourceTree = "<group>";
 		};
 		C263E3A31D1E5BE100D274FE /* NewProfilePosts */ = {
@@ -1684,6 +1736,7 @@
 				C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */,
 				C2ABDBAE1CEC4CB400D7542E /* OnlyPhoto.xib in Resources */,
 				C2A27A451CEDC1F100F74DD1 /* LogInView.xib in Resources */,
+				C24909BA1D4A3852007EB6B4 /* AddPostsOTG.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				C2803BC41CF41F99007A906E /* BlogView.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
@@ -1705,12 +1758,14 @@
 				C28A92531D0ECB4E00CFEC7A /* FilterBlogs.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
+				C24909AD1D49D094007EB6B4 /* tripSummaryEach.xib in Resources */,
 				C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */,
 				C2535F091D252DEC00F6B22D /* ELCImagePickerController-master in Resources */,
 				C248704A1D0BEE75003CB0DD /* MoreAboutTrip.xib in Resources */,
 				C24B45631D0AE664002EA009 /* PopularAgents.xib in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
 				C25BE1F51CFC23EC00C98DD3 /* InProfileOTGPost.xib in Resources */,
+				C25649951D48C6F60046E36D /* TripInfoOTG.xib in Resources */,
 				C24B45691D0AF5C4002EA009 /* EachMustDo.xib in Resources */,
 				C2A27A4C1CEDC99E00F74DD1 /* SignUpFullView.xib in Resources */,
 				1A3E4DC61CD3970000105C3D /* TripSummaryProfile.xib in Resources */,
@@ -1924,6 +1979,7 @@
 				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
 				C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */,
 				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
+				C24909B11D49D616007EB6B4 /* tripSummaryEach.swift in Sources */,
 				C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */,
 				C2D594521CF487B30007F50B /* MyLifeTabs.swift in Sources */,
 				C266955A1D3CA5060068D9C7 /* TimestampTagViewOnScroll.swift in Sources */,
@@ -1932,6 +1988,7 @@
 				C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */,
 				C269078D1CF8633800F827E6 /* ProfilePic.swift in Sources */,
 				C24F84E71D00252F002EA203 /* SettingsViewController.swift in Sources */,
+				C256499A1D48EE5E0046E36D /* SummarySubViewController.swift in Sources */,
 				C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
 				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
@@ -1962,11 +2019,13 @@
 				C24F85031D0064D7002EA203 /* TutorialCards.swift in Sources */,
 				C2A6E25B1CE9C27000D3F845 /* TimelineScroll.swift in Sources */,
 				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,
+				C24909B81D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
 				C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */,
 				C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */,
 				C23EB1CD1CFEB044005B5CE8 /* CheckInLocalLife.swift in Sources */,
 				C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */,
+				C25C27F11D4747AA00C21F23 /* NewTLViewController.swift in Sources */,
 				C25207391D09A4F7008F0E51 /* FeaturedCitiesViewController.swift in Sources */,
 				C20A18FA1D2299EE00760BF9 /* AddCheckIn.swift in Sources */,
 				C24F84E21D001B91002EA203 /* ResetPassword.swift in Sources */,
@@ -2028,9 +2087,11 @@
 				C25207371D096F27008F0E51 /* ExploreDestinationsViewController.swift in Sources */,
 				C28521BA1D365FDF001EF251 /* PagerTabViewController.swift in Sources */,
 				C24F84F91D00555C002EA203 /* NoCountriesVisited.swift in Sources */,
+				C24909B61D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift in Sources */,
 				C20163E41D26997600A2F70B /* ProfileImage.swift in Sources */,
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
+				C25C27EF1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift in Sources */,
 				C24EB2EF1D30DE2E00EB95F6 /* NoFollowingViewController.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
 				C24B45611D0ADAEB002EA009 /* FilterItineraries.swift in Sources */,
@@ -2042,6 +2103,7 @@
 				C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */,
 				C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
+				C24909B41D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift in Sources */,
 				C21293101D2E830B002D5A4A /* MyLifeMomentsViewController.swift in Sources */,
 				C284277C1CE07445003672E9 /* Styles.swift in Sources */,
 				C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */,
@@ -2067,10 +2129,12 @@
 				C245776E1D1D5ACD00C6568C /* NewProfilePosts.swift in Sources */,
 				C2BFA9761CF2D2A900DC2066 /* MyLifeViewController.swift in Sources */,
 				C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */,
+				C25649971D48D7670046E36D /* TripInfoOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
 				C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */,
 				C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */,
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,
+				C24909BC1D4A3E41007EB6B4 /* AddPostsOTGView.swift in Sources */,
 				C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */,
 				C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */,
 			);

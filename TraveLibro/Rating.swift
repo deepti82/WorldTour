@@ -10,13 +10,17 @@ import UIKit
 
 class Rating: UIView {
     
-   
-    @IBOutlet weak var topIcon: UIImageView!
+    @IBOutlet weak var calendarIcon: UILabel!
+    @IBOutlet weak var clockIcon: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        topIcon.layer.zPosition = 10
-        topIcon.backgroundColor = UIColor(patternImage: UIImage(named: "halfnhalfbgGreenSmall")!)
+        
+        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+        clockIcon.text = String(format: "%C", faicon["clock"]!)
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
