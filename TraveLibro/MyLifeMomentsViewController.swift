@@ -10,7 +10,7 @@ import UIKit
 
 class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    let titleLabels = ["November 2015 (25)", "October 2015 (25)", "September 2015 (25)", "August 2015 (25)", "July 2015 (25)"]
+    let titleLabels = ["November 2015, (25)", "October 2015, (25)", "September 2015, (25)", "August 2015, (25)", "July 2015, (25)"]
     let Month = "November 2015"
     let reviewsLL = ["Mumbai", "London"]
     let reviewsTL = ["India", "France"]
@@ -55,9 +55,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         switch whichView {
         case "All":
-            return 3*12
+            return 3*11
         case "Monthly":
-            return 12
+            return 3*5
         case "Local Life":
             return 4
         case "Travel Life":
@@ -78,11 +78,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         case "All":
             return CGSizeMake(30, 30)
         case "Monthly":
-            return CGSizeMake(75, 75)
-        case "Local Life":
-            return CGSizeMake(152, 204)
-        case "Travel Life":
-            return CGSizeMake(152, 204)
+            return CGSizeMake(115, 115)
+        case "Local Life", "Travel Life":
+            return CGSizeMake(165, 204)
         default:
             break
         }
@@ -125,14 +123,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         }
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("reviewsCell", forIndexPath: indexPath) as! reviewsCollectionViewCell
-        if whichView == "Reviews TL" {
+        if whichView == "Reviews LL" {
             cell.bgImage.image = UIImage(named: "reviewsLocalLifeAlbum")
-            cell.placeName.text = reviewsLL[indexPath.row]
+            cell.placeName.text = reviewsTL[indexPath.row]
             
         }
         else {
             cell.bgImage.image = UIImage(named: "reviewsTLAlbum")
-            cell.placeName.text = reviewsTL[indexPath.row]
+            cell.placeName.text = reviewsLL[indexPath.row]
         }
         cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
         cell.foregroundImage.clipsToBounds = true
@@ -147,7 +145,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         if whichView == "All" {
             
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "headerCell", forIndexPath: indexPath) as! TitleHeaderView
-            header.titleLabel.text = titleLabels[indexPath.section]
+            let array = titleLabels[indexPath.section].componentsSeparatedByString(", ")
+            print(array)
+            let headerLabel = NSMutableAttributedString(string: "")
+            let month = NSAttributedString(string: array[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+            let count = NSAttributedString(string: " \(array[1])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])
+            headerLabel.appendAttributedString(month)
+            headerLabel.appendAttributedString(count)
+            header.titleLabel.attributedText = headerLabel
             return header
             
         }

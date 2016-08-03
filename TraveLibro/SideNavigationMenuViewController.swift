@@ -104,6 +104,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! SideMenuTableViewCell
         cell.menuLabel.text = labels[indexPath.item]
+        cell.selectionStyle = .None
         return cell
         
     }
@@ -114,6 +115,10 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SideMenuTableViewCell
+        cell.backgroundColor = mainBlueColor
+        cell.menuLabel.textColor = mainGreenColor
         
         switch(indexPath.row)
         {
@@ -138,6 +143,14 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         default:
             self.slideMenuController()?.changeMainViewController(self.homeController, close: true)
         }
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SideMenuTableViewCell
+        cell.backgroundColor = mainGreenColor
+        cell.menuLabel.textColor = mainBlueColor
+        
     }
 
 }

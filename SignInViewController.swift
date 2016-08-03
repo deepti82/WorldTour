@@ -13,7 +13,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getDarkBackGround(self)
+        getDarkBackGroundBlur(self)
         
         let signInFooter = SignInToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height - 120, width: self.view.frame.size.width, height: 150))
         self.view.addSubview(signInFooter)

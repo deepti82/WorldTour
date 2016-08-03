@@ -18,6 +18,13 @@ class TripSummaryPhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+        rightButton.addTarget(self, action: #selector(TripSummaryPhotosViewController.changeView(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        
+        setOnlyRightNavigationButton(rightButton)
+        
         gridContainer.alpha = 1
         listContainer.alpha = 0
         
@@ -28,7 +35,23 @@ class TripSummaryPhotosViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    func changeView(sender: UIButton) {
+        
+        if gridContainer.alpha == 1 {
+            
+            gridContainer.alpha = 0
+            listContainer.alpha = 1
+            
+        }
+        else {
+            
+            gridContainer.alpha = 1
+            listContainer.alpha = 0
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -12,26 +12,67 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var peopleImage: UIImageView!
+    @IBOutlet weak var friendsTable: UITableView!
+    @IBOutlet weak var addedBuddies: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
+    
+    var whichView = "LL"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let addCheckIn = storyboard?.instantiateViewControllerWithIdentifier("addCheckIn") as! AddCheckInViewController
+//        let addCheckIn = storyboard?.instantiateViewControllerWithIdentifier("addCheckIn") as! AddCheckInViewController
         
-        setCheckInNavigationBarItem(addCheckIn)
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(0, 0, 30, 30)
         
-        let attribute = [NSForegroundColorAttributeName: UIColor.lightGrayColor()]
+        let rightButton = UIButton()
+        rightButton.setTitle("Save", forState: .Normal)
+        rightButton.addTarget(self, action: #selector(self.saveFriendChanges(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 8, 80, 30)
+        
+        self.customNavigationBar(leftButton, right: rightButton)
+        
+//        setCheckInNavigationBarItem(addCheckIn)
         
         let search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.frame.width - 10, height: 30))
-        search.leftLine.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
-        search.rightLine.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
-        search.bottomLine.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
-        search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: attribute)
-        search.searchButton.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
         search.searchField.returnKeyType = .Done
         searchView.addSubview(search)
         
         peopleImage.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+        
+        if whichView == "TL" {
+            
+            addedBuddies.textColor = mainOrangeColor
+            peopleImage.tintColor = mainOrangeColor
+            search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+            search.leftLine.backgroundColor = mainOrangeColor
+            search.rightLine.backgroundColor = mainOrangeColor
+            search.bottomLine.backgroundColor = mainOrangeColor
+            search.searchButton.tintColor = mainOrangeColor
+            saveButton.setTitleColor(mainBlueColor, forState: .Normal)
+            
+        }
+        
+        else {
+            
+            search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+            search.leftLine.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+            search.rightLine.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+            search.bottomLine.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+            search.searchButton.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+            
+        }
+        
+    }
+    
+    func saveFriendChanges(sender: UIButton) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
         
     }
 
@@ -49,6 +90,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! addBuddiesTableViewCell
+        cell.accessoryType = .Checkmark
         if indexPath.row % 2 == 0 {
             
             cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
@@ -95,6 +137,12 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! addedBuddiesCollectionViewCell
         cell.removeBuddyButton.setTitle(close, forState: .Normal)
+        if whichView == "TL" {
+            
+            cell.removeBuddyButton.setTitleColor(mainOrangeColor, forState: .Normal)
+            cell.buddyName.textColor = mainBlueColor
+            
+        }
         return cell
         
         
@@ -103,13 +151,22 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        cell?.accessoryType = .Checkmark
+        
+        if whichView == "LL" {
+            
+            cell?.tintColor = mainGreenColor
+            
+        }
+        else {
+            
+            cell?.tintColor = mainOrangeColor
+        }
         
     }
     
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
         
-                let indexLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"]
+        let indexLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"]
         //        let indexOfLetters = indexLetters.componentsSeparatedByString(" ")
         
         var indexOfLetters = [String]()

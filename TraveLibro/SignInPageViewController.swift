@@ -13,7 +13,7 @@ class SignInPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getDarkBackGround(self)
+        getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)

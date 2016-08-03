@@ -15,12 +15,27 @@ import Photos
 class AddCheckInViewController: UIViewController, UIImagePickerControllerDelegate {
     
     let imagePicker = UIImagePickerController()
+    var whichView = "LL"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let localLifeVC = storyboard?.instantiateViewControllerWithIdentifier("localLifePosts") as! LocalLifePostsViewController
-        setCheckInMainNavigationBarItem(localLifeVC)
+        if whichView == "TL" {
+            
+            getBackGround(self)
+        }
+        
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+        rightButton.addTarget(self, action: #selector(self.previewCheckIn(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        
+        self.customNavigationBar(leftButton, right: rightButton)
         
         let checkInBox = AddCheckIn(frame: CGRect(x: 0, y: 150, width: self.view.frame.width, height: 300))
         self.view.addSubview(checkInBox)
@@ -29,6 +44,18 @@ class AddCheckInViewController: UIViewController, UIImagePickerControllerDelegat
         checkInBox.addFriendButton.addTarget(self, action: #selector(AddCheckInViewController.addFriendTapped(_:)), forControlEvents: .TouchUpInside)
         checkInBox.videoButton.addTarget(self, action: #selector(AddCheckInViewController.videoTapped(_:)), forControlEvents: .TouchUpInside)
         
+        if whichView == "TL" {
+            
+            checkInBox.locationButton.setBackgroundImage(UIImage(named: "orangeBox"), forState: .Normal)
+            
+        }
+        
+    }
+    
+    func previewCheckIn(sender: UIButton) {
+        
+        let localLifeVC = storyboard?.instantiateViewControllerWithIdentifier("localLifePosts") as! LocalLifePostsViewController
+        self.navigationController?.pushViewController(localLifeVC, animated: true)
         
     }
     
@@ -58,7 +85,7 @@ class AddCheckInViewController: UIViewController, UIImagePickerControllerDelegat
         
         print("Add friend tapped")
         let addBuddies = storyboard?.instantiateViewControllerWithIdentifier("addBuddies") as! AddBuddiesViewController
-        
+        addBuddies.whichView = self.whichView
         self.navigationController?.pushViewController(addBuddies, animated: true)
         
     }

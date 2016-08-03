@@ -10,8 +10,10 @@ import UIKit
 import Contacts
 
 let contactsObject = CNContactStore()
-let mainBlueColor = UIColor(red: 0.1725, green: 0.2175, blue: 0.3412, alpha: 1) // #2C3757
-let mainOrangeColor = UIColor(red: 1, green: 0.408, blue: 0.345, alpha: 1) // #FF6858
+let mainBlueColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1) // #232D4A
+let navBlueColor = UIColor(red: 21/255, green: 25/255, blue: 54/255, alpha: 1) // #151936
+let mainOrangeColor = UIColor(red: 252/255, green: 80/255, blue: 71/255, alpha: 1) // #FC5047
+let mainGreenColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1) // #4BCBBB
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 
@@ -19,9 +21,9 @@ var faicon = [String: UInt32]()
 
 var profileViewY:CGFloat = 45
 
-var emailIcon: String = ""
-var whatsAppIcon: String = ""
-var facebookIcon: String = ""
+var emailIcon: String!
+var whatsAppIcon: String!
+var facebookIcon: String!
 
 var feedViewController: UIViewController!
 var notificationsViewController: UIViewController!
@@ -99,14 +101,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["next"] = 0xf105
         faicon["arrow-down"] = 0xf078
         faicon["options"] = 0xf142
+        faicon["location"] = 0xf041
         
         emailIcon = String(format: "%C", faicon["email"]!)
         facebookIcon = String(format: "%C", faicon["facebook"]!)
         whatsAppIcon = String(format: "%C", faicon["whatsapp"]!)
         
         let pageController = UIPageControl.appearance()
-        pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
-        pageController.currentPageIndicatorTintColor = UIColor.blackColor()
+        pageController.pageIndicatorTintColor = UIColor.whiteColor()
+        pageController.currentPageIndicatorTintColor = mainBlueColor
         pageController.backgroundColor = UIColor.clearColor()
         
 //        self.addObserver(self, forKeyPath: "profileViewY", options: .New, context: nil)

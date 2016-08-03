@@ -29,18 +29,24 @@ class SignupCardsViewController: UIViewController {
         theScrollView.delaysContentTouches = false
         self.view.addSubview(theScrollView)
         
-        let view = TutorialCards()
-        view.cardDescription.text = "Lorem Ipsum is simply dummy"
+//        let view = TutorialCards()
+//        view.cardDescription.text = "Lorem Ipsum is simply dummy"
         
         if checkBoxes < 6 {
             
-            cardViewHeight = checkBoxes * 125 - 100
+            cardViewHeight = checkBoxes * 125 + 75
             
         }
         
-        else if checkBoxes > 6 {
+        else if checkBoxes == 8 {
             
-            cardViewHeight = checkBoxes * 100
+            cardViewHeight = checkBoxes * 100 - 50
+            
+        }
+            
+        else if checkBoxes == 11 {
+            
+            cardViewHeight = checkBoxes * 100 - 80
             
         }
         
@@ -51,7 +57,7 @@ class SignupCardsViewController: UIViewController {
         }
         
         
-        let cardView = TutorialCards(frame: CGRect(x: 37.5, y: 125, width: self.view.frame.width - 75, height: cardViewHeight))
+        let cardView = TutorialCards(frame: CGRect(x: 25, y: 125, width: self.view.frame.width - 50, height: cardViewHeight))
         cardView.cardTitle.text = cardTitle
         cardView.cardDescription.text = cardDescription
         theScrollView.addSubview(cardView)

@@ -11,6 +11,7 @@
                 <outlet property="addFriendButton" destination="rAI-cT-U4z" id="cJZ-WZ-BXr"/>
                 <outlet property="cameraButton" destination="tkV-0d-dR6" id="8lH-qy-JVN"/>
                 <outlet property="checkInDescription" destination="IbF-m0-P9V" id="ucD-eg-sYt"/>
+                <outlet property="locationButton" destination="jM8-Ne-EpE" id="TUw-mg-isW"/>
                 <outlet property="locationImageView" destination="OMo-GY-DC3" id="g9D-xz-PaM"/>
                 <outlet property="videoButton" destination="Fxt-kC-BIr" id="Pvm-q2-Kso"/>
             </connections>

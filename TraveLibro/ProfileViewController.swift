@@ -16,11 +16,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     private var kvoContext: UInt8 = 0
     
+    @IBOutlet weak var MAMStack: UIStackView!
+    @IBOutlet weak var livesLabel: UILabel!
     @IBOutlet weak var MAMatterView: UIView!
     var MAMScrollView: UIScrollView?
     
     @IBOutlet weak var mainProfileView: UIView!
     @IBOutlet weak var profileCollectionView: UICollectionView!
+    @IBOutlet weak var locationIcon: UILabel!
+    @IBOutlet weak var placeLabel: UILabel!
     
     var toggle = false
     
@@ -30,16 +34,16 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if !toggle {
             
             MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
-            MAMatterView.animation.makeOpacity(1.0).animate(0.5)
-            mainProfileView.animation.moveY(-100.0).moveHeight(100.0).animate(0.5)
+            MAMatterView.animation.makeOpacity(1.0).animate(0.25)
+            mainProfileView.animation.moveY(-100.0).moveHeight(100.0).animate(0.25)
             toggle = true
         }
         
         else {
             
             MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
-            MAMatterView.animation.makeOpacity(0.0).animate(0.5)
-            mainProfileView.animation.moveY(100.0).moveHeight(-50.0).animate(0.5)
+            MAMatterView.animation.makeOpacity(0.0).animate(0.25)
+            mainProfileView.animation.moveY(100.0).moveHeight(-50.0).animate(0.25)
             toggle = false
         }
         
@@ -52,6 +56,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.setImage(UIImage(named: "search_toolbar"), forState: .Normal)
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), forControlEvents: .TouchUpInside)
         rightButton.frame = CGRectMake(0, 8, 30, 30)
+        
+        locationIcon.text = String(format: "%C", faicon["location"]!)
         
         self.setOnlyRightNavigationButton(rightButton)
 //        self.setNavigationBarItemText("Yash's Profile")
@@ -78,6 +84,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        MAMScrollView?.delegate = self
         
         let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 10, height: 55))
+        orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
         orangeTab.orangeButtonTitle.setTitle("My Life", forState: .Normal)
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
         fontAwesomeLabel.center = CGPointMake(75, orangeTab.orangeButtonTitle.titleLabel!.frame.size.height/2 + 10)
@@ -96,6 +103,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        profileViewYPosition = profileViewY
         
 //        self.view.setNeedsDisplay()
+        
+        MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
     }
     
 //    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -103,6 +112,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        print("this function is getting called!!")
 //        
 //    }
+    
+    func MAMStacKTap(sender: UITapGestureRecognizer) {
+        
+        self.MAMTapped(sender)
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -156,22 +171,47 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             followersVC.whichView = "Following"
             self.navigationController?.pushViewController(followersVC, animated: true)
             break
+//            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("NoFollowing") as! NoFollowingViewController
+//            self.navigationController?.pushViewController(followersVC, animated: true)
+//            break
         case 1:
 //            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController
 //            followersVC.whichView = "No Followers"
 //            self.navigationController?.pushViewController(followersVC, animated: true)
-            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("NoFollowing") as! NoFollowingViewController
+            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController
+            followersVC.whichView = "Followers"
             self.navigationController?.pushViewController(followersVC, animated: true)
             break
         case 2:
-//            let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
-//            self.navigationController?.pushViewController(bucketVC, animated: true)
-            let noBucketVC = storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
-            self.navigationController?.pushViewController(noBucketVC, animated: true)
+            let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+            bucketVC.whichView = "Countries Visited"
+            self.navigationController?.pushViewController(bucketVC, animated: true)
+//            let noBucketVC = storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+//            self.navigationController?.pushViewController(noBucketVC, animated: true)
             break
         case 3:
             let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+            bucketVC.whichView = "Bucket List"
             self.navigationController?.pushViewController(bucketVC, animated: true)
+            break
+        case 4 :
+            let journeys = storyboard?.instantiateViewControllerWithIdentifier("allJourneysCreated") as! AllJourneysViewController
+//            journeys.whichView = "All"
+            self.navigationController?.pushViewController(journeys, animated: true)
+            break
+        case 5:
+            let journeys = storyboard?.instantiateViewControllerWithIdentifier("allJourneysCreated") as! AllJourneysViewController
+//            journeys.whichView = "All"
+            self.navigationController?.pushViewController(journeys, animated: true)
+            break
+        case 6 :
+            let photosVC = storyboard?.instantiateViewControllerWithIdentifier("multipleCollectionVC") as! MyLifeMomentsViewController
+            photosVC.whichView = "All"
+            self.navigationController?.pushViewController(photosVC, animated: true)
+            break
+        case 7 :
+            let reviewsVC = storyboard?.instantiateViewControllerWithIdentifier("multipleTableVC") as! AccordionViewController
+            self.navigationController?.pushViewController(reviewsVC, animated: true)
             break
         default:
             break

@@ -33,7 +33,12 @@ func makeButtonGreyTranslucent(button: UIButton, textData: String) -> Void {
 
 func getBackGround(myVC: UIViewController) -> Void {
     
-    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
+//    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
+    let bgImage = UIImageView(frame: myVC.view.frame)
+    bgImage.image = UIImage(named: "bg")
+    bgImage.layer.zPosition = -1
+    bgImage.userInteractionEnabled = false
+    myVC.view.addSubview(bgImage)
     
 }
 
@@ -52,9 +57,23 @@ func getDarkBackGround(myVC: UIViewController) -> Void {
     let bgImage = UIImageView(frame: myVC.view.frame)
     bgImage.image = UIImage(named: "darkBgNew")
     bgImage.layer.zPosition = -1
+    bgImage.userInteractionEnabled = false
     myVC.view.addSubview(bgImage)
     
 //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
+    
+}
+
+func getDarkBackGroundBlur(myVC: UIViewController) -> Void {
+    
+    let bgImage = UIImageView(frame: myVC.view.frame)
+    bgImage.image = UIImage(named: "darkBg")
+    bgImage.layer.zPosition = -1
+    bgImage.userInteractionEnabled = false
+    
+    myVC.view.addSubview(bgImage)
+    
+    //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
     
 }
 

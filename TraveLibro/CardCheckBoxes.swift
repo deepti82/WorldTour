@@ -14,6 +14,8 @@ class CardCheckBoxes: UIView {
     @IBOutlet weak var labelLeft: UILabel!
     @IBOutlet weak var buttonRight: UIButton!
     @IBOutlet weak var buttonLeft: UIButton!
+    @IBOutlet weak var rightButtonStack: UIStackView!
+    @IBOutlet weak var leftButtonStack: UIStackView!
     
     @IBAction func checkBoxTap(sender: UIButton) {
         

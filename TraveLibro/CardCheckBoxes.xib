@@ -11,6 +11,8 @@
                 <outlet property="buttonRight" destination="7Kv-bY-zon" id="QAe-e0-twn"/>
                 <outlet property="labelLeft" destination="WO7-Al-qdv" id="RSp-TX-bih"/>
                 <outlet property="labelRight" destination="C4C-BU-vh4" id="JeV-ff-nam"/>
+                <outlet property="leftButtonStack" destination="8vk-bQ-A2D" id="dY5-KM-P4m"/>
+                <outlet property="rightButtonStack" destination="NP3-QQ-VMR" id="8P0-rX-FVF"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,8 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="406" height="120"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="gKQ-mb-OWW">
-                    <rect key="frame" x="103" y="10" width="200" height="100"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="gKQ-mb-OWW">
+                    <rect key="frame" x="118" y="10" width="170" height="100"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NP3-QQ-VMR">
                             <rect key="frame" x="0.0" y="0.0" width="60" height="100"/>
@@ -48,7 +50,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8vk-bQ-A2D">
-                            <rect key="frame" x="140" y="0.0" width="60" height="100"/>
+                            <rect key="frame" x="110" y="0.0" width="60" height="100"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAg-Tu-YkE">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -78,8 +80,8 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="gKQ-mb-OWW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="2K2-w5-Mug"/>
-                <constraint firstItem="gKQ-mb-OWW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GP6-uu-wbQ"/>
+                <constraint firstItem="gKQ-mb-OWW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2Xv-Vs-P5c"/>
+                <constraint firstItem="gKQ-mb-OWW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="uiZ-h4-QlF"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

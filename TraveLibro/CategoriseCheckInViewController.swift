@@ -14,14 +14,43 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
     let categoryImages = ["beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin"]
     
     var previousItem: NSIndexPath!
+    var whichView = "LL"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let addCheckIn = storyboard?.instantiateViewControllerWithIdentifier("addCheckIn") as! AddCheckInViewController
         
-       setCheckInNavigationBarItem(addCheckIn)
+        
+//       setCheckInNavigationBarItem(addCheckIn)
+        
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "close_fa"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(0, 8, 20, 20)
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+        rightButton.addTarget(self, action: #selector(self.nextCheckIn(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        
+        self.customNavigationBar(leftButton, right: rightButton)
+        
+        
+        if whichView == "TL" {
+            
+            getBackGround(self)
+            
+        }
+       
+    }
+    
+    func nextCheckIn(sender: UIButton) {
+        
+        let addCheckIn = storyboard?.instantiateViewControllerWithIdentifier("addCheckIn") as! AddCheckInViewController
+        addCheckIn.whichView = self.whichView
+        self.navigationController?.pushViewController(addCheckIn, animated: true)
+        
     }
 
     override func didReceiveMemoryWarning() {

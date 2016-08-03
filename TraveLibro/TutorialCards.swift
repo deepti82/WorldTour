@@ -27,21 +27,22 @@ class TutorialCards: UIView {
         
         switch checkBoxNumber {
         case 6:
-            let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 0, y: 0, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 20, y: 0, width: checkBoxView.frame.width - 125, height: 120))
+//            checkboxGroupOne.center.x = 366/2
             checkboxGroupOne.buttonLeft.setImage(UIImage(named: CBButtons[0][1]), forState: .Normal)
             checkboxGroupOne.buttonRight.setImage(UIImage(named: CBButtons[0][0]), forState: .Normal)
             checkboxGroupOne.labelLeft.text = CBLabels[0][1]
             checkboxGroupOne.labelRight.text = CBLabels[0][0]
             checkBoxView.addSubview(checkboxGroupOne)
             
-            let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 0, y: 125, width: checkBoxView.frame.width  - 125, height: 120))
+            let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 20, y: 115, width: checkBoxView.frame.width  - 125, height: 120))
             checkboxGroupTwo.buttonLeft.setImage(UIImage(named: CBButtons[0][3]), forState: .Normal)
             checkboxGroupTwo.buttonRight.setImage(UIImage(named: CBButtons[0][2]), forState: .Normal)
             checkboxGroupTwo.labelLeft.text = CBLabels[0][3]
             checkboxGroupTwo.labelRight.text = CBLabels[0][2]
             checkBoxView.addSubview(checkboxGroupTwo)
             
-            let checkboxGroupThree = CardCheckBoxes(frame: CGRect(x: 0, y: 250, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupThree = CardCheckBoxes(frame: CGRect(x: 20, y: 235, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupThree.buttonLeft.setImage(UIImage(named: CBButtons[0][5]), forState: .Normal)
             checkboxGroupThree.buttonRight.setImage(UIImage(named: CBButtons[0][4]), forState: .Normal)
             checkboxGroupThree.labelLeft.text = CBLabels[0][5]
@@ -50,15 +51,16 @@ class TutorialCards: UIView {
             
             break
             
-        case 4:
-            let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 0, y: 0, width: checkBoxView.frame.width - 125, height: 120))
+        case 3:
+            let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 20, y: 0, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupOne.buttonLeft.setImage(UIImage(named: CBButtons[1][1]), forState: .Normal)
             checkboxGroupOne.buttonRight.setImage(UIImage(named: CBButtons[1][0]), forState: .Normal)
             checkboxGroupOne.labelLeft.text = CBLabels[1][1]
             checkboxGroupOne.labelRight.text = CBLabels[1][0]
             checkBoxView.addSubview(checkboxGroupOne)
             
-            let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 0, y: 125, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 0, y: 125, width: checkBoxView.frame.width - 250, height: 120))
+            checkboxGroupTwo.center.x = (checkBoxView.frame.width + 25)/2
             checkboxGroupTwo.buttonLeft.removeFromSuperview()
             checkboxGroupTwo.buttonRight.setImage(UIImage(named: CBButtons[1][2]), forState: .Normal)
             checkboxGroupTwo.labelLeft.removeFromSuperview()
@@ -68,28 +70,28 @@ class TutorialCards: UIView {
             break
             
         case 8:
-            let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 0, y: 0, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 20, y: 0, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupOne.buttonLeft.setImage(UIImage(named: CBButtons[2][1]), forState: .Normal)
             checkboxGroupOne.buttonRight.setImage(UIImage(named: CBButtons[2][0]), forState: .Normal)
             checkboxGroupOne.labelLeft.text = CBLabels[2][1]
             checkboxGroupOne.labelRight.text = CBLabels[2][0]
             checkBoxView.addSubview(checkboxGroupOne)
             
-            let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 0, y: 125, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 20, y: 125, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupTwo.buttonLeft.setImage(UIImage(named: CBButtons[2][3]), forState: .Normal)
             checkboxGroupTwo.buttonRight.setImage(UIImage(named: CBButtons[2][2]), forState: .Normal)
             checkboxGroupTwo.labelLeft.text = CBLabels[2][3]
             checkboxGroupTwo.labelRight.text = CBLabels[2][2]
             checkBoxView.addSubview(checkboxGroupTwo)
             
-            let checkboxGroupThree = CardCheckBoxes(frame: CGRect(x: 0, y: 250, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupThree = CardCheckBoxes(frame: CGRect(x: 20, y: 250, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupThree.buttonLeft.setImage(UIImage(named: CBButtons[2][5]), forState: .Normal)
             checkboxGroupThree.buttonRight.setImage(UIImage(named: CBButtons[2][4]), forState: .Normal)
             checkboxGroupThree.labelLeft.text = CBLabels[2][5]
             checkboxGroupThree.labelRight.text = CBLabels[2][4]
             checkBoxView.addSubview(checkboxGroupThree)
             
-            let checkboxGroupFour = CardCheckBoxes(frame: CGRect(x: 0, y: 375, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupFour = CardCheckBoxes(frame: CGRect(x: 20, y: 375, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupFour.buttonLeft.setImage(UIImage(named: CBButtons[2][7]), forState: .Normal)
             checkboxGroupFour.buttonRight.setImage(UIImage(named: CBButtons[2][6]), forState: .Normal)
             checkboxGroupFour.labelLeft.text = CBLabels[2][7]
@@ -98,43 +100,44 @@ class TutorialCards: UIView {
             
             break
             
-        case 12:
-            let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 0, y: 0, width: checkBoxView.frame.width - 125, height: 120))
+        case 11:
+            let checkboxGroupOne = CardCheckBoxes(frame: CGRect(x: 20, y: 0, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupOne.buttonLeft.setImage(UIImage(named: CBButtons[3][1]), forState: .Normal)
             checkboxGroupOne.buttonRight.setImage(UIImage(named: CBButtons[3][0]), forState: .Normal)
             checkboxGroupOne.labelLeft.text = CBLabels[3][1]
             checkboxGroupOne.labelRight.text = CBLabels[3][0]
             checkBoxView.addSubview(checkboxGroupOne)
             
-            let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 0, y: 125, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupTwo = CardCheckBoxes(frame: CGRect(x: 20, y: 125, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupTwo.buttonLeft.setImage(UIImage(named: CBButtons[3][3]), forState: .Normal)
             checkboxGroupTwo.buttonRight.setImage(UIImage(named: CBButtons[3][2]), forState: .Normal)
             checkboxGroupTwo.labelLeft.text = CBLabels[3][3]
             checkboxGroupTwo.labelRight.text = CBLabels[3][2]
             checkBoxView.addSubview(checkboxGroupTwo)
             
-            let checkboxGroupThree = CardCheckBoxes(frame: CGRect(x: 0, y: 250, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupThree = CardCheckBoxes(frame: CGRect(x: 20, y: 250, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupThree.buttonLeft.setImage(UIImage(named: CBButtons[3][5]), forState: .Normal)
             checkboxGroupThree.buttonRight.setImage(UIImage(named: CBButtons[3][4]), forState: .Normal)
             checkboxGroupThree.labelLeft.text = CBLabels[3][5]
             checkboxGroupThree.labelRight.text = CBLabels[3][4]
             checkBoxView.addSubview(checkboxGroupThree)
             
-            let checkboxGroupFour = CardCheckBoxes(frame: CGRect(x: 0, y: 375, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupFour = CardCheckBoxes(frame: CGRect(x: 20, y: 375, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupFour.buttonLeft.setImage(UIImage(named: CBButtons[3][7]), forState: .Normal)
             checkboxGroupFour.buttonRight.setImage(UIImage(named: CBButtons[3][6]), forState: .Normal)
             checkboxGroupFour.labelLeft.text = CBLabels[3][7]
             checkboxGroupFour.labelRight.text = CBLabels[3][6]
             checkBoxView.addSubview(checkboxGroupFour)
             
-            let checkboxGroupFive = CardCheckBoxes(frame: CGRect(x: 0, y: 500, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupFive = CardCheckBoxes(frame: CGRect(x: 20, y: 500, width: checkBoxView.frame.width - 125, height: 120))
             checkboxGroupFive.buttonLeft.setImage(UIImage(named: CBButtons[3][9]), forState: .Normal)
             checkboxGroupFive.buttonRight.setImage(UIImage(named: CBButtons[3][8]), forState: .Normal)
             checkboxGroupFive.labelLeft.text = CBLabels[3][9]
             checkboxGroupFive.labelRight.text = CBLabels[3][8]
             checkBoxView.addSubview(checkboxGroupFive)
             
-            let checkboxGroupSix = CardCheckBoxes(frame: CGRect(x: 0, y: 625, width: checkBoxView.frame.width - 125, height: 120))
+            let checkboxGroupSix = CardCheckBoxes(frame: CGRect(x: 0, y: 625, width: checkBoxView.frame.width - 250, height: 120))
+            checkboxGroupSix.center.x = (checkBoxView.frame.width + 25)/2
             checkboxGroupSix.buttonLeft.removeFromSuperview()
             checkboxGroupSix.buttonRight.setImage(UIImage(named: CBButtons[3][10]), forState: .Normal)
             checkboxGroupSix.labelLeft.removeFromSuperview()

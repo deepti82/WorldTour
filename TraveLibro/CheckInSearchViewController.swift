@@ -15,17 +15,31 @@ class CheckInSearchViewController: UIViewController, UITableViewDelegate, UITabl
     let CIDetailsLabels = ["0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins", "0.3 mi - 13 check-ins"]
     
     @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var searchIcon: UIImageView!
     
+    var whichView = "LL"
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let searchView = SearchFieldView(frame: CGRect(x: 55, y: 15, width: 300, height: 20))
+        let searchView = SearchFieldView(frame: CGRect(x: 55, y: 15, width: 300, height: 30))
         searchView.bottomLine.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)
         searchView.leftLine.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)
         searchView.rightLine.backgroundColor = UIColor(red: 150/255, green: 150/255, blue: 150/255, alpha: 1)
-        searchView.searchButton.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
         self.searchView.addSubview(searchView)
+        
+        if whichView == "TL" {
+            
+            searchIcon.image = UIImage(named: "location_TL")
+            searchView.searchButton.tintColor = mainOrangeColor
+            
+        }
+        
+        else {
+            
+            searchView.searchButton.tintColor = mainGreenColor
+            
+        }
         
     }
 
@@ -59,6 +73,7 @@ class CheckInSearchViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let selectCategoryVC = storyboard?.instantiateViewControllerWithIdentifier("checkInCategory") as! CategoriseCheckInViewController
+        selectCategoryVC.whichView = self.whichView
         self.navigationController?.pushViewController(selectCategoryVC, animated: true)
         
     }

@@ -12,7 +12,7 @@ class SelectGenderViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDarkBackGround(self)
+        getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
@@ -27,7 +27,7 @@ class SelectGenderViewController: UIViewController {
         self.customNavigationBar(leftButton, right: rightButton)
         
         
-        let gender = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 350))
+        let gender = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
         gender.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
         self.view.addSubview(gender)
         

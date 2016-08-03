@@ -19,7 +19,7 @@ class TripInfoOTG: UIView {
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet weak var videosButton: UIButton!
     @IBOutlet weak var summaryButton: UIButton!
-    @IBOutlet weak var closeButton: UIButton!
+//    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet var notifications: [UIButton]!
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +39,7 @@ class TripInfoOTG: UIView {
         blurView.userInteractionEnabled = false
         self.addSubview(blurView)
         
-        closeButton.setTitle(String(format: "%C", faicon["close"]!), forState: .Normal)
+//        closeButton.setTitle(String(format: "%C", faicon["close"]!), forState: .Normal)
         
         self.layer.opacity = 0.0
         

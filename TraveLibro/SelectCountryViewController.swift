@@ -19,8 +19,12 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     internal var whichView: String!
     
+    @IBOutlet weak var mainTableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
@@ -28,6 +32,9 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         leftButton.frame = CGRectMake(0, 0, 30, 30)
         
         let rightButton = UIButton()
+        
+        mainTableView.sectionIndexBackgroundColor = UIColor.clearColor()
+        mainTableView.sectionIndexTrackingBackgroundColor = UIColor.clearColor()
         
         if whichView == "addCountries" {
             
@@ -39,7 +46,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
         
-        else if whichView == "selectNationality"{
+        else if whichView == "selectNationality" {
             
             rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.chooseCity(_:)), forControlEvents: .TouchUpInside)
@@ -50,14 +57,24 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
         
-        let searchFieldView = SearchFieldView(frame: CGRect(x: 0, y: 0, width: searchView.frame.width + 60, height: searchView.frame.height))
+        let searchFieldView = SearchFieldView(frame: CGRect(x: 10, y: 0, width: searchView.frame.width + 25, height: searchView.frame.height))
         searchFieldView.leftLine.backgroundColor = mainOrangeColor
         searchFieldView.rightLine.backgroundColor = mainOrangeColor
         searchFieldView.bottomLine.backgroundColor = mainOrangeColor
         searchFieldView.searchButton.tintColor = mainOrangeColor
-        searchFieldView.searchField.placeholder = "Search"
         searchView.addSubview(searchFieldView)
+        searchView.backgroundColor = UIColor.clearColor()
         
+        if whichView == "selectNationality" {
+            
+            searchFieldView.searchField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+            
+        }
+        else {
+            
+            searchFieldView.searchField.placeholder = "Search"
+            
+        }
         
     }
     
@@ -80,15 +97,15 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         if whichView == "addCountries" {
             
-            if selectedCountry?.accessoryType == .Checkmark {
+            if selectedCountry?.tintColor == mainOrangeColor {
                 
-                selectedCountry?.accessoryType = .None
+                selectedCountry?.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
                 
             }
                 
             else {
                 
-                selectedCountry?.accessoryType = .Checkmark
+                selectedCountry?.tintColor = mainOrangeColor
                 
             }
             
@@ -96,9 +113,9 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         else {
             
-            if selectedCountry?.accessoryType == .Checkmark {
+            if selectedCountry?.tintColor == mainOrangeColor {
                 
-                selectedCountry?.accessoryType = .None
+                selectedCountry?.tintColor = UIColor.lightGrayColor()
                 //            selectedCountry?.backgroundColor = UIColor.lightGrayColor()
                 isSelected = false
                 
@@ -108,16 +125,16 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 
                 let prevSelected = tableView.cellForRowAtIndexPath(selectedIndex)
                 //            prevSelected?.backgroundColor = UIColor.lightGrayColor()
-                prevSelected?.accessoryType = .None
+                prevSelected?.tintColor = UIColor.lightGrayColor()
                 
-                selectedCountry?.accessoryType = .Checkmark
+                selectedCountry?.tintColor = mainOrangeColor
                 //            selectedCountry?.backgroundColor = mainOrangeColor
                 selectedIndex = indexPath
             }
                 
             else {
                 
-                selectedCountry?.accessoryType = .Checkmark
+                selectedCountry?.tintColor = mainOrangeColor
                 //            selectedCountry?.backgroundColor = mainOrangeColor
                 selectedIndex = indexPath
                 isSelected = true
@@ -143,10 +160,26 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CountriesTableViewCell
         cell.flagImage.image = UIImage(named: "indian_flag")
         cell.countryName.text = countries[indexPath.item]
-        
+        cell.accessoryType = .Checkmark
         if indexPath.row % 2 == 0 {
             
-            cell.backgroundColor = mainOrangeColor.colorWithAlphaComponent(0.1)
+            if whichView == "selectNationality" {
+                
+                cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.4)
+                
+            }
+            
+            else {
+                
+                cell.backgroundColor = mainOrangeColor.colorWithAlphaComponent(0.1)
+            }
+            
+        }
+        
+        else {
+            
+            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.6)
+            
         }
         
         return cell

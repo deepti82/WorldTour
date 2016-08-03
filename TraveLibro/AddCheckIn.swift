@@ -16,6 +16,7 @@ class AddCheckIn: UIView, UITextViewDelegate {
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var addFriendButton: UIButton!
     @IBOutlet weak var videoButton: UIButton!
+    @IBOutlet weak var locationButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

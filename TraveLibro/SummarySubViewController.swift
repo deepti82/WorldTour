@@ -24,7 +24,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         print("cell view Two: \(cellView)")
         
         tripSummaryView.layer.cornerRadius = 5
-        tripSummaryView.clipsToBounds = true
+//        tripSummaryView.clipsToBounds = true
         
         let cellSubview = VerticalLayout(width: self.view.frame.width - 55)
 //        cellSubview.backgroundColor = UIColor.whiteColor()

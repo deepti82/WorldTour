@@ -12,7 +12,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var tableMainView: UITableView!
     @IBOutlet weak var accordionTableView: UITableView!
-    var labels = ["Mumbai", "Delhi", "Chennai", "Kolkata", "Bengaluru", "Hyderabad"]
+    var labels = ["header", "Mumbai", "Delhi", "Chennai", "Kolkata", "Bengaluru", "Hyderabad"]
     var isExpanded = false
     var childCells = 0
     var selectedIndex: Int!
@@ -45,13 +45,39 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             break
         }
         
+        if whichView == "Reviews LL" || whichView == "Reviews TL" {
+            
+            print("into if level 1")
+            
+            if labels[indexPath.row] == "header" {
+                
+                print("into if level 2")
+                let cell = tableView.dequeueReusableCellWithIdentifier("headerCell") as! reviewsHeaderCell
+                return cell
+                
+            }
+        }
+        
         if(labels[indexPath.item] == "childCells") {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("childCell") as! cityExploreTableViewCell
-            cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
-            cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
-            return cell
+            if indexPath.row % 2 == 0 {
+                
+                print("into if level 3")
+                let cell = tableView.dequeueReusableCellWithIdentifier("childCell") as! cityExploreTableViewCell
+                cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
+                cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
+                return cell
+                
+            }
             
+            else {
+                
+                let cell = tableView.dequeueReusableCellWithIdentifier("allReviewsCell") as! allReviewsMLTableViewCell
+                cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
+                cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
+                return cell
+                
+            }
         }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! cityLabelTableViewCell
@@ -115,13 +141,28 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         if(labels[indexPath.item] == "childCells") {
-            
-            return 120
+
+            if indexPath.row % 2 == 0 {
+                
+                return 175
+                
+            }
+                
+            else {
+                
+                return 125
+                
+            }
         }
         
         else if whichView == "All" {
             
-            return 100
+            return 125
+        }
+        
+        else if (whichView == "Reviews TL" || whichView == "Reviews LL") && labels[indexPath.row] == "header" {
+            
+            return 50
         }
         
         return 45
@@ -233,5 +274,11 @@ class allReviewsMLTableViewCell: UITableViewCell {
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var clockLabel: UILabel!
     
+    
+}
+
+class reviewsHeaderCell: UITableViewCell {
+    
+    @IBOutlet weak var countryTitle: UILabel!
     
 }

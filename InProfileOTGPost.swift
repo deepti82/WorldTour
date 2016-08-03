@@ -26,11 +26,11 @@ class InProfileOTGPost: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        let iconButton = IconButton(frame: CGRect(x: 0, y: 0, width: iconButtonView.frame.size.width, height: iconButtonView.frame.size.width))
-        iconButton.button.backgroundColor = mainOrangeColor
-        iconButton.button.setImage(UIImage(named: "add_friend_icon"), forState: .Normal)
-        iconButton.button.layer.cornerRadius = 15
-        iconButtonView.addSubview(iconButton)
+//        let iconButton = IconButton(frame: CGRect(x: 0, y: 0, width: iconButtonView.frame.size.width, height: iconButtonView.frame.size.width))
+//        iconButton.button.backgroundColor = mainOrangeColor
+//        iconButton.button.setImage(UIImage(named: "add_friend_icon"), forState: .Normal)
+//        iconButton.button.layer.cornerRadius = 15
+//        iconButtonView.addSubview(iconButton)
         
         likesLabel.text = String(format: "%C", faicon["likes"]!)
         

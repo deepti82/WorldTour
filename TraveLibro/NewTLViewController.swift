@@ -16,6 +16,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
     var showDetails = false
     var mainScroll: UIScrollView!
     var infoView: TripInfoOTG!
+    var addPosts: AddPostsOTGView!
+    
     
     @IBOutlet weak var addPostsButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
@@ -25,7 +27,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
         infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), forControlEvents: .TouchUpInside)
         infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
+        infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
         infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), forControlEvents: .TouchUpInside)
+        infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
         self.view.addSubview(infoView)
         infoView.animation.makeOpacity(1.0).animate(0.5)
         
@@ -33,20 +37,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func addPosts(sender: AnyObject) {
         
-        infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-        infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), forControlEvents: .TouchUpInside)
-        infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
-        infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), forControlEvents: .TouchUpInside)
-        self.view.addSubview(infoView)
-        infoView.animation.makeOpacity(1.0).animate(0.5)
-        
+        addPosts = AddPostsOTGView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        addPosts.addPhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosTL(_:)), forControlEvents: .TouchUpInside)
+        addPosts.addCheckInButton.addTarget(self, action: #selector(NewTLViewController.addCheckInTL(_:)), forControlEvents: .TouchUpInside)
+        addPosts.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:))))
+        self.view.addSubview(addPosts)
+        addPosts.animation.makeOpacity(1.0).animate(0.5)
         
     }
     
-    func closeInfo() {
+    func closeInfo(sender: UITapGestureRecognizer) {
         
         infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.hidden = true
+        
+    }
+    
+    func closeAdd(sender: UITapGestureRecognizer) {
+        
+        addPosts.animation.makeOpacity(0.0).animate(0.5)
+        addPosts.hidden = true
         
     }
     
@@ -79,6 +89,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func addPhotosTL(sender: UIButton) {
+        
+        
+        
+        
+    }
+    
+    func addCheckInTL(sender: UIButton) {
+        
+        let checkInVC = storyboard?.instantiateViewControllerWithIdentifier("checkInSearch") as! CheckInSearchViewController
+        checkInVC.whichView = "TL"
+        self.navigationController?.pushViewController(checkInVC, animated: true)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,6 +117,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), forControlEvents: .TouchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), forControlEvents: .TouchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), forControlEvents: .TouchUpInside)
+        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
         otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), forControlEvents: .TouchUpInside)
         
         if !showDetails {
@@ -204,7 +230,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func detectLocation(sender: UIButton) {
+    func detectLocationViewTap(sender: UITapGestureRecognizer) {
+        
+        self.detectLocation(sender)
+        
+    }
+    
+    func detectLocation(sender: AnyObject) {
         
         otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.5)
         otgView.detectLocationView.hidden = true
@@ -214,7 +246,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         otgView.journeyDetails.hidden = true
         otgView.selectCategoryButton.hidden = false
         height = 250.0
-        mainScroll.animation.makeY(10.0).animate(0.7)
+        mainScroll.animation.makeY(60.0).animate(0.7)
         otgView.animation.makeY(0.0).animate(0.7)
         
     }

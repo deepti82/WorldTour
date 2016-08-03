@@ -23,13 +23,24 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setCheckInNavigationBarItem(self)
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        
+        self.setOnlyLeftNavigationButton(leftButton)
+        
+//        self.setCheckInNavigationBarItem(self)
         
         if whichView == "Following" {
             
-            shareView.removeFromSuperview()
-            seperatorView.removeFromSuperview()
-            tableHeightConstraint.constant = self.view.frame.height
+            self.title = "Following"
+            mailShare.setTitle(String(format: "%C", faicon["email"]!), forState: .Normal)
+            whatsappShare.setTitle(String(format: "%C", faicon["whatsapp"]!), forState: .Normal)
+            facebookShare.setTitle(String(format: "%C", faicon["facebook"]!), forState: .Normal)
+//            shareView.removeFromSuperview()
+//            seperatorView.removeFromSuperview()
+//            tableHeightConstraint.constant = self.view.frame.height
         }
         
         else if whichView == "No Followers" {

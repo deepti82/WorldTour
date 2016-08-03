@@ -23,6 +23,10 @@ class InviteFriendsViewController: UIViewController {
         whatsappButton.setTitle(whatsAppIcon, forState: .Normal)
         facebookButton.setTitle(facebookIcon, forState: .Normal)
         
+        mailButton.layer.cornerRadius = 5
+        whatsappButton.layer.cornerRadius = 5
+        facebookButton.layer.cornerRadius = 5
+        
     }
 
     override func didReceiveMemoryWarning() {

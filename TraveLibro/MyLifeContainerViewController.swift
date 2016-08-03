@@ -33,7 +33,7 @@ class MyLifeContainerViewController: UIViewController {
         postOne.iconButtonView.removeFromSuperview()
         
 
-        let postTwo = NewProfilePosts(frame: CGRect(x: 4, y: 0, width: verticalLayout.frame.width, height: 700))
+        let postTwo = NewProfilePosts(frame: CGRect(x: 4, y: 8, width: verticalLayout.frame.width, height: 700))
         postTwo.profileImageView.removeFromSuperview()
         postTwo.profileName.removeFromSuperview()
         postTwo.timestamp.removeFromSuperview()

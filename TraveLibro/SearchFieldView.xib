@@ -61,7 +61,7 @@
                             </constraints>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
-                            <state key="normal" image="search_new"/>
+                            <state key="normal" image="search"/>
                         </button>
                     </subviews>
                     <constraints>
@@ -110,6 +110,6 @@
         </view>
     </objects>
     <resources>
-        <image name="search_new" width="35" height="35"/>
+        <image name="search" width="36" height="37"/>
     </resources>
 </document>

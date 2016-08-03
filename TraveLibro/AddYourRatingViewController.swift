@@ -23,32 +23,32 @@ class AddYourRatingViewController: UIViewController {
         scroll.showsVerticalScrollIndicator = false
         scroll.addSubview(layout)
         
-        let profileImage = UIImageView(frame: CGRect(x: 0, y: 20, width: 70, height: 70))
+        let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
         profileImage.center.x = self.view.frame.width/2
         profileImage.image = UIImage(named: "profile_pic_new")
         layout.addSubview(profileImage)
         
-        let ratingOne = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 175))
+        let ratingOne = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
         addHeightToLayout(ratingOne.frame.height)
         layout.addSubview(ratingOne)
         
-        let ratingTwo = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 175))
+        let ratingTwo = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
         addHeightToLayout(ratingTwo.frame.height)
         layout.addSubview(ratingTwo)
         
-        let ratingThree = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 175))
+        let ratingThree = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
         addHeightToLayout(ratingThree.frame.height)
         layout.addSubview(ratingThree)
         
-        let ratingFour = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 175))
+        let ratingFour = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
         addHeightToLayout(ratingFour.frame.height)
         layout.addSubview(ratingFour)
         
-        let ratingFive = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 175))
+        let ratingFive = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
         addHeightToLayout(ratingFive.frame.height)
         layout.addSubview(ratingFive)
         
-        let ratingSix = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 175))
+        let ratingSix = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
         addHeightToLayout(ratingSix.frame.height)
         layout.addSubview(ratingSix)
         

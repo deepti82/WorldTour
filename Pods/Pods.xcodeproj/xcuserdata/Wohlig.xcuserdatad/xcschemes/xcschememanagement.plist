@@ -44,6 +44,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftHTTP.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>TabPageViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -54,20 +64,15 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>XLPagerTabStrip-XLPagerTabStrip.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>XLPagerTabStrip.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>0FF38C485BD8E73F614C919F834D6EAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>14E6E1A3C61F0D6DC93BAD763B09FB74</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2F75AB54AE6FB58D2ED7B29A8DA0A179</key>
+		<key>2D80D2603358C27B5636CEAC0F9CAEE8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>70E73A13993ECEF0BC80C41D094A8886</key>
+		<key>482B48AD1F9458896F0DACC53DF8355A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,7 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C0B51265BE4C2FBA21CCA75017994C98</key>
+		<key>B09A516B0B91D4CE10F4B60DECC5414D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -113,11 +118,6 @@
 			<true/>
 		</dict>
 		<key>E26FA831B9756686008CB4E41138D419</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F7A96CA56D7C7DECB5BAD49929DBF341</key>
 		<dict>
 			<key>primary</key>
 			<true/>

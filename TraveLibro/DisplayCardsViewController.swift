@@ -11,13 +11,13 @@ import UIKit
 class DisplayCardsViewController: UIPageViewController, UIPageViewControllerDataSource {
 
     let titles = ["Your kind of a holiday", "You usually go", "Prefer to travel", "Your ideal holiday type"]
-    let checkBoxNumber = [6, 4, 8, 12]
+    let checkBoxNumber = [6, 3, 8, 11]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getDarkBackGround(self)
+        getDarkBackGroundBlur(self)
         
         let myVC = viewControllerAtIndex(0) as! SignupCardsViewController
         let viewControllers = [myVC]

@@ -6,10 +6,12 @@ target 'TraveLibro' do
   use_frameworks!
   pod "BSImagePicker", "~> 2.3"
   pod "DKChainableAnimationKit", "~> 1.6.1"
-  pod 'XLPagerTabStrip', '~> 5.0'
+#  pod 'XLPagerTabStrip', '~> 5.0'
   pod 'PageMenu'
 #  pod 'Pager'
+  pod 'SwiftyJSON'
   pod "TabPageViewController"
+  pod 'SwiftHTTP', :git => 'https://github.com/daltoniam/SwiftHTTP', :branch => 'swift-2-bc'
   #  pod 'SQLite.swift', '~> 0.9.2'
   # Pods for TraveLibro
 

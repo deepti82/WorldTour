@@ -12,22 +12,23 @@ class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var locationView: UIView!
+    @IBOutlet weak var locationButton: UIButton!
     
     let pickOption = ["one", "two", "three", "seven", "fifteen"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let attributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        locationButton.tintColor = UIColor.whiteColor()
         
         let cityPicker = UIPickerView()
         cityPicker.delegate = self
         cityPicker.dataSource = self
         
-        cityTextField.attributedPlaceholder = NSAttributedString(string: "Mumbai", attributes: attributes)
+        cityTextField.attributedPlaceholder = NSAttributedString(string: "Mumbai", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
         cityTextField.inputView = cityPicker
         
         
-        getDarkBackGround(self)
+        getDarkBackGroundBlur(self)
         
         locationView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         

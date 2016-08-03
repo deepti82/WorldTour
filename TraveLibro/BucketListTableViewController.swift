@@ -9,9 +9,13 @@
 import UIKit
 
 class BucketListTableViewController: UITableViewController  {
-
+    
+    var whichView: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = whichView
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
