@@ -1,17 +1,15 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //  HTTPSecurity.swift
 //  SwiftHTTP
 //
-//  Created by Dalton Cherry on 5/13/15.
+//  Created by Dalton Cherry on 5/16/15.
 //  Copyright (c) 2015 Vluxe. All rights reserved.
 //
-//////////////////////////////////////////////////////////////////////////////////////////////////
 
 import Foundation
 import Security
 
-public class HTTPSSLCert {
+public class SSLCert {
     var certData: NSData?
     var key: SecKeyRef?
     
@@ -27,7 +25,7 @@ public class HTTPSSLCert {
     }
     
     /**
-     Designated init for public keys 
+    Designated init for public keys
     
     - parameter key: is the public key to be used
     
@@ -55,10 +53,10 @@ public class HTTPSecurity {
     */
     public convenience init(usePublicKeys: Bool = false) {
         let paths = NSBundle.mainBundle().pathsForResourcesOfType("cer", inDirectory: ".")
-        var collect = Array<HTTPSSLCert>()
+        var collect = Array<SSLCert>()
         for path in paths {
             if let d = NSData(contentsOfFile: path as String) {
-                collect.append(HTTPSSLCert(data: d))
+                collect.append(SSLCert(data: d))
             }
         }
         self.init(certs:collect, usePublicKeys: usePublicKeys)
@@ -72,7 +70,7 @@ public class HTTPSecurity {
     
     - returns: a representation security object to be used with
     */
-    public init(certs: [HTTPSSLCert], usePublicKeys: Bool) {
+    public init(certs: [SSLCert], usePublicKeys: Bool) {
         self.usePublicKeys = usePublicKeys
         
         if self.usePublicKeys {
@@ -133,7 +131,7 @@ public class HTTPSecurity {
                 for serverKey in serverPubKeys as [AnyObject] {
                     for key in keys as [AnyObject] {
                         if serverKey.isEqual(key) {
-                            trustedCount++
+                            trustedCount += 1
                             break
                         }
                     }
@@ -146,10 +144,8 @@ public class HTTPSecurity {
             let serverCerts = certificateChainForTrust(trust)
             var collect = Array<SecCertificate>()
             for cert in certs {
-                if let c = SecCertificateCreateWithData(nil,cert) {
-                    collect.append(c)
-                }
-           }
+                collect.append(SecCertificateCreateWithData(nil,cert)!)
+            }
             SecTrustSetAnchorCertificates(trust,collect)
             var result: SecTrustResultType = 0
             SecTrustEvaluate(trust,&result)
@@ -159,7 +155,7 @@ public class HTTPSecurity {
                 for serverCert in serverCerts {
                     for cert in certs {
                         if cert == serverCert {
-                            trustedCount++
+                            trustedCount += 1
                             break
                         }
                     }
@@ -195,9 +191,9 @@ public class HTTPSecurity {
     - returns: a public key
     */
     func extractPublicKeyFromCert(cert: SecCertificate, policy: SecPolicy) -> SecKeyRef? {
-        var secTrust: SecTrust?
-        SecTrustCreateWithCertificates(cert, policy, &secTrust)
-        if let trust = secTrust {
+        var possibleTrust: SecTrust?
+        SecTrustCreateWithCertificates(cert, policy, &possibleTrust)
+        if let trust = possibleTrust {
             var result: SecTrustResultType = 0
             SecTrustEvaluate(trust, &result)
             return SecTrustCopyPublicKey(trust)
@@ -214,10 +210,9 @@ public class HTTPSecurity {
     */
     func certificateChainForTrust(trust: SecTrustRef) -> Array<NSData> {
         var collect = Array<NSData>()
-        for var i = 0; i < SecTrustGetCertificateCount(trust); i++ {
-            if let cert = SecTrustGetCertificateAtIndex(trust,i) {
-                collect.append(SecCertificateCopyData(cert))
-            }
+        for i in 0 ..< SecTrustGetCertificateCount(trust) {
+            let cert = SecTrustGetCertificateAtIndex(trust,i)
+            collect.append(SecCertificateCopyData(cert!))
         }
         return collect
     }
@@ -232,13 +227,14 @@ public class HTTPSecurity {
     func publicKeyChainForTrust(trust: SecTrustRef) -> Array<SecKeyRef> {
         var collect = Array<SecKeyRef>()
         let policy = SecPolicyCreateBasicX509()
-        for var i = 0; i < SecTrustGetCertificateCount(trust); i++ {
-            if let cert = SecTrustGetCertificateAtIndex(trust,i) {
-                if let key = extractPublicKeyFromCert(cert, policy: policy) {
-                    collect.append(key)
-                }
+        for i in 0 ..< SecTrustGetCertificateCount(trust) {
+            let cert = SecTrustGetCertificateAtIndex(trust,i)
+            if let key = extractPublicKeyFromCert(cert!, policy: policy) {
+                collect.append(key)
             }
         }
         return collect
-    }  
+    }
+    
+    
 }

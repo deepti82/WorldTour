@@ -8,9 +8,9 @@
 
 import UIKit
 //import TabPageViewController
-import XLPagerTabStrip
+//import XLPagerTabStrip
 
-class PagerTabViewController: ButtonBarPagerTabStripViewController {
+class PagerTabViewController: UIViewController {
     
 //    @IBOutlet weak var containerView: UIScrollView!
     
@@ -27,38 +27,38 @@ class PagerTabViewController: ButtonBarPagerTabStripViewController {
         // buttonBar minimumInteritemSpacing value, note that button bar extends from UICollectionView
 //        settings.style.buttonBarMinimumInteritemSpacing = 3.0
         // buttonBar minimumLineSpacing value
-        settings.style.buttonBarMinimumLineSpacing = 0
-        // buttonBar flow layout left content inset value
-        settings.style.buttonBarLeftContentInset = 10
-        // buttonBar flow layout right content inset value
-        settings.style.buttonBarRightContentInset = 10
-        
-        // selected bar view is created programmatically so it's important to set up the following 2 properties properly
-        settings.style.selectedBarBackgroundColor = orangeColor
-        settings.style.selectedBarHeight = 3.0
-        
-        // each buttonBar item is a UICollectionView cell of type ButtonBarViewCell
-        settings.style.buttonBarItemBackgroundColor =  UIColor.whiteColor()
-        settings.style.buttonBarItemFont = UIFont(name: "Avenir-Roman", size: 14)!
-        // helps to determine the cell width, it represent the space before and after the title label
-        settings.style.buttonBarItemLeftRightMargin = 8
-        settings.style.buttonBarItemTitleColor = blueColor
-        // in case the barView items do not fill the screen width this property stretch the cells to fill the screen
-        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
-        // only used if button bar is created programmatically and not using storyboards or nib files as recommended.
-//        public var buttonBarHeight: CGFloat?
-        
-        settings.style.buttonBarBackgroundColor = UIColor.whiteColor()
-        settings.style.buttonBarItemBackgroundColor = UIColor.whiteColor()
-        settings.style.selectedBarBackgroundColor = orangeColor
-        settings.style.buttonBarItemFont = UIFont(name: "Avenir-Roman", size:14)!
-        settings.style.selectedBarHeight = 3.0
-        settings.style.buttonBarMinimumLineSpacing = 0
-        settings.style.buttonBarItemTitleColor = blueColor
-        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
-        
-        settings.style.buttonBarLeftContentInset = 20
-        settings.style.buttonBarRightContentInset = 20
+//        settings.style.buttonBarMinimumLineSpacing = 0
+//        // buttonBar flow layout left content inset value
+//        settings.style.buttonBarLeftContentInset = 10
+//        // buttonBar flow layout right content inset value
+//        settings.style.buttonBarRightContentInset = 10
+//        
+//        // selected bar view is created programmatically so it's important to set up the following 2 properties properly
+//        settings.style.selectedBarBackgroundColor = orangeColor
+//        settings.style.selectedBarHeight = 3.0
+//        
+//        // each buttonBar item is a UICollectionView cell of type ButtonBarViewCell
+//        settings.style.buttonBarItemBackgroundColor =  UIColor.whiteColor()
+//        settings.style.buttonBarItemFont = UIFont(name: "Avenir-Roman", size: 14)!
+//        // helps to determine the cell width, it represent the space before and after the title label
+//        settings.style.buttonBarItemLeftRightMargin = 8
+//        settings.style.buttonBarItemTitleColor = blueColor
+//        // in case the barView items do not fill the screen width this property stretch the cells to fill the screen
+//        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
+//        // only used if button bar is created programmatically and not using storyboards or nib files as recommended.
+////        public var buttonBarHeight: CGFloat?
+//        
+//        settings.style.buttonBarBackgroundColor = UIColor.whiteColor()
+//        settings.style.buttonBarItemBackgroundColor = UIColor.whiteColor()
+//        settings.style.selectedBarBackgroundColor = orangeColor
+//        settings.style.buttonBarItemFont = UIFont(name: "Avenir-Roman", size:14)!
+//        settings.style.selectedBarHeight = 3.0
+//        settings.style.buttonBarMinimumLineSpacing = 0
+//        settings.style.buttonBarItemTitleColor = blueColor
+//        settings.style.buttonBarItemsShouldFillAvailiableWidth = true
+//        
+//        settings.style.buttonBarLeftContentInset = 20
+//        settings.style.buttonBarRightContentInset = 20
         
         super.viewDidLoad()
         
@@ -92,36 +92,36 @@ class PagerTabViewController: ButtonBarPagerTabStripViewController {
         
     }
     
-    override internal func viewControllersForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        
-        let featuredCities = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
-        featuredCities.whichView = "FC"
-        featuredCities.itemInfo = "Featured Cities"
-        let mustDo = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
-        mustDo.whichView = "MD"
-        mustDo.itemInfo = "Must Do's"
-        //        mustDo.whichView = "Must Do View"
-        let itineraries = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
-        itineraries.whichView = "It"
-        itineraries.itemInfo = "Itineraries"
-////        mustDo.whichView = "Must Do View"
+//    override internal func viewControllersForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
+//        
+//        let featuredCities = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
+//        featuredCities.whichView = "FC"
+//        featuredCities.itemInfo = "Featured Cities"
+//        let mustDo = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
+//        mustDo.whichView = "MD"
+//        mustDo.itemInfo = "Must Do's"
+//        //        mustDo.whichView = "Must Do View"
 //        let itineraries = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
-//        itineraries.whichView = "Itinerary View"
-        let journeys = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
-        journeys.whichView = "Jo"
-        journeys.itemInfo = "Journeys"
-        let popularAgents = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
-        popularAgents.whichView = "Pop"
-        popularAgents.itemInfo = "Popular Agents"
-        
-//        let child_1 = FeaturedCitiesViewController(style: .Plain, itemInfo: IndicatorInfo(title: "FRIENDS"))
-//        child_1.blackTheme = true
-//        let child_2 = FeaturedCitiesViewController(style: .Plain, itemInfo: IndicatorInfo(title: "FEATURED"))
-//        child_2.blackTheme = true
-//        return [child_1, child_2]
-        
-        return [featuredCities, mustDo, itineraries, journeys, popularAgents]
-    }
+//        itineraries.whichView = "It"
+//        itineraries.itemInfo = "Itineraries"
+//////        mustDo.whichView = "Must Do View"
+////        let itineraries = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
+////        itineraries.whichView = "Itinerary View"
+//        let journeys = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
+//        journeys.whichView = "Jo"
+//        journeys.itemInfo = "Journeys"
+//        let popularAgents = storyboard?.instantiateViewControllerWithIdentifier("featuredCities") as! FeaturedCitiesViewController
+//        popularAgents.whichView = "Pop"
+//        popularAgents.itemInfo = "Popular Agents"
+//        
+////        let child_1 = FeaturedCitiesViewController(style: .Plain, itemInfo: IndicatorInfo(title: "FRIENDS"))
+////        child_1.blackTheme = true
+////        let child_2 = FeaturedCitiesViewController(style: .Plain, itemInfo: IndicatorInfo(title: "FEATURED"))
+////        child_2.blackTheme = true
+////        return [child_1, child_2]
+//        
+//        return [featuredCities, mustDo, itineraries, journeys, popularAgents]
+//    }
     
     
     

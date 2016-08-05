@@ -29,7 +29,9 @@ var feedViewController: UIViewController!
 var notificationsViewController: UIViewController!
 var travelLifeViewController: UIViewController!
 
-var hasLoggedInOnce = true
+var hasLoggedInOnce = false
+
+let navigation = Navigation()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

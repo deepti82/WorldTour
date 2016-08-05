@@ -11,7 +11,8 @@ target 'TraveLibro' do
 #  pod 'Pager'
   pod 'SwiftyJSON'
   pod "TabPageViewController"
-  pod 'SwiftHTTP', :git => 'https://github.com/daltoniam/SwiftHTTP', :branch => 'swift-2-bc'
+  pod 'SwiftHTTP', '~> 1.0.3'
+#  pod 'Alamofire', '~> 3.4'
   #  pod 'SQLite.swift', '~> 0.9.2'
   # Pods for TraveLibro
 

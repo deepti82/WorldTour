@@ -83,6 +83,8 @@
 		C2488AB11D51BC3900FD5306 /* PhotoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2488AB01D51BC3900FD5306 /* PhotoList.swift */; };
 		C2488AB31D51BC4600FD5306 /* PhotoList.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2488AB21D51BC4600FD5306 /* PhotoList.xib */; };
 		C2488AB61D51D0E100FD5306 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2488AB51D51D0E100FD5306 /* Navigation.swift */; };
+		C2488AFA1D51F93D00FD5306 /* NewQuickItinerary.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2488AF91D51F93D00FD5306 /* NewQuickItinerary.xib */; };
+		C2488AFC1D51F98500FD5306 /* NewQuickItinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2488AFB1D51F98500FD5306 /* NewQuickItinerary.swift */; };
 		C24909AD1D49D094007EB6B4 /* tripSummaryEach.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24909AC1D49D094007EB6B4 /* tripSummaryEach.xib */; };
 		C24909B11D49D616007EB6B4 /* tripSummaryEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909B01D49D616007EB6B4 /* tripSummaryEach.swift */; };
 		C24909B41D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24909B31D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift */; };
@@ -278,6 +280,7 @@
 		C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A181CDB3C1200122941 /* TextField.xib */; };
 		C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */; };
 		C2FA008A1CF57EC100E6A7D7 /* SetProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */; };
+		C2FA99301D53681C009D0DF2 /* NewRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA992F1D53681C009D0DF2 /* NewRest.swift */; };
 		D49015CF8AB3E3F87B6DA0E7 /* Pods_TraveLibroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -385,6 +388,8 @@
 		C2488AB01D51BC3900FD5306 /* PhotoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoList.swift; sourceTree = "<group>"; };
 		C2488AB21D51BC4600FD5306 /* PhotoList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoList.xib; sourceTree = "<group>"; };
 		C2488AB51D51D0E100FD5306 /* Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		C2488AF91D51F93D00FD5306 /* NewQuickItinerary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewQuickItinerary.xib; sourceTree = "<group>"; };
+		C2488AFB1D51F98500FD5306 /* NewQuickItinerary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewQuickItinerary.swift; sourceTree = "<group>"; };
 		C24909AC1D49D094007EB6B4 /* tripSummaryEach.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tripSummaryEach.xib; sourceTree = "<group>"; };
 		C24909B01D49D616007EB6B4 /* tripSummaryEach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripSummaryEach.swift; sourceTree = "<group>"; };
 		C24909B31D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryPhotosViewController.swift; sourceTree = "<group>"; };
@@ -582,6 +587,7 @@
 		C2EA3A181CDB3C1200122941 /* TextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextField.xib; sourceTree = "<group>"; };
 		C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeOfJourney.xib; sourceTree = "<group>"; };
 		C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetProfilePictureViewController.swift; sourceTree = "<group>"; };
+		C2FA992F1D53681C009D0DF2 /* NewRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRest.swift; sourceTree = "<group>"; };
 		D43182820A0A3CF9711BB7D4 /* Pods-TraveLibroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -702,6 +708,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2488AFD1D51F98F00FD5306 /* NewQuickItinerary */,
 				C2488AB71D51DBD700FD5306 /* startOTGView */,
 				C2488AB41D51BF0700FD5306 /* PhotoList */,
 				C266AA131D4B33C600174612 /* AddPostsOTG */,
@@ -867,6 +874,7 @@
 			children = (
 				C20163DF1D26911C00A2F70B /* LocalDB.swift */,
 				C2488AB51D51D0E100FD5306 /* Navigation.swift */,
+				C2FA992F1D53681C009D0DF2 /* NewRest.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1004,6 +1012,15 @@
 				C2823B041D464E800065A76C /* startOTGView.swift */,
 			);
 			name = startOTGView;
+			sourceTree = "<group>";
+		};
+		C2488AFD1D51F98F00FD5306 /* NewQuickItinerary */ = {
+			isa = PBXGroup;
+			children = (
+				C2488AF91D51F93D00FD5306 /* NewQuickItinerary.xib */,
+				C2488AFB1D51F98500FD5306 /* NewQuickItinerary.swift */,
+			);
+			name = NewQuickItinerary;
 			sourceTree = "<group>";
 		};
 		C24909B21D49D9F0007EB6B4 /* tripSummaryEach */ = {
@@ -1857,6 +1874,7 @@
 				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
 				C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */,
+				C2488AFA1D51F93D00FD5306 /* NewQuickItinerary.xib in Resources */,
 				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,
 				C24870511D0C2DA6003CB0DD /* HotelsCustomHeader.xib in Resources */,
 				C2A6E2591CE9C22200D3F845 /* TimelineScroll.xib in Resources */,
@@ -2070,6 +2088,7 @@
 				C25207391D09A4F7008F0E51 /* FeaturedCitiesViewController.swift in Sources */,
 				C20A18FA1D2299EE00760BF9 /* AddCheckIn.swift in Sources */,
 				C24F84E21D001B91002EA203 /* ResetPassword.swift in Sources */,
+				C2488AFC1D51F98500FD5306 /* NewQuickItinerary.swift in Sources */,
 				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
 				C24B455C1D0ACAFA002EA009 /* Itineraries.swift in Sources */,
 				C26907911CF86F8200F827E6 /* ImageCheckbox.swift in Sources */,
@@ -2134,6 +2153,7 @@
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
 				C25C27EF1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift in Sources */,
+				C2FA99301D53681C009D0DF2 /* NewRest.swift in Sources */,
 				C24EB2EF1D30DE2E00EB95F6 /* NoFollowingViewController.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
 				C24B45611D0ADAEB002EA009 /* FilterItineraries.swift in Sources */,

@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 
-class FeaturedCitiesNewViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, IndicatorInfoProvider {
+class FeaturedCitiesNewViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,7 +17,7 @@ class FeaturedCitiesNewViewController: UIViewController, UITableViewDataSource, 
     var isGradientTwo: [Bool] = []
     let cities = ["Agra", "Amritsar"]
     let places = ["Shree Siddhivinayak", "Golden Temple"]
-    var itemInfo = IndicatorInfo(title: "View")
+//    var itemInfo = IndicatorInfo(title: "View")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,10 +103,10 @@ class FeaturedCitiesNewViewController: UIViewController, UITableViewDataSource, 
         
     }
     
-    func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        
-        return itemInfo
-    }
+//    func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+//        
+//        return itemInfo
+//    }
     
 
 }

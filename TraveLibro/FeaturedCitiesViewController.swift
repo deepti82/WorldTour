@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import XLPagerTabStrip
 
-class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, IndicatorInfoProvider {
+class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var contentTableView: UITableView!
     @IBOutlet weak var containerView: UIView!
@@ -24,7 +23,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
 //    let tablePictures = ["", ""]
     
     var whichView = "noView"
-    var itemInfo = IndicatorInfo(title: "View")
+//    var itemInfo = IndicatorInfo(title: "View")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,25 +112,25 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
-        
-//        switch whichView {
-//        case "Must Do View":
-//            return IndicatorInfo(title: "Must Do's")
-//        case "Itinerary View":
-//            return IndicatorInfo(title: "Itineraries")
-//            
-//        case "Journey View":
-//            return IndicatorInfo(title: "Journeys")
-//            
-//        case "Popular Agents View":
-//            return IndicatorInfo(title: "Popular Agents")
-//            
-//        default: break
-//        }
-        
-        return itemInfo
-    }
+//    func indicatorInfoForPagerTabStrip(pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
+//        
+////        switch whichView {
+////        case "Must Do View":
+////            return IndicatorInfo(title: "Must Do's")
+////        case "Itinerary View":
+////            return IndicatorInfo(title: "Itineraries")
+////            
+////        case "Journey View":
+////            return IndicatorInfo(title: "Journeys")
+////            
+////        case "Popular Agents View":
+////            return IndicatorInfo(title: "Popular Agents")
+////            
+////        default: break
+////        }
+//        
+//        return itemInfo
+//    }
     
     var filterView: FilterItineraries!
     var scroll: UIScrollView!

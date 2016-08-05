@@ -2,9 +2,12 @@ import UIKit
 
 class QuickItineraryOne: UIView {
 
+    @IBOutlet weak var nextButton: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        
+        nextButton.layer.cornerRadius = 5
         
         
     }

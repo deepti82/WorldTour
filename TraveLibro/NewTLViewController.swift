@@ -110,6 +110,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         getBackGround(self)
         height = self.view.frame.height/2
         
+        let addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        addNewView.layer.zPosition = 1000
+        self.view.addSubview(addNewView)
+        
         mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height - height, width: self.view.frame.width, height: self.view.frame.height))
 //        mainScroll.backgroundColor = UIColor.whiteColor()
         
