@@ -26,6 +26,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="b02-vD-6rn"/>
                     </constraints>
+                    <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
@@ -35,48 +36,51 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Month" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTs-lm-Mg8">
                             <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Jan" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kgy-rl-bdl">
-                            <rect key="frame" x="47" y="0.0" width="70" height="30"/>
+                            <rect key="frame" x="47" y="0.0" width="50" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="EDc-ur-gXd"/>
-                                <constraint firstAttribute="width" constant="70" id="NkK-ON-VHe"/>
+                                <constraint firstAttribute="width" constant="50" id="NkK-ON-VHe"/>
                             </constraints>
+                            <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" text="Year" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Th-9p-azD">
-                            <rect key="frame" x="122" y="0.0" width="42" height="30"/>
+                            <rect key="frame" x="102" y="0.0" width="30" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="42" id="1ti-sA-dOU"/>
+                                <constraint firstAttribute="width" constant="30" id="1ti-sA-dOU"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="2001" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2M0-SQ-ezJ">
-                            <rect key="frame" x="169" y="0.0" width="70" height="30"/>
+                            <rect key="frame" x="137" y="0.0" width="50" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="0hV-JL-PKZ"/>
-                                <constraint firstAttribute="width" constant="70" id="59c-Nc-dtw"/>
+                                <constraint firstAttribute="width" constant="50" id="59c-Nc-dtw"/>
                             </constraints>
+                            <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5K-Kl-q78">
-                            <rect key="frame" x="244" y="0.0" width="65" height="30"/>
+                            <rect key="frame" x="192" y="0.0" width="137" height="30"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MJ1-g4-JRB">
-                            <rect key="frame" x="314" y="0.0" width="70" height="30"/>
+                            <rect key="frame" x="334" y="0.0" width="50" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="70" id="6S4-1J-koR"/>
+                                <constraint firstAttribute="width" constant="50" id="6S4-1J-koR"/>
                                 <constraint firstAttribute="height" constant="30" id="pWa-hV-5ML"/>
                             </constraints>
+                            <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>

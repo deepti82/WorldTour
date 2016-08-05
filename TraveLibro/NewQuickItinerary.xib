@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewQuickItinerary" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="sP4-Oh-JTR" id="Pdy-wE-14f"/>
+                <outlet property="itineraryButton" destination="ZGG-62-LHl" id="xHg-6s-xHs"/>
+                <outlet property="otgJourneyButton" destination="hDY-pd-lvg" id="OlF-CM-J7G"/>
                 <outletCollection property="mainButtons" destination="hDY-pd-lvg" collectionClass="NSMutableArray" id="fTb-CR-NML"/>
                 <outletCollection property="mainButtons" destination="ZGG-62-LHl" collectionClass="NSMutableArray" id="JPh-Zl-VIi"/>
             </connections>

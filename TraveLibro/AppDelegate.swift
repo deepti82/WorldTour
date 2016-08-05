@@ -29,7 +29,7 @@ var feedViewController: UIViewController!
 var notificationsViewController: UIViewController!
 var travelLifeViewController: UIViewController!
 
-var hasLoggedInOnce = false
+var hasLoggedInOnce = true
 
 let navigation = Navigation()
 
@@ -104,6 +104,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["arrow-down"] = 0xf078
         faicon["options"] = 0xf142
         faicon["location"] = 0xf041
+        faicon["bold"] = 0xf032
+        faicon["italics"] = 0xf033
         
         emailIcon = String(format: "%C", faicon["email"]!)
         facebookIcon = String(format: "%C", faicon["facebook"]!)

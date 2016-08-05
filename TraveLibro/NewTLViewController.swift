@@ -17,7 +17,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
     var mainScroll: UIScrollView!
     var infoView: TripInfoOTG!
     var addPosts: AddPostsOTGView!
-    
+    var addNewView: NewQuickItinerary!
     
     @IBOutlet weak var addPostsButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
@@ -110,10 +110,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         getBackGround(self)
         height = self.view.frame.height/2
         
-        let addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        addNewView.layer.zPosition = 1000
-        self.view.addSubview(addNewView)
-        
         mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height - height, width: self.view.frame.width, height: self.view.frame.height))
 //        mainScroll.backgroundColor = UIColor.whiteColor()
         
@@ -145,6 +141,34 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         
         self.view.bringSubviewToFront(infoButton)
         self.view.bringSubviewToFront(addPostsButton)
+        
+        addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        addNewView.layer.zPosition = 1000
+        self.view.addSubview(addNewView)
+        
+        addNewView.otgJourneyButton.addTarget(self, action: #selector(NewTLViewController.newOtg(_:)), forControlEvents: .TouchUpInside)
+        addNewView.itineraryButton.addTarget(self, action: #selector(NewTLViewController.newItinerary(_:)), forControlEvents: .TouchUpInside)
+        addNewView.closeButton.addTarget(self, action: #selector(NewTLViewController.closeView(_:)), forControlEvents: .TouchUpInside)
+        
+    }
+    
+    func newOtg(sender: UIButton) {
+        
+        addNewView.animation.makeOpacity(0.0).animate(0.5)
+        addNewView.hidden = true
+        
+    }
+    
+    func newItinerary(sender: UIButton) {
+        
+        let itineraryVC = storyboard?.instantiateViewControllerWithIdentifier("qiPVC") as! QIViewController
+        self.navigationController?.pushViewController(itineraryVC, animated: true)
+        
+    }
+    
+    func closeView(sender: UIButton) {
+        
+        self.navigationController?.popViewControllerAnimated(true)
         
     }
     

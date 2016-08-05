@@ -10,6 +10,9 @@ import UIKit
 
 class NewQuickItinerary: UIView {
 
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var itineraryButton: UIButton!
+    @IBOutlet weak var otgJourneyButton: UIButton!
     @IBOutlet var mainButtons: [UIButton]!
     override init(frame: CGRect) {
         super.init(frame: frame)
