@@ -17,7 +17,7 @@ class SignInFullView: UIView {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var facebookLabel: LeftPaddedLabel!
     @IBOutlet weak var tncFooter: LeftPaddedLabel!
-    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var loginBigButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     
     @IBOutlet weak var facebookStack: UIStackView!
@@ -26,8 +26,8 @@ class SignInFullView: UIView {
     
     @IBOutlet weak var textField1: UITextField!
     @IBOutlet weak var textField2: UITextField!
-    @IBOutlet weak var textField3: UITextField!
-    @IBOutlet weak var textField4: UITextField!
+//    @IBOutlet weak var textField3: UITextField!
+//    @IBOutlet weak var textField4: UITextField!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,7 +39,7 @@ class SignInFullView: UIView {
         ]
         
 //        signUpButton.backgroundColor = mainOrangeColor
-        signUpButton.layer.cornerRadius = 5
+        loginBigButton.layer.cornerRadius = 5
         
         tncFooter.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         
@@ -66,17 +66,17 @@ class SignInFullView: UIView {
         textField2.leftViewMode = .Always
 
         
-//        textField3.borderStyle = .None
-        textField3.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        textField3.attributedPlaceholder = NSAttributedString(string: "Email", attributes: attributes)
-        textField3.leftView = UIView(frame: CGRectMake(0, 0, 15, self.textField3.frame.height))
-        textField3.leftViewMode = .Always
-
-//        textField4.borderStyle = .None
-        textField4.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        textField4.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
-        textField4.leftView = UIView(frame: CGRectMake(0, 0, 15, self.textField4.frame.height))
-        textField4.leftViewMode = .Always
+////        textField3.borderStyle = .None
+//        textField3.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+//        textField3.attributedPlaceholder = NSAttributedString(string: "Email", attributes: attributes)
+//        textField3.leftView = UIView(frame: CGRectMake(0, 0, 15, self.textField3.frame.height))
+//        textField3.leftViewMode = .Always
+//
+////        textField4.borderStyle = .None
+//        textField4.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+//        textField4.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
+//        textField4.leftView = UIView(frame: CGRectMake(0, 0, 15, self.textField4.frame.height))
+//        textField4.leftViewMode = .Always
         
     }
     

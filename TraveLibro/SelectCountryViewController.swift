@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectCountryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SelectCountryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var searchView: UIView!
     var countries = ["India", "Kuwait", "Mumbai", "Australia", "Switzerland", "Hong Kong", "Malaysia", "Singapore", "Mauritius"]
@@ -16,6 +16,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     var selectedIndex: NSIndexPath = NSIndexPath()
     var isSelected: Bool = false
     var signUpCityVC: UIViewController!
+    var searchFieldView: SearchFieldView!
     
     internal var whichView: String!
     
@@ -57,13 +58,17 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
         
-        let searchFieldView = SearchFieldView(frame: CGRect(x: 10, y: 0, width: searchView.frame.width + 25, height: searchView.frame.height))
+        searchFieldView = SearchFieldView(frame: CGRect(x: 10, y: 0, width: searchView.frame.width + 25, height: searchView.frame.height))
         searchFieldView.leftLine.backgroundColor = mainOrangeColor
         searchFieldView.rightLine.backgroundColor = mainOrangeColor
         searchFieldView.bottomLine.backgroundColor = mainOrangeColor
         searchFieldView.searchButton.tintColor = mainOrangeColor
         searchView.addSubview(searchFieldView)
+        searchView.clipsToBounds = true
         searchView.backgroundColor = UIColor.clearColor()
+        searchFieldView.searchField.returnKeyType = .Done
+        searchFieldView.searchButton.addTarget(self, action: #selector(SelectCountryViewController.searchPlace(_:)), forControlEvents: .TouchUpInside)
+        searchFieldView.searchField.delegate = self
         
         if whichView == "selectNationality" {
             
@@ -78,10 +83,25 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
+    
+    
+    func searchPlace(sender: UIButton) {
+        
+        print("in search button target")
+        searchFieldView.searchField.resignFirstResponder()
+        
+    }
+    
     func chooseCity(sender: UIButton) {
         
         signUpCityVC = storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
         self.navigationController?.pushViewController(signUpCityVC, animated: true)
+        
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        textField.resignFirstResponder()
         
     }
 

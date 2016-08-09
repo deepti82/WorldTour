@@ -10,12 +10,12 @@ import UIKit
 
 class SignInToolbar: UIView {
 
-    @IBOutlet weak var fbButton: UIButton!
+    @IBOutlet weak var fbButton: FBSDKLoginButton!
     @IBOutlet weak var twitterButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
     
     
-    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var tnc: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     
     override init(frame: CGRect) {
@@ -37,9 +37,9 @@ class SignInToolbar: UIView {
         twitterImage.image = UIImage(named: "twitter_icon")
         twitterButton.addSubview(twitterImage)
         
-        signUpButton.layer.borderWidth = 1.0
-        signUpButton.layer.borderColor = UIColor.whiteColor().CGColor
-        signUpButton.layer.cornerRadius = 5.0
+        tnc.layer.borderWidth = 1.0
+        tnc.layer.borderColor = UIColor.whiteColor().CGColor
+        tnc.layer.cornerRadius = 5.0
         
         signInButton.layer.borderWidth = 1.0
         signInButton.layer.borderColor = UIColor.whiteColor().CGColor

@@ -17,6 +17,7 @@ class InProfileOTGPost: UIView {
     @IBOutlet weak var flag3: UIImageView!
     @IBOutlet weak var flag2: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var detailsView: UIView!
     
     @IBOutlet weak var journeyIcon1: UIImageView!
     @IBOutlet weak var journeyIcon2: UIImageView!
@@ -35,6 +36,7 @@ class InProfileOTGPost: UIView {
         likesLabel.text = String(format: "%C", faicon["likes"]!)
         
         OTGTitleLabel.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        detailsView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         
         styleFlags(flag1)
         styleFlags(flag2)

@@ -13,6 +13,7 @@ let contactsObject = CNContactStore()
 let mainBlueColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1) // #232D4A
 let navBlueColor = UIColor(red: 21/255, green: 25/255, blue: 54/255, alpha: 1) // #151936
 let mainOrangeColor = UIColor(red: 252/255, green: 80/255, blue: 71/255, alpha: 1) // #FC5047
+let lightOrangeColor = UIColor(red: 252/255, green: 80/255, blue: 71/255, alpha: 1) // #FC5047
 let mainGreenColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1) // #4BCBBB
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
@@ -29,7 +30,7 @@ var feedViewController: UIViewController!
 var notificationsViewController: UIViewController!
 var travelLifeViewController: UIViewController!
 
-var hasLoggedInOnce = true
+var hasLoggedInOnce = false
 
 let navigation = Navigation()
 
@@ -129,7 +130,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
         
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func application(application: UIApplication,
+                     openURL url: NSURL,
+                             sourceApplication: String?,
+                             annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(
+            application,
+            openURL: url,
+            sourceApplication: sourceApplication,
+            annotation: annotation)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {

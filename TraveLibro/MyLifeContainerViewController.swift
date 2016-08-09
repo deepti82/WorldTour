@@ -20,20 +20,20 @@ class MyLifeContainerViewController: UIViewController {
         
         print("which view simple container: \(whichView)")
         
-        self.verticalLayout = VerticalLayout(width: self.view.frame.width);
+        self.verticalLayout = VerticalLayout(width: self.view.frame.width+4);
         
         let tag = TimestampTagViewOnScroll(frame: CGRect(x: self.view.frame.width - 130, y: 20, width: 135, height: 75))
 //        tag.clipsToBounds = true
         tag.layer.zPosition = 1000
         self.view.addSubview(tag)
         
-        let postOne = InProfileOTGPost(frame: CGRect(x: 4, y: 8, width: verticalLayout.frame.width, height: 450))
+        let postOne = InProfileOTGPost(frame: CGRect(x: 0, y: 0, width: verticalLayout.frame.width, height: 450))
         postOne.clipsToBounds = true
         postOne.statusLabel.text = "Manan Vora ended his London Journey"
         postOne.iconButtonView.removeFromSuperview()
         
 
-        let postTwo = NewProfilePosts(frame: CGRect(x: 4, y: 8, width: verticalLayout.frame.width, height: 700))
+        let postTwo = NewProfilePosts(frame: CGRect(x: 0, y: -4, width: verticalLayout.frame.width, height: 700))
         postTwo.profileImageView.removeFromSuperview()
         postTwo.profileName.removeFromSuperview()
         postTwo.timestamp.removeFromSuperview()
@@ -45,7 +45,7 @@ class MyLifeContainerViewController: UIViewController {
         postTwo.iconButtonUpConstraint.constant = 8.0
         postTwo.clipsToBounds = true
 
-        let postThree = NewThoughtsView(frame: CGRect(x: 4, y: 0, width: verticalLayout.frame.width, height: 280))
+        let postThree = NewThoughtsView(frame: CGRect(x: 0, y: -16, width: verticalLayout.frame.width, height: 280))
         postThree.profileImage.removeFromSuperview()
         postThree.profileName.removeFromSuperview()
         postThree.timestamp.removeFromSuperview()

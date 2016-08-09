@@ -525,9 +525,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     func viewBorder(sender: UIView) {
         
         sender.layer.shadowColor = UIColor.darkGrayColor().CGColor
-        sender.layer.shadowOpacity = 0.4
+        sender.layer.shadowOpacity = 0.6
         sender.layer.shadowOffset = CGSizeMake(0, -1)
-        sender.layer.shadowRadius = 1.0
+        sender.layer.shadowRadius = 5.0
 //        sender.clipsToBounds = true
         
     }

@@ -28,7 +28,7 @@ class QuickItinerariesViewController: UIViewController {
             two.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
             self.view.addSubview(two)
         case "Three":
-            let three = QuickItineraryOne(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 300))
+            let three = QuickItineraryThree(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 350))
             three.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
             self.view.addSubview(three)
         case "Four":

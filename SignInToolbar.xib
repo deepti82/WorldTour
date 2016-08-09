@@ -10,7 +10,7 @@
                 <outlet property="fbButton" destination="tbD-ta-F8H" id="1De-Lo-AOB"/>
                 <outlet property="googleButton" destination="fhX-bJ-eQX" id="Doe-Na-cGJ"/>
                 <outlet property="signInButton" destination="02Q-7i-BMb" id="N0O-mR-lBk"/>
-                <outlet property="signUpButton" destination="qti-8V-N8j" id="Xla-cv-3wr"/>
+                <outlet property="tnc" destination="qti-8V-N8j" id="PAZ-9w-LgU"/>
                 <outlet property="twitterButton" destination="rs1-TR-cSI" id="QlY-Uz-f1h"/>
             </connections>
         </placeholder>
@@ -73,7 +73,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Create account with email">
+                            <state key="normal" title="Terms &amp; Conditions">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <variation key="default">

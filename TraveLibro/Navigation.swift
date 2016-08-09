@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import SwiftHTTP
 
-let adminUrl = "http://192.168.0.101:1337/"
+let adminUrl = "http://192.168.0.116:1337/"
 //let apiURL = "";
 
 class Navigation {
@@ -51,9 +51,90 @@ class Navigation {
     
     func signUpSocial(id: String, completion:((JSON) -> Void)) {
         
-        
+        switch id {
+        case "google":
+//            do {
+//                let opt = try HTTP.POST(adminUrl + "tempUser/register", parameters: id)
+//                opt.start { response in
+//                    if let err = response.error {
+//                        print("error: \(err.localizedDescription)")
+//                    }
+//                    else
+//                    {
+//                        json  = JSON(data: response.data)
+//                        print(json)
+//                        completion(json)
+//                    }
+//                }
+//            } catch let error {
+//                print("got an error creating the request: \(error)")
+//            }
+            break
+        case "facebook":
+//            do {
+//                let opt = try HTTP.POST(adminUrl + "user/logInGoogle", parameters: id)
+//                opt.start { response in
+//                    if let err = response.error {
+//                        print("error: \(err.localizedDescription)")
+//                    }
+//                    else
+//                    {
+//                        json  = JSON(data: response.data)
+//                        print(json)
+//                        completion(json)
+//                    }
+//                }
+//            } catch let error {
+//                print("got an error creating the request: \(error)")
+//            }
+            break
+        case "twitter":
+//            do {
+//                let opt = try HTTP.POST(adminUrl + "tempUser/register", parameters: id)
+//                opt.start { response in
+//                    if let err = response.error {
+//                        print("error: \(err.localizedDescription)")
+//                    }
+//                    else
+//                    {
+//                        json  = JSON(data: response.data)
+//                        print(json)
+//                        completion(json)
+//                    }
+//                }
+//            } catch let error {
+//                print("got an error creating the request: \(error)")
+//            }
+            break
+        default:
+            break
+        }
         
         
     }
-
+    
+    func verifyUser(email: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "tempUser/emailVerificationCheck", parameters: ["email": email])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+        
+    }
 }

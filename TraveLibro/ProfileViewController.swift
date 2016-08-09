@@ -11,7 +11,7 @@ import DKChainableAnimationKit
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
 
-    let labels = ["300 Following", "223 Followers", "10 Countries Visited", "10 Bucket List", "20 Journeys Created", "3 Check Ins", "23 Photos", "1000 Reviews"]
+    let labels = ["300 Following", "223 Followers", "10 Countries Visited", "10 Bucket List", "20 Journeys", "3 Check Ins", "23 Photos", "1000 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
     
     private var kvoContext: UInt8 = 0
@@ -35,7 +35,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
             MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
             MAMatterView.animation.makeOpacity(1.0).animate(0.25)
-            mainProfileView.animation.moveY(-100.0).moveHeight(100.0).animate(0.25)
+            mainProfileView.animation.moveY(-80.0).moveHeight(80.0).animate(0.25)
             toggle = true
         }
         
@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
             MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
             MAMatterView.animation.makeOpacity(0.0).animate(0.25)
-            mainProfileView.animation.moveY(100.0).moveHeight(-50.0).animate(0.25)
+            mainProfileView.animation.moveY(80.0).moveHeight(-50.0).animate(0.25)
             toggle = false
         }
         

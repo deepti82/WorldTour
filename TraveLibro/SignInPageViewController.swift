@@ -30,23 +30,23 @@ class SignInPageViewController: UIViewController, UITextFieldDelegate {
         pageView = SignInFullView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height - 60))
         self.view.addSubview(pageView)
         
-        pageView.signUpButton.addTarget(self, action: #selector(SignInPageViewController.signedUp(_:)), forControlEvents: .TouchUpInside)
-        pageView.textField4.secureTextEntry = true
+        pageView.loginBigButton.addTarget(self, action: #selector(SignInPageViewController.signedUp(_:)), forControlEvents: .TouchUpInside)
+        pageView.textField2.secureTextEntry = true
         
-        pageView.textField1.returnKeyType = .Next
-        pageView.textField2.returnKeyType = .Next
-        pageView.textField3.returnKeyType = .Next
-        pageView.textField4.returnKeyType = .Done
+//        pageView.textField1.returnKeyType = .Next
+//        pageView.textField2.returnKeyType = .Next
+//        pageView.textField3.returnKeyType = .Next
+//        pageView.textField4.returnKeyType = .Done
         
         pageView.textField1.tag = 0
         pageView.textField2.tag = 1
-        pageView.textField3.tag = 2
-        pageView.textField4.tag = 3
+//        pageView.textField3.tag = 2
+//        pageView.textField4.tag = 3
         
         pageView.textField1.delegate = self
         pageView.textField2.delegate = self
-        pageView.textField3.delegate = self
-        pageView.textField4.delegate = self
+//        pageView.textField3.delegate = self
+//        pageView.textField4.delegate = self
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
@@ -73,19 +73,19 @@ class SignInPageViewController: UIViewController, UITextFieldDelegate {
     func signedUp(sender: AnyObject) {
         
         var isSuccess = false
-        var shouldNavigate = false
+//        var shouldNavigate = false
         
         pageView.textField1.resignFirstResponder()
         pageView.textField2.resignFirstResponder()
-        pageView.textField3.resignFirstResponder()
-        pageView.textField4.resignFirstResponder()
+//        pageView.textField3.resignFirstResponder()
+//        pageView.textField4.resignFirstResponder()
         
         params["first"] = pageView.textField1.text
         params["last"] = pageView.textField2.text
-        params["user"] = pageView.textField3.text
-        params["pass"] = pageView.textField4.text
+//        params["user"] = pageView.textField3.text
+//        params["pass"] = pageView.textField4.text
         
-        let isEmail = validateEmail(pageView.textField3.text!)
+        let isEmail = validateEmail(pageView.textField1.text!)
         
         if pageView.textField1.text!.isEmpty {
             
@@ -105,14 +105,14 @@ class SignInPageViewController: UIViewController, UITextFieldDelegate {
             //            EXIT_SUCCESS
         }
         
-        else if pageView.textField3.text!.isEmpty {
-            
-//            print("first name is empty")
-            let alertController = UIAlertController(title: "Error!", message: "Email address cannot be blank", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alertController, animated: true, completion: nil)
-            //            EXIT_SUCCESS
-        }
+//        else if pageView.textField3.text!.isEmpty {
+//            
+////            print("first name is empty")
+//            let alertController = UIAlertController(title: "Error!", message: "Email address cannot be blank", preferredStyle: .Alert)
+//            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//            presentViewController(alertController, animated: true, completion: nil)
+//            //            EXIT_SUCCESS
+//        }
         
         else if !isEmail {
             
@@ -123,14 +123,14 @@ class SignInPageViewController: UIViewController, UITextFieldDelegate {
             //            EXIT_SUCCESS
         }
         
-        else if pageView.textField4.text!.isEmpty {
-            
-//            print("first name is empty")
-            let alertController = UIAlertController(title: "Error!", message: "Password cannot be blank", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alertController, animated: true, completion: nil)
-            //            EXIT_SUCCESS
-        }
+//        else if pageView.textField4.text!.isEmpty {
+//            
+////            print("first name is empty")
+//            let alertController = UIAlertController(title: "Error!", message: "Password cannot be blank", preferredStyle: .Alert)
+//            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//            presentViewController(alertController, animated: true, completion: nil)
+//            //            EXIT_SUCCESS
+//        }
         
         else {
             
@@ -138,25 +138,33 @@ class SignInPageViewController: UIViewController, UITextFieldDelegate {
             
         }
         
+//        let verifyVC = storyboard?.instantiateViewControllerWithIdentifier("verifyZero") as! VerifyIntermediateViewController
         
         if isSuccess {
             
-            navigation.signUpUser(pageView.textField1.text!, lastName: pageView.textField2.text!, username: pageView.textField3.text!, password: pageView.textField4.text!, completion: {(json:JSON) -> () in
-                
-                print("response: \(json)")
-                shouldNavigate = true
-                
-            })
+            let nationalityVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            nationalityVC.whichView = "selectNationality"
+            self.navigationController?.pushViewController(nationalityVC, animated: true)
             
-            print("print data: \(params)")
+//            navigation.signUpUser(pageView.textField1.text!, lastName: pageView.textField2.text!, username: pageView.textField3.text!, password: pageView.textField4.text!, completion: {(json:JSON) -> () in
+//                
+//                dispatch_async(dispatch_get_main_queue(),{
+//                    
+//                    print("response: \(json)")
+//                    
+//                    verifyVC.email = self.pageView.textField3.text!
+//                    self.navigationController?.pushViewController(verifyVC, animated: true)
+//                    print("print data: \(self.params)")
+//                })
+//                
+//            })
         }
         
-        if shouldNavigate {
-            
-            let verifyVC = storyboard?.instantiateViewControllerWithIdentifier("verifyOne") as! VerifyEmailViewController
-            self.navigationController?.pushViewController(verifyVC, animated: true)
-            
-        }
+//        if shouldNavigate {
+//            
+//            
+//            
+//        }
         
     }
     

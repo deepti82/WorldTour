@@ -77,6 +77,19 @@ func getDarkBackGroundBlur(myVC: UIViewController) -> Void {
     
 }
 
+func getDarkBackGroundBlue(myVC: UIViewController) {
+    
+    let bgImage = UIImageView(frame: myVC.view.frame)
+    bgImage.image = UIImage(named: "blueopacitybg")
+    bgImage.layer.zPosition = -1
+    bgImage.userInteractionEnabled = false
+    
+    myVC.view.addSubview(bgImage)
+    
+    //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
+    
+}
+
 class LeftPaddedLabel:  UILabel {
     
     let padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)

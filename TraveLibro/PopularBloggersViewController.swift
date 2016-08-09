@@ -34,6 +34,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.titleTag.layer.cornerRadius = 5
         cell.titleTag.layer.borderColor = mainBlueColor.CGColor
         cell.titleTag.layer.borderWidth = 1.5
+        cell.cameraIcon.tintColor = mainBlueColor
+        cell.videoIcon.tintColor = mainBlueColor
+        cell.locationIcon.tintColor = mainBlueColor
+        cell.selectionStyle = .None
         return cell
         
     }
@@ -60,6 +64,8 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
 class PopularBloggerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleTag: UIView!
-    
+    @IBOutlet weak var cameraIcon: UIImageView!
+    @IBOutlet weak var videoIcon: UIImageView!
+    @IBOutlet weak var locationIcon: UIImageView!
     
 }

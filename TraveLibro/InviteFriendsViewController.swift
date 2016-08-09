@@ -16,8 +16,14 @@ class InviteFriendsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDarkBackGround(self)
+        getDarkBackGroundBlue(self)
         setNavigationBarItem()
+        
+//        let backgroundColour = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+//        backgroundColour.backgroundColor = UIColor(red: 35/255, green: 44/255, blue: 73/255, alpha: 0.7)
+//        backgroundColour.layer.zPosition = 0
+//        self.view.addSubview(backgroundColour)
+        
         
         mailButton.setTitle(emailIcon, forState: .Normal)
         whatsappButton.setTitle(whatsAppIcon, forState: .Normal)

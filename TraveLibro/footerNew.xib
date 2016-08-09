@@ -21,26 +21,26 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="350" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="350" height="55"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbj-3m-z2P">
-                    <rect key="frame" x="0.0" y="12" width="350" height="48"/>
+                    <rect key="frame" x="0.0" y="12" width="350" height="43"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gP7-LO-s7L">
-                            <rect key="frame" x="265" y="0.0" width="85" height="48"/>
+                            <rect key="frame" x="265" y="0.0" width="85" height="43"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xh3-v4-A13">
-                                    <rect key="frame" x="8" y="30" width="69" height="17"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <rect key="frame" x="14" y="25" width="57" height="14"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notifications" translatesAutoresizingMaskIntoConstraints="NO" id="2OT-9G-de8">
-                                    <rect key="frame" x="28" y="0.0" width="30" height="30"/>
+                                    <rect key="frame" x="30" y="0.0" width="25" height="25"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="bqL-XV-6YX"/>
-                                        <constraint firstAttribute="height" constant="30" id="s4d-iC-12z"/>
+                                        <constraint firstAttribute="width" constant="25" id="bqL-XV-6YX"/>
+                                        <constraint firstAttribute="height" constant="25" id="s4d-iC-12z"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
@@ -61,19 +61,19 @@
                             </variation>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAH-cp-FRl">
-                            <rect key="frame" x="0.0" y="0.0" width="85" height="48"/>
+                            <rect key="frame" x="0.0" y="0.0" width="85" height="43"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSC-8u-rIB">
-                                    <rect key="frame" x="22" y="30" width="41" height="17"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <rect key="frame" x="26" y="25" width="34" height="14"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed" translatesAutoresizingMaskIntoConstraints="NO" id="O3F-rC-Mgv">
-                                    <rect key="frame" x="27" y="0.0" width="30" height="30"/>
+                                    <rect key="frame" x="30" y="0.0" width="25" height="25"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="Ri3-wB-T7V"/>
-                                        <constraint firstAttribute="height" constant="30" id="fa5-At-Sxu"/>
+                                        <constraint firstAttribute="width" constant="25" id="Ri3-wB-T7V"/>
+                                        <constraint firstAttribute="height" constant="25" id="fa5-At-Sxu"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
@@ -103,59 +103,59 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Tw-WNK">
-                    <rect key="frame" x="85" y="0.0" width="180" height="56"/>
+                    <rect key="frame" x="80" y="0.0" width="190" height="51"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKH-4u-web">
-                            <rect key="frame" x="89" y="0.0" width="1" height="56"/>
+                            <rect key="frame" x="94" y="0.0" width="1" height="51"/>
                             <color key="backgroundColor" red="0.22352941176470587" green="0.25882352941176467" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="EVc-We-9ye"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omO-vk-ce0">
-                            <rect key="frame" x="0.0" y="0.0" width="85" height="56"/>
+                            <rect key="frame" x="0.0" y="0.0" width="85" height="51"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="travel_life-1" translatesAutoresizingMaskIntoConstraints="NO" id="vO2-H0-LuF">
-                                    <rect key="frame" x="28" y="8" width="30" height="30"/>
+                                    <rect key="frame" x="29" y="4" width="27" height="27"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="30" id="RFt-of-7wg"/>
-                                        <constraint firstAttribute="height" constant="30" id="hyN-hg-9bu"/>
+                                        <constraint firstAttribute="width" constant="27" id="RFt-of-7wg"/>
+                                        <constraint firstAttribute="height" constant="27" id="hyN-hg-9bu"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Life" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lo0-MV-Tpb">
-                                    <rect key="frame" x="15" y="36" width="55" height="17"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <rect key="frame" x="20" y="33" width="46" height="14"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="width" constant="85" id="2vi-oc-vOT"/>
-                                <constraint firstItem="lo0-MV-Tpb" firstAttribute="top" secondItem="vO2-H0-LuF" secondAttribute="bottom" constant="-2" id="575-Qi-NLD"/>
+                                <constraint firstItem="lo0-MV-Tpb" firstAttribute="top" secondItem="vO2-H0-LuF" secondAttribute="bottom" constant="2" id="575-Qi-NLD"/>
                                 <constraint firstItem="lo0-MV-Tpb" firstAttribute="centerX" secondItem="omO-vk-ce0" secondAttribute="centerX" id="5Ao-hL-dmo"/>
-                                <constraint firstItem="vO2-H0-LuF" firstAttribute="top" secondItem="omO-vk-ce0" secondAttribute="top" constant="8" id="92m-45-HSK"/>
+                                <constraint firstItem="vO2-H0-LuF" firstAttribute="top" secondItem="omO-vk-ce0" secondAttribute="top" constant="4" id="92m-45-HSK"/>
                                 <constraint firstItem="vO2-H0-LuF" firstAttribute="centerX" secondItem="omO-vk-ce0" secondAttribute="centerX" id="AuQ-Ln-e06"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ms-aO-Ww0">
-                            <rect key="frame" x="95" y="4" width="85" height="52"/>
+                            <rect key="frame" x="105" y="4" width="85" height="47"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="local_life-1" translatesAutoresizingMaskIntoConstraints="NO" id="fKj-pB-sz8">
-                                    <rect key="frame" x="28" y="4" width="30" height="30"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="local_life_icon" translatesAutoresizingMaskIntoConstraints="NO" id="fKj-pB-sz8">
+                                    <rect key="frame" x="25" y="-4" width="35" height="35"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="92P-yu-VU7"/>
-                                        <constraint firstAttribute="width" constant="30" id="MwN-uV-sJY"/>
+                                        <constraint firstAttribute="height" constant="35" id="92P-yu-VU7"/>
+                                        <constraint firstAttribute="width" constant="35" id="MwN-uV-sJY"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Local Life" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLk-5z-Wxu">
-                                    <rect key="frame" x="17" y="32" width="51" height="17"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <rect key="frame" x="21" y="29" width="43" height="14"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="fKj-pB-sz8" firstAttribute="top" secondItem="8ms-aO-Ww0" secondAttribute="top" constant="4" id="INz-8z-Dua"/>
+                                <constraint firstItem="fKj-pB-sz8" firstAttribute="top" secondItem="8ms-aO-Ww0" secondAttribute="top" constant="-4" id="INz-8z-Dua"/>
                                 <constraint firstItem="LLk-5z-Wxu" firstAttribute="centerX" secondItem="8ms-aO-Ww0" secondAttribute="centerX" id="Vla-L1-cZl"/>
                                 <constraint firstItem="fKj-pB-sz8" firstAttribute="centerX" secondItem="8ms-aO-Ww0" secondAttribute="centerX" id="w2Z-T3-Acw"/>
                                 <constraint firstAttribute="width" constant="85" id="x2t-EO-LhE"/>
@@ -173,7 +173,7 @@
                         <constraint firstItem="8ms-aO-Ww0" firstAttribute="top" secondItem="8Sd-Tw-WNK" secondAttribute="top" constant="4" id="SUm-fz-n1l"/>
                         <constraint firstAttribute="bottom" secondItem="8ms-aO-Ww0" secondAttribute="bottom" id="UnQ-Th-Q3V"/>
                         <constraint firstItem="kKH-4u-web" firstAttribute="top" secondItem="8Sd-Tw-WNK" secondAttribute="top" id="ore-mU-jAu"/>
-                        <constraint firstAttribute="width" constant="180" id="sdB-Rv-1KH"/>
+                        <constraint firstAttribute="width" constant="190" id="sdB-Rv-1KH"/>
                         <constraint firstAttribute="bottom" secondItem="kKH-4u-web" secondAttribute="bottom" id="wlw-W6-Nvd"/>
                     </constraints>
                 </view>
@@ -194,7 +194,7 @@
     </objects>
     <resources>
         <image name="feed" width="100" height="100"/>
-        <image name="local_life-1" width="100" height="100"/>
+        <image name="local_life_icon" width="30" height="19"/>
         <image name="notifications" width="100" height="100"/>
         <image name="travel_life-1" width="100" height="100"/>
     </resources>

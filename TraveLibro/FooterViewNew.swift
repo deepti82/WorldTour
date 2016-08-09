@@ -28,7 +28,7 @@ class FooterViewNew: UIView {
             
         }
         
-        upperMainView.layer.cornerRadius = 18
+        upperMainView.layer.cornerRadius = 15
         upperMainView.layer.borderWidth = 2.0
         upperMainView.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 1).CGColor
         
