@@ -8,6 +8,7 @@
 
 import UIKit
 import Contacts
+import Simplicity
 
 let contactsObject = CNContactStore()
 let mainBlueColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1) // #232D4A
@@ -130,25 +131,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
         
-        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
     }
     
-    func application(application: UIApplication,
-                     openURL url: NSURL,
-                             sourceApplication: String?,
-                             annotation: AnyObject) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(
-            application,
-            openURL: url,
-            sourceApplication: sourceApplication,
-            annotation: annotation)
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        
+        return Simplicity.application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        
-        print("this function is getting called!!")
-        
-    }
+//    func application(application: UIApplication,
+//                     openURL url: NSURL,
+//                             sourceApplication: String?,
+//                             annotation: AnyObject) -> Bool {
+//        return FBSDKApplicationDelegate.sharedInstance().application(
+//            application,
+//            openURL: url,
+//            sourceApplication: sourceApplication,
+//            annotation: annotation)
+//    }
+    
+//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+//        
+//        print("this function is getting called!!")
+//        
+//    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

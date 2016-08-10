@@ -10,7 +10,7 @@ import UIKit
 
 class SignInToolbar: UIView {
 
-    @IBOutlet weak var fbButton: FBSDKLoginButton!
+    @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var twitterButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
     

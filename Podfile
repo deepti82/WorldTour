@@ -12,6 +12,7 @@ target 'TraveLibro' do
   pod 'SwiftyJSON'
   pod "TabPageViewController"
   pod 'SwiftHTTP', '~> 1.0.3'
+  pod 'Simplicity'
 #  pod 'Alamofire', '~> 3.4'
   #  pod 'SQLite.swift', '~> 0.9.2'
   # Pods for TraveLibro

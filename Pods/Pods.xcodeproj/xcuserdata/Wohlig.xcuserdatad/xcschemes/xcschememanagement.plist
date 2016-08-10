@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Alamofire.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>BSGridCollectionViewLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -49,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Simplicity.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftHTTP.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,11 +77,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>11B6CA3B3BA4E92803E02317E3EFA9DD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>186526C95A6E6A368E316AEBD475C8CB</key>
 		<dict>
 			<key>primary</key>
@@ -92,17 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4F83C282F960DDA81F22366DA9DF32C7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>57FB5C45606A8C1FE1EFF158F34B51BB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<key>665F46B2146A8A8C0AA8EB94700FB756</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +97,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9A545AF923F0623F01BA7171D5994CDC</key>
+		<key>93B971167E3EB4967454FD4380950601</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B2FB9025485E77145AABD6DDFC4F690C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BB4F22B34277C55CF4798BD7E75661E3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -128,6 +123,11 @@
 			<true/>
 		</dict>
 		<key>E26FA831B9756686008CB4E41138D419</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F3C7CFC3A4A996885262DF7969C01432</key>
 		<dict>
 			<key>primary</key>
 			<true/>
