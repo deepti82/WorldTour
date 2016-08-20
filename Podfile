@@ -13,6 +13,11 @@ target 'TraveLibro' do
   pod "TabPageViewController"
   pod 'SwiftHTTP', '~> 1.0.3'
   pod 'Simplicity'
+  pod 'Fabric'
+  pod 'TwitterKit'
+  pod 'TwitterCore'
+  pod 'SQLite.swift', '~> 0.10.1'
+  pod 'DKImagePickerController'
 #  pod 'Alamofire', '~> 3.4'
   #  pod 'SQLite.swift', '~> 0.9.2'
   # Pods for TraveLibro

@@ -18,6 +18,8 @@ class KindOfJourneyOTGViewController: UIViewController {
     var selectedIndexG2 = 1
     var selectedIndexG3 = 1
     
+    var backVC: NewTLViewController!
+    
     @IBOutlet var groupThreeCategoryButtons: [UIButton]!
     @IBOutlet var groupTwoCategoryButtons: [UIButton]!
     @IBOutlet var groupOneCategoryButtons: [UIButton]!
@@ -27,15 +29,19 @@ class KindOfJourneyOTGViewController: UIViewController {
         
         getBackGround(self)
         
+        let allControllers = self.navigationController?.viewControllers
+        backVC = allControllers![allControllers!.count - 2] as! NewTLViewController
+        backVC.journeyCategories = []
+        
         doneButton.addTarget(self, action: #selector(KindOfJourneyOTGViewController.categoriesSelected(_:)), forControlEvents: .TouchUpInside)
         doneButton.layer.cornerRadius = 5
         
         for button in groupOneCategoryButtons {
             
-            indexGroupOne += 1
+//            indexGroupOne += 1
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), forControlEvents: .TouchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-            button.tag = indexGroupOne
+//            button.tag = indexGroupOne
             
         }
         
@@ -43,19 +49,19 @@ class KindOfJourneyOTGViewController: UIViewController {
         
         for button in groupTwoCategoryButtons {
             
-            indexGroupTwo += 1
+//            indexGroupTwo += 1
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), forControlEvents: .TouchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-            button.tag = indexGroupTwo
+//            button.tag = indexGroupTwo
             
         }
         
         for button in groupThreeCategoryButtons {
             
-            indexGroupThree += 1
+//            indexGroupThree += 1
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), forControlEvents: .TouchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-            button.tag = indexGroupThree
+//            button.tag = indexGroupThree
             
         }
         
@@ -64,61 +70,121 @@ class KindOfJourneyOTGViewController: UIViewController {
     
     func categoriesSelected(sender: UIButton) {
         
-//        let backVC = storyboard?.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
-//        backVC.view.setNeedsDisplay()
-        self.navigationController?.popViewControllerAnimated(true)
+        if backVC.journeyCategories.count == 0 {
+            
+            let alert = UIAlertController(title: "Invalid input", message: "You need to select atleast one category", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
+        else {
+            
+            backVC.showDetailsFn()
+            self.navigationController?.popViewControllerAnimated(true)
+            
+        }
+        
 //        self.navigationController?.pushViewController(backVC, animated: true)
         
     }
     
     func selectGroupOne(sender: UIButton) {
         
-        for button in groupOneCategoryButtons {
-            
-            if selectedIndexG1 == button.tag {
-                
-                button.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
-                
-            }
-            
+//        for button in groupOneCategoryButtons {
+//            
+//            if selectedIndexG1 == button.tag {
+//                
+//                button.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
+//                
+//            }
+//            
+//        }
+//        
+//        selectedIndexG1 = sender.tag
+        if sender.tag == 0 {
+            backVC.journeyCategories.append(sender.titleLabel!.text!)
+            print("element added: \(backVC.journeyCategories)")
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            sender.tag = 1
         }
         
-        selectedIndexG1 = sender.tag
-        sender.setBackgroundImage(UIImage(named: "green_bg_new_small"), forState: .Normal)
+        else {
+            
+//            for buttonTitle in backVC.journeyCategories {
+//                
+//                if buttonTitle == sender.titleLabel?.text {
+//                    
+//                    
+//                }
+//                
+//            }
+            
+            backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
+            print("element removed: \(backVC.journeyCategories)")
+            sender.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
+            sender.tag = 0
+        }
+        
         
     }
     
     func selectGroupTwo(sender: UIButton) {
         
-        for button in groupTwoCategoryButtons {
+        if sender.tag == 0 {
+            backVC.journeyCategories.append(sender.titleLabel!.text!)
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            sender.tag = 1
+        }
             
-            if selectedIndexG2 == button.tag {
-                
-                button.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
-                
-            }
+        else {
+            backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
+            sender.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
+            sender.tag = 0
             
         }
         
-        selectedIndexG2 = sender.tag
-        sender.setBackgroundImage(UIImage(named: "green_bg_new_small"), forState: .Normal)
+//        for button in groupTwoCategoryButtons {
+//            
+//            if selectedIndexG2 == button.tag {
+//                
+//                button.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
+//                
+//            }
+//            
+//        }
+//        
+//        selectedIndexG2 = sender.tag
+//        sender.setBackgroundImage(UIImage(named: "green_bg_new_small"), forState: .Normal)
         
     }
     
     func selectGroupThree(sender: UIButton) {
         
-        for button in groupThreeCategoryButtons {
+        if sender.tag == 0 {
+            backVC.journeyCategories.append(sender.titleLabel!.text!)
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            sender.tag = 1
+        }
             
-            if selectedIndexG3 == button.tag {
-                
-                button.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
-                
-            }
+        else {
+            backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
+            sender.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
+            sender.tag = 0
             
         }
         
-        selectedIndexG3 = sender.tag
-        sender.setBackgroundImage(UIImage(named: "green_bg_new_small"), forState: .Normal)
+//        for button in groupThreeCategoryButtons {
+//            
+//            if selectedIndexG3 == button.tag {
+//                
+//                button.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
+//                
+//            }
+//            
+//        }
+//        
+//        selectedIndexG3 = sender.tag
+//        sender.setBackgroundImage(UIImage(named: "green_bg_new_small"), forState: .Normal)
         
     }
     
@@ -126,16 +192,5 @@ class KindOfJourneyOTGViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

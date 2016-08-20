@@ -1,11 +1,3 @@
-//
-//  SelectGenderViewController.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 02/07/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 
 class SelectGenderViewController: UIViewController {
@@ -26,16 +18,31 @@ class SelectGenderViewController: UIViewController {
         
         self.customNavigationBar(leftButton, right: rightButton)
         
+        print("current gender: \(currentUser["gender"].string!)")
+        
+        let f = GenderInfo() 
+        f.setNeedsDisplay()
         
         let gender = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
         gender.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        if currentUser["gender"].string! == "female" {
+
+            gender.sheButtonTap(nil)
+
+        }
+
+        else {
+
+            gender.heButtonTap(nil)
+            
+        }
         self.view.addSubview(gender)
         
-
-        // Do any additional setup after loading the view.
     }
     
     func gotoDP(sender: UIButton) {
+        
+        //Add edit data request here
         
         let dpVC = storyboard?.instantiateViewControllerWithIdentifier("setDp") as! SetProfilePictureViewController
         self.navigationController?.pushViewController(dpVC, animated: true)

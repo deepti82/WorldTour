@@ -693,7 +693,6 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
-				C2FA1E1A1D5498380034DE97 /* QIViewController.swift */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
@@ -810,7 +809,6 @@
 				C20A39941CE348D3002EF1E6 /* Footer */,
 				C2EA3A1C1CDB81CE00122941 /* TypeOfJourney */,
 				C2EA3A171CDB3BE300122941 /* TextField */,
-				C2EA3A0E1CDB1E6400122941 /* TextLabel */,
 				C2776A291CD7863F00FE066A /* ShoesOTG */,
 				C2776A261CD77DEE00FE066A /* DrawLineOTG */,
 				1A3E4DC41CD396C600105C3D /* TripSummaryProfile */,
@@ -834,6 +832,7 @@
 		1A944E3B1CCB5D79007EB5BD /* OrangeButton */ = {
 			isa = PBXGroup;
 			children = (
+				C2EA3A0E1CDB1E6400122941 /* TextLabel */,
 				1A944E3C1CCB5D92007EB5BD /* OrangeButton.xib */,
 				1A944E431CCB668C007EB5BD /* OrangeButton.swift */,
 			);
@@ -1233,6 +1232,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C2FA1E1A1D5498380034DE97 /* QIViewController.swift */,
 				C29767171D50D65200428269 /* ListPhotosViewController.swift */,
 				C266AA161D4B75B300174612 /* AllJourneysViewController.swift */,
 				C24909B51D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift */,
@@ -1749,6 +1749,7 @@
 				1A944E021CCB4567007EB5BD /* Resources */,
 				3B7A621079EFA3061E0940AD /* [CP] Embed Pods Frameworks */,
 				48FC31CC8594F2E97A6F96C6 /* [CP] Copy Pods Resources */,
+				C24246BA1D5DA67E0020199E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1999,7 +2000,7 @@
 		};
 		3E39950EFBBFFDBD6411ED41 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -2071,6 +2072,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C24246BA1D5DA67E0020199E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" d1853efb9228168c98a6d8a3ddb72c47d4067e68 badc8eba1d25c75c57c69a92773dbb878b4e9aff67c4575acd9e3a2e73e5b698";
 		};
 		DB475C85160DBE9607A2E0CA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

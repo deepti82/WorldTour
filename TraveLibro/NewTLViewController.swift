@@ -8,8 +8,13 @@
 
 import UIKit
 import EventKitUI
+import SwiftyJSON
+import BSImagePicker
+import DKImagePickerController
+import Photos
+import CoreLocation
 
-class NewTLViewController: UIViewController, UITextFieldDelegate {
+class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var height: CGFloat!
     var otgView: startOTGView!
@@ -18,6 +23,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
     var infoView: TripInfoOTG!
     var addPosts: AddPostsOTGView!
     var addNewView: NewQuickItinerary!
+    
+    var journeyName: String!
+    var locationData: String!
+    let locationManager = CLLocationManager()
+    var locValue:CLLocationCoordinate2D!
+    var journeyCategories = [String] ()
+    var currentTime: String!
+    
+    var journeyId: String!
+    
+    var addedBuddies: [JSON]!
+    
     
     @IBOutlet weak var addPostsButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
@@ -89,11 +106,134 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func writeImageToFile(path: String, completeBlock: (success: Bool) -> Void) {
+        
+//        request.uploadPhotos(NSURL(fileURLWithPath: path), completion: {(response) in
+//
+//            print("response: \(response)")
+//            completeBlock(success: true)
+//
+//        })
+        
+    }
+    
+    let imagePicker = UIImagePickerController()
+    
     func addPhotosTL(sender: UIButton) {
         
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        let deleteAction = UIAlertAction(title: "Take Photos", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = .Camera
+//            imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+            
+        })
+        let saveAction = UIAlertAction(title: "Photos Library", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            let multipleImage = BSImagePickerViewController()
+            multipleImage.maxNumberOfSelections = 200
+            
+            self.bs_presentImagePickerController(multipleImage, animated: true,
+                select: { (asset:PHAsset) -> Void in
+//                    print("Selected: \(asset)")
+                }, deselect: { (asset: PHAsset) -> Void in
+//                    print("Deselected: \(asset)")
+                }, cancel: { (assets: [PHAsset]) -> Void in
+//                    print("Cancel: \(assets)")
+                }, finish: { (assets: [PHAsset]) -> Void in
+                    
+                    print("Finish: \(assets)")
+                    
+                    for image in assets {
+                        
+                        PHImageManager.defaultManager().requestImageDataForAsset(image, options: nil) {
+                            imageData,dataUTI,orientation,info in
+                            let imageURL = info!["PHImageFileURLKey"] as! NSURL
+                            print("imageURL: \(imageURL)")
+                            
+                            request.uploadPhotos(imageURL, completion: {(response) in
+                                
+                                print("response arrived!")
+                                
+                            })
+                            
+                        }
+                        
+                    }
+                    
+                    
+                    
+                }, completion: nil)
+            
+//            let pickerController = DKImagePickerController()
+            
+//            pickerController.didSelectAssets = {(assets: [DKAsset]) in
+//                
+//                print("didSelectAssets")
+//                print(assets)
+//                
+//                
+////                for image in assets {
+//////                    var info: [NSObject : AnyObject]
+//////                    let tempImage = info[image] as! UIImage
+////                    
+//////                    print("partial path: \(resourcePath)")
+////                    if let resourcePath = NSBundle.mainBundle().resourcePath {
+//////                        print("partial path: \(resourcePath)")
+//////                        let imgName = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+//////                        print("name: \(imgName)")
+////                        
+//////                        let imagename = "IMG_kdslkglkd_dngslgldnsgls_001.jpg"
+//////                        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+//////                        let destinationPath = String(documentsPath) + "/" + imagename
+////////                        UIImageJPEGRepresentation(image,1.0)!.writeToFile(destinationPath, atomically: true)
+//////                        
+//////                        print(destinationPath);
+////                        let imageData: NSData = UIImagePNGRepresentation(image)
+////                        self.writeImageToFile(, completeBlock: {(response) in
+////                            
+////                            print("response: \(response)")
+////                            
+////                        })
+//////                        let path = resourcePath + "/" + imgName
+//////                        print("path: \(path)")
+////                        
+////                    }
+////                    
+////                }
+//                
+//            }
+            
+//            self.presentViewController(multipleImage, animated: true) {}
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
         
         
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(saveAction)
+        optionMenu.addAction(cancelAction)
         
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+        
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        print("image: \(image)")
+        print("imageName: \(image.CIImage)")
+    
     }
     
     func addCheckInTL(sender: UIButton) {
@@ -110,15 +250,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         getBackGround(self)
         height = self.view.frame.height/2
         
-        mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height - height, width: self.view.frame.width, height: self.view.frame.height))
-//        mainScroll.backgroundColor = UIColor.whiteColor()
+        imagePicker.delegate = self
+        
+        mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height))
+        
+        let line = drawLine(frame: CGRect(x: self.view.frame.size.width/2, y: 17.5, width: 10, height: mainScroll.frame.height))
+        line.backgroundColor = UIColor.clearColor()
+        mainScroll.addSubview(line)
         
         otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 600))
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), forControlEvents: .TouchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), forControlEvents: .TouchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), forControlEvents: .TouchUpInside)
-        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
+//        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
         otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), forControlEvents: .TouchUpInside)
+        
+        otgView.locationLabel.returnKeyType = .Done
+        otgView.locationLabel.delegate = self
+        
+        mainScroll.animation.makeFrame(CGRect(x: 0, y: mainScroll.frame.origin.y - height, width: mainScroll.frame.width, height: mainScroll.frame.height)).animate(0.3)
+        line.animation.makeFrame(CGRect(x: self.view.frame.size.width/2, y: 17.5, width: line.frame.width, height: line.frame.height)).animate(0.3)
         
         if !showDetails {
             
@@ -189,16 +340,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         otgView.nameJourneyTF.resignFirstResponder()
-//        otgView.nameJourneyTF.hidden = true
-        otgView.nameJourneyView.hidden = true
-        otgView.journeyName.hidden = false
-        otgView.journeyName.text = otgView.nameJourneyTF.text
-        height = 100.0
-        mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
-//        otgView.animation.makeY(mainScroll.frame.origin.y - height).animate(0.5)
-        otgView.detectLocationView.layer.opacity = 0.0
-        otgView.detectLocationView.hidden = false
-        otgView.detectLocationView.animation.thenAfter(0.5).makeOpacity(1.0).animate(0.5)
+        otgView.locationLabel.resignFirstResponder()
+        print("text field: \(textField)")
+        
+        if textField == otgView.nameJourneyTF {
+            
+            otgView.nameJourneyTF.hidden = true
+            otgView.nameJourneyView.hidden = true
+            otgView.journeyName.hidden = false
+            otgView.journeyName.text = otgView.nameJourneyTF.text
+            journeyName = otgView.nameJourneyTF.text
+            
+            height = 100.0
+            mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
+    //        otgView.animation.makeY(mainScroll.frame.origin.y - height).animate(0.5)
+            otgView.detectLocationView.layer.opacity = 0.0
+            otgView.detectLocationView.hidden = false
+            otgView.detectLocationView.animation.thenAfter(0.5).makeOpacity(1.0).animate(0.5)
+            
+        }
+        
         return true
         
     }
@@ -224,28 +385,116 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
         print("inside journey category button")
         let categoryVC = storyboard?.instantiateViewControllerWithIdentifier("kindOfJourneyVC") as! KindOfJourneyOTGViewController
         self.navigationController?.pushViewController(categoryVC, animated: true)
-        showDetailsFn()
+//        showDetailsFn()
         
     }
     
     func showDetailsFn() {
         
-            otgView.selectCategoryButton.hidden = true
-            otgView.journeyDetails.hidden = false
-            otgView.buddyStack.hidden = true
-//            otgView.buddyStack.userInteractionEnabled = false
-            otgView.addBuddiesButton.hidden = false
+        request.addNewOTG(otgView.nameJourneyTF.text!, userId: "57aed01c06b0c1ee11680999", startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error?.localizedDescription)")
+                }
+                    
+                else {
+                    
+                    print("response: \(response)")
+                    self.journeyId = response["data"]["uniqueId"].string!
+                    print("unique id: \(self.journeyId)")
+                }
+            })
+        })
+        
+//        print("here 1")
+        var kindOfJourneyStack: [String] = []
+        
+        for i in 0 ..< journeyCategories.count {
+            
+            switch journeyCategories[i] {
+            case "adventure":
+                kindOfJourneyStack.append("adventure")
+            case "backpacking":
+                kindOfJourneyStack.append("backpacking")
+            case "business":
+                kindOfJourneyStack.append("business_new")
+            case "religious":
+                kindOfJourneyStack.append("religious")
+            case "romance":
+                kindOfJourneyStack.append("romance")
+            case "budget":
+                kindOfJourneyStack.append("luxury")
+            case "luxury":
+                kindOfJourneyStack.append("luxury_new")
+            case "family":
+                kindOfJourneyStack.append("family")
+            case "friends":
+                kindOfJourneyStack.append("friends")
+            case "solo":
+                kindOfJourneyStack.append("solo")
+            case "better half":
+                kindOfJourneyStack.append("partner")
+            case "colleague":
+                kindOfJourneyStack.append("colleague")
+            default:
+                break
+            }
+            
+        }
+        
+        if journeyCategories.count == 1 {
+            
+            otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+            otgView.journeyCategoryTwo.hidden = true
+            otgView.journeyCategoryThree.hidden = true
+            
+        }
+        
+        else if journeyCategories.count == 2 {
+            
+            otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+            otgView.journeyCategoryThree.hidden = true
+            
+        }
+        
+        else {
+            
+            otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+            otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+            
+        }
+        
+//        print("here 2")
+        
+        otgView.selectCategoryButton.hidden = true
+        otgView.journeyDetails.hidden = false
+        otgView.buddyStack.hidden = true
+        otgView.addBuddiesButton.hidden = false
         
     }
     
+    var countLabel: Int!
+    var dpOne: String!
+    var dpTwo: String!
+    var dpThree: String!
+    
+    
     func addBuddies(sender: UIButton) {
         
-        let addBuddies = storyboard?.instantiateViewControllerWithIdentifier("kindOfJourneyVC") as! KindOfJourneyOTGViewController
+//        print("here 3")
+        
+        let addBuddies = storyboard?.instantiateViewControllerWithIdentifier("addBuddies") as! AddBuddiesViewController
+        addBuddies.whichView = "TL"
+        addBuddies.uniqueId = journeyId
         self.navigationController?.pushViewController(addBuddies, animated: true)
-        showBuddies()
+//        showBuddies()
 //        mainScroll.layer.zPosition = -1
-        infoButton.hidden = false
-        addPostsButton.hidden = false
+//
         
     }
     
@@ -253,8 +502,97 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
     
     func showBuddies() {
         
+        for i in 0 ..< countLabel {
+            
+            let imageUrl = addedBuddies[i]["profilePicture"].string!
+            
+            let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+            
+            if imageData != nil {
+
+                otgView.buddyStackPictures[i].image = UIImage(data:imageData!)
+            }
+            
+            
+//            if imageData != nil  && i == 0 {
+//                
+//                otgView.dpFriendOne.image =
+//            }
+//                
+//            else if imageData != nil  && i == 1 {
+//                
+//                otgView.dpFriendTwo.image = UIImage(data:imageData!)
+//            }
+//                
+//            else if imageData != nil  && i == 2 {
+//                
+//                otgView.dpFriendThree.image = UIImage(data:imageData!)
+//            }
+            
+        }
+        
+        switch countLabel {
+        case 0:
+            otgView.dpFriendOne.removeFromSuperview()
+            otgView.dpFriendTwo.removeFromSuperview()
+            otgView.dpFriendThree.removeFromSuperview()
+            otgView.journeyBuddiesCount.removeFromSuperview()
+            break
+        case 1:
+            otgView.dpFriendTwo.removeFromSuperview()
+            otgView.dpFriendThree.removeFromSuperview()
+            otgView.journeyBuddiesCount.removeFromSuperview()
+            break
+        case 2:
+            otgView.dpFriendThree.removeFromSuperview()
+            otgView.journeyBuddiesCount.removeFromSuperview()
+            break
+        case 3:
+            otgView.journeyBuddiesCount.removeFromSuperview()
+            break
+        default:
+            let remainingCount = countLabel - 3
+            otgView.journeyBuddiesCount.text = "+\(remainingCount)"
+            break
+        }
+        
+//        if countLabel > 3 {
+//            
+//            
+//            
+//            
+//            
+//        }
+//        else if countLabel == 3 {
+//            
+//            
+//            
+//            
+//        }
+//        else if countLabel == 1 {
+//            
+//            
+//            
+//        }
+//        else if countLabel == 2 {
+//            
+//            
+//        }
+//        else if countLabel == 0 {
+//            
+//            
+//            
+//            
+//        }
+        
+//        otgView.dpFriendOne.image = UIImage(named: "")
+//        otgView.dpFriendTwo.image = UIImage(named: "")
+//        otgView.dpFriendThree.image = UIImage(named: "")
+        
         otgView.buddyStack.hidden = false
         otgView.addBuddiesButton.hidden = true
+        infoButton.hidden = false
+        addPostsButton.hidden = false
         
     }
     
@@ -266,17 +604,75 @@ class NewTLViewController: UIViewController, UITextFieldDelegate {
     
     func detectLocation(sender: AnyObject) {
         
-        otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.5)
-        otgView.detectLocationView.hidden = true
-        otgView.cityView.layer.opacity = 0.0
-        otgView.cityView.hidden = false
-        otgView.cityView.animation.makeOpacity(1.0).animate(0.5)
-        otgView.journeyDetails.hidden = true
-        otgView.selectCategoryButton.hidden = false
-        height = 250.0
-        mainScroll.animation.makeY(60.0).animate(0.7)
-        otgView.animation.makeY(0.0).animate(0.7)
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startMonitoringSignificantLocationChanges()
+        
+//        print("location: \(locationManager)")
         
     }
-
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+            
+                if (response.error != nil) {
+                
+                    print("error: \(response.error?.localizedDescription)")
+                
+                }
+                
+                else {
+                
+                    print("response: \(response)")
+                    self.locationData = response["data"].string
+                    print("location: \(self.locationData)")
+                
+                    if self.locationData != nil {
+                    
+//                    let dateFormatterOne = NSDateFormatter()
+////                    dateFormatter.dateFormat = "YYYY-MM-DD"
+//                    
+//                    
+//                    dateFormatterOne.dateStyle = .LongStyle
+//                    let currentDate = dateFormatterOne.stringFromDate(NSDate())
+//                    print("date: \(currentDate)")
+                        
+                    let dateFormatterTwo = NSDateFormatter()
+                    dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+                    self.currentTime = dateFormatterTwo.stringFromDate(NSDate())
+                    print("time: \(self.currentTime)")
+                        
+                    self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.5)
+                    self.otgView.detectLocationView.hidden = true
+                    self.otgView.placeLabel.text = self.locationData
+                    self.otgView.timestampDate.text = self.currentTime
+                    //                    self.otgView.timestampTime.text =
+                    self.otgView.cityView.layer.opacity = 0.0
+                    self.otgView.cityView.hidden = false
+                    self.otgView.cityView.animation.makeOpacity(1.0).animate(0.5)
+                    self.otgView.journeyDetails.hidden = true
+                    self.otgView.selectCategoryButton.hidden = false
+                    self.height = 250.0
+                    self.mainScroll.animation.makeY(60.0).animate(0.7)
+                    self.otgView.animation.makeY(0.0).animate(0.7)
+                    
+                    }
+            
+                }
+            })
+        })
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        
+        print("Error while updating location " + error.localizedDescription)
+        
+    }
 }

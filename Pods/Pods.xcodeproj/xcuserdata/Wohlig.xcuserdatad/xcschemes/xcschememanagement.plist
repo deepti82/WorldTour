@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DKImagePickerController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PageMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -40,6 +45,11 @@
 			<false/>
 		</dict>
 		<key>Pods-TraveLibroUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SQLite.swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -87,27 +97,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>665F46B2146A8A8C0AA8EB94700FB756</key>
+		<key>2C9159171062AA871A86658325A57106</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>54DC251075B802EDCCBC786DF5547884</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5F93D4FC23813E69160CB5558A1F2907</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6731717913DA0F108F206CAEFE14F617</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7116AA14740A17264FF47B18C2B67020</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>8AA3DDB8797222294E1288CB197A8347</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>93B971167E3EB4967454FD4380950601</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B2FB9025485E77145AABD6DDFC4F690C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BB4F22B34277C55CF4798BD7E75661E3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,7 +142,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F3C7CFC3A4A996885262DF7969C01432</key>
+		<key>E7A1D146E567D7DE803B330EC60CC682</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F63A518B9F08C7D2EBE9E7682A6F7029</key>
 		<dict>
 			<key>primary</key>
 			<true/>

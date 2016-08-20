@@ -25,12 +25,25 @@ class startOTGView: UIView {
     @IBOutlet weak var nameJourneyView: UIView!
     @IBOutlet weak var startJourneyButton: UIButton!
     @IBOutlet weak var nameJourneyTF: UITextField!
-    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var locationLabel: UITextField!
     @IBOutlet weak var detectLocationButton: UIButton!
     @IBOutlet weak var buddyStack: UIStackView!
-    @IBOutlet weak var calendarIcon: UILabel!
-    @IBOutlet weak var clockIcon: UILabel!
+    @IBOutlet weak var placeLabel: UILabel!
+//    @IBOutlet weak var calendarIcon: UILabel!
+//    @IBOutlet weak var clockIcon: UILabel!
     @IBOutlet weak var bonVoyageLabel: UILabel!
+    @IBOutlet weak var timestampDate: UILabel!
+//    @IBOutlet weak var timestampTime: UILabel!
+    @IBOutlet weak var journeyCategoryOne: UIImageView!
+    @IBOutlet weak var journeyCategoryTwo: UIImageView!
+    @IBOutlet weak var journeyCategoryThree: UIImageView!
+    
+    @IBOutlet weak var dpFriendOne: UIImageView!
+    @IBOutlet weak var dpFriendTwo: UIImageView!
+    @IBOutlet weak var dpFriendThree: UIImageView!
+    
+    @IBOutlet var buddyStackPictures: [UIImageView]!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,8 +65,10 @@ class startOTGView: UIView {
         nameJourneyView.layer.shadowOpacity = 0.5
         nameJourneyView.layer.shadowRadius = 1.0
         
-        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
-        clockIcon.text = String(format: "%C", faicon["clock"]!)
+//        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+//        clockIcon.text = String(format: "%C", faicon["clock"]!)
+        
+        locationLabel.attributedPlaceholder = NSAttributedString(string: "Detect Location", attributes: [NSForegroundColorAttributeName: mainBlueColor])
         
         detectLocationView.layer.cornerRadius = 5
         detectLocationView.layer.shadowColor = UIColor.lightGrayColor().CGColor

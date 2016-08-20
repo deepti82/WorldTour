@@ -9,6 +9,9 @@
 import UIKit
 import Contacts
 import Simplicity
+import Fabric
+import TwitterKit
+import SQLite
 
 let contactsObject = CNContactStore()
 let mainBlueColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1) // #232D4A
@@ -32,15 +35,37 @@ var notificationsViewController: UIViewController!
 var travelLifeViewController: UIViewController!
 
 var hasLoggedInOnce = false
+var onlyOnce = true
 
-let navigation = Navigation()
+let request = Navigation()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    static func getDatabase () -> Connection {
+        
+        let path = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true
+            ).first!
+        let db = try! Connection("\(path)/db.sqlite3")
+        if(onlyOnce)
+        {
+            onlyOnce = false
+            print(path)
+        }
+        return db;
+        
+    }
+    
     internal func createMenuView() {
+        
+//        let path = NSSearchPathForDirectoriesInDomains(
+//            .DocumentDirectory, .UserDomainMask, true
+//            ).first!
+//        
+//        _ = Connection("\(path)/db.sqlite3")
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var nvc: UINavigationController!
@@ -88,6 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         createMenuView()
+        AppDelegate.getDatabase()
         
         faicon["clock"] = 0xf017
         faicon["calendar"] = 0xf073
@@ -130,6 +156,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let image = UIImage(named: "adventure_icon")
 
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
+        
+        Fabric.with([Twitter.self])
         
         return true
     }

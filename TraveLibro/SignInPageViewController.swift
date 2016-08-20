@@ -90,7 +90,7 @@ class SignInPageViewController: UIViewController, UITextFieldDelegate {
         if pageView.textField1.text!.isEmpty {
             
 //            print("first name is empty")
-            let alertController = UIAlertController(title: "Error!", message: "First Name cannot be blank", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Error!", message: "Email cannot be blank", preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             presentViewController(alertController, animated: true, completion: nil)
 //            EXIT_SUCCESS
@@ -99,7 +99,7 @@ class SignInPageViewController: UIViewController, UITextFieldDelegate {
         else if pageView.textField2.text!.isEmpty {
             
 //            print("first name is empty")
-            let alertController = UIAlertController(title: "Error!", message: "Last Name cannot be blank", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Error!", message: "Password cannot be blank", preferredStyle: .Alert)
             alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             presentViewController(alertController, animated: true, completion: nil)
             //            EXIT_SUCCESS

@@ -11,6 +11,8 @@ import UIKit
 class SetProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let imagePicker = UIImagePickerController()
+    var uploadView: AddDisplayPic!
+    var tempImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +31,13 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
         self.customNavigationBar(leftButton, right: rightButton)
         
-        let uploadView = AddDisplayPic(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
+        uploadView = AddDisplayPic(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
         uploadView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
         self.view.addSubview(uploadView)
         
         uploadView.addButton.addTarget(self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)), forControlEvents: .TouchUpInside)
         
+        imagePicker.delegate = self
         
     }
     
@@ -60,7 +63,10 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
             
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = .Camera
-            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+            self.presentViewController(self.imagePicker, animated: true, completion: {
+                
+                print("photo taken")
+            })
             
         }
         chooseSource.addAction(saveActionButton)
@@ -70,28 +76,55 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
             
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = .PhotoLibrary
-            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+            self.presentViewController(self.imagePicker, animated: true, completion: {
+                
+                print("photo chosen")
+                
+            })
             
             
         }
         chooseSource.addAction(deleteActionButton)
         self.presentViewController(chooseSource, animated: true, completion: nil)
     }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        print(info)
+        
+        //var tempImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        tempImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        
+        uploadView.addButton.setImage(tempImage, forState: .Normal)
+        
+        self.dismissViewControllerAnimated(true, completion:nil)
+        
+        let imageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+        print("image url: \(imageUrl)")
+        
+        request.uploadPhotos(imageUrl, completion: {(response) in
 
+            print("response arrived!")
+
+        })
+        
+//        PHImageManager.defaultManager().requestImageDataForAsset(tempImage, options: nil) {
+//            imageData,dataUTI,orientation,info in
+//            let imageURL = info!["PHImageFileURLKey"] as! NSURL
+//            print("imageURL: \(imageURL)")
+//            
+//            request.uploadPhotos(imageURL, completion: {(response) in
+//                
+//                print("response arrived!")
+//                
+//            })
+//            
+//        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

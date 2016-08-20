@@ -55,13 +55,13 @@ class SignInFullView: UIView {
         
 //        textField1.borderStyle = .None
         textField1.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        textField1.attributedPlaceholder = NSAttributedString(string: "First Name", attributes: attributes)
+        textField1.attributedPlaceholder = NSAttributedString(string: "Email", attributes: attributes)
         textField1.leftView = UIView(frame: CGRectMake(0, 0, 15, self.textField1.frame.height))
         textField1.leftViewMode = .Always
         
 //        textField2.borderStyle = .None
         textField2.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        textField2.attributedPlaceholder = NSAttributedString(string: "Last Name", attributes: attributes)
+        textField2.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
         textField2.leftView = UIView(frame: CGRectMake(0, 0, 15, self.textField2.frame.height))
         textField2.leftViewMode = .Always
 

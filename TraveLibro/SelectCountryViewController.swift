@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class SelectCountryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
@@ -22,6 +23,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     @IBOutlet weak var mainTableView: UITableView!
     
+    var selectedNationality: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +72,16 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         searchFieldView.searchButton.addTarget(self, action: #selector(SelectCountryViewController.searchPlace(_:)), forControlEvents: .TouchUpInside)
         searchFieldView.searchField.delegate = self
         
+        
         if whichView == "selectNationality" {
             
-            searchFieldView.searchField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+            print("currentUser: \(currentUser)")
+            if currentUser["homeCountry"] != nil {
+                searchFieldView.searchField.text = currentUser["homeCountry"].string!
+            }
+            else {
+                searchFieldView.searchField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+            }
             
         }
         else {
@@ -94,8 +103,33 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     func chooseCity(sender: UIButton) {
         
-        signUpCityVC = storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
-        self.navigationController?.pushViewController(signUpCityVC, animated: true)
+        //Add did select functionality
+        
+//        request.editUser(currentUser["_id"].string!, editField: "homeCountry", editFieldValue: selectedNationality, completion: {(response) in
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                
+//                if response.error != nil {
+//                    
+//                    print("error: \(response.error?.localizedDescription)")
+//                }
+//                else if response["value"] == false {
+//                    
+//                    ("error: \(response["data"])")
+//                    
+//                }
+//                else {
+//                    
+//                    self.signUpCityVC = self.storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
+//                    self.navigationController?.pushViewController(self.signUpCityVC, animated: true)
+//                }
+//                
+//            })
+//        })
+        
+        self.signUpCityVC = self.storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
+        self.navigationController?.pushViewController(self.signUpCityVC, animated: true)
+        
         
     }
     
@@ -113,19 +147,20 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let selectedCountry = tableView.cellForRowAtIndexPath(indexPath)
+        let selectedCountry = tableView.cellForRowAtIndexPath(indexPath) as! CountriesTableViewCell
+        
         
         if whichView == "addCountries" {
             
-            if selectedCountry?.tintColor == mainOrangeColor {
+            if selectedCountry.tintColor == mainOrangeColor {
                 
-                selectedCountry?.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+                selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
                 
             }
                 
             else {
                 
-                selectedCountry?.tintColor = mainOrangeColor
+                selectedCountry.tintColor = mainOrangeColor
                 
             }
             
@@ -133,31 +168,31 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         else {
             
-            if selectedCountry?.tintColor == mainOrangeColor {
+            if selectedCountry.tintColor == mainOrangeColor {
                 
-                selectedCountry?.tintColor = UIColor.lightGrayColor()
-                //            selectedCountry?.backgroundColor = UIColor.lightGrayColor()
+                selectedCountry.tintColor = UIColor.lightGrayColor()
+                selectedNationality = ""
                 isSelected = false
                 
             }
                 
             else if isSelected == true {
                 
-                let prevSelected = tableView.cellForRowAtIndexPath(selectedIndex)
+                let prevSelected = tableView.cellForRowAtIndexPath(selectedIndex) as! CountriesTableViewCell
                 //            prevSelected?.backgroundColor = UIColor.lightGrayColor()
-                prevSelected?.tintColor = UIColor.lightGrayColor()
+                prevSelected.tintColor = UIColor.lightGrayColor()
                 
-                selectedCountry?.tintColor = mainOrangeColor
-                //            selectedCountry?.backgroundColor = mainOrangeColor
+                selectedCountry.tintColor = mainOrangeColor
+                selectedNationality = selectedCountry.countryName.text
                 selectedIndex = indexPath
             }
                 
             else {
                 
-                selectedCountry?.tintColor = mainOrangeColor
-                //            selectedCountry?.backgroundColor = mainOrangeColor
+                selectedCountry.tintColor = mainOrangeColor
                 selectedIndex = indexPath
                 isSelected = true
+                selectedNationality = selectedCountry.countryName.text
                 
             }
             
