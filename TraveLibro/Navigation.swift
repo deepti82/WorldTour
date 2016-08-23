@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import SwiftHTTP
 
-let adminUrl = "http://192.168.0.119:1337/"
+let adminUrl = "http://192.168.0.108:1337/"
 //let apiURL = "";
 
 class Navigation {
@@ -294,5 +294,33 @@ class Navigation {
         
         
     }
+    
+    func getAllCountries(completion: ((JSON) -> Void)) {
+        
+        do {
+            
+//            let params = ["file": Upload(fileUrl: file)]
+            
+            let opt = try HTTP.POST(adminUrl + "country/getAll", parameters: nil)
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+        
+    }
+    
     
 }

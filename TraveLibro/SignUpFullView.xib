@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInFullView" customModule="TraveLibro" customModuleProvider="target">
@@ -14,10 +13,11 @@
                 <outlet property="googleButton" destination="KM4-ql-gyK" id="4U8-Mz-ZqW"/>
                 <outlet property="googleLabel" destination="jFa-xN-QOy" id="su0-fS-L56"/>
                 <outlet property="googleStack" destination="7vv-RY-Jbl" id="qAc-FP-VCv"/>
-                <outlet property="loginBigButton" destination="hv2-e0-uBI" id="w08-xo-WTw"/>
+                <outlet property="instagramButton" destination="U0X-5g-FvS" id="mz9-ka-3V9"/>
+                <outlet property="instagramLabel" destination="U9C-bv-1U6" id="pLr-DT-7z9"/>
+                <outlet property="instagramStack" destination="8zA-Pa-Gvv" id="i7b-Pf-gyy"/>
                 <outlet property="loginButton" destination="2Mv-o3-7Em" id="nAx-Gi-Ike"/>
-                <outlet property="textField1" destination="8wH-Ai-zYb" id="V6m-NG-bBP"/>
-                <outlet property="textField2" destination="pVl-XU-bRg" id="taY-IV-qWb"/>
+                <outlet property="loginStack" destination="AAY-U4-wox" id="FuP-cT-CFV"/>
                 <outlet property="tncFooter" destination="KaA-bs-Eb3" id="9px-V2-NMq"/>
                 <outlet property="twitterButton" destination="yyD-bY-Rbd" id="FIT-p3-MtC"/>
                 <outlet property="twitterLabel" destination="ofP-ha-awf" id="Hg1-QE-dk8"/>
@@ -29,147 +29,159 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7vv-RY-Jbl">
-                    <rect key="frame" x="6" y="72" width="385" height="50"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ThA-U9-Fhv">
+                    <rect key="frame" x="10" y="135" width="380" height="230"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM4-ql-gyK">
-                            <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
-                            <color key="backgroundColor" red="0.8666666666666667" green="0.29411764705882354" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="j38-5m-035"/>
-                                <constraint firstAttribute="width" constant="60" id="ucE-23-Bqq"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
-                            <state key="normal" image="google_plus_icon"/>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up via Google Plus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFa-xN-QOy" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                            <rect key="frame" x="60" y="0.0" width="325" height="50"/>
-                            <color key="backgroundColor" red="0.8666666666666667" green="0.29411764705882354" blue="0.22352941176470587" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="325" id="bgc-sx-8ak"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48h-uC-mHb">
+                            <rect key="frame" x="0.0" y="0.0" width="380" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-fh-Q1A">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                                    <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="OSa-o4-RvM"/>
+                                        <constraint firstAttribute="width" constant="60" id="jTJ-ew-QuQ"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="15" minY="12" maxX="15" maxY="12"/>
+                                    <state key="normal" image="facebook_icon"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up via Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpE-TY-2ut" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
+                                    <rect key="frame" x="60" y="0.0" width="320" height="50"/>
+                                    <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="315" id="GLc-jK-XxJ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="GLc-jK-XxJ"/>
+                                        </mask>
+                                    </variation>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7vv-RY-Jbl">
+                            <rect key="frame" x="0.0" y="60" width="380" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM4-ql-gyK">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                                    <color key="backgroundColor" red="0.8666666666666667" green="0.29411764705882354" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="j38-5m-035"/>
+                                        <constraint firstAttribute="width" constant="60" id="ucE-23-Bqq"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
+                                    <state key="normal" image="google_plus_icon"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up via Google Plus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFa-xN-QOy" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
+                                    <rect key="frame" x="60" y="0.0" width="320" height="50"/>
+                                    <color key="backgroundColor" red="0.86666667461395264" green="0.29411765933036804" blue="0.22352941334247589" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="325" id="bgc-sx-8ak"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="bgc-sx-8ak"/>
+                                        </mask>
+                                    </variation>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YN-I2-VYs">
+                            <rect key="frame" x="0.0" y="120" width="380" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyD-bY-Rbd">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                                    <color key="backgroundColor" red="0.0" green="0.67450980392156867" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="3w8-5z-kNd"/>
+                                        <constraint firstAttribute="height" constant="50" id="l42-re-kQl"/>
+                                    </constraints>
+                                    <inset key="contentEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
+                                    <state key="normal" image="twitter_icon"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up via Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofP-ha-awf" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
+                                    <rect key="frame" x="60" y="0.0" width="320" height="50"/>
+                                    <color key="backgroundColor" red="0.0" green="0.67450980392156867" blue="0.92941176470588238" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="325" id="opI-AB-ZoE"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="opI-AB-ZoE"/>
+                                        </mask>
+                                    </variation>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zA-Pa-Gvv">
+                            <rect key="frame" x="0.0" y="180" width="380" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U0X-5g-FvS">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="GqW-wY-uBL"/>
+                                        <constraint firstAttribute="width" constant="60" id="fHK-X0-HAY"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="17" minY="12" maxX="17" maxY="12"/>
+                                    <state key="normal" image="instagram" backgroundImage="igBg"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up via Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9C-bv-1U6" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
+                                    <rect key="frame" x="60" y="0.0" width="320" height="50"/>
+                                    <color key="backgroundColor" red="0.9882352941176471" green="0.38823529411764707" blue="0.12941176470588234" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="325" id="l5B-LF-hDY"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="l5B-LF-hDY"/>
+                                        </mask>
+                                    </variation>
+                                </label>
+                            </subviews>
+                        </stackView>
                     </subviews>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1YN-I2-VYs">
-                    <rect key="frame" x="6" y="136" width="385" height="50"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyD-bY-Rbd">
-                            <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
-                            <color key="backgroundColor" red="0.0" green="0.67450980392156867" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="60" id="3w8-5z-kNd"/>
-                                <constraint firstAttribute="height" constant="50" id="l42-re-kQl"/>
-                            </constraints>
-                            <inset key="contentEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
-                            <state key="normal" image="twitter_icon"/>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up via Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofP-ha-awf" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                            <rect key="frame" x="60" y="0.0" width="325" height="50"/>
-                            <color key="backgroundColor" red="0.0" green="0.67450980392156867" blue="0.92941176470588238" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="325" id="opI-AB-ZoE"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48h-uC-mHb">
-                    <rect key="frame" x="6" y="8" width="385" height="50"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-fh-Q1A">
-                            <rect key="frame" x="0.0" y="0.0" width="60" height="50"/>
-                            <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="OSa-o4-RvM"/>
-                                <constraint firstAttribute="width" constant="60" id="jTJ-ew-QuQ"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="15" minY="12" maxX="15" maxY="12"/>
-                            <state key="normal" image="facebook_icon"/>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up via Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpE-TY-2ut" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                            <rect key="frame" x="60" y="0.0" width="325" height="50"/>
-                            <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="325" id="GLc-jK-XxJ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in using Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEt-RP-tQu">
-                    <rect key="frame" x="139" y="194" width="118" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="e10-X9-BGr"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8wH-Ai-zYb">
-                    <rect key="frame" x="5" y="242" width="386" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="JhT-MY-eJL"/>
-                    </constraints>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pVl-XU-bRg">
-                    <rect key="frame" x="5" y="294" width="386" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="l1a-I7-fLQ"/>
-                    </constraints>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hv2-e0-uBI">
-                    <rect key="frame" x="8" y="352" width="384" height="50"/>
-                    <color key="backgroundColor" red="1" green="0.40784313725490196" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="P8f-68-ocU"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <state key="normal" title="Login">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                </button>
-                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AAY-U4-wox">
-                    <rect key="frame" x="95" y="410" width="207" height="22"/>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AAY-U4-wox">
+                    <rect key="frame" x="83" y="385" width="235" height="22"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEA-zw-tPc">
-                            <rect key="frame" x="0.0" y="0.0" width="161" height="22"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <rect key="frame" x="0.0" y="0.0" width="184" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-o3-7Em">
-                            <rect key="frame" x="171" y="0.0" width="36" height="22"/>
+                            <rect key="frame" x="194" y="0.0" width="41" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="lQz-Za-RUf"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <state key="normal" title="Login">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
                     </subviews>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By creating an account, you agree to TraveLibro's Terms of Service, Privacy Policy and Content Policies." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaA-bs-Eb3" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="540" width="400" height="60"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By creating an account, you agree to TraveLibro’s Terms of Service, Privacy Policy and Content Policies." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaA-bs-Eb3" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
+                    <rect key="frame" x="60" y="407" width="280" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="BT1-gO-hkY"/>
                         <constraint firstAttribute="height" constant="69" id="P9s-rW-2nN"/>
+                        <constraint firstAttribute="width" constant="280" id="iao-9I-LVb"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
@@ -180,41 +192,21 @@
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="dEt-RP-tQu" firstAttribute="centerX" secondItem="1YN-I2-VYs" secondAttribute="centerX" id="1La-MW-3th"/>
-                <constraint firstAttribute="trailing" secondItem="1YN-I2-VYs" secondAttribute="trailing" constant="9" id="1fF-hx-d3K"/>
-                <constraint firstItem="7vv-RY-Jbl" firstAttribute="top" secondItem="48h-uC-mHb" secondAttribute="bottom" constant="14" id="3Vy-X0-Zsf"/>
-                <constraint firstItem="48h-uC-mHb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="6" id="6V1-Ce-u3V"/>
-                <constraint firstAttribute="trailing" secondItem="hv2-e0-uBI" secondAttribute="trailing" constant="8" id="6l1-hl-SzU"/>
-                <constraint firstItem="48h-uC-mHb" firstAttribute="leading" secondItem="7vv-RY-Jbl" secondAttribute="leading" id="6wM-ea-JK7"/>
-                <constraint firstItem="8wH-Ai-zYb" firstAttribute="leading" secondItem="pVl-XU-bRg" secondAttribute="leading" id="AKK-zd-Fb7"/>
-                <constraint firstItem="AAY-U4-wox" firstAttribute="centerX" secondItem="KaA-bs-Eb3" secondAttribute="centerX" constant="-1.5" id="E8w-kf-XNK"/>
-                <constraint firstItem="KaA-bs-Eb3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ekb-WA-sIy"/>
-                <constraint firstItem="hv2-e0-uBI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="HAR-RO-5UC"/>
-                <constraint firstAttribute="trailing" secondItem="48h-uC-mHb" secondAttribute="trailing" constant="9" id="IZd-5t-n30"/>
-                <constraint firstItem="pVl-XU-bRg" firstAttribute="top" secondItem="8wH-Ai-zYb" secondAttribute="bottom" constant="2" id="LL2-Xa-AFY"/>
+                <constraint firstItem="KaA-bs-Eb3" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ICR-Iq-213"/>
                 <constraint firstItem="KaA-bs-Eb3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LzU-ZT-WqC"/>
-                <constraint firstItem="8wH-Ai-zYb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="Muo-Tu-ytu"/>
-                <constraint firstItem="AAY-U4-wox" firstAttribute="top" secondItem="hv2-e0-uBI" secondAttribute="bottom" constant="8" id="Non-VH-oqK"/>
-                <constraint firstAttribute="trailing" secondItem="KaA-bs-Eb3" secondAttribute="trailing" id="UIA-r1-h3d"/>
-                <constraint firstItem="8wH-Ai-zYb" firstAttribute="top" secondItem="dEt-RP-tQu" secondAttribute="bottom" constant="8" symbolic="YES" id="WFq-K7-YrE"/>
-                <constraint firstItem="7vv-RY-Jbl" firstAttribute="leading" secondItem="1YN-I2-VYs" secondAttribute="leading" id="Ych-dM-G0w"/>
-                <constraint firstItem="hv2-e0-uBI" firstAttribute="top" secondItem="pVl-XU-bRg" secondAttribute="bottom" constant="8" id="bix-Ah-I1L"/>
-                <constraint firstItem="1YN-I2-VYs" firstAttribute="top" secondItem="7vv-RY-Jbl" secondAttribute="bottom" constant="14" id="bly-XZ-TnH"/>
-                <constraint firstItem="8wH-Ai-zYb" firstAttribute="centerX" secondItem="1YN-I2-VYs" secondAttribute="centerX" id="fCU-Fd-6BU"/>
-                <constraint firstItem="hv2-e0-uBI" firstAttribute="centerX" secondItem="AAY-U4-wox" secondAttribute="centerX" constant="-0.5" id="ibg-G2-REv"/>
-                <constraint firstItem="8wH-Ai-zYb" firstAttribute="trailing" secondItem="pVl-XU-bRg" secondAttribute="trailing" id="jn4-gE-0Kv"/>
-                <constraint firstItem="48h-uC-mHb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="opE-52-0kq"/>
-                <constraint firstAttribute="trailing" secondItem="7vv-RY-Jbl" secondAttribute="trailing" constant="9" id="wWE-YS-YWM"/>
-                <constraint firstAttribute="bottom" secondItem="KaA-bs-Eb3" secondAttribute="bottom" id="xGO-pp-NjX"/>
-                <constraint firstItem="8wH-Ai-zYb" firstAttribute="leading" secondItem="1YN-I2-VYs" secondAttribute="leading" constant="-1" id="xza-M8-dzW"/>
-                <constraint firstItem="dEt-RP-tQu" firstAttribute="top" secondItem="1YN-I2-VYs" secondAttribute="bottom" constant="8" symbolic="YES" id="ySq-aF-GvO"/>
+                <constraint firstItem="ThA-U9-Fhv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="NaA-UA-pej"/>
+                <constraint firstAttribute="trailing" secondItem="ThA-U9-Fhv" secondAttribute="trailing" constant="10" id="XIg-1u-J4Z"/>
+                <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-50" id="abP-ma-y1N"/>
+                <constraint firstItem="AAY-U4-wox" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="olW-dF-iQN"/>
+                <constraint firstItem="AAY-U4-wox" firstAttribute="top" secondItem="ThA-U9-Fhv" secondAttribute="bottom" constant="20" id="qbg-fX-Pqk"/>
+                <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="w54-xa-PhW"/>
+                <constraint firstItem="KaA-bs-Eb3" firstAttribute="top" secondItem="AAY-U4-wox" secondAttribute="bottom" id="xLn-P4-SnY"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="6V1-Ce-u3V"/>
-                    <exclude reference="ibg-G2-REv"/>
+                    <exclude reference="w54-xa-PhW"/>
                     <exclude reference="LzU-ZT-WqC"/>
                 </mask>
             </variation>
@@ -223,6 +215,8 @@
     <resources>
         <image name="facebook_icon" width="60" height="60"/>
         <image name="google_plus_icon" width="60" height="60"/>
+        <image name="igBg" width="213" height="108"/>
+        <image name="instagram" width="100" height="100"/>
         <image name="twitter_icon" width="60" height="60"/>
     </resources>
 </document>

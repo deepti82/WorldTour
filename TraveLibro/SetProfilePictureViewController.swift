@@ -94,18 +94,66 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
         //var tempImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         tempImage = info[UIImagePickerControllerEditedImage] as! UIImage
-        
+//        let imageData: NSData = UIImageJPEGRepresentation(tempImage, 1.0)!
         uploadView.addButton.setImage(tempImage, forState: .Normal)
         
         self.dismissViewControllerAnimated(true, completion:nil)
         
-        let imageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
-        print("image url: \(imageUrl)")
+//        let imageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+//        print("image url: \(imageUrl)")
         
-        request.uploadPhotos(imageUrl, completion: {(response) in
+//        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+//        let imageName = NSURL(string: imageURL.path!)!.lastPathComponent
+//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String
+//        let localPath = paths.stringByAppendingString(imageName!)
+//        
+//        print("local path: \(localPath)")
+        
+        print("temp image: \(tempImage)")
+        
+//        let imagename = "profile.jpg";
+//        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String
+        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+        var imageName = NSURL(string: imageURL.path!)!.lastPathComponent
+        imageName = imageName?.lowercaseString
+        print("image path : \(imageName)")
+//        let destinationPath = "file:///"  + String(documentsPath) + "/" + imageName!
+        
+//        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+//        let documentsDirectory = paths[0]
+        
+        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image.jpg")
+        
+//        let fileManager = NSFileManager.defaultManager()
+//        let pathToSave = "file:///"  + documentsPath + "/\(imagename)"
 
+//        fileManager.createFileAtPath(pathToSave, contents: NSData(), attributes: nil)
+//        print("file created")
+        
+        let filemanager = NSFileManager.defaultManager()
+
+        do {
+            
+//            try filemanager.removeItemAtPath("asset.jpg")
+            
+//            try filemanager.createFileAtPath("image.jpg", contents: NSData(), attributes: nil)
+            
+            try UIImageJPEGRepresentation(tempImage,1.0)!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
+            print("file created")
+            
+            
+        } catch let error as NSError {
+            
+            print("error creating file: \(error.localizedDescription)")
+            
+        }
+        
+        print("local path: \(exportFilePath)")
+        
+        request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
+            
             print("response arrived!")
-
+            
         })
         
 //        PHImageManager.defaultManager().requestImageDataForAsset(tempImage, options: nil) {

@@ -17,15 +17,19 @@ class SignInFullView: UIView {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var facebookLabel: LeftPaddedLabel!
     @IBOutlet weak var tncFooter: LeftPaddedLabel!
-    @IBOutlet weak var loginBigButton: UIButton!
+//    @IBOutlet weak var loginBigButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var instagramButton: UIButton!
+    @IBOutlet weak var instagramLabel: LeftPaddedLabel!
     
     @IBOutlet weak var facebookStack: UIStackView!
     @IBOutlet weak var twitterStack: UIStackView!
     @IBOutlet weak var googleStack: UIStackView!
+    @IBOutlet weak var instagramStack: UIStackView!
+    @IBOutlet weak var loginStack: UIStackView!
     
-    @IBOutlet weak var textField1: UITextField!
-    @IBOutlet weak var textField2: UITextField!
+//    @IBOutlet weak var textField1: UITextField!
+//    @IBOutlet weak var textField2: UITextField!
 //    @IBOutlet weak var textField3: UITextField!
 //    @IBOutlet weak var textField4: UITextField!
     
@@ -33,15 +37,15 @@ class SignInFullView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        let attributes = [
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 14)!
-        ]
+//        let attributes = [
+//            NSForegroundColorAttributeName: UIColor.whiteColor(),
+//            NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 14)!
+//        ]
         
 //        signUpButton.backgroundColor = mainOrangeColor
-        loginBigButton.layer.cornerRadius = 5
+//        loginBigButton.layer.cornerRadius = 5
         
-        tncFooter.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+//        tncFooter.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         
 //        facebookLabel.backgroundColor = UIColor(red: 59/255, green: 89/255, blue: 153/255, alpha: 0.6)
 //        facebookButton.backgroundColor = UIColor(red: 59/255, green: 89/255, blue: 153/255, alpha: 1)
@@ -54,16 +58,16 @@ class SignInFullView: UIView {
 //        twitterButton.backgroundColor = UIColor(red: 0/255, green: 172/255, blue: 237/255, alpha: 1)
         
 //        textField1.borderStyle = .None
-        textField1.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        textField1.attributedPlaceholder = NSAttributedString(string: "Email", attributes: attributes)
-        textField1.leftView = UIView(frame: CGRectMake(0, 0, 15, self.textField1.frame.height))
-        textField1.leftViewMode = .Always
-        
-//        textField2.borderStyle = .None
-        textField2.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        textField2.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
-        textField2.leftView = UIView(frame: CGRectMake(0, 0, 15, self.textField2.frame.height))
-        textField2.leftViewMode = .Always
+//        textField1.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+//        textField1.attributedPlaceholder = NSAttributedString(string: "Email", attributes: attributes)
+//        textField1.leftView = UIView(frame: CGRectMake(0, 0, 15, self.textField1.frame.height))
+//        textField1.leftViewMode = .Always
+//        
+////        textField2.borderStyle = .None
+//        textField2.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+//        textField2.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
+//        textField2.leftView = UIView(frame: CGRectMake(0, 0, 15, self.textField2.frame.height))
+//        textField2.leftViewMode = .Always
 
         
 ////        textField3.borderStyle = .None

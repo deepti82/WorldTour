@@ -23,9 +23,11 @@ class SignInViewController: UIViewController {
         
         getDarkBackGroundBlur(self)
         
+        self.navigationController?.navigationBarHidden = true
+        
         facebook.scopes = ["email", "user_birthday", "user_location"]
         
-        let signInFooter = SignInToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height - 120, width: self.view.frame.size.width, height: 150))
+        let signInFooter = SignInToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height - 140, width: self.view.frame.size.width, height: 140))
         self.view.addSubview(signInFooter)
         
 //        if (FBSDKAccessToken.currentAccessToken() != nil)
@@ -41,7 +43,7 @@ class SignInViewController: UIViewController {
 //            signInFooter.fbButton.delegate = self
 //        }
 //        
-        signInFooter.tnc.addTarget(self, action: #selector(SignInViewController.TNCPage(_:)), forControlEvents: .TouchUpInside)
+        signInFooter.signUp.addTarget(self, action: #selector(SignInViewController.goToSignUp(_:)), forControlEvents: .TouchUpInside)
         signInFooter.signInButton.addTarget(self, action: #selector(SignInViewController.loginButtonTapped(_:)), forControlEvents: .TouchUpInside)
         signInFooter.googleButton.addTarget(self, action: #selector(SignInViewController.googleSignIn(_:)), forControlEvents: .TouchUpInside)
         signInFooter.fbButton.addTarget(self, action: #selector(SignInViewController.facebookSignIn(_:)), forControlEvents: .TouchUpInside)
@@ -99,9 +101,6 @@ class SignInViewController: UIViewController {
         
         print("google sign in")
 //        navigation.signUpSocial("google", completion: {(json:JSON) -> () in
-//            
-//            
-//            
 //        })
 //        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.google.com")!)
         let googlePermissions = Google()
@@ -370,24 +369,33 @@ class SignInViewController: UIViewController {
     func gotoNationalityPage() {
         
         print("inside nationality function")
-        let nationalityPage = self.storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
-        print("nationality: \(nationalityPage)")
-        nationalityPage.whichView = "selectNationality"
+//        let nationalityPage = self.storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+//        print("nationality: \(nationalityPage)")
+//        nationalityPage.whichView = "selectNationality"
+//        self.navigationController?.pushViewController(nationalityPage, animated: true)
+//        print("navigation: \(self.navigationController)")
+        
+        let nationalityPage = self.storyboard?.instantiateViewControllerWithIdentifier("nationalityNew") as! AddNationalityNewViewController
+//        print("nationality: \(nationalityPage)")
+//        nationalityPage.whichView = "selectNationality"
         self.navigationController?.pushViewController(nationalityPage, animated: true)
-        print("navigation: \(self.navigationController)")
+//        print("navigation: \(self.navigationController)")
+        
     }
     
-    func TNCPage(sender: AnyObject) {
+    func goToSignUp(sender: AnyObject) {
         
-        print("inside function!")
+//        print("inside function!")
         print("storyboard: \(self.navigationController)")
+        let signUpFullVC = storyboard?.instantiateViewControllerWithIdentifier("signUpTwo") as! SignInPageViewController
+        self.navigationController?.pushViewController(signUpFullVC, animated: true)
         
     }
     
     func loginButtonTapped(sender: AnyObject) {
         
-        let signUpFullVC = storyboard?.instantiateViewControllerWithIdentifier("signUpTwo") as! SignInPageViewController
-        self.navigationController?.pushViewController(signUpFullVC, animated: true)
+        let logInVC = storyboard?.instantiateViewControllerWithIdentifier("logIn") as! LogInViewController
+        self.navigationController?.pushViewController(logInVC, animated: true)
         
     }
 

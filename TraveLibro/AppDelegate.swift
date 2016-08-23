@@ -92,6 +92,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         else {
             
+//            let developmentVC = storyboard.instantiateViewControllerWithIdentifier("setDp") as! SetProfilePictureViewController
+            
             nvc = UINavigationController(rootViewController: signInVC)
             
             let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)

@@ -14,6 +14,8 @@ class LogInView: UIView {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     
+   
+    @IBOutlet var socialLoginButtons: [UIButton]!
     let attributes = [
         NSForegroundColorAttributeName: UIColor.whiteColor(),
         NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 12)!,
@@ -23,24 +25,29 @@ class LogInView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        let paddingView = UIView(frame: CGRectMake(0, 0, 15, self.nameField.frame.height))
+//        let paddingView = UIView(frame: CGRectMake(0, 0, 15, self.nameField.frame.height))
         
-        logInButton.backgroundColor = mainOrangeColor
+//        logInButton.backgroundColor = mainOrangeColor
         logInButton.layer.cornerRadius = 5
         
         nameField.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         nameField.borderStyle = .None
         nameField.textColor = UIColor.whiteColor()
-        nameField.attributedPlaceholder = NSAttributedString(string: "Email Id", attributes:attributes)
-        nameField.leftView = paddingView
-        nameField.leftViewMode = .Always
+        nameField.attributedPlaceholder = NSAttributedString(string: "  Email Id", attributes:attributes)
+//        nameField.leftView = paddingView
+//        nameField.leftViewMode = .Always
         
         passwordField.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         passwordField.borderStyle = .None
         passwordField.textColor = UIColor.whiteColor()
-        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes:attributes)
-        passwordField.leftView = paddingView
-        passwordField.leftViewMode = .Always
+        passwordField.attributedPlaceholder = NSAttributedString(string: "  Password", attributes:attributes)
+//        passwordField.leftView = paddingView
+//        passwordField.leftViewMode = .Always
+        
+        for button in socialLoginButtons {
+            
+            button.layer.cornerRadius = 5.0
+        }
         
     }
     

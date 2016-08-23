@@ -12,7 +12,9 @@ import SwiftyJSON
 class SelectCountryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var searchView: UIView!
-    var countries = ["India", "Kuwait", "Mumbai", "Australia", "Switzerland", "Hong Kong", "Malaysia", "Singapore", "Mauritius"]
+//    var countries = ["India", "Kuwait", "Mumbai", "Australia", "Switzerland", "Hong Kong", "Malaysia", "Singapore", "Mauritius"]
+    
+    var countries: [JSON]!
     
     var selectedIndex: NSIndexPath = NSIndexPath()
     var isSelected: Bool = false
@@ -82,6 +84,36 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             else {
                 searchFieldView.searchField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
             }
+            
+            request.getAllCountries({(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error?.localizedDescription)")
+                        
+                    }
+                    
+                    else {
+                        
+                        if response["value"] {
+                            
+                            self.countries = response["data"].array!
+                            self.mainTableView.reloadData()
+                            
+                        }
+                        else {
+                            
+                            print("error: \(response["data"])")
+                        }
+                        
+                    }
+                    
+                    
+                })
+                
+            })
             
         }
         else {
@@ -214,7 +246,13 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CountriesTableViewCell
         cell.flagImage.image = UIImage(named: "indian_flag")
-        cell.countryName.text = countries[indexPath.item]
+        
+        if countries != nil {
+            
+            cell.countryName.text = countries[indexPath.row]["name"].string!
+            
+        }
+        
         cell.accessoryType = .Checkmark
         if indexPath.row % 2 == 0 {
             
@@ -242,36 +280,34 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return countries.count
+        if countries != nil  {
+            
+            return countries.count
+            
+        }
+        return 0
+        
     }
     
     func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
         
-//        let indexLetters = "A B C D E F G H I J K L M N O P Q R S T U V X Y Z"
+//        let indexLetters =
 //        let indexOfLetters = indexLetters.componentsSeparatedByString(" ")
         
-        var indexOfLetters = [String]()
-        for string in countries {
+        var indexOfLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"]
+        
+        if countries != nil {
+            for country in countries {
+                
+                indexOfLetters.append(String(country["name"].string!.characters.first!))
+                
+            }
             
-            indexOfLetters.append(String(string.characters.first!))
-            
+            indexOfLetters = Array(Set(indexOfLetters))
+            indexOfLetters = indexOfLetters.sort()
         }
-        
-        indexOfLetters = Array(Set(indexOfLetters))
-        indexOfLetters = indexOfLetters.sort()
         return indexOfLetters
-        
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

@@ -133,6 +133,9 @@
 		C25649951D48C6F60046E36D /* TripInfoOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25649941D48C6F60046E36D /* TripInfoOTG.xib */; };
 		C25649971D48D7670046E36D /* TripInfoOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25649961D48D7670046E36D /* TripInfoOTG.swift */; };
 		C256499A1D48EE5E0046E36D /* SummarySubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25649991D48EE5E0046E36D /* SummarySubViewController.swift */; };
+		C258A3371D6C74E600664CF7 /* AddNationalityNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */; };
+		C258A3391D6C83D600664CF7 /* ExistingAccountPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = C258A3381D6C83D600664CF7 /* ExistingAccountPopup.xib */; };
+		C258A33B1D6C889700664CF7 /* ExistingAccountPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C258A33A1D6C889700664CF7 /* ExistingAccountPopup.swift */; };
 		C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */; };
 		C25BE1F51CFC23EC00C98DD3 /* InProfileOTGPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25BE1F41CFC23EC00C98DD3 /* InProfileOTGPost.xib */; };
 		C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BE1F61CFC2A2300C98DD3 /* InProfileOTGPost.swift */; };
@@ -449,6 +452,9 @@
 		C25649941D48C6F60046E36D /* TripInfoOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripInfoOTG.xib; sourceTree = "<group>"; };
 		C25649961D48D7670046E36D /* TripInfoOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripInfoOTG.swift; sourceTree = "<group>"; };
 		C25649991D48EE5E0046E36D /* SummarySubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummarySubViewController.swift; sourceTree = "<group>"; };
+		C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNationalityNewViewController.swift; sourceTree = "<group>"; };
+		C258A3381D6C83D600664CF7 /* ExistingAccountPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExistingAccountPopup.xib; sourceTree = "<group>"; };
+		C258A33A1D6C889700664CF7 /* ExistingAccountPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExistingAccountPopup.swift; sourceTree = "<group>"; };
 		C25BE1F21CFC06BB00C98DD3 /* LocalLifePostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLifePostsViewController.swift; sourceTree = "<group>"; };
 		C25BE1F41CFC23EC00C98DD3 /* InProfileOTGPost.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InProfileOTGPost.xib; path = ../InProfileOTGPost.xib; sourceTree = "<group>"; };
 		C25BE1F61CFC2A2300C98DD3 /* InProfileOTGPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InProfileOTGPost.swift; path = ../InProfileOTGPost.swift; sourceTree = "<group>"; };
@@ -702,6 +708,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -730,6 +737,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C258A33C1D6C889D00664CF7 /* ExistingAccountPopup */,
 				C281FBEC1D55F8B400728BD9 /* QuickItineraryThree */,
 				C2FA1E151D5493B50034DE97 /* QuickItineraryFour */,
 				C2FA1E141D54883E0034DE97 /* QuickItineraryFive */,
@@ -1348,6 +1356,15 @@
 			name = TripInfoOTG;
 			sourceTree = "<group>";
 		};
+		C258A33C1D6C889D00664CF7 /* ExistingAccountPopup */ = {
+			isa = PBXGroup;
+			children = (
+				C258A3381D6C83D600664CF7 /* ExistingAccountPopup.xib */,
+				C258A33A1D6C889700664CF7 /* ExistingAccountPopup.swift */,
+			);
+			name = ExistingAccountPopup;
+			sourceTree = "<group>";
+		};
 		C263E3A31D1E5BE100D274FE /* NewProfilePosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1874,6 +1891,7 @@
 				C2FA1E111D5485F50034DE97 /* QuickItineraryFive.xib in Resources */,
 				C28A92431D0E839B00CFEC7A /* FilterRestaurants.xib in Resources */,
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
+				C258A3391D6C83D600664CF7 /* ExistingAccountPopup.xib in Resources */,
 				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
 				C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */,
 				C20163E21D26972B00A2F70B /* ProfileImage.xib in Resources */,
@@ -2122,6 +2140,7 @@
 				C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */,
 				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
 				C24909B11D49D616007EB6B4 /* tripSummaryEach.swift in Sources */,
+				C258A3371D6C74E600664CF7 /* AddNationalityNewViewController.swift in Sources */,
 				C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */,
 				C2D594521CF487B30007F50B /* MyLifeTabs.swift in Sources */,
 				C266955A1D3CA5060068D9C7 /* TimestampTagViewOnScroll.swift in Sources */,
@@ -2189,6 +2208,7 @@
 				C2823AFE1D45E09C0065A76C /* FooterViewNew.swift in Sources */,
 				C2E697B71D3E541500E76F1E /* FCMainViewController.swift in Sources */,
 				C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */,
+				C258A33B1D6C889700664CF7 /* ExistingAccountPopup.swift in Sources */,
 				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */,
