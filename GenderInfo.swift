@@ -44,7 +44,7 @@ class GenderInfo: UIView {
     
     func loadViewFromNib() {
         
-        print("\(currentUser["gender"].string!)")
+        print("\(currentUser["gender"])")
         
 //        if currentUser["gender"].string! == "female" {
 //            

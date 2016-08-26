@@ -1,17 +1,8 @@
-//
-//  SignupCardsViewController.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 20/05/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 
 var checkBoxNumber: Int!
 
 class SignupCardsViewController: UIViewController {
-    
     
     var pageIndex = 0
     var cardTitle: String = ""
@@ -72,15 +63,4 @@ class SignupCardsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

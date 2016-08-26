@@ -1,12 +1,6 @@
-//
-//  CardCheckBoxes.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 02/06/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
+import SwiftyJSON
+import SwiftHTTP
 
 class CardCheckBoxes: UIView {
 
@@ -17,19 +11,33 @@ class CardCheckBoxes: UIView {
     @IBOutlet weak var rightButtonStack: UIStackView!
     @IBOutlet weak var leftButtonStack: UIStackView!
     
+    var flag = 0
+    
     @IBAction func checkBoxTap(sender: UIButton) {
         
         if sender.currentBackgroundImage == UIImage(named: "halfnhalfbgGray") {
             
+            print("sender title: \(sender.titleLabel?.text)")
             sender.setBackgroundImage(UIImage(named: "halfnhalfbgGreen"), forState: .Normal)
+            
+            print("cardTitle: \(cardTitle)")
+            
+//            if flag == 0 && cardTitle == "holidayType" {
+//                
+//                selectedOptions = []
+//                flag = 1
+//            }
+            
+            selectedOptions.append(sender.titleLabel!.text!)
+            
         }
         
         else {
             
+            print("sender title: \(sender.titleLabel?.text)")
             sender.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), forState: .Normal)
         }
     }
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -10,7 +10,7 @@ import UIKit
 import EventKitUI
 import SwiftyJSON
 import BSImagePicker
-import DKImagePickerController
+//import DKImagePickerController
 import Photos
 import CoreLocation
 

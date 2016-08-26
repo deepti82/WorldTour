@@ -116,28 +116,32 @@ class SignInViewController: UIViewController {
                     let opt = try HTTP.GET(gURL, parameters: nil, headers: ["Content-Type": "application/json", "Authorization": "Bearer \(accessToken!)"])
                     print("google URL: \(gURL)")
                     opt.start { response in
+                        print("opt: \(response)")
                         if let err = response.error {
                             print("error: \(err.localizedDescription)")
                             return //also notify app of failure as needed
                         }
                         
-//                        print("opt finished: \(response.description)")
+                        print("opt finished: \(response.description)")
                         let json = JSON(data: response.data)
 //                        print("response: \(json)")
                         
-                        request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "0123456789", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!, gender: json["gender"].string!, dob: json["birthday"].string!, completion: {(response) in
+                        request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!, gender: "", dob: "", completion: {(response) in
                             
-                            if (response.error != nil) {
+                            dispatch_async(dispatch_get_main_queue(), {
                                 
-                                print("error: \(response.error!.localizedDescription)")
-                            }
-                                
-                            else {
-                                
+                                if (response.error != nil) {
+                                    
+                                    print("error: \(response.error!.localizedDescription)")
+                                }
+                                    
+                                else {
+                                    
 //                                print("response: \(response.description)")
-                                self.gotoNationalityPage()
-                                
-                            }
+                                    self.gotoNationalityPage()
+                                    
+                                }
+                            })
                         })
                     }
                 } catch let error {
@@ -167,15 +171,31 @@ class SignInViewController: UIViewController {
                     let fbURL = "https://graph.facebook.com/v2.7/me?fields=id,name,email,location,gender,first_name,middle_name,last_name,birthday,picture&access_token=\(accessToken!)"
                     let opt = try HTTP.GET(fbURL)
 //                    print("fbURL: \(fbURL)")
+                    print("opt: \(opt)")
                     opt.start { response in
+                        print("opt: \(response)")
                         if let err = response.error {
                             print("error: \(err.localizedDescription)")
                             return //also notify app of failure as needed
                         }
                         
-//                        print("opt finished: \(response.description)")
+                        print("opt finished: \(response.description)")
                         let json = JSON(data: response.data)
-                        request.saveUser(json["first_name"].string!, lastName: json["last_name"].string!, email: json["email"].string!, mobile: "0123456789", fbId: json["id"].string!, googleId: "", twitterId: "", instaId: "", nationality: "", profilePicture: json["picture"]["data"]["url"].string!, gender: json["gender"].string!, dob: json["birthday"].string!, completion: {(response) in
+//                        let birthday: String!
+                        
+//                        if json["birthday"] {
+//                            
+//                            print("inside birthday if statement")
+//                            birthday = json["birthday"].string!
+//                            
+//                        }
+//                        
+//                        else {
+//                            
+//                            birthday = ""
+//                        }
+                        
+                        request.saveUser(json["first_name"].string!, lastName: json["last_name"].string!, email: json["email"].string!, mobile: "", fbId: json["id"].string!, googleId: "", twitterId: "", instaId: "", nationality: "", profilePicture: json["picture"]["data"]["url"].string!, gender: json["gender"].string!, dob: "", completion: {(response) in
                             
                             dispatch_async(dispatch_get_main_queue(), {
                               
@@ -186,9 +206,14 @@ class SignInViewController: UIViewController {
                                     
                                 else {
                                     
+                                    if response["value"] {
+                                        
+                                        currentUser = response["data"]
+                                        self.gotoNationalityPage()
+                                        
+                                    }
 //                                    print("response fb: \(response.description)")
-                                    currentUser = response["data"]
-                                    self.gotoNationalityPage()
+                                    
                                 }
                                 
                             })
@@ -403,16 +428,4 @@ class SignInViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

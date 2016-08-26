@@ -39,6 +39,17 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
         imagePicker.delegate = self
         
+//        let url =
+        let data = NSData(contentsOfURL: NSURL(string: currentUser["profilePicture"].string!)!)
+        
+        if data != nil {
+            
+            uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+            
+        }
+        
+        uploadView.username.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
+        
     }
     
     func choosePreferences(sender: AnyObject) {
@@ -90,7 +101,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        print(info)
+//        print(info[UIImagePickerControllerReferenceURL])
         
         //var tempImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         tempImage = info[UIImagePickerControllerEditedImage] as! UIImage
@@ -113,10 +124,10 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
 //        let imagename = "profile.jpg";
 //        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String
-        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
-        var imageName = NSURL(string: imageURL.path!)!.lastPathComponent
-        imageName = imageName?.lowercaseString
-        print("image path : \(imageName)")
+//        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+//        var imageName = NSURL(string: imageURL.path!)!.lastPathComponent
+//        imageName = imageName?.lowercaseString
+//        print("image path : \(imageName)")
 //        let destinationPath = "file:///"  + String(documentsPath) + "/" + imageName!
         
 //        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
@@ -130,7 +141,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
 //        fileManager.createFileAtPath(pathToSave, contents: NSData(), attributes: nil)
 //        print("file created")
         
-        let filemanager = NSFileManager.defaultManager()
+//        let filemanager = NSFileManager.defaultManager()
 
         do {
             
@@ -151,6 +162,25 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         print("local path: \(exportFilePath)")
         
         request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error?.localizedDescription)")
+                }
+                else {
+                    
+                    if response["value"] {
+                        
+                        request.editUser(currentUser["_id"].string!, editField: "profilePicture", editFieldValue: response["data"][0].string!, completion: { _ in
+                            
+                            print("response arrived!")
+                            
+                        })
+                    }
+                }
+            })
             
             print("response arrived!")
             

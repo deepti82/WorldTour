@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         else {
             
-//            let developmentVC = storyboard.instantiateViewControllerWithIdentifier("setDp") as! SetProfilePictureViewController
+            let developmentVC = storyboard.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
             
             nvc = UINavigationController(rootViewController: signInVC)
             

@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import SwiftyJSON
+
+var cardTitle: String!
+var selectedOptions: [String] = []
 
 class DisplayCardsViewController: UIPageViewController, UIPageViewControllerDataSource {
 
     let titles = ["Your kind of a holiday", "You usually go", "Prefer to travel", "Your ideal holiday type"]
     let checkBoxNumber = [6, 3, 8, 11]
     
+    var travelConfig: [String: [String]] = [:]
+    var dataIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +53,66 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     
     func finishQuestions(sender: AnyObject) {
         
-        let home = storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
-        self.navigationController?.pushViewController(home, animated: true)
+        dataIndex = 3
+        viewControllerAtIndex(3)
+        travelConfig[cardTitle] = selectedOptions
+        
+//        travelConfig["holidayType"]!.filter{
+//            !contains(travelConfig["preferToTravel"]!, $0)
+//        }
+//        print("travel config 1: \(travelConfig)")
+        
+        if travelConfig["preferToTravel"] != nil && travelConfig["holidayType"] != nil {
+            
+            for item in travelConfig["holidayType"]! {
+                
+                if travelConfig["preferToTravel"]!.contains(item) {
+                    
+                    print("contains \(item)")
+                    
+                    travelConfig["holidayType"] = travelConfig["holidayType"]!.filter{$0 != item}
+                    
+                }
+                
+            }
+        }
+        
+        print("travel config: \(travelConfig)")
+        
+        request.addKindOfJourney(currentUser["_id"].string!, editFieldValue: travelConfig, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error?.localizedDescription)")
+                }
+                
+                else {
+                    
+                    if response["value"] {
+                        
+                        print("response arrived!")
+                        
+                        let home = self.storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+                        self.navigationController!.pushViewController(home, animated: true)
+                        
+                    }
+                    else {
+                        
+                        print("response error: \(response["data"])")
+                    }
+                }
+            })
+        })
         
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        
+        dataIndex = dataIndex - 1
+//        selectedOptions = []
+//        print("no problem in json")
         
         let vc = viewController as! SignupCardsViewController
         var index = vc.pageIndex  as Int
@@ -66,6 +126,11 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        
+        travelConfig[cardTitle] = selectedOptions
+        print("\(cardTitle): \(selectedOptions)")
+        dataIndex = dataIndex + 1
+//        selectedOptions = []
         
         let vc = viewController as! SignupCardsViewController
         var index = vc.pageIndex  as Int
@@ -86,6 +151,23 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     }
     
     func viewControllerAtIndex(index: Int) -> UIViewController {
+        
+        switch dataIndex {
+        case 0:
+            selectedOptions = []
+            cardTitle = "kindOfHoliday"
+        case 1:
+            selectedOptions = []
+            cardTitle = "usuallyGo"
+        case 2:
+            selectedOptions = []
+            cardTitle = "preferToTravel"
+        case 3:
+//            selectedOptions = []
+            cardTitle = "holidayType"
+        default:
+            break
+        }
         
         if((self.titles.count == 0) || (index >= self.titles.count)) {
             
@@ -108,15 +190,5 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         return 0
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

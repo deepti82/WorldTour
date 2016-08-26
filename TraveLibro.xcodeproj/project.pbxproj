@@ -215,6 +215,7 @@
 		C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29634E91D06F01300E9DF71 /* SearchLocation.xib */; };
 		C29634EC1D06F3B400E9DF71 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */; };
 		C29767181D50D65200428269 /* ListPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29767171D50D65200428269 /* ListPhotosViewController.swift */; };
+		C298717E1D6EBE8100F65429 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C298717D1D6EBE8100F65429 /* AddCityViewController.swift */; };
 		C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */; };
 		C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */; };
 		C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */; };
@@ -534,6 +535,7 @@
 		C29634E91D06F01300E9DF71 /* SearchLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchLocation.xib; path = ../SearchLocation.xib; sourceTree = "<group>"; };
 		C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchLocation.swift; path = ../SearchLocation.swift; sourceTree = "<group>"; };
 		C29767171D50D65200428269 /* ListPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosViewController.swift; sourceTree = "<group>"; };
+		C298717D1D6EBE8100F65429 /* AddCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCityViewController.swift; path = ../AddCityViewController.swift; sourceTree = "<group>"; };
 		C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCityViewController.swift; sourceTree = "<group>"; };
 		C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
 		C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInToolbar.xib; path = ../SignInToolbar.xib; sourceTree = "<group>"; };
@@ -708,7 +710,6 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -1240,6 +1241,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C298717D1D6EBE8100F65429 /* AddCityViewController.swift */,
 				C2FA1E1A1D5498380034DE97 /* QIViewController.swift */,
 				C29767171D50D65200428269 /* ListPhotosViewController.swift */,
 				C266AA161D4B75B300174612 /* AllJourneysViewController.swift */,
@@ -1324,6 +1326,7 @@
 				C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */,
 				C20A18F51D225E9C00760BF9 /* CategoriseCheckInViewController.swift */,
 				C281FBED1D56170A00728BD9 /* VerifyIntermediateViewController.swift */,
+				C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */,
 				C2FA1E161D5495870034DE97 /* QuickItinerariesViewController.swift */,
 			);
 			name = Controllers;
@@ -1760,6 +1763,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A944E2C1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibro" */;
 			buildPhases = (
+				57D97F8C60908CAF864EF242 /* 📦 Check Pods Manifest.lock */,
 				3E39950EFBBFFDBD6411ED41 /* [CP] Check Pods Manifest.lock */,
 				1A944E001CCB4567007EB5BD /* Sources */,
 				1A944E011CCB4567007EB5BD /* Frameworks */,
@@ -1767,6 +1771,8 @@
 				3B7A621079EFA3061E0940AD /* [CP] Embed Pods Frameworks */,
 				48FC31CC8594F2E97A6F96C6 /* [CP] Copy Pods Resources */,
 				C24246BA1D5DA67E0020199E /* ShellScript */,
+				19FB925F77D4A99511A8DCE8 /* 📦 Embed Pods Frameworks */,
+				F45202408F151F7C0A78E697 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1781,12 +1787,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A944E2F1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroTests" */;
 			buildPhases = (
+				BB7543E3FA2A4EE93ADB7BE3 /* 📦 Check Pods Manifest.lock */,
 				654CCE18CFC9AB62CF810C07 /* [CP] Check Pods Manifest.lock */,
 				1A944E141CCB4567007EB5BD /* Sources */,
 				1A944E151CCB4567007EB5BD /* Frameworks */,
 				1A944E161CCB4567007EB5BD /* Resources */,
 				14470BBEAB94001E791386EF /* [CP] Embed Pods Frameworks */,
 				BE02BF245AD9F1B3CF9AA47A /* [CP] Copy Pods Resources */,
+				4C5B3EB168A91BF7E302E930 /* 📦 Embed Pods Frameworks */,
+				48907F698B0EF6C6550F910D /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1802,11 +1811,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A944E321CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroUITests" */;
 			buildPhases = (
+				556F4B9C3740D8DB81BA549D /* 📦 Check Pods Manifest.lock */,
 				DB475C85160DBE9607A2E0CA /* [CP] Check Pods Manifest.lock */,
 				1A944E1F1CCB4567007EB5BD /* Sources */,
 				1A944E201CCB4567007EB5BD /* Frameworks */,
 				1A944E211CCB4567007EB5BD /* Resources */,
 				403DE2127200E52A941D1F70 /* [CP] Copy Pods Resources */,
+				CB8D66BA764EA32C25BD68B4 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2001,6 +2012,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		19FB925F77D4A99511A8DCE8 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3B7A621079EFA3061E0940AD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2046,6 +2072,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroUITests/Pods-TraveLibroUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		48907F698B0EF6C6550F910D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		48FC31CC8594F2E97A6F96C6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2061,6 +2102,51 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4C5B3EB168A91BF7E302E930 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		556F4B9C3740D8DB81BA549D /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		57D97F8C60908CAF864EF242 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		654CCE18CFC9AB62CF810C07 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2069,6 +2155,21 @@
 			inputPaths = (
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BB7543E3FA2A4EE93ADB7BE3 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2104,6 +2205,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" d1853efb9228168c98a6d8a3ddb72c47d4067e68 badc8eba1d25c75c57c69a92773dbb878b4e9aff67c4575acd9e3a2e73e5b698";
 		};
+		CB8D66BA764EA32C25BD68B4 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroUITests/Pods-TraveLibroUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DB475C85160DBE9607A2E0CA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2117,6 +2233,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F45202408F151F7C0A78E697 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2241,6 +2372,7 @@
 				C24F84DA1CFFFBF5002EA203 /* UserProfileSettingsViewController.swift in Sources */,
 				C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
+				C298717E1D6EBE8100F65429 /* AddCityViewController.swift in Sources */,
 				C2ABDBB21CEC53B000D7542E /* StatusView.swift in Sources */,
 				C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */,
 				C281FBEB1D55EF4A00728BD9 /* QuickItineraryThree.swift in Sources */,

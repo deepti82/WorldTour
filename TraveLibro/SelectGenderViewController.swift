@@ -18,23 +18,27 @@ class SelectGenderViewController: UIViewController {
         
         self.customNavigationBar(leftButton, right: rightButton)
         
-        print("current gender: \(currentUser["gender"].string!)")
+        print("current gender: \(currentUser["gender"])")
         
         let f = GenderInfo() 
         f.setNeedsDisplay()
         
         let gender = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
         gender.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
-        if currentUser["gender"].string! == "female" {
-
-            gender.sheButtonTap(nil)
-
-        }
-
-        else {
-
-            gender.heButtonTap(nil)
+        if currentUser["gender"] != nil {
             
+            if currentUser["gender"] == "female" {
+                
+                gender.sheButtonTap(nil)
+                
+            }
+            
+            else {
+                
+                gender.heButtonTap(nil)
+                
+            }
+
         }
         self.view.addSubview(gender)
         

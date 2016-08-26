@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import SwiftHTTP
 
-let adminUrl = "http://192.168.0.108:1337/"
+let adminUrl = "http://192.168.1.102:1337/"
 //let apiURL = "";
 
 class Navigation {
@@ -23,12 +23,15 @@ class Navigation {
         
         var json = JSON(1);
         let deviceId = UIDevice.currentDevice().identifierForVendor!.UUIDString
+        
+        let deviceParams = ["_id": deviceId, "os": "iOS"]
+        
         print("device id: \(deviceId)")
-        let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceId, "dob": dob]
-        print(params)
+        let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceParams, "dob": dob]
+//        print(params)
         
         do {
-            let opt = try HTTP.POST(adminUrl + "user/save", parameters: params)
+            let opt = try HTTP.POST(adminUrl + "user/save", parameters: [params])
 //            print("request: \(opt)")
             opt.start { response in
 //                print("started response: \(response)")
@@ -60,7 +63,7 @@ class Navigation {
             let opt = try HTTP.POST(adminUrl + "user/editData", parameters: params)
             //            print("request: \(opt)")
             opt.start { response in
-                //                print("started response: \(response)")
+                print("started response: \(response)")
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }
@@ -322,5 +325,58 @@ class Navigation {
         
     }
     
+    func searchCity(searchText: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            //            let params = ["file": Upload(fileUrl: file)]
+            
+            let opt = try HTTP.POST(adminUrl + "country/locationSearch", parameters: ["search": searchText])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+        
+    }
+    
+    func addKindOfJourney(id: String, editFieldValue: [String: [String]], completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id, "travelConfig": editFieldValue]
+            
+            let opt = try HTTP.POST(adminUrl + "user/editData", parameters: [params])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+        
+    }
     
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var locationView: UIView!
@@ -20,13 +20,14 @@ class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         locationButton.tintColor = UIColor.whiteColor()
         
-        let cityPicker = UIPickerView()
-        cityPicker.delegate = self
-        cityPicker.dataSource = self
+//        let cityPicker = UIPickerView()
+//        cityPicker.delegate = self
+//        cityPicker.dataSource = self
         
         cityTextField.attributedPlaceholder = NSAttributedString(string: "Mumbai", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-        cityTextField.inputView = cityPicker
+//        cityTextField.inputView = cityPicker
         
+        cityTextField.delegate = self
         
         getDarkBackGroundBlur(self)
         
@@ -44,20 +45,20 @@ class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
         self.customNavigationBar(leftButton, right: rightButton)
         
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-//        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChooseCityViewController.donePicker(_:)))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChooseCityViewController.cancelPicker(_:)))
-        
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.userInteractionEnabled = true
-        
-        cityTextField.inputAccessoryView = toolBar
+//        let toolBar = UIToolbar()
+//        toolBar.barStyle = UIBarStyle.Default
+//        toolBar.translucent = true
+////        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+//        toolBar.sizeToFit()
+//        
+//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChooseCityViewController.donePicker(_:)))
+//        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ChooseCityViewController.cancelPicker(_:)))
+//        
+//        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+//        toolBar.userInteractionEnabled = true
+//        
+//        cityTextField.inputAccessoryView = toolBar
         
     }
     
@@ -101,20 +102,16 @@ class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+        print("has begun editing")
+        locationView.animation.makeFrame(8, 10, locationView.frame.width, locationView.frame.height).animate(0.2)
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
