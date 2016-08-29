@@ -48,25 +48,37 @@ class SelectGenderViewController: UIViewController {
         
         //Add edit data request here
         
-        let dpVC = storyboard?.instantiateViewControllerWithIdentifier("setDp") as! SetProfilePictureViewController
-        self.navigationController?.pushViewController(dpVC, animated: true)
+        if genderValue == nil {
+            
+            genderValue = ""
+        }
         
+        request.editUser(currentUser["_id"].string!, editField: "gender", editFieldValue: genderValue, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("response: \(response.error?.localizedDescription)")
+                }
+                else if response["value"] {
+                    
+                    print("response arrived!")
+                    let dpVC = self.storyboard!.instantiateViewControllerWithIdentifier("setDp") as! SetProfilePictureViewController
+                    self.navigationController?.pushViewController(dpVC, animated: true)
+                    
+                }
+                else {
+                    
+                    print("response error: \(response["data"])")
+                    
+                }
+            })
+        })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

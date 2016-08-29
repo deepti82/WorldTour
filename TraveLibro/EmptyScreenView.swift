@@ -1,22 +1,17 @@
-//
-//  AddDisplayPic.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 19/05/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
 
 import UIKit
 
-class AddDisplayPic: UIView {
+class EmptyScreenView: UIView {
 
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var LL: UIImageView!
+    @IBOutlet weak var TL: UIImageView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        makeTLProfilePicture(addButton)
+        TL.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
+        LL.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,7 +20,7 @@ class AddDisplayPic: UIView {
     
     func loadViewFromNib() {
         let bundle = NSBundle(forClass: self.dynamicType)
-        let nib = UINib(nibName: "AddDisplayPic", bundle: bundle)
+        let nib = UINib(nibName: "EmptyScreenView", bundle: bundle)
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]

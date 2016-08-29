@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class BucketListTableViewController: UITableViewController  {
     
     var whichView: String!
+    var bucket: [JSON] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +31,62 @@ class BucketListTableViewController: UITableViewController  {
         
         self.customNavigationBar(leftButton, right: rightButton)
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        if whichView == "BucketList" {
+            
+            request.getBucketList(currentUser["_id"].string!, completion: {(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("error - \(response.error?.code): \(response.error?.localizedDescription)")
+                    }
+                    else if response["value"] {
+                     
+                        self.bucket = response["data"]["bucketList"].array!
+                        self.tableView.reloadData()
+                        
+                    }
+                    else {
+                        
+                        print("response error: \(response["data"])")
+                        
+                    }
+                })
+                
+            })
+            
+            
+        }
+        
+        if whichView == "CountriesVisited" {
+            
+            request.getCountriesVisited(currentUser["_id"].string!, completion: {(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("error - \(response.error?.code): \(response.error?.localizedDescription)")
+                    }
+                    else if response["value"] {
+                        
+                        self.bucket = response["data"]["countriesVisited"].array!
+                        self.tableView.reloadData()
+                        
+                    }
+                    else {
+                        
+                        print("response error: \(response["data"])")
+                        
+                    }
+                })
+                
+                
+            })
+            
+            
+        }
         
         tableView.separatorColor = UIColor.whiteColor()
     }
@@ -46,54 +99,78 @@ class BucketListTableViewController: UITableViewController  {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
+        if whichView == "BucketList" {
+            
+            return 1
+            
+        }
+        
         return 1
+        
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 20
+        
+        return bucket.count
+        
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if indexPath.row % 2 == 0 {
+        if whichView == "BucketList" {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
-            return cell
+//            if indexPath.row % 2 == 0 {
+            
+                let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
+                cell.countryName.text = bucket[indexPath.row]["name"].string!
+                cell.yearOfVisit.hidden = true
+                return cell
+                
+//            }
+//            
+//            let cell = tableView.dequeueReusableCellWithIdentifier("SeperatorCell", forIndexPath: indexPath) as! NoViewTableViewCell
+//            return cell
             
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("SeperatorCell", forIndexPath: indexPath) as! NoViewTableViewCell
-        return cell
+//        if indexPath.row % 2 == 0 {
+        
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
+            return cell
+            
+//        }
+//        
+//        let cell = tableView.dequeueReusableCellWithIdentifier("SeperatorCell", forIndexPath: indexPath) as! NoViewTableViewCell
+//        return cell
         
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if indexPath.row % 2 == 0 {
-            
-            return 72
-        }
+//        if indexPath.row % 2 == 0 {
         
-        return 3
+            return 72
+//        }
+//        
+//        return 3
         
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        if indexPath.row % 2 == 0 {
+//        if indexPath.row % 2 == 0 {
             let delete = UITableViewRowAction(style: .Destructive, title: "             ") { (action, indexPath) in
                 // delete item at indexPath
             }
             delete.backgroundColor = UIColor(patternImage: UIImage(named: "trash")!)
             return [delete]
-        }
-        
-        let delete = UITableViewRowAction(style: .Normal, title: "") { (action, indexPath) in
-            // delete item at indexPath
-        }
+//        }
+//        
+//        let delete = UITableViewRowAction(style: .Normal, title: "") { (action, indexPath) in
+//            // delete item at indexPath
+//        }
         
 //        let share = UITableViewRowAction(style: .Normal, title: "Disable") { (action, indexPath) in
 //            // share item at indexPath
@@ -101,7 +178,7 @@ class BucketListTableViewController: UITableViewController  {
 //        
 //        share.backgroundColor = UIColor.blueColor()
         
-        return [delete]
+//        return [delete]
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -111,7 +188,13 @@ class BucketListTableViewController: UITableViewController  {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        return "2016"
+        if whichView == "CountriesVisited" {
+            
+            return "2016"
+            
+        }
+        
+        return nil
     }
 
     /*
@@ -148,22 +231,21 @@ class BucketListTableViewController: UITableViewController  {
         return true
     }
     */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func addCountriesVisited(sender: UIButton) {
         
-       let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
-        nextVC.whichView = "addCountries"
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        if whichView == "BucketList" {
+            
+            let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            nextVC.whichView = "BucketList"
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
+        else {
+            
+            let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            nextVC.whichView = "CountriesVisited"
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
         
     }
 

@@ -11,6 +11,7 @@ import SwiftyJSON
 
 var cardTitle: String!
 var selectedOptions: [String] = []
+let rightButton = UIButton()
 
 class DisplayCardsViewController: UIPageViewController, UIPageViewControllerDataSource {
 
@@ -33,16 +34,18 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
         leftButton.frame = CGRectMake(0, 0, 30, 30)
         
-        let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(DisplayCardsViewController.finishQuestions(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setTitle("Next", forState: .Normal)
+//        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+        rightButton.addTarget(self, action: #selector(DisplayCardsViewController.nextPage(_:)), forControlEvents: .TouchUpInside)
+        rightButton.frame = CGRectMake(0, 8, 70, 30)
+//        rightButton.hidden = true
         
         self.customNavigationBar(leftButton, right: rightButton)
         
         dataSource = self
         
         setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
+//        self.pvc = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         
     }
 
@@ -51,10 +54,30 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         // Dispose of any resources that can be recreated.
     }
     
+    func nextPage(sender: AnyObject) {
+        
+        print("index: \(dataIndex)")
+        dataIndex = dataIndex + 1
+//        viewControllerAtIndex(dataIndex)
+        let myVC = viewControllerAtIndex(dataIndex) as! SignupCardsViewController
+        setViewControllers([myVC], direction: .Forward, animated: true, completion: nil)
+        
+        if dataIndex == 3 {
+            
+            rightButton.setTitle("Done", forState: .Normal)
+        }
+        
+        else if dataIndex > 3 {
+            
+            finishQuestions(sender)
+        }
+        
+    }
+    
     func finishQuestions(sender: AnyObject) {
         
         dataIndex = 3
-        viewControllerAtIndex(3)
+        viewControllerAtIndex(dataIndex)
         travelConfig[cardTitle] = selectedOptions
         
 //        travelConfig["holidayType"]!.filter{
@@ -129,7 +152,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         travelConfig[cardTitle] = selectedOptions
         print("\(cardTitle): \(selectedOptions)")
-        dataIndex = dataIndex + 1
+//        dataIndex = dataIndex + 1
 //        selectedOptions = []
         
         let vc = viewController as! SignupCardsViewController

@@ -216,6 +216,7 @@
 		C29634EC1D06F3B400E9DF71 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */; };
 		C29767181D50D65200428269 /* ListPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29767171D50D65200428269 /* ListPhotosViewController.swift */; };
 		C298717E1D6EBE8100F65429 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C298717D1D6EBE8100F65429 /* AddCityViewController.swift */; };
+		C29C33C31D7061DC00DC5B36 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */; };
 		C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */; };
 		C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */; };
 		C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */; };
@@ -280,6 +281,8 @@
 		C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DD03231CEAFDD4001878DD /* SayBye.xib */; };
 		C2DD03261CEB008C001878DD /* SayBye.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD03251CEB008C001878DD /* SayBye.swift */; };
 		C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD03271CEB4D0F001878DD /* ImageMask.swift */; };
+		C2E159B91D74068000A5B721 /* EmptyScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E159B81D74068000A5B721 /* EmptyScreenView.xib */; };
+		C2E159BB1D740A8300A5B721 /* EmptyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E159BA1D740A8300A5B721 /* EmptyScreenView.swift */; };
 		C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E45CE81CE5A1340096BDD1 /* IconButton.xib */; };
 		C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */; };
 		C2E697B31D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E697B21D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift */; };
@@ -536,6 +539,7 @@
 		C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchLocation.swift; path = ../SearchLocation.swift; sourceTree = "<group>"; };
 		C29767171D50D65200428269 /* ListPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosViewController.swift; sourceTree = "<group>"; };
 		C298717D1D6EBE8100F65429 /* AddCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCityViewController.swift; path = ../AddCityViewController.swift; sourceTree = "<group>"; };
+		C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCityViewController.swift; sourceTree = "<group>"; };
 		C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
 		C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInToolbar.xib; path = ../SignInToolbar.xib; sourceTree = "<group>"; };
@@ -602,6 +606,8 @@
 		C2DD03231CEAFDD4001878DD /* SayBye.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SayBye.xib; path = ../SayBye.xib; sourceTree = "<group>"; };
 		C2DD03251CEB008C001878DD /* SayBye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayBye.swift; sourceTree = "<group>"; };
 		C2DD03271CEB4D0F001878DD /* ImageMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMask.swift; sourceTree = "<group>"; };
+		C2E159B81D74068000A5B721 /* EmptyScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyScreenView.xib; sourceTree = "<group>"; };
+		C2E159BA1D740A8300A5B721 /* EmptyScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyScreenView.swift; sourceTree = "<group>"; };
 		C2E45CE81CE5A1340096BDD1 /* IconButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconButton.xib; sourceTree = "<group>"; };
 		C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		C2E697B21D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCitiesNewTwoViewController.swift; sourceTree = "<group>"; };
@@ -738,6 +744,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2E159BC1D740AFE00A5B721 /* EmptyScreenView */,
 				C258A33C1D6C889D00664CF7 /* ExistingAccountPopup */,
 				C281FBEC1D55F8B400728BD9 /* QuickItineraryThree */,
 				C2FA1E151D5493B50034DE97 /* QuickItineraryFour */,
@@ -1698,6 +1705,7 @@
 				C2DD03271CEB4D0F001878DD /* ImageMask.swift */,
 				C284277B1CE07445003672E9 /* Styles.swift */,
 				C26B4DE81D13E48200213055 /* Layout.swift */,
+				C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1709,6 +1717,15 @@
 				C2DCB3761CE7473A006E5CBD /* AddRating.swift */,
 			);
 			name = AddRating;
+			sourceTree = "<group>";
+		};
+		C2E159BC1D740AFE00A5B721 /* EmptyScreenView */ = {
+			isa = PBXGroup;
+			children = (
+				C2E159B81D74068000A5B721 /* EmptyScreenView.xib */,
+				C2E159BA1D740A8300A5B721 /* EmptyScreenView.swift */,
+			);
+			name = EmptyScreenView;
 			sourceTree = "<group>";
 		};
 		C2EA3A0E1CDB1E6400122941 /* TextLabel */ = {
@@ -1880,6 +1897,7 @@
 			files = (
 				C22138F11D546EB6008D9DEE /* QuickItineraryTwo.xib in Resources */,
 				C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */,
+				C2E159B91D74068000A5B721 /* EmptyScreenView.xib in Resources */,
 				C20939061D1180C100CBA70F /* DJB My Mood Ring Says Blah.ttf in Resources */,
 				1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */,
 				C26730271D27A84C00F2C822 /* QuickItineraryOne.xib in Resources */,
@@ -2354,6 +2372,7 @@
 				C26730281D27A84C00F2C822 /* QuickItineraryOne.swift in Sources */,
 				C24F84F21D005154002EA203 /* NoFollowers.swift in Sources */,
 				C2A27A471CEDC27600F74DD1 /* LogInView.swift in Sources */,
+				C29C33C31D7061DC00DC5B36 /* HelperFunctions.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
 				C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */,
 				C26B4DE71D13C88900213055 /* SlideMenuViewController.swift in Sources */,
@@ -2394,6 +2413,7 @@
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
 				C25C27EF1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift in Sources */,
+				C2E159BB1D740A8300A5B721 /* EmptyScreenView.swift in Sources */,
 				C2FA99301D53681C009D0DF2 /* NewRest.swift in Sources */,
 				C24EB2EF1D30DE2E00EB95F6 /* NoFollowingViewController.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,

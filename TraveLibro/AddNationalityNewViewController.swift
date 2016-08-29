@@ -68,13 +68,14 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
         nationalityPickerView.delegate = self
         
-//        if currentUser["homeCountry"] != nil {
-//            
-//            addNationality.hidden = true
-//            addNationalityButton.hidden = true
-//            userNationatilty.setTitle(currentUser["homeCountry"].string!, forState: .Normal)
-//            
-//        }
+        if currentUser["homeCountry"] != nil {
+            
+            addNationality.hidden = true
+            addNationalityButton.hidden = true
+            userNationatilty.hidden = false
+            userNationatilty.setTitle(currentUser["homeCountry"].string!, forState: .Normal)
+            
+        }
         
 //        let toolBar = UIToolbar()
 //        toolBar.barStyle = UIBarStyle.Default
@@ -183,17 +184,17 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     func chooseCity(sender: UIButton) {
         
-        var countrySelected: String!
+        var countrySelected: String = ""
 
-        if userNationatilty.titleLabel?.text == "Button" {
+        if userNationatilty.titleLabel!.text == "Button" {
             
             countrySelected = ""
             
         }
         
-        else {
+        else if userNationatilty.titleLabel!.text != nil {
             
-            countrySelected = userNationatilty.titleLabel?.text
+            countrySelected = userNationatilty.titleLabel!.text!
             
         }
         
@@ -203,9 +204,32 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
 //        let signUpCityVC = self.storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
 //        self.navigationController?.pushViewController(signUpCityVC, animated: true)
         
-        let cityVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCity") as! AddCityViewController
-        self.navigationController?.pushViewController(cityVC, animated: true)
-
+        request.editUser(currentUser["_id"].string!, editField: "homeCountry", editFieldValue: countrySelected, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error?.localizedDescription)")
+                }
+                else {
+                    
+                    if response["value"] {
+                        
+                        let cityVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCity") as! AddCityViewController
+                        self.navigationController?.pushViewController(cityVC, animated: true)
+                        
+                    }
+                        
+                    else {
+                        
+                        print("response error: \(response["data"])")
+                    }
+                    
+                }
+                
+            })
+        })
         
     }
 

@@ -8,6 +8,8 @@
 
 import UIKit
 
+var isEmptyProfile = false
+
 class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var buttonsView: UIView!
@@ -64,6 +66,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         rightButton.frame = CGRectMake(0, 8, 100, 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
+        
+        isEmptyProfile = true
         
         arrowDownButton.setTitle(arrow, forState: .Normal)
         arrowDownButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), forControlEvents: .TouchUpInside)

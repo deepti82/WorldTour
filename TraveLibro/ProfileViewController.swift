@@ -25,6 +25,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var profileCollectionView: UICollectionView!
     @IBOutlet weak var locationIcon: UILabel!
     @IBOutlet weak var placeLabel: UILabel!
+    @IBOutlet weak var profilePicture: UIImageView!
     
     var toggle = false
     
@@ -79,6 +80,54 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
         MAM.backgroundColor = UIColor.clearColor()
         MAMatterView!.addSubview(MAM)
+        
+        var imageName = ""
+        
+        if currentUser != nil {
+            
+            //            print("inside if statement \(sideMenu.profilePicture)")
+            imageName = currentUser["profilePicture"].string!
+            print("image: \(imageName)")
+            
+            let isUrl = verifyUrl(imageName)
+            print("isUrl: \(isUrl)")
+            
+            if isUrl {
+                
+                print("inside if statement")
+                let data = NSData(contentsOfURL: NSURL(string: imageName)!)
+                
+                if data != nil {
+                    
+                    print("some problem in data \(data)")
+                    //                uploadView.addButton.setImage(, forState: .Normal)
+                    profilePicture.image = UIImage(data: data!)
+                    makeTLProfilePicture(profilePicture)
+                }
+            }
+                
+            else {
+                
+                let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
+                
+                print("getImageUrl: \(getImageUrl)")
+                
+                let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+                print("data: \(data)")
+                
+                if data != nil {
+                    
+                    //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+                    print("inside if statement \(profilePicture.image)")
+                    profilePicture.image = UIImage(data: data!)
+                    print("sideMenu.profilePicture.image: \(profilePicture.image)")
+                    makeTLProfilePicture(profilePicture)
+                }
+                
+            }
+            
+        }
+
 //
 //        MAMScrollView!.contentSize.height = 750
 //        MAMScrollView?.delegate = self
@@ -184,14 +233,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             break
         case 2:
             let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
-            bucketVC.whichView = "Countries Visited"
+            bucketVC.whichView = "CountriesVisited"
             self.navigationController?.pushViewController(bucketVC, animated: true)
 //            let noBucketVC = storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
 //            self.navigationController?.pushViewController(noBucketVC, animated: true)
             break
         case 3:
             let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
-            bucketVC.whichView = "Bucket List"
+            bucketVC.whichView = "BucketList"
             self.navigationController?.pushViewController(bucketVC, animated: true)
             break
         case 4 :

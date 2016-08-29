@@ -16,10 +16,16 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     var countries: [JSON]!
     
+    var selectedCountries: [String] = []
+    
+    var years = ["2016", "2015", "2014", "2013", "2012"]
+    
     var selectedIndex: NSIndexPath = NSIndexPath()
     var isSelected: Bool = false
     var signUpCityVC: UIViewController!
     var searchFieldView: SearchFieldView!
+    var selectedYear: String!
+    
     
     internal var whichView: String!
     
@@ -29,7 +35,6 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
@@ -41,7 +46,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         mainTableView.sectionIndexBackgroundColor = UIColor.clearColor()
         mainTableView.sectionIndexTrackingBackgroundColor = UIColor.clearColor()
         
-        if whichView == "addCountries" {
+        if whichView == "CountriesVisited" {
             
             rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.addYear(_:)), forControlEvents: .TouchUpInside)
@@ -51,11 +56,37 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
         
+        else if whichView == "BucketList" {
+            
+//            rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+            rightButton.setTitle("Save", forState: .Normal)
+            rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveNPop(_:)), forControlEvents: .TouchUpInside)
+            rightButton.frame = CGRectMake(0, 8, 75, 30)
+            
+            self.customNavigationBar(leftButton, right: rightButton)
+            
+            self.view.backgroundColor = UIColor.whiteColor()
+            
+        }
+        
         else if whichView == "selectNationality" {
             
+            getDarkBackGroundBlur(self)
             rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.chooseCity(_:)), forControlEvents: .TouchUpInside)
             rightButton.frame = CGRectMake(0, 0, 30, 30)
+            
+            self.customNavigationBar(leftButton, right: rightButton)
+            
+            
+        }
+        
+        else if whichView == "addYear" {
+            
+//            getDarkBackGroundBlur(self)
+            rightButton.setTitle("Save", forState: .Normal)
+            rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveCountriesVisited(_:)), forControlEvents: .TouchUpInside)
+            rightButton.frame = CGRectMake(0, 0, 70, 30)
             
             self.customNavigationBar(leftButton, right: rightButton)
             
@@ -75,15 +106,15 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         searchFieldView.searchField.delegate = self
         
         
-        if whichView == "selectNationality" {
+        if whichView == "BucketList" {
             
-            print("currentUser: \(currentUser)")
-            if currentUser["homeCountry"] != nil {
-                searchFieldView.searchField.text = currentUser["homeCountry"].string!
-            }
-            else {
-                searchFieldView.searchField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-            }
+//            print("currentUser: \(currentUser)")
+//            if currentUser["homeCountry"] != nil {
+//                searchFieldView.searchField.text = currentUser["homeCountry"].string!
+//            }
+//            else {
+//                searchFieldView.searchField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+//            }
             
             request.getAllCountries({(response) in
                 
@@ -116,6 +147,75 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             })
             
         }
+            
+        if whichView == "CountriesVisited" {
+            
+            request.getAllCountries({(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error?.localizedDescription)")
+                        
+                    }
+                        
+                    else {
+                        
+                        if response["value"] {
+                            
+                            self.countries = response["data"].array!
+                            self.mainTableView.reloadData()
+                            
+                        }
+                        else {
+                            
+                            print("error: \(response["data"])")
+                        }
+                        
+                    }
+                    
+                    
+                })
+                
+            })
+            
+        }
+            
+        if whichView == "CountriesVisited" {
+            
+            request.getAllCountries({(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error?.localizedDescription)")
+                        
+                    }
+                        
+                    else {
+                        
+                        if response["value"] {
+                            
+                            self.countries = response["data"].array!
+                            self.mainTableView.reloadData()
+                            
+                        }
+                        else {
+                            
+                            print("error: \(response["data"])")
+                        }
+                        
+                    }
+                    
+                    
+                })
+                
+            })
+            
+        }
+        
         else {
             
             searchFieldView.searchField.placeholder = "Search"
@@ -124,7 +224,75 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
+    func saveCountriesVisited(sender: UIButton) {
+        
+        var listFormat: [JSON] = []
+        
+        for country in selectedCountries {
+            
+            listFormat.append(["year": selectedYear, "countryId": country])
+            
+        }
+        print("list format: \(listFormat)")
+        
+//        request.addCountriesVisited(currentUser["_id"].string!, list: listFormat, completion: {(response) in
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                
+//                if response.error != nil {
+//                    
+//                    print("error- \(response.error!.code): \(response.error!.localizedDescription)")
+//                }
+//                    
+//                else if response["value"] {
+//                    
+//                    print("response arrived")
+//                    let total = self.navigationController?.viewControllers
+//                    let prevVC = total![total!.count - 2] as! BucketListTableViewController
+//                    prevVC.tableView.reloadData()
+//                    self.navigationController?.popViewControllerAnimated(true)
+//                    
+//                }
+//                    
+//                else {
+//                    
+//                    print("response error: \(response["data"])")
+//                    
+//                }
+//            })
+//        })
+        
+    }
     
+    func saveNPop(sender: UIButton) {
+        
+        request.updateBucketList(currentUser["_id"].string!, list: selectedCountries, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error- \(response.error!.code): \(response.error!.localizedDescription)")
+                }
+                    
+                else if response["value"] {
+                    
+                    print("response arrived")
+                    let total = self.navigationController?.viewControllers
+                    let prevVC = total![total!.count - 2] as! BucketListTableViewController
+                    prevVC.tableView.reloadData()
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
+                }
+                    
+                else {
+                    
+                    print("response error: \(response["data"])")
+                    
+                }
+            })
+        })
+    }
     
     func searchPlace(sender: UIButton) {
         
@@ -182,17 +350,63 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         let selectedCountry = tableView.cellForRowAtIndexPath(indexPath) as! CountriesTableViewCell
         
         
-        if whichView == "addCountries" {
+        if whichView == "CountriesVisited" {
             
             if selectedCountry.tintColor == mainOrangeColor {
                 
                 selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+                selectedCountries = selectedCountries.filter{$0 != countries[indexPath.row]["_id"].string!}
+                print("selected countries: \(selectedCountries)")
+                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
                 
             }
                 
             else {
                 
                 selectedCountry.tintColor = mainOrangeColor
+                selectedCountries.append(countries[indexPath.row]["_id"].string!)
+                print("selected countries: \(selectedCountries)")
+                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
+                
+            }
+            
+        }
+        
+        else if whichView == "BucketList" {
+            
+            if selectedCountry.tintColor == mainOrangeColor {
+                
+                selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+                selectedCountries = selectedCountries.filter{$0 != countries[indexPath.row]["_id"].string!}
+                print("selected countries: \(selectedCountries)")
+                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
+                
+            }
+                
+            else {
+                
+                selectedCountry.tintColor = mainOrangeColor
+                selectedCountries.append(countries[indexPath.row]["_id"].string!)
+                print("selected countries: \(selectedCountries)")
+                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
+                
+            }
+            
+        }
+            
+        else if whichView == "addYear" {
+            
+//            if selectedCountry.tintColor == mainOrangeColor {
+//                
+//                selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+//                year = ""
+//                
+//            }
+            
+            if selectedCountry.tintColor == UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1) {
+                
+                selectedCountry.tintColor = mainOrangeColor
+                selectedYear = years[indexPath.row]
                 
             }
             
@@ -237,7 +451,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     func addYear(sender: UIButton) {
         
         let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
-        nextVC.whichView = ""
+        nextVC.whichView = "addYear"
         self.navigationController?.pushViewController(nextVC, animated: true)
         
     }
@@ -245,7 +459,14 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CountriesTableViewCell
-        cell.flagImage.image = UIImage(named: "indian_flag")
+//        cell.flagImage.image = UIImage(named: "indian_flag")
+        
+        if whichView == "addYear" {
+            
+            cell.flagImage.hidden = true
+            cell.countryName.text = years[indexPath.row]
+            
+        }
         
         if countries != nil {
             
@@ -285,6 +506,12 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             return countries.count
             
         }
+        else if whichView == "addYear" {
+            
+            return years.count
+            
+        }
+        
         return 0
         
     }

@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 import SwiftHTTP
 
-let adminUrl = "http://192.168.1.102:1337/"
+let adminUrl = "http://192.168.2.17:1337/api/"
 //let apiURL = "";
 
 class Navigation {
@@ -60,7 +60,7 @@ class Navigation {
         print(params)
         
         do {
-            let opt = try HTTP.POST(adminUrl + "user/editData", parameters: params)
+            let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: params)
             //            print("request: \(opt)")
             opt.start { response in
                 print("started response: \(response)")
@@ -358,7 +358,7 @@ class Navigation {
             
             let params = ["_id": id, "travelConfig": editFieldValue]
             
-            let opt = try HTTP.POST(adminUrl + "user/editData", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: [params])
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
@@ -377,6 +377,140 @@ class Navigation {
         }
         
         
+    }
+    
+    func getImageBytes(file: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+//            let params = ["file": file]
+            
+            let opt = try HTTP.GET(adminUrl + "upload/readFile?file=" + file)
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+        
+    }
+    
+    func getBucketList(id: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            //            let params = ["file": file]
+            
+            let opt = try HTTP.POST(adminUrl + "user/getBucketList", parameters: ["_id": id])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+        
+    }
+    
+    func updateBucketList(id: String, list: [String], completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id, "bucketList": list]
+            print("params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "user/updateBucketList", parameters: [params])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+        
+    }
+    
+    func addCountriesVisited(id: String, list: [String], completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id, "countriesVisited": list]
+            print("params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "user/updateCountriesVisited", parameters: [params])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getCountriesVisited(id: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id]
+            print("params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "user/getCountryVisitedList", parameters: [params])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
     }
     
 }

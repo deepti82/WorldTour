@@ -84,6 +84,14 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.customNavigationBar(leftButton, right: rightButton)
         
+        if currentUser["homeCity"] != nil {
+            
+            cityTextField.text = currentUser["homeCity"].string!
+//            addNationalityButton.hidden = true
+//            userNationatilty.setTitle(currentUser["homeCountry"].string!, forState: .Normal)
+            
+        }
+        
     }
     
     func selectGender(sender: UIButton) {
@@ -98,7 +106,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         }
         
-        request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityTextField.text!, completion: {(response) in
+        request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 

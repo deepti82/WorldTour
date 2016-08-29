@@ -1,31 +1,24 @@
-//
-//  GenderInfo.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 27/05/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
 
 import UIKit
 import SwiftyJSON
 
+var genderValue: String!
+
 class GenderInfo: UIView {
-    
-//    var genderValue: String!
     
     @IBOutlet weak var sheButton: UIButton!
     @IBOutlet weak var heButton: UIButton!
     
     @IBAction func sheButtonTap(sender: AnyObject?) {
         
-        currentUser["gender"] = JSON("female")
+        genderValue = "female"
         heButton.tintColor = UIColor.lightGrayColor()
         sheButton.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
     }
     
     @IBAction func heButtonTap(sender: AnyObject?) {
         
-        currentUser["gender"] = JSON("male")
+        genderValue = "male"
         sheButton.tintColor = UIColor.lightGrayColor()
         heButton.tintColor = mainOrangeColor
     }

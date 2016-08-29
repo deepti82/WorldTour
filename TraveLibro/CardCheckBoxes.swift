@@ -12,6 +12,8 @@ class CardCheckBoxes: UIView {
     @IBOutlet weak var leftButtonStack: UIStackView!
     
     var flag = 0
+//    var isRadio = false
+    
     
     @IBAction func checkBoxTap(sender: UIButton) {
         
@@ -28,8 +30,11 @@ class CardCheckBoxes: UIView {
 //                flag = 1
 //            }
             
-            selectedOptions.append(sender.titleLabel!.text!)
-            
+            if !selectedOptions.contains(sender.titleLabel!.text!) {
+                
+                selectedOptions.append(sender.titleLabel!.text!)
+                
+            }
         }
         
         else {
@@ -43,6 +48,7 @@ class CardCheckBoxes: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
+//        print("is radio: \(isRadio)")
     }
     
     required init?(coder aDecoder: NSCoder) {

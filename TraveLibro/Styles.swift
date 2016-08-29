@@ -149,6 +149,23 @@ public class LoadingOverlay{
     }
 }
 
+func makeTLProfilePicture(image: UIImageView) {
+    
+    image.layer.cornerRadius = (37/100) * image.frame.width
+    image.layer.borderWidth = 3.0
+    image.layer.borderColor = UIColor.whiteColor().CGColor
+    image.clipsToBounds = true
+    
+}
+func makeTLProfilePicture(image: UIButton) {
+    
+    image.layer.cornerRadius = (37/100) * image.frame.width
+    image.layer.borderWidth = 3.0
+    image.layer.borderColor = UIColor.whiteColor().CGColor
+    image.clipsToBounds = true
+    
+}
+
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks
 //LoadingOverlay.shared.hideOverlayView()

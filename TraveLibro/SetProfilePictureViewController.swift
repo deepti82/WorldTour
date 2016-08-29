@@ -40,11 +40,63 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         imagePicker.delegate = self
         
 //        let url =
-        let data = NSData(contentsOfURL: NSURL(string: currentUser["profilePicture"].string!)!)
+        let isUrl = verifyUrl(currentUser["profilePicture"].string!)
         
-        if data != nil {
+        if isUrl {
             
-            uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+            let data = NSData(contentsOfURL: NSURL(string: currentUser["profilePicture"].string!)!)
+            
+            if data != nil {
+                
+                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+                
+            }
+        }
+        
+        else {
+            
+            var imageName = ""
+            
+            if currentUser["profilePicture"] != nil {
+                
+                imageName = currentUser["profilePicture"].string!
+                
+            }
+            
+            let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
+            
+            
+            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            
+            if data != nil {
+                
+                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+                
+            }
+            
+//            request.getImageBytes(imageName, completion: {(response) in
+//                
+//                if response.error != nil {
+//                    
+//                    print("error: \(response.error?.localizedDescription)")
+//                    
+//                }
+//                
+//                else if response["value"] {
+//                    
+////                    print("")
+////                    uploadView.addButton.setImage(UIImage(data: response), forState: .Normal)
+//                    
+//                }
+//                
+//                else {
+//                    
+//                    print("response error: \(response["data"])")
+//                    
+//                }
+//                
+//                
+//            })
             
         }
         

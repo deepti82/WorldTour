@@ -22,7 +22,16 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+//        if isEmptyProfile {
+//            
+//            let myLifeVC = self.parentViewController as! MyLifeViewController
+//            myLifeVC.whatTab = "Reviews"
+//            myLifeVC.collectionContainer.alpha = 0
+//            myLifeVC.tableContainer.alpha = 0
+//            myLifeVC.journeysContainerView.alpha = 1
+//            myLifeVC.view.setNeedsDisplay()
+//            
+//        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -124,9 +124,9 @@ class SignInViewController: UIViewController {
                         
                         print("opt finished: \(response.description)")
                         let json = JSON(data: response.data)
-//                        print("response: \(json)")
+                        print(json)
                         
-                        request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!, gender: "", dob: "", completion: {(response) in
+                        request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!+"?sz=500", gender: "", dob: "", completion: {(response) in
                             
                             dispatch_async(dispatch_get_main_queue(), {
                                 
@@ -138,6 +138,7 @@ class SignInViewController: UIViewController {
                                 else {
                                     
 //                                print("response: \(response.description)")
+                                    currentUser = response["data"]
                                     self.gotoNationalityPage()
                                     
                                 }
@@ -160,6 +161,8 @@ class SignInViewController: UIViewController {
     func facebookSignIn(sender: UIButton) {
         
         print("facebook sign in")
+        
+//        Facebook.init()
         
         Simplicity.login(facebook) {(accessToken, error) in
             

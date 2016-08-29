@@ -31,6 +31,7 @@ class SignInPageViewController: UIViewController {
         
         pageView = SignInFullView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height - 60))
         self.view.addSubview(pageView)
+        pageView.loginButton.addTarget(self, action: #selector(SignInPageViewController.gotoLogin(_:)), forControlEvents: .TouchUpInside)
         
 //        pageView.loginBigButton.addTarget(self, action: #selector(SignInPageViewController.signedUp(_:)), forControlEvents: .TouchUpInside)
 //        pageView.textField2.secureTextEntry = true
@@ -209,6 +210,13 @@ class SignInPageViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func gotoLogin(sender: UIButton) {
+        
+        let logInVC = storyboard?.instantiateViewControllerWithIdentifier("logIn") as! LogInViewController
+        self.navigationController?.pushViewController(logInVC, animated: true)
+        
     }
 
 }
