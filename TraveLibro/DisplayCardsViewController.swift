@@ -45,6 +45,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         dataSource = self
         
         setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
+        
 //        self.pvc = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         
     }

@@ -68,14 +68,16 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
         nationalityPickerView.delegate = self
         
-        if currentUser["homeCountry"] != nil {
-            
-            addNationality.hidden = true
-            addNationalityButton.hidden = true
-            userNationatilty.hidden = false
-            userNationatilty.setTitle(currentUser["homeCountry"].string!, forState: .Normal)
-            
-        }
+        self.title = "Country of Origin"
+        
+//        if currentUser["homeCountry"] != nil {
+//            
+//            addNationality.hidden = true
+//            addNationalityButton.hidden = true
+//            userNationatilty.hidden = false
+//            userNationatilty.setTitle(currentUser["homeCountry"].string!, forState: .Normal)
+//            
+//        }
         
 //        let toolBar = UIToolbar()
 //        toolBar.barStyle = UIBarStyle.Default

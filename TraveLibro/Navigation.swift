@@ -80,6 +80,35 @@ class Navigation {
         
     }
     
+    func getUser(id: String, completion: ((JSON) -> Void)) {
+        
+        var json = JSON(1);
+        //        let deviceId = UIDevice.currentDevice().identifierForVendor!.UUIDString
+        //        print("device id: \(deviceId)")
+        let params = ["_id":id]
+        print(params)
+        
+        do {
+            let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
+            //            print("request: \(opt)")
+            opt.start { response in
+                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
     func signUpSocial(id: String, completion:((JSON) -> Void)) {
         
         switch id {
@@ -331,7 +360,7 @@ class Navigation {
             
             //            let params = ["file": Upload(fileUrl: file)]
             
-            let opt = try HTTP.POST(adminUrl + "country/locationSearch", parameters: ["search": searchText])
+            let opt = try HTTP.POST(adminUrl + "city/locationSearch", parameters: ["search": searchText])
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
@@ -461,11 +490,70 @@ class Navigation {
         
     }
     
-    func addCountriesVisited(id: String, list: [String], completion: ((JSON) -> Void)) {
+    func removeBucketList(id: String, country: String, completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "countriesVisited": list]
+            let params = ["_id": id, "bucketList": country, "delete": true]
+            print("params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "user/updateBucketList", parameters: [params])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+        
+    }
+    
+    func addCountriesVisited(id: String, list: [NSDictionary], completion: ((JSON) -> Void)) {
+        
+//        var jsonDict: NSDictionary!
+//        let str = "\(list)"
+//        let data = str.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+//        print("data: \(data)")
+        
+        do {
+            
+//            var error: NSError?
+//            var jsonData: NSData!
+//            
+//            do {
+//                
+//                try jsonData = list.rawData()
+//            }
+//            catch {
+//                
+//                print("error")
+//                
+//            }
+            
+//            do {
+//                jsonDict = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String: AnyObject]
+////                let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as! [String: AnyObject]
+////                if let names = json["names"] as? [String] {
+////                    print(names)
+////                }
+//            } catch let error as NSError {
+//                print("Failed to load: \(error.localizedDescription)")
+//            }
+            
+            var jsonParams: [(year: String, countryId: String)] = [(year: "2016", countryId: "57c146ba528f42240deff3fd")]
+            jsonParams.append((year: "2016", countryId: "57c146ba528f42240deff3fe"))
+            
+            let params = ["_id": id, "countriesVisited": jsonParams as! AnyObject]
             print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/updateCountriesVisited", parameters: [params])
@@ -495,6 +583,32 @@ class Navigation {
             print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/getCountryVisitedList", parameters: [params])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getBucketListCount(id: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id]
+            print("params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "user/getOneData", parameters: params)
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")

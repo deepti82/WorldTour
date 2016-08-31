@@ -35,7 +35,11 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         uploadView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
         self.view.addSubview(uploadView)
         
-        uploadView.addButton.addTarget(self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)), forControlEvents: .TouchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)))
+//        tap.delegate = self
+        uploadView.addButtonPic.addGestureRecognizer(tap)
+        
+//        uploadView.addButton.addTarget(self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)), forControlEvents: .TouchUpInside)
         
         imagePicker.delegate = self
         
@@ -48,7 +52,9 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
             
             if data != nil {
                 
-                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+//                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+                uploadView.addButtonPic.image = UIImage(data:data!)
+                makeTLProfilePicture(uploadView.addButtonPic)
                 
             }
         }
@@ -70,7 +76,9 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
             
             if data != nil {
                 
-                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+//                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+                uploadView.addButtonPic.image = UIImage(data:data!)
+                makeTLProfilePicture(uploadView.addButtonPic)
                 
             }
             
@@ -111,7 +119,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
     }
     
-    func chooseDisplayPic(sender: AnyObject) {
+    func chooseDisplayPic(sender: UITapGestureRecognizer? = nil) {
         
         let chooseSource: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         
@@ -158,7 +166,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         //var tempImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         tempImage = info[UIImagePickerControllerEditedImage] as! UIImage
 //        let imageData: NSData = UIImageJPEGRepresentation(tempImage, 1.0)!
-        uploadView.addButton.setImage(tempImage, forState: .Normal)
+        uploadView.addButtonPic.image = tempImage
         
         self.dismissViewControllerAnimated(true, completion:nil)
         

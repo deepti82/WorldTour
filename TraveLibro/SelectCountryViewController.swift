@@ -1,11 +1,3 @@
-//
-//  SelectCountryViewController.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 19/05/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 import SwiftyJSON
 
@@ -25,7 +17,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     var signUpCityVC: UIViewController!
     var searchFieldView: SearchFieldView!
     var selectedYear: String!
-    
+    var alreadySelected: [JSON]!
+
     
     internal var whichView: String!
     
@@ -66,6 +59,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             self.customNavigationBar(leftButton, right: rightButton)
             
             self.view.backgroundColor = UIColor.whiteColor()
+            
+            print("already selected: \(alreadySelected)")
             
         }
         
@@ -182,39 +177,39 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
             
-        if whichView == "CountriesVisited" {
-            
-            request.getAllCountries({(response) in
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    
-                    if response.error != nil {
-                        
-                        print("error: \(response.error?.localizedDescription)")
-                        
-                    }
-                        
-                    else {
-                        
-                        if response["value"] {
-                            
-                            self.countries = response["data"].array!
-                            self.mainTableView.reloadData()
-                            
-                        }
-                        else {
-                            
-                            print("error: \(response["data"])")
-                        }
-                        
-                    }
-                    
-                    
-                })
-                
-            })
-            
-        }
+//        if whichView == "addYear" {
+//            
+////            request.getAllCountries({(response) in
+////                
+////                dispatch_async(dispatch_get_main_queue(), {
+////                    
+////                    if response.error != nil {
+////                        
+////                        print("error: \(response.error?.localizedDescription)")
+////                        
+////                    }
+////                        
+////                    else {
+////                        
+////                        if response["value"] {
+////                            
+////                            self.countries = response["data"].array!
+////                            self.mainTableView.reloadData()
+////                            
+////                        }
+////                        else {
+////                            
+////                            print("error: \(response["data"])")
+////                        }
+////                        
+////                    }
+////                    
+////                    
+////                })
+////                
+////            })
+//            
+//        }
         
         else {
             
@@ -226,45 +221,57 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     func saveCountriesVisited(sender: UIButton) {
         
-        var listFormat: [JSON] = []
+        print("save countries visited: \(selectedCountries), \(selectedYear)")
+        
+        var listFormat: [NSDictionary] = []
+        let list: NSMutableDictionary = [:]
         
         for country in selectedCountries {
             
-            listFormat.append(["year": selectedYear, "countryId": country])
+            list["year"] = selectedYear
+            list["countryId"] = country
+            listFormat.append(list)
             
         }
         print("list format: \(listFormat)")
         
-//        request.addCountriesVisited(currentUser["_id"].string!, list: listFormat, completion: {(response) in
-//            
-//            dispatch_async(dispatch_get_main_queue(), {
-//                
-//                if response.error != nil {
-//                    
-//                    print("error- \(response.error!.code): \(response.error!.localizedDescription)")
-//                }
-//                    
-//                else if response["value"] {
-//                    
-//                    print("response arrived")
-//                    let total = self.navigationController?.viewControllers
-//                    let prevVC = total![total!.count - 2] as! BucketListTableViewController
-//                    prevVC.tableView.reloadData()
-//                    self.navigationController?.popViewControllerAnimated(true)
-//                    
-//                }
-//                    
-//                else {
-//                    
-//                    print("response error: \(response["data"])")
-//                    
-//                }
-//            })
-//        })
+        request.addCountriesVisited(currentUser["_id"].string!, list: listFormat, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error- \(response.error!.code): \(response.error!.localizedDescription)")
+                }
+                    
+                else if response["value"] {
+                    
+                    print("response arrived")
+                    let total = self.navigationController?.viewControllers
+                    let prevVC = total![total!.count - 3] as! BucketListTableViewController
+                    prevVC.tableView.reloadData()
+                    self.navigationController?.popViewControllerAnimated(true)
+                    
+                }
+                    
+                else {
+                    
+                    print("response error: \(response["data"])")
+                    
+                }
+            })
+        })
         
     }
     
     func saveNPop(sender: UIButton) {
+        
+        var prevBucketCount = 0
+        if alreadySelected != nil {
+            
+            prevBucketCount = 1
+            
+        }
         
         request.updateBucketList(currentUser["_id"].string!, list: selectedCountries, completion: {(response) in
             
@@ -279,9 +286,25 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                     
                     print("response arrived")
                     let total = self.navigationController?.viewControllers
-                    let prevVC = total![total!.count - 2] as! BucketListTableViewController
-                    prevVC.tableView.reloadData()
-                    self.navigationController?.popViewControllerAnimated(true)
+                    let vc = self.storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+                    if prevBucketCount == 0 {
+                        
+//                        print("to pop: \(total![total!.count - 2])")
+//                        print("vc: \(BucketListTableViewController())")
+                        vc.whichView = "BucketList"
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        
+                    }
+                    else {
+                        
+                        print("coming")
+                        let prevVC = total![total!.count - 2] as! BucketListTableViewController
+                        prevVC.whichView = "BucketList"
+                        prevVC.getBucketList()
+                        prevVC.tableView.reloadData()
+                        self.navigationController?.popViewControllerAnimated(true)
+                        
+                    }
                     
                 }
                     
@@ -394,42 +417,36 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
             
+//        else  {
+//            
+//            if selectedCountry.tintColor == UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1) {
+//                
+//                selectedCountry.tintColor = mainOrangeColor
+//                selectedYear = years[indexPath.row]
+//                
+//            }
+//            
+//        }
+        
         else if whichView == "addYear" {
             
 //            if selectedCountry.tintColor == mainOrangeColor {
 //                
-//                selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
-//                year = ""
+//                selectedCountry.tintColor = UIColor.lightGrayColor()
+//                selectedYear = ""
+//                isSelected = false
 //                
 //            }
             
-            if selectedCountry.tintColor == UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1) {
-                
-                selectedCountry.tintColor = mainOrangeColor
-                selectedYear = years[indexPath.row]
-                
-            }
-            
-        }
-        
-        else {
-            
-            if selectedCountry.tintColor == mainOrangeColor {
-                
-                selectedCountry.tintColor = UIColor.lightGrayColor()
-                selectedNationality = ""
-                isSelected = false
-                
-            }
-                
-            else if isSelected == true {
+            if isSelected == true {
                 
                 let prevSelected = tableView.cellForRowAtIndexPath(selectedIndex) as! CountriesTableViewCell
                 //            prevSelected?.backgroundColor = UIColor.lightGrayColor()
                 prevSelected.tintColor = UIColor.lightGrayColor()
                 
                 selectedCountry.tintColor = mainOrangeColor
-                selectedNationality = selectedCountry.countryName.text
+//                selectedNationality = selectedCountry.countryName.text
+                selectedYear = years[indexPath.row]
                 selectedIndex = indexPath
             }
                 
@@ -438,7 +455,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 selectedCountry.tintColor = mainOrangeColor
                 selectedIndex = indexPath
                 isSelected = true
-                selectedNationality = selectedCountry.countryName.text
+                selectedYear = years[indexPath.row]
+//                selectedNationality = selectedCountry.countryName.text
                 
             }
             
@@ -452,6 +470,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
         nextVC.whichView = "addYear"
+        nextVC.selectedCountries = selectedCountries
         self.navigationController?.pushViewController(nextVC, animated: true)
         
     }
@@ -471,8 +490,13 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         if countries != nil {
             
             cell.countryName.text = countries[indexPath.row]["name"].string!
-            
+            if alreadySelected != nil && alreadySelected.contains(countries[indexPath.row]) {
+                
+                print("already selected contains \(countries[indexPath.row])")
+                cell.tintColor = mainOrangeColor
+            }
         }
+
         
         cell.accessoryType = .Checkmark
         if indexPath.row % 2 == 0 {

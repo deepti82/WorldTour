@@ -14,6 +14,8 @@ class SignupCardsViewController: UIViewController {
         
         super.viewDidLoad()
         
+        getUser()
+        
         checkBoxNumber = Int(checkBoxes)
         
         let theScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -57,6 +59,31 @@ class SignupCardsViewController: UIViewController {
             
             theScrollView.contentSize.height = cardView.frame.height + 50
         }
+    }
+    
+    func getUser() {
+        
+        request.getUser(currentUser["_id"].string!, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("response: \(response.error?.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    //                    currentUser = response
+                }
+                else {
+                    
+                    print("response error: \(response["error"])")
+                }
+            })
+            
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {

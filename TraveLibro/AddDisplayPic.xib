@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddDisplayPic" customModule="TraveLibro" customModuleProvider="target">
             <connections>
                 <outlet property="addButton" destination="XLe-M8-05h" id="v4k-ns-ua8"/>
+                <outlet property="addButtonPic" destination="XDs-vj-bgT" id="XBt-XC-2YV"/>
                 <outlet property="username" destination="CfA-O1-YDE" id="CMB-6n-wqk"/>
             </connections>
         </placeholder>
@@ -36,7 +37,7 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLe-M8-05h">
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XLe-M8-05h">
                     <rect key="frame" x="95" y="84" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="HoH-rA-PSU"/>
@@ -45,8 +46,18 @@
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <state key="normal" image="add_profile_pic"/>
                 </button>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_profile_pic" translatesAutoresizingMaskIntoConstraints="NO" id="XDs-vj-bgT">
+                    <rect key="frame" x="95" y="84" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="exJ-Ck-Dd9"/>
+                        <constraint firstAttribute="width" constant="100" id="gwm-Q0-Mwa"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <constraints>
+                <constraint firstItem="XDs-vj-bgT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1EM-Qk-wq4"/>
+                <constraint firstItem="CfA-O1-YDE" firstAttribute="centerX" secondItem="XDs-vj-bgT" secondAttribute="centerX" id="DBW-Y7-ZbA"/>
+                <constraint firstItem="CfA-O1-YDE" firstAttribute="top" secondItem="XDs-vj-bgT" secondAttribute="bottom" constant="25" id="NSf-je-2WJ"/>
                 <constraint firstItem="CfA-O1-YDE" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="OES-RU-STY"/>
                 <constraint firstItem="CfA-O1-YDE" firstAttribute="top" secondItem="XLe-M8-05h" secondAttribute="bottom" constant="25" id="RHu-RB-ctW"/>
                 <constraint firstItem="XLe-M8-05h" firstAttribute="top" secondItem="bb7-15-dOZ" secondAttribute="bottom" constant="8" id="SJI-aG-Xu0"/>
@@ -58,6 +69,9 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="XLe-M8-05h"/>
+                </mask>
                 <mask key="constraints">
                     <exclude reference="SJI-aG-Xu0"/>
                 </mask>

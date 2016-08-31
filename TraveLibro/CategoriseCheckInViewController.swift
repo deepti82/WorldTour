@@ -90,22 +90,10 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
         cell.categoryIcon.setBackgroundImage(UIImage(named: "checkinbggreen"), forState: .Normal)
         previousItem = indexPath
         
-        
-        
 //        let addCheckInVC = storyboard?.instantiateViewControllerWithIdentifier("addCheckIn") as! AddCheckInViewController
 //        self.navigationController?.pushViewController(addCheckInVC, animated: true)
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

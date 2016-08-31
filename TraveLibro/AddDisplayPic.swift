@@ -10,13 +10,14 @@ import UIKit
 
 class AddDisplayPic: UIView {
 
+    @IBOutlet weak var addButtonPic: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var addButton: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        makeTLProfilePicture(addButton)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

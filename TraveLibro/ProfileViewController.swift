@@ -211,6 +211,54 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
     }
     
+    func gotoBucketList() {
+        
+        request.getBucketListCount(currentUser["_id"].string!, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if let error = response.error {
+                    
+                    print("error- \(error.code): \(error.localizedDescription)")
+                    
+                }
+                    
+                else if response["value"] {
+                    
+                    if response["data"]["bucketList_count"].int == 0 {
+                        
+                        let bucketVC = self.storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+                        bucketVC.whichView = "BucketList"
+                        self.navigationController?.pushViewController(bucketVC, animated: true)
+                        
+                    }
+                        
+                    else if response["data"]["bucketList_count"].int > 0 {
+                        
+                        let bucketVC = self.storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+                        bucketVC.whichView = "BucketList"
+                        self.navigationController?.pushViewController(bucketVC, animated: true)
+                        
+                    }
+                        
+                    else {
+                        
+                        print("some problem idk")
+                    }
+                    
+                }
+                    
+                else {
+                    
+                    print("response error: \(response["error"])")
+                }
+                
+            })
+            
+        })
+        
+    }
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         print("Selected item: \(indexPath.item)")
@@ -239,9 +287,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //            self.navigationController?.pushViewController(noBucketVC, animated: true)
             break
         case 3:
-            let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
-            bucketVC.whichView = "BucketList"
-            self.navigationController?.pushViewController(bucketVC, animated: true)
+            gotoBucketList()
             break
         case 4 :
             let journeys = storyboard?.instantiateViewControllerWithIdentifier("allJourneysCreated") as! AllJourneysViewController

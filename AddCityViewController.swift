@@ -68,6 +68,9 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         getDarkBackGroundBlur(self)
         
+        self.title = "Where do you live?"
+        
+        cityTextField.attributedPlaceholder = NSAttributedString(string:  "Detect Location", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
         cityTextField.returnKeyType = .Done
         cityTextField.delegate = self
         cityTextField.addTarget(self, action: #selector(AddCityViewController.textFieldDidChange(_:)), forControlEvents: .EditingChanged)
@@ -84,13 +87,15 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.customNavigationBar(leftButton, right: rightButton)
         
-        if currentUser["homeCity"] != nil {
-            
-            cityTextField.text = currentUser["homeCity"].string!
-//            addNationalityButton.hidden = true
-//            userNationatilty.setTitle(currentUser["homeCountry"].string!, forState: .Normal)
-            
-        }
+        mainTableView.tableFooterView = UIView()
+        
+//        if currentUser["homeCity"] != nil {
+//            
+//            cityTextField.text = currentUser["homeCity"].string!
+////            addNationalityButton.hidden = true
+////            userNationatilty.setTitle(currentUser["homeCountry"].string!, forState: .Normal)
+//            
+//        }
         
     }
     
@@ -201,6 +206,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     func textFieldDidEndEditing(textField: UITextField) {
         
         cityTextField.resignFirstResponder()
+        mainTableView.hidden = true
         
     }
     
@@ -231,7 +237,8 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         print("selected \(places[indexPath.row]["description"].string!)")
         cityTextField.text = places[indexPath.row]["description"].string!
-        
+        cityTextField.resignFirstResponder()
+        mainTableView.hidden = true
     }
 
 }

@@ -13,6 +13,7 @@ class BucketListTableViewController: UITableViewController  {
     
     var whichView: String!
     var bucket: [JSON] = []
+    var isComingFromEmptyPages = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class BucketListTableViewController: UITableViewController  {
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), forControlEvents: .TouchUpInside)
         leftButton.frame = CGRectMake(0, 0, 30, 30)
         
         let rightButton = UIButton()
@@ -33,29 +34,7 @@ class BucketListTableViewController: UITableViewController  {
         
         if whichView == "BucketList" {
             
-            request.getBucketList(currentUser["_id"].string!, completion: {(response) in
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    
-                    if response.error != nil {
-                        
-                        print("error - \(response.error?.code): \(response.error?.localizedDescription)")
-                    }
-                    else if response["value"] {
-                     
-                        self.bucket = response["data"]["bucketList"].array!
-                        self.tableView.reloadData()
-                        
-                    }
-                    else {
-                        
-                        print("response error: \(response["data"])")
-                        
-                    }
-                })
-                
-            })
-            
+            getBucketList()
             
         }
         
@@ -67,12 +46,12 @@ class BucketListTableViewController: UITableViewController  {
                     
                     if response.error != nil {
                         
-                        print("error - \(response.error?.code): \(response.error?.localizedDescription)")
+                        print("error - \(response.error!.code): \(response.error!.localizedDescription)")
                     }
                     else if response["value"] {
                         
-                        self.bucket = response["data"]["countriesVisited"].array!
-                        self.tableView.reloadData()
+//                        self.bucket = response["data"]["countriesVisited"].array!
+//                        self.tableView.reloadData()
                         
                     }
                     else {
@@ -90,10 +69,66 @@ class BucketListTableViewController: UITableViewController  {
         
         tableView.separatorColor = UIColor.whiteColor()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        if isComingFromEmptyPages {
+            
+            print("has come here")
+            
+        }
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func gotoProfile(sender: UIButton) {
+        
+        let profile = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+        self.navigationController?.popToRootViewControllerAnimated(true)
+//        self.navigationController?.popToViewController(, animated: true)
+        
+    }
+    
+    func getBucketList() {
+        
+            request.getBucketList(currentUser["_id"].string!, completion: {(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("error - \(response.error?.code): \(response.error?.localizedDescription)")
+                    }
+                    else if response["value"] {
+                        
+                        self.bucket = response["data"]["bucketList"].array!
+                        if self.bucket.count == 0 {
+                            
+                            print("bucket list is empty")
+                            let emptyBucket = self.storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+                            emptyBucket.whichView = self.whichView
+                            self.navigationController?.pushViewController(emptyBucket, animated: false)
+                            
+                        }
+                        self.tableView.reloadData()
+                        
+                    }
+                    else {
+                        
+                        print("response error: \(response["data"])")
+                        
+                    }
+                })
+                
+            })
+            
+            
+//        }
+        
     }
 
     // MARK: - Table view data source
@@ -160,17 +195,42 @@ class BucketListTableViewController: UITableViewController  {
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-//        if indexPath.row % 2 == 0 {
+        if whichView == "BucketList" {
             let delete = UITableViewRowAction(style: .Destructive, title: "             ") { (action, indexPath) in
-                // delete item at indexPath
+                
+//                print("bucket list removal: \(self.bucket[indexPath.row]["_id"])")
+                
+                request.removeBucketList(currentUser["_id"].string!, country: self.bucket[indexPath.row]["_id"].string!, completion: {(response) in
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        if response.error != nil {
+                            
+                            print("error- \(response.error?.code): \(response.error?.localizedDescription)")
+                            
+                        }
+                        else if response["value"] {
+                            
+//                            tableView.reloadData()
+                            self.getBucketList()
+                            
+                        }
+                        else {
+                            
+                            print("response error: \(response["error"])")
+                            
+                        }
+                    })
+                })
+                
             }
             delete.backgroundColor = UIColor(patternImage: UIImage(named: "trash")!)
             return [delete]
-//        }
-//        
-//        let delete = UITableViewRowAction(style: .Normal, title: "") { (action, indexPath) in
-//            // delete item at indexPath
-//        }
+        }
+        
+        let delete = UITableViewRowAction(style: .Normal, title: "") { (action, indexPath) in
+            // delete item at indexPath
+        }
         
 //        let share = UITableViewRowAction(style: .Normal, title: "Disable") { (action, indexPath) in
 //            // share item at indexPath
@@ -178,7 +238,7 @@ class BucketListTableViewController: UITableViewController  {
 //        
 //        share.backgroundColor = UIColor.blueColor()
         
-//        return [delete]
+        return [delete]
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -238,6 +298,8 @@ class BucketListTableViewController: UITableViewController  {
             
             let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
             nextVC.whichView = "BucketList"
+            print("bucket list \(bucket)")
+            nextVC.alreadySelected = bucket
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
         else {

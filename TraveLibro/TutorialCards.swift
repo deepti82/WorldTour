@@ -27,24 +27,39 @@ class TutorialCards: UIView {
         
         var options: [String] = []
         
-        for item in currentUser["travelConfig"]["usuallyGo"].array! {
+        if currentUser["travelConfig"]["usuallyGo"] != nil {
             
-            options.append(item.string!)
+            for item in currentUser["travelConfig"]["usuallyGo"].array! {
+                
+                options.append(item.string!)
+            }
+            
         }
         
-        for item in currentUser["travelConfig"]["kindOfHoliday"].array! {
+        if currentUser["travelConfig"]["kindOfHoliday"] != nil {
             
-            options.append(item.string!)
+            for item in currentUser["travelConfig"]["kindOfHoliday"].array! {
+                
+                options.append(item.string!)
+            }
+            
         }
         
-        for item in currentUser["travelConfig"]["holidayType"].array! {
+        if currentUser["travelConfig"]["holidayType"] != nil {
             
-            options.append(item.string!)
+            for item in currentUser["travelConfig"]["holidayType"].array! {
+                
+                options.append(item.string!)
+            }
         }
         
-        for item in currentUser["travelConfig"]["preferToTravel"].array! {
+        if currentUser["travelConfig"]["usuallyGo"] != nil {
             
-            options.append(item.string!)
+            for item in currentUser["travelConfig"]["usuallyGo"].array! {
+                
+                options.append(item.string!)
+            }
+            
         }
         
         //        if options.contains(buttonRight.titleLabel!.text!) {
