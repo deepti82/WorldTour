@@ -34,10 +34,10 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
         leftButton.frame = CGRectMake(0, 0, 30, 30)
         
-        rightButton.setTitle("Next", forState: .Normal)
-//        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+//        rightButton.setTitle("Next", forState: .Normal)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
         rightButton.addTarget(self, action: #selector(DisplayCardsViewController.nextPage(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 70, 30)
+        rightButton.frame = CGRectMake(0, 8, 30, 30)
 //        rightButton.hidden = true
         
         self.customNavigationBar(leftButton, right: rightButton)
@@ -65,7 +65,11 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         if dataIndex == 3 {
             
+            rightButton.frame.size.width = 70.0
+            rightButton.setImage(nil, forState: .Normal)
             rightButton.setTitle("Done", forState: .Normal)
+            rightButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
+            
         }
         
         else if dataIndex > 3 {
@@ -119,6 +123,8 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                         print("response arrived!")
                         
                         let home = self.storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+//                        self.slideMenuController()?.changeMainViewController(home, close: true)
+//                        home.initialEntrance = true
                         self.navigationController!.pushViewController(home, animated: true)
                         
                     }

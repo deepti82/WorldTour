@@ -38,7 +38,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     var verticalLayout: VerticalLayout!
     let titleLabels = ["November 2015 (25)", "October 2015 (25)", "September 2015 (25)", "August 2015 (25)"]
     var whatTab = "Journeys"
-    
+    var child: MyLifeContainerViewController!
+    var whatEmptyTab = "Journeys"
     
 //    @IBOutlet weak var TheScrollView: UIScrollView!
     
@@ -133,6 +134,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.setDefaults()
         self.allRadioChecked(nil)
         
+        child = self.childViewControllers[0] as! MyLifeContainerViewController
         
     }
     
@@ -181,21 +183,27 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func showJourneys(sender: UIButton) {
         
-        print("Journeys")
-        whatTab = "Journeys"
-        
-//        journeysHC.constant = 65.0
-//        momentsHC.constant = 60.0
-//        reviewsHC.constant = 18.0
-        
+        whatEmptyTab = "Journeys"
         reviewsButton.layer.zPosition = -1
         momentsButton.layer.zPosition = 1
         journeysButton.layer.zPosition = 3
         
-        journeysContainerView.alpha = 1
-        collectionContainer.alpha = 0
-        tableContainer.alpha = 0
+        if !isEmptyProfile {
+            
+            print("Journeys")
+            whatTab = "Journeys"
+            
+            //        journeysHC.constant = 65.0
+            //        momentsHC.constant = 60.0
+            //        reviewsHC.constant = 18.0
+            
+            journeysContainerView.alpha = 1
+            collectionContainer.alpha = 0
+            tableContainer.alpha = 0
+            
+        }
         
+        flag = true
         self.allRadioChecked(nil)
         
 //        journeysButton.contentEdgeInsets.top = -15
@@ -206,20 +214,26 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func showMoments(sender: UIButton) {
         
-        print("Moments")
-        whatTab = "Moments"
-//        journeysHC.constant = 18.0
-//        momentsHC.constant = 65.0
-//        reviewsHC.constant = 60.0
-        
+        whatEmptyTab = "Moments"
         journeysButton.layer.zPosition = -1
         reviewsButton.layer.zPosition = 1
         momentsButton.layer.zPosition = 3
         
-        journeysContainerView.alpha = 0
-        collectionContainer.alpha = 1
-        tableContainer.alpha = 0
+        if !isEmptyProfile {
+            
+            print("Moments")
+            whatTab = "Moments"
+            //        journeysHC.constant = 18.0
+            //        momentsHC.constant = 65.0
+            //        reviewsHC.constant = 60.0
+            
+            journeysContainerView.alpha = 0
+            collectionContainer.alpha = 1
+            tableContainer.alpha = 0
+            
+        }
         
+        flag = true
         self.allRadioChecked(nil)
 //        momentsButton.contentEdgeInsets.top = -15
 //        reviewsButton.contentEdgeInsets.top = -15
@@ -229,20 +243,26 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func showReviews(sender: UIButton) {
         
-        print("Reviews")
-        whatTab = "Reviews"
-//        journeysHC.constant = 60.0
-//        momentsHC.constant = 18.0
-//        reviewsHC.constant = 65.0
-        
+        whatEmptyTab = "Reviews"
         momentsButton.layer.zPosition = -1
         journeysButton.layer.zPosition = 1
         reviewsButton.layer.zPosition = 3
         
-        journeysContainerView.alpha = 0
-        collectionContainer.alpha = 0
-        tableContainer.alpha = 1
+        if !isEmptyProfile {
+            
+            print("Reviews")
+            whatTab = "Reviews"
+            //        journeysHC.constant = 60.0
+            //        momentsHC.constant = 18.0
+            //        reviewsHC.constant = 65.0
+            
+            journeysContainerView.alpha = 0
+            collectionContainer.alpha = 0
+            tableContainer.alpha = 1
+            
+        }
         
+        flag = true
         self.allRadioChecked(nil)
 //        reviewsButton.contentEdgeInsets.top = -15
 //        journeysButton.contentEdgeInsets.top = -15
@@ -250,7 +270,16 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
+    var flag = false
+    
     func allRadioChecked(sender: AnyObject?) {
+        
+        if flag && isEmptyProfile {
+            
+            child.whichEmptyView = "\(whatEmptyTab)-All"
+            child.viewDidLoad()
+            flag = false
+        }
         
         let mySubviews = allRadio.titleLabel!.subviews
         radioValue = "All"
@@ -337,6 +366,13 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func travelLifeRadioChecked(sender: AnyObject?) {
         
+        if isEmptyProfile {
+            
+            child.whichEmptyView = "\(whatEmptyTab)-TravelLife"
+            child.viewDidLoad()
+            
+        }
+        
         print("TL radio selected: \(TLRadio.selected)")
         
         let mySubviews = TLRadio.titleLabel!.subviews
@@ -417,6 +453,13 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func localLifeRadioChecked(sender: AnyObject?) {
+        
+        if isEmptyProfile {
+            
+            child.whichEmptyView = "\(whatEmptyTab)-LocalLife"
+            child.viewDidLoad()
+            
+        }
         
         print("LL radio selected: \(LLRadio.selected)")
         

@@ -38,6 +38,7 @@ var hasLoggedInOnce = false
 var onlyOnce = true
 
 let request = Navigation()
+var leftViewController: SideNavigationMenuViewController!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -70,13 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var nvc: UINavigationController!
         
-        let leftViewController = storyboard.instantiateViewControllerWithIdentifier("sideMenu") as! SideNavigationMenuViewController
+        leftViewController = storyboard.instantiateViewControllerWithIdentifier("sideMenu") as! SideNavigationMenuViewController
         
         let mainViewController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         
         let signInVC = storyboard.instantiateViewControllerWithIdentifier("SignUpOne") as! SignInViewController
         
-        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
+//        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
         
         leftViewController.mainViewController = nvc
         
@@ -99,7 +100,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
             
             self.window?.rootViewController = slideMenuController
-            
             hasLoggedInOnce = true
         }
         
@@ -109,12 +109,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    
+//    static func gotoCreateMenuView() {
+//        
+////        createMenuView(AppDelegate())
+//        
+//    }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
         createMenuView()
+
         AppDelegate.getDatabase()
         
         faicon["clock"] = 0xf017

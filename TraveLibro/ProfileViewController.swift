@@ -8,10 +8,16 @@
 
 import UIKit
 import DKChainableAnimationKit
+import SwiftyJSON
+
+var doRemove: Bool = true
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
 
-    let labels = ["300 Following", "223 Followers", "10 Countries Visited", "10 Bucket List", "20 Journeys", "3 Check Ins", "23 Photos", "1000 Reviews"]
+    @IBOutlet weak var profile_badge: UIImageView!
+    @IBOutlet weak var profileLocation: UILabel!
+    @IBOutlet weak var profileUsername: UILabel!
+    var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
     
     private var kvoContext: UInt8 = 0
@@ -28,9 +34,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var profilePicture: UIImageView!
     
     var toggle = false
+    var initialEntrance = false
+    
     
     @IBOutlet weak var MAMButton: UIButton!
-    @IBAction func MAMTapped(sender: AnyObject) {
+    @IBAction func MAMTapped(sender: AnyObject?) {
         
         if !toggle {
             
@@ -50,19 +58,123 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+//        if initialEntrance {
+//            
+////            doRemove = false
+//            slideMenuController()?.changeMainViewController(self, close: false)
+//            initialEntrance = false
+//            
+//        }
+        
+    }
+    
+    var allCount: JSON!
+    
+    func getCount() {
+        
+        print("in get count")
+        
+        request.getBucketListCount(currentUser["_id"].string!, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error?.localizedDescription)")
+                    
+                }
+                    
+                else if response["value"] {
+                    
+                    self.allCount = response["data"]
+                    self.setCount()
+                }
+                    
+                else {
+                    
+                    print("response error: \(response["error"])")
+                    
+                }
+                
+            })
+            
+            
+        })
+        
+        
+    }
+    
+    func setCount() {
+        
+        print("in set count")
+        
+        for i in 0 ..< labels.count {
+            
+            switch i {
+            case 0:
+                labels[0] = "\(allCount["following_count"]) Following"
+                break
+            case 1:
+                labels[1] = "\(allCount["followers_count"]) Followers"
+                break
+            case 2:
+                labels[2] = "\(allCount["countriesVisited_count"]) Countries Visited"
+                break
+            case 3:
+                labels[3] = "\(allCount["bucketList_count"]) Bucket List"
+                break
+            case 4:
+                labels[4] = "\(allCount["journeysCreated_count"]) Journeys"
+                break
+            case 5:
+                labels[5] = "\(allCount["checkins_count"]) Check Ins"
+                break
+            case 6:
+                labels[6] = "\(allCount["photos_count"]) Photos"
+                break
+            case 7:
+                labels[7] = "\(allCount["reviews_count"]) Reviews"
+                break
+            default:
+                break
+            }
+        }
+        
+        profileCollectionView.reloadData()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        self.setNavigationBarItemText("Yash's Profile")
+        
+        self.navigationController?.navigationBarHidden = false
+        getDarkBackGround(self)
+        
+        print("navigation: \(self.navigationController)")
         
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), forState: .Normal)
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), forControlEvents: .TouchUpInside)
         rightButton.frame = CGRectMake(0, 8, 30, 30)
+        self.setOnlyRightNavigationButton(rightButton)
         
         locationIcon.text = String(format: "%C", faicon["location"]!)
         
-        self.setOnlyRightNavigationButton(rightButton)
-//        self.setNavigationBarItemText("Yash's Profile")
-        getDarkBackGround(self)
+        getCount()
+        
+//        if currentUser != nil {
+//            
+//            
+//            
+//            
+//            
+//        }
+        
         MAMatterView.layer.opacity = 0.0
 //         let footer = getFooter(frame: CGRect(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 45))
 //        footer.layer.zPosition = 100
@@ -86,6 +198,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if currentUser != nil {
             
             //            print("inside if statement \(sideMenu.profilePicture)")
+            self.title = "\(currentUser["firstName"])'s Profile"
+            profileUsername.text = "\(currentUser["firstName"].string!) \(currentUser["lastName"].string!)"
+            profileLocation.text = currentUser["homeCity"].string!
             imageName = currentUser["profilePicture"].string!
             print("image: \(imageName)")
             
@@ -201,7 +316,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ProfileDetailCell
         cell.infoLabel.attributedText = fullText
-        print("Loading \(cell.infoLabel.attributedText)")
+//        print("Loading \(cell.infoLabel.attributedText)")
         return cell
     }
     
@@ -261,7 +376,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        if toggle {
+            
+            MAMTapped(nil)
+        }
+        
         print("Selected item: \(indexPath.item)")
+        
         switch indexPath.item {
         case 0:
             let followersVC = storyboard?.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController

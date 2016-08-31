@@ -9,6 +9,8 @@
             <connections>
                 <outlet property="LL" destination="SY8-yL-4BR" id="BfE-Si-1B9"/>
                 <outlet property="TL" destination="Hff-E1-IIy" id="6xO-lo-pPR"/>
+                <outlet property="viewBody" destination="Qfb-Eg-qyy" id="Aty-N1-Fwo"/>
+                <outlet property="viewHeading" destination="D6X-lr-sG0" id="JIA-mL-eAu"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

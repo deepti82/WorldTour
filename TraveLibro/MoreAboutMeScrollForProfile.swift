@@ -1,10 +1,3 @@
-//
-//  MoreAboutMeScrollForProfile.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 15/06/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
 
 import UIKit
 

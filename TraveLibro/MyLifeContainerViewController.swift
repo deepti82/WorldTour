@@ -14,6 +14,8 @@ class MyLifeContainerViewController: UIViewController {
     
     var verticalLayout: VerticalLayout!
     var whichView = "All"
+    var whichEmptyView = "Journeys-All"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +31,42 @@ class MyLifeContainerViewController: UIViewController {
         if isEmptyProfile {
             
             print("here")
-            
             let empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: verticalLayout.frame.width, height: 250))
-//            empty.clipsToBounds = true
-//            empty.statusLabel.text = "Manan Vora ended his London Journey"
-//            empty.iconButtonView.removeFromSuperview()
             print("here")
             self.addHeightToLayout(empty.frame.height)
             verticalLayout.addSubview(empty)
             print("here")
+            
+            switch whichEmptyView {
+            case "Journeys-TravelLife":
+                empty.viewHeading.text = "My Tales & Trails"
+                empty.viewBody.text = "On-the-Go Journeys \n Capture each moment of your journey via check-ins, pictures, videos, and thoughts live On-the-Go to create a stunning timeline with friends and family. \n \n Chronicling Past Travels \n Revisit the treasured moments of your past travels by creating a beautiful memoir of your trip."
+            case "Journeys-LocalLife":
+                empty.viewHeading.text = "Life In The City"
+                empty.viewBody.text = "Candid, fun moments with friends, happy family get-togethers, some precious ‘me-time’…share your love for your city and inspire others to do the same. Cherish your local life memories eternally."
+            case "Moments–All":
+                empty.viewHeading.text = "Unwind​ B​y Rewinding"
+                empty.viewBody.text = "Revisit and reminisce the days gone by through brilliant pictures and videos of your travel and local life."
+            case "Moments-TravelLife":
+                empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Store Them"
+                empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
+            case "Moments-LocalLife":
+                empty.viewHeading.text = "Suspended In Time"
+                empty.viewBody.text = "Beautiful memories created through fabulous pictures and videos of those precious moments shared with family, friends and yourself."
+            case "Reviews–All":
+                empty.viewHeading.text = "Relive Y​our Storyline"
+                empty.viewBody.text = "Rate the places, restaurants, cuisines, theatres, parks, museums, and more, when you check-in. Jot down your thoughts and feelings about them."
+            case "Reviews-TravelLife":
+                empty.viewHeading.text = "The World I​s Your Oyster"
+                empty.viewBody.text = "A five star or a four star? What does that historical monument qualify for? Rate it and write a review. Help others with your rating and review."
+            case "Reviews-LocalLife":
+                empty.viewHeading.text = "A Touch Of Your Daily Dose"
+                empty.viewBody.text = "Now how about rating and writing a super review for that newly-opened restaurant in your town? Wherever you go, click on a star and pen down your experiences."
+            default:
+                break
+            }
+            
+            
         }
         
         else {

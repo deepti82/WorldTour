@@ -26,6 +26,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     let labels = ["Popular Journeys", "Explore Destinations", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
     
+    @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profilePicture: UIImageView!
     
@@ -42,9 +43,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         var imageName = ""
         
+        print("in view did load, current user: \(currentUser)")
+        
         if currentUser != nil {
             
 //            print("inside if statement \(sideMenu.profilePicture)")
+            profileName.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
             imageName = currentUser["profilePicture"].string!
             print("image: \(imageName)")
             

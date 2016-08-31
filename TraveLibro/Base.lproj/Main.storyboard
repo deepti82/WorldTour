@@ -3065,6 +3065,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="profileName" destination="QGx-wo-FEr" id="c8I-rs-sFF"/>
                         <outlet property="profilePicture" destination="m6b-7k-SSs" id="qQI-tY-RwH"/>
                         <outlet property="profileView" destination="bJH-hR-izu" id="cKW-Tf-oqN"/>
                     </connections>
@@ -3398,7 +3399,10 @@
                         <outlet property="mainProfileView" destination="hKw-kR-G0H" id="XZY-E0-T9r"/>
                         <outlet property="placeLabel" destination="dA8-bh-ZYi" id="Bt8-7M-e4u"/>
                         <outlet property="profileCollectionView" destination="JVb-V2-2Zg" id="YKw-M1-gvT"/>
+                        <outlet property="profileLocation" destination="dA8-bh-ZYi" id="gqk-u9-Ios"/>
                         <outlet property="profilePicture" destination="FzV-dF-2z1" id="9Fo-Z8-EXh"/>
+                        <outlet property="profileUsername" destination="CCU-j2-b3f" id="isB-3k-Peu"/>
+                        <outlet property="profile_badge" destination="ogf-zC-WaX" id="EGL-ej-4TO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yV4-jK-nKd" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -3,6 +3,8 @@ import UIKit
 
 class EmptyScreenView: UIView {
 
+    @IBOutlet weak var viewBody: UILabel!
+    @IBOutlet weak var viewHeading: UILabel!
     @IBOutlet weak var LL: UIImageView!
     @IBOutlet weak var TL: UIImageView!
     override init(frame: CGRect) {

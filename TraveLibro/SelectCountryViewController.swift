@@ -51,10 +51,13 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         else if whichView == "BucketList" {
             
+            self.title = "Bucket List"
+            
 //            rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
             rightButton.setTitle("Save", forState: .Normal)
+            rightButton.titleLabel?.font = avenirFont
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveNPop(_:)), forControlEvents: .TouchUpInside)
-            rightButton.frame = CGRectMake(0, 8, 75, 30)
+            rightButton.frame = CGRectMake(0, 10, 50, 30)
             
             self.customNavigationBar(leftButton, right: rightButton)
             

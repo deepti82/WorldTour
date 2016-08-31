@@ -139,6 +139,8 @@ class SignInViewController: UIViewController {
                                     
 //                                print("response: \(response.description)")
                                     currentUser = response["data"]
+//                                    AppDelegate.createMenuView()
+                                    leftViewController.viewDidLoad()
                                     self.gotoNationalityPage()
                                     
                                 }
@@ -212,6 +214,8 @@ class SignInViewController: UIViewController {
                                     if response["value"] {
                                         
                                         currentUser = response["data"]
+//                                        AppDelegate.createMenuView()
+                                        leftViewController.viewDidLoad()
                                         self.gotoNationalityPage()
                                         
                                     }
@@ -334,6 +338,8 @@ class SignInViewController: UIViewController {
                                     
                                     print("response: \(response["data"])")
                                     currentUser = response["data"]
+//                                    AppDelegate.createMenuView()
+                                    leftViewController.viewDidLoad()
                                     self.gotoNationalityPage()
                                 }
                                 
@@ -397,16 +403,28 @@ class SignInViewController: UIViewController {
     func gotoNationalityPage() {
         
         print("inside nationality function")
+        
+        if currentUser["alreadyLoggedIn"] != nil && currentUser["alreadyLoggedIn"] {
+            
+            let profileVC = self.storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+//            profileVC.initialEntrance = true
+//            self.slideMenuController()?.changeMainViewController(profileVC, close: true)
+            self.navigationController?.pushViewController(profileVC, animated: true)
+            
+        }
+        else {
+            
+            let nationalityPage = self.storyboard?.instantiateViewControllerWithIdentifier("nationalityNew") as! AddNationalityNewViewController
+            //        print("nationality: \(nationalityPage)")
+            //        nationalityPage.whichView = "selectNationality"
+            self.navigationController?.pushViewController(nationalityPage, animated: true)
+            
+        }
 //        let nationalityPage = self.storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
 //        print("nationality: \(nationalityPage)")
 //        nationalityPage.whichView = "selectNationality"
 //        self.navigationController?.pushViewController(nationalityPage, animated: true)
 //        print("navigation: \(self.navigationController)")
-        
-        let nationalityPage = self.storyboard?.instantiateViewControllerWithIdentifier("nationalityNew") as! AddNationalityNewViewController
-//        print("nationality: \(nationalityPage)")
-//        nationalityPage.whichView = "selectNationality"
-        self.navigationController?.pushViewController(nationalityPage, animated: true)
 //        print("navigation: \(self.navigationController)")
         
     }

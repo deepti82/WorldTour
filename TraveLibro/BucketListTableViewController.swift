@@ -18,8 +18,6 @@ class BucketListTableViewController: UITableViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = whichView
-        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
         leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), forControlEvents: .TouchUpInside)
@@ -34,6 +32,7 @@ class BucketListTableViewController: UITableViewController  {
         
         if whichView == "BucketList" {
             
+            self.title = "Bucket List"
             getBucketList()
             
         }
@@ -104,6 +103,10 @@ class BucketListTableViewController: UITableViewController  {
                         print("error - \(response.error?.code): \(response.error?.localizedDescription)")
                     }
                     else if response["value"] {
+                        
+                        let profile = self.navigationController?.viewControllers[0] as! ProfileViewController
+                        profile.setCount()
+                        profile.getCount()
                         
                         self.bucket = response["data"]["bucketList"].array!
                         if self.bucket.count == 0 {

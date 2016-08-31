@@ -22,8 +22,21 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
 //        
 //    }
     
+    override func viewWillAppear(animated: Bool) {
+        
+//        if doRemove {
+//            
+//            let profileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+//            self.navigationController?.showViewController(profileVC, sender: nil)
+//            
+//        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBarHidden = false
         
         getDarkBackGround(self)
         
