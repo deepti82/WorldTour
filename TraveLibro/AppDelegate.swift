@@ -62,13 +62,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     internal func createMenuView() {
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
 //        let path = NSSearchPathForDirectoriesInDomains(
 //            .DocumentDirectory, .UserDomainMask, true
 //            ).first!
 //        
 //        _ = Connection("\(path)/db.sqlite3")
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var nvc: UINavigationController!
         
         leftViewController = storyboard.instantiateViewControllerWithIdentifier("sideMenu") as! SideNavigationMenuViewController

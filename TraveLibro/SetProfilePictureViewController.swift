@@ -114,7 +114,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     
     func choosePreferences(sender: AnyObject) {
         
-        let pagerVC = storyboard?.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
+        let pagerVC = storyboard?.instantiateViewControllerWithIdentifier("displayOne") as! DisplayPagesOneViewController
         self.navigationController?.pushViewController(pagerVC, animated: true)
         
     }

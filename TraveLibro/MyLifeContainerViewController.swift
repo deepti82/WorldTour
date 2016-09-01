@@ -15,58 +15,99 @@ class MyLifeContainerViewController: UIViewController {
     var verticalLayout: VerticalLayout!
     var whichView = "All"
     var whichEmptyView = "Journeys-All"
-    
+    var isInitalLoad = true
+    var empty: EmptyScreenView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         isEmptyProfile = true
         
-        print("profile empty status: \(isEmptyProfile)")
+//        print("profile empty status: \(isEmptyProfile)")
         
-        print("which view simple container: \(whichView)")
+//        print("which view simple container: \(whichView)")
         
         verticalLayout = VerticalLayout(width: self.view.frame.width+4);
         
         if isEmptyProfile {
             
-            print("here")
-            let empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: verticalLayout.frame.width, height: 250))
-            print("here")
-            self.addHeightToLayout(empty.frame.height)
-            verticalLayout.addSubview(empty)
-            print("here")
+//            print("here")
             
-            switch whichEmptyView {
-            case "Journeys-TravelLife":
-                empty.viewHeading.text = "My Tales & Trails"
-                empty.viewBody.text = "On-the-Go Journeys \n Capture each moment of your journey via check-ins, pictures, videos, and thoughts live On-the-Go to create a stunning timeline with friends and family. \n \n Chronicling Past Travels \n Revisit the treasured moments of your past travels by creating a beautiful memoir of your trip."
-            case "Journeys-LocalLife":
-                empty.viewHeading.text = "Life In The City"
-                empty.viewBody.text = "Candid, fun moments with friends, happy family get-togethers, some precious ‘me-time’…share your love for your city and inspire others to do the same. Cherish your local life memories eternally."
-            case "Moments–All":
-                empty.viewHeading.text = "Unwind​ B​y Rewinding"
-                empty.viewBody.text = "Revisit and reminisce the days gone by through brilliant pictures and videos of your travel and local life."
-            case "Moments-TravelLife":
-                empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Store Them"
-                empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
-            case "Moments-LocalLife":
-                empty.viewHeading.text = "Suspended In Time"
-                empty.viewBody.text = "Beautiful memories created through fabulous pictures and videos of those precious moments shared with family, friends and yourself."
-            case "Reviews–All":
-                empty.viewHeading.text = "Relive Y​our Storyline"
-                empty.viewBody.text = "Rate the places, restaurants, cuisines, theatres, parks, museums, and more, when you check-in. Jot down your thoughts and feelings about them."
-            case "Reviews-TravelLife":
-                empty.viewHeading.text = "The World I​s Your Oyster"
-                empty.viewBody.text = "A five star or a four star? What does that historical monument qualify for? Rate it and write a review. Help others with your rating and review."
-            case "Reviews-LocalLife":
-                empty.viewHeading.text = "A Touch Of Your Daily Dose"
-                empty.viewBody.text = "Now how about rating and writing a super review for that newly-opened restaurant in your town? Wherever you go, click on a star and pen down your experiences."
-            default:
-                break
+            if isInitalLoad {
+                
+                empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: verticalLayout.frame.width, height: 250))
+                //            print("here")
+                self.addHeightToLayout(empty.frame.height)
+                verticalLayout.addSubview(empty)
+                isInitalLoad = false
+                //            print("here")
             }
             
-            
+            print("which view in empty profile: \(whichEmptyView)")
+            print("is loaded \(whichEmptyView)")
+            print("is loaded \(whichEmptyView)")
+            switch whichEmptyView {
+            case "Journeys-All":
+                print("in journeys all")
+                empty.frame.size.height = 275.0
+                empty.viewHeading.text = "Travel in a Time Machine"
+                empty.viewBody.text = "Capture your journeys and activities whether local or global, creating a beautiful timeline and relive these treasured experiences of your past."
+                break
+            case "Journeys-TravelLife":
+                print("in journeys tl")
+                empty.frame.size.height = 350.0
+                empty.viewHeading.text = "My Tales & Trails"
+                empty.viewBody.text = "On-the-Go Journeys \n Capture each moment of your journey via check-ins, pictures, videos, and thoughts live On-the-Go to create a stunning timeline with friends and family. \n \n Chronicling Past Travels \n Revisit the treasured moments of your past travels by creating a beautiful memoir of your trip."
+                break
+            case "Journeys-LocalLife":
+                print("in journeys ll")
+                empty.frame.size.height = 325.0
+                empty.viewHeading.text = "Life In The City"
+                empty.viewBody.text = "Candid, fun moments with friends, happy family get-togethers, some precious ‘me-time’…share your love for your city and inspire others to do the same. Cherish your local life memories eternally."
+                break
+            case "Moments–All":
+                print("in moments all")
+                empty.frame.size.height = 250.0
+                empty.viewHeading.text = "Unwind​ B​y Rewinding"
+                empty.viewBody.text = "Revisit and reminisce the days gone by through brilliant pictures and videos of your travel and local life."
+                break
+            case "Moments-TravelLife":
+                print("in moments tl")
+                empty.frame.size.height = 350.0
+                empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Store Them"
+                empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
+                break
+            case "Moments-LocalLife":
+                print("in moments ll")
+                empty.frame.size.height = 275.0
+                empty.viewHeading.text = "Suspended In Time"
+                empty.viewBody.text = "Beautiful memories created through fabulous pictures and videos of those precious moments shared with family, friends and yourself."
+                break
+            case "Reviews-All":
+                print("in reviews all")
+                empty.frame.size.height = 275.0
+                empty.viewHeading.text = "Relive Y​our Storyline"
+                empty.viewBody.text = "Rate the places, restaurants, cuisines, theatres, parks, museums, and more, when you check-in. Jot down your thoughts and feelings about them."
+                break
+            case "Reviews-TravelLife":
+                print("in reviews tl")
+                empty.frame.size.height = 285.0
+                empty.viewHeading.text = "The World I​s Your Oyster"
+                empty.viewBody.text = "A five star or a four star? What does that historical monument qualify for? Rate it and write a review. Help others with your rating and review."
+                break
+            case "Reviews-LocalLife":
+                print("in reviews ll")
+                empty.frame.size.height = 285.0
+                empty.viewHeading.text = "A Touch Of Your Daily Dose"
+                empty.viewBody.text = "Now how about rating and writing a super review for that newly-opened restaurant in your town? Wherever you go, click on a star and pen down your experiences."
+                break
+            default:
+                print("in default")
+                empty.frame.size.height = 250.0
+                empty.viewHeading.text = "Unwind​ B​y Rewinding"
+                empty.viewBody.text = "Revisit and reminisce the days gone by through brilliant pictures and videos of your travel and local life."
+                break
+            }
         }
         
         else {

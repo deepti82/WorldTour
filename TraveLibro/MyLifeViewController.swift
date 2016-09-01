@@ -131,11 +131,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         TLRadio.addTarget(self, action: #selector(MyLifeViewController.travelLifeRadioChecked(_:)), forControlEvents: .TouchUpInside)
         LLRadio.addTarget(self, action: #selector(MyLifeViewController.localLifeRadioChecked(_:)), forControlEvents: .TouchUpInside)
         
+        child = self.childViewControllers[0] as! MyLifeContainerViewController
+        
         self.setDefaults()
         self.allRadioChecked(nil)
         
-        child = self.childViewControllers[0] as! MyLifeContainerViewController
-        
+        print("to the end of view did load")
     }
     
     func exitMyLife(sender: UIButton) {
@@ -203,7 +204,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             
         }
         
-        flag = true
+//        flag = true
         self.allRadioChecked(nil)
         
 //        journeysButton.contentEdgeInsets.top = -15
@@ -223,9 +224,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             
             print("Moments")
             whatTab = "Moments"
-            //        journeysHC.constant = 18.0
-            //        momentsHC.constant = 65.0
-            //        reviewsHC.constant = 60.0
             
             journeysContainerView.alpha = 0
             collectionContainer.alpha = 1
@@ -233,11 +231,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             
         }
         
-        flag = true
+//        flag = true
         self.allRadioChecked(nil)
-//        momentsButton.contentEdgeInsets.top = -15
-//        reviewsButton.contentEdgeInsets.top = -15
-//        journeysButton.contentEdgeInsets.top = -20
         
     }
     
@@ -252,9 +247,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             
             print("Reviews")
             whatTab = "Reviews"
-            //        journeysHC.constant = 60.0
-            //        momentsHC.constant = 18.0
-            //        reviewsHC.constant = 65.0
             
             journeysContainerView.alpha = 0
             collectionContainer.alpha = 0
@@ -262,32 +254,27 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             
         }
         
-        flag = true
+//        flag = true
         self.allRadioChecked(nil)
-//        reviewsButton.contentEdgeInsets.top = -15
-//        journeysButton.contentEdgeInsets.top = -15
-//        momentsButton.contentEdgeInsets.top = -20
         
     }
     
-    var flag = false
+//    var flag = false
     
     func allRadioChecked(sender: AnyObject?) {
         
-        if flag && isEmptyProfile {
+        if isEmptyProfile {
             
             child.whichEmptyView = "\(whatEmptyTab)-All"
             child.viewDidLoad()
-            flag = false
         }
+        
+        print("all radio selected: \(allRadio.selected)")
         
         let mySubviews = allRadio.titleLabel!.subviews
         radioValue = "All"
         let radio = UIImageView(frame: CGRect(x: -18, y: 2, width: 15, height: 15))
         radio.contentMode = .ScaleAspectFit
-        
-        print("all radio selected: \(allRadio.selected)")
-        
         
         for subview in mySubviews {
             
@@ -302,7 +289,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             firstTime = false
             
         }
-        
+            
         else if !allRadio.selected {
             
             radio.image = UIImage(named: "radio_checked_all")
@@ -313,7 +300,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             self.unSelectRadio(LLRadio)
             
         }
-        
+            
         else if allRadio.selected {
             
             radio.image = UIImage(named: "radio_checked_all")
@@ -327,10 +314,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         
         allRadio.titleLabel?.addSubview(radio)
-        
+            
         if whatTab == "Journeys" {
             
-             print("inside all life radio 2")
+            print("inside all life radio 2")
             let simpleVC = self.childViewControllers[0] as! MyLifeContainerViewController
             simpleVC.whichView = "All"
             
@@ -340,10 +327,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             simpleVC.view.setNeedsDisplay()
             
         }
-        
+            
         else if whatTab == "Moments" {
             
-//            let simpleVC = storyboard?.instantiateViewControllerWithIdentifier("multipleCollectionVC") as! MyLifeMomentsViewController
+            //            let simpleVC = storyboard?.instantiateViewControllerWithIdentifier("multipleCollectionVC") as! MyLifeMomentsViewController
             
             
             let simpleVC = self.childViewControllers[1] as! MyLifeMomentsViewController
@@ -351,7 +338,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             simpleVC.mainView.reloadData()
             
         }
-        
+            
         else if whatTab == "Reviews" {
             
             tableContainer.alpha = 1
@@ -360,8 +347,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             simpleVC.tableMainView.reloadData()
             
         }
-        
-        
     }
     
     func travelLifeRadioChecked(sender: AnyObject?) {
