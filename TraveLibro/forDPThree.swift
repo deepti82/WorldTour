@@ -10,6 +10,9 @@ import UIKit
 
 class forDPThree: UIView {
 
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet var checkboxButtons: [UIButton]!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

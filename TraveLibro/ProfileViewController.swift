@@ -149,9 +149,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.setNavigationBarItemText("Yash's Profile")
-        
+                initialLogin = false
         self.navigationController?.navigationBarHidden = false
         getDarkBackGround(self)
         

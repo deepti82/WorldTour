@@ -87,7 +87,31 @@ class BucketListTableViewController: UITableViewController  {
     func gotoProfile(sender: UIButton) {
         
         let profile = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        self.navigationController?.pushViewController(profile, animated: true)
+//        (ProfileViewController(), animated: true)
+        
+//        if ((self.navigationController?.viewControllers.contains(profile)) != nil) {
+//            
+//            let arrayOfVCs = self.navigationController!.viewControllers as Array
+//            
+//            let index = arrayOfVCs.indexOf(profile)
+//            print("index: \(index)")
+//            print("inside contains")
+//            
+//        }
+
+//        for container in self.navigationController!.viewControllers {
+//            
+//            if container.isEqual(profile) {
+//                
+//                print("contains")
+//                
+//            }
+//            
+//        }
+        
+        
+//        self.navigationController?.popToRootViewControllerAnimated(true)
 //        self.navigationController?.popToViewController(, animated: true)
         
     }
@@ -104,9 +128,9 @@ class BucketListTableViewController: UITableViewController  {
                     }
                     else if response["value"] {
                         
-                        let profile = self.navigationController?.viewControllers[0] as! ProfileViewController
-                        profile.setCount()
-                        profile.getCount()
+//                        let profile = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
+//                        profile.setCount()
+//                        profile.getCount()
                         
                         self.bucket = response["data"]["bucketList"].array!
                         if self.bucket.count == 0 {

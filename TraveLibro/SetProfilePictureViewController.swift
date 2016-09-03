@@ -167,6 +167,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         tempImage = info[UIImagePickerControllerEditedImage] as! UIImage
 //        let imageData: NSData = UIImageJPEGRepresentation(tempImage, 1.0)!
         uploadView.addButtonPic.image = tempImage
+        makeTLProfilePicture(uploadView.addButtonPic)
         
         self.dismissViewControllerAnimated(true, completion:nil)
         

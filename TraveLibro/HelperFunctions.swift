@@ -53,7 +53,7 @@ class SocialLoginClass: UIViewController {
                         let json = JSON(data: response.data)
                         print(json)
                         
-                        request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!+"?sz=500", gender: "", dob: "", completion: {(response) in
+                        request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!, gender: "", dob: "", completion: {(response) in
                             
                             dispatch_async(dispatch_get_main_queue(), {
                                 
@@ -124,7 +124,22 @@ class SocialLoginClass: UIViewController {
                         //                            birthday = ""
                         //                        }
                         
-                        request.saveUser(json["first_name"].string!, lastName: json["last_name"].string!, email: json["email"].string!, mobile: "", fbId: json["id"].string!, googleId: "", twitterId: "", instaId: "", nationality: "", profilePicture: json["picture"]["data"]["url"].string!, gender: json["gender"].string!, dob: "", completion: {(response) in
+                        var email = ""
+                        var mobile = ""
+                        
+                        if json["email"] != nil {
+                            
+                            email = json["email"].string!
+                            
+                        }
+                        else if json["mobile"] != nil {
+                            
+                            mobile = json["mobile"].string!
+                            
+                        }
+                        
+                        
+                        request.saveUser(json["first_name"].string!, lastName: json["last_name"].string!, email: email, mobile: mobile, fbId: json["id"].string!, googleId: "", twitterId: "", instaId: "", nationality: "", profilePicture: json["picture"]["data"]["url"].string!, gender: json["gender"].string!, dob: "", completion: {(response) in
                             
                             dispatch_async(dispatch_get_main_queue(), {
                                 

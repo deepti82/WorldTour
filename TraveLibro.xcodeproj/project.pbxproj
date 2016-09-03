@@ -70,6 +70,7 @@
 		C22138F31D547846008D9DEE /* QuickItineraryTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22138F21D547846008D9DEE /* QuickItineraryTwo.swift */; };
 		C22138F61D547A0A008D9DEE /* QuickItineraryFour.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22138F51D547A0A008D9DEE /* QuickItineraryFour.xib */; };
 		C22138F81D547C42008D9DEE /* QuickItineraryFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22138F71D547C42008D9DEE /* QuickItineraryFour.swift */; };
+		C234B0601D79A67600397FE5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */; };
 		C23B3BDE1D423CDE0075B733 /* EachItineraryPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B3BDD1D423CDD0075B733 /* EachItineraryPhotosViewController.swift */; };
 		C23B3BE01D4248F10075B733 /* EachCityPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B3BDF1D4248F10075B733 /* EachCityPagerViewController.swift */; };
 		C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */; };
@@ -400,6 +401,7 @@
 		C22138F21D547846008D9DEE /* QuickItineraryTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryTwo.swift; sourceTree = "<group>"; };
 		C22138F51D547A0A008D9DEE /* QuickItineraryFour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickItineraryFour.xib; sourceTree = "<group>"; };
 		C22138F71D547C42008D9DEE /* QuickItineraryFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryFour.swift; sourceTree = "<group>"; };
+		C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		C23B3BDD1D423CDD0075B733 /* EachItineraryPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachItineraryPhotosViewController.swift; sourceTree = "<group>"; };
 		C23B3BDF1D4248F10075B733 /* EachCityPagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachCityPagerViewController.swift; sourceTree = "<group>"; };
 		C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInLocalLife.xib; sourceTree = "<group>"; };
@@ -730,8 +732,6 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */,
-				3AF1870F1D786B2300A86BC1 /* DisplayPagesThreeViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -1371,6 +1371,8 @@
 				C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */,
 				C20A18F51D225E9C00760BF9 /* CategoriseCheckInViewController.swift */,
 				C281FBED1D56170A00728BD9 /* VerifyIntermediateViewController.swift */,
+				3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */,
+				3AF1870F1D786B2300A86BC1 /* DisplayPagesThreeViewController.swift */,
 				C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */,
 				C2FA1E161D5495870034DE97 /* QuickItinerariesViewController.swift */,
 			);
@@ -1742,6 +1744,7 @@
 				C26B4DE61D13C88900213055 /* SlideMenuViewController.swift */,
 				C2DD03271CEB4D0F001878DD /* ImageMask.swift */,
 				C284277B1CE07445003672E9 /* Styles.swift */,
+				C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */,
 				C26B4DE81D13E48200213055 /* Layout.swift */,
 				C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */,
 			);
@@ -2466,6 +2469,7 @@
 				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
 				C20939011D11557B00CBA70F /* HomeViewController.swift in Sources */,
 				C24870531D0C35C0003CB0DD /* HotelsCustomHeader.swift in Sources */,
+				C234B0601D79A67600397FE5 /* UIViewControllerExtension.swift in Sources */,
 				C2823B051D464E800065A76C /* startOTGView.swift in Sources */,
 				C248704F1D0C25B9003CB0DD /* ExploreHotelsViewController.swift in Sources */,
 				C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */,

@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         leftViewController = storyboard.instantiateViewControllerWithIdentifier("sideMenu") as! SideNavigationMenuViewController
         
-        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
         
         let signInVC = storyboard.instantiateViewControllerWithIdentifier("SignUpOne") as! SignInViewController
         

@@ -8,6 +8,8 @@
 
 import UIKit
 
+var initialLogin = true
+
 class SideNavigationMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var mainViewController: UIViewController!
@@ -46,6 +48,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         print("in view did load, current user: \(currentUser)")
         
         if currentUser != nil {
+            
             
 //            print("inside if statement \(sideMenu.profilePicture)")
             profileName.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
@@ -95,8 +98,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let settingsVC = storyboard!.instantiateViewControllerWithIdentifier("UserProfileSettings") as! UserProfileSettingsViewController
         self.settingsViewController = UINavigationController(rootViewController: settingsVC)
         
-        let homeController = storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
-        self.homeController = UINavigationController(rootViewController: homeController)
+       
+         
+            let homeController = storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+                       self.homeController = UINavigationController(rootViewController: homeController)
+          
         
         let PJController = storyboard!.instantiateViewControllerWithIdentifier("popularJourneys") as! PopularJourneysViewController
         self.popJourneysController = UINavigationController(rootViewController: PJController)
@@ -127,6 +133,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         let myProfileController = storyboard!.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
+        
+        self.mainViewController = UINavigationController(rootViewController: homeController)
+
         
 //        let tapForProfile = UIGestureRecognizer(target: self, action: #selector(self.profileTap(_:)))
 //        profileView.addGestureRecognizer(tapForProfile)
