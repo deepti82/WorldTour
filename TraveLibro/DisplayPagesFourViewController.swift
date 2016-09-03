@@ -19,9 +19,9 @@ class DisplayPagesFourViewController: UIViewController {
         
         getDarkBackGroundBlur(self)
         
-        let indicatorFour = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
-        indicatorFour.image = UIImage(named: "headerindicator4")
-        self.navigationItem.titleView = indicatorFour
+//        let indicatorFour = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
+//        indicatorFour.image = UIImage(named: "headerindicator4")
+//        self.navigationItem.titleView = indicatorFour
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
@@ -30,21 +30,24 @@ class DisplayPagesFourViewController: UIViewController {
         
         let rightButton = UIButton()
         rightButton.setTitle("Done", forState: .Normal)
-        rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
+        rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
 //        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
         rightButton.addTarget(self, action: #selector(DisplayPagesFourViewController.nextPage(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 70, 30)
+        rightButton.frame = CGRectMake(15, 8, 70, 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
+        
+        self.title = "\(fullCircle)    \(fullCircle)    \(fullCircle)     \(fullCircle)"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "FontAwesome", size: 10)!]
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self
             .popVC(_:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.Right
         self.view.addGestureRecognizer(swipeRight)
         
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
-        self.view.addGestureRecognizer(swipeLeft)
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)))
+//        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+//        self.view.addGestureRecognizer(swipeLeft)
         
         let scroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
         self.view.addSubview(scroll)

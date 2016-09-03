@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SetProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     let imagePicker = UIImagePickerController()
     var uploadView: AddDisplayPic!
@@ -34,6 +34,8 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         uploadView = AddDisplayPic(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
         uploadView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
         self.view.addSubview(uploadView)
+        
+        uploadView.usernameTextField.returnKeyType = .Done
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)))
 //        tap.delegate = self
@@ -110,7 +112,51 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
         uploadView.username.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
         
+        uploadView.usernameTextField.delegate = self
+        let textTap = UITapGestureRecognizer(target: self, action: #selector(SetProfilePictureViewController.changeLabelText(_:)))
+        uploadView.addGestureRecognizer(textTap)
+        
     }
+    
+    func changeLabelText(sender: UIGestureRecognizer) {
+        
+        uploadView.usernameTextField.text = uploadView.username.text
+        uploadView.username.hidden = true
+        uploadView.usernameTextField.hidden = false
+        uploadView.usernameTextField.becomeFirstResponder()
+        
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+//        uploadView.usernameTextField.text = ""
+        
+    }
+    
+//    func textFieldDidEndEditing(textField: UITextField) {
+//        
+//        uploadView.usernameTextField.resignFirstResponder()
+//        uploadView.username.text = uploadView.usernameTextField.text
+//        uploadView.usernameTextField.hidden = false
+//        uploadView.username.hidden = true
+//        
+//    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        uploadView.usernameTextField.resignFirstResponder()
+        
+        if uploadView.usernameTextField.text != "" {
+            
+            uploadView.username.text = uploadView.usernameTextField.text
+        }
+        
+        uploadView.usernameTextField.hidden = false
+        uploadView.username.hidden = true
+        return true
+        
+    }
+    
     
     func choosePreferences(sender: AnyObject) {
         

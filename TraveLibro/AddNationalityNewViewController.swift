@@ -23,7 +23,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     @IBAction func donePickerView(sender: AnyObject) {
         
         pickNationalityMainView.hidden = true
-        
+        chooseCity(sender as! UIButton)
         
     }
     

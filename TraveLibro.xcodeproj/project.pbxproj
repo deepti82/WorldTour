@@ -71,6 +71,8 @@
 		C22138F61D547A0A008D9DEE /* QuickItineraryFour.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22138F51D547A0A008D9DEE /* QuickItineraryFour.xib */; };
 		C22138F81D547C42008D9DEE /* QuickItineraryFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22138F71D547C42008D9DEE /* QuickItineraryFour.swift */; };
 		C234B0601D79A67600397FE5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */; };
+		C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B34D81D7AF0AE00EBBF25 /* ProfilePicFancy.swift */; };
+		C23B34DB1D7AF3DA00EBBF25 /* ProfilePicFancy.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23B34DA1D7AF3DA00EBBF25 /* ProfilePicFancy.xib */; };
 		C23B3BDE1D423CDE0075B733 /* EachItineraryPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B3BDD1D423CDD0075B733 /* EachItineraryPhotosViewController.swift */; };
 		C23B3BE01D4248F10075B733 /* EachCityPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B3BDF1D4248F10075B733 /* EachCityPagerViewController.swift */; };
 		C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */; };
@@ -402,6 +404,8 @@
 		C22138F51D547A0A008D9DEE /* QuickItineraryFour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickItineraryFour.xib; sourceTree = "<group>"; };
 		C22138F71D547C42008D9DEE /* QuickItineraryFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryFour.swift; sourceTree = "<group>"; };
 		C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		C23B34D81D7AF0AE00EBBF25 /* ProfilePicFancy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePicFancy.swift; sourceTree = "<group>"; };
+		C23B34DA1D7AF3DA00EBBF25 /* ProfilePicFancy.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfilePicFancy.xib; path = ../ProfilePicFancy.xib; sourceTree = "<group>"; };
 		C23B3BDD1D423CDD0075B733 /* EachItineraryPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachItineraryPhotosViewController.swift; sourceTree = "<group>"; };
 		C23B3BDF1D4248F10075B733 /* EachCityPagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachCityPagerViewController.swift; sourceTree = "<group>"; };
 		C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInLocalLife.xib; sourceTree = "<group>"; };
@@ -723,6 +727,8 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
+				C23B34DA1D7AF3DA00EBBF25 /* ProfilePicFancy.xib */,
+				C23B34D81D7AF0AE00EBBF25 /* ProfilePicFancy.swift */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
@@ -2002,6 +2008,7 @@
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
 				C23EB1CF1CFEC731005B5CE8 /* PhotoBar.xib in Resources */,
+				C23B34DB1D7AF3DA00EBBF25 /* ProfilePicFancy.xib in Resources */,
 				C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */,
 				C2DCB36A1CE701A4006E5CBD /* TripSummaryItinerary.xib in Resources */,
 				C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */,
@@ -2443,6 +2450,7 @@
 				C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */,
 				C281FBEB1D55EF4A00728BD9 /* QuickItineraryThree.swift in Sources */,
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
+				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,
 				C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */,
 				C26730211D27A21D00F2C822 /* AddNewOTG.swift in Sources */,
 				C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */,

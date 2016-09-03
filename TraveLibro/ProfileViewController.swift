@@ -14,8 +14,9 @@ var doRemove: Bool = true
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
 
+    @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profile_badge: UIImageView!
-    @IBOutlet weak var profileLocation: UILabel!
+//    @IBOutlet weak var profileLocation: UILabel!
     @IBOutlet weak var profileUsername: UILabel!
     var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
@@ -163,7 +164,16 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         locationIcon.text = String(format: "%C", faicon["location"]!)
         
+        let profile = ProfilePicFancy(frame: CGRect(x: 0, y: 0, width: profileView.frame.width, height: profileView.frame.height))
+        profile.backgroundColor = UIColor.clearColor()
+        profileView.addSubview(profile)
+        
+        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 55))
+        self.view.addSubview(footer)
+        
         getCount()
+        
+        
         
 //        if currentUser != nil {
 //            
@@ -198,7 +208,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             //            print("inside if statement \(sideMenu.profilePicture)")
             self.title = "\(currentUser["firstName"])'s Profile"
             profileUsername.text = "\(currentUser["firstName"].string!) \(currentUser["lastName"].string!)"
-            profileLocation.text = currentUser["homeCity"].string!
+            placeLabel.text = currentUser["homeCity"].string!
             imageName = currentUser["profilePicture"].string!
             print("image: \(imageName)")
             
@@ -245,11 +255,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        MAMScrollView!.contentSize.height = 750
 //        MAMScrollView?.delegate = self
         
-        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 100, width: self.view.frame.size.width - 10, height: 55))
-        orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
+        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 110, width: self.view.frame.size.width - 10, height: 55))
+        orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", forState: .Normal)
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
-        fontAwesomeLabel.center = CGPointMake(75, orangeTab.orangeButtonTitle.titleLabel!.frame.size.height/2 + 10)
+        fontAwesomeLabel.center = CGPointMake(90, orangeTab.orangeButtonTitle.titleLabel!.frame.size.height/2 + 10)
         fontAwesomeLabel.font = FontAwesomeFont
         fontAwesomeLabel.text = String(format: "%C", faicon["angle_up"]!)
         fontAwesomeLabel.textColor = UIColor.whiteColor()

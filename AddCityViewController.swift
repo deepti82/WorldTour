@@ -68,7 +68,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         getDarkBackGroundBlur(self)
         
-        self.title = "Where do you live?"
+        self.title = "Where Do You Live?"
         
         cityTextField.attributedPlaceholder = NSAttributedString(string:  "Detect Location", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
         cityTextField.returnKeyType = .Done
@@ -78,12 +78,12 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.frame = CGRectMake(-8, 0, 30, 30)
         
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
         rightButton.addTarget(self, action: #selector(AddCityViewController.selectGender(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.frame = CGRectMake(8, 8, 30, 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -99,7 +99,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    func selectGender(sender: UIButton) {
+    func selectGender(sender: UIButton?) {
         
         var cityName = ""
         
@@ -239,6 +239,8 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         cityTextField.text = places[indexPath.row]["description"].string!
         cityTextField.resignFirstResponder()
         mainTableView.hidden = true
+        selectGender(nil)
+        
     }
 
 }

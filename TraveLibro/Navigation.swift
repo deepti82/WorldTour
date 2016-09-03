@@ -10,7 +10,8 @@ import UIKit
 import SwiftyJSON
 import SwiftHTTP
 
-let adminUrl = "http://192.168.2.17:1337/api/"
+let adminUrl = "http://104.155.207.185:92/api/"
+let apiUrl = "http://192.168.2.17:1337/api/"
 //let apiURL = "";
 
 class Navigation {

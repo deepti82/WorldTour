@@ -46,6 +46,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         print("in view did load, current user: \(currentUser)")
         
+        profileView = ProfilePicFancy()
+        
         if currentUser != nil {
             
             

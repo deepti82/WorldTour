@@ -17,10 +17,10 @@ class DisplayPagesThreeViewController: UIViewController {
         
         getDarkBackGroundBlur(self)
         
-        let indicatorThree = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
-//        indicatorThree.center.y = (self.navigationItem.titleView?.frame.height)!/2
-        indicatorThree.image = UIImage(named: "headerindicator3")
-        self.navigationItem.titleView = indicatorThree
+//        let indicatorThree = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
+////        indicatorThree.center.y = (self.navigationItem.titleView?.frame.height)!/2
+//        indicatorThree.image = UIImage(named: "headerindicator3")
+//        self.navigationItem.titleView = indicatorThree
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
@@ -33,6 +33,9 @@ class DisplayPagesThreeViewController: UIViewController {
         rightButton.frame = CGRectMake(0, 8, 30, 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
+        
+        self.title = "\(fullCircle)    \(fullCircle)    \(fullCircle)     \(emptyCircle)"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "FontAwesome", size: 10)!]
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self
             .popVC(_:)))
@@ -113,6 +116,17 @@ class DisplayPagesThreeViewController: UIViewController {
             sender.tag = 1
             preferToTravel.append(sender.titleLabel!.text!)
             
+            if sender.titleLabel!.text! == "Blogger" {
+                
+                print("is a blogger")
+                
+            }
+            
+            else if sender.titleLabel!.text! == "Photographer" {
+                
+                print("is a photographer")
+                
+            }
         }
         else {
             

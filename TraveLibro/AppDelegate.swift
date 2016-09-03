@@ -105,8 +105,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
 //        nvc.setNavigationBarItem()
-        nvc.navigationBar.barTintColor = mainBlueColor
-        nvc.navigationBar.barStyle = .Black
+        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+//        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
+        nvc.navigationBar.barStyle = .BlackTranslucent
+        nvc.navigationBar.translucent = true
+//            .addSublayer(sublayer)
+//        nvc.navigationBar.barStyle = .Black
         
     }
     
@@ -142,6 +146,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["location"] = 0xf041
         faicon["bold"] = 0xf032
         faicon["italics"] = 0xf033
+        faicon["emptyCircle"] = 0xf10c
+        faicon["fullCircle"] = 0xf111
         
         emailIcon = String(format: "%C", faicon["email"]!)
         facebookIcon = String(format: "%C", faicon["facebook"]!)

@@ -20,9 +20,9 @@ class DisplayPagesTwoViewController: UIViewController {
         
         getDarkBackGroundBlur(self)
         
-        let indicatorTwo = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        indicatorTwo.image = UIImage(named: "headerindicator2")
-        self.navigationItem.titleView = indicatorTwo
+//        let indicatorTwo = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+//        indicatorTwo.image = UIImage(named: "headerindicator2")
+//        self.navigationItem.titleView = indicatorTwo
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
@@ -35,6 +35,9 @@ class DisplayPagesTwoViewController: UIViewController {
         rightButton.frame = CGRectMake(0, 8, 30, 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
+        
+        self.title = "\(fullCircle)    \(fullCircle)    \(emptyCircle)     \(emptyCircle)"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "FontAwesome", size: 10)!]
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self
             .popVC(_:)))

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,19 +19,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tws-lD-t3n">
-                    <rect key="frame" x="20" y="50" width="360" height="150"/>
+                    <rect key="frame" x="20" y="46" width="360" height="158"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Travel in a Time Machine" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6X-lr-sG0">
-                            <rect key="frame" x="53" y="8" width="255" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="255" id="VqG-4f-eIm"/>
-                            </constraints>
+                            <rect key="frame" x="0.0" y="8" width="360" height="31"/>
                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
                             <color key="textColor" red="1" green="0.40392156862745099" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qfb-Eg-qyy">
-                            <rect key="frame" x="8" y="39" width="344" height="66"/>
+                            <rect key="frame" x="8" y="47" width="344" height="66"/>
                             <string key="text">Capture your journeys and activities whether local or global, creating a beautiful timeline and relive these treasured experiences of your past.</string>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <color key="textColor" red="0.41960784313725491" green="0.41960784313725491" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,8 +39,10 @@
                         <constraint firstAttribute="trailing" secondItem="Qfb-Eg-qyy" secondAttribute="trailing" constant="8" id="68n-MR-3aU"/>
                         <constraint firstItem="D6X-lr-sG0" firstAttribute="centerX" secondItem="tws-lD-t3n" secondAttribute="centerX" id="6Qy-pX-OG4"/>
                         <constraint firstItem="D6X-lr-sG0" firstAttribute="top" secondItem="tws-lD-t3n" secondAttribute="top" constant="8" id="ADo-3C-vPJ"/>
-                        <constraint firstItem="Qfb-Eg-qyy" firstAttribute="top" secondItem="D6X-lr-sG0" secondAttribute="bottom" id="J2H-Zc-tz1"/>
+                        <constraint firstItem="Qfb-Eg-qyy" firstAttribute="top" secondItem="D6X-lr-sG0" secondAttribute="bottom" constant="8" id="J2H-Zc-tz1"/>
+                        <constraint firstItem="D6X-lr-sG0" firstAttribute="leading" secondItem="tws-lD-t3n" secondAttribute="leading" id="KU6-TF-XUs"/>
                         <constraint firstAttribute="bottom" secondItem="Qfb-Eg-qyy" secondAttribute="bottom" constant="45" id="cZU-Lw-yFF"/>
+                        <constraint firstAttribute="trailing" secondItem="D6X-lr-sG0" secondAttribute="trailing" id="jWV-f1-lxS"/>
                         <constraint firstItem="Qfb-Eg-qyy" firstAttribute="leading" secondItem="tws-lD-t3n" secondAttribute="leading" constant="8" id="wEk-sI-C1I"/>
                     </constraints>
                 </view>

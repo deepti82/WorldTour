@@ -12,6 +12,9 @@ var profilePic: String!
 
 var kindOfJourney: [String] = []
 
+let emptyCircle = String(format: "%C", faicon["emptyCircle"]!)
+let fullCircle = String(format: "%C", faicon["fullCircle"]!)
+
 class DisplayPagesOneViewController: UIViewController {
 
     @IBOutlet weak var profileImage: UIImageView!
@@ -22,9 +25,12 @@ class DisplayPagesOneViewController: UIViewController {
         
         getDarkBackGroundBlur(self)
         
-        let indicatorOne = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        indicatorOne.image = UIImage(named: "headerindicator1")
-        self.navigationItem.titleView = indicatorOne
+//        let indicatorOne = UIImageView(frame: CGRect(x: 0, y: 0, width: 55, height: 40))
+//        indicatorOne.image = UIImage(named: "indicatorOne")
+//        self.navigationItem.titleView = indicatorOne
+        
+        
+//        self.navigationItem.title.
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
@@ -37,6 +43,9 @@ class DisplayPagesOneViewController: UIViewController {
         rightButton.frame = CGRectMake(0, 8, 30, 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
+        
+        self.title = "\(fullCircle)    \(emptyCircle)    \(emptyCircle)     \(emptyCircle)"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "FontAwesome", size: 10)!]
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self
             .popVC(_:)))

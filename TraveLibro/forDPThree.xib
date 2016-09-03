@@ -8,14 +8,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="forDPThree" customModule="TraveLibro" customModuleProvider="target">
             <connections>
                 <outlet property="profileImage" destination="nzz-Gh-WTx" id="HFV-ec-ZFR"/>
-                <outletCollection property="checkboxButtons" destination="UeR-pk-iy8" id="J4Q-y4-l2o"/>
-                <outletCollection property="checkboxButtons" destination="7dz-K5-ZpA" id="lh6-oa-aLY"/>
-                <outletCollection property="checkboxButtons" destination="bar-Yp-FJW" id="6Uu-XQ-HEW"/>
-                <outletCollection property="checkboxButtons" destination="1cC-Fn-DqF" id="mJZ-8C-gky"/>
-                <outletCollection property="checkboxButtons" destination="hos-de-WWZ" id="R7S-ll-YFQ"/>
-                <outletCollection property="checkboxButtons" destination="405-B3-Tqa" id="gsa-VE-Ael"/>
-                <outletCollection property="checkboxButtons" destination="Lv0-nX-A8O" id="6nF-Lx-2y4"/>
-                <outletCollection property="checkboxButtons" destination="fBU-2x-uA6" id="JuF-Tt-AW4"/>
+                <outletCollection property="checkboxButtons" destination="UeR-pk-iy8" collectionClass="NSMutableArray" id="J4Q-y4-l2o"/>
+                <outletCollection property="checkboxButtons" destination="7dz-K5-ZpA" collectionClass="NSMutableArray" id="lh6-oa-aLY"/>
+                <outletCollection property="checkboxButtons" destination="bar-Yp-FJW" collectionClass="NSMutableArray" id="6Uu-XQ-HEW"/>
+                <outletCollection property="checkboxButtons" destination="1cC-Fn-DqF" collectionClass="NSMutableArray" id="mJZ-8C-gky"/>
+                <outletCollection property="checkboxButtons" destination="hos-de-WWZ" collectionClass="NSMutableArray" id="R7S-ll-YFQ"/>
+                <outletCollection property="checkboxButtons" destination="405-B3-Tqa" collectionClass="NSMutableArray" id="gsa-VE-Ael"/>
+                <outletCollection property="checkboxButtons" destination="Lv0-nX-A8O" collectionClass="NSMutableArray" id="6nF-Lx-2y4"/>
+                <outletCollection property="checkboxButtons" destination="fBU-2x-uA6" collectionClass="NSMutableArray" id="JuF-Tt-AW4"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -36,7 +36,7 @@
                             <rect key="frame" x="25" y="76" width="250" height="603"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="44f-Vt-hQT">
-                                    <rect key="frame" x="16" y="16" width="75" height="120"/>
+                                    <rect key="frame" x="28" y="16" width="75" height="120"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeR-pk-iy8">
                                             <rect key="frame" x="8" y="8" width="60" height="60"/>
@@ -66,7 +66,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trW-6n-BWO">
-                                    <rect key="frame" x="159" y="16" width="75" height="120"/>
+                                    <rect key="frame" x="148" y="16" width="75" height="120"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dz-K5-ZpA">
                                             <rect key="frame" x="8" y="8" width="60" height="60"/>
@@ -96,7 +96,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zdp-or-6fr">
-                                    <rect key="frame" x="16" y="136" width="75" height="120"/>
+                                    <rect key="frame" x="28" y="136" width="75" height="120"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bar-Yp-FJW">
                                             <rect key="frame" x="8" y="8" width="60" height="60"/>
@@ -131,7 +131,7 @@
                                     </variation>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3If-Ub-Z75">
-                                    <rect key="frame" x="159" y="376" width="75" height="120"/>
+                                    <rect key="frame" x="148" y="376" width="75" height="120"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBU-2x-uA6">
                                             <rect key="frame" x="8" y="8" width="60" height="60"/>
@@ -166,7 +166,7 @@
                                     </variation>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nh8-XO-XVM">
-                                    <rect key="frame" x="16" y="256" width="75" height="120"/>
+                                    <rect key="frame" x="28" y="256" width="75" height="120"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1cC-Fn-DqF">
                                             <rect key="frame" x="8" y="8" width="60" height="60"/>
@@ -196,7 +196,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICE-s0-mvt">
-                                    <rect key="frame" x="16" y="376" width="75" height="120"/>
+                                    <rect key="frame" x="28" y="376" width="75" height="120"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lv0-nX-A8O">
                                             <rect key="frame" x="8" y="8" width="60" height="60"/>
@@ -226,7 +226,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeY-WX-XpA">
-                                    <rect key="frame" x="159" y="136" width="75" height="120"/>
+                                    <rect key="frame" x="148" y="136" width="75" height="120"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hos-de-WWZ">
                                             <rect key="frame" x="8" y="8" width="60" height="60"/>
@@ -256,7 +256,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CQx-h6-smZ">
-                                    <rect key="frame" x="159" y="256" width="75" height="120"/>
+                                    <rect key="frame" x="148" y="256" width="75" height="120"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="405-B3-Tqa">
                                             <rect key="frame" x="8" y="8" width="60" height="60"/>
@@ -289,23 +289,23 @@
                             <constraints>
                                 <constraint firstItem="Zdp-or-6fr" firstAttribute="centerY" secondItem="goK-iC-SYw" secondAttribute="centerY" id="1Y1-E0-SwU"/>
                                 <constraint firstItem="CQx-h6-smZ" firstAttribute="top" secondItem="aeY-WX-XpA" secondAttribute="bottom" id="1dj-z0-1tT"/>
+                                <constraint firstItem="Zdp-or-6fr" firstAttribute="centerX" secondItem="goK-iC-SYw" secondAttribute="centerX" constant="-60" id="2xF-R4-crr"/>
                                 <constraint firstAttribute="width" constant="250" id="6XA-7d-Pl4"/>
                                 <constraint firstItem="ICE-s0-mvt" firstAttribute="top" secondItem="Nh8-XO-XVM" secondAttribute="bottom" id="9sC-io-K6b"/>
-                                <constraint firstItem="Nh8-XO-XVM" firstAttribute="leading" secondItem="goK-iC-SYw" secondAttribute="leading" constant="16" id="BQ8-kS-Lhh"/>
+                                <constraint firstItem="CQx-h6-smZ" firstAttribute="centerX" secondItem="goK-iC-SYw" secondAttribute="centerX" constant="60" id="CIR-Vn-Zg4"/>
                                 <constraint firstItem="3If-Ub-Z75" firstAttribute="top" secondItem="CQx-h6-smZ" secondAttribute="bottom" id="FGb-XR-cIP"/>
                                 <constraint firstItem="Zdp-or-6fr" firstAttribute="top" secondItem="44f-Vt-hQT" secondAttribute="bottom" id="IIp-sn-x4w"/>
-                                <constraint firstItem="Zdp-or-6fr" firstAttribute="leading" secondItem="goK-iC-SYw" secondAttribute="leading" constant="16" id="K7A-Bv-qhi"/>
-                                <constraint firstAttribute="trailing" secondItem="3If-Ub-Z75" secondAttribute="trailing" constant="16" id="P6N-Df-t8o"/>
-                                <constraint firstItem="44f-Vt-hQT" firstAttribute="leading" secondItem="goK-iC-SYw" secondAttribute="leading" constant="16" id="Rcj-C4-HiB"/>
+                                <constraint firstItem="3If-Ub-Z75" firstAttribute="centerX" secondItem="goK-iC-SYw" secondAttribute="centerX" constant="60" id="Iig-9I-pYL"/>
                                 <constraint firstItem="Zdp-or-6fr" firstAttribute="top" secondItem="44f-Vt-hQT" secondAttribute="bottom" constant="7" id="SQ1-Lt-Y30"/>
-                                <constraint firstAttribute="trailing" secondItem="aeY-WX-XpA" secondAttribute="trailing" constant="16" id="Sr4-Wg-cFs"/>
                                 <constraint firstItem="Nh8-XO-XVM" firstAttribute="top" secondItem="Zdp-or-6fr" secondAttribute="bottom" id="VVO-8s-YJg"/>
-                                <constraint firstAttribute="trailing" secondItem="trW-6n-BWO" secondAttribute="trailing" constant="16" id="XCW-9l-twd"/>
                                 <constraint firstItem="aeY-WX-XpA" firstAttribute="top" secondItem="trW-6n-BWO" secondAttribute="bottom" id="XEL-eD-hRm"/>
-                                <constraint firstAttribute="trailing" secondItem="CQx-h6-smZ" secondAttribute="trailing" constant="16" id="YpI-qC-uDZ"/>
+                                <constraint firstItem="ICE-s0-mvt" firstAttribute="centerX" secondItem="goK-iC-SYw" secondAttribute="centerX" constant="-60" id="b3c-18-COk"/>
                                 <constraint firstItem="44f-Vt-hQT" firstAttribute="top" secondItem="goK-iC-SYw" secondAttribute="top" constant="16" id="b6h-os-Ud4"/>
+                                <constraint firstItem="44f-Vt-hQT" firstAttribute="centerX" secondItem="goK-iC-SYw" secondAttribute="centerX" constant="-60" id="c6J-0t-fGY"/>
+                                <constraint firstItem="aeY-WX-XpA" firstAttribute="centerX" secondItem="goK-iC-SYw" secondAttribute="centerX" constant="60" id="gEf-fi-4Ih"/>
+                                <constraint firstItem="trW-6n-BWO" firstAttribute="centerX" secondItem="goK-iC-SYw" secondAttribute="centerX" constant="60" id="hba-Bb-bNQ"/>
+                                <constraint firstItem="Nh8-XO-XVM" firstAttribute="centerX" secondItem="goK-iC-SYw" secondAttribute="centerX" constant="-60" id="pRg-Hy-AEA"/>
                                 <constraint firstItem="trW-6n-BWO" firstAttribute="top" secondItem="goK-iC-SYw" secondAttribute="top" constant="16" id="xFl-AS-G7a"/>
-                                <constraint firstItem="ICE-s0-mvt" firstAttribute="leading" secondItem="goK-iC-SYw" secondAttribute="leading" constant="16" id="xc7-xK-YOi"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
