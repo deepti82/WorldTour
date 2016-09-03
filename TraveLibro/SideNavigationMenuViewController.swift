@@ -31,7 +31,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profilePicture: UIImageView!
-    
     @IBAction func SettingsTap(sender: AnyObject) {
         
         self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
@@ -98,11 +97,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let settingsVC = storyboard!.instantiateViewControllerWithIdentifier("UserProfileSettings") as! UserProfileSettingsViewController
         self.settingsViewController = UINavigationController(rootViewController: settingsVC)
         
-       
-         
-            let homeController = storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
-                       self.homeController = UINavigationController(rootViewController: homeController)
-          
+        let homeController = storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        self.homeController = UINavigationController(rootViewController: homeController)
         
         let PJController = storyboard!.instantiateViewControllerWithIdentifier("popularJourneys") as! PopularJourneysViewController
         self.popJourneysController = UINavigationController(rootViewController: PJController)
@@ -135,7 +131,6 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
         self.mainViewController = UINavigationController(rootViewController: homeController)
-
         
 //        let tapForProfile = UIGestureRecognizer(target: self, action: #selector(self.profileTap(_:)))
 //        profileView.addGestureRecognizer(tapForProfile)
