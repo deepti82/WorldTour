@@ -2153,18 +2153,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tQm-3O-pjb">
-                                <rect key="frame" x="0.0" y="110" width="320" height="2"/>
+                                <rect key="frame" x="0.0" y="95" width="320" height="2"/>
                                 <color key="backgroundColor" red="0.45490196078431372" green="0.45882352941176469" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="KvM-CH-XVW"/>
+                                    <constraint firstAttribute="height" constant="2" id="hxg-ie-6tN"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UoC-AF-vir">
-                                <rect key="frame" x="0.0" y="120" width="320" height="448"/>
+                                <rect key="frame" x="0.0" y="105" width="320" height="463"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="448" id="WDg-pO-ZZ7"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="7WS-AR-qxb" customClass="FollowersCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="320" height="44"/>
@@ -2186,7 +2183,6 @@
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L62-1R-eqP">
                                                     <rect key="frame" x="222" y="6" width="90" height="31"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="bHN-6r-heF"/>
                                                     </constraints>
@@ -2209,6 +2205,7 @@
                                                 <constraint firstItem="nsH-DB-WWM" firstAttribute="leading" secondItem="ZeP-NR-7ax" secondAttribute="trailing" constant="8" symbolic="YES" id="ylY-9j-f1M"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.94509804248809814" green="0.94901961088180542" blue="0.94901961088180542" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="followButton" destination="L62-1R-eqP" id="ekb-iG-MuF"/>
                                             <outlet property="profileImage" destination="ZeP-NR-7ax" id="ybF-zr-r3i"/>
@@ -2222,76 +2219,102 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9U-9t-4QS">
-                                <rect key="frame" x="0.0" y="42" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="65"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mz8-rY-klZ">
-                                        <rect key="frame" x="167" y="8" width="70" height="44"/>
-                                        <color key="backgroundColor" red="0.27058823529411763" green="0.71764705882352942" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="ZPd-LD-pyB"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
-                                        <state key="normal" title="Lab">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite via" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVP-IW-XzV">
                                         <rect key="frame" x="8" y="18" width="68" height="24"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3r-pg-Xg7">
-                                        <rect key="frame" x="245" y="8" width="67" height="44"/>
-                                        <color key="backgroundColor" red="0.23529411764705882" green="0.3529411764705882" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
-                                        <state key="normal" title="Lab">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1U-oq-c6u">
-                                        <rect key="frame" x="89" y="8" width="70" height="44"/>
-                                        <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="AxW-kc-Dd5"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
-                                        <state key="normal" title="Lab">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NrZ-Nc-SJR">
+                                        <rect key="frame" x="86" y="8" width="226" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1U-oq-c6u">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="44"/>
+                                                <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="z4l-Og-IHa"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
+                                                <state key="normal" title="Lab">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mz8-rY-klZ">
+                                                <rect key="frame" x="58" y="0.0" width="50" height="44"/>
+                                                <color key="backgroundColor" red="0.27058823529411763" green="0.71764705882352942" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="Vbb-Is-CrQ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
+                                                <state key="normal" title="Lab">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3r-pg-Xg7">
+                                                <rect key="frame" x="116" y="0.0" width="50" height="44"/>
+                                                <color key="backgroundColor" red="0.23529411764705882" green="0.3529411764705882" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="epS-PC-dk3"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="24"/>
+                                                <state key="normal" title="Lab">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uVk-pu-mVe">
+                                                <rect key="frame" x="174" y="0.0" width="52" height="44"/>
+                                                <color key="backgroundColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="+">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="18" name="Avenir-Heavy"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content=" More">
+                                                            <attributes>
+                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="13" name="Avenir-Roman"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="fVP-IW-XzV" firstAttribute="leading" secondItem="i9U-9t-4QS" secondAttribute="leading" constant="8" id="3kJ-pE-zo2"/>
-                                    <constraint firstItem="Mz8-rY-klZ" firstAttribute="baseline" secondItem="C1U-oq-c6u" secondAttribute="baseline" id="CXa-yN-jJE"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mz8-rY-klZ" secondAttribute="trailing" constant="83" id="Dzt-xw-rpN"/>
-                                    <constraint firstItem="C1U-oq-c6u" firstAttribute="centerY" secondItem="i9U-9t-4QS" secondAttribute="centerY" id="FDD-tk-0o6"/>
-                                    <constraint firstAttribute="trailing" secondItem="g3r-pg-Xg7" secondAttribute="trailing" constant="8" id="NuN-59-KE1"/>
-                                    <constraint firstAttribute="height" constant="60" id="R8j-DW-X8D"/>
-                                    <constraint firstItem="fVP-IW-XzV" firstAttribute="centerY" secondItem="i9U-9t-4QS" secondAttribute="centerY" id="Rog-bN-QhG"/>
-                                    <constraint firstItem="Mz8-rY-klZ" firstAttribute="top" secondItem="C1U-oq-c6u" secondAttribute="top" id="Ukv-a1-GSl"/>
-                                    <constraint firstItem="g3r-pg-Xg7" firstAttribute="leading" secondItem="Mz8-rY-klZ" secondAttribute="trailing" constant="8" id="Usj-4i-Iko"/>
-                                    <constraint firstItem="Mz8-rY-klZ" firstAttribute="leading" secondItem="C1U-oq-c6u" secondAttribute="trailing" constant="8" id="Yyx-C0-Z6c"/>
-                                    <constraint firstItem="Mz8-rY-klZ" firstAttribute="top" secondItem="i9U-9t-4QS" secondAttribute="top" constant="8" id="eqP-RN-OoC"/>
-                                    <constraint firstItem="Mz8-rY-klZ" firstAttribute="baseline" secondItem="g3r-pg-Xg7" secondAttribute="baseline" id="iZB-qN-jMV"/>
-                                    <constraint firstItem="Mz8-rY-klZ" firstAttribute="top" secondItem="g3r-pg-Xg7" secondAttribute="top" id="nIe-Rc-afb"/>
-                                    <constraint firstItem="Mz8-rY-klZ" firstAttribute="bottom" secondItem="g3r-pg-Xg7" secondAttribute="bottom" id="o3b-Qk-8Gf"/>
-                                    <constraint firstItem="g3r-pg-Xg7" firstAttribute="centerY" secondItem="i9U-9t-4QS" secondAttribute="centerY" id="sT4-JN-fpU"/>
+                                    <constraint firstItem="NrZ-Nc-SJR" firstAttribute="leading" secondItem="fVP-IW-XzV" secondAttribute="trailing" constant="10" id="7kl-rw-lrI"/>
+                                    <constraint firstItem="NrZ-Nc-SJR" firstAttribute="top" secondItem="i9U-9t-4QS" secondAttribute="topMargin" id="CjS-UY-Tz2"/>
+                                    <constraint firstItem="fVP-IW-XzV" firstAttribute="top" secondItem="i9U-9t-4QS" secondAttribute="top" constant="18" id="PnZ-6G-ufc"/>
+                                    <constraint firstAttribute="height" constant="65" id="Snj-Fz-61N"/>
+                                    <constraint firstItem="NrZ-Nc-SJR" firstAttribute="trailing" secondItem="i9U-9t-4QS" secondAttribute="trailingMargin" id="Z5d-Lc-hC4"/>
+                                    <constraint firstItem="NrZ-Nc-SJR" firstAttribute="top" secondItem="i9U-9t-4QS" secondAttribute="top" constant="10" id="dEk-Io-sz8"/>
+                                    <constraint firstItem="fVP-IW-XzV" firstAttribute="leading" secondItem="i9U-9t-4QS" secondAttribute="leadingMargin" id="gav-qc-cXm"/>
+                                    <constraint firstItem="NrZ-Nc-SJR" firstAttribute="centerY" secondItem="fVP-IW-XzV" secondAttribute="centerY" id="sgR-JP-gvg"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="dEk-Io-sz8"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94509804248809814" green="0.94901961088180542" blue="0.94901961088180542" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="UoC-AF-vir" secondAttribute="trailing" id="97u-7q-Bud"/>
-                            <constraint firstItem="tQm-3O-pjb" firstAttribute="leading" secondItem="Nod-EJ-AhK" secondAttribute="leading" id="EZg-8e-jjz"/>
-                            <constraint firstAttribute="trailing" secondItem="tQm-3O-pjb" secondAttribute="trailing" id="Gv3-hn-TrO"/>
-                            <constraint firstItem="i9U-9t-4QS" firstAttribute="leading" secondItem="Nod-EJ-AhK" secondAttribute="leading" id="OJB-qE-7bz"/>
-                            <constraint firstItem="1mj-8d-LX4" firstAttribute="top" secondItem="UoC-AF-vir" secondAttribute="bottom" id="TgH-Bp-Mdy"/>
-                            <constraint firstItem="i9U-9t-4QS" firstAttribute="top" secondItem="Wuw-eJ-ttH" secondAttribute="bottom" constant="22" id="Uf8-CC-X7d"/>
-                            <constraint firstAttribute="trailing" secondItem="i9U-9t-4QS" secondAttribute="trailing" id="WRv-Y3-hP3"/>
-                            <constraint firstItem="UoC-AF-vir" firstAttribute="top" secondItem="tQm-3O-pjb" secondAttribute="bottom" constant="8" id="fLM-bh-lYn"/>
-                            <constraint firstItem="UoC-AF-vir" firstAttribute="leading" secondItem="Nod-EJ-AhK" secondAttribute="leading" id="ojB-Fa-w1L"/>
-                            <constraint firstItem="tQm-3O-pjb" firstAttribute="top" secondItem="i9U-9t-4QS" secondAttribute="bottom" constant="8" id="xeo-lm-Rdg"/>
+                            <constraint firstItem="tQm-3O-pjb" firstAttribute="leading" secondItem="UoC-AF-vir" secondAttribute="leading" id="12t-xf-J3z"/>
+                            <constraint firstItem="UoC-AF-vir" firstAttribute="bottom" secondItem="1mj-8d-LX4" secondAttribute="top" id="7Bg-l0-V8H"/>
+                            <constraint firstItem="i9U-9t-4QS" firstAttribute="leading" secondItem="Nod-EJ-AhK" secondAttribute="leading" id="Pqv-ay-1Fg"/>
+                            <constraint firstItem="UoC-AF-vir" firstAttribute="top" secondItem="tQm-3O-pjb" secondAttribute="bottom" constant="8" symbolic="YES" id="WTk-dQ-UgZ"/>
+                            <constraint firstItem="tQm-3O-pjb" firstAttribute="top" secondItem="i9U-9t-4QS" secondAttribute="bottom" id="XV3-Ic-DJ1"/>
+                            <constraint firstItem="tQm-3O-pjb" firstAttribute="trailing" secondItem="UoC-AF-vir" secondAttribute="trailing" id="el5-VM-8zF"/>
+                            <constraint firstItem="i9U-9t-4QS" firstAttribute="trailing" secondItem="tQm-3O-pjb" secondAttribute="trailing" id="iPI-g3-q6E"/>
+                            <constraint firstItem="i9U-9t-4QS" firstAttribute="leading" secondItem="tQm-3O-pjb" secondAttribute="leading" id="pia-X4-Zah"/>
+                            <constraint firstAttribute="trailing" secondItem="i9U-9t-4QS" secondAttribute="trailing" id="qKA-KT-OEP"/>
+                            <constraint firstItem="i9U-9t-4QS" firstAttribute="top" secondItem="Wuw-eJ-ttH" secondAttribute="bottom" constant="10" id="tQ7-5p-Oqt"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -2301,8 +2324,11 @@
                         <outlet property="mailShare" destination="C1U-oq-c6u" id="77i-Cs-CKQ"/>
                         <outlet property="seperatorView" destination="tQm-3O-pjb" id="Xao-mQ-Wf8"/>
                         <outlet property="shareView" destination="i9U-9t-4QS" id="kjd-Uv-FBt"/>
-                        <outlet property="tableHeightConstraint" destination="WDg-pO-ZZ7" id="5TL-h6-oW4"/>
                         <outlet property="whatsappShare" destination="Mz8-rY-klZ" id="90t-7S-Bnj"/>
+                        <outletCollection property="shareButtons" destination="C1U-oq-c6u" collectionClass="NSMutableArray" id="exg-Do-wMi"/>
+                        <outletCollection property="shareButtons" destination="Mz8-rY-klZ" collectionClass="NSMutableArray" id="biu-o1-9Ez"/>
+                        <outletCollection property="shareButtons" destination="g3r-pg-Xg7" collectionClass="NSMutableArray" id="OA2-VV-zkL"/>
+                        <outletCollection property="shareButtons" destination="uVk-pu-mVe" collectionClass="NSMutableArray" id="nHF-bd-WHD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9w-N3-m60" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3236,16 +3262,16 @@
                                         <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
                                         <rect key="frame" x="67" y="245" width="154" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
                                                 <fontDescription key="fontDescription" name="DJBMyMoodRingSaysBlah" family="DJB My Mood Ring Says Blah" pointSize="18"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fO-4a-a7e">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fO-4a-a7e">
                                                 <rect key="frame" x="124" y="0.0" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Pp7-Hs-nOp"/>
@@ -4762,10 +4788,10 @@ IHRvZ2V0aGVyLg
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Pdk-ac-PkC">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Pdk-ac-PkC">
                                         <rect key="frame" x="0.0" y="93" width="288" height="42"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMg-fA-5ye">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMg-fA-5ye">
                                                 <rect key="frame" x="0.0" y="0.0" width="83" height="42"/>
                                                 <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="30"/>
@@ -4773,7 +4799,7 @@ IHRvZ2V0aGVyLg
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDG-h9-xjI">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDG-h9-xjI">
                                                 <rect key="frame" x="103" y="0.0" width="82" height="42"/>
                                                 <color key="backgroundColor" red="0.27058823529411763" green="0.71764705882352942" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="30"/>
@@ -4781,7 +4807,7 @@ IHRvZ2V0aGVyLg
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzJ-Qd-WsX">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzJ-Qd-WsX">
                                                 <rect key="frame" x="205" y="0.0" width="83" height="42"/>
                                                 <color key="backgroundColor" red="0.23529411764705882" green="0.3529411764705882" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="30"/>

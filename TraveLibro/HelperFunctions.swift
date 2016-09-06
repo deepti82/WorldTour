@@ -68,7 +68,7 @@ class SocialLoginClass: UIViewController {
                                     currentUser = response["data"]
                                     //                                    AppDelegate.createMenuView()
                                     leftViewController.viewDidLoad()
-                                    self.signIn.gotoNationalityPage()
+                                    self.gotoNationalityPage()
                                     
                                 }
                             })
@@ -156,7 +156,7 @@ class SocialLoginClass: UIViewController {
                                         //                                        AppDelegate.createMenuView()
                                         leftViewController.viewDidLoad()
                                         
-                                        self.signIn.gotoNationalityPage()
+                                        self.gotoNationalityPage()
                                         
                                     }
                                     //                                    print("response fb: \(response.description)")
@@ -278,7 +278,7 @@ class SocialLoginClass: UIViewController {
                                     currentUser = response["data"]
                                     //                                    AppDelegate.createMenuView()
                                     leftViewController.viewDidLoad()
-                                    self.signIn.gotoNationalityPage()
+                                    self.gotoNationalityPage()
                                 }
                                 
                             })

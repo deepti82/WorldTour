@@ -10,7 +10,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     var selectedCountries: [String] = []
     
-    var years = ["2016", "2015", "2014", "2013", "2012"]
+    var years = ["2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940"]
     
     var selectedIndex: NSIndexPath = NSIndexPath()
     var isSelected: Bool = false
@@ -83,9 +83,9 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
 //            getDarkBackGroundBlur(self)
             rightButton.setTitle("Save", forState: .Normal)
+            rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveCountriesVisited(_:)), forControlEvents: .TouchUpInside)
             rightButton.frame = CGRectMake(0, 0, 70, 30)
-            
             self.customNavigationBar(leftButton, right: rightButton)
             
             
@@ -226,19 +226,21 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         print("save countries visited: \(selectedCountries), \(selectedYear)")
         
-        var listFormat: [NSDictionary] = []
-        let list: NSMutableDictionary = [:]
+        var listFormat: JSON = ["1", "2", "3"]
+        var list: JSON = ["year": "2016", "times": 0]
         
-        for country in selectedCountries {
+        for i in 0 ..< selectedCountries.count {
             
-            list["year"] = selectedYear
-            list["countryId"] = country
-            listFormat.append(list)
+            list["year"].string = selectedCountries[i]
+//            list["countryId"] = JSON(selectedYear)
+            list["times"] = 1
+            print("list: \(list)")
+            listFormat[i] = list
             
         }
         print("list format: \(listFormat)")
         
-        request.addCountriesVisited(currentUser["_id"].string!, list: listFormat, completion: {(response) in
+        request.addCountriesVisited(currentUser["_id"].string!, list: listFormat, countryVisited: selectedYear, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 
@@ -250,10 +252,10 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 else if response["value"] {
                     
                     print("response arrived")
-                    let total = self.navigationController?.viewControllers
-                    let prevVC = total![total!.count - 3] as! BucketListTableViewController
-                    prevVC.tableView.reloadData()
-                    self.navigationController?.popViewControllerAnimated(true)
+//                    let total = self.navigationController?.viewControllers
+                    let prevVC = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+//                    prevVC.tableView.reloadData()
+                    self.navigationController?.pushViewController(prevVC, animated: false)
                     
                 }
                     
@@ -376,23 +378,23 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         let selectedCountry = tableView.cellForRowAtIndexPath(indexPath) as! CountriesTableViewCell
         
         
-        if whichView == "CountriesVisited" {
+        if whichView == "addYear" {
             
             if selectedCountry.tintColor == mainOrangeColor {
                 
                 selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
-                selectedCountries = selectedCountries.filter{$0 != countries[indexPath.row]["_id"].string!}
+                selectedCountries = selectedCountries.filter{$0 != years[indexPath.row]}
                 print("selected countries: \(selectedCountries)")
-                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
+//                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
                 
             }
                 
             else {
                 
                 selectedCountry.tintColor = mainOrangeColor
-                selectedCountries.append(countries[indexPath.row]["_id"].string!)
-                print("selected countries: \(selectedCountries)")
-                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
+                selectedCountries.append(years[indexPath.row])
+//                print("selected countries: \(selectedCountries)")
+//                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
                 
             }
             
@@ -413,8 +415,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 
                 selectedCountry.tintColor = mainOrangeColor
                 selectedCountries.append(countries[indexPath.row]["_id"].string!)
-                print("selected countries: \(selectedCountries)")
-                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
+//                print("selected countries: \(selectedCountries)")
+//                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
                 
             }
             
@@ -431,7 +433,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
 //            
 //        }
         
-        else if whichView == "addYear" {
+        else if whichView == "CountriesVisited" {
             
 //            if selectedCountry.tintColor == mainOrangeColor {
 //                
@@ -449,7 +451,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 
                 selectedCountry.tintColor = mainOrangeColor
 //                selectedNationality = selectedCountry.countryName.text
-                selectedYear = years[indexPath.row]
+                selectedYear = countries[indexPath.row]["_id"].string!
+                print("selected countries \(selectedYear)")
                 selectedIndex = indexPath
             }
                 
@@ -458,22 +461,22 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 selectedCountry.tintColor = mainOrangeColor
                 selectedIndex = indexPath
                 isSelected = true
-                selectedYear = years[indexPath.row]
+                selectedYear = countries[indexPath.row]["_id"].string!
+                print("selected countries \(selectedYear)")
 //                selectedNationality = selectedCountry.countryName.text
                 
             }
             
+            addYear(nil)
         }
         
     }
     
-    
-    
-    func addYear(sender: UIButton) {
+    func addYear(sender: UIButton?) {
         
         let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
         nextVC.whichView = "addYear"
-        nextVC.selectedCountries = selectedCountries
+        nextVC.selectedYear = selectedYear
         self.navigationController?.pushViewController(nextVC, animated: true)
         
     }
@@ -548,6 +551,10 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
 //        let indexLetters =
 //        let indexOfLetters = indexLetters.componentsSeparatedByString(" ")
         
+        if whichView == "addYear" {
+            return nil
+        }
+        
         var indexOfLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"]
         
         if countries != nil {
@@ -561,6 +568,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             indexOfLetters = indexOfLetters.sort()
         }
         return indexOfLetters
+        
     }
 
 }

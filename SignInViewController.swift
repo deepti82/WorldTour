@@ -13,7 +13,7 @@ import TwitterKit
 
 var currentUser: JSON!
 let social = SocialLoginClass()
-var profileVC: HomeViewController!
+var profileVC: ProfileViewController!
 var nationalityPage: AddNationalityNewViewController!
 var navigation: UINavigationController!
 
@@ -51,7 +51,7 @@ class SignInViewController: UIViewController {
         signInFooter.fbButton.addTarget(self, action: #selector(SignInViewController.facebookSignIn(_:)), forControlEvents: .TouchUpInside)
         signInFooter.twitterButton.addTarget(self, action: #selector(SignInViewController.twitterSignIn(_:)), forControlEvents: .TouchUpInside)
         
-        profileVC = self.storyboard?.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        profileVC = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
         
         nationalityPage = self.storyboard?.instantiateViewControllerWithIdentifier("nationalityNew") as! AddNationalityNewViewController
         
@@ -128,37 +128,6 @@ class SignInViewController: UIViewController {
         
         print("storyboard: \(self.storyboard)")
         social.twitterLogin()
-        
-    }
-    
-    func gotoNationalityPage() {
-        
-        print("inside nationality function")
-        
-//        let tempStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-//        if currentUser["alreadyLoggedIn"] != nil && currentUser["alreadyLoggedIn"] {
-//            
-//            print("storyboard: \(navigation)")
-//            
-//            //            profileVC.initialEntrance = true
-//            //            self.slideMenuController()?.changeMainViewController(profileVC, close: true)
-//            navigation.pushViewController(profileVC, animated: true)
-//            
-//        }
-//        else {
-        
-            //        print("nationality: \(nationalityPage)")
-            //        nationalityPage.whichView = "selectNationality"
-            navigation.pushViewController(nationalityPage, animated: true)
-            
-//        }
-        //        let nationalityPage = self.storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
-        //        print("nationality: \(nationalityPage)")
-        //        nationalityPage.whichView = "selectNationality"
-        //        self.navigationController?.pushViewController(nationalityPage, animated: true)
-        //        print("navigation: \(self.navigationController)")
-        //        print("navigation: \(self.navigationController)")
         
     }
     

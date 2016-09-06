@@ -382,6 +382,53 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
     }
     
+    func gotoCountriesVisited() {
+        
+        request.getBucketListCount(currentUser["_id"].string!, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if let error = response.error {
+                    
+                    print("error- \(error.code): \(error.localizedDescription)")
+                    
+                }
+                    
+                else if response["value"] {
+                    
+                    if response["data"]["countriesVisited_count"].int == 0 {
+                        
+                        let bucketVC = self.storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+                        bucketVC.whichView = "CountriesVisited"
+                        self.navigationController?.pushViewController(bucketVC, animated: true)
+                        
+                    }
+                        
+                    else if response["data"]["countriesVisited_count"].int > 0 {
+                        
+                        let bucketVC = self.storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+                        bucketVC.whichView = "CountriesVisited"
+                        self.navigationController?.pushViewController(bucketVC, animated: true)
+                        
+                    }
+                        
+                    else {
+                        
+                        print("some problem idk")
+                    }
+                    
+                }
+                    
+                else {
+                    
+                    print("response error: \(response["error"])")
+                }
+                
+            })
+            
+        })
+    }
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         if toggle {
@@ -409,9 +456,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             self.navigationController?.pushViewController(followersVC, animated: true)
             break
         case 2:
-            let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
-            bucketVC.whichView = "CountriesVisited"
-            self.navigationController?.pushViewController(bucketVC, animated: true)
+            gotoCountriesVisited()
+//            let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+//            bucketVC.whichView = "CountriesVisited"
+//            self.navigationController?.pushViewController(bucketVC, animated: true)
 //            let noBucketVC = storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
 //            self.navigationController?.pushViewController(noBucketVC, animated: true)
             break

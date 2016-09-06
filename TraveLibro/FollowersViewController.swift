@@ -10,6 +10,7 @@ import UIKit
 
 class FollowersViewController: UIViewController, UITableViewDataSource {
 
+    @IBOutlet var shareButtons: [UIButton]!
     @IBOutlet weak var mailShare: UIButton!
     @IBOutlet weak var whatsappShare: UIButton!
     @IBOutlet weak var facebookShare: UIButton!
@@ -31,6 +32,12 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
         self.setOnlyLeftNavigationButton(leftButton)
         
 //        self.setCheckInNavigationBarItem(self)
+        
+        for button in shareButtons {
+            
+            button.layer.cornerRadius = 5
+            
+        }
         
         if whichView == "Following" {
             

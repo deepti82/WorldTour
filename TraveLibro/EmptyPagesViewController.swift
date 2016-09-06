@@ -41,6 +41,13 @@ class EmptyPagesViewController: UIViewController {
             
         }
         
+        else if whichView == "CountriesVisited" {
+            
+            self.title = "Countries Visited"
+            nocountries.countriesVisitedLabel.text = "Add Countries To Your Bucket List Here"
+            
+        }
+        
     }
     
     func popToProfile(sender: UIButton) {

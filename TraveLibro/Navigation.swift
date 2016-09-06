@@ -12,6 +12,7 @@ import SwiftHTTP
 
 let adminUrl = "http://104.155.207.185:92/api/"
 let apiUrl = "http://192.168.2.17:1337/api/"
+let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
 //let apiURL = "";
 
 class Navigation {
@@ -470,7 +471,7 @@ class Navigation {
             let params = ["_id": id, "bucketList": list]
             print("params: \(params)")
             
-            let opt = try HTTP.POST(adminUrl + "user/updateBucketList", parameters: [params])
+            let opt = try HTTP.POST(tempUrl + "user/updateBucketList", parameters: [params])
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
@@ -519,15 +520,42 @@ class Navigation {
         
     }
     
-    func addCountriesVisited(id: String, list: [NSDictionary], completion: ((JSON) -> Void)) {
+//    func getBucketList(id: String, completion: ((JSON) -> Void)) {
+//        
+//        do {
+//            
+//            //            let params = ["file": file]
+//            
+//            let opt = try HTTP.POST(adminUrl + "user/getBucketList", parameters: ["_id": id])
+//            var json = JSON(1);
+//            opt.start { response in
+//                //                print("started response: \(response)")
+//                if let err = response.error {
+//                    print("error: \(err.localizedDescription)")
+//                }
+//                else
+//                {
+//                    json  = JSON(data: response.data)
+//                    print(json)
+//                    completion(json)
+//                }
+//            }
+//        } catch let error {
+//            print("got an error creating the request: \(error)")
+//        }
+//        
+//        
+//    }
+    
+    func addCountriesVisited(id: String, list: JSON, countryVisited: String, completion: ((JSON) -> Void)) {
         
 //        var jsonDict: NSDictionary!
 //        let str = "\(list)"
 //        let data = str.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
 //        print("data: \(data)")
         
-        do {
-            
+//        do {
+        
 //            var error: NSError?
 //            var jsonData: NSData!
 //            
@@ -551,13 +579,86 @@ class Navigation {
 //                print("Failed to load: \(error.localizedDescription)")
 //            }
             
-            var jsonParams: [(year: String, countryId: String)] = [(year: "2016", countryId: "57c146ba528f42240deff3fd")]
-            jsonParams.append((year: "2016", countryId: "57c146ba528f42240deff3fe"))
+//            var jsonParams: [(year: String, countryId: String)] = [(year: "2016", countryId: "57c146ba528f42240deff3fd")]
+//            jsonParams.append((year: "2016", countryId: "57c146ba528f42240deff3fe"))
             
-            let params = ["_id": id, "countriesVisited": jsonParams as! AnyObject]
+        var params: JSON = ["_id": id, "countryId": countryVisited]
+            //            params["_id"].stringValue = id
+            //            params["countryId"].stringValue = countryVisited
+        params["visited"] = list
+        
+            do {
+                
+                let jsonData = try! params.rawData()
+                // create post request
+                let url = NSURL(string: adminUrl + "user/updateCountriesVisited")!
+                let request = NSMutableURLRequest(URL: url)
+                request.HTTPMethod = "POST"
+                
+                // insert json data to the request
+                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                request.HTTPBody = jsonData
+                
+                
+                let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+                    if error != nil{
+                        print("Error -> \(error)")
+                        return
+                    }
+                    
+                    do {
+                        let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
+                        print("Result: \(result)")
+                        completion(JSON(result))
+                        
+                    } catch {
+                        print("Error: \(error)")
+                    }
+                }
+                
+                task.resume()
+//                return task
+                
+                
+                
+            } catch {
+                print(error)
+            }
+            
+            
+//            let newParams = ["data": "\(params)"]
+            
+//            print("params: \(params)")
+//            print("new params: \(list)")
+//            let a: JSON = {'_id' :'57bfe0adefb158eb6f831c0a','visited' : [{'year' : '2016', 'times' : 1},{'year' : '2015','times' : 1},{'year' : '2014','times' : 1}],'countryId' : '57c146ba528f42240deff426'}
+            
+//            let opt = try HTTP.POST(, parameters: )
+//            var json = JSON(1);
+//            opt.start { response in
+//                //                print("started response: \(response)")
+//                if let err = response.error {
+//                    print("error: \(err.localizedDescription)")
+//                }
+//                else
+//                {
+//                    json  = JSON(data: response.data)
+//                    print(json)
+//                    completion(json)
+//                }
+//            }
+//        } catch let error {
+//            print("got an error creating the request: \(error)")
+//        }
+    }
+    
+    func getCountriesVisited(id: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id]
             print("params: \(params)")
             
-            let opt = try HTTP.POST(adminUrl + "user/updateCountriesVisited", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + "user/getCountryVisitedList", parameters: [params])
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
@@ -576,14 +677,14 @@ class Navigation {
         }
     }
     
-    func getCountriesVisited(id: String, completion: ((JSON) -> Void)) {
+    func removeCountriesVisited(id: String, countryId: String, completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id]
+            let params = ["_id": id, "removeId": countryId]
             print("params: \(params)")
             
-            let opt = try HTTP.POST(adminUrl + "user/getCountryVisitedList", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + "user/removeCountriesVisited", parameters: [params])
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
