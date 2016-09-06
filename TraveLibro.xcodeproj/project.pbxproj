@@ -32,11 +32,19 @@
 		1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E431CCB668C007EB5BD /* OrangeButton.swift */; };
 		1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */; };
 		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
+		3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACB7A671D7841FD008247B6 /* DisplayPagesOneViewController.swift */; };
 		3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AEEB0081CE6F64F0085EEF5 /* Rating.xib */; };
 		3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEB00A1CE7017E0085EEF5 /* Rating.swift */; };
+		3AF187021D78539D00A86BC1 /* DisplayPagesTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187011D78539D00A86BC1 /* DisplayPagesTwoViewController.swift */; };
+		3AF187041D78556500A86BC1 /* forDPThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF187031D78556500A86BC1 /* forDPThree.xib */; };
+		3AF187061D7858D900A86BC1 /* forDPThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187051D7858D900A86BC1 /* forDPThree.swift */; };
+		3AF187081D785C9D00A86BC1 /* forDpFour.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF187071D785C9D00A86BC1 /* forDpFour.xib */; };
+		3AF1870A1D785EE800A86BC1 /* forDpFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187091D785EE800A86BC1 /* forDpFour.swift */; };
+		3AF187101D786B2300A86BC1 /* DisplayPagesThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1870F1D786B2300A86BC1 /* DisplayPagesThreeViewController.swift */; };
+		3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */; };
 		8644475487B77BD17AC161F6 /* Pods_TraveLibro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */; };
 		8985E87711B675E96A2FE376 /* Pods_TraveLibroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */; };
-		C20163E01D26911C00A2F70B /* LocalDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163DF1D26911C00A2F70B /* LocalDB.swift */; };
+		C20163E01D26911C00A2F70B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163DF1D26911C00A2F70B /* UserModel.swift */; };
 		C20163E21D26972B00A2F70B /* ProfileImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20163E11D26972B00A2F70B /* ProfileImage.xib */; };
 		C20163E41D26997600A2F70B /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163E31D26997600A2F70B /* ProfileImage.swift */; };
 		C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */; };
@@ -62,6 +70,9 @@
 		C22138F31D547846008D9DEE /* QuickItineraryTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22138F21D547846008D9DEE /* QuickItineraryTwo.swift */; };
 		C22138F61D547A0A008D9DEE /* QuickItineraryFour.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22138F51D547A0A008D9DEE /* QuickItineraryFour.xib */; };
 		C22138F81D547C42008D9DEE /* QuickItineraryFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22138F71D547C42008D9DEE /* QuickItineraryFour.swift */; };
+		C234B0601D79A67600397FE5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */; };
+		C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B34D81D7AF0AE00EBBF25 /* ProfilePicFancy.swift */; };
+		C23B34DB1D7AF3DA00EBBF25 /* ProfilePicFancy.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23B34DA1D7AF3DA00EBBF25 /* ProfilePicFancy.xib */; };
 		C23B3BDE1D423CDE0075B733 /* EachItineraryPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B3BDD1D423CDD0075B733 /* EachItineraryPhotosViewController.swift */; };
 		C23B3BE01D4248F10075B733 /* EachCityPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B3BDF1D4248F10075B733 /* EachCityPagerViewController.swift */; };
 		C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */; };
@@ -127,7 +138,6 @@
 		C25207341D095442008F0E51 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207331D095442008F0E51 /* SearchFieldView.swift */; };
 		C25207371D096F27008F0E51 /* ExploreDestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */; };
 		C25207391D09A4F7008F0E51 /* FeaturedCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */; };
-		C2535F091D252DEC00F6B22D /* ELCImagePickerController-master in Resources */ = {isa = PBXBuildFile; fileRef = C2535F081D252DEC00F6B22D /* ELCImagePickerController-master */; };
 		C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */; };
 		C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25443541CD75F2900C2C6CD /* drawLine.swift */; };
 		C25649951D48C6F60046E36D /* TripInfoOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25649941D48C6F60046E36D /* TripInfoOTG.xib */; };
@@ -215,6 +225,8 @@
 		C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29634E91D06F01300E9DF71 /* SearchLocation.xib */; };
 		C29634EC1D06F3B400E9DF71 /* SearchLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */; };
 		C29767181D50D65200428269 /* ListPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29767171D50D65200428269 /* ListPhotosViewController.swift */; };
+		C298717E1D6EBE8100F65429 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C298717D1D6EBE8100F65429 /* AddCityViewController.swift */; };
+		C29C33C31D7061DC00DC5B36 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */; };
 		C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */; };
 		C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */; };
 		C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */; };
@@ -279,6 +291,8 @@
 		C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DD03231CEAFDD4001878DD /* SayBye.xib */; };
 		C2DD03261CEB008C001878DD /* SayBye.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD03251CEB008C001878DD /* SayBye.swift */; };
 		C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD03271CEB4D0F001878DD /* ImageMask.swift */; };
+		C2E159B91D74068000A5B721 /* EmptyScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E159B81D74068000A5B721 /* EmptyScreenView.xib */; };
+		C2E159BB1D740A8300A5B721 /* EmptyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E159BA1D740A8300A5B721 /* EmptyScreenView.swift */; };
 		C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E45CE81CE5A1340096BDD1 /* IconButton.xib */; };
 		C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */; };
 		C2E697B31D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E697B21D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift */; };
@@ -349,15 +363,23 @@
 		1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JourneyTitleView.xib; sourceTree = "<group>"; };
 		1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
 		277D58FAE80114C733768AB9 /* Pods-TraveLibroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests.release.xcconfig"; sourceTree = "<group>"; };
+		3ACB7A671D7841FD008247B6 /* DisplayPagesOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPagesOneViewController.swift; sourceTree = "<group>"; };
 		3AEEB0081CE6F64F0085EEF5 /* Rating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Rating.xib; sourceTree = "<group>"; };
 		3AEEB00A1CE7017E0085EEF5 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		3AF187011D78539D00A86BC1 /* DisplayPagesTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPagesTwoViewController.swift; sourceTree = "<group>"; };
+		3AF187031D78556500A86BC1 /* forDPThree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = forDPThree.xib; sourceTree = "<group>"; };
+		3AF187051D7858D900A86BC1 /* forDPThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = forDPThree.swift; sourceTree = "<group>"; };
+		3AF187071D785C9D00A86BC1 /* forDpFour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = forDpFour.xib; sourceTree = "<group>"; };
+		3AF187091D785EE800A86BC1 /* forDpFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = forDpFour.swift; sourceTree = "<group>"; };
+		3AF1870F1D786B2300A86BC1 /* DisplayPagesThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPagesThreeViewController.swift; sourceTree = "<group>"; };
+		3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPagesFourViewController.swift; sourceTree = "<group>"; };
 		3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CB194BAA34D7D019550B77 /* Pods-TraveLibroUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroUITests/Pods-TraveLibroUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F3DB46F974DE0537A8651F /* Pods-TraveLibroUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroUITests/Pods-TraveLibroUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BAE3F40D9DEC49A23FC2BE7B /* Pods-TraveLibro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.release.xcconfig"; sourceTree = "<group>"; };
-		C20163DF1D26911C00A2F70B /* LocalDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDB.swift; sourceTree = "<group>"; };
+		C20163DF1D26911C00A2F70B /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C20163E11D26972B00A2F70B /* ProfileImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImage.xib; sourceTree = "<group>"; };
 		C20163E31D26997600A2F70B /* ProfileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCardsViewController.swift; sourceTree = "<group>"; };
@@ -381,6 +403,9 @@
 		C22138F21D547846008D9DEE /* QuickItineraryTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryTwo.swift; sourceTree = "<group>"; };
 		C22138F51D547A0A008D9DEE /* QuickItineraryFour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickItineraryFour.xib; sourceTree = "<group>"; };
 		C22138F71D547C42008D9DEE /* QuickItineraryFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryFour.swift; sourceTree = "<group>"; };
+		C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		C23B34D81D7AF0AE00EBBF25 /* ProfilePicFancy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePicFancy.swift; sourceTree = "<group>"; };
+		C23B34DA1D7AF3DA00EBBF25 /* ProfilePicFancy.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfilePicFancy.xib; path = ../ProfilePicFancy.xib; sourceTree = "<group>"; };
 		C23B3BDD1D423CDD0075B733 /* EachItineraryPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachItineraryPhotosViewController.swift; sourceTree = "<group>"; };
 		C23B3BDF1D4248F10075B733 /* EachCityPagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachCityPagerViewController.swift; sourceTree = "<group>"; };
 		C23EB1CA1CFEB008005B5CE8 /* CheckInLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckInLocalLife.xib; sourceTree = "<group>"; };
@@ -446,7 +471,6 @@
 		C25207331D095442008F0E51 /* SearchFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreDestinationsViewController.swift; sourceTree = "<group>"; };
 		C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCitiesViewController.swift; sourceTree = "<group>"; };
-		C2535F081D252DEC00F6B22D /* ELCImagePickerController-master */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "ELCImagePickerController-master"; path = "/Users/Wohlig/Documents/xcode/WorldTour/ELCImagePickerController-master"; sourceTree = "<absolute>"; };
 		C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheGoViewController.swift; sourceTree = "<group>"; };
 		C25443541CD75F2900C2C6CD /* drawLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawLine.swift; sourceTree = "<group>"; };
 		C25649941D48C6F60046E36D /* TripInfoOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripInfoOTG.xib; sourceTree = "<group>"; };
@@ -534,6 +558,8 @@
 		C29634E91D06F01300E9DF71 /* SearchLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchLocation.xib; path = ../SearchLocation.xib; sourceTree = "<group>"; };
 		C29634EB1D06F3B400E9DF71 /* SearchLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchLocation.swift; path = ../SearchLocation.swift; sourceTree = "<group>"; };
 		C29767171D50D65200428269 /* ListPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPhotosViewController.swift; sourceTree = "<group>"; };
+		C298717D1D6EBE8100F65429 /* AddCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCityViewController.swift; path = ../AddCityViewController.swift; sourceTree = "<group>"; };
+		C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCityViewController.swift; sourceTree = "<group>"; };
 		C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
 		C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInToolbar.xib; path = ../SignInToolbar.xib; sourceTree = "<group>"; };
@@ -600,6 +626,8 @@
 		C2DD03231CEAFDD4001878DD /* SayBye.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SayBye.xib; path = ../SayBye.xib; sourceTree = "<group>"; };
 		C2DD03251CEB008C001878DD /* SayBye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayBye.swift; sourceTree = "<group>"; };
 		C2DD03271CEB4D0F001878DD /* ImageMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMask.swift; sourceTree = "<group>"; };
+		C2E159B81D74068000A5B721 /* EmptyScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyScreenView.xib; sourceTree = "<group>"; };
+		C2E159BA1D740A8300A5B721 /* EmptyScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyScreenView.swift; sourceTree = "<group>"; };
 		C2E45CE81CE5A1340096BDD1 /* IconButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconButton.xib; sourceTree = "<group>"; };
 		C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		C2E697B21D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCitiesNewTwoViewController.swift; sourceTree = "<group>"; };
@@ -699,6 +727,8 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
+				C23B34DA1D7AF3DA00EBBF25 /* ProfilePicFancy.xib */,
+				C23B34D81D7AF0AE00EBBF25 /* ProfilePicFancy.swift */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
@@ -708,7 +738,6 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -737,6 +766,9 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				3AF1870C1D785F3A00A86BC1 /* forDPThree */,
+				3AF1870B1D785F2A00A86BC1 /* forDpFour */,
+				C2E159BC1D740AFE00A5B721 /* EmptyScreenView */,
 				C258A33C1D6C889D00664CF7 /* ExistingAccountPopup */,
 				C281FBEC1D55F8B400728BD9 /* QuickItineraryThree */,
 				C2FA1E151D5493B50034DE97 /* QuickItineraryFour */,
@@ -893,6 +925,24 @@
 			name = Rating;
 			sourceTree = "<group>";
 		};
+		3AF1870B1D785F2A00A86BC1 /* forDpFour */ = {
+			isa = PBXGroup;
+			children = (
+				3AF187091D785EE800A86BC1 /* forDpFour.swift */,
+				3AF187071D785C9D00A86BC1 /* forDpFour.xib */,
+			);
+			name = forDpFour;
+			sourceTree = "<group>";
+		};
+		3AF1870C1D785F3A00A86BC1 /* forDPThree */ = {
+			isa = PBXGroup;
+			children = (
+				3AF187031D78556500A86BC1 /* forDPThree.xib */,
+				3AF187051D7858D900A86BC1 /* forDPThree.swift */,
+			);
+			name = forDPThree;
+			sourceTree = "<group>";
+		};
 		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -906,7 +956,7 @@
 		C20163DE1D26910D00A2F70B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C20163DF1D26911C00A2F70B /* LocalDB.swift */,
+				C20163DF1D26911C00A2F70B /* UserModel.swift */,
 				C2488AB51D51D0E100FD5306 /* Navigation.swift */,
 				C2FA992F1D53681C009D0DF2 /* NewRest.swift */,
 			);
@@ -1240,6 +1290,9 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3ACB7A671D7841FD008247B6 /* DisplayPagesOneViewController.swift */,
+				3AF187011D78539D00A86BC1 /* DisplayPagesTwoViewController.swift */,
+				C298717D1D6EBE8100F65429 /* AddCityViewController.swift */,
 				C2FA1E1A1D5498380034DE97 /* QIViewController.swift */,
 				C29767171D50D65200428269 /* ListPhotosViewController.swift */,
 				C266AA161D4B75B300174612 /* AllJourneysViewController.swift */,
@@ -1324,6 +1377,9 @@
 				C24F84DD1D001456002EA203 /* EditSettingsViewController.swift */,
 				C20A18F51D225E9C00760BF9 /* CategoriseCheckInViewController.swift */,
 				C281FBED1D56170A00728BD9 /* VerifyIntermediateViewController.swift */,
+				3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */,
+				3AF1870F1D786B2300A86BC1 /* DisplayPagesThreeViewController.swift */,
+				C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */,
 				C2FA1E161D5495870034DE97 /* QuickItinerariesViewController.swift */,
 			);
 			name = Controllers;
@@ -1694,7 +1750,9 @@
 				C26B4DE61D13C88900213055 /* SlideMenuViewController.swift */,
 				C2DD03271CEB4D0F001878DD /* ImageMask.swift */,
 				C284277B1CE07445003672E9 /* Styles.swift */,
+				C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */,
 				C26B4DE81D13E48200213055 /* Layout.swift */,
+				C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1706,6 +1764,15 @@
 				C2DCB3761CE7473A006E5CBD /* AddRating.swift */,
 			);
 			name = AddRating;
+			sourceTree = "<group>";
+		};
+		C2E159BC1D740AFE00A5B721 /* EmptyScreenView */ = {
+			isa = PBXGroup;
+			children = (
+				C2E159B81D74068000A5B721 /* EmptyScreenView.xib */,
+				C2E159BA1D740A8300A5B721 /* EmptyScreenView.swift */,
+			);
+			name = EmptyScreenView;
 			sourceTree = "<group>";
 		};
 		C2EA3A0E1CDB1E6400122941 /* TextLabel */ = {
@@ -1760,6 +1827,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A944E2C1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibro" */;
 			buildPhases = (
+				57D97F8C60908CAF864EF242 /* 📦 Check Pods Manifest.lock */,
 				3E39950EFBBFFDBD6411ED41 /* [CP] Check Pods Manifest.lock */,
 				1A944E001CCB4567007EB5BD /* Sources */,
 				1A944E011CCB4567007EB5BD /* Frameworks */,
@@ -1767,6 +1835,8 @@
 				3B7A621079EFA3061E0940AD /* [CP] Embed Pods Frameworks */,
 				48FC31CC8594F2E97A6F96C6 /* [CP] Copy Pods Resources */,
 				C24246BA1D5DA67E0020199E /* ShellScript */,
+				19FB925F77D4A99511A8DCE8 /* 📦 Embed Pods Frameworks */,
+				F45202408F151F7C0A78E697 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1781,12 +1851,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A944E2F1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroTests" */;
 			buildPhases = (
+				BB7543E3FA2A4EE93ADB7BE3 /* 📦 Check Pods Manifest.lock */,
 				654CCE18CFC9AB62CF810C07 /* [CP] Check Pods Manifest.lock */,
 				1A944E141CCB4567007EB5BD /* Sources */,
 				1A944E151CCB4567007EB5BD /* Frameworks */,
 				1A944E161CCB4567007EB5BD /* Resources */,
 				14470BBEAB94001E791386EF /* [CP] Embed Pods Frameworks */,
 				BE02BF245AD9F1B3CF9AA47A /* [CP] Copy Pods Resources */,
+				4C5B3EB168A91BF7E302E930 /* 📦 Embed Pods Frameworks */,
+				48907F698B0EF6C6550F910D /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1802,11 +1875,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A944E321CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroUITests" */;
 			buildPhases = (
+				556F4B9C3740D8DB81BA549D /* 📦 Check Pods Manifest.lock */,
 				DB475C85160DBE9607A2E0CA /* [CP] Check Pods Manifest.lock */,
 				1A944E1F1CCB4567007EB5BD /* Sources */,
 				1A944E201CCB4567007EB5BD /* Frameworks */,
 				1A944E211CCB4567007EB5BD /* Resources */,
 				403DE2127200E52A941D1F70 /* [CP] Copy Pods Resources */,
+				CB8D66BA764EA32C25BD68B4 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1869,6 +1944,7 @@
 			files = (
 				C22138F11D546EB6008D9DEE /* QuickItineraryTwo.xib in Resources */,
 				C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */,
+				C2E159B91D74068000A5B721 /* EmptyScreenView.xib in Resources */,
 				C20939061D1180C100CBA70F /* DJB My Mood Ring Says Blah.ttf in Resources */,
 				1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */,
 				C26730271D27A84C00F2C822 /* QuickItineraryOne.xib in Resources */,
@@ -1876,6 +1952,7 @@
 				C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */,
 				C2ABDBAE1CEC4CB400D7542E /* OnlyPhoto.xib in Resources */,
 				C2A27A451CEDC1F100F74DD1 /* LogInView.xib in Resources */,
+				3AF187041D78556500A86BC1 /* forDPThree.xib in Resources */,
 				C24909BA1D4A3852007EB6B4 /* AddPostsOTG.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				C2803BC41CF41F99007A906E /* BlogView.xib in Resources */,
@@ -1902,7 +1979,6 @@
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
 				C24909AD1D49D094007EB6B4 /* tripSummaryEach.xib in Resources */,
 				C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */,
-				C2535F091D252DEC00F6B22D /* ELCImagePickerController-master in Resources */,
 				C248704A1D0BEE75003CB0DD /* MoreAboutTrip.xib in Resources */,
 				C24B45631D0AE664002EA009 /* PopularAgents.xib in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
@@ -1932,6 +2008,7 @@
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
 				C23EB1CF1CFEC731005B5CE8 /* PhotoBar.xib in Resources */,
+				C23B34DB1D7AF3DA00EBBF25 /* ProfilePicFancy.xib in Resources */,
 				C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */,
 				C2DCB36A1CE701A4006E5CBD /* TripSummaryItinerary.xib in Resources */,
 				C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */,
@@ -1958,6 +2035,7 @@
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
 				C26D619A1D43A9FF0036714C /* footerNew.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
+				3AF187081D785C9D00A86BC1 /* forDpFour.xib in Resources */,
 				C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */,
 				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
@@ -1999,6 +2077,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		19FB925F77D4A99511A8DCE8 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3B7A621079EFA3061E0940AD /* [CP] Embed Pods Frameworks */ = {
@@ -2046,6 +2139,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroUITests/Pods-TraveLibroUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		48907F698B0EF6C6550F910D /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		48FC31CC8594F2E97A6F96C6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2061,6 +2169,51 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4C5B3EB168A91BF7E302E930 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		556F4B9C3740D8DB81BA549D /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		57D97F8C60908CAF864EF242 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		654CCE18CFC9AB62CF810C07 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2069,6 +2222,21 @@
 			inputPaths = (
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BB7543E3FA2A4EE93ADB7BE3 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2104,6 +2272,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" d1853efb9228168c98a6d8a3ddb72c47d4067e68 badc8eba1d25c75c57c69a92773dbb878b4e9aff67c4575acd9e3a2e73e5b698";
 		};
+		CB8D66BA764EA32C25BD68B4 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibroUITests/Pods-TraveLibroUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DB475C85160DBE9607A2E0CA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2119,6 +2302,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		F45202408F151F7C0A78E697 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2126,6 +2324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */,
 				C24F84DC1D000CF5002EA203 /* MoreAboutMe.swift in Sources */,
 				C267302C1D27D49100F2C822 /* SelectGenderViewController.swift in Sources */,
 				C26962E41D377592004C0DE2 /* FeaturedCitiesNewViewController.swift in Sources */,
@@ -2165,6 +2364,7 @@
 				C27F6C051CF06AB10049F012 /* MomentsTab.swift in Sources */,
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
 				C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */,
+				3AF187021D78539D00A86BC1 /* DisplayPagesTwoViewController.swift in Sources */,
 				C263E3A91D1EAA4600D274FE /* FooterNavigation.swift in Sources */,
 				C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */,
 				C28A92511D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift in Sources */,
@@ -2173,10 +2373,12 @@
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
+				3AF187061D7858D900A86BC1 /* forDPThree.swift in Sources */,
 				C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */,
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
+				3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
 				C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */,
 				C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */,
@@ -2188,6 +2390,7 @@
 				C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */,
 				C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */,
 				C23EB1CD1CFEB044005B5CE8 /* CheckInLocalLife.swift in Sources */,
+				3AF1870A1D785EE800A86BC1 /* forDpFour.swift in Sources */,
 				C2488AB61D51D0E100FD5306 /* Navigation.swift in Sources */,
 				C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */,
 				C25C27F11D4747AA00C21F23 /* NewTLViewController.swift in Sources */,
@@ -2223,6 +2426,7 @@
 				C26730281D27A84C00F2C822 /* QuickItineraryOne.swift in Sources */,
 				C24F84F21D005154002EA203 /* NoFollowers.swift in Sources */,
 				C2A27A471CEDC27600F74DD1 /* LogInView.swift in Sources */,
+				C29C33C31D7061DC00DC5B36 /* HelperFunctions.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
 				C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */,
 				C26B4DE71D13C88900213055 /* SlideMenuViewController.swift in Sources */,
@@ -2241,10 +2445,12 @@
 				C24F84DA1CFFFBF5002EA203 /* UserProfileSettingsViewController.swift in Sources */,
 				C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
+				C298717E1D6EBE8100F65429 /* AddCityViewController.swift in Sources */,
 				C2ABDBB21CEC53B000D7542E /* StatusView.swift in Sources */,
 				C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */,
 				C281FBEB1D55EF4A00728BD9 /* QuickItineraryThree.swift in Sources */,
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
+				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,
 				C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */,
 				C26730211D27A21D00F2C822 /* AddNewOTG.swift in Sources */,
 				C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */,
@@ -2262,6 +2468,8 @@
 				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
 				C25C27EF1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift in Sources */,
+				3AF187101D786B2300A86BC1 /* DisplayPagesThreeViewController.swift in Sources */,
+				C2E159BB1D740A8300A5B721 /* EmptyScreenView.swift in Sources */,
 				C2FA99301D53681C009D0DF2 /* NewRest.swift in Sources */,
 				C24EB2EF1D30DE2E00EB95F6 /* NoFollowingViewController.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
@@ -2269,6 +2477,7 @@
 				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
 				C20939011D11557B00CBA70F /* HomeViewController.swift in Sources */,
 				C24870531D0C35C0003CB0DD /* HotelsCustomHeader.swift in Sources */,
+				C234B0601D79A67600397FE5 /* UIViewControllerExtension.swift in Sources */,
 				C2823B051D464E800065A76C /* startOTGView.swift in Sources */,
 				C248704F1D0C25B9003CB0DD /* ExploreHotelsViewController.swift in Sources */,
 				C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */,
@@ -2289,7 +2498,7 @@
 				C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */,
 				C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */,
 				C2DCB2371CE30ED0000E40DD /* TripSummaryViewController.swift in Sources */,
-				C20163E01D26911C00A2F70B /* LocalDB.swift in Sources */,
+				C20163E01D26911C00A2F70B /* UserModel.swift in Sources */,
 				C26907891CF82E9100F827E6 /* AccountVerified.swift in Sources */,
 				C212930E1D2E806B002D5A4A /* MyLifeContainerViewController.swift in Sources */,
 				C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */,

@@ -22,8 +22,21 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
 //        
 //    }
     
+    override func viewWillAppear(animated: Bool) {
+        
+//        if doRemove {
+//            
+//            let profileVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+//            self.navigationController?.showViewController(profileVC, sender: nil)
+//            
+//        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBarHidden = false
         
         getDarkBackGround(self)
         
@@ -51,6 +64,58 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
 //        self.resizeView(8);
         
+        let sideMenu = storyboard!.instantiateViewControllerWithIdentifier("sideMenu") as! SideNavigationMenuViewController
+        sideMenu.view.setNeedsDisplay()
+        
+//        var imageName = ""
+//        
+//        if currentUser != nil {
+//            
+//            
+//            print("inside if statement \(sideMenu.profilePicture)")
+//            imageName = currentUser["profilePicture"].string!
+//            print("image: \(imageName)")
+//            
+//            let isUrl = verifyUrl(imageName)
+//            print("isUrl: \(isUrl)")
+//            
+//            if isUrl {
+//                
+//                print("inside if statement")
+//                let data = NSData(contentsOfURL: NSURL(string: imageName)!)
+//                
+//                if data != nil {
+//                    
+//                    print("some problem in data \(data)")
+//                    //                uploadView.addButton.setImage(, forState: .Normal)
+//                    sideMenu.profilePicture.image = UIImage(data: data!)
+//                    makeTLProfilePicture(sideMenu.profilePicture)
+//                }
+//            }
+//                
+//            else {
+//                
+//                let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
+//                
+//                print("getImageUrl: \(getImageUrl)")
+//                
+//                let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+//                print("data: \(data)")
+//                
+//                if data != nil {
+//                    
+//                    //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+//                    print("inside if statement \(sideMenu.profilePicture.image)")
+//                    sideMenu.profilePicture.image = UIImage(data: data!)
+//                    print("sideMenu.profilePicture.image: \(sideMenu.profilePicture.image)")
+//                    makeTLProfilePicture(sideMenu.profilePicture)
+//                }
+//                
+//            }
+//            
+//        }
+//
+//        
     }
     
     override func didReceiveMemoryWarning() {

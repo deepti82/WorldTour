@@ -8,6 +8,8 @@
 
 import UIKit
 
+var initialLogin = true
+
 class SideNavigationMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var mainViewController: UIViewController!
@@ -24,12 +26,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var localLifeController: UIViewController!
     var myProfileViewController: UIViewController!
     
-    
-    
     let labels = ["Popular Journeys", "Explore Destinations", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
     
+    @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileView: UIView!
-    
+    @IBOutlet weak var profilePicture: UIImageView!
     @IBAction func SettingsTap(sender: AnyObject) {
         
         self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
@@ -39,43 +40,99 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let settingsVC = storyboard.instantiateViewControllerWithIdentifier("UserProfileSettings") as! UserProfileSettingsViewController
+        var imageName = ""
+        
+        print("in view did load, current user: \(currentUser)")
+        
+        profileView = ProfilePicFancy()
+        
+        if currentUser != nil {
+            
+            
+//            print("inside if statement \(sideMenu.profilePicture)")
+            profileName.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
+            imageName = currentUser["profilePicture"].string!
+            print("image: \(imageName)")
+            
+            let isUrl = verifyUrl(imageName)
+            print("isUrl: \(isUrl)")
+            
+            if isUrl {
+                
+                print("inside if statement")
+                let data = NSData(contentsOfURL: NSURL(string: imageName)!)
+                
+                if data != nil {
+                    
+                    print("some problem in data \(data)")
+                    //                uploadView.addButton.setImage(, forState: .Normal)
+                    profilePicture.image = UIImage(data: data!)
+                    makeTLProfilePicture(profilePicture)
+                }
+            }
+                
+            else {
+                
+                let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
+                
+                print("getImageUrl: \(getImageUrl)")
+                
+                let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+                print("data: \(data)")
+                
+                if data != nil {
+                    
+                    //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+                    print("inside if statement \(profilePicture.image)")
+                    profilePicture.image = UIImage(data: data!)
+                    print("sideMenu.profilePicture.image: \(profilePicture.image)")
+                    makeTLProfilePicture(profilePicture)
+                }
+                
+            }
+            
+        }
+
+        
+        let settingsVC = storyboard!.instantiateViewControllerWithIdentifier("UserProfileSettings") as! UserProfileSettingsViewController
         self.settingsViewController = UINavigationController(rootViewController: settingsVC)
         
-        let homeController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        let homeController = storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         self.homeController = UINavigationController(rootViewController: homeController)
         
-        let PJController = storyboard.instantiateViewControllerWithIdentifier("popularJourneys") as! PopularJourneysViewController
+        let PJController = storyboard!.instantiateViewControllerWithIdentifier("popularJourneys") as! PopularJourneysViewController
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
-        let EDController = storyboard.instantiateViewControllerWithIdentifier("exploreDestinations") as! ExploreDestinationsViewController
+        let EDController = storyboard!.instantiateViewControllerWithIdentifier("exploreDestinations") as! ExploreDestinationsViewController
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
         
-        let PBController = storyboard.instantiateViewControllerWithIdentifier("popularBloggers") as! PopularBloggersViewController
+        let PBController = storyboard!.instantiateViewControllerWithIdentifier("popularBloggers") as! PopularBloggersViewController
         self.popBloggersController = UINavigationController(rootViewController: PBController)
         
-        let BlogsController = storyboard.instantiateViewControllerWithIdentifier("blogsList") as! BlogsListViewController
+        let BlogsController = storyboard!.instantiateViewControllerWithIdentifier("blogsList") as! BlogsListViewController
         self.blogsController = UINavigationController(rootViewController: BlogsController)
         
-        let inviteController = storyboard.instantiateViewControllerWithIdentifier("inviteFriends") as! InviteFriendsViewController
+        let inviteController = storyboard!.instantiateViewControllerWithIdentifier("inviteFriends") as! InviteFriendsViewController
         self.inviteFriendsController = UINavigationController(rootViewController: inviteController)
         
-        let rateUsController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        let rateUsController = storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         self.rateUsController = UINavigationController(rootViewController: rateUsController)
         
-        let FBController = storyboard.instantiateViewControllerWithIdentifier("FeedbackVC") as! FeedbackViewController
+        let FBController = storyboard!.instantiateViewControllerWithIdentifier("FeedbackVC") as! FeedbackViewController
         self.feedbackController = UINavigationController(rootViewController: FBController)
         
-        let logOutController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        let logOutController = storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
         self.logOutController = UINavigationController(rootViewController: logOutController)
         
-        let localLifeController = storyboard.instantiateViewControllerWithIdentifier("localLife") as! LocalLifeRecommendationViewController
+        let localLifeController = storyboard!.instantiateViewControllerWithIdentifier("localLife") as! LocalLifeRecommendationViewController
         self.localLifeController = UINavigationController(rootViewController: localLifeController)
         
-        let myProfileController = storyboard.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+        let myProfileController = storyboard!.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
+        
+        self.mainViewController = UINavigationController(rootViewController: homeController)
         
 //        let tapForProfile = UIGestureRecognizer(target: self, action: #selector(self.profileTap(_:)))
 //        profileView.addGestureRecognizer(tapForProfile)

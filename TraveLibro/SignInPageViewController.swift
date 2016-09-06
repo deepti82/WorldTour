@@ -1,4 +1,4 @@
-//
+    //
 //  SignInPageViewController.swift
 //  TraveLibro
 //
@@ -31,6 +31,21 @@ class SignInPageViewController: UIViewController {
         
         pageView = SignInFullView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height - 60))
         self.view.addSubview(pageView)
+        pageView.loginButton.addTarget(self, action: #selector(SignInPageViewController.gotoLogin(_:)), forControlEvents: .TouchUpInside)
+        pageView.facebookButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), forControlEvents: .TouchUpInside)
+        pageView.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), forControlEvents: .TouchUpInside)
+        pageView.twitterButton.addTarget(self, action: #selector(SignInPageViewController.twitterSignUp(_:)), forControlEvents: .TouchUpInside)
+        pageView.instagramButton.addTarget(self, action: #selector(SignInPageViewController.igSignUp(_:)), forControlEvents: .TouchUpInside)
+        
+        let fbTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.facebookSignUp(_:)))
+        let googleTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.googleSignUp(_:)))
+        let twitterTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.twitterSignUp(_:)))
+        let igTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.igSignUp(_:)))
+        
+        pageView.facebookLabel.addGestureRecognizer(fbTap)
+        pageView.googleLabel.addGestureRecognizer(googleTap)
+        pageView.twitterLabel.addGestureRecognizer(twitterTap)
+        pageView.instagramLabel.addGestureRecognizer(igTap)
         
 //        pageView.loginBigButton.addTarget(self, action: #selector(SignInPageViewController.signedUp(_:)), forControlEvents: .TouchUpInside)
 //        pageView.textField2.secureTextEntry = true
@@ -53,6 +68,31 @@ class SignInPageViewController: UIViewController {
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
+    
+    func facebookSignUp(sender: AnyObject) {
+        
+        social.facebookLogin()
+        
+    }
+    
+    func googleSignUp(sender: AnyObject) {
+        
+        social.googleLogin()
+        
+    }
+    
+    func twitterSignUp(sender: AnyObject) {
+        
+        social.twitterLogin()
+        
+    }
+    
+    func igSignUp(sender: AnyObject) {
+        
+//        social.googleLogin()
+        
+    }
+    
     
 //    func textFieldShouldReturn(textField: UITextField) -> Bool {
 //        
@@ -209,6 +249,13 @@ class SignInPageViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func gotoLogin(sender: UIButton) {
+        
+        let logInVC = storyboard?.instantiateViewControllerWithIdentifier("logIn") as! LogInViewController
+        self.navigationController?.pushViewController(logInVC, animated: true)
+        
     }
 
 }

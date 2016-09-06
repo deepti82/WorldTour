@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SetProfilePictureViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     let imagePicker = UIImagePickerController()
     var uploadView: AddDisplayPic!
@@ -35,20 +35,137 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         uploadView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
         self.view.addSubview(uploadView)
         
-        uploadView.addButton.addTarget(self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)), forControlEvents: .TouchUpInside)
+        uploadView.usernameTextField.returnKeyType = .Done
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)))
+//        tap.delegate = self
+        uploadView.addButtonPic.addGestureRecognizer(tap)
+        
+//        uploadView.addButton.addTarget(self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)), forControlEvents: .TouchUpInside)
         
         imagePicker.delegate = self
         
+//        let url =
+        let isUrl = verifyUrl(currentUser["profilePicture"].string!)
+        
+        if isUrl {
+            
+            let data = NSData(contentsOfURL: NSURL(string: currentUser["profilePicture"].string!)!)
+            
+            if data != nil {
+                
+//                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+                uploadView.addButtonPic.image = UIImage(data:data!)
+                makeTLProfilePicture(uploadView.addButtonPic)
+                
+            }
+        }
+        
+        else {
+            
+            var imageName = ""
+            
+            if currentUser["profilePicture"] != nil {
+                
+                imageName = currentUser["profilePicture"].string!
+                
+            }
+            
+            let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
+            
+            
+            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            
+            if data != nil {
+                
+//                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+                uploadView.addButtonPic.image = UIImage(data:data!)
+                makeTLProfilePicture(uploadView.addButtonPic)
+                
+            }
+            
+//            request.getImageBytes(imageName, completion: {(response) in
+//                
+//                if response.error != nil {
+//                    
+//                    print("error: \(response.error?.localizedDescription)")
+//                    
+//                }
+//                
+//                else if response["value"] {
+//                    
+////                    print("")
+////                    uploadView.addButton.setImage(UIImage(data: response), forState: .Normal)
+//                    
+//                }
+//                
+//                else {
+//                    
+//                    print("response error: \(response["data"])")
+//                    
+//                }
+//                
+//                
+//            })
+            
+        }
+        
+        uploadView.username.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
+        
+        uploadView.usernameTextField.delegate = self
+        let textTap = UITapGestureRecognizer(target: self, action: #selector(SetProfilePictureViewController.changeLabelText(_:)))
+        uploadView.addGestureRecognizer(textTap)
+        
     }
+    
+    func changeLabelText(sender: UIGestureRecognizer) {
+        
+        uploadView.usernameTextField.text = uploadView.username.text
+        uploadView.username.hidden = true
+        uploadView.usernameTextField.hidden = false
+        uploadView.usernameTextField.becomeFirstResponder()
+        
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+//        uploadView.usernameTextField.text = ""
+        
+    }
+    
+//    func textFieldDidEndEditing(textField: UITextField) {
+//        
+//        uploadView.usernameTextField.resignFirstResponder()
+//        uploadView.username.text = uploadView.usernameTextField.text
+//        uploadView.usernameTextField.hidden = false
+//        uploadView.username.hidden = true
+//        
+//    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        uploadView.usernameTextField.resignFirstResponder()
+        
+        if uploadView.usernameTextField.text != "" {
+            
+            uploadView.username.text = uploadView.usernameTextField.text
+        }
+        
+        uploadView.usernameTextField.hidden = false
+        uploadView.username.hidden = true
+        return true
+        
+    }
+    
     
     func choosePreferences(sender: AnyObject) {
         
-        let pagerVC = storyboard?.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
+        let pagerVC = storyboard?.instantiateViewControllerWithIdentifier("displayOne") as! DisplayPagesOneViewController
         self.navigationController?.pushViewController(pagerVC, animated: true)
         
     }
     
-    func chooseDisplayPic(sender: AnyObject) {
+    func chooseDisplayPic(sender: UITapGestureRecognizer? = nil) {
         
         let chooseSource: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         
@@ -90,12 +207,13 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        print(info)
+//        print(info[UIImagePickerControllerReferenceURL])
         
         //var tempImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
         tempImage = info[UIImagePickerControllerEditedImage] as! UIImage
 //        let imageData: NSData = UIImageJPEGRepresentation(tempImage, 1.0)!
-        uploadView.addButton.setImage(tempImage, forState: .Normal)
+        uploadView.addButtonPic.image = tempImage
+        makeTLProfilePicture(uploadView.addButtonPic)
         
         self.dismissViewControllerAnimated(true, completion:nil)
         
@@ -113,10 +231,10 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
 //        let imagename = "profile.jpg";
 //        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! as String
-        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
-        var imageName = NSURL(string: imageURL.path!)!.lastPathComponent
-        imageName = imageName?.lowercaseString
-        print("image path : \(imageName)")
+//        let imageURL = info[UIImagePickerControllerReferenceURL] as! NSURL
+//        var imageName = NSURL(string: imageURL.path!)!.lastPathComponent
+//        imageName = imageName?.lowercaseString
+//        print("image path : \(imageName)")
 //        let destinationPath = "file:///"  + String(documentsPath) + "/" + imageName!
         
 //        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
@@ -130,7 +248,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
 //        fileManager.createFileAtPath(pathToSave, contents: NSData(), attributes: nil)
 //        print("file created")
         
-        let filemanager = NSFileManager.defaultManager()
+//        let filemanager = NSFileManager.defaultManager()
 
         do {
             
@@ -151,6 +269,25 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         print("local path: \(exportFilePath)")
         
         request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error?.localizedDescription)")
+                }
+                else {
+                    
+                    if response["value"] {
+                        
+                        request.editUser(currentUser["_id"].string!, editField: "profilePicture", editFieldValue: response["data"][0].string!, completion: { _ in
+                            
+                            print("response arrived!")
+                            
+                        })
+                    }
+                }
+            })
             
             print("response arrived!")
             

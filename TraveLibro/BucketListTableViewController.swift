@@ -7,19 +7,20 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class BucketListTableViewController: UITableViewController  {
     
     var whichView: String!
+    var bucket: [JSON] = []
+    var isComingFromEmptyPages = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = whichView
-        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), forControlEvents: .TouchUpInside)
         leftButton.frame = CGRectMake(0, 0, 30, 30)
         
         let rightButton = UIButton()
@@ -29,63 +30,226 @@ class BucketListTableViewController: UITableViewController  {
         
         self.customNavigationBar(leftButton, right: rightButton)
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        if whichView == "BucketList" {
+            
+            self.title = "Bucket List"
+            getBucketList()
+            
+        }
+        
+        if whichView == "CountriesVisited" {
+            
+            request.getCountriesVisited(currentUser["_id"].string!, completion: {(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("error - \(response.error!.code): \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"] {
+                        
+//                        self.bucket = response["data"]["countriesVisited"].array!
+//                        self.tableView.reloadData()
+                        
+                    }
+                    else {
+                        
+                        print("response error: \(response["data"])")
+                        
+                    }
+                })
+                
+                
+            })
+            
+            
+        }
         
         tableView.separatorColor = UIColor.whiteColor()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        if isComingFromEmptyPages {
+            
+            print("has come here")
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func gotoProfile(sender: UIButton) {
+        
+        let profile = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+        self.navigationController?.pushViewController(profile, animated: true)
+//        (ProfileViewController(), animated: true)
+        
+//        if ((self.navigationController?.viewControllers.contains(profile)) != nil) {
+//            
+//            let arrayOfVCs = self.navigationController!.viewControllers as Array
+//            
+//            let index = arrayOfVCs.indexOf(profile)
+//            print("index: \(index)")
+//            print("inside contains")
+//            
+//        }
+
+//        for container in self.navigationController!.viewControllers {
+//            
+//            if container.isEqual(profile) {
+//                
+//                print("contains")
+//                
+//            }
+//            
+//        }
+        
+        
+//        self.navigationController?.popToRootViewControllerAnimated(true)
+//        self.navigationController?.popToViewController(, animated: true)
+        
+    }
+    
+    func getBucketList() {
+        
+            request.getBucketList(currentUser["_id"].string!, completion: {(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("error - \(response.error?.code): \(response.error?.localizedDescription)")
+                    }
+                    else if response["value"] {
+                        
+//                        let profile = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
+//                        profile.setCount()
+//                        profile.getCount()
+                        
+                        self.bucket = response["data"]["bucketList"].array!
+                        if self.bucket.count == 0 {
+                            
+                            print("bucket list is empty")
+                            let emptyBucket = self.storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+                            emptyBucket.whichView = self.whichView
+                            self.navigationController?.pushViewController(emptyBucket, animated: false)
+                            
+                        }
+                        self.tableView.reloadData()
+                        
+                    }
+                    else {
+                        
+                        print("response error: \(response["data"])")
+                        
+                    }
+                })
+                
+            })
+            
+            
+//        }
+        
+    }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
+        if whichView == "BucketList" {
+            
+            return 1
+            
+        }
+        
         return 1
+        
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 20
+        
+        return bucket.count
+        
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if indexPath.row % 2 == 0 {
+        if whichView == "BucketList" {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
-            return cell
+//            if indexPath.row % 2 == 0 {
+            
+                let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
+                cell.countryName.text = bucket[indexPath.row]["name"].string!
+                cell.yearOfVisit.hidden = true
+                return cell
+                
+//            }
+//            
+//            let cell = tableView.dequeueReusableCellWithIdentifier("SeperatorCell", forIndexPath: indexPath) as! NoViewTableViewCell
+//            return cell
             
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("SeperatorCell", forIndexPath: indexPath) as! NoViewTableViewCell
-        return cell
+//        if indexPath.row % 2 == 0 {
+        
+            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
+            return cell
+            
+//        }
+//        
+//        let cell = tableView.dequeueReusableCellWithIdentifier("SeperatorCell", forIndexPath: indexPath) as! NoViewTableViewCell
+//        return cell
         
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if indexPath.row % 2 == 0 {
-            
-            return 72
-        }
+//        if indexPath.row % 2 == 0 {
         
-        return 3
+            return 72
+//        }
+//        
+//        return 3
         
     }
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        if indexPath.row % 2 == 0 {
+        if whichView == "BucketList" {
             let delete = UITableViewRowAction(style: .Destructive, title: "             ") { (action, indexPath) in
-                // delete item at indexPath
+                
+//                print("bucket list removal: \(self.bucket[indexPath.row]["_id"])")
+                
+                request.removeBucketList(currentUser["_id"].string!, country: self.bucket[indexPath.row]["_id"].string!, completion: {(response) in
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        if response.error != nil {
+                            
+                            print("error- \(response.error?.code): \(response.error?.localizedDescription)")
+                            
+                        }
+                        else if response["value"] {
+                            
+//                            tableView.reloadData()
+                            self.getBucketList()
+                            
+                        }
+                        else {
+                            
+                            print("response error: \(response["error"])")
+                            
+                        }
+                    })
+                })
+                
             }
             delete.backgroundColor = UIColor(patternImage: UIImage(named: "trash")!)
             return [delete]
@@ -111,7 +275,13 @@ class BucketListTableViewController: UITableViewController  {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-        return "2016"
+        if whichView == "CountriesVisited" {
+            
+            return "2016"
+            
+        }
+        
+        return nil
     }
 
     /*
@@ -148,22 +318,23 @@ class BucketListTableViewController: UITableViewController  {
         return true
     }
     */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func addCountriesVisited(sender: UIButton) {
         
-       let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
-        nextVC.whichView = "addCountries"
-        self.navigationController?.pushViewController(nextVC, animated: true)
+        if whichView == "BucketList" {
+            
+            let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            nextVC.whichView = "BucketList"
+            print("bucket list \(bucket)")
+            nextVC.alreadySelected = bucket
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
+        else {
+            
+            let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            nextVC.whichView = "CountriesVisited"
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
         
     }
 

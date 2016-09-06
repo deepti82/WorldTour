@@ -25,7 +25,7 @@ class PopularAgents: UIView {
         loadViewFromNib ()
         
         let gradient = CAGradientLayer()
-        let gradientTwo = CAGradientLayer()
+        _ = CAGradientLayer()
         
         let blackColour = UIColor.blackColor().colorWithAlphaComponent(0.8).CGColor as CGColorRef
         let transparent = UIColor.clearColor().CGColor as CGColorRef

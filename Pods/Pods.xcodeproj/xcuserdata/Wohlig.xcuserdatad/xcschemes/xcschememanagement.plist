@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DKImagePickerController.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>PageMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,6 +77,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0CAE6092488DF3236A95F5544C906739</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0FF38C485BD8E73F614C919F834D6EAB</key>
 		<dict>
 			<key>primary</key>
@@ -97,27 +97,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2C9159171062AA871A86658325A57106</key>
+		<key>4D1DB1F735B71CBB187BB75F35EFC9DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>54DC251075B802EDCCBC786DF5547884</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5F93D4FC23813E69160CB5558A1F2907</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6731717913DA0F108F206CAEFE14F617</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7116AA14740A17264FF47B18C2B67020</key>
+		<key>5646C4D085E708F45EF4FD0AB5DE7BBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,7 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B8455F5F7A39B7F5BB86E993136B5EC5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C59EE95662AD4757E7FCE220DB1AFA41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF3FD1DB67E5E44F6B62CBBD83D8CAD4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,17 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>DE28E062B50F401C77D6D0F6511CAB18</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E26FA831B9756686008CB4E41138D419</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E7A1D146E567D7DE803B330EC60CC682</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F63A518B9F08C7D2EBE9E7682A6F7029</key>
 		<dict>
 			<key>primary</key>
 			<true/>

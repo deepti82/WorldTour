@@ -10,6 +10,9 @@ import UIKit
 
 class AddDisplayPic: UIView {
 
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var addButtonPic: UIImageView!
+    @IBOutlet weak var username: UILabel!
     @IBOutlet weak var addButton: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)

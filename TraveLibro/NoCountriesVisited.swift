@@ -11,6 +11,7 @@ import UIKit
 class NoCountriesVisited: UIView {
 
     @IBOutlet weak var addCountriesButton: UIButton!
+    @IBOutlet weak var countriesVisitedLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

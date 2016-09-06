@@ -24,7 +24,7 @@ class ResetPassword: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        let paddingView = UIView(frame: CGRectMake(0, 0, 15, self.confirmpswd.frame.height))
+        _ = UIView(frame: CGRectMake(0, 0, 15, self.confirmpswd.frame.height))
         
         submitbutton.layer.cornerRadius = 5
         

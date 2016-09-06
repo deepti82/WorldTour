@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,9 +8,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogInView" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="fbButton" destination="rpu-Cz-L1X" id="e62-Ks-G8y"/>
+                <outlet property="googleButton" destination="voY-fl-hF0" id="zyi-vG-gMH"/>
+                <outlet property="igButton" destination="clS-oF-gHI" id="oLt-U6-u1e"/>
                 <outlet property="logInButton" destination="Guu-nG-DDS" id="yQu-KM-2fV"/>
                 <outlet property="nameField" destination="tHb-Aa-c8A" id="Fej-38-fj6"/>
                 <outlet property="passwordField" destination="bUx-2b-yYe" id="rCU-yv-i6Z"/>
+                <outlet property="twitterButton" destination="T3B-3R-qfo" id="Dmw-5u-9Ic"/>
                 <outletCollection property="socialLoginButtons" destination="rpu-Cz-L1X" collectionClass="NSMutableArray" id="0ox-pA-4Le"/>
                 <outletCollection property="socialLoginButtons" destination="T3B-3R-qfo" collectionClass="NSMutableArray" id="Okn-Kw-dlb"/>
                 <outletCollection property="socialLoginButtons" destination="clS-oF-gHI" collectionClass="NSMutableArray" id="Nfo-a8-Vwz"/>
@@ -97,7 +101,6 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="0.2941176593" green="0.79607844350000001" blue="0.73333334920000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="bUx-2b-yYe" firstAttribute="top" secondItem="tHb-Aa-c8A" secondAttribute="bottom" constant="1" id="1gf-GB-9eb"/>
                 <constraint firstItem="tHb-Aa-c8A" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="2Fp-6d-95f"/>

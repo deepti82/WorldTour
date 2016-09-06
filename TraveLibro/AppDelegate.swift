@@ -38,6 +38,7 @@ var hasLoggedInOnce = false
 var onlyOnce = true
 
 let request = Navigation()
+var leftViewController: SideNavigationMenuViewController!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -61,22 +62,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     internal func createMenuView() {
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
 //        let path = NSSearchPathForDirectoriesInDomains(
 //            .DocumentDirectory, .UserDomainMask, true
 //            ).first!
 //        
 //        _ = Connection("\(path)/db.sqlite3")
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var nvc: UINavigationController!
         
-        let leftViewController = storyboard.instantiateViewControllerWithIdentifier("sideMenu") as! SideNavigationMenuViewController
+        leftViewController = storyboard.instantiateViewControllerWithIdentifier("sideMenu") as! SideNavigationMenuViewController
         
-        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
         
         let signInVC = storyboard.instantiateViewControllerWithIdentifier("SignUpOne") as! SignInViewController
         
-        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
+//        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
         
         leftViewController.mainViewController = nvc
         
@@ -92,29 +94,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         else {
             
-//            let developmentVC = storyboard.instantiateViewControllerWithIdentifier("setDp") as! SetProfilePictureViewController
+            _ = storyboard.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
             
             nvc = UINavigationController(rootViewController: signInVC)
             
             let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
             
             self.window?.rootViewController = slideMenuController
-            
             hasLoggedInOnce = true
         }
         
 //        nvc.setNavigationBarItem()
-        nvc.navigationBar.barTintColor = mainBlueColor
-        nvc.navigationBar.barStyle = .Black
+        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+//        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
+        nvc.navigationBar.barStyle = .BlackTranslucent
+        nvc.navigationBar.translucent = true
+//            .addSublayer(sublayer)
+//        nvc.navigationBar.barStyle = .Black
         
     }
     
-    
+//    static func gotoCreateMenuView() {
+//        
+////        createMenuView(AppDelegate())
+//        
+//    }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
         createMenuView()
+
         AppDelegate.getDatabase()
         
         faicon["clock"] = 0xf017
@@ -136,6 +146,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["location"] = 0xf041
         faicon["bold"] = 0xf032
         faicon["italics"] = 0xf033
+        faicon["emptyCircle"] = 0xf10c
+        faicon["fullCircle"] = 0xf111
         
         emailIcon = String(format: "%C", faicon["email"]!)
         facebookIcon = String(format: "%C", faicon["facebook"]!)

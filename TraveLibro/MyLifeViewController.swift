@@ -8,6 +8,8 @@
 
 import UIKit
 
+var isEmptyProfile = false
+
 class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var buttonsView: UIView!
@@ -36,7 +38,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     var verticalLayout: VerticalLayout!
     let titleLabels = ["November 2015 (25)", "October 2015 (25)", "September 2015 (25)", "August 2015 (25)"]
     var whatTab = "Journeys"
-    
+    var child: MyLifeContainerViewController!
+    var whatEmptyTab = "Journeys"
     
 //    @IBOutlet weak var TheScrollView: UIScrollView!
     
@@ -64,6 +67,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         rightButton.frame = CGRectMake(0, 8, 100, 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
+        
+        isEmptyProfile = true
         
         arrowDownButton.setTitle(arrow, forState: .Normal)
         arrowDownButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), forControlEvents: .TouchUpInside)
@@ -126,10 +131,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         TLRadio.addTarget(self, action: #selector(MyLifeViewController.travelLifeRadioChecked(_:)), forControlEvents: .TouchUpInside)
         LLRadio.addTarget(self, action: #selector(MyLifeViewController.localLifeRadioChecked(_:)), forControlEvents: .TouchUpInside)
         
+        child = self.childViewControllers[0] as! MyLifeContainerViewController
+        
         self.setDefaults()
         self.allRadioChecked(nil)
         
-        
+        print("to the end of view did load")
     }
     
     func exitMyLife(sender: UIButton) {
@@ -177,21 +184,27 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func showJourneys(sender: UIButton) {
         
-        print("Journeys")
-        whatTab = "Journeys"
-        
-//        journeysHC.constant = 65.0
-//        momentsHC.constant = 60.0
-//        reviewsHC.constant = 18.0
-        
+        whatEmptyTab = "Journeys"
         reviewsButton.layer.zPosition = -1
         momentsButton.layer.zPosition = 1
         journeysButton.layer.zPosition = 3
         
-        journeysContainerView.alpha = 1
-        collectionContainer.alpha = 0
-        tableContainer.alpha = 0
+        if !isEmptyProfile {
+            
+            print("Journeys")
+            whatTab = "Journeys"
+            
+            //        journeysHC.constant = 65.0
+            //        momentsHC.constant = 60.0
+            //        reviewsHC.constant = 18.0
+            
+            journeysContainerView.alpha = 1
+            collectionContainer.alpha = 0
+            tableContainer.alpha = 0
+            
+        }
         
+//        flag = true
         self.allRadioChecked(nil)
         
 //        journeysButton.contentEdgeInsets.top = -15
@@ -202,59 +215,66 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func showMoments(sender: UIButton) {
         
-        print("Moments")
-        whatTab = "Moments"
-//        journeysHC.constant = 18.0
-//        momentsHC.constant = 65.0
-//        reviewsHC.constant = 60.0
-        
+        whatEmptyTab = "Moments"
         journeysButton.layer.zPosition = -1
         reviewsButton.layer.zPosition = 1
         momentsButton.layer.zPosition = 3
         
-        journeysContainerView.alpha = 0
-        collectionContainer.alpha = 1
-        tableContainer.alpha = 0
+        if !isEmptyProfile {
+            
+            print("Moments")
+            whatTab = "Moments"
+            
+            journeysContainerView.alpha = 0
+            collectionContainer.alpha = 1
+            tableContainer.alpha = 0
+            
+        }
         
+//        flag = true
         self.allRadioChecked(nil)
-//        momentsButton.contentEdgeInsets.top = -15
-//        reviewsButton.contentEdgeInsets.top = -15
-//        journeysButton.contentEdgeInsets.top = -20
         
     }
     
     func showReviews(sender: UIButton) {
         
-        print("Reviews")
-        whatTab = "Reviews"
-//        journeysHC.constant = 60.0
-//        momentsHC.constant = 18.0
-//        reviewsHC.constant = 65.0
-        
+        whatEmptyTab = "Reviews"
         momentsButton.layer.zPosition = -1
         journeysButton.layer.zPosition = 1
         reviewsButton.layer.zPosition = 3
         
-        journeysContainerView.alpha = 0
-        collectionContainer.alpha = 0
-        tableContainer.alpha = 1
+        if !isEmptyProfile {
+            
+            print("Reviews")
+            whatTab = "Reviews"
+            
+            journeysContainerView.alpha = 0
+            collectionContainer.alpha = 0
+            tableContainer.alpha = 1
+            
+        }
         
+//        flag = true
         self.allRadioChecked(nil)
-//        reviewsButton.contentEdgeInsets.top = -15
-//        journeysButton.contentEdgeInsets.top = -15
-//        momentsButton.contentEdgeInsets.top = -20
         
     }
     
+//    var flag = false
+    
     func allRadioChecked(sender: AnyObject?) {
+        
+        if isEmptyProfile {
+            
+            child.whichEmptyView = "\(whatEmptyTab)-All"
+            child.viewDidLoad()
+        }
+        
+        print("all radio selected: \(allRadio.selected)")
         
         let mySubviews = allRadio.titleLabel!.subviews
         radioValue = "All"
         let radio = UIImageView(frame: CGRect(x: -18, y: 2, width: 15, height: 15))
         radio.contentMode = .ScaleAspectFit
-        
-        print("all radio selected: \(allRadio.selected)")
-        
         
         for subview in mySubviews {
             
@@ -269,7 +289,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             firstTime = false
             
         }
-        
+            
         else if !allRadio.selected {
             
             radio.image = UIImage(named: "radio_checked_all")
@@ -280,7 +300,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             self.unSelectRadio(LLRadio)
             
         }
-        
+            
         else if allRadio.selected {
             
             radio.image = UIImage(named: "radio_checked_all")
@@ -294,10 +314,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         
         allRadio.titleLabel?.addSubview(radio)
-        
+            
         if whatTab == "Journeys" {
             
-             print("inside all life radio 2")
+            print("inside all life radio 2")
             let simpleVC = self.childViewControllers[0] as! MyLifeContainerViewController
             simpleVC.whichView = "All"
             
@@ -307,10 +327,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             simpleVC.view.setNeedsDisplay()
             
         }
-        
+            
         else if whatTab == "Moments" {
             
-//            let simpleVC = storyboard?.instantiateViewControllerWithIdentifier("multipleCollectionVC") as! MyLifeMomentsViewController
+            //            let simpleVC = storyboard?.instantiateViewControllerWithIdentifier("multipleCollectionVC") as! MyLifeMomentsViewController
             
             
             let simpleVC = self.childViewControllers[1] as! MyLifeMomentsViewController
@@ -318,7 +338,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             simpleVC.mainView.reloadData()
             
         }
-        
+            
         else if whatTab == "Reviews" {
             
             tableContainer.alpha = 1
@@ -327,11 +347,16 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             simpleVC.tableMainView.reloadData()
             
         }
-        
-        
     }
     
     func travelLifeRadioChecked(sender: AnyObject?) {
+        
+        if isEmptyProfile {
+            
+            child.whichEmptyView = "\(whatEmptyTab)-TravelLife"
+            child.viewDidLoad()
+            
+        }
         
         print("TL radio selected: \(TLRadio.selected)")
         
@@ -413,6 +438,13 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func localLifeRadioChecked(sender: AnyObject?) {
+        
+        if isEmptyProfile {
+            
+            child.whichEmptyView = "\(whatEmptyTab)-LocalLife"
+            child.viewDidLoad()
+            
+        }
         
         print("LL radio selected: \(LLRadio.selected)")
         

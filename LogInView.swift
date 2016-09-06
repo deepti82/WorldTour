@@ -14,6 +14,10 @@ class LogInView: UIView {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var logInButton: UIButton!
     
+    @IBOutlet weak var fbButton: UIButton!
+    @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var igButton: UIButton!
+    @IBOutlet weak var googleButton: UIButton!
    
     @IBOutlet var socialLoginButtons: [UIButton]!
     let attributes = [

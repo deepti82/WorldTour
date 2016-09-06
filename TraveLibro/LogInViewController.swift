@@ -32,6 +32,35 @@ class LogInViewController: UIViewController {
         logIn.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
         self.view.addSubview(logIn)
         
+        logIn.fbButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), forControlEvents: .TouchUpInside)
+        logIn.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), forControlEvents: .TouchUpInside)
+        logIn.twitterButton.addTarget(self, action: #selector(SignInPageViewController.twitterSignUp(_:)), forControlEvents: .TouchUpInside)
+        logIn.igButton.addTarget(self, action: #selector(SignInPageViewController.igSignUp(_:)), forControlEvents: .TouchUpInside)
+        
+        
+    }
+    
+    func facebookSignUp(sender: AnyObject) {
+        
+        social.facebookLogin()
+        
+    }
+    
+    func googleSignUp(sender: AnyObject) {
+        
+        social.googleLogin()
+        
+    }
+    
+    func twitterSignUp(sender: AnyObject) {
+        
+        social.twitterLogin()
+        
+    }
+    
+    func igSignUp(sender: AnyObject) {
+        
+        //        social.googleLogin()
         
     }
 

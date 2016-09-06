@@ -24,6 +24,16 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         super.viewDidLoad()
         
 //        self.addObserver(self, forKeyPath: "whichView", options: .Prior, context: nil)
+//        if isEmptyProfile {
+//            
+//            let myLifeVC = self.parentViewController as! MyLifeViewController
+//            myLifeVC.whatTab = "Moments"
+//            myLifeVC.collectionContainer.alpha = 0
+//            myLifeVC.tableContainer.alpha = 0
+//            myLifeVC.journeysContainerView.alpha = 1
+////            myLifeVC.view.setNeedsDisplay()
+//            
+//        }
         
     }
     
