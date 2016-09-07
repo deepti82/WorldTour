@@ -1,7 +1,7 @@
 import UIKit
 import SwiftyJSON
 
-class SelectCountryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class SelectCountryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UISearchResultsUpdating, UISearchBarDelegate {
     
     @IBOutlet weak var searchView: UIView!
 //    var countries = ["India", "Kuwait", "Mumbai", "Australia", "Switzerland", "Hong Kong", "Malaysia", "Singapore", "Mauritius"]
@@ -10,7 +10,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     var selectedCountries: [String] = []
     
-    var years = ["2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940"]
+//    var years = ["2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940"]
     
     var selectedIndex: NSIndexPath = NSIndexPath()
     var isSelected: Bool = false
@@ -25,6 +25,12 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var mainTableView: UITableView!
     
     var selectedNationality: String!
+    
+    var searchController: UISearchController!
+    
+    var filteredArray: [JSON]!
+    
+    var shouldShowSearchResults = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,77 +154,116 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
         if whichView == "CountriesVisited" {
             
-            request.getAllCountries({(response) in
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    
-                    if response.error != nil {
-                        
-                        print("error: \(response.error?.localizedDescription)")
-                        
-                    }
-                        
-                    else {
-                        
-                        if response["value"] {
-                            
-                            self.countries = response["data"].array!
-                            self.mainTableView.reloadData()
-                            
-                        }
-                        else {
-                            
-                            print("error: \(response["data"])")
-                        }
-                        
-                    }
-                    
-                    
-                })
-                
-            })
+            getCountries()
             
         }
             
-//        if whichView == "addYear" {
-//            
-////            request.getAllCountries({(response) in
-////                
-////                dispatch_async(dispatch_get_main_queue(), {
-////                    
-////                    if response.error != nil {
-////                        
-////                        print("error: \(response.error?.localizedDescription)")
-////                        
-////                    }
-////                        
-////                    else {
-////                        
-////                        if response["value"] {
-////                            
-////                            self.countries = response["data"].array!
-////                            self.mainTableView.reloadData()
-////                            
-////                        }
-////                        else {
-////                            
-////                            print("error: \(response["data"])")
-////                        }
-////                        
-////                    }
-////                    
-////                    
-////                })
-////                
-////            })
-//            
-//        }
-        
         else {
             
             searchFieldView.searchField.placeholder = "Search"
             
         }
+        
+        configureSearchController()
+        
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        
+        searchController.dimsBackgroundDuringPresentation = true
+        shouldShowSearchResults = true
+        mainTableView.reloadData()
+        
+    }
+    
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        
+        shouldShowSearchResults = false
+        mainTableView.reloadData()
+        
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        if !shouldShowSearchResults {
+            
+            shouldShowSearchResults = true
+            mainTableView.reloadData()
+            
+        }
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.resignFirstResponder()
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        let searchString = searchController.searchBar.text
+        
+        // Filter the data array and get only those countries that match the search text.
+        filteredArray = countries.filter({(country) -> Bool in
+            
+//            print("country: \(country["name"])")
+            
+            let countryText: NSString = country["name"].string!
+            
+            print("country: \(countryText.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location)")
+            
+            return (countryText.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location) != NSNotFound
+        })
+        
+//        filteredArray = countries.filter{$0["name"].string! == searchString}
+        
+        print("filtered array: \(filteredArray)")
+        
+        // Reload the tableview.
+        mainTableView.reloadData()
+    }
+    
+    func getCountries() {
+        
+        request.getAllCountries({(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error?.localizedDescription)")
+                    
+                }
+                    
+                else {
+                    
+                    if response["value"] {
+                        
+                        self.countries = response["data"].array!
+                        self.mainTableView.reloadData()
+                        
+                    }
+                    else {
+                        
+                        print("error: \(response["data"])")
+                    }
+                    
+                }
+                
+                
+            })
+            
+        })
+        
+    }
+    
+    func configureSearchController() {
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        mainTableView.tableHeaderView = searchController.searchBar
         
     }
     
@@ -376,14 +421,23 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let selectedCountry = tableView.cellForRowAtIndexPath(indexPath) as! CountriesTableViewCell
-        
+        searchBarSearchButtonClicked(searchController.searchBar)
         
         if whichView == "addYear" {
             
             if selectedCountry.tintColor == mainOrangeColor {
                 
                 selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
-                selectedCountries = selectedCountries.filter{$0 != years[indexPath.row]}
+                
+                if shouldShowSearchResults && filteredArray != nil {
+                    
+//                    selectedCountries = selectedCountries.filter{$0 != filteredArray[indexPath.row]["_id"].string!}
+                }
+                else {
+                    
+//                    selectedCountries = selectedCountries.filter{$0 != years[indexPath.row]}
+                }
+                
                 print("selected countries: \(selectedCountries)")
 //                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
                 
@@ -392,7 +446,16 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             else {
                 
                 selectedCountry.tintColor = mainOrangeColor
-                selectedCountries.append(years[indexPath.row])
+                
+                if shouldShowSearchResults && filteredArray != nil {
+                    
+//                    selectedCountries.append(filteredArray[indexPath.row])
+                }
+                else {
+                    
+//                    selectedCountries.append(years[indexPath.row])
+                }
+                
 //                print("selected countries: \(selectedCountries)")
 //                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
                 
@@ -405,7 +468,16 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             if selectedCountry.tintColor == mainOrangeColor {
                 
                 selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
-                selectedCountries = selectedCountries.filter{$0 != countries[indexPath.row]["_id"].string!}
+                
+                if shouldShowSearchResults && filteredArray != nil {
+                    
+                    selectedCountries = selectedCountries.filter{$0 != filteredArray[indexPath.row]["_id"].string!}
+                }
+                else {
+                    
+                    selectedCountries = selectedCountries.filter{$0 != countries[indexPath.row]["_id"].string!}
+                }
+                
                 print("selected countries: \(selectedCountries)")
                 print("selected countries: \(countries[indexPath.row]["_id"].string!)")
                 
@@ -414,7 +486,16 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             else {
                 
                 selectedCountry.tintColor = mainOrangeColor
-                selectedCountries.append(countries[indexPath.row]["_id"].string!)
+                
+                if shouldShowSearchResults && filteredArray != nil {
+                    
+                    selectedCountries.append(filteredArray[indexPath.row]["_id"].string!)
+                }
+                else {
+                    
+                    selectedCountries.append(countries[indexPath.row]["_id"].string!)
+                }
+                
 //                print("selected countries: \(selectedCountries)")
 //                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
                 
@@ -451,7 +532,15 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 
                 selectedCountry.tintColor = mainOrangeColor
 //                selectedNationality = selectedCountry.countryName.text
-                selectedYear = countries[indexPath.row]["_id"].string!
+                if shouldShowSearchResults && filteredArray != nil {
+                    
+                    selectedYear = filteredArray[indexPath.row]["_id"].string!
+                }
+                else {
+                    
+                    selectedYear = countries[indexPath.row]["_id"].string!
+                }
+                
                 print("selected countries \(selectedYear)")
                 selectedIndex = indexPath
             }
@@ -461,7 +550,16 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 selectedCountry.tintColor = mainOrangeColor
                 selectedIndex = indexPath
                 isSelected = true
-                selectedYear = countries[indexPath.row]["_id"].string!
+                if shouldShowSearchResults && filteredArray != nil {
+                    
+                    selectedYear = filteredArray[indexPath.row]["_id"].string!
+                }
+                else {
+                    
+                    selectedYear = countries[indexPath.row]["_id"].string!
+                }
+                
+                
                 print("selected countries \(selectedYear)")
 //                selectedNationality = selectedCountry.countryName.text
                 
@@ -474,9 +572,13 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     func addYear(sender: UIButton?) {
         
-        let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
-        nextVC.whichView = "addYear"
-        nextVC.selectedYear = selectedYear
+//        let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+//        nextVC.whichView = "addYear"
+//        nextVC.selectedYear = selectedYear
+//        self.navigationController?.pushViewController(nextVC, animated: true)
+        
+        let nextVC = storyboard?.instantiateViewControllerWithIdentifier("addYears") as! AddYearsCountriesVisitedTableViewController
+        nextVC.selectedCountry = selectedYear
         self.navigationController?.pushViewController(nextVC, animated: true)
         
     }
@@ -486,16 +588,26 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CountriesTableViewCell
 //        cell.flagImage.image = UIImage(named: "indian_flag")
         
-        if whichView == "addYear" {
-            
-            cell.flagImage.hidden = true
-            cell.countryName.text = years[indexPath.row]
-            
-        }
+//        if whichView == "addYear" {
+//            
+//            cell.flagImage.hidden = true
+//            cell.countryName.text = years[indexPath.row]
+//            
+//        }
         
         if countries != nil {
             
-            cell.countryName.text = countries[indexPath.row]["name"].string!
+            if shouldShowSearchResults && filteredArray != nil {
+                
+                cell.countryName.text = filteredArray[indexPath.row]["name"].string!
+            }
+            
+            else {
+                
+                cell.countryName.text = countries[indexPath.row]["name"].string!
+                
+            }
+            
             if alreadySelected != nil && alreadySelected.contains(countries[indexPath.row]) {
                 
                 print("already selected contains \(countries[indexPath.row])")
@@ -533,14 +645,19 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         if countries != nil  {
             
+            if shouldShowSearchResults && filteredArray != nil {
+                
+                return filteredArray.count
+            }
+            
             return countries.count
             
         }
-        else if whichView == "addYear" {
-            
-            return years.count
-            
-        }
+//        else if whichView == "addYear" {
+//            
+//            return years.count
+//            
+//        }
         
         return 0
         

@@ -14,6 +14,8 @@ class BucketListTableViewController: UITableViewController  {
     var whichView: String!
     var bucket: [JSON] = []
     var result: [JSON] = []
+//    var countriesVisited: [JSON] = []
+    
     var isComingFromEmptyPages = false
     
     override func viewDidLoad() {
@@ -180,24 +182,24 @@ class BucketListTableViewController: UITableViewController  {
                     
                     self.result = response["data"]["countriesVisited"].array!
                     
-                    for res in self.result {
-                        
-                        let temp = res["countries"].array!
-                        for t in temp {
-                            
-                            self.bucket.append(t)
-                            
-                        }
-                        
-                    }
+//                    for res in self.result {
+//                        
+//                        let temp = res["countries"].array!
+//                        for t in temp {
+//                            
+//                            self.bucket.append(t)
+//                            
+//                        }
+//                        
+//                    }
                     
-                    print("bucket: \(self.bucket)")
+//                    print("bucket: \(self.bucket)")
                     
-                    if self.bucket.count == 0 {
+                    if self.result.count == 0 {
                         
                         print("bucket list is empty")
                         let emptyBucket = self.storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
-                        emptyBucket.whichView = self.whichView
+                        emptyBucket.whichView = "CountriesVisited"
                         self.navigationController?.pushViewController(emptyBucket, animated: false)
                         
                     }
@@ -241,7 +243,21 @@ class BucketListTableViewController: UITableViewController  {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return bucket.count
+        if whichView == "BucketList" {
+            
+            return 1
+            
+        }
+            
+        else if whichView == "CountriesVisited" {
+            
+//            let countries = 
+            return self.result[section]["countries"].array!.count
+            
+        }
+        
+        
+        return 0
         
     }
 
@@ -270,8 +286,8 @@ class BucketListTableViewController: UITableViewController  {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
 //            print("bucket: \(bucket[indexPath.row]["countries"][0])")
-            cell.countryName.text = bucket[indexPath.row]["countryId"]["name"].string!
-            cell.yearOfVisit.text = "\(bucket[indexPath.row]["year"])"
+            cell.countryName.text = self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["name"].string!
+            cell.yearOfVisit.text = "\(self.result[indexPath.section]["countries"][indexPath.row]["year"])"
             return cell
             
             //            }
@@ -344,7 +360,7 @@ class BucketListTableViewController: UITableViewController  {
                 
                 //                print("bucket list removal: \(self.bucket[indexPath.row]["_id"])")
                 
-                request.removeCountriesVisited(currentUser["_id"].string!, countryId: self.bucket[indexPath.row]["_id"].string!, completion: {(response) in
+                request.removeCountriesVisited(currentUser["_id"].string!, countryId: self.result[indexPath.section]["countries"][indexPath.row]["_id"].string!, completion: {(response) in
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         
@@ -394,8 +410,7 @@ class BucketListTableViewController: UITableViewController  {
         
         if whichView == "CountriesVisited" {
             
-            return "2016"
-            
+            return "\(self.result[section]["year"])"
         }
         
         return nil

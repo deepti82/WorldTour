@@ -10,8 +10,8 @@ import UIKit
 import SwiftyJSON
 import SwiftHTTP
 
+let apiUrl = "http://10.0.0.34:1337/api/"
 let adminUrl = "http://104.155.207.185:92/api/"
-let apiUrl = "http://192.168.2.17:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
 //let apiURL = "";
 
@@ -711,6 +711,110 @@ class Navigation {
             print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/getOneData", parameters: params)
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func followUser(userId: String, followUserId: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["user": userId, "_id": followUserId]
+            print("params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "user/followUser", parameters: params)
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getFollowers(userId: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": userId]
+            print("params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "user/getFollowers", parameters: params)
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func unfollow(userId: String, unFollowId: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": unFollowId, "user": userId]
+            print("params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "user/getFollowers", parameters: params)
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getFollowing(userId: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": userId]
+            print("params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "user/getFollowing", parameters: params)
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
