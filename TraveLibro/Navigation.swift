@@ -10,8 +10,8 @@ import UIKit
 import SwiftyJSON
 import SwiftHTTP
 
-let apiUrl = "http://10.0.0.34:1337/api/"
-let adminUrl = "http://104.155.207.185:92/api/"
+let apiUrl = "http://104.155.207.185:92/api/"
+let adminUrl = "http://10.0.0.68:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
 //let apiURL = "";
 
@@ -471,7 +471,7 @@ class Navigation {
             let params = ["_id": id, "bucketList": list]
             print("params: \(params)")
             
-            let opt = try HTTP.POST(tempUrl + "user/updateBucketList", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + "user/updateBucketList", parameters: [params])
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
@@ -788,7 +788,7 @@ class Navigation {
             let params = ["_id": unFollowId, "user": userId]
             print("params: \(params)")
             
-            let opt = try HTTP.POST(adminUrl + "user/getFollowers", parameters: params)
+            let opt = try HTTP.POST(adminUrl + "user/unFollowUser", parameters: params)
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")

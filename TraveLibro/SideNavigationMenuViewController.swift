@@ -31,6 +31,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var profileNew: UIView!
     @IBAction func SettingsTap(sender: AnyObject) {
         
         self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
@@ -46,10 +47,10 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         print("in view did load, current user: \(currentUser)")
         
-        profileView = ProfilePicFancy()
+        let profile = ProfilePicFancy(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
+        profileNew.addSubview(profile)
         
         if currentUser != nil {
-            
             
 //            print("inside if statement \(sideMenu.profilePicture)")
             profileName.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
@@ -69,6 +70,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                     print("some problem in data \(data)")
                     //                uploadView.addButton.setImage(, forState: .Normal)
                     profilePicture.image = UIImage(data: data!)
+                    profile.image.image = UIImage(data: data!)
                     makeTLProfilePicture(profilePicture)
                 }
             }
@@ -87,6 +89,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                     //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
                     print("inside if statement \(profilePicture.image)")
                     profilePicture.image = UIImage(data: data!)
+                    profile.image.image = UIImage(data: data!)
                     print("sideMenu.profilePicture.image: \(profilePicture.image)")
                     makeTLProfilePicture(profilePicture)
                 }

@@ -18,7 +18,6 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     var searchFieldView: SearchFieldView!
     var selectedYear: String!
     var alreadySelected: [JSON]!
-
     
     internal var whichView: String!
     
@@ -170,6 +169,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         
+        print("search begin editing")
         searchController.dimsBackgroundDuringPresentation = true
         shouldShowSearchResults = true
         mainTableView.reloadData()
@@ -179,12 +179,16 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         
+        print("search cancelled")
         shouldShowSearchResults = false
+        print("\(shouldShowSearchResults)")
         mainTableView.reloadData()
         
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        print("search button clicked")
         
         if !shouldShowSearchResults {
             
@@ -193,7 +197,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
         
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = true
         searchController.searchBar.resignFirstResponder()
     }
     
@@ -421,7 +425,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let selectedCountry = tableView.cellForRowAtIndexPath(indexPath) as! CountriesTableViewCell
-        searchBarSearchButtonClicked(searchController.searchBar)
+        //searchBarSearchButtonClicked(searchController.searchBar)
         
         if whichView == "addYear" {
             
@@ -487,17 +491,17 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 
                 selectedCountry.tintColor = mainOrangeColor
                 
+                print("search: \(shouldShowSearchResults), \(filteredArray)")
+                
                 if shouldShowSearchResults && filteredArray != nil {
                     
+                    print("in the filter array")
                     selectedCountries.append(filteredArray[indexPath.row]["_id"].string!)
                 }
                 else {
                     
                     selectedCountries.append(countries[indexPath.row]["_id"].string!)
                 }
-                
-//                print("selected countries: \(selectedCountries)")
-//                print("selected countries: \(countries[indexPath.row]["_id"].string!)")
                 
             }
             
@@ -608,10 +612,36 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 
             }
             
-            if alreadySelected != nil && alreadySelected.contains(countries[indexPath.row]) {
+//            print("filtered array: \(filteredArray)")
+            
+            if filteredArray != nil && filteredArray.count > 0 && selectedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
+                
+                if indexPath.row == 0 {
+                    
+                    print("in here \(filteredArray[indexPath.row]["_id"].string!)")
+                    
+                }
+                
+                cell.tintColor = mainOrangeColor
+                
+            }
+            
+            else if alreadySelected != nil && alreadySelected.contains(countries[indexPath.row]) && filteredArray != nil && filteredArray.count == 0 {
                 
                 print("already selected contains \(countries[indexPath.row])")
                 cell.tintColor = mainOrangeColor
+            }
+            
+            else if selectedCountries.contains(countries[indexPath.row]["_id"].string!) && filteredArray != nil && filteredArray.count == 0 {
+                
+                cell.tintColor = mainOrangeColor
+                
+            }
+            
+            else {
+                
+                cell.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+                
             }
         }
 

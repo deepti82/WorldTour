@@ -138,7 +138,7 @@ class BucketListTableViewController: UITableViewController  {
 //                        profile.setCount()
 //                        profile.getCount()
                         
-                        self.bucket = response["data"]["countriesVisited"].array!
+                        self.bucket = response["data"]["bucketList"].array!
                         if self.bucket.count == 0 {
                             
                             print("bucket list is empty")
@@ -245,7 +245,7 @@ class BucketListTableViewController: UITableViewController  {
         
         if whichView == "BucketList" {
             
-            return 1
+            return self.bucket.count
             
         }
             
@@ -402,6 +402,11 @@ class BucketListTableViewController: UITableViewController  {
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if whichView == "BucketList" {
+            
+            return 0
+        }
         
         return 35
     }

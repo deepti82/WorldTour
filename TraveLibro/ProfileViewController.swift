@@ -18,6 +18,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var profile_badge: UIImageView!
 //    @IBOutlet weak var profileLocation: UILabel!
     @IBOutlet weak var profileUsername: UILabel!
+    @IBOutlet weak var isPhotographer: UILabel!
+    
     var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
     
@@ -150,7 +152,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                initialLogin = false
+        initialLogin = false
         self.navigationController?.navigationBarHidden = false
         getDarkBackGround(self)
         
@@ -208,8 +210,31 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             //            print("inside if statement \(sideMenu.profilePicture)")
             self.title = "\(currentUser["firstName"])'s Profile"
             profileUsername.text = "\(currentUser["firstName"].string!) \(currentUser["lastName"].string!)"
-            placeLabel.text = currentUser["homeCity"].string!
             imageName = currentUser["profilePicture"].string!
+            
+            if currentUser["homeCountry"] != nil {
+                
+                profile.country.text = currentUser["homeCountry"].string!
+                
+            }
+            
+            if currentUser["homeCity"] != nil {
+                
+                let place = currentUser["homeCity"].string!.componentsSeparatedByString(",")
+                
+                print("place: \(place)")
+                
+                placeLabel.text = place[0]
+                
+            }
+            
+            if currentUser["isBlogger"] {
+                
+                isPhotographer.text = "Blogger"
+                
+            }
+            
+            
             print("image: \(imageName)")
             
             let isUrl = verifyUrl(imageName)
@@ -225,6 +250,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     print("some problem in data \(data)")
                     //                uploadView.addButton.setImage(, forState: .Normal)
                     profilePicture.image = UIImage(data: data!)
+                    profile.image.image = UIImage(data: data!)
+//                    makeTLProfilePicture(profile.image)
                     makeTLProfilePicture(profilePicture)
                 }
             }
@@ -244,6 +271,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     print("inside if statement \(profilePicture.image)")
                     profilePicture.image = UIImage(data: data!)
                     print("sideMenu.profilePicture.image: \(profilePicture.image)")
+                    profile.image.image = UIImage(data: data!)
                     makeTLProfilePicture(profilePicture)
                 }
                 

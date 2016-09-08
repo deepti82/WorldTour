@@ -40,7 +40,6 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         rightButton.frame = CGRectMake(0, 0, 70, 30)
         self.customNavigationBar(leftButton, right: rightButton)
         
-        // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = true
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -54,6 +53,17 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         searchController.dimsBackgroundDuringPresentation = true
         shouldShowSearchResults = true
         tableView.reloadData()
+        
+    }
+    
+    func configureSearchController() {
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = searchController.searchBar
         
     }
     
@@ -101,17 +111,6 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         
         // Reload the tableview.
         tableView.reloadData()
-    }
-    
-    func configureSearchController() {
-        
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = true
-        searchController.searchBar.delegate = self
-        searchController.searchBar.sizeToFit()
-        tableView.tableHeaderView = searchController.searchBar
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -167,6 +166,36 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
             cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.6)
             
         }
+        
+//        if filteredArray != nil && filteredArray.count > 0 && selectedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
+//            
+//            if indexPath.row == 0 {
+//                
+//                print("in here \(filteredArray[indexPath.row]["_id"].string!)")
+//                
+//            }
+//            
+//            cell.tintColor = mainOrangeColor
+//            
+//        }
+        
+//        if alreadySelected != nil && alreadySelected.contains(years[indexPath.row]) && filteredArray != nil && filteredArray.count == 0 {
+//            
+//            print("already selected contains \(years[indexPath.row])")
+//            cell.tintColor = mainOrangeColor
+//        }
+//            
+//        else if selectedYears.contains(years[indexPath.row]["_id"].string!) && filteredArray != nil && filteredArray.count == 0 {
+//            
+//            cell.tintColor = mainOrangeColor
+//            
+//        }
+        
+//        else {
+//            
+//            cell.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+//            
+//        }
 
         return cell
     }

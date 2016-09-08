@@ -12,6 +12,7 @@ var isEmptyProfile = false
 
 class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
+    @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var viewTwo: UIView!
     @IBOutlet weak var viewOne: UIView!
@@ -68,10 +69,18 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.customNavigationBar(leftButton, right: rightButton)
         
+        if currentUser != nil {
+            
+            profileName.text = currentUser["name"].string!
+        }
+        
         isEmptyProfile = true
         
         arrowDownButton.setTitle(arrow, forState: .Normal)
         arrowDownButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), forControlEvents: .TouchUpInside)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(MyLifeViewController.exitMyLife(_:)))
+        profileName.addGestureRecognizer(tap)
         
         followButton.addTarget(self, action: #selector(MyLifeViewController.follow(_:)), forControlEvents: .TouchUpInside)
         
@@ -139,7 +148,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         print("to the end of view did load")
     }
     
-    func exitMyLife(sender: UIButton) {
+    func exitMyLife(sender: AnyObject ) {
         
         self.dismissViewControllerAnimated(true, completion: nil)
         

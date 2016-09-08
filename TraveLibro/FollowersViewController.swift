@@ -11,7 +11,7 @@ import SwiftyJSON
 
 var followers: [JSON] = []
 
-class FollowersViewController: UIViewController, UITableViewDataSource {
+class FollowersViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
 
     @IBOutlet var shareButtons: [UIButton]!
     @IBOutlet weak var mailShare: UIButton!
@@ -22,7 +22,10 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var followerTable: UITableView!
     
-    internal var whichView: String!
+    var whichView: String!
+    var searchController: UISearchController!
+    var shouldShowSearchResults = false
+    var filter: [JSON]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +36,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
         leftButton.frame = CGRectMake(0, 0, 30, 30)
         
         self.setOnlyLeftNavigationButton(leftButton)
+        
+        configureSearchController()
         
 //        self.setCheckInNavigationBarItem(self)
         
@@ -78,6 +83,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
     
     func getFollowing() {
         
+        print("inside following function")
+        
         request.getFollowing(currentUser["_id"].string!, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -88,7 +95,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
                     
                 }
                 else if response["value"] {
-                    
+                    print("\(response["data"]["following"])")
                     followers = response["data"]["following"].array!
                     self.followerTable.reloadData()
                 }
@@ -107,6 +114,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
     
     func getFollowers() {
         
+        print("inside following function")
         request.getFollowers(currentUser["_id"].string!, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -118,6 +126,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
                 }
                 else if response["value"] {
                     
+                    print("\(response["data"]["following"])")
                     followers = response["data"]["followers"].array!
                     self.followerTable.reloadData()
                     
@@ -136,9 +145,69 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        
+        searchController.dimsBackgroundDuringPresentation = true
+        shouldShowSearchResults = true
+        followerTable.reloadData()
+        
+    }
+    
+    func configureSearchController() {
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        followerTable.tableHeaderView = searchController.searchBar
+        
+    }
+    
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        
+        shouldShowSearchResults = false
+        followerTable.reloadData()
+        
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        if !shouldShowSearchResults {
+            
+            shouldShowSearchResults = true
+            followerTable.reloadData()
+            
+        }
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.resignFirstResponder()
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        let searchString = searchController.searchBar.text
+        
+        // Filter the data array and get only those countries that match the search text.
+        filter = followers.filter({(follower) -> Bool in
+            
+            //            print("country: \(country["name"])")
+            
+            let text: NSString = follower["name"].string!
+            
+            print("country: \(text.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location)")
+            
+            return (text.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location) != NSNotFound
+        })
+        
+        //        filteredArray = countries.filter{$0["name"].string! == searchString}
+        
+        print("filtered array: \(filter)")
+        
+        // Reload the tableview.
+        followerTable.reloadData()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -255,6 +324,16 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
                 
                 print("response arrived!")
                 
+//                if self.whichView == "Following" && self.whichView != nil {
+//                    
+//                    self.getFollowing()
+//                    
+//                }
+//                else {
+//                    
+//                    self.getFollowers()
+//                }
+                
             }
             else {
                 
@@ -316,6 +395,16 @@ class FollowersViewController: UIViewController, UITableViewDataSource {
             else if response["value"] {
                 
                 print("response arrived!")
+                
+//                if self.whichView == "Following" && self.whichView != nil {
+//                    
+//                    self.getFollowing()
+//                    
+//                }
+//                else {
+//                    
+//                    self.getFollowers()
+//                }
                 
             }
             else {
