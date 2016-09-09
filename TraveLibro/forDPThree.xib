@@ -314,7 +314,7 @@
                                 </mask>
                             </variation>
                         </view>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="nzz-Gh-WTx">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="nzz-Gh-WTx">
                             <rect key="frame" x="110" y="-60" width="80" height="80"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="80" id="vgS-la-q0R"/>

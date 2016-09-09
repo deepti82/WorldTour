@@ -28,16 +28,18 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        trialVariable = []
+        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.frame = CGRectMake(-10, 0, 30, 30)
         
         let rightButton = UIButton()
         rightButton.setTitle("Save", forState: .Normal)
         rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
         rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveCountriesVisited(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 0, 70, 30)
+        rightButton.frame = CGRectMake(10, 0, 70, 30)
         self.customNavigationBar(leftButton, right: rightButton)
         
         self.clearsSelectionOnViewWillAppear = true
@@ -167,7 +169,35 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
             
         }
         
-//        if filteredArray != nil && filteredArray.count > 0 && selectedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
+        if selectedYears.contains(years[indexPath.row]) {
+            
+            cell.tintColor = mainOrangeColor
+            cell.cartView.hidden = false
+            
+//            for i in 0 ..< years.count {
+//                
+//                for j in 0 ..< trialVariable.count {
+//                    
+//                    if years[i] == trialVariable[j]["country"].string! {
+//                        
+//                        cell.qtyField.text = trialVariable[j]["quantity"].string!
+//                        
+//                    }
+//                    
+//                    
+//                }
+//                
+//            }
+            
+        }
+        
+        else {
+            
+            cell.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
+            cell.cartView.hidden = true
+        }
+        
+//        if filteredArray != nil && filteredArray.count > 0 && s electedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
 //            
 //            if indexPath.row == 0 {
 //                
@@ -295,41 +325,6 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         })
         
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
 }
 

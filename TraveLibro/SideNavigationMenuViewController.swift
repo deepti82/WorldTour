@@ -79,10 +79,10 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 
                 let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
                 
-                print("getImageUrl: \(getImageUrl)")
+//                print("getImageUrl: \(getImageUrl)")
                 
                 let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
-                print("data: \(data)")
+//                print("data: \(data)")
                 
                 if data != nil {
                     

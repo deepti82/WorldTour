@@ -11,7 +11,7 @@ import SwiftyJSON
 import SwiftHTTP
 
 let apiUrl = "http://104.155.207.185:92/api/"
-let adminUrl = "http://10.0.0.68:1337/api/"
+let adminUrl = "http://192.168.2.14:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
 //let apiURL = "";
 

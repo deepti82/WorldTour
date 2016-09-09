@@ -57,7 +57,15 @@ class MyLifeContainerViewController: UIViewController {
                 print("in journeys tl")
                 empty.frame.size.height = 350.0
                 empty.viewHeading.text = "My Tales & Trails"
-                empty.viewBody.text = "On-the-Go Journeys \n Capture each moment of your journey via check-ins, pictures, videos, and thoughts live On-the-Go to create a stunning timeline with friends and family. \n \n Chronicling Past Travels \n Revisit the treasured moments of your past travels by creating a beautiful memoir of your trip."
+                let head = NSMutableAttributedString(string: "On-the-Go Journeys ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 16)!])
+                let body: NSMutableAttributedString = NSMutableAttributedString(attributedString: head)
+                let bodyOne = NSMutableAttributedString(string: "\n Capture each moment of your journey via check-ins, pictures, videos, and thoughts live On-the-Go to create a stunning timeline with friends and family. \n \n ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 16)!])
+                let headTwo = NSMutableAttributedString(string: "Chronicling Past Travels ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 16)!])
+                let bodyTwo = NSMutableAttributedString(string: "\n Revisit the treasured moments of your past travels by creating a beautiful memoir of your trip.", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 16)!])
+                body.appendAttributedString(bodyOne)
+                body.appendAttributedString(headTwo)
+                body.appendAttributedString(bodyTwo)
+                empty.viewBody.attributedText = body
                 break
             case "Journeys-LocalLife":
                 print("in journeys ll")

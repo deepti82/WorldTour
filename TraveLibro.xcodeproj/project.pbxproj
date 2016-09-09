@@ -311,6 +311,8 @@
 		C2FA1E171D5495870034DE97 /* QuickItinerariesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E161D5495870034DE97 /* QuickItinerariesViewController.swift */; };
 		C2FA1E1B1D5498380034DE97 /* QIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E1A1D5498380034DE97 /* QIViewController.swift */; };
 		C2FA99301D53681C009D0DF2 /* NewRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA992F1D53681C009D0DF2 /* NewRest.swift */; };
+		C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */; };
+		C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */; };
 		D49015CF8AB3E3F87B6DA0E7 /* Pods_TraveLibroUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -648,6 +650,8 @@
 		C2FA1E161D5495870034DE97 /* QuickItinerariesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItinerariesViewController.swift; sourceTree = "<group>"; };
 		C2FA1E1A1D5498380034DE97 /* QIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QIViewController.swift; sourceTree = "<group>"; };
 		C2FA992F1D53681C009D0DF2 /* NewRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRest.swift; sourceTree = "<group>"; };
+		C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityOTG.xib; sourceTree = "<group>"; };
+		C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityOTG.swift; sourceTree = "<group>"; };
 		D43182820A0A3CF9711BB7D4 /* Pods-TraveLibroTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -731,8 +735,9 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
+				C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */,
+				C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */,
 				C23EBC2D1D7FF44E00D040DB /* AddYearsCountriesVisitedViewController.swift */,
-				C23EBC2F1D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
@@ -1304,6 +1309,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C23EBC2F1D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift */,
 				C2803BCA1CF43504007A906E /* AccordionViewController.swift */,
 				C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */,
 				C20A18FC1D229E1800760BF9 /* AddCheckInViewController.swift */,
@@ -2011,6 +2017,7 @@
 				C269077D1CF819BA00F827E6 /* GenderInfo.xib in Resources */,
 				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
 				C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */,
+				C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */,
 				C2A5C1D51CF9A7F90035EF0E /* MoreAboutMe.xib in Resources */,
 				C2A6E25D1CE9C88D00D3F845 /* TripInfoView.xib in Resources */,
 				C23EB1D51CFED110005B5CE8 /* LocalLifeRecommends.xib in Resources */,
@@ -2363,6 +2370,7 @@
 				C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */,
 				C269078D1CF8633800F827E6 /* ProfilePic.swift in Sources */,
 				C24F84E71D00252F002EA203 /* SettingsViewController.swift in Sources */,
+				C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */,
 				C256499A1D48EE5E0046E36D /* SummarySubViewController.swift in Sources */,
 				C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,

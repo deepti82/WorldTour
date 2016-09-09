@@ -35,5 +35,5 @@ class ProfilePicFancy: UIView {
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.addSubview(view);
     }
-
+    
 }

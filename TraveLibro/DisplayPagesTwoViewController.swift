@@ -86,10 +86,10 @@ class DisplayPagesTwoViewController: UIViewController {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + profilePic + "&width=100"
             
-            print("getImageUrl: \(getImageUrl)")
+//            print("getImageUrl: \(getImageUrl)")
             
             let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
-            print("data: \(data)")
+//            print("data: \(data)")
             
             if data != nil {
                 

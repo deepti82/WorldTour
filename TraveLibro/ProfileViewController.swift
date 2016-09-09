@@ -55,7 +55,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
             MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
             MAMatterView.animation.makeOpacity(0.0).animate(0.25)
-            mainProfileView.animation.moveY(80.0).moveHeight(-50.0).animate(0.25)
+            mainProfileView.animation.moveY(80.0).makeHeight(350.0).animate(0.25)
             toggle = false
         }
         
@@ -161,12 +161,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), forState: .Normal)
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.frame = CGRectMake(-10, 8, 30, 30)
         self.setOnlyRightNavigationButton(rightButton)
         
         locationIcon.text = String(format: "%C", faicon["location"]!)
         
-        let profile = ProfilePicFancy(frame: CGRect(x: 0, y: 0, width: profileView.frame.width, height: profileView.frame.height))
+        let profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
         profile.backgroundColor = UIColor.clearColor()
         profileView.addSubview(profile)
         
@@ -224,7 +224,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 
                 print("place: \(place)")
                 
-                placeLabel.text = place[0]
+                placeLabel.text = " \(place[0])"
                 
             }
             
@@ -260,10 +260,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 
                 let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
                 
-                print("getImageUrl: \(getImageUrl)")
+//                print("getImageUrl: \(getImageUrl)")
                 
                 let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
-                print("data: \(data)")
+//                print("data: \(data)")
                 
                 if data != nil {
                     

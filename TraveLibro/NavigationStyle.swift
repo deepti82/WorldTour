@@ -1,11 +1,3 @@
-//
-//  NavigationStyle.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 20/06/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 
 var checkInMainVC: UIViewController!
@@ -84,8 +76,8 @@ extension UIViewController {
         self.navigationController?.navigationBar.translucent = true
         self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
+        self.navigationController?.navigationBar.barStyle = .Black
 //        self.navigationController?.navigationBar.translucent = false
         
         //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
@@ -183,7 +175,7 @@ extension UIViewController {
     func customNavigationBar(left: UIButton?, right: UIButton?) {
         
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
 //        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
 //        self.navigationController?.view.backgroundColor = UIColor.clearColor()
 //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
@@ -191,7 +183,7 @@ extension UIViewController {
 //            UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
         
 //        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        self.navigationController?.navigationBar.barStyle = .Black
 //        self.navigationController?.navigationBar.translucent = false
         
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
@@ -230,9 +222,9 @@ extension UIViewController {
         
         self.navigationController?.navigationBar.translucent = true
         self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)
-        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.4)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.4)
-        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
+        self.navigationController?.navigationBar.barStyle = .Black
 //        self.navigationController?.navigationBar.translucent = false
         
         let rightBarButton = UIBarButtonItem()
@@ -253,9 +245,9 @@ extension UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
         
 //        self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)
-        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
+        self.navigationController?.navigationBar.barStyle = .Black
         self.navigationController?.navigationBar.translucent = true
 //        self.navigationController?.navigationBar.translucent = false
         

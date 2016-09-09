@@ -9,8 +9,6 @@
 import UIKit
 import SwiftyJSON
 
-var followers: [JSON] = []
-
 class FollowersViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
 
     @IBOutlet var shareButtons: [UIButton]!
@@ -26,6 +24,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     var searchController: UISearchController!
     var shouldShowSearchResults = false
     var filter: [JSON]!
+    var followers: [JSON] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +95,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 }
                 else if response["value"] {
                     print("\(response["data"]["following"])")
-                    followers = response["data"]["following"].array!
+                    self.followers = response["data"]["following"].array!
                     self.followerTable.reloadData()
                 }
                 else {
@@ -127,7 +126,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 else if response["value"] {
                     
                     print("\(response["data"]["following"])")
-                    followers = response["data"]["followers"].array!
+                    self.followers = response["data"]["followers"].array!
                     self.followerTable.reloadData()
                     
                 }
@@ -215,7 +214,15 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! FollowersCell
         self.addStylingToButton(cell.followButton)
         
-        if followers.count != 0 {
+        if filter != nil && shouldShowSearchResults {
+            
+            cell.profileName.text = filter[indexPath.row]["name"].string!
+            let image = filter[indexPath.row]["profilePicture"].string!
+            setImage(cell.profileImage, imageName: image)
+            
+        }
+        
+        else if followers.count != 0 {
             
             cell.profileName.text = followers[indexPath.row]["name"].string!
             let image = followers[indexPath.row]["profilePicture"].string!
@@ -248,7 +255,14 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         let isUrl = verifyUrl(imageName)
         print("isUrl: \(isUrl)")
         
-        if isUrl {
+        if imageName == "" {
+            
+            imageView.image = UIImage(named: "profile_icon")
+            makeTLProfilePicture(imageView)
+            
+        }
+        
+        else if isUrl {
             
             print("inside if statement")
             let data = NSData(contentsOfURL: NSURL(string: imageName)!)
@@ -269,7 +283,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             print("getImageUrl: \(getImageUrl)")
             
             let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
-            print("data: \(data)")
+//            print("data: \(data)")
             
             if data != nil {
                 
@@ -285,7 +299,12 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-       return followers.count
+        if shouldShowSearchResults && filter != nil {
+            
+            return filter.count
+        }
+        
+        return followers.count
         
     }
     

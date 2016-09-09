@@ -469,7 +469,9 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         else if whichView == "BucketList" {
             
-            if selectedCountry.tintColor == mainOrangeColor {
+//            searchBarCancelButtonClicked(searchController.searchBar)
+            
+            if selectedCountry.tintColor == mainOrangeColor && !alreadySelected.contains(countries[indexPath.row]) {
                 
                 selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
                 
@@ -604,6 +606,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             if shouldShowSearchResults && filteredArray != nil {
                 
                 cell.countryName.text = filteredArray[indexPath.row]["name"].string!
+                
             }
             
             else {
@@ -614,25 +617,47 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
 //            print("filtered array: \(filteredArray)")
             
-            if filteredArray != nil && filteredArray.count > 0 && selectedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
-                
-                if indexPath.row == 0 {
-                    
-                    print("in here \(filteredArray[indexPath.row]["_id"].string!)")
-                    
-                }
-                
-                cell.tintColor = mainOrangeColor
-                
-            }
+//            if shouldShowSearchResults && filteredArray != nil {
+//                
+//                if selectedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
+//                    
+//                    cell.tintColor = mainOrangeColor
+//                    
+//                }
+//                
+//                else if alreadySelected.contains(filteredArray[indexPath.row]) {
+//                    
+//                    cell.tintColor = mainOrangeColor
+//                    
+//                }
+//                
+//            }
             
-            else if alreadySelected != nil && alreadySelected.contains(countries[indexPath.row]) && filteredArray != nil && filteredArray.count == 0 {
+//            else if alreadySelected.contains(filteredArray[indexPath.row]["_id"].string!) && (shouldShowSearchResults && filteredArray != nil) {
+//                
+//                cell.tintColor = mainOrangeColor
+//                
+//            }
+            
+//            else if selectedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
+//                
+//                if indexPath.row == 0 {
+//                    
+//                    print("in here \(filteredArray[indexPath.row]["_id"].string!)")
+//                    
+//                }
+//                
+//                cell.tintColor = mainOrangeColor
+//                
+//            }
+            
+            if alreadySelected != nil && alreadySelected.contains(countries[indexPath.row]) && !shouldShowSearchResults {
                 
                 print("already selected contains \(countries[indexPath.row])")
                 cell.tintColor = mainOrangeColor
             }
             
-            else if selectedCountries.contains(countries[indexPath.row]["_id"].string!) && filteredArray != nil && filteredArray.count == 0 {
+            else if selectedCountries.contains(countries[indexPath.row]["_id"].string!) && !shouldShowSearchResults {
                 
                 cell.tintColor = mainOrangeColor
                 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VtJ-Bg-RGy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VtJ-Bg-RGy">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -3412,7 +3412,7 @@
                                         <rect key="frame" x="0.0" y="283" width="288" height="67"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="CCU-j2-b3f" firstAttribute="top" secondItem="MYd-vb-oWn" secondAttribute="bottom" constant="16" id="1bO-9q-nhA"/>
                                     <constraint firstItem="ogf-zC-WaX" firstAttribute="top" secondItem="hKw-kR-G0H" secondAttribute="top" constant="-30" id="1k0-Wu-2Uj"/>
@@ -4721,7 +4721,7 @@ IHRvZ2V0aGVyLg
                                                     <constraint firstItem="HX7-4o-ZOx" firstAttribute="centerX" secondItem="vTH-B6-Gh8" secondAttribute="centerX" constant="-60" id="xHW-Gz-fc1"/>
                                                 </constraints>
                                             </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="rzF-H2-9jn">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="rzF-H2-9jn">
                                                 <rect key="frame" x="110" y="-60" width="80" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="jUP-1k-xaB"/>
@@ -6209,11 +6209,11 @@ IHRvZ2V0aGVyLg
                                             <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AyY-mn-gIl">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AyY-mn-gIl">
                                             <rect key="frame" x="412" y="4" width="100" height="35"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgV-fa-sQn">
-                                                    <rect key="frame" x="8" y="3" width="30" height="30"/>
+                                                    <rect key="frame" x="62" y="3" width="30" height="30"/>
                                                     <state key="normal" title="+">
                                                         <color key="titleColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
@@ -6231,7 +6231,7 @@ IHRvZ2V0aGVyLg
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ps-Xa-wPa">
-                                                    <rect key="frame" x="62" y="3" width="30" height="30"/>
+                                                    <rect key="frame" x="8" y="3" width="30" height="30"/>
                                                     <state key="normal" title="-">
                                                         <color key="titleColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
@@ -6242,14 +6242,14 @@ IHRvZ2V0aGVyLg
                                             </subviews>
                                             <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="UgV-fa-sQn" secondAttribute="trailing" constant="8" id="0tW-I8-Wr9"/>
                                                 <constraint firstItem="FNs-f9-Ov6" firstAttribute="centerX" secondItem="AyY-mn-gIl" secondAttribute="centerX" id="2lp-V2-hYm"/>
-                                                <constraint firstItem="UgV-fa-sQn" firstAttribute="leading" secondItem="AyY-mn-gIl" secondAttribute="leading" constant="8" id="6kw-fZ-6aw"/>
-                                                <constraint firstItem="UgV-fa-sQn" firstAttribute="centerY" secondItem="AyY-mn-gIl" secondAttribute="centerY" id="Khx-ZO-htq"/>
-                                                <constraint firstAttribute="trailing" secondItem="6ps-Xa-wPa" secondAttribute="trailing" constant="8" id="PRH-bZ-RvJ"/>
+                                                <constraint firstItem="6ps-Xa-wPa" firstAttribute="leading" secondItem="AyY-mn-gIl" secondAttribute="leading" constant="8" id="ICW-hJ-r8h"/>
+                                                <constraint firstItem="6ps-Xa-wPa" firstAttribute="centerY" secondItem="AyY-mn-gIl" secondAttribute="centerY" id="Mgz-yj-IPm"/>
+                                                <constraint firstItem="UgV-fa-sQn" firstAttribute="centerY" secondItem="AyY-mn-gIl" secondAttribute="centerY" id="VJ7-3Q-9OJ"/>
                                                 <constraint firstAttribute="width" constant="100" id="cL0-cO-d3Y"/>
                                                 <constraint firstItem="FNs-f9-Ov6" firstAttribute="centerY" secondItem="AyY-mn-gIl" secondAttribute="centerY" id="hlt-ff-7WA"/>
                                                 <constraint firstAttribute="height" constant="35" id="tIE-KM-CMZ"/>
-                                                <constraint firstItem="6ps-Xa-wPa" firstAttribute="centerY" secondItem="AyY-mn-gIl" secondAttribute="centerY" id="wO4-yv-XeY"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -7708,7 +7708,7 @@ IHRvZ2V0aGVyLg
                                             <constraint firstItem="dgU-4z-Fc9" firstAttribute="centerX" secondItem="hka-ay-0CT" secondAttribute="centerX" constant="60" id="uId-J3-Psz"/>
                                         </constraints>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="QfN-P4-1lr">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="QfN-P4-1lr">
                                         <rect key="frame" x="110" y="-60" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="28T-1u-vpw"/>

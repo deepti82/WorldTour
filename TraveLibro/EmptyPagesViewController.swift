@@ -44,7 +44,7 @@ class EmptyPagesViewController: UIViewController {
         else if whichView == "CountriesVisited" {
             
             self.title = "Countries Visited"
-            nocountries.countriesVisitedLabel.text = "Add Countries To Your Bucket List Here"
+            nocountries.countriesVisitedLabel.text = "Add Countries To Your Countries Visited Here"
             
         }
         
@@ -52,7 +52,12 @@ class EmptyPagesViewController: UIViewController {
     
     func popToProfile(sender: UIButton) {
         
-        self.navigationController?.popToRootViewControllerAnimated(true)
+//        self.navigationController?.popToRootViewControllerAnimated(true)
+        let prevVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+//        nextVC.whichView = whichView
+        //            nextVC.isComingFromEmptyPages = true
+        self.navigationController?.pushViewController(prevVC, animated: false)
+        
         
     }
     
@@ -76,16 +81,5 @@ class EmptyPagesViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
