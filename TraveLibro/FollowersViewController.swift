@@ -1,13 +1,8 @@
-//
-//  FollowersViewController.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 31/05/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
 
 import UIKit
 import SwiftyJSON
+
+var followers: [JSON] = []
 
 class FollowersViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
 
@@ -24,10 +19,12 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     var searchController: UISearchController!
     var shouldShowSearchResults = false
     var filter: [JSON]!
-    var followers: [JSON] = []
+    var searchText = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        followers = []
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
@@ -53,6 +50,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             whatsappShare.setTitle(String(format: "%C", faicon["whatsapp"]!), forState: .Normal)
             facebookShare.setTitle(String(format: "%C", faicon["facebook"]!), forState: .Normal)
             getFollowing()
+//            searchController.searchBar
 //            shareView.removeFromSuperview()
 //            seperatorView.removeFromSuperview()
 //            tableHeightConstraint.constant = self.view.frame.height
@@ -84,7 +82,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         
         print("inside following function")
         
-        request.getFollowing(currentUser["_id"].string!, completion: {(response) in
+        request.getFollowing(currentUser["_id"].string!, searchText: searchText, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 
@@ -95,7 +93,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 }
                 else if response["value"] {
                     print("\(response["data"]["following"])")
-                    self.followers = response["data"]["following"].array!
+                    followers = response["data"]["following"].array!
                     self.followerTable.reloadData()
                 }
                 else {
@@ -126,7 +124,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 else if response["value"] {
                     
                     print("\(response["data"]["following"])")
-                    self.followers = response["data"]["followers"].array!
+                    followers = response["data"]["followers"].array!
                     self.followerTable.reloadData()
                     
                 }
@@ -139,8 +137,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             })
             
         })
-        
-        
         
     }
 
@@ -187,23 +183,25 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         searchController.dimsBackgroundDuringPresentation = false
-        let searchString = searchController.searchBar.text
+        searchText = searchController.searchBar.text!
         
         // Filter the data array and get only those countries that match the search text.
-        filter = followers.filter({(follower) -> Bool in
-            
-            //            print("country: \(country["name"])")
-            
-            let text: NSString = follower["name"].string!
-            
-            print("country: \(text.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location)")
-            
-            return (text.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location) != NSNotFound
-        })
+//        filter = followers.filter({(follower) -> Bool in
+//            
+//            //            print("country: \(country["name"])")
+//            
+//            let text: NSString = follower["name"].string!
+//            
+//            print("country: \(text.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location)")
+//            
+//            return (text.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location) != NSNotFound
+//        })
+//        
+//        //        filteredArray = countries.filter{$0["name"].string! == searchString}
+//        
+//        print("filtered array: \(filter)")
         
-        //        filteredArray = countries.filter{$0["name"].string! == searchString}
-        
-        print("filtered array: \(filter)")
+        getFollowing()
         
         // Reload the tableview.
         followerTable.reloadData()

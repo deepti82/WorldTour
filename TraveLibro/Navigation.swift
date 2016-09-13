@@ -807,11 +807,11 @@ class Navigation {
         }
     }
     
-    func getFollowing(userId: String, completion: ((JSON) -> Void)) {
+    func getFollowing(userId: String, searchText: String, completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": userId]
+            let params = ["_id": userId, "search": searchText]
             print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/getFollowing", parameters: params)

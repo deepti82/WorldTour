@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 var yourIdeal: [String] = []
 
@@ -131,6 +132,36 @@ class DisplayPagesFourViewController: UIViewController {
     func nextPage(sender: AnyObject) {
         
         print("your ideal holiday: \(yourIdeal)")
+        
+        var json: JSON!
+        
+        json["kindOfJourney"] = JSON(kindOfJourney)
+        json["youUsuallyGo"] = JSON(youUsuallyGo)
+        json["preferToTravel"] = JSON(preferToTravel)
+        json["yourIdeal"] = JSON(yourIdeal)
+        
+        print("json: \(json)")
+        
+//        request.editUser(currentUser["_id"].string!, editField: "", editFieldValue: "", completion: {(response) in
+//            
+//            if response.error != nil {
+//                
+//                print("error: \(response.error?.localizedDescription)")
+//                
+//            }
+//            
+//            else if response["value"] {
+//                
+//                print("response arrived!")
+//                
+//            }
+//            
+//            else {
+//                
+//                print("response error: \(response["error"])")
+//                
+//            }
+//        })
         
         let next = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
 //        self.slideMenuController()?.changeMainViewController(next, close: true)

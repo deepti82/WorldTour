@@ -170,6 +170,9 @@ class DisplayPagesOneViewController: UIViewController {
     func nextPage(sender: AnyObject) {
         
         print("kind of journey: \(kindOfJourney)")
+        
+//        request.editUser(currentUser["_id"].string!, editField: <#T##String#>, editFieldValue: <#T##String#>, completion: <#T##((JSON) -> Void)##((JSON) -> Void)##(JSON) -> Void#>)
+        
         let next = self.storyboard?.instantiateViewControllerWithIdentifier("displayTwo") as! DisplayPagesTwoViewController
         self.navigationController?.pushViewController(next, animated: true)
     }

@@ -242,6 +242,9 @@
 		C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */; };
 		C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */; };
 		C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */; };
+		C2A4C8871D840D8C008394A3 /* AddActivityNoPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */; };
+		C2A4C8891D840FCA008394A3 /* AddActivityNoVideo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */; };
+		C2A4C88B1D84117B008394A3 /* AddActivityNoPhotoVideo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */; };
 		C2A5C1D51CF9A7F90035EF0E /* MoreAboutMe.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D41CF9A7F90035EF0E /* MoreAboutMe.xib */; };
 		C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D61CF9B09E0035EF0E /* TraveLifeVideoPost.xib */; };
 		C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A5C1D81CF9BA5E0035EF0E /* TraveLifeVideoPost.swift */; };
@@ -579,6 +582,9 @@
 		C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDisplayPic.xib; sourceTree = "<group>"; };
 		C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDisplayPic.swift; sourceTree = "<group>"; };
 		C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
+		C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityNoPhoto.xib; sourceTree = "<group>"; };
+		C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityNoVideo.xib; sourceTree = "<group>"; };
+		C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityNoPhotoVideo.xib; sourceTree = "<group>"; };
 		C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DJB My Mood Ring Says Blah.ttf"; sourceTree = "<group>"; };
 		C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JennaSue.ttf; sourceTree = "<group>"; };
 		C2A5C1D41CF9A7F90035EF0E /* MoreAboutMe.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreAboutMe.xib; sourceTree = "<group>"; };
@@ -735,8 +741,9 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
-				C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */,
-				C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */,
+				C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */,
+				C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */,
+				C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */,
 				C23EBC2D1D7FF44E00D040DB /* AddYearsCountriesVisitedViewController.swift */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
@@ -775,6 +782,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2A4C8851D840289008394A3 /* AddActivityOTG */,
 				C24DA9AD1D7E93CE001233F0 /* ProfilePicFancy */,
 				3AF1870C1D785F3A00A86BC1 /* forDPThree */,
 				3AF1870B1D785F2A00A86BC1 /* forDpFour */,
@@ -1656,6 +1664,15 @@
 			name = SignUpFullView;
 			sourceTree = "<group>";
 		};
+		C2A4C8851D840289008394A3 /* AddActivityOTG */ = {
+			isa = PBXGroup;
+			children = (
+				C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */,
+				C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */,
+			);
+			name = AddActivityOTG;
+			sourceTree = "<group>";
+		};
 		C2A6E2601CE9D0F700D3F845 /* TripInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1974,6 +1991,7 @@
 				C2A27A451CEDC1F100F74DD1 /* LogInView.xib in Resources */,
 				3AF187041D78556500A86BC1 /* forDPThree.xib in Resources */,
 				C24909BA1D4A3852007EB6B4 /* AddPostsOTG.xib in Resources */,
+				C2A4C8871D840D8C008394A3 /* AddActivityNoPhoto.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				C2803BC41CF41F99007A906E /* BlogView.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
@@ -1995,6 +2013,7 @@
 				C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */,
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
 				C28A92531D0ECB4E00CFEC7A /* FilterBlogs.xib in Resources */,
+				C2A4C8891D840FCA008394A3 /* AddActivityNoVideo.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
 				C24909AD1D49D094007EB6B4 /* tripSummaryEach.xib in Resources */,
@@ -2060,6 +2079,7 @@
 				C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */,
 				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
+				C2A4C88B1D84117B008394A3 /* AddActivityNoPhotoVideo.xib in Resources */,
 				C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */,
 				C2488AFA1D51F93D00FD5306 /* NewQuickItinerary.xib in Resources */,
 				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,

@@ -2140,6 +2140,24 @@
             </objects>
             <point key="canvasLocation" x="3443" y="3311"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="1pl-7h-DVV">
+            <objects>
+                <viewController id="BL3-Bc-TIx" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="czV-ub-mwP"/>
+                        <viewControllerLayoutGuide type="bottom" id="nBJ-4n-X2T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fcT-m5-pwZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KFX-di-DZv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4136" y="3311"/>
+        </scene>
         <!--Followers-->
         <scene sceneID="Pmb-IC-zrl">
             <objects>
@@ -3395,13 +3413,6 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYd-vb-oWn">
-                                        <rect key="frame" x="-20" y="-86" width="165" height="120"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="165" id="Rj9-3J-VK2"/>
-                                            <constraint firstAttribute="height" constant="120" id="gYK-Rx-bdc"/>
-                                        </constraints>
-                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photographer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JrE-nA-UMs">
                                         <rect key="frame" x="8" y="42" width="75" height="17"/>
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
@@ -3411,12 +3422,20 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhm-4w-xeC">
                                         <rect key="frame" x="0.0" y="283" width="288" height="67"/>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYd-vb-oWn">
+                                        <rect key="frame" x="-20" y="-86" width="165" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="165" id="Rj9-3J-VK2"/>
+                                            <constraint firstAttribute="height" constant="120" id="gYK-Rx-bdc"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="CCU-j2-b3f" firstAttribute="top" secondItem="MYd-vb-oWn" secondAttribute="bottom" constant="16" id="1bO-9q-nhA"/>
                                     <constraint firstItem="ogf-zC-WaX" firstAttribute="top" secondItem="hKw-kR-G0H" secondAttribute="top" constant="-30" id="1k0-Wu-2Uj"/>
                                     <constraint firstAttribute="height" constant="350" id="9Bc-Ni-e4O"/>
+                                    <constraint firstItem="MYd-vb-oWn" firstAttribute="leading" secondItem="hKw-kR-G0H" secondAttribute="leading" constant="-20" id="Bxe-og-A17"/>
                                     <constraint firstAttribute="trailing" secondItem="JVb-V2-2Zg" secondAttribute="trailing" constant="-20" id="E4n-wd-QOv"/>
                                     <constraint firstItem="dwA-HX-W2Y" firstAttribute="top" secondItem="CCU-j2-b3f" secondAttribute="bottom" id="FWS-0h-Cu8"/>
                                     <constraint firstAttribute="trailing" secondItem="Hhm-4w-xeC" secondAttribute="trailing" id="Flc-75-HEw"/>
@@ -3424,7 +3443,6 @@
                                     <constraint firstItem="JrE-nA-UMs" firstAttribute="leading" secondItem="hKw-kR-G0H" secondAttribute="leading" constant="8" id="Mmr-2y-J2D"/>
                                     <constraint firstItem="CCU-j2-b3f" firstAttribute="top" secondItem="ogf-zC-WaX" secondAttribute="bottom" id="Udv-RT-lhG"/>
                                     <constraint firstItem="Hhm-4w-xeC" firstAttribute="top" secondItem="HEf-Pa-zSZ" secondAttribute="bottom" constant="8" symbolic="YES" id="bGf-pR-MqA"/>
-                                    <constraint firstItem="MYd-vb-oWn" firstAttribute="leading" secondItem="hKw-kR-G0H" secondAttribute="leading" constant="-20" id="cGM-XY-BCJ"/>
                                     <constraint firstItem="JrE-nA-UMs" firstAttribute="top" secondItem="MYd-vb-oWn" secondAttribute="bottom" constant="8" id="dWE-lR-iWd"/>
                                     <constraint firstItem="FzV-dF-2z1" firstAttribute="top" secondItem="hKw-kR-G0H" secondAttribute="top" constant="-50" id="hCc-IH-vuY"/>
                                     <constraint firstItem="JVb-V2-2Zg" firstAttribute="centerY" secondItem="hKw-kR-G0H" secondAttribute="centerY" constant="5" id="htR-rn-e53"/>
