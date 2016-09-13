@@ -35,7 +35,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         if whichView == "TL" {
             
-            request.addBuddiesOTG(addedFriendUsers, userId: "57b31418a558b3494544d28f", journeyId: uniqueId, completion: {(response) in
+            request.addBuddiesOTG(addedFriendUsers, userId: currentUser["_id"].string!, journeyId: uniqueId, completion: {(response) in
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     
@@ -45,22 +45,41 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                         
                     }
                         
-                    else {
+                    else if response["value"] {
                         
 //                        print("response: \(response.description)")
-                        let allControllers = self.navigationController?.viewControllers
-                        print("count: \(allControllers)")
-                        let backVC = allControllers![allControllers!.count - 2] as! NewTLViewController
-                        print("count: \(self.addedFriends.count)")
-                        backVC.countLabel = self.addedFriends.count
-                        backVC.addedBuddies = self.addedFriends
-                        backVC.showBuddies()
-                        print("count: \(self.addedFriends.count)")
+                        let allControllers = self.navigationController!.viewControllers
+//                        print("count: \(allControllers)")
+                        for vc in allControllers {
+                            
+                            if vc.isKindOfClass(NewTLViewController) {
+                                
+                                let backVC = vc as! NewTLViewController
+                                backVC.countLabel = self.addedFriends.count
+                                backVC.addedBuddies = self.addedFriends
+                                backVC.showBuddies()
+                                self.navigationController?.popToViewController(backVC, animated: true)
+                                
+                            }
+                            
+                        }
+                        
+                        
+//                        let backVC = allControllers[allControllers!.count - 2] as! NewTLViewController
+//                        print("count: \(self.addedFriends.count)")
+//                        
+//                        print("count: \(self.addedFriends.count)")
                         
 //                        backVC.dpOne = self.addedFriends[0]["profilePicture"].string!
 //                        backVC.dpTwo = self.addedFriendsImages[1]["profilePicture"]
 //                        backVC.dpThree = self.addedFriendsImages[2]["profilePicture"]
-                        self.popVC(sender)
+//                        self.popVC(sender)
+                        
+                    }
+                    
+                    else {
+                        
+                        print("response error")
                         
                     }
                     
@@ -193,7 +212,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             print("inside if statement")
             let data = NSData(contentsOfURL: NSURL(string: imageUrl)!)
             
-            if data != nil {
+            if data != nil  && imageUrl != "" {
                 
                 print("some problem in data \(data)")
                 //                uploadView.addButton.setImage(, forState: .Normal)
@@ -204,7 +223,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
             
-        else {
+        else if imageUrl != "" {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
             
@@ -451,23 +470,23 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        
-        let indexLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"]
-        //        let indexOfLetters = indexLetters.componentsSeparatedByString(" ")
-        
-        var indexOfLetters = [String]()
-        for string in indexLetters {
-            
-            indexOfLetters.append(String(string.characters.first!))
-            
-        }
-        
-        indexOfLetters = Array(Set(indexOfLetters))
-        indexOfLetters = indexOfLetters.sort()
-        return indexOfLetters
-        
-    }
+//    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+//        
+//        let indexLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"]
+//        //        let indexOfLetters = indexLetters.componentsSeparatedByString(" ")
+//        
+//        var indexOfLetters = [String]()
+//        for string in indexLetters {
+//            
+//            indexOfLetters.append(String(string.characters.first!))
+//            
+//        }
+//        
+//        indexOfLetters = Array(Set(indexOfLetters))
+//        indexOfLetters = indexOfLetters.sort()
+//        return indexOfLetters
+//        
+//    }
     
 
 }

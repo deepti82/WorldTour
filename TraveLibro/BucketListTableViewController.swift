@@ -92,8 +92,19 @@ class BucketListTableViewController: UITableViewController  {
     
     func gotoProfile(sender: UIButton) {
         
-        let profile = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
-        self.navigationController?.pushViewController(profile, animated: false)
+        for vc in self.navigationController!.viewControllers {
+            
+            if vc.isKindOfClass(ProfileViewController) {
+                
+                print("inside if statement bucket list")
+                self.navigationController!.popToViewController(vc, animated: true)
+                
+            }
+            
+        }
+        
+//        let profile = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+//        self.navigationController?.pushViewController(profile, animated: false)
 //        (ProfileViewController(), animated: true)
         
 //        if ((self.navigationController?.viewControllers.contains(profile)) != nil) {

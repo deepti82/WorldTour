@@ -248,6 +248,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         super.viewDidLoad()
         
         getBackGround(self)
+        
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(-10, 0, 30, 30)
+        self.customNavigationBar(leftButton, right: nil)
+        
         height = self.view.frame.height/2
         
         imagePicker.delegate = self

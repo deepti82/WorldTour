@@ -1451,10 +1451,10 @@
 						DevelopmentTeam = YVWVDTRG4B;
 					};
 					186526C95A6E6A368E316AEBD475C8CB = {
-						DevelopmentTeam = 79YJ83JZG7;
+						DevelopmentTeam = YVWVDTRG4B;
 					};
 					8AA3DDB8797222294E1288CB197A8347 = {
-						DevelopmentTeam = 79YJ83JZG7;
+						DevelopmentTeam = YVWVDTRG4B;
 					};
 				};
 			};
