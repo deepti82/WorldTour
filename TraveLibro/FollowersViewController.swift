@@ -213,12 +213,27 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! FollowersCell
         self.addStylingToButton(cell.followButton)
+        cell.followButton.selected = false
         
         if filter != nil && shouldShowSearchResults {
             
             cell.profileName.text = filter[indexPath.row]["name"].string!
             let image = filter[indexPath.row]["profilePicture"].string!
             setImage(cell.profileImage, imageName: image)
+            
+            if filter[indexPath.row]["following"] {
+                
+                cell.followButton.tag = 1
+                cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
+                let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
+                followTick.image = UIImage(named: "correct-signal")
+                cell.followButton.titleLabel?.addSubview(followTick)
+                cell.followButton.setTitle("Following", forState: .Normal)
+                cell.followButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                cell.followButton.contentHorizontalAlignment = .Right
+                cell.followButton.selected = true
+                
+            }
             
         }
         
@@ -227,10 +242,25 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             cell.profileName.text = followers[indexPath.row]["name"].string!
             let image = followers[indexPath.row]["profilePicture"].string!
             setImage(cell.profileImage, imageName: image)
+            
+            if followers[indexPath.row]["following"] {
+                
+                cell.followButton.tag = 1
+                cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
+                let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
+                followTick.image = UIImage(named: "correct-signal")
+                cell.followButton.titleLabel?.addSubview(followTick)
+                cell.followButton.setTitle("Following", forState: .Normal)
+                cell.followButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                cell.followButton.contentHorizontalAlignment = .Right
+                cell.followButton.selected = true
+                
+            }
+            
         }
         
 //        cell.followButton.addTarget(self, action: #selector(FollowersViewController.followUser(_:)), forControlEvents: .TouchUpInside)
-        cell.followButton.selected = false
+//        cell.followButton.selected = false
         
         if whichView == "Following" {
             

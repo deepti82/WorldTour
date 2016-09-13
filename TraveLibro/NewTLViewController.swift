@@ -391,7 +391,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func showDetailsFn() {
         
-        request.addNewOTG(otgView.nameJourneyTF.text!, userId: "57aed01c06b0c1ee11680999", startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, completion: {(response) in
+        request.addNewOTG(otgView.nameJourneyTF.text!, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 
@@ -488,10 +488,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
 //        print("here 3")
         
-        let addBuddies = storyboard?.instantiateViewControllerWithIdentifier("addBuddies") as! AddBuddiesViewController
+        let addBuddies = storyboard!.instantiateViewControllerWithIdentifier("addBuddies") as! AddBuddiesViewController
         addBuddies.whichView = "TL"
         addBuddies.uniqueId = journeyId
-        self.navigationController?.pushViewController(addBuddies, animated: true)
+        print("add buddies: \(addBuddies)")
+        print("navigation: \(self.navigationController)")
+        self.navigationController!.pushViewController(addBuddies, animated: true)
 //        showBuddies()
 //        mainScroll.layer.zPosition = -1
 //
@@ -609,7 +611,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
         
-//        print("location: \(locationManager)")
+        print("location: \(locationManager)")
         
     }
     
@@ -627,10 +629,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 }
                 
-                else {
+                else if response["value"] {
                 
-                    print("response: \(response)")
-                    self.locationData = response["data"].string
+//                    print("response: \(response)")
+                    self.locationData = response["data"]["name"].string!
                     print("location: \(self.locationData)")
                 
                     if self.locationData != nil {
@@ -665,6 +667,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     }
             
                 }
+                else {
+                    
+                    print("response error!")
+                }
+                
             })
         })
         

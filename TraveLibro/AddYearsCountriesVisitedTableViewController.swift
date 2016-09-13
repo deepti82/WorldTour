@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 
 var trialVariable: [JSON] = []
+var getCountries: [JSON]!
 
 class AddYearsCountriesVisitedTableViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
@@ -282,18 +283,63 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         
         print("save countries visited: \(selectedCountry), \(selectedYears)")
         
-        var listFormat: JSON = ["1", "2", "3"]
+        var listFormat: JSON!
+        var temp: [JSON] = []
         var list: JSON = ["year": "2016", "times": 0]
+        
+//        var test: JSON = ["id": "id", "year": "2016", "times": 0]
+//        var testAggregate: [JSON] = []
+        
+        
+//        for i in 0 ..< getCountries.count {
+//            
+//            for j in getCountries[i]["countries"].array! {
+//                
+//                test["id"] = j["countryId"]["_id"]
+//                test["year"] = j["year"]
+//                test["times"] = 1
+//                
+//                for k in getCountries[i]["countries"].array! {
+//                    
+//                    if j["_id"] == k["_id"] {
+//                        
+//                        test["times"].int = test["times"].int! + 1
+//                        
+//                    }
+//                    
+//                    
+//                }
+//               
+//                print("test: \(test)")
+//                
+//            }
+//            
+//            testAggregate.append(test)
+//        }
+//        
+//        print("test aggregate: \(testAggregate)")
         
         for i in 0 ..< trialVariable.count {
             
+            var flag = 0
             list["year"].string = trialVariable[i]["country"].string!
             //            list["countryId"] = JSON(selectedYear)
+//            for j in 0 ..< testAggregate.count {
+//                
+//                if "\(testAggregate[j]["year"])" == list["year"].string! {
+//                    
+//                    list["times"].int = trialVariable[i]["quantity"].int! + testAggregate[j]["times"].int!
+//                    
+//                }
+//                
+//            }
             list["times"].int = trialVariable[i]["quantity"].int!
             //            print("list: \(list)")
-            listFormat[i] = list
+            temp.append(list)
             
         }
+        print("previous countries: \(getCountries)")
+        listFormat = JSON(temp)
         print("list format: \(listFormat)")
         
         request.addCountriesVisited(currentUser["_id"].string!, list: listFormat, countryVisited: selectedCountry, completion: {(response) in

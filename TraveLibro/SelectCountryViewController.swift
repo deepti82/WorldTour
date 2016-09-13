@@ -213,7 +213,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
             let countryText: NSString = country["name"].string!
             
-            print("country: \(countryText.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location)")
+//            print("country: \(countryText.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location)")
             
             return (countryText.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location) != NSNotFound
         })
