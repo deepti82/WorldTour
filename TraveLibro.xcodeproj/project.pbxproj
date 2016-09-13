@@ -86,7 +86,6 @@
 		C23EB1DF1CFEF352005B5CE8 /* EndLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */; };
 		C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */; };
 		C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */; };
-		C23EBC2E1D7FF44E00D040DB /* AddYearsCountriesVisitedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EBC2D1D7FF44E00D040DB /* AddYearsCountriesVisitedViewController.swift */; };
 		C23EBC301D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EBC2F1D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift */; };
 		C245776C1D1D4F8200C6568C /* NewProfilePosts.xib in Resources */ = {isa = PBXBuildFile; fileRef = C245776B1D1D4F8200C6568C /* NewProfilePosts.xib */; };
 		C245776E1D1D5ACD00C6568C /* NewProfilePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C245776D1D1D5ACD00C6568C /* NewProfilePosts.swift */; };
@@ -426,7 +425,6 @@
 		C23EB1DE1CFEF352005B5CE8 /* EndLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndLocalLife.swift; sourceTree = "<group>"; };
 		C23EB1E21CFF049D005B5CE8 /* AddPostsLocalLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddPostsLocalLife.xib; sourceTree = "<group>"; };
 		C23EB1E41CFF07EA005B5CE8 /* AddPostsLocalLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPostsLocalLife.swift; sourceTree = "<group>"; };
-		C23EBC2D1D7FF44E00D040DB /* AddYearsCountriesVisitedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddYearsCountriesVisitedViewController.swift; sourceTree = "<group>"; };
 		C23EBC2F1D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddYearsCountriesVisitedTableViewController.swift; sourceTree = "<group>"; };
 		C245776B1D1D4F8200C6568C /* NewProfilePosts.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewProfilePosts.xib; sourceTree = "<group>"; };
 		C245776D1D1D5ACD00C6568C /* NewProfilePosts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfilePosts.swift; sourceTree = "<group>"; };
@@ -2486,7 +2484,6 @@
 				C28A92471D0E95ED00CFEC7A /* PopularBloggersViewController.swift in Sources */,
 				C25207341D095442008F0E51 /* SearchFieldView.swift in Sources */,
 				C24F84DA1CFFFBF5002EA203 /* UserProfileSettingsViewController.swift in Sources */,
-				C23EBC2E1D7FF44E00D040DB /* AddYearsCountriesVisitedViewController.swift in Sources */,
 				C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
 				C298717E1D6EBE8100F65429 /* AddCityViewController.swift in Sources */,

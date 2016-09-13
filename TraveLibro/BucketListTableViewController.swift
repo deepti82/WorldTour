@@ -181,7 +181,7 @@ class BucketListTableViewController: UITableViewController  {
                     //                        profile.getCount()
                     
                     self.result = response["data"]["countriesVisited"].array!
-                    
+                    getCountries = self.result
 //                    for res in self.result {
 //                        
 //                        let temp = res["countries"].array!
@@ -358,9 +358,9 @@ class BucketListTableViewController: UITableViewController  {
         else if whichView == "CountriesVisited" {
             let delete = UITableViewRowAction(style: .Destructive, title: "             ") { (action, indexPath) in
                 
-                //                print("bucket list removal: \(self.bucket[indexPath.row]["_id"])")
+                print("countries visited removal: \(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["_id"].string!)")
                 
-                request.removeCountriesVisited(currentUser["_id"].string!, countryId: self.result[indexPath.section]["countries"][indexPath.row]["_id"].string!, completion: {(response) in
+                request.removeCountriesVisited(currentUser["_id"].string!, countryId: self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["_id"].string!, year: self.result[indexPath.section]["countries"][indexPath.row]["year"].int!, completion: {(response) in
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         

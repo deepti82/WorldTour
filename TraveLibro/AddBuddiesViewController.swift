@@ -18,9 +18,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let allFriends = ["Manan Vora", "Malhar Gala", "Monish Shah", "Yash Chudasama", "Andrea Christina", "Nargis Fakhri", "Jacqueline Fernandes", "Aanam Chashmawala", "Sajid Nadiadwala", "Sai Vemula", "Aadil Shah", "Harshit Shah", "Fatema Pocketwala"]
     
-    var allFriendsJson: JSON!
+    var allFriendsJson: [JSON]!
     var friendsCount = 0
-    
     
     var uniqueId: String!
     
@@ -87,7 +86,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.customNavigationBar(leftButton, right: rightButton)
         
-        request.getAllFriends({(response) in
+        request.getFollowers(currentUser["_id"].string!, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 
@@ -97,14 +96,19 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                 }
                     
-                else {
+                else if response["value"] {
                     
-                    self.allFriendsJson = response["data"]
+                    self.allFriendsJson = response["data"]["followers"].array!
                     print("friends: \(self.allFriendsJson)")
                     self.friendsCount = self.allFriendsJson.count
                     self.buddiesTableView.reloadData()
                 }
                 
+                else {
+                    
+                    print("response error!")
+                    
+                }
             })
             
         })
@@ -177,15 +181,57 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! addBuddiesTableViewCell
         cell.accessoryType = .Checkmark
         cell.selectionStyle = .None
-        cell.buddyName.text = "\(allFriendsJson[indexPath.row]["firstName"].string!) \(allFriendsJson[indexPath.row]["lastName"].string!)"
+        cell.buddyName.text = allFriendsJson[indexPath.row]["name"].string!
         
         let imageUrl = allFriendsJson[indexPath.row]["profilePicture"].string!
-        let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
         
-        if imageData != nil {
+        let isUrl = verifyUrl(imageUrl)
+        print("isUrl: \(isUrl)")
+        
+        if isUrl {
             
-            cell.buddyProfileImage.image = UIImage(data:imageData!)
+            print("inside if statement")
+            let data = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+            
+            if data != nil {
+                
+                print("some problem in data \(data)")
+                //                uploadView.addButton.setImage(, forState: .Normal)
+                cell.buddyProfileImage.image = UIImage(data: data!)
+                //                cell.buddyDp.image = UIImage(data: data!)
+                //                    makeTLProfilePicture(profile.image)
+                makeTLProfilePicture(cell.buddyProfileImage)
+            }
         }
+            
+        else {
+            
+            let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
+            
+            //                print("getImageUrl: \(getImageUrl)")
+            
+            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            //                print("data: \(data)")
+            
+            if data != nil {
+                
+                //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+                print("inside if statement \(cell.buddyProfileImage.image)")
+                cell.buddyProfileImage.image = UIImage(data: data!)
+                print("sideMenu.profilePicture.image: \(cell.buddyProfileImage.image)")
+                cell.buddyProfileImage.image = UIImage(data: data!)
+                makeTLProfilePicture(cell.buddyProfileImage)
+            }
+            
+        }
+        
+        
+//        let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+//        
+//        if imageData != nil {
+//            
+//            cell.buddyProfileImage.image = UIImage(data:imageData!)
+//        }
         
         cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
         if indexPath.row % 2 == 0 {
@@ -259,18 +305,58 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         let close = String(format: "%C", faicon["close"]!)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! addedBuddiesCollectionViewCell
         cell.removeBuddyButton.setTitle(close, forState: .Normal)
-        cell.buddyName.text = addedFriends[indexPath.row]["firstName"].string!
+        cell.buddyName.text = addedFriends[indexPath.row]["name"].string!
         
         let imageUrl = addedFriends[indexPath.row]["profilePicture"].string!
         print("collection view dp: \(imageUrl)")
         
-        let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+        let isUrl = verifyUrl(imageUrl)
+        print("isUrl: \(isUrl)")
         
-        if imageData != nil {
+        if isUrl {
             
-            cell.buddyDp.image = UIImage(data:imageData!)
+            print("inside if statement")
+            let data = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+            
+            if data != nil {
+                
+                print("some problem in data \(data)")
+                //                uploadView.addButton.setImage(, forState: .Normal)
+                cell.buddyDp.image = UIImage(data: data!)
+//                cell.buddyDp.image = UIImage(data: data!)
+                //                    makeTLProfilePicture(profile.image)
+                makeTLProfilePicture(cell.buddyDp)
+            }
+        }
+            
+        else {
+            
+            let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
+            
+            //                print("getImageUrl: \(getImageUrl)")
+            
+            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            //                print("data: \(data)")
+            
+            if data != nil {
+                
+                //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
+                print("inside if statement \(cell.buddyDp.image)")
+                cell.buddyDp.image = UIImage(data: data!)
+                print("sideMenu.profilePicture.image: \(cell.buddyDp.image)")
+                cell.buddyDp.image = UIImage(data: data!)
+                makeTLProfilePicture(cell.buddyDp)
+            }
             
         }
+        
+//        let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+//        
+//        if imageData != nil {
+//            
+//             = UIImage(data:imageData!)
+//            
+//        }
         
         if whichView == "TL" {
             

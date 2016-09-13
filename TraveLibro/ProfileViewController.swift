@@ -173,6 +173,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 55))
         self.view.addSubview(footer)
         
+        let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
+        footer.TLView.addGestureRecognizer(tlTap)
+        
         getCount()
         
         
@@ -312,6 +315,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        print("this function is getting called!!")
 //        
 //    }
+    
+    func gotoOTG(sender: UITapGestureRecognizer) {
+        
+        let tlVC = storyboard?.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
+        self.navigationController?.pushViewController(tlVC, animated: false)
+        
+    }
     
     func MAMStacKTap(sender: UITapGestureRecognizer) {
         

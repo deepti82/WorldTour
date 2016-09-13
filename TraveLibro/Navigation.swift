@@ -11,7 +11,7 @@ import SwiftyJSON
 import SwiftHTTP
 
 let apiUrl = "http://104.155.207.185:92/api/"
-let adminUrl = "http://192.168.2.14:1337/api/"
+let adminUrl = "http://10.0.0.30:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
 //let apiURL = "";
 
@@ -345,7 +345,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+//                    print(json)
                     completion(json)
                 }
             }
@@ -677,12 +677,12 @@ class Navigation {
         }
     }
     
-    func removeCountriesVisited(id: String, countryId: String, completion: ((JSON) -> Void)) {
+    func removeCountriesVisited(id: String, countryId: String, year: Int, completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "removeId": countryId]
-            print("params: \(params)")
+            let params = ["_id": id, "countryId": countryId, "year": year]
+            print("params remove countries visited: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/removeCountriesVisited", parameters: [params])
             var json = JSON(1);
