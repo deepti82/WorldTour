@@ -302,6 +302,8 @@
 		C2E697B31D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E697B21D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift */; };
 		C2E697B51D3E510900E76F1E /* FeaturedCitiesRestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E697B41D3E510900E76F1E /* FeaturedCitiesRestViewController.swift */; };
 		C2E697B71D3E541500E76F1E /* FCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E697B61D3E541500E76F1E /* FCMainViewController.swift */; };
+		C2E8F2D51D897D890034CEC6 /* AddActivityNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E8F2D41D897D890034CEC6 /* AddActivityNew.xib */; };
+		C2E8F2D71D8987860034CEC6 /* AddActivityNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E8F2D61D8987860034CEC6 /* AddActivityNew.swift */; };
 		C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */; };
 		C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A131CDB228F00122941 /* TextLabelView.swift */; };
 		C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A151CDB3B9900122941 /* TextField.swift */; };
@@ -643,6 +645,8 @@
 		C2E697B21D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCitiesNewTwoViewController.swift; sourceTree = "<group>"; };
 		C2E697B41D3E510900E76F1E /* FeaturedCitiesRestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCitiesRestViewController.swift; sourceTree = "<group>"; };
 		C2E697B61D3E541500E76F1E /* FCMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCMainViewController.swift; sourceTree = "<group>"; };
+		C2E8F2D41D897D890034CEC6 /* AddActivityNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AddActivityNew.xib; path = ../AddActivityNew.xib; sourceTree = "<group>"; };
+		C2E8F2D61D8987860034CEC6 /* AddActivityNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityNew.swift; sourceTree = "<group>"; };
 		C2EA3A0C1CDB1DF500122941 /* TextLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TextLabelView.xib; path = ../TextLabelView.xib; sourceTree = "<group>"; };
 		C2EA3A131CDB228F00122941 /* TextLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextLabelView.swift; sourceTree = "<group>"; };
 		C2EA3A151CDB3B9900122941 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -739,10 +743,11 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
+				C2E8F2D41D897D890034CEC6 /* AddActivityNew.xib */,
+				C2E8F2D61D8987860034CEC6 /* AddActivityNew.swift */,
 				C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */,
 				C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */,
 				C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */,
-				C23EBC2D1D7FF44E00D040DB /* AddYearsCountriesVisitedViewController.swift */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
@@ -2045,6 +2050,7 @@
 				C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */,
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
+				C2E8F2D51D897D890034CEC6 /* AddActivityNew.xib in Resources */,
 				C23EB1CF1CFEC731005B5CE8 /* PhotoBar.xib in Resources */,
 				C23B34DB1D7AF3DA00EBBF25 /* ProfilePicFancy.xib in Resources */,
 				C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */,
@@ -2551,6 +2557,7 @@
 				C2FA008A1CF57EC100E6A7D7 /* SetProfilePictureViewController.swift in Sources */,
 				C245776E1D1D5ACD00C6568C /* NewProfilePosts.swift in Sources */,
 				C2BFA9761CF2D2A900DC2066 /* MyLifeViewController.swift in Sources */,
+				C2E8F2D71D8987860034CEC6 /* AddActivityNew.swift in Sources */,
 				C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */,
 				C25649971D48D7670046E36D /* TripInfoOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,

@@ -1,19 +1,10 @@
-//
-//  Navigation.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 03/08/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 import SwiftyJSON
 import SwiftHTTP
 
 let apiUrl = "http://104.155.207.185:92/api/"
-let adminUrl = "http://10.0.0.30:1337/api/"
+let adminUrl = "http://10.0.0.70:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
-//let apiURL = "";
 
 class Navigation {
     
@@ -415,18 +406,19 @@ class Navigation {
         do {
             
 //            let params = ["file": file]
-            
+            print("file to be read: \(file)")
             let opt = try HTTP.GET(adminUrl + "upload/readFile?file=" + file)
+            print("opt: \(opt)")
             var json = JSON(1);
             opt.start { response in
-                //                print("started response: \(response)")
+                print("started response: \(response.description)")
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+                    print("get image response: \(json)")
                     completion(json)
                 }
             }
@@ -818,6 +810,77 @@ class Navigation {
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getOTGJourney(userId: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["user": userId]
+//            print("params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "journey/getOnGoing", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getJourneyCoverPic(places: [String], completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            print("places: \(places)")
+            
+            let opt = try HTTP.GET(adminUrl + "upload/getGooglePic", parameters: ["placeId": "\(places)"])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getBuddySearch(userId: String, searchtext: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "user/searchBuddy", parameters: ["_id": userId, "search":  searchtext])
+            var json = JSON(1);
+            opt.start {response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }

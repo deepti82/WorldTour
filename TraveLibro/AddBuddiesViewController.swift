@@ -18,12 +18,14 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let allFriends = ["Manan Vora", "Malhar Gala", "Monish Shah", "Yash Chudasama", "Andrea Christina", "Nargis Fakhri", "Jacqueline Fernandes", "Aanam Chashmawala", "Sajid Nadiadwala", "Sai Vemula", "Aadil Shah", "Harshit Shah", "Fatema Pocketwala"]
     
-    var allFriendsJson: [JSON]!
-    var friendsCount = 0
+    var allFriendsJson: [JSON] = []
+//    var friendsCount = 0
     
     var uniqueId: String!
     
     @IBAction func saveButtonTapped(sender: UIButton) {
+        
+        sender.enabled = false
         
         var addedFriendUsers: [String] = []
         
@@ -57,6 +59,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                                 let backVC = vc as! NewTLViewController
                                 backVC.countLabel = self.addedFriends.count
                                 backVC.addedBuddies = self.addedFriends
+//                                backVC.getCurrentOTG()
                                 backVC.showBuddies()
                                 self.navigationController?.popToViewController(backVC, animated: true)
                                 
@@ -87,8 +90,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             })
             
         }
-        
     }
+    
+    var search: SearchFieldView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +123,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                     self.allFriendsJson = response["data"]["followers"].array!
                     print("friends: \(self.allFriendsJson)")
-                    self.friendsCount = self.allFriendsJson.count
+//                    self.friendsCount = self.allFriendsJson.count
                     self.buddiesTableView.reloadData()
                 }
                 
@@ -143,7 +147,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //        addedFriendsImages[1] = "profile_icon"
 //        addedFriendsImages[2] = "profile_icon"
         
-        let search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.frame.width - 10, height: 30))
+        search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.frame.width - 10, height: 30))
         search.searchField.returnKeyType = .Done
         searchView.addSubview(search)
         
@@ -152,6 +156,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         if whichView == "TL" {
             
             getBackGround(self)
+            search.searchField.addTarget(self, action: #selector(AddBuddiesViewController.getSearchResults(_:)), forControlEvents: .EditingChanged)
             addedBuddies.textColor = mainOrangeColor
             peopleImage.tintColor = mainOrangeColor
             buddiesTableView.backgroundColor = UIColor.clearColor()
@@ -177,6 +182,37 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    func getSearchResults(sender: UITextField) {
+        
+        print("sender: \(search.searchField.text!)")
+        
+        request.getBuddySearch(currentUser["_id"].string!, searchtext: search.searchField.text!, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error; \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    self.allFriendsJson = response["data"].array!
+                    self.friendsTable.reloadData()
+                    
+                }
+                else {
+                    
+                }
+            })
+            
+        })
+        
+        
+        
+    }
+    
+    
     func saveFriendChanges(sender: UIButton) {
         
         self.navigationController?.popViewControllerAnimated(true)
@@ -191,7 +227,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return friendsCount
+        return allFriendsJson.count
         
     }
     
@@ -311,7 +347,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if addedFriends == nil {
             
-            return friendsCount
+            return addedFriends.count
         }
         
         return addedFriends.count
@@ -332,7 +368,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         let isUrl = verifyUrl(imageUrl)
         print("isUrl: \(isUrl)")
         
-        if isUrl {
+        if isUrl && imageUrl != "" {
             
             print("inside if statement")
             let data = NSData(contentsOfURL: NSURL(string: imageUrl)!)
@@ -348,7 +384,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
             
-        else {
+        else if imageUrl != "" {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
             

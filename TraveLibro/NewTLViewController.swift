@@ -16,6 +16,8 @@ import CoreLocation
 
 class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var myJourney: JSON!
+    
     var height: CGFloat!
     var otgView: startOTGView!
     var showDetails = false
@@ -54,12 +56,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     @IBAction func addPosts(sender: AnyObject) {
         
-        addPosts = AddPostsOTGView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-        addPosts.addPhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosTL(_:)), forControlEvents: .TouchUpInside)
-        addPosts.addCheckInButton.addTarget(self, action: #selector(NewTLViewController.addCheckInTL(_:)), forControlEvents: .TouchUpInside)
-        addPosts.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:))))
-        self.view.addSubview(addPosts)
-        addPosts.animation.makeOpacity(1.0).animate(0.5)
+//        addPosts = AddPostsOTGView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+//        addPosts.addPhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosTL(_:)), forControlEvents: .TouchUpInside)
+//        addPosts.addCheckInButton.addTarget(self, action: #selector(NewTLViewController.addCheckInTL(_:)), forControlEvents: .TouchUpInside)
+//        addPosts.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:))))
+//        self.view.addSubview(addPosts)
+//        addPosts.animation.makeOpacity(1.0).animate(0.5)
+        
+        let addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(addView)
         
     }
     
@@ -255,6 +260,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         leftButton.frame = CGRectMake(-10, 0, 30, 30)
         self.customNavigationBar(leftButton, right: nil)
         
+        self.title = "\(currentUser["firstName"].string!)'s New On The Go"
+        
         height = self.view.frame.height/2
         
         imagePicker.delegate = self
@@ -348,6 +355,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         otgView.nameJourneyTF.resignFirstResponder()
         otgView.locationLabel.resignFirstResponder()
+        self.title = otgView.nameJourneyTF.text
         print("text field: \(textField)")
         
         if textField == otgView.nameJourneyTF {
@@ -366,6 +374,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.detectLocationView.animation.thenAfter(0.5).makeOpacity(1.0).animate(0.5)
             
         }
+        
+//        else if textField == otgView.locationLabel {
+//            
+//            locationData = otgView.locationLabel.text
+//            getCoverPic()
+//            
+//        }
         
         return true
         
@@ -507,20 +522,97 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    
+    func getCurrentOTG() {
+        
+        print("in otg")
+        
+        request.getOTGJourney(currentUser["_id"].string!, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error?.localizedDescription)")
+                    
+                }
+                    
+                else if response["value"] {
+                    
+                    self.myJourney = response["data"]
+                    
+                }
+                    
+                else {
+                    
+                    print("response: \(response)")
+                    
+                }
+                
+                
+            })
+        })
+        
+    }
     
     func showBuddies() {
         
-        for i in 0 ..< countLabel {
+//        dispatch_async(dispatch_get_main_queue(), {
+//            
+//            self.getCurrentOTG()
+//            
+//        })
+        
+//        var buddies: [JSON]! = []
+//        
+//        if myJourney != nil {
+//            
+//            print("In show buddies \(myJourney["buddies"])")
+//            buddies = myJourney["buddies"].array!
+//            countLabel = buddies.count
+//            
+//        }
+        
+        print("added buddies: \(addedBuddies)")
+
+        for i in 0 ..< addedBuddies.count {
             
             let imageUrl = addedBuddies[i]["profilePicture"].string!
             
-            let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+            let isUrl = verifyUrl(imageUrl)
             
-            if imageData != nil {
-
-                otgView.buddyStackPictures[i].image = UIImage(data:imageData!)
+            if isUrl && imageUrl != "" {
+                
+                print("inside if statement")
+                let data = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+                
+                if data != nil  && imageUrl != "" {
+                    
+                    otgView.buddyStackPictures[i].image = UIImage(data: data!)
+                    makeTLProfilePicture(otgView.buddyStackPictures[i])
+                    
+                }
             }
+                
+            else if imageUrl != "" {
+                
+                let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
+                let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+                if data != nil {
+                    
+                    otgView.buddyStackPictures[i].image = UIImage(data: data!)
+                    otgView.buddyStackPictures[i].image = UIImage(data: data!)
+                    makeTLProfilePicture(otgView.buddyStackPictures[i])
+                    
+                }
+                
+            }
+            
+//            let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+//            
+//            if imageData != nil {
+//
+//                otgView.buddyStackPictures[i].image = UIImage(data:imageData!)
+//            }
             
             
 //            if imageData != nil  && i == 0 {
@@ -622,10 +714,92 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    var places: [JSON]!
+    var coverImage: String!
+    
+    func makeCoverPic(imageString: String) {
+        
+        print("image name: \(imageString)")
+        let getImageUrl = adminUrl + "upload/readFile?file=\(imageString)"
+        print("image url: \(getImageUrl)")
+        let data = NSData(contentsOfFile: getImageUrl)
+        print("image data: \(data)")
+        if data != nil {
+            
+            self.otgView.cityImage.image = UIImage(data: data!)
+            
+        }
+    }
+    
+    func getCoverPic() {
+        
+        var temp: [String] = []
+        
+        for place in places {
+            
+            temp.append(place.string!)
+        }
+        
+        request.getJourneyCoverPic(temp, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    self.makeCoverPic(response["data"].string!)
+                    if self.locationData != nil {
+                        
+                        //                    let dateFormatterOne = NSDateFormatter()
+                        ////                    dateFormatter.dateFormat = "YYYY-MM-DD"
+                        //
+                        //
+                        //                    dateFormatterOne.dateStyle = .LongStyle
+                        //                    let currentDate = dateFormatterOne.stringFromDate(NSDate())
+                        //                    print("date: \(currentDate)")
+                        
+                        let dateFormatterTwo = NSDateFormatter()
+                        dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+                        self.currentTime = dateFormatterTwo.stringFromDate(NSDate())
+                        print("time: \(self.currentTime)")
+                        
+                        self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.5)
+                        self.otgView.detectLocationView.hidden = true
+                        self.otgView.placeLabel.text = self.locationData
+                        self.otgView.timestampDate.text = self.currentTime
+                        //                    self.otgView.timestampTime.text =
+                        self.otgView.cityView.layer.opacity = 0.0
+                        self.otgView.cityView.hidden = false
+                        self.otgView.cityView.animation.makeOpacity(1.0).animate(0.5)
+                        self.otgView.journeyDetails.hidden = true
+                        self.otgView.selectCategoryButton.hidden = false
+                        self.height = 250.0
+                        self.mainScroll.animation.makeY(60.0).animate(0.7)
+                        self.otgView.animation.makeY(0.0).animate(0.7)
+                        
+                    }
+                    
+                }
+                else {
+                    
+                    
+                }
+                
+            })
+            
+        })
+    }
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
+        var coverImage: String!
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
         request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -639,40 +813,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 else if response["value"] {
                 
 //                    print("response: \(response)")
+                    self.places = response["data"]["placeId"].array!
                     self.locationData = response["data"]["name"].string!
                     print("location: \(self.locationData)")
-                
-                    if self.locationData != nil {
-                    
-//                    let dateFormatterOne = NSDateFormatter()
-////                    dateFormatter.dateFormat = "YYYY-MM-DD"
-//                    
-//                    
-//                    dateFormatterOne.dateStyle = .LongStyle
-//                    let currentDate = dateFormatterOne.stringFromDate(NSDate())
-//                    print("date: \(currentDate)")
-                        
-                    let dateFormatterTwo = NSDateFormatter()
-                    dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
-                    self.currentTime = dateFormatterTwo.stringFromDate(NSDate())
-                    print("time: \(self.currentTime)")
-                        
-                    self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.5)
-                    self.otgView.detectLocationView.hidden = true
-                    self.otgView.placeLabel.text = self.locationData
-                    self.otgView.timestampDate.text = self.currentTime
-                    //                    self.otgView.timestampTime.text =
-                    self.otgView.cityView.layer.opacity = 0.0
-                    self.otgView.cityView.hidden = false
-                    self.otgView.cityView.animation.makeOpacity(1.0).animate(0.5)
-                    self.otgView.journeyDetails.hidden = true
-                    self.otgView.selectCategoryButton.hidden = false
-                    self.height = 250.0
-                    self.mainScroll.animation.makeY(60.0).animate(0.7)
-                    self.otgView.animation.makeY(0.0).animate(0.7)
-                    
-                    }
-            
+                    self.getCoverPic()
                 }
                 else {
                     
