@@ -89,6 +89,7 @@
 		C23EBC301D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23EBC2F1D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift */; };
 		C245776C1D1D4F8200C6568C /* NewProfilePosts.xib in Resources */ = {isa = PBXBuildFile; fileRef = C245776B1D1D4F8200C6568C /* NewProfilePosts.xib */; };
 		C245776E1D1D5ACD00C6568C /* NewProfilePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C245776D1D1D5ACD00C6568C /* NewProfilePosts.swift */; };
+		C24846381D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24846371D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift */; };
 		C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24870471D0BEAF7003CB0DD /* EachItineraryViewController.swift */; };
 		C248704A1D0BEE75003CB0DD /* MoreAboutTrip.xib in Resources */ = {isa = PBXBuildFile; fileRef = C24870491D0BEE75003CB0DD /* MoreAboutTrip.xib */; };
 		C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C248704B1D0BF05B003CB0DD /* MoreAboutTrip.swift */; };
@@ -430,6 +431,7 @@
 		C23EBC2F1D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddYearsCountriesVisitedTableViewController.swift; sourceTree = "<group>"; };
 		C245776B1D1D4F8200C6568C /* NewProfilePosts.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewProfilePosts.xib; sourceTree = "<group>"; };
 		C245776D1D1D5ACD00C6568C /* NewProfilePosts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfilePosts.swift; sourceTree = "<group>"; };
+		C24846371D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectNearbyLocationTableViewController.swift; sourceTree = "<group>"; };
 		C24870471D0BEAF7003CB0DD /* EachItineraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachItineraryViewController.swift; sourceTree = "<group>"; };
 		C24870491D0BEE75003CB0DD /* MoreAboutTrip.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreAboutTrip.xib; sourceTree = "<group>"; };
 		C248704B1D0BF05B003CB0DD /* MoreAboutTrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutTrip.swift; sourceTree = "<group>"; };
@@ -744,8 +746,8 @@
 			isa = PBXGroup;
 			children = (
 				C2E8F2D41D897D890034CEC6 /* AddActivityNew.xib */,
-				C2E8F2D61D8987860034CEC6 /* AddActivityNew.swift */,
 				C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */,
+				C2E8F2D61D8987860034CEC6 /* AddActivityNew.swift */,
 				C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */,
 				C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
@@ -757,6 +759,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C24846371D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -2498,6 +2501,7 @@
 				C281FBEB1D55EF4A00728BD9 /* QuickItineraryThree.swift in Sources */,
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
 				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,
+				C24846381D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift in Sources */,
 				C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */,
 				C26730211D27A21D00F2C822 /* AddNewOTG.swift in Sources */,
 				C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */,

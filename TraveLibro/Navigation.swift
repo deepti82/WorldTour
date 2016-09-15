@@ -3,7 +3,7 @@ import SwiftyJSON
 import SwiftHTTP
 
 let apiUrl = "http://104.155.207.185:92/api/"
-let adminUrl = "http://10.0.0.70:1337/api/"
+let adminUrl = "http://10.0.0.30:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
 
 class Navigation {
@@ -879,6 +879,28 @@ class Navigation {
         do {
             
             let opt = try HTTP.POST(adminUrl + "user/searchBuddy", parameters: ["_id": userId, "search":  searchtext])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getLocationOTG(lat: Double, long: Double, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "post/placeSearch", parameters: ["lat": lat, "long":  long])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

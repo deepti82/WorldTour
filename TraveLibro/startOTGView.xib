@@ -38,9 +38,9 @@
                 <outletCollection property="journeyBuddiesDetail" destination="PPf-fe-VPq" collectionClass="NSMutableArray" id="WEH-Vc-OdS"/>
                 <outletCollection property="journeyBuddiesDetail" destination="pen-me-O9a" collectionClass="NSMutableArray" id="Hm7-oA-LSS"/>
                 <outletCollection property="journeyBuddiesDetail" destination="WjW-hp-cGM" collectionClass="NSMutableArray" id="3un-BW-ZNo"/>
-                <outletCollection property="buddyStackPictures" destination="PPf-fe-VPq" id="erd-AZ-XLd"/>
-                <outletCollection property="buddyStackPictures" destination="pen-me-O9a" id="q5l-Ik-Vl8"/>
-                <outletCollection property="buddyStackPictures" destination="WjW-hp-cGM" id="9Gj-O7-9rG"/>
+                <outletCollection property="buddyStackPictures" destination="PPf-fe-VPq" collectionClass="NSMutableArray" id="erd-AZ-XLd"/>
+                <outletCollection property="buddyStackPictures" destination="pen-me-O9a" collectionClass="NSMutableArray" id="q5l-Ik-Vl8"/>
+                <outletCollection property="buddyStackPictures" destination="WjW-hp-cGM" collectionClass="NSMutableArray" id="9Gj-O7-9rG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -141,7 +141,7 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7r-hX-X00">
                     <rect key="frame" x="0.0" y="168" width="400" height="360"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="london_image" translatesAutoresizingMaskIntoConstraints="NO" id="vov-Dh-v4k">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="london_image" translatesAutoresizingMaskIntoConstraints="NO" id="vov-Dh-v4k">
                             <rect key="frame" x="0.0" y="108" width="400" height="175"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="175" id="Osr-QD-W5L"/>

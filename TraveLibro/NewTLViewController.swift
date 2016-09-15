@@ -14,7 +14,7 @@ import BSImagePicker
 import Photos
 import CoreLocation
 
-class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var myJourney: JSON!
     
@@ -29,14 +29,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var journeyName: String!
     var locationData: String!
     let locationManager = CLLocationManager()
-    var locValue:CLLocationCoordinate2D!
+//    var locValue:CLLocationCoordinate2D!
     var journeyCategories = [String] ()
     var currentTime: String!
     
     var journeyId: String!
     
     var addedBuddies: [JSON]!
-    
+    var addView: AddActivityNew!
     
     @IBOutlet weak var addPostsButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
@@ -63,8 +63,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        self.view.addSubview(addPosts)
 //        addPosts.animation.makeOpacity(1.0).animate(0.5)
         
-        let addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        addView = AddActivityNew(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
         self.view.addSubview(addView)
+        
+        let tapOut = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:)))
+        addView.addGestureRecognizer(tapOut)
+        
+        addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), forControlEvents: .TouchUpInside)
+        addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), forControlEvents: .TouchUpInside)
+        
         
     }
     
@@ -77,8 +84,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func closeAdd(sender: UITapGestureRecognizer) {
         
-        addPosts.animation.makeOpacity(0.0).animate(0.5)
-        addPosts.hidden = true
+        addView.animation.makeOpacity(0.0).animate(0.5)
+        addView.hidden = true
         
     }
     
@@ -156,12 +163,29 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     for image in assets {
                         
+                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image.jpg")
+                        
+                        do {
+                            
+                            //            try filemanager.removeItemAtPath("asset.jpg")
+                            
+                            //            try filemanager.createFileAtPath("image.jpg", contents: NSData(), attributes: nil)
+                            
+                            try UIImageJPEGRepresentation(image as! UIImage, 1.0)!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
+                            print("file created")
+                            
+                        } catch let error as NSError {
+                            
+                            print("error creating file: \(error.localizedDescription)")
+                            
+                        }
+                        
                         PHImageManager.defaultManager().requestImageDataForAsset(image, options: nil) {
                             imageData,dataUTI,orientation,info in
                             let imageURL = info!["PHImageFileURLKey"] as! NSURL
                             print("imageURL: \(imageURL)")
                             
-                            request.uploadPhotos(imageURL, completion: {(response) in
+                            request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
                                 
                                 print("response arrived!")
                                 
@@ -249,6 +273,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    let pickerView = UIPickerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -315,7 +341,51 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addNewView.itineraryButton.addTarget(self, action: #selector(NewTLViewController.newItinerary(_:)), forControlEvents: .TouchUpInside)
         addNewView.closeButton.addTarget(self, action: #selector(NewTLViewController.closeView(_:)), forControlEvents: .TouchUpInside)
         
+        pickerView.delegate = self
+        
+        otgView.locationLabel.inputView = pickerView
+        otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), forControlEvents: .EditingChanged)
+        
     }
+    
+    var dropdownCityOptions: [String] = []
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return dropdownCityOptions.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return dropdownCityOptions[row]
+    }
+    
+    func showDropdown(sender: UITextField) {
+        
+        request.searchCity(otgView.locationLabel.text!, completion: {(response) in
+            
+            if response.error != nil {
+                
+                print("error: \(response.error!.localizedDescription)")
+                
+            }
+            else if response["value"] {
+                
+                
+                
+            }
+            else {
+                
+            }
+            
+        })
+    }
+    
     
     func newOtg(sender: UIButton) {
         
@@ -720,9 +790,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func makeCoverPic(imageString: String) {
         
         print("image name: \(imageString)")
-        let getImageUrl = adminUrl + "upload/readFile?file=\(imageString)"
+        let getImageUrl = adminUrl + "upload/readFile?file=" + imageString + "&width=500"
         print("image url: \(getImageUrl)")
-        let data = NSData(contentsOfFile: getImageUrl)
+        let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
         print("image data: \(data)")
         if data != nil {
             
@@ -794,37 +864,155 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         })
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    var whichButton = "OTGLocation"
+    
+    func addLocationTapped(sender: UIButton) {
         
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-        var coverImage: String!
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-        request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
+        print("add location")
+        whichButton = "AddActivity"
+        print("locations = \(userLocation.latitude) \(userLocation.longitude)")
+        request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
-            
+                
                 if (response.error != nil) {
-                
+                    
                     print("error: \(response.error?.localizedDescription)")
-                
+                    
                 }
-                
+                    
                 else if response["value"] {
-                
-//                    print("response: \(response)")
-                    self.places = response["data"]["placeId"].array!
-                    self.locationData = response["data"]["name"].string!
-                    print("location: \(self.locationData)")
-                    self.getCoverPic()
+                    
+                    self.addView.addLocationButton.setTitle(response["data"][0]["name"].string!, forState: .Normal)
+                    self.addView.locationTag.tintColor = mainOrangeColor
+                    
                 }
+                    
                 else {
                     
-                    print("response error!")
                 }
                 
+                
             })
+            
+            
         })
+        
+    }
+    
+    func addPhotos(sender: UIButton) {
+        
+//        addView.photosIntialView.hidden = true
+//        addView.photosFinalView.hidden = false
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        let deleteAction = UIAlertAction(title: "Take Photos", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = .Camera
+            //            imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+            
+        })
+        let saveAction = UIAlertAction(title: "Photos Library", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            let multipleImage = BSImagePickerViewController()
+            multipleImage.maxNumberOfSelections = 200
+            
+            self.bs_presentImagePickerController(multipleImage, animated: true,
+                select: { (asset:PHAsset) -> Void in
+                    //                    print("Selected: \(asset)")
+                }, deselect: { (asset: PHAsset) -> Void in
+                    //                    print("Deselected: \(asset)")
+                }, cancel: { (assets: [PHAsset]) -> Void in
+                    //                    print("Cancel: \(assets)")
+                }, finish: { (assets: [PHAsset]) -> Void in
+                    
+                    print("Finish: \(assets)")
+                    
+                    for image in assets {
+                        
+                        PHImageManager.defaultManager().requestImageDataForAsset(image, options: nil) {
+                            imageData,dataUTI,orientation,info in
+                            let imageURL = info!["PHImageFileURLKey"] as! NSURL
+                            print("imageURL: \(imageURL)")
+                            
+                            request.uploadPhotos(imageURL, completion: {(response) in
+                                
+                                print("response arrived!")
+                                
+                            })
+                            
+                        }
+                        
+                    }
+                    
+                    
+                    
+                }, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        
+        
+        optionMenu.addAction(deleteAction)
+        optionMenu.addAction(saveAction)
+        optionMenu.addAction(cancelAction)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+        
+    }
+    
+    var userLocation: CLLocationCoordinate2D!
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        print("in updated locations")
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        userLocation = locValue
+        var coverImage: String!
+        
+        if self.whichButton == "AddActivity" {
+            
+            
+        }
+        else {
+            
+            request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if (response.error != nil) {
+                        
+                        print("error: \(response.error?.localizedDescription)")
+                        
+                    }
+                        
+                    else if response["value"] {
+                        
+                        //                    print("response: \(response)")
+                        
+                        self.places = response["data"]["placeId"].array!
+                        self.locationData = response["data"]["name"].string!
+                        print("location: \(self.locationData)")
+                        self.getCoverPic()
+                        
+                    }
+                    else {
+                        
+                        print("response error!")
+                    }
+                    
+                })
+            })
+        }
         
     }
     
