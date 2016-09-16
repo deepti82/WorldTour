@@ -1,7 +1,7 @@
 
 import UIKit
 
-class AddActivityNew: UIView {
+class AddActivityNew: UIView, UITextViewDelegate {
 
     @IBOutlet weak var locationView: UIView!
     @IBOutlet weak var photosIntialView: UIView!
@@ -11,17 +11,28 @@ class AddActivityNew: UIView {
     @IBOutlet weak var thoughtsInitalView: UIView!
     @IBOutlet weak var thoughtsFinalView: UIView!
     @IBOutlet weak var tagFriendsView: UIView!
+    @IBOutlet weak var thoughtsButton: UIButton!
+    
+    @IBOutlet weak var photosCount: UILabel!
+    @IBOutlet weak var videosCount: UILabel!
     
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var locationTag: UIImageView!
     
     @IBOutlet weak var photosButton: UIButton!
     
+    @IBOutlet var photosCollection: [UIImageView]!
+    
+    @IBOutlet weak var friendsCount: UIButton!
+    
+    @IBOutlet weak var thoughtsTextView: UITextView!
+    @IBOutlet weak var thoughtsCharacterCount: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.frame.height
         blurView.frame.size.width = self.frame.width
@@ -33,10 +44,62 @@ class AddActivityNew: UIView {
         videosFinalView.hidden = true
         thoughtsFinalView.hidden = true
         
+        for photo in photosCollection {
+            
+            photo.layer.cornerRadius = 5.0
+            
+        }
+        
+        getStylesOn(locationView)
+        getStylesOn(photosIntialView)
+        getStylesOn(photosFinalView)
+        getStylesOn(videosInitialView)
+        getStylesOn(videosFinalView)
+        getStylesOn(thoughtsInitalView)
+        getStylesOn(thoughtsFinalView)
+        
+        thoughtsTextView.delegate = self
+        thoughtsTextView.returnKeyType = .Done
+        
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        
+        thoughtsTextView.text = ""
+        
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n" {
+            
+            thoughtsTextView.resignFirstResponder()
+            
+            if thoughtsTextView.text == "" {
+                
+                thoughtsTextView.text = "Fill Me In..."
+                
+            }
+            return true
+            
+        }
+        
+        let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+        let number = newText.characters.count
+        thoughtsCharacterCount.text = String(180 - number)
+        
+        if thoughtsCharacterCount.text == "-1" {
+            
+            thoughtsCharacterCount.text = "0"
+        }
+        
+        return number <= 180
+        
     }
     
     func getStylesOn(view: UIView) {
         
+        view.layer.cornerRadius = 5.0
         
     }
     

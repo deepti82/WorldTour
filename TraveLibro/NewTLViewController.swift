@@ -71,7 +71,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), forControlEvents: .TouchUpInside)
         addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), forControlEvents: .TouchUpInside)
-        
+        addView.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), forControlEvents: .TouchUpInside)
         
     }
     
@@ -161,7 +161,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     print("Finish: \(assets)")
                     
-                    for image in assets {
+                    for asset in assets {
                         
                         let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image.jpg")
                         
@@ -170,28 +170,32 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             //            try filemanager.removeItemAtPath("asset.jpg")
                             
                             //            try filemanager.createFileAtPath("image.jpg", contents: NSData(), attributes: nil)
-                            
-                            try UIImageJPEGRepresentation(image as! UIImage, 1.0)!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
+                            let image = self.getAssetThumbnail(asset)
+                            try UIImageJPEGRepresentation(image, 1.0)!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
                             print("file created")
-                            
+                            request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
+
+                                print("response arrived!")
+
+                            })
                         } catch let error as NSError {
                             
                             print("error creating file: \(error.localizedDescription)")
                             
                         }
                         
-                        PHImageManager.defaultManager().requestImageDataForAsset(image, options: nil) {
-                            imageData,dataUTI,orientation,info in
-                            let imageURL = info!["PHImageFileURLKey"] as! NSURL
-                            print("imageURL: \(imageURL)")
-                            
-                            request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
-                                
-                                print("response arrived!")
-                                
-                            })
-                            
-                        }
+//                        PHImageManager.defaultManager().requestImageDataForAsset(image, options: nil) {
+//                            imageData,dataUTI,orientation,info in
+//                            let imageURL = info!["PHImageFileURLKey"] as! NSURL
+//                            print("imageURL: \(imageURL)")
+//                            
+//                            request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
+//                                
+//                                print("response arrived!")
+//                                
+//                            })
+//                            
+//                        }
                         
                     }
                     
@@ -254,6 +258,34 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.presentViewController(optionMenu, animated: true, completion: nil)
         
         
+    }
+    
+    func getAssetThumbnail(asset: PHAsset) -> UIImage {
+        
+        var retimage = UIImage()
+        print(retimage)
+        
+//        dispatch_async(dispatch_get_main_queue(), {
+        
+            let options = PHImageRequestOptions()
+            options.synchronous = true
+            
+            PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .AspectFit, options: options, resultHandler: {(result, info) in
+                
+//                dispatch_async(dispatch_get_main_queue(), {
+                
+                    print("thumbnail result: \(result)")
+                    print("thumbnail info: \(info)")
+                    retimage = result!
+                    
+//                })
+                
+            })
+            
+//        })
+        
+        print(retimage)
+        return retimage
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -343,7 +375,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         pickerView.delegate = self
         
-        otgView.locationLabel.inputView = pickerView
+//        otgView.locationLabel.inputView = pickerView
         otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), forControlEvents: .EditingChanged)
         
     }
@@ -425,6 +457,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         otgView.nameJourneyTF.resignFirstResponder()
         otgView.locationLabel.resignFirstResponder()
+//        addView.thoughtsTextView.resignFirstResponder()
         self.title = otgView.nameJourneyTF.text
         print("text field: \(textField)")
         
@@ -931,25 +964,75 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }, finish: { (assets: [PHAsset]) -> Void in
                     
                     print("Finish: \(assets)")
+                    var index = 0
                     
-                    for image in assets {
+                    if assets.count < 4 {
                         
-                        PHImageManager.defaultManager().requestImageDataForAsset(image, options: nil) {
-                            imageData,dataUTI,orientation,info in
-                            let imageURL = info!["PHImageFileURLKey"] as! NSURL
-                            print("imageURL: \(imageURL)")
+                        let difference = 4 - assets.count
+                        
+                        for i in 0 ..< difference {
                             
-                            request.uploadPhotos(imageURL, completion: {(response) in
-                                
-                                print("response arrived!")
-                                
-                            })
+                            let index = self.addView.photosCollection.count - i - 1
+                            self.addView.photosCollection[index].hidden = true
                             
                         }
                         
                     }
                     
-                    
+                    for asset in assets {
+                        
+                        let image = self.getAssetThumbnail(asset)
+                        let temp: Bool!
+                        
+                        print("got uiimage: \(image)")
+                        
+                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image.jpg")
+                        
+                        do {
+                            
+                            print("export file: \(NSURL(string: exportFilePath)!), \(image), \(image.scale)")
+                            let tempImage = UIImageJPEGRepresentation(image, 1.0)
+//                            print("temp Image: \(tempImage)")
+                            
+                            if tempImage == nil {
+                                
+                                UIGraphicsBeginImageContext(image.size)
+                                image.drawInRect(CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+                                let newImage = UIGraphicsGetImageFromCurrentImageContext()
+                                UIGraphicsEndImageContext()
+                                let newTemp = UIImageJPEGRepresentation(newImage, 1.0)
+//                                print("new: \(newTemp)")
+                                temp = try newTemp!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
+                                self.addView.photosCollection[index].image = UIImage(data: newTemp!)
+                            }
+                            
+                            else {
+                                
+                               temp = try tempImage!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
+                                self.addView.photosCollection[index].image = UIImage(data: tempImage!)
+                                
+                            }
+                            print("temp: \(temp)")
+                            print("file created")
+                            self.addView.photosIntialView.hidden = true
+                            self.addView.photosFinalView.hidden = false
+                            self.addView.photosCount.text = "(\(assets.count))"
+                            self.addView.photosCollection[index].layer.cornerRadius = 5.0
+                            index = index + 1
+                            
+                        } catch let error as NSError {
+                            
+                            print("error creating file: \(error.localizedDescription)")
+                            
+                        }
+                        
+                        request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
+                            
+                            print("response arrived!")
+                            
+                        })
+                        
+                    }
                     
                 }, completion: nil)
         })
@@ -967,6 +1050,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.presentViewController(optionMenu, animated: true, completion: nil)
         
     }
+    
+    func addThoughts(sender: UIButton) {
+        
+        addView.thoughtsInitalView.hidden = true
+        addView.thoughtsFinalView.hidden = false
+        
+    }
+    
     
     var userLocation: CLLocationCoordinate2D!
     
@@ -1001,6 +1092,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         self.places = response["data"]["placeId"].array!
                         self.locationData = response["data"]["name"].string!
+                        self.otgView.locationLabel.text = response["data"]["name"].string!
                         print("location: \(self.locationData)")
                         self.getCoverPic()
                         

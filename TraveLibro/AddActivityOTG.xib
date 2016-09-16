@@ -56,7 +56,7 @@
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Zpj-Kl-oJI">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
-                                    <color key="tintColor" red="0.6583518385887146" green="0.92510706186294556" blue="0.91796684265136719" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="Mn4-um-QJf"/>
                                         <constraint firstAttribute="height" constant="25" id="W9e-vS-g50"/>
