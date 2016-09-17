@@ -42,7 +42,6 @@
 		3AF1870A1D785EE800A86BC1 /* forDpFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187091D785EE800A86BC1 /* forDpFour.swift */; };
 		3AF187101D786B2300A86BC1 /* DisplayPagesThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1870F1D786B2300A86BC1 /* DisplayPagesThreeViewController.swift */; };
 		3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */; };
-		8644475487B77BD17AC161F6 /* Pods_TraveLibro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */; };
 		8985E87711B675E96A2FE376 /* Pods_TraveLibroTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */; };
 		C20163E01D26911C00A2F70B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163DF1D26911C00A2F70B /* UserModel.swift */; };
 		C20163E21D26972B00A2F70B /* ProfileImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20163E11D26972B00A2F70B /* ProfileImage.xib */; };
@@ -264,6 +263,7 @@
 		C2ABDBB21CEC53B000D7542E /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABDBB11CEC53B000D7542E /* StatusView.swift */; };
 		C2ABDBB41CEC53C300D7542E /* StatusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2ABDBB31CEC53C300D7542E /* StatusView.xib */; };
 		C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */; };
+		C2AC013B1D8D44C800B99868 /* Pods_TraveLibro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */; };
 		C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AC5D1A1CF32CE0008E5887 /* PopularJourneyView.xib */; };
 		C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B4423C1CF41B0600967689 /* PopularJourneysViewController.swift */; };
 		C2BB45F01CFD96E300251E8C /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB45EF1CFD96E300251E8C /* FollowersViewController.swift */; };
@@ -670,7 +670,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8644475487B77BD17AC161F6 /* Pods_TraveLibro.framework in Frameworks */,
+				C2AC013B1D8D44C800B99868 /* Pods_TraveLibro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2664,6 +2664,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2703,6 +2704,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

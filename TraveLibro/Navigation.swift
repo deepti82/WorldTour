@@ -3,7 +3,7 @@ import SwiftyJSON
 import SwiftHTTP
 
 let apiUrl = "http://104.155.207.185:92/api/"
-let adminUrl = "http://10.0.0.69:1337/api/"
+let adminUrl = "http://10.0.0.70:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
 
 class Navigation {
@@ -901,6 +901,54 @@ class Navigation {
         do {
             
             let opt = try HTTP.POST(adminUrl + "post/placeSearch", parameters: ["lat": lat, "long":  long])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getJourney(id: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "journey/getOnGoing", parameters: ["user": id])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func postTravelLife(thoughts: String, location: String, locationCategory: String, photosArray: [String], videosArray: [String], buddies: [String], userId: String, journeyId: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let checkIn = ["location": location, "category": locationCategory]
+            
+            let params = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "photos": photosArray, "videos": videosArray, "buddies": buddies, "user": userId, "journey": journeyId]
+            
+            let opt = try HTTP.POST(adminUrl + "post/save", parameters: [params])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

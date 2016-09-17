@@ -28,6 +28,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var thoughtsTextView: UITextView!
     @IBOutlet weak var thoughtsCharacterCount: UILabel!
     
+    @IBOutlet weak var postButton: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -57,9 +58,14 @@ class AddActivityNew: UIView, UITextViewDelegate {
         getStylesOn(videosFinalView)
         getStylesOn(thoughtsInitalView)
         getStylesOn(thoughtsFinalView)
+        getStylesOn(tagFriendsView)
         
         thoughtsTextView.delegate = self
         thoughtsTextView.returnKeyType = .Done
+        
+        postButton.layer.cornerRadius = 5.0
+        postButton.layer.borderColor = UIColor.whiteColor().CGColor
+        postButton.layer.borderWidth = 1.0
         
     }
     

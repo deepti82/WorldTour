@@ -14,6 +14,8 @@ import BSImagePicker
 import Photos
 import CoreLocation
 
+var isJourneyOngoing = false
+
 class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var myJourney: JSON!
@@ -54,6 +56,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    var newScroll: UIScrollView!
+    
     @IBAction func addPosts(sender: AnyObject) {
         
 //        addPosts = AddPostsOTGView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
@@ -62,9 +66,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        addPosts.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:))))
 //        self.view.addSubview(addPosts)
 //        addPosts.animation.makeOpacity(1.0).animate(0.5)
+        getJourney()
         
-        addView = AddActivityNew(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-        self.view.addSubview(addView)
+        newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        self.view.addSubview(newScroll)
+        newScroll.contentSize.height = 800.0
+        
+        addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        newScroll.addSubview(addView)
         
         let tapOut = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:)))
         addView.addGestureRecognizer(tapOut)
@@ -72,6 +81,118 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), forControlEvents: .TouchUpInside)
         addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), forControlEvents: .TouchUpInside)
         addView.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), forControlEvents: .TouchUpInside)
+        addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), forControlEvents: .TouchUpInside)
+        
+    }
+    
+    var uploadedVideos: [String] = []
+    var journeyBuddies: [String] = []
+    
+    func newPost(sender: UIButton) {
+        
+        var thoughts = ""
+        var location = ""
+        var locationCategory = ""
+        var photos: [String] = []
+        var videos: [String] = []
+        var buddies: [String] = []
+        var id = ""
+        
+        if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" {
+            
+            thoughts = addView.thoughtsTextView.text
+            
+        }
+        if addView.addLocationButton.titleLabel!.text != nil && addView.addLocationButton.titleLabel!.text != "" {
+            
+            location = addView.addLocationButton.titleLabel!.text!
+            
+        }
+        if uploadedphotos.count > 0 {
+            
+            photos = uploadedphotos
+            
+        }
+        if uploadedVideos.count > 0 {
+            
+            videos = uploadedVideos
+            
+        }
+        if addedBuddies.count > 0 {
+            
+            for buddy in addedBuddies {
+                
+                buddies.append(buddy["_id"].string!)
+                
+            }
+            
+        }
+        if journeyId != nil && journeyId != "" {
+            
+            id = journeyId
+            
+        }
+        
+        
+        addView.animation.makeOpacity(0.0).animate(0.5)
+        addView.hidden = true
+        newScroll.hidden = true
+        request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, completion: {(response) in
+            
+            if response.error != nil {
+                
+                print("error: \(response.error!.localizedDescription)")
+                
+            }
+            else if response["value"] {
+                
+                print("response arrived!")
+                
+            }
+            else {
+                
+                print("response error!")
+                
+            }
+            
+        })
+        
+    }
+    
+    func getJourney() {
+        
+        request.getJourney(currentUser["_id"].string!, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    print("response arrived!")
+                    let allPosts = response["data"]["post"].array!
+                    for post in allPosts {
+                        
+                        self.configurePost(post)
+                        
+                    }
+                    
+                }
+                else {
+                 
+                    print("response error!")
+                    
+                }
+            })
+            
+            
+            
+        })
+        
+        
         
     }
     
@@ -86,6 +207,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         addView.animation.makeOpacity(0.0).animate(0.5)
         addView.hidden = true
+        newScroll.hidden = true
         
     }
     
@@ -130,6 +252,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     let imagePicker = UIImagePickerController()
+    var uploadedphotos: [String] = []
     
     func addPhotosTL(sender: UIButton) {
         
@@ -174,7 +297,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             try UIImageJPEGRepresentation(image, 1.0)!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
                             print("file created")
                             request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
-
+                                
                                 print("response arrived!")
 
                             })
@@ -306,6 +429,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     let pickerView = UIPickerView()
+    var layout: VerticalLayout!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -377,6 +501,57 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
 //        otgView.locationLabel.inputView = pickerView
         otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), forControlEvents: .EditingChanged)
+        mainScroll.contentSize.height = self.view.frame.height
+    }
+    
+    var isInitialPost = true
+    
+    func showPost(whichPost: String, post: JSON) {
+        
+        if isInitialPost {
+            
+            layout = VerticalLayout(width: self.view.frame.width)
+            layout.frame.origin.y = 600
+            layout.backgroundColor = UIColor.whiteColor()
+            mainScroll.addSubview(layout)
+            isInitialPost = false
+            
+        }
+        
+        switch whichPost {
+        case "CheckIn":
+            let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 550))
+            layout.addSubview(checkIn)
+            addHeightToLayout(checkIn.frame.height + 50.0)
+//            checkIn.postDp.hidden = true
+            checkIn.photosTitle.text = post["thoughts"].string!
+        case "Photos":
+            break
+        case "Videos":
+            break
+        case "Thoughts":
+            break
+        default:
+            break
+        }
+        
+        
+//        mainScroll.contentSize.height = 10000
+        
+        
+        
+    }
+    
+    func addHeightToLayout(height: CGFloat) {
+        
+        layout.frame.size.height = layout.frame.size.height + height
+        mainScroll.contentSize.height = mainScroll.contentSize.height + height
+        
+    }
+    
+    func configurePost(post: JSON) {
+        
+        showPost("CheckIn", post: post)
         
     }
     
@@ -1028,7 +1203,22 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
                             
-                            print("response arrived!")
+                            if response.error != nil {
+                                
+                                print("error: \(response.error!.localizedDescription)")
+                                
+                            }
+                            else if response["value"] {
+                                
+                                print("response arrived!")
+                                self.uploadedphotos.append(response["data"][0].string!)
+                                
+                            }
+                            else {
+                                
+                                print("response error!")
+                                
+                            }
                             
                         })
                         

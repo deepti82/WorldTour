@@ -10,6 +10,7 @@ import UIKit
 
 class PhotosOTG: UIView {
 
+    @IBOutlet weak var postDp: UIImageView!
     @IBOutlet weak var stackView: UIView!
     @IBOutlet weak var timestampView: UIView!
     @IBOutlet weak var likeHeart: UILabel!
