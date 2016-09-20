@@ -13,6 +13,7 @@ import BSImagePicker
 //import DKImagePickerController
 import Photos
 import CoreLocation
+import ActiveLabel
 
 var isJourneyOngoing = false
 
@@ -66,17 +67,32 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        addPosts.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:))))
 //        self.view.addSubview(addPosts)
 //        addPosts.animation.makeOpacity(1.0).animate(0.5)
-        getJourney()
-        
+//        getJourney()
+        print("in the add posts function")
+        uploadedphotos = []
         newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
         self.view.addSubview(newScroll)
         newScroll.contentSize.height = 800.0
         
         addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        if addedBuddies != nil && addedBuddies.count > 0 {
+            
+            if addedBuddies.count == 1 {
+                
+                addView.friendsCount.setTitle("1 Friend", forState: .Normal)
+                
+            }
+            else {
+                
+                addView.friendsCount.setTitle("\(addedBuddies.count) Friends", forState: .Normal)
+            }
+            
+            
+        }
         newScroll.addSubview(addView)
         
-        let tapOut = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:)))
-        addView.addGestureRecognizer(tapOut)
+//        let tapOut = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:)))
+//        addView.addGestureRecognizer(tapOut)
         
         addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), forControlEvents: .TouchUpInside)
         addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), forControlEvents: .TouchUpInside)
@@ -101,21 +117,25 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" {
             
             thoughts = addView.thoughtsTextView.text
+            print("thoughts: \(thoughts)")
             
         }
         if addView.addLocationButton.titleLabel!.text != nil && addView.addLocationButton.titleLabel!.text != "" {
             
             location = addView.addLocationButton.titleLabel!.text!
+            print("location: \(location)")
             
         }
         if uploadedphotos.count > 0 {
             
             photos = uploadedphotos
+            print("photos \(photos)")
             
         }
         if uploadedVideos.count > 0 {
             
             videos = uploadedVideos
+            print("videos: \(videos)")
             
         }
         if addedBuddies.count > 0 {
@@ -126,38 +146,46 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             }
             
+            print("buddies: \(buddies)")
+            
         }
         if journeyId != nil && journeyId != "" {
             
             id = journeyId
+            print("id: \(id)")
             
         }
-        
         
         addView.animation.makeOpacity(0.0).animate(0.5)
         addView.hidden = true
         newScroll.hidden = true
         request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, completion: {(response) in
             
-            if response.error != nil {
+            dispatch_async(dispatch_get_main_queue(), {
                 
-                print("error: \(response.error!.localizedDescription)")
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    print("response arrived new post!")
+                    self.getJourney()
+                    
+                }
+                else {
+                    
+                    print("response error!")
+                    
+                }
                 
-            }
-            else if response["value"] {
-                
-                print("response arrived!")
-                
-            }
-            else {
-                
-                print("response error!")
-                
-            }
-            
+            })
         })
         
     }
+    
+    var prevPosts: [JSON] = []
     
     func getJourney() {
         
@@ -172,11 +200,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
                 else if response["value"] {
                     
-                    print("response arrived!")
+                    print("response get journey \(response["data"]["post"].array!)")
                     let allPosts = response["data"]["post"].array!
                     for post in allPosts {
                         
-                        self.configurePost(post)
+                        if !self.prevPosts.contains(post) {
+                            
+                            self.configurePost(post)
+                            
+                        }
                         
                     }
                     
@@ -188,11 +220,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
             })
             
-            
-            
         })
-        
-        
         
     }
     
@@ -254,134 +282,134 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     let imagePicker = UIImagePickerController()
     var uploadedphotos: [String] = []
     
-    func addPhotosTL(sender: UIButton) {
-        
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        
-        let deleteAction = UIAlertAction(title: "Take Photos", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .Camera
-//            imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
-            self.presentViewController(self.imagePicker, animated: true, completion: nil)
-            
-        })
-        let saveAction = UIAlertAction(title: "Photos Library", style: .Default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            
-            let multipleImage = BSImagePickerViewController()
-            multipleImage.maxNumberOfSelections = 200
-            
-            self.bs_presentImagePickerController(multipleImage, animated: true,
-                select: { (asset:PHAsset) -> Void in
-//                    print("Selected: \(asset)")
-                }, deselect: { (asset: PHAsset) -> Void in
-//                    print("Deselected: \(asset)")
-                }, cancel: { (assets: [PHAsset]) -> Void in
-//                    print("Cancel: \(assets)")
-                }, finish: { (assets: [PHAsset]) -> Void in
-                    
-                    print("Finish: \(assets)")
-                    
-                    for asset in assets {
-                        
-                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image.jpg")
-                        
-                        do {
-                            
-                            //            try filemanager.removeItemAtPath("asset.jpg")
-                            
-                            //            try filemanager.createFileAtPath("image.jpg", contents: NSData(), attributes: nil)
-                            let image = self.getAssetThumbnail(asset)
-                            try UIImageJPEGRepresentation(image, 1.0)!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
-                            print("file created")
-                            request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
-                                
-                                print("response arrived!")
-
-                            })
-                        } catch let error as NSError {
-                            
-                            print("error creating file: \(error.localizedDescription)")
-                            
-                        }
-                        
-//                        PHImageManager.defaultManager().requestImageDataForAsset(image, options: nil) {
-//                            imageData,dataUTI,orientation,info in
-//                            let imageURL = info!["PHImageFileURLKey"] as! NSURL
-//                            print("imageURL: \(imageURL)")
+//    func addPhotosTL(sender: UIButton) {
+//        
+//        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+//        
+//        let deleteAction = UIAlertAction(title: "Take Photos", style: .Default, handler: {
+//            (alert: UIAlertAction!) -> Void in
+//            
+//            self.imagePicker.allowsEditing = true
+//            self.imagePicker.sourceType = .Camera
+////            imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+//            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+//            
+//        })
+//        let saveAction = UIAlertAction(title: "Photos Library", style: .Default, handler: {
+//            (alert: UIAlertAction!) -> Void in
+//            
+//            let multipleImage = BSImagePickerViewController()
+//            multipleImage.maxNumberOfSelections = 200
+//            
+//            self.bs_presentImagePickerController(multipleImage, animated: true,
+//                select: { (asset:PHAsset) -> Void in
+////                    print("Selected: \(asset)")
+//                }, deselect: { (asset: PHAsset) -> Void in
+////                    print("Deselected: \(asset)")
+//                }, cancel: { (assets: [PHAsset]) -> Void in
+////                    print("Cancel: \(assets)")
+//                }, finish: { (assets: [PHAsset]) -> Void in
+//                    
+//                    print("Finish: \(assets)")
+//                    
+//                    for asset in assets {
+//                        
+//                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image.jpg")
+//                        
+//                        do {
 //                            
+//                            //            try filemanager.removeItemAtPath("asset.jpg")
+//                            
+//                            //            try filemanager.createFileAtPath("image.jpg", contents: NSData(), attributes: nil)
+//                            let image = self.getAssetThumbnail(asset)
+//                            try UIImageJPEGRepresentation(image, 1.0)!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
+//                            print("file created")
 //                            request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
 //                                
-//                                print("response arrived!")
-//                                
+//                                print("response upload photos")
+//
 //                            })
+//                        } catch let error as NSError {
+//                            
+//                            print("error creating file: \(error.localizedDescription)")
 //                            
 //                        }
-                        
-                    }
-                    
-                    
-                    
-                }, completion: nil)
-            
-//            let pickerController = DKImagePickerController()
-            
-//            pickerController.didSelectAssets = {(assets: [DKAsset]) in
-//                
-//                print("didSelectAssets")
-//                print(assets)
-//                
-//                
-////                for image in assets {
-//////                    var info: [NSObject : AnyObject]
-//////                    let tempImage = info[image] as! UIImage
-////                    
-//////                    print("partial path: \(resourcePath)")
-////                    if let resourcePath = NSBundle.mainBundle().resourcePath {
-//////                        print("partial path: \(resourcePath)")
-//////                        let imgName = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-//////                        print("name: \(imgName)")
-////                        
-//////                        let imagename = "IMG_kdslkglkd_dngslgldnsgls_001.jpg"
-//////                        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-//////                        let destinationPath = String(documentsPath) + "/" + imagename
-////////                        UIImageJPEGRepresentation(image,1.0)!.writeToFile(destinationPath, atomically: true)
+//                        
+////                        PHImageManager.defaultManager().requestImageDataForAsset(image, options: nil) {
+////                            imageData,dataUTI,orientation,info in
+////                            let imageURL = info!["PHImageFileURLKey"] as! NSURL
+////                            print("imageURL: \(imageURL)")
+////                            
+////                            request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
+////                                
+////                                print("response arrived!")
+////                                
+////                            })
+////                            
+////                        }
+//                        
+//                    }
+//                    
+//                    
+//                    
+//                }, completion: nil)
+//            
+////            let pickerController = DKImagePickerController()
+//            
+////            pickerController.didSelectAssets = {(assets: [DKAsset]) in
+////                
+////                print("didSelectAssets")
+////                print(assets)
+////                
+////                
+//////                for image in assets {
+////////                    var info: [NSObject : AnyObject]
+////////                    let tempImage = info[image] as! UIImage
+//////                    
+////////                    print("partial path: \(resourcePath)")
+//////                    if let resourcePath = NSBundle.mainBundle().resourcePath {
+////////                        print("partial path: \(resourcePath)")
+////////                        let imgName = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+////////                        print("name: \(imgName)")
 //////                        
-//////                        print(destinationPath);
-////                        let imageData: NSData = UIImagePNGRepresentation(image)
-////                        self.writeImageToFile(, completeBlock: {(response) in
-////                            
-////                            print("response: \(response)")
-////                            
-////                        })
-//////                        let path = resourcePath + "/" + imgName
-//////                        print("path: \(path)")
-////                        
-////                    }
-////                    
-////                }
-//                
-//            }
-            
-//            self.presentViewController(multipleImage, animated: true) {}
-        })
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
-            (alert: UIAlertAction!) -> Void in
-            print("Cancelled")
-        })
-        
-        
-        optionMenu.addAction(deleteAction)
-        optionMenu.addAction(saveAction)
-        optionMenu.addAction(cancelAction)
-        
-        self.presentViewController(optionMenu, animated: true, completion: nil)
-        
-        
-    }
+////////                        let imagename = "IMG_kdslkglkd_dngslgldnsgls_001.jpg"
+////////                        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+////////                        let destinationPath = String(documentsPath) + "/" + imagename
+//////////                        UIImageJPEGRepresentation(image,1.0)!.writeToFile(destinationPath, atomically: true)
+////////                        
+////////                        print(destinationPath);
+//////                        let imageData: NSData = UIImagePNGRepresentation(image)
+//////                        self.writeImageToFile(, completeBlock: {(response) in
+//////                            
+//////                            print("response: \(response)")
+//////                            
+//////                        })
+////////                        let path = resourcePath + "/" + imgName
+////////                        print("path: \(path)")
+//////                        
+//////                    }
+//////                    
+//////                }
+////                
+////            }
+//            
+////            self.presentViewController(multipleImage, animated: true) {}
+//        })
+//        
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+//            (alert: UIAlertAction!) -> Void in
+//            print("Cancelled")
+//        })
+//        
+//        
+//        optionMenu.addAction(deleteAction)
+//        optionMenu.addAction(saveAction)
+//        optionMenu.addAction(cancelAction)
+//        
+//        self.presentViewController(optionMenu, animated: true, completion: nil)
+//        
+//        
+//    }
     
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
         
@@ -508,29 +536,89 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func showPost(whichPost: String, post: JSON) {
         
+        if !prevPosts.contains(post) {
+            
+            prevPosts.append(post)
+            
+        }
+        
         if isInitialPost {
             
             layout = VerticalLayout(width: self.view.frame.width)
             layout.frame.origin.y = 600
-            layout.backgroundColor = UIColor.whiteColor()
+//            layout.backgroundColor = UIColor.whiteColor()
             mainScroll.addSubview(layout)
             isInitialPost = false
             
         }
         
+        var thoughts = ""
+        var photos: [JSON] = []
+//        let tags = ActiveLabel()
+        
+        if post["thoughts"] != nil && post["thoughts"].string != "" {
+            
+            thoughts = "\(post["thoughts"]) — with \(post["buddies"][0]["name"])"
+            
+        }
+        
+        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 550))
+        layout.addSubview(checkIn)
+        addHeightToLayout(checkIn.frame.height + 50.0)
+        checkIn.photosTitle.text = thoughts
+        
+        if post["photos"] != nil && post["photos"].array?.count > 0 {
+            
+            photos = post["photos"].array!
+            checkIn.mainPhoto.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!)!)
+            print("photobar count: \(photos.count)")
+            
+            for i in 0 ..< photos.count - 1 {
+                
+                print("in the for loop \(post["photos"][i + 1]["name"])")
+//                checkIn.otherPhotosStack[i].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")!)!)
+                getImage(checkIn.otherPhotosStack[i], imageValue: photos[i + 1]["name"].string!)
+                
+            }
+            
+        }
+        
+        else {
+            
+            checkIn.mainPhoto.hidden = true
+            checkIn.photosStack.hidden = true
+            
+        }
+        
         switch whichPost {
         case "CheckIn":
-            let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 550))
-            layout.addSubview(checkIn)
-            addHeightToLayout(checkIn.frame.height + 50.0)
+            checkIn.whatPostIcon.setImage(UIImage(named: "location_icon"), forState: .Normal)
 //            checkIn.postDp.hidden = true
-            checkIn.photosTitle.text = post["thoughts"].string!
+
+//            if post["photos"].array!.count < checkIn.otherPhotosStack.count {
+//                
+//                print("in photo comparison")
+//                
+//                let difference = checkIn.otherPhotosStack.count - post["photos"].array!.count
+//                
+//                for i in 0 ..< difference {
+//                    
+//                    print("in difference for loop")
+//                    
+//                    let index = checkIn.otherPhotosStack.count - i - 1
+//                    checkIn.otherPhotosStack[index].hidden = true
+//                    
+//                }
+//                
+//                
+//            }
+            
         case "Photos":
-            break
+            checkIn.whatPostIcon.setImage(UIImage(named: "camera_icon"), forState: .Normal)
         case "Videos":
-            break
+            checkIn.whatPostIcon.setImage(UIImage(named: "video"), forState: .Normal)
         case "Thoughts":
-            break
+            checkIn.whatPostIcon.setImage(UIImage(named: "pen_icon"), forState: .Normal)
         default:
             break
         }
@@ -551,7 +639,31 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func configurePost(post: JSON) {
         
-        showPost("CheckIn", post: post)
+        if post["checkIn"] != nil &&  post["checkIn"].string != "" {
+            
+            showPost("CheckIn", post: post)
+        }
+        else if post["photos"] != nil && post["photos"].array?.count > 0 {
+            
+            showPost("Photos", post: post)
+            
+        }
+        else if post["videos"] != nil && post["videos"].array?.count > 0 {
+            
+            showPost("Videos", post: post)
+        }
+        else if post["thoughts"] != nil &&  post["thoughts"].string != "" {
+            
+            showPost("Thoughts", post: post)
+            
+        }
+        
+    }
+    
+    func getImage(myImage: UIImageView, imageValue: String) {
+        
+        myImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(imageValue)&width=500")!)!)
+        
         
     }
     
@@ -691,6 +803,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func showDetailsFn() {
         
+        print("show details function")
+        
         request.addNewOTG(otgView.nameJourneyTF.text!, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -702,7 +816,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                 else {
                     
-                    print("response: \(response)")
+                    print("response of add posts")
                     self.journeyId = response["data"]["uniqueId"].string!
                     print("unique id: \(self.journeyId)")
                 }
@@ -1108,10 +1222,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    var photosCount: Int = 0
+    
     func addPhotos(sender: UIButton) {
         
 //        addView.photosIntialView.hidden = true
 //        addView.photosFinalView.hidden = false
+        
+//        addView.postButton.enabled = true
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         
         let deleteAction = UIAlertAction(title: "Take Photos", style: .Default, handler: {
@@ -1138,8 +1256,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     //                    print("Cancel: \(assets)")
                 }, finish: { (assets: [PHAsset]) -> Void in
                     
-                    print("Finish: \(assets)")
+                    
                     var index = 0
+                    self.addView.postButton.hidden = true
+                    print("Finish: \(self.addView.postButton.hidden)")
                     
                     if assets.count < 4 {
                         
@@ -1154,6 +1274,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
+                    var assetArray: [String] = []
+                    
                     for asset in assets {
                         
                         let image = self.getAssetThumbnail(asset)
@@ -1161,12 +1283,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         print("got uiimage: \(image)")
                         
-                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image.jpg")
+                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image\(index).jpg")
                         
                         do {
                             
                             print("export file: \(NSURL(string: exportFilePath)!), \(image), \(image.scale)")
-                            let tempImage = UIImageJPEGRepresentation(image, 1.0)
+                            let tempImage = UIImageJPEGRepresentation(image, 0.87)
 //                            print("temp Image: \(tempImage)")
                             
                             if tempImage == nil {
@@ -1175,7 +1297,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                 image.drawInRect(CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
                                 let newImage = UIGraphicsGetImageFromCurrentImageContext()
                                 UIGraphicsEndImageContext()
-                                let newTemp = UIImageJPEGRepresentation(newImage, 1.0)
+                                let newTemp = UIImageJPEGRepresentation(newImage, 0.87)
 //                                print("new: \(newTemp)")
                                 temp = try newTemp!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
                                 self.addView.photosCollection[index].image = UIImage(data: newTemp!)
@@ -1184,15 +1306,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             else {
                                 
                                temp = try tempImage!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
-                                self.addView.photosCollection[index].image = UIImage(data: tempImage!)
+                                
+                                if index <= self.addView.photosCollection.count - 1 {
+                                
+                                    self.addView.photosCollection[index].image = UIImage(data: tempImage!)
+                                    self.addView.photosCollection[index].layer.cornerRadius = 5.0
+                                    
+                                }
                                 
                             }
                             print("temp: \(temp)")
                             print("file created")
+                            assetArray.append(exportFilePath)
                             self.addView.photosIntialView.hidden = true
                             self.addView.photosFinalView.hidden = false
                             self.addView.photosCount.text = "(\(assets.count))"
-                            self.addView.photosCollection[index].layer.cornerRadius = 5.0
                             index = index + 1
                             
                         } catch let error as NSError {
@@ -1201,24 +1329,50 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             
                         }
                         
-                        request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
+                    }
+                    
+                    for asset in assetArray {
+                        
+                        request.uploadPhotos(NSURL(string: asset)!, completion: {(response) in
                             
-                            if response.error != nil {
+                            dispatch_sync(dispatch_get_main_queue(), {
                                 
-                                print("error: \(response.error!.localizedDescription)")
+                                if response.error != nil {
+                                    
+                                    print("error: \(response.error!.localizedDescription)")
+                                    
+                                }
+                                else if response["value"] {
+                                    
+                                    if self.photosCount >= assets.count {
+                                        
+                                        self.photosCount = 0
+                                        //                                    self.addView.postButton.hidden = false
+                                        
+                                    }
+                                    
+                                    self.photosCount += 1
+                                    print("response upload photos \(asset)")
+                                    self.uploadedphotos.append(response["data"][0].string!)
+                                    
+                                    if asset == assetArray.last {
+                                        
+                                        print("assert number: \(asset)")
+                                        
+                                        print("out of upload for loop")
+                                        self.addView.postButton.hidden = false
+                                        
+                                    }
+                                    
+                                }
+                                else {
+                                    
+                                    print("response error!")
+                                    self.addView.postButton.hidden = false
+                                    
+                                }
                                 
-                            }
-                            else if response["value"] {
-                                
-                                print("response arrived!")
-                                self.uploadedphotos.append(response["data"][0].string!)
-                                
-                            }
-                            else {
-                                
-                                print("response error!")
-                                
-                            }
+                            })
                             
                         })
                         

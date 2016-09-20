@@ -18,8 +18,9 @@ var nationalityPage: AddNationalityNewViewController!
 var navigation: UINavigationController!
 
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var ipTextField: UITextField!
 //    var request = HTTPTask()
     
     override func viewDidLoad() {
@@ -44,7 +45,10 @@ class SignInViewController: UIViewController {
 //            signInFooter.fbButton.readPermissions = ["public_profile", "email", "user_friends"]
 //            signInFooter.fbButton.delegate = self
 //        }
-//        
+//      
+        ipTextField.delegate = self
+        ipTextField.returnKeyType = .Done
+        
         signInFooter.signUp.addTarget(self, action: #selector(SignInViewController.goToSignUp(_:)), forControlEvents: .TouchUpInside)
         signInFooter.signInButton.addTarget(self, action: #selector(SignInViewController.loginButtonTapped(_:)), forControlEvents: .TouchUpInside)
         signInFooter.googleButton.addTarget(self, action: #selector(SignInViewController.googleSignIn(_:)), forControlEvents: .TouchUpInside)
@@ -56,6 +60,31 @@ class SignInViewController: UIViewController {
         nationalityPage = self.storyboard?.instantiateViewControllerWithIdentifier("nationalityNew") as! AddNationalityNewViewController
         
         navigation = self.navigationController
+        
+    }
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        
+        ipTextField.resignFirstResponder()
+        
+        if ipTextField.text != nil && ipTextField.text != "" {
+            
+            adminUrl = "http://" + ipTextField.text! + "/api/"
+            
+        }
+        return true
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        ipTextField.resignFirstResponder()
+        
+        if ipTextField.text != nil && ipTextField.text != "" {
+            
+            adminUrl = "http://" + ipTextField.text! + "/api/"
+            
+        }
+        return true
         
     }
     

@@ -21,7 +21,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     var allFriendsJson: [JSON] = []
 //    var friendsCount = 0
     
-    var uniqueId: String!
+    var uniqueId: String = ""
     
     @IBAction func saveButtonTapped(sender: UIButton) {
         
@@ -29,9 +29,10 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         var addedFriendUsers: [String] = []
         
+        print("added friends: \(addedFriends), \(currentUser["_id"].string!)")
+        
         for friend in addedFriends {
             
-            print("added friend: \(friend)")
             addedFriendUsers.append(friend["_id"].string!)
             
         }
@@ -66,17 +67,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                             }
                             
                         }
-                        
-                        
-//                        let backVC = allControllers[allControllers!.count - 2] as! NewTLViewController
-//                        print("count: \(self.addedFriends.count)")
-//                        
-//                        print("count: \(self.addedFriends.count)")
-                        
-//                        backVC.dpOne = self.addedFriends[0]["profilePicture"].string!
-//                        backVC.dpTwo = self.addedFriendsImages[1]["profilePicture"]
-//                        backVC.dpThree = self.addedFriendsImages[2]["profilePicture"]
-//                        self.popVC(sender)
                         
                     }
                     

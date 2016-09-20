@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActiveLabel
 
 class PhotosOTG: UIView {
 
@@ -14,7 +15,8 @@ class PhotosOTG: UIView {
     @IBOutlet weak var stackView: UIView!
     @IBOutlet weak var timestampView: UIView!
     @IBOutlet weak var likeHeart: UILabel!
-    @IBOutlet weak var photosTitle: UILabel!
+//    @IBOutlet weak var photosTitle: ActiveLabel!
+    @IBOutlet weak var photosTitle: ActiveLabel!
     @IBOutlet weak var likeView: UILabel!
     @IBOutlet weak var likeViewLabel: UILabel!
     @IBOutlet var mainView: UIView!
@@ -22,6 +24,9 @@ class PhotosOTG: UIView {
     @IBOutlet weak var mainPhoto: UIImageView!
     @IBOutlet weak var line1: UIView!
     @IBOutlet weak var line2: UIView!
+    @IBOutlet var otherPhotosStack: [UIImageView]!
+    @IBOutlet weak var whatPostIcon: UIButton!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -29,9 +34,17 @@ class PhotosOTG: UIView {
         let timestamp = DateAndTime(frame: CGRect(x: 0, y: 0, width: 200, height: timestampView.frame.size.height))
         timestampView.addSubview(timestamp)
         
-        let sideIcon = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        sideIcon.center = CGPointMake(self.frame.size.width - 30, 10)
-        mainView.addSubview(sideIcon)
+//        let sideIcon = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+//        sideIcon.center = CGPointMake(self.frame.size.width - 30, 10)
+//        mainView.addSubview(sideIcon)
+        
+        photosTitle.numberOfLines = 0
+        let customType = ActiveType.Custom(pattern: "\\swith\\b") //Regex that looks for "with"
+        photosTitle.enabledTypes = [.Mention, .Hashtag, .URL, customType]
+        photosTitle.textColor = .blackColor()
+        photosTitle.handleHashtagTap { hashtag in
+            print("Success. You just tapped the \(hashtag) hashtag")
+        }
         
         likeViewLabel.textColor = mainBlueColor
         

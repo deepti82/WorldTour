@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7116AA14740A17264FF47B18C2B67020'
-               BlueprintName = 'DKImagePickerController'
+               BlueprintIdentifier = '31C84A3832DB4AEB429573AACE8E3E73'
+               BlueprintName = 'ActiveLabel'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'DKImagePickerController.framework'>
+               BuildableName = 'ActiveLabel.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
