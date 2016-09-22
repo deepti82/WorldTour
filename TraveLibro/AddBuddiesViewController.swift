@@ -22,23 +22,26 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //    var friendsCount = 0
     
     var uniqueId: String = ""
+    var journeyName: String = ""
     
     @IBAction func saveButtonTapped(sender: UIButton) {
         
         sender.enabled = false
         
-        var addedFriendUsers: [String] = []
+        var addedFriendUsers: [JSON] = []
         
         print("added friends: \(addedFriends), \(currentUser["_id"].string!)")
         
         for friend in addedFriends {
             
-            addedFriendUsers.append(friend["_id"].string!)
+            addedFriendUsers.append(friend)
             
         }
         if whichView == "TL" {
             
-            request.addBuddiesOTG(addedFriendUsers, userId: currentUser["_id"].string!, journeyId: uniqueId, completion: {(response) in
+            let finalFriends: JSON = JSON(addedFriendUsers)
+            
+            request.addBuddiesOTG(finalFriends, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, journeyId: uniqueId, inMiddle: false, journeyName: journeyName, completion: {(response) in
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     
@@ -80,6 +83,49 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             })
             
         }
+        else if whichView == "TLMiddle" {
+            
+            let finalFriends: JSON = JSON(addedFriendUsers)
+            
+            request.addBuddiesOTG(finalFriends, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, journeyId: uniqueId, inMiddle: true, journeyName: journeyName, completion: {(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("response: \(response.error?.localizedDescription)")
+                        
+                    }
+                        
+                    else if response["value"] {
+                        
+                        //                        print("response: \(response.description)")
+                        let allControllers = self.navigationController!.viewControllers
+                        //                        print("count: \(allControllers)")
+                        for vc in allControllers {
+                            
+                            if vc.isKindOfClass(NewTLViewController) {
+                                
+                                let backVC = vc as! NewTLViewController
+                                backVC.getJourney()
+                                self.navigationController?.popToViewController(backVC, animated: true)
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                        
+                    else {
+                        
+                        print("response error")
+                        
+                    }
+                    
+                })
+            })
+        }
+        
     }
     
     var search: SearchFieldView!
@@ -143,7 +189,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         peopleImage.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
         
-        if whichView == "TL" {
+        if whichView == "TL" || whichView == "TLMiddle" {
             
             getBackGround(self)
             search.searchField.addTarget(self, action: #selector(AddBuddiesViewController.getSearchResults(_:)), forControlEvents: .EditingChanged)
@@ -292,7 +338,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
          
         if addedFriends.contains(allFriendsJson[indexPath.row]) {
             
-            if whichView == "TL" {
+            if whichView == "TL" || whichView == "TLMiddle" {
                 
                 cell.tintColor = mainOrangeColor
             }
@@ -317,7 +363,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         let titleView = UIView(frame: CGRect(x: 16, y: 0, width: 200, height: 22))
         let titleLabel = UILabel(frame: CGRect(x: 16, y: 0, width: 200, height: 22))
         titleLabel.font = avenirFont
-        if whichView == "TL" {
+        if whichView == "TL" || whichView == "TLMiddle" {
             
             titleLabel.textColor = UIColor(red: 255/255, green: 104/255, blue: 88/255, alpha: 1)
         }
@@ -403,7 +449,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //            
 //        }
         
-        if whichView == "TL" {
+        if whichView == "TL" || whichView == "TLMiddle" {
             
             cell.removeBuddyButton.setTitleColor(mainOrangeColor, forState: .Normal)
             cell.buddyName.textColor = mainBlueColor
@@ -437,7 +483,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //                cell.tintColor = mainOrangeColor
 //            }
 //        }
-        if whichView == "TL" {
+        if whichView == "TL" || whichView == "TLMiddle" {
             
             if cell.tintColor == mainOrangeColor {
                 

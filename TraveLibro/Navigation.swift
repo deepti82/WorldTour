@@ -1,9 +1,10 @@
 import UIKit
 import SwiftyJSON
 import SwiftHTTP
+//import Alamofire
 
 let apiUrl = "http://104.155.207.185:92/api/"
-var adminUrl = "http://192.168.100.106:1337/api/"
+var adminUrl = "http://192.168.2.8:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
 
 class Navigation {
@@ -218,25 +219,60 @@ class Navigation {
         
     }
     
-    func addBuddiesOTG(friends: [String], userId: String, journeyId: String, completion: ((JSON) -> Void)) {
+    func addBuddiesOTG(friends: JSON, userId: String, userName: String, journeyId: String, inMiddle: Bool, journeyName: String, completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["buddies": friends, "uniqueId": journeyId]
-            let opt = try HTTP.POST(adminUrl + "journey/addBuddy", parameters: [params])
-            var json = JSON(1);
-            opt.start { response in
-                //                print("started response: \(response)")
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+            var params: JSON = ["uniqueId": journeyId, "inMiddle": inMiddle, "name": userName, "user": userId, "journeyName": journeyName]
+            params["buddies"] = friends
+            
+            let jsonData = try! params.rawData()
+            
+            // create post request
+            let url = NSURL(string: adminUrl + "journey/addBuddy")!
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.HTTPBody = jsonData
+            
+            
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
                 }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
+                
+                do {
+                    let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
+                    print("Result: \(result)")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
                 }
             }
+            
+            task.resume()
+            
+//            
+//            print("add buddies params: \(params)")
+//            
+//            let opt = try HTTP.POST(adminUrl + "journey/addBuddy", parameters: [params])
+//            var json = JSON(1);
+//            opt.start { response in
+//                //                print("started response: \(response)")
+//                if let err = response.error {
+//                    print("error: \(err.localizedDescription)")
+//                }
+//                else
+//                {
+//                    json  = JSON(data: response.data)
+//                    print(json)
+//                    completion(json)
+//                }
+//            }
         } catch let error {
             print("got an error creating the request: \(error)")
         }
@@ -316,6 +352,62 @@ class Navigation {
         } catch let error {
             print("got an error creating the request: \(error)")
         }
+        
+        
+    }
+    
+    func uploadPhotosMultiple(files: [NSURL], completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            var myFiles: [Upload] = []
+            
+            for file in files {
+                
+                myFiles.append(Upload(fileUrl: file))
+                print("request upload \(file)")
+                
+            }
+            
+            print("out of request upload \(myFiles.description)")
+            
+//            let params =
+            let opt = try HTTP.POST(adminUrl + "upload", parameters: ["file": myFiles])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+//        Alamofire.upload(
+//            multipartFormData: {multipartFormData in
+//                multipartFormData.append(files[0])
+//                multipartFormData.append(files[1])
+//            },
+//            to: adminUrl + "upload",
+//            encodingCompletion: { encodingResult in
+//                switch encodingResult {
+//                case .success(let upload, _, _):
+//                    upload.responseJSON { response in
+//                        debugPrint(response)
+//                        completion(response)
+//                    }
+//                case .failure(let encodingError):
+//                    print(encodingError)
+//                }
+//            }
+//        )
         
         
     }
@@ -965,5 +1057,50 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+    
+    func getNotify(id: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "notification/getNotification", parameters: ["user": id])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func acceptJourney(journeyId: String, id: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "journey/buddyAccept", parameters: ["user": id, "uniqueId": journeyId])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     
 }

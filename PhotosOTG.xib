@@ -113,10 +113,7 @@
                     </subviews>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evening by the beach! :) with Sarvesh Brahme and 1 other at Girgaon" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd1-yL-ysy" customClass="ActiveLabel" customModule="ActiveLabel">
-                    <rect key="frame" x="76" y="8" width="280" height="39"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="280" id="Jhm-u3-XIK"/>
-                    </constraints>
+                    <rect key="frame" x="76" y="8" width="263" height="39"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -190,6 +187,7 @@
                 <constraint firstItem="JQo-KH-kYx" firstAttribute="top" secondItem="MYo-lh-LFg" secondAttribute="bottom" constant="6" id="SVi-gd-58p"/>
                 <constraint firstItem="fBo-H1-fh1" firstAttribute="leading" secondItem="1g4-89-Biy" secondAttribute="leading" id="Wad-Ct-yQU"/>
                 <constraint firstItem="uFv-wF-pFQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-15" id="cbD-Wd-dTb"/>
+                <constraint firstItem="uFv-wF-pFQ" firstAttribute="leading" secondItem="vd1-yL-ysy" secondAttribute="trailing" constant="8" id="cji-LI-pnI"/>
                 <constraint firstItem="teK-Gr-2eh" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" id="d1b-sp-JPP"/>
                 <constraint firstItem="teK-Gr-2eh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="feI-ag-Tmm"/>
                 <constraint firstItem="DYS-JX-k0k" firstAttribute="top" secondItem="fBo-H1-fh1" secondAttribute="bottom" constant="8" symbolic="YES" id="hCm-qe-riS"/>

@@ -19,7 +19,7 @@ target 'TraveLibro' do
   pod 'SQLite.swift', '~> 0.10.1'
   pod 'ActiveLabel'
 #  pod 'DKImagePickerController'
-#  pod 'Alamofire', '~> 3.4'
+  pod 'Alamofire', '~> 3.4'	
   #  pod 'SQLite.swift', '~> 0.9.2'
   # Pods for TraveLibro
 

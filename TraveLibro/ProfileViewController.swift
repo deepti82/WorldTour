@@ -175,6 +175,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
         footer.TLView.addGestureRecognizer(tlTap)
+        let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
+        footer.notifyView.addGestureRecognizer(tapFour)
         
         getCount()
         
@@ -315,6 +317,25 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        print("this function is getting called!!")
 //        
 //    }
+    
+    func openNotifications(sender: UITapGestureRecognizer) {
+        
+        for vc in self.navigationController!.viewControllers {
+            
+            if vc.isKindOfClass(NewTLViewController) {
+                
+                print("inside if statement")
+                
+            }
+            
+        }
+        
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("notifySub") as! NotificationSubViewController
+        vc.whichView = "Notify"
+        self.navigationController?.pushViewController(vc, animated: false)
+        
+        
+    }
     
     func gotoOTG(sender: UITapGestureRecognizer) {
         

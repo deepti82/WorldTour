@@ -1,5 +1,6 @@
 PODS:
   - ActiveLabel (0.6.0)
+  - Alamofire (3.4.1)
   - BSGridCollectionViewLayout (1.1.1)
   - BSImagePicker (2.3.0):
     - BSGridCollectionViewLayout (~> 1.1)
@@ -20,6 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - ActiveLabel
+  - Alamofire (~> 3.4)
   - BSImagePicker (~> 2.3)
   - DKChainableAnimationKit (~> 1.6.1)
   - Fabric
@@ -34,6 +36,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   ActiveLabel: ec8c7a0995ab2d789ab74b72b105397dc079ff97
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   BSGridCollectionViewLayout: d7304dcb35c6b3b4420c527e9f9b77ff322250f3
   BSImagePicker: 591b28ce4994c44cbc4ac896717c1db9f9fadd18
   DKChainableAnimationKit: e4e605d253ee153cb600efa68f8c97ed118122a7
@@ -48,6 +51,6 @@ SPEC CHECKSUMS:
   TwitterKit: 2c64ec342a6261ae6bab565bad85dcbbfd3888b7
   UIImageViewModeScaleAspect: ec78901acfc20d3782154111a21d34390f8f71ad
 
-PODFILE CHECKSUM: 38818f7e3fa032fec44dec04e3c069799e85276f
+PODFILE CHECKSUM: f2d67acea5750700687a7cbedc7fe49103f76fd5
 
 COCOAPODS: 1.0.0

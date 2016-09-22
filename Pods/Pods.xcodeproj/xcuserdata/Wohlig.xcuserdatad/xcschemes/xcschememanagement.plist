@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>BSGridCollectionViewLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -92,17 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D7E671515668343BCF139493D636C27</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>21C461B0CAD90DE64B07A5D212C5F829</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2E21F68A49C1506B4657789318E1F44A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +107,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>84F703089EE84942CC9663DEBE60681D</key>
+		<key>398EBE7DF7CFDD29FB70ED563D22E3CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3C08A436393373DDD94B030F5676B348</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>59F801EF3339A2E7246E14768B35F484</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B3C58EDAD0F379F37147B3524699F5A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7FB5811D0A0CD2F8F76795ABE81C101D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,22 +142,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8B34C0AE1B9FE7FC8212B0663DDB2A5D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>C59EE95662AD4757E7FCE220DB1AFA41</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D031FFA84DB663A399E3DB2E42056968</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D239DAE9D2B1F20B82830E55B56309C9</key>
+		<key>C5D3EA0B355D11DC4A493AC363C2D84A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

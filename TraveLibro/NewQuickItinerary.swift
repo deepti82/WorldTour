@@ -14,6 +14,9 @@ class NewQuickItinerary: UIView {
     @IBOutlet weak var itineraryButton: UIButton!
     @IBOutlet weak var otgJourneyButton: UIButton!
     @IBOutlet var mainButtons: [UIButton]!
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var profileName: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -33,7 +36,6 @@ class NewQuickItinerary: UIView {
         blurView.layer.zPosition = -1
         blurView.userInteractionEnabled = false
         self.addSubview(blurView)
-        
         
     }
     

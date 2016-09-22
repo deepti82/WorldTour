@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -10,6 +10,8 @@
                 <outlet property="closeButton" destination="sP4-Oh-JTR" id="Pdy-wE-14f"/>
                 <outlet property="itineraryButton" destination="ZGG-62-LHl" id="xHg-6s-xHs"/>
                 <outlet property="otgJourneyButton" destination="hDY-pd-lvg" id="OlF-CM-J7G"/>
+                <outlet property="profileName" destination="Lsb-yD-TGX" id="4EE-cM-gQO"/>
+                <outlet property="profilePicture" destination="IC0-ZB-WTP" id="rta-Lo-g3U"/>
                 <outletCollection property="mainButtons" destination="hDY-pd-lvg" collectionClass="NSMutableArray" id="fTb-CR-NML"/>
                 <outletCollection property="mainButtons" destination="ZGG-62-LHl" collectionClass="NSMutableArray" id="JPh-Zl-VIi"/>
             </connections>

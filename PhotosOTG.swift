@@ -37,6 +37,8 @@ class PhotosOTG: UIView {
 //        let sideIcon = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
 //        sideIcon.center = CGPointMake(self.frame.size.width - 30, 10)
 //        mainView.addSubview(sideIcon)
+        postDp.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)!)
+        makeTLProfilePicture(postDp)
         
         photosTitle.numberOfLines = 0
         let customType = ActiveType.Custom(pattern: "\\swith\\b") //Regex that looks for "with"

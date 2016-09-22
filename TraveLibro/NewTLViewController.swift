@@ -43,6 +43,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     @IBOutlet weak var addPostsButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
+    @IBOutlet weak var toolbarView: UIView!
+    
+    @IBAction func addMoreBuddies(sender: AnyObject) {
+        
+        let getBuddies = storyboard?.instantiateViewControllerWithIdentifier("addBuddies") as! AddBuddiesViewController
+        getBuddies.whichView = "TLMiddle"
+        getBuddies.uniqueId = journeyId
+        self.navigationController?.pushViewController(getBuddies, animated: true)
+        
+    }
     
     @IBAction func infoCircle(sender: AnyObject) {
         
@@ -476,6 +486,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         imagePicker.delegate = self
         
+        let darkBlur = UIBlurEffect(style: .Dark)
+        let blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = toolbarView.frame.height
+        blurView.frame.size.width = toolbarView.frame.width
+        blurView.layer.zPosition = -1
+        blurView.userInteractionEnabled = false
+        toolbarView.addSubview(blurView)
+        
         mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height))
         
         let line = drawLine(frame: CGRect(x: self.view.frame.size.width/2, y: 17.5, width: 10, height: mainScroll.frame.height))
@@ -519,6 +537,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         addNewView.layer.zPosition = 1000
+        addNewView.profilePicture.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)!)
+        makeTLProfilePicture(addNewView.profilePicture)
+        addNewView.profileName.text = currentUser["name"].string!
         self.view.addSubview(addNewView)
         
         addNewView.otgJourneyButton.addTarget(self, action: #selector(NewTLViewController.newOtg(_:)), forControlEvents: .TouchUpInside)
@@ -530,6 +551,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        otgView.locationLabel.inputView = pickerView
         otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), forControlEvents: .EditingChanged)
         mainScroll.contentSize.height = self.view.frame.height
+        
+        self.view.bringSubviewToFront(toolbarView)
+        
     }
     
     var isInitialPost = true
@@ -560,6 +584,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             thoughts = "\(post["thoughts"]) — with \(post["buddies"][0]["name"])"
             
+            if post["buddies"].array!.count > 0 {
+                
+                thoughts = thoughts + " and \(post["buddies"].array!.count - 1) other(s)"
+                
+            }
+            
+            if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
+                
+                thoughts = thoughts + " at \(post["checkIn"]["location"])"
+                
+            }
+            
+            
         }
         
         let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 550))
@@ -573,11 +610,25 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             checkIn.mainPhoto.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!)!)
             print("photobar count: \(photos.count)")
             
-            for i in 0 ..< photos.count - 1 {
+            var count = 4
+            if photos.count < 5 {
                 
-                print("in the for loop \(post["photos"][i + 1]["name"])")
-//                checkIn.otherPhotosStack[i].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")!)!)
-                getImage(checkIn.otherPhotosStack[i], imageValue: photos[i + 1]["name"].string!)
+                count = photos.count - 1
+                print("in the if statement \(count)")
+                
+            }
+            
+            for i in 0 ..< count {
+                
+//                dispatch_async(dispatch_get_main_queue(), {
+                
+                    print("in the for loop \(post["photos"][i + 1]["name"])")
+                    checkIn.otherPhotosStack[i].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")!)!)
+                    
+//                })
+                
+                
+//                getImage(checkIn.otherPhotosStack[i], imageValue: photos[i + 1]["name"].string!)
                 
             }
             
@@ -587,6 +638,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             checkIn.mainPhoto.hidden = true
             checkIn.photosStack.hidden = true
+            checkIn.frame.size.height = 350.0
             
         }
         
@@ -902,15 +954,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
 //        print("here 3")
         
-        let addBuddies = storyboard!.instantiateViewControllerWithIdentifier("addBuddies") as! AddBuddiesViewController
+        let addBuddies = storyboard?.instantiateViewControllerWithIdentifier("addBuddies") as! AddBuddiesViewController
         addBuddies.whichView = "TL"
         addBuddies.uniqueId = journeyId
+        addBuddies.journeyName = otgView.journeyName.text!
         print("add buddies: \(addBuddies)")
         print("navigation: \(self.navigationController)")
         self.navigationController!.pushViewController(addBuddies, animated: true)
 //        showBuddies()
 //        mainScroll.layer.zPosition = -1
 //
+        
+    }
+    
+    func showBuddiesPost() {
+        
+        
+        
+        
+        let buddyInTheMiddle = BuddyOTG(frame: CGRect(x: 0, y: 0, width: 300, height: 250))
+        buddyInTheMiddle
         
     }
     
@@ -1086,6 +1149,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.addBuddiesButton.hidden = true
         infoButton.hidden = false
         addPostsButton.hidden = false
+        toolbarView.hidden = false
         
     }
     
@@ -1230,6 +1294,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        addView.photosFinalView.hidden = false
         
 //        addView.postButton.enabled = true
+        
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         
         let deleteAction = UIAlertAction(title: "Take Photos", style: .Default, handler: {
@@ -1245,7 +1310,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             (alert: UIAlertAction!) -> Void in
             
             let multipleImage = BSImagePickerViewController()
-            multipleImage.maxNumberOfSelections = 200
+            multipleImage.maxNumberOfSelections = 11
             
             self.bs_presentImagePickerController(multipleImage, animated: true,
                 select: { (asset:PHAsset) -> Void in
@@ -1274,7 +1339,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
-                    var assetArray: [String] = []
+                    var assetArray: [NSURL] = []
                     
                     for asset in assets {
                         
@@ -1317,7 +1382,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             }
                             print("temp: \(temp)")
                             print("file created")
-                            assetArray.append(exportFilePath)
+                            
+                            if index < 2 {
+                                
+                                assetArray.append(NSURL(string: exportFilePath)!)
+                                
+                            }
+                            
                             self.addView.photosIntialView.hidden = true
                             self.addView.photosFinalView.hidden = false
                             self.addView.photosCount.text = "(\(assets.count))"
@@ -1331,9 +1402,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
+//                    var uploadArray: [String] = []
+                    
                     for asset in assetArray {
                         
-                        request.uploadPhotos(NSURL(string: asset)!, completion: {(response) in
+//                        uploadArray.append("blah")
+                        
+                        
+                        request.uploadPhotos(asset, completion: {(response) in
                             
                             dispatch_sync(dispatch_get_main_queue(), {
                                 
@@ -1347,7 +1423,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     if self.photosCount >= assets.count {
                                         
                                         self.photosCount = 0
-                                        //                                    self.addView.postButton.hidden = false
+//                                    self.addView.postButton.hidden = false
                                         
                                     }
                                     
@@ -1358,7 +1434,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     if asset == assetArray.last {
                                         
                                         print("assert number: \(asset)")
-                                        
                                         print("out of upload for loop")
                                         self.addView.postButton.hidden = false
                                         
@@ -1368,7 +1443,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                 else {
                                     
                                     print("response error!")
-                                    self.addView.postButton.hidden = false
+                                    request.uploadPhotos(asset, completion: {(response) in})
+//                                    self.addView.postButton.hidden = false
                                     
                                 }
                                 
@@ -1377,6 +1453,51 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         })
                         
                     }
+                    
+//                    request.uploadPhotosMultiple(assetArray, completion: {(response) in
+//                        
+//                        dispatch_sync(dispatch_get_main_queue(), {
+//
+//                            if response.error != nil {
+//
+//                                print("error: \(response.error!.localizedDescription)")
+//
+//                            }
+//                            else if response["value"] {
+//
+////                                if self.photosCount >= assets.count {
+////
+////                                    self.photosCount = 0
+////                                    //                                    self.addView.postButton.hidden = false
+////
+////                                }
+////
+////                                self.photosCount += 1
+////                                print("response upload photos \(asset)")
+////                                self.uploadedphotos.append(response["data"][0].string!)
+////
+////                                if asset == assetArray.last {
+////
+////                                    print("assert number: \(asset)")
+//
+//                                    print("out of upload for loop")
+//                                    self.addView.postButton.hidden = false
+//                                    
+////                                }
+//                                
+//                            }
+//                            else {
+//                                
+//                                print("response error!")
+//                                self.addView.postButton.hidden = false
+//                                
+//                            }
+//                            
+//                        })
+//                        
+//                    })
+                    
+                    
                     
                 }, completion: nil)
         })
