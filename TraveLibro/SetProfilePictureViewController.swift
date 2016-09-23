@@ -165,7 +165,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
     }
     
-    func chooseDisplayPic(sender: UITapGestureRecognizer? = nil) {
+    func chooseDisplayPic(sender: UITapGestureRecognizer?) {
         
         let chooseSource: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         

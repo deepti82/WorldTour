@@ -29,6 +29,22 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var thoughtsCharacterCount: UILabel!
     
     @IBOutlet weak var postButton: UIButton!
+    
+    @IBOutlet weak var facebookShare: UIButton!
+    @IBOutlet weak var whatsappShare: UIButton!
+    @IBOutlet weak var googleShare: UIButton!
+    @IBOutlet weak var twitterShare: UIButton!
+    @IBOutlet weak var moreOptions: UIButton!
+    
+    @IBOutlet weak var locationHorizontalScroll: UIScrollView!
+    @IBOutlet weak var categoryView: UIView!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var editCategory: UIButton!
+    
+    var eachButtonText = ""
+    var buttonCollection: [UIButton] = []
+    var horizontal: HorizontalLayout!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -40,6 +56,48 @@ class AddActivityNew: UIView, UITextViewDelegate {
         blurView.layer.zPosition = -1
         blurView.userInteractionEnabled = false
         self.addSubview(blurView)
+        
+        makeFAButton("fbSquare", button: facebookShare)
+        makeFAButton("whatsapp", button: whatsappShare)
+        makeFAButton("googleSquare", button: googleShare)
+        makeFAButton("twitterSquare", button: twitterShare)
+        makeFAButton("whatsapp", button: moreOptions)
+        makeFAButton("edit", button: editCategory)
+        
+        horizontal = HorizontalLayout(height: locationHorizontalScroll.frame.height)
+        
+//        for i in 0 ..< 5 {
+//            
+//            let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
+//            horizontal.addSubview(oneButton)
+//            styleHorizontalButton(oneButton, buttonTitle: eachButtonText)
+//            buttonCollection.append(oneButton)
+//            
+//        }
+        
+//        let buttonOne = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
+//        horizontal.addSubview(buttonOne)
+//        styleHorizontalButton(buttonOne, buttonTitle: "buttonOne")
+//       
+//        
+//        let buttonTwo = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
+//        horizontal.addSubview(buttonTwo)
+//        styleHorizontalButton(buttonTwo, buttonTitle: "buttonTwo")
+//        
+//        let buttonThree = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
+//        horizontal.addSubview(buttonThree)
+//        styleHorizontalButton(buttonThree, buttonTitle: "buttonOne")
+//        
+//        let buttonFour = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
+//        horizontal.addSubview(buttonFour)
+//        styleHorizontalButton(buttonFour, buttonTitle: "buttonFour")
+//        
+//        let buttonFive = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
+//        horizontal.addSubview(buttonFive)
+//        styleHorizontalButton(buttonFive, buttonTitle: "buttonFive")
+        
+        
+        locationHorizontalScroll.addSubview(horizontal)
         
         photosFinalView.hidden = true
         videosFinalView.hidden = true
@@ -66,6 +124,28 @@ class AddActivityNew: UIView, UITextViewDelegate {
         postButton.layer.cornerRadius = 5.0
         postButton.layer.borderColor = UIColor.whiteColor().CGColor
         postButton.layer.borderWidth = 1.0
+        
+    }
+    
+    func styleHorizontalButton(button: UIButton, buttonTitle: String) {
+        
+//        print("inside the style horizontal button")
+        button.backgroundColor = UIColor.clearColor()
+        button.titleLabel!.font = avenirFont
+        button.setTitle(buttonTitle, forState: .Normal)
+        button.setTitleColor(mainBlueColor, forState: .Normal)
+        button.layer.cornerRadius = 5
+        button.layer.borderColor = UIColor.darkGrayColor().CGColor
+        button.layer.borderWidth = 1.0
+        locationHorizontalScroll.contentSize.width += button.frame.width + 10
+        
+    }
+    
+    
+    func makeFAButton(faValue: String, button: UIButton) {
+        
+        let edit = String(format: "%C", faicon[faValue]!)
+        button.setTitle(edit, forState: .Normal)
         
     }
     

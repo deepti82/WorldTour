@@ -13,6 +13,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     var whichView: String!
     var notifications: [JSON] = []
+    let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var notifyTableView: UITableView!
     
@@ -170,8 +171,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     func declineTag(sender: UIButton) {
         
         print("in the decline tag button")
-        
-        
         
     }
     

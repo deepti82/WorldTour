@@ -192,9 +192,9 @@ class Navigation {
 //        
 //    }
     
-    func addNewOTG(name: String, userId: String, startLocation: String, kindOfJourney: [String], timestamp: String, completion: ((JSON) -> Void)) {
+    func addNewOTG(name: String, userId: String, startLocation: String, kindOfJourney: [String], timestamp: String, lp: String, completion: ((JSON) -> Void)) {
         
-        let params = ["name": name, "user":  userId, "startLocation": startLocation, "kindOfJourney": kindOfJourney, "timestamp": timestamp]
+        let params = ["name": name, "user":  userId, "startLocation": startLocation, "kindOfJourney": kindOfJourney, "timestamp": timestamp, "startLocationPic": lp]
         print("parameters: \(params)")
         do {
             

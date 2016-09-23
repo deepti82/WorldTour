@@ -63,6 +63,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="XDs-vj-bgT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1EM-Qk-wq4"/>
                 <constraint firstItem="CfA-O1-YDE" firstAttribute="centerX" secondItem="XDs-vj-bgT" secondAttribute="centerX" id="DBW-Y7-ZbA"/>

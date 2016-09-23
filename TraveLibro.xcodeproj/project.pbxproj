@@ -749,9 +749,7 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
-				C2E8F2D41D897D890034CEC6 /* AddActivityNew.xib */,
 				C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */,
-				C2E8F2D61D8987860034CEC6 /* AddActivityNew.swift */,
 				C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */,
 				C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
@@ -763,9 +761,6 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C2B0B2C41D93B7D0001243EF /* BuddyOTG.xib */,
-				C2B0B2C61D93BF23001243EF /* BuddyOTG.swift */,
-				C24846371D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -794,6 +789,8 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2D070D51D95338A003249F8 /* BuddyOTG */,
+				C2D070D41D953366003249F8 /* AddActivityNew */,
 				C24F84FB1D005A48002EA203 /* AccountVerified */,
 				C2A4C8851D840289008394A3 /* AddActivityOTG */,
 				C20A18FB1D229DC900760BF9 /* AddCheckIn */,
@@ -1329,6 +1326,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C24846371D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift */,
 				C23EBC2F1D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift */,
 				C2803BCA1CF43504007A906E /* AccordionViewController.swift */,
 				C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */,
@@ -1773,6 +1771,24 @@
 				C2C965981CE45A51007BDA34 /* Date&Time.swift */,
 			);
 			name = "Date&Time";
+			sourceTree = "<group>";
+		};
+		C2D070D41D953366003249F8 /* AddActivityNew */ = {
+			isa = PBXGroup;
+			children = (
+				C2E8F2D41D897D890034CEC6 /* AddActivityNew.xib */,
+				C2E8F2D61D8987860034CEC6 /* AddActivityNew.swift */,
+			);
+			name = AddActivityNew;
+			sourceTree = "<group>";
+		};
+		C2D070D51D95338A003249F8 /* BuddyOTG */ = {
+			isa = PBXGroup;
+			children = (
+				C2B0B2C41D93B7D0001243EF /* BuddyOTG.xib */,
+				C2B0B2C61D93BF23001243EF /* BuddyOTG.swift */,
+			);
+			name = BuddyOTG;
 			sourceTree = "<group>";
 		};
 		C2D594531CF4895F0007F50B /* MyLifeTabs */ = {
