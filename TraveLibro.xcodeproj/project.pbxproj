@@ -241,6 +241,8 @@
 		C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */; };
 		C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */; };
 		C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */; };
+		C2A2E7931D96565F005084A7 /* SearchLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A2E7921D96565F005084A7 /* SearchLocationTableViewController.swift */; };
+		C2A2E7951D96858E005084A7 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A2E7941D96858E005084A7 /* LoadingOverlay.swift */; };
 		C2A4C8871D840D8C008394A3 /* AddActivityNoPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */; };
 		C2A4C8891D840FCA008394A3 /* AddActivityNoVideo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */; };
 		C2A4C88B1D84117B008394A3 /* AddActivityNoPhotoVideo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */; };
@@ -586,6 +588,8 @@
 		C2A27A571CEDE40200F74DD1 /* AddDisplayPic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddDisplayPic.xib; sourceTree = "<group>"; };
 		C2A27A591CEDE4FA00F74DD1 /* AddDisplayPic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDisplayPic.swift; sourceTree = "<group>"; };
 		C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
+		C2A2E7921D96565F005084A7 /* SearchLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationTableViewController.swift; sourceTree = "<group>"; };
+		C2A2E7941D96858E005084A7 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingOverlay.swift; path = ../LoadingOverlay.swift; sourceTree = "<group>"; };
 		C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityNoPhoto.xib; sourceTree = "<group>"; };
 		C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityNoVideo.xib; sourceTree = "<group>"; };
 		C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityNoPhotoVideo.xib; sourceTree = "<group>"; };
@@ -755,12 +759,11 @@
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
-				C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */,
-				C2DCAE401D18063E00B35331 /* NavigationStyle.swift */,
 				C20163DE1D26910D00A2F70B /* Models */,
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C2A2E7921D96565F005084A7 /* SearchLocationTableViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -1812,6 +1815,9 @@
 		C2DCAE3F1D17FC9600B35331 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C2A2E7941D96858E005084A7 /* LoadingOverlay.swift */,
+				C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */,
+				C2DCAE401D18063E00B35331 /* NavigationStyle.swift */,
 				C26B4DE61D13C88900213055 /* SlideMenuViewController.swift */,
 				C2DD03271CEB4D0F001878DD /* ImageMask.swift */,
 				C284277B1CE07445003672E9 /* Styles.swift */,
@@ -2397,6 +2403,7 @@
 			files = (
 				3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */,
 				C24F84DC1D000CF5002EA203 /* MoreAboutMe.swift in Sources */,
+				C2A2E7931D96565F005084A7 /* SearchLocationTableViewController.swift in Sources */,
 				C267302C1D27D49100F2C822 /* SelectGenderViewController.swift in Sources */,
 				C26962E41D377592004C0DE2 /* FeaturedCitiesNewViewController.swift in Sources */,
 				C2D67FF71CE5FD7500454A46 /* CollectionViewController.swift in Sources */,
@@ -2468,6 +2475,7 @@
 				C25C27F11D4747AA00C21F23 /* NewTLViewController.swift in Sources */,
 				C25207391D09A4F7008F0E51 /* FeaturedCitiesViewController.swift in Sources */,
 				C20A18FA1D2299EE00760BF9 /* AddCheckIn.swift in Sources */,
+				C2A2E7951D96858E005084A7 /* LoadingOverlay.swift in Sources */,
 				C2FA1E1B1D5498380034DE97 /* QIViewController.swift in Sources */,
 				C24F84E21D001B91002EA203 /* ResetPassword.swift in Sources */,
 				C2488AFC1D51F98500FD5306 /* NewQuickItinerary.swift in Sources */,

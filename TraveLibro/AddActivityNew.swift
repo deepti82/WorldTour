@@ -41,6 +41,11 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var editCategory: UIButton!
     
+    @IBOutlet weak var editCategoryPickerView: UIPickerView!
+    @IBOutlet weak var editCategoryPVBar: UIView!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
+    
     var eachButtonText = ""
     var buttonCollection: [UIButton] = []
     var horizontal: HorizontalLayout!
@@ -65,6 +70,10 @@ class AddActivityNew: UIView, UITextViewDelegate {
         makeFAButton("edit", button: editCategory)
         
         horizontal = HorizontalLayout(height: locationHorizontalScroll.frame.height)
+        
+        editCategoryPickerView.hidden = true
+        editCategoryPVBar.hidden = true
+//        editCategoryPickerView.delegate = self
         
 //        for i in 0 ..< 5 {
 //            
@@ -182,6 +191,23 @@ class AddActivityNew: UIView, UITextViewDelegate {
         return number <= 180
         
     }
+    
+//    var dropdownCityOptions: [String] = ["one", "two", "three", "four", "five", "six"]
+//    
+//    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+//        
+//        return 1
+//    }
+//    
+//    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        
+//        return dropdownCityOptions.count
+//    }
+//    
+//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        
+//        return dropdownCityOptions[row]
+//    }
     
     func getStylesOn(view: UIView) {
         

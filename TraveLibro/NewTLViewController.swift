@@ -17,7 +17,7 @@ import ActiveLabel
 
 var isJourneyOngoing = false
 
-class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var myJourney: JSON!
     
@@ -142,7 +142,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 200, height: addView.locationHorizontalScroll.frame.height))
             addView.horizontal.addSubview(oneButton)
             addView.styleHorizontalButton(oneButton, buttonTitle: locationArray[i]["name"].string!)
-            oneButton.sizeToFit()
+            oneButton.layoutIfNeeded()
+            oneButton.addTarget(self, action: #selector(NewTLViewController.selectLocation(_:)), forControlEvents: .TouchUpInside)
 //            let stringSize = CGSizeFromString(locationArray[i]["name"].string!)
 //            print("string size: \(stringSize)")
 //            oneButton.frame.size.width = stringSize.width
@@ -154,7 +155,82 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addView.horizontal.addSubview(buttonSix)
         addView.styleHorizontalButton(buttonSix, buttonTitle: "Search")
         addView.buttonCollection.append(buttonSix)
+        buttonSix.addTarget(self, action: #selector(NewTLViewController.gotoSearchLocation(_:)), forControlEvents: .TouchUpInside)
         
+    }
+    
+    func gotoSearchLocation(sender: UIButton) {
+        
+        let searchVC = self.storyboard!.instantiateViewControllerWithIdentifier("searchLocationsVC") as! SearchLocationTableViewController
+        searchVC.places = self.locationArray
+        self.navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
+    func hideLocation() {
+        
+        addView.locationHorizontalScroll.hidden = true
+        addView.categoryView.hidden = false
+        addView.editCategory.addTarget(self, action: #selector(NewTLViewController.selectAnotherCategory(_:)), forControlEvents: .TouchUpInside)
+        
+    }
+    
+    var pickerView = UIPickerView()
+    
+    func selectAnotherCategory(sender: UIButton) {
+        
+        addView.editCategoryPickerView.hidden = false
+        addView.editCategoryPVBar.hidden = false
+        
+//        pickerView = UIPickerView(frame: CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.width, height: 200))
+//        
+//        let barView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.frame.width, height: 50))
+//        pickerView.addSubview(barView)
+//        
+//        let left = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: barView.frame.height))
+//        left.setTitle("Cancel", forState: .Normal)
+//        left.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 14)
+//        left.addTarget(self, action: #selector(NewTLViewController.cancelPickerView(_:)), forControlEvents: .TouchUpInside)
+//        barView.addSubview(left)
+//        
+//        let right = UIButton(frame: CGRect(x: barView.frame.width - 100, y: 0, width: 100, height: barView.frame.height))
+//        right.setTitle("Done", forState: .Normal)
+//        right.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 14)
+//        right.addTarget(self, action: #selector(NewTLViewController.donePickerView(_:)), forControlEvents: .TouchUpInside)
+//        barView.addSubview(right)
+//        
+//        self.view.addSubview(pickerView)
+        
+    }
+    
+//    func cancelPickerView(sender: UIButton) {
+//        
+//        print("picker view cancelled")
+//        
+//        pickerView.hidden = true
+//        
+//    }
+//    
+//    func donePickerView(sender: UIButton) {
+//        
+//        print("picker view done")
+//        
+//        pickerView.hidden = true
+//        
+//        
+//    }
+    
+    
+    func selectLocation(sender: UIButton) {
+        
+        putLocationName(sender.titleLabel!.text!)
+        
+    }
+    
+    func putLocationName(selectedLocation: String) {
+        
+        self.addView.addLocationButton.setTitle(selectedLocation, forState: .Normal)
+        self.addView.locationTag.tintColor = mainOrangeColor
+        hideLocation()
         
     }
     
@@ -523,7 +599,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    let pickerView = UIPickerView()
     var layout: VerticalLayout!
     var refreshControl = UIRefreshControl()
     
@@ -606,7 +681,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addNewView.itineraryButton.addTarget(self, action: #selector(NewTLViewController.newItinerary(_:)), forControlEvents: .TouchUpInside)
         addNewView.closeButton.addTarget(self, action: #selector(NewTLViewController.closeView(_:)), forControlEvents: .TouchUpInside)
         
-        pickerView.delegate = self
+//        addView.editCategoryPickerView.delegate = self
+//        pickerView.delegate = self
         
 //        otgView.locationLabel.inputView = pickerView
         otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), forControlEvents: .EditingChanged)
@@ -791,23 +867,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         myImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(imageValue)&width=500")!)!)
         
         
-    }
-    
-    var dropdownCityOptions: [String] = []
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        return dropdownCityOptions.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        return dropdownCityOptions[row]
     }
     
     func showDropdown(sender: UITextField) {
@@ -1339,7 +1398,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var whichButton = "OTGLocation"
     var locationArray: [JSON] = []
-    
+    var initialLocationLoad = true
     
     func addLocationTapped(sender: UIButton?) {
         
@@ -1359,9 +1418,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 else if response["value"] {
                     
                     self.locationArray = response["data"].array!
-                    self.getAllLocations()
-                    self.addView.addLocationButton.setTitle(response["data"][0]["name"].string!, forState: .Normal)
-                    self.addView.locationTag.tintColor = mainOrangeColor
+                    
+                    if self.initialLocationLoad {
+                        
+                        self.getAllLocations()
+                        self.initialLocationLoad = false
+                        
+                    }
+                    
+                    if sender != nil {
+                        
+                        self.gotoSearchLocation(sender!)
+                        
+                    }
                     
                 }
                     

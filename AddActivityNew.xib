@@ -18,9 +18,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddActivityNew" customModule="TraveLibro" customModuleProvider="target">
             <connections>
                 <outlet property="addLocationButton" destination="BbX-7c-94W" id="Xfu-eC-X5U"/>
+                <outlet property="cancelButton" destination="a7k-EX-5Er" id="3Uw-hc-p2H"/>
                 <outlet property="categoryLabel" destination="pHV-iD-8r7" id="wZa-Zv-9uZ"/>
                 <outlet property="categoryView" destination="aWx-B8-ihx" id="DS7-BU-lng"/>
+                <outlet property="doneButton" destination="kfx-FD-UNk" id="uHb-Fm-vEQ"/>
                 <outlet property="editCategory" destination="ByU-xO-MHT" id="isQ-z5-mf1"/>
+                <outlet property="editCategoryPVBar" destination="f0N-zJ-iqX" id="XNN-Yc-rw8"/>
+                <outlet property="editCategoryPickerView" destination="xuR-LV-saS" id="98J-aF-ZRF"/>
                 <outlet property="facebookShare" destination="a9x-np-zvE" id="m4A-iZ-hq9"/>
                 <outlet property="friendsCount" destination="gG2-Pr-Xdf" id="dqW-mi-WFJ"/>
                 <outlet property="googleShare" destination="FMo-fu-Icw" id="NR8-uA-mJR"/>
@@ -165,7 +169,6 @@
                                             </state>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="pHV-iD-8r7" firstAttribute="leading" secondItem="aWx-B8-ihx" secondAttribute="leading" constant="16" id="Kwm-6Y-dga"/>
                                         <constraint firstAttribute="trailing" secondItem="ByU-xO-MHT" secondAttribute="trailing" constant="8" id="Xvj-sR-aXK"/>
@@ -474,17 +477,51 @@
                         </view>
                     </subviews>
                 </stackView>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xuR-LV-saS">
+                    <rect key="frame" x="0.0" y="740" width="400" height="185"/>
+                    <color key="backgroundColor" red="0.270588249" green="0.71764707569999997" blue="0.1411764771" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="185" id="kf4-Yu-zas"/>
+                    </constraints>
+                </pickerView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0N-zJ-iqX">
+                    <rect key="frame" x="0.0" y="740" width="400" height="27"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7k-EX-5Er">
+                            <rect key="frame" x="8" y="-1" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfx-FD-UNk">
+                            <rect key="frame" x="346" y="-1" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="a7k-EX-5Er" firstAttribute="leading" secondItem="f0N-zJ-iqX" secondAttribute="leading" constant="8" id="Qpu-v0-h5a"/>
+                        <constraint firstItem="a7k-EX-5Er" firstAttribute="centerY" secondItem="f0N-zJ-iqX" secondAttribute="centerY" id="b1d-A1-8f8"/>
+                        <constraint firstItem="kfx-FD-UNk" firstAttribute="centerY" secondItem="f0N-zJ-iqX" secondAttribute="centerY" id="tc0-dg-AyH"/>
+                        <constraint firstAttribute="trailing" secondItem="kfx-FD-UNk" secondAttribute="trailing" constant="8" id="zOG-6I-U5j"/>
+                    </constraints>
+                </view>
             </subviews>
             <constraints>
+                <constraint firstItem="f0N-zJ-iqX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1wS-lt-y4Y"/>
                 <constraint firstItem="vYv-ZD-NnK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="625-1Y-6Mv"/>
+                <constraint firstAttribute="trailing" secondItem="xuR-LV-saS" secondAttribute="trailing" id="Brh-8x-fHk"/>
                 <constraint firstItem="txv-38-x7m" firstAttribute="top" secondItem="uSh-Jn-unO" secondAttribute="bottom" constant="8" id="JvP-nB-FmK"/>
                 <constraint firstItem="txv-38-x7m" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JxQ-w7-9ZO"/>
+                <constraint firstAttribute="trailing" secondItem="f0N-zJ-iqX" secondAttribute="trailing" id="MSJ-xe-KTY"/>
+                <constraint firstItem="uSh-Jn-unO" firstAttribute="top" secondItem="f0N-zJ-iqX" secondAttribute="bottom" constant="8" id="Mbx-vM-0lx"/>
                 <constraint firstAttribute="trailing" secondItem="ss0-9c-S8e" secondAttribute="trailing" constant="8" id="P9F-7j-A7o"/>
+                <constraint firstAttribute="bottom" secondItem="xuR-LV-saS" secondAttribute="bottom" id="YjL-wh-UYY"/>
                 <constraint firstItem="vYv-ZD-NnK" firstAttribute="top" secondItem="txv-38-x7m" secondAttribute="bottom" constant="25" id="aoW-y6-PPW"/>
                 <constraint firstItem="uSh-Jn-unO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dJe-gS-s5Q"/>
                 <constraint firstItem="uSh-Jn-unO" firstAttribute="top" secondItem="ss0-9c-S8e" secondAttribute="bottom" constant="25" id="fJx-Ed-Ajw"/>
                 <constraint firstItem="ss0-9c-S8e" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="hPL-AV-7EO"/>
                 <constraint firstItem="ss0-9c-S8e" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="jxB-ne-gPg"/>
+                <constraint firstItem="f0N-zJ-iqX" firstAttribute="top" secondItem="xuR-LV-saS" secondAttribute="top" id="md9-JB-D8Z"/>
+                <constraint firstItem="xuR-LV-saS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="me8-hu-zJY"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

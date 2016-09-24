@@ -38,6 +38,8 @@ var hasLoggedInOnce = false
 var onlyOnce = true
 
 let request = Navigation()
+let shared = LoadingOverlay()
+
 var leftViewController: SideNavigationMenuViewController!
 
 @UIApplicationMain
