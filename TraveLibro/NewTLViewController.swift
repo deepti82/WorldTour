@@ -17,7 +17,7 @@ import ActiveLabel
 
 var isJourneyOngoing = false
 
-class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
     var myJourney: JSON!
     
@@ -79,25 +79,43 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        addPosts.animation.makeOpacity(1.0).animate(0.5)
 //        getJourney()
         
-        let postButton = UIButton()
-        postButton.setTitle("Post", forState: .Normal)
-        postButton.addTarget(self, action: #selector(self.newPost(_:)), forControlEvents: .TouchUpInside)
-        postButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
-        
-        let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(-10, 0, 30, 30)
-        
-        self.customNavigationBar(leftButton, right: postButton)
+//        let postButton = UIButton()
+//        postButton.setTitle("Post", forState: .Normal)
+//        postButton.addTarget(self, action: #selector(self.newPost(_:)), forControlEvents: .TouchUpInside)
+//        postButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
+//        
+//        let leftButton = UIButton()
+//        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+//        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+//        leftButton.frame = CGRectMake(-10, 0, 30, 30)
+//        
+//        self.customNavigationBar(leftButton, right: postButton)
         
         print("in the add posts function")
         uploadedphotos = []
         newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
         self.view.addSubview(newScroll)
-        newScroll.contentSize.height = 800.0
         
         addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        displayFriendsCount()
+        newScroll.addSubview(addView)
+        newScroll.contentSize.height = self.view.frame.height
+        addLocationTapped(nil)
+        
+        
+//        let tapOut = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:)))
+//        addView.addGestureRecognizer(tapOut)
+        
+        addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), forControlEvents: .TouchUpInside)
+        addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), forControlEvents: .TouchUpInside)
+        addView.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), forControlEvents: .TouchUpInside)
+        addView.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), forControlEvents: .TouchUpInside)
+        addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), forControlEvents: .TouchUpInside)
+        
+    }
+    
+    func displayFriendsCount() {
+        
         if addedBuddies != nil && addedBuddies.count > 0 {
             
             if addedBuddies.count == 1 {
@@ -110,24 +128,37 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 addView.friendsCount.setTitle("\(addedBuddies.count) Friends", forState: .Normal)
             }
             
-            
         }
-        newScroll.addSubview(addView)
         
-        addLocationTapped(nil)
+    }
+    
+    func addHeightToNewActivity(height: CGFloat) {
         
+        print("height: \(height), \(newScroll.contentSize.height)")
+        addView.frame.size.height = addView.frame.height + height
+        addView.blurView.frame.size.height = addView.frame.height
+        addView.darkBlur = UIBlurEffect(style: .Dark)
+        addView.blurView = UIVisualEffectView(effect: addView.darkBlur)
+        newScroll.contentSize.height = addView.frame.height
+        newScroll.bounces = false
+        newScroll.showsVerticalScrollIndicator = false
         
-//        let tapOut = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:)))
-//        addView.addGestureRecognizer(tapOut)
+    }
+    
+    func tagMoreBuddies(sender: UIButton) {
         
-        addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), forControlEvents: .TouchUpInside)
-        addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), forControlEvents: .TouchUpInside)
-        addView.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), forControlEvents: .TouchUpInside)
-        addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), forControlEvents: .TouchUpInside)
+        let next = storyboard?.instantiateViewControllerWithIdentifier("addBuddies") as! AddBuddiesViewController
+        next.whichView = "TLTags"
+        next.addedFriends = addedBuddies
+//        addBuddies.uniqueId = journeyId
+//        addBuddies.journeyName = otgView.journeyName.text!
+        self.navigationController!.pushViewController(next, animated: true)
         
     }
     
     func getAllLocations() {
+        
+        print("all locations: \(locationArray)")
         
         var locationCount = 5
         
@@ -174,12 +205,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    var pickerView = UIPickerView()
+//    var pickerView = UIPickerView()
     
     func selectAnotherCategory(sender: UIButton) {
         
-        addView.editCategoryPickerView.hidden = false
-        addView.editCategoryPVBar.hidden = false
+        print("select another category tapped")
+        
+        let chooseCategory = storyboard?.instantiateViewControllerWithIdentifier("editCategory") as! EditCategoryViewController
+        self.navigationController?.pushViewController(chooseCategory, animated: true)
+        
+//        addView.editCategoryPickerView.hidden = false
+//        addView.editCategoryPVBar.hidden = false
         
 //        pickerView = UIPickerView(frame: CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.width, height: 200))
 //        
@@ -222,14 +258,45 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func selectLocation(sender: UIButton) {
         
-        putLocationName(sender.titleLabel!.text!)
+        var id = ""
+        
+        for location in locationArray {
+            
+            if location["name"].string! == sender.titleLabel!.text! {
+                
+                id = location["place_id"].string!
+                
+            }
+            
+        }
+        
+        putLocationName(sender.titleLabel!.text!, placeId: id)
         
     }
     
-    func putLocationName(selectedLocation: String) {
+    func putLocationName(selectedLocation: String, placeId: String) {
         
         self.addView.addLocationButton.setTitle(selectedLocation, forState: .Normal)
         self.addView.locationTag.tintColor = mainOrangeColor
+        request.getPlaceId(placeId, completion: { response in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    
+                }
+                else if response["value"] {
+                    
+                    self.addView.categoryLabel.text = response["data"].string!
+                    
+                }
+                else {
+                    
+                }
+            })
+        })
+        
         hideLocation()
         
     }
@@ -1447,13 +1514,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     var photosCount: Int = 0
+    var previouslyAddedPhotos: [PHAsset]!
     
-    func addPhotos(sender: UIButton) {
+    func addPhotos(sender: AnyObject) {
         
 //        addView.photosIntialView.hidden = true
 //        addView.photosFinalView.hidden = false
         
 //        addView.postButton.enabled = true
+        
+        print("add new photos")
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         
@@ -1481,10 +1551,36 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     //                    print("Cancel: \(assets)")
                 }, finish: { (assets: [PHAsset]) -> Void in
                     
+                    var myAssets = assets
+                    
+                    if self.previouslyAddedPhotos != nil {
+                        
+                        myAssets += self.previouslyAddedPhotos
+                        print("my assets: \(myAssets)")
+//                        for each in self.previouslyAddedPhotos {
+//                            
+//                           .append(each)
+//                        }
+                        
+                    }
+                    
                     
                     var index = 0
                     self.addView.postButton.hidden = true
                     print("Finish: \(self.addView.postButton.hidden)")
+                    
+                    let layerAbove = UIView(frame: CGRect(x: 0, y: 0, width: self.addView.photosCollection[0].frame.width, height: self.addView.photosCollection[0].frame.height))
+                    layerAbove.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
+                    let addButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+                    addButton.center = CGPointMake(layerAbove.frame.width/2, layerAbove.frame.height/2)
+                    addButton.image = UIImage(named: "add_fa_icon")
+                    layerAbove.addSubview(addButton)
+                    layerAbove.clipsToBounds = true
+                    
+                    let addTap = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.addPhotosAgain(_:)))
+                    addTap.delegate = self
+//                    self.bringSubviewToFront(layerAbove)
+                    layerAbove.addGestureRecognizer(addTap)
                     
                     if assets.count < 4 {
                         
@@ -1550,8 +1646,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             }
                             
                             self.addView.photosIntialView.hidden = true
+//                            self.addView.photosIntialView.userInteractionEnabled = false
                             self.addView.photosFinalView.hidden = false
+                            self.addHeightToNewActivity(5.0)
                             self.addView.photosCount.text = "(\(assets.count))"
+                            
+                            if asset == assets.last || index == 3 {
+                                
+                                self.addView.photosCollection[index].addSubview(layerAbove)
+                                
+                            }
+                            
                             index = index + 1
                             
                         } catch let error as NSError {
@@ -1676,10 +1781,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    func addPhotosAgain(sender: UITapGestureRecognizer) {
+        
+        print("photos again")
+        
+    }
+    
     func addThoughts(sender: UIButton) {
         
-        addView.thoughtsInitalView.hidden = true
         addView.thoughtsFinalView.hidden = false
+        addView.thoughtsInitalView.hidden = true
+        addHeightToNewActivity(10.0)
         
     }
     

@@ -12,6 +12,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var thoughtsFinalView: UIView!
     @IBOutlet weak var tagFriendsView: UIView!
     @IBOutlet weak var thoughtsButton: UIButton!
+    @IBOutlet weak var tagFriendButton: UIButton!
     
     @IBOutlet weak var photosCount: UILabel!
     @IBOutlet weak var videosCount: UILabel!
@@ -49,13 +50,17 @@ class AddActivityNew: UIView, UITextViewDelegate {
     var eachButtonText = ""
     var buttonCollection: [UIButton] = []
     var horizontal: HorizontalLayout!
+//    var parent = NewTLViewController()
+    
+    var darkBlur: UIBlurEffect!
+    var blurView: UIVisualEffectView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let blurView = UIVisualEffectView(effect: darkBlur)
+        darkBlur = UIBlurEffect(style: .Dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.frame.height
         blurView.frame.size.width = self.frame.width
         blurView.layer.zPosition = -1

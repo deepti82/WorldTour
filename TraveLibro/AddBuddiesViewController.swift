@@ -134,6 +134,24 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                 })
             })
         }
+        else if whichView == "TLTags" {
+            
+            let allControllers = self.navigationController!.viewControllers
+            
+            for vc in allControllers {
+                
+                if vc.isKindOfClass(NewTLViewController) {
+                    
+                    let backVC = vc as! NewTLViewController
+                    backVC.addedBuddies = addedFriends
+                    backVC.displayFriendsCount()
+                    self.navigationController?.popToViewController(backVC, animated: true)
+                    
+                }
+                
+            }
+            
+        }
         
     }
     
@@ -198,7 +216,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         peopleImage.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
         
-        if whichView == "TL" || whichView == "TLMiddle" {
+        if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
             
             getBackGround(self)
             search.searchField.addTarget(self, action: #selector(AddBuddiesViewController.getSearchResults(_:)), forControlEvents: .EditingChanged)
@@ -347,7 +365,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
          
         if addedFriends.contains(allFriendsJson[indexPath.row]) {
             
-            if whichView == "TL" || whichView == "TLMiddle" {
+            if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
                 
                 cell.tintColor = mainOrangeColor
             }
@@ -372,7 +390,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         let titleView = UIView(frame: CGRect(x: 16, y: 0, width: 200, height: 22))
         let titleLabel = UILabel(frame: CGRect(x: 16, y: 0, width: 200, height: 22))
         titleLabel.font = avenirFont
-        if whichView == "TL" || whichView == "TLMiddle" {
+        if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
             
             titleLabel.textColor = UIColor(red: 255/255, green: 104/255, blue: 88/255, alpha: 1)
         }
@@ -458,7 +476,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //            
 //        }
         
-        if whichView == "TL" || whichView == "TLMiddle" {
+        if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
             
             cell.removeBuddyButton.setTitleColor(mainOrangeColor, forState: .Normal)
             cell.buddyName.textColor = mainBlueColor
@@ -492,7 +510,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //                cell.tintColor = mainOrangeColor
 //            }
 //        }
-        if whichView == "TL" || whichView == "TLMiddle" {
+        if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
             
             if cell.tintColor == mainOrangeColor {
                 

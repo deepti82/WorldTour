@@ -1102,5 +1102,27 @@ class Navigation {
         }
     }
     
+    func getPlaceId(placeId: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "post/getGooglePlaceDetail", parameters: ["placeId": placeId])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     
 }

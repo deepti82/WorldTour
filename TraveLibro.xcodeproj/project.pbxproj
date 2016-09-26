@@ -69,6 +69,7 @@
 		C22138F31D547846008D9DEE /* QuickItineraryTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22138F21D547846008D9DEE /* QuickItineraryTwo.swift */; };
 		C22138F61D547A0A008D9DEE /* QuickItineraryFour.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22138F51D547A0A008D9DEE /* QuickItineraryFour.xib */; };
 		C22138F81D547C42008D9DEE /* QuickItineraryFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22138F71D547C42008D9DEE /* QuickItineraryFour.swift */; };
+		C2276FF01D9906770052D942 /* EditCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2276FEF1D9906770052D942 /* EditCategoryViewController.swift */; };
 		C234B0601D79A67600397FE5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */; };
 		C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B34D81D7AF0AE00EBBF25 /* ProfilePicFancy.swift */; };
 		C23B34DB1D7AF3DA00EBBF25 /* ProfilePicFancy.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23B34DA1D7AF3DA00EBBF25 /* ProfilePicFancy.xib */; };
@@ -416,6 +417,7 @@
 		C22138F21D547846008D9DEE /* QuickItineraryTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryTwo.swift; sourceTree = "<group>"; };
 		C22138F51D547A0A008D9DEE /* QuickItineraryFour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickItineraryFour.xib; sourceTree = "<group>"; };
 		C22138F71D547C42008D9DEE /* QuickItineraryFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryFour.swift; sourceTree = "<group>"; };
+		C2276FEF1D9906770052D942 /* EditCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCategoryViewController.swift; sourceTree = "<group>"; };
 		C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		C23B34D81D7AF0AE00EBBF25 /* ProfilePicFancy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePicFancy.swift; sourceTree = "<group>"; };
 		C23B34DA1D7AF3DA00EBBF25 /* ProfilePicFancy.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfilePicFancy.xib; path = ../ProfilePicFancy.xib; sourceTree = "<group>"; };
@@ -763,7 +765,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C2A2E7921D96565F005084A7 /* SearchLocationTableViewController.swift */,
+				C2276FEF1D9906770052D942 /* EditCategoryViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -1412,6 +1414,7 @@
 				C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */,
 				C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */,
 				C25649991D48EE5E0046E36D /* SummarySubViewController.swift */,
+				C2A2E7921D96565F005084A7 /* SearchLocationTableViewController.swift */,
 				C2C9659C1CE4AEB2007BDA34 /* ThoughtsViewController.swift */,
 				C25F488B1CF3226100C6C28C /* TravelLifeMomentsViewController.swift */,
 				C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */,
@@ -2569,6 +2572,7 @@
 				C29767181D50D65200428269 /* ListPhotosViewController.swift in Sources */,
 				C24909B41D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift in Sources */,
 				C21293101D2E830B002D5A4A /* MyLifeMomentsViewController.swift in Sources */,
+				C2276FF01D9906770052D942 /* EditCategoryViewController.swift in Sources */,
 				C284277C1CE07445003672E9 /* Styles.swift in Sources */,
 				C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */,
 				C2E697B51D3E510900E76F1E /* FeaturedCitiesRestViewController.swift in Sources */,

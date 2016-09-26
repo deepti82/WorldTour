@@ -2198,6 +2198,98 @@
             </objects>
             <point key="canvasLocation" x="4784" y="3311"/>
         </scene>
+        <!--Edit Category View Controller-->
+        <scene sceneID="P13-0y-uss">
+            <objects>
+                <viewController storyboardIdentifier="editCategory" id="DAO-TX-Bz7" customClass="EditCategoryViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ov4-0q-eAK"/>
+                        <viewControllerLayoutGuide type="bottom" id="b6j-Gh-1Ig"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9qy-CZ-RNh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categorise your location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyU-r4-AaB">
+                                <rect key="frame" x="218" y="28" width="164" height="21"/>
+                                <fontDescription key="fontDescription" name="Avenir-LightOblique" family="Avenir" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gB3-RH-Re8">
+                                <rect key="frame" x="0.0" y="57" width="600" height="543"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EQS-aQ-Xnj">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Zc0-sC-p3l" customClass="categoryCollectionViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DN6-im-Hau">
+                                                    <rect key="frame" x="20" y="0.0" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="Ndh-1B-lHb"/>
+                                                        <constraint firstAttribute="height" constant="60" id="tK2-aX-n4y"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="palm_trees_icon" backgroundImage="graybox"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sights &amp; Landmarks" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MD5-WO-o8h">
+                                                    <rect key="frame" x="0.0" y="60" width="100" height="40"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                    <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="DN6-im-Hau" firstAttribute="centerX" secondItem="Zc0-sC-p3l" secondAttribute="centerX" id="C2Q-wd-WIr"/>
+                                            <constraint firstItem="MD5-WO-o8h" firstAttribute="leading" secondItem="Zc0-sC-p3l" secondAttribute="leading" id="G7L-eX-pbS"/>
+                                            <constraint firstAttribute="bottom" secondItem="MD5-WO-o8h" secondAttribute="bottom" id="aoG-T0-xbu"/>
+                                            <constraint firstAttribute="trailing" secondItem="MD5-WO-o8h" secondAttribute="trailing" id="aro-EF-UnX"/>
+                                            <constraint firstItem="DN6-im-Hau" firstAttribute="top" secondItem="Zc0-sC-p3l" secondAttribute="top" id="fYw-vb-VPu"/>
+                                            <constraint firstItem="MD5-WO-o8h" firstAttribute="centerX" secondItem="DN6-im-Hau" secondAttribute="centerX" id="noS-as-trb"/>
+                                            <constraint firstItem="MD5-WO-o8h" firstAttribute="top" secondItem="DN6-im-Hau" secondAttribute="bottom" id="xHW-8h-9sC"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="noS-as-trb"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="categoryButton" destination="DN6-im-Hau" id="u3h-04-huA"/>
+                                            <outlet property="categoryLabel" destination="MD5-WO-o8h" id="lku-wr-cFn"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="DAO-TX-Bz7" id="Vd6-dE-Dss"/>
+                                    <outlet property="delegate" destination="DAO-TX-Bz7" id="KJg-cA-Qsh"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="zyU-r4-AaB" firstAttribute="centerX" secondItem="9qy-CZ-RNh" secondAttribute="centerX" id="BjC-V8-nyn"/>
+                            <constraint firstItem="b6j-Gh-1Ig" firstAttribute="top" secondItem="gB3-RH-Re8" secondAttribute="bottom" id="KGe-kL-wvG"/>
+                            <constraint firstItem="gB3-RH-Re8" firstAttribute="top" secondItem="zyU-r4-AaB" secondAttribute="bottom" constant="8" id="U1i-bQ-qb6"/>
+                            <constraint firstItem="gB3-RH-Re8" firstAttribute="leading" secondItem="9qy-CZ-RNh" secondAttribute="leading" id="eiz-pI-hrd"/>
+                            <constraint firstItem="zyU-r4-AaB" firstAttribute="top" secondItem="Ov4-0q-eAK" secondAttribute="bottom" constant="8" id="hqN-oA-8bL"/>
+                            <constraint firstAttribute="trailing" secondItem="gB3-RH-Re8" secondAttribute="trailing" id="raY-B8-bUz"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KYP-5Z-fI7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5509" y="3317"/>
+        </scene>
         <!--Followers-->
         <scene sceneID="Pmb-IC-zrl">
             <objects>

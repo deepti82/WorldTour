@@ -127,7 +127,20 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         let myCell = tableView.cellForRowAtIndexPath(indexPath) as! searchLocationsTableViewCell
         
         let previous = self.navigationController!.viewControllers[self.navigationController!.viewControllers.count - 2] as! NewTLViewController
-        previous.putLocationName(myCell.placeName.text!)
+        
+        var myId = ""
+        
+        for place in places {
+            
+            if myCell.placeName.text! == place["name"].string! {
+                
+                myId = place["place_id"].string!
+                
+            }
+            
+        }
+        
+        previous.putLocationName(myCell.placeName.text!, placeId: myId)
         self.navigationController?.popToViewController(previous, animated: true)
         
         

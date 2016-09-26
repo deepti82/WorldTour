@@ -37,6 +37,7 @@
                 <outlet property="photosFinalView" destination="tij-q0-ySJ" id="4ez-jh-eKK"/>
                 <outlet property="photosIntialView" destination="1TE-3y-V6h" id="wUV-Rb-2ve"/>
                 <outlet property="postButton" destination="vYv-ZD-NnK" id="VKq-Ny-YNC"/>
+                <outlet property="tagFriendButton" destination="HYl-RF-34A" id="Lcr-AT-5Nz"/>
                 <outlet property="tagFriendsView" destination="bpn-an-Nad" id="W6L-dU-GuQ"/>
                 <outlet property="thoughtsButton" destination="8kC-xs-RoI" id="L2w-xL-Mn2"/>
                 <outlet property="thoughtsCharacterCount" destination="GgR-i1-3KR" id="89s-4q-qdw"/>
@@ -525,6 +526,12 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="xuR-LV-saS"/>
+                    <exclude reference="f0N-zJ-iqX"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="258" y="382.5"/>
         </view>
     </objects>
