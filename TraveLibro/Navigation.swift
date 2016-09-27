@@ -1124,5 +1124,114 @@ class Navigation {
         }
     }
     
+    func getGoogleSearchNearby(lat: Double, long: Double, searchText: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["lat": lat, "long": long, "search": searchText]
+            
+            let opt = try HTTP.POST(adminUrl + "post/checkinPlaceSearch", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func likePost(id: String, userId: String, userName: String, unlike: Bool, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            var params = ["uniqueId": id, "user": userId, "unlike": unlike]
+            
+            if !unlike {
+                
+                params = ["uniqueId": id, "user": userId, "name": userName]
+            }
+            
+            let opt = try HTTP.POST(adminUrl + "post/updateLikePost", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func commentOnPost(id: String, userId: String, commentText: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            var params = ["uniqueId": id, "comment" : ["user":  userId, "text": commentText]]
+            
+//            if !unlike {
+//                
+//                params = ["uniqueId": id, "user": userId, "name": userName]
+//            }
+//            
+//            print("like params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "post/addComment", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getComments(id: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id]
+            
+            print("comment params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "post/getPostComment", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
     
 }

@@ -6549,6 +6549,115 @@ IHRvZ2V0aGVyLg
             </objects>
             <point key="canvasLocation" x="3091" y="4100"/>
         </scene>
+        <!--Comments View Controller-->
+        <scene sceneID="loe-QA-2ZF">
+            <objects>
+                <viewController storyboardIdentifier="CommentsVC" id="9vX-3Y-IS9" customClass="CommentsViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uhh-4d-AGY"/>
+                        <viewControllerLayoutGuide type="bottom" id="gy5-oF-cNI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eLi-Wl-nVH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pig-nC-a9B">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcP-sI-UDv">
+                                        <rect key="frame" x="556" y="10" width="36" height="30"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendComment:" destination="9vX-3Y-IS9" eventType="touchUpInside" id="89Y-0I-c03"/>
+                                        </connections>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8P1-Rh-jAV">
+                                        <rect key="frame" x="8" y="8" width="540" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2oy-ZU-OZV"/>
+                                    <constraint firstAttribute="trailing" secondItem="lcP-sI-UDv" secondAttribute="trailing" constant="8" id="576-io-TPC"/>
+                                    <constraint firstItem="lcP-sI-UDv" firstAttribute="centerY" secondItem="Pig-nC-a9B" secondAttribute="centerY" id="KsN-H4-l3T"/>
+                                    <constraint firstItem="lcP-sI-UDv" firstAttribute="leading" secondItem="8P1-Rh-jAV" secondAttribute="trailing" constant="8" id="ptz-8M-tAe"/>
+                                    <constraint firstItem="8P1-Rh-jAV" firstAttribute="top" secondItem="Pig-nC-a9B" secondAttribute="top" constant="8" id="pyH-Sm-kCN"/>
+                                    <constraint firstItem="8P1-Rh-jAV" firstAttribute="leading" secondItem="Pig-nC-a9B" secondAttribute="leading" constant="8" id="una-Gz-qeU"/>
+                                    <constraint firstAttribute="bottom" secondItem="8P1-Rh-jAV" secondAttribute="bottom" constant="8" id="viR-11-w2x"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tKN-Hl-rYk">
+                                <rect key="frame" x="0.0" y="20" width="600" height="530"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="66" id="wUu-wE-kHT" customClass="CommentTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wUu-wE-kHT" id="vt7-zS-NCs">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25U-hP-YdD">
+                                                    <rect key="frame" x="66" y="8" width="37" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                                                    <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LoP-7d-nNR">
+                                                    <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="Ac8-Yf-6eU"/>
+                                                        <constraint firstAttribute="width" constant="50" id="fEq-rQ-r50"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsk-hs-xvD">
+                                                    <rect key="frame" x="66" y="37" width="34" height="20"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zsk-hs-xvD" firstAttribute="leading" secondItem="LoP-7d-nNR" secondAttribute="trailing" constant="8" id="2Qh-Ym-lvm"/>
+                                                <constraint firstItem="25U-hP-YdD" firstAttribute="top" secondItem="vt7-zS-NCs" secondAttribute="topMargin" id="4Tj-Mf-PfM"/>
+                                                <constraint firstItem="LoP-7d-nNR" firstAttribute="leading" secondItem="vt7-zS-NCs" secondAttribute="leading" constant="8" id="6PG-0k-8cI"/>
+                                                <constraint firstItem="LoP-7d-nNR" firstAttribute="centerY" secondItem="vt7-zS-NCs" secondAttribute="centerY" id="Ewl-t0-99d"/>
+                                                <constraint firstItem="zsk-hs-xvD" firstAttribute="top" secondItem="25U-hP-YdD" secondAttribute="bottom" constant="8" id="kMH-C4-bae"/>
+                                                <constraint firstItem="25U-hP-YdD" firstAttribute="leading" secondItem="LoP-7d-nNR" secondAttribute="trailing" constant="8" id="n4G-Zs-hLM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="profileComment" destination="zsk-hs-xvD" id="duB-3U-gVD"/>
+                                            <outlet property="profileImage" destination="vt7-zS-NCs" id="oFj-1s-9xH"/>
+                                            <outlet property="profileName" destination="25U-hP-YdD" id="K91-1J-Ced"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pig-nC-a9B" firstAttribute="leading" secondItem="eLi-Wl-nVH" secondAttribute="leading" id="B2c-3M-jk0"/>
+                            <constraint firstAttribute="trailing" secondItem="tKN-Hl-rYk" secondAttribute="trailing" id="Ce6-SM-dDr"/>
+                            <constraint firstAttribute="trailing" secondItem="Pig-nC-a9B" secondAttribute="trailing" id="GZe-0n-tiV"/>
+                            <constraint firstItem="Pig-nC-a9B" firstAttribute="top" secondItem="tKN-Hl-rYk" secondAttribute="bottom" id="NLe-X5-Ona"/>
+                            <constraint firstItem="gy5-oF-cNI" firstAttribute="top" secondItem="Pig-nC-a9B" secondAttribute="bottom" id="U7a-PZ-4N7"/>
+                            <constraint firstItem="tKN-Hl-rYk" firstAttribute="leading" secondItem="eLi-Wl-nVH" secondAttribute="leading" id="kRj-nD-ZFA"/>
+                            <constraint firstItem="tKN-Hl-rYk" firstAttribute="top" secondItem="Uhh-4d-AGY" secondAttribute="bottom" id="rFq-nD-JQY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addComment" destination="8P1-Rh-jAV" id="MYA-XC-pQt"/>
+                        <outlet property="commentsTable" destination="tKN-Hl-rYk" id="846-Vi-tDm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nXn-2z-Vjo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3727" y="4103"/>
+        </scene>
         <!--Nationality New-->
         <scene sceneID="sFn-kA-ley">
             <objects>

@@ -27,6 +27,11 @@ class PhotosOTG: UIView {
     @IBOutlet var otherPhotosStack: [UIImageView]!
     @IBOutlet weak var whatPostIcon: UIButton!
     
+    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var optionsButton: UIButton!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

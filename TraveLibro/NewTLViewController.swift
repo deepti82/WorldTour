@@ -30,7 +30,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var addNewView: NewQuickItinerary!
     
     var journeyName: String!
-    var locationData: String!
+    var locationData = ""
     let locationManager = CLLocationManager()
 //    var locValue:CLLocationCoordinate2D!
     var journeyCategories = [String] ()
@@ -194,6 +194,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let searchVC = self.storyboard!.instantiateViewControllerWithIdentifier("searchLocationsVC") as! SearchLocationTableViewController
         searchVC.places = self.locationArray
+        searchVC.location = userLocation
         self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
@@ -811,6 +812,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 550))
+        checkIn.likeButton.setTitle(post["uniqueId"].string!, forState: .Normal)
+        checkIn.commentButton.setTitle(post["uniqueId"].string!, forState: .Normal)
+        checkIn.optionsButton.setTitle(post["uniqueId"].string!, forState: .Normal)
+        checkIn.likeButton.addTarget(self, action: #selector(NewTLViewController.sendLikes(_:)), forControlEvents: .TouchUpInside)
+        checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), forControlEvents: .TouchUpInside)
+        checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), forControlEvents: .TouchUpInside)
         layout.addSubview(checkIn)
         addHeightToLayout(checkIn.frame.height + 50.0)
         checkIn.photosTitle.text = thoughts
@@ -898,6 +905,113 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         
     }
+    
+    func chooseOptions(sender: UIButton) {
+        
+        let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        
+        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+            
+            
+        }
+        actionSheetControllerIOS8.addAction(cancelActionButton)
+        
+        let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Check In", style: .Default)
+        { action -> Void in
+           
+            print("inside edit check in")
+            
+        }
+        actionSheetControllerIOS8.addAction(EditCheckIn)
+        
+        let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .Default)
+        { action -> Void in
+            
+            print("inside change date and time")
+            
+        }
+        actionSheetControllerIOS8.addAction(EditDnt)
+        
+        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Post", style: .Default)
+        { action -> Void in
+            
+            print("inside delete post")
+            
+        }
+        actionSheetControllerIOS8.addAction(DeletePost)
+        
+        let share: UIAlertAction = UIAlertAction(title: "Copy Share URL", style: .Default)
+        { action -> Void in
+            
+            print("inside copy share")
+            
+        }
+        actionSheetControllerIOS8.addAction(share)
+        self.presentViewController(actionSheetControllerIOS8, animated: true, completion: nil)
+        
+    }
+    
+    func sendLikes(sender: UIButton) {
+        
+        print("like button tapped \(sender.titleLabel!.text)")
+        
+        var hasLiked = false
+        
+        if sender.tag == 1 {
+            
+            hasLiked = true
+            sender.tag = 0
+            
+        }
+        else {
+            
+            sender.tag = 1
+        }
+        
+        print("send likes: \(sender.tag) \(hasLiked)")
+        
+        request.likePost(sender.titleLabel!.text!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    if sender.tag == 1 {
+                     
+                        sender.setImage(UIImage(named: "favorite-heart-button"), forState: .Normal)
+                        
+                    }
+                    else {
+                        
+                        sender.setImage(UIImage(named: "like_empty_icon"), forState: .Normal)
+                        
+                    }
+                    
+                }
+                else {
+                    
+                }
+                
+            })
+            
+        })
+        
+    }
+    
+    func sendComments(sender: UIButton) {
+        
+        print("comment button tapped")
+        let comment = storyboard?.instantiateViewControllerWithIdentifier("CommentsVC") as! CommentsViewController
+        comment.postId = sender.titleLabel!.text!
+        self.navigationController?.pushViewController(comment, animated: true)
+        
+    }
+    
     
     func addHeightToLayout(height: CGFloat) {
         
@@ -1421,42 +1535,43 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     self.locationPic = response["data"].string!
                     self.makeCoverPic(response["data"].string!)
-                    if self.locationData != nil {
-                        
-                        //                    let dateFormatterOne = NSDateFormatter()
-                        ////                    dateFormatter.dateFormat = "YYYY-MM-DD"
-                        //
-                        //
-                        //                    dateFormatterOne.dateStyle = .LongStyle
-                        //                    let currentDate = dateFormatterOne.stringFromDate(NSDate())
-                        //                    print("date: \(currentDate)")
-                        
-                        let dateFormatterTwo = NSDateFormatter()
-                        dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
-                        self.currentTime = dateFormatterTwo.stringFromDate(NSDate())
-                        print("time: \(self.currentTime)")
-                        
-                        self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.5)
-                        self.otgView.detectLocationView.hidden = true
-                        self.otgView.placeLabel.text = self.locationData
-                        self.otgView.timestampDate.text = self.currentTime
-                        //                    self.otgView.timestampTime.text =
-                        self.otgView.cityView.layer.opacity = 0.0
-                        self.otgView.cityView.hidden = false
-                        self.otgView.cityView.animation.makeOpacity(1.0).animate(0.5)
-                        self.otgView.journeyDetails.hidden = true
-                        self.otgView.selectCategoryButton.hidden = false
-                        self.height = 250.0
-                        self.mainScroll.animation.makeY(60.0).animate(0.7)
-                        self.otgView.animation.makeY(0.0).animate(0.7)
-                        
-                    }
                     
                 }
                 else {
                     
                     
                 }
+                
+//                if self.locationData != nil {
+                
+                    //                    let dateFormatterOne = NSDateFormatter()
+                    ////                    dateFormatter.dateFormat = "YYYY-MM-DD"
+                    //
+                    //
+                    //                    dateFormatterOne.dateStyle = .LongStyle
+                    //                    let currentDate = dateFormatterOne.stringFromDate(NSDate())
+                    //                    print("date: \(currentDate)")
+                    
+                    let dateFormatterTwo = NSDateFormatter()
+                    dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+                    self.currentTime = dateFormatterTwo.stringFromDate(NSDate())
+                    print("time: \(self.currentTime)")
+                    
+                    self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.5)
+                    self.otgView.detectLocationView.hidden = true
+                    self.otgView.placeLabel.text = self.locationData
+                    self.otgView.timestampDate.text = self.currentTime
+                    //                    self.otgView.timestampTime.text =
+                    self.otgView.cityView.layer.opacity = 0.0
+                    self.otgView.cityView.hidden = false
+                    self.otgView.cityView.animation.makeOpacity(1.0).animate(0.5)
+                    self.otgView.journeyDetails.hidden = true
+                    self.otgView.selectCategoryButton.hidden = false
+                    self.height = 250.0
+                    self.mainScroll.animation.makeY(60.0).animate(0.7)
+                    self.otgView.animation.makeY(0.0).animate(0.7)
+                    
+//                }
                 
             })
             
@@ -1651,9 +1766,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             self.addHeightToNewActivity(5.0)
                             self.addView.photosCount.text = "(\(assets.count))"
                             
-                            if asset == assets.last || index == 3 {
+                            if assets.count < 4 {
                                 
                                 self.addView.photosCollection[index].addSubview(layerAbove)
+                                
+                            }
+                            
+                            else {
+                                
+                               self.addView.photosCollection[3].addSubview(layerAbove)
                                 
                             }
                             
@@ -1665,59 +1786,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             
                         }
                         
+                        self.uploadMultiplePhotos(assetArray)
+                        
                     }
+                    
+                    
                     
 //                    var uploadArray: [String] = []
                     
-                    for asset in assetArray {
-                        
-//                        uploadArray.append("blah")
-                        
-                        
-                        request.uploadPhotos(asset, completion: {(response) in
-                            
-                            dispatch_sync(dispatch_get_main_queue(), {
-                                
-                                if response.error != nil {
-                                    
-                                    print("error: \(response.error!.localizedDescription)")
-                                    
-                                }
-                                else if response["value"] {
-                                    
-                                    if self.photosCount >= assets.count {
-                                        
-                                        self.photosCount = 0
-//                                    self.addView.postButton.hidden = false
-                                        
-                                    }
-                                    
-                                    self.photosCount += 1
-                                    print("response upload photos \(asset)")
-                                    self.uploadedphotos.append(response["data"][0].string!)
-                                    
-                                    if asset == assetArray.last {
-                                        
-                                        print("assert number: \(asset)")
-                                        print("out of upload for loop")
-                                        self.addView.postButton.hidden = false
-                                        
-                                    }
-                                    
-                                }
-                                else {
-                                    
-                                    print("response error!")
-                                    request.uploadPhotos(asset, completion: {(response) in})
-//                                    self.addView.postButton.hidden = false
-                                    
-                                }
-                                
-                            })
-                            
-                        })
-                        
-                    }
+                    
                     
 //                    request.uploadPhotosMultiple(assetArray, completion: {(response) in
 //                        
@@ -1778,6 +1855,75 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         optionMenu.addAction(cancelAction)
         
         self.presentViewController(optionMenu, animated: true, completion: nil)
+        
+    }
+    
+    func uploadMultiplePhotos(assets: [NSURL]) {
+        
+        var tempAssets = assets
+        
+        for asset in assets {
+            
+            //                        uploadArray.append("blah")
+            
+            
+            request.uploadPhotos(asset, completion: {(response) in
+                
+                dispatch_sync(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"] {
+                        
+                        if self.photosCount >= assets.count {
+                            
+                            self.photosCount = 0
+                            //                                    self.addView.postButton.hidden = false
+                            
+                        }
+                        
+                        self.photosCount += 1
+                        print("response upload photos \(asset)")
+                        self.uploadedphotos.append(response["data"][0].string!)
+                        
+                        if asset == assets.last {
+                            
+                            print("assert number: \(asset)")
+                            print("out of upload for loop")
+                            self.addView.postButton.hidden = false
+                            
+                        }
+                        
+                        if tempAssets.count > 1 {
+                         
+                            tempAssets.removeAtIndex(assets.indexOf(asset)!)
+                            
+                        }
+                        else {
+                            
+                            tempAssets = []
+                            
+                        }
+                        
+                        
+                    }
+                    else {
+                        
+                        print("response error!")
+                        self.uploadMultiplePhotos(tempAssets)
+//                        request.uploadPhotos(asset, completion: {(response) in})
+                        //                                    self.addView.postButton.hidden = false
+                        
+                    }
+                    
+                })
+                
+            })
+            
+        }
         
     }
     

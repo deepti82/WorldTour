@@ -1,12 +1,15 @@
 
 import UIKit
 import SwiftyJSON
+import CoreLocation
 
-class SearchLocationTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, UIPickerViewDelegate {
+class SearchLocationTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, UIPickerViewDelegate, CLLocationManagerDelegate {
     
     var places: [JSON] = []
     var searchController: UISearchController!
     var shouldShowSearchResults = false
+    var location: CLLocationCoordinate2D!
+    var searchString = "Loha"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,6 +18,36 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         configureSearchController()
         searchController.searchBar.placeholder = "Search Places"
 //        self.navigationItem.backBarButtonItem!.title = ""
+        
+    }
+    
+    func getSearchText() {
+        
+        print("in the search text \(searchString.characters.count)")
+        
+//        if searchString.characters.count > 2 {
+        
+            request.getGoogleSearchNearby(location.latitude, long: location.longitude, searchText: searchString, completion: {(response) in
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error?.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    self.filteredArray = response["data"].array!
+                    self.tableView.reloadData()
+                    
+                }
+                else {
+                    
+                    print("response error")
+                }
+                
+            })
+            
+//        }
         
     }
     
@@ -34,7 +67,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         print("search begin editing")
         searchController.dimsBackgroundDuringPresentation = true
         shouldShowSearchResults = true
-        tableView.reloadData()
+//        tableView.reloadData()
         
     }
     
@@ -68,16 +101,18 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
         searchController.dimsBackgroundDuringPresentation = false
-        let searchString = searchController.searchBar.text
+        searchString = searchController.searchBar.text!
         
-        filteredArray = places.filter({(country) -> Bool in
-            
-            let text: NSString = country["name"].string!
-            return (text.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location) != NSNotFound
-            
-        })
+        getSearchText()
         
-        print("filtered array: \(filteredArray)")
+//        filteredArray = places.filter({(country) -> Bool in
+//            
+//            let text: NSString = country["name"].string!
+//            return (text.rangeOfString(searchString, options: .CaseInsensitiveSearch).location) != NSNotFound
+//            
+//        })
+        
+//        print("filtered array: \(filteredArray)")
         
         tableView.reloadData()
     }
@@ -111,8 +146,9 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
         if shouldShowSearchResults {
             
-            cell.placeName.text = filteredArray[indexPath.row]["name"].string!
-            cell.vicinityLabel.text = filteredArray[indexPath.row]["vicinity"].string!
+            cell.placeName.text = filteredArray[indexPath.row]["terms"].string!
+            cell.vicinityLabel.text = filteredArray[indexPath.row]["description"].string!
+            return cell
             
         }
         
@@ -130,11 +166,34 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
         var myId = ""
         
-        for place in places {
+        if shouldShowSearchResults {
             
-            if myCell.placeName.text! == place["name"].string! {
+            searchController.searchBar.resignFirstResponder()
+            searchController.active = false
+            
+            for place in filteredArray {
                 
-                myId = place["place_id"].string!
+                if myCell.placeName.text! == place["terms"].string! {
+                    
+                    myId = place["place_id"].string!
+                    
+                }
+                
+                
+            }
+            
+            
+        }
+        
+        else {
+            
+            for place in places {
+                
+                if myCell.placeName.text! == place["name"].string! {
+                    
+                    myId = place["place_id"].string!
+                    
+                }
                 
             }
             
@@ -142,7 +201,6 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
         previous.putLocationName(myCell.placeName.text!, placeId: myId)
         self.navigationController?.popToViewController(previous, animated: true)
-        
         
     }
 

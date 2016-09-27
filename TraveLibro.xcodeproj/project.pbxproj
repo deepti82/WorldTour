@@ -230,6 +230,7 @@
 		C298717E1D6EBE8100F65429 /* AddCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C298717D1D6EBE8100F65429 /* AddCityViewController.swift */; };
 		C29C33C31D7061DC00DC5B36 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */; };
 		C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */; };
+		C2A026CF1D9AA82F00D548AB /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A026CE1D9AA82D00D548AB /* CommentsViewController.swift */; };
 		C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */; };
 		C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */; };
 		C2A27A421CEDBAFF00F74DD1 /* SignInToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A411CEDBAFF00F74DD1 /* SignInToolbar.swift */; };
@@ -578,6 +579,7 @@
 		C298717D1D6EBE8100F65429 /* AddCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCityViewController.swift; path = ../AddCityViewController.swift; sourceTree = "<group>"; };
 		C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		C29D2C101D1BE09600FA0602 /* FilterCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCityViewController.swift; sourceTree = "<group>"; };
+		C2A026CE1D9AA82D00D548AB /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		C2A27A3D1CEDAF4C00F74DD1 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = ../SignInViewController.swift; sourceTree = "<group>"; };
 		C2A27A3F1CEDAF9100F74DD1 /* SignInToolbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SignInToolbar.xib; path = ../SignInToolbar.xib; sourceTree = "<group>"; };
 		C2A27A411CEDBAFF00F74DD1 /* SignInToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInToolbar.swift; path = ../SignInToolbar.swift; sourceTree = "<group>"; };
@@ -765,6 +767,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C2A026CE1D9AA82D00D548AB /* CommentsViewController.swift */,
 				C2276FEF1D9906770052D942 /* EditCategoryViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
@@ -2592,6 +2595,7 @@
 				C2A27A421CEDBAFF00F74DD1 /* SignInToolbar.swift in Sources */,
 				C2ABDBB01CEC4F1400D7542E /* OnlyPhoto.swift in Sources */,
 				C2488AB11D51BC3900FD5306 /* PhotoList.swift in Sources */,
+				C2A026CF1D9AA82F00D548AB /* CommentsViewController.swift in Sources */,
 				C2C9659D1CE4AEB2007BDA34 /* ThoughtsViewController.swift in Sources */,
 				C23B3BDE1D423CDE0075B733 /* EachItineraryPhotosViewController.swift in Sources */,
 				C2FA008A1CF57EC100E6A7D7 /* SetProfilePictureViewController.swift in Sources */,
