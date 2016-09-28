@@ -339,18 +339,26 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func gotoOTG(sender: UITapGestureRecognizer) {
         
-        for vc in self.navigationController!.viewControllers {
+        var flag = 0
+        
+//        for vc in self.navigationController!.viewControllers {
+//            
+//            if vc.isKindOfClass(NewTLViewController) {
+//                
+//                print("inside if statement")
+//                flag = 1
+//                self.navigationController!.pushViewController(vc, animated: true)
+//                
+//            }
+//            
+//        }
+        
+        if flag == 0 {
             
-            if vc.isKindOfClass(NewTLViewController) {
-                
-                print("inside if statement")
-                
-            }
+            let tlVC = storyboard?.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
+            self.navigationController?.pushViewController(tlVC, animated: false)
             
         }
-        
-        let tlVC = storyboard?.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
-        self.navigationController?.pushViewController(tlVC, animated: false)
         
     }
     

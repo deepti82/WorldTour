@@ -1182,13 +1182,8 @@ class Navigation {
         do {
             
             var params = ["uniqueId": id, "comment" : ["user":  userId, "text": commentText]]
-            
-//            if !unlike {
-//                
-//                params = ["uniqueId": id, "user": userId, "name": userName]
-//            }
-//            
-//            print("like params: \(params)")
+              
+            print("set comment params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "post/addComment", parameters: [params])
             var json = JSON(1);
@@ -1217,6 +1212,59 @@ class Navigation {
             print("comment params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "post/getPostComment", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getOneJourneyPost(id: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id]
+            
+            print("get one journey params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "post/getOne", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func editPost(id: String, location: String, categoryLocation: String, thoughts: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let jsonObject = ["category": categoryLocation, "location": location]
+            let params = ["_id": id, "type": "editPost", "checkIn": jsonObject, "thoughts": thoughts]
+            
+            print("get one journey params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "post/editData", parameters: [params])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

@@ -97,6 +97,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.view.addSubview(newScroll)
         
         addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        print("add view: \(addView)")
         displayFriendsCount()
         newScroll.addSubview(addView)
         newScroll.contentSize.height = self.view.frame.height
@@ -308,91 +309,150 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func newPost(sender: UIButton) {
         
-        var thoughts = ""
-        var location = ""
-        var locationCategory = ""
-        var photos: [String] = []
-        var videos: [String] = []
-        var buddies: [String] = []
-        var id = ""
-        
-        if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" {
+        if editPostId == "" {
             
-            thoughts = addView.thoughtsTextView.text
-            print("thoughts: \(thoughts)")
+            var thoughts = ""
+            var location = ""
+            var locationCategory = ""
+            var photos: [String] = []
+            var videos: [String] = []
+            var buddies: [String] = []
+            var id = ""
             
-        }
-        if addView.addLocationButton.titleLabel!.text != nil && addView.addLocationButton.titleLabel!.text != "" {
-            
-            location = addView.addLocationButton.titleLabel!.text!
-            print("location: \(location)")
-            
-        }
-        if uploadedphotos.count > 0 {
-            
-            photos = uploadedphotos
-            print("photos \(photos)")
-            
-        }
-        if uploadedVideos.count > 0 {
-            
-            videos = uploadedVideos
-            print("videos: \(videos)")
-            
-        }
-        if addedBuddies.count > 0 {
-            
-            for buddy in addedBuddies {
+            if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" {
                 
-                buddies.append(buddy["_id"].string!)
+                thoughts = addView.thoughtsTextView.text
+                print("thoughts: \(thoughts)")
+                
+            }
+            if addView.addLocationButton.titleLabel!.text != nil && addView.addLocationButton.titleLabel!.text != "" {
+                
+                location = addView.addLocationButton.titleLabel!.text!
+                print("location: \(location)")
+                
+            }
+            if uploadedphotos.count > 0 {
+                
+                photos = uploadedphotos
+                print("photos \(photos)")
+                
+            }
+            if uploadedVideos.count > 0 {
+                
+                videos = uploadedVideos
+                print("videos: \(videos)")
+                
+            }
+            if addedBuddies.count > 0 {
+                
+                for buddy in addedBuddies {
+                    
+                    buddies.append(buddy["_id"].string!)
+                    
+                }
+                
+                print("buddies: \(buddies)")
+                
+            }
+            if journeyId != nil && journeyId != "" {
+                
+                id = journeyId
+                print("id: \(id)")
                 
             }
             
-            print("buddies: \(buddies)")
-            
-        }
-        if journeyId != nil && journeyId != "" {
-            
-            id = journeyId
-            print("id: \(id)")
-            
-        }
-        
-        addView.animation.makeOpacity(0.0).animate(0.5)
-        addView.hidden = true
-        newScroll.hidden = true
-        request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, completion: {(response) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
+            //        addView.animation.makeOpacity(0.0).animate(0.5)
+            addView.hidden = true
+            newScroll.hidden = true
+            request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, completion: {(response) in
                 
-                if response.error != nil {
+                dispatch_async(dispatch_get_main_queue(), {
                     
-                    print("error: \(response.error!.localizedDescription)")
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"] {
+                        
+                        print("response arrived new post!")
+                        self.getJourney()
+                        
+                    }
+                    else {
+                        
+                        let alert = UIAlertController(title: nil, message:
+                            "response error!", preferredStyle: .Alert)
+                        
+                        self.presentViewController(alert, animated: false, completion: nil)
+                        
+                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:
+                            {action in
+                                alert.dismissViewControllerAnimated(true, completion: nil)
+                        }))
+                        print("response error!")
+                        
+                    }
                     
-                }
-                else if response["value"] {
+                })
+            })
+            
+        }
+            
+        else {
+            
+            var location = ""
+            var thoughts = ""
+            var locationCategory = ""
+            
+            if addView.addLocationButton.titleLabel!.text! != "Add Location" {
+                
+                location = addView.addLocationButton.titleLabel!.text!
+                
+            }
+            
+            if addView.categoryLabel.text != nil && addView.categoryLabel.text != "Label" {
+                
+                locationCategory = addView.categoryLabel.text!
+                
+            }
+            
+            if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" && addView.thoughtsTextView.text != "Fill me in" {
+                
+                thoughts = addView.thoughtsTextView.text
+                print("\(#line) \(addView.thoughtsTextView.text)")
+                
+            }
+            
+            request.editPost(editPostId, location: location, categoryLocation: locationCategory, thoughts: thoughts, completion: {(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
                     
-                    print("response arrived new post!")
-                    self.getJourney()
-                    
-                }
-                else {
-                    
-                    let alert = UIAlertController(title: nil, message:
-                        "response error!", preferredStyle: .Alert)
-                    
-                    self.presentViewController(alert, animated: false, completion: nil)
-                    
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:
-                        {action in
-                            alert.dismissViewControllerAnimated(true, completion: nil)
-                    }))
-                    print("response error!")
-                    
-                }
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                        
+                    else if response["value"] {
+                        
+                        self.addView.hidden = true
+                        self.newScroll.hidden = true
+                        
+                    }
+                        
+                    else {
+                        
+                        
+                        
+                        
+                    }
+
+                })
                 
             })
-        })
+            
+        }
         
     }
     
@@ -677,7 +737,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.addTarget(self, action: #selector(gotoProfile(_:)), forControlEvents: .TouchUpInside)
         leftButton.frame = CGRectMake(-10, 0, 30, 30)
         self.customNavigationBar(leftButton, right: nil)
         
@@ -760,6 +820,22 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    func gotoProfile(sender: UIButton) {
+        
+        let viewControllers = self.navigationController!.viewControllers
+        
+//        for vc in viewControllers {
+//            
+//            if vc.isKindOfClass(ProfileViewController) {
+//                
+//                self.navigationController!.showViewController(vc, sender: nil)
+//                
+//            }
+//            
+//        }
+        
+    }
+    
     func refresh(sender: UIRefreshControl) {
         
         print("in refresh")
@@ -769,12 +845,28 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     var isInitialPost = true
+    var otherCommentId = ""
     
     func showPost(whichPost: String, post: JSON) {
         
         if !prevPosts.contains(post) {
             
             prevPosts.append(post)
+            
+        }
+        
+        else {
+            
+            for prevPost in prevPosts {
+                
+                if prevPost["uniqueId"].string! == post["uniqueId"].string! {
+                    
+                    prevPosts = prevPosts.filter({$0 != prevPost})
+                    prevPosts.append(post)
+                    
+                }
+                
+            }
             
         }
         
@@ -814,7 +906,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 550))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, forState: .Normal)
         checkIn.commentButton.setTitle(post["uniqueId"].string!, forState: .Normal)
-        checkIn.optionsButton.setTitle(post["uniqueId"].string!, forState: .Normal)
+        otherCommentId = post["_id"].string!
+        checkIn.optionsButton.setTitle(post["_id"].string!, forState: .Normal)
         checkIn.likeButton.addTarget(self, action: #selector(NewTLViewController.sendLikes(_:)), forControlEvents: .TouchUpInside)
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), forControlEvents: .TouchUpInside)
         checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), forControlEvents: .TouchUpInside)
@@ -906,6 +999,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    var selectPhotosCount = 11
+    var editPostId = ""
+    
     func chooseOptions(sender: UIButton) {
         
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
@@ -916,10 +1012,105 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         actionSheetControllerIOS8.addAction(cancelActionButton)
         
-        let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Check In", style: .Default)
-        { action -> Void in
-           
-            print("inside edit check in")
+        let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Post", style: .Default)
+        {action -> Void in
+            
+            request.getOneJourneyPost(sender.titleLabel!.text!, completion: {(response) in
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    self.newScroll.hidden = false
+                    self.addView.hidden = false
+                    self.addView.postButton.setTitle("Edit", forState: .Normal)
+                    self.editPostId = sender.titleLabel!.text!
+//                    self.addView.postButton.addTarget(self, action: #selector(NewTLViewController.editPost(_:)), forControlEvents: .TouchUpInside)
+                    
+                    if response["data"]["checkIn"]["location"] != "" {
+                        
+                        self.addView.addLocationButton.setTitle(response["data"]["checkIn"]["location"].string!, forState: .Normal)
+                        self.addView.categoryView.hidden = true
+                        self.addView.categoryLabel.hidden = false
+                        
+                    }
+                    
+                    else {
+                        
+                        self.addView.addLocationButton.setTitle("Add Location", forState: .Normal)
+                        self.addView.categoryView.hidden = false
+                        self.addView.categoryLabel.hidden = true
+                        
+                    }
+                    
+                    if response["data"]["photos"] != nil && response["data"]["photos"].array?.count > 0 {
+                        
+                        self.addView.photosFinalView.hidden = false
+                        self.addView.photosIntialView.hidden = true
+                        
+                    }
+                    
+                    else {
+                        
+                        self.addView.photosFinalView.hidden = true
+                        self.addView.photosIntialView.hidden = false
+                        
+                    }
+                    
+                    if response["data"]["videos"] != nil && response["data"]["videos"].array?.count > 0 {
+                        
+                        self.addView.videosFinalView.hidden = false
+                        self.addView.videosInitialView.hidden = true
+                        
+                    }
+                    
+                    else {
+                        
+                        self.addView.videosFinalView.hidden = true
+                        self.addView.videosInitialView.hidden = false
+                        
+                    }
+                    
+                    if response["data"]["thoughts"] != nil && response["data"]["thoughts"].string != "" {
+                        
+                        self.addView.thoughtsFinalView.hidden = false
+                        self.addView.thoughtsInitalView.hidden = true
+                        
+                    }
+                    
+                    else {
+                        
+                        self.addView.thoughtsFinalView.hidden = true
+                        self.addView.thoughtsInitalView.hidden = false
+                        
+                    }
+                    
+                    if response["data"]["buddies"] != nil && response["data"]["buddies"].array!.count > 0 {
+                        
+                        self.addView.friendsCount.setTitle("\(response["data"]["buddies"].array!.count) Friend(s)", forState: .Normal)
+                        
+                    }
+                    
+                    else {
+                        
+                       self.addView.friendsCount.setTitle("0 Friends", forState: .Normal)
+                        
+                    }
+                    
+                    
+                }
+                else {
+                    
+                    print("response error")
+                    
+                }
+                
+            })
+            
+            print("inside edit check in \(self.addView), \(self.newScroll.hidden)")
             
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
@@ -948,6 +1139,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         actionSheetControllerIOS8.addAction(share)
         self.presentViewController(actionSheetControllerIOS8, animated: true, completion: nil)
+        
+    }
+    
+    func editPost(sender: UIButton) {
         
     }
     
@@ -1008,6 +1203,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("comment button tapped")
         let comment = storyboard?.instantiateViewControllerWithIdentifier("CommentsVC") as! CommentsViewController
         comment.postId = sender.titleLabel!.text!
+        comment.otherId = otherCommentId
         self.navigationController?.pushViewController(comment, animated: true)
         
     }
@@ -1108,9 +1304,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        otgView.nameJourneyTF.resignFirstResponder()
-        otgView.locationLabel.resignFirstResponder()
+        textField.resignFirstResponder()
+//        otgView.locationLabel.resignFirstResponder()
 //        addView.thoughtsTextView.resignFirstResponder()
+        print("\(otgView.nameJourneyTF.text)")
+        print("\(self.title)")
         self.title = otgView.nameJourneyTF.text
         print("text field: \(textField)")
         
@@ -1138,7 +1336,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            
 //        }
         
-        return true
+        return false
         
     }
  
@@ -1169,9 +1367,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func showDetailsFn() {
         
+        let journeyName = otgView.nameJourneyTF.text!
+        
         print("show details function")
         
-        request.addNewOTG(otgView.nameJourneyTF.text!, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, lp: locationPic, completion: {(response) in
+        request.addNewOTG(journeyName, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, lp: locationPic, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 
@@ -1376,7 +1576,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
                 let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
-                if data != nil {
+                if data != nil && i <= 2 {
                     
                     otgView.buddyStackPictures[i].image = UIImage(data: data!)
                     otgView.buddyStackPictures[i].image = UIImage(data: data!)
@@ -1655,7 +1855,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             (alert: UIAlertAction!) -> Void in
             
             let multipleImage = BSImagePickerViewController()
-            multipleImage.maxNumberOfSelections = 11
+            multipleImage.maxNumberOfSelections = self.selectPhotosCount
             
             self.bs_presentImagePickerController(multipleImage, animated: true,
                 select: { (asset:PHAsset) -> Void in

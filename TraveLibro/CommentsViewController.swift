@@ -7,18 +7,22 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class CommentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var postId = ""
-    var comments: [String] = []
+    var comments: [JSON] = []
+    var otherId = ""
     
     @IBOutlet weak var commentsTable: UITableView!
     @IBOutlet weak var addComment: UITextView!
     @IBAction func sendComment(sender: UIButton?) {
         
+        print("inside send comments")
         addComment.resignFirstResponder()
         setAllComments(addComment.text)
+        addComment.text = ""
         
     }
     override func viewDidLoad() {
@@ -26,6 +30,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 
         getAllComments()
         commentsTable.tableFooterView = UIView()
+        commentsTable.estimatedRowHeight = 70.0
         commentsTable.rowHeight = UITableViewAutomaticDimension
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
@@ -89,7 +94,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func getAllComments() {
         
-        request.getComments(postId, completion: {(response) in
+        request.getComments(otherId, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 
@@ -100,6 +105,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
                 else if response["value"] {
                     
+                    self.comments = response["data"]["comment"].array!
+                    self.commentsTable.reloadData()
                     
                 }
                 else {
@@ -121,6 +128,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CommentTableViewCell
+        cell.profileName.text = comments[indexPath.row]["user"]["name"].string!
+        cell.profileComment.text = comments[indexPath.row]["text"].string!
+        cell.profileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(comments[indexPath.row]["user"]["profilePicture"])&width=100")!)!)
         return cell
         
     }
@@ -130,8 +140,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 
 class CommentTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var profileImage: UIView!
+//    @IBOutlet weak var profileImage: UIView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileComment: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     
 }
