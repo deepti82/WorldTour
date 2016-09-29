@@ -341,24 +341,37 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         var flag = 0
         
-//        for vc in self.navigationController!.viewControllers {
+//        request.getJourney(currentUser["_id"].string!, completion: {(response) in
 //            
-//            if vc.isKindOfClass(NewTLViewController) {
+//            if response.error != nil {
 //                
-//                print("inside if statement")
-//                flag = 1
-//                self.navigationController!.pushViewController(vc, animated: true)
+//                print("error: \(response.error!.localizedDescription)")
+//            }
+//            else if response["value"] {
+//                
+//                let tlVC = self.storyboard!.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
+//                tlVC.isJourney = true
+//                self.navigationController?.pushViewController(tlVC, animated: false)
+//                
+//            }
+//            else if response["data"]["error"] == nil {
+//                
+//                if flag == 0 {
+                
+                    let tlVC = self.storyboard!.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
+                    tlVC.isJourney = false
+                    self.navigationController?.pushViewController(tlVC, animated: false)
+                    
+//                }
+                
+//            }
+//            else {
+//                
+//                print("response error")
 //                
 //            }
 //            
-//        }
-        
-        if flag == 0 {
-            
-            let tlVC = storyboard?.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
-            self.navigationController?.pushViewController(tlVC, animated: false)
-            
-        }
+//        })
         
     }
     

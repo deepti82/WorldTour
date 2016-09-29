@@ -4292,6 +4292,9 @@ IHRvZ2V0aGVyLg
                                                         <exclude reference="kvE-21-Lsa"/>
                                                     </mask>
                                                 </variation>
+                                                <connections>
+                                                    <action selector="endJourneyTapped:" destination="Zyu-ZQ-UjZ" eventType="touchUpInside" id="SkD-dU-NKX"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMx-0C-LAM">
                                                 <rect key="frame" x="305" y="0.0" width="295" height="50"/>

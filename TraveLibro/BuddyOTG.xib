@@ -73,7 +73,6 @@
                     <state key="normal" image="add_friend_icon" backgroundImage="green_bg_new_small"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="TjV-g0-pnn" secondAttribute="bottom" constant="-8" id="7RF-VT-dnC"/>
                 <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="poG-co-vae" secondAttribute="bottom" constant="80" id="H8N-gl-ylO"/>

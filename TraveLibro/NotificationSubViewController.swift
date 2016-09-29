@@ -147,7 +147,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         print("in the accept tag button")
         
-        request.acceptJourney(notifications[sender.tag]["journeyUnique"].string!, id: currentUser["_id"].string!, completion: {(response) in
+        request.acceptJourney(notifications[sender.tag]["journeyUnique"].string!, id: currentUser["_id"].string!, isInMiddle: notifications[sender.tag]["inMiddle"].string!, completion: {(response) in
             
             if response.error != nil {
                 
