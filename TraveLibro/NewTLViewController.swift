@@ -56,7 +56,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    @IBAction func endJourneyTapped(sender: AnyObject) {
+    @IBAction func endJourneyTapped(sender: UIButton) {
         
         getCurrentOTG()
         
@@ -69,6 +69,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             else if response["value"] {
                 
                 print("response arrived!")
+                self.popVC(sender)
                 
             }
             else {
@@ -76,7 +77,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 print("response error")
             }
         })
-        
         
     }
 //    @IBOutlet weak var endJourney: UIButton!
@@ -235,31 +235,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
 //    var pickerView = UIPickerView()
     
-    func deleteFromLayout(id: String) {
-        
-        for view in layout.subviews {
-            
-            if view.isKindOfClass(PhotosOTG) {
-                
-                let subview = view as! PhotosOTG
-                
-                if  subview.optionsButton.titleLabel!.text! == id {
-                    
-                    print("inside delete subview")
-                    removeHeightFromLayout(subview.frame.height)
-                    subview.removeFromSuperview()
-                    
-                }
-                
-                
-            }
-            
-            
-        }
-        
-        
-    }
-    
     func selectAnotherCategory(sender: UIButton) {
         
         print("select another category tapped")
@@ -417,7 +392,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             addView.categoryView.hidden = false
             addView.hidden = true
             newScroll.hidden = true
-            request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, completion: {(response) in
+            request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, completion: {(response) in
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     
@@ -535,6 +510,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         if post["type"].string! == "join" {
                             
                             self.BuddyJoinInLayout(post)
+                            
+                        }
+                            
+                        else if post["type"].string! == "left" {
+                            
+                            self.buddyLeaves(post)
                             
                         }
                         
@@ -835,7 +816,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         TLLoader = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
         TLLoader.center = self.view.center
-//        TLLoader.s
         
         imagePicker.delegate = self
         
@@ -995,35 +975,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-//        57ed03d67f46c62d59af8836
-        
-        for view in layout.subviews {
-            
-            if view.isKindOfClass(PhotosOTG) {
-                
-                let subview = view as! PhotosOTG
-                print("edit id: \(deletePostId), post id: \(post["_id"].string!)")
-                
-                if isEdit && editPostId == subview.optionsButton.titleLabel!.text! {
-                    
-                    print("inside removing subviews")
-                    removeHeightFromLayout(subview.frame.height)
-                    subview.removeFromSuperview()
-                    isEdit = false
-                    
-                }
-                
-            }
-            
-        }
+        editPost(post["_id"].string!)
         
         let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 550))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, forState: .Normal)
+        checkIn.likeViewLabel.text = "0 Likes"
         checkIn.commentButton.setTitle(post["uniqueId"].string!, forState: .Normal)
         otherCommentId = post["_id"].string!
         currentPost = post
         checkIn.optionsButton.setTitle(post["_id"].string!, forState: .Normal)
-        checkIn.likeButton.addTarget(self, action: #selector(NewTLViewController.sendLikes(_:)), forControlEvents: .TouchUpInside)
+//        checkIn.likeButton.addTarget(self, action: #selector(NewTLViewController.sendLikes(_:)), forControlEvents: .TouchUpInside)
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), forControlEvents: .TouchUpInside)
         checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), forControlEvents: .TouchUpInside)
         
@@ -1303,61 +1264,67 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func editPost(sender: UIButton) {
-        
-    }
+//    func editPost(sender: UIButton) {
+//        
+//    }
     
-    func sendLikes(sender: UIButton) {
-        
-        print("like button tapped \(sender.titleLabel!.text)")
-        
-        var hasLiked = false
-        
-        if sender.tag == 1 {
-            
-            hasLiked = true
-            sender.tag = 0
-            
-        }
-        else {
-            
-            sender.tag = 1
-        }
-        
-        print("send likes: \(sender.tag) \(hasLiked)")
-        
-        request.likePost(sender.titleLabel!.text!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"] {
-                    
-                    if sender.tag == 1 {
-                     
-                        sender.setImage(UIImage(named: "favorite-heart-button"), forState: .Normal)
-                        
-                    }
-                    else {
-                        
-                        sender.setImage(UIImage(named: "like_empty_icon"), forState: .Normal)
-                        
-                    }
-                    
-                }
-                else {
-                    
-                }
-                
-            })
-            
-        })
-        
-    }
+//    func sendLikes(sender: UIButton) {
+//        
+//        print("like button tapped \(sender.titleLabel!.text)")
+//        
+//        var hasLiked = false
+//        
+////        let postView: PhotosOTG = sender.superview
+//        
+//        if sender.tag == 1 {
+//            
+//            hasLiked = true
+//            sender.tag = 0
+//            
+//        }
+//        else {
+//            
+//            sender.tag = 1
+//        }
+//        
+//        print("send likes: \(sender.tag) \(hasLiked)")
+//        
+//        request.likePost(sender.titleLabel!.text!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                
+//                if response.error != nil {
+//                    
+//                    print("error: \(response.error!.localizedDescription)")
+//                    
+//                }
+//                else if response["value"] {
+//                    
+//                    if sender.tag == 1 {
+//                     
+//                        sender.setImage(UIImage(named: "favorite-heart-button"), forState: .Normal)
+////                        postView.likeCount += 1
+////                        postView.likeViewLabel.text = "\(postView.likeCount) Likes"
+//                        
+//                    }
+//                    else {
+//                        
+//                        sender.setImage(UIImage(named: "like_empty_icon"), forState: .Normal)
+////                        postView.likeCount -= 1
+////                        postView.likeViewLabel.text = "\(postView.likeCount) Likes"
+//                        
+//                    }
+//                    
+//                }
+//                else {
+//                    
+//                }
+//                
+//            })
+//            
+//        })
+//        
+//    }
     
     func sendComments(sender: UIButton) {
         
@@ -1554,6 +1521,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     print("response of add posts")
                     self.journeyId = response["data"]["uniqueId"].string!
+                    self.isJourney = true
                     print("unique id: \(self.journeyId)")
                 }
                 
@@ -1661,13 +1629,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        showBuddies()
 //        mainScroll.layer.zPosition = -1
 //
-        
-    }
-    
-    func showBuddiesPost() {
-        
-        let buddyInTheMiddle = BuddyOTG(frame: CGRect(x: 0, y: 0, width: 300, height: 250))
-        buddyInTheMiddle
         
     }
     
@@ -1921,6 +1882,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     //                    dateFormatterOne.dateStyle = .LongStyle
                     //                    let currentDate = dateFormatterOne.stringFromDate(NSDate())
                     //                    print("date: \(currentDate)")
+                
+                if !self.isJourney {
                     
                     let dateFormatterTwo = NSDateFormatter()
                     dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
@@ -1941,6 +1904,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     self.mainScroll.animation.makeY(60.0).animate(0.7)
                     self.otgView.animation.makeY(0.0).animate(0.7)
                     
+                    
+                }
+                
 //                }
                 
             })
@@ -2086,10 +2052,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         let image = self.getAssetThumbnail(asset)
                         let temp: Bool!
+                        let assetIndex = assets.indexOf(asset)
                         
                         print("got uiimage: \(image)")
                         
-                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image\(index).jpg")
+                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image\(assetIndex!).jpg")
+                        assetArray.append(NSURL(string: exportFilePath)!)
                         
                         do {
                             
@@ -2106,7 +2074,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                 let newTemp = UIImageJPEGRepresentation(newImage, 0.87)
 //                                print("new: \(newTemp)")
                                 temp = try newTemp!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
-                                self.addView.photosCollection[index].image = UIImage(data: newTemp!)
+                                self.addView.photosCollection[assetIndex!].image = UIImage(data: newTemp!)
+                                
                             }
                             
                             else {
@@ -2115,8 +2084,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                 
                                 if index <= self.addView.photosCollection.count - 1 {
                                 
-                                    self.addView.photosCollection[index].image = UIImage(data: tempImage!)
-                                    self.addView.photosCollection[index].layer.cornerRadius = 5.0
+                                    self.addView.photosCollection[assetIndex!].image = UIImage(data: tempImage!)
+                                    self.addView.photosCollection[assetIndex!].layer.cornerRadius = 5.0
                                     
                                 }
                                 
@@ -2124,11 +2093,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             print("temp: \(temp)")
                             print("file created")
                             
-                            if index < 2 {
+//                            if index < 2 {
+                            
                                 
-                                assetArray.append(NSURL(string: exportFilePath)!)
-                                
-                            }
+//                            }
                             
                             self.addView.photosIntialView.hidden = true
 //                            self.addView.photosIntialView.userInteractionEnabled = false
@@ -2138,7 +2106,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             
                             if assets.count < 4 {
                                 
-                                self.addView.photosCollection[index].addSubview(layerAbove)
+                                self.addView.photosCollection[assetIndex!].addSubview(layerAbove)
                                 
                             }
                             
@@ -2156,6 +2124,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             
                         }
                         
+                        print("asset array: \(assetArray)")
+                        self.tempAssets = assetArray
+                        self.uploadedphotos = []
                         self.uploadMultiplePhotos(assetArray)
                         
                     }
@@ -2228,72 +2199,123 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    var tempAssets: [NSURL] = []
+//    var uploadedPhotos: [String] = []
+    
     func uploadMultiplePhotos(assets: [NSURL]) {
         
-        var tempAssets = assets
+//        tempAssets = assets
+        var photosCount = 0
         
-        for asset in assets {
-            
-            //                        uploadArray.append("blah")
-            
-            
-            request.uploadPhotos(asset, completion: {(response) in
-                
-                dispatch_sync(dispatch_get_main_queue(), {
-                    
-                    if response.error != nil {
+//        for asset in assets {
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+        
+                request.uploadPhotos(tempAssets[0], completion: {(response) in
                         
-                        print("error: \(response.error!.localizedDescription)")
-                        
-                    }
-                    else if response["value"] {
-                        
-                        if self.photosCount >= assets.count {
+                        if response.error != nil {
                             
-                            self.photosCount = 0
-                            //                                    self.addView.postButton.hidden = false
+                            print("error: \(response.error!.localizedDescription)")
                             
                         }
-                        
-                        self.photosCount += 1
-                        print("response upload photos \(asset)")
-                        self.uploadedphotos.append(response["data"][0].string!)
-                        
-                        if asset == assets.last {
+                        else if response["value"] {
                             
-                            print("assert number: \(asset)")
-                            print("out of upload for loop")
-                            self.addView.postButton.hidden = false
+//                            if self.tempAssets.count == 0 {
+//                                
+////                                tempAssets.removeFirst()
+//                                print("Done")
+//                                
+//                            }
+//                            else {
+                                self.uploadedphotos.append(response["data"][0].string!)
+                                print("assets: \(self.tempAssets)")
+                                if self.tempAssets.count > 1 {
+                                    
+                                    print("greater than one")
+                                    self.tempAssets.removeFirst()
+                                    self.uploadMultiplePhotos(self.tempAssets)
+                                    
+                                }
+                                else if self.tempAssets.count == 1 {
+                                    
+                                    print("done")
+                                    self.tempAssets = []
+                                    self.addView.postButton.hidden = false
+                                    
+                                }
+//                                else {
+//                                    
+//                                    print("Done")
+//                                }
+                                
+//                            }
                             
-                        }
-                        
-                        if tempAssets.count > 1 {
-                         
-                            tempAssets.removeAtIndex(assets.indexOf(asset)!)
+                              
+//                            if self.tempAssets.count > 1 {
+//                                
+//                                self.tempAssets.removeFirst()
+//                                
+//                            }
+//                            else {
+//                                
+//                                self.tempAssets = []
+//                                
+//                            }
+                            
+                            
+                            
+//
+//                            if tempAssets.count > 0 {
+//                                
+//                                self.uploadMultiplePhotos(tempAssets)
+//                                
+//                            }
+                            
+//                            photosCount += 1
+//                            
+//                            if photosCount > assets.count {
+//                                
+//                                print("asset number: \(assets.indexOf(asset)!)")
+//                                print("out of upload for loop")
+//                                self.addView.postButton.hidden = false
+//                                
+//                            }
+//                            
+//                            if asset == assets.last {
+//                                
+//                                print("asset number: \(asset)")
+//                                print("out of upload for loop")
+//                                self.addView.postButton.hidden = false
+//                                
+//                            }
+//                            
+//                            if tempAssets.count > 2 {
+//                                
+//                                print("inside temp assets \(assets.indexOf(asset)!)")
+//                                tempAssets.removeAtIndex(assets.indexOf(asset)!)
+//                                print("temp assets: \(tempAssets)")
+//                                
+//                            }
+//                            else {
+//                                
+//                                tempAssets = []
+//                                
+//                            }
+                            
                             
                         }
                         else {
                             
-                            tempAssets = []
+                            print("response error!")
+                            self.uploadMultiplePhotos(self.tempAssets)
                             
                         }
-                        
-                        
-                    }
-                    else {
-                        
-                        print("response error!")
-                        self.uploadMultiplePhotos(tempAssets)
-//                        request.uploadPhotos(asset, completion: {(response) in})
-                        //                                    self.addView.postButton.hidden = false
-                        
-                    }
                     
                 })
                 
-            })
-            
-        }
+//            })
+//        
+//        }
         
     }
     

@@ -216,6 +216,8 @@
 		C28521B71D364680001EF251 /* FilterItineraryType.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28521B51D364680001EF251 /* FilterItineraryType.xib */; };
 		C28521B81D364680001EF251 /* FilterIntinerariesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28521B61D364680001EF251 /* FilterIntinerariesType.swift */; };
 		C28521BA1D365FDF001EF251 /* PagerTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28521B91D365FDF001EF251 /* PagerTabViewController.swift */; };
+		C2873E8C1D9E8E510001431B /* BuddyLeaves.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2873E8B1D9E8E510001431B /* BuddyLeaves.xib */; };
+		C2873E8E1D9E90580001431B /* BuddyLeaves.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2873E8D1D9E90580001431B /* BuddyLeaves.swift */; };
 		C28A923F1D0E7E2E00CFEC7A /* HotelTypeSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A923E1D0E7E2E00CFEC7A /* HotelTypeSelect.swift */; };
 		C28A92431D0E839B00CFEC7A /* FilterRestaurants.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28A92421D0E839B00CFEC7A /* FilterRestaurants.xib */; };
 		C28A92451D0E83FD00CFEC7A /* FilterRestaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92441D0E83FD00CFEC7A /* FilterRestaurants.swift */; };
@@ -272,6 +274,7 @@
 		C2B0B2C51D93B7D0001243EF /* BuddyOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B0B2C41D93B7D0001243EF /* BuddyOTG.xib */; };
 		C2B0B2C71D93BF23001243EF /* BuddyOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0B2C61D93BF23001243EF /* BuddyOTG.swift */; };
 		C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B4423C1CF41B0600967689 /* PopularJourneysViewController.swift */; };
+		C2BB1E2A1D9E339000D3C3B0 /* NewTLTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB1E291D9E339000D3C3B0 /* NewTLTwo.swift */; };
 		C2BB45F01CFD96E300251E8C /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB45EF1CFD96E300251E8C /* FollowersViewController.swift */; };
 		C2BB45F21CFDB39800251E8C /* BucketListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BB45F11CFDB39800251E8C /* BucketListTableViewController.swift */; };
 		C2BFA9761CF2D2A900DC2066 /* MyLifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BFA9751CF2D2A900DC2066 /* MyLifeViewController.swift */; };
@@ -565,6 +568,8 @@
 		C28521B51D364680001EF251 /* FilterItineraryType.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterItineraryType.xib; sourceTree = "<group>"; };
 		C28521B61D364680001EF251 /* FilterIntinerariesType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterIntinerariesType.swift; sourceTree = "<group>"; };
 		C28521B91D365FDF001EF251 /* PagerTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagerTabViewController.swift; sourceTree = "<group>"; };
+		C2873E8B1D9E8E510001431B /* BuddyLeaves.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuddyLeaves.xib; sourceTree = "<group>"; };
+		C2873E8D1D9E90580001431B /* BuddyLeaves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyLeaves.swift; sourceTree = "<group>"; };
 		C28A923E1D0E7E2E00CFEC7A /* HotelTypeSelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelTypeSelect.swift; sourceTree = "<group>"; };
 		C28A92421D0E839B00CFEC7A /* FilterRestaurants.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterRestaurants.xib; sourceTree = "<group>"; };
 		C28A92441D0E83FD00CFEC7A /* FilterRestaurants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRestaurants.swift; sourceTree = "<group>"; };
@@ -622,6 +627,7 @@
 		C2B0B2C41D93B7D0001243EF /* BuddyOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuddyOTG.xib; sourceTree = "<group>"; };
 		C2B0B2C61D93BF23001243EF /* BuddyOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyOTG.swift; sourceTree = "<group>"; };
 		C2B4423C1CF41B0600967689 /* PopularJourneysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularJourneysViewController.swift; sourceTree = "<group>"; };
+		C2BB1E291D9E339000D3C3B0 /* NewTLTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTLTwo.swift; sourceTree = "<group>"; };
 		C2BB45EF1CFD96E300251E8C /* FollowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		C2BB45F11CFDB39800251E8C /* BucketListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BucketListTableViewController.swift; sourceTree = "<group>"; };
 		C2BFA9751CF2D2A900DC2066 /* MyLifeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeViewController.swift; sourceTree = "<group>"; };
@@ -757,6 +763,9 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
+				C2873E8B1D9E8E510001431B /* BuddyLeaves.xib */,
+				C2873E8D1D9E90580001431B /* BuddyLeaves.swift */,
+				C2BB1E291D9E339000D3C3B0 /* NewTLTwo.swift */,
 				C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */,
 				C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */,
 				C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */,
@@ -2109,6 +2118,7 @@
 				C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
 				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
+				C2873E8C1D9E8E510001431B /* BuddyLeaves.xib in Resources */,
 				C2ABDBB41CEC53C300D7542E /* StatusView.xib in Resources */,
 				C2D594501CF487960007F50B /* MyLifeTabs.xib in Resources */,
 				C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */,
@@ -2518,11 +2528,13 @@
 				C2B0B2C71D93BF23001243EF /* BuddyOTG.swift in Sources */,
 				C26B4DE71D13C88900213055 /* SlideMenuViewController.swift in Sources */,
 				C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */,
+				C2BB1E2A1D9E339000D3C3B0 /* NewTLTwo.swift in Sources */,
 				C269077F1CF819EB00F827E6 /* GenderInfo.swift in Sources */,
 				C26B4DED1D14216700213055 /* ConnectWithAgent.swift in Sources */,
 				C2A6E2571CE9C13A00D3F845 /* OTGTimelineViewController.swift in Sources */,
 				C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */,
 				C24F85071D006670002EA203 /* CardCheckBoxes.swift in Sources */,
+				C2873E8E1D9E90580001431B /* BuddyLeaves.swift in Sources */,
 				C23EBC301D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift in Sources */,
 				C24F84EB1D0045A1002EA203 /* ReportProblem.swift in Sources */,
 				C2DCB37D1CE75AB2006E5CBD /* NotificationsHeader.swift in Sources */,

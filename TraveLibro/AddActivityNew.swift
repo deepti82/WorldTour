@@ -78,6 +78,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
         
         editCategoryPickerView.hidden = true
         editCategoryPVBar.hidden = true
+        
 //        editCategoryPickerView.delegate = self
         
 //        for i in 0 ..< 5 {

@@ -19,7 +19,7 @@ class PhotosOTG: UIView {
     @IBOutlet weak var photosTitle: ActiveLabel!
     @IBOutlet weak var likeView: UILabel!
     @IBOutlet weak var likeViewLabel: UILabel!
-    @IBOutlet var mainView: UIView!
+//    @IBOutlet var mainView: UIView!
     @IBOutlet weak var photosStack: UIStackView!
     @IBOutlet weak var mainPhoto: UIImageView!
     @IBOutlet weak var line1: UIView!
@@ -31,6 +31,64 @@ class PhotosOTG: UIView {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
+    
+    var likeCount = 0
+    
+    @IBAction func sendLikes(sender: UIButton) {
+            
+        print("like button tapped \(sender.titleLabel!.text)")
+        
+        var hasLiked = false
+        
+        if sender.tag == 1 {
+            
+            hasLiked = true
+            sender.tag = 0
+            
+        }
+        else {
+            
+            sender.tag = 1
+        }
+        
+        print("send likes: \(sender.tag) \(hasLiked)")
+        
+        request.likePost(sender.titleLabel!.text!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    if sender.tag == 1 {
+                        
+                        sender.setImage(UIImage(named: "favorite-heart-button"), forState: .Normal)
+                        self.likeCount += 1
+                        self.likeViewLabel.text = "\(self.likeCount) Likes"
+                        
+                    }
+                    else {
+                        
+                        sender.setImage(UIImage(named: "like_empty_icon"), forState: .Normal)
+                        self.likeCount -= 1
+                        self.likeViewLabel.text = "\(self.likeCount) Likes"
+                        
+                    }
+                    
+                }
+                else {
+                    
+                }
+                
+            })
+            
+        })
+        
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

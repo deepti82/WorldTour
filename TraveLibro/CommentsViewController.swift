@@ -68,7 +68,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func setAllComments(comment: String) {
         
-        request.commentOnPost(postId, userId: currentUser["_id"].string!, commentText: comment, completion: {(response) in
+        request.commentOnPost(postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 

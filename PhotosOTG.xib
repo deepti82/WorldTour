@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,7 +16,6 @@
                 <outlet property="line1" destination="MYo-lh-LFg" id="ORX-qb-KZH"/>
                 <outlet property="line2" destination="DYS-JX-k0k" id="bN7-hR-ERR"/>
                 <outlet property="mainPhoto" destination="RVr-gn-Jae" id="foa-x7-rgy"/>
-                <outlet property="mainView" destination="iN0-l3-epB" id="Rcr-Jz-mG2"/>
                 <outlet property="optionsButton" destination="WnS-pJ-OkX" id="uql-DE-Vwb"/>
                 <outlet property="photosStack" destination="fBo-H1-fh1" id="z0E-Rf-f0d"/>
                 <outlet property="photosTitle" destination="vd1-yL-ysy" id="f13-qd-osW"/>
@@ -88,6 +87,9 @@
                                     <exclude reference="qTg-uT-BDU"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="sendLikes:" destination="-1" eventType="touchUpInside" id="jHT-4o-NE6"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDX-yD-IjR">
                             <rect key="frame" x="36" y="0.0" width="20" height="20"/>

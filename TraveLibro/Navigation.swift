@@ -1,7 +1,7 @@
 import UIKit
 import SwiftyJSON
 import SwiftHTTP
-//import Alamofire
+import Alamofire
 
 let apiUrl = "http://104.155.207.185:92/api/"
 var adminUrl = "http://192.168.2.8:1337/api/"
@@ -334,6 +334,7 @@ class Navigation {
         do {
             
             let params = ["file": Upload(fileUrl: file)]
+            print("inside upload files \(params)")
             
             let opt = try HTTP.POST(adminUrl + "upload", parameters: params)
             var json = JSON(1);
@@ -358,24 +359,80 @@ class Navigation {
     
     func uploadPhotosMultiple(files: [NSURL], completion: ((JSON) -> Void)) {
         
+//        do {
+        
+////            var myFiles: [Upload] = []
+////            
+////            dispatch_async(dispatch_get_main_queue(), {
+////                
+////                for file in files {
+////                    
+////                    myFiles.append(Upload(fileUrl: file))
+////                    print("request upload \(file)")
+////                    
+////                }
+////                
+////            })
+////            
+////            let params = ["file": myFiles]
+////            print("out of request upload \(params)")
+////            
+//////            let params =
+////            let opt = try HTTP.POST(adminUrl + "upload", parameters: params)
+////            var json = JSON(1);
+////            opt.start { response in
+////                //                print("started response: \(response)")
+////                if let err = response.error {
+////                    print("error: \(err.localizedDescription)")
+////                }
+////                else
+////                {
+////                    json  = JSON(data: response.data)
+////                    print(json)
+////                    completion(json)
+////                }
+//            let opt = try Alamofire.upload(
+//                multipartFormData: {multipartFormData in
+//                    
+//                    for file in files {
+//                        
+//                        multipartFormData.append(files[0])
+//                    }
+//                    
+//                    //                multipartFormData.append(files[1])
+//                },
+//                to: adminUrl + "upload",
+//                encodingCompletion: { encodingResult in
+//                    switch encodingResult {
+//                    case .success(let upload):
+//                        upload.responseJSON { response in
+//                            debugPrint(response)
+//                            completion(response)
+//                        }
+//                    case .failure(let encodingError):
+//                        print(encodingError)
+//                    }
+//                }
+//            )
+//            
+//            }
+//        } catch let error {
+//            print("got an error creating the request: \(error)")
+//        }
+    
+        
+    }
+    
+    func sampleImages(file: UIImage, completion: ((JSON) -> Void)) {
+        
         do {
             
-            var myFiles: [Upload] = []
+            let params = ["file": file]
             
-            for file in files {
-                
-                myFiles.append(Upload(fileUrl: file))
-                print("request upload \(file)")
-                
-            }
-            
-            print("out of request upload \(myFiles.description)")
-            
-//            let params =
-            let opt = try HTTP.POST(adminUrl + "upload", parameters: ["file": myFiles])
+            let opt = try HTTP.POST(adminUrl + "upload", parameters: params)
             var json = JSON(1);
             opt.start { response in
-                //                print("started response: \(response)")
+                
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }
@@ -389,26 +446,6 @@ class Navigation {
         } catch let error {
             print("got an error creating the request: \(error)")
         }
-        
-//        Alamofire.upload(
-//            multipartFormData: {multipartFormData in
-//                multipartFormData.append(files[0])
-//                multipartFormData.append(files[1])
-//            },
-//            to: adminUrl + "upload",
-//            encodingCompletion: { encodingResult in
-//                switch encodingResult {
-//                case .success(let upload, _, _):
-//                    upload.responseJSON { response in
-//                        debugPrint(response)
-//                        completion(response)
-//                    }
-//                case .failure(let encodingError):
-//                    print(encodingError)
-//                }
-//            }
-//        )
-        
         
     }
     
@@ -1032,13 +1069,13 @@ class Navigation {
         }
     }
     
-    func postTravelLife(thoughts: String, location: String, locationCategory: String, photosArray: [String], videosArray: [String], buddies: [String], userId: String, journeyId: String, completion: ((JSON) -> Void)) {
+    func postTravelLife(thoughts: String, location: String, locationCategory: String, photosArray: [String], videosArray: [String], buddies: [String], userId: String, journeyId: String, userName: String, completion: ((JSON) -> Void)) {
         
         do {
             
             let checkIn = ["location": location, "category": locationCategory]
             
-            let params = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "photos": photosArray, "videos": videosArray, "buddies": buddies, "user": userId, "journey": journeyId]
+            let params = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "photos": photosArray, "videos": videosArray, "buddies": buddies, "user": userId, "journey": journeyId, "userName": userName]
             
             let opt = try HTTP.POST(adminUrl + "post/save", parameters: [params])
             var json = JSON(1);
@@ -1159,6 +1196,8 @@ class Navigation {
                 params = ["uniqueId": id, "user": userId, "name": userName]
             }
             
+            print("like post: \(params)")
+            
             let opt = try HTTP.POST(adminUrl + "post/updateLikePost", parameters: [params])
             var json = JSON(1);
             opt.start {response in
@@ -1177,11 +1216,11 @@ class Navigation {
         }
     }
     
-    func commentOnPost(id: String, userId: String, commentText: String, completion: ((JSON) -> Void)) {
+    func commentOnPost(id: String, userId: String, commentText: String, userName: String, completion: ((JSON) -> Void)) {
         
         do {
             
-            var params = ["uniqueId": id, "comment" : ["user":  userId, "text": commentText]]
+            var params = ["uniqueId": id, "comment" : ["user":  userId, "text": commentText, "name": userName]]
               
             print("set comment params: \(params)")
             

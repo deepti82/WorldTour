@@ -49,36 +49,37 @@
                         <constraint firstAttribute="width" constant="240" id="xIa-n6-KTk"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="TjV-g0-pnn">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="TjV-g0-pnn">
                     <rect key="frame" x="88" y="20" width="125" height="125"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="QrO-x5-dHO"/>
                         <constraint firstAttribute="height" constant="125" id="Yfj-Ug-l1Z"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hi_image" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Jp-Ix4">
-                    <rect key="frame" x="180" y="98" width="100" height="35"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hi_image" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Jp-Ix4">
+                    <rect key="frame" x="176" y="98" width="100" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="aog-5K-NGP"/>
                         <constraint firstAttribute="height" constant="35" id="icu-Bq-aAI"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poG-co-vae">
-                    <rect key="frame" x="65" y="12" width="45" height="45"/>
+                    <rect key="frame" x="75" y="22" width="45" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="eCj-os-N4I"/>
                         <constraint firstAttribute="width" constant="45" id="lui-9i-WJ0"/>
                     </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="contentEdgeInsets" minX="10" minY="12" maxX="10" maxY="12"/>
                     <state key="normal" image="add_friend_icon" backgroundImage="green_bg_new_small"/>
                 </button>
             </subviews>
             <constraints>
                 <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="TjV-g0-pnn" secondAttribute="bottom" constant="-8" id="7RF-VT-dnC"/>
-                <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="poG-co-vae" secondAttribute="bottom" constant="80" id="H8N-gl-ylO"/>
+                <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="poG-co-vae" secondAttribute="bottom" constant="70" id="H8N-gl-ylO"/>
                 <constraint firstItem="1jI-ml-e7H" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IHQ-uh-AsU"/>
-                <constraint firstAttribute="trailing" secondItem="Baq-Jp-Ix4" secondAttribute="trailing" constant="20" id="X9t-37-kQm"/>
-                <constraint firstAttribute="trailing" secondItem="poG-co-vae" secondAttribute="trailing" constant="190" id="eiV-7W-Qua"/>
+                <constraint firstAttribute="trailing" secondItem="Baq-Jp-Ix4" secondAttribute="trailing" constant="24" id="X9t-37-kQm"/>
+                <constraint firstAttribute="trailing" secondItem="poG-co-vae" secondAttribute="trailing" constant="180" id="eiV-7W-Qua"/>
                 <constraint firstAttribute="bottom" secondItem="1jI-ml-e7H" secondAttribute="bottom" constant="8" id="gES-tP-5Of"/>
                 <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="Baq-Jp-Ix4" secondAttribute="bottom" constant="4" id="iDi-4d-oNR"/>
                 <constraint firstItem="TjV-g0-pnn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="viq-Oe-Emh"/>
