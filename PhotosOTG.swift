@@ -13,11 +13,10 @@ class PhotosOTG: UIView {
 
     @IBOutlet weak var postDp: UIImageView!
     @IBOutlet weak var stackView: UIView!
-    @IBOutlet weak var timestampView: UIView!
+//    @IBOutlet weak var timestampView: UIView!
     @IBOutlet weak var likeHeart: UILabel!
 //    @IBOutlet weak var photosTitle: ActiveLabel!
     @IBOutlet weak var photosTitle: ActiveLabel!
-    @IBOutlet weak var likeView: UILabel!
     @IBOutlet weak var likeViewLabel: UILabel!
 //    @IBOutlet var mainView: UIView!
     @IBOutlet weak var photosStack: UIStackView!
@@ -31,6 +30,15 @@ class PhotosOTG: UIView {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
+    
+    @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var clockLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var commentIcon: UILabel!
+    @IBOutlet weak var commentCount: UILabel!
+    @IBOutlet weak var photosHC: NSLayoutConstraint!
     
     var likeCount = 0
     
@@ -94,12 +102,6 @@ class PhotosOTG: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        let timestamp = DateAndTime(frame: CGRect(x: 0, y: 0, width: 200, height: timestampView.frame.size.height))
-        timestampView.addSubview(timestamp)
-        
-//        let sideIcon = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-//        sideIcon.center = CGPointMake(self.frame.size.width - 30, 10)
-//        mainView.addSubview(sideIcon)
         postDp.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)!)
         makeTLProfilePicture(postDp)
         
@@ -111,18 +113,10 @@ class PhotosOTG: UIView {
             print("Success. You just tapped the \(hashtag) hashtag")
         }
         
-        likeViewLabel.textColor = mainBlueColor
-        
-        likeHeart.font = UIFont(name: "FontAwesome", size: 12)
         likeHeart.text = String(format: "%C", faicon["likes"]!)
-        
-        let seperatorLine = drawSeperatorLineTwo(frame: CGRect(x: 10, y: line1.frame.size.height/2, width: self.frame.size.width - 25, height: 10))
-        seperatorLine.backgroundColor = UIColor.clearColor()
-        line1.addSubview(seperatorLine)
-        
-        let seperatorLineTwo = drawSeperatorLineTwo(frame: CGRect(x: 10, y: line2.frame.size.height/3, width: self.frame.size.width - 25, height: 10))
-        seperatorLineTwo.backgroundColor = UIColor.clearColor()
-        line2.addSubview(seperatorLineTwo)
+        commentIcon.text = String(format: "%C", faicon["comments"]!)
+        clockLabel.text = String(format: "%C", faicon["clock"]!)
+        calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         
     }
     

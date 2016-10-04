@@ -47,6 +47,15 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     
+    @IBOutlet weak var postCancelButton: UIButton!
+//    @IBAction func cancelTapped(sender: AnyObject) {
+//        
+//        self.hidden = true
+//        
+//    }
+    
+    
+    
     var eachButtonText = ""
     var buttonCollection: [UIButton] = []
     var horizontal: HorizontalLayout!

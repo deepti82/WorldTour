@@ -6585,12 +6585,6 @@ IHRvZ2V0aGVyLg
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25U-hP-YdD">
-                                                    <rect key="frame" x="66" y="8" width="37" height="21"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                                                    <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LoP-7d-nNR">
                                                     <rect key="frame" x="8" y="8" width="50" height="50"/>
                                                     <constraints>
@@ -6599,9 +6593,15 @@ IHRvZ2V0aGVyLg
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsk-hs-xvD">
-                                                    <rect key="frame" x="66" y="37" width="534" height="28"/>
+                                                    <rect key="frame" x="66" y="29" width="534" height="36"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25U-hP-YdD">
+                                                    <rect key="frame" x="66" y="8" width="37" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                                                    <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -6612,7 +6612,7 @@ IHRvZ2V0aGVyLg
                                                 <constraint firstAttribute="trailing" secondItem="zsk-hs-xvD" secondAttribute="trailing" id="9ZI-eW-E3M"/>
                                                 <constraint firstAttribute="bottom" secondItem="zsk-hs-xvD" secondAttribute="bottom" id="AWC-75-QlF"/>
                                                 <constraint firstItem="LoP-7d-nNR" firstAttribute="centerY" secondItem="vt7-zS-NCs" secondAttribute="centerY" id="Ewl-t0-99d"/>
-                                                <constraint firstItem="zsk-hs-xvD" firstAttribute="top" secondItem="25U-hP-YdD" secondAttribute="bottom" constant="8" id="kMH-C4-bae"/>
+                                                <constraint firstItem="zsk-hs-xvD" firstAttribute="top" secondItem="25U-hP-YdD" secondAttribute="bottom" id="kMH-C4-bae"/>
                                                 <constraint firstItem="25U-hP-YdD" firstAttribute="leading" secondItem="LoP-7d-nNR" secondAttribute="trailing" constant="8" id="n4G-Zs-hLM"/>
                                             </constraints>
                                         </tableViewCellContentView>

@@ -95,7 +95,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         else if whichView == "TLMiddle" {
             
             let finalFriends: JSON = JSON(addedFriendUsers)
-            saveButton.hidden = true
+//            saveButton.hidden = true
             
             request.addBuddiesOTG(finalFriends, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, journeyId: uniqueId, inMiddle: true, journeyName: journeyName, completion: {(response) in
                 

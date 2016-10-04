@@ -9,7 +9,6 @@ PODS:
   - Fabric (1.6.7)
   - PageMenu (1.2.9)
   - Simplicity (1.0)
-  - SQLite.swift (0.10.1)
   - SwiftHTTP (1.0.5)
   - SwiftyJSON (2.3.2)
   - TabPageViewController (0.1.1)
@@ -27,7 +26,6 @@ DEPENDENCIES:
   - Fabric
   - PageMenu
   - Simplicity
-  - SQLite.swift (~> 0.10.1)
   - SwiftHTTP (~> 1.0.3)
   - SwiftyJSON
   - TabPageViewController
@@ -43,7 +41,6 @@ SPEC CHECKSUMS:
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   PageMenu: ba19ff267f7a19e444e93c20a7847b78954a7011
   Simplicity: 528e358f700b36474ee6328ce36d7c37709801e7
-  SQLite.swift: 6a6e4b034efc317ce4e203b6af2d3024fee2b570
   SwiftHTTP: edb45e72f27d1d95d328d2b2c16a61aa94f1e9f7
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   TabPageViewController: 10fa70daf5d743127cadfd9ef9b3c1354a54c57c
@@ -51,6 +48,6 @@ SPEC CHECKSUMS:
   TwitterKit: 2c64ec342a6261ae6bab565bad85dcbbfd3888b7
   UIImageViewModeScaleAspect: ec78901acfc20d3782154111a21d34390f8f71ad
 
-PODFILE CHECKSUM: f2d67acea5750700687a7cbedc7fe49103f76fd5
+PODFILE CHECKSUM: 5af745003a2329ca7858913965e7d1b0ca34d3b6
 
 COCOAPODS: 1.0.0

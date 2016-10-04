@@ -138,6 +138,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addView.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), forControlEvents: .TouchUpInside)
         addView.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), forControlEvents: .TouchUpInside)
         addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), forControlEvents: .TouchUpInside)
+        addView.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), forControlEvents: .TouchUpInside)
         
     }
     
@@ -388,8 +389,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             }
             
+            addView.categoryView.hidden = true
+            addView.categoryLabel.hidden = false
             addView.locationHorizontalScroll.hidden = false
-            addView.categoryView.hidden = false
             addView.hidden = true
             newScroll.hidden = true
             request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, completion: {(response) in
@@ -465,6 +467,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     else if response["value"] {
                         
                         print("edited response")
+                        self.addView.categoryView.hidden = true
+                        self.addView.categoryLabel.hidden = false
+                        self.addView.locationHorizontalScroll.hidden = false
                         self.addView.hidden = true
                         self.newScroll.hidden = true
                         self.getJourney()
@@ -571,9 +576,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func closeAdd(sender: UITapGestureRecognizer) {
+    func closeAdd(sender: UIButton) {
         
-        addView.animation.makeOpacity(0.0).animate(0.5)
+//        addView.animation.makeOpacity(0.0).animate(0.5)
+        addView.categoryView.hidden = true
+        addView.categoryLabel.hidden = false
+        addView.locationHorizontalScroll.hidden = false
         addView.hidden = true
         newScroll.hidden = true
         
@@ -977,9 +985,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         editPost(post["_id"].string!)
         
-        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 550))
+        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 600))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, forState: .Normal)
         checkIn.likeViewLabel.text = "0 Likes"
+        checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
         checkIn.commentButton.setTitle(post["uniqueId"].string!, forState: .Normal)
         otherCommentId = post["_id"].string!
         currentPost = post
@@ -989,10 +998,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), forControlEvents: .TouchUpInside)
         
 //        if !isDelete {
-        
-            layout.addSubview(checkIn)
-            print("layout views: \(layout.subviews.count)")
-            addHeightToLayout(checkIn.frame.height + 50.0)
             
 //        }
         
@@ -1029,34 +1034,45 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        else {
+        else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
             
             checkIn.mainPhoto.hidden = true
             checkIn.photosStack.hidden = true
-            checkIn.frame.size.height = 350.0
+            checkIn.photosHC.constant = 0.0
+            checkIn.frame.size.height = 200.0
             
         }
+        
+        layout.addSubview(checkIn)
+        print("layout views: \(layout.subviews.count)")
+        addHeightToLayout(checkIn.frame.height + 50.0)
         
         switch whichPost {
         case "CheckIn":
             checkIn.whatPostIcon.setImage(UIImage(named: "location_icon"), forState: .Normal)
 //            checkIn.postDp.hidden = true
 
-//            if post["photos"].array!.count < checkIn.otherPhotosStack.count {
+            if post["photos"].array!.count < checkIn.otherPhotosStack.count {
+                
+                print("in photo comparison")
+                
+                let difference = checkIn.otherPhotosStack.count - post["photos"].array!.count
+                
+                for i in 0 ..< difference {
+                    
+                    print("in difference for loop")
+                    
+                    let index = checkIn.otherPhotosStack.count - i - 1
+                    checkIn.otherPhotosStack[index].hidden = true
+                    
+                }
+                
+                
+            }
+//            else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
 //                
-//                print("in photo comparison")
-//                
-//                let difference = checkIn.otherPhotosStack.count - post["photos"].array!.count
-//                
-//                for i in 0 ..< difference {
-//                    
-//                    print("in difference for loop")
-//                    
-//                    let index = checkIn.otherPhotosStack.count - i - 1
-//                    checkIn.otherPhotosStack[index].hidden = true
-//                    
-//                }
-//                
+//                checkIn.mainPhoto.removeFromSuperview()
+//                checkIn.photosStack.removeFromSuperview()
 //                
 //            }
             
@@ -1066,6 +1082,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             checkIn.whatPostIcon.setImage(UIImage(named: "video"), forState: .Normal)
         case "Thoughts":
             checkIn.whatPostIcon.setImage(UIImage(named: "pen_icon"), forState: .Normal)
+            checkIn.mainPhoto.removeFromSuperview()
+            checkIn.photosStack.removeFromSuperview()
         default:
             break
         }
@@ -1130,6 +1148,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.addView.addLocationButton.setTitle(response["data"]["checkIn"]["location"].string!, forState: .Normal)
                         self.addView.categoryView.hidden = true
                         self.addView.categoryLabel.hidden = false
+                        self.addView.locationHorizontalScroll.hidden = false
                         
                     }
                     
@@ -1981,10 +2000,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let deleteAction = UIAlertAction(title: "Take Photos", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .Camera
-            //            imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
-            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+//            self.imagePicker.allowsEditing = true
+//            self.imagePicker.sourceType = .Camera
+//            //            imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+//            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+            let multipleImage = BSImagePickerViewController()
+            multipleImage.maxNumberOfSelections = self.selectPhotosCount
+            multipleImage.takePhotos = true
             
         })
         let saveAction = UIAlertAction(title: "Photos Library", style: .Default, handler: {
@@ -2127,10 +2149,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         print("asset array: \(assetArray)")
                         self.tempAssets = assetArray
                         self.uploadedphotos = []
-                        self.uploadMultiplePhotos(assetArray)
                         
                     }
-                    
+                    self.uploadMultiplePhotos(assetArray)
                     
                     
 //                    var uploadArray: [String] = []
@@ -2210,6 +2231,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        for asset in assets {
 //            
 //            dispatch_async(dispatch_get_main_queue(), {
+        
+//        request.nativeUpload(UIImage(data: NSData(contentsOfURL: tempAssets[0])!)!, completion: {(response) in
+//            
+//            if response.error != nil {
+//
+//                print("error: \(response.error!.localizedDescription)")
+//
+//            }
+//            else if response["value"] {
+//                
+//                print("response arrived")
+//            }
+//            else {
+//                
+//                print("response error")
+//            }
+//            
+//        })
         
                 request.uploadPhotos(tempAssets[0], completion: {(response) in
                         
@@ -2312,7 +2351,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         }
                     
                 })
-                
+        
 //            })
 //        
 //        }
