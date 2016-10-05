@@ -36,6 +36,7 @@
                 <outlet property="photosCount" destination="yiQ-le-KDq" id="7My-zD-ScJ"/>
                 <outlet property="photosFinalView" destination="tij-q0-ySJ" id="4ez-jh-eKK"/>
                 <outlet property="photosIntialView" destination="1TE-3y-V6h" id="wUV-Rb-2ve"/>
+                <outlet property="photosStack" destination="PSi-cU-6MX" id="ssQ-hB-KOC"/>
                 <outlet property="postButton" destination="vYv-ZD-NnK" id="VKq-Ny-YNC"/>
                 <outlet property="postCancelButton" destination="rvI-eo-dUr" id="oZh-yb-AW7"/>
                 <outlet property="tagFriendButton" destination="HYl-RF-34A" id="Lcr-AT-5Nz"/>
@@ -248,7 +249,7 @@
                                         <constraint firstAttribute="width" constant="25" id="wVv-jt-xxu"/>
                                     </constraints>
                                 </imageView>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PSi-cU-6MX">
+                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PSi-cU-6MX">
                                     <rect key="frame" x="53" y="5" width="290" height="65"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="RKu-9k-3hr">

@@ -1075,7 +1075,7 @@ class Navigation {
             
             let checkIn = ["location": location, "category": locationCategory]
             
-            let params = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "photos": photosArray, "videos": videosArray, "buddies": buddies, "user": userId, "journey": journeyId, "userName": userName]
+            let params = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "photos": photosArray, "videos": videosArray, "buddies": buddies, "user": userId, "journey": journeyId, "username": userName]
             
             let opt = try HTTP.POST(adminUrl + "post/save", parameters: [params])
             var json = JSON(1);

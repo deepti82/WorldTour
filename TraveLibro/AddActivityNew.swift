@@ -20,6 +20,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var locationTag: UIImageView!
     
+    @IBOutlet weak var photosStack: UIStackView!
     @IBOutlet weak var photosButton: UIButton!
     
     @IBOutlet var photosCollection: [UIImageView]!
@@ -87,6 +88,9 @@ class AddActivityNew: UIView, UITextViewDelegate {
         
         editCategoryPickerView.hidden = true
         editCategoryPVBar.hidden = true
+        
+        let tapOne = UITapGestureRecognizer(target: self, action: #selector(AddActivityNew.ImageStackTap(_:)))
+        photosCollection[0].addGestureRecognizer(tapOne)
         
 //        editCategoryPickerView.delegate = self
         
@@ -227,6 +231,12 @@ class AddActivityNew: UIView, UITextViewDelegate {
     func getStylesOn(view: UIView) {
         
         view.layer.cornerRadius = 5.0
+        
+    }
+    
+    func ImageStackTap(sender: UITapGestureRecognizer) {
+        
+        print("tapped image")
         
     }
     
