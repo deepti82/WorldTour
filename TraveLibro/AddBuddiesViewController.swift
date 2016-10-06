@@ -77,9 +77,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                         
                         let alert = UIAlertController(title: nil, message:
                             "response error!", preferredStyle: .Alert)
-                        
                         self.presentViewController(alert, animated: false, completion: nil)
-                        
                         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:
                             {action in
                                 alert.dismissViewControllerAnimated(true, completion: nil)

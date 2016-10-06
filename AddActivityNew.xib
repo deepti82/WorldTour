@@ -32,6 +32,7 @@
                 <outlet property="locationTag" destination="XUO-Me-yGq" id="Ial-Wz-bIe"/>
                 <outlet property="locationView" destination="VXQ-PW-bYX" id="pHc-SM-skL"/>
                 <outlet property="moreOptions" destination="MiR-Zp-fad" id="tUF-lB-lGx"/>
+                <outlet property="photoScroll" destination="rLJ-tm-RUv" id="qH2-c2-96R"/>
                 <outlet property="photosButton" destination="5rB-xD-i1a" id="rUV-id-Q9r"/>
                 <outlet property="photosCount" destination="yiQ-le-KDq" id="7My-zD-ScJ"/>
                 <outlet property="photosFinalView" destination="tij-q0-ySJ" id="4ez-jh-eKK"/>
@@ -47,6 +48,7 @@
                 <outlet property="thoughtsInitalView" destination="PM4-mA-ULq" id="LkW-if-uH9"/>
                 <outlet property="thoughtsTextView" destination="VNW-ZV-hJh" id="stt-cb-Ufm"/>
                 <outlet property="twitterShare" destination="XDb-hl-Qfq" id="OBR-VQ-g7U"/>
+                <outlet property="videosButton" destination="Yyl-Bk-bch" id="fdO-wb-A5h"/>
                 <outlet property="videosCount" destination="26j-9I-gSj" id="Ufm-vo-UcQ"/>
                 <outlet property="videosFinalView" destination="hS0-gT-IGp" id="maS-ig-jrH"/>
                 <outlet property="videosInitialView" destination="5am-Wy-Zjj" id="AXQ-fv-Ok1"/>
@@ -249,7 +251,7 @@
                                         <constraint firstAttribute="width" constant="25" id="wVv-jt-xxu"/>
                                     </constraints>
                                 </imageView>
-                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PSi-cU-6MX">
+                                <stackView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PSi-cU-6MX">
                                     <rect key="frame" x="53" y="5" width="290" height="65"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="RKu-9k-3hr">
@@ -270,16 +272,25 @@
                                         </imageView>
                                     </subviews>
                                 </stackView>
+                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLJ-tm-RUv">
+                                    <rect key="frame" x="53" y="5" width="311" height="65"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="65" id="H6n-w2-Tcv"/>
+                                    </constraints>
+                                </scrollView>
                             </subviews>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="yiQ-le-KDq" firstAttribute="leading" secondItem="tij-q0-ySJ" secondAttribute="leading" constant="8" id="6Iz-kR-z70"/>
+                                <constraint firstAttribute="trailing" secondItem="rLJ-tm-RUv" secondAttribute="trailing" constant="20" id="AQ3-Nt-Sqr"/>
                                 <constraint firstAttribute="height" constant="75" id="BJN-TX-whd"/>
+                                <constraint firstItem="rLJ-tm-RUv" firstAttribute="centerY" secondItem="tij-q0-ySJ" secondAttribute="centerY" id="Ipl-sV-ayv"/>
                                 <constraint firstItem="yiQ-le-KDq" firstAttribute="top" secondItem="kbT-nS-SQt" secondAttribute="bottom" constant="4" id="PfS-a7-KvI"/>
                                 <constraint firstItem="kbT-nS-SQt" firstAttribute="top" secondItem="tij-q0-ySJ" secondAttribute="top" constant="8" id="RFP-T7-T9F"/>
                                 <constraint firstItem="PSi-cU-6MX" firstAttribute="centerY" secondItem="tij-q0-ySJ" secondAttribute="centerY" id="RSW-06-lpe"/>
                                 <constraint firstItem="PSi-cU-6MX" firstAttribute="leading" secondItem="kbT-nS-SQt" secondAttribute="trailing" constant="20" id="f4t-c9-w6U"/>
                                 <constraint firstItem="kbT-nS-SQt" firstAttribute="leading" secondItem="tij-q0-ySJ" secondAttribute="leading" constant="8" id="hBn-aH-HTX"/>
+                                <constraint firstItem="rLJ-tm-RUv" firstAttribute="leading" secondItem="kbT-nS-SQt" secondAttribute="trailing" constant="20" id="wza-3i-skL"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5am-Wy-Zjj">
@@ -563,7 +574,7 @@
                     <exclude reference="f0N-zJ-iqX"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="258" y="382.5"/>
+            <point key="canvasLocation" x="258" y="382"/>
         </view>
     </objects>
     <resources>
