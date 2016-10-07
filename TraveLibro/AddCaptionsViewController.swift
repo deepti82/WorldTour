@@ -27,7 +27,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func previousImageCaption(sender: AnyObject) {
         
-        if captionTextView != "" &&  captionTextView != "Add Caption..." {
+        if captionTextView.text != "" &&  captionTextView.text != "Add Caption..." {
             
             allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
             
@@ -66,7 +66,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func nextImageCaption(sender: AnyObject) {
         
-        if captionTextView != "" &&  captionTextView != "Add Caption..." {
+        if captionTextView.text != "" &&  captionTextView.text != "Add Caption..." {
             
             allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
             
@@ -96,7 +96,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func doneCaptions(sender: AnyObject) {
         
-        if captionTextView != "" &&  captionTextView != "Add Caption..." {
+        if captionTextView.text != "" &&  captionTextView.text != "Add Caption..." {
             
             allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
             
@@ -142,6 +142,11 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+    }
+    
+    func addNewCaption() {
+        
         
     }
     

@@ -67,10 +67,21 @@ extension NewTLViewController {
     
     func buddyLeaves(post: JSON) {
         
+        prevPosts.append(post)
+        
         let buddyView = BuddyLeaves(frame: CGRect(x: 0, y: 10, width: 300, height: 215))
-//        buddyView.profileName.text = post[]
+        buddyView.profileName.text = post["user"]["name"].string!
+        buddyView.profilePicture.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!)!)
+        makeTLProfilePicture(buddyView.profilePicture)
         layout.addSubview(buddyView)
         addHeightToLayout(buddyView.frame.height)
+        
+    }
+    
+    func cityChanges(post: JSON) {
+        
+        
+        
         
     }
     
@@ -100,7 +111,9 @@ extension NewTLViewController {
         }
         
         mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height))
-        refreshControl.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: Selector("refresh:"), forControlEvents: .ValueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+//        mainScroll.addSubview(refreshControl)
         mainScroll.contentSize.height = self.view.frame.height
         mainScroll.addSubview(refreshControl)
         
@@ -112,7 +125,7 @@ extension NewTLViewController {
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), forControlEvents: .TouchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), forControlEvents: .TouchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), forControlEvents: .TouchUpInside)
-        //        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
+//        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
         otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), forControlEvents: .TouchUpInside)
         
         if !isJourneyOngoing {
@@ -154,7 +167,7 @@ extension NewTLViewController {
                 
             }
             
-            makeCoverPic(journey["startLocationPic"].string!)
+            makeCoverPic("\(journey["startLocationPic"])")
             
             self.journeyId = journey["uniqueId"].string!
             showDetailsFn()
@@ -183,12 +196,33 @@ extension NewTLViewController {
         
     }
     
-//    func newOngoing() {
-//        
-//
-//        
-//    }
-    
+    func uploadVideo(url: NSURL, video: AVAsset) {
+        
+        print("format: \(url.lastPathComponent)")
+        
+//        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("\(url.lastPathComponent)")
+//        let video =
+        
+//        request.uploadPhotos(url, completion: {(response) in
+//            
+//            if response.error != nil {
+//                
+//                print("response: \(response.error?.localizedDescription)")
+//                
+//            }
+//            else if response["value"] {
+//                
+//                print("response arrived")
+//                
+//            }
+//            else {
+//                
+//                print("response error")
+//            }
+//            
+//        })
+        
+    }
     
 }
 

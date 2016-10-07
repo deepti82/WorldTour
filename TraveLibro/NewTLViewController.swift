@@ -514,6 +514,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
                 else if response["value"] {
                     
+                    self.detectLocation(nil)
+                    
+                    if self.isRefreshing {
+                        
+                        self.refreshControl.endRefreshing()
+                        self.isRefreshing = false
+                    }
+                    
                     print("response get journey \(response["data"]["post"].array!)")
                     isJourneyOngoing = true
                     if self.isInitialLoad {
@@ -556,6 +564,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                    }
                     
                 }
+                else if response["error"]["message"] == "No Ongoing Journey Found" {
+                    
+                    print("inside no ongoing journey")
+                    isJourneyOngoing = false
+                    self.showJourneyOngoing(JSON(""))
+                    
+                }
                 else {
                  
                     print("response error!")
@@ -575,13 +590,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             if post["type"].string! == "join" {
                 
-                self.BuddyJoinInLayout(post)
+                if !self.prevPosts.contains(post) {
+                    
+                    self.BuddyJoinInLayout(post)
+                    
+                }
                 
             }
                 
             else if post["type"].string! == "left" {
                 
-                self.buddyLeaves(post)
+                if !self.prevPosts.contains(post) {
+                    
+                    self.buddyLeaves(post)
+                    
+                }
                 
             }
                 
@@ -823,8 +846,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        print("imageName: \(image.CIImage)")
         
         let videoURL = info["UIImagePickerControllerReferenceURL"] as! NSURL
-        print("video: ", videoURL)
-//        imagePickerController.dismissViewControllerAnimated(true, completion: nil)
+        let video = info[UIImagePickerControllerLivePhoto] as! AVAsset
+        print("video: ", videoURL, video)
+        uploadVideo(videoURL, video: video)
+        picker.dismissViewControllerAnimated(true, completion: nil)
     
     }
     
@@ -927,9 +952,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func refresh(sender: UIRefreshControl) {
+    var isRefreshing = false
+    
+    func refresh(sender: AnyObject) {
         
         print("in refresh")
+        isRefreshing = true
         getJourney()
         
         
@@ -1104,6 +1132,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func BuddyJoinInLayout(post: JSON) {
+        
+        prevPosts.append(post)
         
         let buddy = BuddyOTG(frame: CGRect(x: 0, y: 20, width: 245, height: 300))
         buddy.center.x = self.view.center.x
@@ -2012,7 +2042,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
 //        addView.postButton.enabled = true
         
-        print("add new photos")
+        print("add new photos \(photosCount)")
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         
