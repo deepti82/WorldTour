@@ -16,7 +16,7 @@ target 'TraveLibro' do
   pod 'Fabric'
   pod 'TwitterKit'
   pod 'TwitterCore'
-  pod 'SQLite.swift', '~> 0.10.1'
+  #  pod 'SQLite.swift', '~> 0.10.1'
   pod 'ActiveLabel'
 #  pod 'DKImagePickerController'
   pod 'Alamofire', '~> 3.4'	

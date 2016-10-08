@@ -128,26 +128,20 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if whichView == "Notify" {
-            
-            if indexPath.row == 0 {
+        if notifications[indexPath.row]["type"].string! == "request" {
                 
-                return 180
-            }
-            
-            return 65
-            
+            return 180
         }
-        
-        return 55
-        
+            
+        return 65
+    
     }
     
     func acceptTag(sender: UIButton) {
         
-        print("in the accept tag button")
+        print("in the accept tag button, \(notifications[sender.tag]["journeyUnique"]), \(currentUser["_id"]), \(notifications[sender.tag]["inMiddle"])")
         
-        request.acceptJourney(notifications[sender.tag]["journeyUnique"].string!, id: currentUser["_id"].string!, isInMiddle: notifications[sender.tag]["inMiddle"].string!, completion: {(response) in
+        request.acceptJourney(notifications[sender.tag]["journeyUnique"].string!, id: currentUser["_id"].string!, isInMiddle: "\(notifications[sender.tag]["inMiddle"])", completion: {(response) in
             
             if response.error != nil {
                 

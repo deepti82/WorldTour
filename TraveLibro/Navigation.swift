@@ -1069,27 +1069,56 @@ class Navigation {
         }
     }
     
-    func postTravelLife(thoughts: String, location: String, locationCategory: String, photosArray: [String], videosArray: [String], buddies: [String], userId: String, journeyId: String, userName: String, completion: ((JSON) -> Void)) {
+    func postTravelLife(thoughts: String, location: String, locationCategory: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, completion: ((JSON) -> Void)) {
         
         do {
+        
+            let checkIn = ["location": location, "category": locationCategory, "city": city, "country": country]
             
-            let checkIn = ["location": location, "category": locationCategory]
+            var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName]
+            params["photos"] = JSON(photosArray)
+            params["buddies"] = JSON(buddies)
+            let jsonData = try! params.rawData()
+            // create post request
+            let url = NSURL(string: adminUrl + "post/save3")!
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
             
-            let params = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "photos": photosArray, "videos": videosArray, "buddies": buddies, "user": userId, "journey": journeyId, "userName": userName]
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.HTTPBody = jsonData
             
-            let opt = try HTTP.POST(adminUrl + "post/save", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
                 }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
+                
+                do {
+                    let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
                 }
             }
+            
+            task.resume()
+            
+//            let opt = try HTTP.POST(adminUrl + "post/save3", parameters: [params])
+//            var json = JSON(1);
+//            opt.start {response in
+//                if let err = response.error {
+//                    print("error: \(err.localizedDescription)")
+//                }
+//                else
+//                {
+//                    json  = JSON(data: response.data)
+//                    print(json)
+//                    completion(json)
+//                }
+//            }
         } catch let error {
             print("got an error creating the request: \(error)")
         }
@@ -1386,5 +1415,48 @@ class Navigation {
         }
         
     }
+    
+//    func tagFriendsInPost(journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON],completion: ((JSON) -> Void)) {
+//        
+//        do {
+//            
+//            var params: JSON = ["_id": journeyId, "user": user, "uniqueId": uniqueId, "name": userName]
+//            params["buddies"] = JSON(buddies)
+//            
+//            let jsonData = try! params.rawData()
+//            
+//            // create post request
+//            let url = NSURL(string: adminUrl + "journey/endJourney")!
+//            let request = NSMutableURLRequest(URL: url)
+//            request.HTTPMethod = "POST"
+//            
+//            // insert json data to the request
+//            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+//            request.HTTPBody = jsonData
+//            
+//            
+//            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+//                if error != nil{
+//                    print("Error -> \(error)")
+//                    return
+//                }
+//                
+//                do {
+//                    let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
+//                    print("response: \(JSON(result))")
+//                    completion(JSON(result))
+//                    
+//                } catch {
+//                    print("Error: \(error)")
+//                }
+//            }
+//            
+//            task.resume()
+//            
+//        } catch let error {
+//            print("got an error creating the request: \(error)")
+//        }
+//        
+//    }
     
 }

@@ -131,6 +131,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.profileName.text = comments[indexPath.row]["user"]["name"].string!
         cell.profileComment.text = comments[indexPath.row]["text"].string!
         cell.profileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(comments[indexPath.row]["user"]["profilePicture"])&width=100")!)!)
+        makeTLProfilePicture(cell.profileImage)
         return cell
         
     }

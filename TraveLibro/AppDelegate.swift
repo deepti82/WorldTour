@@ -11,7 +11,7 @@ import Contacts
 import Simplicity
 import Fabric
 import TwitterKit
-import SQLite
+//import SQLite
 
 let contactsObject = CNContactStore()
 let mainBlueColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1) // #232D4A
@@ -47,20 +47,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    static func getDatabase () -> Connection {
-        
-        let path = NSSearchPathForDirectoriesInDomains(
-            .DocumentDirectory, .UserDomainMask, true
-            ).first!
-        let db = try! Connection("\(path)/db.sqlite3")
-        if(onlyOnce)
-        {
-            onlyOnce = false
-            print(path)
-        }
-        return db;
-        
-    }
+//    static func getDatabase () -> Connection {
+//        
+//        let path = NSSearchPathForDirectoriesInDomains(
+//            .DocumentDirectory, .UserDomainMask, true
+//            ).first!
+//        let db = try! Connection("\(path)/db.sqlite3")
+//        if(onlyOnce)
+//        {
+//            onlyOnce = false
+//            print(path)
+//        }
+//        return db;
+//        
+//    }
     
     internal func createMenuView() {
         
@@ -127,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         createMenuView()
 
-        AppDelegate.getDatabase()
+//        AppDelegate.getDatabase()
         
         faicon["clock"] = 0xf017
         faicon["calendar"] = 0xf073
@@ -154,7 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["twitterSquare"] = 0xf081
         faicon["fbSquare"] = 0xf082
         faicon["googleSquare"] = 0xf0d4
-        
+        faicon["comments"] = 0xf075
         
         emailIcon = String(format: "%C", faicon["email"]!)
         facebookIcon = String(format: "%C", faicon["facebook"]!)
