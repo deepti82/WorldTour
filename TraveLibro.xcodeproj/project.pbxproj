@@ -813,11 +813,8 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				3ABFD8DC1DA8C76D00A51034 /* ChangeCity */,
-=======
 				C2F773E31DA3989600865096 /* BuddyLeaves */,
->>>>>>> 1ca7b3f0dbbab841981e6d588f2898bc3c5784a2
 				C2D070D51D95338A003249F8 /* BuddyOTG */,
 				C2D070D41D953366003249F8 /* AddActivityNew */,
 				C24F84FB1D005A48002EA203 /* AccountVerified */,
