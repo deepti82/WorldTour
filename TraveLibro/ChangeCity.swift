@@ -35,6 +35,12 @@ class ChangeCity: UIView {
         
         cityButton.layer.cornerRadius = 10
         cityButton.clipsToBounds = true
+        cityButton.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI / 90))
+        
+        //calendarIcon.font = FontAwesomeFont
+        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+        //timeIcon.font = FontAwesomeFont
+        timeIcon.text = String(format: "%C", faicon["clock"]!)
     }
     
 }

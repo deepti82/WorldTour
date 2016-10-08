@@ -40,6 +40,9 @@ var onlyOnce = true
 let request = Navigation()
 let shared = LoadingOverlay()
 
+let width = UIScreen.mainScreen().bounds.size.width
+let height = UIScreen.mainScreen().bounds.size.height
+
 var leftViewController: SideNavigationMenuViewController!
 
 @UIApplicationMain
