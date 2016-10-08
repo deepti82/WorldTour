@@ -15,6 +15,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     let reviewsLL = ["Mumbai", "London"]
     let reviewsTL = ["India", "France"]
     
+    var images = []
     
     var whichView = "All"
     
@@ -66,8 +67,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         switch whichView {
         case "All":
             return 3*11
-        case "Monthly":
-            return 3*5
+        case "Monthly", "SelectCover":
+            return images.count
         case "Local Life":
             return 4
         case "Travel Life":
@@ -87,7 +88,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         switch whichView {
         case "All":
             return CGSizeMake(30, 30)
-        case "Monthly":
+        case "Monthly", "SelectCover":
             return CGSizeMake(115, 115)
         case "Local Life", "Travel Life":
             return CGSizeMake(165, 204)
@@ -105,8 +106,11 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         case "All":
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as! photosCollectionViewCell
             return cell
-        case "Monthly":
+        case "Monthly", "SelectCover":
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MomentsLargeImageCell", forIndexPath: indexPath) as! photosTwoCollectionViewCell
+            dispatch_async(dispatch_get_main_queue(), {
+                cell.photoBig.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(self.images[indexPath.item])")!)!)
+            })
             return cell
         case "Local Life":
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("localLifeMomentsCell", forIndexPath: indexPath) as! LocalLifeMomentsCollectionViewCell
@@ -186,6 +190,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             whichView = "Monthly"
             collectionView.reloadData()
         }
+            
+        else if whichView == "SelectCover" {
+            
+            print("inside select cover")
+            selectImage(indexPath.item)
+            
+        }
         
         else if whichView == "Reviews TL" || whichView == "Reviews LL" {
             
@@ -202,8 +213,27 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         
     }
+    
+    func selectImage(index: Int) {
+        
+        print("inside select image")
+        let allvcs = self.navigationController!.viewControllers
+        for vc in allvcs {
+            
+            if vc.isKindOfClass(EndJourneyViewController) {
+                
+                let endvc = vc as! EndJourneyViewController
+                endvc.coverImage = images[index] as! String
+                endvc.makeCoverPicture(images[index] as! String)
+                self.navigationController!.popToViewController(endvc, animated: true)
+                
+            }
+            
+        }
+    }
 
 }
+
 
 class TitleHeaderView: UICollectionReusableView {
     

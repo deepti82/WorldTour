@@ -1373,11 +1373,11 @@ class Navigation {
         }
     }
     
-    func endJourney(journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON],completion: ((JSON) -> Void)) {
+    func endJourney(journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON], photo: String, completion: ((JSON) -> Void)) {
         
         do {
             
-            var params: JSON = ["_id": journeyId, "user": user, "uniqueId": uniqueId, "name": userName]
+            var params: JSON = ["_id": journeyId, "user": user, "uniqueId": uniqueId, "name": userName, "coverPhoto": photo]
             params["buddies"] = JSON(buddies)
             
             let jsonData = try! params.rawData()
@@ -1410,6 +1410,30 @@ class Navigation {
             
             task.resume()
             
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func getJourneyPhotos(user: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["user": user]
+            let opt = try HTTP.POST(adminUrl + "journey/getPhotos", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
         } catch let error {
             print("got an error creating the request: \(error)")
         }

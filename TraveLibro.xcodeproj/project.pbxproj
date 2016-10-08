@@ -190,6 +190,7 @@
 		C26B4DED1D14216700213055 /* ConnectWithAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B4DEC1D14216700213055 /* ConnectWithAgent.swift */; };
 		C26B4DEF1D14288900213055 /* ConnectWithAgentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26B4DEE1D14288900213055 /* ConnectWithAgentViewController.swift */; };
 		C26D619A1D43A9FF0036714C /* footerNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26D61991D43A9FF0036714C /* footerNew.xib */; };
+		C270C4141DA8F68E009EA9DA /* EndJourneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C270C4131DA8F68E009EA9DA /* EndJourneyViewController.swift */; };
 		C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */; };
 		C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */; };
 		C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */; };
@@ -547,6 +548,7 @@
 		C26B4DEC1D14216700213055 /* ConnectWithAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectWithAgent.swift; sourceTree = "<group>"; };
 		C26B4DEE1D14288900213055 /* ConnectWithAgentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectWithAgentViewController.swift; sourceTree = "<group>"; };
 		C26D61991D43A9FF0036714C /* footerNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = footerNew.xib; sourceTree = "<group>"; };
+		C270C4131DA8F68E009EA9DA /* EndJourneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndJourneyViewController.swift; sourceTree = "<group>"; };
 		C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VerifyEmailViewController.swift; path = ../VerifyEmailViewController.swift; sourceTree = "<group>"; };
 		C2756C4E1D059F1E0083CEBD /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditEditProfileViewController.swift; path = ../EditEditProfileViewController.swift; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C270C4131DA8F68E009EA9DA /* EndJourneyViewController.swift */,
 				C2E56EA41DA5390000D81B0A /* AddCaptionsViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
@@ -2571,6 +2574,7 @@
 				C2A6E2571CE9C13A00D3F845 /* OTGTimelineViewController.swift in Sources */,
 				C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */,
 				C24F85071D006670002EA203 /* CardCheckBoxes.swift in Sources */,
+				C270C4141DA8F68E009EA9DA /* EndJourneyViewController.swift in Sources */,
 				C2873E8E1D9E90580001431B /* BuddyLeaves.swift in Sources */,
 				C23EBC301D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift in Sources */,
 				C24F84EB1D0045A1002EA203 /* ReportProblem.swift in Sources */,

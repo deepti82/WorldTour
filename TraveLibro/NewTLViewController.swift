@@ -59,24 +59,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     @IBAction func endJourneyTapped(sender: UIButton) {
         
 //        getCurrentOTG()
+        getJourney()
         
-        request.endJourney(myJourney["_id"].string!, uniqueId: myJourney["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: addedBuddies, completion: {(response) in
-            if response.error != nil {
-                
-                print("error: \(response.error!.localizedDescription)")
-                
-            }
-            else if response["value"] {
-                
-                print("response arrived!")
-                self.popVC(sender)
-                
-            }
-            else {
-                
-                print("response error")
-            }
-        })
+        let end = storyboard?.instantiateViewControllerWithIdentifier("endJourney") as! EndJourneyViewController
+        end.journey = myJourney
+        self.navigationController?.pushViewController(end, animated: true)
         
     }
 //    @IBOutlet weak var endJourney: UIButton!
