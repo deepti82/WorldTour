@@ -29,7 +29,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var mainScroll = UIScrollView()
     var infoView: TripInfoOTG!
     var addPosts: AddPostsOTGView!
-    var addNewView: NewQuickItinerary!
+    var addNewView = NewQuickItinerary()
     
     var journeyName: String!
     var locationData = ""
@@ -58,7 +58,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     @IBAction func endJourneyTapped(sender: UIButton) {
         
-        getCurrentOTG()
+//        getCurrentOTG()
         
         request.endJourney(myJourney["_id"].string!, uniqueId: myJourney["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: addedBuddies, completion: {(response) in
             if response.error != nil {
@@ -304,6 +304,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    var currentCity = ""
+    var currentCountry = ""
+    
     func putLocationName(selectedLocation: String, placeId: String) {
         
         self.addView.addLocationButton.setTitle(selectedLocation, forState: .Normal)
@@ -319,6 +322,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 else if response["value"] {
                     
                     self.addView.categoryLabel.text = response["data"].string!
+                    self.currentCity = response["city"].string!
+                    self.currentCountry = response["country"].string!
                     
                 }
                 else {
@@ -398,7 +403,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             addView.locationHorizontalScroll.hidden = false
             addView.hidden = true
             newScroll.hidden = true
-            request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, completion: {(response) in
+            request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, completion: {(response) in
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     
@@ -501,7 +506,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func getJourney() {
         
-        LoadingOverlay.shared.showOverlay(self.view)
+//        LoadingOverlay.shared.showOverlay(self.view)
         
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             
@@ -524,6 +529,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     print("response get journey \(response["data"]["post"].array!)")
                     isJourneyOngoing = true
+                    self.myJourney = response["data"]
                     if self.isInitialLoad {
                         
                         self.isInitialLoad = false
@@ -564,7 +570,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                    }
                     
                 }
-                else if response["error"]["message"] == "No Ongoing Journey Found" {
+                else if response["error"]["message"] == "No ongoing journey found" {
                     
                     print("inside no ongoing journey")
                     isJourneyOngoing = false
@@ -580,7 +586,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         })
         
-       LoadingOverlay.shared.hideOverlayView()
+//       LoadingOverlay.shared.hideOverlayView()
         
     }
     
@@ -603,6 +609,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 if !self.prevPosts.contains(post) {
                     
                     self.buddyLeaves(post)
+                    
+                }
+                
+            }
+                
+            else if post["type"].string! == "cityChange" {
+                
+                if !self.prevPosts.contains(post) {
+                    
+                    self.cityChanges(post)
                     
                 }
                 
@@ -893,14 +909,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         blurView.userInteractionEnabled = false
         toolbarView.addSubview(blurView)
         
-        otgView.locationLabel.returnKeyType = .Done
-        otgView.locationLabel.delegate = self
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewTLViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-        otgView.nameJourneyTF.returnKeyType = .Done
-        otgView.nameJourneyTF.delegate = self
         
         otgView.clipsToBounds = true
         mainScroll.clipsToBounds = true
@@ -1464,8 +1474,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func newOtg(sender: UIButton) {
         
+        print("start new on the go")
         addNewView.animation.makeOpacity(0.0).animate(0.5)
         addNewView.hidden = true
+        getScrollView(height, journey: JSON(""))
         
     }
     
@@ -1696,37 +1708,37 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func getCurrentOTG() {
-        
-        print("in otg")
-        
-        request.getOTGJourney(currentUser["_id"].string!, completion: {(response) in
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error?.localizedDescription)")
-                    
-                }
-                    
-                else if response["value"] {
-                    
-                    self.myJourney = response["data"]
-                    
-                }
-                    
-                else {
-                    
-                    print("response: \(response)")
-                    
-                }
-                
-                
-            })
-        })
-        
-    }
+//    func getCurrentOTG() {
+//        
+//        print("in otg")
+//        
+//        request.getOTGJourney(currentUser["_id"].string!, completion: {(response) in
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                
+//                if response.error != nil {
+//                    
+//                    print("error: \(response.error?.localizedDescription)")
+//                    
+//                }
+//                    
+//                else if response["value"] {
+//                    
+//                    self.myJourney = response["data"]
+//                    
+//                }
+//                    
+//                else {
+//                    
+//                    print("response: \(response)")
+//                    
+//                }
+//                
+//                
+//            })
+//        })
+//        
+//    }
     
     func showBuddies() {
         

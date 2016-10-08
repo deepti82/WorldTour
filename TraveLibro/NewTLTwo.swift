@@ -80,17 +80,19 @@ extension NewTLViewController {
     
     func cityChanges(post: JSON) {
         
-        
+        print("in change city post")
+        prevPosts.append(post)
         
         
     }
     
     func showJourneyOngoing(journey: JSON) {
         
-        LoadingOverlay.shared.showOverlay(self.view)
+//        LoadingOverlay.shared.showOverlay(self.view)
         
         if !isJourneyOngoing {
             
+            print("no journey ongoing")
             height = self.view.frame.height/2
             addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             addNewView.layer.zPosition = 1000
@@ -106,14 +108,21 @@ extension NewTLViewController {
         }
         else {
             
-          height = 70
+            height = 70
+            getScrollView(height, journey: journey)
             
         }
         
+//        LoadingOverlay.shared.hideOverlayView()
+        
+    }
+    
+    func getScrollView(height: CGFloat, journey: JSON) {
+        
         mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height))
-        refreshControl.addTarget(self, action: Selector("refresh:"), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), forControlEvents: .ValueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-//        mainScroll.addSubview(refreshControl)
+        //        mainScroll.addSubview(refreshControl)
         mainScroll.contentSize.height = self.view.frame.height
         mainScroll.addSubview(refreshControl)
         
@@ -125,8 +134,12 @@ extension NewTLViewController {
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), forControlEvents: .TouchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), forControlEvents: .TouchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), forControlEvents: .TouchUpInside)
-//        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
+        //        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
         otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), forControlEvents: .TouchUpInside)
+        otgView.nameJourneyTF.returnKeyType = .Done
+        otgView.nameJourneyTF.delegate = self
+        otgView.locationLabel.returnKeyType = .Done
+        otgView.locationLabel.delegate = self
         
         if !isJourneyOngoing {
             
@@ -191,8 +204,6 @@ extension NewTLViewController {
         self.view.bringSubviewToFront(toolbarView)
         self.view.bringSubviewToFront(addPostsButton)
         self.view.bringSubviewToFront(infoButton)
-        
-        LoadingOverlay.shared.hideOverlayView()
         
     }
     

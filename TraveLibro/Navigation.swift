@@ -1069,11 +1069,11 @@ class Navigation {
         }
     }
     
-    func postTravelLife(thoughts: String, location: String, locationCategory: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, completion: ((JSON) -> Void)) {
+    func postTravelLife(thoughts: String, location: String, locationCategory: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, completion: ((JSON) -> Void)) {
         
         do {
         
-            let checkIn = ["location": location, "category": locationCategory]
+            let checkIn = ["location": location, "category": locationCategory, "city": city, "country": country]
             
             var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName]
             params["photos"] = JSON(photosArray)
