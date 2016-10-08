@@ -12,7 +12,11 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeCity" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="cityButton" destination="fVH-GC-MmM" id="Rqh-ej-eEC"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="400" height="120"/>
@@ -64,6 +68,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m2o-p0-FC0">
                             <rect key="frame" x="180" y="0.0" width="180" height="24"/>
                             <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMZ-mG-RAf">
+                                    <rect key="frame" x="0.0" y="2" width="2" height="20"/>
+                                    <color key="backgroundColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="2" id="RaP-UO-jyY"/>
+                                    </constraints>
+                                </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MN-o2-no9">
                                     <rect key="frame" x="10" y="0.0" width="24" height="24"/>
                                     <constraints>
@@ -86,7 +97,10 @@
                                 <constraint firstItem="Kng-XB-2T3" firstAttribute="leading" secondItem="0MN-o2-no9" secondAttribute="trailing" constant="10" id="Iet-nE-17t"/>
                                 <constraint firstItem="0MN-o2-no9" firstAttribute="bottom" secondItem="Kng-XB-2T3" secondAttribute="bottom" id="Lh8-AP-YvB"/>
                                 <constraint firstAttribute="trailing" secondItem="Kng-XB-2T3" secondAttribute="trailing" constant="10" id="UBt-cO-LGP"/>
-                                <constraint firstItem="0MN-o2-no9" firstAttribute="leading" secondItem="m2o-p0-FC0" secondAttribute="leading" constant="10" id="rWM-he-UiX"/>
+                                <constraint firstItem="YMZ-mG-RAf" firstAttribute="leading" secondItem="m2o-p0-FC0" secondAttribute="leading" id="W4N-mj-3n3"/>
+                                <constraint firstItem="0MN-o2-no9" firstAttribute="leading" secondItem="YMZ-mG-RAf" secondAttribute="trailing" constant="8" id="Y3G-2U-Hnz"/>
+                                <constraint firstItem="YMZ-mG-RAf" firstAttribute="top" secondItem="m2o-p0-FC0" secondAttribute="top" constant="2" id="aM5-nL-KHy"/>
+                                <constraint firstAttribute="bottom" secondItem="YMZ-mG-RAf" secondAttribute="bottom" constant="2" id="f3z-Bo-wxV"/>
                                 <constraint firstAttribute="bottom" secondItem="0MN-o2-no9" secondAttribute="bottom" id="sQ9-VL-Gxe"/>
                             </constraints>
                         </view>
@@ -104,7 +118,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="589" y="270.5"/>
+            <point key="canvasLocation" x="868" y="267"/>
         </view>
     </objects>
 </document>

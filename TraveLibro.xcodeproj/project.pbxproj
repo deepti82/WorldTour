@@ -33,6 +33,7 @@
 		1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */; };
 		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
 		3ABFD8DE1DA8CA2500A51034 /* ChangeCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */; };
+		3ABFD8E01DA8D4FC00A51034 /* ChangeCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABFD8DF1DA8D4FC00A51034 /* ChangeCity.swift */; };
 		3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACB7A671D7841FD008247B6 /* DisplayPagesOneViewController.swift */; };
 		3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AEEB0081CE6F64F0085EEF5 /* Rating.xib */; };
 		3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEB00A1CE7017E0085EEF5 /* Rating.swift */; };
@@ -383,6 +384,7 @@
 		1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
 		277D58FAE80114C733768AB9 /* Pods-TraveLibroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests.release.xcconfig"; sourceTree = "<group>"; };
 		3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeCity.xib; sourceTree = "<group>"; };
+		3ABFD8DF1DA8D4FC00A51034 /* ChangeCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCity.swift; sourceTree = "<group>"; };
 		3ACB7A671D7841FD008247B6 /* DisplayPagesOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPagesOneViewController.swift; sourceTree = "<group>"; };
 		3AEEB0081CE6F64F0085EEF5 /* Rating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Rating.xib; sourceTree = "<group>"; };
 		3AEEB00A1CE7017E0085EEF5 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
@@ -967,6 +969,7 @@
 			isa = PBXGroup;
 			children = (
 				3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */,
+				3ABFD8DF1DA8D4FC00A51034 /* ChangeCity.swift */,
 			);
 			name = ChangeCity;
 			sourceTree = "<group>";
@@ -2535,6 +2538,7 @@
 				C24F84F21D005154002EA203 /* NoFollowers.swift in Sources */,
 				C2A27A471CEDC27600F74DD1 /* LogInView.swift in Sources */,
 				C29C33C31D7061DC00DC5B36 /* HelperFunctions.swift in Sources */,
+				3ABFD8E01DA8D4FC00A51034 /* ChangeCity.swift in Sources */,
 				C2EA3A141CDB228F00122941 /* TextLabelView.swift in Sources */,
 				C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */,
 				C2B0B2C71D93BF23001243EF /* BuddyOTG.swift in Sources */,
