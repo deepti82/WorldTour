@@ -13,6 +13,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var tagFriendsView: UIView!
     @IBOutlet weak var thoughtsButton: UIButton!
     @IBOutlet weak var tagFriendButton: UIButton!
+    @IBOutlet weak var videosButton: UIButton!
     
     @IBOutlet weak var photosCount: UILabel!
     @IBOutlet weak var videosCount: UILabel!
@@ -20,6 +21,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var locationTag: UIImageView!
     
+    @IBOutlet weak var photosStack: UIStackView!
     @IBOutlet weak var photosButton: UIButton!
     
     @IBOutlet var photosCollection: [UIImageView]!
@@ -47,9 +49,20 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     
+    @IBOutlet weak var photoScroll: UIScrollView!
+    @IBOutlet weak var postCancelButton: UIButton!
+//    @IBAction func cancelTapped(sender: AnyObject) {
+//        
+//        self.hidden = true
+//        
+//    }
+    
+    
     var eachButtonText = ""
     var buttonCollection: [UIButton] = []
     var horizontal: HorizontalLayout!
+    var horizontalScrollForPhotos: HorizontalLayout!
+    
 //    var parent = NewTLViewController()
     
     var darkBlur: UIBlurEffect!
@@ -75,9 +88,13 @@ class AddActivityNew: UIView, UITextViewDelegate {
         makeFAButton("edit", button: editCategory)
         
         horizontal = HorizontalLayout(height: locationHorizontalScroll.frame.height)
+        horizontalScrollForPhotos = HorizontalLayout(height: photoScroll.frame.height)
         
         editCategoryPickerView.hidden = true
         editCategoryPVBar.hidden = true
+        
+//        let tapOne = UITapGestureRecognizer(target: self, action: #selector(AddActivityNew.ImageStackTap(_:)))
+//        photosCollection[0].addGestureRecognizer(tapOne)
         
 //        editCategoryPickerView.delegate = self
         
@@ -113,16 +130,17 @@ class AddActivityNew: UIView, UITextViewDelegate {
         
         
         locationHorizontalScroll.addSubview(horizontal)
+        photoScroll.addSubview(horizontalScrollForPhotos)
         
         photosFinalView.hidden = true
         videosFinalView.hidden = true
         thoughtsFinalView.hidden = true
         
-        for photo in photosCollection {
-            
-            photo.layer.cornerRadius = 5.0
-            
-        }
+//        for photo in photosCollection {
+//            
+//            photo.layer.cornerRadius = 5.0
+//            
+//        }
         
         getStylesOn(locationView)
         getStylesOn(photosIntialView)
@@ -220,6 +238,12 @@ class AddActivityNew: UIView, UITextViewDelegate {
         view.layer.cornerRadius = 5.0
         
     }
+    
+//    func ImageStackTap(sender: UITapGestureRecognizer) {
+//        
+//        print("tapped image")
+//        
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

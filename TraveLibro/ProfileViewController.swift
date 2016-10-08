@@ -339,7 +339,35 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func gotoOTG(sender: UITapGestureRecognizer) {
         
-        var flag = 0
+        var isThere = 0
+        var vcs = self.navigationController!.viewControllers
+        
+        for vc in vcs {
+            
+            if vc.isKindOfClass(NewTLViewController) {
+                
+                print("already contains a otg")
+                self.navigationController!.popToViewController(vc, animated: false)
+                isThere = 1
+                
+            }
+            
+            
+        }
+        
+        if isThere == 0 {
+            
+            let tlVC = self.storyboard!.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
+            tlVC.isJourney = false
+            self.navigationController?.pushViewController(tlVC, animated: false)
+            
+        }
+        
+//        if vcs.contains(tlVC) {
+//            
+//            
+//            
+//        }
         
 //        request.getJourney(currentUser["_id"].string!, completion: {(response) in
 //            
@@ -357,10 +385,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //            else if response["data"]["error"] == nil {
 //                
 //                if flag == 0 {
-                
-                    let tlVC = self.storyboard!.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
-                    tlVC.isJourney = false
-                    self.navigationController?.pushViewController(tlVC, animated: false)
                     
 //                }
                 

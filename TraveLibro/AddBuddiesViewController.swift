@@ -77,9 +77,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                         
                         let alert = UIAlertController(title: nil, message:
                             "response error!", preferredStyle: .Alert)
-                        
                         self.presentViewController(alert, animated: false, completion: nil)
-                        
                         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:
                             {action in
                                 alert.dismissViewControllerAnimated(true, completion: nil)
@@ -95,7 +93,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         else if whichView == "TLMiddle" {
             
             let finalFriends: JSON = JSON(addedFriendUsers)
-            saveButton.hidden = true
+//            saveButton.hidden = true
             
             request.addBuddiesOTG(finalFriends, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, journeyId: uniqueId, inMiddle: true, journeyName: journeyName, completion: {(response) in
                 

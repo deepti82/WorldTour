@@ -12,28 +12,30 @@ import UIKit
 extension UIViewController {
     
     public class LoadingOverlay {
-        
+    
         var overlayView = UIView()
         var activityIndicator = UIActivityIndicatorView()
         
-//        class var shared: LoadingOverlay {
-//            struct Static {
-//                static let instance: LoadingOverlay = LoadingOverlay()
-//            }
-//            return Static.instance
-//        }
+        class var shared: LoadingOverlay {
+            struct Static {
+                static let instance: LoadingOverlay = LoadingOverlay()
+            }
+            return Static.instance
+        }
         
         func showOverlay(view: UIView) {
             
-            overlayView.frame = CGRectMake(0, 0, 80, 80)
+            print("show loader")
+            overlayView = UIView(frame: view.frame)
             overlayView.center = view.center
             overlayView.backgroundColor = UIColor(white: 0x444444, alpha: 0.7)
             overlayView.clipsToBounds = true
             overlayView.layer.cornerRadius = 10
+            overlayView.layer.zPosition = 10000
             
             activityIndicator.frame = CGRectMake(0, 0, 40, 40)
             activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-            activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+            activityIndicator.center = overlayView.center
             
             overlayView.addSubview(activityIndicator)
             view.addSubview(overlayView)
@@ -42,6 +44,8 @@ extension UIViewController {
         }
         
         func hideOverlayView() {
+            
+            print("hide overlay")
             activityIndicator.stopAnimating()
             overlayView.removeFromSuperview()
         }

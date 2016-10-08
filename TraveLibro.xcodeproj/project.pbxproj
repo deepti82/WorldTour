@@ -311,6 +311,7 @@
 		C2E159BB1D740A8300A5B721 /* EmptyScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E159BA1D740A8300A5B721 /* EmptyScreenView.swift */; };
 		C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E45CE81CE5A1340096BDD1 /* IconButton.xib */; };
 		C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */; };
+		C2E56EA51DA5390100D81B0A /* AddCaptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E56EA41DA5390000D81B0A /* AddCaptionsViewController.swift */; };
 		C2E697B31D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E697B21D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift */; };
 		C2E697B51D3E510900E76F1E /* FeaturedCitiesRestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E697B41D3E510900E76F1E /* FeaturedCitiesRestViewController.swift */; };
 		C2E697B71D3E541500E76F1E /* FCMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E697B61D3E541500E76F1E /* FCMainViewController.swift */; };
@@ -321,6 +322,8 @@
 		C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A151CDB3B9900122941 /* TextField.swift */; };
 		C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A181CDB3C1200122941 /* TextField.xib */; };
 		C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */; };
+		C2F773E51DA3A10F00865096 /* PostOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F773E41DA3A10F00865096 /* PostOTG.xib */; };
+		C2F773E71DA3AFEE00865096 /* PostOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F773E61DA3AFEE00865096 /* PostOTG.swift */; };
 		C2FA008A1CF57EC100E6A7D7 /* SetProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */; };
 		C2FA1E111D5485F50034DE97 /* QuickItineraryFive.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA1E101D5485F50034DE97 /* QuickItineraryFive.xib */; };
 		C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E121D54875D0034DE97 /* QuickItineraryFive.swift */; };
@@ -645,6 +648,7 @@
 		C2D5944F1CF487960007F50B /* MyLifeTabs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLifeTabs.xib; sourceTree = "<group>"; };
 		C2D594511CF487B30007F50B /* MyLifeTabs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeTabs.swift; sourceTree = "<group>"; };
 		C2D67FF61CE5FD7500454A46 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		C2D718311DA78FDF00CF5643 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Release-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		C2DA2B5A1CE6076600F15C5C /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		C2DCAE401D18063E00B35331 /* NavigationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStyle.swift; sourceTree = "<group>"; };
 		C2DCB2361CE30ED0000E40DD /* TripSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryViewController.swift; sourceTree = "<group>"; };
@@ -666,6 +670,7 @@
 		C2E159BA1D740A8300A5B721 /* EmptyScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyScreenView.swift; sourceTree = "<group>"; };
 		C2E45CE81CE5A1340096BDD1 /* IconButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconButton.xib; sourceTree = "<group>"; };
 		C2E45CEA1CE5A22B0096BDD1 /* IconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
+		C2E56EA41DA5390000D81B0A /* AddCaptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCaptionsViewController.swift; sourceTree = "<group>"; };
 		C2E697B21D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCitiesNewTwoViewController.swift; sourceTree = "<group>"; };
 		C2E697B41D3E510900E76F1E /* FeaturedCitiesRestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCitiesRestViewController.swift; sourceTree = "<group>"; };
 		C2E697B61D3E541500E76F1E /* FCMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCMainViewController.swift; sourceTree = "<group>"; };
@@ -676,6 +681,8 @@
 		C2EA3A151CDB3B9900122941 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		C2EA3A181CDB3C1200122941 /* TextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextField.xib; sourceTree = "<group>"; };
 		C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeOfJourney.xib; sourceTree = "<group>"; };
+		C2F773E41DA3A10F00865096 /* PostOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostOTG.xib; sourceTree = "<group>"; };
+		C2F773E61DA3AFEE00865096 /* PostOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostOTG.swift; sourceTree = "<group>"; };
 		C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetProfilePictureViewController.swift; sourceTree = "<group>"; };
 		C2FA1E101D5485F50034DE97 /* QuickItineraryFive.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickItineraryFive.xib; sourceTree = "<group>"; };
 		C2FA1E121D54875D0034DE97 /* QuickItineraryFive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryFive.swift; sourceTree = "<group>"; };
@@ -767,9 +774,6 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
-				C2873E8B1D9E8E510001431B /* BuddyLeaves.xib */,
-				C2873E8D1D9E90580001431B /* BuddyLeaves.swift */,
-				C2BB1E291D9E339000D3C3B0 /* NewTLTwo.swift */,
 				C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */,
 				C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */,
 				C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */,
@@ -780,8 +784,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C2A026CE1D9AA82D00D548AB /* CommentsViewController.swift */,
-				C2276FEF1D9906770052D942 /* EditCategoryViewController.swift */,
+				C2E56EA41DA5390000D81B0A /* AddCaptionsViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -810,7 +813,11 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				3ABFD8DC1DA8C76D00A51034 /* ChangeCity */,
+=======
+				C2F773E31DA3989600865096 /* BuddyLeaves */,
+>>>>>>> 1ca7b3f0dbbab841981e6d588f2898bc3c5784a2
 				C2D070D51D95338A003249F8 /* BuddyOTG */,
 				C2D070D41D953366003249F8 /* AddActivityNew */,
 				C24F84FB1D005A48002EA203 /* AccountVerified */,
@@ -1004,6 +1011,7 @@
 		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2D718311DA78FDF00CF5643 /* SwiftyJSON.framework */,
 				3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */,
 				7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */,
 				163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */,
@@ -1357,6 +1365,9 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C2A026CE1D9AA82D00D548AB /* CommentsViewController.swift */,
+				C2276FEF1D9906770052D942 /* EditCategoryViewController.swift */,
+				C2BB1E291D9E339000D3C3B0 /* NewTLTwo.swift */,
 				C24846371D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift */,
 				C23EBC2F1D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift */,
 				C2803BCA1CF43504007A906E /* AccordionViewController.swift */,
@@ -1737,6 +1748,8 @@
 			isa = PBXGroup;
 			children = (
 				C2A6E2661CE9D48A00D3F845 /* PhotosOTG.xib */,
+				C2F773E41DA3A10F00865096 /* PostOTG.xib */,
+				C2F773E61DA3AFEE00865096 /* PostOTG.swift */,
 				C2A6E2681CE9DA8B00D3F845 /* PhotosOTG.swift */,
 			);
 			name = PhotosOTG;
@@ -1900,6 +1913,15 @@
 				C2CE37D01CDC62EB00A47E70 /* TypeOfJourney.swift */,
 			);
 			name = TypeOfJourney;
+			sourceTree = "<group>";
+		};
+		C2F773E31DA3989600865096 /* BuddyLeaves */ = {
+			isa = PBXGroup;
+			children = (
+				C2873E8B1D9E8E510001431B /* BuddyLeaves.xib */,
+				C2873E8D1D9E90580001431B /* BuddyLeaves.swift */,
+			);
+			name = BuddyLeaves;
 			sourceTree = "<group>";
 		};
 		C2FA1E141D54883E0034DE97 /* QuickItineraryFive */ = {
@@ -2139,6 +2161,7 @@
 				C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */,
 				C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */,
 				C267301F1D279D7900F2C822 /* AddNewOTG.xib in Resources */,
+				C2F773E51DA3A10F00865096 /* PostOTG.xib in Resources */,
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
 				C26D619A1D43A9FF0036714C /* footerNew.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
@@ -2488,6 +2511,7 @@
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
+				C2F773E71DA3AFEE00865096 /* PostOTG.swift in Sources */,
 				3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
 				C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */,
@@ -2640,6 +2664,7 @@
 				C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */,
 				C2FA1E171D5495870034DE97 /* QuickItinerariesViewController.swift in Sources */,
 				C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */,
+				C2E56EA51DA5390100D81B0A /* AddCaptionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2718,6 +2743,11 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Release-iphoneos/SwiftyJSON",
+					"$(SRCROOT)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2766,6 +2796,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Release-iphoneos/SwiftyJSON",
+					"$(SRCROOT)",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2792,6 +2827,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Release-iphoneos/SwiftyJSON",
 				);
 				INFOPLIST_FILE = TraveLibro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2814,6 +2850,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Release-iphoneos/SwiftyJSON",
 				);
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "\"~/Dowloads/FacebookSDK\"";
 				INFOPLIST_FILE = TraveLibro/Info.plist;
