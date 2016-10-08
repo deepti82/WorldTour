@@ -14,7 +14,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeCity" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="calendarIcon" destination="2w4-lY-S3j" id="2Yf-ye-UFL"/>
                 <outlet property="cityButton" destination="fVH-GC-MmM" id="Rqh-ej-eEC"/>
+                <outlet property="dateLabel" destination="NiR-Yg-bG6" id="cul-Xe-VST"/>
+                <outlet property="timeIcon" destination="0MN-o2-no9" id="Kb1-Tr-iy5"/>
+                <outlet property="timeLabel" destination="Kng-XB-2T3" id="HgO-1E-OdH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
