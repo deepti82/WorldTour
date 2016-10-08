@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ActiveLabel.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
 		<key>BSGridCollectionViewLayout.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -97,12 +107,47 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>31C84A3832DB4AEB429573AACE8E3E73</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>398EBE7DF7CFDD29FB70ED563D22E3CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3C08A436393373DDD94B030F5676B348</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4D1DB1F735B71CBB187BB75F35EFC9DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>5646C4D085E708F45EF4FD0AB5DE7BBC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>59F801EF3339A2E7246E14768B35F484</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B3C58EDAD0F379F37147B3524699F5A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7FB5811D0A0CD2F8F76795ABE81C101D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -118,6 +163,11 @@
 			<true/>
 		</dict>
 		<key>C59EE95662AD4757E7FCE220DB1AFA41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5D3EA0B355D11DC4A493AC363C2D84A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
