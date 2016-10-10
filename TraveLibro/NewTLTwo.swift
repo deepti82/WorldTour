@@ -69,6 +69,15 @@ extension NewTLViewController {
         
         prevPosts.append(post)
         
+        if isInitialPost {
+            
+            layout = VerticalLayout(width: self.view.frame.width)
+            layout.frame.origin.y = 600
+            mainScroll.addSubview(layout)
+            isInitialPost = false
+            
+        }
+        
         let buddyView = BuddyLeaves(frame: CGRect(x: 0, y: 10, width: 300, height: 215))
         buddyView.profileName.text = post["user"]["name"].string!
         buddyView.profilePicture.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!)!)
@@ -82,6 +91,21 @@ extension NewTLViewController {
         
         print("in change city post")
         prevPosts.append(post)
+        
+        if isInitialPost {
+            layout = VerticalLayout(width: self.view.frame.width)
+            layout.frame.origin.y = 600
+            mainScroll.addSubview(layout)
+            isInitialPost = false
+        }
+        
+        let changeCityView = ChangeCity(frame: CGRect(x: 0, y: 50, width: width - 120, height: 100))
+        changeCityView.center.x = width / 2
+        changeCityView.cityButton.setTitle(post["location"].string!, forState: .Normal)
+        layout.addSubview(changeCityView)
+        addHeightToLayout(changeCityView.frame.height)
+        
+        print("\(#line) \(post)")
         
         
     }

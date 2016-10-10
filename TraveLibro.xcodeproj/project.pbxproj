@@ -34,6 +34,8 @@
 		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
 		3ABFD8DE1DA8CA2500A51034 /* ChangeCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */; };
 		3ABFD8E01DA8D4FC00A51034 /* ChangeCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABFD8DF1DA8D4FC00A51034 /* ChangeCity.swift */; };
+		3ABFD8E31DA929D700A51034 /* RatingCheckIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFD8E21DA929D700A51034 /* RatingCheckIn.xib */; };
+		3ABFD8E51DA92C1900A51034 /* RatingCheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABFD8E41DA92C1900A51034 /* RatingCheckIn.swift */; };
 		3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACB7A671D7841FD008247B6 /* DisplayPagesOneViewController.swift */; };
 		3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AEEB0081CE6F64F0085EEF5 /* Rating.xib */; };
 		3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEEB00A1CE7017E0085EEF5 /* Rating.swift */; };
@@ -389,6 +391,8 @@
 		277D58FAE80114C733768AB9 /* Pods-TraveLibroTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibroTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibroTests/Pods-TraveLibroTests.release.xcconfig"; sourceTree = "<group>"; };
 		3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeCity.xib; sourceTree = "<group>"; };
 		3ABFD8DF1DA8D4FC00A51034 /* ChangeCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCity.swift; sourceTree = "<group>"; };
+		3ABFD8E21DA929D700A51034 /* RatingCheckIn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingCheckIn.xib; sourceTree = "<group>"; };
+		3ABFD8E41DA92C1900A51034 /* RatingCheckIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingCheckIn.swift; sourceTree = "<group>"; };
 		3ACB7A671D7841FD008247B6 /* DisplayPagesOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPagesOneViewController.swift; sourceTree = "<group>"; };
 		3AEEB0081CE6F64F0085EEF5 /* Rating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Rating.xib; sourceTree = "<group>"; };
 		3AEEB00A1CE7017E0085EEF5 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
@@ -816,6 +820,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				3ABFD8E11DA9299000A51034 /* RatingCheckIn */,
 				3ABFD8DC1DA8C76D00A51034 /* ChangeCity */,
 				C2F773E31DA3989600865096 /* BuddyLeaves */,
 				C2D070D51D95338A003249F8 /* BuddyOTG */,
@@ -979,6 +984,15 @@
 				3ABFD8DF1DA8D4FC00A51034 /* ChangeCity.swift */,
 			);
 			name = ChangeCity;
+			sourceTree = "<group>";
+		};
+		3ABFD8E11DA9299000A51034 /* RatingCheckIn */ = {
+			isa = PBXGroup;
+			children = (
+				3ABFD8E21DA929D700A51034 /* RatingCheckIn.xib */,
+				3ABFD8E41DA92C1900A51034 /* RatingCheckIn.swift */,
+			);
+			name = RatingCheckIn;
 			sourceTree = "<group>";
 		};
 		3AEEB0071CE6F63B0085EEF5 /* Rating */ = {
@@ -2076,6 +2090,7 @@
 				C2A27A451CEDC1F100F74DD1 /* LogInView.xib in Resources */,
 				3AF187041D78556500A86BC1 /* forDPThree.xib in Resources */,
 				C24909BA1D4A3852007EB6B4 /* AddPostsOTG.xib in Resources */,
+				3ABFD8E31DA929D700A51034 /* RatingCheckIn.xib in Resources */,
 				C2A4C8871D840D8C008394A3 /* AddActivityNoPhoto.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				C2803BC41CF41F99007A906E /* BlogView.xib in Resources */,
@@ -2575,6 +2590,7 @@
 				C2CE37D11CDC62EB00A47E70 /* TypeOfJourney.swift in Sources */,
 				C24F85071D006670002EA203 /* CardCheckBoxes.swift in Sources */,
 				C270C4141DA8F68E009EA9DA /* EndJourneyViewController.swift in Sources */,
+				3ABFD8E51DA92C1900A51034 /* RatingCheckIn.swift in Sources */,
 				C2873E8E1D9E90580001431B /* BuddyLeaves.swift in Sources */,
 				C23EBC301D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift in Sources */,
 				C24F84EB1D0045A1002EA203 /* ReportProblem.swift in Sources */,

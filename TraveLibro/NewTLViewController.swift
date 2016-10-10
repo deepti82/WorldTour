@@ -1132,6 +1132,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         prevPosts.append(post)
         
+        if isInitialPost {
+            
+            layout = VerticalLayout(width: self.view.frame.width)
+            layout.frame.origin.y = 600
+            mainScroll.addSubview(layout)
+            isInitialPost = false
+            
+        }
+        
         let buddy = BuddyOTG(frame: CGRect(x: 0, y: 20, width: 245, height: 300))
         buddy.center.x = self.view.center.x
         buddy.profileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])&width=500")!)!)

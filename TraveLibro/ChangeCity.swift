@@ -11,6 +11,10 @@ import UIKit
 class ChangeCity: UIView {
     
     @IBOutlet weak var cityButton: UIButton!
+    @IBOutlet weak var calendarIcon: UILabel!
+    @IBOutlet weak var timeIcon: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +32,15 @@ class ChangeCity: UIView {
         view.frame = bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.addSubview(view)
+        
+        cityButton.layer.cornerRadius = 10
+        cityButton.clipsToBounds = true
+        cityButton.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI / 90))
+        
+        //calendarIcon.font = FontAwesomeFont
+        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+        //timeIcon.font = FontAwesomeFont
+        timeIcon.text = String(format: "%C", faicon["clock"]!)
     }
     
 }
