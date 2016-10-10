@@ -194,7 +194,15 @@ class Navigation {
     
     func addNewOTG(name: String, userId: String, startLocation: String, kindOfJourney: [String], timestamp: String, lp: String, completion: ((JSON) -> Void)) {
         
-        let params = ["name": name, "user":  userId, "startLocation": startLocation, "kindOfJourney": kindOfJourney, "timestamp": timestamp, "startLocationPic": lp]
+        let currentDate = NSDate()
+        let currentDateFormatter = NSDateFormatter()
+        currentDateFormatter.timeZone = NSTimeZone.localTimeZone()
+        currentDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        let showDate = currentDateFormatter.dateFromString("\(currentDate)")!
+        let showDateArray = "\(showDate)".componentsSeparatedByString(" +")
+//        print("current date 2: \(currentDate) \(showDateArray[0])")
+        
+        let params = ["name": name, "user":  userId, "startLocation": startLocation, "kindOfJourney": kindOfJourney, "timestamp": timestamp, "startLocationPic": lp, "startTime": "\(showDateArray[0])"]
         print("parameters: \(params)")
         do {
             

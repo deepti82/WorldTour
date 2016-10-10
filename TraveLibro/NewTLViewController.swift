@@ -59,7 +59,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     @IBAction func endJourneyTapped(sender: UIButton) {
         
 //        getCurrentOTG()
-        getJourney()
+        
+//        dispatch_sync(dispatch_get_main_queue(), {
+        
+            self.getJourney()
+//        })
         
         let end = storyboard?.instantiateViewControllerWithIdentifier("endJourney") as! EndJourneyViewController
         end.journey = myJourney
@@ -1018,7 +1022,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
 //        })
         
-        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 600))
+        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 550))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, forState: .Normal)
         checkIn.likeViewLabel.text = "0 Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
@@ -1026,6 +1030,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otherCommentId = post["_id"].string!
         currentPost = post
         checkIn.optionsButton.setTitle(post["_id"].string!, forState: .Normal)
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+//        dateFormatter.dateStyle = .MediumStyle
+        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+        let date = dateFormatter.dateFromString(post["createdAt"].string!)!
+        let newDate = date.toLocalTime()
+        let dateArray = "\(newDate)".componentsSeparatedByString(" ")
+        checkIn.dateLabel.text = dateArray[0] + " | "
+        checkIn.timeLabel.text = dateArray[1]
+        print("current date: \(dateFormatter.timeZone) \(date)")
+        
+        
+        
 //        checkIn.likeButton.addTarget(self, action: #selector(NewTLViewController.sendLikes(_:)), forControlEvents: .TouchUpInside)
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), forControlEvents: .TouchUpInside)
         checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), forControlEvents: .TouchUpInside)
@@ -1102,6 +1119,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 
             }
+            
+            let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 10, width: width, height: 100))
+            rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
+            layout.addSubview(rateButton)
+            addHeightToLayout(rateButton.frame.height)
 //            else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
 //                
 //                checkIn.mainPhoto.removeFromSuperview()

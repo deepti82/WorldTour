@@ -10,6 +10,13 @@ import UIKit
 
 class RatingCheckIn: UIView {
     
+    @IBOutlet weak var rateCheckInLabel: UILabel!
+    @IBAction func addRating(sender: UIButton) {
+        
+        print("add rating")
+        
+        
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

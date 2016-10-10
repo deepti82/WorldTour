@@ -20,6 +20,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     var allIds: [String] = []
     var allPhotos: [JSON] = []
     
+    @IBOutlet var completeImages: [UIImageView]!
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var imageForCaption: UIImageView!
     
@@ -53,14 +54,11 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             
         }
         
+    }
+    
+    func imageTapped(sender: UITapGestureRecognizer) {
         
-//        for button in allImages {
-//            
-//            let index = button.indexOf
-//            
-//            
-//            
-//        }
+        print("image tapped")
         
     }
     
@@ -142,6 +140,32 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        for image in completeImages {
+            
+            image.hidden = true
+            image.layer.cornerRadius = 5.0
+            let tap = UITapGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.imageTapped(_:)))
+            image.addGestureRecognizer(tap)
+            
+        }
+        
+        for i in 0 ..< allImages.count {
+            
+            let image = allImages[i].currentImage
+            print("image to be set: \(image)")
+            completeImages[i].image = image
+            completeImages[i].hidden = false
+            
+            if completeImages[i].image == imageForCaption.image {
+                
+                print("inside equality")
+                completeImages[i].layer.borderColor = mainBlueColor.CGColor
+                completeImages[i].layer.borderWidth = 1.0
+                
+            }
+            
+        }
         
     }
     
