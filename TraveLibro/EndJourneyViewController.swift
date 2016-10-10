@@ -27,10 +27,18 @@ class EndJourneyViewController: UIViewController {
     
     @IBAction func changePicture(sender: AnyObject) {
         
-        let selectImage = storyboard?.instantiateViewControllerWithIdentifier("multipleCollectionVC") as! MyLifeMomentsViewController
-        selectImage.whichView = "SelectCover"
-        selectImage.images = journeyImages
-        self.navigationController?.pushViewController(selectImage, animated: true)
+        if journeyImages.count > 0 {
+            
+            let selectImage = storyboard?.instantiateViewControllerWithIdentifier("multipleCollectionVC") as! MyLifeMomentsViewController
+            selectImage.whichView = "SelectCover"
+            selectImage.images = journeyImages
+            self.navigationController?.pushViewController(selectImage, animated: true)
+            
+        }
+        else {
+            
+            print("No pictures found")
+        }
         
     }
     
@@ -139,7 +147,16 @@ class EndJourneyViewController: UIViewController {
                     self.journeyImages.append(image.string!)
                     
                 }
-                self.randomImage()
+                if response["data"].array!.count > 0 {
+                    
+                    self.randomImage()
+                }
+                else {
+                    
+                   self.makeCoverPicture(self.journey["startLocationPic"].string!)
+                    
+                }
+                
             }
             else {
                 
@@ -196,7 +213,7 @@ class EndJourneyViewController: UIViewController {
     
     func goBack() {
             
-        print("inside select image")
+        print("\(self.navigationController!.viewControllers)")
         let allvcs = self.navigationController!.viewControllers
         for vc in allvcs {
             

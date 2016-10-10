@@ -342,7 +342,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             var buddies: [JSON] = []
             var id = ""
             
-            if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" {
+            if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" && addView.thoughtsTextView.text != "Fill Me In..." {
                 
                 thoughts = addView.thoughtsTextView.text
                 print("thoughts: \(thoughts)")
@@ -578,6 +578,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getAllPosts(posts: [JSON]) {
+        
+        if isInitialPost {
+            
+            layout = VerticalLayout(width: self.view.frame.width)
+            layout.frame.origin.y = 600
+            mainScroll.addSubview(layout)
+            isInitialPost = false
+            
+        }
         
         for post in posts {
             
@@ -981,15 +990,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            
 //        }
         
-        if isInitialPost {
-            
-            layout = VerticalLayout(width: self.view.frame.width)
-            layout.frame.origin.y = 600
-            mainScroll.addSubview(layout)
-            isInitialPost = false
-            
-        }
-        
         var thoughts = ""
         var photos: [JSON] = []
 //        let tags = ActiveLabel()
@@ -1002,7 +1002,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if post["buddies"].array!.count > 1 {
             
-            thoughts = thoughts + "and \(post["buddies"].array!.count - 1) other(s)"
+            thoughts = thoughts + " and \(post["buddies"].array!.count - 1) other(s)"
             
         }
         
