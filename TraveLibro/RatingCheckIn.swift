@@ -90,7 +90,7 @@ class RatingAlert: UIView {
         
         moodText = UILabel(frame: CGRectMake(0, 60, frame.size.width, 20))
         moodText.textAlignment = .Center
-        moodText.textColor = UIColor.blackColor()
+        moodText.textColor = mainBlueColor
         addSubview(moodText)
         
         ratingView = UIView(frame: CGRect(x: 0, y: 100, width: 225, height: 25))
@@ -113,13 +113,12 @@ class RatingAlert: UIView {
         postButton = UIButton(frame: CGRectMake(0, 240, 100, 40))
         postButton.center.x = frame.size.width / 2
         postButton.setTitle("POST", forState: .Normal)
-        postButton.backgroundColor = UIColor.blueColor()
+        postButton.backgroundColor = mainBlueColor
         postButton.layer.cornerRadius = 5
         addSubview(postButton)
         
         for _ in 0..<starCount {
             let button = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-            //button.backgroundColor = UIColor.redColor()
             button.setImage(emptyStarImage, forState: .Normal)
             button.setImage(filledStarImage, forState: .Selected)
             button.setImage(filledStarImage, forState: [.Highlighted, .Selected])
