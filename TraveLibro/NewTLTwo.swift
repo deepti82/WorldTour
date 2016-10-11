@@ -110,6 +110,25 @@ extension NewTLViewController {
         
     }
     
+    func rateCheckin(post: JSON) {
+        
+        print("in change rate checkin")
+        prevPosts.append(post)
+        
+        if isInitialPost {
+            layout = VerticalLayout(width: self.view.frame.width)
+            layout.frame.origin.y = 600
+            mainScroll.addSubview(layout)
+            isInitialPost = false
+        }
+        
+        let rateCheckinView = RatingCheckIn(frame: CGRect(x: 0, y: 50, width: width - 200, height: 100))
+        rateCheckinView.center.x = width / 2
+        rateCheckinView.rateCheckInLabel.text = post["location"].string!
+        layout.addSubview(rateCheckinView)
+        addHeightToLayout(rateCheckinView.frame.height)
+    }
+    
     func showJourneyOngoing(journey: JSON) {
         
 //        LoadingOverlay.shared.showOverlay(self.view)
