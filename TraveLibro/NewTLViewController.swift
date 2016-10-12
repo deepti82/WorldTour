@@ -1322,12 +1322,45 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
         
+        var datePickerView: UIDatePicker!
+        var dateSelected = ""
+        
+        func handleDatePicker(sender: UIDatePicker) {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            //dateSelected = dateFormatter.stringFromDate(sender.date)
+        }
+        
+        func doneButton(sender:UIButton){
+            datePickerView.removeFromSuperview() // To resign the inputView on clicking done.
+        }
+        
         let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .Default)
         { action -> Void in
             
-            print("inside change date and time")
+            //Create the view
+            let inputView = UIView(frame: CGRectMake(0, UIScreen.mainScreen().bounds.size.height - 240, self.view.frame.size.width, 240))
+            inputView.backgroundColor = UIColor.whiteColor()
+            datePickerView = UIDatePicker(frame: CGRectMake(0, 40, 0, 0))
+            datePickerView.datePickerMode = UIDatePickerMode.Date
+            inputView.addSubview(datePickerView) // add date picker to UIView
+            
+            let doneButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.size.width - 100, 0, 100, 50))
+            doneButton.setTitle("Done", forState: UIControlState.Normal)
+            doneButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            
+            inputView.addSubview(doneButton) // add Button to UIView
+            
+            doneButton.addTarget(self, action: Selector("doneButton:"), forControlEvents: UIControlEvents.TouchUpInside) // set button click event
+            
+            //sender.inputView = inputView
+            datePickerView.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
+            
+            handleDatePicker(datePickerView) // Set the date on start.
+            self.view.addSubview(inputView)
             
         }
+        
         actionSheetControllerIOS8.addAction(EditDnt)
         
         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Post", style: .Default)
