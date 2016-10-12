@@ -1122,6 +1122,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 10, width: width, height: 100))
             rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
+            rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), forControlEvents: .TouchUpInside)
             layout.addSubview(rateButton)
             addHeightToLayout(rateButton.frame.height)
 //            else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {

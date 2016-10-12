@@ -11,27 +11,8 @@ import UIKit
 class RatingCheckIn: UIView {
     
     @IBOutlet weak var rateCheckInLabel: UILabel!
-    @IBAction func addRating(sender: UIButton) {
-        
-        print("add rating")
-        
-        let backView = UIView(frame: CGRectMake(0, 0, width, height))
-        let mainView = UIView(frame: CGRectMake(0, 0, width, 280))
-        let ratingView = RatingAlert(frame: CGRectMake(0, 20, width, 200))
-        
-        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        
-        mainView.layer.zPosition = 100
-        mainView.backgroundColor = UIColor.whiteColor()
-        mainView.center = CGPointMake(backView.frame.size.width / 2, backView.frame.size.height / 2)
-        mainView.layer.cornerRadius = 5
-        
-        mainView.addSubview(ratingView)
-        backView.addSubview(mainView)
-        self.addSubview(backView)
-        
-        
-    }
+    @IBOutlet weak var rateCheckInButton: UIButton!
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -59,7 +40,7 @@ class RatingAlert: UIView {
     let starCount = 5
     var ratingButtons = [UIButton]()
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
-    let imageArr = ["disappointed", "sad", "good", "superface", "love"]
+    let imageArr = ["disapointed", "sad", "good", "superface", "love"]
     
     var imageView: UIImageView!
     var backimageView: UIImageView!
@@ -69,7 +50,7 @@ class RatingAlert: UIView {
     var textView: UITextView!
     var postButton: UIButton!
     let filledStarImage = UIImage(named: "star_check")
-    let emptyStarImage = UIImage(named: "start_uncheck")
+    let emptyStarImage = UIImage(named: "star_uncheck")
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -80,7 +61,7 @@ class RatingAlert: UIView {
         
         imageView = UIImageView(frame: CGRectMake(0, 0, 50, 50))
         imageView.center.x = frame.size.width / 2
-        imageView.image = UIImage(named: "disappointed")
+        imageView.image = UIImage(named: "disapointed")
         addSubview(imageView)
         
         backimageView = UIImageView(frame: CGRectMake(0, 0, 50, 50))

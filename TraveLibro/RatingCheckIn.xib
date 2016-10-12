@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RatingCheckIn" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="rateCheckInButton" destination="4RE-OS-w26" id="arf-gZ-dIq"/>
                 <outlet property="rateCheckInLabel" destination="NV7-7j-LpW" id="2yN-mK-EFK"/>
             </connections>
         </placeholder>
@@ -23,9 +24,6 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                     <state key="normal" image="star_rate_icon" backgroundImage="orangebox"/>
-                    <connections>
-                        <action selector="addRating:" destination="-1" eventType="touchUpInside" id="F8f-jH-ClD"/>
-                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Girgaon?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NV7-7j-LpW">
                     <rect key="frame" x="0.0" y="73" width="271" height="22"/>
