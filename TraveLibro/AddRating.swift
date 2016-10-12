@@ -10,30 +10,19 @@ import UIKit
 
 class AddRating: UIView {
 
-    @IBOutlet var mainView: UIView!
-    @IBOutlet weak var closeReview: UIButton!
-    @IBOutlet weak var smileyIconView: UIView!
-    @IBOutlet weak var smileyIcon: UIImageView!
-    @IBOutlet weak var addReviewLink: UILabel!
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
+    @IBOutlet weak var postReview: UIButton!
+    @IBOutlet weak var reviewTextView: UITextView!
+    @IBOutlet var stars: [UIImageView]!
+    @IBOutlet weak var smiley: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        smileyIconView.layer.cornerRadius = 40
-        smileyIconView.backgroundColor = UIColor(red: 17/255, green: 211/255, blue: 204/255, alpha: 255/255)
-        addReviewLink.textColor = UIColor(red: 17/255, green: 211/255, blue: 204/255, alpha: 255/255)
         
-        closeReview.layer.cornerRadius = 5
-        closeReview.clipsToBounds = true
+        postReview.layer.cornerRadius = 5
+        postReview.clipsToBounds = true
         
-        mainView.layer.cornerRadius = 5
+//        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {

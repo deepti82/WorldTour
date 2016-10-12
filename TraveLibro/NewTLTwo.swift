@@ -111,21 +111,36 @@ extension NewTLViewController {
     }
     
     func addRatingPost(sender: UIButton) {
-        let backView = UIView(frame: CGRectMake(0, -20, width, height))
-        let mainView = UIView(frame: CGRectMake(0, 0, width, 280))
-        let ratingView = RatingAlert(frame: CGRectMake(0, 20, width, 200))
-
-        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        backView.center.y = self.view.frame.size.height / 2
-
-        mainView.layer.zPosition = 100
-        mainView.backgroundColor = UIColor.whiteColor()
-        //mainView.center = CGPointMake(backView.frame.size.width / 2, backView.frame.size.height / 2)
-        mainView.layer.cornerRadius = 5
-
-        mainView.addSubview(ratingView)
-        backView.addSubview(mainView)
-        self.view.addSubview(backView)
+        
+//        let backView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+//        let mainView = UIView(frame: CGRect(x: 0, y: 0, width: width - 40, height: 280))
+//        mainView.center.x = self.view.center.x
+//        let ratingView = RatingAlert(frame: CGRect(x: 0, y: 0, width: 20, height: 200))
+//        ratingView.center = mainView.center
+//
+//        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+//        backView.center.y = self.view.frame.size.height / 2
+//
+//        mainView.backgroundColor = UIColor.whiteColor()
+//        //mainView.center = CGPointMake(backView.frame.size.width / 2, backView.frame.size.height / 2)
+//        mainView.layer.cornerRadius = 5
+//
+//        mainView.addSubview(ratingView)
+//        backView.addSubview(mainView)
+//        self.view.addSubview(backView)
+//        self.view.bringSubviewToFront(backView)
+        
+        let background = UIView(frame: self.view.frame)
+        background.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        self.view.addSubview(background)
+        self.view.bringSubviewToFront(background)
+        
+        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 315))
+        rating.center = background.center
+        rating.layer.cornerRadius = 5
+        background.addSubview(rating)
+        
+        
     }
     
     func showJourneyOngoing(journey: JSON) {

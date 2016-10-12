@@ -52,7 +52,7 @@ class LocalLifePostsViewController: UIViewController {
         let ratingDialog = AddRating(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 400))
         ratingDialog.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
         
-        ratingDialog.closeReview.addTarget(self, action: #selector(LocalLifePostsViewController.closeDialog(_:)), forControlEvents: .TouchUpInside)
+        ratingDialog.postReview.addTarget(self, action: #selector(LocalLifePostsViewController.closeDialog(_:)), forControlEvents: .TouchUpInside)
         blackBg.addSubview(ratingDialog)
         
     }
