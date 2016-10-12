@@ -29,18 +29,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func previousImageCaption(sender: AnyObject) {
         
-//        if captionTextView.text != "" &&  captionTextView.text != "Add a caption..." {
-//            
-//            allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
-//            
-//        }
-//        else {
-//            
-//            allPhotos.append(["name": allIds[index], "caption": ""])
-//        }
-        
-//        print("photos: \(allPhotos)")
-        
         index = index - 1
         
         if index >= 0 {
@@ -60,19 +48,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func nextImageCaption(sender: AnyObject) {
-        
-//        if captionTextView.text != "" &&  captionTextView.text != "Add a caption..." {
-//            
-//            allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
-//            
-//        }
-//        else {
-//            
-//            allPhotos.append(["name": allIds[index], "caption": ""])
-//        }
-        
-        
-//        print("photos: \(allPhotos)")
         
         index = index + 1
         
@@ -114,6 +89,14 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.nextImageCaption(_:)))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        self.view.addGestureRecognizer(swipeLeft)
         
         print("new controller")
         

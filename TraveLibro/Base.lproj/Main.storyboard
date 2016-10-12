@@ -4576,8 +4576,8 @@ IHRvZ2V0aGVyLg
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ki-Pv-9l2">
-                                <rect key="frame" x="7" y="284" width="30" height="33"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ki-Pv-9l2">
+                                <rect key="frame" x="20" y="284" width="30" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Prev">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4586,7 +4586,7 @@ IHRvZ2V0aGVyLg
                                     <action selector="previousImageCaption:" destination="Atl-4x-b1t" eventType="touchUpInside" id="vre-BV-lcp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-Ri-P74">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-Ri-P74">
                                 <rect key="frame" x="547" y="284" width="33" height="33"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Next">
@@ -4670,7 +4670,7 @@ IHRvZ2V0aGVyLg
                             <constraint firstItem="8C8-Ua-az5" firstAttribute="top" secondItem="8Jq-OB-qMj" secondAttribute="bottom" constant="8" id="VPX-Cu-a19"/>
                             <constraint firstItem="8Jq-OB-qMj" firstAttribute="top" secondItem="NEB-XP-wm5" secondAttribute="bottom" constant="20" id="YtN-Br-wJp"/>
                             <constraint firstItem="rnY-Ri-P74" firstAttribute="centerY" secondItem="vpb-lr-1yP" secondAttribute="centerY" id="jM1-tA-yay"/>
-                            <constraint firstItem="9ki-Pv-9l2" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="7" id="lhi-vs-LH8"/>
+                            <constraint firstItem="9ki-Pv-9l2" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="20" id="lhi-vs-LH8"/>
                             <constraint firstAttribute="trailing" secondItem="rnY-Ri-P74" secondAttribute="trailing" constant="20" id="r9a-iM-ush"/>
                             <constraint firstAttribute="trailing" secondItem="8Jq-OB-qMj" secondAttribute="trailing" constant="25" id="tZZ-0l-p7w"/>
                             <constraint firstItem="8C8-Ua-az5" firstAttribute="centerX" secondItem="vpb-lr-1yP" secondAttribute="centerX" id="w9h-9A-nny"/>
