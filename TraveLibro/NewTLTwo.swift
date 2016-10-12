@@ -110,6 +110,24 @@ extension NewTLViewController {
         
     }
     
+    func addRatingPost(sender: UIButton) {
+        let backView = UIView(frame: CGRectMake(0, -20, width, height))
+        let mainView = UIView(frame: CGRectMake(0, 0, width, 280))
+        let ratingView = RatingAlert(frame: CGRectMake(0, 20, width, 200))
+
+        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        backView.center.y = self.view.frame.size.height / 2
+
+        mainView.layer.zPosition = 100
+        mainView.backgroundColor = UIColor.whiteColor()
+        //mainView.center = CGPointMake(backView.frame.size.width / 2, backView.frame.size.height / 2)
+        mainView.layer.cornerRadius = 5
+
+        mainView.addSubview(ratingView)
+        backView.addSubview(mainView)
+        self.view.addSubview(backView)
+    }
+    
     func showJourneyOngoing(journey: JSON) {
         
 //        LoadingOverlay.shared.showOverlay(self.view)

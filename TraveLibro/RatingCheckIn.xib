@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RatingCheckIn" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="rateCheckInButton" destination="4RE-OS-w26" id="arf-gZ-dIq"/>
                 <outlet property="rateCheckInLabel" destination="NV7-7j-LpW" id="2yN-mK-EFK"/>
             </connections>
         </placeholder>
@@ -23,9 +24,6 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                     <state key="normal" image="star_rate_icon" backgroundImage="orangebox"/>
-                    <connections>
-                        <action selector="addRating:" destination="-1" eventType="touchUpInside" id="F8f-jH-ClD"/>
-                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Girgaon?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NV7-7j-LpW">
                     <rect key="frame" x="0.0" y="73" width="271" height="22"/>
@@ -43,7 +41,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="125.5" y="119"/>
+            <point key="canvasLocation" x="201.5" y="119"/>
         </view>
     </objects>
     <resources>
