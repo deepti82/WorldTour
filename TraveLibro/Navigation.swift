@@ -1472,6 +1472,30 @@ class Navigation {
         
     }
     
+    func infoCount(userId: String, city: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["user" : userId, "city" : city]
+            let opt = try HTTP.POST(adminUrl + "journey/getOnGoingCount", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
 //    func tagFriendsInPost(journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON],completion: ((JSON) -> Void)) {
 //        
 //        do {
