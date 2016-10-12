@@ -3416,16 +3416,16 @@
                                         <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
                                         <rect key="frame" x="67" y="245" width="154" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
                                                 <fontDescription key="fontDescription" name="DJBMyMoodRingSaysBlah" family="DJB My Mood Ring Says Blah" pointSize="18"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fO-4a-a7e">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fO-4a-a7e">
                                                 <rect key="frame" x="124" y="0.0" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Pp7-Hs-nOp"/>
@@ -4678,19 +4678,19 @@ IHRvZ2V0aGVyLg
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomStack" destination="20n-ud-oDJ" id="xRN-y2-v3c"/>
                         <outlet property="captionTextView" destination="8Jq-OB-qMj" id="Nuj-yw-QVn"/>
                         <outlet property="imageForCaption" destination="NEB-XP-wm5" id="dNZ-13-zOf"/>
-                        <outletCollection property="completeImages" destination="hcS-a4-a11" collectionClass="NSMutableArray" id="033-xh-121"/>
-                        <outletCollection property="completeImages" destination="Hq8-gA-uzz" collectionClass="NSMutableArray" id="gH9-6B-yqD"/>
-                        <outletCollection property="completeImages" destination="Xuz-Ca-7Nm" collectionClass="NSMutableArray" id="3En-5f-a2w"/>
-                        <outletCollection property="completeImages" destination="h7U-60-Jn4" collectionClass="NSMutableArray" id="J3C-nz-NR3"/>
-                        <outletCollection property="completeImages" destination="QiH-5Q-0V5" collectionClass="NSMutableArray" id="duh-nv-tFw"/>
-                        <outletCollection property="completeImages" destination="2nt-H3-uGy" collectionClass="NSMutableArray" id="Sbq-9O-joU"/>
-                        <outletCollection property="completeImages" destination="Dp2-QA-wBv" collectionClass="NSMutableArray" id="tda-Ew-pEV"/>
-                        <outletCollection property="completeImages" destination="ygg-0K-AIx" collectionClass="NSMutableArray" id="OO0-TN-p6y"/>
-                        <outletCollection property="completeImages" destination="Skr-tG-7EF" collectionClass="NSMutableArray" id="cJF-Uj-gAM"/>
-                        <outletCollection property="completeImages" destination="h7U-60-Jn4" collectionClass="NSMutableArray" id="JN9-75-X3F"/>
-                        <outletCollection property="completeImages" destination="fby-yT-yh4" collectionClass="NSMutableArray" id="Wpy-Ex-NeN"/>
+                        <outletCollection property="completeImages" destination="hcS-a4-a11" collectionClass="NSMutableArray" id="ULP-CR-oMV"/>
+                        <outletCollection property="completeImages" destination="Hq8-gA-uzz" collectionClass="NSMutableArray" id="ae2-v2-GeU"/>
+                        <outletCollection property="completeImages" destination="Xuz-Ca-7Nm" collectionClass="NSMutableArray" id="9Rp-ll-ogn"/>
+                        <outletCollection property="completeImages" destination="QiH-5Q-0V5" collectionClass="NSMutableArray" id="gzD-Em-GjI"/>
+                        <outletCollection property="completeImages" destination="2nt-H3-uGy" collectionClass="NSMutableArray" id="Y4x-em-PA4"/>
+                        <outletCollection property="completeImages" destination="Dp2-QA-wBv" collectionClass="NSMutableArray" id="20G-yq-Yyk"/>
+                        <outletCollection property="completeImages" destination="ygg-0K-AIx" collectionClass="NSMutableArray" id="Bwf-gD-6jf"/>
+                        <outletCollection property="completeImages" destination="Skr-tG-7EF" collectionClass="NSMutableArray" id="3d8-8r-Y1b"/>
+                        <outletCollection property="completeImages" destination="h7U-60-Jn4" collectionClass="NSMutableArray" id="YQq-Be-HYA"/>
+                        <outletCollection property="completeImages" destination="fby-yT-yh4" collectionClass="NSMutableArray" id="cTs-xB-kY0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kwa-Nf-79f" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5350,10 +5350,10 @@ IHRvZ2V0aGVyLg
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Pdk-ac-PkC">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Pdk-ac-PkC">
                                         <rect key="frame" x="0.0" y="93" width="288" height="42"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMg-fA-5ye">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMg-fA-5ye">
                                                 <rect key="frame" x="0.0" y="0.0" width="83" height="42"/>
                                                 <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="30"/>
@@ -5361,7 +5361,7 @@ IHRvZ2V0aGVyLg
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDG-h9-xjI">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDG-h9-xjI">
                                                 <rect key="frame" x="103" y="0.0" width="82" height="42"/>
                                                 <color key="backgroundColor" red="0.27058823529411763" green="0.71764705882352942" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="30"/>
@@ -5369,7 +5369,7 @@ IHRvZ2V0aGVyLg
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzJ-Qd-WsX">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzJ-Qd-WsX">
                                                 <rect key="frame" x="205" y="0.0" width="83" height="42"/>
                                                 <color key="backgroundColor" red="0.23529411764705882" green="0.3529411764705882" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="30"/>

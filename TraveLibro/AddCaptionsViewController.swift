@@ -23,27 +23,30 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var completeImages: [UIImageView]!
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var imageForCaption: UIImageView!
+    @IBOutlet weak var bottomStack: UIStackView!
     
     var index: Int!
     
     @IBAction func previousImageCaption(sender: AnyObject) {
         
-        if captionTextView.text != "" &&  captionTextView.text != "Add Caption..." {
-            
-            allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
-            
-        }
-        else {
-            
-            allPhotos.append(["name": allIds[index], "caption": ""])
-        }
+//        if captionTextView.text != "" &&  captionTextView.text != "Add a caption..." {
+//            
+//            allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
+//            
+//        }
+//        else {
+//            
+//            allPhotos.append(["name": allIds[index], "caption": ""])
+//        }
         
-        print("photos: \(allPhotos)")
+//        print("photos: \(allPhotos)")
         
         index = index - 1
         
         if index >= 0 {
             
+            addNewCaption()
+            print("previous caption")
             let captionVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
             captionVC.currentImage = allImages[index!].currentImage!
@@ -56,30 +59,27 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    func imageTapped(sender: UITapGestureRecognizer) {
-        
-        print("image tapped")
-        
-    }
-    
     @IBAction func nextImageCaption(sender: AnyObject) {
         
-        if captionTextView.text != "" &&  captionTextView.text != "Add Caption..." {
-            
-            allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
-            
-        }
-        else {
-            
-            allPhotos.append(["name": allIds[index], "caption": ""])
-        }
+//        if captionTextView.text != "" &&  captionTextView.text != "Add a caption..." {
+//            
+//            allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
+//            
+//        }
+//        else {
+//            
+//            allPhotos.append(["name": allIds[index], "caption": ""])
+//        }
         
-        print("photos: \(allPhotos)")
+        
+//        print("photos: \(allPhotos)")
         
         index = index + 1
         
-        if index < allImages.count - 1 {
+        if index < allImages.count {
             
+            addNewCaption()
+            print("next caption")
             let captionVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
             captionVC.currentImage = allImages[index].currentImage!
@@ -94,22 +94,14 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func doneCaptions(sender: AnyObject) {
         
-        if captionTextView.text != "" &&  captionTextView.text != "Add Caption..." {
-            
-            allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
-            
-        }
-        else {
-            
-            allPhotos.append(["name": allIds[index], "caption": ""])
-        }
-        
         let allSubviews = self.navigationController!.viewControllers
         
         for subview in allSubviews {
             
             if subview.isKindOfClass(NewTLViewController) {
                 
+                addNewCaption()
+                print("done caption")
                 let myView = subview as! NewTLViewController
                 myView.uploadedphotos = allPhotos
                 self.navigationController!.popToViewController(myView, animated: true)
@@ -123,9 +115,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("new controller")
+        
         for images in imagesArray {
             
-            allImages.append(images as! UIButton)
+            if images.tag != 2 {
+            
+                print("in all images append")
+                allImages.append(images as! UIButton)
+            }
             
         }
         
@@ -145,8 +143,16 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             
             image.hidden = true
             image.layer.cornerRadius = 5.0
+            image.clipsToBounds = true
+            image.userInteractionEnabled = true
             let tap = UITapGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.imageTapped(_:)))
             image.addGestureRecognizer(tap)
+            
+        }
+        
+        if allImages.count <= 5 {
+            
+            bottomStack.hidden = true
             
         }
         
@@ -161,7 +167,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
                 
                 print("inside equality")
                 completeImages[i].layer.borderColor = mainBlueColor.CGColor
-                completeImages[i].layer.borderWidth = 1.0
+                completeImages[i].layer.borderWidth = 3.0
                 
             }
             
@@ -169,8 +175,73 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    func imageTapped(sender: UITapGestureRecognizer) {
+        
+        print("image tapped")
+        
+        let senderImageView = sender.view as! UIImageView
+        
+        for image in allImages {
+            
+            if senderImageView.image == image.currentImage {
+                
+                index = allImages.indexOf(image)
+                print("index in image tapped: \(index)")
+                
+            }
+            
+        }
+        
+        if index < allImages.count {
+            
+            addNewCaption()
+            print("next caption")
+            let captionVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCaptions") as! AddCaptionsViewController
+            captionVC.imagesArray = imagesArray
+            captionVC.currentImage = allImages[index].currentImage!
+            captionVC.currentSender = allImages[index]
+            captionVC.allPhotos = allPhotos
+            captionVC.allIds = allIds
+            self.navigationController!.pushViewController(captionVC, animated: false)
+            
+        }
+        
+    }
+    
     func addNewCaption() {
         
+        var flag = 0
+        
+        for photo in allPhotos {
+            
+            if photo["name"].string! == allIds[index] && captionTextView.text == photo["caption"].string! {
+                
+                flag = 1
+                break
+            }
+            else if photo["name"].string! == allIds[index] && captionTextView.text != photo["caption"].string! {
+                
+                allPhotos.removeAtIndex(allPhotos.indexOf(photo)!)
+                break
+            }
+            
+        }
+        
+        if flag == 0 {
+            
+            print("inside add caption")
+            if captionTextView.text != "" &&  captionTextView.text != "Add a caption..." {
+                
+                allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
+                
+            }
+            else {
+                
+                allPhotos.append(["name": allIds[index], "caption": ""])
+            }
+        }
+        
+        print("photos: \(allPhotos)")
         
     }
     

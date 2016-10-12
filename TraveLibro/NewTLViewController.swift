@@ -2113,7 +2113,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     for subview in self.addView.horizontalScrollForPhotos.subviews {
                         
-                        if subview.isKindOfClass(UIButton) {
+                        if subview.tag == 1 {
                             
                             self.removeWidthToPhotoLayout(subview.frame.width + 10.0)
                             subview.removeFromSuperview()
@@ -2284,6 +2284,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     addMorePhotosButton.layer.cornerRadius = 5.0
                     addMorePhotosButton.clipsToBounds = true
                     addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), forControlEvents: .TouchUpInside)
+                    addMorePhotosButton.tag = 2
                     self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
                     self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
 //                    self.addView.horizontalScrollForPhotos.
@@ -2384,7 +2385,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             let captionVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = addView.horizontalScrollForPhotos.subviews
-            print("sender image: \(sender.currentImage)")
+            print("sender image: \(sender.currentImage), \(sender), \(addView.horizontalScrollForPhotos.subviews), \(allImageIds)")
             captionVC.currentImage = sender.currentImage!
             captionVC.currentSender = sender
             captionVC.allIds = allImageIds
