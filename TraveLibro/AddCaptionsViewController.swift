@@ -67,6 +67,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    @IBAction func rotateImage(sender: AnyObject) {
+        print("rotate image")
+    }
+    
     @IBAction func doneCaptions(sender: AnyObject) {
         
         let allSubviews = self.navigationController!.viewControllers
