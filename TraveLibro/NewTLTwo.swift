@@ -300,6 +300,13 @@ extension NewTLViewController {
         
     }
     
+    func getInfoCount() {
+        
+        
+        
+        
+    }
+    
     func uploadVideo(url: NSURL, video: AVAsset) {
         
         print("format: \(url.lastPathComponent)")

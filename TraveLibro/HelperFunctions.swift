@@ -361,6 +361,9 @@ extension UIView {
     
     func resizeToFitSubviews(initialHeight: CGFloat, finalHeight: CGFloat) {
         
+        print("initial height: \(initialHeight)")
+        print("final height: \(finalHeight)")
+        
         if initialHeight < finalHeight {
             
             self.frame.size.height += finalHeight - initialHeight
@@ -370,6 +373,8 @@ extension UIView {
             
             self.frame.size.height += initialHeight - finalHeight
         }
+        
+        self.setNeedsLayout()
         
     }
 }

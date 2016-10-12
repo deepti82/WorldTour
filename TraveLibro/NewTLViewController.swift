@@ -73,6 +73,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //    @IBOutlet weak var endJourney: UIButton!
     @IBAction func infoCircle(sender: AnyObject) {
         
+        getInfoCount()
+        
         infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
         infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), forControlEvents: .TouchUpInside)
         infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
@@ -511,6 +513,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 else if response["value"] {
                     
                     self.detectLocation(nil)
+                    
+                    self.latestCity = response["data"]["startLocation"].string!
                     
                     if self.isRefreshing {
                         
@@ -975,6 +979,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var isInitialPost = true
     var otherCommentId = ""
+    var latestCity = ""
     
     func showPost(whichPost: String, post: JSON) {
         
@@ -1013,6 +1018,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
             
             thoughts = thoughts + " at \(post["checkIn"]["location"])"
+            latestCity = post["checkIn"]["city"].string!
             
         }
         
@@ -1094,6 +1100,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         layout.addSubview(checkIn)
+//        checkIn.autoresizingMask = [.FlexibleHeight]
+//        setHeight(checkIn, height: checkInHeight)
         print("layout views: \(layout.subviews.count)")
         addHeightToLayout(checkIn.frame.height + 50.0)
         
@@ -1154,9 +1162,29 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
 //    override func viewDidAppear(animated: Bool) {
 //        
-//        check
+//        for subview in layout.subviews {
+//            
+//            if subview.isKindOfClass(PhotosOTG) {
+//                
+//                let view = subview as! PhotosOTG
+//                let checkInHeight = view.photosStack.frame.height + view.mainPhoto.frame.height + view.photosTitle.frame.height
+//                setHeight(subview, height: checkInHeight)
+//                
+//                
+//            }
+//            
+//        }
+//        
 //        
 //    }
+    
+    func setHeight(view: UIView, height: CGFloat) {
+        
+        let view = view as! PhotosOTG
+        let final = view.photosTitle.frame.height + view.mainPhoto.frame.height + view.photosStack.frame.height
+        view.resizeToFitSubviews(height, finalHeight: final)
+        
+    }
     
     func BuddyJoinInLayout(post: JSON) {
         
