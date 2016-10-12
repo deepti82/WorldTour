@@ -302,8 +302,49 @@ extension NewTLViewController {
     
     func getInfoCount() {
         
+        request.infoCount(myJourney["_id"].string!, city: latestCity, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    self.showInfo(response["data"])
+                }
+                else {
+                    
+                    print("response error")
+                }
+                
+            })
+            
+        })
         
+    }
+    
+    func showInfo(response: JSON) {
         
+        print("response of count: \(response)")
+        
+        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), forControlEvents: .TouchUpInside)
+        self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
+        self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
+        self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), forControlEvents: .TouchUpInside)
+        self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
+        self.infoView.videosCount.setTitle("\(response["videos"])", forState: .Normal)
+        self.infoView.photosCount.setTitle("\(response["photos"])", forState: .Normal)
+        self.infoView.ratingCount.setTitle("\(response["review"])", forState: .Normal)
+        self.infoView.mustDoCount.setTitle("\(response["mustDo"])", forState: .Normal)
+        self.infoView.hotelsCount.setTitle("\(response["hotel"])", forState: .Normal)
+        self.infoView.restaurantCount.setTitle("\(response["restaurant"])", forState: .Normal)
+        self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", forState: .Normal)
+        self.view.addSubview(self.infoView)
+        infoView.layer.opacity = 1.0
         
     }
     

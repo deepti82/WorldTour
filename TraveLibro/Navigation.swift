@@ -1472,11 +1472,11 @@ class Navigation {
         
     }
     
-    func infoCount(userId: String, city: String, completion: ((JSON) -> Void)) {
+    func infoCount(journeyId: String, city: String, completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["user" : userId, "city" : city]
+            let params = ["_id" : journeyId, "city" : city]
             let opt = try HTTP.POST(adminUrl + "journey/getOnGoingCount", parameters: params)
             var json = JSON(1);
             opt.start {response in
