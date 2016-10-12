@@ -12,7 +12,7 @@ class AddRating: UIView {
 
     @IBOutlet weak var postReview: UIButton!
     @IBOutlet weak var reviewTextView: UITextView!
-    @IBOutlet var stars: [UIImageView]!
+    @IBOutlet var stars: [UIButton]!
     @IBOutlet weak var smiley: UIButton!
     
     override init(frame: CGRect) {

@@ -10,6 +10,11 @@
                 <outlet property="postReview" destination="zT3-pM-mLS" id="1i0-CV-NDB"/>
                 <outlet property="reviewTextView" destination="Tq2-m8-HGG" id="QS7-L5-I2Z"/>
                 <outlet property="smiley" destination="rW4-KQ-hBv" id="rNl-nW-aBd"/>
+                <outletCollection property="stars" destination="sfc-oD-eGb" collectionClass="NSMutableArray" id="GRX-6c-aYs"/>
+                <outletCollection property="stars" destination="s6m-Nd-Ru1" collectionClass="NSMutableArray" id="ojt-X1-93W"/>
+                <outletCollection property="stars" destination="n47-4I-I1s" collectionClass="NSMutableArray" id="qS8-JL-JFi"/>
+                <outletCollection property="stars" destination="U0r-yX-pH2" collectionClass="NSMutableArray" id="vqD-nG-2yX"/>
+                <outletCollection property="stars" destination="1UX-W6-xbE" collectionClass="NSMutableArray" id="8ta-5L-gOQ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
