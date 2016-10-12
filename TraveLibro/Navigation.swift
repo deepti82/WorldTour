@@ -1448,6 +1448,30 @@ class Navigation {
         
     }
     
+    func rateCheckIn(userId: String, postId: String, rating: String, review: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["post" : postId, "user" : userId, "rating" : rating, "review" : review]
+            let opt = try HTTP.POST(adminUrl + "review/save", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
 //    func tagFriendsInPost(journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON],completion: ((JSON) -> Void)) {
 //        
 //        do {

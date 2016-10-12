@@ -8,9 +8,10 @@
 
 import UIKit
 
-class AddRating: UIView {
+class AddRating: UIView, UITextViewDelegate {
     
     var ratingIndex = 0
+    var starCount = 0
     
     @IBOutlet weak var postReview: UIButton!
     @IBOutlet weak var reviewConclusion: UILabel!
@@ -20,13 +21,49 @@ class AddRating: UIView {
     
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
+    let parent = NewTLViewController()
     
+    @IBAction func postReviewTapped(sender: UIButton) {
+        
+            print("post id in review: \(sender.titleForState(.Application)!)")
+            let post = sender.titleForState(.Application)!
+            reviewTextView.resignFirstResponder()
+            
+            request.rateCheckIn(currentUser["_id"].string!, postId: post, rating: "\(starCount)", review: reviewTextView.text, completion: {(response) in
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"] {
+                        
+                        print("response arrived")
+                        sender.superview!.superview!.superview!.removeFromSuperview()
+                        self.parent.removeRatingButton(sender.titleForState(.Application)!)
+                        
+                    }
+                    else {
+                        
+                        print("response error!")
+                        
+                    }
+                    
+                })
+                
+            })
+        
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
         postReview.layer.cornerRadius = 5
         postReview.clipsToBounds = true
+        reviewTextView.delegate = self
+        reviewTextView.returnKeyType = .Done
         
         for star in stars {
             star.setImage(UIImage(named: "star_uncheck"), forState: .Normal)
@@ -41,6 +78,46 @@ class AddRating: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        
+        if reviewTextView.text == "Fill Me In..." {
+            
+            reviewTextView.text = ""
+            
+        }
+        
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        
+        
+        if reviewTextView.text == "" {
+            
+            reviewTextView.text = "Fill Me In..."
+            
+        }
+        
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n" {
+            
+            reviewTextView.resignFirstResponder()
+            
+            if reviewTextView.text == "" {
+                
+                reviewTextView.text = "Fill Me In..."
+                
+            }
+            return true
+            
+        }
+        
+        return true
+        
     }
     
     func loadViewFromNib() {
@@ -60,9 +137,14 @@ class AddRating: UIView {
     }
     
     func updateButtonSelectionStates() {
+        starCount = 0
         for (index, button) in stars.enumerate() {
-            // If the index of a button is less than the rating, that button should be selected.
             button.selected = index < ratingIndex
+            if button.selected {
+                
+                starCount += 1
+                
+            }
         }
     }
 

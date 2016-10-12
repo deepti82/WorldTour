@@ -130,7 +130,12 @@ extension NewTLViewController {
 //        self.view.addSubview(backView)
 //        self.view.bringSubviewToFront(backView)
         
+        print("post id: \(sender.titleLabel!.text)")
+        
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
+        
         let background = UIView(frame: self.view.frame)
+        background.addGestureRecognizer(tapout)
         background.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         self.view.addSubview(background)
         self.view.bringSubviewToFront(background)
@@ -138,8 +143,39 @@ extension NewTLViewController {
         let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 315))
         rating.center = background.center
         rating.layer.cornerRadius = 5
+        rating.postReview.setTitle(sender.titleLabel!.text!, forState: .Application)
+//        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
         background.addSubview(rating)
         
+        
+    }
+    
+    func reviewTapOut(sender: UITapGestureRecognizer) {
+        
+        sender.view!.removeFromSuperview()
+        
+    }
+    
+    func removeRatingButton(postId: String) {
+        
+//        print("layout: \(layout.subviews)")
+        
+//        for subview in layout.subviews {
+//            
+//            if subview.isKindOfClass(AddRating) {
+//                
+//                let view = subview as! AddRating
+//                if view.postReview.titleForState(.Application)! == postId {
+//                    
+//                    removeHeightFromLayout(view.frame.height)
+//                    view.removeFromSuperview()
+//                    
+//                }
+//                
+//                
+//            }
+//            
+//        }
         
     }
     

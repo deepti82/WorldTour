@@ -356,3 +356,20 @@ extension NSDate {
         return NSDate(timeInterval: seconds, sinceDate: self)
     }
 }
+
+extension UIView {
+    
+    func resizeToFitSubviews(initialHeight: CGFloat, finalHeight: CGFloat) {
+        
+        if initialHeight < finalHeight {
+            
+            self.frame.size.height += finalHeight - initialHeight
+        }
+        
+        else if finalHeight < initialHeight {
+            
+            self.frame.size.height += initialHeight - finalHeight
+        }
+        
+    }
+}

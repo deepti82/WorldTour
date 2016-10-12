@@ -1123,6 +1123,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 10, width: width, height: 100))
             rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
             rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), forControlEvents: .TouchUpInside)
+            rateButton.rateCheckInButton.setTitle(post["_id"].string!, forState: .Normal)
             layout.addSubview(rateButton)
             addHeightToLayout(rateButton.frame.height)
 //            else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
@@ -1150,6 +1151,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         
     }
+    
+//    override func viewDidAppear(animated: Bool) {
+//        
+//        check
+//        
+//    }
     
     func BuddyJoinInLayout(post: JSON) {
         
