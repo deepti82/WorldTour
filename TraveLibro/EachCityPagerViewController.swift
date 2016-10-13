@@ -28,6 +28,7 @@ class EachCityPagerViewController: UIViewController {
         let controllerOne = storyboard!.instantiateViewControllerWithIdentifier("featuredTwo") as! FeaturedCitiesNewTwoViewController
         controllerOne.whichView = "MD"
         controllerOne.title = "Must Do's"
+        controllerOne.city = city
         controllerArray.append(controllerOne)
         
         let controllerThree = storyboard!.instantiateViewControllerWithIdentifier("ExploreHotelsVC") as! ExploreHotelsViewController
