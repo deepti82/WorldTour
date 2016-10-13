@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,6 +15,8 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
     var scrollView: UIScrollView!
     var hotels: HotelTypeSelect!
     var city = ""
+    var data: [JSON] = []
+    
     
     let hotelNames = ["The Taj Mahal Palace", "Trident, Nariman Point", "The Taj Mahal Palace", "Trident, Nariman Point", "The Taj Mahal Palace", "Trident, Nariman Point"]
     let labelName = ["Must Do's", "Hotels", "Restaurants", "Popular Agents"]
@@ -112,6 +115,7 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         
         getDarkBackGround(self)
+        getHotels()
         
     }
     
@@ -177,14 +181,16 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return hotelNames.count
+        return data.count
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("hotelCell") as! HotelsTableViewCell
-        cell.hotelNames.text = hotelNames[indexPath.row]
+        cell.hotelNames.text = data[indexPath.row]["name"].string!
+        cell.hotelExpense.text = data[indexPath.row]["budget"].string!
+//        cell.hotelNames.text = hotelNames[indexPath.row]
         
         if indexPath.row % 2 == 0 {
             
@@ -216,6 +222,13 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    func makeStars(view: UIView, starCount: Int) {
+        
+        
+        
+        
+    }
+    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         // Dequeue with the reuse identifier
@@ -228,6 +241,20 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func getHotels() {
         
+        var view = "Hotels"
+        
+        if whichView == "Hotels" {
+            
+            view = "hotels"
+            
+        }
+        else if whichView == "Rest" {
+            
+            view = "restaurants"
+            
+        }
+        
+        
         request.cityTypeData("hotels", city: city, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -239,7 +266,8 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                 else if response["value"] {
                     
-                    
+                    self.data = response["data"].array!
+                    self.myTableView.reloadData()
                     
                 }
                 else {
