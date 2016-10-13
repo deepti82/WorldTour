@@ -19,6 +19,16 @@ class TripInfoOTG: UIView {
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet weak var videosButton: UIButton!
     @IBOutlet weak var summaryButton: UIButton!
+    
+    @IBOutlet weak var videosCount: UIButton!
+    @IBOutlet weak var photosCount: UIButton!
+    @IBOutlet weak var ratingCount: UIButton!
+    @IBOutlet weak var mustDoCount: UIButton!
+    @IBOutlet weak var hotelsCount: UIButton!
+    @IBOutlet weak var restaurantCount: UIButton!
+    @IBOutlet weak var itinerariesCount: UIButton!
+    @IBOutlet weak var nearMeCount: UIButton!
+    
 //    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet var notifications: [UIButton]!
     override init(frame: CGRect) {

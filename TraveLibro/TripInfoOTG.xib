@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,14 +8,22 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripInfoOTG" customModule="TraveLibro" customModuleProvider="target">
             <connections>
                 <outlet property="hotelsButton" destination="41I-ep-Viz" id="aYh-Nv-CVb"/>
+                <outlet property="hotelsCount" destination="8CH-Hm-NJL" id="uTQ-hk-YDj"/>
                 <outlet property="itinerariesButton" destination="SwL-DY-HmG" id="Foc-rI-bqL"/>
+                <outlet property="itinerariesCount" destination="fCP-MJ-kCr" id="CEg-xl-p0l"/>
                 <outlet property="mustDoButton" destination="X4Z-ce-kTM" id="pr8-hD-B7g"/>
+                <outlet property="mustDoCount" destination="Zpj-Uw-L9D" id="dQI-13-qhx"/>
                 <outlet property="nearMeButton" destination="OW6-ei-0Hu" id="puM-rT-ARW"/>
+                <outlet property="nearMeCount" destination="6D4-P5-fyj" id="ice-l5-pif"/>
                 <outlet property="photosButton" destination="hB6-qV-KyG" id="k2H-W0-i8H"/>
+                <outlet property="photosCount" destination="EfF-Bb-xdF" id="GsU-fR-Bo5"/>
+                <outlet property="ratingCount" destination="NCO-1f-xms" id="uF4-5q-ZUe"/>
+                <outlet property="restaurantCount" destination="Kwg-gC-lGa" id="b7b-Ax-wHq"/>
                 <outlet property="restaurantsButton" destination="lJA-RM-n9w" id="AGT-9W-hmT"/>
                 <outlet property="reviewsButton" destination="T1M-Nb-GVz" id="tVK-ep-LNM"/>
                 <outlet property="summaryButton" destination="vwM-fP-FBC" id="KPX-HX-vm1"/>
                 <outlet property="videosButton" destination="FEb-F4-Nfj" id="6rQ-sp-SaQ"/>
+                <outlet property="videosCount" destination="KJ3-Xe-ZAm" id="Fu4-ZC-zQ5"/>
                 <outletCollection property="notifications" destination="VNQ-fd-ijG" collectionClass="NSMutableArray" id="eZt-i5-wvk"/>
                 <outletCollection property="notifications" destination="KJ3-Xe-ZAm" collectionClass="NSMutableArray" id="WVe-5D-Vy6"/>
                 <outletCollection property="notifications" destination="EfF-Bb-xdF" collectionClass="NSMutableArray" id="MPN-ph-aUQ"/>
@@ -61,7 +69,7 @@
                                                     <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                                     <state key="normal" image="summary" backgroundImage="bluebox"/>
                                                 </button>
-                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNQ-fd-ijG">
+                                                <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNQ-fd-ijG">
                                                     <rect key="frame" x="50" y="0.0" width="30" height="30"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -391,18 +399,6 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4p-FA-GH8">
                                             <rect key="frame" x="90" y="0.0" width="80" height="95"/>
                                             <subviews>
-                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCP-MJ-kCr">
-                                                    <rect key="frame" x="50" y="0.0" width="30" height="30"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="LgL-sn-MYt"/>
-                                                        <constraint firstAttribute="width" constant="30" id="fjf-XR-duj"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                                    <state key="normal" title="102">
-                                                        <color key="titleColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Itineraries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IbZ-RN-hSh">
                                                     <rect key="frame" x="9" y="80" width="62" height="20"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
@@ -419,6 +415,18 @@
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                                     <state key="normal" image="itineraries" backgroundImage="bluebox"/>
+                                                </button>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCP-MJ-kCr">
+                                                    <rect key="frame" x="50" y="0.0" width="30" height="30"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="LgL-sn-MYt"/>
+                                                        <constraint firstAttribute="width" constant="30" id="fjf-XR-duj"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                                    <state key="normal" title="102">
+                                                        <color key="titleColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -450,7 +458,7 @@
                                                     <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                                     <state key="normal" image="location_icon" backgroundImage="bluebox"/>
                                                 </button>
-                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6D4-P5-fyj">
+                                                <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6D4-P5-fyj">
                                                     <rect key="frame" x="50" y="0.0" width="30" height="30"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
