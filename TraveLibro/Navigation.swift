@@ -1381,6 +1381,32 @@ class Navigation {
         }
     }
     
+    func changeDateTime(id: String, date: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["uniqueId": id, "date": date, "type": "changeDateTime"]
+            
+            print("change date time params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "post/editData", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     func endJourney(journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON], photo: String, completion: ((JSON) -> Void)) {
         
         do {
