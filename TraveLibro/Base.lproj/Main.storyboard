@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VtJ-Bg-RGy">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VtJ-Bg-RGy">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7931,6 +7931,9 @@ IHRvZ2V0aGVyLg
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFp-q9-aYv">
+                                <rect key="frame" x="40" y="420" width="520" height="180"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lI7-SC-Nzp">
                                 <rect key="frame" x="40" y="100" width="520" height="300"/>
                                 <subviews>
@@ -8188,9 +8191,6 @@ IHRvZ2V0aGVyLg
                                     <constraint firstItem="OHm-Jx-0oj" firstAttribute="top" secondItem="ncp-sH-XDe" secondAttribute="bottom" constant="8" id="hoC-AR-2mU"/>
                                     <constraint firstItem="afw-ya-l2A" firstAttribute="centerX" secondItem="lI7-SC-Nzp" secondAttribute="centerX" id="i2k-8w-3v5"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFp-q9-aYv">
-                                <rect key="frame" x="40" y="420" width="520" height="180"/>
                             </view>
                         </subviews>
                         <constraints>
@@ -8472,7 +8472,7 @@ IHRvZ2V0aGVyLg
         <!--Trip Summary Photo Grid View Controller-->
         <scene sceneID="IA2-So-XyF">
             <objects>
-                <collectionViewController id="yHG-Rd-GYo" customClass="TripSummaryPhotoGridViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="photoGridContainer" id="yHG-Rd-GYo" customClass="TripSummaryPhotoGridViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -8566,13 +8566,13 @@ IHRvZ2V0aGVyLg
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eke-0g-bG4">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
-                                    <segue destination="yHG-Rd-GYo" kind="embed" id="6FD-u1-Sd1"/>
+                                    <segue destination="yHG-Rd-GYo" kind="embed" identifier="photoGridEmbed" id="6FD-u1-Sd1"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNZ-4B-dbi">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
-                                    <segue destination="pxM-5a-UkD" kind="embed" id="ogA-iP-pkn"/>
+                                    <segue destination="pxM-5a-UkD" kind="embed" identifier="photoListEmbed" id="ogA-iP-pkn"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -8662,7 +8662,7 @@ IHRvZ2V0aGVyLg
         <!--List Photos View Controller-->
         <scene sceneID="HcD-KI-vbn">
             <objects>
-                <viewController id="pxM-5a-UkD" customClass="ListPhotosViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="photoList" id="pxM-5a-UkD" customClass="ListPhotosViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UkL-fa-BzX"/>
                         <viewControllerLayoutGuide type="bottom" id="0cJ-5Z-uvy"/>

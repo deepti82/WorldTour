@@ -13,6 +13,7 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
     var whichView: String!
     var scrollView: UIScrollView!
     var hotels: HotelTypeSelect!
+    var city = ""
     
     let hotelNames = ["The Taj Mahal Palace", "Trident, Nariman Point", "The Taj Mahal Palace", "Trident, Nariman Point", "The Taj Mahal Palace", "Trident, Nariman Point"]
     let labelName = ["Must Do's", "Hotels", "Restaurants", "Popular Agents"]

@@ -13,6 +13,7 @@ class EachCityPagerViewController: UIViewController {
     
     var pageMenu : CAPSPageMenu?
     var whichView : String!
+    var city = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +32,13 @@ class EachCityPagerViewController: UIViewController {
         
         let controllerThree = storyboard!.instantiateViewControllerWithIdentifier("ExploreHotelsVC") as! ExploreHotelsViewController
         controllerThree.whichView = "Hotels"
+        controllerThree.city = city
         controllerThree.title = "Hotels"
         controllerArray.append(controllerThree)
         
         let controllerFour = storyboard!.instantiateViewControllerWithIdentifier("ExploreHotelsVC") as! ExploreHotelsViewController
         controllerFour.whichView = "Rest"
+        controllerFour.city = city
         controllerFour.title = "Restaurants"
         controllerArray.append(controllerFour)
         

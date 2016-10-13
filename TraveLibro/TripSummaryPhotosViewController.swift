@@ -13,7 +13,9 @@ class TripSummaryPhotosViewController: UIViewController {
     @IBOutlet weak var listContainer: UIView!
     @IBOutlet weak var gridContainer: UIView!
     
-    internal var whichView : String!
+    var whichView : String!
+    var journey = ""
+    var creationDate = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +25,11 @@ class TripSummaryPhotosViewController: UIViewController {
         rightButton.addTarget(self, action: #selector(TripSummaryPhotosViewController.changeView(_:)), forControlEvents: .TouchUpInside)
         rightButton.frame = CGRectMake(0, 8, 30, 30)
         
-        setOnlyRightNavigationButton(rightButton)
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
+        leftButton.frame = CGRectMake(-10, 0, 30, 30)
+        self.customNavigationBar(leftButton, right: rightButton)
         
         gridContainer.alpha = 1
         listContainer.alpha = 0
@@ -52,14 +58,21 @@ class TripSummaryPhotosViewController: UIViewController {
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "photoGridEmbed" {
+            
+            let photoGrid = segue.destinationViewController as! TripSummaryPhotoGridViewController
+            photoGrid.journeyId = journey
+            
+        }
+        else if segue.identifier == "photoListEmbed" {
+            
+            let photoList = segue.destinationViewController as! ListPhotosViewController
+            photoList.journeyId = journey
+            photoList.journeyCreationDate = creationDate
+        }
+        
     }
-    */
 
 }

@@ -12,11 +12,17 @@ class PhotoList: UIView {
 
     @IBOutlet weak var likesIcon: UILabel!
     @IBOutlet weak var clockIcon: UILabel!
-    
+    @IBOutlet weak var videoIcon: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
+    @IBOutlet weak var likeCount: UILabel!
+    @IBOutlet weak var commentIcon: UILabel!
+    @IBOutlet weak var commentCount: UILabel!
+    @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var daysLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,6 +30,7 @@ class PhotoList: UIView {
         
         likesIcon.text = String(format: "%C", faicon["likes"]!)
         clockIcon.text = String(format: "%C", faicon["clock"]!)
+        commentIcon.text = String(format: "%C", faicon["comments"]!)
         
     }
     

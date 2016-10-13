@@ -1,4 +1,3 @@
-
 import UIKit
 import SwiftyJSON
 import CoreLocation
@@ -161,8 +160,17 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let myCell = tableView.cellForRowAtIndexPath(indexPath) as! searchLocationsTableViewCell
+        var previous: NewTLViewController!
         
-        let previous = self.navigationController!.viewControllers[self.navigationController!.viewControllers.count - 2] as! NewTLViewController
+        for vc in self.navigationController!.viewControllers {
+            
+            if vc.isKindOfClass(NewTLViewController) {
+                
+                previous = vc as! NewTLViewController
+                
+            }
+            
+        }
         
         var myId = ""
         

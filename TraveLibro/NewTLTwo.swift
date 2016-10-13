@@ -329,22 +329,93 @@ extension NewTLViewController {
     func showInfo(response: JSON) {
         
         print("response of count: \(response)")
+        var flag = 0
+        var myInfo: TripInfoOTG!
         
-        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-        self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), forControlEvents: .TouchUpInside)
-        self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
-        self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
-        self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), forControlEvents: .TouchUpInside)
-        self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
-        self.infoView.videosCount.setTitle("\(response["videos"])", forState: .Normal)
-        self.infoView.photosCount.setTitle("\(response["photos"])", forState: .Normal)
-        self.infoView.ratingCount.setTitle("\(response["review"])", forState: .Normal)
-        self.infoView.mustDoCount.setTitle("\(response["mustDo"])", forState: .Normal)
-        self.infoView.hotelsCount.setTitle("\(response["hotel"])", forState: .Normal)
-        self.infoView.restaurantCount.setTitle("\(response["restaurant"])", forState: .Normal)
-        self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", forState: .Normal)
-        self.view.addSubview(self.infoView)
-        infoView.layer.opacity = 1.0
+        for subview in self.view.subviews {
+            
+            if subview.isKindOfClass(TripInfoOTG) {
+                
+                flag = 1
+                myInfo = subview as! TripInfoOTG
+                
+            }
+            
+        }
+        
+        if flag == 0 {
+            
+            print("no subview")
+            self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+            self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), forControlEvents: .TouchUpInside)
+            self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
+            self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
+            self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), forControlEvents: .TouchUpInside)
+            self.infoView.mustDoButton.addTarget(self, action: #selector(NewTLViewController.gotoMustDo(_:)), forControlEvents: .TouchUpInside)
+            self.infoView.hotelsButton.addTarget(self, action: #selector(NewTLViewController.gotoHotels(_:)), forControlEvents: .TouchUpInside)
+            self.infoView.restaurantsButton.addTarget(self, action: #selector(NewTLViewController.gotoRestaurants(_:)), forControlEvents: .TouchUpInside)
+            self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), forControlEvents: .TouchUpInside)
+            self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
+            self.infoView.videosCount.setTitle("\(response["videos"])", forState: .Normal)
+            self.infoView.photosCount.setTitle("\(response["photos"])", forState: .Normal)
+            self.infoView.ratingCount.setTitle("\(response["review"])", forState: .Normal)
+            self.infoView.mustDoCount.setTitle("\(response["mustDo"])", forState: .Normal)
+            self.infoView.hotelsCount.setTitle("\(response["hotel"])", forState: .Normal)
+            self.infoView.restaurantCount.setTitle("\(response["restaurant"])", forState: .Normal)
+            self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", forState: .Normal)
+            self.infoView.layer.opacity = 1.0
+            self.view.addSubview(self.infoView)
+            self.view.bringSubviewToFront(self.infoView)
+            
+        }
+        else {
+            
+            print("yes subview")
+            myInfo.videosCount.setTitle("\(response["videos"])", forState: .Normal)
+            myInfo.photosCount.setTitle("\(response["photos"])", forState: .Normal)
+            myInfo.ratingCount.setTitle("\(response["review"])", forState: .Normal)
+            myInfo.mustDoCount.setTitle("\(response["mustDo"])", forState: .Normal)
+            myInfo.hotelsCount.setTitle("\(response["hotel"])", forState: .Normal)
+            myInfo.hidden = false
+            myInfo.layer.opacity = 1.0
+            
+        }
+        
+    }
+    
+    func gotoMustDo(sender: UIButton) {
+        
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
+        vc.city = latestCity
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+    }
+    
+    func gotoHotels(sender: UIButton) {
+        
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
+        vc.city = latestCity
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+    }
+    
+    func gotoRestaurants(sender: UIButton) {
+        
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
+        vc.city = latestCity
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+    }
+    
+    func gotoItineraries(sender: UIButton) {
+        
+        let vc = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
+        vc.city = latestCity
+        self.navigationController?.pushViewController(vc, animated: true)
+        
         
     }
     

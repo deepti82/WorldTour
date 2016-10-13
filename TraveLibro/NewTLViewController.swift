@@ -635,6 +635,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.hidden = true
+//        
         
     }
     
@@ -653,7 +654,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let summaryVC = storyboard?.instantiateViewControllerWithIdentifier("summaryTLVC") as! CollectionViewController
         self.navigationController?.pushViewController(summaryVC, animated: true)
-        infoView.animation.makeOpacity(0.0).animate(0.5)
+//        infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.hidden = true
         
         
@@ -664,7 +665,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let photoVC = storyboard?.instantiateViewControllerWithIdentifier("photoGrid") as! TripSummaryPhotosViewController
         self.navigationController?.pushViewController(photoVC, animated: true)
         photoVC.whichView = "photo"
-        infoView.animation.makeOpacity(0.0).animate(0.5)
+        photoVC.journey = myJourney["_id"].string!
+        photoVC.creationDate = myJourney["startTime"].string!
+        
+//        infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.hidden = true
         
     }
@@ -673,7 +677,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let ratingVC = storyboard?.instantiateViewControllerWithIdentifier("ratingTripSummary") as! AddYourRatingViewController
         self.navigationController?.pushViewController(ratingVC, animated: true)
-        infoView.animation.makeOpacity(0.0).animate(0.5)
+        ratingVC.journeyId = myJourney["_id"].string!
+//        infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.hidden = true
         
     }

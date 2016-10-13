@@ -7,52 +7,65 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class TripSummaryPhotoGridViewController: UICollectionViewController {
-
+    
+    var journeyId = ""
+    var myPhotos: [JSON] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-//        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-
-        // Do any additional setup after loading the view.
+        
+        getJourneyPhotos()
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func getJourneyPhotos() {
+        
+        request.journeyTypeData(journeyId, type: "photos", userId: currentUser["_id"].string!, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    self.myPhotos = response["data"].array!
+                    self.collectionView!.reloadData()
+                    
+                }
+                else {
+                    
+                    print("response error")
+                    
+                }
+                
+            })
+            
+        })
+        
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 1
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 100
+        
+        return myPhotos.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! gridCollectionViewCell
+        cell.photo.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(myPhotos[indexPath.row]["name"])")!)!)
         return cell
         
     }
