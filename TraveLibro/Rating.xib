@@ -38,20 +38,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR REVIEW OF GIRGAON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ztF-ws-nNS">
-                            <rect key="frame" x="16" y="16" width="203" height="20"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="h95-7l-Q1r"/>
-                            </constraints>
+                            <rect key="frame" x="16" y="16" width="376" height="21"/>
                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                             <color key="textColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZKZ-QL-pIT">
-                            <rect key="frame" x="16" y="44" width="115" height="15"/>
+                            <rect key="frame" x="16" y="45" width="115" height="15"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_check" translatesAutoresizingMaskIntoConstraints="NO" id="rkc-dp-aAw">
                                     <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
-                                    <color key="tintColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="15" id="Bib-MU-Btx"/>
                                         <constraint firstAttribute="height" constant="15" id="ygs-94-J7r"/>
@@ -59,20 +56,24 @@
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncheck" translatesAutoresizingMaskIntoConstraints="NO" id="9Ho-yz-rxq">
                                     <rect key="frame" x="25" y="0.0" width="15" height="15"/>
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncheck" translatesAutoresizingMaskIntoConstraints="NO" id="bYn-It-oLW">
                                     <rect key="frame" x="50" y="0.0" width="15" height="15"/>
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncheck" translatesAutoresizingMaskIntoConstraints="NO" id="Knt-AV-EFA">
                                     <rect key="frame" x="75" y="0.0" width="15" height="15"/>
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_uncheck" translatesAutoresizingMaskIntoConstraints="NO" id="eWT-Ac-cuu">
                                     <rect key="frame" x="100" y="0.0" width="15" height="15"/>
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </imageView>
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9b-qI-EhI">
-                            <rect key="frame" x="16" y="67" width="368" height="96"/>
+                            <rect key="frame" x="16" y="68" width="368" height="96"/>
                             <string key="text" base64-UTF8="YES">
 TG9yZW0gSXBzdW0gaXMgc2ltcGx5IGR1bW15IHRleHQgb2YgdGhlIHByaW50aW5nAyBhbmQgdHlwZXNl
 dHRpbmcgaW5kdXN0cnkuIExvcmVtIElwc3VtIGlzIHNpbXBseSBkdW1teSB0ZXh0IG9mIHRoZSBwcmlu
@@ -84,7 +85,7 @@ dGV4dCBvZiB0aGUgcHJpbnRpbmcDIGFuZCB0eXBlc2V0dGluZyBpbmR1c3RyeS4
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iBj-3n-r4D">
-                            <rect key="frame" x="16" y="171" width="202" height="15"/>
+                            <rect key="frame" x="16" y="172" width="202" height="15"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7W-WN-9Y0">
                                     <rect key="frame" x="0.0" y="0.0" width="30" height="15"/>
@@ -129,6 +130,7 @@ dGV4dCBvZiB0aGUgcHJpbnRpbmcDIGFuZCB0eXBlc2V0dGluZyBpbmR1c3RyeS4
                         <constraint firstItem="c9b-qI-EhI" firstAttribute="top" secondItem="ZKZ-QL-pIT" secondAttribute="bottom" constant="8" id="6Yr-UV-WAq"/>
                         <constraint firstItem="iBj-3n-r4D" firstAttribute="leading" secondItem="c9b-qI-EhI" secondAttribute="leading" id="CZ7-zV-XMm"/>
                         <constraint firstItem="iBj-3n-r4D" firstAttribute="top" secondItem="c9b-qI-EhI" secondAttribute="bottom" constant="8" symbolic="YES" id="E1g-xn-EVD"/>
+                        <constraint firstAttribute="trailing" secondItem="ztF-ws-nNS" secondAttribute="trailing" constant="8" id="LcO-m8-ZPK"/>
                         <constraint firstItem="ztF-ws-nNS" firstAttribute="leading" secondItem="gDE-6v-4jE" secondAttribute="leadingMargin" constant="8" id="Oq0-2A-OJ3"/>
                         <constraint firstItem="c9b-qI-EhI" firstAttribute="trailing" secondItem="gDE-6v-4jE" secondAttribute="trailingMargin" constant="-8" id="ZAd-F7-qqD"/>
                         <constraint firstItem="c9b-qI-EhI" firstAttribute="leading" secondItem="gDE-6v-4jE" secondAttribute="leading" constant="16" id="kR3-MQ-f1z"/>
@@ -145,7 +147,7 @@ dGV4dCBvZiB0aGUgcHJpbnRpbmcDIGFuZCB0eXBlc2V0dGluZyBpbmR1c3RyeS4
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="345" y="231.5"/>
+            <point key="canvasLocation" x="345" y="231"/>
         </view>
     </objects>
     <resources>
