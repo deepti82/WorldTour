@@ -226,6 +226,33 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         return headerView
     }
     
+    func getHotels() {
+        
+        request.cityTypeData("hotels", city: city, completion: {(response) in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"] {
+                    
+                    
+                    
+                }
+                else {
+                    
+                    print("response error")
+                    
+                }
+                
+            })
+            
+        })
+    }
+    
 //    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        
 //        return 4

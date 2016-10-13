@@ -12,6 +12,11 @@ class Rating: UIView {
     
     @IBOutlet weak var calendarIcon: UILabel!
     @IBOutlet weak var clockIcon: UILabel!
+    @IBOutlet weak var checkInTitle: UILabel!
+    @IBOutlet weak var reviewDescription: UILabel!
+    @IBOutlet var stars: [UIImageView]!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var time: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

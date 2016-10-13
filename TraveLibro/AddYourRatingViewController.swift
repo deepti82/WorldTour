@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class AddYourRatingViewController: UIViewController {
     
     var layout: VerticalLayout!
     var journeyId = ""
+    var reviews: [JSON] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +33,6 @@ class AddYourRatingViewController: UIViewController {
         profileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!)!)
         makeTLProfilePicture(profileImage)
         layout.addSubview(profileImage)
-        
-        for i in 0 ..< 6 {
-            
-            addRating()
-            
-        }
         
 //        let ratingTwo = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
 //        addHeightToLayout(ratingTwo.frame.height)
@@ -67,13 +63,54 @@ class AddYourRatingViewController: UIViewController {
         
     }
     
-    func addRating() {
+    func showRating() {
         
-        let ratingOne = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-        addHeightToLayout(ratingOne.frame.height)
-        layout.addSubview(ratingOne)
+        for review in reviews {
+            
+            addRating(review)
+            
+        }
+        
         
     }
+    
+    func addRating(post: JSON) {
+        
+        let rating = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
+        rating.checkInTitle.text = "YOUR REVIEW OF \(post["city"].string!.uppercaseString)"
+        rating.reviewDescription.text = post["review"].string!
+        rating.date.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["createdAt"].string!)
+        rating.time.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "HH:mm a", date: post["createdAt"].string!)
+        getStars(rating, stars: post["rating"].int!)
+        addHeightToLayout(rating.frame.height)
+        layout.addSubview(rating)
+        
+    }
+    
+    func getStars(view: Rating, stars: Int) {
+        
+        for i in 0 ..< stars {
+            
+            view.stars[i].image = UIImage(named: "star_check")
+            
+        }
+
+    }
+    
+    func changeDateFormat(givenFormat: String, getFormat: String, date: String) -> String {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = givenFormat
+        let date = dateFormatter.dateFromString(date)
+        
+        dateFormatter.dateFormat = getFormat
+        dateFormatter.dateStyle = .ShortStyle
+        let goodDate = dateFormatter.stringFromDate(date!)
+        return goodDate
+        
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -94,7 +131,8 @@ class AddYourRatingViewController: UIViewController {
                 }
                 else if response["value"] {
                     
-                    
+                    self.reviews = response["data"].array!
+                    self.showRating()
                     
                 }
                 else {

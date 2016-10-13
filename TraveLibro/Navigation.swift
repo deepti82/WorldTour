@@ -1547,4 +1547,29 @@ class Navigation {
         
     }
     
+    func cityTypeData(type: String, city: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["type" : type, "city": city]
+            print("journey type data: \(params)")
+            let opt = try HTTP.POST(adminUrl + "journey/getCountData", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
 }
