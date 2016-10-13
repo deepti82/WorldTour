@@ -231,6 +231,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+}
 
+func addTopBorder(color: UIColor, view: UIView, borderWidth: CGFloat) {
+    let border = CALayer()
+    border.backgroundColor = color.CGColor
+    border.frame = CGRectMake(0, 0, view.frame.size.width, borderWidth)
+    view.layer.addSublayer(border)
 }
 

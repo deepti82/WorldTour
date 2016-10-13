@@ -1032,11 +1032,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otherCommentId = post["_id"].string!
         currentPost = post
         checkIn.optionsButton.setTitle(post["_id"].string!, forState: .Normal)
+        checkIn.optionsButton.setTitle(post["uniqueId"].string!, forState: .Application)
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
 //        dateFormatter.dateStyle = .MediumStyle
         dateFormatter.timeZone = NSTimeZone.localTimeZone()
-        let date = dateFormatter.dateFromString(post["createdAt"].string!)!
+        let date = dateFormatter.dateFromString(post["UTCModified"].string!)!
+        print("\(#line) \(post["UTCModified"].string!)")
         let newDate = date.toLocalTime()
         let dateArray = "\(newDate)".componentsSeparatedByString(" ")
         checkIn.dateLabel.text = dateArray[0] + " | "
@@ -1210,6 +1212,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var currentPost: JSON = []
     var isDelete = false
     var deletePostId = ""
+    var datePickerView: UIDatePicker!
+    var dateSelected = ""
+    var timeSelected = ""
+    var inputview: UIView!
     
     func chooseOptions(sender: UIButton) {
         
@@ -1327,42 +1333,41 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
         
-        var datePickerView: UIDatePicker!
-        var dateSelected = ""
-        
-        func handleDatePicker(sender: UIDatePicker) {
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            //dateSelected = dateFormatter.stringFromDate(sender.date)
-        }
-        
-        func doneButton(sender:UIButton){
-            datePickerView.removeFromSuperview() // To resign the inputView on clicking done.
-        }
-        
         let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .Default)
         { action -> Void in
             
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+            let minDate = dateFormatter.dateFromString("\(self.myJourney["startTime"])")?.toLocalTime()
+            
             //Create the view
-            let inputView = UIView(frame: CGRectMake(0, UIScreen.mainScreen().bounds.size.height - 240, self.view.frame.size.width, 240))
-            inputView.backgroundColor = UIColor.whiteColor()
-            datePickerView = UIDatePicker(frame: CGRectMake(0, 40, 0, 0))
-            datePickerView.datePickerMode = UIDatePickerMode.Date
-            inputView.addSubview(datePickerView) // add date picker to UIView
+            self.inputview = UIView(frame: CGRectMake(0, UIScreen.mainScreen().bounds.size.height - 240, self.view.frame.size.width, 240))
+            self.inputview.backgroundColor = UIColor.whiteColor()
+            self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
+            self.datePickerView.datePickerMode = UIDatePickerMode.DateAndTime
+            self.datePickerView.minimumDate = minDate
+            self.datePickerView.maximumDate = NSDate()
             
-            let doneButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.size.width - 100, 0, 100, 50))
-            doneButton.setTitle("Done", forState: UIControlState.Normal)
-            doneButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            addTopBorder(mainBlueColor, view: self.datePickerView, borderWidth: 1)
+            addTopBorder(mainBlueColor, view: self.inputview, borderWidth: 1)
             
-            inputView.addSubview(doneButton) // add Button to UIView
+            self.inputview.addSubview(self.datePickerView) // add date picker to UIView
             
-            doneButton.addTarget(self, action: Selector("doneButton:"), forControlEvents: UIControlEvents.TouchUpInside) // set button click event
+            let doneButton = UIButton(frame: CGRectMake(UIScreen.mainScreen().bounds.size.width - 100, 0, 100, 40))
+            doneButton.setTitle("SAVE", forState: UIControlState.Normal)
+            doneButton.titleLabel?.font = UIFont.boldSystemFontOfSize(14.0)
+            doneButton.setTitleColor(mainBlueColor, forState: UIControlState.Normal)
+            doneButton.setTitle(sender.titleForState(.Application), forState: .Application)
+            
+            self.inputview.addSubview(doneButton) // add Button to UIView
+            
+            doneButton.addTarget(self, action: #selector(NewTLViewController.doneButton(_:)), forControlEvents: .TouchUpInside) // set button click event
             
             //sender.inputView = inputView
-            datePickerView.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
+            self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), forControlEvents: .ValueChanged)
             
-            handleDatePicker(datePickerView) // Set the date on start.
-            self.view.addSubview(inputView)
+            self.handleDatePicker(self.datePickerView) // Set the date on start.
+            self.view.addSubview(self.inputview)
             
         }
         
@@ -1412,6 +1417,36 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         actionSheetControllerIOS8.addAction(share)
         self.presentViewController(actionSheetControllerIOS8, animated: true, completion: nil)
         
+    }
+    
+    func handleDatePicker(sender: UIDatePicker) {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "HH:mm:ss"
+        dateSelected = dateFormatter.stringFromDate(sender.date)
+        timeSelected = timeFormatter.stringFromDate(sender.date)
+        print(timeSelected)
+    }
+    
+    func doneButton(sender: UIButton){
+        request.changeDateTime(sender.titleForState(.Application)!, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if response.error != nil {
+                    print("error: \(response.error!.localizedDescription)")
+                } else if response["value"] {
+                    print("edited date time response")
+                    print("\(response)")
+                } else {
+                    
+                }
+                
+            })
+            
+        })
+        
+        self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
     }
     
 //    func editPost(sender: UIButton) {
