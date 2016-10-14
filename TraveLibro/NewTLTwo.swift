@@ -289,7 +289,34 @@ extension NewTLViewController {
         
         if !showDetails {
             
+            print("in no show details \(self.view.subviews) \(mainScroll.subviews)")
+            
             self.view.addSubview(mainScroll)
+            
+            for view in self.view.subviews {
+                
+                if view.isKindOfClass(UIScrollView) {
+                    
+                    for subview in view.subviews {
+                        
+                        if subview.isKindOfClass(startOTGView) {
+                            
+                            print("in duplication one")
+                            view.removeFromSuperview()
+                            
+                        }
+//                        else if subview.isKindOfClass(drawLine) {
+//                            
+//                            subview.removeFromSuperview()
+//                            
+//                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
             mainScroll.addSubview(otgView)
             
         }
