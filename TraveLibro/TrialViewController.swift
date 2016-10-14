@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class TrialViewController: UIViewController {
 
     @IBOutlet weak var newImage: UIImageView!
+    var singleMustDo: JSON! = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(singleMustDo)
         
 //        let image = UIImage(named: "disney_world")
 //        let maskingImage = UIImage(named: "profile_mask.png")
@@ -21,12 +25,12 @@ class TrialViewController: UIViewController {
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         self.view.addSubview(scrollView)
         
-        scrollView.contentSize.height = 1000
+        scrollView.contentSize.height = 800
         
         let mustDoDescription = EachMustDo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: scrollView.contentSize.height))
+        mustDoDescription.titleImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: singleMustDo["mainPhoto"].string!)!)!)
+        mustDoDescription.descriptionText.text = singleMustDo["description"].string!
         scrollView.addSubview(mustDoDescription)
-        
-    
     
     }
 
