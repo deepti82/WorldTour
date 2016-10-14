@@ -11,6 +11,7 @@
                 <outlet property="reviewConclusion" destination="Wby-OA-ctG" id="njN-1t-bO3"/>
                 <outlet property="reviewTextView" destination="Tq2-m8-HGG" id="QS7-L5-I2Z"/>
                 <outlet property="smiley" destination="rW4-KQ-hBv" id="rNl-nW-aBd"/>
+                <outlet property="starsStack" destination="E9T-mf-xXu" id="gyG-Ac-0Mb"/>
                 <outletCollection property="stars" destination="sfc-oD-eGb" collectionClass="NSMutableArray" id="GRX-6c-aYs"/>
                 <outletCollection property="stars" destination="s6m-Nd-Ru1" collectionClass="NSMutableArray" id="ojt-X1-93W"/>
                 <outletCollection property="stars" destination="n47-4I-I1s" collectionClass="NSMutableArray" id="qS8-JL-JFi"/>

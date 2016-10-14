@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class AddRating: UIView, UITextViewDelegate {
     
     var ratingIndex = 0
     var starCount = 0
     
+    @IBOutlet weak var starsStack: UIStackView!
     @IBOutlet weak var postReview: UIButton!
     @IBOutlet weak var reviewConclusion: UILabel!
     @IBOutlet weak var reviewTextView: UITextView!
@@ -78,6 +80,19 @@ class AddRating: UIView, UITextViewDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func ratingDisplay(review: JSON) {
+        
+        reviewTextView.text = review["review"].string!
+        for i in 0 ..< Int(review["rating"].string!)! {
+            
+            stars[i].setImage(UIImage(named: "star_check"), forState: .Normal)
+            
+        }
+        smiley.setImage(UIImage(named: imageArr[Int(review["rating"].string!)!]), forState: .Normal)
+        reviewConclusion.text = moodArr[Int(review["rating"].string!)!]
+        
     }
     
     func textViewDidBeginEditing(textView: UITextView) {

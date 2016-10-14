@@ -198,8 +198,6 @@
 		C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */; };
 		C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */ = {isa = PBXBuildFile; fileRef = C276EDA91D06CBB800906FEC /* EditDOB.xib */; };
 		C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDAB1D06CCBC00906FEC /* EditDOB.swift */; };
-		C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2776A271CD785DF00FE066A /* ShoesOTG.xib */; };
-		C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */; };
 		C27E0F3A1D2A1EF10090880A /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */; };
 		C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */; };
 		C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */; };
@@ -223,6 +221,8 @@
 		C28521BA1D365FDF001EF251 /* PagerTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28521B91D365FDF001EF251 /* PagerTabViewController.swift */; };
 		C2873E8C1D9E8E510001431B /* BuddyLeaves.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2873E8B1D9E8E510001431B /* BuddyLeaves.xib */; };
 		C2873E8E1D9E90580001431B /* BuddyLeaves.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2873E8D1D9E90580001431B /* BuddyLeaves.swift */; };
+		C2889D3A1DB0E91700B302AF /* ShowRating.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2889D391DB0E91700B302AF /* ShowRating.xib */; };
+		C2889D3C1DB0E98800B302AF /* ShowRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2889D3B1DB0E98800B302AF /* ShowRating.swift */; };
 		C28A923F1D0E7E2E00CFEC7A /* HotelTypeSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A923E1D0E7E2E00CFEC7A /* HotelTypeSelect.swift */; };
 		C28A92431D0E839B00CFEC7A /* FilterRestaurants.xib in Resources */ = {isa = PBXBuildFile; fileRef = C28A92421D0E839B00CFEC7A /* FilterRestaurants.xib */; };
 		C28A92451D0E83FD00CFEC7A /* FilterRestaurants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A92441D0E83FD00CFEC7A /* FilterRestaurants.swift */; };
@@ -558,8 +558,6 @@
 		C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditEditProfileViewController.swift; path = ../EditEditProfileViewController.swift; sourceTree = "<group>"; };
 		C276EDA91D06CBB800906FEC /* EditDOB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDOB.xib; path = ../EditDOB.xib; sourceTree = "<group>"; };
 		C276EDAB1D06CCBC00906FEC /* EditDOB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDOB.swift; path = ../EditDOB.swift; sourceTree = "<group>"; };
-		C2776A271CD785DF00FE066A /* ShoesOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoesOTG.xib; sourceTree = "<group>"; };
-		C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoesOTG.swift; sourceTree = "<group>"; };
 		C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainView.xib; sourceTree = "<group>"; };
 		C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -583,6 +581,9 @@
 		C28521B91D365FDF001EF251 /* PagerTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagerTabViewController.swift; sourceTree = "<group>"; };
 		C2873E8B1D9E8E510001431B /* BuddyLeaves.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuddyLeaves.xib; sourceTree = "<group>"; };
 		C2873E8D1D9E90580001431B /* BuddyLeaves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyLeaves.swift; sourceTree = "<group>"; };
+		C2889D341DB0C16500B302AF /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		C2889D391DB0E91700B302AF /* ShowRating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShowRating.xib; path = ../ShowRating.xib; sourceTree = "<group>"; };
+		C2889D3B1DB0E98800B302AF /* ShowRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowRating.swift; sourceTree = "<group>"; };
 		C28A923E1D0E7E2E00CFEC7A /* HotelTypeSelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelTypeSelect.swift; sourceTree = "<group>"; };
 		C28A92421D0E839B00CFEC7A /* FilterRestaurants.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterRestaurants.xib; sourceTree = "<group>"; };
 		C28A92441D0E83FD00CFEC7A /* FilterRestaurants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterRestaurants.swift; sourceTree = "<group>"; };
@@ -654,7 +655,6 @@
 		C2D5944F1CF487960007F50B /* MyLifeTabs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyLifeTabs.xib; sourceTree = "<group>"; };
 		C2D594511CF487B30007F50B /* MyLifeTabs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeTabs.swift; sourceTree = "<group>"; };
 		C2D67FF61CE5FD7500454A46 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
-		C2D718311DA78FDF00CF5643 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Release-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		C2DA2B5A1CE6076600F15C5C /* MyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewCell.swift; sourceTree = "<group>"; };
 		C2DCAE401D18063E00B35331 /* NavigationStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStyle.swift; sourceTree = "<group>"; };
 		C2DCB2361CE30ED0000E40DD /* TripSummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryViewController.swift; sourceTree = "<group>"; };
@@ -790,8 +790,6 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C270C4131DA8F68E009EA9DA /* EndJourneyViewController.swift */,
-				C2E56EA41DA5390000D81B0A /* AddCaptionsViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -820,6 +818,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2889D3D1DB1180200B302AF /* ShowRating */,
 				3ABFD8E11DA9299000A51034 /* RatingCheckIn */,
 				3ABFD8DC1DA8C76D00A51034 /* ChangeCity */,
 				C2F773E31DA3989600865096 /* BuddyLeaves */,
@@ -900,7 +899,6 @@
 				C2ABDBB71CEC5AC300D7542E /* SayBye */,
 				C25207351D0959AF008F0E51 /* SearchFieldView */,
 				C24870461D0BDDA0003CB0DD /* SearchLocation */,
-				C2776A291CD7863F00FE066A /* ShoesOTG */,
 				C2A27A431CEDBD0100F74DD1 /* SignInToolbar */,
 				C2A27A5F1CEDEFF700F74DD1 /* SignUpFullView */,
 				C2A6E2651CE9D2E900D3F845 /* SpeechBubbleView */,
@@ -1025,7 +1023,7 @@
 		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C2D718311DA78FDF00CF5643 /* SwiftyJSON.framework */,
+				C2889D341DB0C16500B302AF /* SwiftyJSON.framework */,
 				3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */,
 				7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */,
 				163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */,
@@ -1379,6 +1377,8 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C270C4131DA8F68E009EA9DA /* EndJourneyViewController.swift */,
+				C2E56EA41DA5390000D81B0A /* AddCaptionsViewController.swift */,
 				C2A026CE1D9AA82D00D548AB /* CommentsViewController.swift */,
 				C2276FEF1D9906770052D942 /* EditCategoryViewController.swift */,
 				C2BB1E291D9E339000D3C3B0 /* NewTLTwo.swift */,
@@ -1605,15 +1605,6 @@
 			name = DrawLineOTG;
 			sourceTree = "<group>";
 		};
-		C2776A291CD7863F00FE066A /* ShoesOTG */ = {
-			isa = PBXGroup;
-			children = (
-				C2776A271CD785DF00FE066A /* ShoesOTG.xib */,
-				C2776A2A1CD78B5100FE066A /* ShoesOTG.swift */,
-			);
-			name = ShoesOTG;
-			sourceTree = "<group>";
-		};
 		C2803BC91CF43493007A906E /* BlogView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1648,6 +1639,15 @@
 				C28521B61D364680001EF251 /* FilterIntinerariesType.swift */,
 			);
 			name = FilterIntinerariesType;
+			sourceTree = "<group>";
+		};
+		C2889D3D1DB1180200B302AF /* ShowRating */ = {
+			isa = PBXGroup;
+			children = (
+				C2889D391DB0E91700B302AF /* ShowRating.xib */,
+				C2889D3B1DB0E98800B302AF /* ShowRating.swift */,
+			);
+			name = ShowRating;
 			sourceTree = "<group>";
 		};
 		C28A92401D0E7E4A00CFEC7A /* HotelTypeSelect */ = {
@@ -2082,6 +2082,7 @@
 				C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */,
 				C2E159B91D74068000A5B721 /* EmptyScreenView.xib in Resources */,
 				C20939061D1180C100CBA70F /* DJB My Mood Ring Says Blah.ttf in Resources */,
+				C2889D3A1DB0E91700B302AF /* ShowRating.xib in Resources */,
 				1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */,
 				C26730271D27A84C00F2C822 /* QuickItineraryOne.xib in Resources */,
 				C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */,
@@ -2159,7 +2160,6 @@
 				C26B4DEB1D141D9D00213055 /* ConnectWithAgent.xib in Resources */,
 				C2488AB31D51BC4600FD5306 /* PhotoList.xib in Resources */,
 				C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */,
-				C2776A281CD785DF00FE066A /* ShoesOTG.xib in Resources */,
 				C20A18F81D2294D900760BF9 /* AddCheckIn.xib in Resources */,
 				C2A6E2621CE9D12800D3F845 /* SpeechBubbleView.xib in Resources */,
 				C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */,
@@ -2539,6 +2539,7 @@
 				C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */,
 				C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */,
 				C23EB1CD1CFEB044005B5CE8 /* CheckInLocalLife.swift in Sources */,
+				C2889D3C1DB0E98800B302AF /* ShowRating.swift in Sources */,
 				3AF1870A1D785EE800A86BC1 /* forDpFour.swift in Sources */,
 				C2488AB61D51D0E100FD5306 /* Navigation.swift in Sources */,
 				C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */,
@@ -2671,7 +2672,6 @@
 				C245776E1D1D5ACD00C6568C /* NewProfilePosts.swift in Sources */,
 				C2BFA9761CF2D2A900DC2066 /* MyLifeViewController.swift in Sources */,
 				C2E8F2D71D8987860034CEC6 /* AddActivityNew.swift in Sources */,
-				C2776A2B1CD78B5100FE066A /* ShoesOTG.swift in Sources */,
 				C25649971D48D7670046E36D /* TripInfoOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
 				C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */,
@@ -2845,6 +2845,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/build/Release-iphoneos/SwiftyJSON",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SwiftyJSON",
+					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = TraveLibro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2868,8 +2870,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/build/Release-iphoneos/SwiftyJSON",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/SwiftyJSON",
+					"$(SRCROOT)",
 				);
-				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "\"~/Dowloads/FacebookSDK\"";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
+					"\"~/Dowloads/FacebookSDK\"",
+					"$(SRCROOT)",
+				);
 				INFOPLIST_FILE = TraveLibro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;

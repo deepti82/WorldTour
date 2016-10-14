@@ -110,6 +110,33 @@ extension NewTLViewController {
         
     }
     
+    func showReviewPopup(sender: UIButton) {
+        
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
+        
+        let lastCount = myReview.count - 1
+        
+        let background = UIView(frame: self.view.frame)
+        background.addGestureRecognizer(tapout)
+        background.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        self.view.addSubview(background)
+        self.view.bringSubviewToFront(background)
+        
+        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 315))
+        rating.center = background.center
+        rating.layer.cornerRadius = 5
+        rating.ratingDisplay(myReview[lastCount])
+//        rating.postReview.setTitle(sender.titleLabel!.text!, forState: .Application)
+        rating.postReview.setTitle("CLOSE", forState: .Normal)
+        rating.reviewTextView.editable = false
+        rating.starsStack.userInteractionEnabled = false
+//        rating.starCount.
+        
+        background.addSubview(rating)
+        
+        
+    }
+    
     func addRatingPost(sender: UIButton) {
         
 //        let backView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))

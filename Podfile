@@ -9,11 +9,11 @@ target 'TraveLibro' do
 #  pod 'XLPagerTabStrip', '~> 5.0'
   pod 'PageMenu'
 #  pod 'Pager'
-  pod 'SwiftyJSON'
   pod "TabPageViewController"
   pod 'SwiftHTTP', '~> 1.0.3'
   pod 'Simplicity'
   pod 'Fabric'
+  pod 'SwiftyJSON'
   pod 'TwitterKit'
   pod 'TwitterCore'
   #  pod 'SQLite.swift', '~> 0.10.1'

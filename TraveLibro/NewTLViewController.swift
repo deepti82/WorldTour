@@ -1126,12 +1126,39 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             }
             
-            let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 10, width: width, height: 100))
-            rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
-            rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), forControlEvents: .TouchUpInside)
-            rateButton.rateCheckInButton.setTitle(post["_id"].string!, forState: .Normal)
-            layout.addSubview(rateButton)
-            addHeightToLayout(rateButton.frame.height)
+            if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
+                
+                if post["review"].array!.count > 0 {
+                    
+                    let allReviews = post["review"].array!
+                    let lastReviewCount = post["review"].array!.count - 1
+                    
+                    let rateButton = ShowRating(frame: CGRect(x: 0, y: 10, width: width, height: 100))
+                    myReview = post["review"].array!
+                    rateButton.showRating(Int(allReviews[lastReviewCount]["rating"].string!)!)
+//                    print("rate \(rateButton.ratingCount)")
+                    rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), forControlEvents: .TouchUpInside)
+                    rateButton.rating.setTitle(post["_id"].string!, forState: .Application)
+                    rateButton.tag = Int(allReviews[lastReviewCount]["rating"].string!)!
+                    layout.addSubview(rateButton)
+                    addHeightToLayout(rateButton.frame.height + 20.0)
+                    
+                    
+                }
+                
+                else {
+            
+                    let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 10, width: width, height: 100))
+                    rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
+                    rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), forControlEvents: .TouchUpInside)
+                    rateButton.rateCheckInButton.setTitle(post["_id"].string!, forState: .Normal)
+                    layout.addSubview(rateButton)
+                    addHeightToLayout(rateButton.frame.height + 20.0)
+                    
+                }
+            
+            }
+            
 //            else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
 //                
 //                checkIn.mainPhoto.removeFromSuperview()
@@ -1176,6 +1203,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        
 //    }
     
+    var myReview: [JSON] = []
+    
     func setHeight(view: UIView, height: CGFloat) {
         
         let view = view as! PhotosOTG
@@ -1203,7 +1232,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         buddy.joinJourneytext.text = "\(post["user"]["name"]) has joined this journey"
         makeTLProfilePicture(buddy.profileImage)
         layout.addSubview(buddy)
-        addHeightToLayout(buddy.frame.height)
+        addHeightToLayout(buddy.frame.height + 20.0)
         
     }
     
