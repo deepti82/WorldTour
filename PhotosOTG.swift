@@ -113,6 +113,8 @@ class PhotosOTG: UIView {
             print("Success. You just tapped the \(hashtag) hashtag")
         }
         
+        mainPhoto.autoresizingMask = [.FlexibleHeight]
+        
         likeHeart.text = String(format: "%C", faicon["likes"]!)
         commentIcon.text = String(format: "%C", faicon["comments"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)

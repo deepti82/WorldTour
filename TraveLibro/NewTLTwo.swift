@@ -240,6 +240,8 @@ extension NewTLViewController {
     func getScrollView(height: CGFloat, journey: JSON) {
         
         mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height))
+        mainScroll.showsVerticalScrollIndicator = false
+        mainScroll.showsHorizontalScrollIndicator = false
         refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), forControlEvents: .ValueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         //        mainScroll.addSubview(refreshControl)

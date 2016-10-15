@@ -1024,7 +1024,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
 //        })
         
-        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 550))
+        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 580))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, forState: .Normal)
         checkIn.likeViewLabel.text = "0 Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
@@ -1033,19 +1033,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         currentPost = post
         checkIn.optionsButton.setTitle(post["_id"].string!, forState: .Normal)
         checkIn.optionsButton.setTitle(post["uniqueId"].string!, forState: .Application)
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-//        dateFormatter.dateStyle = .MediumStyle
-        dateFormatter.timeZone = NSTimeZone.localTimeZone()
-        let date = dateFormatter.dateFromString(post["UTCModified"].string!)!
-        print("\(#line) \(post["UTCModified"].string!)")
-        let newDate = date.toLocalTime()
-        let dateArray = "\(newDate)".componentsSeparatedByString(" ")
-        checkIn.dateLabel.text = dateArray[0] + " | "
-        checkIn.timeLabel.text = dateArray[1]
-        print("current date: \(dateFormatter.timeZone) \(date)")
-        
-        
+        checkIn.dateLabel.text = changeDate("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) + "  | "
+        checkIn.timeLabel.text = changeDate("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
         
 //        checkIn.likeButton.addTarget(self, action: #selector(NewTLViewController.sendLikes(_:)), forControlEvents: .TouchUpInside)
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), forControlEvents: .TouchUpInside)
@@ -1093,10 +1082,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             checkIn.mainPhoto.hidden = true
             checkIn.photosStack.hidden = true
             checkIn.photosHC.constant = 0.0
-            checkIn.frame.size.height = 250.0
+//            checkIn.frame.size.height = 250.0
             
         }
         
+        
+        checkIn.frame.size.height = setHeight(checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
         layout.addSubview(checkIn)
 //        checkIn.autoresizingMask = [.FlexibleHeight]
 //        setHeight(checkIn, height: checkInHeight)
@@ -1205,11 +1196,60 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var myReview: [JSON] = []
     
-    func setHeight(view: UIView, height: CGFloat) {
+    func setHeight(view: UIView, thoughts: String, photos: Int) -> CGFloat {
         
-        let view = view as! PhotosOTG
-        let final = view.photosTitle.frame.height + view.mainPhoto.frame.height + view.photosStack.frame.height
-        view.resizeToFitSubviews(height, finalHeight: final)
+        var lines = 0
+        var textHeight: CGFloat = 0.0
+        let myView = view as! PhotosOTG
+        
+        lines = thoughts.characters.count/35
+        textHeight = CGFloat(lines) * 19.5
+        
+        if myView.photosTitle.frame.height > textHeight {
+            
+            myView.photosTitle.frame.size.height -= textHeight
+            
+        }
+        else {
+            
+            myView.photosTitle.frame.size.height += textHeight
+            
+        }
+        
+        if photos == 1 {
+            
+            myView.frame.size.height -= myView.photosStack.frame.height
+            
+            
+        }
+        else if photos == 0 {
+            
+            myView.frame.size.height -= myView.photosStack.frame.height
+            myView.frame.size.height -= myView.mainPhoto.frame.height
+            
+        }
+        
+        return myView.frame.height
+        
+    }
+    
+    func changeDate(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = givenFormat
+        let date = dateFormatter.dateFromString(date)
+        
+        dateFormatter.dateFormat = getFormat
+        
+        if isDate {
+            
+            dateFormatter.dateStyle = .MediumStyle
+            
+        }
+        
+        let goodDate = dateFormatter.stringFromDate(date!)
+        return goodDate
+        
         
     }
     
@@ -2320,7 +2360,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.addWidthToPhotoLayout(visibleImage.frame.width + 10.0)
                         self.addView.horizontalScrollForPhotos.addSubview(visibleImage)
                         
-                        dispatch_async(dispatch_get_main_queue(), {
+                        dispatch_async(dispatch_get_main_queue(),  {
                             
                             do {
                                 
@@ -2360,13 +2400,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                 print("file created")
                                 visibleImage.layer.cornerRadius = 5.0
                                 visibleImage.clipsToBounds = true
-                                //                            if index < 2 {
-                                
-                                
-                                //                            }
                                 
                                 self.addView.photosIntialView.hidden = true
-                                //                            self.addView.photosIntialView.userInteractionEnabled = false
                                 self.addView.photosFinalView.hidden = false
                                 self.addHeightToNewActivity(self.addView.photosFinalView.frame.height - self.addView.photosIntialView.frame.height)
                                 self.addView.photosCount.text = "(\(assets.count))"

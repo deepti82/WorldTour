@@ -19,7 +19,7 @@ class AddYourRatingViewController: UIViewController {
         super.viewDidLoad()
         getBackGround(self)
         
-        layout = VerticalLayout(width: self.view.frame.width - 40)
+        layout = VerticalLayout(width: self.view.frame.width)
         
         let scroll = UIScrollView(frame: self.view.frame)
         self.view.addSubview(scroll)
@@ -34,27 +34,14 @@ class AddYourRatingViewController: UIViewController {
         makeTLProfilePicture(profileImage)
         layout.addSubview(profileImage)
         
-//        let ratingTwo = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingTwo.frame.height)
-//        layout.addSubview(ratingTwo)
-//        
-//        let ratingThree = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingThree.frame.height)
-//        layout.addSubview(ratingThree)
-//        
-//        let ratingFour = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingFour.frame.height)
-//        layout.addSubview(ratingFour)
-//        
-//        let ratingFive = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingFive.frame.height)
-//        layout.addSubview(ratingFive)
-//        
-//        let ratingSix = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingSix.frame.height)
-//        layout.addSubview(ratingSix)
-        
         scroll.contentSize.height = layout.frame.height
+        
+        let orangeLine = drawLine(frame: CGRect(x: self.view.frame.width/2, y: 40, width: 10, height: layout.frame.height))
+//        orangeLine.frame.origin.y = profileImage.frame.origin..y
+        layout.addSubview(orangeLine)
+        orangeLine.layer.zPosition = 0
+        
+        
     }
     
     func addHeightToLayout(height: CGFloat) {
@@ -76,11 +63,29 @@ class AddYourRatingViewController: UIViewController {
     
     func addRating(post: JSON) {
         
-        let rating = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
+        let rating = Rating(frame: CGRect(x: 0, y: 20, width: layout.frame.width, height: 225))
         rating.checkInTitle.text = "YOUR REVIEW OF \(post["city"].string!.uppercaseString)"
         rating.reviewDescription.text = post["review"].string!
-        rating.date.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["createdAt"].string!)
-        rating.time.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "HH:mm a", date: post["createdAt"].string!)
+        rating.date.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["createdAt"].string!, isDate: true)
+        rating.time.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["createdAt"].string!, isDate: false)
+        rating.lines = rating.reviewDescription.text!.characters.count/55
+        rating.textViewHeight = CGFloat(rating.lines) * 19.2
+        
+        if rating.reviewDescription.frame.height > rating.textViewHeight {
+            
+            let heightDifference = rating.reviewDescription.frame.height - rating.textViewHeight
+            rating.frame.size.height -= heightDifference
+            
+            
+        }
+        else {
+            
+            let heightDifference = rating.textViewHeight - rating.reviewDescription.frame.height
+            rating.frame.size.height += heightDifference
+            
+            
+        }
+        
         getStars(rating, stars: post["rating"].int!)
         addHeightToLayout(rating.frame.height)
         layout.addSubview(rating)
@@ -97,14 +102,20 @@ class AddYourRatingViewController: UIViewController {
 
     }
     
-    func changeDateFormat(givenFormat: String, getFormat: String, date: String) -> String {
+    func changeDateFormat(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = givenFormat
         let date = dateFormatter.dateFromString(date)
         
         dateFormatter.dateFormat = getFormat
-        dateFormatter.dateStyle = .ShortStyle
+        
+        if isDate {
+            
+            dateFormatter.dateStyle = .MediumStyle
+            
+        }
+        
         let goodDate = dateFormatter.stringFromDate(date!)
         return goodDate
         

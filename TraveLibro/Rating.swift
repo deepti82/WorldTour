@@ -18,13 +18,15 @@ class Rating: UIView {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var time: UILabel!
     
+    var lines = 0
+    var textViewHeight: CGFloat!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
         calendarIcon.text = String(format: "%C", faicon["calendar"]!)
         clockIcon.text = String(format: "%C", faicon["clock"]!)
-        
         
     }
     
@@ -40,13 +42,5 @@ class Rating: UIView {
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         self.addSubview(view);
     }
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }

@@ -138,7 +138,7 @@ class ListPhotosViewController: UIViewController {
         let date = dateFormatter.dateFromString(date)
         
         dateFormatter.dateFormat = getFormat
-        dateFormatter.dateStyle = .ShortStyle
+        dateFormatter.dateStyle = .MediumStyle
         let goodDate = dateFormatter.stringFromDate(date!)
         return goodDate
         
