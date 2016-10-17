@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     var toggle = false
     var initialEntrance = false
-    
+    var user = User()
     
     @IBOutlet weak var MAMButton: UIButton!
     @IBAction func MAMTapped(sender: AnyObject?) {
@@ -79,8 +79,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func getCount() {
         
         print("in get count")
+        var userId = ""
         
-        request.getBucketListCount(currentUser["_id"].string!, completion: {(response) in
+        if user.getExistingUser() != "" {
+            
+            userId = user.getExistingUser()
+        }
+        else if currentUser["_id"] != nil {
+            userId = currentUser["_id"].string!
+        }
+        
+        request.getBucketListCount(userId, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 
@@ -164,6 +173,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.frame = CGRectMake(-10, 8, 30, 30)
         self.setOnlyRightNavigationButton(rightButton)
         
+        getUser()
+        
         locationIcon.text = String(format: "%C", faicon["location"]!)
         
         let profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
@@ -219,7 +230,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
             if currentUser["homeCountry"] != nil {
                 
-                profile.country.text = currentUser["homeCountry"].string!
+                profile.country.text = currentUser["homeCountry"]["name"].string!
                 
             }
             
@@ -310,6 +321,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        self.view.setNeedsDisplay()
         
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
+        
     }
     
 //    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -317,6 +329,47 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        print("this function is getting called!!")
 //        
 //    }
+    
+    func getUser() {
+        
+        if user.getExistingUser() == "" {
+            
+            var socialType = ""
+            var socialId = ""
+            
+            if currentUser["googleID"].string! != "" {
+                socialType = "google"
+                socialId = currentUser["googleID"].string!
+            }
+            else if currentUser["instagramID"].string! != "" {
+                socialType = "instagram"
+                socialId = currentUser["instagramID"].string!
+            }
+            else if currentUser["twitterID"].string! != "" {
+                socialType = "twitter"
+                socialId = currentUser["twitterID"].string!
+            }
+            else if currentUser["facebookID"].string! != "" {
+                socialType = "facebook"
+                socialId = currentUser["facebookID"].string!
+            }
+            
+            user.setUser(currentUser["_id"].string!, name: currentUser["name"].string!, useremail: currentUser["email"].string!, profilepicture: currentUser["profilePicture"].string!, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: currentUser["userBadgeImage"].string!, homecountry: currentUser["homeCountry"]["name"].string!, homecity: currentUser["homeCity"].string!, isloggedin: currentUser["alreadyLoggedIn"].bool!)
+        }
+        else {
+            
+            let currentUserId = user.getExistingUser()
+            let myUser = user.getUser(currentUserId)
+            let nameTemp = myUser.0.componentsSeparatedByString(" ")
+//            currentUser = JSON("1");
+            currentUser = ["_id": currentUserId, "name": myUser.0, "firstName": nameTemp[0], "lastName": nameTemp[1], "email": myUser.1, "homeCity": myUser.6, "profilePicture": myUser.4, "homeCountry": ["name": myUser.5]]
+            
+            print("my user:  \((myUser.0)) \(currentUser["name"]) \(nameTemp)")
+            print("my user 2:  \(currentUser)")
+            
+        }
+        
+    }
     
     func openNotifications(sender: UITapGestureRecognizer) {
         

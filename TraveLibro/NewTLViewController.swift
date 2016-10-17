@@ -100,22 +100,32 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        leftButton.frame = CGRectMake(-10, 0, 30, 30)
 //        
 //        self.customNavigationBar(leftButton, right: postButton)
-        
-        print("in the add posts function")
-        uploadedphotos = []
-        newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-        self.view.addSubview(newScroll)
-        
-        addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        print("add view: \(addView)")
-        displayFriendsCount()
-        newScroll.addSubview(addView)
-        newScroll.contentSize.height = self.view.frame.height
-        addLocationTapped(nil)
+//        addView.pos
         
         
-//        let tapOut = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:)))
-//        addView.addGestureRecognizer(tapOut)
+        if Reachability.isConnectedToNetwork() {
+            
+            print("in the add posts function")
+            uploadedphotos = []
+            newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+            self.view.addSubview(newScroll)
+            
+            addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+            print("add view: \(addView)")
+            displayFriendsCount()
+            newScroll.addSubview(addView)
+            newScroll.contentSize.height = self.view.frame.height
+            addLocationTapped(nil)
+            
+            
+        }
+        else {
+            
+            let alert = UIAlertController(title: "No Internet Connection Found!", message: "", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
         
         addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), forControlEvents: .TouchUpInside)
         addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), forControlEvents: .TouchUpInside)
@@ -124,6 +134,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addView.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), forControlEvents: .TouchUpInside)
         addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), forControlEvents: .TouchUpInside)
         addView.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), forControlEvents: .TouchUpInside)
+        
+//        let tapOut = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:)))
+//        addView.addGestureRecognizer(tapOut)
         
     }
     
@@ -328,6 +341,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func newPost(sender: UIButton) {
         
         print("photos new post \(uploadedphotos)")
+        
+        if Reachability.isConnectedToNetwork() {
+            
+            print("internet is connected")
+            
+        }
+        else {
+            
+            print("internet is not connected")
+            
+        }
         
         if !isEdit {
             

@@ -11,7 +11,7 @@ import Contacts
 import Simplicity
 import Fabric
 import TwitterKit
-//import SQLite
+import SQLite
 
 let contactsObject = CNContactStore()
 let mainBlueColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1) // #232D4A
@@ -40,6 +40,8 @@ var onlyOnce = true
 let request = Navigation()
 let shared = LoadingOverlay()
 
+let user = User()
+
 let width = UIScreen.mainScreen().bounds.size.width
 let height = UIScreen.mainScreen().bounds.size.height
 
@@ -50,20 +52,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-//    static func getDatabase () -> Connection {
-//        
-//        let path = NSSearchPathForDirectoriesInDomains(
-//            .DocumentDirectory, .UserDomainMask, true
-//            ).first!
-//        let db = try! Connection("\(path)/db.sqlite3")
-//        if(onlyOnce)
-//        {
-//            onlyOnce = false
-//            print(path)
-//        }
-//        return db;
-//        
-//    }
+    static func getDatabase () -> Connection {
+        
+        let path = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true
+            ).first!
+        let db = try! Connection("\(path)/db.sqlite3")
+        if(onlyOnce)
+        {
+            onlyOnce = false
+            print(path)
+        }
+        return db;
+        
+    }
     
     internal func createMenuView() {
         
@@ -72,8 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let path = NSSearchPathForDirectoriesInDomains(
 //            .DocumentDirectory, .UserDomainMask, true
 //            ).first!
-//        
-//        _ = Connection("\(path)/db.sqlite3")
         
         var nvc: UINavigationController!
         
@@ -87,10 +87,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         leftViewController.mainViewController = nvc
         
-        
-        if hasLoggedInOnce {
+        if user.getExistingUser() == "" {
             
-            nvc = UINavigationController(rootViewController: mainViewController)
+            nvc = UINavigationController(rootViewController: signInVC)
             
             let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
             
@@ -99,14 +98,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         else {
             
-            _ = storyboard.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
+//            _ = storyboard.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
+//            
+//            nvc = UINavigationController(rootViewController: signInVC)
+//            
+//            let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+//            
+//            self.window?.rootViewController = slideMenuController
+//            hasLoggedInOnce = true
             
-            nvc = UINavigationController(rootViewController: signInVC)
+            print("user: \(user.getExistingUser())")
+            
+            nvc = UINavigationController(rootViewController: mainViewController)
             
             let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
             
             self.window?.rootViewController = slideMenuController
-            hasLoggedInOnce = true
+            
         }
         
 //        nvc.setNavigationBarItem()
@@ -129,8 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         createMenuView()
-
-//        AppDelegate.getDatabase()
+        AppDelegate.getDatabase()
         
         faicon["clock"] = 0xf017
         faicon["calendar"] = 0xf073

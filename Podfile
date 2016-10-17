@@ -16,11 +16,12 @@ target 'TraveLibro' do
   pod 'SwiftyJSON'
   pod 'TwitterKit'
   pod 'TwitterCore'
-  #  pod 'SQLite.swift', '~> 0.10.1'
+#  pod 'SQLite.swift', '~> 0.10.1'
+  pod 'SQLite.swift'
   pod 'ActiveLabel'
 #  pod 'DKImagePickerController'
   pod 'Alamofire', '~> 3.4'	
-  #  pod 'SQLite.swift', '~> 0.9.2'
+#    pod 'SQLite.swift', '~> 0.9.2'
   # Pods for TraveLibro
 
   target 'TraveLibroTests' do

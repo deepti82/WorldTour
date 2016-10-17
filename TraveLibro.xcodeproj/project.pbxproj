@@ -252,9 +252,6 @@
 		C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */; };
 		C2A2E7931D96565F005084A7 /* SearchLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A2E7921D96565F005084A7 /* SearchLocationTableViewController.swift */; };
 		C2A2E7951D96858E005084A7 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A2E7941D96858E005084A7 /* LoadingOverlay.swift */; };
-		C2A4C8871D840D8C008394A3 /* AddActivityNoPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */; };
-		C2A4C8891D840FCA008394A3 /* AddActivityNoVideo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */; };
-		C2A4C88B1D84117B008394A3 /* AddActivityNoPhotoVideo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */; };
 		C2A5C1D51CF9A7F90035EF0E /* MoreAboutMe.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D41CF9A7F90035EF0E /* MoreAboutMe.xib */; };
 		C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D61CF9B09E0035EF0E /* TraveLifeVideoPost.xib */; };
 		C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A5C1D81CF9BA5E0035EF0E /* TraveLifeVideoPost.swift */; };
@@ -325,8 +322,6 @@
 		C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EA3A151CDB3B9900122941 /* TextField.swift */; };
 		C2EA3A191CDB3C1200122941 /* TextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A181CDB3C1200122941 /* TextField.xib */; };
 		C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */; };
-		C2F773E51DA3A10F00865096 /* PostOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2F773E41DA3A10F00865096 /* PostOTG.xib */; };
-		C2F773E71DA3AFEE00865096 /* PostOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F773E61DA3AFEE00865096 /* PostOTG.swift */; };
 		C2FA008A1CF57EC100E6A7D7 /* SetProfilePictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */; };
 		C2FA1E111D5485F50034DE97 /* QuickItineraryFive.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FA1E101D5485F50034DE97 /* QuickItineraryFive.xib */; };
 		C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E121D54875D0034DE97 /* QuickItineraryFive.swift */; };
@@ -613,9 +608,6 @@
 		C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
 		C2A2E7921D96565F005084A7 /* SearchLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationTableViewController.swift; sourceTree = "<group>"; };
 		C2A2E7941D96858E005084A7 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingOverlay.swift; path = ../LoadingOverlay.swift; sourceTree = "<group>"; };
-		C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityNoPhoto.xib; sourceTree = "<group>"; };
-		C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityNoVideo.xib; sourceTree = "<group>"; };
-		C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityNoPhotoVideo.xib; sourceTree = "<group>"; };
 		C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DJB My Mood Ring Says Blah.ttf"; sourceTree = "<group>"; };
 		C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JennaSue.ttf; sourceTree = "<group>"; };
 		C2A5C1D41CF9A7F90035EF0E /* MoreAboutMe.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreAboutMe.xib; sourceTree = "<group>"; };
@@ -687,8 +679,6 @@
 		C2EA3A151CDB3B9900122941 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		C2EA3A181CDB3C1200122941 /* TextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextField.xib; sourceTree = "<group>"; };
 		C2EA3A1A1CDB790000122941 /* TypeOfJourney.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TypeOfJourney.xib; sourceTree = "<group>"; };
-		C2F773E41DA3A10F00865096 /* PostOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostOTG.xib; sourceTree = "<group>"; };
-		C2F773E61DA3AFEE00865096 /* PostOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostOTG.swift; sourceTree = "<group>"; };
 		C2FA00891CF57EC100E6A7D7 /* SetProfilePictureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetProfilePictureViewController.swift; sourceTree = "<group>"; };
 		C2FA1E101D5485F50034DE97 /* QuickItineraryFive.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickItineraryFive.xib; sourceTree = "<group>"; };
 		C2FA1E121D54875D0034DE97 /* QuickItineraryFive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryFive.swift; sourceTree = "<group>"; };
@@ -780,9 +770,6 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
-				C2A4C8861D840D8B008394A3 /* AddActivityNoPhoto.xib */,
-				C2A4C8881D840FCA008394A3 /* AddActivityNoVideo.xib */,
-				C2A4C88A1D84117B008394A3 /* AddActivityNoPhotoVideo.xib */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
@@ -1387,7 +1374,6 @@
 				C2803BCA1CF43504007A906E /* AccordionViewController.swift */,
 				C20A18FE1D22A67700760BF9 /* AddBuddiesViewController.swift */,
 				C20A18FC1D229E1800760BF9 /* AddCheckInViewController.swift */,
-				C298717D1D6EBE8100F65429 /* AddCityViewController.swift */,
 				C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */,
 				C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */,
 				C258A3361D6C74E600664CF7 /* AddNationalityNewViewController.swift */,
@@ -1397,6 +1383,7 @@
 				C28A92481D0EA12300CFEC7A /* BlogsListViewController.swift */,
 				C2803BC71CF426A8007A906E /* BlogViewViewController.swift */,
 				C2BB45F11CFDB39800251E8C /* BucketListTableViewController.swift */,
+				C298717D1D6EBE8100F65429 /* AddCityViewController.swift */,
 				C20A18F51D225E9C00760BF9 /* CategoriseCheckInViewController.swift */,
 				C20A18F31D224EF400760BF9 /* CheckInSearchViewController.swift */,
 				C2C9659A1CE4979D007BDA34 /* CheckInViewController.swift */,
@@ -1762,8 +1749,6 @@
 			isa = PBXGroup;
 			children = (
 				C2A6E2661CE9D48A00D3F845 /* PhotosOTG.xib */,
-				C2F773E41DA3A10F00865096 /* PostOTG.xib */,
-				C2F773E61DA3AFEE00865096 /* PostOTG.swift */,
 				C2A6E2681CE9DA8B00D3F845 /* PhotosOTG.swift */,
 			);
 			name = PhotosOTG;
@@ -2092,7 +2077,6 @@
 				3AF187041D78556500A86BC1 /* forDPThree.xib in Resources */,
 				C24909BA1D4A3852007EB6B4 /* AddPostsOTG.xib in Resources */,
 				3ABFD8E31DA929D700A51034 /* RatingCheckIn.xib in Resources */,
-				C2A4C8871D840D8C008394A3 /* AddActivityNoPhoto.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				C2803BC41CF41F99007A906E /* BlogView.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
@@ -2114,7 +2098,6 @@
 				C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */,
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
 				C28A92531D0ECB4E00CFEC7A /* FilterBlogs.xib in Resources */,
-				C2A4C8891D840FCA008394A3 /* AddActivityNoVideo.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
 				C24909AD1D49D094007EB6B4 /* tripSummaryEach.xib in Resources */,
@@ -2176,7 +2159,6 @@
 				C23EB1E31CFF049D005B5CE8 /* AddPostsLocalLife.xib in Resources */,
 				C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */,
 				C267301F1D279D7900F2C822 /* AddNewOTG.xib in Resources */,
-				C2F773E51DA3A10F00865096 /* PostOTG.xib in Resources */,
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
 				C26D619A1D43A9FF0036714C /* footerNew.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
@@ -2184,7 +2166,6 @@
 				C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */,
 				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
-				C2A4C88B1D84117B008394A3 /* AddActivityNoPhotoVideo.xib in Resources */,
 				C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */,
 				C2488AFA1D51F93D00FD5306 /* NewQuickItinerary.xib in Resources */,
 				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,
@@ -2526,7 +2507,6 @@
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
-				C2F773E71DA3AFEE00865096 /* PostOTG.swift in Sources */,
 				3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
 				C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */,
@@ -2784,6 +2764,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/.build/debug Sources/CSQLite/";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2830,6 +2811,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/.build/debug Sources/CSQLite/";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
