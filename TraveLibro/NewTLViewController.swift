@@ -1114,7 +1114,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                 }
                 
-                
             }
             
             if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
