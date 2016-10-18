@@ -398,3 +398,23 @@ public class Reachability {
         return (isReachable && !needsConnection)
     }
 }
+
+extension NSData {
+    
+    var uint8: UInt8 {
+        get {
+            var number: UInt8 = 0
+            self.getBytes(&number, length: sizeof(UInt8))
+            return number
+        }
+    }
+}
+
+extension UInt8 {
+    
+    var data: NSData {
+        var int = self
+        return NSData(bytes: &int, length: sizeof(UInt8))
+    }
+    
+}

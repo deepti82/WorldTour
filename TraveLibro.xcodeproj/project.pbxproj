@@ -198,6 +198,7 @@
 		C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */; };
 		C276EDAA1D06CBB800906FEC /* EditDOB.xib in Resources */ = {isa = PBXBuildFile; fileRef = C276EDA91D06CBB800906FEC /* EditDOB.xib */; };
 		C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */ = {isa = PBXBuildFile; fileRef = C276EDAB1D06CCBC00906FEC /* EditDOB.swift */; };
+		C27C48091DB5ECDF00330ABF /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27C48081DB5ECDF00330ABF /* PostModel.swift */; };
 		C27E0F3A1D2A1EF10090880A /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */; };
 		C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */; };
 		C27F6BFF1CF03DF90049F012 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */; };
@@ -553,6 +554,7 @@
 		C276EDA71D06CB6A00906FEC /* EditEditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditEditProfileViewController.swift; path = ../EditEditProfileViewController.swift; sourceTree = "<group>"; };
 		C276EDA91D06CBB800906FEC /* EditDOB.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditDOB.xib; path = ../EditDOB.xib; sourceTree = "<group>"; };
 		C276EDAB1D06CCBC00906FEC /* EditDOB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditDOB.swift; path = ../EditDOB.swift; sourceTree = "<group>"; };
+		C27C48081DB5ECDF00330ABF /* PostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		C27E0F391D2A1EF10090880A /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		C27F6BFC1CF037C60049F012 /* ProfileMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMainView.xib; sourceTree = "<group>"; };
 		C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -1022,6 +1024,7 @@
 			isa = PBXGroup;
 			children = (
 				C20163DF1D26911C00A2F70B /* UserModel.swift */,
+				C27C48081DB5ECDF00330ABF /* PostModel.swift */,
 				C2488AB51D51D0E100FD5306 /* Navigation.swift */,
 				C2FA992F1D53681C009D0DF2 /* NewRest.swift */,
 			);
@@ -2468,6 +2471,7 @@
 				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
 				C24909B11D49D616007EB6B4 /* tripSummaryEach.swift in Sources */,
 				C258A3371D6C74E600664CF7 /* AddNationalityNewViewController.swift in Sources */,
+				C27C48091DB5ECDF00330ABF /* PostModel.swift in Sources */,
 				C29D2C111D1BE09600FA0602 /* FilterCityViewController.swift in Sources */,
 				C2D594521CF487B30007F50B /* MyLifeTabs.swift in Sources */,
 				C266955A1D3CA5060068D9C7 /* TimestampTagViewOnScroll.swift in Sources */,

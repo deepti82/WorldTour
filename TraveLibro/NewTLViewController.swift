@@ -103,8 +103,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        addView.pos
         
         
-        if Reachability.isConnectedToNetwork() {
-            
+//        if Reachability.isConnectedToNetwork() {
+        
             print("in the add posts function")
             uploadedphotos = []
             newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
@@ -118,14 +118,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             addLocationTapped(nil)
             
             
-        }
-        else {
-            
-            let alert = UIAlertController(title: "No Internet Connection Found!", message: "", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-            
-        }
+//        }
+//        else {
+//            
+//            let alert = UIAlertController(title: "No Internet Connection Found!", message: "", preferredStyle: .Alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//            self.presentViewController(alert, animated: true, completion: nil)
+//            
+//        }
         
         addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), forControlEvents: .TouchUpInside)
         addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), forControlEvents: .TouchUpInside)
@@ -346,12 +346,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             print("internet is connected")
             
+            
         }
         else {
             
             print("internet is not connected")
             
         }
+        
+        let post = Post()
+        post.setPost(currentUser["_id"].string!, JourneyId: myJourney["uniqueId"].string!, Type: "travelLife", Date: currentTime, Location: addView.addLocationButton.titleLabel!.text!, Category: addView.categoryLabel.text!, Country: currentCountry, City: currentCity)
         
         if !isEdit {
             
@@ -2314,55 +2318,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
-//                    self.addView.photosStack.hidden = true
-                    
-//                    if self.previouslyAddedPhotos != nil {
-//                        
-//                        myAssets = self.previouslyAddedPhotos
-//                        print("my assets: \(myAssets)")
-////                        for each in self.previouslyAddedPhotos {
-////                            
-////                           .append(each)
-////                        }
-//                        
-//                    }
-                    
                     
                     var index = 0
                     self.addView.postButton.hidden = true
                     print("Finish: \(self.addView.postButton.hidden)")
                     
-//                    let layerAbove = UIView(frame: CGRect(x: 0, y: 0, width: self.addView.photosCollection[0].frame.width, height: self.addView.photosCollection[0].frame.height))
-//                    layerAbove.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.6)
-//                    let addButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-//                    addButton.center = CGPointMake(layerAbove.frame.width/2, layerAbove.frame.height/2)
-//                    addButton.image = UIImage(named: "add_fa_icon")
-//                    layerAbove.addSubview(addButton)
-//                    layerAbove.clipsToBounds = true
-//                    
-//                    let addTap = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.addPhotosAgain(_:)))
-//                    addTap.delegate = self
-////                    self.bringSubviewToFront(layerAbove)
-//                    layerAbove.addGestureRecognizer(addTap)
-                    
-//                    if .count < 4 {
-//                        
-//                        let difference = 4 - assets.count
-                    
-//                        for eachPhoto in self.addView.photosCollection {
-//                            
-////                            let index = self.addView.photosCollection.count - i - 1
-//                            eachPhoto.hidden = true
-//                            
-//                        }
-                    
-//                    }
-                    
                     var assetArray: [NSURL] = []
                     
                     if self.previouslyAddedPhotos != nil {
                         
-//                        assetArray = previouslyAddedPhotos
+                        assetArray = self.previouslyAddedPhotos
                         
                     }
                     
@@ -2397,12 +2362,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     image.drawInRect(CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
                                     let newImage = UIGraphicsGetImageFromCurrentImageContext()
                                     UIGraphicsEndImageContext()
-                                    let newTemp = UIImageJPEGRepresentation(newImage, 0.87)
-                                    //                                print("new: \(newTemp)")
+                                    let newTemp = UIImageJPEGRepresentation(newImage, 0.50)
                                     temp = try newTemp!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
                                     visibleImage.setImage(UIImage(data: newTemp!), forState: .Normal)
-                                    //                                self.addView.photosCollection[assetIndex!].image = UIImage(data: newTemp!)
-                                    //                                self.addView.photosCollection[assetIndex!].hidden = false
                                     
                                 }
                                     
@@ -2413,8 +2375,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     if index <= self.addView.photosCollection.count - 1 {
                                         
                                         visibleImage.setImage(UIImage(data: tempImage!), forState: .Normal)
-                                        //                                    self.addView.photosCollection[assetIndex!].image = UIImage
-                                        //                                    self.addView.photosCollection[assetIndex!].hidden = false
                                         
                                     }
                                     
@@ -2429,19 +2389,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                 self.addHeightToNewActivity(self.addView.photosFinalView.frame.height - self.addView.photosIntialView.frame.height)
                                 self.addView.photosCount.text = "(\(assets.count))"
                                 
-                                if assets.count < 4 {
-                                    
-                                    //                                self.addView.photosCollection[assetIndex!].addSubview(layerAbove)
-                                    //                                self.addView.photosCollection[assetIndex!].userInteractionEnabled = false
-                                    
-                                }
-                                    
-                                else {
-                                    
-                                    //                                self.addView.photosCollection[3].addSubview(layerAbove)
-                                    //                                self.addView.photosCollection[3].userInteractionEnabled = false
-                                    
-                                }
+//                                if assets.count < 4 {
+//                                    
+//                                    //                                self.addView.photosCollection[assetIndex!].addSubview(layerAbove)
+//                                    //                                self.addView.photosCollection[assetIndex!].userInteractionEnabled = false
+//                                    
+//                                }
+//                                    
+//                                else {
+//                                    
+//                                    //                                self.addView.photosCollection[3].addSubview(layerAbove)
+//                                    //                                self.addView.photosCollection[3].userInteractionEnabled = false
+//                                    
+//                                }
                                 
                                 index = index + 1
                                 
@@ -2476,6 +2436,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
 //                    self.addView.horizontalScrollForPhotos.
                     self.uploadMultiplePhotos(assetArray)
+                    self.storePhotos(assetArray)
                     
                     
 //                                        let addButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
@@ -2568,28 +2529,29 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("add new captions")
         
-        if !addView.postButton.hidden {
-            
+//        if !addView.postButton.hidden {
+        
             let captionVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = addView.horizontalScrollForPhotos.subviews
             print("sender image: \(sender.currentImage), \(sender), \(addView.horizontalScrollForPhotos.subviews), \(allImageIds)")
             captionVC.currentImage = sender.currentImage!
             captionVC.currentSender = sender
+            captionVC.imageIds = allrows
             captionVC.allIds = allImageIds
             self.navigationController!.pushViewController(captionVC, animated: true)
             
-        }
-        else {
-            
-            let alert = UIAlertController(title: nil, message:
-                "photos not uploaded yet!", preferredStyle: .Alert)
-            self.presentViewController(alert, animated: false, completion: nil)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:
-                {action in
-                    alert.dismissViewControllerAnimated(true, completion: nil)
-            }))
-            
-        }
+//        }
+//        else {
+//            
+//            let alert = UIAlertController(title: nil, message:
+//                "photos not uploaded yet!", preferredStyle: .Alert)
+//            self.presentViewController(alert, animated: false, completion: nil)
+//            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:
+//                {action in
+//                    self.dismissViewControllerAnimated(false, completion: nil)
+//            }))
+//            
+//        }
         
         
     }
@@ -2600,30 +2562,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func uploadMultiplePhotos(assets: [NSURL]) {
         
-//        tempAssets = assets
         var photosCount = 0
         
-//        for asset in assets {
-//            
-//            dispatch_async(dispatch_get_main_queue(), {
-        
-//        request.nativeUpload(UIImage(data: NSData(contentsOfURL: tempAssets[0])!)!, completion: {(response) in
-//            
-//            if response.error != nil {
-//
-//                print("error: \(response.error!.localizedDescription)")
-//
-//            }
-//            else if response["value"] {
-//                
-//                print("response arrived")
-//            }
-//            else {
-//                
-//                print("response error")
-//            }
-//            
-//        })
                 request.uploadPhotos(tempAssets[0], completion: {(response) in
                         
                         if response.error != nil {
@@ -2633,13 +2573,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         }
                         else if response["value"] {
                             
-//                            if self.tempAssets.count == 0 {
-//                                
-////                                tempAssets.removeFirst()
-//                                print("Done")
-//                                
-//                            }
-//                            else {
                                 self.allImageIds.append(response["data"][0].string!)
                                 self.uploadedphotos.append(["name": response["data"][0].string!, "caption": ""])
                                 print("assets: \(self.tempAssets)")
@@ -2657,64 +2590,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     self.addView.postButton.hidden = false
                                     
                                 }
-//                                else {
-//                                    
-//                                    print("Done")
-//                                }
-                                
-//                            }
-                            
-                              
-//                            if self.tempAssets.count > 1 {
-//                                
-//                                self.tempAssets.removeFirst()
-//                                
-//                            }
-//                            else {
-//                                
-//                                self.tempAssets = []
-//                                
-//                            }
-                            
-                            
-                            
-//
-//                            if tempAssets.count > 0 {
-//                                
-//                                self.uploadMultiplePhotos(tempAssets)
-//                                
-//                            }
-                            
-//                            photosCount += 1
-//                            
-//                            if photosCount > assets.count {
-//                                
-//                                print("asset number: \(assets.indexOf(asset)!)")
-//                                print("out of upload for loop")
-//                                self.addView.postButton.hidden = false
-//                                
-//                            }
-//                            
-//                            if asset == assets.last {
-//                                
-//                                print("asset number: \(asset)")
-//                                print("out of upload for loop")
-//                                self.addView.postButton.hidden = false
-//                                
-//                            }
-//                            
-//                            if tempAssets.count > 2 {
-//                                
-//                                print("inside temp assets \(assets.indexOf(asset)!)")
-//                                tempAssets.removeAtIndex(assets.indexOf(asset)!)
-//                                print("temp assets: \(tempAssets)")
-//                                
-//                            }
-//                            else {
-//                                
-//                                tempAssets = []
-//                                
-//                            }
                             
                             
                         }
@@ -2727,11 +2602,29 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                 })
         
-//            })
-//        
-//        }
+    }
+    
+    var allrows: [String] = []
+    func storePhotos(photoArray: [NSURL]) {
+        
+        allrows = []
+        let postDb = Post()
+        let photos = Photo()
+        let postCount = postDb.getRowCount()
+        
+        for photo in photoArray {
+            
+            print("photos array: \(photo)")
+            let data = NSData(contentsOfURL: photo)
+            photos.setPhotos("\(postCount + 1)", Name: nil, Data: data!, Caption: nil)
+            
+        }
+        
+        allrows = photos.getPhotosOfPost("\(postCount + 1)")
+        print("allrows: \(allrows.count)")
         
     }
+    
     
     func addPhotosAgain(sender: UIButton) {
         

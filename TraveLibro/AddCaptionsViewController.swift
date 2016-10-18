@@ -16,8 +16,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     var currentImage = UIImage()
     var allImages: [UIButton] = []
     var currentSender = UIButton()
-//    var currentId = ""
+    let PhotosDB = Photo()
     var allIds: [String] = []
+    var imageIds: [String] = []
     var allPhotos: [JSON] = []
     
     @IBOutlet var completeImages: [UIImageView]!
@@ -29,11 +30,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func previousImageCaption(sender: AnyObject) {
         
+        addToLocalDB()
+        addNewCaption()
+        
         index = index - 1
         
         if index >= 0 {
             
-            addNewCaption()
             print("previous caption")
             let captionVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
@@ -41,6 +44,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             captionVC.allIds = allIds
             captionVC.currentSender = allImages[index!]
             captionVC.allPhotos = allPhotos
+            captionVC.imageIds = imageIds
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -49,11 +53,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func nextImageCaption(sender: AnyObject) {
         
+        addToLocalDB()
+        addNewCaption()
+        
         index = index + 1
         
         if index < allImages.count {
             
-            addNewCaption()
             print("next caption")
             let captionVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
@@ -61,6 +67,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             captionVC.currentSender = allImages[index]
             captionVC.allPhotos = allPhotos
             captionVC.allIds = allIds
+            captionVC.imageIds = imageIds
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -78,7 +85,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         for subview in allSubviews {
             
             if subview.isKindOfClass(NewTLViewController) {
-                
+                addToLocalDB()
                 addNewCaption()
                 print("done caption")
                 let myView = subview as! NewTLViewController
@@ -189,15 +196,24 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             captionVC.currentSender = allImages[index]
             captionVC.allPhotos = allPhotos
             captionVC.allIds = allIds
+            captionVC.imageIds = imageIds
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
         
     }
     
+    func addToLocalDB() {
+        
+        PhotosDB.insertCaption("\(imageIds[index])", caption: captionTextView.text)
+        
+    }
+    
     func addNewCaption() {
         
         var flag = 0
+        
+//        let imageData = UIImageJPEGRepresentation(currentImage, 0.5)
         
         for photo in allPhotos {
             
