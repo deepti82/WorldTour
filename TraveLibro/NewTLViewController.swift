@@ -105,10 +105,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
 //        if Reachability.isConnectedToNetwork() {
         
+        
+        var darkBlur: UIBlurEffect!
+        var blurView: UIVisualEffectView!
+        
+        let backView = UIView()
+        backView.frame = self.view.frame
+        self.view.addSubview(backView)
+        
+        darkBlur = UIBlurEffect(style: .Dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = backView.frame.height
+        blurView.frame.size.width = backView.frame.width
+        blurView.layer.zPosition = -1
+        blurView.userInteractionEnabled = false
+        backView.addSubview(blurView)
+        
             print("in the add posts function")
             uploadedphotos = []
             newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-            self.view.addSubview(newScroll)
+            backView.addSubview(newScroll)
             
             addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             print("add view: \(addView)")
@@ -162,9 +178,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("height: \(height), \(newScroll.contentSize.height)")
         addView.frame.size.height = addView.frame.height + height
-        addView.blurView.frame.size.height = addView.frame.height
-        addView.darkBlur = UIBlurEffect(style: .Dark)
-        addView.blurView = UIVisualEffectView(effect: addView.darkBlur)
+        //addView.blurView.frame.size.height = addView.frame.height
+        //addView.darkBlur = UIBlurEffect(style: .Dark)
+        //addView.blurView = UIVisualEffectView(effect: addView.darkBlur)
         newScroll.contentSize.height = addView.frame.height
         newScroll.bounces = false
         newScroll.showsVerticalScrollIndicator = false
@@ -198,8 +214,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 200, height: addView.locationHorizontalScroll.frame.height))
             addView.horizontal.addSubview(oneButton)
-            addView.styleHorizontalButton(oneButton, buttonTitle: locationArray[i]["name"].string!)
+            addView.styleHorizontalButton(oneButton, buttonTitle: "\(locationArray[i]["name"].string!)")
             oneButton.layoutIfNeeded()
+            oneButton.resizeToFitSubviews(addView.locationHorizontalScroll.frame.height, finalHeight: addView.locationHorizontalScroll.frame.height)
             oneButton.addTarget(self, action: #selector(NewTLViewController.selectLocation(_:)), forControlEvents: .TouchUpInside)
 //            let stringSize = CGSizeFromString(locationArray[i]["name"].string!)
 //            print("string size: \(stringSize)")

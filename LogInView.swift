@@ -29,7 +29,7 @@ class LogInView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-//        let paddingView = UIView(frame: CGRectMake(0, 0, 15, self.nameField.frame.height))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.nameField.frame.height))
         
 //        logInButton.backgroundColor = mainOrangeColor
         logInButton.layer.cornerRadius = 5
@@ -38,18 +38,17 @@ class LogInView: UIView {
         nameField.borderStyle = .None
         nameField.textColor = UIColor.whiteColor()
         nameField.attributedPlaceholder = NSAttributedString(string: "  Email Id", attributes:attributes)
-//        nameField.leftView = paddingView
-//        nameField.leftViewMode = .Always
+        nameField.leftView = paddingView
+        nameField.leftViewMode = .Always
         
         passwordField.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
         passwordField.borderStyle = .None
         passwordField.textColor = UIColor.whiteColor()
         passwordField.attributedPlaceholder = NSAttributedString(string: "  Password", attributes:attributes)
-//        passwordField.leftView = paddingView
-//        passwordField.leftViewMode = .Always
+        passwordField.leftView = paddingView
+        passwordField.leftViewMode = .Always
         
         for button in socialLoginButtons {
-            
             button.layer.cornerRadius = 5.0
         }
         

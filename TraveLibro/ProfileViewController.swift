@@ -492,6 +492,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ProfileDetailCell
         cell.infoLabel.attributedText = fullText
 //        print("Loading \(cell.infoLabel.attributedText)")
+        
+        if indexPath.row == labels.count - 1 {
+            cell.separatorView.hidden = true
+        }
+        
         return cell
     }
     
@@ -698,5 +703,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 class ProfileDetailCell: UICollectionViewCell {
     
     @IBOutlet weak var infoLabel: UILabel!
+    @IBOutlet weak var separatorView: UIView!
     
 }

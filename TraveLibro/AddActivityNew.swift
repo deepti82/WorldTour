@@ -65,20 +65,11 @@ class AddActivityNew: UIView, UITextViewDelegate {
     
 //    var parent = NewTLViewController()
     
-    var darkBlur: UIBlurEffect!
-    var blurView: UIVisualEffectView!
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        darkBlur = UIBlurEffect(style: .Dark)
-        blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame.size.height = self.frame.height
-        blurView.frame.size.width = self.frame.width
-        blurView.layer.zPosition = -1
-        blurView.userInteractionEnabled = false
-        self.addSubview(blurView)
+        
         
         makeFAButton("fbSquare", button: facebookShare)
         makeFAButton("whatsapp", button: whatsappShare)
