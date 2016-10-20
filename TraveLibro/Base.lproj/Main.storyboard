@@ -8141,8 +8141,8 @@ IHRvZ2V0aGVyLg
                                             <constraint firstAttribute="height" constant="2" id="iFD-Mj-1Py"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ncp-sH-XDe">
-                                        <rect key="frame" x="123" y="226" width="275" height="25"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ncp-sH-XDe">
+                                        <rect key="frame" x="137" y="226" width="246" height="25"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indian_flag_new" translatesAutoresizingMaskIntoConstraints="NO" id="jh1-xQ-JGS">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="25"/>
@@ -8152,31 +8152,43 @@ IHRvZ2V0aGVyLg
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfE-UB-YsI">
-                                                <rect key="frame" x="40" y="0.0" width="35" height="25"/>
+                                                <rect key="frame" x="40" y="0.0" width="27" height="25"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="korean_flag" translatesAutoresizingMaskIntoConstraints="NO" id="Svv-Bk-W63">
-                                                <rect key="frame" x="80" y="0.0" width="35" height="25"/>
+                                                <rect key="frame" x="72" y="0.0" width="35" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="Abb-NH-Xrt"/>
+                                                    <constraint firstAttribute="width" constant="35" id="YY6-Gh-Bd1"/>
+                                                </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Korea" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLo-wm-khZ">
-                                                <rect key="frame" x="120" y="0.0" width="35" height="25"/>
+                                                <rect key="frame" x="112" y="0.0" width="32" height="25"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indian_flag_new" translatesAutoresizingMaskIntoConstraints="NO" id="rAh-O0-z7G">
-                                                <rect key="frame" x="160" y="0.0" width="35" height="25"/>
+                                                <rect key="frame" x="149" y="0.0" width="35" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="35" id="dGG-Hy-Llf"/>
+                                                    <constraint firstAttribute="height" constant="25" id="keU-M2-3Nf"/>
+                                                </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRg-Go-Jk4">
-                                                <rect key="frame" x="200" y="0.0" width="35" height="25"/>
+                                                <rect key="frame" x="189" y="0.0" width="27" height="25"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wE-2r-VYB">
-                                                <rect key="frame" x="240" y="0.0" width="35" height="25"/>
+                                                <rect key="frame" x="221" y="0.0" width="25" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="AsZ-Ns-Dgz"/>
+                                                    <constraint firstAttribute="width" constant="25" id="kVk-fj-ttr"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                 <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -8211,20 +8223,20 @@ IHRvZ2V0aGVyLg
                                     <constraint firstItem="xdk-s8-KmF" firstAttribute="top" secondItem="afw-ya-l2A" secondAttribute="bottom" constant="16" id="5c4-P1-lJf"/>
                                     <constraint firstItem="afw-ya-l2A" firstAttribute="top" secondItem="gKc-g7-gG6" secondAttribute="bottom" id="Bne-TX-eKt"/>
                                     <constraint firstAttribute="height" constant="300" id="Cwl-4u-59G"/>
+                                    <constraint firstItem="OHm-Jx-0oj" firstAttribute="top" secondItem="ncp-sH-XDe" secondAttribute="bottom" constant="8" symbolic="YES" id="Gla-XQ-DPo"/>
                                     <constraint firstItem="quu-m8-KxH" firstAttribute="top" secondItem="ySL-fM-Wy9" secondAttribute="bottom" constant="8" id="L6j-wF-XdT"/>
+                                    <constraint firstItem="ncp-sH-XDe" firstAttribute="top" secondItem="quu-m8-KxH" secondAttribute="bottom" constant="8" symbolic="YES" id="LMH-OI-kDy"/>
                                     <constraint firstItem="quu-m8-KxH" firstAttribute="leading" secondItem="lI7-SC-Nzp" secondAttribute="leading" constant="20" id="Qau-gB-aco"/>
                                     <constraint firstItem="OHm-Jx-0oj" firstAttribute="centerX" secondItem="lI7-SC-Nzp" secondAttribute="centerX" id="VeA-Se-JNG"/>
                                     <constraint firstItem="gKc-g7-gG6" firstAttribute="top" secondItem="lI7-SC-Nzp" secondAttribute="top" constant="-30" id="Vya-AZ-lUQ"/>
                                     <constraint firstAttribute="trailing" secondItem="quu-m8-KxH" secondAttribute="trailing" constant="20" id="Y6T-zr-mm9"/>
-                                    <constraint firstItem="ncp-sH-XDe" firstAttribute="centerX" secondItem="lI7-SC-Nzp" secondAttribute="centerX" id="Y8J-ff-aPj"/>
                                     <constraint firstItem="Ijv-dD-Pxq" firstAttribute="top" secondItem="xdk-s8-KmF" secondAttribute="bottom" constant="8" id="Z3h-h2-ZLD"/>
                                     <constraint firstItem="afw-ya-l2A" firstAttribute="centerX" secondItem="xdk-s8-KmF" secondAttribute="centerX" id="Za5-aZ-CfD"/>
                                     <constraint firstAttribute="trailing" secondItem="Ijv-dD-Pxq" secondAttribute="trailing" constant="20" id="apX-gq-xvw"/>
                                     <constraint firstItem="ySL-fM-Wy9" firstAttribute="centerX" secondItem="lI7-SC-Nzp" secondAttribute="centerX" id="cvO-F6-4xH"/>
                                     <constraint firstItem="gKc-g7-gG6" firstAttribute="centerX" secondItem="afw-ya-l2A" secondAttribute="centerX" id="eBP-13-eE7"/>
-                                    <constraint firstItem="ncp-sH-XDe" firstAttribute="top" secondItem="quu-m8-KxH" secondAttribute="bottom" constant="8" id="gw6-IH-mYm"/>
-                                    <constraint firstItem="OHm-Jx-0oj" firstAttribute="top" secondItem="ncp-sH-XDe" secondAttribute="bottom" constant="8" id="hoC-AR-2mU"/>
                                     <constraint firstItem="afw-ya-l2A" firstAttribute="centerX" secondItem="lI7-SC-Nzp" secondAttribute="centerX" id="i2k-8w-3v5"/>
+                                    <constraint firstItem="ncp-sH-XDe" firstAttribute="centerX" secondItem="lI7-SC-Nzp" secondAttribute="centerX" id="rqy-Rr-14K"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -8241,7 +8253,21 @@ IHRvZ2V0aGVyLg
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="cellView" destination="MFp-q9-aYv" id="dhZ-eD-nDZ"/>
+                        <outlet property="checkInCollectionView" destination="ySL-fM-Wy9" id="eoe-Rs-QH7"/>
+                        <outlet property="countriesVisitedLabel" destination="OHm-Jx-0oj" id="zzu-DG-iaq"/>
+                        <outlet property="dayCount" destination="iGe-AW-yoy" id="p7X-3t-UaW"/>
+                        <outlet property="likesNumber" destination="dzM-bo-OjD" id="JL8-yC-moi"/>
+                        <outlet property="profilePicture" destination="gKc-g7-gG6" id="92c-Ih-oom"/>
+                        <outlet property="remainingCountries" destination="0wE-2r-VYB" id="ObU-au-TwH"/>
+                        <outlet property="startDate" destination="Rsh-60-rHv" id="0Xb-e6-bNa"/>
                         <outlet property="tripSummaryView" destination="lI7-SC-Nzp" id="Vup-TT-1hh"/>
+                        <outlet property="userName" destination="afw-ya-l2A" id="rLM-DF-nro"/>
+                        <outletCollection property="stackCountryNames" destination="xfE-UB-YsI" collectionClass="NSMutableArray" id="xP7-rd-0Rt"/>
+                        <outletCollection property="stackCountryNames" destination="wLo-wm-khZ" collectionClass="NSMutableArray" id="h2x-Xa-dSD"/>
+                        <outletCollection property="stackCountryNames" destination="rRg-Go-Jk4" collectionClass="NSMutableArray" id="Lr8-xS-v2A"/>
+                        <outletCollection property="stackFlags" destination="jh1-xQ-JGS" collectionClass="NSMutableArray" id="ufg-G0-Tem"/>
+                        <outletCollection property="stackFlags" destination="Svv-Bk-W63" collectionClass="NSMutableArray" id="32K-PK-DQG"/>
+                        <outletCollection property="stackFlags" destination="rAh-O0-z7G" collectionClass="NSMutableArray" id="JPy-jF-eIw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="38q-oZ-7ve" userLabel="First Responder" sceneMemberID="firstResponder"/>

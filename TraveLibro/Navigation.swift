@@ -1337,7 +1337,7 @@ class Navigation {
         }
     }
     
-    func editPost(id: String, location: String, categoryLocation: String, thoughts: String, completion: ((JSON) -> Void)) {
+    func editPost(id: String, location:String, categoryLocation: String, thoughts: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1569,6 +1569,31 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func getTripSummaryCount(type: String, journeyId: String, userId: String, completion: ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["type" : type, "_id": journeyId, "user": userId]
+//            print("journey type data: \(params)")
+            let opt = try HTTP.POST(adminUrl + "journey/getCountData", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print("trip summary response: \(json)")
                     completion(json)
                 }
             }

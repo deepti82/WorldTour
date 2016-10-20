@@ -27,8 +27,8 @@ class ShowRating: UIView {
     func showRating(ratingCount: Int) {
         
         print("ratingCount: \(ratingCount)")
-        rating.setImage(UIImage(named: imageArr[ratingCount]), forState: .Normal)
-        ratingLabel.text = "Reviewed " + moodArr[ratingCount]
+//        rating.setImage(UIImage(named: imageArr[ratingCount]), forState: .Normal)
+//        ratingLabel.text = "Reviewed " + moodArr[ratingCount]
         
     }
     

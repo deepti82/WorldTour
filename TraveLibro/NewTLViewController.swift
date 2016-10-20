@@ -367,7 +367,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             var thoughts = ""
             var location = ""
-            let locationCategory = ""
+            var locationCategory = ""
             var photos: [JSON] = []
             var videos: [String] = []
             var buddies: [JSON] = []
@@ -413,6 +413,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 id = journeyId
                 print("id: \(id)")
+                
+            }
+            
+            if addView.categoryLabel.text != "Label" && addView.categoryLabel.text != "" {
+                
+                locationCategory = addView.categoryLabel.text!
                 
             }
             
@@ -715,6 +721,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let summaryVC = storyboard?.instantiateViewControllerWithIdentifier("summaryTLVC") as! CollectionViewController
         self.navigationController?.pushViewController(summaryVC, animated: true)
+        summaryVC.journey = myJourney["_id"].string!
 //        infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.hidden = true
         
@@ -728,7 +735,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         photoVC.whichView = "photo"
         photoVC.journey = myJourney["_id"].string!
         photoVC.creationDate = myJourney["startTime"].string!
-        
 //        infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.hidden = true
         

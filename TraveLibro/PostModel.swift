@@ -125,7 +125,7 @@ public class Photo {
     
     func setPhotos(postId: String, Name: String?, Data: NSData, Caption: String?) {
         
-        dispatch_sync(dispatch_get_main_queue(),{
+//        dispatch_sync(dispatch_get_main_queue(),{
             let count = db.scalar(self.photos.filter(self.data == Data).count)
             if(count == 0) {
                 let photoinsert = self.photos.insert(
@@ -146,7 +146,7 @@ public class Photo {
                 try! db.run(updaterow.update(self.data <- Data))
                 try! db.run(updaterow.update(self.caption <- Caption))
             }
-        })
+//        })
         
     }
     

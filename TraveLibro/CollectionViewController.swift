@@ -10,6 +10,7 @@ import UIKit
 
 class CollectionViewController: UIViewController {
     
+    var journey = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +22,11 @@ class CollectionViewController: UIViewController {
         self.view.addSubview(scroll)
         
         let childVC = storyboard?.instantiateViewControllerWithIdentifier("summarySub") as! SummarySubViewController
+        childVC.journeyId = journey
         self.addChildViewController(childVC)
         childVC.view.frame.size.height = scroll.contentSize.height
         scroll.addSubview(childVC.view)
         
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
