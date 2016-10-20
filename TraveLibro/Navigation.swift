@@ -337,14 +337,20 @@ class Navigation {
         
     }
     
-    func uploadPhotos(file: NSURL, completion: ((JSON) -> Void)) {
+    func uploadPhotos(file: NSURL, localDbId: Int64?, completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["file": Upload(fileUrl: file)]
-            print("inside upload files \(params)")
+            var id = ""
             
-            let opt = try HTTP.POST(adminUrl + "upload", parameters: params)
+            if localDbId != nil {
+                
+                id = "\(localDbId!)"
+            }
+            
+            print("inside upload files")
+            
+            let opt = try HTTP.POST(adminUrl + "upload", parameters: ["localId": id, "file": Upload(fileUrl: file)])
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
@@ -354,7 +360,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+                    print("upload file response: \(json)")
                     completion(json)
                 }
             }

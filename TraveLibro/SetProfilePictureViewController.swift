@@ -268,7 +268,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
         print("local path: \(exportFilePath)")
         
-        request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
+        request.uploadPhotos(NSURL(string: exportFilePath)!, localDbId: nil, completion: {(response) in
             
             dispatch_async(dispatch_get_main_queue(), {
                 

@@ -41,6 +41,7 @@ let request = Navigation()
 let shared = LoadingOverlay()
 
 let user = User()
+let photo = Photo()
 
 let width = UIScreen.mainScreen().bounds.size.width
 let height = UIScreen.mainScreen().bounds.size.height
@@ -135,7 +136,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+        let post = Post()
+        post.drop()
         createMenuView()
         AppDelegate.getDatabase()
         

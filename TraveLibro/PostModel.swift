@@ -32,7 +32,7 @@ public class Post {
         try! db.run(post.create(ifNotExists: true) { t in
             t.column(id, primaryKey: .Autoincrement)
             t.column(userId)
-            t.column(journeyId, unique: true)
+            t.column(journeyId)
             t.column(type)
             t.column(date)
             t.column(location)
@@ -54,7 +54,8 @@ public class Post {
                     self.location <- Location,
                     self.category <- Category,
                     self.country <- Country,
-                    self.city <- City
+                    self.city <- City,
+                    self.hasCompleted <- false
                 )
                 do {
                     try! db.run(photoinsert)
@@ -78,6 +79,23 @@ public class Post {
         return count
     }
     
+    func drop() {
+        try! db.run(post.drop(ifExists: true))
+    }
+    
+    func flushRows(postId: Int64) {
+        
+        let posts = post.filter(id == postId)
+        do {
+            if try! db.run(posts.delete()) > 0 {
+                print("deleted post")
+            } else {
+                print("post not found")
+            }
+        } catch {
+            print("delete failed: \(error)")
+        }
+    }
     
 }
 
@@ -90,6 +108,7 @@ public class Photo {
     public let name = Expression<String?>("photoName")
     public let data = Expression<NSData>("photoData")
     public let caption = Expression<String?>("caption")
+    public let localurl = Expression<String>("localUrl")
     
     init() {
         try! db.run(photos.create(ifNotExists: true) { t in
@@ -128,30 +147,6 @@ public class Photo {
         
     }
     
-    func getPhotos(postId: String) -> [(NSData, Int64)] {
-        
-//        var Name = ""
-//        var Caption = ""
-//        var Data = NSData()
-        var value: [(NSData, Int64)] = []
-        
-        let count = db.scalar(self.photos.filter(self.postid == postId).count)
-        if(count == 0) {
-            print("")
-        } else {
-            for row in try! db.prepare(self.photos.filter(self.postid == postId)) {
-                
-                let Data = row[data]
-                let photoId = row[id]
-                value.append((Data, photoId))
-                
-            }
-        }
-        
-        return value
-        
-    }
-    
     func insertCaption(imageId: String, caption: String) {
         
         let count = db.scalar(self.photos.filter(self.id == Int64(imageId)!).count)
@@ -161,6 +156,18 @@ public class Photo {
             let updaterow = self.photos.filter(self.id == Int64(imageId)!)
             print("update row: \(imageId)")
             try! db.run(updaterow.update(self.caption <- caption))
+        }
+    }
+    
+    func insertName(imageId: String, Name: String) {
+        
+        let count = db.scalar(self.photos.filter(self.id == Int64(imageId)!).count)
+        if(count == 0) {
+            print("no photos with same data found")
+        } else {
+            let updaterow = self.photos.filter(self.id == Int64(imageId)!)
+            print("update row: \(imageId)")
+            try! db.run(updaterow.update(self.name <- Name))
         }
     }
     
@@ -182,6 +189,40 @@ public class Photo {
         
         return value
         
+    }
+    
+    func getPhotoNamesForPost(postId: String) -> [String] {
+        
+        var value: [String] = []
+        
+        let count = db.scalar(self.photos.filter(self.postid == postId).count)
+        if(count == 0) {
+            print("")
+        } else {
+            for row in try! db.prepare(self.photos.filter(self.postid == postId)) {
+                
+                let photoName = String(row[name])
+                value.append(photoName)
+                
+            }
+        }
+        
+        return value
+        
+    }
+    
+    func flushRows(postId: String) {
+        
+        let tempPhotos = photos.filter(postid == postId)
+        do {
+            if try! db.run(tempPhotos.delete()) > 0 {
+                print("deleted alice")
+            } else {
+                print("alice not found")
+            }
+        } catch {
+            print("delete failed: \(error)")
+        }
     }
     
 }
@@ -230,5 +271,49 @@ public class Buddy {
     public let buddyname = Expression<String>("buddyName")
     public let buddydp = Expression<String>("buddyDp")
     public let buddyemail = Expression<String>("buddyEmail")
+    
+    init() {
+        try! db.run(buddy.create(ifNotExists: true) { t in
+            t.column(id, primaryKey: .Autoincrement)
+            t.column(postid)
+            t.column(buddyuserid)
+            t.column(buddyname)
+            t.column(buddydp)
+            t.column(buddyemail)
+        })
+    }
+    
+    func setBuddies(postId: String, userId: String, userName: String, userDp: String, userEmail: String) {
+        
+        dispatch_async(dispatch_get_main_queue(),{
+            let photoinsert = self.buddy.insert(
+                self.buddyuserid <- userId,
+                self.buddyname <- userName,
+                self.postid <- postId,
+                self.buddydp <- userDp,
+                self.buddyemail <- userEmail
+            )
+            do {
+                try! db.run(photoinsert)
+            } catch _ {
+                
+            }
+        })
+        
+    }
+    
+    func flushRows(postId: String) {
+        
+        let buddies = buddy.filter(postid == postId)
+        do {
+            if try! db.run(buddies.delete()) > 0 {
+                print("deleted alice")
+            } else {
+                print("alice not found")
+            }
+        } catch {
+            print("delete failed: \(error)")
+        }
+    }
     
 }

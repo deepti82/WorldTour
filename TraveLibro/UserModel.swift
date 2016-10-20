@@ -128,11 +128,11 @@ public class User {
         try! db.run(deletequery.delete())
     }
 
-    func flush() {
+    func flushRows() {
         try! db.run(user.delete())
     }
 
-    func drop() {
+    func dropTable() {
         try! db.run(user.drop(ifExists: true))
     }
 
