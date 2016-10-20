@@ -406,7 +406,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             newScroll.hidden = true
             
             print("buddies: \(buddies)")
-            post.setPost(currentUser["_id"].string!, JourneyId: myJourney["uniqueId"].string!, Type: "travelLife", Date: currentTime, Location: addView.addLocationButton.titleLabel!.text!, Category: addView.categoryLabel.text!, Country: currentCountry, City: currentCity)
+            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: addView.categoryLabel.text!, Country: currentCountry, City: currentCity, Status: thoughts)
             
             let latestPost = post.getRowCount()
             

@@ -22,6 +22,7 @@ public class Post {
     public let journeyId = Expression<String>("name")
     public let type = Expression<String>("postType")
     public let date = Expression<String>("date")
+    public let thoughts = Expression<String?>("thoughts")
     public let location = Expression<String>("location")
     public let category = Expression<String>("category")
     public let country = Expression<String>("country")
@@ -35,6 +36,7 @@ public class Post {
             t.column(journeyId)
             t.column(type)
             t.column(date)
+            t.column(thoughts)
             t.column(location)
             t.column(category)
             t.column(country)
@@ -43,7 +45,7 @@ public class Post {
         })
     }
     
-    func setPost(UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Country: String, City: String) {
+    func setPost(UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Country: String, City: String, Status: String) {
         
         dispatch_async(dispatch_get_main_queue(),{
                 let photoinsert = self.post.insert(
@@ -55,6 +57,7 @@ public class Post {
                     self.category <- Category,
                     self.country <- Country,
                     self.city <- City,
+                    self.thoughts <- Status,
                     self.hasCompleted <- false
                 )
                 do {
@@ -122,7 +125,7 @@ public class Photo {
     
     func setPhotos(postId: String, Name: String?, Data: NSData, Caption: String?) {
         
-        dispatch_async(dispatch_get_main_queue(),{
+        dispatch_sync(dispatch_get_main_queue(),{
             let count = db.scalar(self.photos.filter(self.data == Data).count)
             if(count == 0) {
                 let photoinsert = self.photos.insert(
@@ -223,6 +226,10 @@ public class Photo {
         } catch {
             print("delete failed: \(error)")
         }
+    }
+    
+    func drop() {
+        try! db.run(photos.drop(ifExists: true))
     }
     
 }

@@ -138,6 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let post = Post()
         post.drop()
+        photo.drop()
         createMenuView()
         AppDelegate.getDatabase()
         
