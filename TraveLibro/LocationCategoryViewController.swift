@@ -19,25 +19,25 @@ class LocationCategoryViewController: UIViewController, UICollectionViewDelegate
 
         // Do any additional setup after loading the view.
         getDarkBackGround(self)
-        collectionView.backgroundColor = UIColor.clearColor()
+        collectionView.backgroundColor = UIColor.clear
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return labels.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! LCCollectionViewCell
-        cell.theLabel.text = labels[indexPath.item]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! LCCollectionViewCell
+        cell.theLabel.text = labels[(indexPath as NSIndexPath).item]
         
         let myImage = UIImageView(frame: CGRect(x: -20, y: 0, width: 40, height: 40))
-        myImage.image = UIImage(named: images[indexPath.item])
-        myImage.contentMode = .ScaleAspectFit
+        myImage.image = UIImage(named: images[(indexPath as NSIndexPath).item])
+        myImage.contentMode = .scaleAspectFit
         cell.theButton.titleLabel?.addSubview(myImage)
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
     

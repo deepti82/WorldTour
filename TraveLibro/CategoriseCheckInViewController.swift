@@ -13,7 +13,7 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
     let categories = ["Beaches", "Cinema & Theatre", "Restaurants", "Pubs & Bars", "Nature & Parks", "Sights & Landmarks", "Museums & Galleries", "Religious", "Shopping","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants","Beaches", "Cinema & Theatre", "Restaurants", "Restaurants"]
     let categoryImages = ["beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin", "beach_checkin", "cinema_checkin", "landmarks_checkin", "nature_checkin", "pubs_checkin", "restaurant_checkin"]
     
-    var previousItem: NSIndexPath!
+    var previousItem: IndexPath!
     var whichView = "LL"
     
     
@@ -25,14 +25,14 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
 //       setCheckInNavigationBarItem(addCheckIn)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "close_fa"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 8, 20, 20)
+        leftButton.setImage(UIImage(named: "close_fa"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 8, width: 20, height: 20)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(self.nextCheckIn(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(self.nextCheckIn(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -45,9 +45,9 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
        
     }
     
-    func nextCheckIn(sender: UIButton) {
+    func nextCheckIn(_ sender: UIButton) {
         
-        let addCheckIn = storyboard?.instantiateViewControllerWithIdentifier("addCheckIn") as! AddCheckInViewController
+        let addCheckIn = storyboard?.instantiateViewController(withIdentifier: "addCheckIn") as! AddCheckInViewController
         addCheckIn.whichView = self.whichView
         self.navigationController?.pushViewController(addCheckIn, animated: true)
         
@@ -58,36 +58,36 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
         // Dispose of any resources that can be recreated.
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return categories.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if indexPath.item == 0 {
+        if (indexPath as NSIndexPath).item == 0 {
             
             previousItem = indexPath
             
         }
         
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! CheckInCategoryCollectionViewCell
-        cell.categoryLabel.text = categories[indexPath.row]
-        cell.categoryIcon.setImage(UIImage(named: categoryImages[indexPath.row]), forState: .Normal)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! CheckInCategoryCollectionViewCell
+        cell.categoryLabel.text = categories[(indexPath as NSIndexPath).row]
+        cell.categoryIcon.setImage(UIImage(named: categoryImages[(indexPath as NSIndexPath).row]), for: UIControlState())
         return cell
         
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
 //        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! CheckInCategoryCollectionViewCell
         
-        let deselectedCell = collectionView.cellForItemAtIndexPath(previousItem) as! CheckInCategoryCollectionViewCell
-        deselectedCell.categoryIcon.setBackgroundImage(UIImage(named: "checkinbgwhite"), forState: .Normal)
+        let deselectedCell = collectionView.cellForItem(at: previousItem) as! CheckInCategoryCollectionViewCell
+        deselectedCell.categoryIcon.setBackgroundImage(UIImage(named: "checkinbgwhite"), for: UIControlState())
         
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CheckInCategoryCollectionViewCell
-        cell.categoryIcon.setBackgroundImage(UIImage(named: "checkinbggreen"), forState: .Normal)
+        let cell = collectionView.cellForItem(at: indexPath) as! CheckInCategoryCollectionViewCell
+        cell.categoryIcon.setBackgroundImage(UIImage(named: "checkinbggreen"), for: UIControlState())
         previousItem = indexPath
         
 //        let addCheckInVC = storyboard?.instantiateViewControllerWithIdentifier("addCheckIn") as! AddCheckInViewController

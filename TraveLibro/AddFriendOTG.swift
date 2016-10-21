@@ -18,8 +18,8 @@ class AddFriendOTG: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        addFriendButton.setImage(UIImage(named: "add_friend_icon"), forState: .Normal)
-        addFriendButton.tintColor = UIColor.whiteColor()
+        addFriendButton.setImage(UIImage(named: "add_friend_icon"), for: UIControlState())
+        addFriendButton.tintColor = UIColor.white
         addFriendButton.backgroundColor = UIColor(red: 17/255, green: 211/255, blue: 204/255, alpha: 1)
         addFriendButton.layer.cornerRadius = 15
         addFriendButton.layer.zPosition = 11
@@ -38,11 +38,11 @@ class AddFriendOTG: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "AddFriendOTG", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

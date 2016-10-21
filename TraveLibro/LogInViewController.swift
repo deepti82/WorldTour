@@ -14,12 +14,12 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         
         getDarkBackGroundBlur(self)
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
 //        let rightButton = UIButton()
 //        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
@@ -29,36 +29,36 @@ class LogInViewController: UIViewController {
         self.customNavigationBar(leftButton, right: nil)
         
         let logIn = LogInView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 400))
-        logIn.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        logIn.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
         self.view.addSubview(logIn)
         
-        logIn.fbButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), forControlEvents: .TouchUpInside)
-        logIn.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), forControlEvents: .TouchUpInside)
-        logIn.twitterButton.addTarget(self, action: #selector(SignInPageViewController.twitterSignUp(_:)), forControlEvents: .TouchUpInside)
-        logIn.igButton.addTarget(self, action: #selector(SignInPageViewController.igSignUp(_:)), forControlEvents: .TouchUpInside)
+        logIn.fbButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), for: .touchUpInside)
+        logIn.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), for: .touchUpInside)
+        logIn.twitterButton.addTarget(self, action: #selector(SignInPageViewController.twitterSignUp(_:)), for: .touchUpInside)
+        logIn.igButton.addTarget(self, action: #selector(SignInPageViewController.igSignUp(_:)), for: .touchUpInside)
         
         
     }
     
-    func facebookSignUp(sender: AnyObject) {
+    func facebookSignUp(_ sender: AnyObject) {
         
         social.facebookLogin()
         
     }
     
-    func googleSignUp(sender: AnyObject) {
+    func googleSignUp(_ sender: AnyObject) {
         
         social.googleLogin()
         
     }
     
-    func twitterSignUp(sender: AnyObject) {
+    func twitterSignUp(_ sender: AnyObject) {
         
         social.twitterLogin()
         
     }
     
-    func igSignUp(sender: AnyObject) {
+    func igSignUp(_ sender: AnyObject) {
         
         //        social.googleLogin()
         

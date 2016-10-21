@@ -41,14 +41,14 @@ extension UIViewController {
     
     func setNavigationBarItem() {
         
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : avenirFont!]
         
 //        self.navigationController?.navigationBar.translucent = false
         self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
 //        self.navigationController?.navigationBar.translucent = false
         
         //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
@@ -69,15 +69,15 @@ extension UIViewController {
 //        self.navigationController?.view.addSubview(imageView)
     }
     
-    func setNavigationBarItemText(text:String) {
+    func setNavigationBarItemText(_ text:String) {
         
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : avenirFont!]
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.isTranslucent = true
         self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
-        self.navigationController?.navigationBar.barStyle = .Black
+        self.navigationController?.navigationBar.barStyle = .black
 //        self.navigationController?.navigationBar.translucent = false
         
         //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
@@ -99,7 +99,7 @@ extension UIViewController {
         
     }
     
-    func setCheckInNavigationBarItem (viewController: UIViewController) {
+    func setCheckInNavigationBarItem (_ viewController: UIViewController) {
         
         removeNavigationBarItem()
         
@@ -115,24 +115,24 @@ extension UIViewController {
         let nextImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         nextImage.image = UIImage(named: "arrow_next_fa")
         
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
         
-        let leftButton = UIBarButtonItem(image: closeImage.image, style: .Plain, target: self, action: #selector(UIViewController.closeController(_:)))
+        let leftButton = UIBarButtonItem(image: closeImage.image, style: .plain, target: self, action: #selector(UIViewController.closeController(_:)))
         leftButton.imageInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         
-        let rightButton = UIBarButtonItem(image: nextImage.image, style: .Plain, target: self, action: #selector(UIViewController.nextController(_:)))
+        let rightButton = UIBarButtonItem(image: nextImage.image, style: .plain, target: self, action: #selector(UIViewController.nextController(_:)))
         rightButton.imageInsets = UIEdgeInsets(top: 15, left: 10, bottom: 5, right: 10)
         
-        self.navigationItem.setLeftBarButtonItem(leftButton, animated: true)
-        self.navigationItem.setRightBarButtonItem(rightButton, animated: true)
+        self.navigationItem.setLeftBarButton(leftButton, animated: true)
+        self.navigationItem.setRightBarButton(rightButton, animated: true)
         
     }
     
-    func setCheckInMainNavigationBarItem (viewController: UIViewController) {
+    func setCheckInMainNavigationBarItem (_ viewController: UIViewController) {
         
         removeNavigationBarItem()
         
@@ -141,16 +141,16 @@ extension UIViewController {
         
         checkInMainVC = viewController
         
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        self.navigationController?.navigationBar.barStyle = .BlackTranslucent
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
 //        self.navigationController?.navigationBar.translucent = false
         
-        let rightButton = UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.nextController(_:)))
+        let rightButton = UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .plain, target: self, action: #selector(UIViewController.nextController(_:)))
         rightButton.imageInsets = UIEdgeInsets(top: 15, left: 10, bottom: 5, right: 10)
-        self.navigationItem.setRightBarButtonItem(rightButton, animated: true)
+        self.navigationItem.setRightBarButton(rightButton, animated: true)
         
     }
     
@@ -161,9 +161,9 @@ extension UIViewController {
             print("inside blur view")
             // Add blur view
             let bounds = self.navigationController?.navigationBar.bounds as CGRect!
-            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
-            visualEffectView.frame = bounds
-            visualEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light)) as UIVisualEffectView
+            visualEffectView.frame = bounds!
+            visualEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             self.navigationController?.navigationBar.addSubview(visualEffectView)
             flag = 1
             
@@ -172,9 +172,9 @@ extension UIViewController {
         }
     }
     
-    func customNavigationBar(left: UIButton?, right: UIButton?) {
+    func customNavigationBar(_ left: UIButton?, right: UIButton?) {
         
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
 //        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
 //        self.navigationController?.view.backgroundColor = UIColor.clearColor()
@@ -183,7 +183,7 @@ extension UIViewController {
 //            UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
         
 //        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.barStyle = .Black
+        self.navigationController?.navigationBar.barStyle = .black
 //        self.navigationController?.navigationBar.translucent = false
         
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
@@ -215,16 +215,16 @@ extension UIViewController {
         
     }
     
-    func setOnlyRightNavigationButton(button: UIButton) {
+    func setOnlyRightNavigationButton(_ button: UIButton) {
         
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
         
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.isTranslucent = true
         self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
-        self.navigationController?.navigationBar.barStyle = .Black
+        self.navigationController?.navigationBar.barStyle = .black
 //        self.navigationController?.navigationBar.translucent = false
         
         let rightBarButton = UIBarButtonItem()
@@ -239,16 +239,16 @@ extension UIViewController {
         
     }
     
-    func setOnlyLeftNavigationButton(button: UIButton) {
+    func setOnlyLeftNavigationButton(_ button: UIButton) {
         
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
         
 //        self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
-        self.navigationController?.navigationBar.barStyle = .Black
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.isTranslucent = true
 //        self.navigationController?.navigationBar.translucent = false
         
         let leftBarButton = UIBarButtonItem()
@@ -263,7 +263,7 @@ extension UIViewController {
         
     }
     
-    func closeController(sender: UIBarButtonItem) -> () {
+    func closeController(_ sender: UIBarButtonItem) -> () {
         
         print("close controller called")
         
@@ -276,32 +276,32 @@ extension UIViewController {
         
     }
     
-    func nextController(sender: UIBarButtonItem) -> () {
+    func nextController(_ sender: UIBarButtonItem) -> () {
         
         print("next view controller called")
         self.navigationController?.pushViewController(checkInMainVC, animated: true)
         
     }
     
-    func setForwardController(sender: AnyObject?) {
+    func setForwardController(_ sender: AnyObject?) {
         
         self.navigationController?.pushViewController(nextVC, animated: true)
         
     }
     
-    func setBackwardController(sender: AnyObject?) {
+    func setBackwardController(_ sender: AnyObject?) {
         
         self.navigationController?.pushViewController(previousVC, animated: true)
         
     }
     
-    func popVC(sender: UIButton) {
+    func popVC(_ sender: UIButton) {
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
         
     }
     
-    func setFooterTabBar(vc: UIViewController) {
+    func setFooterTabBar(_ vc: UIViewController) {
         
         let footer = getFooter(frame: CGRect(x: 0, y: vc.view.frame.height - 45, width: vc.view.frame.width, height: 45))
         vc.view.addSubview(footer)

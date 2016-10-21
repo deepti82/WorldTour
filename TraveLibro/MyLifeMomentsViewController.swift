@@ -53,7 +53,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         // Dispose of any resources that can be recreated.
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         if whichView == "All" {
             return titleLabels.count
@@ -62,7 +62,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         switch whichView {
         case "All":
@@ -80,111 +80,111 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         return 2
     }
     
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                               sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+                               sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
         
         switch whichView {
         case "All":
-            return CGSizeMake(30, 30)
+            return CGSize(width: 30, height: 30)
         case "Monthly", "SelectCover":
-            return CGSizeMake(115, 115)
+            return CGSize(width: 115, height: 115)
         case "Local Life", "Travel Life":
-            return CGSizeMake(165, 204)
+            return CGSize(width: 165, height: 204)
         default:
             break
         }
         
-        return CGSizeMake(150, 75)
+        return CGSize(width: 150, height: 75)
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch whichView {
         case "All":
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell", forIndexPath: indexPath) as! photosCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell
             return cell
         case "Monthly", "SelectCover":
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MomentsLargeImageCell", forIndexPath: indexPath) as! photosTwoCollectionViewCell
-            dispatch_async(dispatch_get_main_queue(), {
-                cell.photoBig.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(self.images[indexPath.item])")!)!)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
+            DispatchQueue.main.async(execute: {
+                cell.photoBig.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])")!))
             })
             return cell
         case "Local Life":
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("localLifeMomentsCell", forIndexPath: indexPath) as! LocalLifeMomentsCollectionViewCell
-            cell.bgImage.transform = CGAffineTransformMakeRotation(0.0349066)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localLifeMomentsCell", for: indexPath) as! LocalLifeMomentsCollectionViewCell
+            cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
             cell.bgImage.layer.cornerRadius = 5
             cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
             cell.coverImage.clipsToBounds = true
             return cell
         case "Travel Life":
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("travelLifeMomentsCell", forIndexPath: indexPath) as! TravelLifeMomentsCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "travelLifeMomentsCell", for: indexPath) as! TravelLifeMomentsCollectionViewCell
             cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
             cell.coverImage.clipsToBounds = true
-            cell.bgImage.layer.borderColor = UIColor.whiteColor().CGColor
+            cell.bgImage.layer.borderColor = UIColor.white.cgColor
             cell.bgImage.layer.borderWidth = 5.0
             cell.bgImage.layer.cornerRadius = 5
             cell.bgImage.layer.shadowOffset = CGSize(width: 10, height: 10)
-            cell.bgImage.layer.shadowColor = UIColor.blackColor().CGColor
+            cell.bgImage.layer.shadowColor = UIColor.black.cgColor
             cell.bgImage.layer.shadowRadius = 10
-            cell.bgImage.transform = CGAffineTransformMakeRotation(0.0349066)
+            cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
             cell.bgImage.clipsToBounds = true
             return cell
         default:
             break
         }
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("reviewsCell", forIndexPath: indexPath) as! reviewsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
         if whichView == "Reviews LL" {
             cell.bgImage.image = UIImage(named: "reviewsLocalLifeAlbum")
-            cell.placeName.text = reviewsTL[indexPath.row]
+            cell.placeName.text = reviewsTL[(indexPath as NSIndexPath).row]
             
         }
         else {
             cell.bgImage.image = UIImage(named: "reviewsTLAlbum")
-            cell.placeName.text = reviewsLL[indexPath.row]
+            cell.placeName.text = reviewsLL[(indexPath as NSIndexPath).row]
         }
         cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
         cell.foregroundImage.clipsToBounds = true
-        cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).CGColor
+        cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).cgColor
         cell.foregroundImage.layer.borderWidth = 3.0
         return cell
         
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         if whichView == "All" {
             
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "headerCell", forIndexPath: indexPath) as! TitleHeaderView
-            let array = titleLabels[indexPath.section].componentsSeparatedByString(", ")
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
+            let array = titleLabels[(indexPath as NSIndexPath).section].components(separatedBy: ", ")
             print(array)
             let headerLabel = NSMutableAttributedString(string: "")
             let month = NSAttributedString(string: array[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
             let count = NSAttributedString(string: " \(array[1])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])
-            headerLabel.appendAttributedString(month)
-            headerLabel.appendAttributedString(count)
+            headerLabel.append(month)
+            headerLabel.append(count)
             header.titleLabel.attributedText = headerLabel
             return header
             
         }
         else if whichView == "Monthly"{
             
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "headerCell", forIndexPath: indexPath) as! TitleHeaderView
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
             header.titleLabel.text = Month
             return header
             
         }
         
-        let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "headerCell", forIndexPath: indexPath) as! TitleHeaderView
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
         header.titleLabel.text = ""
         return header
         
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if whichView == "Local Life" || whichView == "Travel Life" || whichView == "All" {
             whichView = "Monthly"
@@ -194,13 +194,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         else if whichView == "SelectCover" {
             
             print("inside select cover")
-            selectImage(indexPath.item)
+            selectImage((indexPath as NSIndexPath).item)
             
         }
         
         else if whichView == "Reviews TL" || whichView == "Reviews LL" {
             
-            let myLifeVC = self.parentViewController as! MyLifeViewController
+            let myLifeVC = self.parent as! MyLifeViewController
             myLifeVC.whatTab = "Reviews"
             myLifeVC.collectionContainer.alpha = 0
             myLifeVC.tableContainer.alpha = 1
@@ -214,13 +214,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
     }
     
-    func selectImage(index: Int) {
+    func selectImage(_ index: Int) {
         
         print("inside select image")
         let allvcs = self.navigationController!.viewControllers
         for vc in allvcs {
             
-            if vc.isKindOfClass(EndJourneyViewController) {
+            if vc.isKind(of: EndJourneyViewController.self) {
                 
                 let endvc = vc as! EndJourneyViewController
                 endvc.coverImage = images[index] as! String

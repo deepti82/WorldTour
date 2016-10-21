@@ -35,29 +35,29 @@ class ProfileImage: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "ProfileImage", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
     
-    func maskImage(image:UIImage, mask:(UIImage))->UIImage{
+    func maskImage(_ image:UIImage, mask:(UIImage))->UIImage{
         
-        let imageReference = image.CGImage
-        let maskReference = mask.CGImage
+        let imageReference = image.cgImage
+        let maskReference = mask.cgImage
         
-        let imageMask = CGImageMaskCreate(CGImageGetWidth(maskReference),
-                                          CGImageGetHeight(maskReference),
-                                          CGImageGetBitsPerComponent(maskReference),
-                                          CGImageGetBitsPerPixel(maskReference),
-                                          CGImageGetBytesPerRow(maskReference),
-                                          CGImageGetDataProvider(maskReference), nil, true)
+        let imageMask = CGImage(maskWidth: (maskReference?.width)!,
+                                          height: (maskReference?.height)!,
+                                          bitsPerComponent: (maskReference?.bitsPerComponent)!,
+                                          bitsPerPixel: (maskReference?.bitsPerPixel)!,
+                                          bytesPerRow: (maskReference?.bytesPerRow)!,
+                                          provider: (maskReference?.dataProvider!)!, decode: nil, shouldInterpolate: true)
         
-        let maskedReference = CGImageCreateWithMask(imageReference, imageMask)
+        let maskedReference = imageReference?.masking(imageMask!)
         
-        let maskedImage = UIImage(CGImage:maskedReference!)
+        let maskedImage = UIImage(cgImage:maskedReference!)
         
         return maskedImage
     }

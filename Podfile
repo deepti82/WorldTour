@@ -1,37 +1,18 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
+use_frameworks!
 
 target 'TraveLibro' do
-  # Comment this line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-  pod "BSImagePicker", "~> 2.3"
-  pod "DKChainableAnimationKit", "~> 1.6.1"
-#  pod 'XLPagerTabStrip', '~> 5.0'
+  pod "BSImagePicker", "~> 2.4"
+  pod "DKChainableAnimationKit", :git=> 'https://github.com/Draveness/DKChainableAnimationKit.git', :branch => ‘master’
   pod 'PageMenu'
-#  pod 'Pager'
-  pod "TabPageViewController"
-  pod 'SwiftHTTP', '~> 1.0.3'
+  pod "TabPageViewController”, :git=> 'https://github.com/EndouMari/TabPageViewController.git', :branch => ‘swift_3’
+  pod 'SwiftHTTP', :git=> 'https://github.com/daltoniam/SwiftHTTP.git', :branch => ‘master’
   pod 'Simplicity'
   pod 'Fabric'
   pod 'SwiftyJSON'
   pod 'TwitterKit'
   pod 'TwitterCore'
-#  pod 'SQLite.swift', '~> 0.10.1'
-  pod 'SQLite.swift'
-  pod 'ActiveLabel'
-#  pod 'DKImagePickerController'
-  pod 'Alamofire', '~> 3.4'	
-#    pod 'SQLite.swift', '~> 0.9.2'
-  # Pods for TraveLibro
-
-  target 'TraveLibroTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'TraveLibroUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
+  pod 'SQLite.swift', '~> 0.11.0'
+  pod 'ActiveLabel', :git=> 'https://github.com/optonaut/ActiveLabel.swift.git', :branch => ‘master’
+  pod 'Alamofire', '~> 4.0'
 end

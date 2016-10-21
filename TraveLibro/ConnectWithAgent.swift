@@ -22,25 +22,25 @@ class ConnectWithAgent: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        let paddingView = UIView(frame: CGRectMake(0, 0, 15, self.nameTextField.frame.height))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.nameTextField.frame.height))
         
         nameTextField.leftView = paddingView
-        nameTextField.leftViewMode = .Always
+        nameTextField.leftViewMode = .always
         
         emailTextField.leftView = paddingView
-        emailTextField.leftViewMode = .Always
+        emailTextField.leftViewMode = .always
         
         contactTextField.leftView = paddingView
-        contactTextField.leftViewMode = .Always
+        contactTextField.leftViewMode = .always
         
         countryTextField.leftView = paddingView
-        countryTextField.leftViewMode = .Always
+        countryTextField.leftViewMode = .always
         
         cityTextField.leftView = paddingView
-        cityTextField.leftViewMode = .Always
+        cityTextField.leftViewMode = .always
         
         specializingTextField.leftView = paddingView
-        specializingTextField.leftViewMode = .Always
+        specializingTextField.leftViewMode = .always
         
         
         
@@ -51,11 +51,11 @@ class ConnectWithAgent: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "ConnectWithAgent", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 
@@ -66,15 +66,15 @@ class PaddedTextField: UITextField {
     
     let padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5);
     
-    override func textRectForBounds(bounds: CGRect) -> CGRect {
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
     
-    override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
     
-    override func editingRectForBounds(bounds: CGRect) -> CGRect {
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
 }

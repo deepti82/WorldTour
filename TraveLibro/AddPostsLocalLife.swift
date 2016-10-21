@@ -20,27 +20,27 @@ class AddPostsLocalLife: UIView {
         loadViewFromNib ()
         
         let photo = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        photo.center = CGPointMake((photoButton.titleLabel?.frame.width)!/2 + 5, (photoButton.titleLabel?.frame.height)!/2 + 7.5)
+        photo.center = CGPoint(x: (photoButton.titleLabel?.frame.width)!/2 + 5, y: (photoButton.titleLabel?.frame.height)!/2 + 7.5)
         photo.image = UIImage(named: "camera_icon")
-        photo.contentMode = .ScaleAspectFit
+        photo.contentMode = .scaleAspectFit
         photoButton.titleLabel?.addSubview(photo)
         
         let video = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        video.center = CGPointMake((videoButton.titleLabel?.frame.width)!/2 + 5, (videoButton.titleLabel?.frame.height)!/2 + 7.5)
+        video.center = CGPoint(x: (videoButton.titleLabel?.frame.width)!/2 + 5, y: (videoButton.titleLabel?.frame.height)!/2 + 7.5)
         video.image = UIImage(named: "video_icon")
-        video.contentMode = .ScaleAspectFit
+        video.contentMode = .scaleAspectFit
         videoButton.titleLabel?.addSubview(video)
         
         let checkIn = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        checkIn.center = CGPointMake((checkInButton.titleLabel?.frame.width)!/2 + 5, (checkInButton.titleLabel?.frame.height)!/2 + 7.5)
+        checkIn.center = CGPoint(x: (checkInButton.titleLabel?.frame.width)!/2 + 5, y: (checkInButton.titleLabel?.frame.height)!/2 + 7.5)
         checkIn.image = UIImage(named: "location_icon")
-        checkIn.contentMode = .ScaleAspectFit
+        checkIn.contentMode = .scaleAspectFit
         checkInButton.titleLabel?.addSubview(checkIn)
         
         let thoughts = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        thoughts.center = CGPointMake((thoughtsButton.titleLabel?.frame.width)!/2 + 5, (thoughtsButton.titleLabel?.frame.height)!/2 + 7.5)
+        thoughts.center = CGPoint(x: (thoughtsButton.titleLabel?.frame.width)!/2 + 5, y: (thoughtsButton.titleLabel?.frame.height)!/2 + 7.5)
         thoughts.image = UIImage(named: "pen_icon")
-        thoughts.contentMode = .ScaleAspectFit
+        thoughts.contentMode = .scaleAspectFit
         thoughtsButton.titleLabel?.addSubview(thoughts)
         
         
@@ -51,11 +51,11 @@ class AddPostsLocalLife: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "AddPostsLocalLife", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         
     }

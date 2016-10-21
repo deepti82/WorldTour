@@ -25,11 +25,11 @@ class EndJourneyViewController: UIViewController {
     var journeyImages: [String] = []
     var journey: JSON!
     
-    @IBAction func changePicture(sender: AnyObject) {
+    @IBAction func changePicture(_ sender: AnyObject) {
         
         if journeyImages.count > 0 {
             
-            let selectImage = storyboard?.instantiateViewControllerWithIdentifier("multipleCollectionVC") as! MyLifeMomentsViewController
+            let selectImage = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
             selectImage.whichView = "SelectCover"
             selectImage.images = journeyImages
             self.navigationController?.pushViewController(selectImage, animated: true)
@@ -46,15 +46,15 @@ class EndJourneyViewController: UIViewController {
         super.viewDidLoad()
 
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(-10, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setTitle("Done", forState: .Normal)
+        rightButton.setTitle("Done", for: UIControlState())
         rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
-        rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(10, 0, 70, 30)
+        rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 10, y: 0, width: 70, height: 30)
         self.customNavigationBar(leftButton, right: rightButton)
         
 //        calendarIcon.text = String(format: "%C", args: faicon["calendar"])
@@ -62,7 +62,7 @@ class EndJourneyViewController: UIViewController {
         
         getAllImages()
         
-        userDp.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!)!)
+        userDp.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
         makeTLProfilePicture(userDp)
         endJourneyTitle.text = "\(currentUser["name"]) has ended the \(journey["name"]) Journey"
         
@@ -71,33 +71,33 @@ class EndJourneyViewController: UIViewController {
         
         if buddies.count >= 3 {
             
-            buddiesImages[0].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)!)
+            buddiesImages[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!))
             makeTLProfilePicture(buddiesImages[0])
-            buddiesImages[1].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)!)
+            buddiesImages[1].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!))
             makeTLProfilePicture(buddiesImages[1])
             buddyCount.text = "+\(buddies.count - 2)"
             
         }
         else if buddies.count == 2 {
             
-            buddiesImages[0].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)!)
+            buddiesImages[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!))
             makeTLProfilePicture(buddiesImages[0])
-            buddiesImages[1].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)!)
+            buddiesImages[1].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!))
             makeTLProfilePicture(buddiesImages[1])
-            buddyCount.hidden = true
+            buddyCount.isHidden = true
             
         }
         else if buddies.count == 1 {
             
-            buddiesImages[0].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)!)
+            buddiesImages[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!))
             makeTLProfilePicture(buddiesImages[0])
-            buddiesImages[1].hidden = true
-            buddyCount.hidden = true
+            buddiesImages[1].isHidden = true
+            buddyCount.isHidden = true
             
         }
         else {
             
-            buddyStack.hidden = true
+            buddyStack.isHidden = true
             
         }
         
@@ -112,19 +112,19 @@ class EndJourneyViewController: UIViewController {
             
             categoryImages[0].image = UIImage(named: "\(categories[0])")
             categoryImages[1].image = UIImage(named: "\(categories[1])")
-            categoryImages[2].hidden = true
+            categoryImages[2].isHidden = true
             
         }
         else if journey["kindOfJourney"].array!.count == 1 {
             
             categoryImages[0].image = UIImage(named: "\(categories[0])")
-            categoryImages[1].hidden = true
-            categoryImages[2].hidden = true
+            categoryImages[1].isHidden = true
+            categoryImages[2].isHidden = true
             
         }
         else {
             
-            categoryStack.hidden = true
+            categoryStack.isHidden = true
             
         }
         
@@ -178,21 +178,21 @@ class EndJourneyViewController: UIViewController {
         
     }
     
-    func makeCoverPicture (image: String) {
+    func makeCoverPicture (_ image: String) {
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             
-            self.journeyCoverPic.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(image)")!)!)
+            self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
             
         })
         
     }
     
-    func doneEndJourney(sender: UIButton) {
+    func doneEndJourney(_ sender: UIButton) {
         
         request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -223,7 +223,7 @@ class EndJourneyViewController: UIViewController {
         let allvcs = self.navigationController!.viewControllers
         for vc in allvcs {
             
-            if vc.isKindOfClass(ProfileViewController) {
+            if vc.isKind(of: ProfileViewController.self) {
                 
                 self.navigationController!.popToViewController(vc, animated: true)
                 

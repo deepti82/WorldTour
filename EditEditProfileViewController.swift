@@ -20,26 +20,26 @@ class EditEditProfileViewController: UIViewController {
         if whichView == 6 {
          
             let locationView = SearchLocation(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200))
-            locationView.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
-            locationView.locationTextField.borderStyle = .None
-            locationView.locationTextField.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+            locationView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+            locationView.locationTextField.borderStyle = .none
+            locationView.locationTextField.backgroundColor = UIColor.black.withAlphaComponent(0.4)
             self.view.addSubview(locationView)
         }
         
         else if whichView == 1 {
             
             let DOBView = EditDOB(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
-            DOBView.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
-            DOBView.saveButton.addTarget(self, action: #selector(EditEditProfileViewController.editDate(_:)), forControlEvents: .TouchUpInside)
+            DOBView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+            DOBView.saveButton.addTarget(self, action: #selector(EditEditProfileViewController.editDate(_:)), for: .touchUpInside)
             self.view.addSubview(DOBView)
         }
         
         else if whichView == 7 {
             
             let genderView = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 280))
-            genderView.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
-            genderView.heButton.tintColor = UIColor.lightGrayColor()
-            genderView.sheButton.tintColor = UIColor.lightGrayColor()
+            genderView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+            genderView.heButton.tintColor = UIColor.lightGray
+            genderView.sheButton.tintColor = UIColor.lightGray
             self.view.addSubview(genderView)
         }
     }
@@ -49,9 +49,9 @@ class EditEditProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func editDate(sender: UIButton) {
+    func editDate(_ sender: UIButton) {
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
         
         
     }

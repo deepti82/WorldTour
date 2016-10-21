@@ -21,8 +21,8 @@ class CheckInViewController: UIViewController {
         getBackGround(self)
         
         //Get Footer
-        let footer = getFooter(frame: CGRectMake(0, 0, self.view.frame.size.width, 45))
-        footer.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height - 22.5)
+        let footer = getFooter(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 45))
+        footer.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 22.5)
         footer.layer.zPosition = 100
         self.view.addSubview(footer)
         

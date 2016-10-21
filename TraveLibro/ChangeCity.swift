@@ -26,16 +26,16 @@ class ChangeCity: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "ChangeCity", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
         
         cityButton.layer.cornerRadius = 10
         cityButton.clipsToBounds = true
-        cityButton.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI / 90))
+        cityButton.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI / 90))
         
         //calendarIcon.font = FontAwesomeFont
         calendarIcon.text = String(format: "%C", faicon["calendar"]!)

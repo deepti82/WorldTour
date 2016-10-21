@@ -28,43 +28,43 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         // Dispose of any resources that can be recreated.
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         return 3
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print("current section: \(indexPath.section)")
+        print("current section: \((indexPath as NSIndexPath).section)")
         
-        if indexPath.section == 2 {
+        if (indexPath as NSIndexPath).section == 2 {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("aboutCell") as! AboutTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell") as! AboutTableViewCell
             return cell
             
         }
         
-        else if indexPath.section == 1 {
+        else if (indexPath as NSIndexPath).section == 1 {
             
-            if indexPath.row == 2 {
+            if (indexPath as NSIndexPath).row == 2 {
                 
-                let cell = tableView.dequeueReusableCellWithIdentifier("dataUploadCell") as! SettingsTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "dataUploadCell") as! SettingsTableViewCell
                 return cell
                 
             }
             
-           let cell = tableView.dequeueReusableCellWithIdentifier("settingsCell") as! SettingsTableViewCell
-           cell.settingsLabel.text = labels[indexPath.item]
-           cell.LabelIcon.image = UIImage(named: sideImages[indexPath.item])
+           let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell") as! SettingsTableViewCell
+           cell.settingsLabel.text = labels[(indexPath as NSIndexPath).item]
+           cell.LabelIcon.image = UIImage(named: sideImages[(indexPath as NSIndexPath).item])
            return cell
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("profileCell") as! MainProfileTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell") as! MainProfileTableViewCell
         return cell
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 1 {
             
@@ -75,9 +75,9 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         return 1
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.section == 0 {
+        if (indexPath as NSIndexPath).section == 0 {
             
             return 100
         }
@@ -86,48 +86,48 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 30
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
         case 0:
             print("selecting section 0 row 0")
-            let profileEditVC = storyboard?.instantiateViewControllerWithIdentifier("EditProfile") as! EditProfileViewController
+            let profileEditVC = storyboard?.instantiateViewController(withIdentifier: "EditProfile") as! EditProfileViewController
             self.navigationController?.pushViewController(profileEditVC, animated: true)
             break
         case 1:
-            switch indexPath.row {
+            switch (indexPath as NSIndexPath).row {
             case 0:
                 print("selecting section 1 row 0")
-                let editMAMVC = storyboard?.instantiateViewControllerWithIdentifier("EditSettings") as! EditSettingsViewController
+                let editMAMVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
                 editMAMVC.whichView = "MAMView"
                 self.navigationController?.pushViewController(editMAMVC, animated: true)
                 break
             case 1:
                 print("selecting section 1 row 1")
-                let editNewPswdVC = storyboard?.instantiateViewControllerWithIdentifier("EditSettings") as! EditSettingsViewController
+                let editNewPswdVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
                 editNewPswdVC.whichView = "NewPswdView"
                 self.navigationController?.pushViewController(editNewPswdVC, animated: true)
                 break
             case 2:
                 print("selecting section 1 row 2")
-                let dataUsageVC = storyboard?.instantiateViewControllerWithIdentifier("SettingsVC") as! SettingsViewController
+                let dataUsageVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
                 dataUsageVC.labels = ["Cellular and WiFi", "WiFi", "Cellular"]
                 self.navigationController?.pushViewController(dataUsageVC, animated: true)
                 break
             case 3:
                 print("selecting section 1 row 3")
-                let privacyVC = storyboard?.instantiateViewControllerWithIdentifier("SettingsVC") as! SettingsViewController
+                let privacyVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
                 privacyVC.labels = ["Public - Everyone", "Private - My Followers"]
                 self.navigationController?.pushViewController(privacyVC, animated: true)
                 break
             case 4:
                 print("selecting section 1 row 4")
-                let reportVC = storyboard?.instantiateViewControllerWithIdentifier("EditSettings") as! EditSettingsViewController
+                let reportVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
                 reportVC.whichView = "ReportView"
                 self.navigationController?.pushViewController(reportVC, animated: true)
                 break
@@ -136,7 +136,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
             }
         case 2:
             print("selecting section 2 row 0")
-            let aboutUsVC = storyboard?.instantiateViewControllerWithIdentifier("EditSettings") as! EditSettingsViewController
+            let aboutUsVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
             aboutUsVC.whichView = "NoView"
             self.navigationController?.pushViewController(aboutUsVC, animated: true)
             break

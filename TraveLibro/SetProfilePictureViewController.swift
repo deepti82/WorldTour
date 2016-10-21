@@ -20,22 +20,22 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(SetProfilePictureViewController.choosePreferences(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(SetProfilePictureViewController.choosePreferences(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
         uploadView = AddDisplayPic(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
-        uploadView.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/3)
+        uploadView.center = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height/3)
         self.view.addSubview(uploadView)
         
-        uploadView.usernameTextField.returnKeyType = .Done
+        uploadView.usernameTextField.returnKeyType = .done
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(SetProfilePictureViewController.chooseDisplayPic(_:)))
 //        tap.delegate = self
@@ -50,7 +50,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
         if isUrl {
             
-            let data = NSData(contentsOfURL: NSURL(string: currentUser["profilePicture"].string!)!)
+            let data = try? Data(contentsOf: URL(string: currentUser["profilePicture"].string!)!)
             
             if data != nil {
                 
@@ -74,7 +74,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
             
             
-            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
             
             if data != nil {
                 
@@ -118,16 +118,16 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
     }
     
-    func changeLabelText(sender: UIGestureRecognizer) {
+    func changeLabelText(_ sender: UIGestureRecognizer) {
         
         uploadView.usernameTextField.text = uploadView.username.text
-        uploadView.username.hidden = true
-        uploadView.usernameTextField.hidden = false
+        uploadView.username.isHidden = true
+        uploadView.usernameTextField.isHidden = false
         uploadView.usernameTextField.becomeFirstResponder()
         
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         
 //        uploadView.usernameTextField.text = ""
         
@@ -142,7 +142,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
 //        
 //    }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         uploadView.usernameTextField.resignFirstResponder()
         
@@ -151,36 +151,36 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
             uploadView.username.text = uploadView.usernameTextField.text
         }
         
-        uploadView.usernameTextField.hidden = false
-        uploadView.username.hidden = true
+        uploadView.usernameTextField.isHidden = false
+        uploadView.username.isHidden = true
         return true
         
     }
     
     
-    func choosePreferences(sender: AnyObject) {
+    func choosePreferences(_ sender: AnyObject) {
         
-        let pagerVC = storyboard?.instantiateViewControllerWithIdentifier("displayOne") as! DisplayPagesOneViewController
+        let pagerVC = storyboard?.instantiateViewController(withIdentifier: "displayOne") as! DisplayPagesOneViewController
         self.navigationController?.pushViewController(pagerVC, animated: true)
         
     }
     
-    func chooseDisplayPic(sender: UITapGestureRecognizer?) {
+    func chooseDisplayPic(_ sender: UITapGestureRecognizer?) {
         
-        let chooseSource: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let chooseSource: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
             
             
         }
         chooseSource.addAction(cancelActionButton)
         
-        let saveActionButton: UIAlertAction = UIAlertAction(title: "Take Photo", style: .Default)
+        let saveActionButton: UIAlertAction = UIAlertAction(title: "Take Photo", style: .default)
         { action -> Void in
             
             self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .Camera
-            self.presentViewController(self.imagePicker, animated: true, completion: {
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: {
                 
                 print("photo taken")
             })
@@ -188,12 +188,12 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         }
         chooseSource.addAction(saveActionButton)
         
-        let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .Default)
+        let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .default)
         { action -> Void in
             
             self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .PhotoLibrary
-            self.presentViewController(self.imagePicker, animated: true, completion: {
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: {
                 
                 print("photo chosen")
                 
@@ -202,10 +202,10 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
             
         }
         chooseSource.addAction(deleteActionButton)
-        self.presentViewController(chooseSource, animated: true, completion: nil)
+        self.present(chooseSource, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
 //        print(info[UIImagePickerControllerReferenceURL])
         
@@ -215,7 +215,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         uploadView.addButtonPic.image = tempImage
         makeTLProfilePicture(uploadView.addButtonPic)
         
-        self.dismissViewControllerAnimated(true, completion:nil)
+        self.dismiss(animated: true, completion:nil)
         
 //        let imageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
 //        print("image url: \(imageUrl)")
@@ -240,7 +240,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
 //        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
 //        let documentsDirectory = paths[0]
         
-        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image.jpg")
+        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image.jpg"
         
 //        let fileManager = NSFileManager.defaultManager()
 //        let pathToSave = "file:///"  + documentsPath + "/\(imagename)"
@@ -256,7 +256,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
             
 //            try filemanager.createFileAtPath("image.jpg", contents: NSData(), attributes: nil)
             
-            try UIImageJPEGRepresentation(tempImage,1.0)!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
+            try UIImageJPEGRepresentation(tempImage,1.0)!.write(to: URL(string: exportFilePath)!, options: [])
             print("file created")
             
             
@@ -268,9 +268,9 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         
         print("local path: \(exportFilePath)")
         
-        request.uploadPhotos(NSURL(string: exportFilePath)!, localDbId: nil, completion: {(response) in
+        request.uploadPhotos(URL(string: exportFilePath)!, localDbId: nil, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     

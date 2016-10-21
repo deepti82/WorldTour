@@ -39,14 +39,14 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
 //        print("labels: \(labels[indexPath.item])")
 //        print("label index: \(labels.endIndex)")
         
         switch whichView {
         case "All":
-            let cell = tableView.dequeueReusableCellWithIdentifier("allReviewsCell") as! allReviewsMLTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
             return cell
@@ -58,21 +58,21 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             
             print("into if level 1")
             
-            if labels[indexPath.row] == "header" {
+            if labels[(indexPath as NSIndexPath).row] == "header" {
                 
                 print("into if level 2")
-                let cell = tableView.dequeueReusableCellWithIdentifier("headerCell") as! reviewsHeaderCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! reviewsHeaderCell
                 return cell
                 
             }
         }
         
-        if(labels[indexPath.item] == "childCells") {
+        if(labels[(indexPath as NSIndexPath).item] == "childCells") {
             
-            if indexPath.row % 2 == 0 {
+            if (indexPath as NSIndexPath).row % 2 == 0 {
                 
                 print("into if level 3")
-                let cell = tableView.dequeueReusableCellWithIdentifier("childCell") as! cityExploreTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "childCell") as! cityExploreTableViewCell
                 cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
                 cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
                 return cell
@@ -81,7 +81,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             
             else {
                 
-                let cell = tableView.dequeueReusableCellWithIdentifier("allReviewsCell") as! allReviewsMLTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
                 cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
                 cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
                 return cell
@@ -89,13 +89,13 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! cityLabelTableViewCell
-        cell.nameLabel.text = labels[indexPath.item]
-        if (isExpanded == true && selectedIndex == indexPath.item) {
-            cell.buttonLabel.setTitle("-", forState: .Normal)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! cityLabelTableViewCell
+        cell.nameLabel.text = labels[(indexPath as NSIndexPath).item]
+        if (isExpanded == true && selectedIndex == (indexPath as NSIndexPath).item) {
+            cell.buttonLabel.setTitle("-", for: UIControlState())
         }
         else {
-            cell.buttonLabel.setTitle("+", forState: .Normal)
+            cell.buttonLabel.setTitle("+", for: UIControlState())
         }
         if whichView == "Reviews LL" {
             cell.seperatorView.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
@@ -104,10 +104,10 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if (isExpanded == true) {
-            if(selectedIndex == indexPath.item) {
+            if(selectedIndex == (indexPath as NSIndexPath).item) {
                 
                 isExpanded = false
                 print("in if statement 1")
@@ -119,11 +119,11 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 let prevIndex = selectedIndex
                 expandParent(false, index: selectedIndex)
                 isExpanded = true
-                if(prevIndex < indexPath.item) {
-                    selectedIndex = indexPath.item - childCells
+                if(prevIndex! < (indexPath as NSIndexPath).item) {
+                    selectedIndex = (indexPath as NSIndexPath).item - childCells
                     print("in if statement 2")
                 } else {
-                    selectedIndex = indexPath.item
+                    selectedIndex = (indexPath as NSIndexPath).item
                     print("in if statement 4")
                 }
                 
@@ -141,17 +141,17 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         
         else {
                 isExpanded = true
-                selectedIndex = indexPath.item
+                selectedIndex = (indexPath as NSIndexPath).item
                 print("in if statement 3")
-                expandParent(isExpanded, index: indexPath.item)
+                expandParent(isExpanded, index: (indexPath as NSIndexPath).item)
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if(labels[indexPath.item] == "childCells") {
+        if(labels[(indexPath as NSIndexPath).item] == "childCells") {
 
-            if indexPath.row % 2 == 0 {
+            if (indexPath as NSIndexPath).row % 2 == 0 {
                 
                 return 175
                 
@@ -169,7 +169,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             return 125
         }
         
-        else if (whichView == "Reviews TL" || whichView == "Reviews LL") && labels[indexPath.row] == "header" {
+        else if (whichView == "Reviews TL" || whichView == "Reviews LL") && labels[(indexPath as NSIndexPath).row] == "header" {
             
             return 50
         }
@@ -179,13 +179,13 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return labels.count
         
     }
     
-    func expandParent(isExpanded: Bool, index: Int) -> Void {
+    func expandParent(_ isExpanded: Bool, index: Int) -> Void {
         
         if(isExpanded == true) {
             
@@ -193,7 +193,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             case 0:
                 childCells = 1
                 for j in 0 ..< childCells {
-                    labels.insert("childCells", atIndex: index + 1 + j)
+                    labels.insert("childCells", at: index + 1 + j)
                 }
                 accordionTableView.reloadData()
                 break
@@ -201,7 +201,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             case 1:
                 childCells = 2
                 for j in 0 ..< childCells {
-                    labels.insert("childCells", atIndex: index + 1 + j)
+                    labels.insert("childCells", at: index + 1 + j)
                 }
                 accordionTableView.reloadData()
                 break
@@ -209,7 +209,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             case 2:
                 childCells = 3
                 for j in 0 ..< childCells {
-                    labels.insert("childCells", atIndex: index + 1 + j)
+                    labels.insert("childCells", at: index + 1 + j)
                 }
                 accordionTableView.reloadData()
                 break
@@ -217,7 +217,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             case 3:
                 childCells = 4
                 for j in 0 ..< childCells {
-                    labels.insert("childCells", atIndex: index + 1 + j)
+                    labels.insert("childCells", at: index + 1 + j)
                 }
                 accordionTableView.reloadData()
                 break
@@ -225,7 +225,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             case 4:
                 childCells = 5
                 for j in 0 ..< childCells {
-                    labels.insert("childCells", atIndex: index + 1 + j)
+                    labels.insert("childCells", at: index + 1 + j)
                 }
                 accordionTableView.reloadData()
                 break
@@ -248,7 +248,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         else if(isExpanded == false) {
             
             for _ in 0 ..< childCells {
-                labels.removeAtIndex(index+1)
+                labels.remove(at: index+1)
             }
             accordionTableView.reloadData()
             

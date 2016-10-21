@@ -24,17 +24,17 @@ class NewQuickItinerary: UIView {
         for button in mainButtons {
             
             button.layer.cornerRadius = 5
-            button.layer.borderColor = mainOrangeColor.CGColor
+            button.layer.borderColor = mainOrangeColor.cgColor
             button.layer.borderWidth = 1.0
             
         }
         
-        let darkBlur = UIBlurEffect(style: .Dark)
+        let darkBlur = UIBlurEffect(style: .dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.frame.height
         blurView.frame.size.width = self.frame.width
         blurView.layer.zPosition = -1
-        blurView.userInteractionEnabled = false
+        blurView.isUserInteractionEnabled = false
         self.addSubview(blurView)
         
     }
@@ -44,11 +44,11 @@ class NewQuickItinerary: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "NewQuickItinerary", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 }

@@ -12,13 +12,13 @@ import SwiftHTTP
 import SwiftyJSON
 import TwitterKit
 
-func verifyUrl (urlString: String?) -> Bool {
+func verifyUrl (_ urlString: String?) -> Bool {
     
     if let urlString = urlString {
         
-        if let url = NSURL(string: urlString) {
+        if let url = URL(string: urlString) {
             
-            return UIApplication.sharedApplication().canOpenURL(url)
+            return UIApplication.shared.canOpenURL(url)
         }
     }
     return false
@@ -55,7 +55,7 @@ class SocialLoginClass: UIViewController {
                         
                         request.saveUser(json["name"]["givenName"].string!, lastName: json["name"]["familyName"].string!, email: json["emails"][0]["value"].string!, mobile: "", fbId: "", googleId: json["id"].string!, twitterId: "", instaId: "", nationality: "", profilePicture: json["image"]["url"].string!, gender: "", dob: "", completion: {(response) in
                             
-                            dispatch_async(dispatch_get_main_queue(), {
+                            DispatchQueue.main.async(execute: {
                                 
                                 if (response.error != nil) {
                                     
@@ -141,7 +141,7 @@ class SocialLoginClass: UIViewController {
                         
                         request.saveUser(json["first_name"].string!, lastName: json["last_name"].string!, email: email, mobile: mobile, fbId: json["id"].string!, googleId: "", twitterId: "", instaId: "", nationality: "", profilePicture: json["picture"]["data"]["url"].string!, gender: json["gender"].string!, dob: "", completion: {(response) in
                             
-                            dispatch_async(dispatch_get_main_queue(), {
+                            DispatchQueue.main.async(execute: {
                                 
                                 if (response.error != nil) {
                                     
@@ -209,14 +209,14 @@ class SocialLoginClass: UIViewController {
         if (sessionStore.session() != nil) {
             
             //            print("session: \(sessionStore.session())")
-            let alert = UIAlertController(title: "Twitter Sign In", message: "Lorem Ipsum", preferredStyle: UIAlertControllerStyle.Alert)
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+            let alert = UIAlertController(title: "Twitter Sign In", message: "Lorem Ipsum", preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
                 UIAlertAction in
                 
                 print("Okay Pressed")
                 
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) {
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
                 UIAlertAction in
                 
                 flag = 1
@@ -224,13 +224,13 @@ class SocialLoginClass: UIViewController {
             }
             alert.addAction(okAction)
             alert.addAction(cancelAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
             
         }
         
         print("inside flag: \(flag)")
         
-        Twitter.sharedInstance().logInWithCompletion { session, error in
+        Twitter.sharedInstance().logIn { session, error in
             if (session != nil) {
                 
                 print("session response: \(session!.userID)")
@@ -247,7 +247,7 @@ class SocialLoginClass: UIViewController {
                 let params = ["user_id": session!.userID, "screen_name": session!.userName]
                 var clientError : NSError?
                 
-                let req = client.URLRequestWithMethod("GET", URL: statusesShowEndpoint, parameters: params, error: &clientError)
+                let req = client.urlRequest(withMethod: "GET", url: statusesShowEndpoint, parameters: params, error: &clientError)
                 
                 client.sendTwitterRequest(req) { (response, data, connectionError) -> Void in
                     if connectionError != nil {
@@ -255,7 +255,7 @@ class SocialLoginClass: UIViewController {
                     }
                     
                     do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                        let json = try JSONSerialization.jsonObject(with: data!, options: [])
                         print("json: \(JSON(json))")
                         let serialJson = JSON(json)
                         
@@ -265,7 +265,7 @@ class SocialLoginClass: UIViewController {
                         //                        print("dp: \(serialJson["profile_image_url"].string!)")
                         request.saveUser(serialJson["name"].string!, lastName: "", email: "", mobile: "0123456789", fbId: "", googleId: "", twitterId: session!.userID, instaId: "", nationality: "", profilePicture: serialJson["profile_image_url"].string!, gender: "", dob: "", completion: {(response) in
                             
-                            dispatch_async(dispatch_get_main_queue(), {
+                            DispatchQueue.main.async(execute: {
                                 
                                 if (response.error != nil) {
                                     
@@ -341,25 +341,25 @@ class SocialLoginClass: UIViewController {
     
 }
 
-extension NSDate {
+extension Date {
     // Convert UTC (or GMT) to local time
-    func toLocalTime() -> NSDate {
-        let timezone: NSTimeZone = NSTimeZone.localTimeZone()
-        let seconds: NSTimeInterval = NSTimeInterval(timezone.secondsFromGMTForDate(self))
-        return NSDate(timeInterval: seconds, sinceDate: self)
+    func toLocalTime() -> Date {
+        let timezone: TimeZone = TimeZone.autoupdatingCurrent
+        let seconds: TimeInterval = TimeInterval(timezone.secondsFromGMT(for: self))
+        return Date(timeInterval: seconds, since: self)
     }
     
     // Convert local time to UTC (or GMT)
-    func toGlobalTime() -> NSDate {
-        let timezone: NSTimeZone = NSTimeZone.localTimeZone()
-        let seconds: NSTimeInterval = -NSTimeInterval(timezone.secondsFromGMTForDate(self))
-        return NSDate(timeInterval: seconds, sinceDate: self)
+    func toGlobalTime() -> Date {
+        let timezone: TimeZone = TimeZone.autoupdatingCurrent
+        let seconds: TimeInterval = -TimeInterval(timezone.secondsFromGMT(for: self))
+        return Date(timeInterval: seconds, since: self)
     }
 }
 
 extension UIView {
     
-    func resizeToFitSubviews(initialHeight: CGFloat, finalHeight: CGFloat) {
+    func resizeToFitSubviews(_ initialHeight: CGFloat, finalHeight: CGFloat) {
         
         print("initial height: \(initialHeight)")
         print("final height: \(finalHeight)")
@@ -381,12 +381,12 @@ extension UIView {
 
 import SystemConfiguration
 
-public class Reachability {
+open class Reachability {
     class func isConnectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
-        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
             SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
         }
         var flags = SCNetworkReachabilityFlags()
@@ -399,12 +399,12 @@ public class Reachability {
     }
 }
 
-extension NSData {
+extension Data {
     
     var uint8: UInt8 {
         get {
             var number: UInt8 = 0
-            self.getBytes(&number, length: sizeof(UInt8))
+            (self as NSData).getBytes(&number, length: MemoryLayout<UInt8>.size)
             return number
         }
     }
@@ -412,9 +412,9 @@ extension NSData {
 
 extension UInt8 {
     
-    var data: NSData {
+    var data: Data {
         var int = self
-        return NSData(bytes: &int, length: sizeof(UInt8))
+        return Data(bytes: UnsafePointer<UInt8>(&int), count: sizeof(UInt8))
     }
     
 }

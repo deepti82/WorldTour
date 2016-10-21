@@ -18,9 +18,9 @@ class EmptyPagesViewController: UIViewController {
 //        self.setNavigationBarItem()
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popToProfile(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popToProfile(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
 //        let rightButton = UIButton()
 //        rightButton.setImage(UIImage(named: "add_fa_icon"), forState: .Normal)
@@ -32,7 +32,7 @@ class EmptyPagesViewController: UIViewController {
         let nocountries = NoCountriesVisited(frame: CGRect(x: 0, y: 210, width: self.view.frame.width, height: 200))
         self.view.addSubview(nocountries)
         
-        nocountries.addCountriesButton.addTarget(self, action: #selector(EmptyPagesViewController.addCountries(_:)), forControlEvents: .TouchUpInside)
+        nocountries.addCountriesButton.addTarget(self, action: #selector(EmptyPagesViewController.addCountries(_:)), for: .touchUpInside)
         
         if whichView == "BucketList" {
             
@@ -50,10 +50,10 @@ class EmptyPagesViewController: UIViewController {
         
     }
     
-    func popToProfile(sender: UIButton) {
+    func popToProfile(_ sender: UIButton) {
         
 //        self.navigationController?.popToRootViewControllerAnimated(true)
-        let prevVC = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+        let prevVC = storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
 //        nextVC.whichView = whichView
         //            nextVC.isComingFromEmptyPages = true
         self.navigationController?.pushViewController(prevVC, animated: false)
@@ -61,11 +61,11 @@ class EmptyPagesViewController: UIViewController {
         
     }
     
-    func addCountries(sender: UIButton) {
+    func addCountries(_ sender: UIButton) {
         
 //        if whichView == "BucketList" {
         
-            let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            let nextVC = storyboard?.instantiateViewController(withIdentifier: "SelectCountryVC") as! SelectCountryViewController
             nextVC.whichView = whichView
 //            nextVC.isComingFromEmptyPages = true
             self.navigationController?.pushViewController(nextVC, animated: true)

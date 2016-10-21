@@ -29,9 +29,9 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
         let rightButton = UIButton()
         let options = String(format: "%C", faicon["options"]!)
         rightButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 22)
-        rightButton.setTitle(options, forState: .Normal)
-        rightButton.addTarget(self, action: #selector(ExploreDestinationsViewController.showFilter(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(30, 15, 30, 30)
+        rightButton.setTitle(options, for: UIControlState())
+        rightButton.addTarget(self, action: #selector(ExploreDestinationsViewController.showFilter(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 30, y: 15, width: 30, height: 30)
         
         self.setOnlyRightNavigationButton(rightButton)
         
@@ -42,11 +42,11 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
         for i in 0 ..< countries.count {
             
             flag.append(0)
-            cityFlag.insert([], atIndex: i)
+            cityFlag.insert([], at: i)
             print("Cities count \(cities[i].count)")
             for j in 0 ..< cities[i].count {
                 
-                cityFlag[i].insert(0, atIndex: j)
+                cityFlag[i].insert(0, at: j)
                 print("cityflag: \(cityFlag[i][j])")
             }
             
@@ -60,7 +60,7 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
         // Dispose of any resources that can be recreated.
     }
     
-    func showFilter(sender: UIButton) {
+    func showFilter(_ sender: UIButton) {
         
         print("Show filter tapped")
         
@@ -102,18 +102,18 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print("table cell index: \(indexPath.row)")
-        currentTableRow = indexPath.row
+        print("table cell index: \((indexPath as NSIndexPath).row)")
+        currentTableRow = (indexPath as NSIndexPath).row
         
         let coverImageGradient = CAGradientLayer()
-        let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! ExploreDestinationsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell") as! ExploreDestinationsTableViewCell
         
-        if flag[indexPath.row] == 0 {
+        if flag[(indexPath as NSIndexPath).row] == 0 {
             
-            let blackColour = UIColor.blackColor().colorWithAlphaComponent(0.9).CGColor as CGColorRef
-            let transparent = UIColor.clearColor().CGColor as CGColorRef
+            let blackColour = UIColor.black.withAlphaComponent(0.9).cgColor as CGColor
+            let transparent = UIColor.clear.cgColor as CGColor
             
             coverImageGradient.frame = cell.contentMainView.frame
             coverImageGradient.frame.size.width = cell.contentMainView.frame.width + 100
@@ -124,48 +124,48 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
             cell.countryLabel.layer.zPosition = 10
             cell.flagImage.layer.zPosition = 10
             
-            flag[indexPath.row] = 1
+            flag[(indexPath as NSIndexPath).row] = 1
         }
         
-        cell.countryLabel.text = countries[indexPath.row]
-        cell.countryImage.image = UIImage(named: countryImages[indexPath.row])
-        cell.selectionStyle = .None
+        cell.countryLabel.text = countries[(indexPath as NSIndexPath).row]
+        cell.countryImage.image = UIImage(named: countryImages[(indexPath as NSIndexPath).row])
+        cell.selectionStyle = .none
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 3
         
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return cities[collectionView.tag].count
         
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         guard let tableViewCell = cell as? ExploreDestinationsTableViewCell else { return }
         
-        tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+        tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: (indexPath as NSIndexPath).row)
         
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        print("collection cell index: \(indexPath.item)")
+        print("collection cell index: \((indexPath as NSIndexPath).item)")
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! ExploreDestinationsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! ExploreDestinationsCollectionViewCell
         
-        if cityFlag[collectionView.tag][indexPath.item] == 0 {
+        if cityFlag[collectionView.tag][(indexPath as NSIndexPath).item] == 0 {
             
             let cityImageGradient = CAGradientLayer()
             
-            let blackColour = UIColor.blackColor().colorWithAlphaComponent(0.9).CGColor as CGColorRef
-            let transparent = UIColor.clearColor().CGColor as CGColorRef
+            let blackColour = UIColor.black.withAlphaComponent(0.9).cgColor as CGColor
+            let transparent = UIColor.clear.cgColor as CGColor
             
             cityImageGradient.frame = cell.cityLabel.bounds
             cityImageGradient.colors = [blackColour, transparent]
@@ -174,23 +174,23 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
             cell.cityLabel.layer.addSublayer(cityImageGradient)
             cell.cityText.layer.zPosition = 10
             
-            cityFlag[collectionView.tag][indexPath.item] = 1
+            cityFlag[collectionView.tag][(indexPath as NSIndexPath).item] = 1
             
         }
         
-        cell.cityText.text = cities[collectionView.tag][indexPath.item]
-        cell.cityImage.image = UIImage(named: cityImages[collectionView.tag][indexPath.item])
+        cell.cityText.text = cities[collectionView.tag][(indexPath as NSIndexPath).item]
+        cell.cityImage.image = UIImage(named: cityImages[collectionView.tag][(indexPath as NSIndexPath).item])
         cell.cityImage.layer.zPosition = -1
         return cell
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
 //        let childVC = storyboard?.instantiateViewControllerWithIdentifier("pagerTab") as! PagerTabViewController
 //        self.navigationController?.pushViewController(childVC, animated: true)
 
-        let childVC = storyboard?.instantiateViewControllerWithIdentifier("featuredMain") as! FCMainViewController
+        let childVC = storyboard?.instantiateViewController(withIdentifier: "featuredMain") as! FCMainViewController
         self.navigationController?.pushViewController(childVC, animated: true)
         
     }
@@ -208,8 +208,8 @@ class ExploreDestinationsTableViewCell: UITableViewCell {
     
     
     func setCollectionViewDataSourceDelegate
-        <D: protocol<UICollectionViewDataSource, UICollectionViewDelegate>>
-        (dataSourceDelegate: D, forRow row: Int) {
+        <D: UICollectionViewDataSource & UICollectionViewDelegate
+        (_ dataSourceDelegate: D, forRow row: Int) {
         
         theCollectionView.delegate = dataSourceDelegate
         theCollectionView.dataSource = dataSourceDelegate

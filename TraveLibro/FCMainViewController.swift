@@ -39,28 +39,28 @@ class FCMainViewController: UIViewController, CAPSPageMenuDelegate {
         // Example:
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("featuredTwo") as! FeaturedCitiesNewTwoViewController
+        let controller = storyboard!.instantiateViewController(withIdentifier: "featuredTwo") as! FeaturedCitiesNewTwoViewController
         controller.whichView = "FC"
         controller.title = "Featured Cities"
         controllerArray.append(controller)
         
-        let controllerTwo = storyboard!.instantiateViewControllerWithIdentifier("featuredTwo") as! FeaturedCitiesNewTwoViewController
+        let controllerTwo = storyboard!.instantiateViewController(withIdentifier: "featuredTwo") as! FeaturedCitiesNewTwoViewController
         controllerTwo.whichView = "MD"
         controllerTwo.title = "Must Do's"
         controllerArray.append(controllerTwo)
         
-        let controllerThree = storyboard!.instantiateViewControllerWithIdentifier("featuredRest") as! FeaturedCitiesRestViewController
+        let controllerThree = storyboard!.instantiateViewController(withIdentifier: "featuredRest") as! FeaturedCitiesRestViewController
         controllerThree.whichView = "IT"
         controllerThree.title = "Itineraries"
         controllerArray.append(controllerThree)
         
         
-        let controllerFour = storyboard!.instantiateViewControllerWithIdentifier("featuredRest") as! FeaturedCitiesRestViewController
+        let controllerFour = storyboard!.instantiateViewController(withIdentifier: "featuredRest") as! FeaturedCitiesRestViewController
         controllerFour.whichView = "JO"
         controllerFour.title = "Journeys"
         controllerArray.append(controllerFour)
         
-        let controllerFive = storyboard!.instantiateViewControllerWithIdentifier("featuredRest") as! FeaturedCitiesRestViewController
+        let controllerFive = storyboard!.instantiateViewController(withIdentifier: "featuredRest") as! FeaturedCitiesRestViewController
         controllerFive.whichView = "AG"
         controllerFive.title = "Popular Agents"
         controllerArray.append(controllerFive)
@@ -69,20 +69,20 @@ class FCMainViewController: UIViewController, CAPSPageMenuDelegate {
         // Customize page menu to your liking (optional) or use default settings by sending nil for 'options' in the init
         // Example:
         let parameters: [CAPSPageMenuOption] = [
-            .MenuItemSeparatorWidth(4.3),
-            .UseMenuLikeSegmentedControl(false),
-            .MenuItemSeparatorPercentageHeight(0.1),
-            .MenuItemFont(UIFont(name: "Avenir-Roman", size: 14)!),
-            .ScrollMenuBackgroundColor(UIColor.whiteColor()),
-            .SelectionIndicatorColor(orangeColor),
-            .UnselectedMenuItemLabelColor(blueColor),
-            .SelectedMenuItemLabelColor(blueColor),
-            .MenuItemWidthBasedOnTitleTextWidth(true),
-            .MenuHeight(45.0)
+            .menuItemSeparatorWidth(4.3),
+            .useMenuLikeSegmentedControl(false),
+            .menuItemSeparatorPercentageHeight(0.1),
+            .menuItemFont(UIFont(name: "Avenir-Roman", size: 14)!),
+            .scrollMenuBackgroundColor(UIColor.white),
+            .selectionIndicatorColor(orangeColor),
+            .unselectedMenuItemLabelColor(blueColor),
+            .selectedMenuItemLabelColor(blueColor),
+            .menuItemWidthBasedOnTitleTextWidth(true),
+            .menuHeight(45.0)
         ]
         
         // Initialize page menu with controller array, frame, and optional parameters
-        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0, 60, self.view.frame.width, self.view.frame.height - 60), pageMenuOptions: parameters)
+        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60), pageMenuOptions: parameters)
         pageMenu!.viewBackgroundColor = blueColor
         pageMenu?.delegate = self
         

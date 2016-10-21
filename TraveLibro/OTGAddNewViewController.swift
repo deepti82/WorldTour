@@ -85,8 +85,8 @@ class OTGAddNewViewController: UIViewController {
 //        self.view.addSubview(addNewFriends)
         
         
-        let footer = getFooter(frame: CGRectMake(0, 0, self.view.frame.size.width, 45))
-        footer.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height - 22.5)
+        let footer = getFooter(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 45))
+        footer.center = CGPoint(x: self.view.frame.size.width / 2, y: self.view.frame.size.height - 22.5)
         self.view.addSubview(footer)
         
 //        let addcircle = AddCircle(frame: CGRectMake(0, 0, 50, 50))
@@ -179,8 +179,8 @@ class OTGAddNewViewController: UIViewController {
 //        journeyLabel.label.text = "Exploring United Kingdom"
 //        self.scrollView.addSubview(journeyLabel)
         
-        let locationTextField = TextField(frame: CGRectMake(0, 0, self.view.frame.size.width - 25, 60))
-        locationTextField.center = CGPointMake(self.view.frame.size.width/2, 800)
+        let locationTextField = TextField(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 25, height: 60))
+        locationTextField.center = CGPoint(x: self.view.frame.size.width/2, y: 800)
         locationTextField.field.text = "London"
         self.scrollView.addSubview(locationTextField)
 

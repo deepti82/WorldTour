@@ -16,7 +16,7 @@ class SpeechBubbleView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         title.textColor = mainBlueColor
-        timestamp.textColor = UIColor.lightGrayColor()
+        timestamp.textColor = UIColor.lightGray
         
     }
     
@@ -25,11 +25,11 @@ class SpeechBubbleView: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "SpeechBubbleView", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

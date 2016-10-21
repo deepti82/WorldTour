@@ -21,8 +21,8 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
 
         imagePicker.delegate = self
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
     }
 
@@ -31,50 +31,50 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
+        if (indexPath as NSIndexPath).section == 0 {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("profilePhotoCell") as! ProfilePhotoTableViewCell
-            cell.accessoryType = .None
+            let cell = tableView.dequeueReusableCell(withIdentifier: "profilePhotoCell") as! ProfilePhotoTableViewCell
+            cell.accessoryType = .none
             return cell
             
         }
         
-        else if indexPath.section == 1 || indexPath.section == 6 || indexPath.section == 7 {
+        else if (indexPath as NSIndexPath).section == 1 || (indexPath as NSIndexPath).section == 6 || (indexPath as NSIndexPath).section == 7 {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("EditLabelCell") as! EditProfileTableViewCell
-            cell.editLabel.text = labels[indexPath.section]
-            cell.accessoryType = .DisclosureIndicator
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EditLabelCell") as! EditProfileTableViewCell
+            cell.editLabel.text = labels[(indexPath as NSIndexPath).section]
+            cell.accessoryType = .disclosureIndicator
             return cell
         }
         
-        else if indexPath.section == 5 {
+        else if (indexPath as NSIndexPath).section == 5 {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("EditNationalityCell") as! EditProfileTableViewCell
-            cell.editLabel.text = labels[indexPath.section]
-            cell.accessoryType = .DisclosureIndicator
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EditNationalityCell") as! EditProfileTableViewCell
+            cell.editLabel.text = labels[(indexPath as NSIndexPath).section]
+            cell.accessoryType = .disclosureIndicator
             return cell
             
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldTableViewCell
-        cell.textField.text = labels[indexPath.section]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell") as! TextFieldTableViewCell
+        cell.textField.text = labels[(indexPath as NSIndexPath).section]
         cell.textField.delegate = self
-        cell.textField.contentVerticalAlignment = .Center
-        cell.textField.returnKeyType = .Done
-        cell.accessoryType = .None
+        cell.textField.contentVerticalAlignment = .center
+        cell.textField.returnKeyType = .done
+        cell.accessoryType = .none
         return cell
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 1
         
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         print("jewjkhwerkjhwerkhwer")
         textField.resignFirstResponder()
@@ -82,15 +82,15 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
         textField.resignFirstResponder()
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
             if !keyboardUp {
                 
@@ -104,8 +104,8 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+    func keyboardWillHide(_ notification: Notification) {
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
             if keyboardUp {
                 
@@ -117,46 +117,46 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
 //        myView = tableView.indexPathForSelectedRow!.section
         
-        switch indexPath.section {
+        switch (indexPath as NSIndexPath).section {
         case 0:
 //            let moveAndScaleVC = storyboard?.instantiateViewControllerWithIdentifier("") as! SetProfilePictureViewController
 //            self.navigationController?.pushViewController(moveAndScaleVC, animated: true)
-            let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
-            let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+            let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
                 
                 
             }
             actionSheetControllerIOS8.addAction(cancelActionButton)
             
-            let saveActionButton: UIAlertAction = UIAlertAction(title: "Take Photo", style: .Default)
+            let saveActionButton: UIAlertAction = UIAlertAction(title: "Take Photo", style: .default)
             { action -> Void in
                 
                 self.imagePicker.allowsEditing = true
-                self.imagePicker.sourceType = .Camera
-                self.presentViewController(self.imagePicker, animated: true, completion: nil)
+                self.imagePicker.sourceType = .camera
+                self.present(self.imagePicker, animated: true, completion: nil)
                 
             }
             actionSheetControllerIOS8.addAction(saveActionButton)
             
-            let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .Default)
+            let deleteActionButton: UIAlertAction = UIAlertAction(title: "Photo Library", style: .default)
             { action -> Void in
                 
                 self.imagePicker.allowsEditing = true
-                self.imagePicker.sourceType = .PhotoLibrary
-                self.presentViewController(self.imagePicker, animated: true, completion: nil)
+                self.imagePicker.sourceType = .photoLibrary
+                self.present(self.imagePicker, animated: true, completion: nil)
                 
                 
             }
             actionSheetControllerIOS8.addAction(deleteActionButton)
-            self.presentViewController(actionSheetControllerIOS8, animated: true, completion: nil)
+            self.present(actionSheetControllerIOS8, animated: true, completion: nil)
         case 1, 7, 6:
-            let otherSettingsVC = storyboard?.instantiateViewControllerWithIdentifier("EditEdit") as! EditEditProfileViewController
-            otherSettingsVC.whichView = indexPath.section
+            let otherSettingsVC = storyboard?.instantiateViewController(withIdentifier: "EditEdit") as! EditEditProfileViewController
+            otherSettingsVC.whichView = (indexPath as NSIndexPath).section
             self.navigationController?.pushViewController(otherSettingsVC, animated: true)
             break
         
@@ -165,7 +165,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
 //            break
             
         case 5:
-            let nationalityVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            let nationalityVC = storyboard?.instantiateViewController(withIdentifier: "SelectCountryVC") as! SelectCountryViewController
             nationalityVC.whichView = "selectNationality"
             self.navigationController?.pushViewController(nationalityVC, animated: true)
             break
@@ -176,19 +176,19 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         return 8
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 15
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.section == 0 {
+        if (indexPath as NSIndexPath).section == 0 {
             
             return 75
         }

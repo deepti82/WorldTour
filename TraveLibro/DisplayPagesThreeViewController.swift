@@ -23,14 +23,14 @@ class DisplayPagesThreeViewController: UIViewController {
 //        self.navigationItem.titleView = indicatorThree
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(DisplayPagesThreeViewController.nextPage(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(DisplayPagesThreeViewController.nextPage(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -39,11 +39,11 @@ class DisplayPagesThreeViewController: UIViewController {
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self
             .popVC(_:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
         
         let scroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
@@ -56,7 +56,7 @@ class DisplayPagesThreeViewController: UIViewController {
         
         for button in page.checkboxButtons {
             
-            button.addTarget(self, action: #selector(DisplayPagesThreeViewController.multipleSelect(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(DisplayPagesThreeViewController.multipleSelect(_:)), for: .touchUpInside)
             
         }
         
@@ -68,7 +68,7 @@ class DisplayPagesThreeViewController: UIViewController {
         
     }
     
-    func setImage(sender: forDPThree) {
+    func setImage(_ sender: forDPThree) {
         
         let isUrl = verifyUrl(profilePic)
         print("isUrl: \(isUrl)")
@@ -76,7 +76,7 @@ class DisplayPagesThreeViewController: UIViewController {
         if isUrl {
             
             print("inside if statement")
-            let data = NSData(contentsOfURL: NSURL(string: profilePic)!)
+            let data = try? Data(contentsOf: URL(string: profilePic)!)
             
             if data != nil {
                 
@@ -93,7 +93,7 @@ class DisplayPagesThreeViewController: UIViewController {
             
 //            print("getImageUrl: \(getImageUrl)")
             
-            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
 //            print("data: \(data)")
             
             if data != nil {
@@ -108,11 +108,11 @@ class DisplayPagesThreeViewController: UIViewController {
         }
     }
     
-    func multipleSelect(sender: UIButton) {
+    func multipleSelect(_ sender: UIButton) {
         
         if sender.tag == 0 {
             
-            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
             sender.tag = 1
             preferToTravel.append(sender.titleLabel!.text!)
             
@@ -130,18 +130,18 @@ class DisplayPagesThreeViewController: UIViewController {
         }
         else {
             
-            sender.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), for: UIControlState())
             sender.tag = 0
             preferToTravel = preferToTravel.filter{$0 != sender.titleLabel!.text!}
         }
         
     }
     
-    func nextPage(sender: AnyObject) {
+    func nextPage(_ sender: AnyObject) {
         
         print("prefer to travel: \(preferToTravel)")
         
-        let next = self.storyboard?.instantiateViewControllerWithIdentifier("displayFour") as! DisplayPagesFourViewController
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "displayFour") as! DisplayPagesFourViewController
         self.navigationController?.pushViewController(next, animated: true)
     }
 

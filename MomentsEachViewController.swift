@@ -10,10 +10,10 @@ import UIKit
 
 class MomentsEachViewController: UIViewController, UICollectionViewDataSource {
 
-    @IBAction func dragGesture(sender: AnyObject) {
+    @IBAction func dragGesture(_ sender: AnyObject) {
         
         print("In the swipe gesture function 2")
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
     }
     
@@ -23,16 +23,16 @@ class MomentsEachViewController: UIViewController, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = UIColor.clearColor()
+        collectionView.backgroundColor = UIColor.clear
 //        collectionView.delaysContentTouches = false
-        self.view.bringSubviewToFront(collectionView)
+        self.view.bringSubview(toFront: collectionView)
         
     }
     
-    func modalDismiss(sender: UITapGestureRecognizer) {
+    func modalDismiss(_ sender: UITapGestureRecognizer) {
         
         print("In the swipe gesture function")
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
     }
     
@@ -42,15 +42,15 @@ class MomentsEachViewController: UIViewController, UICollectionViewDataSource {
     }
     
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MomentsEachCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MomentsEachCollectionViewCell
         cell.momentsImage.image = UIImage(named: "disney-world")
         return cell
         
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return 90
         

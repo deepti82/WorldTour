@@ -24,9 +24,9 @@ class InviteFriendsViewController: UIViewController {
 //        backgroundColour.layer.zPosition = 0
 //        self.view.addSubview(backgroundColour)
         
-        mailButton.setTitle(emailIcon, forState: .Normal)
-        whatsappButton.setTitle(whatsAppIcon, forState: .Normal)
-        facebookButton.setTitle(facebookIcon, forState: .Normal)
+        mailButton.setTitle(emailIcon, for: UIControlState())
+        whatsappButton.setTitle(whatsAppIcon, for: UIControlState())
+        facebookButton.setTitle(facebookIcon, for: UIControlState())
         
         mailButton.layer.cornerRadius = 5
         whatsappButton.layer.cornerRadius = 5

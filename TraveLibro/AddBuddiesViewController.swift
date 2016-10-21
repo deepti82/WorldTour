@@ -24,9 +24,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     var uniqueId: String = ""
     var journeyName: String = ""
     
-    @IBAction func saveButtonTapped(sender: UIButton) {
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
         
-        sender.enabled = false
+        sender.isEnabled = false
         
         var addedFriendUsers: [JSON] = []
         
@@ -43,7 +43,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
             request.addBuddiesOTG(finalFriends, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, journeyId: uniqueId, inMiddle: false, journeyName: journeyName, completion: {(response) in
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
                     if response.error != nil {
                         
@@ -58,7 +58,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //                        print("count: \(allControllers)")
                         for vc in allControllers {
                             
-                            if vc.isKindOfClass(NewTLViewController) {
+                            if vc.isKind(of: NewTLViewController.self) {
                                 
                                 let backVC = vc as! NewTLViewController
                                 backVC.countLabel = self.addedFriends.count
@@ -76,11 +76,11 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     else {
                         
                         let alert = UIAlertController(title: nil, message:
-                            "response error!", preferredStyle: .Alert)
-                        self.presentViewController(alert, animated: false, completion: nil)
-                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:
+                            "response error!", preferredStyle: .alert)
+                        self.present(alert, animated: false, completion: nil)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler:
                             {action in
-                                alert.dismissViewControllerAnimated(true, completion: nil)
+                                alert.dismiss(animated: true, completion: nil)
                         }))
                         print("response error")
                         
@@ -97,7 +97,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
             request.addBuddiesOTG(finalFriends, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, journeyId: uniqueId, inMiddle: true, journeyName: journeyName, completion: {(response) in
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
                     if response.error != nil {
                         
@@ -112,7 +112,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                         //                        print("count: \(allControllers)")
                         for vc in allControllers {
                             
-                            if vc.isKindOfClass(NewTLViewController) {
+                            if vc.isKind(of: NewTLViewController.self) {
                                 
                                 let backVC = vc as! NewTLViewController
                                 backVC.getJourney()
@@ -139,7 +139,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
             for vc in allControllers {
                 
-                if vc.isKindOfClass(NewTLViewController) {
+                if vc.isKind(of: NewTLViewController.self) {
                     
                     let backVC = vc as! NewTLViewController
                     backVC.addedBuddies = addedFriends
@@ -160,20 +160,20 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setTitle("", forState: .Normal)
-        rightButton.addTarget(self, action: nil, forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 80, 30)
+        rightButton.setTitle("", for: UIControlState())
+        rightButton.addTarget(self, action: nil, for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 80, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
         request.getFollowers(currentUser["_id"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -210,7 +210,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //        addedFriendsImages[2] = "profile_icon"
         
         search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.frame.width - 10, height: 30))
-        search.searchField.returnKeyType = .Done
+        search.searchField.returnKeyType = .done
         searchView.addSubview(search)
         
         peopleImage.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
@@ -218,23 +218,23 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
             
             getBackGround(self)
-            search.searchField.addTarget(self, action: #selector(AddBuddiesViewController.getSearchResults(_:)), forControlEvents: .EditingChanged)
+            search.searchField.addTarget(self, action: #selector(AddBuddiesViewController.getSearchResults(_:)), for: .editingChanged)
             addedBuddies.textColor = mainOrangeColor
             peopleImage.tintColor = mainOrangeColor
-            buddiesTableView.backgroundColor = UIColor.clearColor()
-            buddiesCollectionView.backgroundColor = UIColor.clearColor()
+            buddiesTableView.backgroundColor = UIColor.clear
+            buddiesCollectionView.backgroundColor = UIColor.clear
             search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: [NSForegroundColorAttributeName: mainBlueColor])
             search.leftLine.backgroundColor = mainOrangeColor
             search.rightLine.backgroundColor = mainOrangeColor
             search.bottomLine.backgroundColor = mainOrangeColor
             search.searchButton.tintColor = mainOrangeColor
-            saveButton.setTitleColor(mainOrangeColor, forState: .Normal)
+            saveButton.setTitleColor(mainOrangeColor, for: UIControlState())
             
         }
         
         else {
             
-            search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: [NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+            search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
             search.leftLine.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
             search.rightLine.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
             search.bottomLine.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
@@ -244,13 +244,13 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func getSearchResults(sender: UITextField) {
+    func getSearchResults(_ sender: UITextField) {
         
         print("sender: \(search.searchField.text!)")
         
         request.getBuddySearch(currentUser["_id"].string!, searchtext: search.searchField.text!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -275,9 +275,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    func saveFriendChanges(sender: UIButton) {
+    func saveFriendChanges(_ sender: UIButton) {
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
         
         
     }
@@ -287,20 +287,20 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return allFriendsJson.count
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! addBuddiesTableViewCell
-        cell.accessoryType = .Checkmark
-        cell.selectionStyle = .None
-        cell.buddyName.text = allFriendsJson[indexPath.row]["name"].string!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell") as! addBuddiesTableViewCell
+        cell.accessoryType = .checkmark
+        cell.selectionStyle = .none
+        cell.buddyName.text = allFriendsJson[(indexPath as NSIndexPath).row]["name"].string!
         
-        let imageUrl = allFriendsJson[indexPath.row]["profilePicture"].string!
+        let imageUrl = allFriendsJson[(indexPath as NSIndexPath).row]["profilePicture"].string!
         
         let isUrl = verifyUrl(imageUrl)
         print("isUrl: \(isUrl)")
@@ -308,7 +308,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         if isUrl {
             
             print("inside if statement")
-            let data = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+            let data = try? Data(contentsOf: URL(string: imageUrl)!)
             
             if data != nil  && imageUrl != "" {
                 
@@ -327,7 +327,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
             //                print("getImageUrl: \(getImageUrl)")
             
-            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
             //                print("data: \(data)")
             
             if data != nil {
@@ -351,18 +351,18 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //        }
         
         cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
-        if indexPath.row % 2 == 0 {
+        if (indexPath as NSIndexPath).row % 2 == 0 {
             
-            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+            cell.backgroundColor = UIColor.white.withAlphaComponent(0.5)
             
         }
         else {
             
-            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.7)
+            cell.backgroundColor = UIColor.white.withAlphaComponent(0.7)
             
         }
          
-        if addedFriends.contains(allFriendsJson[indexPath.row]) {
+        if addedFriends.contains(allFriendsJson[(indexPath as NSIndexPath).row]) {
             
             if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
                 
@@ -384,7 +384,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //        return "All Friends"
 //    }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let titleView = UIView(frame: CGRect(x: 16, y: 0, width: 200, height: 22))
         let titleLabel = UILabel(frame: CGRect(x: 16, y: 0, width: 200, height: 22))
@@ -400,12 +400,12 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         titleLabel.text = "All Friends"
         titleView.addSubview(titleLabel)
-        tableView.headerViewForSection(section)?.addSubview(titleView)
+        tableView.headerView(forSection: section)?.addSubview(titleView)
         
         return titleView
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if addedFriends == nil {
             
@@ -416,15 +416,15 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
         let close = String(format: "%C", faicon["close"]!)
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath) as! addedBuddiesCollectionViewCell
-        cell.removeBuddyButton.setTitle(close, forState: .Normal)
-        cell.buddyName.text = addedFriends[indexPath.row]["name"].string!
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! addedBuddiesCollectionViewCell
+        cell.removeBuddyButton.setTitle(close, for: UIControlState())
+        cell.buddyName.text = addedFriends[(indexPath as NSIndexPath).row]["name"].string!
         
-        let imageUrl = addedFriends[indexPath.row]["profilePicture"].string!
+        let imageUrl = addedFriends[(indexPath as NSIndexPath).row]["profilePicture"].string!
         print("collection view dp: \(imageUrl)")
         
         let isUrl = verifyUrl(imageUrl)
@@ -433,7 +433,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         if isUrl && imageUrl != "" {
             
             print("inside if statement")
-            let data = NSData(contentsOfURL: NSURL(string: imageUrl)!)
+            let data = try? Data(contentsOf: URL(string: imageUrl)!)
             
             if data != nil {
                 
@@ -452,7 +452,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
             //                print("getImageUrl: \(getImageUrl)")
             
-            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
             //                print("data: \(data)")
             
             if data != nil {
@@ -477,7 +477,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
             
-            cell.removeBuddyButton.setTitleColor(mainOrangeColor, forState: .Normal)
+            cell.removeBuddyButton.setTitleColor(mainOrangeColor, for: UIControlState())
             cell.buddyName.textColor = mainBlueColor
             
         }
@@ -487,9 +487,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! addBuddiesTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! addBuddiesTableViewCell
 //        print("tint: \(cell.tintColor)")
         
 //        if cell.tintColor != UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1) {
@@ -514,9 +514,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             if cell.tintColor == mainOrangeColor {
                 
                 cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
-                if let index = addedFriends.indexOf(allFriendsJson[indexPath.row]) {
+                if let index = addedFriends.index(of: allFriendsJson[(indexPath as NSIndexPath).row]) {
                     
-                    addedFriends.removeAtIndex(index)
+                    addedFriends.remove(at: index)
                     
                 }
                 
@@ -526,7 +526,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             else {
                 
                 cell.tintColor = mainOrangeColor
-                addedFriends.append(allFriendsJson[indexPath.row])
+                addedFriends.append(allFriendsJson[(indexPath as NSIndexPath).row])
                 
             }
             
@@ -536,9 +536,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             if cell.tintColor == mainGreenColor {
                 
                 cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
-                if let index = addedFriends.indexOf(allFriendsJson[indexPath.row]) {
+                if let index = addedFriends.index(of: allFriendsJson[(indexPath as NSIndexPath).row]) {
                     
-                    addedFriends.removeAtIndex(index)
+                    addedFriends.remove(at: index)
                     
                 }
                 
@@ -549,7 +549,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             else {
                 
                 cell.tintColor = mainGreenColor
-                addedFriends.append(allFriendsJson[indexPath.row])
+                addedFriends.append(allFriendsJson[(indexPath as NSIndexPath).row])
                 
             }
             
@@ -559,10 +559,10 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print("selected index: \(indexPath.row)")
-        addedFriends.removeAtIndex(indexPath.item)
+        print("selected index: \((indexPath as NSIndexPath).row)")
+        addedFriends.remove(at: (indexPath as NSIndexPath).item)
         collectionView.reloadData()
         buddiesTableView.reloadData()
         

@@ -21,7 +21,7 @@ class CollectionViewController: UIViewController {
         scroll.contentSize.height = 1000
         self.view.addSubview(scroll)
         
-        let childVC = storyboard?.instantiateViewControllerWithIdentifier("summarySub") as! SummarySubViewController
+        let childVC = storyboard?.instantiateViewController(withIdentifier: "summarySub") as! SummarySubViewController
         childVC.journeyId = journey
         self.addChildViewController(childVC)
         childVC.view.frame.size.height = scroll.contentSize.height

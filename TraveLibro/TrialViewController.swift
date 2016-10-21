@@ -28,7 +28,7 @@ class TrialViewController: UIViewController {
         scrollView.contentSize.height = 800
         
         let mustDoDescription = EachMustDo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: scrollView.contentSize.height))
-        mustDoDescription.titleImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: singleMustDo["mainPhoto"].string!)!)!)
+        mustDoDescription.titleImage.image = UIImage(data: try! Data(contentsOf: URL(string: singleMustDo["mainPhoto"].string!)!))
         mustDoDescription.descriptionText.text = singleMustDo["description"].string!
         scrollView.addSubview(mustDoDescription)
     
@@ -50,21 +50,21 @@ class TrialViewController: UIViewController {
     }
     */
     
-    func maskImage(image:UIImage, mask:(UIImage))->UIImage{
+    func maskImage(_ image:UIImage, mask:(UIImage))->UIImage{
         
-        let imageReference = image.CGImage
-        let maskReference = mask.CGImage
+        let imageReference = image.cgImage
+        let maskReference = mask.cgImage
         
-        let imageMask = CGImageMaskCreate(CGImageGetWidth(maskReference),
-                                          CGImageGetHeight(maskReference),
-                                          CGImageGetBitsPerComponent(maskReference),
-                                          CGImageGetBitsPerPixel(maskReference),
-                                          CGImageGetBytesPerRow(maskReference),
-                                          CGImageGetDataProvider(maskReference), nil, true)
+        let imageMask = CGImage(maskWidth: (maskReference?.width)!,
+                                          height: (maskReference?.height)!,
+                                          bitsPerComponent: (maskReference?.bitsPerComponent)!,
+                                          bitsPerPixel: (maskReference?.bitsPerPixel)!,
+                                          bytesPerRow: (maskReference?.bytesPerRow)!,
+                                          provider: (maskReference?.dataProvider!)!, decode: nil, shouldInterpolate: true)
         
-        let maskedReference = CGImageCreateWithMask(imageReference, imageMask)
+        let maskedReference = imageReference?.masking(imageMask!)
         
-        let maskedImage = UIImage(CGImage:maskedReference!)
+        let maskedImage = UIImage(cgImage:maskedReference!)
         
         return maskedImage
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 
-func addShadow(myView: UIView, offset: CGSize, opacity: CGFloat, shadowRadius: CGFloat, cornerRadius: CGFloat) {
+func addShadow(_ myView: UIView, offset: CGSize, opacity: CGFloat, shadowRadius: CGFloat, cornerRadius: CGFloat) {
     
     myView.layer.shadowOffset = CGSize(width: 2, height: 2)
     myView.layer.shadowOpacity = 0.2
@@ -18,31 +18,31 @@ func addShadow(myView: UIView, offset: CGSize, opacity: CGFloat, shadowRadius: C
     
 }
 
-func makeButtonGreyTranslucent(button: UIButton, textData: String) -> Void {
+func makeButtonGreyTranslucent(_ button: UIButton, textData: String) -> Void {
     
     button.backgroundColor = UIColor(red: 189/255, green: 193/255, blue: 211/255, alpha: 0.3)
-    button.layer.borderColor = UIColor.whiteColor().CGColor
+    button.layer.borderColor = UIColor.white.cgColor
     button.layer.borderWidth = 2
     button.layer.cornerRadius = 1.5
     //button.titleLabel?.text = "Hii Midhet"
     //button.titleLabel?.textColor = UIColor.whiteColor()
-    button.setTitle(textData, forState: .Normal)
+    button.setTitle(textData, for: UIControlState())
     button.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 18)
     
 }
 
-func getBackGround(myVC: UIViewController) -> Void {
+func getBackGround(_ myVC: UIViewController) -> Void {
     
 //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
     let bgImage = UIImageView(frame: myVC.view.frame)
     bgImage.image = UIImage(named: "bg")
     bgImage.layer.zPosition = -1
-    bgImage.userInteractionEnabled = false
+    bgImage.isUserInteractionEnabled = false
     myVC.view.addSubview(bgImage)
     
 }
 
-func segueFromPagerStrip(vc: UINavigationController, nextVC: UIViewController) {
+func segueFromPagerStrip(_ vc: UINavigationController, nextVC: UIViewController) {
     
     print("inside global fn")
 //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -52,24 +52,24 @@ func segueFromPagerStrip(vc: UINavigationController, nextVC: UIViewController) {
 }
 
 
-func getDarkBackGround(myVC: UIViewController) -> Void {
+func getDarkBackGround(_ myVC: UIViewController) -> Void {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
     bgImage.image = UIImage(named: "darkBgNew")
     bgImage.layer.zPosition = -1
-    bgImage.userInteractionEnabled = false
+    bgImage.isUserInteractionEnabled = false
     myVC.view.addSubview(bgImage)
     
 //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
     
 }
 
-func getDarkBackGroundBlur(myVC: UIViewController) -> Void {
+func getDarkBackGroundBlur(_ myVC: UIViewController) -> Void {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
     bgImage.image = UIImage(named: "darkBg")
     bgImage.layer.zPosition = -1
-    bgImage.userInteractionEnabled = false
+    bgImage.isUserInteractionEnabled = false
     
     myVC.view.addSubview(bgImage)
     
@@ -77,12 +77,12 @@ func getDarkBackGroundBlur(myVC: UIViewController) -> Void {
     
 }
 
-func getDarkBackGroundBlue(myVC: UIViewController) {
+func getDarkBackGroundBlue(_ myVC: UIViewController) {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
     bgImage.image = UIImage(named: "blueopacitybg")
     bgImage.layer.zPosition = -1
-    bgImage.userInteractionEnabled = false
+    bgImage.isUserInteractionEnabled = false
     
     myVC.view.addSubview(bgImage)
     
@@ -93,18 +93,18 @@ func getDarkBackGroundBlue(myVC: UIViewController) {
 class LeftPaddedLabel:  UILabel {
     
     let padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
-    override func drawTextInRect(rect: CGRect) {
-        super.drawTextInRect(UIEdgeInsetsInsetRect(rect, padding))
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: UIEdgeInsetsInsetRect(rect, padding))
     }
     // Override -intrinsicContentSize: for Auto layout code
-    override func intrinsicContentSize() -> CGSize {
-        let superContentSize = super.intrinsicContentSize()
+    override var intrinsicContentSize : CGSize {
+        let superContentSize = super.intrinsicContentSize
         let width = superContentSize.width + padding.left + padding.right
         let heigth = superContentSize.height + padding.top + padding.bottom
         return CGSize(width: width, height: heigth)
     }
     // Override -sizeThatFits: for Springs & Struts code
-    override func sizeThatFits(size: CGSize) -> CGSize {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
         let superSizeThatFits = super.sizeThatFits(size)
         let width = superSizeThatFits.width + padding.left + padding.right
         let heigth = superSizeThatFits.height + padding.top + padding.bottom
@@ -113,7 +113,7 @@ class LeftPaddedLabel:  UILabel {
     
 }
 
-public class LoadingOverlay{
+open class LoadingOverlay{
     
     var overlayView = UIView()
     var activityIndicator = UIActivityIndicatorView()
@@ -125,17 +125,17 @@ public class LoadingOverlay{
         return Static.instance
     }
     
-    public func showOverlay(view: UIView) {
+    open func showOverlay(_ view: UIView) {
         
-        overlayView.frame = CGRectMake(0, 0, 80, 80)
+        overlayView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         overlayView.center = view.center
         overlayView.backgroundColor = UIColor(white: 0x444444, alpha: 0.7)
         overlayView.clipsToBounds = true
         overlayView.layer.cornerRadius = 10
         
-        activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
-        activityIndicator.center = CGPointMake(overlayView.bounds.width / 2, overlayView.bounds.height / 2)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.center = CGPoint(x: overlayView.bounds.width / 2, y: overlayView.bounds.height / 2)
         
         overlayView.addSubview(activityIndicator)
         view.addSubview(overlayView)
@@ -143,25 +143,25 @@ public class LoadingOverlay{
         activityIndicator.startAnimating()
     }
     
-    public func hideOverlayView() {
+    open func hideOverlayView() {
         activityIndicator.stopAnimating()
         overlayView.removeFromSuperview()
     }
 }
 
-func makeTLProfilePicture(image: UIImageView) {
+func makeTLProfilePicture(_ image: UIImageView) {
     
     image.layer.cornerRadius = (37/100) * image.frame.width
     image.layer.borderWidth = 3.0
-    image.layer.borderColor = UIColor.whiteColor().CGColor
+    image.layer.borderColor = UIColor.white.cgColor
     image.clipsToBounds = true
     
 }
-func makeTLProfilePicture(image: UIButton) {
+func makeTLProfilePicture(_ image: UIButton) {
     
     image.layer.cornerRadius = (37/100) * image.frame.width
     image.layer.borderWidth = 3.0
-    image.layer.borderColor = UIColor.whiteColor().CGColor
+    image.layer.borderColor = UIColor.white.cgColor
     image.clipsToBounds = true
     
 }

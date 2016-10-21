@@ -61,7 +61,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         print("search begin editing")
         searchController.dimsBackgroundDuringPresentation = true
@@ -71,7 +71,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     }
     
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         print("search cancelled")
         shouldShowSearchResults = false
@@ -80,7 +80,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         print("search button clicked")
         
@@ -97,7 +97,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     
     var filteredArray: [JSON] = []
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         
         searchController.dimsBackgroundDuringPresentation = false
         searchString = searchController.searchBar.text!
@@ -121,13 +121,13 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
 
         return 1
         
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if shouldShowSearchResults {
             
@@ -139,32 +139,32 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! searchLocationsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! searchLocationsTableViewCell
         
         if shouldShowSearchResults {
             
-            cell.placeName.text = filteredArray[indexPath.row]["terms"].string!
-            cell.vicinityLabel.text = filteredArray[indexPath.row]["description"].string!
+            cell.placeName.text = filteredArray[(indexPath as NSIndexPath).row]["terms"].string!
+            cell.vicinityLabel.text = filteredArray[(indexPath as NSIndexPath).row]["description"].string!
             return cell
             
         }
         
-        cell.placeName.text = places[indexPath.row]["name"].string!
-        cell.vicinityLabel.text = places[indexPath.row]["vicinity"].string!
+        cell.placeName.text = places[(indexPath as NSIndexPath).row]["name"].string!
+        cell.vicinityLabel.text = places[(indexPath as NSIndexPath).row]["vicinity"].string!
         return cell
         
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let myCell = tableView.cellForRowAtIndexPath(indexPath) as! searchLocationsTableViewCell
+        let myCell = tableView.cellForRow(at: indexPath) as! searchLocationsTableViewCell
         var previous: NewTLViewController!
         
         for vc in self.navigationController!.viewControllers {
             
-            if vc.isKindOfClass(NewTLViewController) {
+            if vc.isKind(of: NewTLViewController.self) {
                 
                 previous = vc as! NewTLViewController
                 
@@ -177,7 +177,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         if shouldShowSearchResults {
             
             searchController.searchBar.resignFirstResponder()
-            searchController.active = false
+            searchController.isActive = false
             
             for place in filteredArray {
                 

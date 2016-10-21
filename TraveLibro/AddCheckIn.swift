@@ -23,7 +23,7 @@ class AddCheckIn: UIView, UITextViewDelegate {
         loadViewFromNib ()
         
         checkInDescription.text = "Fill me in..."
-        checkInDescription.textColor = UIColor.lightGrayColor()
+        checkInDescription.textColor = UIColor.lightGray
         
         checkInDescription.delegate = self
         
@@ -36,26 +36,26 @@ class AddCheckIn: UIView, UITextViewDelegate {
         
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         
-        if textView.textColor == UIColor.lightGrayColor() {
+        if textView.textColor == UIColor.lightGray {
             
             print("in the if statement1")
             textView.text = nil
-            textView.textColor = UIColor.blackColor()
+            textView.textColor = UIColor.black
             
         }
         
         
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         
         if textView.text.isEmpty {
             
             print("in the if statement2")
             textView.text = "Fill me in..."
-            textView.textColor = UIColor.lightGrayColor()
+            textView.textColor = UIColor.lightGray
             
         }
         
@@ -66,11 +66,11 @@ class AddCheckIn: UIView, UITextViewDelegate {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "AddCheckIn", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

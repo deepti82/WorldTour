@@ -7,6 +7,17 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class EachItineraryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -21,30 +32,30 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var tabOne: UIButton!
     @IBOutlet weak var theTableView: UITableView!
     
-    @IBAction func TapPhotos(sender: AnyObject) {
+    @IBAction func TapPhotos(_ sender: AnyObject) {
         
-        let modalContent = self.storyboard?.instantiateViewControllerWithIdentifier("itineraryPhotos") as! EachItineraryPhotosViewController
+        let modalContent = self.storyboard?.instantiateViewController(withIdentifier: "itineraryPhotos") as! EachItineraryPhotosViewController
         
-        modalContent.modalPresentationStyle = .FullScreen
+        modalContent.modalPresentationStyle = .fullScreen
         _ = modalContent.popoverPresentationController
         
-        self.presentViewController(modalContent, animated: true, completion: nil)
+        self.present(modalContent, animated: true, completion: nil)
         
         
     }
     
-    @IBAction func panOnButton(sender: AnyObject) {
+    @IBAction func panOnButton(_ sender: AnyObject) {
         
-        let modalContent = self.storyboard?.instantiateViewControllerWithIdentifier("MomentsVC") as! MomentsEachViewController
+        let modalContent = self.storyboard?.instantiateViewController(withIdentifier: "MomentsVC") as! MomentsEachViewController
         
-        modalContent.modalPresentationStyle = .FullScreen
+        modalContent.modalPresentationStyle = .fullScreen
         _ = modalContent.popoverPresentationController
         
-        self.presentViewController(modalContent, animated: true, completion: nil)
+        self.present(modalContent, animated: true, completion: nil)
         
     }
 
-    @IBAction func tabTap(sender: UIButton) {
+    @IBAction func tabTap(_ sender: UIButton) {
        
         prevSelectedTab?.backgroundColor = mainBlueColor
         sender.backgroundColor = mainOrangeColor
@@ -78,17 +89,17 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return cityLabels.count
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
+        if (indexPath as NSIndexPath).row == 0 {
             
-            let firstPostCell = tableView.dequeueReusableCellWithIdentifier("firstPost") as! EachItineraryPostTableViewCell
+            let firstPostCell = tableView.dequeueReusableCell(withIdentifier: "firstPost") as! EachItineraryPostTableViewCell
             
             let itineraryView = Itineraries(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 400))
             itineraryView.feedbackStack.removeFromSuperview()
@@ -97,15 +108,15 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             itineraryView.separatorView.removeFromSuperview()
             itineraryView.options.removeFromSuperview()
             firstPostCell.myView.addSubview(itineraryView)
-            firstPostCell.selectionStyle = .None
+            firstPostCell.selectionStyle = .none
             return firstPostCell
             
         }
         
-        else if cityLabels[indexPath.row] == "Stayed At" ||  cityLabels[indexPath.row] == "Ate At" || cityLabels[indexPath.row] == "Must Do" {
+        else if cityLabels[(indexPath as NSIndexPath).row] == "Stayed At" ||  cityLabels[(indexPath as NSIndexPath).row] == "Ate At" || cityLabels[(indexPath as NSIndexPath).row] == "Must Do" {
             
-            let childCell = tableView.dequeueReusableCellWithIdentifier("childCellOne") as! ItineraryAccordionChildCellTableViewCell
-            switch cityLabels[indexPath.row] {
+            let childCell = tableView.dequeueReusableCell(withIdentifier: "childCellOne") as! ItineraryAccordionChildCellTableViewCell
+            switch cityLabels[(indexPath as NSIndexPath).row] {
             case "Stayed At":
                 childCell.titleIcon.image = UIImage(named: "stayed_at")
                 childCell.title.text = "Stayed At"
@@ -131,42 +142,42 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
         
-        else if cityLabels[indexPath.row] == "little more" {
+        else if cityLabels[(indexPath as NSIndexPath).row] == "little more" {
             
-            let childCellTwo = tableView.dequeueReusableCellWithIdentifier("childCellTwo") as! ItineraryAccordionChildCellDescriptionTableViewCell
+            let childCellTwo = tableView.dequeueReusableCell(withIdentifier: "childCellTwo") as! ItineraryAccordionChildCellDescriptionTableViewCell
             let sub = MoreAboutTrip(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
             let subTwo = MoreAboutTrip(frame: CGRect(x: 0, y: 300, width: self.view.frame.width, height: 300))
             childCellTwo.descriptionCell.addSubview(subTwo)
             childCellTwo.descriptionCell.addSubview(sub)
             subTwo.mainTitle.removeFromSuperview()
-            childCellTwo.selectionStyle = .None
+            childCellTwo.selectionStyle = .none
             return childCellTwo
             
         }
         
         
-        let parentCell = tableView.dequeueReusableCellWithIdentifier("parentCell") as!
+        let parentCell = tableView.dequeueReusableCell(withIdentifier: "parentCell") as!
         ItineraryAccordionParentCellTableViewCell
-        parentCell.cityName.text = cityLabels[indexPath.row]
-        parentCell.dayLabel.text = dayLabels[indexPath.row]
+        parentCell.cityName.text = cityLabels[(indexPath as NSIndexPath).row]
+        parentCell.dayLabel.text = dayLabels[(indexPath as NSIndexPath).row]
         return parentCell
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.row == 0 {
+        if (indexPath as NSIndexPath).row == 0 {
             
             return 400
             
         }
             
-        else if cityLabels[indexPath.row] == "Stayed At" ||  cityLabels[indexPath.row] == "Ate At" || cityLabels[indexPath.row] == "Must Do" {
+        else if cityLabels[(indexPath as NSIndexPath).row] == "Stayed At" ||  cityLabels[(indexPath as NSIndexPath).row] == "Ate At" || cityLabels[(indexPath as NSIndexPath).row] == "Must Do" {
             
             return 60
         }
         
-        else if cityLabels[indexPath.row] == "little more" {
+        else if cityLabels[(indexPath as NSIndexPath).row] == "little more" {
             
             return 300 * 2
         }
@@ -174,12 +185,12 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         return 45
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
-        if indexPath.row != 0 && cityLabels[indexPath.row] != "little more" && cityLabels[indexPath.row] != "Ate At" && cityLabels[indexPath.row] != "Stayed At" && cityLabels[indexPath.row] != "Must Do" {
+        if (indexPath as NSIndexPath).row != 0 && cityLabels[(indexPath as NSIndexPath).row] != "little more" && cityLabels[(indexPath as NSIndexPath).row] != "Ate At" && cityLabels[(indexPath as NSIndexPath).row] != "Stayed At" && cityLabels[(indexPath as NSIndexPath).row] != "Must Do" {
             
             if (isExpanded == true) {
-                if(isSelectedIndex == indexPath.row) {
+                if(isSelectedIndex == (indexPath as NSIndexPath).row) {
                     
                     isExpanded = false
                     print("in if statement 1")
@@ -191,11 +202,11 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
                     let prevIndex = isSelectedIndex
                     expandParent(false, index: isSelectedIndex!)
                     isExpanded = true
-                    if(prevIndex < indexPath.row) {
-                        isSelectedIndex = indexPath.row - childCells
+                    if(prevIndex < (indexPath as NSIndexPath).row) {
+                        isSelectedIndex = (indexPath as NSIndexPath).row - childCells
                         print("in if statement 2")
                     } else {
-                        isSelectedIndex = indexPath.row
+                        isSelectedIndex = (indexPath as NSIndexPath).row
                         print("in if statement 4")
                     }
                     
@@ -208,17 +219,17 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
                 
         else {
             isExpanded = true
-            isSelectedIndex = indexPath.item
+            isSelectedIndex = (indexPath as NSIndexPath).item
             print("in if statement 3")
-            expandParent(isExpanded, index: indexPath.item)
+            expandParent(isExpanded, index: (indexPath as NSIndexPath).item)
         }
             
         }
         
-        if cityLabels[indexPath.row] == "Ate At" || cityLabels[indexPath.row] == "Stayed At" || cityLabels[indexPath.row] == "Must Do" {
+        if cityLabels[(indexPath as NSIndexPath).row] == "Ate At" || cityLabels[(indexPath as NSIndexPath).row] == "Stayed At" || cityLabels[(indexPath as NSIndexPath).row] == "Must Do" {
             
-            let exploreHotelsVC = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
-            exploreHotelsVC.whichView = cityLabels[indexPath.row]
+            let exploreHotelsVC = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
+            exploreHotelsVC.whichView = cityLabels[(indexPath as NSIndexPath).row]
             self.navigationController?.pushViewController(exploreHotelsVC, animated: true)
             
         }
@@ -226,13 +237,13 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
-    func expandParent(isExpanded: Bool, index: Int) -> Void {
+    func expandParent(_ isExpanded: Bool, index: Int) -> Void {
         
         if(isExpanded == true) {
             
             for j in 0 ..< childCells {
-                cityLabels.insert(childCellArray[j], atIndex: index + 1 + j)
-                dayLabels.insert(childCellArray[j], atIndex: index + 1 + j)
+                cityLabels.insert(childCellArray[j], at: index + 1 + j)
+                dayLabels.insert(childCellArray[j], at: index + 1 + j)
             }
             print("city labels: \(cityLabels)")
             print("day labels: \(dayLabels)")
@@ -246,14 +257,14 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             for _ in 0 ..< childCells {
                 if index ==  cityLabels.count {
                     
-                    cityLabels.removeAtIndex(index)
-                    dayLabels.removeAtIndex(index)
+                    cityLabels.remove(at: index)
+                    dayLabels.remove(at: index)
                 }
                 
                 else {
                     
-                    cityLabels.removeAtIndex(index+1)
-                    dayLabels.removeAtIndex(index+1)
+                    cityLabels.remove(at: index+1)
+                    dayLabels.remove(at: index+1)
                 }
                 
             }
@@ -263,10 +274,10 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     }
     
 
-    func makeTabs(myTab: UIButton) -> Void {
+    func makeTabs(_ myTab: UIButton) -> Void {
         
         myTab.layer.cornerRadius = 7
-        self.view.bringSubviewToFront(myTab)
+        self.view.bringSubview(toFront: myTab)
         
     }
 
@@ -279,9 +290,9 @@ class ItineraryAccordionParentCellTableViewCell: UITableViewCell {
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var buttonLabel: UIButton!
     
-    @IBAction func buttonTap(sender: AnyObject) {
+    @IBAction func buttonTap(_ sender: AnyObject) {
     
-        sender.setTitle("-", forState: .Selected)
+        sender.setTitle("-", for: .selected)
         
     }
     

@@ -33,8 +33,8 @@ class Itineraries: UIView {
         
         let gradient = CAGradientLayer()
         
-        let blackColour = UIColor.blackColor().colorWithAlphaComponent(0.8).CGColor as CGColorRef
-        let transparent = UIColor.clearColor().CGColor as CGColorRef
+        let blackColour = UIColor.black.withAlphaComponent(0.8).cgColor as CGColor
+        let transparent = UIColor.clear.cgColor as CGColor
         
         gradient.frame = gradientView.bounds
         gradient.frame.size.width = gradientView.frame.width + 100
@@ -48,9 +48,9 @@ class Itineraries: UIView {
         daysLabel.layer.zPosition = 10
         daysBG.layer.zPosition = 10
         
-        stackViewDetailOne.tintColor = UIColor.whiteColor()
-        stackViewDetailTwo.tintColor = UIColor.whiteColor()
-        stackViewDetailThree.tintColor = UIColor.whiteColor()
+        stackViewDetailOne.tintColor = UIColor.white
+        stackViewDetailTwo.tintColor = UIColor.white
+        stackViewDetailThree.tintColor = UIColor.white
         
         self.layer.cornerRadius = 5
         self.clipsToBounds = true
@@ -62,11 +62,11 @@ class Itineraries: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "Itineraries", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

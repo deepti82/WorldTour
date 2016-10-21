@@ -27,16 +27,16 @@ class NoFollowingViewController: UIViewController, UITableViewDelegate, UITableV
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 12
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("noFollowingCell") as! NoFollowingTableViewCell
-        cell.accessoryType = .None
+        let cell = tableView.dequeueReusableCell(withIdentifier: "noFollowingCell") as! NoFollowingTableViewCell
+        cell.accessoryType = .none
         
 //        if indexPath.row%2 == 0 {
 //            
@@ -48,19 +48,19 @@ class NoFollowingViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return "Add Friends"
         
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 20
         
     }
     
-    func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         
         var indexOfLetters = [String]()
         for string in countries {
@@ -70,24 +70,24 @@ class NoFollowingViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         indexOfLetters = Array(Set(indexOfLetters))
-        indexOfLetters = indexOfLetters.sort()
+        indexOfLetters = indexOfLetters.sorted()
         return indexOfLetters
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let selectedCountry = tableView.cellForRowAtIndexPath(indexPath)
+        let selectedCountry = tableView.cellForRow(at: indexPath)
         
-        if selectedCountry?.accessoryType == .Checkmark {
+        if selectedCountry?.accessoryType == .checkmark {
             
-            selectedCountry?.accessoryType = .None
+            selectedCountry?.accessoryType = .none
             
         }
             
         else {
             
-            selectedCountry?.accessoryType = .Checkmark
+            selectedCountry?.accessoryType = .checkmark
             
         }
         

@@ -8,6 +8,26 @@
 
 import UIKit
 import SwiftyJSON
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class AddYourRatingViewController: UIViewController {
     
@@ -30,7 +50,7 @@ class AddYourRatingViewController: UIViewController {
         
         let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
         profileImage.center.x = self.view.frame.width/2
-        profileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!)!)
+        profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
         makeTLProfilePicture(profileImage)
         layout.addSubview(profileImage)
         
@@ -44,7 +64,7 @@ class AddYourRatingViewController: UIViewController {
         
     }
     
-    func addHeightToLayout(height: CGFloat) {
+    func addHeightToLayout(_ height: CGFloat) {
         
         layout.frame.size.height += height + 100
         
@@ -61,10 +81,10 @@ class AddYourRatingViewController: UIViewController {
         
     }
     
-    func addRating(post: JSON) {
+    func addRating(_ post: JSON) {
         
         let rating = Rating(frame: CGRect(x: 0, y: 20, width: layout.frame.width, height: 225))
-        rating.checkInTitle.text = "YOUR REVIEW OF \(post["city"].string!.uppercaseString)"
+        rating.checkInTitle.text = "YOUR REVIEW OF \(post["city"].string!.uppercased())"
         rating.reviewDescription.text = post["review"].string!
         rating.date.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["createdAt"].string!, isDate: true)
         rating.time.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["createdAt"].string!, isDate: false)
@@ -92,7 +112,7 @@ class AddYourRatingViewController: UIViewController {
         
     }
     
-    func getStars(view: Rating, stars: Int) {
+    func getStars(_ view: Rating, stars: Int) {
         
         for i in 0 ..< stars {
             
@@ -102,21 +122,21 @@ class AddYourRatingViewController: UIViewController {
 
     }
     
-    func changeDateFormat(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+    func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = givenFormat
-        let date = dateFormatter.dateFromString(date)
+        let date = dateFormatter.date(from: date)
         
         dateFormatter.dateFormat = getFormat
         
         if isDate {
             
-            dateFormatter.dateStyle = .MediumStyle
+            dateFormatter.dateStyle = .medium
             
         }
         
-        let goodDate = dateFormatter.stringFromDate(date!)
+        let goodDate = dateFormatter.string(from: date!)
         return goodDate
         
     }
@@ -133,7 +153,7 @@ class AddYourRatingViewController: UIViewController {
         
         request.journeyTypeData(journeyId, type: "reviews", userId: currentUser["_id"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     

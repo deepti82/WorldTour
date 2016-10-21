@@ -11,7 +11,7 @@ import UIKit
 
 extension UIViewController {
     
-    public class LoadingOverlay {
+    open class LoadingOverlay {
     
         var overlayView = UIView()
         var activityIndicator = UIActivityIndicatorView()
@@ -23,7 +23,7 @@ extension UIViewController {
             return Static.instance
         }
         
-        func showOverlay(view: UIView) {
+        func showOverlay(_ view: UIView) {
             
             print("show loader")
             overlayView = UIView(frame: view.frame)
@@ -33,8 +33,8 @@ extension UIViewController {
             overlayView.layer.cornerRadius = 10
             overlayView.layer.zPosition = 10000
             
-            activityIndicator.frame = CGRectMake(0, 0, 40, 40)
-            activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+            activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+            activityIndicator.activityIndicatorViewStyle = .whiteLarge
             activityIndicator.center = overlayView.center
             
             overlayView.addSubview(activityIndicator)

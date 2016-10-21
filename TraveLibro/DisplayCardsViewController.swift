@@ -23,21 +23,21 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         let viewControllers = [myVC]
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
 //        rightButton.setTitle("Next", forState: .Normal)
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(DisplayCardsViewController.nextPage(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(DisplayCardsViewController.nextPage(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
 //        rightButton.hidden = true
         
         self.customNavigationBar(leftButton, right: rightButton)
         
         dataSource = self
         
-        setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
+        setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
         
 //        self.pvc = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
         
@@ -48,19 +48,19 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         // Dispose of any resources that can be recreated.
     }
     
-    func nextPage(sender: AnyObject) {
+    func nextPage(_ sender: AnyObject) {
         
         print("index: \(dataIndex)")
         dataIndex = dataIndex + 1
 //        viewControllerAtIndex(dataIndex)
         let myVC = viewControllerAtIndex(dataIndex) as! SignupCardsViewController
-        setViewControllers([myVC], direction: .Forward, animated: true, completion: nil)
+        setViewControllers([myVC], direction: .forward, animated: true, completion: nil)
         
         if dataIndex == 3 {
             
             rightButton.frame.size.width = 70.0
-            rightButton.setImage(nil, forState: .Normal)
-            rightButton.setTitle("Done", forState: .Normal)
+            rightButton.setImage(nil, for: UIControlState())
+            rightButton.setTitle("Done", for: UIControlState())
             rightButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
             
         }
@@ -72,7 +72,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
     }
     
-    func finishQuestions(sender: AnyObject) {
+    func finishQuestions(_ sender: AnyObject) {
         
         dataIndex = 3
         viewControllerAtIndex(dataIndex)
@@ -102,7 +102,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         request.addKindOfJourney(currentUser["_id"].string!, editFieldValue: travelConfig, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -115,7 +115,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                         
                         print("response arrived!")
                         
-                        let home = self.storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+                        let home = self.storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
 //                        self.slideMenuController()?.changeMainViewController(home, close: true)
 //                        home.initialEntrance = true
                         self.navigationController!.pushViewController(home, animated: true)
@@ -131,7 +131,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         dataIndex = dataIndex - 1
 //        selectedOptions = []
@@ -148,7 +148,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         return viewControllerAtIndex(index)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         travelConfig[cardTitle] = selectedOptions
         print("\(cardTitle): \(selectedOptions)")
@@ -173,7 +173,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
     }
     
-    func viewControllerAtIndex(index: Int) -> UIViewController {
+    func viewControllerAtIndex(_ index: Int) -> UIViewController {
         
         switch dataIndex {
         case 0:
@@ -197,19 +197,19 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                 return SignupCardsViewController()
         }
         
-        let myVC = storyboard?.instantiateViewControllerWithIdentifier("SignupCardsViewController") as! SignupCardsViewController
+        let myVC = storyboard?.instantiateViewController(withIdentifier: "SignupCardsViewController") as! SignupCardsViewController
         myVC.cardTitle = titles[index]
         myVC.pageIndex = index
         myVC.checkBoxes = CGFloat(checkBoxNumber[index])
         return myVC
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         
         return titles.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         
         return 0
     }

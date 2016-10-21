@@ -36,21 +36,21 @@ class AllReviewsViewController: UIViewController, UITableViewDelegate, UITableVi
         print("bounds view 3: \(view3.frame.origin.x), \(view3.frame.origin.y)")
         
         let titleTab1 = UIButton(frame: CGRect(x: view3.frame.origin.x + 8, y: view3.frame.origin.y - 30, width: 122, height: 35))
-        titleTab1.setTitle("Journeys", forState: .Normal)
+        titleTab1.setTitle("Journeys", for: UIControlState())
         titleTab1.titleLabel?.font = avenirFont
         titleTab1.backgroundColor = mainOrangeColor
         titleTab1.layer.cornerRadius = 5
         self.view.addSubview(titleTab1)
         
         let titleTab2 = UIButton(frame: CGRect(x: view3.frame.origin.x + 128, y: view3.frame.origin.y - 30, width: 122, height: 43))
-        titleTab2.setTitle("Moments", forState: .Normal)
+        titleTab2.setTitle("Moments", for: UIControlState())
         titleTab2.titleLabel?.font = avenirFont
         titleTab2.backgroundColor = mainOrangeColor
         titleTab2.layer.cornerRadius = 5
         self.view.addSubview(titleTab2)
         
         let titleTab3 = UIButton(frame: CGRect(x: view3.frame.origin.x + (120 * 2) + 8, y: view3.frame.origin.y - 30, width: 110, height: 51))
-        titleTab3.setTitle("Reviews", forState: .Normal)
+        titleTab3.setTitle("Reviews", for: UIControlState())
         titleTab3.titleLabel?.font = avenirFont
         titleTab3.backgroundColor = mainOrangeColor
         titleTab3.layer.cornerRadius = 5
@@ -76,27 +76,27 @@ class AllReviewsViewController: UIViewController, UITableViewDelegate, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! allReviewsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! allReviewsTableViewCell
         
         let timestamp = DateAndTime(frame: CGRect(x: 0, y: 0, width: cell.timestampView.frame.width, height: cell.timestampView.frame.height))
         cell.timestampView.addSubview(timestamp)
         
         cell.reviewLocation.text = "Mumbai, India"
-        cell.reviewTitle.text = labels[indexPath.item]
+        cell.reviewTitle.text = labels[(indexPath as NSIndexPath).item]
         
         let ratingSuperviewWidth:Int = Int(cell.ratingSuperview.frame.width)
         let ratingSuperviewHeight:Int = Int(cell.ratingSuperview.frame.height)
         
-        if (labels[indexPath.item] != "Girgaon Beach" && cell.ratingView?.viewWithTag(1) != nil) {
+        if (labels[(indexPath as NSIndexPath).item] != "Girgaon Beach" && cell.ratingView?.viewWithTag(1) != nil) {
             
             cell.ratingView.removeFromSuperview()
             
             for i in 0 ... 4 {
                 
                 let starIconButton = UIButton(frame: CGRect(x: ratingSuperviewWidth/5 * i, y: 0, width: ratingSuperviewWidth/10, height: ratingSuperviewHeight/2))
-                starIconButton.setImage(UIImage(named: "star_uncheck"), forState: .Normal)
+                starIconButton.setImage(UIImage(named: "star_uncheck"), for: UIControlState())
                 cell.ratingSuperview.addSubview(starIconButton)
                 
             }
@@ -106,21 +106,21 @@ class AllReviewsViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return labels.count
     }
     
-    func addRadiosToButtons(button: UIButton) -> Void {
+    func addRadiosToButtons(_ button: UIButton) -> Void {
         
         let radioInButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         radioInButton.image = UIImage(named: "radio_for_button")
-        radioInButton.center = CGPointMake(button.titleLabel!.frame.width/3 - 15, button.titleLabel!.frame.height/2 + 10)
+        radioInButton.center = CGPoint(x: button.titleLabel!.frame.width/3 - 15, y: button.titleLabel!.frame.height/2 + 10)
         button.titleLabel!.addSubview(radioInButton)
         
     }
     
-    func addShadowsToViews(myView: UIView) -> Void {
+    func addShadowsToViews(_ myView: UIView) -> Void {
         
         myView.layer.shadowOffset = CGSize(width: 3, height: 3)
         myView.layer.shadowOpacity = 1
@@ -128,7 +128,7 @@ class AllReviewsViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func addStylesToTabs(myButton: UIButton) -> Void {
+    func addStylesToTabs(_ myButton: UIButton) -> Void {
         
         myButton.layer.shadowOffset = CGSize(width: 3, height: 3)
         myButton.layer.shadowOpacity = 1

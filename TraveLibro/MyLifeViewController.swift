@@ -7,6 +7,26 @@
 //
 
 import UIKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 var isEmptyProfile = false
 
@@ -57,15 +77,15 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         let leftButton = UIButton()
         leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
         let arrow = String(format: "%C", faicon["arrow-down"]!)
-        leftButton.setTitle(arrow, forState: .Normal)
-        leftButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setTitle(arrow, for: UIControlState())
+        leftButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
         leftButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 12)
-        rightButton.setTitle("Follow", forState: .Normal)
-        rightButton.addTarget(self, action: #selector(MyLifeViewController.follow(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 100, 30)
+        rightButton.setTitle("Follow", for: UIControlState())
+        rightButton.addTarget(self, action: #selector(MyLifeViewController.follow(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 100, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -76,13 +96,13 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         isEmptyProfile = true
         
-        arrowDownButton.setTitle(arrow, forState: .Normal)
-        arrowDownButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), forControlEvents: .TouchUpInside)
+        arrowDownButton.setTitle(arrow, for: UIControlState())
+        arrowDownButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(MyLifeViewController.exitMyLife(_:)))
         profileName.addGestureRecognizer(tap)
         
-        followButton.addTarget(self, action: #selector(MyLifeViewController.follow(_:)), forControlEvents: .TouchUpInside)
+        followButton.addTarget(self, action: #selector(MyLifeViewController.follow(_:)), for: .touchUpInside)
         
         let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
         statusBar.layer.zPosition = -1
@@ -106,9 +126,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         viewOne.layer.zPosition = 2
         viewTwo.layer.zPosition = 4
         
-        journeysButton.addTarget(self, action: #selector(MyLifeViewController.showJourneys(_:)), forControlEvents: .TouchUpInside)
-        momentsButton.addTarget(self, action: #selector(MyLifeViewController.showMoments(_:)), forControlEvents: .TouchUpInside)
-        reviewsButton.addTarget(self, action: #selector(MyLifeViewController.showReviews(_:)), forControlEvents: .TouchUpInside)
+        journeysButton.addTarget(self, action: #selector(MyLifeViewController.showJourneys(_:)), for: .touchUpInside)
+        momentsButton.addTarget(self, action: #selector(MyLifeViewController.showMoments(_:)), for: .touchUpInside)
+        reviewsButton.addTarget(self, action: #selector(MyLifeViewController.showReviews(_:)), for: .touchUpInside)
         
         viewBorder(viewZero)
         viewBorder(viewOne)
@@ -122,23 +142,23 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let radio = UIImageView(frame: CGRect(x: -18, y: 2, width: 15, height: 15))
         radio.image = UIImage(named: "radio_for_button")
-        radio.contentMode = .ScaleAspectFit
+        radio.contentMode = .scaleAspectFit
         
         let radioTwo = UIImageView(frame: CGRect(x: -18, y: 2, width: 15, height: 15))
         radioTwo.image = UIImage(named: "radio_for_button")
-        radioTwo.contentMode = .ScaleAspectFit
+        radioTwo.contentMode = .scaleAspectFit
         
         let radioThree = UIImageView(frame: CGRect(x: -18, y: 2, width: 15, height: 15))
         radioThree.image = UIImage(named: "radio_for_button")
-        radioThree.contentMode = .ScaleAspectFit
+        radioThree.contentMode = .scaleAspectFit
         
         allRadio.titleLabel?.addSubview(radio)
         TLRadio.titleLabel?.addSubview(radioTwo)
         LLRadio.titleLabel?.addSubview(radioThree)
         
-        allRadio.addTarget(self, action: #selector(MyLifeViewController.allRadioChecked(_:)), forControlEvents: .TouchUpInside)
-        TLRadio.addTarget(self, action: #selector(MyLifeViewController.travelLifeRadioChecked(_:)), forControlEvents: .TouchUpInside)
-        LLRadio.addTarget(self, action: #selector(MyLifeViewController.localLifeRadioChecked(_:)), forControlEvents: .TouchUpInside)
+        allRadio.addTarget(self, action: #selector(MyLifeViewController.allRadioChecked(_:)), for: .touchUpInside)
+        TLRadio.addTarget(self, action: #selector(MyLifeViewController.travelLifeRadioChecked(_:)), for: .touchUpInside)
+        LLRadio.addTarget(self, action: #selector(MyLifeViewController.localLifeRadioChecked(_:)), for: .touchUpInside)
         
         child = self.childViewControllers[0] as! MyLifeContainerViewController
         
@@ -148,26 +168,26 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         print("to the end of view did load")
     }
     
-    func exitMyLife(sender: AnyObject ) {
+    func exitMyLife(_ sender: AnyObject ) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
     }
     
-    func follow(sender: UIButton) {
+    func follow(_ sender: UIButton) {
         
-        sender.setTitle("Following", forState: .Normal)
+        sender.setTitle("Following", for: UIControlState())
         
     }
     
     func setDefaults() {
         
-        let journeys = storyboard?.instantiateViewControllerWithIdentifier("myLifeSimple") as! MyLifeContainerViewController
+        let journeys = storyboard?.instantiateViewController(withIdentifier: "myLifeSimple") as! MyLifeContainerViewController
         journeys.whichView = "All"
         
     }
     
-    func newCollection(sender: UIPinchGestureRecognizer? = nil) {
+    func newCollection(_ sender: UIPinchGestureRecognizer? = nil) {
         
         if sender?.scale > 0 {
             
@@ -177,12 +197,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    func swipeDown(sender: UIPanGestureRecognizer) {
+    func swipeDown(_ sender: UIPanGestureRecognizer) {
         
-        if sender.velocityInView(self.view).y > 0 {
+        if sender.velocity(in: self.view).y > 0 {
             
             print("down direction")
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
             
         }
         
@@ -191,7 +211,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    func showJourneys(sender: UIButton) {
+    func showJourneys(_ sender: UIButton) {
         
         whatEmptyTab = "Journeys"
         reviewsButton.layer.zPosition = -1
@@ -222,7 +242,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    func showMoments(sender: UIButton) {
+    func showMoments(_ sender: UIButton) {
         
         whatEmptyTab = "Moments"
         journeysButton.layer.zPosition = -1
@@ -245,7 +265,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    func showReviews(sender: UIButton) {
+    func showReviews(_ sender: UIButton) {
         
         whatEmptyTab = "Reviews"
         momentsButton.layer.zPosition = -1
@@ -270,7 +290,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
 //    var flag = false
     
-    func allRadioChecked(sender: AnyObject?) {
+    func allRadioChecked(_ sender: AnyObject?) {
         
         if isEmptyProfile {
             
@@ -278,12 +298,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             child.viewDidLoad()
         }
         
-        print("all radio selected: \(allRadio.selected)")
+        print("all radio selected: \(allRadio.isSelected)")
         
         let mySubviews = allRadio.titleLabel!.subviews
         radioValue = "All"
         let radio = UIImageView(frame: CGRect(x: -18, y: 2, width: 15, height: 15))
-        radio.contentMode = .ScaleAspectFit
+        radio.contentMode = .scaleAspectFit
         
         for subview in mySubviews {
             
@@ -294,28 +314,28 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         if firstTime {
             
             radio.image = UIImage(named: "radio_checked_all")
-            allRadio.selected = true
+            allRadio.isSelected = true
             firstTime = false
             
         }
             
-        else if !allRadio.selected {
+        else if !allRadio.isSelected {
             
             radio.image = UIImage(named: "radio_checked_all")
-            allRadio.selected = true
-            TLRadio.selected = false
-            LLRadio.selected = false
+            allRadio.isSelected = true
+            TLRadio.isSelected = false
+            LLRadio.isSelected = false
             self.unSelectRadio(TLRadio)
             self.unSelectRadio(LLRadio)
             
         }
             
-        else if allRadio.selected {
+        else if allRadio.isSelected {
             
             radio.image = UIImage(named: "radio_checked_all")
-            allRadio.selected = true
-            TLRadio.selected = false
-            LLRadio.selected = false
+            allRadio.isSelected = true
+            TLRadio.isSelected = false
+            LLRadio.isSelected = false
             self.unSelectRadio(TLRadio)
             self.unSelectRadio(LLRadio)
             
@@ -358,7 +378,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func travelLifeRadioChecked(sender: AnyObject?) {
+    func travelLifeRadioChecked(_ sender: AnyObject?) {
         
         if isEmptyProfile {
             
@@ -367,12 +387,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             
         }
         
-        print("TL radio selected: \(TLRadio.selected)")
+        print("TL radio selected: \(TLRadio.isSelected)")
         
         let mySubviews = TLRadio.titleLabel!.subviews
         radioValue = "TL"
         let radioTwo = UIImageView(frame: CGRect(x: -18, y: 2, width: 15, height: 15))
-        radioTwo.contentMode = .ScaleAspectFit
+        radioTwo.contentMode = .scaleAspectFit
         
         for subview in mySubviews {
             
@@ -383,29 +403,29 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         if  firstTime {
             
             radioTwo.image = UIImage(named: "radio_checked_travel_life")
-            TLRadio.selected = true
+            TLRadio.isSelected = true
             firstTime = false
             
         }
         
-        else if !TLRadio.selected {
+        else if !TLRadio.isSelected {
             
             print("inside travel life radio")
             radioTwo.image = UIImage(named: "radio_checked_travel_life")
-            TLRadio.selected = true
-            allRadio.selected = false
-            LLRadio.selected = false
+            TLRadio.isSelected = true
+            allRadio.isSelected = false
+            LLRadio.isSelected = false
             self.unSelectRadio(LLRadio)
             self.unSelectRadio(allRadio)
             
         }
         
-        else if TLRadio.selected {
+        else if TLRadio.isSelected {
             
             radioTwo.image = UIImage(named: "radio_checked_travel_life")
-            TLRadio.selected = true
-            allRadio.selected = false
-            LLRadio.selected = false
+            TLRadio.isSelected = true
+            allRadio.isSelected = false
+            LLRadio.isSelected = false
             self.unSelectRadio(LLRadio)
             self.unSelectRadio(allRadio)
             
@@ -446,7 +466,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    func localLifeRadioChecked(sender: AnyObject?) {
+    func localLifeRadioChecked(_ sender: AnyObject?) {
         
         if isEmptyProfile {
             
@@ -455,12 +475,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             
         }
         
-        print("LL radio selected: \(LLRadio.selected)")
+        print("LL radio selected: \(LLRadio.isSelected)")
         
         let mySubviews = LLRadio.titleLabel!.subviews
         radioValue = "LL"
         let radioThree = UIImageView(frame: CGRect(x: -18, y: 2, width: 15, height: 15))
-        radioThree.contentMode = .ScaleAspectFit
+        radioThree.contentMode = .scaleAspectFit
         
         for subview in mySubviews {
             
@@ -471,30 +491,30 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         if  firstTime {
             
             radioThree.image = UIImage(named: "radio_checked_travel_life")
-            LLRadio.selected = true
+            LLRadio.isSelected = true
             firstTime = false
             
         }
         
-        else if !LLRadio.selected && LLRadio != nil && !firstTime {
+        else if !LLRadio.isSelected && LLRadio != nil && !firstTime {
             
             print("inside local life radio")
             radioThree.image = UIImage(named: "radio_checked_local_life")
-            LLRadio.selected = true
-            TLRadio.selected = false
-            allRadio.selected = false
+            LLRadio.isSelected = true
+            TLRadio.isSelected = false
+            allRadio.isSelected = false
             self.unSelectRadio(TLRadio)
             self.unSelectRadio(allRadio)
             
         }
         
-        else if LLRadio.selected {
+        else if LLRadio.isSelected {
             
             radioThree.image = UIImage(named: "radio_for_button")
             radioThree.image = UIImage(named: "radio_checked_local_life")
-            LLRadio.selected = true
-            TLRadio.selected = false
-            allRadio.selected = false
+            LLRadio.isSelected = true
+            TLRadio.isSelected = false
+            allRadio.isSelected = false
             self.unSelectRadio(TLRadio)
             self.unSelectRadio(allRadio)
             
@@ -534,12 +554,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    func unSelectRadio(sender: UIButton) {
+    func unSelectRadio(_ sender: UIButton) {
         
         let mySubviews = sender.titleLabel!.subviews
         
         let radioUnselect = UIImageView(frame: CGRect(x: -18, y: 2, width: 15, height: 15))
-        radioUnselect.contentMode = .ScaleAspectFit
+        radioUnselect.contentMode = .scaleAspectFit
         
         for subview in mySubviews {
             
@@ -547,10 +567,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             
         }
         
-        if !sender.selected {
+        if !sender.isSelected {
             
             radioUnselect.image = UIImage(named: "radio_for_button")
-            sender.selected = false
+            sender.isSelected = false
             
         }
         
@@ -563,21 +583,21 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func viewBorder(sender: UIView) {
+    func viewBorder(_ sender: UIView) {
         
-        sender.layer.shadowColor = UIColor.darkGrayColor().CGColor
+        sender.layer.shadowColor = UIColor.darkGray.cgColor
         sender.layer.shadowOpacity = 0.6
-        sender.layer.shadowOffset = CGSizeMake(0, -1)
+        sender.layer.shadowOffset = CGSize(width: 0, height: -1)
         sender.layer.shadowRadius = 5.0
 //        sender.clipsToBounds = true
         
     }
     
-    func buttonShadow(sender: UIButton) {
+    func buttonShadow(_ sender: UIButton) {
         
-        sender.layer.shadowColor = UIColor.darkGrayColor().CGColor
+        sender.layer.shadowColor = UIColor.darkGray.cgColor
         sender.layer.shadowOpacity = 0.4
-        sender.layer.shadowOffset = CGSizeMake(1, 0)
+        sender.layer.shadowOffset = CGSize(width: 1, height: 0)
         sender.layer.shadowRadius = 3.0
         
         sender.layer.cornerRadius = 5.0

@@ -11,23 +11,23 @@ import SQLite
 
 public let db = AppDelegate.getDatabase()
 
-public class Post {
+open class Post {
     
-    public let post = Table("Post")
+    open let post = Table("Post")
     
     // id, userid, journeyuniqueid, posttype, photos[], videos[], thought, checkin[], buddies[], iscompleted
     
-    public let id = Expression<Int64>("id")
-    public let userId = Expression<String>("userid")
-    public let journeyId = Expression<String>("name")
-    public let type = Expression<String>("postType")
-    public let date = Expression<String>("date")
-    public let thoughts = Expression<String?>("thoughts")
-    public let location = Expression<String>("location")
-    public let category = Expression<String>("category")
-    public let country = Expression<String>("country")
-    public let city = Expression<String>("city")
-    public let hasCompleted = Expression<Bool>("hasCompleted")
+    open let id = Expression<Int64>("id")
+    open let userId = Expression<String>("userid")
+    open let journeyId = Expression<String>("name")
+    open let type = Expression<String>("postType")
+    open let date = Expression<String>("date")
+    open let thoughts = Expression<String?>("thoughts")
+    open let location = Expression<String>("location")
+    open let category = Expression<String>("category")
+    open let country = Expression<String>("country")
+    open let city = Expression<String>("city")
+    open let hasCompleted = Expression<Bool>("hasCompleted")
     
     init() {
         try! db.run(post.create(ifNotExists: true) { t in
@@ -45,9 +45,9 @@ public class Post {
         })
     }
     
-    func setPost(UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Country: String, City: String, Status: String) {
+    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Country: String, City: String, Status: String) {
         
-        dispatch_async(dispatch_get_main_queue(),{
+        DispatchQueue.main.async(execute: {
                 let photoinsert = self.post.insert(
                     self.userId <- UserId,
                     self.journeyId <- JourneyId,
@@ -86,7 +86,7 @@ public class Post {
         try! db.run(post.drop(ifExists: true))
     }
     
-    func flushRows(postId: Int64) {
+    func flushRows(_ postId: Int64) {
         
         let posts = post.filter(id == postId)
         do {
@@ -102,16 +102,16 @@ public class Post {
     
 }
 
-public class Photo {
+open class Photo {
     
-    public let photos = Table("Photos")
+    open let photos = Table("Photos")
     
-    public let id = Expression<Int64>("id")
-    public let postid = Expression<String>("postId")
-    public let name = Expression<String?>("photoName")
-    public let data = Expression<NSData>("photoData")
-    public let caption = Expression<String?>("caption")
-    public let localurl = Expression<String>("localUrl")
+    open let id = Expression<Int64>("id")
+    open let postid = Expression<String>("postId")
+    open let name = Expression<String?>("photoName")
+    open let data = Expression<Data>("photoData")
+    open let caption = Expression<String?>("caption")
+    open let localurl = Expression<String>("localUrl")
     
     init() {
         try! db.run(photos.create(ifNotExists: true) { t in
@@ -123,7 +123,7 @@ public class Photo {
         })
     }
     
-    func setPhotos(postId: String, Name: String?, Data: NSData, Caption: String?) {
+    func setPhotos(_ postId: String, Name: String?, Data: Foundation.Data, Caption: String?) {
         
 //        dispatch_sync(dispatch_get_main_queue(),{
             let count = db.scalar(self.photos.filter(self.data == Data).count)
@@ -150,7 +150,7 @@ public class Photo {
         
     }
     
-    func insertCaption(imageId: String, caption: String) {
+    func insertCaption(_ imageId: String, caption: String) {
         
         let count = db.scalar(self.photos.filter(self.id == Int64(imageId)!).count)
         if(count == 0) {
@@ -162,7 +162,7 @@ public class Photo {
         }
     }
     
-    func insertName(imageId: String, Name: String) {
+    func insertName(_ imageId: String, Name: String) {
         
         let count = db.scalar(self.photos.filter(self.id == Int64(imageId)!).count)
         if(count == 0) {
@@ -174,7 +174,7 @@ public class Photo {
         }
     }
     
-    func getPhotosOfPost(post: String) -> [String] {
+    func getPhotosOfPost(_ post: String) -> [String] {
         
         var value: [String] = []
         
@@ -194,7 +194,7 @@ public class Photo {
         
     }
     
-    func getPhotoNamesForPost(postId: String) -> [String] {
+    func getPhotoNamesForPost(_ postId: String) -> [String] {
         
         var value: [String] = []
         
@@ -214,7 +214,7 @@ public class Photo {
         
     }
     
-    func flushRows(postId: String) {
+    func flushRows(_ postId: String) {
         
         let tempPhotos = photos.filter(postid == postId)
         do {
@@ -234,25 +234,25 @@ public class Photo {
     
 }
 
-public class Video {
+open class Video {
     
-    public let photos = Table("Videos")
+    open let photos = Table("Videos")
     
-    public let id = Expression<Int64>("id")
-    public let postid = Expression<String>("postId")
-    public let name = Expression<String?>("videoName")
-    public let data = Expression<String>("videoData")
-    public let caption = Expression<String?>("caption")
+    open let id = Expression<Int64>("id")
+    open let postid = Expression<String>("postId")
+    open let name = Expression<String?>("videoName")
+    open let data = Expression<String>("videoData")
+    open let caption = Expression<String?>("caption")
     
     
 }
 
-public class CheckIn {
+open class CheckIn {
     
-    public let photos = Table("CheckIn")
+    open let photos = Table("CheckIn")
     
-    public let id = Expression<Int64>("id")
-    public let postid = Expression<String>("postId")
+    open let id = Expression<Int64>("id")
+    open let postid = Expression<String>("postId")
     
     
     init() {
@@ -268,16 +268,16 @@ public class CheckIn {
     
 }
 
-public class Buddy {
+open class Buddy {
     
-    public let buddy = Table("Buddy")
+    open let buddy = Table("Buddy")
     
-    public let id = Expression<Int64>("id")
-    public let postid = Expression<String>("postId")
-    public let buddyuserid = Expression<String>("buddyUserId")
-    public let buddyname = Expression<String>("buddyName")
-    public let buddydp = Expression<String>("buddyDp")
-    public let buddyemail = Expression<String>("buddyEmail")
+    open let id = Expression<Int64>("id")
+    open let postid = Expression<String>("postId")
+    open let buddyuserid = Expression<String>("buddyUserId")
+    open let buddyname = Expression<String>("buddyName")
+    open let buddydp = Expression<String>("buddyDp")
+    open let buddyemail = Expression<String>("buddyEmail")
     
     init() {
         try! db.run(buddy.create(ifNotExists: true) { t in
@@ -290,9 +290,9 @@ public class Buddy {
         })
     }
     
-    func setBuddies(postId: String, userId: String, userName: String, userDp: String, userEmail: String) {
+    func setBuddies(_ postId: String, userId: String, userName: String, userDp: String, userEmail: String) {
         
-        dispatch_async(dispatch_get_main_queue(),{
+        DispatchQueue.main.async(execute: {
             let photoinsert = self.buddy.insert(
                 self.buddyuserid <- userId,
                 self.buddyname <- userName,
@@ -309,7 +309,7 @@ public class Buddy {
         
     }
     
-    func flushRows(postId: String) {
+    func flushRows(_ postId: String) {
         
         let buddies = buddy.filter(postid == postId)
         do {

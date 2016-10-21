@@ -22,22 +22,22 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 4
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("popularCell") as! PopularBloggerTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "popularCell") as! PopularBloggerTableViewCell
         cell.titleTag.layer.cornerRadius = 5
-        cell.titleTag.layer.borderColor = mainBlueColor.CGColor
+        cell.titleTag.layer.borderColor = mainBlueColor.cgColor
         cell.titleTag.layer.borderWidth = 1.5
         cell.cameraIcon.tintColor = mainBlueColor
         cell.videoIcon.tintColor = mainBlueColor
         cell.locationIcon.tintColor = mainBlueColor
-        cell.selectionStyle = .None
+        cell.selectionStyle = .none
         return cell
         
     }

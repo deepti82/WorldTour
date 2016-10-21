@@ -20,7 +20,7 @@ class TextField: UIView {
         self.layer.shadowOpacity = 0.2
         self.layer.shadowRadius = 1
         
-        field.textColor = UIColor.blackColor()
+        field.textColor = UIColor.black
         field.font = avenirFont
         
     }
@@ -30,11 +30,11 @@ class TextField: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "TextField", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

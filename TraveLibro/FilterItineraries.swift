@@ -26,28 +26,28 @@ class FilterItineraries: UIView {
         
         let search = SearchFieldView(frame: CGRect(x: 0, y: 0, width: searchView.frame.width, height: searchView.frame.height))
         search.searchField.placeholder = "Search a city"
-        search.leftLine.backgroundColor = UIColor.whiteColor()
-        search.rightLine.backgroundColor = UIColor.whiteColor()
-        search.bottomLine.backgroundColor = UIColor.whiteColor()
-        search.searchButton.tintColor = UIColor.whiteColor()
+        search.leftLine.backgroundColor = UIColor.white
+        search.rightLine.backgroundColor = UIColor.white
+        search.bottomLine.backgroundColor = UIColor.white
+        search.searchButton.tintColor = UIColor.white
         searchView.addSubview(search)
         
-        search.backgroundColor = UIColor.clearColor()
+        search.backgroundColor = UIColor.clear
         
 //        let blurBackground = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
 //        blurBackground.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame = self.bounds
         blurView.layer.zPosition = -1
-        blurView.userInteractionEnabled = false
+        blurView.isUserInteractionEnabled = false
         self.addSubview(blurView)
         
         doneButton.layer.cornerRadius = 5
         
         for button in stackButtons {
             
-            button.tintColor = UIColor.whiteColor()
+            button.tintColor = UIColor.white
             
         }
         
@@ -72,11 +72,11 @@ class FilterItineraries: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "FilterItineraries", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

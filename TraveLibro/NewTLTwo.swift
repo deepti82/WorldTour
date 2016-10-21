@@ -17,11 +17,11 @@ import ActiveLabel
 
 extension NewTLViewController {
     
-    func editPost(id: String) {
+    func editPost(_ id: String) {
         
         for view in layout.subviews {
             
-            if view.isKindOfClass(PhotosOTG) {
+            if view.isKind(of: PhotosOTG.self) {
                 
                 let subview = view as! PhotosOTG
                 
@@ -40,11 +40,11 @@ extension NewTLViewController {
         
     }
     
-    func deleteFromLayout(id: String) {
+    func deleteFromLayout(_ id: String) {
         
         for view in layout.subviews {
             
-            if view.isKindOfClass(PhotosOTG) {
+            if view.isKind(of: PhotosOTG.self) {
                 
                 let subview = view as! PhotosOTG
                 
@@ -65,7 +65,7 @@ extension NewTLViewController {
         
     }
     
-    func buddyLeaves(post: JSON) {
+    func buddyLeaves(_ post: JSON) {
         
         prevPosts.append(post)
         
@@ -80,14 +80,14 @@ extension NewTLViewController {
         
         let buddyView = BuddyLeaves(frame: CGRect(x: 0, y: 10, width: 300, height: 215))
         buddyView.profileName.text = post["user"]["name"].string!
-        buddyView.profilePicture.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!)!)
+        buddyView.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
         makeTLProfilePicture(buddyView.profilePicture)
         layout.addSubview(buddyView)
         addHeightToLayout(buddyView.frame.height)
         
     }
     
-    func cityChanges(post: JSON) {
+    func cityChanges(_ post: JSON) {
         
         print("in change city post")
         prevPosts.append(post)
@@ -101,7 +101,7 @@ extension NewTLViewController {
         
         let changeCityView = ChangeCity(frame: CGRect(x: 0, y: 50, width: width - 120, height: 100))
         changeCityView.center.x = width / 2
-        changeCityView.cityButton.setTitle(post["location"].string!, forState: .Normal)
+        changeCityView.cityButton.setTitle(post["location"].string!, for: UIControlState())
         layout.addSubview(changeCityView)
         addHeightToLayout(changeCityView.frame.height)
         
@@ -110,7 +110,7 @@ extension NewTLViewController {
         
     }
     
-    func showReviewPopup(sender: UIButton) {
+    func showReviewPopup(_ sender: UIButton) {
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
         
@@ -120,16 +120,16 @@ extension NewTLViewController {
         background.addGestureRecognizer(tapout)
         background.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         self.view.addSubview(background)
-        self.view.bringSubviewToFront(background)
+        self.view.bringSubview(toFront: background)
         
         let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 315))
         rating.center = background.center
         rating.layer.cornerRadius = 5
         rating.ratingDisplay(myReview[lastCount])
 //        rating.postReview.setTitle(sender.titleLabel!.text!, forState: .Application)
-        rating.postReview.setTitle("CLOSE", forState: .Normal)
-        rating.reviewTextView.editable = false
-        rating.starsStack.userInteractionEnabled = false
+        rating.postReview.setTitle("CLOSE", for: UIControlState())
+        rating.reviewTextView.isEditable = false
+        rating.starsStack.isUserInteractionEnabled = false
 //        rating.starCount.
         
         background.addSubview(rating)
@@ -137,7 +137,7 @@ extension NewTLViewController {
         
     }
     
-    func addRatingPost(sender: UIButton) {
+    func addRatingPost(_ sender: UIButton) {
         
 //        let backView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
 //        let mainView = UIView(frame: CGRect(x: 0, y: 0, width: width - 40, height: 280))
@@ -165,25 +165,25 @@ extension NewTLViewController {
         background.addGestureRecognizer(tapout)
         background.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         self.view.addSubview(background)
-        self.view.bringSubviewToFront(background)
+        self.view.bringSubview(toFront: background)
         
         let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 315))
         rating.center = background.center
         rating.layer.cornerRadius = 5
-        rating.postReview.setTitle(sender.titleLabel!.text!, forState: .Application)
+        rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
 //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
         background.addSubview(rating)
         
         
     }
     
-    func reviewTapOut(sender: UITapGestureRecognizer) {
+    func reviewTapOut(_ sender: UITapGestureRecognizer) {
         
         sender.view!.removeFromSuperview()
         
     }
     
-    func removeRatingButton(postId: String) {
+    func removeRatingButton(_ postId: String) {
         
 //        print("layout: \(layout.subviews)")
         
@@ -206,7 +206,7 @@ extension NewTLViewController {
         
     }
     
-    func showJourneyOngoing(journey: JSON) {
+    func showJourneyOngoing(_ journey: JSON) {
         
 //        LoadingOverlay.shared.showOverlay(self.view)
         
@@ -216,14 +216,14 @@ extension NewTLViewController {
             height = self.view.frame.height/2
             addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             addNewView.layer.zPosition = 1000
-            addNewView.profilePicture.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)!)
+            addNewView.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!))
             makeTLProfilePicture(addNewView.profilePicture)
             addNewView.profileName.text = currentUser["name"].string!
             self.view.addSubview(addNewView)
             
-            addNewView.otgJourneyButton.addTarget(self, action: #selector(NewTLViewController.newOtg(_:)), forControlEvents: .TouchUpInside)
-            addNewView.itineraryButton.addTarget(self, action: #selector(NewTLViewController.newItinerary(_:)), forControlEvents: .TouchUpInside)
-            addNewView.closeButton.addTarget(self, action: #selector(NewTLViewController.closeView(_:)), forControlEvents: .TouchUpInside)
+            addNewView.otgJourneyButton.addTarget(self, action: #selector(NewTLViewController.newOtg(_:)), for: .touchUpInside)
+            addNewView.itineraryButton.addTarget(self, action: #selector(NewTLViewController.newItinerary(_:)), for: .touchUpInside)
+            addNewView.closeButton.addTarget(self, action: #selector(NewTLViewController.closeView(_:)), for: .touchUpInside)
             
         }
         else {
@@ -237,30 +237,30 @@ extension NewTLViewController {
         
     }
     
-    func getScrollView(height: CGFloat, journey: JSON) {
+    func getScrollView(_ height: CGFloat, journey: JSON) {
         
         mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height))
         mainScroll.showsVerticalScrollIndicator = false
         mainScroll.showsHorizontalScrollIndicator = false
-        refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         //        mainScroll.addSubview(refreshControl)
         mainScroll.contentSize.height = self.view.frame.height
         mainScroll.addSubview(refreshControl)
         
         let line = drawLine(frame: CGRect(x: self.view.frame.size.width/2, y: 17.5, width: 10, height: mainScroll.frame.height))
-        line.backgroundColor = UIColor.clearColor()
+        line.backgroundColor = UIColor.clear
         mainScroll.addSubview(line)
         
         otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 600))
-        otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), forControlEvents: .TouchUpInside)
-        otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), forControlEvents: .TouchUpInside)
-        otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), forControlEvents: .TouchUpInside)
+        otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
+        otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
+        otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
         //        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
-        otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), forControlEvents: .TouchUpInside)
-        otgView.nameJourneyTF.returnKeyType = .Done
+        otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
+        otgView.nameJourneyTF.returnKeyType = .done
         otgView.nameJourneyTF.delegate = self
-        otgView.locationLabel.returnKeyType = .Done
+        otgView.locationLabel.returnKeyType = .done
         otgView.locationLabel.delegate = self
         
         if !isJourneyOngoing {
@@ -272,25 +272,25 @@ extension NewTLViewController {
         else {
             
             mainScroll.frame.origin.y = height
-            otgView.journeyName.hidden = false
+            otgView.journeyName.isHidden = false
             otgView.journeyName.text = journey["name"].string!
             self.title = journey["name"].string!
-            otgView.startJourneyButton.hidden = true
-            otgView.detectLocationView.hidden = true
-            otgView.addBuddiesButton.hidden = true
-            otgView.selectCategoryButton.hidden = true
-            otgView.bonVoyageLabel.hidden = true
-            otgView.cityView.hidden = false
-            otgView.cityDetails.hidden = false
+            otgView.startJourneyButton.isHidden = true
+            otgView.detectLocationView.isHidden = true
+            otgView.addBuddiesButton.isHidden = true
+            otgView.selectCategoryButton.isHidden = true
+            otgView.bonVoyageLabel.isHidden = true
+            otgView.cityView.isHidden = false
+            otgView.cityDetails.isHidden = false
             otgView.placeLabel.text = journey["startLocation"].string!
-            otgView.journeyDetails.hidden = false
-            otgView.buddyStack.hidden = false
+            otgView.journeyDetails.isHidden = false
+            otgView.buddyStack.isHidden = false
             
             detectLocation(nil)
             
-            let dateFormatterTwo = NSDateFormatter()
+            let dateFormatterTwo = DateFormatter()
             dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
-            self.currentTime = dateFormatterTwo.stringFromDate(NSDate())
+            self.currentTime = dateFormatterTwo.string(from: Date())
             print("time: \(self.currentTime)")
             self.otgView.timestampDate.text = self.currentTime
             
@@ -324,11 +324,11 @@ extension NewTLViewController {
             
             for view in self.view.subviews {
                 
-                if view.isKindOfClass(UIScrollView) {
+                if view.isKind(of: UIScrollView.self) {
                     
                     for subview in view.subviews {
                         
-                        if subview.isKindOfClass(startOTGView) {
+                        if subview.isKind(of: startOTGView.self) {
                             
                             print("in duplication one")
                             view.removeFromSuperview()
@@ -350,9 +350,9 @@ extension NewTLViewController {
             
         }
         
-        self.view.bringSubviewToFront(toolbarView)
-        self.view.bringSubviewToFront(addPostsButton)
-        self.view.bringSubviewToFront(infoButton)
+        self.view.bringSubview(toFront: toolbarView)
+        self.view.bringSubview(toFront: addPostsButton)
+        self.view.bringSubview(toFront: infoButton)
         
     }
     
@@ -360,7 +360,7 @@ extension NewTLViewController {
         
         request.infoCount(myJourney["_id"].string!, city: latestCity, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -382,7 +382,7 @@ extension NewTLViewController {
         
     }
     
-    func showInfo(response: JSON) {
+    func showInfo(_ response: JSON) {
         
         print("response of count: \(response)")
         var flag = 0
@@ -390,7 +390,7 @@ extension NewTLViewController {
         
         for subview in self.view.subviews {
             
-            if subview.isKindOfClass(TripInfoOTG) {
+            if subview.isKind(of: TripInfoOTG.self) {
                 
                 flag = 1
                 myInfo = subview as! TripInfoOTG
@@ -403,79 +403,79 @@ extension NewTLViewController {
             
             print("no subview")
             self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-            self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), forControlEvents: .TouchUpInside)
-            self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
-            self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), forControlEvents: .TouchUpInside)
-            self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), forControlEvents: .TouchUpInside)
-            self.infoView.mustDoButton.addTarget(self, action: #selector(NewTLViewController.gotoMustDo(_:)), forControlEvents: .TouchUpInside)
-            self.infoView.hotelsButton.addTarget(self, action: #selector(NewTLViewController.gotoHotels(_:)), forControlEvents: .TouchUpInside)
-            self.infoView.restaurantsButton.addTarget(self, action: #selector(NewTLViewController.gotoRestaurants(_:)), forControlEvents: .TouchUpInside)
-            self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), forControlEvents: .TouchUpInside)
+            self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), for: .touchUpInside)
+            self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
+            self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
+            self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), for: .touchUpInside)
+            self.infoView.mustDoButton.addTarget(self, action: #selector(NewTLViewController.gotoMustDo(_:)), for: .touchUpInside)
+            self.infoView.hotelsButton.addTarget(self, action: #selector(NewTLViewController.gotoHotels(_:)), for: .touchUpInside)
+            self.infoView.restaurantsButton.addTarget(self, action: #selector(NewTLViewController.gotoRestaurants(_:)), for: .touchUpInside)
+            self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), for: .touchUpInside)
             self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
-            self.infoView.videosCount.setTitle("\(response["videos"])", forState: .Normal)
-            self.infoView.photosCount.setTitle("\(response["photos"])", forState: .Normal)
-            self.infoView.ratingCount.setTitle("\(response["review"])", forState: .Normal)
-            self.infoView.mustDoCount.setTitle("\(response["mustDo"])", forState: .Normal)
-            self.infoView.hotelsCount.setTitle("\(response["hotel"])", forState: .Normal)
-            self.infoView.restaurantCount.setTitle("\(response["restaurant"])", forState: .Normal)
-            self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", forState: .Normal)
+            self.infoView.videosCount.setTitle("\(response["videos"])", for: UIControlState())
+            self.infoView.photosCount.setTitle("\(response["photos"])", for: UIControlState())
+            self.infoView.ratingCount.setTitle("\(response["review"])", for: UIControlState())
+            self.infoView.mustDoCount.setTitle("\(response["mustDo"])", for: UIControlState())
+            self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: UIControlState())
+            self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: UIControlState())
+            self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: UIControlState())
             self.infoView.layer.opacity = 1.0
             self.view.addSubview(self.infoView)
-            self.view.bringSubviewToFront(self.infoView)
+            self.view.bringSubview(toFront: self.infoView)
             
         }
         else {
             
             print("yes subview")
-            myInfo.videosCount.setTitle("\(response["videos"])", forState: .Normal)
-            myInfo.photosCount.setTitle("\(response["photos"])", forState: .Normal)
-            myInfo.ratingCount.setTitle("\(response["review"])", forState: .Normal)
-            myInfo.mustDoCount.setTitle("\(response["mustDo"])", forState: .Normal)
-            myInfo.hotelsCount.setTitle("\(response["hotel"])", forState: .Normal)
-            myInfo.hidden = false
+            myInfo.videosCount.setTitle("\(response["videos"])", for: UIControlState())
+            myInfo.photosCount.setTitle("\(response["photos"])", for: UIControlState())
+            myInfo.ratingCount.setTitle("\(response["review"])", for: UIControlState())
+            myInfo.mustDoCount.setTitle("\(response["mustDo"])", for: UIControlState())
+            myInfo.hotelsCount.setTitle("\(response["hotel"])", for: UIControlState())
+            myInfo.isHidden = false
             myInfo.layer.opacity = 1.0
             
         }
         
     }
     
-    func gotoMustDo(sender: UIButton) {
+    func gotoMustDo(_ sender: UIButton) {
         
-        let vc = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
         vc.city = latestCity
         self.navigationController?.pushViewController(vc, animated: true)
         
         
     }
     
-    func gotoHotels(sender: UIButton) {
+    func gotoHotels(_ sender: UIButton) {
         
-        let vc = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
         vc.city = latestCity
         self.navigationController?.pushViewController(vc, animated: true)
         
         
     }
     
-    func gotoRestaurants(sender: UIButton) {
+    func gotoRestaurants(_ sender: UIButton) {
         
-        let vc = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
         vc.city = latestCity
         self.navigationController?.pushViewController(vc, animated: true)
         
         
     }
     
-    func gotoItineraries(sender: UIButton) {
+    func gotoItineraries(_ sender: UIButton) {
         
-        let vc = storyboard?.instantiateViewControllerWithIdentifier("eachCityPagerStripVC") as! EachCityPagerViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
         vc.city = latestCity
         self.navigationController?.pushViewController(vc, animated: true)
         
         
     }
     
-    func uploadVideo(url: NSURL, video: AVAsset) {
+    func uploadVideo(_ url: URL, video: AVAsset) {
         
         print("format: \(url.lastPathComponent)")
         

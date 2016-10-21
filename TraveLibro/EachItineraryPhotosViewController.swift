@@ -16,8 +16,8 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         super.viewDidLoad()
         
         let arrow = String(format: "%C", faicon["arrow-down"]!)
-        arrowDown.setTitle(arrow, forState: .Normal)
-        arrowDown.addTarget(self, action: #selector(EachItineraryPhotosViewController.exitMoments(_:)), forControlEvents: .TouchUpInside)
+        arrowDown.setTitle(arrow, for: UIControlState())
+        arrowDown.addTarget(self, action: #selector(EachItineraryPhotosViewController.exitMoments(_:)), for: .touchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,21 +25,21 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         // Dispose of any resources that can be recreated.
     }
     
-    func exitMoments(sender: UIButton) {
+    func exitMoments(_ sender: UIButton) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return 25
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! EachItineraryMomentCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! EachItineraryMomentCollectionViewCell
         return cell
         
     }

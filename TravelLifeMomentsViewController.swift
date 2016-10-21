@@ -17,7 +17,7 @@ class TravelLifeMomentsViewController: UIViewController, UICollectionViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.white
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,24 +25,24 @@ class TravelLifeMomentsViewController: UIViewController, UICollectionViewDataSou
         // Dispose of any resources that can be recreated.
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! TravelLifeMomentsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TravelLifeMomentsCollectionViewCell
         cell.coverImage.layer.cornerRadius = cell.coverImage.frame.size.height/2
         cell.coverImage.clipsToBounds = true
-        cell.albumTitle.text = titles[indexPath.item]
-        cell.albumDated.text = titleDate[indexPath.item]
-        cell.bgImage.layer.borderColor = UIColor.whiteColor().CGColor
+        cell.albumTitle.text = titles[(indexPath as NSIndexPath).item]
+        cell.albumDated.text = titleDate[(indexPath as NSIndexPath).item]
+        cell.bgImage.layer.borderColor = UIColor.white.cgColor
         cell.bgImage.layer.borderWidth = 3.0
         cell.bgImage.layer.cornerRadius = 8.0
-        cell.bgImage.transform = CGAffineTransformMakeRotation(0.0349066)
+        cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
         //cell.bgImage.layer.shadowColor = UIColor.blackColor().CGColor
         cell.bgImage.layer.shadowRadius = 10.0
         cell.bgImage.layer.shadowOffset = CGSize(width: 10, height: 10)
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return 5
     }

@@ -1,9 +1,11 @@
 # TabPageViewController
 
-[![Version](https://img.shields.io/cocoapods/v/TabPageViewController.svg?style=flat)](http://cocoapods.org/pods/TabPageViewController)
 [![License](https://img.shields.io/cocoapods/l/TabPageViewController.svg?style=flat)](http://cocoapods.org/pods/TabPageViewController)
+[![Language](https://img.shields.io/badge/language-swift-orange.svg?style=flat)](https://developer.apple.com/swift)
+[![Version](https://img.shields.io/cocoapods/v/TabPageViewController.svg?style=flat)](http://cocoapods.org/pods/TabPageViewController)
 [![Platform](https://img.shields.io/cocoapods/p/TabPageViewController.svg?style=flat)](http://cocoapods.org/pods/TabPageViewController)
-
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/matteocrippa/awesome-swift#utility)
 
 
 
@@ -100,6 +102,7 @@ iOS8+
 ### Using CocoaPods
 
 ```ruby
+use_frameworks!
 pod "TabPageViewController"
 ```
 
@@ -109,6 +112,10 @@ pod "TabPageViewController"
 github "EndouMari/TabPageViewController"
 
 ```
+### Manually
+Copy all the files in `Pod/Classes` directory into your project.
+
+
 
 ## Author
 

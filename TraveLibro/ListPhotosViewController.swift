@@ -27,7 +27,7 @@ class ListPhotosViewController: UIViewController {
         
         let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
         profileImage.center.x = self.view.frame.width/2
-        profileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!)!)
+        profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
         makeTLProfilePicture(profileImage)
         layout.addSubview(profileImage)
         
@@ -78,7 +78,7 @@ class ListPhotosViewController: UIViewController {
         
         request.journeyTypeData(journeyId, type: "photos", userId: currentUser["_id"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -103,64 +103,64 @@ class ListPhotosViewController: UIViewController {
         
     }
     
-    func addHeightToLayout(height: CGFloat) {
+    func addHeightToLayout(_ height: CGFloat) {
         
         layout.frame.size.height += height + 100
         
     }
     
-    func addPhoto(count: Int, photo: JSON) {
+    func addPhoto(_ count: Int, photo: JSON) {
         
         let photoList = PhotoList(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 425))
-        photoList.videoIcon.hidden = true
+        photoList.videoIcon.isHidden = true
         photoList.commentCount.text = "\(photo["commentCount"]) Comments"
         photoList.likeCount.text = "\(photo["likeCount"]) Likes"
-        photoList.mainImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(photo["name"])")!)!)
+        photoList.mainImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(photo["name"])")!))
         let days = getDate(journeyCreationDate, postDate: photo["createdAt"].string!)
         let attributedString = NSMutableAttributedString(string: "Day ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
         let string = NSMutableAttributedString(string: " 0\(days + 1)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 24)!])
-        attributedString.appendAttributedString(string)
+        attributedString.append(string)
         photoList.daysLabel.attributedText = attributedString
         photoList.timeLabel.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "HH:mm", date: photo["createdAt"].string!)
         if photo["isDoneLike"] {
             
-            photoList.likeButton.setImage(UIImage(named: "favorite-heart-button"), forState: .Normal)
+            photoList.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
         }
         addHeightToLayout(photoList.frame.height)
         layout.addSubview(photoList)
         
     }
     
-    func changeDateFormat(givenFormat: String, getFormat: String, date: String) -> String {
+    func changeDateFormat(_ givenFormat: String, getFormat: String, date: String) -> String {
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = givenFormat
-        let date = dateFormatter.dateFromString(date)
+        let date = dateFormatter.date(from: date)
         
         dateFormatter.dateFormat = getFormat
-        dateFormatter.dateStyle = .MediumStyle
-        let goodDate = dateFormatter.stringFromDate(date!)
+        dateFormatter.dateStyle = .medium
+        let goodDate = dateFormatter.string(from: date!)
         return goodDate
         
     }
     
-    func getDate(startDate: String, postDate: String) -> Int {
+    func getDate(_ startDate: String, postDate: String) -> Int {
         
-        let DFOne = NSDateFormatter()
+        let DFOne = DateFormatter()
         DFOne.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-        let start = DFOne.dateFromString(startDate)
-        let post = DFOne.dateFromString(postDate)
+        let start = DFOne.date(from: startDate)
+        let post = DFOne.date(from: postDate)
         
-        let calendar = NSCalendar.currentCalendar()
+        let calendar = Calendar.current
         
         // Replace the hour (time) of both dates with 00:00
-        let date1 = calendar.startOfDayForDate(start!)
-        let date2 = calendar.startOfDayForDate(post!)
+        let date1 = calendar.startOfDay(for: start!)
+        let date2 = calendar.startOfDay(for: post!)
         
-        let flags = NSCalendarUnit.Day
-        let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
+        let flags = NSCalendar.Unit.day
+        let components = (calendar as NSCalendar).components(flags, from: date1, to: date2, options: [])
         print("days: \(components.day)")
-        return components.day
+        return components.day!
         
     }
 

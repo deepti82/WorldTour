@@ -52,21 +52,21 @@ class AddActivityOTG: UIView {
         loadViewFromNib ()
         
         postButton.layer.cornerRadius = 5
-        postButton.layer.borderColor = UIColor.whiteColor().CGColor
+        postButton.layer.borderColor = UIColor.white.cgColor
         postButton.layer.borderWidth = 2.0
         
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.frame.height
         blurView.frame.size.width = self.frame.width
         blurView.layer.zPosition = -1
-        blurView.userInteractionEnabled = false
+        blurView.isUserInteractionEnabled = false
         self.addSubview(blurView)
         
-        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
         blurViewTwo = UIVisualEffectView(effect: lightBlur)
         blurViewTwo.layer.zPosition = -1
-        blurViewTwo.userInteractionEnabled = false
+        blurViewTwo.isUserInteractionEnabled = false
         
         getStylesOn(checkInMainView)
         getStylesOn(photosMainView)
@@ -75,7 +75,7 @@ class AddActivityOTG: UIView {
         getStylesOn(friendsMainView)
         
         let edit = String(format: "%C", faicon["edit"]!)
-        checkInCategoryEdit.setTitle(edit, forState: .Normal)
+        checkInCategoryEdit.setTitle(edit, for: UIControlState())
         
 //        blurViewTwo.frame.size.height = photosMainView.frame.height
 //        blurViewTwo.frame.size.width = photosMainView.frame.width
@@ -103,7 +103,7 @@ class AddActivityOTG: UIView {
         
     }
     
-    func getStylesOn(view: UIView) {
+    func getStylesOn(_ view: UIView) {
         
         view.layer.cornerRadius = 5
         blurViewTwo.frame.size.height = view.frame.height
@@ -120,11 +120,11 @@ class AddActivityOTG: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "AddActivityOTG", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

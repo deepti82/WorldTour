@@ -21,41 +21,41 @@ class EditCategoryViewController: UIViewController, UICollectionViewDelegate, UI
         
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return categories.count
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! categoryCollectionViewCell
-        cell.categoryLabel.text = categories[indexPath.row]["title"].string!
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! categoryCollectionViewCell
+        cell.categoryLabel.text = categories[(indexPath as NSIndexPath).row]["title"].string!
         return cell
         
     }
     
-    var prevIndex: NSIndexPath!
+    var prevIndex: IndexPath!
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print("selected cell")
         
-        let selectedCell = collectionView.cellForItemAtIndexPath(indexPath) as! categoryCollectionViewCell
+        let selectedCell = collectionView.cellForItem(at: indexPath) as! categoryCollectionViewCell
         
         if prevIndex == nil {
             
             print("selected same cell")
-            selectedCell.categoryButton.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            selectedCell.categoryButton.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
             prevIndex = indexPath
         }
         
         else if prevIndex != indexPath {
             
             print("selected different cell")
-            let prevSelectedCell = collectionView.cellForItemAtIndexPath(prevIndex) as! categoryCollectionViewCell
-            prevSelectedCell.categoryButton.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
-            selectedCell.categoryButton.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            let prevSelectedCell = collectionView.cellForItem(at: prevIndex) as! categoryCollectionViewCell
+            prevSelectedCell.categoryButton.setBackgroundImage(UIImage(named: "graybox"), for: UIControlState())
+            selectedCell.categoryButton.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
             prevIndex = indexPath
             
         }

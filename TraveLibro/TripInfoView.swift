@@ -20,7 +20,7 @@ class TripInfoView: UIView {
         loadViewFromNib ()
         
         let timestamp = DateAndTime(frame: CGRect(x: 75, y: 30, width: 200, height: 25))
-        timestamp.backgroundColor = UIColor.clearColor()
+        timestamp.backgroundColor = UIColor.clear
         timestamp.calendarIcon.textColor = mainBlueColor
         timestamp.clockIcon.textColor = mainBlueColor
         timestamp.calendarText.textColor = mainBlueColor
@@ -41,11 +41,11 @@ class TripInfoView: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "TripInfoView", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

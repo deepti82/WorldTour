@@ -26,40 +26,40 @@ class AddCheckInViewController: UIViewController, UIImagePickerControllerDelegat
         }
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(self.previewCheckIn(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(self.previewCheckIn(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
         let checkInBox = AddCheckIn(frame: CGRect(x: 0, y: 150, width: self.view.frame.width, height: 300))
         self.view.addSubview(checkInBox)
         
-        checkInBox.cameraButton.addTarget(self, action: #selector(AddCheckInViewController.cameraTapped(_:)), forControlEvents: .TouchUpInside)
-        checkInBox.addFriendButton.addTarget(self, action: #selector(AddCheckInViewController.addFriendTapped(_:)), forControlEvents: .TouchUpInside)
-        checkInBox.videoButton.addTarget(self, action: #selector(AddCheckInViewController.videoTapped(_:)), forControlEvents: .TouchUpInside)
+        checkInBox.cameraButton.addTarget(self, action: #selector(AddCheckInViewController.cameraTapped(_:)), for: .touchUpInside)
+        checkInBox.addFriendButton.addTarget(self, action: #selector(AddCheckInViewController.addFriendTapped(_:)), for: .touchUpInside)
+        checkInBox.videoButton.addTarget(self, action: #selector(AddCheckInViewController.videoTapped(_:)), for: .touchUpInside)
         
         if whichView == "TL" {
             
-            checkInBox.locationButton.setBackgroundImage(UIImage(named: "orangeBox"), forState: .Normal)
+            checkInBox.locationButton.setBackgroundImage(UIImage(named: "orangeBox"), for: UIControlState())
             
         }
         
     }
     
-    func previewCheckIn(sender: UIButton) {
+    func previewCheckIn(_ sender: UIButton) {
         
-        let localLifeVC = storyboard?.instantiateViewControllerWithIdentifier("localLifePosts") as! LocalLifePostsViewController
+        let localLifeVC = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
         self.navigationController?.pushViewController(localLifeVC, animated: true)
         
     }
     
-    func cameraTapped(sender: AnyObject) {
+    func cameraTapped(_ sender: AnyObject) {
         
         print("Camera tapped")
         
@@ -81,22 +81,22 @@ class AddCheckInViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
-    func addFriendTapped(sender: AnyObject) {
+    func addFriendTapped(_ sender: AnyObject) {
         
         print("Add friend tapped")
-        let addBuddies = storyboard?.instantiateViewControllerWithIdentifier("addBuddies") as! AddBuddiesViewController
+        let addBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         addBuddies.whichView = self.whichView
         self.navigationController?.pushViewController(addBuddies, animated: true)
         
     }
     
-    func videoTapped(sender: AnyObject) {
+    func videoTapped(_ sender: AnyObject) {
         
         print("Video tapped")
         self.imagePicker.allowsEditing = true
-        self.imagePicker.sourceType = .PhotoLibrary
+        self.imagePicker.sourceType = .photoLibrary
         self.imagePicker.mediaTypes = [kUTTypeMovie as String]
-        self.presentViewController(self.imagePicker, animated: true, completion: nil)
+        self.present(self.imagePicker, animated: true, completion: nil)
         
     }
     

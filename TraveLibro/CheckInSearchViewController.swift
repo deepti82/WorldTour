@@ -48,31 +48,31 @@ class CheckInSearchViewController: UIViewController, UITableViewDelegate, UITabl
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return CILabels.count
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CheckInTableViewCell
-        cell.checkInTitle.text = CILabels[indexPath.row]
-        cell.checkInDetailType.text = CIDetailsLabels[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CheckInTableViewCell
+        cell.checkInTitle.text = CILabels[(indexPath as NSIndexPath).row]
+        cell.checkInDetailType.text = CIDetailsLabels[(indexPath as NSIndexPath).row]
         cell.checkInDetail.image = UIImage(named: "close_local_life")
         return cell
         
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 0
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let selectCategoryVC = storyboard?.instantiateViewControllerWithIdentifier("checkInCategory") as! CategoriseCheckInViewController
+        let selectCategoryVC = storyboard?.instantiateViewController(withIdentifier: "checkInCategory") as! CategoriseCheckInViewController
         selectCategoryVC.whichView = self.whichView
         self.navigationController?.pushViewController(selectCategoryVC, animated: true)
         

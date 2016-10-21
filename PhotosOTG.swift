@@ -42,7 +42,7 @@ class PhotosOTG: UIView {
     
     var likeCount = 0
     
-    @IBAction func sendLikes(sender: UIButton) {
+    @IBAction func sendLikes(_ sender: UIButton) {
             
         print("like button tapped \(sender.titleLabel!.text)")
         
@@ -63,7 +63,7 @@ class PhotosOTG: UIView {
         
         request.likePost(sender.titleLabel!.text!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -74,14 +74,14 @@ class PhotosOTG: UIView {
                     
                     if sender.tag == 1 {
                         
-                        sender.setImage(UIImage(named: "favorite-heart-button"), forState: .Normal)
+                        sender.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
                         self.likeCount += 1
                         self.likeViewLabel.text = "\(self.likeCount) Likes"
                         
                     }
                     else {
                         
-                        sender.setImage(UIImage(named: "like_empty_icon"), forState: .Normal)
+                        sender.setImage(UIImage(named: "like_empty_icon"), for: UIControlState())
                         self.likeCount -= 1
                         self.likeViewLabel.text = "\(self.likeCount) Likes"
                         
@@ -102,18 +102,18 @@ class PhotosOTG: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        postDp.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)!)
+        postDp.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!))
         makeTLProfilePicture(postDp)
         
         photosTitle.numberOfLines = 0
-        let customType = ActiveType.Custom(pattern: "\\swith\\b") //Regex that looks for "with"
-        photosTitle.enabledTypes = [.Mention, .Hashtag, .URL, customType]
-        photosTitle.textColor = .blackColor()
+        let customType = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"
+        photosTitle.enabledTypes = [.mention, .hashtag, .url, customType]
+        photosTitle.textColor = .black()
         photosTitle.handleHashtagTap { hashtag in
             print("Success. You just tapped the \(hashtag) hashtag")
         }
         
-        mainPhoto.autoresizingMask = [.FlexibleHeight]
+        mainPhoto.autoresizingMask = [.flexibleHeight]
         
         likeHeart.text = String(format: "%C", faicon["likes"]!)
         commentIcon.text = String(format: "%C", faicon["comments"]!)
@@ -127,11 +127,11 @@ class PhotosOTG: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "PhotosOTG", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

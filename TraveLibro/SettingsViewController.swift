@@ -27,45 +27,45 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
    
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return labels.count
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("settingsCell") as! EditSettingsTableViewCell
-        cell.checkLabel.text = labels[indexPath.item]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell") as! EditSettingsTableViewCell
+        cell.checkLabel.text = labels[(indexPath as NSIndexPath).item]
         //cell.checkButton.setTitle(String(format: "%C", (faicon["check"])!), forState: .Normal)
         //ell.bringSubviewToFront(cell.checkButton)
         return cell
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        let selectedCell = tableView.cellForRow(at: indexPath)
         
-        if selectedCell?.accessoryType == .Checkmark {
+        if selectedCell?.accessoryType == .checkmark {
             
-            selectedCell?.accessoryType = .None
+            selectedCell?.accessoryType = .none
         }
         
         else {
             
-            selectedCell?.accessoryType = .Checkmark
+            selectedCell?.accessoryType = .checkmark
         }
         
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        let selectedCell = tableView.cellForRow(at: indexPath)
         
-        if selectedCell?.accessoryType == .Checkmark {
+        if selectedCell?.accessoryType == .checkmark {
             
-            selectedCell?.accessoryType = .None
+            selectedCell?.accessoryType = .none
         }
         
     }

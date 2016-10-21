@@ -24,7 +24,7 @@ class ShowRating: UIView {
         
     }
     
-    func showRating(ratingCount: Int) {
+    func showRating(_ ratingCount: Int) {
         
         print("ratingCount: \(ratingCount)")
 //        rating.setImage(UIImage(named: imageArr[ratingCount]), forState: .Normal)
@@ -37,11 +37,11 @@ class ShowRating: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "ShowRating", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
     }
 

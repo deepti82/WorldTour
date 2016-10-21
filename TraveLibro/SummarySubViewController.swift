@@ -35,7 +35,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         getCount()
         
         userName.text = currentUser["name"].string!
-        profilePicture.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!)!)
+        profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
         makeTLProfilePicture(profilePicture)
         
         print("cell view: \(tripSummaryEach(frame: CGRect(x: 0, y: 0, width: cellView.frame.width, height: 100)))")
@@ -78,17 +78,17 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return labels.count
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! TripStatsCollectionViewCell
-        cell.statImage.setImage(UIImage(named: images[indexPath.item]), forState: .Normal)
-        cell.statLabel.text = labels[indexPath.item]["name"].string!
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TripStatsCollectionViewCell
+        cell.statImage.setImage(UIImage(named: images[(indexPath as NSIndexPath).item]), for: UIControlState())
+        cell.statLabel.text = labels[(indexPath as NSIndexPath).item]["name"].string!
         return cell
         
     }
@@ -97,40 +97,40 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         
         switch tripCountData["countryVisited"].array!.count {
         case 1:
-            stackFlags[0].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!)!)
+            stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
             stackCountryNames[0].text = tripCountData["countryVisited"][0]["country"]["name"].string!
-            stackFlags[1].hidden = true
-            stackFlags[2].hidden = true
-            stackCountryNames[1].hidden = true
-            stackCountryNames[2].hidden = true
-            remainingCountries.hidden = true
+            stackFlags[1].isHidden = true
+            stackFlags[2].isHidden = true
+            stackCountryNames[1].isHidden = true
+            stackCountryNames[2].isHidden = true
+            remainingCountries.isHidden = true
         
         case 2:
-            stackFlags[0].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!)!)
+            stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
             stackCountryNames[0].text = tripCountData["countryVisited"][0]["country"]["name"].string!
-            stackFlags[1].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][1]["country"]["flag"])")!)!)
+            stackFlags[1].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][1]["country"]["flag"])")!))
             stackCountryNames[1].text = tripCountData["countryVisited"][1]["country"]["name"].string!
-            stackFlags[2].hidden = true
-            stackCountryNames[2].hidden = true
-            remainingCountries.hidden = true
+            stackFlags[2].isHidden = true
+            stackCountryNames[2].isHidden = true
+            remainingCountries.isHidden = true
         
         case 3:
-            stackFlags[0].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!)!)
+            stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
             stackCountryNames[0].text = tripCountData["countryVisited"][0]["country"]["name"].string!
-            stackFlags[1].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][1]["country"]["flag"])")!)!)
+            stackFlags[1].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][1]["country"]["flag"])")!))
             stackCountryNames[1].text = tripCountData["countryVisited"][1]["country"]["name"].string!
-            stackFlags[2].image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][2]["country"]["flag"])")!)!)
+            stackFlags[2].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][2]["country"]["flag"])")!))
             stackCountryNames[2].text = tripCountData["countryVisited"][2]["country"]["name"].string!
-            remainingCountries.hidden = true
+            remainingCountries.isHidden = true
             
         default:
             for flag in stackFlags {
                 
-                flag.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][stackFlags.indexOf(flag)!]["country"]["flag"])")!)!)
+                flag.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][stackFlags.index(of: flag)!]["country"]["flag"])")!))
             }
             for flagName in stackCountryNames {
                 
-                flagName.text = tripCountData["countryVisited"][stackCountryNames.indexOf(flagName)!]["country"]["name"].string!
+                flagName.text = tripCountData["countryVisited"][stackCountryNames.index(of: flagName)!]["country"]["name"].string!
             }
             remainingCountries.text = "\(tripCountData["countryVisited"].array!.count - 3)"
             
@@ -147,52 +147,52 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         
         countriesVisitedLabel.text = "\(tripCountData["countryVisited"].array!.count) Countries Visited"
         startDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: tripCountData["startTime"].string!, isDate: true)
-        let date = NSDate()
+        let date = Date()
 //        date.toGlobalTime()
         dayCount.text = "\(getDays(tripCountData["startTime"].string!, postDate: "\(date)")) Days"
     }
     
-    func changeDateFormat(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+    func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = givenFormat
-        let date = dateFormatter.dateFromString(date)
+        let date = dateFormatter.date(from: date)
         
         dateFormatter.dateFormat = getFormat
         
         if isDate {
             
-            dateFormatter.dateStyle = .MediumStyle
+            dateFormatter.dateStyle = .medium
             
         }
         
-        let goodDate = dateFormatter.stringFromDate(date!)
+        let goodDate = dateFormatter.string(from: date!)
         return goodDate
         
     }
     
-    func getDays(startDate: String, postDate: String) -> Int {
+    func getDays(_ startDate: String, postDate: String) -> Int {
         
         print("to date: \(postDate)")
         
-        let DFOne = NSDateFormatter()
+        let DFOne = DateFormatter()
         DFOne.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-        let DFTwo = NSDateFormatter()
+        let DFTwo = DateFormatter()
         DFTwo.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
         
-        let start = DFOne.dateFromString(startDate)
-        let post = DFTwo.dateFromString(postDate)
+        let start = DFOne.date(from: startDate)
+        let post = DFTwo.date(from: postDate)
         
-        let calendar = NSCalendar.currentCalendar()
+        let calendar = Calendar.current
         
         // Replace the hour (time) of both dates with 00:00
-        let date1 = calendar.startOfDayForDate(start!)
-        let date2 = calendar.startOfDayForDate(post!)
+        let date1 = calendar.startOfDay(for: start!)
+        let date2 = calendar.startOfDay(for: post!)
         
-        let flags = NSCalendarUnit.Day
-        let components = calendar.components(flags, fromDate: date1, toDate: date2, options: [])
+        let flags = NSCalendar.Unit.day
+        let components = (calendar as NSCalendar).components(flags, from: date1, to: date2, options: [])
         print("days: \(components.day)")
-        return components.day
+        return components.day!
         
     }
 
@@ -200,7 +200,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         
         request.getTripSummaryCount("tripSummary", journeyId: journeyId, userId: currentUser["_id"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     

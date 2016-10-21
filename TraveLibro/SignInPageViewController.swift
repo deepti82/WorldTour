@@ -20,22 +20,22 @@ class SignInPageViewController: UIViewController {
         
         getDarkBackGroundBlur(self)
         
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: nil)
         
         pageView = SignInFullView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height - 60))
         self.view.addSubview(pageView)
-        pageView.loginButton.addTarget(self, action: #selector(SignInPageViewController.gotoLogin(_:)), forControlEvents: .TouchUpInside)
-        pageView.facebookButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), forControlEvents: .TouchUpInside)
-        pageView.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), forControlEvents: .TouchUpInside)
-        pageView.twitterButton.addTarget(self, action: #selector(SignInPageViewController.twitterSignUp(_:)), forControlEvents: .TouchUpInside)
-        pageView.instagramButton.addTarget(self, action: #selector(SignInPageViewController.igSignUp(_:)), forControlEvents: .TouchUpInside)
+        pageView.loginButton.addTarget(self, action: #selector(SignInPageViewController.gotoLogin(_:)), for: .touchUpInside)
+        pageView.facebookButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), for: .touchUpInside)
+        pageView.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), for: .touchUpInside)
+        pageView.twitterButton.addTarget(self, action: #selector(SignInPageViewController.twitterSignUp(_:)), for: .touchUpInside)
+        pageView.instagramButton.addTarget(self, action: #selector(SignInPageViewController.igSignUp(_:)), for: .touchUpInside)
         
         let fbTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.facebookSignUp(_:)))
         let googleTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.googleSignUp(_:)))
@@ -69,25 +69,25 @@ class SignInPageViewController: UIViewController {
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    func facebookSignUp(sender: AnyObject) {
+    func facebookSignUp(_ sender: AnyObject) {
         
         social.facebookLogin()
         
     }
     
-    func googleSignUp(sender: AnyObject) {
+    func googleSignUp(_ sender: AnyObject) {
         
         social.googleLogin()
         
     }
     
-    func twitterSignUp(sender: AnyObject) {
+    func twitterSignUp(_ sender: AnyObject) {
         
         social.twitterLogin()
         
     }
     
-    func igSignUp(sender: AnyObject) {
+    func igSignUp(_ sender: AnyObject) {
         
 //        social.googleLogin()
         
@@ -112,7 +112,7 @@ class SignInPageViewController: UIViewController {
 //        return false // We do not want UITextField to insert line-breaks.
 //    }
     
-    func signedUp(sender: AnyObject) {
+    func signedUp(_ sender: AnyObject) {
         
 //        var isSuccess = false
 //        var shouldNavigate = false
@@ -251,9 +251,9 @@ class SignInPageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func gotoLogin(sender: UIButton) {
+    func gotoLogin(_ sender: UIButton) {
         
-        let logInVC = storyboard?.instantiateViewControllerWithIdentifier("logIn") as! LogInViewController
+        let logInVC = storyboard?.instantiateViewController(withIdentifier: "logIn") as! LogInViewController
         self.navigationController?.pushViewController(logInVC, animated: true)
         
     }

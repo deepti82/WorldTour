@@ -10,18 +10,18 @@ import UIKit
 
 class drawLine: UIView {
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, 5.0)
-        CGContextSetStrokeColorWithColor(context, mainOrangeColor.CGColor)
+        context?.setLineWidth(5.0)
+        context?.setStrokeColor(mainOrangeColor.cgColor)
         CGContextSetLineDash(context, 0, [7.5], 1)
-        CGContextSetLineCap(context, CGLineCap(rawValue: 500)!)
+        context?.setLineCap(CGLineCap(rawValue: 500)!)
         
-        CGContextMoveToPoint(context, 0, 0)
-        CGContextAddLineToPoint(context, 0, 1000)
+        context?.move(to: CGPoint(x: 0, y: 0))
+        context?.addLine(to: CGPoint(x: 0, y: 1000))
         
-        CGContextStrokePath(context)
+        context?.strokePath()
     }
 
 }
@@ -29,18 +29,18 @@ class drawLine: UIView {
 
 class drawFooterLine: UIView {
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, 2.0)
-        CGContextSetStrokeColorWithColor(context, UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 255/255).CGColor)
+        context?.setLineWidth(2.0)
+        context?.setStrokeColor(UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 255/255).cgColor)
         //CGContextSetLineDash(context, 0, [7.5], 1)
         //CGContextSetLineCap(context, kCGLineCapRound)
         
-        CGContextMoveToPoint(context, 0, 0)
-        CGContextAddLineToPoint(context, 0, 45)
+        context?.move(to: CGPoint(x: 0, y: 0))
+        context?.addLine(to: CGPoint(x: 0, y: 45))
         
-        CGContextStrokePath(context)
+        context?.strokePath()
         
     }
     
@@ -48,18 +48,18 @@ class drawFooterLine: UIView {
 
 class drawSeperatorLine: UIView {
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, 4.0)
-        CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+        context?.setLineWidth(4.0)
+        context?.setStrokeColor(UIColor.white.cgColor)
         //CGContextSetLineDash(context, 0, [7.5], 1)
         //CGContextSetLineCap(context, kCGLineCapRound)
         
-        CGContextMoveToPoint(context, 0, 0)
-        CGContextAddLineToPoint(context, 5000, 0)
+        context?.move(to: CGPoint(x: 0, y: 0))
+        context?.addLine(to: CGPoint(x: 5000, y: 0))
         
-        CGContextStrokePath(context)
+        context?.strokePath()
         
     }
     
@@ -67,18 +67,18 @@ class drawSeperatorLine: UIView {
 
 class drawSeperatorLineTwo: UIView {
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, 1.0)
-        CGContextSetStrokeColorWithColor(context, UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1).CGColor)
+        context?.setLineWidth(1.0)
+        context?.setStrokeColor(UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1).cgColor)
         //CGContextSetLineDash(context, 0, [7.5], 1)
         //CGContextSetLineCap(context, kCGLineCapRound)
         
-        CGContextMoveToPoint(context, 0, 0)
-        CGContextAddLineToPoint(context, 5000, 0)
+        context?.move(to: CGPoint(x: 0, y: 0))
+        context?.addLine(to: CGPoint(x: 5000, y: 0))
         
-        CGContextStrokePath(context)
+        context?.strokePath()
         
     }
     
@@ -86,16 +86,16 @@ class drawSeperatorLineTwo: UIView {
 
 class drawSearchLine: UIView {
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetLineWidth(context, 1.0)
-        CGContextSetStrokeColorWithColor(context, UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1).CGColor)
+        context?.setLineWidth(1.0)
+        context?.setStrokeColor(UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1).cgColor)
         
-        CGContextMoveToPoint(context, 0, 0)
-        CGContextAddLineToPoint(context, 5000, 0)
+        context?.move(to: CGPoint(x: 0, y: 0))
+        context?.addLine(to: CGPoint(x: 5000, y: 0))
         
-        CGContextStrokePath(context)
+        context?.strokePath()
         
     }
     

@@ -20,14 +20,14 @@ class VerifyIntermediateViewController: UIViewController {
         getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(VerifyIntermediateViewController.nextOne(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(VerifyIntermediateViewController.nextOne(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         continueButton.layer.cornerRadius = 5
         
@@ -38,9 +38,9 @@ class VerifyIntermediateViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func continueButtonTapped(sender: AnyObject) {
+    @IBAction func continueButtonTapped(_ sender: AnyObject) {
         
-        let next = storyboard?.instantiateViewControllerWithIdentifier("verifyOne") as! VerifyEmailViewController
+        let next = storyboard?.instantiateViewController(withIdentifier: "verifyOne") as! VerifyEmailViewController
         self.navigationController?.pushViewController(next, animated: true)
         
 //        navigation.verifyUser(email, completion: {(json:JSON) -> () in
@@ -51,9 +51,9 @@ class VerifyIntermediateViewController: UIViewController {
         
     }
     
-    func nextOne(sender: UIButton) {
+    func nextOne(_ sender: UIButton) {
         
-        let next = storyboard?.instantiateViewControllerWithIdentifier("verifyOne") as! VerifyEmailViewController
+        let next = storyboard?.instantiateViewController(withIdentifier: "verifyOne") as! VerifyEmailViewController
         self.navigationController?.pushViewController(next, animated: true)
         
     }

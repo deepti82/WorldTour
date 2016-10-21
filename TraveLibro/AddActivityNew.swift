@@ -81,8 +81,8 @@ class AddActivityNew: UIView, UITextViewDelegate {
         horizontal = HorizontalLayout(height: locationHorizontalScroll.frame.height)
         horizontalScrollForPhotos = HorizontalLayout(height: photoScroll.frame.height)
         
-        editCategoryPickerView.hidden = true
-        editCategoryPVBar.hidden = true
+        editCategoryPickerView.isHidden = true
+        editCategoryPVBar.isHidden = true
         
 //        let tapOne = UITapGestureRecognizer(target: self, action: #selector(AddActivityNew.ImageStackTap(_:)))
 //        photosCollection[0].addGestureRecognizer(tapOne)
@@ -123,9 +123,9 @@ class AddActivityNew: UIView, UITextViewDelegate {
         locationHorizontalScroll.addSubview(horizontal)
         photoScroll.addSubview(horizontalScrollForPhotos)
         
-        photosFinalView.hidden = true
-        videosFinalView.hidden = true
-        thoughtsFinalView.hidden = true
+        photosFinalView.isHidden = true
+        videosFinalView.isHidden = true
+        thoughtsFinalView.isHidden = true
         
 //        for photo in photosCollection {
 //            
@@ -143,43 +143,43 @@ class AddActivityNew: UIView, UITextViewDelegate {
         getStylesOn(tagFriendsView)
         
         thoughtsTextView.delegate = self
-        thoughtsTextView.returnKeyType = .Done
+        thoughtsTextView.returnKeyType = .done
         
         postButton.layer.cornerRadius = 5.0
-        postButton.layer.borderColor = UIColor.whiteColor().CGColor
+        postButton.layer.borderColor = UIColor.white.cgColor
         postButton.layer.borderWidth = 1.0
         
     }
     
-    func styleHorizontalButton(button: UIButton, buttonTitle: String) {
+    func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
         
 //        print("inside the style horizontal button")
-        button.backgroundColor = UIColor.clearColor()
+        button.backgroundColor = UIColor.clear
         button.titleLabel!.font = avenirFont
-        button.setTitle(buttonTitle, forState: .Normal)
-        button.setTitleColor(mainBlueColor, forState: .Normal)
+        button.setTitle(buttonTitle, for: UIControlState())
+        button.setTitleColor(mainBlueColor, for: UIControlState())
         button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.darkGrayColor().CGColor
+        button.layer.borderColor = UIColor.darkGray.cgColor
         button.layer.borderWidth = 1.0
         locationHorizontalScroll.contentSize.width += button.frame.width + 10
         
     }
     
     
-    func makeFAButton(faValue: String, button: UIButton) {
+    func makeFAButton(_ faValue: String, button: UIButton) {
         
         let edit = String(format: "%C", faicon[faValue]!)
-        button.setTitle(edit, forState: .Normal)
+        button.setTitle(edit, for: UIControlState())
         
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         
         thoughtsTextView.text = ""
         
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if text == "\n" {
             
@@ -194,7 +194,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
             
         }
         
-        let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         let number = newText.characters.count
         thoughtsCharacterCount.text = String(180 - number)
         
@@ -224,7 +224,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
 //        return dropdownCityOptions[row]
 //    }
     
-    func getStylesOn(view: UIView) {
+    func getStylesOn(_ view: UIView) {
         
         view.layer.cornerRadius = 5.0
         
@@ -241,11 +241,11 @@ class AddActivityNew: UIView, UITextViewDelegate {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "AddActivityNew", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

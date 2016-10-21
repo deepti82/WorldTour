@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
 //        
 //    }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
 //        if doRemove {
 //            
@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         
         getDarkBackGround(self)
         
@@ -64,7 +64,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
 //        self.resizeView(8);
         
-        let sideMenu = storyboard!.instantiateViewControllerWithIdentifier("sideMenu") as! SideNavigationMenuViewController
+        let sideMenu = storyboard!.instantiateViewController(withIdentifier: "sideMenu") as! SideNavigationMenuViewController
         sideMenu.view.setNeedsDisplay()
         
 //        var imageName = ""

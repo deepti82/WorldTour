@@ -18,30 +18,30 @@ class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationButton.tintColor = UIColor.whiteColor()
+        locationButton.tintColor = UIColor.white
         
 //        let cityPicker = UIPickerView()
 //        cityPicker.delegate = self
 //        cityPicker.dataSource = self
         
-        cityTextField.attributedPlaceholder = NSAttributedString(string: "Mumbai", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+        cityTextField.attributedPlaceholder = NSAttributedString(string: "Mumbai", attributes: [NSForegroundColorAttributeName: UIColor.white])
 //        cityTextField.inputView = cityPicker
         
         cityTextField.delegate = self
         
         getDarkBackGroundBlur(self)
         
-        locationView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        locationView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(ChooseCityViewController.selectGender(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(ChooseCityViewController.selectGender(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -62,47 +62,47 @@ class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPicker
         
     }
     
-    func donePicker(sender: AnyObject) {
+    func donePicker(_ sender: AnyObject) {
         
         cityTextField.resignFirstResponder()
     }
     
-    func cancelPicker(sender: AnyObject) {
+    func cancelPicker(_ sender: AnyObject) {
         
         cityTextField.resignFirstResponder()
         
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return pickOption[row]
         
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         return pickOption.count
         
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         cityTextField.text = pickOption[row]
     }
     
-    func selectGender(sender: UIButton) {
+    func selectGender(_ sender: UIButton) {
         
-        let selectGenderVC = storyboard?.instantiateViewControllerWithIdentifier("selectGender") as! SelectGenderViewController
+        let selectGenderVC = storyboard?.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
         self.navigationController?.pushViewController(selectGenderVC, animated: true)
         
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         
         print("has begun editing")
         locationView.animation.makeFrame(8, 10, locationView.frame.width, locationView.frame.height).animate(0.2)

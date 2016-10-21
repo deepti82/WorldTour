@@ -15,12 +15,12 @@ class CardCheckBoxes: UIView {
 //    var isRadio = false
     
     
-    @IBAction func checkBoxTap(sender: UIButton) {
+    @IBAction func checkBoxTap(_ sender: UIButton) {
         
         if sender.currentBackgroundImage == UIImage(named: "halfnhalfbgGray") {
             
             print("sender title: \(sender.titleLabel?.text)")
-            sender.setBackgroundImage(UIImage(named: "halfnhalfbgGreen"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfnhalfbgGreen"), for: UIControlState())
             
             print("cardTitle: \(cardTitle)")
             
@@ -40,7 +40,7 @@ class CardCheckBoxes: UIView {
         else {
             
             print("sender title: \(sender.titleLabel?.text)")
-            sender.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), for: UIControlState())
         }
     }
     
@@ -56,11 +56,11 @@ class CardCheckBoxes: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "CardCheckBoxes", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

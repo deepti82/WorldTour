@@ -25,16 +25,16 @@ class DisplayPagesFourViewController: UIViewController {
 //        self.navigationItem.titleView = indicatorFour
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setTitle("Done", forState: .Normal)
+        rightButton.setTitle("Done", for: UIControlState())
         rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
 //        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(DisplayPagesFourViewController.nextPage(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(15, 8, 70, 30)
+        rightButton.addTarget(self, action: #selector(DisplayPagesFourViewController.nextPage(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 15, y: 8, width: 70, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -43,7 +43,7 @@ class DisplayPagesFourViewController: UIViewController {
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self
             .popVC(_:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
         
 //        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)))
@@ -60,7 +60,7 @@ class DisplayPagesFourViewController: UIViewController {
         
         for button in page.checkboxFourButtons {
             
-            button.addTarget(self, action: #selector(DisplayPagesThreeViewController.multipleSelect(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(DisplayPagesThreeViewController.multipleSelect(_:)), for: .touchUpInside)
         }
         
         if profilePic != nil {
@@ -71,7 +71,7 @@ class DisplayPagesFourViewController: UIViewController {
         
     }
     
-    func setImage(sender: forDpFour) {
+    func setImage(_ sender: forDpFour) {
         
         let isUrl = verifyUrl(profilePic)
         print("isUrl: \(isUrl)")
@@ -79,7 +79,7 @@ class DisplayPagesFourViewController: UIViewController {
         if isUrl {
             
             print("inside if statement")
-            let data = NSData(contentsOfURL: NSURL(string: profilePic)!)
+            let data = try? Data(contentsOf: URL(string: profilePic)!)
             
             if data != nil {
                 
@@ -96,7 +96,7 @@ class DisplayPagesFourViewController: UIViewController {
             
 //            print("getImageUrl: \(getImageUrl)")
             
-            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
 //            print("data: \(data)")
             
             if data != nil {
@@ -111,25 +111,25 @@ class DisplayPagesFourViewController: UIViewController {
         }
     }
     
-    func multipleSelect(sender: UIButton) {
+    func multipleSelect(_ sender: UIButton) {
         
         if sender.tag == 0 {
             
-            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
             sender.tag = 1
             yourIdeal.append(sender.titleLabel!.text!)
             
         }
         else {
             
-            sender.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), for: UIControlState())
             sender.tag = 0
             yourIdeal = yourIdeal.filter{ $0 != sender.titleLabel!.text!}
         }
         
     }
     
-    func nextPage(sender: AnyObject) {
+    func nextPage(_ sender: AnyObject) {
         
         print("your ideal holiday: \(yourIdeal)")
         
@@ -163,7 +163,7 @@ class DisplayPagesFourViewController: UIViewController {
 //            }
 //        })
         
-        let next = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
 //        self.slideMenuController()?.changeMainViewController(next, close: true)
         self.navigationController?.pushViewController(next, animated: true)
     }

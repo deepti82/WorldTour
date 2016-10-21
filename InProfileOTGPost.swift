@@ -35,16 +35,16 @@ class InProfileOTGPost: UIView {
         
         likesLabel.text = String(format: "%C", faicon["likes"]!)
         
-        OTGTitleLabel.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        detailsView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        OTGTitleLabel.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        detailsView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
         styleFlags(flag1)
         styleFlags(flag2)
         styleFlags(flag3)
         
-        journeyIcon1.tintColor = UIColor.whiteColor()
-        journeyIcon2.tintColor = UIColor.whiteColor()
-        journeyIcon3.tintColor = UIColor.whiteColor()
+        journeyIcon1.tintColor = UIColor.white
+        journeyIcon2.tintColor = UIColor.white
+        journeyIcon3.tintColor = UIColor.white
         
         self.layer.cornerRadius = 5
         self.clipsToBounds = true
@@ -55,19 +55,19 @@ class InProfileOTGPost: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "InProfileOTGPost", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
     
-    func styleFlags(flag: UIImageView) -> Void {
+    func styleFlags(_ flag: UIImageView) -> Void {
         
         flag.layer.cornerRadius = flag.frame.height/2
         flag.layer.borderWidth = 1.0
-        flag.layer.borderColor = UIColor.whiteColor().CGColor
+        flag.layer.borderColor = UIColor.white.cgColor
         flag.clipsToBounds = true
     }
 

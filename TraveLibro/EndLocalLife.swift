@@ -26,13 +26,13 @@ class EndLocalLife: UIView {
     @IBOutlet weak var thoughts: UIStackView!
     @IBOutlet weak var checkIn: UIStackView!
     
-    @IBAction func closeButtonTap(sender: AnyObject) {
+    @IBAction func closeButtonTap(_ sender: AnyObject) {
         
-        closeButton.transform = CGAffineTransformRotate(closeButton.transform, CGFloat(M_PI_4))
+        closeButton.transform = closeButton.transform.rotated(by: CGFloat(M_PI_4))
 //        print("inside close button tap")
         if !hasButtonRotated {
             
-            closeButtonUp.transform = CGAffineTransformRotate(closeButtonUp.transform, CGFloat(M_PI_4))
+            closeButtonUp.transform = closeButtonUp.transform.rotated(by: CGFloat(M_PI_4))
             hasButtonRotated = true
             
         }
@@ -58,7 +58,7 @@ class EndLocalLife: UIView {
         
         if isTravelLife {
             
-            speechView.hidden = false
+            speechView.isHidden = false
             
         }
         
@@ -69,7 +69,7 @@ class EndLocalLife: UIView {
         
     }
     
-    @IBAction func photosTap(sender: AnyObject) {
+    @IBAction func photosTap(_ sender: AnyObject) {
         
         print("Tapped photos")
         
@@ -82,11 +82,11 @@ class EndLocalLife: UIView {
 //        
 //    }
     
-    @IBAction func closeButtonUpTap(sender: AnyObject) {
+    @IBAction func closeButtonUpTap(_ sender: AnyObject) {
         
         print("in close button Tap")
         addPostsView.animation.makeOpacity(0.0).animate(0.3)
-        closeButton.transform = CGAffineTransformRotate(closeButton.transform, CGFloat(M_PI_4))
+        closeButton.transform = closeButton.transform.rotated(by: CGFloat(M_PI_4))
         flag = false
         
     }
@@ -95,19 +95,19 @@ class EndLocalLife: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        speechView.hidden = true
+        speechView.isHidden = true
         addPostsView.layer.opacity = 0.0
         
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = 1000
         blurView.frame.size.width = 1000
         blurView.layer.zPosition = -1
-        blurView.userInteractionEnabled = false
+        blurView.isUserInteractionEnabled = false
         addPostsView.addSubview(blurView)
         
         let closeButtonString = String(format: "%C", faicon["close"]!)
-        closeButtonUp.setTitle(closeButtonString, forState: .Normal)
+        closeButtonUp.setTitle(closeButtonString, for: UIControlState())
         closeButtonUp.layer.zPosition = 100
         
         closeButton.layer.zPosition = 10
@@ -121,11 +121,11 @@ class EndLocalLife: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "EndLocalLife", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         
     }

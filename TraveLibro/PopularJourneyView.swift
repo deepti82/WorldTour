@@ -21,9 +21,9 @@ class PopularJourneyView: UIView {
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var TitleLabelView: UIView!
     
-    @IBAction func followButton(sender: AnyObject) {
+    @IBAction func followButton(_ sender: AnyObject) {
         
-        follow.setTitle("Following", forState: .Normal)
+        follow.setTitle("Following", for: UIControlState())
         
     }
     
@@ -33,24 +33,24 @@ class PopularJourneyView: UIView {
         
         flag3.layer.cornerRadius = self.flag3.frame.size.height/2
         flag3.clipsToBounds = true
-        flag3.layer.borderColor = UIColor.whiteColor().CGColor
+        flag3.layer.borderColor = UIColor.white.cgColor
         flag3.layer.borderWidth = CGFloat(1.5)
         
         flag2.layer.cornerRadius = self.flag2.frame.size.height/2
         flag2.clipsToBounds = true
-        flag2.layer.borderColor = UIColor.whiteColor().CGColor
+        flag2.layer.borderColor = UIColor.white.cgColor
         flag2.layer.borderWidth = CGFloat(1.5)
         
         flag1.layer.cornerRadius = self.flag1.frame.size.height/2
         flag1.clipsToBounds = true
-        flag1.layer.borderColor = UIColor.whiteColor().CGColor
+        flag1.layer.borderColor = UIColor.white.cgColor
         flag1.layer.borderWidth = CGFloat(1.5)
         
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         likeLabel.text = String(format: "%C", faicon["likes"]!)
         
-        TitleLabelView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        TitleLabelView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
         mainPhoto.layer.zPosition = -10
         
@@ -63,11 +63,11 @@ class PopularJourneyView: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "PopularJourneyView", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

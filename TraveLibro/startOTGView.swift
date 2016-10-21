@@ -54,14 +54,14 @@ class startOTGView: UIView {
         let rocketLabel = UILabel(frame: CGRect(x: -22, y: -5, width: 22, height: 30))
         rocketLabel.font = UIFont(name: "FontAwesome", size: 15)
         rocketLabel.text = String(format: "%C", faicon["rocket"]!)
-        rocketLabel.textColor = UIColor.whiteColor()
+        rocketLabel.textColor = UIColor.white
         startJourneyButton.titleLabel?.addSubview(rocketLabel)
         
         nameJourneyTF.attributedPlaceholder = NSAttributedString(string: "Name Your Journey", attributes: [NSForegroundColorAttributeName: UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)])
         
         nameJourneyView.layer.cornerRadius = 5
-        nameJourneyView.layer.shadowColor = UIColor.lightGrayColor().CGColor
-        nameJourneyView.layer.shadowOffset = CGSizeMake(1, 1)
+        nameJourneyView.layer.shadowColor = UIColor.lightGray.cgColor
+        nameJourneyView.layer.shadowOffset = CGSize(width: 1, height: 1)
         nameJourneyView.layer.shadowOpacity = 0.5
         nameJourneyView.layer.shadowRadius = 1.0
         
@@ -71,19 +71,19 @@ class startOTGView: UIView {
         locationLabel.attributedPlaceholder = NSAttributedString(string: "Detect Location", attributes: [NSForegroundColorAttributeName: mainBlueColor])
         
         detectLocationView.layer.cornerRadius = 5
-        detectLocationView.layer.shadowColor = UIColor.lightGrayColor().CGColor
-        detectLocationView.layer.shadowOffset = CGSizeMake(1, 1)
+        detectLocationView.layer.shadowColor = UIColor.lightGray.cgColor
+        detectLocationView.layer.shadowOffset = CGSize(width: 1, height: 1)
         detectLocationView.layer.shadowOpacity = 0.5
         detectLocationView.layer.shadowRadius = 1.0
         
         cityDetails.layer.cornerRadius = 5
         cityImage.layer.cornerRadius = 5
-        cityImage.layer.borderColor = UIColor.whiteColor().CGColor
+        cityImage.layer.borderColor = UIColor.white.cgColor
         cityImage.layer.borderWidth = 3.0
         cityImage.clipsToBounds = true
         
         selectCategoryButton.layer.cornerRadius = 5
-        selectCategoryButton.layer.borderColor = UIColor.whiteColor().CGColor
+        selectCategoryButton.layer.borderColor = UIColor.white.cgColor
         selectCategoryButton.layer.borderWidth = 1.0
         
         for icon in journeyCategoryDetails {
@@ -93,7 +93,7 @@ class startOTGView: UIView {
         }
         
         addBuddiesButton.layer.cornerRadius = 5
-        addBuddiesButton.layer.borderColor = UIColor.whiteColor().CGColor
+        addBuddiesButton.layer.borderColor = UIColor.white.cgColor
         addBuddiesButton.layer.borderWidth = 1.0
         
     }
@@ -103,11 +103,11 @@ class startOTGView: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "startOTGView", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
     

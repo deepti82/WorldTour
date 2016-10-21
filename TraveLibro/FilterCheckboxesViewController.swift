@@ -21,12 +21,12 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame = self.view.bounds
         blurView.frame.size.height = 2000
         blurView.layer.zPosition = -1
-        blurView.userInteractionEnabled = false
+        blurView.isUserInteractionEnabled = false
         self.view.addSubview(blurView)
         
 //        if whichView == "Restaurants" {
@@ -39,10 +39,10 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
 //        HeadViewHeightConstraint.constant = 100
         
         let headerView = FilterRestaurants(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: HeadView.frame.height))
-        headerView.AllButton.addTarget(self, action: #selector(FilterCheckboxesViewController.FilterTypeButtonTapped(_:)), forControlEvents: .TouchUpInside)
-        headerView.vegButton.addTarget(self, action: #selector(FilterCheckboxesViewController.FilterTypeButtonTapped(_:)), forControlEvents: .TouchUpInside)
-        headerView.nonVegButton.addTarget(self, action: #selector(FilterCheckboxesViewController.FilterTypeButtonTapped(_:)), forControlEvents: .TouchUpInside)
-        headerView.veganButton.addTarget(self, action: #selector(FilterCheckboxesViewController.FilterTypeButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        headerView.AllButton.addTarget(self, action: #selector(FilterCheckboxesViewController.FilterTypeButtonTapped(_:)), for: .touchUpInside)
+        headerView.vegButton.addTarget(self, action: #selector(FilterCheckboxesViewController.FilterTypeButtonTapped(_:)), for: .touchUpInside)
+        headerView.nonVegButton.addTarget(self, action: #selector(FilterCheckboxesViewController.FilterTypeButtonTapped(_:)), for: .touchUpInside)
+        headerView.veganButton.addTarget(self, action: #selector(FilterCheckboxesViewController.FilterTypeButtonTapped(_:)), for: .touchUpInside)
         HeadView.addSubview(headerView)
         
         doneButton.layer.cornerRadius = 5
@@ -55,13 +55,13 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
         // Dispose of any resources that can be recreated.
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return labels.count
         
     }
     
-    func FilterTypeButtonTapped(sender: UIButton) {
+    func FilterTypeButtonTapped(_ sender: UIButton) {
         
         if sender.tag == 0 {
             
@@ -75,15 +75,15 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! CheckBoxCollectionViewCell
-        cell.checkboxButton.setTitle("      " + labels[indexPath.item], forState: .Normal)
-        cell.checkboxButton.addTarget(self, action: #selector(FilterCheckboxesViewController.selectCheckbox(_:)), forControlEvents: .TouchUpInside)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CheckBoxCollectionViewCell
+        cell.checkboxButton.setTitle("      " + labels[(indexPath as NSIndexPath).item], for: UIControlState())
+        cell.checkboxButton.addTarget(self, action: #selector(FilterCheckboxesViewController.selectCheckbox(_:)), for: .touchUpInside)
         
         let checkbox = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         checkbox.image = UIImage(named: "checkbox_empty")
-        checkbox.contentMode = .ScaleAspectFit
+        checkbox.contentMode = .scaleAspectFit
         checkbox.tag = 2
         cell.checkboxButton.titleLabel?.addSubview(checkbox)
         
@@ -91,7 +91,7 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
         
     }
     
-    func selectCheckbox(sender: UIButton) {
+    func selectCheckbox(_ sender: UIButton) {
         
         let subviews = sender.titleLabel?.subviews
         
@@ -110,7 +110,7 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
             
             let checkbox = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
             checkbox.image = UIImage(named: "checkbox_fill")
-            checkbox.contentMode = .ScaleAspectFit
+            checkbox.contentMode = .scaleAspectFit
             checkbox.tag = 2
             sender.titleLabel?.addSubview(checkbox)
             sender.tag = 1
@@ -120,7 +120,7 @@ class FilterCheckboxesViewController: UIViewController, UICollectionViewDataSour
             
             let checkbox = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
             checkbox.image = UIImage(named: "checkbox_empty")
-            checkbox.contentMode = .ScaleAspectFit
+            checkbox.contentMode = .scaleAspectFit
             checkbox.tag = 2
             sender.titleLabel?.addSubview(checkbox)
             sender.tag = 0

@@ -32,15 +32,15 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         trialVariable = []
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(-10, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setTitle("Save", forState: .Normal)
+        rightButton.setTitle("Save", for: UIControlState())
         rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
-        rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveCountriesVisited(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(10, 0, 70, 30)
+        rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveCountriesVisited(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 10, y: 0, width: 70, height: 30)
         self.customNavigationBar(leftButton, right: rightButton)
         
         self.clearsSelectionOnViewWillAppear = true
@@ -51,7 +51,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         configureSearchController()
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         searchController.dimsBackgroundDuringPresentation = true
         shouldShowSearchResults = true
@@ -71,14 +71,14 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
     }
     
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
         shouldShowSearchResults = false
         tableView.reloadData()
         
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         if !shouldShowSearchResults {
             
@@ -91,7 +91,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         searchController.searchBar.resignFirstResponder()
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         
         searchController.dimsBackgroundDuringPresentation = false
         let searchString = searchController.searchBar.text
@@ -101,11 +101,11 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
             
             //            print("country: \(country["name"])")
             
-            let yearText: NSString = year
+            let yearText: NSString = year as NSString
             
-            print("country: \(yearText.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location)")
+            print("country: \(yearText.range(of: searchString!, options: .caseInsensitive).location)")
             
-            return (yearText.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location) != NSNotFound
+            return (yearText.range(of: searchString!, options: .caseInsensitive).location) != NSNotFound
         })
         
         //        filteredArray = countries.filter{$0["name"].string! == searchString}
@@ -123,12 +123,12 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
         if shouldShowSearchResults && filteredArray != nil {
@@ -139,41 +139,41 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         return years.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("yearCells", forIndexPath: indexPath) as! AddYearsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "yearCells", for: indexPath) as! AddYearsTableViewCell
         
         if shouldShowSearchResults && filteredArray != nil {
             
-            cell.yearLabel.text = filteredArray[indexPath.row]
+            cell.yearLabel.text = filteredArray[(indexPath as NSIndexPath).row]
             
         }
         else {
             
-            cell.yearLabel.text = years[indexPath.row]
+            cell.yearLabel.text = years[(indexPath as NSIndexPath).row]
         }
         
 //        cell.addQty.addTarget(self, action: #selector(AddYearsCountriesVisitedTableViewController.addQuantity(_:)), forControlEvents: .TouchUpInside)
 //        cell.removeQty.addTarget(self, action: #selector(AddYearsCountriesVisitedTableViewController.removeQuantity(_:)), forControlEvents: .TouchUpInside)
-        cell.selectionStyle = .None
-        cell.accessoryType = .Checkmark
+        cell.selectionStyle = .none
+        cell.accessoryType = .checkmark
         
-        if indexPath.row % 2 == 0 {
+        if (indexPath as NSIndexPath).row % 2 == 0 {
             
-            cell.backgroundColor = mainOrangeColor.colorWithAlphaComponent(0.1)
+            cell.backgroundColor = mainOrangeColor.withAlphaComponent(0.1)
             
         }
             
         else {
             
-            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.6)
+            cell.backgroundColor = UIColor.white.withAlphaComponent(0.6)
             
         }
         
-        if selectedYears.contains(years[indexPath.row]) {
+        if selectedYears.contains(years[(indexPath as NSIndexPath).row]) {
             
             cell.tintColor = mainOrangeColor
-            cell.cartView.hidden = false
+            cell.cartView.isHidden = false
             
 //            for i in 0 ..< years.count {
 //                
@@ -195,7 +195,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         else {
             
             cell.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
-            cell.cartView.hidden = true
+            cell.cartView.isHidden = true
         }
         
 //        if filteredArray != nil && filteredArray.count > 0 && s electedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
@@ -231,29 +231,29 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         return cell
     }
     
-    var latestIndexPath: NSIndexPath!
+    var latestIndexPath: IndexPath!
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let selectedCountry = tableView.cellForRowAtIndexPath(indexPath) as! AddYearsTableViewCell
+        let selectedCountry = tableView.cellForRow(at: indexPath) as! AddYearsTableViewCell
         searchBarSearchButtonClicked(searchController.searchBar)
         
         if selectedCountry.tag == 0 {
             
             selectedCountry.tintColor = mainOrangeColor
-            selectedCountry.cartView.hidden = false
+            selectedCountry.cartView.isHidden = false
             selectedCountry.tag = 1
             
             if shouldShowSearchResults && filteredArray != nil {
                 
-                selectedYears.append(filteredArray[indexPath.row])
-                trialVariable.append(["country": filteredArray[indexPath.row], "quantity": 1])
+                selectedYears.append(filteredArray[(indexPath as NSIndexPath).row])
+                trialVariable.append(["country": filteredArray[(indexPath as NSIndexPath).row], "quantity": 1])
                 
             }
             else {
                 
-                selectedYears.append(years[indexPath.row])
-                trialVariable.append(["country": years[indexPath.row], "quantity": 1])
+                selectedYears.append(years[(indexPath as NSIndexPath).row])
+                trialVariable.append(["country": years[(indexPath as NSIndexPath).row], "quantity": 1])
             }
             
         }
@@ -262,24 +262,24 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
             
             selectedCountry.tag = 0
             selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
-            selectedCountry.cartView.hidden = true
+            selectedCountry.cartView.isHidden = true
             
             if shouldShowSearchResults && filteredArray != nil {
                 
-                selectedYears = selectedYears.filter{$0 != filteredArray[indexPath.row]}
-                trialVariable = trialVariable.filter({$0["country"].string! != filteredArray[indexPath.row]})
+                selectedYears = selectedYears.filter{$0 != filteredArray[(indexPath as NSIndexPath).row]}
+                trialVariable = trialVariable.filter({$0["country"].string! != filteredArray[(indexPath as NSIndexPath).row]})
             }
             else {
                 
-                selectedYears = selectedYears.filter{$0 != years[indexPath.row]}
-                trialVariable = trialVariable.filter({$0["country"].string! != years[indexPath.row]})
+                selectedYears = selectedYears.filter{$0 != years[(indexPath as NSIndexPath).row]}
+                trialVariable = trialVariable.filter({$0["country"].string! != years[(indexPath as NSIndexPath).row]})
             }
             
         }
         
     }
     
-    func saveCountriesVisited(sender: UIButton) {
+    func saveCountriesVisited(_ sender: UIButton) {
         
         print("save countries visited: \(selectedCountry), \(selectedYears)")
         
@@ -344,7 +344,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         
         request.addCountriesVisited(currentUser["_id"].string!, list: listFormat, countryVisited: selectedCountry, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -355,7 +355,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
                     
                     print("response arrived")
                     //                    let total = self.navigationController?.viewControllers
-                    let prevVC = self.storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+                    let prevVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
                     prevVC.whichView = "CountriesVisited"
                     //                    prevVC.tableView.reloadData()
                     self.navigationController?.pushViewController(prevVC, animated: false)
@@ -386,7 +386,7 @@ class AddYearsTableViewCell: UITableViewCell {
     var currentYear: String!
     var flag = 0
     
-    @IBAction func addQuantity(sender: AnyObject) {
+    @IBAction func addQuantity(_ sender: AnyObject) {
         
         print("in add quantity")
         currentYear = yearLabel.text
@@ -413,7 +413,7 @@ class AddYearsTableViewCell: UITableViewCell {
         print("trial variable: \(trialVariable)")
     }
     
-    @IBAction func removeQuantity(sender: AnyObject) {
+    @IBAction func removeQuantity(_ sender: AnyObject) {
         
         print("in remove quantity")
         currentYear = yearLabel.text

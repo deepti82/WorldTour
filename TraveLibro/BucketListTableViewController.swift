@@ -22,14 +22,14 @@ class BucketListTableViewController: UITableViewController  {
         super.viewDidLoad()
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "add_fa_icon"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(BucketListTableViewController.addCountriesVisited(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "add_fa_icon"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(BucketListTableViewController.addCountriesVisited(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -72,10 +72,10 @@ class BucketListTableViewController: UITableViewController  {
             
         }
         
-        tableView.separatorColor = UIColor.whiteColor()
+        tableView.separatorColor = UIColor.white
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         if isComingFromEmptyPages {
             
@@ -90,11 +90,11 @@ class BucketListTableViewController: UITableViewController  {
         // Dispose of any resources that can be recreated.
     }
     
-    func gotoProfile(sender: UIButton) {
+    func gotoProfile(_ sender: UIButton) {
         
         for vc in self.navigationController!.viewControllers {
             
-            if vc.isKindOfClass(ProfileViewController) {
+            if vc.isKind(of: ProfileViewController.self) {
                 
                 print("inside if statement bucket list")
                 self.navigationController!.popToViewController(vc, animated: true)
@@ -137,7 +137,7 @@ class BucketListTableViewController: UITableViewController  {
         
             request.getBucketList(currentUser["_id"].string!, completion: {(response) in
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
                     if response.error != nil {
                         
@@ -153,7 +153,7 @@ class BucketListTableViewController: UITableViewController  {
                         if self.bucket.count == 0 {
                             
                             print("bucket list is empty")
-                            let emptyBucket = self.storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+                            let emptyBucket = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
                             emptyBucket.whichView = self.whichView
                             self.navigationController?.pushViewController(emptyBucket, animated: false)
                             
@@ -179,7 +179,7 @@ class BucketListTableViewController: UITableViewController  {
         
         request.getCountriesVisited(currentUser["_id"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -209,7 +209,7 @@ class BucketListTableViewController: UITableViewController  {
                     if self.result.count == 0 {
                         
                         print("bucket list is empty")
-                        let emptyBucket = self.storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+                        let emptyBucket = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
                         emptyBucket.whichView = "CountriesVisited"
                         self.navigationController?.pushViewController(emptyBucket, animated: false)
                         
@@ -233,7 +233,7 @@ class BucketListTableViewController: UITableViewController  {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         
         if whichView == "BucketList" {
             
@@ -252,7 +252,7 @@ class BucketListTableViewController: UITableViewController  {
         
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if whichView == "BucketList" {
             
@@ -273,15 +273,15 @@ class BucketListTableViewController: UITableViewController  {
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if whichView == "BucketList" {
             
 //            if indexPath.row % 2 == 0 {
             
-                let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
-                cell.countryName.text = bucket[indexPath.row]["name"].string!
-                cell.yearOfVisit.hidden = true
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
+                cell.countryName.text = bucket[(indexPath as NSIndexPath).row]["name"].string!
+                cell.yearOfVisit.isHidden = true
                 return cell
                 
 //            }
@@ -295,10 +295,10 @@ class BucketListTableViewController: UITableViewController  {
             
             //            if indexPath.row % 2 == 0 {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
 //            print("bucket: \(bucket[indexPath.row]["countries"][0])")
-            cell.countryName.text = self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["name"].string!
-            cell.yearOfVisit.text = "\(self.result[indexPath.section]["countries"][indexPath.row]["year"])"
+            cell.countryName.text = self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["name"].string!
+            cell.yearOfVisit.text = "\(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"])"
             return cell
             
             //            }
@@ -310,7 +310,7 @@ class BucketListTableViewController: UITableViewController  {
         
 //        if indexPath.row % 2 == 0 {
         
-            let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! BucketListTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
             return cell
             
 //        }
@@ -320,7 +320,7 @@ class BucketListTableViewController: UITableViewController  {
         
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
 //        if indexPath.row % 2 == 0 {
         
@@ -331,16 +331,16 @@ class BucketListTableViewController: UITableViewController  {
         
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         if whichView == "BucketList" {
-            let delete = UITableViewRowAction(style: .Destructive, title: "             ") { (action, indexPath) in
+            let delete = UITableViewRowAction(style: UITableViewRowActionStyle(), title: "             ") { (action, indexPath) in
                 
 //                print("bucket list removal: \(self.bucket[indexPath.row]["_id"])")
                 
-                request.removeBucketList(currentUser["_id"].string!, country: self.bucket[indexPath.row]["_id"].string!, completion: {(response) in
+                request.removeBucketList(currentUser["_id"].string!, country: self.bucket[(indexPath as NSIndexPath).row]["_id"].string!, completion: {(response) in
                     
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         
                         if response.error != nil {
                             
@@ -367,13 +367,13 @@ class BucketListTableViewController: UITableViewController  {
         }
         
         else if whichView == "CountriesVisited" {
-            let delete = UITableViewRowAction(style: .Destructive, title: "             ") { (action, indexPath) in
+            let delete = UITableViewRowAction(style: UITableViewRowActionStyle(), title: "             ") { (action, indexPath) in
                 
-                print("countries visited removal: \(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["_id"].string!)")
+                print("countries visited removal: \(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!)")
                 
-                request.removeCountriesVisited(currentUser["_id"].string!, countryId: self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["_id"].string!, year: self.result[indexPath.section]["countries"][indexPath.row]["year"].int!, completion: {(response) in
+                request.removeCountriesVisited(currentUser["_id"].string!, countryId: self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!, year: self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"].int!, completion: {(response) in
                     
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         
                         if response.error != nil {
                             
@@ -399,7 +399,7 @@ class BucketListTableViewController: UITableViewController  {
             return [delete]
         }
         
-        let delete = UITableViewRowAction(style: .Normal, title: "") { (action, indexPath) in
+        let delete = UITableViewRowAction(style: .normal, title: "") { (action, indexPath) in
             // delete item at indexPath
         }
         
@@ -412,7 +412,7 @@ class BucketListTableViewController: UITableViewController  {
         return [delete]
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         if whichView == "BucketList" {
             
@@ -422,7 +422,7 @@ class BucketListTableViewController: UITableViewController  {
         return 35
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if whichView == "CountriesVisited" {
             
@@ -432,11 +432,11 @@ class BucketListTableViewController: UITableViewController  {
         return nil
     }
     
-    func addCountriesVisited(sender: UIButton) {
+    func addCountriesVisited(_ sender: UIButton) {
         
         if whichView == "BucketList" {
             
-            let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            let nextVC = storyboard?.instantiateViewController(withIdentifier: "SelectCountryVC") as! SelectCountryViewController
             nextVC.whichView = "BucketList"
             print("bucket list \(bucket)")
             nextVC.alreadySelected = bucket
@@ -444,7 +444,7 @@ class BucketListTableViewController: UITableViewController  {
         }
         else {
             
-            let nextVC = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+            let nextVC = storyboard?.instantiateViewController(withIdentifier: "SelectCountryVC") as! SelectCountryViewController
             nextVC.whichView = "CountriesVisited"
             self.navigationController?.pushViewController(nextVC, animated: true)
         }

@@ -10,7 +10,7 @@ import UIKit
 
 class TagViewFrame: UIView {
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         let mask = CAShapeLayer()
         mask.frame = self.layer.bounds
@@ -18,7 +18,7 @@ class TagViewFrame: UIView {
         let width = self.layer.bounds.width
         let height = self.layer.bounds.height
         
-        let path = CGPathCreateMutable()
+        let path = CGMutablePath()
         
 //        CGPathMoveToPoint(path, nil, 0, 0)
 //        CGPathAddCurveToPoint(path, nil, 15, 0, 15, 30, 0, 30)

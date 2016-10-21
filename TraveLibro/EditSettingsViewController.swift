@@ -21,16 +21,16 @@ class EditSettingsViewController: UIViewController {
         case "MAMView":
             self.title = "Edit More About Me"
             let titleView = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
-            titleView.center = CGPointMake(self.view.frame.width/2 , 100)
-            titleView.setTitle("Click here to change your travel preferences", forState: .Normal)
+            titleView.center = CGPoint(x: self.view.frame.width/2 , y: 100)
+            titleView.setTitle("Click here to change your travel preferences", for: UIControlState())
             titleView.titleLabel?.font = avenirFont!
-            titleView.setTitleColor(UIColor(red: 88/255, green: 88/255, blue: 88/255, alpha: 1), forState: .Normal)
-            titleView.backgroundColor = UIColor.clearColor()
-            titleView.addTarget(self, action: #selector(EditSettingsViewController.editPreferences(_:)), forControlEvents: .TouchUpInside)
+            titleView.setTitleColor(UIColor(red: 88/255, green: 88/255, blue: 88/255, alpha: 1), for: UIControlState())
+            titleView.backgroundColor = UIColor.clear
+            titleView.addTarget(self, action: #selector(EditSettingsViewController.editPreferences(_:)), for: .touchUpInside)
             self.view.addSubview(titleView)
             
             let textView = MoreAboutMe(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 150))
-            textView.backgroundColor = UIColor.whiteColor()
+            textView.backgroundColor = UIColor.white
             self.view.addSubview(textView)
             break
             
@@ -44,7 +44,7 @@ class EditSettingsViewController: UIViewController {
         case "ReportView":
             self.title = "Report a problem"
             let report = ReportProblem(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 300))
-            report.submitButton.addTarget(self, action: #selector(EditSettingsViewController.submitComplaint(_:)), forControlEvents: .TouchUpInside)
+            report.submitButton.addTarget(self, action: #selector(EditSettingsViewController.submitComplaint(_:)), for: .touchUpInside)
             self.view.addSubview(report)
             break
             
@@ -59,24 +59,24 @@ class EditSettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func editPreferences(sender: UIButton) {
+    func editPreferences(_ sender: UIButton) {
         
-        let displayCardsVC = storyboard?.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
+        let displayCardsVC = storyboard?.instantiateViewController(withIdentifier: "DisplayCards") as! DisplayCardsViewController
         self.navigationController?.pushViewController(displayCardsVC, animated: true)
         
         
     }
     
-    func submitComplaint(sender: UIButton) {
+    func submitComplaint(_ sender: UIButton) {
         
         let alert = UIAlertController(title: nil, message:
-            "Successfully Reported!", preferredStyle: .Alert)
+            "Successfully Reported!", preferredStyle: .alert)
         
-        self.presentViewController(alert, animated: false, completion: nil)
+        self.present(alert, animated: false, completion: nil)
         
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler:
             {action in      
-                alert.dismissViewControllerAnimated(true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
         }))
         
     }

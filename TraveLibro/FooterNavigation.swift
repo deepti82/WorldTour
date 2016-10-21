@@ -10,30 +10,30 @@ import UIKit
 
 extension UIViewController {
     
-    func goToFeed (sender: UITapGestureRecognizer? = nil) {
+    func goToFeed (_ sender: UITapGestureRecognizer? = nil) {
         
-        let feedVC = storyboard!.instantiateViewControllerWithIdentifier("Activity") as! ProfilePostsViewController
+        let feedVC = storyboard!.instantiateViewController(withIdentifier: "Activity") as! ProfilePostsViewController
         navigationController?.pushViewController(feedVC, animated: true)
         
     }
     
-    func gotoNotifications(sender: UITapGestureRecognizer) {
+    func gotoNotifications(_ sender: UITapGestureRecognizer) {
         
-        let notifyVC = storyboard!.instantiateViewControllerWithIdentifier("notifications") as! NotificationsViewController
+        let notifyVC = storyboard!.instantiateViewController(withIdentifier: "notifications") as! NotificationsViewController
         navigationController?.pushViewController(notifyVC, animated: true)
         
     }
     
-    func gotoLocalLife(sender: UITapGestureRecognizer) {
+    func gotoLocalLife(_ sender: UITapGestureRecognizer) {
         
-        let LLVC = storyboard!.instantiateViewControllerWithIdentifier("localLifePosts") as! LocalLifePostsViewController
+        let LLVC = storyboard!.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
         navigationController?.pushViewController(LLVC, animated: true)
         
     }
     
-    func gotoTravelLife(sender: UITapGestureRecognizer) {
+    func gotoTravelLife(_ sender: UITapGestureRecognizer) {
         
-        let TLVC = storyboard!.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
+        let TLVC = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
         navigationController?.pushViewController(TLVC, animated: true)
         
     }

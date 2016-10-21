@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileMainView: UIView {
     internal var flag = 0
-    dynamic var myDate = NSDate()
+    dynamic var myDate = Date()
     
     @IBOutlet weak var MAMView: UIView!
     @IBOutlet weak var flagText: UILabel!
@@ -25,15 +25,15 @@ class ProfileMainView: UIView {
             
 //            self.addObserver(self, forKeyPath: "hasChanged", options: .New, context: nil)
             
-            self.bringSubviewToFront(flagView)
-            self.bringSubviewToFront(flagText)
+            self.bringSubview(toFront: flagView)
+            self.bringSubview(toFront: flagText)
             
             let myView = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: MAMView.frame.width, height: MAMView.frame.height))
             MAMView.addSubview(myView)
             
         }
     
-        override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
             
             print("this function is getting called!!")
             print("y position: \(profileViewY)")
@@ -49,11 +49,11 @@ class ProfileMainView: UIView {
         }
         
         func loadViewFromNib() {
-            let bundle = NSBundle(forClass: self.dynamicType)
+            let bundle = Bundle(for: type(of: self))
             let nib = UINib(nibName: "ProfileMainView", bundle: bundle)
-            let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+            let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
             view.frame = bounds
-            view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             self.addSubview(view);
         }
     

@@ -23,13 +23,13 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
 //    var animationHasBeenShown = false
     weak var transitionContext: UIViewControllerContextTransitioning?
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(_ transitionContext: UIViewControllerContextTransitioning) -> TimeInterval {
         return 0.5
     }
     
     @IBOutlet weak var myTableView: UITableView!
     
-    @IBAction func filterTap(sender: UIButton) {
+    @IBAction func filterTap(_ sender: UIButton) {
         
 //        let circleMaskPathInitial = UIBezierPath(ovalInRect: sender.frame)
 //        let extremePoint = CGPoint(x: sender.center.x - 0, y: sender.center.y - CGRectGetHeight(self.view.frame))
@@ -64,19 +64,19 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
             hotels = HotelTypeSelect(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             hotels.layer.opacity = 0.0
             hotels.doneButton.layer.cornerRadius = 5
-            hotels.doneButton.addTarget(self, action: #selector(ExploreHotelsViewController.doneHotelFilter(_:)), forControlEvents: .TouchUpInside)
+            hotels.doneButton.addTarget(self, action: #selector(ExploreHotelsViewController.doneHotelFilter(_:)), for: .touchUpInside)
             self.view.addSubview(hotels)
             
             for button in hotels.hotelFiltersButton {
                 
                 button.layer.cornerRadius = 5
-                button.addTarget(self, action: #selector(ExploreHotelsViewController.hotelType(_:)), forControlEvents: .TouchUpInside)
+                button.addTarget(self, action: #selector(ExploreHotelsViewController.hotelType(_:)), for: .touchUpInside)
                 
             }
             
             for button in hotels.starButtons {
                 
-                button.addTarget(self, action: #selector(ExploreHotelsViewController.starRating(_:)), forControlEvents: .TouchUpInside)
+                button.addTarget(self, action: #selector(ExploreHotelsViewController.starRating(_:)), for: .touchUpInside)
                 
             }
             
@@ -94,10 +94,10 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
             scrollView.layer.opacity = 0.0
             self.view.addSubview(scrollView)
             
-            let filterVC = storyboard?.instantiateViewControllerWithIdentifier("FilterViewController") as! FilterCheckboxesViewController
+            let filterVC = storyboard?.instantiateViewController(withIdentifier: "FilterViewController") as! FilterCheckboxesViewController
             self.addChildViewController(filterVC)
             filterVC.view.frame.size.height = scrollView.contentSize.height
-            filterVC.doneButton.addTarget(self, action: #selector(ExploreHotelsViewController.filterDone(_:)), forControlEvents: .TouchUpInside)
+            filterVC.doneButton.addTarget(self, action: #selector(ExploreHotelsViewController.filterDone(_:)), for: .touchUpInside)
             filterVC.whichView = "Restaurants"
             scrollView.addSubview(filterVC.view)
 //            let filter = FilterCheckboxesViewController()
@@ -119,14 +119,14 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
-    func doneHotelFilter(sender: UIButton) {
+    func doneHotelFilter(_ sender: UIButton) {
         
         print("inside done hotel filter button")
         hotels.animation.makeOpacity(0.0).animate(0.3)
         
     }
     
-    func hotelType(sender: UIButton) {
+    func hotelType(_ sender: UIButton) {
         
         if sender.tag == 0 {
             
@@ -142,25 +142,25 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    func filterDone(sender: UIButton) {
+    func filterDone(_ sender: UIButton) {
         
         scrollView.animation.makeOpacity(0.0).animate(0.3)
         
     }
     
-    func starRating(sender: UIButton) {
+    func starRating(_ sender: UIButton) {
         
         print("inside rating button")
         
         if sender.tag == 0 {
             
-            sender.setImage(UIImage(named: "star_check"), forState: .Normal)
+            sender.setImage(UIImage(named: "star_check"), for: UIControlState())
             sender.tag = 1
         }
             
         else {
             
-            sender.setImage(UIImage(named: "star_uncheck"), forState: .Normal)
+            sender.setImage(UIImage(named: "star_uncheck"), for: UIControlState())
             sender.tag = 0
         }
     }
@@ -179,37 +179,37 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return data.count
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("hotelCell") as! HotelsTableViewCell
-        cell.hotelNames.text = data[indexPath.row]["name"].string!
-        cell.hotelExpense.text = data[indexPath.row]["budget"].string!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "hotelCell") as! HotelsTableViewCell
+        cell.hotelNames.text = data[(indexPath as NSIndexPath).row]["name"].string!
+        cell.hotelExpense.text = data[(indexPath as NSIndexPath).row]["budget"].string!
 //        cell.hotelNames.text = hotelNames[indexPath.row]
         
-        if indexPath.row % 2 == 0 {
+        if (indexPath as NSIndexPath).row % 2 == 0 {
             
-            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.9)
+            cell.backgroundColor = UIColor.white.withAlphaComponent(0.9)
         }
         
         else {
             
-            cell.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+            cell.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         }
         
         if whichView == "Hotels" {
             
-            cell.restaurantCuisines.hidden = true
+            cell.restaurantCuisines.isHidden = true
             
         }
         else if whichView == "Rest" {
             
-            cell.ratingStack.hidden = true
+            cell.ratingStack.isHidden = true
             
         }
         
@@ -222,14 +222,14 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
-    func makeStars(view: UIView, starCount: Int) {
+    func makeStars(_ view: UIView, starCount: Int) {
         
         
         
         
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         // Dequeue with the reuse identifier
         let headerView = HotelsCustomHeader(frame: CGRect(x: 0, y: -20, width: tableView.frame.width, height: 85))
@@ -257,7 +257,7 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         
         request.cityTypeData("hotels", city: city, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     

@@ -25,14 +25,14 @@ class DisplayPagesTwoViewController: UIViewController {
 //        self.navigationItem.titleView = indicatorTwo
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -41,16 +41,16 @@ class DisplayPagesTwoViewController: UIViewController {
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self
             .popVC(_:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
         
         for button in radioButtons {
             
-            button.addTarget(self, action: #selector(DisplayPagesTwoViewController.singleSelect(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(DisplayPagesTwoViewController.singleSelect(_:)), for: .touchUpInside)
             
         }
         
@@ -71,7 +71,7 @@ class DisplayPagesTwoViewController: UIViewController {
         if isUrl {
             
             print("inside if statement")
-            let data = NSData(contentsOfURL: NSURL(string: profilePic)!)
+            let data = try? Data(contentsOf: URL(string: profilePic)!)
             
             if data != nil {
                 
@@ -88,7 +88,7 @@ class DisplayPagesTwoViewController: UIViewController {
             
 //            print("getImageUrl: \(getImageUrl)")
             
-            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
 //            print("data: \(data)")
             
             if data != nil {
@@ -103,17 +103,17 @@ class DisplayPagesTwoViewController: UIViewController {
         }
     }
     
-    func nextPage(sender: AnyObject) {
+    func nextPage(_ sender: AnyObject) {
         
         print("you usually go: \(youUsuallyGo)")
-        let next = self.storyboard?.instantiateViewControllerWithIdentifier("displayThree") as! DisplayPagesThreeViewController
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "displayThree") as! DisplayPagesThreeViewController
         self.navigationController?.pushViewController(next, animated: true)
     }
     
     var selected: UIButton!
     
     
-    func singleSelect(sender: UIButton) {
+    func singleSelect(_ sender: UIButton) {
         
 //        var flag = 0
         
@@ -125,7 +125,7 @@ class DisplayPagesTwoViewController: UIViewController {
                 
                 print("here 2")
                 
-                selected.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), forState: .Normal)
+                selected.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), for: UIControlState())
 //                flag = 1
                 
             }
@@ -135,7 +135,7 @@ class DisplayPagesTwoViewController: UIViewController {
         print("here 3")
         
         selected = sender
-        selected.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+        selected.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
         youUsuallyGo = selected.titleLabel?.text
         
 //        if flag == 1 {

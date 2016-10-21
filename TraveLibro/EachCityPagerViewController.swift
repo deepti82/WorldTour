@@ -25,43 +25,43 @@ class EachCityPagerViewController: UIViewController {
         
         var controllerArray : [UIViewController] = []
         
-        let controllerOne = storyboard!.instantiateViewControllerWithIdentifier("featuredTwo") as! FeaturedCitiesNewTwoViewController
+        let controllerOne = storyboard!.instantiateViewController(withIdentifier: "featuredTwo") as! FeaturedCitiesNewTwoViewController
         controllerOne.whichView = "MD"
         controllerOne.title = "Must Do's"
         controllerOne.city = city
         controllerArray.append(controllerOne)
         
-        let controllerThree = storyboard!.instantiateViewControllerWithIdentifier("ExploreHotelsVC") as! ExploreHotelsViewController
+        let controllerThree = storyboard!.instantiateViewController(withIdentifier: "ExploreHotelsVC") as! ExploreHotelsViewController
         controllerThree.whichView = "Hotels"
         controllerThree.city = city
         controllerThree.title = "Hotels"
         controllerArray.append(controllerThree)
         
-        let controllerFour = storyboard!.instantiateViewControllerWithIdentifier("ExploreHotelsVC") as! ExploreHotelsViewController
+        let controllerFour = storyboard!.instantiateViewController(withIdentifier: "ExploreHotelsVC") as! ExploreHotelsViewController
         controllerFour.whichView = "Rest"
         controllerFour.city = city
         controllerFour.title = "Restaurants"
         controllerArray.append(controllerFour)
         
-        let controllerFive = storyboard!.instantiateViewControllerWithIdentifier("featuredRest") as! FeaturedCitiesRestViewController
+        let controllerFive = storyboard!.instantiateViewController(withIdentifier: "featuredRest") as! FeaturedCitiesRestViewController
         controllerFive.whichView = "AG"
         controllerFive.title = "Popular Agents"
         controllerArray.append(controllerFive)
         
         let parameters: [CAPSPageMenuOption] = [
-            .MenuItemSeparatorWidth(4.3),
-            .UseMenuLikeSegmentedControl(false),
-            .MenuItemSeparatorPercentageHeight(0.1),
-            .MenuItemFont(UIFont(name: "Avenir-Roman", size: 14)!),
-            .ScrollMenuBackgroundColor(UIColor.whiteColor()),
-            .SelectionIndicatorColor(orangeColor),
-            .UnselectedMenuItemLabelColor(blueColor),
-            .SelectedMenuItemLabelColor(blueColor),
-            .MenuItemWidthBasedOnTitleTextWidth(false),
-            .MenuHeight(45.0)
+            .menuItemSeparatorWidth(4.3),
+            .useMenuLikeSegmentedControl(false),
+            .menuItemSeparatorPercentageHeight(0.1),
+            .menuItemFont(UIFont(name: "Avenir-Roman", size: 14)!),
+            .scrollMenuBackgroundColor(UIColor.white),
+            .selectionIndicatorColor(orangeColor),
+            .unselectedMenuItemLabelColor(blueColor),
+            .selectedMenuItemLabelColor(blueColor),
+            .menuItemWidthBasedOnTitleTextWidth(false),
+            .menuHeight(45.0)
         ]
         
-        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0, 60, self.view.frame.width, self.view.frame.height - 60), pageMenuOptions: parameters)
+        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60), pageMenuOptions: parameters)
         pageMenu!.viewBackgroundColor = blueColor
         
         self.view.addSubview(pageMenu!.view)

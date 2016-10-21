@@ -28,7 +28,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         getDarkBackGroundBlur(self)
         
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         
         let signInFooter = SignInToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height - 140, width: self.view.frame.size.width, height: 140))
         self.view.addSubview(signInFooter)
@@ -47,23 +47,23 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 //        }
 //      
         ipTextField.delegate = self
-        ipTextField.returnKeyType = .Done
+        ipTextField.returnKeyType = .done
         
-        signInFooter.signUp.addTarget(self, action: #selector(SignInViewController.goToSignUp(_:)), forControlEvents: .TouchUpInside)
-        signInFooter.signInButton.addTarget(self, action: #selector(SignInViewController.loginButtonTapped(_:)), forControlEvents: .TouchUpInside)
-        signInFooter.googleButton.addTarget(self, action: #selector(SignInViewController.googleSignIn(_:)), forControlEvents: .TouchUpInside)
-        signInFooter.fbButton.addTarget(self, action: #selector(SignInViewController.facebookSignIn(_:)), forControlEvents: .TouchUpInside)
-        signInFooter.twitterButton.addTarget(self, action: #selector(SignInViewController.twitterSignIn(_:)), forControlEvents: .TouchUpInside)
+        signInFooter.signUp.addTarget(self, action: #selector(SignInViewController.goToSignUp(_:)), for: .touchUpInside)
+        signInFooter.signInButton.addTarget(self, action: #selector(SignInViewController.loginButtonTapped(_:)), for: .touchUpInside)
+        signInFooter.googleButton.addTarget(self, action: #selector(SignInViewController.googleSignIn(_:)), for: .touchUpInside)
+        signInFooter.fbButton.addTarget(self, action: #selector(SignInViewController.facebookSignIn(_:)), for: .touchUpInside)
+        signInFooter.twitterButton.addTarget(self, action: #selector(SignInViewController.twitterSignIn(_:)), for: .touchUpInside)
         
-        profileVC = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+        profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         
-        nationalityPage = self.storyboard?.instantiateViewControllerWithIdentifier("nationalityNew") as! AddNationalityNewViewController
+        nationalityPage = self.storyboard?.instantiateViewController(withIdentifier: "nationalityNew") as! AddNationalityNewViewController
         
         navigation = self.navigationController
         
     }
     
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         
         ipTextField.resignFirstResponder()
         
@@ -75,7 +75,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         ipTextField.resignFirstResponder()
         
@@ -133,7 +133,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
 //        })
 //    }
     
-    func googleSignIn(sender: UIButton) {
+    func googleSignIn(_ sender: UIButton) {
         
         print("google sign in")
 //        navigation.signUpSocial("google", completion: {(json:JSON) -> () in
@@ -144,7 +144,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func facebookSignIn(sender: UIButton) {
+    func facebookSignIn(_ sender: UIButton) {
         
         print("facebook sign in")
         
@@ -153,25 +153,25 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         social.facebookLogin()
     }
     
-    func twitterSignIn(sender: UIButton) {
+    func twitterSignIn(_ sender: UIButton) {
         
         print("storyboard: \(self.storyboard)")
         social.twitterLogin()
         
     }
     
-    func goToSignUp(sender: AnyObject) {
+    func goToSignUp(_ sender: AnyObject) {
         
 //        print("inside function!")
         print("storyboard: \(self.navigationController)")
-        let signUpFullVC = storyboard?.instantiateViewControllerWithIdentifier("signUpTwo") as! SignInPageViewController
+        let signUpFullVC = storyboard?.instantiateViewController(withIdentifier: "signUpTwo") as! SignInPageViewController
         self.navigationController?.pushViewController(signUpFullVC, animated: true)
         
     }
     
-    func loginButtonTapped(sender: AnyObject) {
+    func loginButtonTapped(_ sender: AnyObject) {
         
-        let logInVC = storyboard?.instantiateViewControllerWithIdentifier("logIn") as! LogInViewController
+        let logInVC = storyboard?.instantiateViewController(withIdentifier: "logIn") as! LogInViewController
         self.navigationController?.pushViewController(logInVC, animated: true)
         
     }

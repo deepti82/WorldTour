@@ -23,11 +23,11 @@ class RatingCheckIn: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "RatingCheckIn", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
     }
     
@@ -59,18 +59,18 @@ class RatingAlert: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        imageView = UIImageView(frame: CGRectMake(0, 0, 50, 50))
+        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         imageView.center.x = frame.size.width / 2
         imageView.image = UIImage(named: "disapointed")
         addSubview(imageView)
         
-        backimageView = UIImageView(frame: CGRectMake(0, 0, 50, 50))
+        backimageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         backimageView.center.x = frame.size.width / 2
         backimageView.image = UIImage(named: "green_bg_new_small")
         addSubview(backimageView)
         
-        moodText = UILabel(frame: CGRectMake(0, 60, frame.size.width, 20))
-        moodText.textAlignment = .Center
+        moodText = UILabel(frame: CGRect(x: 0, y: 60, width: frame.size.width, height: 20))
+        moodText.textAlignment = .center
         moodText.textColor = mainBlueColor
         addSubview(moodText)
         
@@ -78,33 +78,33 @@ class RatingAlert: UIView {
         ratingView.center.x = frame.size.width / 2
         addSubview(ratingView)
         
-        reviewLabel = UILabel(frame: CGRectMake(0, 135, frame.size.width, 20))
+        reviewLabel = UILabel(frame: CGRect(x: 0, y: 135, width: frame.size.width, height: 20))
         reviewLabel.text = "Add your Review"
-        reviewLabel.textColor = UIColor.blueColor()
-        reviewLabel.textAlignment = .Center
+        reviewLabel.textColor = UIColor.blue
+        reviewLabel.textAlignment = .center
         reviewLabel.font = UIFont(name: "Avenir", size: 13)
         addSubview(reviewLabel)
         
-        textView = UITextView(frame: CGRectMake(50, 160, frame.size.width - 50, 80))
+        textView = UITextView(frame: CGRect(x: 50, y: 160, width: frame.size.width - 50, height: 80))
         textView.text = "Fill me in..."
         textView.font = UIFont(name: "Avenir", size: 16)
         textView.resignFirstResponder()
         addSubview(textView)
         
-        postButton = UIButton(frame: CGRectMake(0, 240, 100, 40))
+        postButton = UIButton(frame: CGRect(x: 0, y: 240, width: 100, height: 40))
         postButton.center.x = frame.size.width / 2
-        postButton.setTitle("POST", forState: .Normal)
+        postButton.setTitle("POST", for: UIControlState())
         postButton.backgroundColor = mainBlueColor
         postButton.layer.cornerRadius = 5
         addSubview(postButton)
         
         for _ in 0..<starCount {
             let button = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-            button.setImage(emptyStarImage, forState: .Normal)
-            button.setImage(filledStarImage, forState: .Selected)
-            button.setImage(filledStarImage, forState: [.Highlighted, .Selected])
+            button.setImage(emptyStarImage, for: UIControlState())
+            button.setImage(filledStarImage, for: .selected)
+            button.setImage(filledStarImage, for: [.highlighted, .selected])
             button.adjustsImageWhenHighlighted = false
-            button.addTarget(self, action: #selector(RatingAlert.ratingButtonTapped), forControlEvents: .TouchDown)
+            button.addTarget(self, action: #selector(RatingAlert.ratingButtonTapped), for: .touchDown)
             ratingButtons += [button]
             ratingView.addSubview(button)
         }
@@ -113,7 +113,7 @@ class RatingAlert: UIView {
     override func layoutSubviews() {
         var buttonFrame = CGRect(x: 0, y: 0, width: 25, height: 25)
         
-        for (index, button) in ratingButtons.enumerate() {
+        for (index, button) in ratingButtons.enumerated() {
             buttonFrame.origin.x = CGFloat(index * (25 + spacing))
             button.frame = buttonFrame
         }
@@ -121,12 +121,12 @@ class RatingAlert: UIView {
         updateButtonSelectionStates()
     }
     
-    override func intrinsicContentSize() -> CGSize {
+    override var intrinsicContentSize : CGSize {
         return CGSize(width: frame.size.width, height: 25)
     }
     
-    func ratingButtonTapped(button: UIButton) {
-        rating = ratingButtons.indexOf(button)! + 1
+    func ratingButtonTapped(_ button: UIButton) {
+        rating = ratingButtons.index(of: button)! + 1
         print(rating)
         moodText.text = moodArr[rating - 1]
         imageView.image = UIImage(named: imageArr[rating - 1])
@@ -134,9 +134,9 @@ class RatingAlert: UIView {
     }
     
     func updateButtonSelectionStates() {
-        for (index, button) in ratingButtons.enumerate() {
+        for (index, button) in ratingButtons.enumerated() {
             // If the index of a button is less than the rating, that button should be selected.
-            button.selected = index < rating
+            button.isSelected = index < rating
         }
     }
     

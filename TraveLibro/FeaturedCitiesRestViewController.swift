@@ -42,9 +42,9 @@ class FeaturedCitiesRestViewController: UIViewController {
             let toSelectItinerary = UITapGestureRecognizer(target: self, action: #selector(self.itineraryTap(_:)))
             
             let filter = UIButton(frame: CGRect(x: 315, y: 455, width: 50, height: 50))
-            filter.setImage(UIImage(named: "filter_icon"), forState: .Normal)
+            filter.setImage(UIImage(named: "filter_icon"), for: UIControlState())
             filter.layer.zPosition = 1000
-            filter.addTarget(self, action: #selector(FeaturedCitiesRestViewController.showItineraryFilters(_:)), forControlEvents: .TouchUpInside)
+            filter.addTarget(self, action: #selector(FeaturedCitiesRestViewController.showItineraryFilters(_:)), for: .touchUpInside)
             self.view.addSubview(filter)
             
             let itineraryView = Itineraries(frame: CGRect(x: 0, y: 10, width: layout.frame.width, height: 500))
@@ -103,9 +103,9 @@ class FeaturedCitiesRestViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func itineraryTap (sender: UITapGestureRecognizer? = nil) {
+    func itineraryTap (_ sender: UITapGestureRecognizer? = nil) {
         
-        let eachItineraryController = storyboard!.instantiateViewControllerWithIdentifier("EachItineraryViewController") as! EachItineraryViewController
+        let eachItineraryController = storyboard!.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
         segueFromPagerStrip(nvcTwo, nextVC: eachItineraryController)
         
     }
@@ -113,7 +113,7 @@ class FeaturedCitiesRestViewController: UIViewController {
     var filterView: FilterItineraries!
     var scroll: UIScrollView!
     
-    func showItineraryFilters(sender: UIButton) {
+    func showItineraryFilters(_ sender: UIButton) {
         
         scroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         scroll.layer.zPosition = 1001
@@ -125,30 +125,30 @@ class FeaturedCitiesRestViewController: UIViewController {
         
         scroll.contentSize.height = filterView.frame.height
         
-        filterView.doneButton.addTarget(self, action: #selector(FeaturedCitiesRestViewController.filtersApply(_:)), forControlEvents: .TouchUpInside)
+        filterView.doneButton.addTarget(self, action: #selector(FeaturedCitiesRestViewController.filtersApply(_:)), for: .touchUpInside)
         
         filterView.animation.makeOpacity(1.0).animate(0.5)
         
         for button in filterView.placeButtons {
             
-            button.addTarget(self, action: #selector(FeaturedCitiesRestViewController.checkPlace(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(FeaturedCitiesRestViewController.checkPlace(_:)), for: .touchUpInside)
             
         }
         
         for button in filterView.stackButtons {
             
-            button.addTarget(self, action: #selector(FeaturedCitiesRestViewController.checkTypes(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(FeaturedCitiesRestViewController.checkTypes(_:)), for: .touchUpInside)
             
         }
         
         for button in filterView.categoryButtons {
             
-            button.addTarget(self, action: #selector(FeaturedCitiesRestViewController.checkCategories(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(FeaturedCitiesRestViewController.checkCategories(_:)), for: .touchUpInside)
             
         }
     }
     
-    func filtersApply(sender: UIButton) {
+    func filtersApply(_ sender: UIButton) {
         
         //        let subview = self.view.subviews.last
         //
@@ -159,7 +159,7 @@ class FeaturedCitiesRestViewController: UIViewController {
         
     }
     
-    func checkPlace(sender: UIButton) {
+    func checkPlace(_ sender: UIButton) {
         
         let subviews = sender.titleLabel?.subviews
         
@@ -175,29 +175,29 @@ class FeaturedCitiesRestViewController: UIViewController {
         
         for subview in subviews! {
             
-            if subview.tag == 1 && !sender.selected {
+            if subview.tag == 1 && !sender.isSelected {
                 
-                subview.hidden = true
-                sender.selected = true
+                subview.isHidden = true
+                sender.isSelected = true
                 
             }
                 
-            else if subview.tag == 1 && sender.selected {
+            else if subview.tag == 1 && sender.isSelected {
                 
-                sender.selected = false
-                subview.hidden = false
+                sender.isSelected = false
+                subview.isHidden = false
                 
             }
             
-            if subview.tag == 2 && sender.selected {
+            if subview.tag == 2 && sender.isSelected {
                 
-                subview.hidden = false
+                subview.isHidden = false
                 
             }
                 
-            else if subview.tag == 2 && !sender.selected {
+            else if subview.tag == 2 && !sender.isSelected {
                 
-                subview.hidden = true
+                subview.isHidden = true
                 
             }
             
@@ -206,18 +206,18 @@ class FeaturedCitiesRestViewController: UIViewController {
         
     }
     
-    func checkTypes(sender: UIButton) {
+    func checkTypes(_ sender: UIButton) {
         
         if sender.tag == 0 {
             
-            sender.setBackgroundImage(UIImage(named: "orangebox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "orangebox"), for: UIControlState())
             sender.tag = 1
             
         }
             
         else {
             
-            sender.setBackgroundImage(UIImage(named: "bluebox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "bluebox"), for: UIControlState())
             sender.tag = 0
             
         }
@@ -225,7 +225,7 @@ class FeaturedCitiesRestViewController: UIViewController {
     }
     
     
-    func checkCategories (sender: UIButton) {
+    func checkCategories (_ sender: UIButton) {
         
         if sender.tag == 0 {
             
@@ -243,7 +243,7 @@ class FeaturedCitiesRestViewController: UIViewController {
         
     }
     
-    func addHeightToScrollView(height: CGFloat) {
+    func addHeightToScrollView(_ height: CGFloat) {
         
         print("height: \(height)")
         layout.frame.size.height += height

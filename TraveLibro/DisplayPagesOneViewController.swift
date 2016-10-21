@@ -33,14 +33,14 @@ class DisplayPagesOneViewController: UIViewController {
 //        self.navigationItem.title.
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -49,16 +49,16 @@ class DisplayPagesOneViewController: UIViewController {
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self
             .popVC(_:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(DisplayPagesTwoViewController.nextPage(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
         
         request.getUser(currentUser["_id"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
               
                 if response.error != nil {
                     
@@ -83,7 +83,7 @@ class DisplayPagesOneViewController: UIViewController {
         
         for button in buttonsForView {
             
-            button.addTarget(self, action: #selector(DisplayPagesOneViewController.multipleSelect(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(DisplayPagesOneViewController.multipleSelect(_:)), for: .touchUpInside)
             
         }
         
@@ -116,7 +116,7 @@ class DisplayPagesOneViewController: UIViewController {
         if isUrl {
             
             print("inside if statement")
-            let data = NSData(contentsOfURL: NSURL(string: profilePic)!)
+            let data = try? Data(contentsOf: URL(string: profilePic)!)
             
             if data != nil {
                 
@@ -133,7 +133,7 @@ class DisplayPagesOneViewController: UIViewController {
             
 //            print("getImageUrl: \(getImageUrl)")
             
-            let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
 //            print("data: \(data)")
             
             if data != nil {
@@ -148,18 +148,18 @@ class DisplayPagesOneViewController: UIViewController {
         }
     }
     
-    func multipleSelect(sender: UIButton) {
+    func multipleSelect(_ sender: UIButton) {
         
         if sender.tag == 0 {
             
-            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
             sender.tag = 1
             kindOfJourney.append(sender.titleLabel!.text!)
             
         }
         else {
             
-            sender.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfnhalfbgGray"), for: UIControlState())
             sender.tag = 0
             kindOfJourney = kindOfJourney.filter{ $0 != sender.titleLabel?.text}
             
@@ -167,13 +167,13 @@ class DisplayPagesOneViewController: UIViewController {
         
     }
     
-    func nextPage(sender: AnyObject) {
+    func nextPage(_ sender: AnyObject) {
         
         print("kind of journey: \(kindOfJourney)")
         
 //        request.editUser(currentUser["_id"].string!, editField: <#T##String#>, editFieldValue: <#T##String#>, completion: <#T##((JSON) -> Void)##((JSON) -> Void)##(JSON) -> Void#>)
         
-        let next = self.storyboard?.instantiateViewControllerWithIdentifier("displayTwo") as! DisplayPagesTwoViewController
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "displayTwo") as! DisplayPagesTwoViewController
         self.navigationController?.pushViewController(next, animated: true)
     }
 

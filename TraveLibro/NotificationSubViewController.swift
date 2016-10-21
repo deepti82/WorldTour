@@ -34,7 +34,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         request.getNotify(currentUser["_id"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -60,29 +60,29 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     }
     
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return notifications.count
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if notifications[indexPath.row]["type"].string! == "request" {
+        if notifications[(indexPath as NSIndexPath).row]["type"].string! == "request" {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("bigCell") as! NotifyBigTableViewCell
-            cell.acceptButton.tag = indexPath.row
-            cell.notifyText.text = notifications[indexPath.row]["message"].string!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "bigCell") as! NotifyBigTableViewCell
+            cell.acceptButton.tag = (indexPath as NSIndexPath).row
+            cell.notifyText.text = notifications[(indexPath as NSIndexPath).row]["message"].string!
             cell.clockIcon.text = String(format: "%C", faicon["clock"]!)
             cell.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
-            cell.acceptButton.addTarget(self, action: #selector(NotificationSubViewController.acceptTag(_:)), forControlEvents: .TouchUpInside)
-            cell.declineButton.addTarget(self, action: #selector(NotificationSubViewController.declineTag(_:)), forControlEvents: .TouchUpInside)
+            cell.acceptButton.addTarget(self, action: #selector(NotificationSubViewController.acceptTag(_:)), for: .touchUpInside)
+            cell.declineButton.addTarget(self, action: #selector(NotificationSubViewController.declineTag(_:)), for: .touchUpInside)
             return cell
             
 //            if indexPath.row == 0 {
@@ -97,7 +97,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("messageCell") as! messageNotifyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as! messageNotifyTableViewCell
         return cell
         
     }
@@ -126,9 +126,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
 //        return header
 //    }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if notifications[indexPath.row]["type"].string! == "request" {
+        if notifications[(indexPath as NSIndexPath).row]["type"].string! == "request" {
                 
             return 180
         }
@@ -137,7 +137,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     }
     
-    func acceptTag(sender: UIButton) {
+    func acceptTag(_ sender: UIButton) {
         
         print("in the accept tag button, \(notifications[sender.tag]["journeyUnique"]), \(currentUser["_id"]), \(notifications[sender.tag]["inMiddle"])")
         
@@ -162,7 +162,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
-    func declineTag(sender: UIButton) {
+    func declineTag(_ sender: UIButton) {
         
         print("in the decline tag button")
         

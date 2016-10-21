@@ -29,7 +29,7 @@ class CheckInLocalLife: UIView {
         timestampView.addSubview(timestamp)
         
         let icon = IconButton(frame: CGRect(x: 0, y: 0, width: iconButtonView.frame.size.width, height: iconButtonView.frame.size.width))
-        icon.button.setBackgroundImage(UIImage(named: "green_bg_new_small"), forState: .Normal)
+        icon.button.setBackgroundImage(UIImage(named: "green_bg_new_small"), for: UIControlState())
         
         iconButtonView.addSubview(icon)
         
@@ -39,15 +39,15 @@ class CheckInLocalLife: UIView {
 //        icon.view.addSubview(iconBg)
         
         
-        myScroll.contentSize = CGSizeMake(500, 95)
+        myScroll.contentSize = CGSize(width: 500, height: 95)
         
         
         
         let photobar = PhotoBar(frame: CGRect(x: 0, y: 0, width: 450, height: myScroll.frame.height))
         myScroll.addSubview(photobar)
         
-        ratingLabel.hidden = true
-        ratingStack.hidden = true
+        ratingLabel.isHidden = true
+        ratingStack.isHidden = true
         
     }
     
@@ -56,11 +56,11 @@ class CheckInLocalLife: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "CheckInLocalLife", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         
     }

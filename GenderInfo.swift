@@ -9,17 +9,17 @@ class GenderInfo: UIView {
     @IBOutlet weak var sheButton: UIButton!
     @IBOutlet weak var heButton: UIButton!
     
-    @IBAction func sheButtonTap(sender: AnyObject?) {
+    @IBAction func sheButtonTap(_ sender: AnyObject?) {
         
         genderValue = "female"
-        heButton.tintColor = UIColor.lightGrayColor()
+        heButton.tintColor = UIColor.lightGray
         sheButton.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
     }
     
-    @IBAction func heButtonTap(sender: AnyObject?) {
+    @IBAction func heButtonTap(_ sender: AnyObject?) {
         
         genderValue = "male"
-        sheButton.tintColor = UIColor.lightGrayColor()
+        sheButton.tintColor = UIColor.lightGray
         heButton.tintColor = mainOrangeColor
     }
     
@@ -51,11 +51,11 @@ class GenderInfo: UIView {
 //            
 //        }
         
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "GenderInfo", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         
     }

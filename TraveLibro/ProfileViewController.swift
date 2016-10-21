@@ -9,6 +9,26 @@
 import UIKit
 import DKChainableAnimationKit
 import SwiftyJSON
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 var doRemove: Bool = true
 
@@ -23,7 +43,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
     
-    private var kvoContext: UInt8 = 0
+    fileprivate var kvoContext: UInt8 = 0
     
     @IBOutlet weak var MAMStack: UIStackView!
     @IBOutlet weak var livesLabel: UILabel!
@@ -41,11 +61,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var user = User()
     
     @IBOutlet weak var MAMButton: UIButton!
-    @IBAction func MAMTapped(sender: AnyObject?) {
+    @IBAction func MAMTapped(_ sender: AnyObject?) {
         
         if !toggle {
             
-            MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
+            MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
             MAMatterView.animation.makeOpacity(1.0).animate(0.25)
             mainProfileView.animation.moveY(-80.0).moveHeight(80.0).animate(0.25)
             toggle = true
@@ -53,7 +73,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         else {
             
-            MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
+            MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
             MAMatterView.animation.makeOpacity(0.0).animate(0.25)
             mainProfileView.animation.moveY(80.0).makeHeight(350.0).animate(0.25)
             toggle = false
@@ -62,7 +82,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
 //        if initialEntrance {
 //            
@@ -91,7 +111,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         request.getBucketListCount(userId, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -162,15 +182,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         initialLogin = false
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         getDarkBackGround(self)
         
         print("navigation: \(self.navigationController)")
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "search_toolbar"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(-10, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
         
         getUser()
@@ -178,7 +198,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         locationIcon.text = String(format: "%C", faicon["location"]!)
         
         let profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
-        profile.backgroundColor = UIColor.clearColor()
+        profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
         
         let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 55))
@@ -213,10 +233,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        MAMScrollView!.scrollEnabled = true
 //        self.view.addSubview(MAMScrollView!)
 //      
-        MAMButton.transform = CGAffineTransformRotate(MAMButton.transform, CGFloat(M_PI))
+        MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
         
         let MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
-        MAM.backgroundColor = UIColor.clearColor()
+        MAM.backgroundColor = UIColor.clear
         MAMatterView!.addSubview(MAM)
         
         var imageName = ""
@@ -236,7 +256,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
             if currentUser["homeCity"] != nil {
                 
-                let place = currentUser["homeCity"].string!.componentsSeparatedByString(",")
+                let place = currentUser["homeCity"].string!.components(separatedBy: ",")
                 
                 print("place: \(place)")
                 
@@ -259,7 +279,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             if isUrl {
                 
                 print("inside if statement")
-                let data = NSData(contentsOfURL: NSURL(string: imageName)!)
+                let data = try? Data(contentsOf: URL(string: imageName)!)
                 
                 if data != nil {
                     
@@ -278,7 +298,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 
 //                print("getImageUrl: \(getImageUrl)")
                 
-                let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+                let data = try? Data(contentsOf: URL(string: getImageUrl)!)
 //                print("data: \(data)")
                 
                 if data != nil {
@@ -301,16 +321,16 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 110, width: self.view.frame.size.width - 10, height: 55))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
-        orangeTab.orangeButtonTitle.setTitle("My Life", forState: .Normal)
+        orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
-        fontAwesomeLabel.center = CGPointMake(90, orangeTab.orangeButtonTitle.titleLabel!.frame.size.height/2 + 10)
+        fontAwesomeLabel.center = CGPoint(x: 90, y: orangeTab.orangeButtonTitle.titleLabel!.frame.size.height/2 + 10)
         fontAwesomeLabel.font = FontAwesomeFont
         fontAwesomeLabel.text = String(format: "%C", faicon["angle_up"]!)
-        fontAwesomeLabel.textColor = UIColor.whiteColor()
+        fontAwesomeLabel.textColor = UIColor.white
         orangeTab.orangeButtonTitle.titleLabel!.addSubview(fontAwesomeLabel)
         self.view.addSubview(orangeTab)
         
-        orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), forControlEvents: .TouchUpInside)
+        orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
         
 //        self.view.bringSubviewToFront(profileCollectionView)
         
@@ -360,7 +380,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
             let currentUserId = user.getExistingUser()
             let myUser = user.getUser(currentUserId)
-            let nameTemp = myUser.0.componentsSeparatedByString(" ")
+            let nameTemp = myUser.0.components(separatedBy: " ")
 //            currentUser = JSON("1");
             currentUser = ["_id": currentUserId, "name": myUser.0, "firstName": nameTemp[0], "lastName": nameTemp[1], "email": myUser.1, "homeCity": myUser.6, "profilePicture": myUser.4, "homeCountry": ["name": myUser.5]]
             
@@ -371,11 +391,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
     }
     
-    func openNotifications(sender: UITapGestureRecognizer) {
+    func openNotifications(_ sender: UITapGestureRecognizer) {
         
         for vc in self.navigationController!.viewControllers {
             
-            if vc.isKindOfClass(NewTLViewController) {
+            if vc.isKind(of: NewTLViewController.self) {
                 
                 print("inside if statement")
                 
@@ -383,21 +403,21 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
         }
         
-        let vc = storyboard?.instantiateViewControllerWithIdentifier("notifySub") as! NotificationSubViewController
+        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
         vc.whichView = "Notify"
         self.navigationController?.pushViewController(vc, animated: false)
         
         
     }
     
-    func gotoOTG(sender: UITapGestureRecognizer) {
+    func gotoOTG(_ sender: UITapGestureRecognizer) {
         
         var isThere = 0
-        var vcs = self.navigationController!.viewControllers
+        let vcs = self.navigationController!.viewControllers
         
         for vc in vcs {
             
-            if vc.isKindOfClass(NewTLViewController) {
+            if vc.isKind(of: NewTLViewController.self) {
                 
                 print("already contains a otg")
                 self.navigationController!.popToViewController(vc, animated: false)
@@ -410,7 +430,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         if isThere == 0 {
             
-            let tlVC = self.storyboard!.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
+            let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
             tlVC.isJourney = false
             self.navigationController?.pushViewController(tlVC, animated: false)
             
@@ -452,7 +472,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
     }
     
-    func MAMStacKTap(sender: UITapGestureRecognizer) {
+    func MAMStacKTap(_ sender: UITapGestureRecognizer) {
         
         self.MAMTapped(sender)
         
@@ -463,15 +483,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         // Dispose of any resources that can be recreated.
     }
     
-    func search(sender: AnyObject) {
+    func search(_ sender: AnyObject) {
         
         print("Search Tapped!")
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let myValues = labels[indexPath.item]
+        let myValues = labels[(indexPath as NSIndexPath).item]
         let valueArray = myValues.characters.split{$0 == " "}.map(String.init)
         
         let textOne = NSAttributedString(string: valueArray[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
@@ -480,27 +500,27 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if valueArray.count > 2 {
         
             let textThree = NSAttributedString(string: valueArray[2], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 12)!])
-            textTwo.appendAttributedString(NSAttributedString(string: " "))
-            textTwo.appendAttributedString(textThree)
+            textTwo.append(NSAttributedString(string: " "))
+            textTwo.append(textThree)
             
         }
         
         let fullText = NSMutableAttributedString(attributedString: textOne)
-        fullText.appendAttributedString(NSAttributedString(string: "\n"))
-        fullText.appendAttributedString(textTwo)
+        fullText.append(NSAttributedString(string: "\n"))
+        fullText.append(textTwo)
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ProfileDetailCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProfileDetailCell
         cell.infoLabel.attributedText = fullText
 //        print("Loading \(cell.infoLabel.attributedText)")
         
-        if indexPath.row == labels.count - 1 {
-            cell.separatorView.hidden = true
+        if (indexPath as NSIndexPath).row == labels.count - 1 {
+            cell.separatorView.isHidden = true
         }
         
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return labels.count
         
@@ -510,7 +530,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         request.getBucketListCount(currentUser["_id"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if let error = response.error {
                     
@@ -522,7 +542,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     
                     if response["data"]["bucketList_count"].int == 0 {
                         
-                        let bucketVC = self.storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+                        let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
                         bucketVC.whichView = "BucketList"
                         self.navigationController?.pushViewController(bucketVC, animated: true)
                         
@@ -530,7 +550,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         
                     else if response["data"]["bucketList_count"].int > 0 {
                         
-                        let bucketVC = self.storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+                        let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
                         bucketVC.whichView = "BucketList"
                         self.navigationController?.pushViewController(bucketVC, animated: true)
                         
@@ -558,7 +578,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         request.getBucketListCount(currentUser["_id"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if let error = response.error {
                     
@@ -570,7 +590,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     
                     if response["data"]["countriesVisited_count"].int == 0 {
                         
-                        let bucketVC = self.storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
+                        let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
                         bucketVC.whichView = "CountriesVisited"
                         self.navigationController?.pushViewController(bucketVC, animated: true)
                         
@@ -578,7 +598,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         
                     else if response["data"]["countriesVisited_count"].int > 0 {
                         
-                        let bucketVC = self.storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
+                        let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
                         bucketVC.whichView = "CountriesVisited"
                         self.navigationController?.pushViewController(bucketVC, animated: true)
                         
@@ -601,18 +621,18 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         })
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if toggle {
             
             MAMTapped(nil)
         }
         
-        print("Selected item: \(indexPath.item)")
+        print("Selected item: \((indexPath as NSIndexPath).item)")
         
-        switch indexPath.item {
+        switch (indexPath as NSIndexPath).item {
         case 0:
-            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController
+            let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
             followersVC.whichView = "Following"
             self.navigationController?.pushViewController(followersVC, animated: true)
             break
@@ -623,7 +643,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController
 //            followersVC.whichView = "No Followers"
 //            self.navigationController?.pushViewController(followersVC, animated: true)
-            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController
+            let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
             followersVC.whichView = "Followers"
             self.navigationController?.pushViewController(followersVC, animated: true)
             break
@@ -639,22 +659,22 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             gotoBucketList()
             break
         case 4 :
-            let journeys = storyboard?.instantiateViewControllerWithIdentifier("allJourneysCreated") as! AllJourneysViewController
+            let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
 //            journeys.whichView = "All"
             self.navigationController?.pushViewController(journeys, animated: true)
             break
         case 5:
-            let journeys = storyboard?.instantiateViewControllerWithIdentifier("allJourneysCreated") as! AllJourneysViewController
+            let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
 //            journeys.whichView = "All"
             self.navigationController?.pushViewController(journeys, animated: true)
             break
         case 6 :
-            let photosVC = storyboard?.instantiateViewControllerWithIdentifier("multipleCollectionVC") as! MyLifeMomentsViewController
+            let photosVC = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
             photosVC.whichView = "All"
             self.navigationController?.pushViewController(photosVC, animated: true)
             break
         case 7 :
-            let reviewsVC = storyboard?.instantiateViewControllerWithIdentifier("multipleTableVC") as! AccordionViewController
+            let reviewsVC = storyboard?.instantiateViewController(withIdentifier: "multipleTableVC") as! AccordionViewController
             self.navigationController?.pushViewController(reviewsVC, animated: true)
             break
         default:
@@ -689,10 +709,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        
 //    }
     
-    func MyLifeDetailsShow(sender: AnyObject) {
+    func MyLifeDetailsShow(_ sender: AnyObject) {
         
-        let myLifeVC = storyboard?.instantiateViewControllerWithIdentifier("myLife") as! MyLifeViewController
-        self.navigationController?.presentViewController(myLifeVC, animated: true, completion: nil)
+        let myLifeVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+        self.navigationController?.present(myLifeVC, animated: true, completion: nil)
         
     }
     

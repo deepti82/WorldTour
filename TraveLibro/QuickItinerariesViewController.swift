@@ -21,23 +21,23 @@ class QuickItinerariesViewController: UIViewController {
         switch whichView {
         case "One":
             let one = QuickItineraryOne(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 300))
-            one.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+            one.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             self.view.addSubview(one)
         case "Two":
             let two = QuickItineraryTwo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 450))
-            two.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+            two.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             self.view.addSubview(two)
         case "Three":
             let three = QuickItineraryThree(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 350))
-            three.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+            three.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             self.view.addSubview(three)
         case "Four":
             let four = QuickItineraryFour(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 400))
-            four.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+            four.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             self.view.addSubview(four)
         case "Five":
             let five = QuickItineraryFive(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 200))
-            five.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+            five.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             self.view.addSubview(five)
         default:
             break

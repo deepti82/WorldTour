@@ -36,15 +36,15 @@ class TripSummaryItinerary: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "TripSummaryItinerary", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         
         let timestamp = DateAndTime(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-        timestamp.center = CGPointMake(self.frame.size.width/3 + 60, self.frame.size.height/3 * 2 + 10)
+        timestamp.center = CGPoint(x: self.frame.size.width/3 + 60, y: self.frame.size.height/3 * 2 + 10)
         self.addSubview(timestamp)
         
     }

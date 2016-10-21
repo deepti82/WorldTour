@@ -16,16 +16,16 @@ class OTGTimelineViewController: UIViewController {
         getBackGround(self)
         
         let line = drawLine(frame: CGRect(x: self.view.frame.size.width/2, y: 60, width: 10, height: self.view.frame.size.height - 60))
-        line.backgroundColor = UIColor.clearColor()
+        line.backgroundColor = UIColor.clear
         self.view.addSubview(line)
         
         let scrollView = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height - 60))
         scrollView.contentSize.height = 5500
-        scrollView.backgroundColor = UIColor.clearColor()
+        scrollView.backgroundColor = UIColor.clear
         self.view.addSubview(scrollView)
         
         let timelineView = TimelineScroll(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: scrollView.frame.size.height))
-        timelineView.backgroundColor = UIColor.clearColor()
+        timelineView.backgroundColor = UIColor.clear
         scrollView.addSubview(timelineView)
     }
 

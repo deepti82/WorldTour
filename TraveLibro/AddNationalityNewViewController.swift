@@ -14,22 +14,22 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     var allCountries: [JSON] = []
     
-    @IBAction func AddNationality(sender: AnyObject) {
+    @IBAction func AddNationality(_ sender: AnyObject) {
         
-        pickNationalityMainView.hidden = false
+        pickNationalityMainView.isHidden = false
         
     }
     
-    @IBAction func donePickerView(sender: AnyObject) {
+    @IBAction func donePickerView(_ sender: AnyObject) {
         
-        pickNationalityMainView.hidden = true
+        pickNationalityMainView.isHidden = true
         chooseCity(sender as! UIButton)
         
     }
     
-    @IBAction func cancelPickerView(sender: AnyObject) {
+    @IBAction func cancelPickerView(_ sender: AnyObject) {
         
-        pickNationalityMainView.hidden = true
+        pickNationalityMainView.isHidden = true
         
         
     }
@@ -40,9 +40,9 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var nationalityPickerView: UIPickerView!
     @IBOutlet weak var userNationatilty: UIButton!
     
-    @IBAction func userNationatiltyButtonTap(sender: AnyObject) {
+    @IBAction func userNationatiltyButtonTap(_ sender: AnyObject) {
         
-        pickNationalityMainView.hidden = false
+        pickNationalityMainView.isHidden = false
         
     }
     
@@ -50,19 +50,19 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
         
         getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(AddNationalityNewViewController.chooseCity(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(AddNationalityNewViewController.chooseCity(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -97,7 +97,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
         request.getAllCountries({(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -138,12 +138,12 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
 //        
 //    }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
         
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
 //        print("countries count: \(allCountries.count)")
         
@@ -157,7 +157,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         
         if allCountries.count != 0 {
@@ -170,12 +170,12 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        userNationatilty.hidden = false
-        addNationality.hidden = true
-        addNationalityButton.hidden = true
-        userNationatilty.setTitle(allCountries[row]["name"].string, forState: .Normal)
+        userNationatilty.isHidden = false
+        addNationality.isHidden = true
+        addNationalityButton.isHidden = true
+        userNationatilty.setTitle(allCountries[row]["name"].string, for: UIControlState())
         
     }
 
@@ -184,7 +184,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func chooseCity(sender: UIButton) {
+    func chooseCity(_ sender: UIButton) {
         
         var countrySelected: String = ""
 
@@ -208,7 +208,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
         request.editUser(currentUser["_id"].string!, editField: "homeCountry", editFieldValue: countrySelected, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -218,7 +218,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                     
                     if response["value"] {
                         
-                        let cityVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCity") as! AddCityViewController
+                        let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
                         self.navigationController?.pushViewController(cityVC, animated: true)
                         
                     }

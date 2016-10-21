@@ -21,7 +21,7 @@ class LogInView: UIView {
    
     @IBOutlet var socialLoginButtons: [UIButton]!
     let attributes = [
-        NSForegroundColorAttributeName: UIColor.whiteColor(),
+        NSForegroundColorAttributeName: UIColor.white,
         NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 12)!,
     ]
     
@@ -34,19 +34,19 @@ class LogInView: UIView {
 //        logInButton.backgroundColor = mainOrangeColor
         logInButton.layer.cornerRadius = 5
         
-        nameField.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        nameField.borderStyle = .None
-        nameField.textColor = UIColor.whiteColor()
+        nameField.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        nameField.borderStyle = .none
+        nameField.textColor = UIColor.white
         nameField.attributedPlaceholder = NSAttributedString(string: "  Email Id", attributes:attributes)
         nameField.leftView = paddingView
-        nameField.leftViewMode = .Always
+        nameField.leftViewMode = .always
         
-        passwordField.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-        passwordField.borderStyle = .None
-        passwordField.textColor = UIColor.whiteColor()
+        passwordField.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        passwordField.borderStyle = .none
+        passwordField.textColor = UIColor.white
         passwordField.attributedPlaceholder = NSAttributedString(string: "  Password", attributes:attributes)
         passwordField.leftView = paddingView
-        passwordField.leftViewMode = .Always
+        passwordField.leftViewMode = .always
         
         for button in socialLoginButtons {
             button.layer.cornerRadius = 5.0
@@ -59,11 +59,11 @@ class LogInView: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "LogInView", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 }

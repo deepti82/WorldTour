@@ -21,11 +21,11 @@ class LocalLifeRecommendationViewController: UIViewController {
         self.view.addSubview(thisScroll)
         
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        titleLabel.center = CGPointMake(self.view.frame.width/2, 20)
+        titleLabel.center = CGPoint(x: self.view.frame.width/2, y: 20)
         titleLabel.text = "Experience Mumbai like a local"
         titleLabel.font = UIFont(name: "Avenir-Roman", size: 16)
-        titleLabel.textAlignment = .Center
-        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor.white
         thisScroll.addSubview(titleLabel)
         
         let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 400))
@@ -48,7 +48,7 @@ class LocalLifeRecommendationViewController: UIViewController {
 //        self.view.addSubview(darkView)
         
         let plusView = EndLocalLife(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        plusView.checkInButton.addTarget(self, action: #selector(LocalLifeRecommendationViewController.checkInTap(_:)), forControlEvents: .TouchUpInside)
+        plusView.checkInButton.addTarget(self, action: #selector(LocalLifeRecommendationViewController.checkInTap(_:)), for: .touchUpInside)
         self.view.addSubview(plusView)
 
 //        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 20, height: 310))
@@ -67,10 +67,10 @@ class LocalLifeRecommendationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func checkInTap(sender: UIButton) {
+    func checkInTap(_ sender: UIButton) {
         
         print("checkInButtonWasTapped")
-        let checkInOneVC = storyboard?.instantiateViewControllerWithIdentifier("checkInSearch") as! CheckInSearchViewController
+        let checkInOneVC = storyboard?.instantiateViewController(withIdentifier: "checkInSearch") as! CheckInSearchViewController
         self.navigationController?.pushViewController(checkInOneVC, animated: true)
         
     }

@@ -27,8 +27,8 @@ class PopularAgents: UIView {
         let gradient = CAGradientLayer()
         _ = CAGradientLayer()
         
-        let blackColour = UIColor.blackColor().colorWithAlphaComponent(0.8).CGColor as CGColorRef
-        let transparent = UIColor.clearColor().CGColor as CGColorRef
+        let blackColour = UIColor.black.withAlphaComponent(0.8).cgColor as CGColor
+        let transparent = UIColor.clear.cgColor as CGColor
         
         gradient.frame = TitleView.bounds
         gradient.frame.size.width = TitleView.frame.width + 100
@@ -38,9 +38,9 @@ class PopularAgents: UIView {
         TitleView.layer.addSublayer(gradient)
         
         
-        TitleView.bringSubviewToFront(followbutton)
-        TitleView.bringSubviewToFront(agentName)
-        TitleView.bringSubviewToFront(agentLocation)
+        TitleView.bringSubview(toFront: followbutton)
+        TitleView.bringSubview(toFront: agentName)
+        TitleView.bringSubview(toFront: agentLocation)
         
 //        gradientTwo.frame = FooterView.bounds
 //        gradientTwo.frame.size.width = FooterView.frame.width + 100
@@ -59,11 +59,11 @@ class PopularAgents: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "PopularAgents", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

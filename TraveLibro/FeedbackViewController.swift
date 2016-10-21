@@ -13,15 +13,15 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var commentTextBox: UITextView!
     @IBOutlet weak var submitButton: UIButton!
     
-    @IBAction func submitFeedback(sender: AnyObject) {
+    @IBAction func submitFeedback(_ sender: AnyObject) {
         
         print("submit feedback")
         
         let alertController = UIAlertController(title: nil, message:
-            "Successfully Submitted", preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .Default,handler: nil))
+            "Successfully Submitted", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default,handler: nil))
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
         
     }
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
         setNavigationBarItem()
         
         commentTextBox.text = "Comment"
-        commentTextBox.textColor = UIColor.lightGrayColor()
+        commentTextBox.textColor = UIColor.lightGray
         submitButton.layer.cornerRadius = 5
         submitButton.clipsToBounds = true
         
@@ -44,14 +44,14 @@ class FeedbackViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
        
         commentTextBox.text = ""
-        commentTextBox.textColor = UIColor.blackColor()
+        commentTextBox.textColor = UIColor.black
         
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         
         if commentTextBox.text == nil {
             

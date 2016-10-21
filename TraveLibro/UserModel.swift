@@ -8,28 +8,28 @@
 
 import SQLite
 
-public class User {
+open class User {
 
-    public let db = AppDelegate.getDatabase()
+    open let db = AppDelegate.getDatabase()
 
-    public let user = Table("user")
+    open let user = Table("user")
 
-    public let id = Expression<Int64>("id")
-    public let userId = Expression<String>("userid")
-    public let name = Expression<String>("name")
-    public let email = Expression<String>("email")
-    public let profilePicture = Expression<String?>("profilePicture")
+    open let id = Expression<Int64>("id")
+    open let userId = Expression<String>("userid")
+    open let name = Expression<String>("name")
+    open let email = Expression<String>("email")
+    open let profilePicture = Expression<String?>("profilePicture")
 
-    public let logintype = Expression<String>("loginType")
-    public let socialId = Expression<String>("socialId")
+    open let logintype = Expression<String>("loginType")
+    open let socialId = Expression<String>("socialId")
 
-    public let userBadge = Expression<String?>("userBadge")
-    public let travelConfig = Expression<String?>("travelConfig")
+    open let userBadge = Expression<String?>("userBadge")
+    open let travelConfig = Expression<String?>("travelConfig")
 
-    public let homeCountry = Expression<String?>("homeCountry")
-    public let homeCity = Expression<String?>("homeCity")
+    open let homeCountry = Expression<String?>("homeCountry")
+    open let homeCity = Expression<String?>("homeCity")
 
-    public let isLoggedIn = Expression<Bool>("isLoggedIn")
+    open let isLoggedIn = Expression<Bool>("isLoggedIn")
 
     init() {
         try! db.run(user.create(ifNotExists: true) { t in
@@ -48,7 +48,7 @@ public class User {
         })
     }
 
-    func setUser(userid: String, name: String, useremail: String, profilepicture: String, travelconfig: String, loginType: String, socialId: String, userBadge: String, homecountry: String, homecity: String, isloggedin: Bool) -> Void {
+    func setUser(_ userid: String, name: String, useremail: String, profilepicture: String, travelconfig: String, loginType: String, socialId: String, userBadge: String, homecountry: String, homecity: String, isloggedin: Bool) -> Void {
         dispatch_async(dispatch_get_main_queue(),{
             let count = self.db.scalar(self.user.filter(self.userId == userid).count)
             if(count == 0) {
@@ -84,7 +84,7 @@ public class User {
         })
     }
 
-    func getUser(userid: String) -> (String, String, String, String, String, String, String, Bool)  {
+    func getUser(_ userid: String) -> (String, String, String, String, String, String, String, Bool)  {
 
         var Name = ""
         var useremail = ""
@@ -123,7 +123,7 @@ public class User {
         return result
     }
 
-    func delete(userid: String) {
+    func delete(_ userid: String) {
         let deletequery = self.user.filter(self.userId == userid)
         try! db.run(deletequery.delete())
     }
@@ -136,11 +136,11 @@ public class User {
         try! db.run(user.drop(ifExists: true))
     }
 
-    func logOut(id: String) -> Bool {
+    func logOut(_ id: String) -> Bool {
         return false
     }
 
-    func uploadPhotos(media: [String]) -> Bool {
+    func uploadPhotos(_ media: [String]) -> Bool {
         return false
     }
 

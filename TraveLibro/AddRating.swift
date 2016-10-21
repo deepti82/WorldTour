@@ -25,15 +25,15 @@ class AddRating: UIView, UITextViewDelegate {
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
     let parent = NewTLViewController()
     
-    @IBAction func postReviewTapped(sender: UIButton) {
+    @IBAction func postReviewTapped(_ sender: UIButton) {
         
-            print("post id in review: \(sender.titleForState(.Application)!)")
-            let post = sender.titleForState(.Application)!
+            print("post id in review: \(sender.title(for: .application)!)")
+            let post = sender.title(for: .application)!
             reviewTextView.resignFirstResponder()
             
             request.rateCheckIn(currentUser["_id"].string!, postId: post, rating: "\(starCount)", review: reviewTextView.text, completion: {(response) in
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
                     if response.error != nil {
                         
@@ -44,7 +44,7 @@ class AddRating: UIView, UITextViewDelegate {
                         
                         print("response arrived")
                         sender.superview!.superview!.removeFromSuperview()
-                        self.parent.removeRatingButton(sender.titleForState(.Application)!)
+                        self.parent.removeRatingButton(sender.title(for: .application)!)
                         
                     }
                     else {
@@ -65,14 +65,14 @@ class AddRating: UIView, UITextViewDelegate {
         postReview.layer.cornerRadius = 5
         postReview.clipsToBounds = true
         reviewTextView.delegate = self
-        reviewTextView.returnKeyType = .Done
+        reviewTextView.returnKeyType = .done
         
         for star in stars {
-            star.setImage(UIImage(named: "star_uncheck"), forState: .Normal)
-            star.setImage(UIImage(named: "star_check"), forState: .Selected)
-            star.setImage(UIImage(named: "star_check"), forState: [.Highlighted, .Selected])
+            star.setImage(UIImage(named: "star_uncheck"), for: UIControlState())
+            star.setImage(UIImage(named: "star_check"), for: .selected)
+            star.setImage(UIImage(named: "star_check"), for: [.highlighted, .selected])
             star.adjustsImageWhenHighlighted = false
-            star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), forControlEvents: .TouchDown)
+            star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), for: .touchDown)
         }
         
 //        self.clipsToBounds = true
@@ -82,20 +82,20 @@ class AddRating: UIView, UITextViewDelegate {
         super.init(coder: aDecoder)
     }
     
-    func ratingDisplay(review: JSON) {
+    func ratingDisplay(_ review: JSON) {
         
         reviewTextView.text = review["review"].string!
         for i in 0 ..< Int(review["rating"].string!)! {
             
-            stars[i].setImage(UIImage(named: "star_check"), forState: .Normal)
+            stars[i].setImage(UIImage(named: "star_check"), for: UIControlState())
             
         }
-        smiley.setImage(UIImage(named: imageArr[Int(review["rating"].string!)!]), forState: .Normal)
+        smiley.setImage(UIImage(named: imageArr[Int(review["rating"].string!)!]), for: UIControlState())
         reviewConclusion.text = moodArr[Int(review["rating"].string!)!]
         
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         
         if reviewTextView.text == "Fill Me In..." {
             
@@ -105,7 +105,7 @@ class AddRating: UIView, UITextViewDelegate {
         
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         
         
         if reviewTextView.text == "" {
@@ -116,7 +116,7 @@ class AddRating: UIView, UITextViewDelegate {
         
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if text == "\n" {
             
@@ -136,26 +136,26 @@ class AddRating: UIView, UITextViewDelegate {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "AddRating", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
     }
     
-    func ratingButtonTapped(button: UIButton) {
-        ratingIndex = stars.indexOf(button)! + 1
+    func ratingButtonTapped(_ button: UIButton) {
+        ratingIndex = stars.index(of: button)! + 1
         reviewConclusion.text = moodArr[ratingIndex - 1]
-        smiley.setImage(UIImage(named: imageArr[ratingIndex - 1]), forState: .Normal)
+        smiley.setImage(UIImage(named: imageArr[ratingIndex - 1]), for: UIControlState())
         updateButtonSelectionStates()
     }
     
     func updateButtonSelectionStates() {
         starCount = 0
-        for (index, button) in stars.enumerate() {
-            button.selected = index < ratingIndex
-            if button.selected {
+        for (index, button) in stars.enumerated() {
+            button.isSelected = index < ratingIndex
+            if button.isSelected {
                 
                 starCount += 1
                 

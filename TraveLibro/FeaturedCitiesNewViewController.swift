@@ -41,33 +41,33 @@ class FeaturedCitiesNewViewController: UIViewController, UITableViewDataSource, 
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 2
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch whichView {
         case "FC":
-            let cell = tableView.dequeueReusableCellWithIdentifier("fcCell") as!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "fcCell") as!
             FeaturedCitiesNewTableViewCell
-            cell.CellLabel.text = cities[indexPath.row]
+            cell.CellLabel.text = cities[(indexPath as NSIndexPath).row]
             return cell
         case "MD":
-            let cell = tableView.dequeueReusableCellWithIdentifier("fcCell") as!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "fcCell") as!
             FeaturedCitiesNewTableViewCell
-            cell.CellLabel.text = places[indexPath.row]
+            cell.CellLabel.text = places[(indexPath as NSIndexPath).row]
             return cell
         case "It":
-            let cell = tableView.dequeueReusableCellWithIdentifier("itinerariesETC") as!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "itinerariesETC") as!
             ItinerariesETCTableViewCell
             let itinerary = Itineraries(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 450))
             cell.addSubview(itinerary)
             return cell
         case "Jo":
-            let cell = tableView.dequeueReusableCellWithIdentifier("itinerariesETC") as!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "itinerariesETC") as!
             ItinerariesETCTableViewCell
             let pjo = PopularJourneyView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 550))
             cell.addSubview(pjo)
@@ -76,7 +76,7 @@ class FeaturedCitiesNewViewController: UIViewController, UITableViewDataSource, 
             break
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("itinerariesETC") as!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "itinerariesETC") as!
         ItinerariesETCTableViewCell
         let pa = PopularAgents(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
         cell.addSubview(pa)
@@ -84,7 +84,7 @@ class FeaturedCitiesNewViewController: UIViewController, UITableViewDataSource, 
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch whichView {
         case "FC":

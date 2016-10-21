@@ -32,7 +32,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileNew: UIView!
-    @IBAction func SettingsTap(sender: AnyObject) {
+    @IBAction func SettingsTap(_ sender: AnyObject) {
         
         self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
         
@@ -63,7 +63,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             if isUrl {
                 
                 print("inside if statement")
-                let data = NSData(contentsOfURL: NSURL(string: imageName)!)
+                let data = try? Data(contentsOf: URL(string: imageName)!)
                 
                 if data != nil {
                     
@@ -81,7 +81,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 
 //                print("getImageUrl: \(getImageUrl)")
                 
-                let data = NSData(contentsOfURL: NSURL(string: getImageUrl)!)
+                let data = try? Data(contentsOf: URL(string: getImageUrl)!)
 //                print("data: \(data)")
                 
                 if data != nil {
@@ -99,40 +99,40 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         }
 
         
-        let settingsVC = storyboard!.instantiateViewControllerWithIdentifier("UserProfileSettings") as! UserProfileSettingsViewController
+        let settingsVC = storyboard!.instantiateViewController(withIdentifier: "UserProfileSettings") as! UserProfileSettingsViewController
         self.settingsViewController = UINavigationController(rootViewController: settingsVC)
         
-        let homeController = storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        let homeController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.homeController = UINavigationController(rootViewController: homeController)
         
-        let PJController = storyboard!.instantiateViewControllerWithIdentifier("popularJourneys") as! PopularJourneysViewController
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "popularJourneys") as! PopularJourneysViewController
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
-        let EDController = storyboard!.instantiateViewControllerWithIdentifier("exploreDestinations") as! ExploreDestinationsViewController
+        let EDController = storyboard!.instantiateViewController(withIdentifier: "exploreDestinations") as! ExploreDestinationsViewController
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
         
-        let PBController = storyboard!.instantiateViewControllerWithIdentifier("popularBloggers") as! PopularBloggersViewController
+        let PBController = storyboard!.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
         self.popBloggersController = UINavigationController(rootViewController: PBController)
         
-        let BlogsController = storyboard!.instantiateViewControllerWithIdentifier("blogsList") as! BlogsListViewController
+        let BlogsController = storyboard!.instantiateViewController(withIdentifier: "blogsList") as! BlogsListViewController
         self.blogsController = UINavigationController(rootViewController: BlogsController)
         
-        let inviteController = storyboard!.instantiateViewControllerWithIdentifier("inviteFriends") as! InviteFriendsViewController
+        let inviteController = storyboard!.instantiateViewController(withIdentifier: "inviteFriends") as! InviteFriendsViewController
         self.inviteFriendsController = UINavigationController(rootViewController: inviteController)
         
-        let rateUsController = storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        let rateUsController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.rateUsController = UINavigationController(rootViewController: rateUsController)
         
-        let FBController = storyboard!.instantiateViewControllerWithIdentifier("FeedbackVC") as! FeedbackViewController
+        let FBController = storyboard!.instantiateViewController(withIdentifier: "FeedbackVC") as! FeedbackViewController
         self.feedbackController = UINavigationController(rootViewController: FBController)
         
-        let logOutController = storyboard!.instantiateViewControllerWithIdentifier("Home") as! HomeViewController
+        let logOutController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.logOutController = UINavigationController(rootViewController: logOutController)
         
-        let localLifeController = storyboard!.instantiateViewControllerWithIdentifier("localLife") as! LocalLifeRecommendationViewController
+        let localLifeController = storyboard!.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
         self.localLifeController = UINavigationController(rootViewController: localLifeController)
         
-        let myProfileController = storyboard!.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
+        let myProfileController = storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
         self.mainViewController = UINavigationController(rootViewController: homeController)
@@ -142,7 +142,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
     }
     
-    @IBAction func profileTap(sender: AnyObject) {
+    @IBAction func profileTap(_ sender: AnyObject) {
         
         self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)
         
@@ -160,27 +160,27 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! SideMenuTableViewCell
-        cell.menuLabel.text = labels[indexPath.item]
-        cell.selectionStyle = .None
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SideMenuTableViewCell
+        cell.menuLabel.text = labels[(indexPath as NSIndexPath).item]
+        cell.selectionStyle = .none
         return cell
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return labels.count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SideMenuTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
         cell.backgroundColor = mainBlueColor
         cell.menuLabel.textColor = mainGreenColor
         
-        switch(indexPath.row)
+        switch((indexPath as NSIndexPath).row)
         {
         case 0:
             self.slideMenuController()?.changeMainViewController(self.popJourneysController, close: true)
@@ -205,9 +205,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         }
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! SideMenuTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
         cell.backgroundColor = mainGreenColor
         cell.menuLabel.textColor = mainBlueColor
         

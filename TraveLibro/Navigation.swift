@@ -11,17 +11,17 @@ class Navigation {
     
 //    var json: JSON!
     
-    func saveUser(firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: ((JSON) -> Void)) {
+    func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: ((JSON) -> Void)) {
         
         print("name: \(firstName), \(lastName)")
         
         var json = JSON(1);
-        let deviceId = UIDevice.currentDevice().identifierForVendor!.UUIDString
+        let deviceId = UIDevice.current.identifierForVendor!.uuidString
         
         let deviceParams = ["_id": deviceId, "os": "iOS"]
         
         print("device id: \(deviceId)")
-        let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceParams, "dob": dob]
+        let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceParams, "dob": dob] as [String : Any]
 //        print(params)
         
         do {
@@ -45,7 +45,7 @@ class Navigation {
         
     }
     
-    func editUser(id: String, editField: String, editFieldValue: String, completion: ((JSON) -> Void)) {
+    func editUser(_ id: String, editField: String, editFieldValue: String, completion: ((JSON) -> Void)) {
         
         var json = JSON(1);
 //        let deviceId = UIDevice.currentDevice().identifierForVendor!.UUIDString
@@ -74,7 +74,7 @@ class Navigation {
         
     }
     
-    func getUser(id: String, completion: ((JSON) -> Void)) {
+    func getUser(_ id: String, completion: ((JSON) -> Void)) {
         
         var json = JSON(1);
         //        let deviceId = UIDevice.currentDevice().identifierForVendor!.UUIDString
@@ -103,7 +103,7 @@ class Navigation {
         
     }
     
-    func signUpSocial(id: String, completion:((JSON) -> Void)) {
+    func signUpSocial(_ id: String, completion:((JSON) -> Void)) {
         
         switch id {
         case "google":
@@ -192,17 +192,17 @@ class Navigation {
 //        
 //    }
     
-    func addNewOTG(name: String, userId: String, startLocation: String, kindOfJourney: [String], timestamp: String, lp: String, completion: ((JSON) -> Void)) {
+    func addNewOTG(_ name: String, userId: String, startLocation: String, kindOfJourney: [String], timestamp: String, lp: String, completion: ((JSON) -> Void)) {
         
-        let currentDate = NSDate()
-        let currentDateFormatter = NSDateFormatter()
-        currentDateFormatter.timeZone = NSTimeZone.localTimeZone()
+        let currentDate = Date()
+        let currentDateFormatter = DateFormatter()
+        currentDateFormatter.timeZone = TimeZone.autoupdatingCurrent
         currentDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-        let showDate = currentDateFormatter.dateFromString("\(currentDate)")!
-        let showDateArray = "\(showDate)".componentsSeparatedByString(" +")
+        let showDate = currentDateFormatter.date(from: "\(currentDate)")!
+        let showDateArray = "\(showDate)".components(separatedBy: " +")
 //        print("current date 2: \(currentDate) \(showDateArray[0])")
         
-        let params = ["name": name, "user":  userId, "startLocation": startLocation, "kindOfJourney": kindOfJourney, "timestamp": timestamp, "startLocationPic": lp, "startTime": "\(showDateArray[0])"]
+        let params = ["name": name, "user":  userId, "startLocation": startLocation, "kindOfJourney": kindOfJourney, "timestamp": timestamp, "startLocationPic": lp, "startTime": "\(showDateArray[0])"] as [String : Any]
         print("parameters: \(params)")
         do {
             
@@ -227,7 +227,7 @@ class Navigation {
         
     }
     
-    func addBuddiesOTG(friends: JSON, userId: String, userName: String, journeyId: String, inMiddle: Bool, journeyName: String, completion: ((JSON) -> Void)) {
+    func addBuddiesOTG(_ friends: JSON, userId: String, userName: String, journeyId: String, inMiddle: Bool, journeyName: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -237,30 +237,30 @@ class Navigation {
             let jsonData = try! params.rawData()
             
             // create post request
-            let url = NSURL(string: adminUrl + "journey/addBuddy")!
-            let request = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "POST"
+            let url = URL(string: adminUrl + "journey/addBuddy")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
             
             // insert json data to the request
             request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.HTTPBody = jsonData
+            request.httpBody = jsonData
             
             
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if error != nil{
                     print("Error -> \(error)")
                     return
                 }
                 
                 do {
-                    let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("Result: \(result)")
                     completion(JSON(result))
                     
                 } catch {
                     print("Error: \(error)")
                 }
-            }
+            })
             
             task.resume()
             
@@ -287,7 +287,7 @@ class Navigation {
         
     }
     
-    func getLocation(lat: Double, long: Double, completion: ((JSON) -> Void)) {
+    func getLocation(_ lat: Double, long: Double, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -312,7 +312,7 @@ class Navigation {
         
     }
     
-    func getAllFriends(completion: ((JSON) -> Void)) {
+    func getAllFriends(_ completion: ((JSON) -> Void)) {
         
         do {
             
@@ -337,7 +337,7 @@ class Navigation {
         
     }
     
-    func uploadPhotos(file: NSURL, localDbId: Int64?, completion: ((JSON) -> Void)) {
+    func uploadPhotos(_ file: URL, localDbId: Int64?, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -371,7 +371,7 @@ class Navigation {
         
     }
     
-    func uploadPhotosMultiple(files: [NSURL], completion: ((JSON) -> Void)) {
+    func uploadPhotosMultiple(_ files: [URL], completion: ((JSON) -> Void)) {
         
 //        do {
         
@@ -437,7 +437,7 @@ class Navigation {
         
     }
     
-    func sampleImages(file: UIImage, completion: ((JSON) -> Void)) {
+    func sampleImages(_ file: UIImage, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -463,7 +463,7 @@ class Navigation {
         
     }
     
-    func getAllCountries(completion: ((JSON) -> Void)) {
+    func getAllCountries(_ completion: ((JSON) -> Void)) {
         
         do {
             
@@ -490,7 +490,7 @@ class Navigation {
         
     }
     
-    func searchCity(searchText: String, completion: ((JSON) -> Void)) {
+    func searchCity(_ searchText: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -517,11 +517,11 @@ class Navigation {
         
     }
     
-    func addKindOfJourney(id: String, editFieldValue: [String: [String]], completion: ((JSON) -> Void)) {
+    func addKindOfJourney(_ id: String, editFieldValue: [String: [String]], completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "travelConfig": editFieldValue]
+            let params = ["_id": id, "travelConfig": editFieldValue] as [String : Any]
             
             let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: [params])
             var json = JSON(1);
@@ -544,7 +544,7 @@ class Navigation {
         
     }
     
-    func getImageBytes(file: String, completion: ((JSON) -> Void)) {
+    func getImageBytes(_ file: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -572,7 +572,7 @@ class Navigation {
         
     }
     
-    func getBucketList(id: String, completion: ((JSON) -> Void)) {
+    func getBucketList(_ id: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -599,11 +599,11 @@ class Navigation {
         
     }
     
-    func updateBucketList(id: String, list: [String], completion: ((JSON) -> Void)) {
+    func updateBucketList(_ id: String, list: [String], completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "bucketList": list]
+            let params = ["_id": id, "bucketList": list] as [String : Any]
             print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/updateBucketList", parameters: [params])
@@ -627,11 +627,11 @@ class Navigation {
         
     }
     
-    func removeBucketList(id: String, country: String, completion: ((JSON) -> Void)) {
+    func removeBucketList(_ id: String, country: String, completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "bucketList": country, "delete": true]
+            let params = ["_id": id, "bucketList": country, "delete": true] as [String : Any]
             print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/updateBucketList", parameters: [params])
@@ -682,7 +682,7 @@ class Navigation {
 //        
 //    }
     
-    func addCountriesVisited(id: String, list: JSON, countryVisited: String, completion: ((JSON) -> Void)) {
+    func addCountriesVisited(_ id: String, list: JSON, countryVisited: String, completion: ((JSON) -> Void)) {
         
 //        var jsonDict: NSDictionary!
 //        let str = "\(list)"
@@ -726,30 +726,30 @@ class Navigation {
                 
                 let jsonData = try! params.rawData()
                 // create post request
-                let url = NSURL(string: adminUrl + "user/updateCountriesVisited")!
-                let request = NSMutableURLRequest(URL: url)
-                request.HTTPMethod = "POST"
+                let url = URL(string: adminUrl + "user/updateCountriesVisited")!
+                let request = NSMutableURLRequest(url: url)
+                request.httpMethod = "POST"
                 
                 // insert json data to the request
                 request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-                request.HTTPBody = jsonData
+                request.httpBody = jsonData
                 
                 
-                let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+                let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                     if error != nil{
                         print("Error -> \(error)")
                         return
                     }
                     
                     do {
-                        let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
+                        let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                         print("Result: \(result)")
                         completion(JSON(result))
                         
                     } catch {
                         print("Error: \(error)")
                     }
-                }
+                })
                 
                 task.resume()
 //                return task
@@ -786,7 +786,7 @@ class Navigation {
 //        }
     }
     
-    func getCountriesVisited(id: String, completion: ((JSON) -> Void)) {
+    func getCountriesVisited(_ id: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -812,11 +812,11 @@ class Navigation {
         }
     }
     
-    func removeCountriesVisited(id: String, countryId: String, year: Int, completion: ((JSON) -> Void)) {
+    func removeCountriesVisited(_ id: String, countryId: String, year: Int, completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "countryId": countryId, "year": year]
+            let params = ["_id": id, "countryId": countryId, "year": year] as [String : Any]
             print("params remove countries visited: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/removeCountriesVisited", parameters: [params])
@@ -838,7 +838,7 @@ class Navigation {
         }
     }
     
-    func getBucketListCount(id: String, completion: ((JSON) -> Void)) {
+    func getBucketListCount(_ id: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -864,7 +864,7 @@ class Navigation {
         }
     }
     
-    func followUser(userId: String, followUserId: String, completion: ((JSON) -> Void)) {
+    func followUser(_ userId: String, followUserId: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -890,7 +890,7 @@ class Navigation {
         }
     }
     
-    func getFollowers(userId: String, completion: ((JSON) -> Void)) {
+    func getFollowers(_ userId: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -916,7 +916,7 @@ class Navigation {
         }
     }
     
-    func unfollow(userId: String, unFollowId: String, completion: ((JSON) -> Void)) {
+    func unfollow(_ userId: String, unFollowId: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -942,7 +942,7 @@ class Navigation {
         }
     }
     
-    func getFollowing(userId: String, searchText: String, completion: ((JSON) -> Void)) {
+    func getFollowing(_ userId: String, searchText: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -968,7 +968,7 @@ class Navigation {
         }
     }
     
-    func getOTGJourney(userId: String, completion: ((JSON) -> Void)) {
+    func getOTGJourney(_ userId: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -993,7 +993,7 @@ class Navigation {
         }
     }
     
-    func getJourneyCoverPic(places: [String], completion: ((JSON) -> Void)) {
+    func getJourneyCoverPic(_ places: [String], completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1017,7 +1017,7 @@ class Navigation {
         }
     }
     
-    func getBuddySearch(userId: String, searchtext: String, completion: ((JSON) -> Void)) {
+    func getBuddySearch(_ userId: String, searchtext: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1039,7 +1039,7 @@ class Navigation {
         }
     }
     
-    func getLocationOTG(lat: Double, long: Double, completion: ((JSON) -> Void)) {
+    func getLocationOTG(_ lat: Double, long: Double, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1061,7 +1061,7 @@ class Navigation {
         }
     }
     
-    func getJourney(id: String, completion: ((JSON) -> Void)) {
+    func getJourney(_ id: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1083,7 +1083,7 @@ class Navigation {
         }
     }
     
-    func postTravelLife(thoughts: String, location: String, locationCategory: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, completion: ((JSON) -> Void)) {
+    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, completion: ((JSON) -> Void)) {
         
         do {
         
@@ -1094,29 +1094,29 @@ class Navigation {
             params["buddies"] = JSON(buddies)
             let jsonData = try! params.rawData()
             // create post request
-            let url = NSURL(string: adminUrl + "post/save3")!
-            let request = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "POST"
+            let url = URL(string: adminUrl + "post/save3")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
             
             // insert json data to the request
             request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.HTTPBody = jsonData
+            request.httpBody = jsonData
             
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if error != nil{
                     print("Error -> \(error)")
                     return
                 }
                 
                 do {
-                    let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("response: \(JSON(result))")
                     completion(JSON(result))
                     
                 } catch {
                     print("Error: \(error)")
                 }
-            }
+            })
             
             task.resume()
             
@@ -1138,7 +1138,7 @@ class Navigation {
         }
     }
     
-    func getNotify(id: String, completion: ((JSON) -> Void)) {
+    func getNotify(_ id: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1160,7 +1160,7 @@ class Navigation {
         }
     }
     
-    func acceptJourney(journeyId: String, id: String, isInMiddle: String, completion: ((JSON) -> Void)) {
+    func acceptJourney(_ journeyId: String, id: String, isInMiddle: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1182,7 +1182,7 @@ class Navigation {
         }
     }
     
-    func getPlaceId(placeId: String, completion: ((JSON) -> Void)) {
+    func getPlaceId(_ placeId: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1204,11 +1204,11 @@ class Navigation {
         }
     }
     
-    func getGoogleSearchNearby(lat: Double, long: Double, searchText: String, completion: ((JSON) -> Void)) {
+    func getGoogleSearchNearby(_ lat: Double, long: Double, searchText: String, completion: ((JSON) -> Void)) {
         
         do {
             
-            let params = ["lat": lat, "long": long, "search": searchText]
+            let params = ["lat": lat, "long": long, "search": searchText] as [String : Any]
             
             let opt = try HTTP.POST(adminUrl + "post/checkinPlaceSearch", parameters: [params])
             var json = JSON(1);
@@ -1228,11 +1228,11 @@ class Navigation {
         }
     }
     
-    func likePost(id: String, userId: String, userName: String, unlike: Bool, completion: ((JSON) -> Void)) {
+    func likePost(_ id: String, userId: String, userName: String, unlike: Bool, completion: ((JSON) -> Void)) {
         
         do {
             
-            var params = ["uniqueId": id, "user": userId, "unlike": unlike]
+            var params = ["uniqueId": id, "user": userId, "unlike": unlike] as [String : Any]
             
             if !unlike {
                 
@@ -1259,11 +1259,11 @@ class Navigation {
         }
     }
     
-    func commentOnPost(id: String, userId: String, commentText: String, userName: String, completion: ((JSON) -> Void)) {
+    func commentOnPost(_ id: String, userId: String, commentText: String, userName: String, completion: ((JSON) -> Void)) {
         
         do {
             
-            var params = ["uniqueId": id, "comment" : ["user":  userId, "text": commentText, "name": userName]]
+            var params = ["uniqueId": id, "comment" : ["user":  userId, "text": commentText, "name": userName]] as [String : Any]
               
             print("set comment params: \(params)")
             
@@ -1285,7 +1285,7 @@ class Navigation {
         }
     }
     
-    func getComments(id: String, completion: ((JSON) -> Void)) {
+    func getComments(_ id: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1311,7 +1311,7 @@ class Navigation {
         }
     }
     
-    func getOneJourneyPost(id: String, completion: ((JSON) -> Void)) {
+    func getOneJourneyPost(_ id: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1337,12 +1337,12 @@ class Navigation {
         }
     }
     
-    func editPost(id: String, location:String, categoryLocation: String, thoughts: String, completion: ((JSON) -> Void)) {
+    func editPost(_ id: String, location:String, categoryLocation: String, thoughts: String, completion: ((JSON) -> Void)) {
         
         do {
             
             let jsonObject = ["category": categoryLocation, "location": location]
-            let params = ["_id": id, "type": "editPost", "checkIn": jsonObject, "thoughts": thoughts]
+            let params = ["_id": id, "type": "editPost", "checkIn": jsonObject, "thoughts": thoughts] as [String : Any]
             
             print("get one journey params: \(params)")
             
@@ -1364,7 +1364,7 @@ class Navigation {
         }
     }
     
-    func deletePost(id: String, uniqueId: String, user: String, completion: ((JSON) -> Void)) {
+    func deletePost(_ id: String, uniqueId: String, user: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1387,7 +1387,7 @@ class Navigation {
         }
     }
     
-    func changeDateTime(id: String, date: String, completion: ((JSON) -> Void)) {
+    func changeDateTime(_ id: String, date: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1413,7 +1413,7 @@ class Navigation {
         }
     }
     
-    func endJourney(journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON], photo: String, completion: ((JSON) -> Void)) {
+    func endJourney(_ journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON], photo: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1423,30 +1423,30 @@ class Navigation {
             let jsonData = try! params.rawData()
             
             // create post request
-            let url = NSURL(string: adminUrl + "journey/endJourney")!
-            let request = NSMutableURLRequest(URL: url)
-            request.HTTPMethod = "POST"
+            let url = URL(string: adminUrl + "journey/endJourney")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
             
             // insert json data to the request
             request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.HTTPBody = jsonData
+            request.httpBody = jsonData
             
             
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if error != nil{
                     print("Error -> \(error)")
                     return
                 }
                 
                 do {
-                    let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as! [String:AnyObject]
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("response: \(JSON(result))")
                     completion(JSON(result))
                     
                 } catch {
                     print("Error: \(error)")
                 }
-            }
+            })
             
             task.resume()
             
@@ -1456,7 +1456,7 @@ class Navigation {
         
     }
     
-    func getJourneyPhotos(user: String, completion: ((JSON) -> Void)) {
+    func getJourneyPhotos(_ user: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1480,7 +1480,7 @@ class Navigation {
         
     }
     
-    func rateCheckIn(userId: String, postId: String, rating: String, review: String, completion: ((JSON) -> Void)) {
+    func rateCheckIn(_ userId: String, postId: String, rating: String, review: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1504,7 +1504,7 @@ class Navigation {
         
     }
     
-    func infoCount(journeyId: String, city: String, completion: ((JSON) -> Void)) {
+    func infoCount(_ journeyId: String, city: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1528,7 +1528,7 @@ class Navigation {
         
     }
     
-    func journeyTypeData(journeyId: String, type: String, userId: String, completion: ((JSON) -> Void)) {
+    func journeyTypeData(_ journeyId: String, type: String, userId: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1553,7 +1553,7 @@ class Navigation {
         
     }
     
-    func cityTypeData(type: String, city: String, completion: ((JSON) -> Void)) {
+    func cityTypeData(_ type: String, city: String, completion: ((JSON) -> Void)) {
         
         do {
             
@@ -1578,7 +1578,7 @@ class Navigation {
         
     }
     
-    func getTripSummaryCount(type: String, journeyId: String, userId: String, completion: ((JSON) -> Void)) {
+    func getTripSummaryCount(_ type: String, journeyId: String, userId: String, completion: ((JSON) -> Void)) {
         
         do {
             

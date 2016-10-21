@@ -33,13 +33,13 @@ class KindOfJourneyOTGViewController: UIViewController {
         backVC = allControllers![allControllers!.count - 2] as! NewTLViewController
         backVC.journeyCategories = []
         
-        doneButton.addTarget(self, action: #selector(KindOfJourneyOTGViewController.categoriesSelected(_:)), forControlEvents: .TouchUpInside)
+        doneButton.addTarget(self, action: #selector(KindOfJourneyOTGViewController.categoriesSelected(_:)), for: .touchUpInside)
         doneButton.layer.cornerRadius = 5
         
         for button in groupOneCategoryButtons {
             
 //            indexGroupOne += 1
-            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
 //            button.tag = indexGroupOne
             
@@ -50,7 +50,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         for button in groupTwoCategoryButtons {
             
 //            indexGroupTwo += 1
-            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
 //            button.tag = indexGroupTwo
             
@@ -59,7 +59,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         for button in groupThreeCategoryButtons {
             
 //            indexGroupThree += 1
-            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
 //            button.tag = indexGroupThree
             
@@ -68,19 +68,19 @@ class KindOfJourneyOTGViewController: UIViewController {
         
     }
     
-    func categoriesSelected(sender: UIButton) {
+    func categoriesSelected(_ sender: UIButton) {
         
         if backVC.journeyCategories.count == 0 {
             
-            let alert = UIAlertController(title: "Invalid input", message: "You need to select atleast one category", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Invalid input", message: "You need to select atleast one category", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
         }
         else {
             
             backVC.showDetailsFn()
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
             
         }
         
@@ -88,7 +88,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         
     }
     
-    func selectGroupOne(sender: UIButton) {
+    func selectGroupOne(_ sender: UIButton) {
         
 //        for button in groupOneCategoryButtons {
 //            
@@ -104,7 +104,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         if sender.tag == 0 {
             backVC.journeyCategories.append(sender.titleLabel!.text!)
             print("element added: \(backVC.journeyCategories)")
-            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
             sender.tag = 1
         }
         
@@ -121,24 +121,24 @@ class KindOfJourneyOTGViewController: UIViewController {
             
             backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
             print("element removed: \(backVC.journeyCategories)")
-            sender.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "graybox"), for: UIControlState())
             sender.tag = 0
         }
         
         
     }
     
-    func selectGroupTwo(sender: UIButton) {
+    func selectGroupTwo(_ sender: UIButton) {
         
         if sender.tag == 0 {
             backVC.journeyCategories.append(sender.titleLabel!.text!)
-            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
             sender.tag = 1
         }
             
         else {
             backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
-            sender.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "graybox"), for: UIControlState())
             sender.tag = 0
             
         }
@@ -158,17 +158,17 @@ class KindOfJourneyOTGViewController: UIViewController {
         
     }
     
-    func selectGroupThree(sender: UIButton) {
+    func selectGroupThree(_ sender: UIButton) {
         
         if sender.tag == 0 {
             backVC.journeyCategories.append(sender.titleLabel!.text!)
-            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
             sender.tag = 1
         }
             
         else {
             backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
-            sender.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "graybox"), for: UIControlState())
             sender.tag = 0
             
         }

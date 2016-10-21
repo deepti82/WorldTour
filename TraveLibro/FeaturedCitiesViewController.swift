@@ -13,7 +13,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var contentTableView: UITableView!
     @IBOutlet weak var containerView: UIView!
     
-    var isSelected: NSIndexPath?
+    var isSelected: IndexPath?
     var flag: Bool?
     var gradientFlag: [Int] = []
     var cityNames = ["Agra", "", "Amritsar", ""]
@@ -58,7 +58,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         case "It":
             if (contentTableView != nil) {
                 
-                contentTableView.hidden = true
+                contentTableView.isHidden = true
                 
             }
             let itineraryView = Itineraries(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 500))
@@ -67,15 +67,15 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
             itineraryView.toTapView.addGestureRecognizer(toSelectItinerary)
             
             let filter = UIButton(frame: CGRect(x: containerView.frame.width - 5, y: containerView.frame.height - 50, width: 50, height: 50))
-            filter.setImage(UIImage(named: "filter_icon"), forState: .Normal)
+            filter.setImage(UIImage(named: "filter_icon"), for: UIControlState())
             filter.layer.zPosition = 1000
-            filter.addTarget(self, action: #selector(FeaturedCitiesViewController.showItineraryFilters(_:)), forControlEvents: .TouchUpInside)
+            filter.addTarget(self, action: #selector(FeaturedCitiesViewController.showItineraryFilters(_:)), for: .touchUpInside)
             containerView.addSubview(filter)
             
         case "Jo":
             if (contentTableView != nil) {
                 
-                contentTableView.hidden = true
+                contentTableView.isHidden = true
                 
             }
             let popJourneyView = PopularJourneyView(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 550))
@@ -84,7 +84,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         case "Pop":
             if (contentTableView != nil) {
                 
-                contentTableView.hidden = true
+                contentTableView.isHidden = true
                 
             }
             let popAgentsView = PopularAgents(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 250))
@@ -135,7 +135,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
     var filterView: FilterItineraries!
     var scroll: UIScrollView!
     
-    func showItineraryFilters(sender: UIButton) {
+    func showItineraryFilters(_ sender: UIButton) {
         
         scroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         scroll.layer.zPosition = 1001
@@ -147,30 +147,30 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         
         scroll.contentSize.height = filterView.frame.height
         
-        filterView.doneButton.addTarget(self, action: #selector(FeaturedCitiesViewController.filtersApply(_:)), forControlEvents: .TouchUpInside)
+        filterView.doneButton.addTarget(self, action: #selector(FeaturedCitiesViewController.filtersApply(_:)), for: .touchUpInside)
         
         filterView.animation.makeOpacity(1.0).animate(0.5)
         
         for button in filterView.placeButtons {
             
-            button.addTarget(self, action: #selector(FeaturedCitiesViewController.checkPlace(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(FeaturedCitiesViewController.checkPlace(_:)), for: .touchUpInside)
             
         }
         
         for button in filterView.stackButtons {
             
-            button.addTarget(self, action: #selector(FeaturedCitiesViewController.checkTypes(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(FeaturedCitiesViewController.checkTypes(_:)), for: .touchUpInside)
             
         }
         
         for button in filterView.categoryButtons {
             
-            button.addTarget(self, action: #selector(FeaturedCitiesViewController.checkCategories(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(FeaturedCitiesViewController.checkCategories(_:)), for: .touchUpInside)
             
         }
     }
     
-    func filtersApply(sender: UIButton) {
+    func filtersApply(_ sender: UIButton) {
         
 //        let subview = self.view.subviews.last
 //        
@@ -181,7 +181,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    func checkPlace(sender: UIButton) {
+    func checkPlace(_ sender: UIButton) {
         
         let subviews = sender.titleLabel?.subviews
         
@@ -197,29 +197,29 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         
         for subview in subviews! {
             
-            if subview.tag == 1 && !sender.selected {
+            if subview.tag == 1 && !sender.isSelected {
                 
-                subview.hidden = true
-                sender.selected = true
-                
-            }
-            
-            else if subview.tag == 1 && sender.selected {
-                
-                sender.selected = false
-                subview.hidden = false
+                subview.isHidden = true
+                sender.isSelected = true
                 
             }
             
-            if subview.tag == 2 && sender.selected {
+            else if subview.tag == 1 && sender.isSelected {
                 
-                subview.hidden = false
+                sender.isSelected = false
+                subview.isHidden = false
                 
             }
             
-            else if subview.tag == 2 && !sender.selected {
+            if subview.tag == 2 && sender.isSelected {
                 
-                subview.hidden = true
+                subview.isHidden = false
+                
+            }
+            
+            else if subview.tag == 2 && !sender.isSelected {
+                
+                subview.isHidden = true
                 
             }
             
@@ -228,18 +228,18 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         
     }
     
-    func checkTypes(sender: UIButton) {
+    func checkTypes(_ sender: UIButton) {
         
         if sender.tag == 0 {
             
-            sender.setBackgroundImage(UIImage(named: "orangebox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "orangebox"), for: UIControlState())
             sender.tag = 1
             
         }
         
         else {
          
-            sender.setBackgroundImage(UIImage(named: "bluebox"), forState: .Normal)
+            sender.setBackgroundImage(UIImage(named: "bluebox"), for: UIControlState())
             sender.tag = 0
             
         }
@@ -247,7 +247,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     
-    func checkCategories (sender: UIButton) {
+    func checkCategories (_ sender: UIButton) {
         
         if sender.tag == 0 {
             
@@ -270,26 +270,26 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return cityNames.count
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row % 2 == 0 {
+        if (indexPath as NSIndexPath).row % 2 == 0 {
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("tableCell") as! FeaturedCitiesTableViewCell
-            cell.cityLabel.text = cityNames[indexPath.row]
-            cell.cityImage.image = UIImage(named: cityImages[indexPath.row])
+            let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell") as! FeaturedCitiesTableViewCell
+            cell.cityLabel.text = cityNames[(indexPath as NSIndexPath).row]
+            cell.cityImage.image = UIImage(named: cityImages[(indexPath as NSIndexPath).row])
             
-            if gradientFlag[indexPath.row] == 0 {
+            if gradientFlag[(indexPath as NSIndexPath).row] == 0 {
              
                 let gradient = CAGradientLayer()
                 
-                let blackColour = UIColor.blackColor().colorWithAlphaComponent(0.8).CGColor as CGColorRef
-                let transparent = UIColor.clearColor().CGColor as CGColorRef
+                let blackColour = UIColor.black.withAlphaComponent(0.8).cgColor as CGColor
+                let transparent = UIColor.clear.cgColor as CGColor
                 
                 gradient.frame = cell.cityLabelView.bounds
                 gradient.frame.size.width = cell.cityLabelView.frame.width + 100
@@ -298,7 +298,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
                 
                 cell.cityLabelView.layer.addSublayer(gradient)
                 
-                gradientFlag[indexPath.row] = 1
+                gradientFlag[(indexPath as NSIndexPath).row] = 1
                 
             }
             
@@ -309,7 +309,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
             
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("noViewCell") as! NoViewTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "noViewCell") as! NoViewTableViewCell
         return cell
         
     }
@@ -337,9 +337,9 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
 //        
 //    }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if indexPath.row % 2 == 0 {
+        if (indexPath as NSIndexPath).row % 2 == 0 {
             
             return 300
         }
@@ -347,7 +347,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         return 3
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 0
         
@@ -444,25 +444,25 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
     }
     */
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
 //        navigationCollectionView.selectItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), animated: true, scrollPosition: .None)
 //        navigationCollectionView.reloadItemsAtIndexPaths(NSIndexPath(forItem: 0, inSection: 0))
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print("Selected table")
             
-        let descriptionVC = storyboard?.instantiateViewControllerWithIdentifier("EachMustDoViewController") as! TrialViewController
+        let descriptionVC = storyboard?.instantiateViewController(withIdentifier: "EachMustDoViewController") as! TrialViewController
         self.navigationController?.pushViewController(descriptionVC, animated: true)
         
     }
     
-    func itineraryTap (sender: UITapGestureRecognizer? = nil) {
+    func itineraryTap (_ sender: UITapGestureRecognizer? = nil) {
         
-        let eachItineraryController = storyboard!.instantiateViewControllerWithIdentifier("EachItineraryViewController") as! EachItineraryViewController
+        let eachItineraryController = storyboard!.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
         self.navigationController?.pushViewController(eachItineraryController, animated: true)
         
     }

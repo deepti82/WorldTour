@@ -21,15 +21,15 @@ class BlogsListViewController: UIViewController, UITableViewDataSource, UITableV
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 4
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("blogCell") as! PopularBlogTableviewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "blogCell") as! PopularBlogTableviewCell
         cell.LikeFA.text = String(format: "%C", faicon["likes"]!)
         cell.calendarFA.text = String(format: "%C", faicon["calendar"]!)
         cell.clockFA.text = String(format: "%C", faicon["clock"]!)
@@ -37,9 +37,9 @@ class BlogsListViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let blogDescriptionVC = storyboard?.instantiateViewControllerWithIdentifier("blogs") as! BlogViewViewController
+        let blogDescriptionVC = storyboard?.instantiateViewController(withIdentifier: "blogs") as! BlogViewViewController
         self.navigationController?.pushViewController(blogDescriptionVC, animated: true)
         
         

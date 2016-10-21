@@ -65,7 +65,7 @@ class SignupCardsViewController: UIViewController {
         
         request.getUser(currentUser["_id"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     

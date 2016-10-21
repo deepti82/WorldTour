@@ -58,7 +58,7 @@ class AllJourneysViewController: UIViewController {
         
     }
     
-    func addHeightToLayout(height: CGFloat) {
+    func addHeightToLayout(_ height: CGFloat) {
         
         mainScroll.contentSize.height += height + 100
         

@@ -16,7 +16,7 @@ class ResetPassword: UIView {
     @IBOutlet weak var oldpswd: UITextField!
     
     let attributes = [
-        NSForegroundColorAttributeName: UIColor.whiteColor(),
+        NSForegroundColorAttributeName: UIColor.white,
         NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 12)!
     ]
     
@@ -24,7 +24,7 @@ class ResetPassword: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        _ = UIView(frame: CGRectMake(0, 0, 15, self.confirmpswd.frame.height))
+        _ = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.confirmpswd.frame.height))
         
         submitbutton.layer.cornerRadius = 5
         
@@ -49,11 +49,11 @@ class ResetPassword: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "ResetPassword", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         
     }

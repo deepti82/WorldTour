@@ -62,9 +62,9 @@ class MyLifeContainerViewController: UIViewController {
                 let bodyOne = NSMutableAttributedString(string: "\n Capture each moment of your journey via check-ins, pictures, videos, and thoughts live On-the-Go to create a stunning timeline with friends and family. \n \n ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 16)!])
                 let headTwo = NSMutableAttributedString(string: "Chronicling Past Travels ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 16)!])
                 let bodyTwo = NSMutableAttributedString(string: "\n Revisit the treasured moments of your past travels by creating a beautiful memoir of your trip.", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 16)!])
-                body.appendAttributedString(bodyOne)
-                body.appendAttributedString(headTwo)
-                body.appendAttributedString(bodyTwo)
+                body.append(bodyOne)
+                body.append(headTwo)
+                body.append(bodyTwo)
                 empty.viewBody.attributedText = body
                 break
             case "Journeys-LocalLife":
@@ -150,7 +150,7 @@ class MyLifeContainerViewController: UIViewController {
             postThree.followButton.removeFromSuperview()
             postThree.iconButton.removeFromSuperview()
             postThree.seperatorOne.removeFromSuperview()
-            postThree.OTGLabelView.hidden = true
+            postThree.OTGLabelView.isHidden = true
             postThree.titleDistanceConstraint.constant = 8.0
             postThree.buttonDistanceConstraint.constant = 8.0
             postThree.clipsToBounds = true
@@ -195,7 +195,7 @@ class MyLifeContainerViewController: UIViewController {
         
     }
     
-    func addHeightToLayout(height: CGFloat) {
+    func addHeightToLayout(_ height: CGFloat) {
         
         verticalLayout.frame.size.height += height
         

@@ -16,9 +16,9 @@ class ReportProblem: UIView, UITextViewDelegate {
         super.init(frame: frame)
         loadViewFromNib ()
         theTextView.text = "Placeholder"
-        theTextView.textColor = UIColor.lightGrayColor()
+        theTextView.textColor = UIColor.lightGray
         theTextView.layer.borderWidth = 1.0
-        theTextView.layer.borderColor = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1).CGColor
+        theTextView.layer.borderColor = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1).cgColor
         theTextView.delegate = self
         submitButton.layer.cornerRadius = 5
         
@@ -29,26 +29,26 @@ class ReportProblem: UIView, UITextViewDelegate {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "ReportProblem", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
-        if theTextView.textColor == UIColor.lightGrayColor() {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if theTextView.textColor == UIColor.lightGray {
             theTextView.text = nil
-            theTextView.textColor = UIColor.blackColor()
+            theTextView.textColor = UIColor.black
         }
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if theTextView.text.isEmpty {
             theTextView.text = "Comment"
-            theTextView.textColor = UIColor.lightGrayColor()
+            theTextView.textColor = UIColor.lightGray
         }
     }
 

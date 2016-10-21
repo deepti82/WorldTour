@@ -16,28 +16,28 @@ class VerifyEmailViewController: UIViewController {
         getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(VerifyEmailViewController.selectNationality(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(VerifyEmailViewController.selectNationality(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
         let verified = AccountVerified(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200))
-        verified.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2 - 50)
+        verified.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2 - 50)
         self.view.addSubview(verified)
         
         
         
     }
     
-    func selectNationality(sender: UIButton) {
+    func selectNationality(_ sender: UIButton) {
         
-        let nationality = storyboard?.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
+        let nationality = storyboard?.instantiateViewController(withIdentifier: "SelectCountryVC") as! SelectCountryViewController
         nationality.whichView = "selectNationality"
         self.navigationController?.pushViewController(nationality, animated: true)
         

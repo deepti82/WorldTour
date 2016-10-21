@@ -16,16 +16,16 @@ class LocationTextField: UIView {
         loadViewFromNib ()
         
         let attributes = [
-            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSForegroundColorAttributeName: UIColor.white,
             NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 16)!
         ]
         
-        mainTextField.borderStyle = .None
-        mainTextField.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        mainTextField.borderStyle = .none
+        mainTextField.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         mainTextField.attributedPlaceholder = NSAttributedString(string: "Mumbai", attributes: attributes)
         
         let locationIcon = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        locationIcon.center = CGPointMake(mainTextField.frame.width - 30, mainTextField.frame.height/2)
+        locationIcon.center = CGPoint(x: mainTextField.frame.width - 30, y: mainTextField.frame.height/2)
         locationIcon.image = UIImage(named: "gps_icon")
         mainTextField.addSubview(locationIcon)
         
@@ -37,11 +37,11 @@ class LocationTextField: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "LocationTextField", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         
     }

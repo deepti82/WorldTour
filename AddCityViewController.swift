@@ -13,7 +13,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var mainTableView: UITableView!
     
-    @IBAction func detectLocationButton(sender: AnyObject) {
+    @IBAction func detectLocationButton(_ sender: AnyObject) {
         
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
@@ -23,13 +23,13 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if (response.error != nil) {
                     
@@ -70,20 +70,20 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         self.title = "Where Do You Live?"
         
-        cityTextField.attributedPlaceholder = NSAttributedString(string:  "Detect Location", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
-        cityTextField.returnKeyType = .Done
+        cityTextField.attributedPlaceholder = NSAttributedString(string:  "Detect Location", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        cityTextField.returnKeyType = .done
         cityTextField.delegate = self
-        cityTextField.addTarget(self, action: #selector(AddCityViewController.textFieldDidChange(_:)), forControlEvents: .EditingChanged)
+        cityTextField.addTarget(self, action: #selector(AddCityViewController.textFieldDidChange(_:)), for: .editingChanged)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(-8, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: -8, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(AddCityViewController.selectGender(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(8, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(AddCityViewController.selectGender(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 8, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -99,7 +99,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    func selectGender(sender: UIButton?) {
+    func selectGender(_ sender: UIButton?) {
         
         var cityName = ""
         
@@ -113,7 +113,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -124,7 +124,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                 else if response["value"] {
                     
                     print("response arrived!")
-                    let selectGenderVC = self.storyboard!.instantiateViewControllerWithIdentifier("selectGender") as! SelectGenderViewController
+                    let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
                     self.navigationController?.pushViewController(selectGenderVC, animated: true)
                     
                 }
@@ -139,13 +139,13 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    func textFieldDidChange(textfield: UITextField) {
+    func textFieldDidChange(_ textfield: UITextField) {
         
         print("inside target function: \(cityTextField.text)")
         
         request.searchCity(cityTextField.text!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -173,9 +173,9 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
     }
     
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         
-        mainTableView.hidden = false
+        mainTableView.isHidden = false
         
 //        print("inside target function: \(cityTextField.text)")
 //        
@@ -203,10 +203,10 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
         cityTextField.resignFirstResponder()
-        mainTableView.hidden = true
+        mainTableView.isHidden = true
         
     }
     
@@ -216,29 +216,29 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         print("in the count fn: \(places.count)")
         return places.count
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! addCityTableviewCell
-        cell.placeName.text = places[indexPath.row]["description"].string!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! addCityTableviewCell
+        cell.placeName.text = places[(indexPath as NSIndexPath).row]["description"].string!
 //        print(places)
-        cell.selectionStyle = .None
+        cell.selectionStyle = .none
         return cell
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print("selected \(places[indexPath.row]["description"].string!)")
-        cityTextField.text = places[indexPath.row]["description"].string!
+        print("selected \(places[(indexPath as NSIndexPath).row]["description"].string!)")
+        cityTextField.text = places[(indexPath as NSIndexPath).row]["description"].string!
         cityTextField.resignFirstResponder()
-        mainTableView.hidden = true
+        mainTableView.isHidden = true
         selectGender(nil)
         
     }

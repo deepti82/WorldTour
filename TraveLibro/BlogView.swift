@@ -32,29 +32,29 @@ class BlogView: UIView {
         
         flag3.layer.cornerRadius = self.flag3.frame.size.height/2
         flag3.clipsToBounds = true
-        flag3.layer.borderColor = UIColor.whiteColor().CGColor
+        flag3.layer.borderColor = UIColor.white.cgColor
         flag3.layer.borderWidth = CGFloat(1.5)
         
         flag2.layer.cornerRadius = self.flag2.frame.size.height/2
         flag2.clipsToBounds = true
-        flag2.layer.borderColor = UIColor.whiteColor().CGColor
+        flag2.layer.borderColor = UIColor.white.cgColor
         flag2.layer.borderWidth = CGFloat(1.5)
         
         flag1.layer.cornerRadius = self.flag1.frame.size.height/2
         flag1.clipsToBounds = true
-        flag1.layer.borderColor = UIColor.whiteColor().CGColor
+        flag1.layer.borderColor = UIColor.white.cgColor
         flag1.layer.borderWidth = CGFloat(1.5)
         
         
         likesLabel.text = String(format: "%C", faicon["likes"]!)
         reviewsLabel.text = String(format: "%C", faicon["reviews"]!)
         
-        blogDetailView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
+        blogDetailView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
         UIGraphicsBeginImageContext(tripDays.frame.size)
         
         var image = UIImage(named: "bluebox")
-        image?.drawInRect(tripDays.bounds, blendMode: .Color, alpha: 1.0)
+        image?.draw(in: tripDays.bounds, blendMode: .color, alpha: 1.0)
         image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -70,11 +70,11 @@ class BlogView: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "BlogView", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

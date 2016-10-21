@@ -24,13 +24,13 @@ class FooterViewNew: UIView {
         
         for icon in footerIconImages {
             
-            icon.tintColor = UIColor.whiteColor()
+            icon.tintColor = UIColor.white
             
         }
         
         upperMainView.layer.cornerRadius = 15
         upperMainView.layer.borderWidth = 2.0
-        upperMainView.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 1).CGColor
+        upperMainView.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 1).cgColor
         
     }
     
@@ -39,11 +39,11 @@ class FooterViewNew: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "footerNew", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

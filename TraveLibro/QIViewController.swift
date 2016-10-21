@@ -22,20 +22,20 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource {
         let viewControllers = [myVC]
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
 //        rightButton.addTarget(self, action: #selector(), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
         dataSource = self
         
-        setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
+        setViewControllers(viewControllers, direction: .forward, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +43,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         let vc = viewController as! QuickItinerariesViewController
         var index = vc.pageIndex  as Int
@@ -56,7 +56,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource {
         return viewControllerAtIndex(index)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         let vc = viewController as! QuickItinerariesViewController
         var index = vc.pageIndex  as Int
@@ -76,7 +76,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource {
         
     }
     
-    func viewControllerAtIndex(index: Int) -> UIViewController {
+    func viewControllerAtIndex(_ index: Int) -> UIViewController {
         
         print("index: \(index)")
         
@@ -85,18 +85,18 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource {
             return QuickItinerariesViewController()
         }
         
-        let myVC = storyboard?.instantiateViewControllerWithIdentifier("quickItinerary") as! QuickItinerariesViewController
+        let myVC = storyboard?.instantiateViewController(withIdentifier: "quickItinerary") as! QuickItinerariesViewController
         myVC.whichView = variousViews[index]
         myVC.pageIndex = index
         return myVC
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         
         return variousViews.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         
         return 0
     }

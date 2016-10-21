@@ -1,6 +1,0 @@
-framework module Pods_TraveLibroTests {
-  umbrella header "Pods-TraveLibroTests-umbrella.h"
-
-  export *
-  module * { export * }
-}

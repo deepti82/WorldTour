@@ -31,17 +31,17 @@ class TripSummaryProfile: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "TripSummaryProfile", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         
         profileImage.image = UIImage(named: "london_image")
         profileImage.layer.zPosition = 10
         profileImage.clipsToBounds = true
-        profileImage.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.layer.borderWidth = 6
         
         profileName.text = "Harsh Thakkar"

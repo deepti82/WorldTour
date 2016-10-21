@@ -21,14 +21,14 @@ class TripSummaryPhotosViewController: UIViewController {
         super.viewDidLoad()
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(TripSummaryPhotosViewController.changeView(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(TripSummaryPhotosViewController.changeView(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(-10, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
         self.customNavigationBar(leftButton, right: rightButton)
         
         gridContainer.alpha = 1
@@ -42,7 +42,7 @@ class TripSummaryPhotosViewController: UIViewController {
     }
     
     
-    func changeView(sender: UIButton) {
+    func changeView(_ sender: UIButton) {
         
         if gridContainer.alpha == 1 {
             
@@ -58,17 +58,17 @@ class TripSummaryPhotosViewController: UIViewController {
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "photoGridEmbed" {
             
-            let photoGrid = segue.destinationViewController as! TripSummaryPhotoGridViewController
+            let photoGrid = segue.destination as! TripSummaryPhotoGridViewController
             photoGrid.journeyId = journey
             
         }
         else if segue.identifier == "photoListEmbed" {
             
-            let photoList = segue.destinationViewController as! ListPhotosViewController
+            let photoList = segue.destination as! ListPhotosViewController
             photoList.journeyId = journey
             photoList.journeyCreationDate = creationDate
         }

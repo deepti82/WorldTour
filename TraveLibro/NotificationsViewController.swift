@@ -24,32 +24,32 @@ class NotificationsViewController: UIViewController {
         
         var controllerArray : [UIViewController] = []
         
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("notifySub") as! NotificationSubViewController
+        let controller = storyboard!.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
         controller.whichView = "Notify"
         controller.title = "Notifications"
         controllerArray.append(controller)
         
-        let controllerTwo = storyboard!.instantiateViewControllerWithIdentifier("notifySub") as! NotificationSubViewController
+        let controllerTwo = storyboard!.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
         controllerTwo.whichView = "Messages"
         controllerTwo.title = "Messages"
         controllerArray.append(controllerTwo)
         
         let parameters: [CAPSPageMenuOption] = [
-            .MenuItemSeparatorWidth(1),
-            .MenuItemSeparatorPercentageHeight(20),
-            .UseMenuLikeSegmentedControl(true),
-            .MenuItemFont(UIFont(name: "Avenir-Roman", size: 14)!),
-            .ScrollMenuBackgroundColor(UIColor.whiteColor()),
-            .SelectionIndicatorColor(UIColor.clearColor()),
-            .UnselectedMenuItemLabelColor(blueColor),
-            .SelectedMenuItemLabelColor(orangeColor),
-            .MenuItemWidthBasedOnTitleTextWidth(true),
-            .MenuHeight(45.0),
-            .BottomMenuHairlineColor(hairlineColor),
-            .MenuItemSeparatorColor(hairlineColor)
+            .menuItemSeparatorWidth(1),
+            .menuItemSeparatorPercentageHeight(20),
+            .useMenuLikeSegmentedControl(true),
+            .menuItemFont(UIFont(name: "Avenir-Roman", size: 14)!),
+            .scrollMenuBackgroundColor(UIColor.white),
+            .selectionIndicatorColor(UIColor.clear),
+            .unselectedMenuItemLabelColor(blueColor),
+            .selectedMenuItemLabelColor(orangeColor),
+            .menuItemWidthBasedOnTitleTextWidth(true),
+            .menuHeight(45.0),
+            .bottomMenuHairlineColor(hairlineColor),
+            .menuItemSeparatorColor(hairlineColor)
         ]
         
-        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0, 60, self.view.frame.width, self.view.frame.height - 60), pageMenuOptions: parameters)
+        pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60), pageMenuOptions: parameters)
         self.view.addSubview(pageMenu!.view)
 
     }

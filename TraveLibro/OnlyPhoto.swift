@@ -25,7 +25,7 @@ class OnlyPhoto: UIView {
         timestampView.addSubview(timestamp)
         
         let sideIcon = IconButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        sideIcon.center = CGPointMake(self.frame.size.width - 30, 10)
+        sideIcon.center = CGPoint(x: self.frame.size.width - 30, y: 10)
         self.addSubview(sideIcon)
         
         likeViewLabel.textColor = mainBlueColor
@@ -34,12 +34,12 @@ class OnlyPhoto: UIView {
         likeHeart.text = String(format: "%C", faicon["likes"]!)
         
         let seperatorLine = drawSeperatorLineTwo(frame: CGRect(x: 10, y: line1.frame.size.height/2, width: self.frame.size.width - 25, height: 10))
-        seperatorLine.backgroundColor = UIColor.clearColor()
+        seperatorLine.backgroundColor = UIColor.clear
         line1.addSubview(seperatorLine)
-        line1.backgroundColor = UIColor.clearColor()
+        line1.backgroundColor = UIColor.clear
         
         let seperatorLineTwo = drawSeperatorLineTwo(frame: CGRect(x: 10, y: line2.frame.size.height/3, width: self.frame.size.width - 25, height: 10))
-        seperatorLineTwo.backgroundColor = UIColor.clearColor()
+        seperatorLineTwo.backgroundColor = UIColor.clear
         line2.addSubview(seperatorLineTwo)
         
     }
@@ -49,11 +49,11 @@ class OnlyPhoto: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "OnlyPhoto", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
 

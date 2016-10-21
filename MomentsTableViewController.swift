@@ -29,28 +29,28 @@ class MomentsTableViewController: UITableViewController, UICollectionViewDataSou
 //        return 0
 //    }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 12
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! MomentsTableViewCell
-        cell.monthLabel.text = labels[indexPath.item]
-        cell.imageCollectionView.backgroundColor = UIColor.clearColor()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MomentsTableViewCell
+        cell.monthLabel.text = labels[(indexPath as NSIndexPath).item]
+        cell.imageCollectionView.backgroundColor = UIColor.clear
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MomentsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MomentsCollectionViewCell
         cell.momentsImage.image = UIImage(named: "disney-world")
         return cell
         
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return 40
     }

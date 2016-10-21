@@ -18,7 +18,7 @@ class ExistingAccountPopup: UIView {
         
         continueButton.layer.borderWidth = 1.0
         continueButton.layer.cornerRadius = 5.0
-        continueButton.layer.borderColor = UIColor.whiteColor().CGColor
+        continueButton.layer.borderColor = UIColor.white.cgColor
         
     }
     
@@ -27,11 +27,11 @@ class ExistingAccountPopup: UIView {
     }
     
     func loadViewFromNib() {
-        let bundle = NSBundle(forClass: self.dynamicType)
+        let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "ExistingAccountPopup", bundle: bundle)
-        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
     

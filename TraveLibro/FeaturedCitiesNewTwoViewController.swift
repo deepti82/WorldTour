@@ -32,7 +32,7 @@ class FeaturedCitiesNewTwoViewController: UIViewController, UITableViewDataSourc
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if whichView == "FC" {
             return 2
@@ -42,21 +42,21 @@ class FeaturedCitiesNewTwoViewController: UIViewController, UITableViewDataSourc
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("fcCell") as! FCTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "fcCell") as! FCTableViewCell
         
         if whichView == "FC" {
                 
-            cell.cityName.text = cityNames[indexPath.row]
-            cell.cityPicture.image = UIImage(named: cityImages[indexPath.row])
+            cell.cityName.text = cityNames[(indexPath as NSIndexPath).row]
+            cell.cityPicture.image = UIImage(named: cityImages[(indexPath as NSIndexPath).row])
 //            print("cell, nvc: \(self.navigationController)")
             
         }
         
         else {
             
-            cell.cityName.text = "#\(indexPath.row + 1) \(allMustDos[indexPath.row]["name"].string!)"
-            cell.cityPicture.image = UIImage(data: NSData(contentsOfURL: NSURL(string: allMustDos[indexPath.row]["mainPhoto"].string!)!)!)
+            cell.cityName.text = "#\((indexPath as NSIndexPath).row + 1) \(allMustDos[(indexPath as NSIndexPath).row]["name"].string!)"
+            cell.cityPicture.image = UIImage(data: try! Data(contentsOf: URL(string: allMustDos[(indexPath as NSIndexPath).row]["mainPhoto"].string!)!))
             
         }
         
@@ -64,12 +64,12 @@ class FeaturedCitiesNewTwoViewController: UIViewController, UITableViewDataSourc
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        print("in did select, nvc: \(self.parentViewController)")
+        print("in did select, nvc: \(self.parent)")
         
-        let descriptionVC = storyboard?.instantiateViewControllerWithIdentifier("EachMustDoViewController") as! TrialViewController
-        descriptionVC.singleMustDo = allMustDos[indexPath.row]
+        let descriptionVC = storyboard?.instantiateViewController(withIdentifier: "EachMustDoViewController") as! TrialViewController
+        descriptionVC.singleMustDo = allMustDos[(indexPath as NSIndexPath).row]
 //        let controllerThree = storyboard!.instantiateViewControllerWithIdentifier("featuredRest") as! FeaturedCitiesRestViewController
 //        controllerThree.whichView = "IT"
         segueFromPagerStrip(nvcTwo, nextVC: descriptionVC)
@@ -79,7 +79,7 @@ class FeaturedCitiesNewTwoViewController: UIViewController, UITableViewDataSourc
     func getMustDo() {
         
         request.cityTypeData("mustDos", city: city, completion: {(response) in
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")

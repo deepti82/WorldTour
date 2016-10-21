@@ -7,14 +7,14 @@ class SelectGenderViewController: UIViewController {
         getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-        leftButton.frame = CGRectMake(0, 0, 30, 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
-        rightButton.addTarget(self, action: #selector(SelectGenderViewController.gotoDP(_:)), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRectMake(0, 8, 30, 30)
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(SelectGenderViewController.gotoDP(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -24,7 +24,7 @@ class SelectGenderViewController: UIViewController {
         f.setNeedsDisplay()
         
         let gender = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
-        gender.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
+        gender.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
         if currentUser["gender"] != nil {
             
             if currentUser["gender"] == "female" {
@@ -44,7 +44,7 @@ class SelectGenderViewController: UIViewController {
         
     }
     
-    func gotoDP(sender: UIButton) {
+    func gotoDP(_ sender: UIButton) {
         
         //Add edit data request here
         
@@ -55,7 +55,7 @@ class SelectGenderViewController: UIViewController {
         
         request.editUser(currentUser["_id"].string!, editField: "gender", editFieldValue: genderValue, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -64,7 +64,7 @@ class SelectGenderViewController: UIViewController {
                 else if response["value"] {
                     
                     print("response arrived!")
-                    let dpVC = self.storyboard!.instantiateViewControllerWithIdentifier("setDp") as! SetProfilePictureViewController
+                    let dpVC = self.storyboard!.instantiateViewController(withIdentifier: "setDp") as! SetProfilePictureViewController
                     self.navigationController?.pushViewController(dpVC, animated: true)
                     
                 }

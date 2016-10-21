@@ -17,7 +17,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var commentsTable: UITableView!
     @IBOutlet weak var addComment: UITextView!
-    @IBAction func sendComment(sender: UIButton?) {
+    @IBAction func sendComment(_ sender: UIButton?) {
         
         print("inside send comments")
         addComment.resignFirstResponder()
@@ -33,9 +33,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         commentsTable.estimatedRowHeight = 70.0
         commentsTable.rowHeight = UITableViewAutomaticDimension
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        addComment.returnKeyType = .Done
+        NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        addComment.returnKeyType = .done
         
     }
 
@@ -44,21 +44,21 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.frame.origin.y -= keyboardSize.height
         }
         
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+    func keyboardWillHide(_ notification: Notification) {
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.frame.origin.y += keyboardSize.height
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         addComment.resignFirstResponder()
         sendComment(nil)
@@ -66,11 +66,11 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-    func setAllComments(comment: String) {
+    func setAllComments(_ comment: String) {
         
         request.commentOnPost(postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -96,7 +96,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         request.getComments(otherId, completion: {(response) in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
                     
@@ -120,17 +120,17 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return comments.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! CommentTableViewCell
-        cell.profileName.text = comments[indexPath.row]["user"]["name"].string!
-        cell.profileComment.text = comments[indexPath.row]["text"].string!
-        cell.profileImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: "\(adminUrl)upload/readFile?file=\(comments[indexPath.row]["user"]["profilePicture"])&width=100")!)!)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CommentTableViewCell
+        cell.profileName.text = comments[(indexPath as NSIndexPath).row]["user"]["name"].string!
+        cell.profileComment.text = comments[(indexPath as NSIndexPath).row]["text"].string!
+        cell.profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(comments[(indexPath as NSIndexPath).row]["user"]["profilePicture"])&width=100")!))
         makeTLProfilePicture(cell.profileImage)
         return cell
         

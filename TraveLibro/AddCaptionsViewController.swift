@@ -28,7 +28,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     var index: Int!
     
-    @IBAction func previousImageCaption(sender: AnyObject) {
+    @IBAction func previousImageCaption(_ sender: AnyObject) {
         
         addToLocalDB()
         addNewCaption()
@@ -38,7 +38,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         if index >= 0 {
             
             print("previous caption")
-            let captionVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCaptions") as! AddCaptionsViewController
+            let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
             captionVC.currentImage = allImages[index!].currentImage!
             captionVC.allIds = allIds
@@ -51,7 +51,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    @IBAction func nextImageCaption(sender: AnyObject) {
+    @IBAction func nextImageCaption(_ sender: AnyObject) {
         
         addToLocalDB()
         addNewCaption()
@@ -61,7 +61,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         if index < allImages.count {
             
             print("next caption")
-            let captionVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCaptions") as! AddCaptionsViewController
+            let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
             captionVC.currentImage = allImages[index].currentImage!
             captionVC.currentSender = allImages[index]
@@ -74,17 +74,17 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    @IBAction func rotateImage(sender: AnyObject) {
+    @IBAction func rotateImage(_ sender: AnyObject) {
         print("rotate image")
     }
     
-    @IBAction func doneCaptions(sender: AnyObject) {
+    @IBAction func doneCaptions(_ sender: AnyObject) {
         
         let allSubviews = self.navigationController!.viewControllers
         
         for subview in allSubviews {
             
-            if subview.isKindOfClass(NewTLViewController) {
+            if subview.isKind(of: NewTLViewController.self) {
                 addToLocalDB()
                 addNewCaption()
                 print("done caption")
@@ -102,11 +102,11 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.nextImageCaption(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
         
         print("new controller")
@@ -122,23 +122,23 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         }
         
         imageForCaption.image = currentImage
-        index = allImages.indexOf(currentSender)
+        index = allImages.index(of: currentSender)
         
         print("index is: \(index)")
         
 //        captionTextView.text = allIds[index]
         captionTextView.delegate = self
-        captionTextView.returnKeyType = .Done
+        captionTextView.returnKeyType = .done
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         for image in completeImages {
             
-            image.hidden = true
+            image.isHidden = true
             image.layer.cornerRadius = 5.0
             image.clipsToBounds = true
-            image.userInteractionEnabled = true
+            image.isUserInteractionEnabled = true
             let tap = UITapGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.imageTapped(_:)))
             image.addGestureRecognizer(tap)
             
@@ -146,7 +146,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
         if allImages.count <= 5 {
             
-            bottomStack.hidden = true
+            bottomStack.isHidden = true
             
         }
         
@@ -155,12 +155,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             let image = allImages[i].currentImage
             print("image to be set: \(image)")
             completeImages[i].image = image
-            completeImages[i].hidden = false
+            completeImages[i].isHidden = false
             
             if completeImages[i].image == imageForCaption.image {
                 
                 print("inside equality")
-                completeImages[i].layer.borderColor = mainBlueColor.CGColor
+                completeImages[i].layer.borderColor = mainBlueColor.cgColor
                 completeImages[i].layer.borderWidth = 3.0
                 
             }
@@ -169,7 +169,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    func imageTapped(sender: UITapGestureRecognizer) {
+    func imageTapped(_ sender: UITapGestureRecognizer) {
         
         print("image tapped")
         
@@ -179,7 +179,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             
             if senderImageView.image == image.currentImage {
                 
-                index = allImages.indexOf(image)
+                index = allImages.index(of: image)
                 print("index in image tapped: \(index)")
                 
             }
@@ -190,7 +190,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             
             addNewCaption()
             print("next caption")
-            let captionVC = self.storyboard!.instantiateViewControllerWithIdentifier("addCaptions") as! AddCaptionsViewController
+            let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
             captionVC.currentImage = allImages[index].currentImage!
             captionVC.currentSender = allImages[index]
@@ -224,7 +224,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             }
             else if photo["name"].string! == allIds[index] && captionTextView.text != photo["caption"].string! {
                 
-                allPhotos.removeAtIndex(allPhotos.indexOf(photo)!)
+                allPhotos.remove(at: allPhotos.index(of: photo)!)
                 break
             }
             
@@ -248,21 +248,21 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.frame.origin.y -= keyboardSize.height
         }
         
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+    func keyboardWillHide(_ notification: Notification) {
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.view.frame.origin.y += keyboardSize.height
         }
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if text == "\n" {
             
@@ -281,7 +281,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         
         captionTextView.text = ""
         
