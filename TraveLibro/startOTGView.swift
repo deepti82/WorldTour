@@ -29,22 +29,17 @@ class startOTGView: UIView {
     @IBOutlet weak var detectLocationButton: UIButton!
     @IBOutlet weak var buddyStack: UIStackView!
     @IBOutlet weak var placeLabel: UILabel!
-//    @IBOutlet weak var calendarIcon: UILabel!
-//    @IBOutlet weak var clockIcon: UILabel!
     @IBOutlet weak var bonVoyageLabel: UILabel!
     @IBOutlet weak var timestampDate: UILabel!
-//    @IBOutlet weak var timestampTime: UILabel!
     @IBOutlet weak var journeyCategoryOne: UIImageView!
     @IBOutlet weak var journeyCategoryTwo: UIImageView!
     @IBOutlet weak var journeyCategoryThree: UIImageView!
-    @IBOutlet weak var shoes: UIImageView!
-    
     @IBOutlet weak var dpFriendOne: UIImageView!
     @IBOutlet weak var dpFriendTwo: UIImageView!
     @IBOutlet weak var dpFriendThree: UIImageView!
-    
-    @IBOutlet weak var cityTrademark: UIImageView!
     @IBOutlet var buddyStackPictures: [UIImageView]!
+    @IBOutlet weak var lineViewTwo: UIView!
+    @IBOutlet weak var lineViewOne: UIView!
     
     
     override init(frame: CGRect) {
@@ -98,11 +93,14 @@ class startOTGView: UIView {
         addBuddiesButton.layer.borderColor = UIColor.whiteColor().CGColor
         addBuddiesButton.layer.borderWidth = 1.0
         
-//        let lineOne = drawLine(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
-//        lineOne.frame.origin = CGPointMake(self.center.x, shoes.center.y)
-//        lineOne.frame.size.height = journeyName.frame.origin.y - shoes.center.y + 5.0
-//        self.addSubview(lineOne)
-//        
+        let lineOne = drawLine()
+        lineOne.frame = lineViewOne.frame
+        lineViewOne.addSubview(lineOne)
+        
+        let lineTwo = drawLine()
+        lineTwo.frame = lineViewTwo.frame
+        lineViewTwo.addSubview(lineTwo)
+
 //        let lineTwo = drawLine(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
 //        lineTwo.frame.origin = CGPointMake(self.center.x, journeyName.frame.origin.y + journeyName.frame.height)
 //        lineTwo.frame.size.height = cityTrademark.frame.origin.y - lineTwo.frame.origin.y
