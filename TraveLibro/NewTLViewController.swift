@@ -78,6 +78,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     var newScroll: UIScrollView!
+    let backView = UIView()
     
     @IBAction func addPosts(sender: AnyObject) {
         
@@ -109,7 +110,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
         
-        let backView = UIView()
         backView.frame = self.view.frame
         self.view.addSubview(backView)
         
@@ -427,6 +427,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             addView.locationHorizontalScroll.hidden = false
             addView.hidden = true
             newScroll.hidden = true
+            backView.hidden = true
             
             print("buddies: \(buddies)")
             post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: addView.categoryLabel.text!, Country: currentCountry, City: currentCity, Status: thoughts)
@@ -526,6 +527,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.addView.locationHorizontalScroll.hidden = false
                         self.addView.hidden = true
                         self.newScroll.hidden = true
+                        self.backView.hidden = true
                         self.getJourney()
                         
                     }
@@ -714,6 +716,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addView.locationHorizontalScroll.hidden = false
         addView.hidden = true
         newScroll.hidden = true
+        backView.hidden = true
         
     }
     
@@ -1377,6 +1380,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 else if response["value"] {
                     
                     self.newScroll.hidden = false
+                    self.backView.hidden = false
                     self.addView.hidden = false
                     self.addView.postButton.setTitle("Edit", forState: .Normal)
                     self.editPostId = sender.titleLabel!.text!
