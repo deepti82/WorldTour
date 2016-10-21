@@ -19,6 +19,7 @@ class CollectionViewController: UIViewController {
         
         let scroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         scroll.contentSize.height = 1000
+        scroll.showsVerticalScrollIndicator = false
         self.view.addSubview(scroll)
         
         let childVC = storyboard?.instantiateViewControllerWithIdentifier("summarySub") as! SummarySubViewController

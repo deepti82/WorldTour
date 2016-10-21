@@ -109,29 +109,46 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
+        var flag = 0
         
         backView.frame = self.view.frame
-        self.view.addSubview(backView)
+        backView.hidden = false
+        backView.tag = 2
         
-        darkBlur = UIBlurEffect(style: .Dark)
-        blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame.size.height = backView.frame.height
-        blurView.frame.size.width = backView.frame.width
-        blurView.layer.zPosition = -1
-        blurView.userInteractionEnabled = false
-        backView.addSubview(blurView)
-        
-            print("in the add posts function")
-            uploadedphotos = []
-            newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-            backView.addSubview(newScroll)
+        for subview in self.view.subviews {
             
-            addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-            print("add view: \(addView)")
-            displayFriendsCount()
-            newScroll.addSubview(addView)
-            newScroll.contentSize.height = self.view.frame.height
-            addLocationTapped(nil)
+            if subview.tag == 2 {
+                
+                flag = 1
+                
+            }
+            
+        }
+        
+        if flag == 0 {
+            
+            self.view.addSubview(backView)
+            darkBlur = UIBlurEffect(style: .Dark)
+            blurView = UIVisualEffectView(effect: darkBlur)
+            blurView.frame.size.height = backView.frame.height
+            blurView.frame.size.width = backView.frame.width
+            blurView.layer.zPosition = -1
+            blurView.userInteractionEnabled = false
+            backView.addSubview(blurView)
+            
+        }
+        
+        print("in the add posts function")
+        uploadedphotos = []
+        newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        backView.addSubview(newScroll)
+        
+        addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        print("add view: \(addView)")
+        displayFriendsCount()
+        newScroll.addSubview(addView)
+        newScroll.contentSize.height = self.view.frame.height
+        addLocationTapped(nil)
             
             
 //        }
