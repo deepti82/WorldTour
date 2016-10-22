@@ -53,7 +53,7 @@ class BucketListTableViewController: UITableViewController  {
 //                        
 //                        print("error - \(response.error!.code): \(response.error!.localizedDescription)")
 //                    }
-//                    else if response["value"] {
+//                    else if let abc = response["value"].string {
 //                        
 ////                        self.bucket = response["data"]["countriesVisited"].array!
 ////                        self.tableView.reloadData()
@@ -143,7 +143,7 @@ class BucketListTableViewController: UITableViewController  {
                         
                         print("error - \(response.error?.code): \(response.error?.localizedDescription)")
                     }
-                    else if response["value"] {
+                    else if let abc = response["value"].string {
                         
 //                        let profile = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
 //                        profile.setCount()
@@ -185,7 +185,7 @@ class BucketListTableViewController: UITableViewController  {
                     
                     print("error - \(response.error?.code): \(response.error?.localizedDescription)")
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     //                        let profile = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
                     //                        profile.setCount()
@@ -333,71 +333,71 @@ class BucketListTableViewController: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        if whichView == "BucketList" {
-            let delete = UITableViewRowAction(style: UITableViewRowActionStyle(), title: "             ") { (action, indexPath) in
-                
-//                print("bucket list removal: \(self.bucket[indexPath.row]["_id"])")
-                
-                request.removeBucketList(currentUser["_id"].string!, country: self.bucket[(indexPath as NSIndexPath).row]["_id"].string!, completion: {(response) in
-                    
-                    DispatchQueue.main.async(execute: {
-                        
-                        if response.error != nil {
-                            
-                            print("error- \(response.error?.code): \(response.error?.localizedDescription)")
-                            
-                        }
-                        else if response["value"] {
-                            
-//                            tableView.reloadData()
-                            self.getBucketList()
-                            
-                        }
-                        else {
-                            
-                            print("response error: \(response["error"])")
-                            
-                        }
-                    })
-                })
-                
-            }
-            delete.backgroundColor = UIColor(patternImage: UIImage(named: "trash")!)
-            return [delete]
-        }
-        
-        else if whichView == "CountriesVisited" {
-            let delete = UITableViewRowAction(style: UITableViewRowActionStyle(), title: "             ") { (action, indexPath) in
-                
-                print("countries visited removal: \(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!)")
-                
-                request.removeCountriesVisited(currentUser["_id"].string!, countryId: self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!, year: self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"].int!, completion: {(response) in
-                    
-                    DispatchQueue.main.async(execute: {
-                        
-                        if response.error != nil {
-                            
-                            print("error- \(response.error?.code): \(response.error?.localizedDescription)")
-                            
-                        }
-                        else if response["value"] {
-                            
-                            //                            tableView.reloadData()
-                            self.getCountriesVisited()
-                            
-                        }
-                        else {
-                            
-                            print("response error: \(response["error"])")
-                            
-                        }
-                    })
-                })
-                
-            }
-            delete.backgroundColor = UIColor(patternImage: UIImage(named: "trash")!)
-            return [delete]
-        }
+//        if whichView == "BucketList" {
+//            let delete = UITableViewRowAction(style: UITableViewRowActionStyle(), title: "             ") { (action, indexPath) in
+//                
+////                print("bucket list removal: \(self.bucket[indexPath.row]["_id"])")
+//                
+//                request.removeBucketList(currentUser["_id"].string!, country: self.bucket[(indexPath as NSIndexPath).row]["_id"].string!, completion: {(response) in
+//                    
+//                    DispatchQueue.main.async(execute: {
+//                        
+//                        if response.error != nil {
+//                            
+//                            print("error- \(response.error?.code): \(response.error?.localizedDescription)")
+//                            
+//                        }
+//                        else if let abc = response["value"].string {
+//                            
+////                            tableView.reloadData()
+//                            self.getBucketList()
+//                            
+//                        }
+//                        else {
+//                            
+//                            print("response error: \(response["error"])")
+//                            
+//                        }
+//                    })
+//                })
+//                
+//            }
+//            delete.backgroundColor = UIColor(patternImage: UIImage(named: "trash")!)
+//            return [delete]
+//        }
+//        
+//        else if whichView == "CountriesVisited" {
+//            let delete = UITableViewRowAction(style: UITableViewRowActionStyle(), title: "             ") { (action, indexPath) in
+//                
+//                print("countries visited removal: \(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!)")
+//                
+//                request.removeCountriesVisited(currentUser["_id"].string!, countryId: self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!, year: self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"].int!, completion: {(response) in
+//                    
+//                    DispatchQueue.main.async(execute: {
+//                        
+//                        if response.error != nil {
+//                            
+//                            print("error- \(response.error?.code): \(response.error?.localizedDescription)")
+//                            
+//                        }
+//                        else if let abc = response["value"].string {
+//                            
+//                            //                            tableView.reloadData()
+//                            self.getCountriesVisited()
+//                            
+//                        }
+//                        else {
+//                            
+//                            print("response error: \(response["error"])")
+//                            
+//                        }
+//                    })
+//                })
+//                
+//            }
+//            delete.backgroundColor = UIColor(patternImage: UIImage(named: "trash")!)
+//            return [delete]
+//        }
         
         let delete = UITableViewRowAction(style: .normal, title: "") { (action, indexPath) in
             // delete item at indexPath

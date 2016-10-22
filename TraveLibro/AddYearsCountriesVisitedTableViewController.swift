@@ -351,7 +351,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
                     print("error- \(response.error!.code): \(response.error!.localizedDescription)")
                 }
                     
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     print("response arrived")
                     //                    let total = self.navigationController?.viewControllers

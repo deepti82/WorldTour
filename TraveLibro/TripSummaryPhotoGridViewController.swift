@@ -33,7 +33,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController {
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.myPhotos = response["data"].array!
                     self.collectionView!.reloadData()

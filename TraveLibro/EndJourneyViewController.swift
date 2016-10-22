@@ -140,7 +140,7 @@ class EndJourneyViewController: UIViewController {
                 
                 print("error: \(response.error?.localizedDescription)")
             }
-            else if response["value"] {
+            else if let abc = response["value"].string {
                 
                 for image in response["data"].array! {
                     
@@ -199,7 +199,7 @@ class EndJourneyViewController: UIViewController {
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     print("response arrived!")
                     self.goBack()

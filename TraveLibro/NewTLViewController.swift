@@ -353,7 +353,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.addView.categoryLabel.text = response["data"].string!
                     self.currentCity = response["city"].string!
@@ -473,7 +473,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             print("error: \(response.error!.localizedDescription)")
                             
                         }
-                        else if response["value"] {
+                        else if let abc = response["value"].string {
                             
                             print("response arrived new post!")
                             post.flushRows(Int64(latestPost))
@@ -539,7 +539,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                         
-                    else if response["value"] {
+                    else if let abc = response["value"].string {
                         
                         print("edited response")
                         self.addView.categoryView.isHidden = true
@@ -584,7 +584,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.detectLocation(nil)
                     
@@ -1397,7 +1397,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.newScroll.isHidden = false
                     self.backView.isHidden = false
@@ -1545,7 +1545,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         print("error: \(response.error!.localizedDescription)")
                         
                     }
-                    else if response["value"] {
+                    else if let abc = response["value"].string {
                         
                         print("post deleted successfully \(self.currentPost["_id"].string!)")
                         self.isDelete = true
@@ -1594,7 +1594,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
-                } else if response["value"] {
+                } else if let abc = response["value"].string {
                     print("edited date time response")
                     print("\(response)")
                 } else {
@@ -1642,7 +1642,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                    print("error: \(response.error!.localizedDescription)")
 //                    
 //                }
-//                else if response["value"] {
+//                else if let abc = response["value"].string {
 //                    
 //                    if sender.tag == 1 {
 //                     
@@ -1736,7 +1736,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 print("error: \(response.error!.localizedDescription)")
                 
             }
-            else if response["value"] {
+            else if let abc = response["value"].string {
                 
                 
                 
@@ -1865,7 +1865,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         print("error: \(response.error?.localizedDescription)")
                     }
                         
-                    else if response["value"] {
+                    else if let abc = response["value"].string {
                         
                         print("response of add posts")
                         self.journeyId = response["data"]["uniqueId"].string!
@@ -1999,7 +1999,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                    
 //                }
 //                    
-//                else if response["value"] {
+//                else if let abc = response["value"].string {
 //                    
 //                    self.myJourney = response["data"]
 //                    
@@ -2215,7 +2215,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.locationPic = response["data"].string!
                     self.makeCoverPic(response["data"].string!)
@@ -2286,7 +2286,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                 }
                     
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.locationArray = response["data"].array!
                     
@@ -2397,7 +2397,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     for asset in assets {
                         
                         let image = self.getAssetThumbnail(asset)
-                        var temp: Bool!
+                        let temp: Bool!
                         let assetIndex = assets.index(of: asset)
                         
                         print("got uiimage: \(image)")
@@ -2425,15 +2425,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
                                     let newImage = UIGraphicsGetImageFromCurrentImageContext()
                                     UIGraphicsEndImageContext()
-                                    let newTemp = UIImageJPEGRepresentation(newImage, 0.50)
-                                    temp = try newTemp!.write(to: URL(string: exportFilePath)!, options: [])
+                                    let newTemp = UIImageJPEGRepresentation(newImage!, 0.50)
+//                                    temp = try newTemp!.write(to: URL(string: exportFilePath)!, options: [])
                                     visibleImage.setImage(UIImage(data: newTemp!), for: UIControlState())
                                     
                                 }
                                     
                                 else {
                                     
-                                    temp = try tempImage!.write(to: URL(string: exportFilePath)!, options: [])
+//                                    temp = try tempImage!.write(to: URL(string: exportFilePath)!, options: [])
                                     
                                     if index <= self.addView.photosCollection.count - 1 {
                                         
@@ -2442,7 +2442,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     }
                                     
                                 }
-                                print("temp: \(temp)")
+//                                print("temp: \(temp)")
                                 print("file created")
                                 visibleImage.layer.cornerRadius = 5.0
                                 visibleImage.clipsToBounds = true
@@ -2520,7 +2520,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                                print("error: \(response.error!.localizedDescription)")
 //
 //                            }
-//                            else if response["value"] {
+//                            else if let abc = response["value"].string {
 //
 ////                                if self.photosCount >= assets.count {
 ////
@@ -2636,7 +2636,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             print("error: \(response.error!.localizedDescription)")
                             
                         }
-                        else if response["value"] {
+                        else if let abc = response["value"].string {
                             
                             photoDB.insertName(response["data"][1].string!, Name: response["data"][0].string!)
                             self.allImageIds.append(response["data"][0].string!)
@@ -2791,7 +2791,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                         
-                    else if response["value"] {
+                    else if let abc = response["value"].string {
                         
                         //                    print("response: \(response)")
                         

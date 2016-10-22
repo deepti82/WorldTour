@@ -20,7 +20,7 @@ extension UIViewController {
                 print("navigation: \(self.storyboard)")
         //        print("navigation: \(self.navigationController)")
         
-        if currentUser["alreadyLoggedIn"] != nil && currentUser["alreadyLoggedIn"] {
+        if currentUser["alreadyLoggedIn"].string != nil && (currentUser["alreadyLoggedIn"].string != nil) {
             
             print("storyboard: \(navigation)")
             

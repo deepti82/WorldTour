@@ -39,7 +39,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                 else {
                     
-                    if response["value"] {
+                    if let abc = response["value"].string {
                      
                         print("response: \(response)")
                         self.locationData = response["data"]["name"].string
@@ -121,7 +121,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                 }
                 
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     print("response arrived!")
                     let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
@@ -154,7 +154,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                 else {
                     
-                    if response["value"] {
+                    if let abc = response["value"].string {
                         
                         print("response arrived!")
                         print(response["data"]["predictions"].array!)
@@ -188,7 +188,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
 //                
 //            else {
 //                
-//                if response["value"] {
+//                if let abc = response["value"].string {
 //                    
 //                    print("response arrived!")
 //                }

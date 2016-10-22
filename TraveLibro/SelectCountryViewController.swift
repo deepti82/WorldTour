@@ -131,7 +131,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                     
                     else {
                         
-                        if response["value"] {
+                        if let abc = response["value"].string {
                             
                             self.countries = response["data"].array!
                             self.mainTableView.reloadData()
@@ -211,7 +211,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
 //            print("country: \(country["name"])")
             
-            let countryText: NSString = country["name"].string!
+            let countryText: NSString = country["name"].string! as NSString
             
 //            print("country: \(countryText.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location)")
             
@@ -240,7 +240,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                     
                 else {
                     
-                    if response["value"] {
+                    if let abc = response["value"].string {
                         
                         self.countries = response["data"].array!
                         self.mainTableView.reloadData()
@@ -298,7 +298,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                     print("error- \(response.error!.code): \(response.error!.localizedDescription)")
                 }
                     
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     print("response arrived")
 //                    let total = self.navigationController?.viewControllers
@@ -336,7 +336,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                     print("error- \(response.error!.code): \(response.error!.localizedDescription)")
                 }
                     
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     print("response arrived")
                     let total = self.navigationController?.viewControllers
@@ -390,7 +390,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
 //                    
 //                    print("error: \(response.error?.localizedDescription)")
 //                }
-//                else if response["value"] == false {
+//                else if let abc = response["value"].string == false {
 //                    
 //                    ("error: \(response["data"])")
 //                    

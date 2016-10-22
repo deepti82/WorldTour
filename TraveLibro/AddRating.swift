@@ -40,7 +40,7 @@ class AddRating: UIView, UITextViewDelegate {
                         print("error: \(response.error!.localizedDescription)")
                         
                     }
-                    else if response["value"] {
+                    else if let abc = response["value"].string {
                         
                         print("response arrived")
                         sender.superview!.superview!.removeFromSuperview()

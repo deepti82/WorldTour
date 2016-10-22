@@ -70,7 +70,7 @@ class PhotosOTG: UIView {
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     if sender.tag == 1 {
                         
@@ -108,7 +108,7 @@ class PhotosOTG: UIView {
         photosTitle.numberOfLines = 0
         let customType = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"
         photosTitle.enabledTypes = [.mention, .hashtag, .url, customType]
-        photosTitle.textColor = .black()
+        photosTitle.textColor = UIColor.black
         photosTitle.handleHashtagTap { hashtag in
             print("Success. You just tapped the \(hashtag) hashtag")
         }

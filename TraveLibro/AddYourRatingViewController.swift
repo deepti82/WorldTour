@@ -160,7 +160,7 @@ class AddYourRatingViewController: UIViewController {
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.reviews = response["data"].array!
                     self.showRating()

@@ -77,7 +77,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.getAllComments()
                 }
@@ -103,7 +103,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.comments = response["data"]["comment"].array!
                     self.commentsTable.reloadData()

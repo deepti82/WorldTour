@@ -88,7 +88,7 @@ class SocialLoginClass: UIViewController {
     
     func facebookLogin() {
         
-        var facebook = Facebook()
+        let facebook = Facebook()
         facebook.scopes = ["email", "user_birthday", "user_location"]
         Simplicity.login(facebook) {(accessToken, error) in
             
@@ -150,7 +150,7 @@ class SocialLoginClass: UIViewController {
                                     
                                 else {
                                     
-                                    if response["value"] {
+                                    if let abc = response["value"].string {
                                         
                                         currentUser = response["data"]
                                         //                                        AppDelegate.createMenuView()
@@ -386,11 +386,11 @@ open class Reachability {
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
-        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {_ in 
+//            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
         }
         var flags = SCNetworkReachabilityFlags()
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability as! SCNetworkReachability, &flags) {
             return false
         }
         let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
@@ -412,9 +412,9 @@ extension Data {
 
 extension UInt8 {
     
-    var data: Data {
-        var int = self
-        return Data(bytes: UnsafePointer<UInt8>(&int), count: sizeof(UInt8))
-    }
+//    var data: Data {
+//        var int = self
+//        return Data(bytes: UnsafePointer<UInt8>(&int), count: sizeof(UInt8))
+//    }
     
 }

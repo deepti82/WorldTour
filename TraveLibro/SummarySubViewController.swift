@@ -206,7 +206,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
                     
                     print("error: \(response.error!.localizedDescription)")
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.tripCountData = response["data"]
                     self.labels = response["data"]["checkInCount"].array!

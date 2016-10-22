@@ -41,7 +41,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.notifications = response["data"].array!
                     self.notifyTableView.reloadData()
@@ -148,7 +148,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                 print("error: \(response.error!.localizedDescription)")
                 
             }
-            else if response["value"] {
+            else if let abc = response["value"].string {
                 
                 print("response arrived")
                 

@@ -149,7 +149,9 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
         
         guard let tableViewCell = cell as? ExploreDestinationsTableViewCell else { return }
         
-        tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: (indexPath as NSIndexPath).row)
+//        tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: (indexPath as NSIndexPath).row)
+       
+        
         
         
     }
@@ -207,16 +209,16 @@ class ExploreDestinationsTableViewCell: UITableViewCell {
     @IBOutlet weak var contentMainView: UIView!
     
     
-    func setCollectionViewDataSourceDelegate
-        <D: UICollectionViewDataSource & UICollectionViewDelegate
-        (_ dataSourceDelegate: D, forRow row: Int) {
-        
-        theCollectionView.delegate = dataSourceDelegate
-        theCollectionView.dataSource = dataSourceDelegate
-        theCollectionView.tag = row
-        theCollectionView.reloadData()
-        
-    }
+//    func setCollectionViewDataSourceDelegate
+//        <D: UICollectionViewDataSource & UICollectionViewDelegate
+//        (_ dataSourceDelegate: D, forRow row: Int) {
+//        
+//        theCollectionView.delegate = dataSourceDelegate
+//        theCollectionView.dataSource = dataSourceDelegate
+//        theCollectionView.tag = row
+//        theCollectionView.reloadData()
+//        
+//    }
     
 }
 

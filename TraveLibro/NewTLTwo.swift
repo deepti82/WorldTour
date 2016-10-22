@@ -367,7 +367,7 @@ extension NewTLViewController {
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.showInfo(response["data"])
                 }
@@ -489,7 +489,7 @@ extension NewTLViewController {
 //                print("response: \(response.error?.localizedDescription)")
 //                
 //            }
-//            else if response["value"] {
+//            else if let abc = response["value"].string {
 //                
 //                print("response arrived")
 //                

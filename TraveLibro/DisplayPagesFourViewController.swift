@@ -150,7 +150,7 @@ class DisplayPagesFourViewController: UIViewController {
 //                
 //            }
 //            
-//            else if response["value"] {
+//            else if let abc = response["value"].string {
 //                
 //                print("response arrived!")
 //                

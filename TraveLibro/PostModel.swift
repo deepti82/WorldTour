@@ -31,7 +31,7 @@ open class Post {
     
     init() {
         try! db.run(post.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: .Autoincrement)
+            t.column(id, primaryKey: true)
             t.column(userId)
             t.column(journeyId)
             t.column(type)
@@ -78,7 +78,7 @@ open class Post {
     }
     
     func getRowCount() -> Int {
-        let count = db.scalar(post.count)
+        let count = try! db.scalar(post.count)
         return count
     }
     
@@ -115,7 +115,7 @@ open class Photo {
     
     init() {
         try! db.run(photos.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: .Autoincrement)
+            t.column(id, primaryKey: true)
             t.column(postid)
             t.column(name, unique: true)
             t.column(data, unique: true)
@@ -126,7 +126,7 @@ open class Photo {
     func setPhotos(_ postId: String, Name: String?, Data: Foundation.Data, Caption: String?) {
         
 //        dispatch_sync(dispatch_get_main_queue(),{
-            let count = db.scalar(self.photos.filter(self.data == Data).count)
+            let count = try! db.scalar(self.photos.filter(self.data == Data).count)
             if(count == 0) {
                 let photoinsert = self.photos.insert(
                     self.postid <- postId,
@@ -152,7 +152,7 @@ open class Photo {
     
     func insertCaption(_ imageId: String, caption: String) {
         
-        let count = db.scalar(self.photos.filter(self.id == Int64(imageId)!).count)
+        let count = try! db.scalar(self.photos.filter(self.id == Int64(imageId)!).count)
         if(count == 0) {
             print("no photos with same data found")
         } else {
@@ -164,7 +164,7 @@ open class Photo {
     
     func insertName(_ imageId: String, Name: String) {
         
-        let count = db.scalar(self.photos.filter(self.id == Int64(imageId)!).count)
+        let count = try! db.scalar(self.photos.filter(self.id == Int64(imageId)!).count)
         if(count == 0) {
             print("no photos with same data found")
         } else {
@@ -178,7 +178,7 @@ open class Photo {
         
         var value: [String] = []
         
-        let count = db.scalar(self.photos.filter(self.postid == post).count)
+        let count = try! db.scalar(self.photos.filter(self.postid == post).count)
         if(count == 0) {
             print("")
         } else {
@@ -198,13 +198,13 @@ open class Photo {
         
         var value: [String] = []
         
-        let count = db.scalar(self.photos.filter(self.postid == postId).count)
+        let count = try! db.scalar(self.photos.filter(self.postid == postId).count)
         if(count == 0) {
             print("")
         } else {
             for row in try! db.prepare(self.photos.filter(self.postid == postId)) {
                 
-                let photoName = String(row[name])
+                let photoName = String(describing: row[name])
                 value.append(photoName)
                 
             }
@@ -257,7 +257,7 @@ open class CheckIn {
     
     init() {
         try! db.run(photos.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: .Autoincrement)
+            t.column(id, primaryKey: true)
             t.column(postid, unique: true)
             
         })
@@ -281,7 +281,7 @@ open class Buddy {
     
     init() {
         try! db.run(buddy.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: .Autoincrement)
+            t.column(id, primaryKey: true)
             t.column(postid)
             t.column(buddyuserid)
             t.column(buddyname)

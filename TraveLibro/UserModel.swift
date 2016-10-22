@@ -33,7 +33,7 @@ open class User {
 
     init() {
         try! db.run(user.create(ifNotExists: true) { t in
-            t.column(id, primaryKey: .Autoincrement)
+            t.column(id, primaryKey: true)
             t.column(userId, unique: true)
             t.column(name)
             t.column(email, unique: true)
@@ -49,8 +49,8 @@ open class User {
     }
 
     func setUser(_ userid: String, name: String, useremail: String, profilepicture: String, travelconfig: String, loginType: String, socialId: String, userBadge: String, homecountry: String, homecity: String, isloggedin: Bool) -> Void {
-        dispatch_async(dispatch_get_main_queue(),{
-            let count = self.db.scalar(self.user.filter(self.userId == userid).count)
+        DispatchQueue.main.async {
+            let count = try! self.db.scalar(self.user.filter(self.userId == userid).count)
             if(count == 0) {
                 let userinsert = self.user.insert(
                     self.userId <- userid,
@@ -81,7 +81,7 @@ open class User {
                 try! self.db.run(updaterow.update(self.homeCity <- homecity))
                 try! self.db.run(updaterow.update(self.isLoggedIn <- isloggedin))
             }
-        })
+        }
     }
 
     func getUser(_ userid: String) -> (String, String, String, String, String, String, String, Bool)  {
@@ -95,11 +95,11 @@ open class User {
         var homecity = ""
         var isloggedin: Bool!
 
-        let count = db.scalar(self.user.filter(self.userId == userid).count)
+        let count = try! db.scalar(self.user.filter(self.userId == userid).count)
         if(count == 0) {
             print("")
         } else {
-            let newval = db.pluck(self.user.filter(self.userId == userid))
+            let newval = try! db.pluck(self.user.filter(self.userId == userid))
             Name = newval![name]
             useremail = newval![email]
             loginType = newval![logintype]

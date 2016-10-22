@@ -85,7 +85,7 @@ class ListPhotosViewController: UIViewController {
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.photos = response["data"].array!
                     self.makeLayout()
@@ -122,7 +122,7 @@ class ListPhotosViewController: UIViewController {
         attributedString.append(string)
         photoList.daysLabel.attributedText = attributedString
         photoList.timeLabel.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "HH:mm", date: photo["createdAt"].string!)
-        if photo["isDoneLike"] {
+        if let abc = photo["isDoneLike"].string {
             
             photoList.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
         }

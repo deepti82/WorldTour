@@ -92,7 +92,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
 //                    
 //                }
 //                
-//                else if response["value"] {
+//                else if let abc = response["value"].string {
 //                    
 ////                    print("")
 ////                    uploadView.addButton.setImage(UIImage(data: response), forState: .Normal)
@@ -278,7 +278,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
                 }
                 else {
                     
-                    if response["value"] {
+                    if let abc = response["value"].string {
                         
                         request.editUser(currentUser["_id"].string!, editField: "profilePicture", editFieldValue: response["data"][0].string!, completion: { _ in
                             

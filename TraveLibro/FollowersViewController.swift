@@ -91,7 +91,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                     print("response: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     print("\(response["data"]["following"])")
                     followers = response["data"]["following"].array!
                     self.followerTable.reloadData()
@@ -121,7 +121,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     print("\(response["data"]["following"])")
                     followers = response["data"]["followers"].array!
@@ -219,7 +219,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             let image = filter[(indexPath as NSIndexPath).row]["profilePicture"].string!
             setImage(cell.profileImage, imageName: image)
             
-            if filter[(indexPath as NSIndexPath).row]["following"] {
+            if let abc = filter[(indexPath as NSIndexPath).row]["following"].string {
                 
                 cell.followButton.tag = 1
                 cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
@@ -241,7 +241,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             let image = followers[(indexPath as NSIndexPath).row]["profilePicture"].string!
             setImage(cell.profileImage, imageName: image)
             
-            if followers[(indexPath as NSIndexPath).row]["following"] {
+            if let abc = followers[(indexPath as NSIndexPath).row]["following"].string {
                 
                 cell.followButton.tag = 1
                 cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
@@ -367,7 +367,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 print("error: \(response.error!.localizedDescription)")
                 
             }
-            else if response["value"] {
+            else if let abc = response["value"].string {
                 
                 print("response arrived!")
                 
@@ -439,7 +439,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 print("error: \(response.error!.localizedDescription)")
                 
             }
-            else if response["value"] {
+            else if let abc = response["value"].string {
                 
                 print("response arrived!")
                 

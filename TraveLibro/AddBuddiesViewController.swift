@@ -51,7 +51,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                         
                     }
                         
-                    else if response["value"] {
+                    else if let abc = response["value"].string {
                         
 //                        print("response: \(response.description)")
                         let allControllers = self.navigationController!.viewControllers
@@ -105,7 +105,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                         
                     }
                         
-                    else if response["value"] {
+                    else if let abc = response["value"].string {
                         
                         //                        print("response: \(response.description)")
                         let allControllers = self.navigationController!.viewControllers
@@ -166,7 +166,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let rightButton = UIButton()
         rightButton.setTitle("", for: UIControlState())
-        rightButton.addTarget(self, action: nil, for: .touchUpInside)
+//        rightButton.addTarget(self, action: nil, for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 80, height: 30)
         
         self.customNavigationBar(leftButton, right: rightButton)
@@ -181,7 +181,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                 }
                     
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.allFriendsJson = response["data"]["followers"].array!
                     print("friends: \(self.allFriendsJson)")
@@ -257,7 +257,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     print("error; \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.allFriendsJson = response["data"].array!
                     self.friendsTable.reloadData()

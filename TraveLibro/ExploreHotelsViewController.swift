@@ -264,7 +264,7 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if response["value"] {
+                else if let abc = response["value"].string {
                     
                     self.data = response["data"].array!
                     self.myTableView.reloadData()

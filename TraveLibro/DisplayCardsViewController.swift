@@ -111,7 +111,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                 
                 else {
                     
-                    if response["value"] {
+                    if let abc = response["value"].string {
                         
                         print("response arrived!")
                         
