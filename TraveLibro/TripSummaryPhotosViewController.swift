@@ -29,7 +29,7 @@ class TripSummaryPhotosViewController: UIViewController {
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         gridContainer.alpha = 1
         listContainer.alpha = 0

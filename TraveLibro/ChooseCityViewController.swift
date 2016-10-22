@@ -43,7 +43,7 @@ class ChooseCityViewController: UIViewController, UIPickerViewDelegate, UIPicker
         rightButton.addTarget(self, action: #selector(ChooseCityViewController.selectGender(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
 //        let toolBar = UIToolbar()
 //        toolBar.barStyle = UIBarStyle.Default

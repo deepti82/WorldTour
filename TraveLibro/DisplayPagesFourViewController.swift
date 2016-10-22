@@ -36,7 +36,7 @@ class DisplayPagesFourViewController: UIViewController {
         rightButton.addTarget(self, action: #selector(DisplayPagesFourViewController.nextPage(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 15, y: 8, width: 70, height: 30)
         
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         self.title = "\(fullCircle)    \(fullCircle)    \(fullCircle)     \(fullCircle)"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "FontAwesome", size: 10)!]

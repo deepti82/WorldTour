@@ -34,7 +34,7 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
         rightButton.addTarget(self, action: #selector(self.nextCheckIn(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         
         if whichView == "TL" {

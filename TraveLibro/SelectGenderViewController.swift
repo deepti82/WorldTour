@@ -16,7 +16,7 @@ class SelectGenderViewController: UIViewController {
         rightButton.addTarget(self, action: #selector(SelectGenderViewController.gotoDP(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         print("current gender: \(currentUser["gender"])")
         

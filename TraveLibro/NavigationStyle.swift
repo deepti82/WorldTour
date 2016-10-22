@@ -172,7 +172,7 @@ extension UIViewController {
         }
     }
     
-    func customNavigationBar(_ left: UIButton?, right: UIButton?) {
+    func customNavigationBar(left: UIButton?, right: UIButton?) {
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)

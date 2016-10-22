@@ -50,7 +50,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.addYear(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
             
-            self.customNavigationBar(leftButton, right: rightButton)
+            self.customNavigationBar(left: leftButton, right: rightButton)
             
         }
         
@@ -64,7 +64,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveNPop(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 10, width: 50, height: 30)
             
-            self.customNavigationBar(leftButton, right: rightButton)
+            self.customNavigationBar(left: leftButton, right: rightButton)
             
             self.view.backgroundColor = UIColor.white
             
@@ -79,7 +79,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.chooseCity(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             
-            self.customNavigationBar(leftButton, right: rightButton)
+            self.customNavigationBar(left: leftButton, right: rightButton)
             
             
         }
@@ -91,7 +91,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveCountriesVisited(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 0, width: 70, height: 30)
-            self.customNavigationBar(leftButton, right: rightButton)
+            self.customNavigationBar(left: leftButton, right: rightButton)
             
             
         }

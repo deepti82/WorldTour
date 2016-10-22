@@ -35,7 +35,7 @@ class AddCheckInViewController: UIViewController, UIImagePickerControllerDelegat
         rightButton.addTarget(self, action: #selector(self.previewCheckIn(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         let checkInBox = AddCheckIn(frame: CGRect(x: 0, y: 150, width: self.view.frame.width, height: 300))
         self.view.addSubview(checkInBox)

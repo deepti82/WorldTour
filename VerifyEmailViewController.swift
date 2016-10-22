@@ -25,7 +25,7 @@ class VerifyEmailViewController: UIViewController {
         rightButton.addTarget(self, action: #selector(VerifyEmailViewController.selectNationality(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         let verified = AccountVerified(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200))
         verified.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2 - 50)

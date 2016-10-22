@@ -110,18 +110,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        addPosts.animation.makeOpacity(1.0).animate(0.5)
 //        getJourney()
         
-//        let postButton = UIButton()
-//        postButton.setTitle("Post", forState: .Normal)
-//        postButton.addTarget(self, action: #selector(self.newPost(_:)), forControlEvents: .TouchUpInside)
-//        postButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
-//        
+        let postButton = UIButton()
+        postButton.setTitle("Post", for: .normal)
+        postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
+        postButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
+        
 //        let leftButton = UIButton()
 //        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
 //        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
 //        leftButton.frame = CGRectMake(-10, 0, 30, 30)
-//        
-//        self.customNavigationBar(leftButton, right: postButton)
-//        addView.pos
+
+        self.customNavigationBar(left: nil, right: nil)
+        self.customNavigationBar(left: nil, right: postButton)
         
         
 //        if Reachability.isConnectedToNetwork() {
@@ -980,7 +980,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
-        self.customNavigationBar(leftButton, right: nil)
+        self.customNavigationBar(left: leftButton, right: nil)
         
         getJourney()
         
@@ -2215,7 +2215,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.locationPic = response["data"].string!
                     self.makeCoverPic(response["data"].string!)
@@ -2791,9 +2791,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                         
-                    else if let abc = response["value"].string {
-                        
-                        //                    print("response: \(response)")
+                    else if response["value"].bool! {
                         
                         self.places = response["data"]["placeId"].array!
                         self.locationData = response["data"]["name"].string!
