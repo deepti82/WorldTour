@@ -1,6 +1,6 @@
 
 import UIKit
-import SwiftyJSON
+
 
 var genderValue: String!
 

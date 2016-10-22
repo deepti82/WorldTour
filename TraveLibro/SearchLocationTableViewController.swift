@@ -1,5 +1,5 @@
 import UIKit
-import SwiftyJSON
+
 import CoreLocation
 
 class SearchLocationTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, UIPickerViewDelegate, CLLocationManagerDelegate {

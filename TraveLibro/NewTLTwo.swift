@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import EventKitUI
-import SwiftyJSON
+
 import BSImagePicker
 import Photos
 import CoreLocation
@@ -248,9 +248,9 @@ extension NewTLViewController {
         mainScroll.contentSize.height = self.view.frame.height
         mainScroll.addSubview(refreshControl)
         
-        let line = drawLine(frame: CGRect(x: self.view.frame.size.width/2, y: 17.5, width: 10, height: mainScroll.frame.height))
-        line.backgroundColor = UIColor.clear
-        mainScroll.addSubview(line)
+//        let line = drawLine(frame: CGRect(x: self.view.frame.size.width/2, y: 17.5, width: 10, height: mainScroll.frame.height))
+//        line.backgroundColor = UIColor.clear
+//        mainScroll.addSubview(line)
         
         otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 600))
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
@@ -266,7 +266,7 @@ extension NewTLViewController {
         if !isJourneyOngoing {
             
             mainScroll.animation.makeFrame(CGRect(x: 0, y: mainScroll.frame.origin.y - height, width: mainScroll.frame.width, height: mainScroll.frame.height)).animate(0.3)
-            line.animation.makeFrame(CGRect(x: self.view.frame.size.width/2, y: 17.5, width: line.frame.width, height: line.frame.height)).animate(0.3)
+//            line.animation.makeFrame(CGRect(x: self.view.frame.size.width/2, y: 17.5, width: line.frame.width, height: line.frame.height)).animate(0.3)
             
         }
         else {

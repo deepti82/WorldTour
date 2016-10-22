@@ -8,7 +8,7 @@
 
 import Foundation
 //import Alamofire
-//import SwiftyJSON
+
 //
 //let adminUrl2 = "http://testcorp.medimanage.com/api/v1/"
 //

@@ -1,5 +1,5 @@
 import UIKit
-import SwiftyJSON
+
 import SwiftHTTP
 import CoreLocation
 

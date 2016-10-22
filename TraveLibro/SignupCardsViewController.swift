@@ -72,9 +72,10 @@ class SignupCardsViewController: UIViewController {
                     print("response: \(response.error?.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
-                    //                    currentUser = response
+                    currentUser = response["data"]
+                    
                 }
                 else {
                     

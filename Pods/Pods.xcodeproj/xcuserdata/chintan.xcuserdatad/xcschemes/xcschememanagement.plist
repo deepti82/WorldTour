@@ -8,99 +8,61 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>BSGridCollectionViewLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>BSImagePicker-BSImagePicker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>BSImagePicker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>DKChainableAnimationKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>PageMenu.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>Pods-TraveLibro.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
 		</dict>
 		<key>SQLite.swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>9</integer>
 		</dict>
 		<key>Simplicity.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>SwiftHTTP.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>10</integer>
-		</dict>
-		<key>SwiftyJSON.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>11</integer>
 		</dict>
 		<key>TabPageViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>12</integer>
 		</dict>
 		<key>UIImageViewModeScaleAspect.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>13</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -115,37 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>21C461B0CAD90DE64B07A5D212C5F829</key>
+		<key>320EB6386E217C3C3B6021F3DECFCEAC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>398EBE7DF7CFDD29FB70ED563D22E3CF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3C08A436393373DDD94B030F5676B348</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>59F801EF3339A2E7246E14768B35F484</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5B3C58EDAD0F379F37147B3524699F5A</key>
+		<key>7468AA18028913DC4D579DD0FA958DFB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7FB5811D0A0CD2F8F76795ABE81C101D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -165,12 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C5D3EA0B355D11DC4A493AC363C2D84A</key>
+		<key>F7DE5171AA3C53DA4E4A078B795C78EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F7DE5171AA3C53DA4E4A078B795C78EE</key>
+		<key>F9BAE1A284330DFC8F103F94044C0A76</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA0DA892DD3A2B2B7E547304E7F0B61C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FC36C5F7FD9234FE38CA2ADC284309E3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

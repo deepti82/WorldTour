@@ -32,6 +32,8 @@
 		1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E431CCB668C007EB5BD /* OrangeButton.swift */; };
 		1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */; };
 		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
+		36006DB11DBB346600C7F44B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36006DB01DBB346600C7F44B /* SwiftyJSON.swift */; };
+		36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */; };
 		3ABFD8DE1DA8CA2500A51034 /* ChangeCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */; };
 		3ABFD8E01DA8D4FC00A51034 /* ChangeCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABFD8DF1DA8D4FC00A51034 /* ChangeCity.swift */; };
 		3ABFD8E31DA929D700A51034 /* RatingCheckIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFD8E21DA929D700A51034 /* RatingCheckIn.xib */; };
@@ -382,6 +384,8 @@
 		1A944E431CCB668C007EB5BD /* OrangeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrangeButton.swift; sourceTree = "<group>"; };
 		1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JourneyTitleView.xib; sourceTree = "<group>"; };
 		1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
+		36006DB01DBB346600C7F44B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeCity.xib; sourceTree = "<group>"; };
 		3ABFD8DF1DA8D4FC00A51034 /* ChangeCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCity.swift; sourceTree = "<group>"; };
 		3ABFD8E21DA929D700A51034 /* RatingCheckIn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingCheckIn.xib; sourceTree = "<group>"; };
@@ -1849,8 +1853,10 @@
 			children = (
 				C2A2E7941D96858E005084A7 /* LoadingOverlay.swift */,
 				C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */,
+				36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */,
 				C2DCAE401D18063E00B35331 /* NavigationStyle.swift */,
 				C26B4DE61D13C88900213055 /* SlideMenuViewController.swift */,
+				36006DB01DBB346600C7F44B /* SwiftyJSON.swift */,
 				C2DD03271CEB4D0F001878DD /* ImageMask.swift */,
 				C284277B1CE07445003672E9 /* Styles.swift */,
 				C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */,
@@ -2337,6 +2343,7 @@
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
+				36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */,
 				3AF187061D7858D900A86BC1 /* forDPThree.swift in Sources */,
 				C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */,
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
@@ -2426,6 +2433,7 @@
 				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,
 				C24846381D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift in Sources */,
 				C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */,
+				36006DB11DBB346600C7F44B /* SwiftyJSON.swift in Sources */,
 				C26730211D27A21D00F2C822 /* AddNewOTG.swift in Sources */,
 				C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */,
 				C2A6E25F1CE9C8D900D3F845 /* TripInfoView.swift in Sources */,

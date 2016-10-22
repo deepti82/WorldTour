@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftyJSON
+
 
 class NotificationSubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftHTTP
-import SwiftyJSON
+
 
 class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     

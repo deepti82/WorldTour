@@ -8,31 +8,31 @@
 
 import UIKit
 import EventKitUI
-import SwiftyJSON
+
 import BSImagePicker
 //import DKImagePickerController
 import Photos
 import CoreLocation
 import ActiveLabel
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
+//fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+//  switch (lhs, rhs) {
+//  case let (l?, r?):
+//    return l < r
+//  case (nil, _?):
+//    return true
+//  default:
+//    return false
+//  }
+//}
+//
+//fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+//  switch (lhs, rhs) {
+//  case let (l?, r?):
+//    return l > r
+//  default:
+//    return rhs < lhs
+//  }
+//}
 
 
 var isJourneyOngoing = false
@@ -584,7 +584,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.detectLocation(nil)
                     
@@ -1143,7 +1143,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        if post["photos"] != nil && post["photos"].array?.count > 0 {
+        if post["photos"] != nil && post["photos"].array!.count > 0 {
             
             photos = post["photos"].array!
             checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
@@ -1423,7 +1423,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
-                    if response["data"]["photos"] != nil && response["data"]["photos"].array?.count > 0 {
+                    if response["data"]["photos"] != nil && response["data"]["photos"].array!.count > 0 {
                         
                         self.addView.photosFinalView.isHidden = false
                         self.addView.photosIntialView.isHidden = true
@@ -1437,7 +1437,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
-                    if response["data"]["videos"] != nil && response["data"]["videos"].array?.count > 0 {
+                    if response["data"]["videos"] != nil && response["data"]["videos"].array!.count > 0 {
                         
                         self.addView.videosFinalView.isHidden = false
                         self.addView.videosInitialView.isHidden = true
@@ -1703,12 +1703,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             showPost("CheckIn", post: post)
         }
-        else if post["photos"] != nil && post["photos"].array?.count > 0 {
+        else if post["photos"] != nil && post["photos"].array!.count > 0 {
             
             showPost("Photos", post: post)
             
         }
-        else if post["videos"] != nil && post["videos"].array?.count > 0 {
+        else if post["videos"] != nil && post["videos"].array!.count > 0 {
             
             showPost("Videos", post: post)
         }
@@ -1865,7 +1865,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         print("error: \(response.error?.localizedDescription)")
                     }
                         
-                    else if let abc = response["value"].string {
+                    else if response["value"].bool! {
                         
                         print("response of add posts")
                         self.journeyId = response["data"]["uniqueId"].string!

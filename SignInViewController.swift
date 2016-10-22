@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftHTTP
-import SwiftyJSON
+
 import TwitterKit
 
 var currentUser: JSON!

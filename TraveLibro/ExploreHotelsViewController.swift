@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftyJSON
+
 
 class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

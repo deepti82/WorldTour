@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftyJSON
+
 
 class SummarySubViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 

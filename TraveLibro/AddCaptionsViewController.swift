@@ -8,7 +8,7 @@
 
 import UIKit
 import Photos
-import SwiftyJSON
+
 
 class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     

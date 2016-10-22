@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftyJSON
+
 
 class AddRating: UIView, UITextViewDelegate {
     

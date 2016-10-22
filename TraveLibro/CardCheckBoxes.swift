@@ -1,5 +1,5 @@
 import UIKit
-import SwiftyJSON
+
 import SwiftHTTP
 
 class CardCheckBoxes: UIView {

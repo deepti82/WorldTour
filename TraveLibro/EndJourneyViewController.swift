@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftyJSON
+
 
 class EndJourneyViewController: UIViewController {
 
@@ -53,7 +53,7 @@ class EndJourneyViewController: UIViewController {
         let rightButton = UIButton()
         rightButton.setTitle("Done", for: UIControlState())
         rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
-        rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: Selector(("doneEndJourney:")), for: .touchUpInside)
         rightButton.frame = CGRect(x: 10, y: 0, width: 70, height: 30)
         self.customNavigationBar(leftButton, right: rightButton)
         
@@ -140,7 +140,7 @@ class EndJourneyViewController: UIViewController {
                 
                 print("error: \(response.error?.localizedDescription)")
             }
-            else if let abc = response["value"].string {
+            else if response["value"].bool! {
                 
                 for image in response["data"].array! {
                     
@@ -153,7 +153,7 @@ class EndJourneyViewController: UIViewController {
                 }
                 else {
                     
-                   self.makeCoverPicture(self.journey["startLocationPic"].string!)
+                   self.makeCoverPicture(image: self.journey["startLocationPic"].string!)
                     
                 }
                 
@@ -174,11 +174,11 @@ class EndJourneyViewController: UIViewController {
         let randomIndex = Int(arc4random_uniform(UInt32(journeyImages.count)))
         print(journeyImages[randomIndex])
         self.coverImage = self.journeyImages[randomIndex]
-        makeCoverPicture(self.journeyImages[randomIndex])
+        makeCoverPicture(image: self.journeyImages[randomIndex])
         
     }
     
-    func makeCoverPicture (_ image: String) {
+    func makeCoverPicture (image: String) {
         
         DispatchQueue.main.async(execute: {
             
@@ -188,7 +188,7 @@ class EndJourneyViewController: UIViewController {
         
     }
     
-    func doneEndJourney(_ sender: UIButton) {
+    func doneEndJourney(sender: UIButton) {
         
         request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
             
@@ -199,7 +199,7 @@ class EndJourneyViewController: UIViewController {
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     print("response arrived!")
                     self.goBack()

@@ -8,26 +8,26 @@
 
 import UIKit
 import DKChainableAnimationKit
-import SwiftyJSON
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
+//fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+//  switch (lhs, rhs) {
+//  case let (l?, r?):
+//    return l < r
+//  case (nil, _?):
+//    return true
+//  default:
+//    return false
+//  }
+//}
+//
+//fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+//  switch (lhs, rhs) {
+//  case let (l?, r?):
+//    return l > r
+//  default:
+//    return rhs < lhs
+//  }
+//}
 
 
 var doRemove: Bool = true
@@ -119,7 +119,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     
                 }
                     
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.allCount = response["data"]
                     self.setCount()
@@ -548,7 +548,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         
                     }
                         
-                    else if response["data"]["bucketList_count"].int > 0 {
+                    else if response["data"]["bucketList_count"] != nil {
                         
                         let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
                         bucketVC.whichView = "BucketList"
@@ -596,7 +596,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                         
                     }
                         
-                    else if response["data"]["countriesVisited_count"].int > 0 {
+                    else if response["data"]["countriesVisited_count"] != nil {
                         
                         let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
                         bucketVC.whichView = "CountriesVisited"

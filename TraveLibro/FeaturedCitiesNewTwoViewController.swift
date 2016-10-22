@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftyJSON
+
 
 class FeaturedCitiesNewTwoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftyJSON
+
 
 var trialVariable: [JSON] = []
 var getCountries: [JSON]!

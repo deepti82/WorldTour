@@ -223,8 +223,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             if vc.isKind(of: EndJourneyViewController.self) {
                 
                 let endvc = vc as! EndJourneyViewController
-                endvc.coverImage = images[index] as! String
-                endvc.makeCoverPicture(images[index] as! String)
+                endvc.coverImage = images[index] 
+                endvc.makeCoverPicture(image: images[index] as! String)
                 self.navigationController!.popToViewController(endvc, animated: true)
                 
             }

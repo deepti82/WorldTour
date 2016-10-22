@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftyJSON
+
 
 class BucketListTableViewController: UITableViewController  {
     

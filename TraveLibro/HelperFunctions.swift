@@ -9,7 +9,6 @@
 import UIKit
 import Simplicity
 import SwiftHTTP
-import SwiftyJSON
 import TwitterKit
 
 func verifyUrl (_ urlString: String?) -> Bool {
@@ -150,7 +149,7 @@ class SocialLoginClass: UIViewController {
                                     
                                 else {
                                     
-                                    if let abc = response["value"].string {
+                                    if response["value"].bool! {
                                         
                                         currentUser = response["data"]
                                         //                                        AppDelegate.createMenuView()

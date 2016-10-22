@@ -11,6 +11,9 @@ import UIKit
 class startOTGView: UIView {
 
     
+    @IBOutlet weak var lineOne: drawLine!
+    @IBOutlet weak var lineTwo: drawLine!
+    @IBOutlet weak var lineThree: drawLine!
     @IBOutlet weak var journeyBuddiesCount: UILabel!
     @IBOutlet var journeyBuddiesDetail: [UIImageView]!
     @IBOutlet var journeyCategoryDetails: [UIImageView]!
@@ -95,6 +98,10 @@ class startOTGView: UIView {
         addBuddiesButton.layer.cornerRadius = 5
         addBuddiesButton.layer.borderColor = UIColor.white.cgColor
         addBuddiesButton.layer.borderWidth = 1.0
+        
+        lineOne.backgroundColor = UIColor.clear
+        lineTwo.backgroundColor = UIColor.clear
+        lineThree.backgroundColor = UIColor.clear
         
     }
     
