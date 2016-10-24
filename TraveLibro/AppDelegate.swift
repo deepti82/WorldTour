@@ -20,6 +20,7 @@ let mainOrangeColor = UIColor(red: 252/255, green: 80/255, blue: 71/255, alpha: 
 let lightOrangeColor = UIColor(red: 252/255, green: 80/255, blue: 71/255, alpha: 1) // #FC5047
 let mainGreenColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1) // #4BCBBB
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
+let avenirBold = UIFont(name: "Avenir-Medium", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 
 var faicon = [String: UInt32]()

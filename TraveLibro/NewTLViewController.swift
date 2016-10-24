@@ -1085,25 +1085,28 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            
 //        }
         
-        var thoughts = ""
+        let thoughts : NSMutableAttributedString = NSMutableAttributedString(string: "", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)])
         var photos: [JSON] = []
 //        let tags = ActiveLabel()
         
         if post["thoughts"] != nil && post["thoughts"].string != "" {
             
-            thoughts = "\(post["thoughts"]) — with \(post["buddies"][0]["name"])"
+            let buddyName = NSAttributedString(string: "\(post["thoughts"]) — with \(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            thoughts.append(buddyName)
             
         }
         
         if post["buddies"].array!.count > 1 {
             
-            thoughts = thoughts + " and \(post["buddies"].array!.count - 1) other(s)"
+            let buddyCount = NSAttributedString(string: " and \(post["buddies"].array!.count - 1) other(s)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            thoughts.append(buddyCount)
             
         }
         
         if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
             
-            thoughts = thoughts + " at \(post["checkIn"]["location"])"
+            let buddyLocation = NSAttributedString(string: " at \(post["checkIn"]["location"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            thoughts.append(buddyLocation)
             latestCity = post["checkIn"]["city"].string!
             
         }
@@ -1136,7 +1139,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("is edit: \(isEdit), postid: \(post["_id"].string!)")
         
-        checkIn.photosTitle.text = thoughts
+        checkIn.photosTitle.attributedText = thoughts
         for image in checkIn.otherPhotosStack {
             
             image.isHidden = true
