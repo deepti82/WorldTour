@@ -119,7 +119,7 @@ class TimelineScroll: UIView {
         videoLabel.textAlignment = .center
         photosFive.mainPhoto.addSubview(videoLabel)
         
-        let byeFriend = SayBye(frame: CGRect(x: 0, y: 0, width: 250, height: 210))
+        let byeFriend = SayBye(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
         byeFriend.center = CGPoint(x: self.frame.size.width/2, y: 4400)
         self.addSubview(byeFriend)
         

@@ -7,16 +7,16 @@
 //
 
 import UIKit
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
+//fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+//  switch (lhs, rhs) {
+//  case let (l?, r?):
+//    return l < r
+//  case (nil, _?):
+//    return true
+//  default:
+//    return false
+//  }
+//}
 
 
 class EachItineraryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -202,7 +202,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
                     let prevIndex = isSelectedIndex
                     expandParent(false, index: isSelectedIndex!)
                     isExpanded = true
-                    if(prevIndex < (indexPath as NSIndexPath).row) {
+                    if(prevIndex! < (indexPath as NSIndexPath).row) {
                         isSelectedIndex = (indexPath as NSIndexPath).row - childCells
                         print("in if statement 2")
                     } else {

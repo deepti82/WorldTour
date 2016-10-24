@@ -1,6 +1,5 @@
 PODS:
   - ActiveLabel (0.7.0)
-  - Alamofire (4.0.1)
   - BSGridCollectionViewLayout (1.2.0)
   - BSImagePicker (2.5.0):
     - BSGridCollectionViewLayout (~> 1.2.0)
@@ -8,10 +7,11 @@ PODS:
   - DKChainableAnimationKit (2.0.0)
   - Fabric (1.6.10)
   - Simplicity (2.0.1)
-  - SQLite.swift (0.11.0):
-    - SQLite.swift/standard (= 0.11.0)
-  - SQLite.swift/standard (0.11.0)
+  - SQLite.swift (0.11.1):
+    - SQLite.swift/standard (= 0.11.1)
+  - SQLite.swift/standard (0.11.1)
   - SwiftHTTP (2.0.1)
+  - SwiftyJSON (3.1.1)
   - TabPageViewController (0.2.1)
   - TwitterCore (2.5.0):
     - Fabric
@@ -21,13 +21,13 @@ PODS:
 
 DEPENDENCIES:
   - ActiveLabel (from `https://github.com/optonaut/ActiveLabel.swift.git`, branch `master`)
-  - Alamofire (~> 4.0)
   - BSImagePicker (~> 2.4)
   - DKChainableAnimationKit (from `https://github.com/Draveness/DKChainableAnimationKit.git`, branch `master`)
   - Fabric
   - Simplicity
-  - SQLite.swift (~> 0.11.0)
+  - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `prepare-0.11.1`)
   - SwiftHTTP (from `https://github.com/daltoniam/SwiftHTTP.git`, branch `master`)
+  - SwiftyJSON
   - TabPageViewController (from `https://github.com/EndouMari/TabPageViewController.git`, branch `swift_3`)
   - TwitterCore
   - TwitterKit
@@ -39,6 +39,9 @@ EXTERNAL SOURCES:
   DKChainableAnimationKit:
     :branch: master
     :git: https://github.com/Draveness/DKChainableAnimationKit.git
+  SQLite.swift:
+    :branch: prepare-0.11.1
+    :git: https://github.com/stephencelis/SQLite.swift.git
   SwiftHTTP:
     :branch: master
     :git: https://github.com/daltoniam/SwiftHTTP.git
@@ -53,6 +56,9 @@ CHECKOUT OPTIONS:
   DKChainableAnimationKit:
     :commit: 378b94a853aa946c402fa94649c5493079b5f8d0
     :git: https://github.com/Draveness/DKChainableAnimationKit.git
+  SQLite.swift:
+    :commit: d95a518178570c805bb18b971d264b8a48edbcf5
+    :git: https://github.com/stephencelis/SQLite.swift.git
   SwiftHTTP:
     :commit: dcccd4d184274fc3a81f45b6c72d9684f6a12c71
     :git: https://github.com/daltoniam/SwiftHTTP.git
@@ -62,19 +68,19 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ActiveLabel: eb405c5b99275be52fac161f7a55cab1dd672c54
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
   BSImagePicker: 9ad3385318ca0db7e792b51ea8929cfc39284c56
   DKChainableAnimationKit: 20401b3ad31b57d90548bfdb214077f2d2d79d49
   Fabric: c73f371ee543e3f0b80608f2674750e4910d1669
   Simplicity: 58ce0c6569baf45e48ccd25432274ae899097517
-  SQLite.swift: 9a26273607d3077a2e5a8d33486e9989f8404c7d
+  SQLite.swift: 1af00c95130fba962653aa136e3ecb0b8890796b
   SwiftHTTP: 6d57b54ee84d9ad9cf81b6bc1c4cae593e3f6329
+  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   TabPageViewController: a4b46480e21251000962abad071b538679dbc2ad
   TwitterCore: 95c46af93112768a7983bd370d66023553601d01
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 7fce594b7ccacbf6c97a9f12b742cc0cfd45be94
+PODFILE CHECKSUM: b91735cbea97e9a0359768f3341d552a1e5edbb5
 
 COCOAPODS: 1.1.1

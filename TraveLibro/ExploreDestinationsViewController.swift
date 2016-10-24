@@ -145,14 +145,10 @@ class ExploreDestinationsViewController: UIViewController, UITableViewDataSource
         
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        guard let tableViewCell = cell as? ExploreDestinationsTableViewCell else { return }
-        
+        let tableViewCell = cell as! ExploreDestinationsTableViewCell
 //        tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: (indexPath as NSIndexPath).row)
-       
-        
-        
         
     }
     

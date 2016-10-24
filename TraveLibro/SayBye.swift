@@ -10,19 +10,25 @@ import UIKit
 
 class SayBye: UIView {
 
+    @IBOutlet weak var line: drawLine!
     @IBOutlet weak var byeImage: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var textView: UIView!
+    @IBOutlet weak var profileName: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        textView.backgroundColor = mainBlueColor
+//        textView.backgroundColor = mainBlueColor
         textView.layer.cornerRadius = 5
-        timestamp.textColor = UIColor(red: 105/255, green: 147/255, blue: 171/255, alpha: 1)
-        profileImageView.layer.cornerRadius = 20
-        profileImageView.layer.zPosition = 2
-        byeImage.layer.zPosition = 3
+        textView.clipsToBounds = true
+        line.backgroundColor = UIColor.clear
+        
+//        timestamp.textColor = UIColor(red: 105/255, green: 147/255, blue: 171/255, alpha: 1)
+//        profileImageView.layer.cornerRadius = 20
+//        profileImageView.layer.zPosition = 2
+//        byeImage.layer.zPosition = 3
     }
     
     required init?(coder aDecoder: NSCoder) {

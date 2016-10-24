@@ -8,28 +8,28 @@
 
 import SQLite
 
-open class User {
+public class User {
 
-    open let db = AppDelegate.getDatabase()
+    let db = AppDelegate.getDatabase()
 
-    open let user = Table("user")
+    let user = Table("user")
 
-    open let id = Expression<Int64>("id")
-    open let userId = Expression<String>("userid")
-    open let name = Expression<String>("name")
-    open let email = Expression<String>("email")
-    open let profilePicture = Expression<String?>("profilePicture")
+    let id = Expression<Int64>("id")
+    let userId = Expression<String>("userid")
+    let name = Expression<String>("name")
+    let email = Expression<String>("email")
+    let profilePicture = Expression<String?>("profilePicture")
 
-    open let logintype = Expression<String>("loginType")
-    open let socialId = Expression<String>("socialId")
+    let logintype = Expression<String>("loginType")
+    let socialId = Expression<String>("socialId")
 
-    open let userBadge = Expression<String?>("userBadge")
-    open let travelConfig = Expression<String?>("travelConfig")
+    let userBadge = Expression<String?>("userBadge")
+    let travelConfig = Expression<String?>("travelConfig")
 
-    open let homeCountry = Expression<String?>("homeCountry")
-    open let homeCity = Expression<String?>("homeCity")
+    let homeCountry = Expression<String?>("homeCountry")
+    let homeCity = Expression<String?>("homeCity")
 
-    open let isLoggedIn = Expression<Bool>("isLoggedIn")
+    let isLoggedIn = Expression<Bool>("isLoggedIn")
 
     init() {
         try! db.run(user.create(ifNotExists: true) { t in
@@ -109,6 +109,7 @@ open class User {
             homecity = newval![homeCity]!
             isloggedin = newval![isLoggedIn]
             //print(firstName, lastName, useremail, userdob, usergender, usermobile, userstatus, loginType, facebookid, twitterid, googleid, instagramid, userbadgeImage, userbadgeName, homecountry, homecity, isloggedin)
+            
         }
         return (Name, useremail, loginType, socialid, userbadge, homecountry, homecity, isloggedin)
     }

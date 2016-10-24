@@ -90,6 +90,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.navigationController?.pushViewController(end, animated: true)
         
     }
+    
 //    @IBOutlet weak var endJourney: UIButton!
     @IBAction func infoCircle(_ sender: AnyObject) {
         
@@ -126,11 +127,22 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
 //        if Reachability.isConnectedToNetwork() {
         
-        
+        var flag = 0
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
         
         backView.frame = self.view.frame
+        
+        for subview in self.view.subviews {
+            
+            if subview.tag == 8 {
+                
+                flag = 1
+                
+            }
+            
+        }
+        
         self.view.addSubview(backView)
         
         darkBlur = UIBlurEffect(style: .dark)
@@ -141,17 +153,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         blurView.isUserInteractionEnabled = false
         backView.addSubview(blurView)
         
-            print("in the add posts function")
-            uploadedphotos = []
-            newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-            backView.addSubview(newScroll)
-            
-            addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-            print("add view: \(addView)")
-            displayFriendsCount()
-            newScroll.addSubview(addView)
-            newScroll.contentSize.height = self.view.frame.height
-            addLocationTapped(nil)
+        print("in the add posts function")
+        uploadedphotos = []
+        newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        backView.addSubview(newScroll)
+        
+        addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        print("add view: \(addView)")
+        displayFriendsCount()
+        newScroll.addSubview(addView)
+        newScroll.contentSize.height = self.view.frame.height
+        addLocationTapped(nil)
             
             
 //        }
@@ -974,7 +986,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getBackGround(self)
+        getDarkBackGround(self)
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -1355,7 +1367,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        let buddy = BuddyOTG(frame: CGRect(x: 0, y: 20, width: 245, height: 300))
+        let buddy = BuddyOTG(frame: CGRect(x: 0, y: 20, width: 245, height: 260))
         buddy.center.x = self.view.center.x
         buddy.profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])&width=500")!))
         buddy.joinJourneytext.text = "\(post["user"]["name"]) has joined this journey"
@@ -1397,7 +1409,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.newScroll.isHidden = false
                     self.backView.isHidden = false

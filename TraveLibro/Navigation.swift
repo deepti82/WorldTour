@@ -1,7 +1,7 @@
 import UIKit
 
 import SwiftHTTP
-import Alamofire
+//import Alamofire
 
 let apiUrl = "http://104.155.207.185:92/api/"
 var adminUrl = "http://192.168.2.8:1337/api/"

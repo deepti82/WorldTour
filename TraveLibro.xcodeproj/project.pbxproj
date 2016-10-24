@@ -11,8 +11,6 @@
 		1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3E4DC71CD398BB00105C3D /* TripSummaryProfile.swift */; };
 		1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */; };
 		1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */; };
-		1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4CA1281CCE234200EE9A90 /* InfoCircle.xib */; };
-		1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4CA12A1CCE239000EE9A90 /* InfoCircle.swift */; };
 		1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A65E7A11CD72EB3009374DA /* fontawesome-webfont.ttf */; };
 		1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A65E7A31CD72F1F009374DA /* Avenir-Black.ttf */; };
 		1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A65E7A41CD72F1F009374DA /* Avenir-Heavy.ttf */; };
@@ -329,7 +327,6 @@
 		C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E121D54875D0034DE97 /* QuickItineraryFive.swift */; };
 		C2FA1E171D5495870034DE97 /* QuickItinerariesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E161D5495870034DE97 /* QuickItinerariesViewController.swift */; };
 		C2FA1E1B1D5498380034DE97 /* QIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E1A1D5498380034DE97 /* QIViewController.swift */; };
-		C2FA99301D53681C009D0DF2 /* NewRest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA992F1D53681C009D0DF2 /* NewRest.swift */; };
 		C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */; };
 		C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */; };
 /* End PBXBuildFile section */
@@ -357,8 +354,6 @@
 		1A3E4DC71CD398BB00105C3D /* TripSummaryProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryProfile.swift; sourceTree = "<group>"; };
 		1A4CA11D1CCE180C00EE9A90 /* AddCircle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCircle.xib; sourceTree = "<group>"; };
 		1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCircle.swift; sourceTree = "<group>"; };
-		1A4CA1281CCE234200EE9A90 /* InfoCircle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoCircle.xib; sourceTree = "<group>"; };
-		1A4CA12A1CCE239000EE9A90 /* InfoCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoCircle.swift; sourceTree = "<group>"; };
 		1A65E7A11CD72EB3009374DA /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		1A65E7A31CD72F1F009374DA /* Avenir-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Black.ttf"; sourceTree = "<group>"; };
 		1A65E7A41CD72F1F009374DA /* Avenir-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Heavy.ttf"; sourceTree = "<group>"; };
@@ -577,7 +572,6 @@
 		C28521B91D365FDF001EF251 /* PagerTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagerTabViewController.swift; sourceTree = "<group>"; };
 		C2873E8B1D9E8E510001431B /* BuddyLeaves.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuddyLeaves.xib; sourceTree = "<group>"; };
 		C2873E8D1D9E90580001431B /* BuddyLeaves.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyLeaves.swift; sourceTree = "<group>"; };
-		C2889D341DB0C16500B302AF /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		C2889D391DB0E91700B302AF /* ShowRating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShowRating.xib; path = ../ShowRating.xib; sourceTree = "<group>"; };
 		C2889D3B1DB0E98800B302AF /* ShowRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowRating.swift; sourceTree = "<group>"; };
 		C28A923E1D0E7E2E00CFEC7A /* HotelTypeSelect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelTypeSelect.swift; sourceTree = "<group>"; };
@@ -685,7 +679,6 @@
 		C2FA1E121D54875D0034DE97 /* QuickItineraryFive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryFive.swift; sourceTree = "<group>"; };
 		C2FA1E161D5495870034DE97 /* QuickItinerariesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItinerariesViewController.swift; sourceTree = "<group>"; };
 		C2FA1E1A1D5498380034DE97 /* QIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QIViewController.swift; sourceTree = "<group>"; };
-		C2FA992F1D53681C009D0DF2 /* NewRest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRest.swift; sourceTree = "<group>"; };
 		C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityOTG.xib; sourceTree = "<group>"; };
 		C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityOTG.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -732,15 +725,6 @@
 				1A4CA11F1CCE189200EE9A90 /* AddCircle.swift */,
 			);
 			name = AddCircle;
-			sourceTree = "<group>";
-		};
-		1A4CA1271CCE22CF00EE9A90 /* InfoCircle */ = {
-			isa = PBXGroup;
-			children = (
-				1A4CA1281CCE234200EE9A90 /* InfoCircle.xib */,
-				1A4CA12A1CCE239000EE9A90 /* InfoCircle.swift */,
-			);
-			name = InfoCircle;
 			sourceTree = "<group>";
 		};
 		1A944DFB1CCB4567007EB5BD = {
@@ -844,7 +828,6 @@
 				C28A92401D0E7E4A00CFEC7A /* HotelTypeSelect */,
 				C2D67FF81CE5FDA000454A46 /* IconButton */,
 				C24F84FC1D005A5F002EA203 /* ImageCheckbox */,
-				1A4CA1271CCE22CF00EE9A90 /* InfoCircle */,
 				C24F84FA1D005A30002EA203 /* InProfileOTGPost */,
 				C24B455D1D0ACB86002EA009 /* Itineraries */,
 				1A944E451CCB8862007EB5BD /* JourneyTitleView */,
@@ -1004,7 +987,6 @@
 		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C2889D341DB0C16500B302AF /* SwiftyJSON.framework */,
 				3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */,
 				7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */,
 				163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */,
@@ -1018,7 +1000,6 @@
 				C20163DF1D26911C00A2F70B /* UserModel.swift */,
 				C27C48081DB5ECDF00330ABF /* PostModel.swift */,
 				C2488AB51D51D0E100FD5306 /* Navigation.swift */,
-				C2FA992F1D53681C009D0DF2 /* NewRest.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2008,7 +1989,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Wohlig Technology";
 				TargetAttributes = {
 					1A944E031CCB4567007EB5BD = {
@@ -2082,7 +2063,6 @@
 				C28A92431D0E839B00CFEC7A /* FilterRestaurants.xib in Resources */,
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
 				C258A3391D6C83D600664CF7 /* ExistingAccountPopup.xib in Resources */,
-				1A4CA1291CCE234200EE9A90 /* InfoCircle.xib in Resources */,
 				C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */,
 				C20163E21D26972B00A2F70B /* ProfileImage.xib in Resources */,
 				C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */,
@@ -2447,12 +2427,10 @@
 				C24F84F91D00555C002EA203 /* NoCountriesVisited.swift in Sources */,
 				C24909B61D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift in Sources */,
 				C20163E41D26997600A2F70B /* ProfileImage.swift in Sources */,
-				1A4CA12B1CCE239000EE9A90 /* InfoCircle.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
 				C25C27EF1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift in Sources */,
 				3AF187101D786B2300A86BC1 /* DisplayPagesThreeViewController.swift in Sources */,
 				C2E159BB1D740A8300A5B721 /* EmptyScreenView.swift in Sources */,
-				C2FA99301D53681C009D0DF2 /* NewRest.swift in Sources */,
 				C24EB2EF1D30DE2E00EB95F6 /* NoFollowingViewController.swift in Sources */,
 				C2A6E26D1CE9E2DB00D3F845 /* AddFriendOTG.swift in Sources */,
 				C24B45611D0ADAEB002EA009 /* FilterItineraries.swift in Sources */,
@@ -2562,6 +2540,7 @@
 		1A944E2A1CCB4567007EB5BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2573,8 +2552,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Chintan Shah (KUM8BK88PL)";
@@ -2616,6 +2597,7 @@
 		1A944E2B1CCB4567007EB5BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2627,8 +2609,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chintan Shah (YVWVDTRG4B)";
@@ -2655,6 +2639,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/.build/debug Sources/CSQLite/";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2663,6 +2648,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2689,6 +2675,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BAE3F40D9DEC49A23FC2BE7B /* Pods-TraveLibro.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

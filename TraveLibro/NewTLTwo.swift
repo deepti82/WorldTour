@@ -78,10 +78,10 @@ extension NewTLViewController {
             
         }
         
-        let buddyView = BuddyLeaves(frame: CGRect(x: 0, y: 10, width: 300, height: 215))
+        let buddyView = SayBye(frame: CGRect(x: 0, y: 10, width: 300, height: 250))
         buddyView.profileName.text = post["user"]["name"].string!
-        buddyView.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
-        makeTLProfilePicture(buddyView.profilePicture)
+        buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
+        makeTLProfilePicture(buddyView.profileImageView)
         layout.addSubview(buddyView)
         addHeightToLayout(buddyView.frame.height)
         

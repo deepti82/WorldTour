@@ -22,11 +22,13 @@
 // THE SOFTWARE.
 //
 
+
 precedencegroup ColumnAssignment {
     associativity: left
     assignment: true
     lowerThan: AssignmentPrecedence
 }
+
 
 infix operator <- : ColumnAssignment
 

@@ -9,25 +9,25 @@
 import Foundation
 import SQLite
 
-public let db = AppDelegate.getDatabase()
+let db = AppDelegate.getDatabase()
 
-open class Post {
+public class Post {
     
-    open let post = Table("Post")
+    let post = Table("Post")
     
     // id, userid, journeyuniqueid, posttype, photos[], videos[], thought, checkin[], buddies[], iscompleted
     
-    open let id = Expression<Int64>("id")
-    open let userId = Expression<String>("userid")
-    open let journeyId = Expression<String>("name")
-    open let type = Expression<String>("postType")
-    open let date = Expression<String>("date")
-    open let thoughts = Expression<String?>("thoughts")
-    open let location = Expression<String>("location")
-    open let category = Expression<String>("category")
-    open let country = Expression<String>("country")
-    open let city = Expression<String>("city")
-    open let hasCompleted = Expression<Bool>("hasCompleted")
+    let id = Expression<Int64>("id")
+    let userId = Expression<String>("userid")
+    let journeyId = Expression<String>("name")
+    let type = Expression<String>("postType")
+    let date = Expression<String>("date")
+    let thoughts = Expression<String?>("thoughts")
+    let location = Expression<String>("location")
+    let category = Expression<String>("category")
+    let country = Expression<String>("country")
+    let city = Expression<String>("city")
+    let hasCompleted = Expression<Bool>("hasCompleted")
     
     init() {
         try! db.run(post.create(ifNotExists: true) { t in
@@ -102,16 +102,16 @@ open class Post {
     
 }
 
-open class Photo {
+public class Photo {
     
-    open let photos = Table("Photos")
+    let photos = Table("Photos")
     
-    open let id = Expression<Int64>("id")
-    open let postid = Expression<String>("postId")
-    open let name = Expression<String?>("photoName")
-    open let data = Expression<Data>("photoData")
-    open let caption = Expression<String?>("caption")
-    open let localurl = Expression<String>("localUrl")
+    let id = Expression<Int64>("id")
+    let postid = Expression<String>("postId")
+    let name = Expression<String?>("photoName")
+    let data = Expression<Data>("photoData")
+    let caption = Expression<String?>("caption")
+    let localurl = Expression<String>("localUrl")
     
     init() {
         try! db.run(photos.create(ifNotExists: true) { t in
@@ -234,25 +234,25 @@ open class Photo {
     
 }
 
-open class Video {
+public class Video {
     
-    open let photos = Table("Videos")
+    let photos = Table("Videos")
     
-    open let id = Expression<Int64>("id")
-    open let postid = Expression<String>("postId")
-    open let name = Expression<String?>("videoName")
-    open let data = Expression<String>("videoData")
-    open let caption = Expression<String?>("caption")
+    let id = Expression<Int64>("id")
+    let postid = Expression<String>("postId")
+    let name = Expression<String?>("videoName")
+    let data = Expression<String>("videoData")
+    let caption = Expression<String?>("caption")
     
     
 }
 
-open class CheckIn {
+public class CheckIn {
     
-    open let photos = Table("CheckIn")
+    let photos = Table("CheckIn")
     
-    open let id = Expression<Int64>("id")
-    open let postid = Expression<String>("postId")
+    let id = Expression<Int64>("id")
+    let postid = Expression<String>("postId")
     
     
     init() {
@@ -268,16 +268,16 @@ open class CheckIn {
     
 }
 
-open class Buddy {
+public class Buddy {
     
-    open let buddy = Table("Buddy")
+    let buddy = Table("Buddy")
     
-    open let id = Expression<Int64>("id")
-    open let postid = Expression<String>("postId")
-    open let buddyuserid = Expression<String>("buddyUserId")
-    open let buddyname = Expression<String>("buddyName")
-    open let buddydp = Expression<String>("buddyDp")
-    open let buddyemail = Expression<String>("buddyEmail")
+    let id = Expression<Int64>("id")
+    let postid = Expression<String>("postId")
+    let buddyuserid = Expression<String>("buddyUserId")
+    let buddyname = Expression<String>("buddyName")
+    let buddydp = Expression<String>("buddyDp")
+    let buddyemail = Expression<String>("buddyEmail")
     
     init() {
         try! db.run(buddy.create(ifNotExists: true) { t in
