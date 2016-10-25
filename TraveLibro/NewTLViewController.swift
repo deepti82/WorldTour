@@ -190,6 +190,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    func optionsAction(_ sender: UIButton) {
+        let optionsController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        optionsController.addAction(UIAlertAction(title: "Edit City", style: .default, handler: nil))
+        optionsController.addAction(UIAlertAction(title: "Change Date & Time", style: .default, handler: nil))
+        optionsController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(optionsController, animated: true, completion: nil)
+    }
+    
     func displayFriendsCount() {
         
         if addedBuddies != nil && addedBuddies.count > 0 {

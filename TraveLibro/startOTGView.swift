@@ -46,6 +46,7 @@ class startOTGView: UIView {
     @IBOutlet weak var dpFriendThree: UIImageView!
     
     @IBOutlet var buddyStackPictures: [UIImageView]!
+    @IBOutlet weak var optionsButton: UIButton!
     
     
     override init(frame: CGRect) {
@@ -67,6 +68,8 @@ class startOTGView: UIView {
         nameJourneyView.layer.shadowOffset = CGSize(width: 1, height: 1)
         nameJourneyView.layer.shadowOpacity = 0.5
         nameJourneyView.layer.shadowRadius = 1.0
+        
+        optionsButton.tintColor = UIColor.white
         
 //        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
 //        clockIcon.text = String(format: "%C", faicon["clock"]!)

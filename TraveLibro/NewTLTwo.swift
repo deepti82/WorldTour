@@ -262,6 +262,7 @@ extension NewTLViewController {
         otgView.nameJourneyTF.delegate = self
         otgView.locationLabel.returnKeyType = .done
         otgView.locationLabel.delegate = self
+        otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
         
         if !isJourneyOngoing {
             
