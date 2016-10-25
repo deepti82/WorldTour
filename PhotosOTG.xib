@@ -13,10 +13,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotosOTG" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="bgView" destination="cOI-L9-d0U" id="OfF-GP-Noq"/>
                 <outlet property="calendarLabel" destination="dvd-8x-WCk" id="NZe-b5-uF9"/>
                 <outlet property="clockLabel" destination="giL-Yh-ey6" id="M3s-ZI-Jf5"/>
                 <outlet property="commentButton" destination="TDX-yD-IjR" id="nu5-Vi-mOP"/>
                 <outlet property="commentCount" destination="uys-5H-aDf" id="fEY-tI-O7n"/>
+                <outlet property="commentIcon" destination="dT4-Iz-Gn5" id="uZr-cc-W18"/>
                 <outlet property="dateLabel" destination="jOT-Lp-xjs" id="ovW-MD-nGE"/>
                 <outlet property="likeButton" destination="SN9-eP-W3E" id="R1f-Uk-08V"/>
                 <outlet property="likeHeart" destination="3Kv-T3-tFz" id="cRs-PO-vax"/>
@@ -41,9 +43,12 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="540"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOI-L9-d0U">
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fBo-H1-fh1">
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photobar1" translatesAutoresizingMaskIntoConstraints="NO" id="4Yz-8T-KC9">
@@ -101,7 +106,21 @@
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd1-yL-ysy" customClass="ActiveLabel" customModule="ActiveLabel">
                     <attributedString key="attributedText">
-                        <fragment content="Evening by the beach! :) with Sarvesh Brahme and 1 other at Girgaon">
+                        <fragment content="Evening by the beach! :) with ">
+                            <attributes>
+                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="Avenir-Roman"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Sarvesh Brahme">
+                            <attributes>
+                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="Avenir-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" and 1 other at Girgaon">
                             <attributes>
                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <font key="NSFont" size="14" name="Avenir-Roman"/>
@@ -111,12 +130,6 @@
                     </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-89-Biy">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="RDI-S6-W5c"/>
-                        <constraint firstAttribute="width" constant="60" id="THC-7x-NgR"/>
-                    </constraints>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYS-JX-k0k">
                     <color key="backgroundColor" red="0.94509804248809814" green="0.94901961088180542" blue="0.94901961088180542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -210,8 +223,13 @@
                         </mask>
                     </variation>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-89-Biy">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="RDI-S6-W5c"/>
+                        <constraint firstAttribute="width" constant="60" id="THC-7x-NgR"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="5Kf-mk-SOs" firstAttribute="top" secondItem="WnS-pJ-OkX" secondAttribute="top" id="20A-vs-fr9"/>
                 <constraint firstItem="gWj-jG-WvQ" firstAttribute="leading" secondItem="ayp-RI-d3A" secondAttribute="trailing" constant="8" symbolic="YES" id="23y-3y-nz4"/>
@@ -220,28 +238,32 @@
                 <constraint firstItem="fBo-H1-fh1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="8XJ-4n-jRR"/>
                 <constraint firstItem="1g4-89-Biy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-10" id="9Ud-QM-xQa"/>
                 <constraint firstItem="ayp-RI-d3A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="AiM-iT-Q1k"/>
-                <constraint firstItem="vd1-yL-ysy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="BOs-Bv-VtR"/>
+                <constraint firstItem="cOI-L9-d0U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="Amk-7Q-9gq"/>
                 <constraint firstItem="MYo-lh-LFg" firstAttribute="top" secondItem="WnS-pJ-OkX" secondAttribute="bottom" constant="8" id="BuL-PB-2Z4"/>
                 <constraint firstItem="MYo-lh-LFg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="C05-D0-xwc"/>
+                <constraint firstItem="1g4-89-Biy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="Dtn-i9-Mpc"/>
                 <constraint firstItem="RVr-gn-Jae" firstAttribute="top" secondItem="vnB-2w-HmM" secondAttribute="bottom" constant="16" id="Fjm-IE-jfb"/>
                 <constraint firstItem="vnB-2w-HmM" firstAttribute="top" secondItem="vd1-yL-ysy" secondAttribute="bottom" constant="8" symbolic="YES" id="GS6-Kj-Fl6"/>
                 <constraint firstItem="fBo-H1-fh1" firstAttribute="top" secondItem="RVr-gn-Jae" secondAttribute="bottom" constant="8" symbolic="YES" id="Mxd-x9-EPR"/>
-                <constraint firstItem="1g4-89-Biy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-15" id="OHl-PY-oe0"/>
+                <constraint firstAttribute="trailing" secondItem="RVr-gn-Jae" secondAttribute="trailing" id="Omx-8X-ohq"/>
                 <constraint firstItem="1g4-89-Biy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="QwV-wU-blZ"/>
+                <constraint firstAttribute="bottom" secondItem="cOI-L9-d0U" secondAttribute="bottom" id="Rsi-D2-ZdJ"/>
                 <constraint firstAttribute="trailing" secondItem="WnS-pJ-OkX" secondAttribute="trailing" constant="8" id="Sy1-R5-cwC"/>
                 <constraint firstItem="ayp-RI-d3A" firstAttribute="top" secondItem="MYo-lh-LFg" secondAttribute="bottom" constant="12" id="UVY-GC-mkk"/>
                 <constraint firstItem="vnB-2w-HmM" firstAttribute="leading" secondItem="vd1-yL-ysy" secondAttribute="leading" id="VIs-K3-znS"/>
                 <constraint firstItem="fBo-H1-fh1" firstAttribute="leading" secondItem="1g4-89-Biy" secondAttribute="leading" id="Wad-Ct-yQU"/>
+                <constraint firstItem="vd1-yL-ysy" firstAttribute="top" secondItem="cOI-L9-d0U" secondAttribute="top" constant="8" id="Ywp-CD-if4"/>
                 <constraint firstItem="RVr-gn-Jae" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Z6X-dE-pT7"/>
-                <constraint firstItem="uFv-wF-pFQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-15" id="cbD-Wd-dTb"/>
+                <constraint firstItem="uFv-wF-pFQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="cbD-Wd-dTb"/>
                 <constraint firstItem="uFv-wF-pFQ" firstAttribute="leading" secondItem="vd1-yL-ysy" secondAttribute="trailing" constant="8" id="cji-LI-pnI"/>
+                <constraint firstItem="cOI-L9-d0U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dSv-4f-XA2"/>
                 <constraint firstItem="5Kf-mk-SOs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="g4w-vp-mDc"/>
                 <constraint firstItem="DYS-JX-k0k" firstAttribute="top" secondItem="fBo-H1-fh1" secondAttribute="bottom" constant="8" symbolic="YES" id="hCm-qe-riS"/>
                 <constraint firstAttribute="trailing" secondItem="DYS-JX-k0k" secondAttribute="trailing" constant="8" id="hhc-x2-wFq"/>
                 <constraint firstItem="DYS-JX-k0k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="pDP-Fu-0sW"/>
                 <constraint firstItem="vd1-yL-ysy" firstAttribute="leading" secondItem="1g4-89-Biy" secondAttribute="trailing" constant="8" id="pmZ-wl-R9B"/>
-                <constraint firstItem="gWj-jG-WvQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="134" id="u2j-l6-k7Z"/>
                 <constraint firstItem="gWj-jG-WvQ" firstAttribute="top" secondItem="ayp-RI-d3A" secondAttribute="top" id="wOg-Ut-kf1"/>
+                <constraint firstAttribute="trailing" secondItem="cOI-L9-d0U" secondAttribute="trailing" id="wxe-8F-J0b"/>
                 <constraint firstItem="5Kf-mk-SOs" firstAttribute="top" secondItem="DYS-JX-k0k" secondAttribute="bottom" constant="8" id="zEk-41-ASR"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

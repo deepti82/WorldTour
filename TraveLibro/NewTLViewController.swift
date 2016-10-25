@@ -477,7 +477,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             if Reachability.isConnectedToNetwork() {
                 
-                print("internet is connected")
+                print("internet is connected post")
                 request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
@@ -515,9 +515,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 })
                 
             } else {
-                let alertController = UIAlertController(title: "No Internet", message: "There is no internet, please try later.", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                present(alertController, animated: false, completion: nil)
+//                let alertController = UIAlertController(title: "No Internet", message: "There is no internet, please try later.", preferredStyle: .alert)
+//                alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+//                present(alertController, animated: false, completion: nil)
             }
         
         }
@@ -1104,26 +1104,40 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            
 //        }
         
-        let thoughts : NSMutableAttributedString = NSMutableAttributedString(string: "", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)])
+        var thoughts = NSMutableAttributedString()
         var photos: [JSON] = []
 //        let tags = ActiveLabel()
         
         if post["thoughts"] != nil && post["thoughts"].string != "" {
             
-            let buddyName = NSAttributedString(string: "\(post["thoughts"]) — with \(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
-            thoughts.append(buddyName)
+            print("thoughtts if statement")
+            
+            thoughts = NSMutableAttributedString(string: "\(post["thoughts"]) ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)])
             
         }
         
-        if post["buddies"].array!.count > 1 {
-            
-            let buddyCount = NSAttributedString(string: " and \(post["buddies"].array!.count - 1) other(s)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+        switch post["buddies"].array!.count {
+        
+        case 1:
+            print("buddies if statement")
+            let buddyName = NSAttributedString(string: "— with \(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            thoughts.append(buddyName)
+        case 2:
+            print("buddies if statement")
+            let buddyCount = NSAttributedString(string: " and 1 other", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
             thoughts.append(buddyCount)
-            
+        case 0:
+            print("buddies if statement")
+            break
+        default:
+            print("buddies if statement")
+            let buddyCount = NSAttributedString(string: " and \(post["buddies"].array!.count - 1) others", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            thoughts.append(buddyCount)
         }
         
         if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
             
+            print("checkin location if statement")
             let buddyLocation = NSAttributedString(string: " at \(post["checkIn"]["location"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
             thoughts.append(buddyLocation)
             latestCity = post["checkIn"]["city"].string!
@@ -1137,13 +1151,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        })
         
         let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 580))
-        checkIn.likeButton.setTitle(post["uniqueId"].string!, for: UIControlState())
+        checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
         checkIn.likeViewLabel.text = "0 Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
-        checkIn.commentButton.setTitle(post["uniqueId"].string!, for: UIControlState())
+        checkIn.commentButton.setTitle(post["uniqueId"].string!, for: .normal)
         otherCommentId = post["_id"].string!
         currentPost = post
-        checkIn.optionsButton.setTitle(post["_id"].string!, for: UIControlState())
+        checkIn.optionsButton.setTitle(post["_id"].string!, for: .normal)
         checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
         checkIn.dateLabel.text = changeDate("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) + "  | "
         checkIn.timeLabel.text = changeDate("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
@@ -1158,7 +1172,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("is edit: \(isEdit), postid: \(post["_id"].string!)")
         
-        checkIn.photosTitle.attributedText = thoughts
+        checkIn.photosTitle.attributedText = NSAttributedString(attributedString: thoughts)
+
         for image in checkIn.otherPhotosStack {
             
             image.isHidden = true
@@ -1250,7 +1265,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 else {
             
-                    let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 10, width: width, height: 100))
+                    let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 10, width: width, height: 150))
                     rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
                     rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
                     rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: UIControlState())
@@ -2677,7 +2692,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         }
                         else if response["value"].bool! {
                             
-                            photoDB.insertName(response["data"][1].string!, Name: response["data"][0].string!)
+                            photoDB.insertName(response["localId"].string!, Name: response["data"][0].string!)
                             self.allImageIds.append(response["data"][0].string!)
                             self.uploadedphotos.append(["name": response["data"][0].string!, "caption": ""])
                             print("assets: \(self.tempAssets)")

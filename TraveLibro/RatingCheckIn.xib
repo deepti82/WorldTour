@@ -8,18 +8,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RatingCheckIn" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="line" destination="L3O-3Q-Ds2" id="YyE-Cu-ecV"/>
                 <outlet property="rateCheckInButton" destination="4RE-OS-w26" id="arf-gZ-dIq"/>
                 <outlet property="rateCheckInLabel" destination="NV7-7j-LpW" id="2yN-mK-EFK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="180" height="150"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3O-3Q-Ds2" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
+                    <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="nkr-kl-xth"/>
+                    </constraints>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Girgaon?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NV7-7j-LpW">
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RE-OS-w26">
@@ -33,14 +40,18 @@
             </subviews>
             <constraints>
                 <constraint firstItem="NV7-7j-LpW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2NV-22-30w"/>
+                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="-5" id="BXC-ft-gvX"/>
+                <constraint firstItem="L3O-3Q-Ds2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FL2-E1-WOr"/>
+                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="-5" id="Jk3-BI-3OP"/>
                 <constraint firstItem="NV7-7j-LpW" firstAttribute="top" secondItem="4RE-OS-w26" secondAttribute="bottom" constant="10" id="ZaG-yk-pJW"/>
                 <constraint firstAttribute="trailing" secondItem="NV7-7j-LpW" secondAttribute="trailing" id="kpO-Y0-1rd"/>
-                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="krz-pQ-Shh"/>
+                <constraint firstAttribute="bottom" secondItem="NV7-7j-LpW" secondAttribute="bottom" constant="8" id="o1P-Id-Hd1"/>
+                <constraint firstItem="L3O-3Q-Ds2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tgI-0Y-7Qy"/>
                 <constraint firstItem="4RE-OS-w26" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vjT-w1-QlE"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="201.5" y="119"/>
+            <point key="canvasLocation" x="201" y="119"/>
         </view>
     </objects>
     <resources>

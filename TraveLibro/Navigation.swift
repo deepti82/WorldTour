@@ -367,7 +367,7 @@ class Navigation {
                 id = "\(localDbId!)"
             }
             
-            print("inside upload files")
+            print("inside upload files: \(id)")
             
             let opt = try HTTP.POST(adminUrl + "upload", parameters: ["localId": id, "file": Upload(fileUrl: file)])
             var json = JSON(1);
@@ -379,6 +379,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
+                    json["localId"] = JSON(id)
                     print("upload file response: \(json)")
                     completion(json)
                 }
@@ -1121,37 +1122,37 @@ class Navigation {
             request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
             
-//            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-//                if error != nil{
-//                    print("Error -> \(error)")
-//                    return
-//                }
-//                
-//                do {
-//                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-//                    print("response: \(JSON(result))")
-//                    completion(JSON(result))
-//                    
-//                } catch {
-//                    print("Error: \(error)")
-//                }
-//            })
-//            
-//            task.resume()
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
             
-//            let opt = try HTTP.POST(adminUrl + "post/save3", parameters: [params])
-//            var json = JSON(1);
-//            opt.start {response in
-//                if let err = response.error {
-//                    print("error: \(err.localizedDescription)")
-//                }
-//                else
-//                {
-//                    json  = JSON(data: response.data)
-//                    print(json)
-//                    completion(json)
-//                }
-//            }
+            task.resume()
+            
+            let opt = try HTTP.POST(adminUrl + "post/save3", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
         } catch let error {
             print("got an error creating the request: \(error)")
         }

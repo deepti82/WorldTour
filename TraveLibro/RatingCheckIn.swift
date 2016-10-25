@@ -10,6 +10,7 @@ import UIKit
 
 class RatingCheckIn: UIView {
     
+    @IBOutlet weak var line: drawLine!
     @IBOutlet weak var rateCheckInLabel: UILabel!
     @IBOutlet weak var rateCheckInButton: UIButton!
 
@@ -18,8 +19,9 @@ class RatingCheckIn: UIView {
         loadViewFromNib ()
         
         rateCheckInLabel.shadowColor = UIColor.black
-        rateCheckInLabel.shadowOffset = CGSize(width: 10, height: 10)
+        rateCheckInLabel.shadowOffset = CGSize(width: 1, height: 1)
         rateCheckInLabel.layer.masksToBounds = true
+        line.backgroundColor = UIColor.clear
         
     }
     
