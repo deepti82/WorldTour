@@ -335,11 +335,11 @@ extension NewTLViewController {
                             view.removeFromSuperview()
                             
                         }
-//                        else if subview.isKindOfClass(drawLine) {
-//                            
-//                            subview.removeFromSuperview()
-//                            
-//                        }
+                        else if subview.isKind(of: drawLine.self) {
+                            
+                            subview.removeFromSuperview()
+                            
+                        }
                         
                     }
                     
