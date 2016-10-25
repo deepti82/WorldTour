@@ -104,11 +104,11 @@ class startOTGView: UIView {
         lineThree.backgroundColor = UIColor.clear
         
         journeyName.shadowColor = UIColor.black
-        journeyName.shadowOffset = CGSize(width: 10, height: 10)
+        journeyName.shadowOffset = CGSize(width: 1, height: 1)
         journeyName.layer.masksToBounds = true
         
         timestampDate.shadowColor = UIColor.black
-        timestampDate.shadowOffset = CGSize(width: 10, height: 10)
+        timestampDate.shadowOffset = CGSize(width: 1, height: 1)
         timestampDate.layer.masksToBounds = true
         
     }

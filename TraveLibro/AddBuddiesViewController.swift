@@ -51,7 +51,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                         
                     }
                         
-                    else if let abc = response["value"].string {
+                    else if response["value"].bool! {
                         
 //                        print("response: \(response.description)")
                         let allControllers = self.navigationController!.viewControllers
@@ -60,12 +60,13 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                             
                             if vc.isKind(of: NewTLViewController.self) {
                                 
+                                print("is kind of class new tl view controller")
                                 let backVC = vc as! NewTLViewController
                                 backVC.countLabel = self.addedFriends.count
                                 backVC.addedBuddies = self.addedFriends
 //                                backVC.getCurrentOTG()
                                 backVC.showBuddies()
-                                self.navigationController?.popToViewController(backVC, animated: true)
+                                self.navigationController!.popToViewController(backVC, animated: true)
                                 
                             }
                             
@@ -105,7 +106,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                         
                     }
                         
-                    else if let abc = response["value"].string {
+                    else if response["value"].bool! {
                         
                         //                        print("response: \(response.description)")
                         let allControllers = self.navigationController!.viewControllers
@@ -116,7 +117,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                                 
                                 let backVC = vc as! NewTLViewController
                                 backVC.getJourney()
-                                self.navigationController?.popToViewController(backVC, animated: true)
+                                self.navigationController!.popToViewController(backVC, animated: true)
                                 
                             }
                             
@@ -144,7 +145,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     let backVC = vc as! NewTLViewController
                     backVC.addedBuddies = addedFriends
                     backVC.displayFriendsCount()
-                    self.navigationController?.popToViewController(backVC, animated: true)
+                    self.navigationController!.popToViewController(backVC, animated: true)
                     
                 }
                 
@@ -169,7 +170,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //        rightButton.addTarget(self, action: nil, for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 80, height: 30)
         
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         request.getFollowers(currentUser["_id"].string!, completion: {(response) in
             
@@ -181,7 +182,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                 }
                     
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.allFriendsJson = response["data"]["followers"].array!
                     print("friends: \(self.allFriendsJson)")
@@ -257,7 +258,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     print("error; \(response.error!.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.allFriendsJson = response["data"].array!
                     self.friendsTable.reloadData()
@@ -277,7 +278,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func saveFriendChanges(_ sender: UIButton) {
         
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController!.popViewController(animated: true)
         
         
     }

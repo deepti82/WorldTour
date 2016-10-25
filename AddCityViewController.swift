@@ -39,7 +39,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                 else {
                     
-                    if let abc = response["value"].string {
+                    if response["value"].string != nil {
                      
                         print("response: \(response)")
                         self.locationData = response["data"]["name"].string
@@ -85,7 +85,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         rightButton.addTarget(self, action: #selector(AddCityViewController.selectGender(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 8, y: 8, width: 30, height: 30)
         
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         mainTableView.tableFooterView = UIView()
         

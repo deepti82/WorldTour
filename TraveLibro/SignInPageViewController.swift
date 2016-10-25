@@ -27,7 +27,7 @@ class SignInPageViewController: UIViewController {
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
-        self.customNavigationBar(leftButton, right: nil)
+        self.customNavigationBar(left: leftButton, right: nil)
         
         pageView = SignInFullView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height - 60))
         self.view.addSubview(pageView)

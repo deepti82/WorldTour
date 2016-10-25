@@ -53,9 +53,9 @@ class EndJourneyViewController: UIViewController {
         let rightButton = UIButton()
         rightButton.setTitle("Done", for: UIControlState())
         rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
-        rightButton.addTarget(self, action: Selector(("doneEndJourney:")), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 10, y: 0, width: 70, height: 30)
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
 //        calendarIcon.text = String(format: "%C", args: faicon["calendar"])
 //        clockIcon.text = String(format: "%C", arguments: faicon["clock"])
@@ -138,7 +138,7 @@ class EndJourneyViewController: UIViewController {
             
             if response.error != nil {
                 
-                print("error: \(response.error?.localizedDescription)")
+                print("error: \(response.error!.localizedDescription)")
             }
             else if response["value"].bool! {
                 
@@ -188,7 +188,9 @@ class EndJourneyViewController: UIViewController {
         
     }
     
-    func doneEndJourney(sender: UIButton) {
+    func doneEndJourney(_ sender: UIButton) {
+        
+        print("clicked done journey")
         
         request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
             

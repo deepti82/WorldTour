@@ -33,7 +33,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
 //        rightButton.hidden = true
         
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         dataSource = self
         

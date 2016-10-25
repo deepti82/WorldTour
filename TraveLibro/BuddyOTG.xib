@@ -28,9 +28,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jI-ml-e7H">
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gayathri Padhye has joined this journey" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOk-LL-bg7">
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="Ic9-Vx-KYq"/>
-                            </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>

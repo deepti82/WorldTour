@@ -13,6 +13,7 @@ class BuddyOTG: UIView {
         loadViewFromNib ()
         
         infoview.layer.cornerRadius = 5
+        infoview.clipsToBounds = true
         
     }
     

@@ -111,18 +111,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        addPosts.animation.makeOpacity(1.0).animate(0.5)
 //        getJourney()
         
-//        let postButton = UIButton()
-//        postButton.setTitle("Post", forState: .Normal)
-//        postButton.addTarget(self, action: #selector(self.newPost(_:)), forControlEvents: .TouchUpInside)
-//        postButton.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 16)
-//        
+        let postButton = UIButton()
+        postButton.setTitle("Post", for: .normal)
+        postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
+        postButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
+        
 //        let leftButton = UIButton()
 //        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
 //        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
 //        leftButton.frame = CGRectMake(-10, 0, 30, 30)
-//        
-//        self.customNavigationBar(leftButton, right: postButton)
-//        addView.pos
+
+        self.customNavigationBar(left: nil, right: nil)
+        self.customNavigationBar(left: nil, right: postButton)
         
         
 //        if Reachability.isConnectedToNetwork() {
@@ -143,15 +143,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        self.view.addSubview(backView)
-        
-        darkBlur = UIBlurEffect(style: .dark)
-        blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame.size.height = backView.frame.height
-        blurView.frame.size.width = backView.frame.width
-        blurView.layer.zPosition = -1
-        blurView.isUserInteractionEnabled = false
-        backView.addSubview(blurView)
+        if flag == 0 {
+         
+            self.view.addSubview(backView)
+            darkBlur = UIBlurEffect(style: .dark)
+            blurView = UIVisualEffectView(effect: darkBlur)
+            blurView.frame.size.height = backView.frame.height
+            blurView.frame.size.width = backView.frame.width
+            blurView.layer.zPosition = -1
+            blurView.isUserInteractionEnabled = false
+            backView.addSubview(blurView)
+        }
         
         print("in the add posts function")
         uploadedphotos = []
@@ -992,7 +994,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
-        self.customNavigationBar(leftButton, right: nil)
+        self.customNavigationBar(left: leftButton, right: nil)
         
         getJourney()
         
@@ -1003,13 +1005,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         imagePicker.delegate = self
         
-        let darkBlur = UIBlurEffect(style: .dark)
-        let blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame.size.height = toolbarView.frame.height
-        blurView.frame.size.width = toolbarView.frame.width
-        blurView.layer.zPosition = -1
-        blurView.isUserInteractionEnabled = false
-        toolbarView.addSubview(blurView)
+//        let darkBlur = UIBlurEffect(style: .dark)
+//        let blurView = UIVisualEffectView(effect: darkBlur)
+//        blurView.frame = toolbarView.frame
+//        blurView.tag = 10
+//        blurView.layer.zPosition = -1
+//        blurView.isUserInteractionEnabled = false
+//        blurView.clipsToBounds = true
+//        toolbarView.addSubview(blurView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -1097,25 +1100,28 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            
 //        }
         
-        var thoughts = ""
+        let thoughts : NSMutableAttributedString = NSMutableAttributedString(string: "", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)])
         var photos: [JSON] = []
 //        let tags = ActiveLabel()
         
         if post["thoughts"] != nil && post["thoughts"].string != "" {
             
-            thoughts = "\(post["thoughts"]) — with \(post["buddies"][0]["name"])"
+            let buddyName = NSAttributedString(string: "\(post["thoughts"]) — with \(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            thoughts.append(buddyName)
             
         }
         
         if post["buddies"].array!.count > 1 {
             
-            thoughts = thoughts + " and \(post["buddies"].array!.count - 1) other(s)"
+            let buddyCount = NSAttributedString(string: " and \(post["buddies"].array!.count - 1) other(s)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            thoughts.append(buddyCount)
             
         }
         
         if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
             
-            thoughts = thoughts + " at \(post["checkIn"]["location"])"
+            let buddyLocation = NSAttributedString(string: " at \(post["checkIn"]["location"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            thoughts.append(buddyLocation)
             latestCity = post["checkIn"]["city"].string!
             
         }
@@ -1148,7 +1154,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("is edit: \(isEdit), postid: \(post["_id"].string!)")
         
-        checkIn.photosTitle.text = thoughts
+        checkIn.photosTitle.attributedText = thoughts
         for image in checkIn.otherPhotosStack {
             
             image.isHidden = true
@@ -2169,6 +2175,23 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.addBuddiesButton.isHidden = true
         infoButton.isHidden = false
         addPostsButton.isHidden = false
+        
+//        for view in self.view.subviews {
+//            
+//            for subview in view.subviews {
+//                
+//                if subview.isKind(of: UIVisualEffectView.self) && subview.tag != 10 {
+//                    
+//                    view.removeFromSuperview()
+//                    
+//                }
+//                
+//            }
+//            
+//            
+//        }
+        
+        otgView.lineThree.isHidden = false
         toolbarView.isHidden = false
         
     }
@@ -2227,7 +2250,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.locationPic = response["data"].string!
                     self.makeCoverPic(response["data"].string!)
@@ -2803,9 +2826,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                         
-                    else if let abc = response["value"].string {
-                        
-                        //                    print("response: \(response)")
+                    else if response["value"].bool! {
                         
                         self.places = response["data"]["placeId"].array!
                         self.locationData = response["data"]["name"].string!

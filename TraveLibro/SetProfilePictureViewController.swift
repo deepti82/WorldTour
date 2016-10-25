@@ -29,7 +29,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         rightButton.addTarget(self, action: #selector(SetProfilePictureViewController.choosePreferences(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
-        self.customNavigationBar(leftButton, right: rightButton)
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         uploadView = AddDisplayPic(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
         uploadView.center = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height/3)

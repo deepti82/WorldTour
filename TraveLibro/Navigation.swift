@@ -230,9 +230,10 @@ class Navigation {
     func addBuddiesOTG(_ friends: JSON, userId: String, userName: String, journeyId: String, inMiddle: Bool, journeyName: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
-            
             var params: JSON = ["uniqueId": journeyId, "inMiddle": inMiddle, "name": userName, "user": userId, "journeyName": journeyName]
             params["buddies"] = friends
+            
+            print("add buddies params: \(params)")
             
             let jsonData = try! params.rawData()
             
@@ -245,8 +246,7 @@ class Navigation {
             request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
             
-            
-//            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+//            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
 //                if error != nil{
 //                    print("Error -> \(error)")
 //                    return
@@ -254,22 +254,41 @@ class Navigation {
 //                
 //                do {
 //                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-//                    print("Result: \(result)")
+//                    print("response: \(JSON(result))")
 //                    completion(JSON(result))
 //                    
 //                } catch {
 //                    print("Error: \(error)")
 //                }
-//            })
+//            }
 //            
 //            task.resume()
             
-//            
-//            print("add buddies params: \(params)")
-//            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("Result: \(result)")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        
+//        print("add buddies params: \(params)")
+//        do {
 //            let opt = try HTTP.POST(adminUrl + "journey/addBuddy", parameters: [params])
-//            var json = JSON(1);
-//            opt.start { response in
+//            var json: JSON = []
+//            
+//            opt.start {response in
 //                //                print("started response: \(response)")
 //                if let err = response.error {
 //                    print("error: \(err.localizedDescription)")
@@ -284,7 +303,7 @@ class Navigation {
         } catch let error {
             print("got an error creating the request: \(error)")
         }
-        
+    
     }
     
     func getLocation(_ lat: Double, long: Double, completion: @escaping ((JSON) -> Void)) {
@@ -1432,23 +1451,23 @@ class Navigation {
             request.httpBody = jsonData
             
             
-//            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-//                if error != nil{
-//                    print("Error -> \(error)")
-//                    return
-//                }
-//                
-//                do {
-//                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-//                    print("response: \(JSON(result))")
-//                    completion(JSON(result))
-//                    
-//                } catch {
-//                    print("Error: \(error)")
-//                }
-//            })
-//            
-//            task.resume()
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
             
         } catch let error {
             print("got an error creating the request: \(error)")

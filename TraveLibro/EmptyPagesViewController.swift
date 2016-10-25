@@ -27,7 +27,7 @@ class EmptyPagesViewController: UIViewController {
 //        rightButton.addTarget(self, action: #selector(BucketListTableViewController.addCountriesVisited(_:)), forControlEvents: .TouchUpInside)
 //        rightButton.frame = CGRectMake(0, 8, 30, 30)
         
-        self.customNavigationBar(leftButton, right: nil)
+        self.customNavigationBar(left: leftButton, right: nil)
         
         let nocountries = NoCountriesVisited(frame: CGRect(x: 0, y: 210, width: self.view.frame.width, height: 200))
         self.view.addSubview(nocountries)
