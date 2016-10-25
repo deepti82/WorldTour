@@ -500,8 +500,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     })
                 })
                 
+            } else {
+                let alertController = UIAlertController(title: "No Internet", message: "There is no internet, please try later.", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                present(alertController, animated: false, completion: nil)
             }
-            
+        
         }
             
         else {
