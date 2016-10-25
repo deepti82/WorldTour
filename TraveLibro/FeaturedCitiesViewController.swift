@@ -232,7 +232,7 @@ class FeaturedCitiesViewController: UIViewController, UITableViewDelegate, UITab
         
         if sender.tag == 0 {
             
-            sender.setBackgroundImage(UIImage(named: "orangebox"), for: UIControlState())
+            sender.setBackgroundImage(UIImage(named: "orangebox_shadow"), for: UIControlState())
             sender.tag = 1
             
         }

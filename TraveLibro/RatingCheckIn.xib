@@ -35,7 +35,7 @@
                         <constraint firstAttribute="height" constant="55" id="XSc-ZZ-g5c"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                    <state key="normal" image="star_rate_icon" backgroundImage="orangebox"/>
+                    <state key="normal" image="star_rate_icon" backgroundImage="orangebox_shadow"/>
                 </button>
             </subviews>
             <constraints>
@@ -55,7 +55,7 @@
         </view>
     </objects>
     <resources>
-        <image name="orangebox" width="117" height="117"/>
+        <image name="orangebox_shadow" width="117" height="117"/>
         <image name="star_rate_icon" width="60" height="60"/>
     </resources>
 </document>

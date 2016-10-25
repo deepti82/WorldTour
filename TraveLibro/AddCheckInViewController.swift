@@ -46,7 +46,7 @@ class AddCheckInViewController: UIViewController, UIImagePickerControllerDelegat
         
         if whichView == "TL" {
             
-            checkInBox.locationButton.setBackgroundImage(UIImage(named: "orangeBox"), for: UIControlState())
+            checkInBox.locationButton.setBackgroundImage(UIImage(named: "orangebox_shadow"), for: UIControlState())
             
         }
         

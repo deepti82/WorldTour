@@ -107,8 +107,8 @@ class PhotosOTG: UIView {
         makeTLProfilePicture(postDp)
         
         bgView.layer.cornerRadius = 5
-        bgView.shadowColor = UIColor.black
-        bgView.shadowOffset = CGSize(width: 1, height: 1)
+        bgView.layer.shadowColor = UIColor.black.cgColor
+        bgView.layer.shadowOffset = CGSize(width: 1, height: 1)
         
         
         photosTitle.numberOfLines = 0
@@ -122,7 +122,6 @@ class PhotosOTG: UIView {
         mainPhoto.autoresizingMask = [.flexibleHeight]
         
         likeHeart.text = String(format: "%C", faicon["likes"]!)
-//        commentIcon.text = String(format: "%C", faicon["comments"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         

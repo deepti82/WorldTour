@@ -473,10 +473,10 @@
                     <constraints>
                         <constraint firstItem="INo-B4-cyd" firstAttribute="centerX" secondItem="ItX-1w-smB" secondAttribute="centerX" id="BLs-zX-1eq"/>
                         <constraint firstAttribute="width" constant="200" id="Ll5-iQ-ejY"/>
-                        <constraint firstItem="GTG-Xt-CHA" firstAttribute="top" secondItem="INo-B4-cyd" secondAttribute="bottom" constant="8" id="PdH-ty-2ks"/>
+                        <constraint firstItem="GTG-Xt-CHA" firstAttribute="top" secondItem="INo-B4-cyd" secondAttribute="bottom" constant="5" id="PdH-ty-2ks"/>
                         <constraint firstItem="9nA-CQ-r3u" firstAttribute="centerX" secondItem="ItX-1w-smB" secondAttribute="centerX" id="QZy-qI-1LO"/>
-                        <constraint firstItem="9nA-CQ-r3u" firstAttribute="top" secondItem="8hb-p6-1g2" secondAttribute="bottom" constant="8" id="S8p-21-ADL"/>
-                        <constraint firstItem="8hb-p6-1g2" firstAttribute="top" secondItem="ItX-1w-smB" secondAttribute="top" constant="16" id="Vbw-sL-IE9"/>
+                        <constraint firstItem="9nA-CQ-r3u" firstAttribute="top" secondItem="8hb-p6-1g2" secondAttribute="bottom" constant="5" id="S8p-21-ADL"/>
+                        <constraint firstItem="8hb-p6-1g2" firstAttribute="top" secondItem="ItX-1w-smB" secondAttribute="top" constant="20" id="Vbw-sL-IE9"/>
                         <constraint firstItem="8hb-p6-1g2" firstAttribute="centerX" secondItem="ItX-1w-smB" secondAttribute="centerX" id="WnR-co-Nyw"/>
                         <constraint firstItem="GTG-Xt-CHA" firstAttribute="centerX" secondItem="ItX-1w-smB" secondAttribute="centerX" id="f8V-XS-cLj"/>
                         <constraint firstItem="INo-B4-cyd" firstAttribute="top" secondItem="9nA-CQ-r3u" secondAttribute="bottom" constant="30" id="w3w-dc-3lI"/>

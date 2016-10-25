@@ -190,6 +190,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    func optionsAction(_ sender: UIButton) {
+        let optionsController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        optionsController.addAction(UIAlertAction(title: "Edit City", style: .default, handler: nil))
+        optionsController.addAction(UIAlertAction(title: "Change Date & Time", style: .default, handler: nil))
+        optionsController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(optionsController, animated: true, completion: nil)
+    }
+    
     func displayFriendsCount() {
         
         if addedBuddies != nil && addedBuddies.count > 0 {
@@ -998,7 +1006,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
-        self.customNavigationBar(left: leftButton, right: nil)
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "info_icon"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 10, height: 20)
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         getJourney()
         
@@ -2192,7 +2206,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         otgView.buddyStack.isHidden = false
         otgView.addBuddiesButton.isHidden = true
-        infoButton.isHidden = false
+        infoButton.isHidden = true
         addPostsButton.isHidden = false
         
 //        for view in self.view.subviews {
