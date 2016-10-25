@@ -54,7 +54,7 @@ class AddFriendsViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let searchFriendImage = UIImageView(frame: CGRect(x: 0, y: 0, width: searchBox.frame.size.width/12, height: searchBox.frame.size.height))
         searchFriendImage.center = CGPoint(x: searchBox.frame.size.width/10, y: searchBox.frame.size.height/2 + 5)
-        searchFriendImage.image = UIImage(named: "add_circle")
+        searchFriendImage.image = UIImage(named: "add_circle_shadow")
         searchBox.addSubview(searchFriendImage)
         
         let searchTextBox = UIView(frame: CGRect(x: 0, y: 0, width: searchBox.frame.size.width/16 * 13, height: searchBox.frame.size.height))

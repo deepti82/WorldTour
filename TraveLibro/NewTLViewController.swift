@@ -998,7 +998,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
-        self.customNavigationBar(left: leftButton, right: nil)
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "info_icon"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 10, height: 20)
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         getJourney()
         
@@ -1158,7 +1164,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("is edit: \(isEdit), postid: \(post["_id"].string!)")
         
-        checkIn.photosTitle.attributedText = thoughts
+        checkIn.photosTitle.text = ""
+        
         for image in checkIn.otherPhotosStack {
             
             image.isHidden = true
@@ -2177,7 +2184,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         otgView.buddyStack.isHidden = false
         otgView.addBuddiesButton.isHidden = true
-        infoButton.isHidden = false
+        infoButton.isHidden = true
         addPostsButton.isHidden = false
         
 //        for view in self.view.subviews {

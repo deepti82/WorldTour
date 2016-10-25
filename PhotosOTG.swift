@@ -36,7 +36,7 @@ class PhotosOTG: UIView {
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    @IBOutlet weak var commentIcon: UILabel!
+    //@IBOutlet weak var commentIcon: UILabel!
     @IBOutlet weak var commentCount: UILabel!
     @IBOutlet weak var photosHC: NSLayoutConstraint!
     
@@ -116,7 +116,7 @@ class PhotosOTG: UIView {
         mainPhoto.autoresizingMask = [.flexibleHeight]
         
         likeHeart.text = String(format: "%C", faicon["likes"]!)
-        commentIcon.text = String(format: "%C", faicon["comments"]!)
+        //commentIcon.text = String(format: "%C", faicon["comments"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         

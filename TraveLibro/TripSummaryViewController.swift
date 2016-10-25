@@ -134,25 +134,25 @@ class TripSummaryViewController: UIViewController {
 //        
 //        let yourJourneyInfo1 = FriendView(frame: CGRect(x: 0, y: 0, width: infoMenuYourJourney.frame.width/2, height: infoMenuYourJourney.frame.width/2))
 //        yourJourneyInfo1.center = CGPointMake(infoMenuYourJourney.frame.width/4 + 10, infoMenuYourJourney.frame.height/4 + yourJourneyLabel.frame.size.height/2)
-//        yourJourneyInfo1.profileImage.image = UIImage(named: "add_circle")
+//        yourJourneyInfo1.profileImage.image = UIImage(named: "add_circle_shadow")
 //        yourJourneyInfo1.profileName.text = "Summary"
 //        infoMenuYourJourney.addSubview(yourJourneyInfo1)
 //        
 //        let yourJourneyInfo2 = FriendView(frame: CGRect(x: 0, y: 0, width: infoMenuYourJourney.frame.width/2, height: infoMenuYourJourney.frame.width/2))
 //        yourJourneyInfo2.center = CGPointMake(infoMenuYourJourney.frame.width/4 * 3, infoMenuYourJourney.frame.height/4 + yourJourneyLabel.frame.size.height/2)
-//        yourJourneyInfo2.profileImage.image = UIImage(named: "add_circle")
+//        yourJourneyInfo2.profileImage.image = UIImage(named: "add_circle_shadow")
 //        yourJourneyInfo2.profileName.text = "Videos"
 //        infoMenuYourJourney.addSubview(yourJourneyInfo2)
 //        
 //        let yourJourneyInfo3 = FriendView(frame: CGRect(x: 0, y: 0, width: infoMenuYourJourney.frame.width/2, height: infoMenuYourJourney.frame.width/2))
 //        yourJourneyInfo3.center = CGPointMake(infoMenuYourJourney.frame.width/4 + 10, infoMenuYourJourney.frame.height/4 * 3 + yourJourneyLabel.frame.size.height/2)
-//        yourJourneyInfo3.profileImage.image = UIImage(named: "add_circle")
+//        yourJourneyInfo3.profileImage.image = UIImage(named: "add_circle_shadow")
 //        yourJourneyInfo3.profileName.text = "Photos"
 //        infoMenuYourJourney.addSubview(yourJourneyInfo3)
 //        
 //        let yourJourneyInfo4 = FriendView(frame: CGRect(x: 0, y: 0, width: infoMenuYourJourney.frame.width/2, height: infoMenuYourJourney.frame.width/2))
 //        yourJourneyInfo4.center = CGPointMake(infoMenuYourJourney.frame.width/4 * 3, infoMenuYourJourney.frame.height/4 * 3 + yourJourneyLabel.frame.size.height/2)
-//        yourJourneyInfo4.profileImage.image = UIImage(named: "add_circle")
+//        yourJourneyInfo4.profileImage.image = UIImage(named: "add_circle_shadow")
 //        yourJourneyInfo4.profileName.text = "Rating"
 //        infoMenuYourJourney.addSubview(yourJourneyInfo4)
 //        
@@ -171,37 +171,37 @@ class TripSummaryViewController: UIViewController {
 //        
 //        let aboutInfo1 = FriendView(frame: CGRect(x: 0, y: 0, width: infoMenuYourJourney.frame.width/2, height: infoMenuYourJourney.frame.width/2))
 //        aboutInfo1.center = CGPointMake(infoMenuYourJourney.frame.width/4 + 10, infoMenuYourJourney.frame.height/6 + yourJourneyLabel.frame.size.height/2)
-//        aboutInfo1.profileImage.image = UIImage(named: "add_circle")
+//        aboutInfo1.profileImage.image = UIImage(named: "add_circle_shadow")
 //        aboutInfo1.profileName.text = "Must Do's"
 //        infoMenuAbout.addSubview(aboutInfo1)
 //        
 //        let aboutInfo2 = FriendView(frame: CGRect(x: 0, y: 0, width: infoMenuYourJourney.frame.width/2, height: infoMenuYourJourney.frame.width/2))
 //        aboutInfo2.center = CGPointMake(infoMenuYourJourney.frame.width/4 * 3, infoMenuYourJourney.frame.height/6 + yourJourneyLabel.frame.size.height/2)
-//        aboutInfo2.profileImage.image = UIImage(named: "add_circle")
+//        aboutInfo2.profileImage.image = UIImage(named: "add_circle_shadow")
 //        aboutInfo2.profileName.text = "Videos"
 //        infoMenuAbout.addSubview(aboutInfo2)
 //        
 //        let aboutInfo3 = FriendView(frame: CGRect(x: 0, y: 0, width: infoMenuYourJourney.frame.width/2, height: infoMenuYourJourney.frame.width/2))
 //        aboutInfo3.center = CGPointMake(infoMenuYourJourney.frame.width/4 + 10, infoMenuYourJourney.frame.height/4 * 3 + yourJourneyLabel.frame.size.height/2)
-//        aboutInfo3.profileImage.image = UIImage(named: "add_circle")
+//        aboutInfo3.profileImage.image = UIImage(named: "add_circle_shadow")
 //        aboutInfo3.profileName.text = "Photos"
 //        infoMenuYourJourney.addSubview(yourJourneyInfo3)
 //        
 //        let yourJourneyInfo4 = FriendView(frame: CGRect(x: 0, y: 0, width: infoMenuYourJourney.frame.width/2, height: infoMenuYourJourney.frame.width/2))
 //        yourJourneyInfo4.center = CGPointMake(infoMenuYourJourney.frame.width/4 * 3, infoMenuYourJourney.frame.height/4 * 3 + yourJourneyLabel.frame.size.height/2)
-//        yourJourneyInfo4.profileImage.image = UIImage(named: "add_circle")
+//        yourJourneyInfo4.profileImage.image = UIImage(named: "add_circle_shadow")
 //        yourJourneyInfo4.profileName.text = "Rating"
 //        infoMenuYourJourney.addSubview(yourJourneyInfo4)
 //        
 //        let yourJourneyInfo4 = FriendView(frame: CGRect(x: 0, y: 0, width: infoMenuYourJourney.frame.width/2, height: infoMenuYourJourney.frame.width/2))
 //        yourJourneyInfo4.center = CGPointMake(infoMenuYourJourney.frame.width/4 * 3, infoMenuYourJourney.frame.height/4 * 3 + yourJourneyLabel.frame.size.height/2)
-//        yourJourneyInfo4.profileImage.image = UIImage(named: "add_circle")
+//        yourJourneyInfo4.profileImage.image = UIImage(named: "add_circle_shadow")
 //        yourJourneyInfo4.profileName.text = "Rating"
 //        infoMenuYourJourney.addSubview(yourJourneyInfo4)
 //        
 //        let yourJourneyInfo4 = FriendView(frame: CGRect(x: 0, y: 0, width: infoMenuYourJourney.frame.width/2, height: infoMenuYourJourney.frame.width/2))
 //        yourJourneyInfo4.center = CGPointMake(infoMenuYourJourney.frame.width/4 * 3, infoMenuYourJourney.frame.height/4 * 3 + yourJourneyLabel.frame.size.height/2)
-//        yourJourneyInfo4.profileImage.image = UIImage(named: "add_circle")
+//        yourJourneyInfo4.profileImage.image = UIImage(named: "add_circle_shadow")
 //        yourJourneyInfo4.profileName.text = "Rating"
 //        infoMenuYourJourney.addSubview(yourJourneyInfo4)
         
