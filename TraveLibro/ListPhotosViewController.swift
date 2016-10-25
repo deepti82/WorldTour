@@ -85,7 +85,7 @@ class ListPhotosViewController: UIViewController {
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.photos = response["data"].array!
                     self.makeLayout()

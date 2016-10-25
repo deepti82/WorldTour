@@ -121,7 +121,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                 }
                 
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     print("response arrived!")
                     let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController

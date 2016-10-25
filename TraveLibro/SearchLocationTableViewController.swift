@@ -33,7 +33,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
                     print("error: \(response.error?.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.filteredArray = response["data"].array!
                     self.tableView.reloadData()

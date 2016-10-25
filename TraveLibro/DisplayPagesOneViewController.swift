@@ -65,7 +65,7 @@ class DisplayPagesOneViewController: UIViewController {
                     print("error: \(response.error?.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     profilePic = response["data"]["profilePicture"].string!
                     print("image: \(profilePic)")

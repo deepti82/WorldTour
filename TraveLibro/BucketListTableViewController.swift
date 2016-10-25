@@ -53,7 +53,7 @@ class BucketListTableViewController: UITableViewController  {
 //                        
 //                        print("error - \(response.error!.code): \(response.error!.localizedDescription)")
 //                    }
-//                    else if let abc = response["value"].string {
+//                    else if response["value"].bool! {
 //                        
 ////                        self.bucket = response["data"]["countriesVisited"].array!
 ////                        self.tableView.reloadData()
@@ -143,7 +143,7 @@ class BucketListTableViewController: UITableViewController  {
                         
                         print("error - \(response.error?.code): \(response.error?.localizedDescription)")
                     }
-                    else if let abc = response["value"].string {
+                    else if response["value"].bool! {
                         
 //                        let profile = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
 //                        profile.setCount()
@@ -185,7 +185,7 @@ class BucketListTableViewController: UITableViewController  {
                     
                     print("error - \(response.error?.code): \(response.error?.localizedDescription)")
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     //                        let profile = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
                     //                        profile.setCount()
@@ -347,7 +347,7 @@ class BucketListTableViewController: UITableViewController  {
 //                            print("error- \(response.error?.code): \(response.error?.localizedDescription)")
 //                            
 //                        }
-//                        else if let abc = response["value"].string {
+//                        else if response["value"].bool! {
 //                            
 ////                            tableView.reloadData()
 //                            self.getBucketList()
@@ -380,7 +380,7 @@ class BucketListTableViewController: UITableViewController  {
 //                            print("error- \(response.error?.code): \(response.error?.localizedDescription)")
 //                            
 //                        }
-//                        else if let abc = response["value"].string {
+//                        else if response["value"].bool! {
 //                            
 //                            //                            tableView.reloadData()
 //                            self.getCountriesVisited()

@@ -70,7 +70,7 @@ class PhotosOTG: UIView {
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     if sender.tag == 1 {
                         

@@ -84,7 +84,7 @@ class FeaturedCitiesNewTwoViewController: UIViewController, UITableViewDataSourc
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     self.allMustDos = response["data"]["mustDo"].array!
                     self.featuredCityTableView.reloadData()
                 }

@@ -61,7 +61,7 @@ class SelectGenderViewController: UIViewController {
                     
                     print("response: \(response.error?.localizedDescription)")
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     print("response arrived!")
                     let dpVC = self.storyboard!.instantiateViewController(withIdentifier: "setDp") as! SetProfilePictureViewController

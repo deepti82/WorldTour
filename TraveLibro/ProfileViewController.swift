@@ -448,7 +448,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //                
 //                print("error: \(response.error!.localizedDescription)")
 //            }
-//            else if let abc = response["value"].string {
+//            else if response["value"].bool! {
 //                
 //                let tlVC = self.storyboard!.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
 //                tlVC.isJourney = true
@@ -538,7 +538,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     
                 }
                     
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     if response["data"]["bucketList_count"].int == 0 {
                         
@@ -586,7 +586,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     
                 }
                     
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     if response["data"]["countriesVisited_count"].int == 0 {
                         

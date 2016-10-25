@@ -92,7 +92,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
 //                    
 //                }
 //                
-//                else if let abc = response["value"].string {
+//                else if response["value"].bool! {
 //                    
 ////                    print("")
 ////                    uploadView.addButton.setImage(UIImage(data: response), forState: .Normal)

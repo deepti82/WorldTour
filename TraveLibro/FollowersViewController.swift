@@ -91,7 +91,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                     print("response: \(response.error!.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     print("\(response["data"]["following"])")
                     followers = response["data"]["following"].array!
                     self.followerTable.reloadData()
@@ -121,7 +121,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     print("\(response["data"]["following"])")
                     followers = response["data"]["followers"].array!
@@ -367,7 +367,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 print("error: \(response.error!.localizedDescription)")
                 
             }
-            else if let abc = response["value"].string {
+            else if response["value"].bool! {
                 
                 print("response arrived!")
                 
@@ -439,7 +439,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 print("error: \(response.error!.localizedDescription)")
                 
             }
-            else if let abc = response["value"].string {
+            else if response["value"].bool! {
                 
                 print("response arrived!")
                 

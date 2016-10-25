@@ -367,7 +367,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     
                 }
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.addView.categoryLabel.text = response["data"].string!
                     self.currentCity = response["city"].string!
@@ -487,7 +487,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             print("error: \(response.error!.localizedDescription)")
                             
                         }
-                        else if let abc = response["value"].string {
+                        else if response["value"].bool! {
                             
                             print("response arrived new post!")
                             post.flushRows(Int64(latestPost))
@@ -557,7 +557,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                         
-                    else if let abc = response["value"].string {
+                    else if response["value"].bool! {
                         
                         print("edited response")
                         self.addView.categoryView.isHidden = true
@@ -1567,7 +1567,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         print("error: \(response.error!.localizedDescription)")
                         
                     }
-                    else if let abc = response["value"].string {
+                    else if response["value"].bool! {
                         
                         print("post deleted successfully \(self.currentPost["_id"].string!)")
                         self.isDelete = true
@@ -1616,7 +1616,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
-                } else if let abc = response["value"].string {
+                } else if response["value"].bool! {
                     print("edited date time response")
                     print("\(response)")
                 } else {
@@ -1664,7 +1664,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                    print("error: \(response.error!.localizedDescription)")
 //                    
 //                }
-//                else if let abc = response["value"].string {
+//                else if response["value"].bool! {
 //                    
 //                    if sender.tag == 1 {
 //                     
@@ -1758,7 +1758,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 print("error: \(response.error!.localizedDescription)")
                 
             }
-            else if let abc = response["value"].string {
+            else if response["value"].bool! {
                 
                 
                 
@@ -2021,7 +2021,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                    
 //                }
 //                    
-//                else if let abc = response["value"].string {
+//                else if response["value"].bool! {
 //                    
 //                    self.myJourney = response["data"]
 //                    
@@ -2325,7 +2325,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                 }
                     
-                else if let abc = response["value"].string {
+                else if response["value"].bool! {
                     
                     self.locationArray = response["data"].array!
                     
@@ -2559,7 +2559,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                                print("error: \(response.error!.localizedDescription)")
 //
 //                            }
-//                            else if let abc = response["value"].string {
+//                            else if response["value"].bool! {
 //
 ////                                if self.photosCount >= assets.count {
 ////
@@ -2675,7 +2675,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             print("error: \(response.error!.localizedDescription)")
                             
                         }
-                        else if let abc = response["value"].string {
+                        else if response["value"].bool! {
                             
                             photoDB.insertName(response["data"][1].string!, Name: response["data"][0].string!)
                             self.allImageIds.append(response["data"][0].string!)
@@ -2723,9 +2723,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             print("photos array: \(photo)")
             let data = try? Data(contentsOf: photo)
             
-            DispatchQueue.main.sync(execute: {
+//            DispatchQueue.main.sync(execute: {
               photos.setPhotos("\(postCount + 1)", Name: nil, Data: data!, Caption: nil)
-            })
+//            })
             
         }
         
