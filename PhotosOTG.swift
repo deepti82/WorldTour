@@ -26,6 +26,7 @@ class PhotosOTG: UIView {
     @IBOutlet weak var line2: UIView!
     @IBOutlet var otherPhotosStack: [UIImageView]!
     @IBOutlet weak var whatPostIcon: UIButton!
+    @IBOutlet weak var lineUp: drawLine!
     
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
@@ -123,6 +124,8 @@ class PhotosOTG: UIView {
         likeHeart.text = String(format: "%C", faicon["likes"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
+        
+        lineUp.backgroundColor = UIColor.clear
         
     }
     
