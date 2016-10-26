@@ -14,7 +14,7 @@ class drawLine: UIView {
         
         let context = UIGraphicsGetCurrentContext()
         context!.setLineWidth(5.0)
-        context!.setStrokeColor(mainOrangeColor.cgColor)
+        context!.setStrokeColor(lightOrangeColor.cgColor)
         context!.setLineDash(phase: 0, lengths: [7.5])
         context!.setLineCap(CGLineCap(rawValue: 500)!)
         

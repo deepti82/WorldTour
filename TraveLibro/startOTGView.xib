@@ -335,6 +335,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="Owl-Le-09q"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="-28" y="103.5"/>
         </view>
     </objects>

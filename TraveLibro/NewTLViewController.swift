@@ -194,7 +194,50 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let optionsController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         optionsController.addAction(UIAlertAction(title: "Edit City", style: .default, handler: nil))
         optionsController.addAction(UIAlertAction(title: "Edit Category", style: .default, handler: nil))
-        optionsController.addAction(UIAlertAction(title: "Change Date & Time", style: .default, handler: nil))
+        optionsController.addAction(UIAlertAction(title: "Change Date & Time", style: .default, handler:
+            { action -> Void in
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+                let minDate = dateFormatter.date(from: "\(self.myJourney["startTime"])")!.toLocalTime()
+                
+                //Create the view
+                self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
+                self.inputview.backgroundColor = UIColor.white
+                self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
+                self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+                self.datePickerView.minimumDate = minDate
+                self.datePickerView.maximumDate = Date()
+                
+                addTopBorder(mainBlueColor, view: self.datePickerView, borderWidth: 1)
+                addTopBorder(mainBlueColor, view: self.inputview, borderWidth: 1)
+                
+                self.inputview.addSubview(self.datePickerView) // add date picker to UIView
+                
+                let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
+                doneButton.setTitle("SAVE", for: UIControlState())
+                doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+                doneButton.setTitleColor(mainBlueColor, for: UIControlState())
+                doneButton.setTitle(sender.title(for: .application), for: .application)
+                
+                let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+                cancelButton.setTitle("CANCEL", for: UIControlState())
+                cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+                cancelButton.setTitleColor(mainBlueColor, for: UIControlState())
+                
+                self.inputview.addSubview(doneButton) // add Button to UIView
+                self.inputview.addSubview(cancelButton) // add Cancel to UIView
+                
+                doneButton.addTarget(self, action: #selector(NewTLViewController.doneButtonJourney(_:)), for: .touchUpInside) // set button click event
+                cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
+                
+                //sender.inputView = inputView
+                self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
+                
+                self.handleDatePicker(self.datePickerView) // Set the date on start.
+                self.view.addSubview(self.inputview)
+                
+            }))
         optionsController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(optionsController, animated: true, completion: nil)
     }
@@ -1505,9 +1548,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             doneButton.setTitleColor(mainBlueColor, for: UIControlState())
             doneButton.setTitle(sender.title(for: .application), for: .application)
             
+            let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+            cancelButton.setTitle("CANCEL", for: UIControlState())
+            cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+            cancelButton.setTitleColor(mainBlueColor, for: UIControlState())
+            
             self.inputview.addSubview(doneButton) // add Button to UIView
+            self.inputview.addSubview(cancelButton) // add Cancel to UIView
             
             doneButton.addTarget(self, action: #selector(NewTLViewController.doneButton(_:)), for: .touchUpInside) // set button click event
+            cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
             
             //sender.inputView = inputView
             self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
@@ -1592,6 +1642,30 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         })
         
+        self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
+    }
+    
+    func doneButtonJourney(_ sender: UIButton){
+//        request.changeDateTimeJourney(sender.title(for: .application)!, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
+//            DispatchQueue.main.async(execute: {
+//                
+//                if response.error != nil {
+//                    print("error: \(response.error!.localizedDescription)")
+//                } else if response["value"].bool! {
+//                    print("edited date time response")
+//                    print("\(response)")
+//                } else {
+//                    
+//                }
+//                
+//            })
+//            
+//        })
+        
+        self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
+    }
+    
+    func cancelButton(_ sender: UIButton){
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
     }
     

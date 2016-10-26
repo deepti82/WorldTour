@@ -109,7 +109,7 @@ class PhotosOTG: UIView {
         
         bgView.layer.cornerRadius = 5
         bgView.layer.shadowColor = UIColor.black.cgColor
-        bgView.layer.shadowOffset = CGSize(width: 1, height: 1)
+        bgView.layer.shadowOffset = CGSize(width: 2, height: 1)
         
 //        photosTitle.numberOfLines = 0
 //        let customType = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"

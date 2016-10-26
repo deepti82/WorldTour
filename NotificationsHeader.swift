@@ -17,7 +17,7 @@ class NotificationsHeader: UIView {
         
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.2
-        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+        view.layer.shadowOffset = CGSize(width: 2, height: 1)
         view.layer.shadowRadius = 2
         
     }

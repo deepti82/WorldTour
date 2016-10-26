@@ -65,7 +65,7 @@ class startOTGView: UIView {
         
         nameJourneyView.layer.cornerRadius = 5
         nameJourneyView.layer.shadowColor = UIColor.lightGray.cgColor
-        nameJourneyView.layer.shadowOffset = CGSize(width: 1, height: 1)
+        nameJourneyView.layer.shadowOffset = CGSize(width: 2, height: 1)
         nameJourneyView.layer.shadowOpacity = 0.5
         nameJourneyView.layer.shadowRadius = 1.0
         
@@ -78,7 +78,7 @@ class startOTGView: UIView {
         
         detectLocationView.layer.cornerRadius = 5
         detectLocationView.layer.shadowColor = UIColor.lightGray.cgColor
-        detectLocationView.layer.shadowOffset = CGSize(width: 1, height: 1)
+        detectLocationView.layer.shadowOffset = CGSize(width: 2, height: 1)
         detectLocationView.layer.shadowOpacity = 0.5
         detectLocationView.layer.shadowRadius = 1.0
         
@@ -107,15 +107,15 @@ class startOTGView: UIView {
         lineThree.backgroundColor = UIColor.clear
         
         journeyName.shadowColor = UIColor.black
-        journeyName.shadowOffset = CGSize(width: 1, height: 1)
+        journeyName.shadowOffset = CGSize(width: 2, height: 1)
         journeyName.layer.masksToBounds = true
         
         placeLabel.shadowColor = UIColor.black
-        placeLabel.shadowOffset = CGSize(width: 1, height: 1)
+        placeLabel.shadowOffset = CGSize(width: 2, height: 1)
         placeLabel.layer.masksToBounds = true
         
         timestampDate.shadowColor = UIColor.black
-        timestampDate.shadowOffset = CGSize(width: 1, height: 1)
+        timestampDate.shadowOffset = CGSize(width: 2, height: 1)
         timestampDate.layer.masksToBounds = true
         
     }
