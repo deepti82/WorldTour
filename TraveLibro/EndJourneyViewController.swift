@@ -133,8 +133,8 @@ class EndJourneyViewController: UIViewController {
     
     func getAllImages() {
         
-        print("in get all images: \(journey)")
-        request.getJourneyPhotos(currentUser["_id"].string!, completion: {(response) in
+        print("in get all images: \(journey!)")
+        request.getJourneyPhotos(journeyId: journey["_id"].string!, completion: {(response) in
             
             if response.error != nil {
                 

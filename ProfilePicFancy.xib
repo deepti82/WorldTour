@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfilePicFancy" customModule="TraveLibro">
@@ -19,27 +20,23 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onlyWaves" translatesAutoresizingMaskIntoConstraints="NO" id="AQy-h2-FAf">
-                    <rect key="frame" x="-15" y="20" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="eA6-SL-bnt"/>
                         <constraint firstAttribute="height" constant="60" id="h9O-vG-Zi7"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="scene_photo" translatesAutoresizingMaskIntoConstraints="NO" id="LYd-ac-rIV">
-                    <rect key="frame" x="30" y="0.0" width="120" height="120"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="hpS-eQ-1zn"/>
                         <constraint firstAttribute="height" constant="120" id="jLw-Pp-V9y"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPQ-Vy-YQ8">
-                    <rect key="frame" x="167" y="91" width="34" height="20"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indian_flag_new" translatesAutoresizingMaskIntoConstraints="NO" id="BeR-6U-Upq">
-                    <rect key="frame" x="124" y="81" width="43" height="39"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="39" id="aZu-UC-vft"/>
                         <constraint firstAttribute="width" constant="43" id="tPx-lQ-Wxs"/>
@@ -49,8 +46,8 @@
             <constraints>
                 <constraint firstItem="AQy-h2-FAf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-10" id="FC5-Y9-MGk"/>
                 <constraint firstAttribute="bottom" secondItem="BeR-6U-Upq" secondAttribute="bottom" id="GqX-SH-1DJ"/>
-                <constraint firstItem="AQy-h2-FAf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-15" id="HOy-Rb-24Q"/>
                 <constraint firstItem="LYd-ac-rIV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Joe-GO-HWd"/>
+                <constraint firstItem="AQy-h2-FAf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-15" id="ZW1-YN-UnL"/>
                 <constraint firstItem="ZPQ-Vy-YQ8" firstAttribute="leading" secondItem="BeR-6U-Upq" secondAttribute="trailing" id="mAo-iv-jff"/>
                 <constraint firstItem="BeR-6U-Upq" firstAttribute="leading" secondItem="LYd-ac-rIV" secondAttribute="trailing" constant="-26" id="nhb-z0-OfI"/>
                 <constraint firstItem="LYd-ac-rIV" firstAttribute="leading" secondItem="AQy-h2-FAf" secondAttribute="trailing" constant="-15" id="xYX-Rl-xgf"/>
@@ -58,7 +55,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="254.5" y="380"/>
+            <point key="canvasLocation" x="81" y="340"/>
         </view>
     </objects>
     <resources>

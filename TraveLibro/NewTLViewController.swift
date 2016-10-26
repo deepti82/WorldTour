@@ -85,9 +85,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.getJourney()
 //        })
         
-        let end = storyboard?.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+        let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
         end.journey = myJourney
-        self.navigationController?.pushViewController(end, animated: true)
+        self.navigationController!.pushViewController(end, animated: true)
         
     }
     
@@ -1133,16 +1133,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         let buddyAnd = NSAttributedString(string: " and", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+        let buddyWith = NSAttributedString(string: "— with ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
         
         switch post["buddies"].array!.count {
         
         case 1:
             print("buddies if statement")
-            let buddyName = NSAttributedString(string: "— with \(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            thoughts.append(buddyWith)
+            let buddyName = NSAttributedString(string: "\(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
             thoughts.append(buddyName)
-            postTitle += "— with \(post["buddies"][0]["name"])"
+//            postTitle += "— with \(post["buddies"][0]["name"])"
         case 2:
             print("buddies if statement")
+            thoughts.append(buddyWith)
+            let buddyName = NSAttributedString(string: "\(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            thoughts.append(buddyName)
             thoughts.append(buddyAnd)
             let buddyCount = NSAttributedString(string: " 1 other", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
             thoughts.append(buddyCount)
@@ -1152,6 +1157,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             break
         default:
             print("buddies if statement")
+            thoughts.append(buddyWith)
+            let buddyName = NSAttributedString(string: "\(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            thoughts.append(buddyName)
             let buddyCount = NSAttributedString(string: " \(post["buddies"].array!.count - 1) others", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
             thoughts.append(buddyAnd)
             thoughts.append(buddyCount)
@@ -1562,7 +1570,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-            let minDate = dateFormatter.date(from: "\(self.myJourney["startTime"])")?.toLocalTime()
+            let minDate = dateFormatter.date(from: "\(self.myJourney["startTime"])")!.toLocalTime()
             
             //Create the view
             self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
@@ -2128,7 +2136,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 if data != nil && i <= 2 {
                     
                     otgView.buddyStackPictures[i].image = UIImage(data: data!)
-                    otgView.buddyStackPictures[i].image = UIImage(data: data!)
+//                    otgView.buddyStackPictures[i].image = UIImage(data: data!)
                     makeTLProfilePicture(otgView.buddyStackPictures[i])
                     
                 }

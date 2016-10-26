@@ -1476,11 +1476,11 @@ class Navigation {
         
     }
     
-    func getJourneyPhotos(_ user: String, completion: @escaping ((JSON) -> Void)) {
+    func getJourneyPhotos(journeyId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["user": user]
+            let params = ["_id": journeyId]
             let opt = try HTTP.POST(adminUrl + "journey/getPhotos", parameters: params)
             var json = JSON(1);
             opt.start {response in

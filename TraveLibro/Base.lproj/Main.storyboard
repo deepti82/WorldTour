@@ -3294,7 +3294,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhm-4w-xeC"/>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYd-vb-oWn">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYd-vb-oWn">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="165" id="Rj9-3J-VK2"/>
                                             <constraint firstAttribute="height" constant="120" id="gYK-Rx-bdc"/>
