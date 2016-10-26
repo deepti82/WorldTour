@@ -47,7 +47,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOI-L9-d0U">
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fBo-H1-fh1">
                     <subviews>
@@ -156,6 +156,7 @@
                         <constraint firstAttribute="height" constant="20" id="m4c-Gk-F1Q"/>
                         <constraint firstAttribute="width" constant="20" id="pMk-iY-Jj8"/>
                     </constraints>
+                    <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                     <state key="normal" title="Button" image="options_icon"/>
                 </button>
@@ -242,7 +243,7 @@
                 <constraint firstItem="MYo-lh-LFg" firstAttribute="top" secondItem="WnS-pJ-OkX" secondAttribute="bottom" constant="8" id="BuL-PB-2Z4"/>
                 <constraint firstItem="MYo-lh-LFg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="C05-D0-xwc"/>
                 <constraint firstItem="1g4-89-Biy" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="24" id="Dtn-i9-Mpc"/>
-                <constraint firstItem="RVr-gn-Jae" firstAttribute="top" secondItem="vnB-2w-HmM" secondAttribute="bottom" constant="16" id="Fjm-IE-jfb"/>
+                <constraint firstItem="RVr-gn-Jae" firstAttribute="top" secondItem="vnB-2w-HmM" secondAttribute="bottom" constant="10" id="Fjm-IE-jfb"/>
                 <constraint firstItem="vnB-2w-HmM" firstAttribute="top" secondItem="vd1-yL-ysy" secondAttribute="bottom" constant="8" symbolic="YES" id="GS6-Kj-Fl6"/>
                 <constraint firstItem="fBo-H1-fh1" firstAttribute="top" secondItem="RVr-gn-Jae" secondAttribute="bottom" constant="8" symbolic="YES" id="Mxd-x9-EPR"/>
                 <constraint firstAttribute="trailing" secondItem="RVr-gn-Jae" secondAttribute="trailing" id="Omx-8X-ohq"/>

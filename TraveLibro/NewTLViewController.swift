@@ -1119,6 +1119,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        }
         
         var thoughts = NSMutableAttributedString()
+        var postTitle = ""
         var photos: [JSON] = []
 //        let tags = ActiveLabel()
         
@@ -1126,34 +1127,45 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             print("thoughtts if statement")
             
-            thoughts = NSMutableAttributedString(string: "\(post["thoughts"]) ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)])
+            thoughts = NSMutableAttributedString(string: "\(post["thoughts"]) ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+            postTitle = "\(post["thoughts"]) "
             
         }
+        
+        let buddyAnd = NSAttributedString(string: " and", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
         
         switch post["buddies"].array!.count {
         
         case 1:
             print("buddies if statement")
-            let buddyName = NSAttributedString(string: "— with \(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            let buddyName = NSAttributedString(string: "— with \(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
             thoughts.append(buddyName)
+            postTitle += "— with \(post["buddies"][0]["name"])"
         case 2:
             print("buddies if statement")
-            let buddyCount = NSAttributedString(string: " and 1 other", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            thoughts.append(buddyAnd)
+            let buddyCount = NSAttributedString(string: " 1 other", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
             thoughts.append(buddyCount)
+            postTitle += " and 1 other"
         case 0:
             print("buddies if statement")
             break
         default:
             print("buddies if statement")
-            let buddyCount = NSAttributedString(string: " and \(post["buddies"].array!.count - 1) others", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            let buddyCount = NSAttributedString(string: " \(post["buddies"].array!.count - 1) others", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            thoughts.append(buddyAnd)
             thoughts.append(buddyCount)
+            postTitle += " and \(post["buddies"].array!.count - 1) others"
         }
         
         if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
             
             print("checkin location if statement")
-            let buddyLocation = NSAttributedString(string: " at \(post["checkIn"]["location"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)])
+            let buddyAt = NSAttributedString(string: " at", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+            let buddyLocation = NSAttributedString(string: " \(post["checkIn"]["location"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            thoughts.append(buddyAt)
             thoughts.append(buddyLocation)
+            postTitle += " at \(post["checkIn"]["location"])"
             latestCity = post["checkIn"]["city"].string!
             
         }
@@ -1164,7 +1176,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
 //        })
         
-        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 580))
+        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 580))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
         checkIn.likeViewLabel.text = "0 Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
@@ -1186,7 +1198,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("is edit: \(isEdit), postid: \(post["_id"].string!)")
         
-        checkIn.photosTitle.attributedText = NSAttributedString(attributedString: thoughts)
+        print("\(#line) \(NSAttributedString(attributedString: thoughts))")
+        checkIn.photosTitle.attributedText = thoughts
+//        checkIn.photosTitle.text = postTitle
 
         for image in checkIn.otherPhotosStack {
             

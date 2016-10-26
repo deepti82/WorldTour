@@ -110,7 +110,6 @@ class PhotosOTG: UIView {
         bgView.layer.shadowColor = UIColor.black.cgColor
         bgView.layer.shadowOffset = CGSize(width: 1, height: 1)
         
-        
 //        photosTitle.numberOfLines = 0
 //        let customType = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"
 //        photosTitle.enabledTypes = [.mention, .hashtag, .url, customType]
@@ -137,7 +136,7 @@ class PhotosOTG: UIView {
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(view);
+        self.addSubview(view)
     }
 
 }
