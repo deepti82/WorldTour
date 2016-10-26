@@ -9,27 +9,6 @@
 import UIKit
 import DKChainableAnimationKit
 
-//fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-//  switch (lhs, rhs) {
-//  case let (l?, r?):
-//    return l < r
-//  case (nil, _?):
-//    return true
-//  default:
-//    return false
-//  }
-//}
-//
-//fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-//  switch (lhs, rhs) {
-//  case let (l?, r?):
-//    return l > r
-//  default:
-//    return rhs < lhs
-//  }
-//}
-
-
 var doRemove: Bool = true
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
@@ -48,7 +27,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var MAMStack: UIStackView!
     @IBOutlet weak var livesLabel: UILabel!
     @IBOutlet weak var MAMatterView: UIView!
-    var MAMScrollView: UIScrollView?
+    var MAMScrollView: UIScrollView!
     
     @IBOutlet weak var mainProfileView: UIView!
     @IBOutlet weak var profileCollectionView: UICollectionView!
@@ -211,16 +190,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         getCount()
         
-        
-        
-//        if currentUser != nil {
-//            
-//            
-//            
-//            
-//            
-//        }
-        
         MAMatterView.layer.opacity = 0.0
 //         let footer = getFooter(frame: CGRect(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 45))
 //        footer.layer.zPosition = 100
@@ -264,9 +233,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 
             }
             
-            if let abc =  currentUser["isBlogger"].string {
+            if currentUser["isBlogger"] != nil && currentUser["isBlogger"].bool! {
                 
-                isPhotographer.text = "Blogger"
+                self.isPhotographer.text = "Blogger"
                 
             }
             
@@ -381,7 +350,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             let currentUserId = user.getExistingUser()
             let myUser = user.getUser(currentUserId)
             let nameTemp = myUser.0.components(separatedBy: " ")
-//            currentUser = JSON("1");
             currentUser = ["_id": currentUserId, "name": myUser.0, "firstName": nameTemp[0], "lastName": nameTemp[1], "email": myUser.1, "homeCity": myUser.6, "profilePicture": myUser.4, "homeCountry": ["name": myUser.5]]
             
             print("my user:  \((myUser.0)) \(currentUser["name"]) \(nameTemp)")

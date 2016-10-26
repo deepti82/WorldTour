@@ -870,7 +870,7 @@
 				C2A27A431CEDBD0100F74DD1 /* SignInToolbar */,
 				C2A27A5F1CEDEFF700F74DD1 /* SignUpFullView */,
 				C2A6E2651CE9D2E900D3F845 /* SpeechBubbleView */,
-				C2488AB71D51DBD700FD5306 /* startOTGView */,
+				C2488AB71D51DBD700FD5306 /* StartOTGView */,
 				C2ABDBB51CEC5A9C00D7542E /* StatusView */,
 				C2EA3A171CDB3BE300122941 /* TextField */,
 				C2A6E2701CE9E7D900D3F845 /* TimelineScroll */,
@@ -1139,13 +1139,13 @@
 			name = PhotoList;
 			sourceTree = "<group>";
 		};
-		C2488AB71D51DBD700FD5306 /* startOTGView */ = {
+		C2488AB71D51DBD700FD5306 /* StartOTGView */ = {
 			isa = PBXGroup;
 			children = (
 				C2823B021D464AAD0065A76C /* startOTGView.xib */,
 				C2823B041D464E800065A76C /* startOTGView.swift */,
 			);
-			name = startOTGView;
+			name = StartOTGView;
 			sourceTree = "<group>";
 		};
 		C2488AFD1D51F98F00FD5306 /* NewQuickItinerary */ = {
