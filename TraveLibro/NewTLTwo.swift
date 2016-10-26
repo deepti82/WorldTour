@@ -92,13 +92,6 @@ extension NewTLViewController {
         print("in change city post")
         prevPosts.append(post)
         
-//        if isInitialPost {
-//            layout = VerticalLayout(width: self.view.frame.width)
-//            layout.frame.origin.y = 600
-//            mainScroll.addSubview(layout)
-//            isInitialPost = false
-//        }
-        
         let changeCityView = ChangeCity(frame: CGRect(x: 0, y: 50, width: width - 120, height: 150))
         changeCityView.center.x = width/2
         changeCityView.cityButton.setTitle(post["location"].string!, for: .normal)

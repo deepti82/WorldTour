@@ -1246,19 +1246,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         if subview.isKind(of: RatingCheckIn.self) {
                             
                             let myView = subview as! RatingCheckIn
-                            if myView.rating.currentTitle == post["_id"].string! {
+                            if myView.rateCheckInButton.currentTitle! == post["_id"].string! {
                                 
                                 subview.removeFromSuperview()
                                 removeHeightFromLayout(subview.frame.height)
                                 
                             }
                             
-                            
                         }
                         
-                        
                     }
-                    
                     
                     let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                     myReview = post["review"].array!
@@ -1268,7 +1265,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     rateButton.tag = Int(allReviews[lastReviewCount]["rating"].string!)!
                     layout.addSubview(rateButton)
                     addHeightToLayout(height: rateButton.frame.height + 20.0)
-                    
                     
                 }
                 

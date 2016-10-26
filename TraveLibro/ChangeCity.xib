@@ -43,69 +43,28 @@
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JvQ-ou-Fgs">
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JvQ-ou-Fgs">
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ZZ-F6-7lX">
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2w4-lY-S3j">
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="24" id="CA8-4D-x8X"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="16"/>
-                                    <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NiR-Yg-bG6">
-                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
-                                    <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="2w4-lY-S3j" firstAttribute="top" secondItem="3ZZ-F6-7lX" secondAttribute="top" id="HfE-z8-5pT"/>
-                                <constraint firstAttribute="trailing" secondItem="NiR-Yg-bG6" secondAttribute="trailing" constant="10" id="OTQ-jG-awJ"/>
-                                <constraint firstItem="NiR-Yg-bG6" firstAttribute="leading" secondItem="2w4-lY-S3j" secondAttribute="trailing" id="V5r-e1-1Rw"/>
-                                <constraint firstItem="2w4-lY-S3j" firstAttribute="bottom" secondItem="NiR-Yg-bG6" secondAttribute="bottom" id="ha6-Zk-iN6"/>
-                                <constraint firstItem="2w4-lY-S3j" firstAttribute="top" secondItem="NiR-Yg-bG6" secondAttribute="top" id="nsM-pS-hUt"/>
-                                <constraint firstItem="2w4-lY-S3j" firstAttribute="leading" secondItem="3ZZ-F6-7lX" secondAttribute="leading" constant="10" id="t59-1a-lOb"/>
-                                <constraint firstAttribute="bottom" secondItem="2w4-lY-S3j" secondAttribute="bottom" id="zVV-cI-Z6g"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m2o-p0-FC0">
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMZ-mG-RAf">
-                                    <color key="backgroundColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="2" id="RaP-UO-jyY"/>
-                                    </constraints>
-                                </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MN-o2-no9">
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="24" id="5Ud-Zj-Mbg"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="16"/>
-                                    <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:20 pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kng-XB-2T3">
-                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
-                                    <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="0MN-o2-no9" firstAttribute="top" secondItem="Kng-XB-2T3" secondAttribute="top" id="9LO-bt-2kA"/>
-                                <constraint firstItem="0MN-o2-no9" firstAttribute="top" secondItem="m2o-p0-FC0" secondAttribute="top" id="Bhi-RK-nBl"/>
-                                <constraint firstItem="Kng-XB-2T3" firstAttribute="leading" secondItem="0MN-o2-no9" secondAttribute="trailing" id="Iet-nE-17t"/>
-                                <constraint firstItem="0MN-o2-no9" firstAttribute="bottom" secondItem="Kng-XB-2T3" secondAttribute="bottom" id="Lh8-AP-YvB"/>
-                                <constraint firstAttribute="trailing" secondItem="Kng-XB-2T3" secondAttribute="trailing" constant="10" id="UBt-cO-LGP"/>
-                                <constraint firstItem="YMZ-mG-RAf" firstAttribute="leading" secondItem="m2o-p0-FC0" secondAttribute="leading" id="W4N-mj-3n3"/>
-                                <constraint firstItem="0MN-o2-no9" firstAttribute="leading" secondItem="YMZ-mG-RAf" secondAttribute="trailing" constant="10" id="Y3G-2U-Hnz"/>
-                                <constraint firstItem="YMZ-mG-RAf" firstAttribute="top" secondItem="m2o-p0-FC0" secondAttribute="top" constant="2" id="aM5-nL-KHy"/>
-                                <constraint firstAttribute="bottom" secondItem="YMZ-mG-RAf" secondAttribute="bottom" constant="2" id="f3z-Bo-wxV"/>
-                                <constraint firstAttribute="bottom" secondItem="0MN-o2-no9" secondAttribute="bottom" id="sQ9-VL-Gxe"/>
-                            </constraints>
-                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2w4-lY-S3j">
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="15"/>
+                            <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan, 2014 | " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NiR-Yg-bG6">
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                            <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0MN-o2-no9">
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="15"/>
+                            <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:20 pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kng-XB-2T3">
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                            <color key="textColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="aln-hz-Eug"/>
@@ -118,9 +77,8 @@
                 <constraint firstItem="fVH-GC-MmM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="AYA-tk-jAF"/>
                 <constraint firstItem="Msm-rY-hfg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Jj1-cP-ClW"/>
                 <constraint firstItem="Msm-rY-hfg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fr7-ew-dVY"/>
-                <constraint firstItem="fVH-GC-MmM" firstAttribute="trailing" secondItem="JvQ-ou-Fgs" secondAttribute="trailing" id="h8i-XX-pff"/>
-                <constraint firstItem="fVH-GC-MmM" firstAttribute="leading" secondItem="JvQ-ou-Fgs" secondAttribute="leading" id="m57-9F-q5J"/>
                 <constraint firstItem="JvQ-ou-Fgs" firstAttribute="top" secondItem="fVH-GC-MmM" secondAttribute="bottom" constant="10" id="qsn-Tb-cKa"/>
+                <constraint firstItem="JvQ-ou-Fgs" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tbT-UK-h6o"/>
                 <constraint firstItem="fVH-GC-MmM" firstAttribute="top" secondItem="Msm-rY-hfg" secondAttribute="bottom" id="xaX-0k-OSN"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
