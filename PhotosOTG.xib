@@ -50,7 +50,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RO1-ny-Mfq" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="iix-hP-mh8"/>
                         <constraint firstAttribute="width" constant="10" id="w10-N7-UWu"/>
                     </constraints>
                 </view>
@@ -157,7 +156,7 @@
                     </constraints>
                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                    <state key="normal" image="location_icon" backgroundImage="green_bg_new_small"/>
+                    <state key="normal" image="location_icon" backgroundImage="orangebox"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WnS-pJ-OkX">
                     <constraints>
@@ -256,6 +255,7 @@
                 <constraint firstItem="RO1-ny-Mfq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="K4C-Cy-Wwb"/>
                 <constraint firstItem="fBo-H1-fh1" firstAttribute="top" secondItem="RVr-gn-Jae" secondAttribute="bottom" constant="8" symbolic="YES" id="Mxd-x9-EPR"/>
                 <constraint firstAttribute="trailing" secondItem="RVr-gn-Jae" secondAttribute="trailing" id="Omx-8X-ohq"/>
+                <constraint firstItem="cOI-L9-d0U" firstAttribute="top" secondItem="RO1-ny-Mfq" secondAttribute="bottom" id="P5q-Jf-SZi"/>
                 <constraint firstItem="1g4-89-Biy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="QwV-wU-blZ"/>
                 <constraint firstAttribute="bottom" secondItem="cOI-L9-d0U" secondAttribute="bottom" id="Rsi-D2-ZdJ"/>
                 <constraint firstAttribute="trailing" secondItem="WnS-pJ-OkX" secondAttribute="trailing" constant="8" id="Sy1-R5-cwC"/>
@@ -290,10 +290,10 @@
     </objects>
     <resources>
         <image name="disney-world" width="638" height="580"/>
-        <image name="green_bg_new_small" width="60" height="60"/>
         <image name="like_empty_icon" width="34" height="30"/>
         <image name="location_icon" width="200" height="200"/>
         <image name="options_icon" width="30" height="30"/>
+        <image name="orangebox" width="117" height="117"/>
         <image name="photobar1" width="60" height="60"/>
         <image name="photobar2" width="60" height="60"/>
         <image name="photobar3" width="60" height="60"/>

@@ -1176,7 +1176,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
 //        })
         
-        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 580))
+        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 580))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
         checkIn.likeViewLabel.text = "0 Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
@@ -1185,8 +1185,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         currentPost = post
         checkIn.optionsButton.setTitle(post["_id"].string!, for: .normal)
         checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
-        checkIn.dateLabel.text = changeDate("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) + "  | "
-        checkIn.timeLabel.text = changeDate("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
+        checkIn.dateLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) + "  | "
+        checkIn.timeLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
         
 //        checkIn.likeButton.addTarget(self, action: #selector(NewTLViewController.sendLikes(_:)), forControlEvents: .TouchUpInside)
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), for: .touchUpInside)
@@ -1242,10 +1242,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         
-        checkIn.frame.size.height = setHeight(checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
+        checkIn.frame.size.height = setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
         layout.addSubview(checkIn)
-//        checkIn.autoresizingMask = [.FlexibleHeight]
-//        setHeight(checkIn, height: checkInHeight)
+//        checkIn.autoresizingMask = [.flexibleHeight]
         print("layout views: \(layout.subviews.count)")
         addHeightToLayout(checkIn.frame.height + 50.0)
         
@@ -1350,7 +1349,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var myReview: [JSON] = []
     
-    func setHeight(_ view: UIView, thoughts: String, photos: Int) -> CGFloat {
+    func setHeight(view: UIView, thoughts: String, photos: Int) -> CGFloat {
         
         var lines = 0
         var textHeight: CGFloat = 0.0
@@ -1387,7 +1386,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func changeDate(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+    func changeDate(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = givenFormat
