@@ -193,6 +193,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func optionsAction(_ sender: UIButton) {
         let optionsController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         optionsController.addAction(UIAlertAction(title: "Edit City", style: .default, handler: nil))
+        optionsController.addAction(UIAlertAction(title: "Edit Category", style: .default, handler: nil))
         optionsController.addAction(UIAlertAction(title: "Change Date & Time", style: .default, handler: nil))
         optionsController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(optionsController, animated: true, completion: nil)
@@ -1118,12 +1119,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             break
         default:
             print("buddies if statement")
+            let buddyCount = NSAttributedString(string: " \(post["buddies"].array!.count - 1)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            let buddyOthers = NSAttributedString(string: " others", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
             thoughts.append(buddyWith)
             let buddyName = NSAttributedString(string: "\(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
             thoughts.append(buddyName)
-            let buddyCount = NSAttributedString(string: " \(post["buddies"].array!.count - 1) others", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
             thoughts.append(buddyAnd)
             thoughts.append(buddyCount)
+            thoughts.append(buddyOthers)
             postTitle += " and \(post["buddies"].array!.count - 1) others"
         }
         
@@ -1204,7 +1207,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            checkIn.frame.size.height = 250.0
             
         }
-        
         
 //        checkIn.frame.size.height = setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
         layout.addSubview(checkIn)
@@ -1303,7 +1305,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if photos == 1 {
             
             myView.frame.size.height -= myView.photosStack.frame.height
-            
             
         }
         else if photos == 0 {

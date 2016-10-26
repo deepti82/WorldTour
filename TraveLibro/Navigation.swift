@@ -1105,7 +1105,7 @@ class Navigation {
     
     func postTravelLife(_ thoughts: String, location: String, locationCategory: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, completion: @escaping ((JSON) -> Void)) {
         
-        do {
+//        do {
         
             let checkIn = ["location": location, "category": locationCategory, "city": city, "country": country]
             
@@ -1140,22 +1140,22 @@ class Navigation {
             
             task.resume()
             
-            let opt = try HTTP.POST(adminUrl + "post/save3", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
+//            let opt = try HTTP.POST(adminUrl + "post/save3", parameters: [params])
+//            var json = JSON(1);
+//            opt.start {response in
+//                if let err = response.error {
+//                    print("error: \(err.localizedDescription)")
+//                }
+//                else
+//                {
+//                    json  = JSON(data: response.data)
+//                    print(json)
+//                    completion(json)
+//                }
+//            }
+//        } catch let error {
+//            print("got an error creating the request: \(error)")
+//        }
     }
     
     func getNotify(_ id: String, completion: @escaping ((JSON) -> Void)) {
