@@ -1148,7 +1148,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
 //        })
         
-        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 10, width: self.view.frame.width, height: 600))
+        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 600))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
         checkIn.likeViewLabel.text = "0 Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
@@ -1241,7 +1241,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     let allReviews = post["review"].array!
                     let lastReviewCount = post["review"].array!.count - 1
                     
-                    let rateButton = ShowRating(frame: CGRect(x: 0, y: 10, width: width, height: 100))
+                    for subview in layout.subviews {
+                        
+                        if subview.isKind(of: RatingCheckIn.self) {
+                            
+                            let myView = subview as! RatingCheckIn
+                            if myView.rating.currentTitle == post["_id"].string! {
+                                
+                                subview.removeFromSuperview()
+                                removeHeightFromLayout(subview.frame.height)
+                                
+                            }
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                     myReview = post["review"].array!
                     rateButton.showRating(Int(allReviews[lastReviewCount]["rating"].string!)!)
                     rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
@@ -1255,7 +1274,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 else {
             
-                    let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 10, width: width, height: 150))
+                    let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                     rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
                     rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
                     rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)
@@ -1342,7 +1361,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         prevPosts.append(post)
         
-        let buddy = BuddyOTG(frame: CGRect(x: 0, y: 20, width: 245, height: 260))
+        let buddy = BuddyOTG(frame: CGRect(x: 0, y: 0, width: 245, height: 260))
         buddy.center.x = self.view.center.x
         buddy.profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])&width=500")!))
         buddy.joinJourneytext.text = "\(post["user"]["name"]) has joined this journey"
