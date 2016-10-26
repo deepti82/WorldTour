@@ -57,8 +57,11 @@ class EndJourneyViewController: UIViewController {
         rightButton.frame = CGRect(x: 10, y: 0, width: 70, height: 30)
         self.customNavigationBar(left: leftButton, right: rightButton)
         
-//        calendarIcon.text = String(format: "%C", args: faicon["calendar"])
-//        clockIcon.text = String(format: "%C", arguments: faicon["clock"])
+        //calendarIcon.text = String(format: "%C", args: faicon["calendar"])
+        //clockIcon.text = String(format: "%C", arguments: faicon["clock"])
+        
+        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+        clockIcon.text = String(format: "%C", faicon["clock"]!)
         
         getAllImages()
         

@@ -4102,18 +4102,18 @@ IHRvZ2V0aGVyLg
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qi-4S-Beu">
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manan Vora Ended the London Journey" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDT-iu-Skl">
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5FA-CP-O0N">
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPz-0B-Drg">
-                                                        <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="12"/>
+                                                        <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="10"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan 2014 |" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5w-CP-63V">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan 2014   |" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5w-CP-63V">
                                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -4135,7 +4135,7 @@ IHRvZ2V0aGVyLg
                                             <constraint firstItem="5FA-CP-O0N" firstAttribute="leading" secondItem="CDT-iu-Skl" secondAttribute="leading" id="Jc7-hr-NpR"/>
                                             <constraint firstAttribute="trailing" secondItem="CDT-iu-Skl" secondAttribute="trailing" id="JtB-F3-Fts"/>
                                             <constraint firstItem="CDT-iu-Skl" firstAttribute="top" secondItem="0qi-4S-Beu" secondAttribute="top" id="VGZ-1c-e3P"/>
-                                            <constraint firstItem="5FA-CP-O0N" firstAttribute="top" secondItem="CDT-iu-Skl" secondAttribute="bottom" constant="8" id="Z2a-Ru-Ibe"/>
+                                            <constraint firstItem="5FA-CP-O0N" firstAttribute="top" secondItem="CDT-iu-Skl" secondAttribute="bottom" constant="5" id="Z2a-Ru-Ibe"/>
                                             <constraint firstItem="CDT-iu-Skl" firstAttribute="leading" secondItem="0qi-4S-Beu" secondAttribute="leading" constant="8" id="dEW-AD-XEu"/>
                                             <constraint firstAttribute="height" constant="50" id="fOz-7y-l72"/>
                                         </constraints>
@@ -4144,7 +4144,7 @@ IHRvZ2V0aGVyLg
                                 <color key="backgroundColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="PRX-Wd-AUB" firstAttribute="centerY" secondItem="4cx-aQ-QKP" secondAttribute="centerY" id="15Q-Fa-afp"/>
-                                    <constraint firstItem="0qi-4S-Beu" firstAttribute="leading" secondItem="PRX-Wd-AUB" secondAttribute="trailing" constant="20" id="AAh-h8-gGj"/>
+                                    <constraint firstItem="0qi-4S-Beu" firstAttribute="leading" secondItem="PRX-Wd-AUB" secondAttribute="trailing" constant="10" id="AAh-h8-gGj"/>
                                     <constraint firstAttribute="height" constant="75" id="Clr-Do-Wud"/>
                                     <constraint firstItem="0qi-4S-Beu" firstAttribute="top" secondItem="4cx-aQ-QKP" secondAttribute="top" constant="8" id="KWD-HP-D5z"/>
                                     <constraint firstItem="PRX-Wd-AUB" firstAttribute="leading" secondItem="4cx-aQ-QKP" secondAttribute="leading" constant="20" id="jfj-sT-iby"/>
@@ -4170,7 +4170,7 @@ IHRvZ2V0aGVyLg
                                             </imageView>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you wish to change the cover photo of your trip?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10w-oT-wcy">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you wish to change the cover photo of your trip?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10w-oT-wcy">
                                         <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -4193,8 +4193,10 @@ IHRvZ2V0aGVyLg
                                     <constraint firstItem="10w-oT-wcy" firstAttribute="centerX" secondItem="fcO-3i-6P2" secondAttribute="centerX" id="37k-GF-h7y"/>
                                     <constraint firstItem="pLH-RG-ImO" firstAttribute="leading" secondItem="fcO-3i-6P2" secondAttribute="leading" constant="20" id="7Fi-ZA-Mkn"/>
                                     <constraint firstItem="10w-oT-wcy" firstAttribute="centerY" secondItem="fcO-3i-6P2" secondAttribute="centerY" id="HXv-Ky-5GV"/>
+                                    <constraint firstItem="10w-oT-wcy" firstAttribute="leading" secondItem="fcO-3i-6P2" secondAttribute="leading" constant="20" id="JK3-DV-D5s"/>
                                     <constraint firstItem="JCM-Wn-JyR" firstAttribute="centerX" secondItem="fcO-3i-6P2" secondAttribute="centerX" id="aXH-gh-gYA"/>
                                     <constraint firstAttribute="height" constant="125" id="feb-E1-b7P"/>
+                                    <constraint firstAttribute="trailing" secondItem="10w-oT-wcy" secondAttribute="trailing" constant="20" id="jsM-5G-XK4"/>
                                     <constraint firstItem="JCM-Wn-JyR" firstAttribute="top" secondItem="10w-oT-wcy" secondAttribute="bottom" constant="8" id="oTI-oZ-Xmr"/>
                                     <constraint firstItem="pLH-RG-ImO" firstAttribute="top" secondItem="fcO-3i-6P2" secondAttribute="top" constant="8" id="onJ-eX-bL7"/>
                                 </constraints>
@@ -4249,7 +4251,7 @@ IHRvZ2V0aGVyLg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSe-U7-5og" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5004" y="-265"/>
+            <point key="canvasLocation" x="5004" y="-265.81709145427288"/>
         </scene>
         <!--Add Captions View Controller-->
         <scene sceneID="w4R-QZ-c1R">
@@ -7878,7 +7880,7 @@ IHRvZ2V0aGVyLg
         <scene sceneID="IA2-So-XyF">
             <objects>
                 <collectionViewController storyboardIdentifier="photoGridContainer" id="yHG-Rd-GYo" customClass="TripSummaryPhotoGridViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
