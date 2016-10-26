@@ -69,21 +69,21 @@ extension NewTLViewController {
         
         prevPosts.append(post)
         
-        if isInitialPost {
-            
-            layout = VerticalLayout(width: self.view.frame.width)
-            layout.frame.origin.y = 600
-            mainScroll.addSubview(layout)
-            isInitialPost = false
-            
-        }
+//        if isInitialPost {
+//            
+//            layout = VerticalLayout(width: self.view.frame.width)
+//            layout.frame.origin.y = 600
+//            mainScroll.addSubview(layout)
+//            isInitialPost = false
+//            
+//        }
         
         let buddyView = SayBye(frame: CGRect(x: 0, y: 10, width: 300, height: 250))
         buddyView.profileName.text = post["user"]["name"].string!
         buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
         makeTLProfilePicture(buddyView.profileImageView)
         layout.addSubview(buddyView)
-        addHeightToLayout(buddyView.frame.height)
+        addHeightToLayout(height: buddyView.frame.height)
         
     }
     
@@ -92,20 +92,20 @@ extension NewTLViewController {
         print("in change city post")
         prevPosts.append(post)
         
-        if isInitialPost {
-            layout = VerticalLayout(width: self.view.frame.width)
-            layout.frame.origin.y = 600
-            mainScroll.addSubview(layout)
-            isInitialPost = false
-        }
+//        if isInitialPost {
+//            layout = VerticalLayout(width: self.view.frame.width)
+//            layout.frame.origin.y = 600
+//            mainScroll.addSubview(layout)
+//            isInitialPost = false
+//        }
         
         let changeCityView = ChangeCity(frame: CGRect(x: 0, y: 50, width: width - 120, height: 100))
-        changeCityView.center.x = width / 2
-        changeCityView.cityButton.setTitle(post["location"].string!, for: UIControlState())
+        changeCityView.center.x = width/2
+        changeCityView.cityButton.setTitle(post["location"].string!, for: .normal)
         layout.addSubview(changeCityView)
-        addHeightToLayout(changeCityView.frame.height)
+        addHeightToLayout(height: changeCityView.frame.height)
         
-        print("\(#line) \(post)")
+//        print("\(#line) \(post)")
         
         
     }
@@ -126,7 +126,6 @@ extension NewTLViewController {
         rating.center = background.center
         rating.layer.cornerRadius = 5
         rating.ratingDisplay(myReview[lastCount])
-//        rating.postReview.setTitle(sender.titleLabel!.text!, forState: .Application)
         rating.postReview.setTitle("CLOSE", for: UIControlState())
         rating.reviewTextView.isEditable = false
         rating.starsStack.isUserInteractionEnabled = false
@@ -206,9 +205,7 @@ extension NewTLViewController {
         
     }
     
-    func showJourneyOngoing(_ journey: JSON) {
-        
-//        LoadingOverlay.shared.showOverlay(self.view)
+    func showJourneyOngoing(journey: JSON) {
         
         if !isJourneyOngoing {
             
@@ -233,8 +230,6 @@ extension NewTLViewController {
             
         }
         
-//        LoadingOverlay.shared.hideOverlayView()
-        
     }
     
     func getScrollView(_ height: CGFloat, journey: JSON) {
@@ -248,9 +243,14 @@ extension NewTLViewController {
         mainScroll.contentSize.height = self.view.frame.height
         mainScroll.addSubview(refreshControl)
         
-//        let line = drawLine(frame: CGRect(x: self.view.frame.size.width/2, y: 17.5, width: 10, height: mainScroll.frame.height))
-//        line.backgroundColor = UIColor.clear
-//        mainScroll.addSubview(line)
+        if isInitialPost {
+            
+            layout = VerticalLayout(width: self.view.frame.width)
+            layout.frame.origin.y = 600
+            mainScroll.addSubview(self.layout)
+            isInitialPost = false
+            
+        }
         
         otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 600))
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
@@ -267,7 +267,6 @@ extension NewTLViewController {
         if !isJourneyOngoing {
             
             mainScroll.animation.makeFrame(CGRect(x: 0, y: mainScroll.frame.origin.y - height, width: mainScroll.frame.width, height: mainScroll.frame.height)).animate(0.3)
-//            line.animation.makeFrame(CGRect(x: self.view.frame.size.width/2, y: 17.5, width: line.frame.width, height: line.frame.height)).animate(0.3)
             
         }
         else {

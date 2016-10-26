@@ -15,6 +15,7 @@ class ShowRating: UIView {
     
     @IBOutlet weak var rating: UIButton!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var line: drawLine!
     
 //    var ratingCount = 0
     
@@ -34,6 +35,9 @@ class ShowRating: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        line.backgroundColor = UIColor.clear
+        
     }
     
     func loadViewFromNib() {

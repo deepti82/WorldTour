@@ -15,10 +15,13 @@ class ChangeCity: UIView {
     @IBOutlet weak var timeIcon: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var line: drawLine!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        
+        line.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {

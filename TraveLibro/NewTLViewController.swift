@@ -599,8 +599,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func getJourney() {
         
-//        LoadingOverlay.shared.showOverlay(self.view)
-        
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
@@ -628,7 +626,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     if self.isInitialLoad {
                         
                         self.isInitialLoad = false
-                        self.showJourneyOngoing(response["data"])
+                        self.showJourneyOngoing(journey: response["data"])
                         
                     }
                     else {
@@ -638,38 +636,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
-//                    let allPosts = response["data"]["post"].array!
-                    
-                    
-//                    if self.initialPost {
-//                        
-//                        print("initial post")
-//                        
-//                        self.prevPosts = allPosts
-//                        self.initialPost = false
-//                        
-//                        for post in allPosts {
-//
-//                            self.configurePost(post)
-//                            
-//                        }
-//                        
-//                    }
-//                    
-//                    else {
-//                        
-//                        print("not initial post")
-//                        
-//                        
-//                        
-//                    }
-                    
                 }
                 else if response["error"]["message"] == "No ongoing journey found" {
                     
                     print("inside no ongoing journey")
                     isJourneyOngoing = false
-                    self.showJourneyOngoing(JSON(""))
+                    self.showJourneyOngoing(journey: JSON(""))
                     
                 }
                 else {
@@ -681,20 +653,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         })
         
-//       LoadingOverlay.shared.hideOverlayView()
-        
     }
     
     func getAllPosts(_ posts: [JSON]) {
-        
-        if isInitialPost {
-            
-            layout = VerticalLayout(width: self.view.frame.width)
-            layout.frame.origin.y = 600
-            mainScroll.addSubview(layout)
-            isInitialPost = false
-            
-        }
         
         for post in posts {
             
@@ -985,7 +946,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     }
     
-    func addCheckInTL(_ sender: UIButton) {
+    func addCheckInTL(sender: UIButton) {
         
         let checkInVC = storyboard?.instantiateViewController(withIdentifier: "checkInSearch") as! CheckInSearchViewController
         checkInVC.whichView = "TL"
@@ -1184,7 +1145,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
 //        })
         
-        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 580))
+        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 10, width: self.view.frame.width, height: 600))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
         checkIn.likeViewLabel.text = "0 Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
@@ -1193,20 +1154,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         currentPost = post
         checkIn.optionsButton.setTitle(post["_id"].string!, for: .normal)
         checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
-        checkIn.dateLabel.text = changeDate("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) + "  | "
-        checkIn.timeLabel.text = changeDate("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
+        checkIn.dateLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) + "  | "
+        checkIn.timeLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
         
-//        checkIn.likeButton.addTarget(self, action: #selector(NewTLViewController.sendLikes(_:)), forControlEvents: .TouchUpInside)
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), for: .touchUpInside)
         checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), for: .touchUpInside)
         
-//        if !isDelete {
-            
-//        }
-        
         print("is edit: \(isEdit), postid: \(post["_id"].string!)")
         
-        print("\(#line) \(NSAttributedString(attributedString: thoughts))")
+//        print("\(#line) \(NSAttributedString(attributedString: thoughts))")
         checkIn.photosTitle.attributedText = thoughts
 //        checkIn.photosTitle.text = postTitle
 
@@ -1250,17 +1206,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         
-        checkIn.frame.size.height = setHeight(checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
+//        checkIn.frame.size.height = setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
         layout.addSubview(checkIn)
-//        checkIn.autoresizingMask = [.FlexibleHeight]
-//        setHeight(checkIn, height: checkInHeight)
-        print("layout views: \(layout.subviews.count)")
-        addHeightToLayout(checkIn.frame.height + 50.0)
+        print("layout views: \(checkIn.frame.size.height)")
+        addHeightToLayout(height: checkIn.frame.height + 50.0)
         
         switch whichPost {
         case "CheckIn":
-            checkIn.whatPostIcon.setImage(UIImage(named: "location_icon"), for: UIControlState())
-//            checkIn.postDp.hidden = true
+            checkIn.whatPostIcon.setImage(UIImage(named: "location_icon"), for: .normal)
 
             if post["photos"].array!.count < checkIn.otherPhotosStack.count {
                 
@@ -1289,12 +1242,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     let rateButton = ShowRating(frame: CGRect(x: 0, y: 10, width: width, height: 100))
                     myReview = post["review"].array!
                     rateButton.showRating(Int(allReviews[lastReviewCount]["rating"].string!)!)
-//                    print("rate \(rateButton.ratingCount)")
                     rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
                     rateButton.rating.setTitle(post["_id"].string!, for: .application)
                     rateButton.tag = Int(allReviews[lastReviewCount]["rating"].string!)!
                     layout.addSubview(rateButton)
-                    addHeightToLayout(rateButton.frame.height + 20.0)
+                    addHeightToLayout(height: rateButton.frame.height + 20.0)
                     
                     
                 }
@@ -1304,61 +1256,31 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 10, width: width, height: 150))
                     rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
                     rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
-                    rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: UIControlState())
+                    rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)
                     layout.addSubview(rateButton)
-                    addHeightToLayout(rateButton.frame.height + 20.0)
+                    addHeightToLayout(height: rateButton.frame.height + 20.0)
                     
                 }
             
             }
             
-//            else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
-//                
-//                checkIn.mainPhoto.removeFromSuperview()
-//                checkIn.photosStack.removeFromSuperview()
-//                
-//            }
-            
         case "Photos":
-            checkIn.whatPostIcon.setImage(UIImage(named: "camera_icon"), for: UIControlState())
+            checkIn.whatPostIcon.setImage(UIImage(named: "camera_icon"), for: .normal)
         case "Videos":
-            checkIn.whatPostIcon.setImage(UIImage(named: "video"), for: UIControlState())
+            checkIn.whatPostIcon.setImage(UIImage(named: "video"), for: .normal)
         case "Thoughts":
-            checkIn.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: UIControlState())
+            checkIn.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: .normal)
             checkIn.mainPhoto.removeFromSuperview()
             checkIn.photosStack.removeFromSuperview()
         default:
             break
         }
         
-        
-//        mainScroll.contentSize.height = 10000
-        
-        
-        
     }
-    
-//    override func viewDidAppear(animated: Bool) {
-//        
-//        for subview in layout.subviews {
-//            
-//            if subview.isKindOfClass(PhotosOTG) {
-//                
-//                let view = subview as! PhotosOTG
-//                let checkInHeight = view.photosStack.frame.height + view.mainPhoto.frame.height + view.photosTitle.frame.height
-//                setHeight(subview, height: checkInHeight)
-//                
-//                
-//            }
-//            
-//        }
-//        
-//        
-//    }
     
     var myReview: [JSON] = []
     
-    func setHeight(_ view: UIView, thoughts: String, photos: Int) -> CGFloat {
+    func setHeight(view: UIView, thoughts: String, photos: Int) -> CGFloat {
         
         var lines = 0
         var textHeight: CGFloat = 0.0
@@ -1395,7 +1317,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func changeDate(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+    func changeDate(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = givenFormat
@@ -1419,22 +1341,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         prevPosts.append(post)
         
-        if isInitialPost {
-            
-            layout = VerticalLayout(width: self.view.frame.width)
-            layout.frame.origin.y = 600
-            mainScroll.addSubview(layout)
-            isInitialPost = false
-            
-        }
-        
         let buddy = BuddyOTG(frame: CGRect(x: 0, y: 20, width: 245, height: 260))
         buddy.center.x = self.view.center.x
         buddy.profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])&width=500")!))
         buddy.joinJourneytext.text = "\(post["user"]["name"]) has joined this journey"
         makeTLProfilePicture(buddy.profileImage)
         layout.addSubview(buddy)
-        addHeightToLayout(buddy.frame.height + 20.0)
+        addHeightToLayout(height: buddy.frame.height + 20.0)
         
     }
     
@@ -1681,68 +1594,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
     }
     
-//    func editPost(sender: UIButton) {
-//        
-//    }
-    
-//    func sendLikes(sender: UIButton) {
-//        
-//        print("like button tapped \(sender.titleLabel!.text)")
-//        
-//        var hasLiked = false
-//        
-////        let postView: PhotosOTG = sender.superview
-//        
-//        if sender.tag == 1 {
-//            
-//            hasLiked = true
-//            sender.tag = 0
-//            
-//        }
-//        else {
-//            
-//            sender.tag = 1
-//        }
-//        
-//        print("send likes: \(sender.tag) \(hasLiked)")
-//        
-//        request.likePost(sender.titleLabel!.text!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
-//            
-//            dispatch_async(dispatch_get_main_queue(), {
-//                
-//                if response.error != nil {
-//                    
-//                    print("error: \(response.error!.localizedDescription)")
-//                    
-//                }
-//                else if response["value"].bool! {
-//                    
-//                    if sender.tag == 1 {
-//                     
-//                        sender.setImage(UIImage(named: "favorite-heart-button"), forState: .Normal)
-////                        postView.likeCount += 1
-////                        postView.likeViewLabel.text = "\(postView.likeCount) Likes"
-//                        
-//                    }
-//                    else {
-//                        
-//                        sender.setImage(UIImage(named: "like_empty_icon"), forState: .Normal)
-////                        postView.likeCount -= 1
-////                        postView.likeViewLabel.text = "\(postView.likeCount) Likes"
-//                        
-//                    }
-//                    
-//                }
-//                else {
-//                    
-//                }
-//                
-//            })
-//            
-//        })
-//        
-//    }
-    
     func sendComments(_ sender: UIButton) {
         
         print("comment button tapped")
@@ -1754,7 +1605,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     
-    func addHeightToLayout(_ height: CGFloat) {
+    func addHeightToLayout(height: CGFloat) {
         
         layout.frame.size.height = layout.frame.size.height + height
         mainScroll.contentSize.height = mainScroll.contentSize.height + height
@@ -1772,7 +1623,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         prevPosts.append(post)
         
-        if post["checkIn"] != nil &&  post["checkIn"].string != "" {
+        if post["checkIn"]["location"] != nil &&  post["checkIn"].string != "" {
             
             showPost("CheckIn", post: post)
         }
@@ -2473,7 +2324,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     
                     var index = 0
-                    self.addView.postButton.isHidden = true
+                    
+                    
+                    if Reachability.isConnectedToNetwork() {
+                        self.addView.postButton.isHidden = true
+                    }
                     print("Finish: \(self.addView.postButton.isHidden)")
                     
                     var assetArray: [URL] = []

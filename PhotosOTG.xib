@@ -48,9 +48,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RO1-ny-Mfq" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="iix-hP-mh8"/>
                         <constraint firstAttribute="width" constant="10" id="w10-N7-UWu"/>
                     </constraints>
                 </view>
@@ -242,6 +241,7 @@
             <constraints>
                 <constraint firstItem="5Kf-mk-SOs" firstAttribute="top" secondItem="WnS-pJ-OkX" secondAttribute="top" id="20A-vs-fr9"/>
                 <constraint firstItem="gWj-jG-WvQ" firstAttribute="leading" secondItem="ayp-RI-d3A" secondAttribute="trailing" constant="8" symbolic="YES" id="23y-3y-nz4"/>
+                <constraint firstItem="cOI-L9-d0U" firstAttribute="top" secondItem="RO1-ny-Mfq" secondAttribute="bottom" id="2qe-YA-NV7"/>
                 <constraint firstAttribute="trailing" secondItem="MYo-lh-LFg" secondAttribute="trailing" constant="8" id="2qh-xc-mJW"/>
                 <constraint firstAttribute="trailing" secondItem="uFv-wF-pFQ" secondAttribute="trailing" constant="8" id="6KC-D1-7QB"/>
                 <constraint firstItem="fBo-H1-fh1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="8XJ-4n-jRR"/>
@@ -269,7 +269,6 @@
                 <constraint firstItem="cOI-L9-d0U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dSv-4f-XA2"/>
                 <constraint firstItem="5Kf-mk-SOs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="g4w-vp-mDc"/>
                 <constraint firstItem="DYS-JX-k0k" firstAttribute="top" secondItem="fBo-H1-fh1" secondAttribute="bottom" constant="8" symbolic="YES" id="hCm-qe-riS"/>
-                <constraint firstItem="RO1-ny-Mfq" firstAttribute="centerX" secondItem="gWj-jG-WvQ" secondAttribute="centerX" id="hct-Xe-eRz"/>
                 <constraint firstAttribute="trailing" secondItem="DYS-JX-k0k" secondAttribute="trailing" constant="8" id="hhc-x2-wFq"/>
                 <constraint firstItem="DYS-JX-k0k" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="pDP-Fu-0sW"/>
                 <constraint firstItem="vd1-yL-ysy" firstAttribute="leading" secondItem="1g4-89-Biy" secondAttribute="trailing" constant="8" id="pmZ-wl-R9B"/>
