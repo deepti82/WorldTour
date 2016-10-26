@@ -99,7 +99,7 @@ extension NewTLViewController {
 //            isInitialPost = false
 //        }
         
-        let changeCityView = ChangeCity(frame: CGRect(x: 0, y: 50, width: width - 120, height: 100))
+        let changeCityView = ChangeCity(frame: CGRect(x: 0, y: 50, width: width - 120, height: 150))
         changeCityView.center.x = width/2
         changeCityView.cityButton.setTitle(post["location"].string!, for: .normal)
         layout.addSubview(changeCityView)
