@@ -11,7 +11,7 @@ import UIKit
 
 func addShadow(_ myView: UIView, offset: CGSize, opacity: CGFloat, shadowRadius: CGFloat, cornerRadius: CGFloat) {
     
-    myView.layer.shadowOffset = CGSize(width: 2, height: 2)
+    myView.layer.shadowOffset = CGSize(width: 2, height: 1)
     myView.layer.shadowOpacity = 0.2
     myView.layer.shadowRadius = 1
     myView.layer.cornerRadius = 3
