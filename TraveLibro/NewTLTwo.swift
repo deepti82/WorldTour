@@ -232,7 +232,7 @@ extension NewTLViewController {
         mainScroll.showsHorizontalScrollIndicator = false
         refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.tintColor = mainOrangeColor
+        refreshControl.tintColor = lightOrangeColor
         //        mainScroll.addSubview(refreshControl)
         mainScroll.contentSize.height = self.view.frame.height
         mainScroll.addSubview(refreshControl)
@@ -246,7 +246,7 @@ extension NewTLViewController {
             
         }
         
-        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 600))
+        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 550))
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
@@ -257,6 +257,7 @@ extension NewTLViewController {
         otgView.locationLabel.returnKeyType = .done
         otgView.locationLabel.delegate = self
         otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
+        otgView.clipsToBounds = true
         
         if !isJourneyOngoing {
             
