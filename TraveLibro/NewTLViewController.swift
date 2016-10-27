@@ -1005,7 +1005,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getDarkBackGround(self)
+        getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())

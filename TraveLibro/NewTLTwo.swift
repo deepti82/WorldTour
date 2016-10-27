@@ -232,6 +232,7 @@ extension NewTLViewController {
         mainScroll.showsHorizontalScrollIndicator = false
         refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.tintColor = mainOrangeColor
         //        mainScroll.addSubview(refreshControl)
         mainScroll.contentSize.height = self.view.frame.height
         mainScroll.addSubview(refreshControl)
