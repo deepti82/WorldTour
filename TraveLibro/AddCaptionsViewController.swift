@@ -21,10 +21,18 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     var imageIds: [String] = []
     var allPhotos: [JSON] = []
     
+    let photoCount = 0
+    var photoIndex: [String] = []
+    var photoData: [Data] = []
+    var photoURL: [URL] = []
+    var photoImage: [UIImage] = []
+    
     @IBOutlet var completeImages: [UIImageView]!
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var imageForCaption: UIImageView!
     @IBOutlet weak var bottomStack: UIStackView!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var imageStackView: UIStackView!
     
     var index: Int!
     
@@ -101,6 +109,36 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("wcjwbiiouwebcwecbneiuwcbuciewrbcqjb")
+        print(photoIndex)
+        print(photoData)
+        print(photoURL)
+        print(photoImage)
+        
+        imageIds = photoIndex
+        
+        for i in 0..<photoImage.count {
+            completeImages[i].image = photoImage[i]
+        }
+        
+        let leftButton = UIButton()
+        leftButton.setTitle("Cancel", for: UIControlState())
+        leftButton.addTarget(self, action: #selector(NewTLViewController.gotoProfile(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
+        
+        let rightButton = UIButton()
+        rightButton.setTitle("Done", for: UIControlState())
+        rightButton.addTarget(self, action: #selector(self.doneCaptions(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
+        
+        doneButton.isHidden = true
+        captionTextView.layer.cornerRadius = 5.0
+        captionTextView.clipsToBounds = true
+        captionTextView.layer.zPosition = 1000
+        imageStackView.layer.zPosition = 1000
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
@@ -114,7 +152,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         for images in imagesArray {
             
             if images.tag != 2 {
-            
                 print("in all images append")
                 allImages.append(images as! UIButton)
             }
@@ -136,7 +173,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         for image in completeImages {
             
             image.isHidden = true
-            image.layer.cornerRadius = 5.0
+            image.layer.cornerRadius = 2.0
             image.clipsToBounds = true
             image.isUserInteractionEnabled = true
             let tap = UITapGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.imageTapped(_:)))
@@ -160,8 +197,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             if completeImages[i].image == imageForCaption.image {
                 
                 print("inside equality")
-                completeImages[i].layer.borderColor = mainBlueColor.cgColor
-                completeImages[i].layer.borderWidth = 3.0
+                completeImages[i].layer.borderColor = mainOrangeColor.cgColor
+                completeImages[i].layer.borderWidth = 1.0
                 
             }
             

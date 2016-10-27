@@ -214,6 +214,11 @@ public class Photo {
         
     }
     
+    func getRowCount() -> Int {
+        let count = try! db.scalar(photos.count)
+        return count
+    }
+    
     func flushRows(_ postId: String) {
         
         let tempPhotos = photos.filter(postid == postId)

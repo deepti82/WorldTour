@@ -419,3 +419,9 @@ extension UInt8 {
 //    }
     
 }
+
+func getDocumentsDirectory() -> String {
+    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+    let documentsDirectory = paths[0]
+    return documentsDirectory
+}

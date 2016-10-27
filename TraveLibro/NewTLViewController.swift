@@ -961,7 +961,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
 //                dispatch_async(dispatch_get_main_queue(), {
                 
-                    print("thumbnail result: \(result)")
+                    print("thumbnail result: \(result!)")
                     print("thumbnail info: \(info)")
                     retimage = result!
                     
@@ -2393,148 +2393,210 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     //                    print("Cancel: \(assets)")
                 }, finish: { (assets: [PHAsset]) -> Void in
                     
-                    var myAssets = assets
+                    let myAssets = assets
+                    let photoCount = myAssets.count
+                    var photoIndex: [String] = []
+                    var photoData: [Data] = []
+                    var photoURL: [URL] = []
+                    var photoImage: [UIImage] = []
+                    let photoDb = Photo()
                     
-                    self.addView.photosIntialView.isHidden = true
-                    self.addView.photosFinalView.isHidden = false
-                    self.addView.photosCount.text = "\(self.allAssets.count)"
-                    self.selectPhotosCount = self.selectPhotosCount - self.allAssets.count
-                    self.addView.horizontalScrollForPhotos.isUserInteractionEnabled = true
+                    print("count: \(photoCount)")
                     
-                    for subview in self.addView.horizontalScrollForPhotos.subviews {
+                    for asset in myAssets {
+                        let image = self.getAssetThumbnail(asset)
+                        //let assetIndex = assets.index(of: asset)
+                        let assetIndex = "\(photoDb.getRowCount() + 1)"
+                        let documentPath = getDocumentsDirectory()
                         
-                        if subview.tag == 1 {
-                            
-                            self.removeWidthToPhotoLayout(subview.frame.width + 10.0)
-                            subview.removeFromSuperview()
-                            
+                        // Save image to Local
+                        let imageData = UIImageJPEGRepresentation(image, 0.05)
+                        let imagePath = "file://" + documentPath + "/image\(assetIndex).jpg"
+                        do {
+                            try! imageData?.write(to: URL(string: imagePath)!)
                         }
                         
-                    }
-                    
-                    
-                    var index = 0
-                    
-                    
-                    if Reachability.isConnectedToNetwork() {
-                        self.addView.postButton.isHidden = true
-                    }
-                    print("Finish: \(self.addView.postButton.isHidden)")
-                    
-                    var assetArray: [URL] = []
-                    
-                    if self.previouslyAddedPhotos != nil {
+                        // Save image details
+                        photoURL.append(URL(string: imagePath)!)
+                        photoIndex.append(assetIndex)
+                        photoData.append(imageData!)
+                        photoImage.append(image)
+                        print(imagePath)
                         
-                        assetArray = self.previouslyAddedPhotos
-                        
-                    }
-                    
-                    for asset in assets {
-                        
-                        let image = self.getAssetThumbnail(asset)
-                        let temp: Bool!
-                        let assetIndex = assets.index(of: asset)
-                        
-                        print("got uiimage: \(image)")
-                        
-                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(assetIndex!).jpg"
-                        assetArray.append(URL(string: exportFilePath)!)
+                        // Save to local database
+                        photoDb.setPhotos("\(assetIndex)", Name: imagePath, Data: imageData!, Caption: "")
                         
                         let visibleImage = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
                         visibleImage.tag = 1
+                        DispatchQueue.main.async {
+                            visibleImage.setImage(UIImage(data: imageData!), for: UIControlState())
+                        }
+                        visibleImage.layer.cornerRadius = 5.0
+                        visibleImage.clipsToBounds = true
                         visibleImage.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
                         self.addWidthToPhotoLayout(visibleImage.frame.width + 10.0)
                         self.addView.horizontalScrollForPhotos.addSubview(visibleImage)
-                        
-//                        dispatch_sync(dispatch_get_main_queue(),  {
-                        
-                            do {
-                                
-//                                print("export file: \(NSURL(string: exportFilePath)!), \(image), \(image.scale)")
-                                let tempImage = UIImageJPEGRepresentation(image, 0.87)
-                                //                            print("temp Image: \(tempImage)")
-                                
-                                if tempImage == nil {
-                                    
-                                    UIGraphicsBeginImageContext(image.size)
-                                    image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
-                                    let newImage = UIGraphicsGetImageFromCurrentImageContext()
-                                    UIGraphicsEndImageContext()
-                                    let newTemp = UIImageJPEGRepresentation(newImage!, 0.50)
-//                                    temp = try newTemp!.write(to: URL(string: exportFilePath)!, options: [])
-                                    visibleImage.setImage(UIImage(data: newTemp!), for: UIControlState())
-                                    
-                                }
-                                    
-                                else {
-                                    
-//                                    temp = try tempImage!.write(to: URL(string: exportFilePath)!, options: [])
-                                    
-                                    if index <= self.addView.photosCollection.count - 1 {
-                                        
-                                        visibleImage.setImage(UIImage(data: tempImage!), for: UIControlState())
-                                        
-                                    }
-                                    
-                                }
-//                                print("temp: \(temp)")
-                                print("file created")
-                                visibleImage.layer.cornerRadius = 5.0
-                                visibleImage.clipsToBounds = true
-                                
-                                self.addView.photosIntialView.isHidden = true
-                                self.addView.photosFinalView.isHidden = false
-                                self.addHeightToNewActivity(self.addView.photosFinalView.frame.height - self.addView.photosIntialView.frame.height)
-                                self.addView.photosCount.text = "(\(assets.count))"
-                                
-//                                if assets.count < 4 {
+                        self.addView.photosIntialView.isHidden = true
+                        self.addView.photosFinalView.isHidden = false
+                    }
+                    
+//                    DispatchQueue.main.async {
+//                        let captionVC = self.storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+//                        captionVC.photoIndex = photoIndex
+//                        captionVC.photoData = photoData
+//                        captionVC.photoURL = photoURL
+//                        captionVC.photoImage = photoImage
+//                        
+//                        captionVC.imagesArray = photoImage as [UIView]
+//                        print("sender image: \(sender.currentImage), \(sender), \(addView.horizontalScrollForPhotos.subviews), \(allImageIds)")
+//                        captionVC.currentImage = photoImage[0]
+//                        captionVC.currentSender = sender
+//                        captionVC.imageIds = allrows
+//                        captionVC.allIds = allImageIds
+//                        self.present(captionVC, animated: true, completion: nil)
+//                    }
+                    
+                    //**************************** MIDHET'S CODE ******************************
+//                    self.addView.photosIntialView.isHidden = true
+//                    self.addView.photosFinalView.isHidden = false
+//                    self.addView.photosCount.text = "\(self.allAssets.count)"
+//                    self.selectPhotosCount = self.selectPhotosCount - self.allAssets.count
+//                    self.addView.horizontalScrollForPhotos.isUserInteractionEnabled = true
+//                    
+//                    for subview in self.addView.horizontalScrollForPhotos.subviews {
+//                        
+//                        if subview.tag == 1 {
+//                            
+//                            self.removeWidthToPhotoLayout(subview.frame.width + 10.0)
+//                            subview.removeFromSuperview()
+//                            
+//                        }
+//                        
+//                    }
+//                    
+//                    
+//                    var index = 0
+//                    
+//                    
+//                    if Reachability.isConnectedToNetwork() {
+//                        self.addView.postButton.isHidden = true
+//                    }
+//                    print("Finish: \(self.addView.postButton.isHidden)")
+//                    
+//                    var assetArray: [URL] = []
+//                    
+//                    if self.previouslyAddedPhotos != nil {
+//                        
+//                        assetArray = self.previouslyAddedPhotos
+//                        
+//                    }
+//                    
+//                    for asset in assets {
+//                        
+//                        let image = self.getAssetThumbnail(asset)
+//                        let temp: Bool!
+//                        let assetIndex = assets.index(of: asset)
+//                        
+//                        print("got uiimage: \(image)")
+//                        
+//                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(assetIndex!).jpg"
+//                        assetArray.append(URL(string: exportFilePath)!)
+//                        
+//                        let visibleImage = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+//                        visibleImage.tag = 1
+//                        visibleImage.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
+//                        self.addWidthToPhotoLayout(visibleImage.frame.width + 10.0)
+//                        self.addView.horizontalScrollForPhotos.addSubview(visibleImage)
+//                        
+////                        dispatch_sync(dispatch_get_main_queue(),  {
+//                        
+//                            do {
+//                                
+////                                print("export file: \(NSURL(string: exportFilePath)!), \(image), \(image.scale)")
+//                                let tempImage = UIImageJPEGRepresentation(image, 0.87)
+//                                //                            print("temp Image: \(tempImage)")
+//                                
+//                                if tempImage == nil {
 //                                    
-//                                    //                                self.addView.photosCollection[assetIndex!].addSubview(layerAbove)
-//                                    //                                self.addView.photosCollection[assetIndex!].userInteractionEnabled = false
+//                                    UIGraphicsBeginImageContext(image.size)
+//                                    image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+//                                    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+//                                    UIGraphicsEndImageContext()
+//                                    let newTemp = UIImageJPEGRepresentation(newImage!, 0.50)
+////                                    temp = try newTemp!.write(to: URL(string: exportFilePath)!, options: [])
+//                                    visibleImage.setImage(UIImage(data: newTemp!), for: UIControlState())
 //                                    
 //                                }
 //                                    
 //                                else {
 //                                    
-//                                    //                                self.addView.photosCollection[3].addSubview(layerAbove)
-//                                    //                                self.addView.photosCollection[3].userInteractionEnabled = false
+////                                    temp = try tempImage!.write(to: URL(string: exportFilePath)!, options: [])
+//                                    
+//                                    if index <= self.addView.photosCollection.count - 1 {
+//                                        
+//                                        visibleImage.setImage(UIImage(data: tempImage!), for: UIControlState())
+//                                        
+//                                    }
 //                                    
 //                                }
-                                
-                                index = index + 1
-                                
-                            } catch let error as NSError {
-                                
-                                print("error creating file: \(error.localizedDescription)")
-                                
-                            }
-                            
-//                        })
-                        
-                        print("asset array: \(assetArray)")
-                        self.tempAssets = assetArray
-                        self.allAssets += assetArray
-                        
-                        if self.previouslyAddedPhotos == nil {
-                            
-                            self.uploadedphotos = []
-                        }
-                        
-                    }
-                    
-                    let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-                    addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-                    addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: UIControlState())
-                    addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-                    addMorePhotosButton.layer.cornerRadius = 5.0
-                    addMorePhotosButton.clipsToBounds = true
-                    addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
-                    addMorePhotosButton.tag = 2
-                    self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
-                    self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
-//                    self.addView.horizontalScrollForPhotos.
-                    self.storePhotos(assetArray)
-                    
+////                                print("temp: \(temp)")
+//                                print("file created")
+//                                visibleImage.layer.cornerRadius = 5.0
+//                                visibleImage.clipsToBounds = true
+//                                
+//                                self.addView.photosIntialView.isHidden = true
+//                                self.addView.photosFinalView.isHidden = false
+//                                self.addHeightToNewActivity(self.addView.photosFinalView.frame.height - self.addView.photosIntialView.frame.height)
+//                                self.addView.photosCount.text = "(\(assets.count))"
+//                                
+////                                if assets.count < 4 {
+////                                    
+////                                    //                                self.addView.photosCollection[assetIndex!].addSubview(layerAbove)
+////                                    //                                self.addView.photosCollection[assetIndex!].userInteractionEnabled = false
+////                                    
+////                                }
+////                                    
+////                                else {
+////                                    
+////                                    //                                self.addView.photosCollection[3].addSubview(layerAbove)
+////                                    //                                self.addView.photosCollection[3].userInteractionEnabled = false
+////                                    
+////                                }
+//                                
+//                                index = index + 1
+//                                
+//                            } catch let error as NSError {
+//                                
+//                                print("error creating file: \(error.localizedDescription)")
+//                                
+//                            }
+//                            
+////                        })
+//                        
+//                        print("asset array: \(assetArray)")
+//                        self.tempAssets = assetArray
+//                        self.allAssets += assetArray
+//                        
+//                        if self.previouslyAddedPhotos == nil {
+//                            
+//                            self.uploadedphotos = []
+//                        }
+//                        
+//                    }
+//                    
+//                    let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+//                    addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+//                    addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: UIControlState())
+//                    addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+//                    addMorePhotosButton.layer.cornerRadius = 5.0
+//                    addMorePhotosButton.clipsToBounds = true
+//                    addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
+//                    addMorePhotosButton.tag = 2
+//                    self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
+//                    self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+////                    self.addView.horizontalScrollForPhotos.
+//                    self.storePhotos(assetArray)
+                    //**************************** MIDHET'S CODE ******************************
                     
 //                                        let addButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
 //                                        addButton.center = CGPointMake(layerAbove.frame.width/2, layerAbove.frame.height/2)
@@ -2717,11 +2779,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         for photo in photoArray {
             
             print("photos array: \(photo)")
-            let data = try? Data(contentsOf: photo)
-            
-//            DispatchQueue.main.sync(execute: {
-              photos.setPhotos("\(postCount + 1)", Name: nil, Data: data!, Caption: nil)
-//            })
+            if let data = try? Data(contentsOf: photo) {
+                //DispatchQueue.main.sync(execute: {
+                    photos.setPhotos("\(postCount + 1)", Name: nil, Data: data, Caption: nil)
+                //})
+            } else {
+                print("\(#line) no data found from photos")
+            }
             
         }
         
