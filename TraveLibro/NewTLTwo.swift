@@ -13,7 +13,6 @@ import EventKitUI
 import BSImagePicker
 import Photos
 import CoreLocation
-import ActiveLabel
 
 extension NewTLViewController {
     

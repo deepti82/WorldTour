@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ActiveLabel
+
 
 class PhotosOTG: UIView {
 

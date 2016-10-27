@@ -9,7 +9,6 @@
 import UIKit
 import SwiftHTTP
 
-
 class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     var allCountries: [JSON] = []

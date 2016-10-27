@@ -13,7 +13,6 @@ import BSImagePicker
 //import DKImagePickerController
 import Photos
 import CoreLocation
-import ActiveLabel
 //fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 //  switch (lhs, rhs) {
 //  case let (l?, r?):

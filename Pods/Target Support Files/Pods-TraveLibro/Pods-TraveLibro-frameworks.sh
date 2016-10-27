@@ -84,26 +84,22 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/ActiveLabel/ActiveLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSImagePicker/BSImagePicker.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DKChainableAnimationKit/DKChainableAnimationKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SQLite.swift/SQLite.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Simplicity/Simplicity.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftHTTP/SwiftHTTP.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TabPageViewController/TabPageViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/ActiveLabel/ActiveLabel.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSImagePicker/BSImagePicker.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DKChainableAnimationKit/DKChainableAnimationKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SQLite.swift/SQLite.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Simplicity/Simplicity.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftHTTP/SwiftHTTP.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TabPageViewController/TabPageViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework"
 fi
