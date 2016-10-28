@@ -239,7 +239,7 @@ extension NewTLViewController {
         if isInitialPost {
             
             layout = VerticalLayout(width: self.view.frame.width)
-            layout.frame.origin.y = 600
+            layout.frame.origin.y = 540
             mainScroll.addSubview(self.layout)
             isInitialPost = false
             

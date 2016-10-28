@@ -1253,7 +1253,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        checkIn.frame.size.height = setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
         layout.addSubview(checkIn)
         print("layout views: \(checkIn.frame.size.height)")
-        addHeightToLayout(height: checkIn.frame.height + 50.0)
+        //addHeightToLayout(height: checkIn.frame.height + 50.0)
         
         switch whichPost {
         case "CheckIn":
