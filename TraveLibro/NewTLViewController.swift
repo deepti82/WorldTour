@@ -1189,8 +1189,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
           self.editPost(post["_id"].string!)
             
 //        })
-        
-        let checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 600))
+        var checkIn = PhotosOTG()
+        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
         checkIn.likeViewLabel.text = "0 Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
@@ -1250,10 +1250,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-//        checkIn.frame.size.height = setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
+        //checkIn.frame.size.height = setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
         layout.addSubview(checkIn)
+        //setHeight(checkIn, height: checkInHeight)
         print("layout views: \(checkIn.frame.size.height)")
-        //addHeightToLayout(height: checkIn.frame.height + 50.0)
+        addHeightToLayout(height: checkIn.frame.height + 50.0)
         
         switch whichPost {
         case "CheckIn":
@@ -1344,9 +1345,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var lines = 0
         var textHeight: CGFloat = 0.0
         let myView = view as! PhotosOTG
+        var totalHeight = 200
         
         lines = thoughts.characters.count/35
         textHeight = CGFloat(lines) * 19.5
+        
+        totalHeight += lines * 19
         
         if myView.photosTitle.frame.height > textHeight {
             
@@ -1359,9 +1363,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        if photos == 1 {
+        if photos > 1 {
+            
+            totalHeight += 392
+            
+        } else if photos == 1 {
             
             myView.frame.size.height -= myView.photosStack.frame.height
+            totalHeight += 92
             
         }
         else if photos == 0 {
@@ -1371,7 +1380,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        return myView.frame.height
+        print("toal height: \(totalHeight)")
+        
+        //return myView.frame.height
+        return CGFloat(totalHeight)
         
     }
     
