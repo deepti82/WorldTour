@@ -23,6 +23,9 @@ class RatingCheckIn: UIView {
         rateCheckInLabel.layer.masksToBounds = true
         line.backgroundColor = UIColor.clear
         
+        rateCheckInButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+        rateCheckInButton.setTitle("", for: .normal)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

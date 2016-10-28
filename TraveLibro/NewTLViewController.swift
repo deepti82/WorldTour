@@ -1350,7 +1350,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         lines = thoughts.characters.count/35
         textHeight = CGFloat(lines) * 19.5
         
-        totalHeight += lines * 19
+        totalHeight += lines * 20
         
         if myView.photosTitle.frame.height > textHeight {
             
@@ -1380,7 +1380,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        print("toal height: \(totalHeight)")
+        print("total height: \(totalHeight)")
         
         //return myView.frame.height
         return CGFloat(totalHeight)
@@ -2227,17 +2227,43 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("image name: \(imageString)")
         let getImageUrl = adminUrl + "upload/readFile?file=" + imageString + "&width=500"
-        print("image url: \(getImageUrl)")
-        let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-        print("image data: \(data)")
-        if data != nil {
-            
-            self.otgView.cityImage.image = UIImage(data: data!)
-            
+        let googleMapUrl = imageString.replacingOccurrences(of: "https://", with: "http://")
+        print("image url: \(getImageUrl) : \(googleMapUrl)")
+//        if let checkedUrl = URL(string: googleMapUrl) {
+//            getDataFromUrl(url: checkedUrl) { (data, response, error)  in
+//                guard let data = data, error == nil else { return }
+//                print(response?.suggestedFilename ?? checkedUrl.lastPathComponent)
+//                print("Download Finished")
+//                DispatchQueue.main.async() { () -> Void in
+//                    self.otgView.cityImage.image = UIImage(data: data)
+//                }
+//            }
+//        }
+        let mapurl = URL(string: googleMapUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+        do {
+            let data = try! Data(contentsOf: mapurl!)
+            print("image data: \(data)")
+            self.otgView.cityImage.image = UIImage(data: data)
         }
+        
+//        } else {
+//            print("no image data found")
+//        }
+        
+        
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            }.resume()
     }
     
     var locationPic: String!
+    var locationName: String = ""
+    var locationLat: String = ""
+    var locationLong: String = ""
     
     func getCoverPic() {
         
@@ -2248,7 +2274,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             temp.append(place.string!)
         }
         
-        request.getJourneyCoverPic(temp, completion: {(response) in
+        request.getJourneyCoverPic(locationName, lat: locationLat, long: locationLong, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -2906,6 +2932,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.places = response["data"]["placeId"].array!
                         self.locationData = response["data"]["name"].string!
                         self.otgView.locationLabel.text = response["data"]["name"].string!
+                        self.locationName = self.locationData
+                        self.locationLat = String(locValue.latitude)
+                        self.locationLong = String(locValue.longitude)
                         print("location: \(self.locationData)")
                         self.getCoverPic()
                         

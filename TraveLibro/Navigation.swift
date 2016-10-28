@@ -1013,13 +1013,16 @@ class Navigation {
         }
     }
     
-    func getJourneyCoverPic(_ places: [String], completion: @escaping ((JSON) -> Void)) {
+    func getJourneyCoverPic(_ city: String, lat: String, long: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            print("places: \(places)")
+            //print("places: \(places)")
+            print()
+            // let params = ["placeId": "\(places)"]
+            let params = ["city": city, "lat": lat, "long": long, "size": "800x600"]
             
-            let opt = try HTTP.GET(adminUrl + "upload/getGooglePic", parameters: ["placeId": "\(places)"])
+            let opt = try HTTP.GET(adminUrl + "upload/getGooglePic", parameters: params)
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

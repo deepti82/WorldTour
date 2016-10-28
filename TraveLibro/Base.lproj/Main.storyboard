@@ -4102,7 +4102,7 @@ IHRvZ2V0aGVyLg
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qi-4S-Beu">
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manan Vora Ended the London Journey" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDT-iu-Skl">
-                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -4141,7 +4141,7 @@ IHRvZ2V0aGVyLg
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.40784314269999999" blue="0.34509804840000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="PRX-Wd-AUB" firstAttribute="centerY" secondItem="4cx-aQ-QKP" secondAttribute="centerY" id="15Q-Fa-afp"/>
                                     <constraint firstItem="0qi-4S-Beu" firstAttribute="leading" secondItem="PRX-Wd-AUB" secondAttribute="trailing" constant="10" id="AAh-h8-gGj"/>
@@ -4195,7 +4195,7 @@ IHRvZ2V0aGVyLg
                                     <constraint firstItem="10w-oT-wcy" firstAttribute="centerY" secondItem="fcO-3i-6P2" secondAttribute="centerY" id="HXv-Ky-5GV"/>
                                     <constraint firstItem="10w-oT-wcy" firstAttribute="leading" secondItem="fcO-3i-6P2" secondAttribute="leading" constant="20" id="JK3-DV-D5s"/>
                                     <constraint firstItem="JCM-Wn-JyR" firstAttribute="centerX" secondItem="fcO-3i-6P2" secondAttribute="centerX" id="aXH-gh-gYA"/>
-                                    <constraint firstAttribute="height" constant="125" id="feb-E1-b7P"/>
+                                    <constraint firstAttribute="height" constant="130" id="feb-E1-b7P"/>
                                     <constraint firstAttribute="trailing" secondItem="10w-oT-wcy" secondAttribute="trailing" constant="20" id="jsM-5G-XK4"/>
                                     <constraint firstItem="JCM-Wn-JyR" firstAttribute="top" secondItem="10w-oT-wcy" secondAttribute="bottom" constant="8" id="oTI-oZ-Xmr"/>
                                     <constraint firstItem="pLH-RG-ImO" firstAttribute="top" secondItem="fcO-3i-6P2" secondAttribute="top" constant="8" id="onJ-eX-bL7"/>
@@ -6266,7 +6266,7 @@ IHRvZ2V0aGVyLg
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rKb-oh-IuE" id="ycg-7z-oYc">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvF-nQ-3hz">

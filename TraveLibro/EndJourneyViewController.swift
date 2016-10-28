@@ -51,11 +51,15 @@ class EndJourneyViewController: UIViewController {
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setTitle("Done", for: UIControlState())
-        rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
+        //rightButton.setTitle("Done", for: UIControlState())
+        //rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
+        let image = UIImage(cgImage: (UIImage(named: "arrow_prev")?.cgImage!)!, scale: 1.0, orientation: .upMirrored)
+        rightButton.setImage(image, for: UIControlState())
         rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 10, y: 0, width: 70, height: 30)
+        rightButton.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
         self.customNavigationBar(left: leftButton, right: rightButton)
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
         
         //calendarIcon.text = String(format: "%C", args: faicon["calendar"])
         //clockIcon.text = String(format: "%C", arguments: faicon["clock"])
@@ -145,12 +149,12 @@ class EndJourneyViewController: UIViewController {
             }
             else if response["value"].bool! {
                 
-                for image in response["data"].array! {
+                for image in response["data"]["photos"].array! {
                     
-                    self.journeyImages.append(image.string!)
+                    self.journeyImages.append(image["name"].string!)
                     
                 }
-                if response["data"].array!.count > 0 {
+                if response["data"]["photos"].array!.count > 0 {
                     
                     self.randomImage()
                 }

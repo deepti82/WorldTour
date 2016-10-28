@@ -31,8 +31,8 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RE-OS-w26">
                     <constraints>
-                        <constraint firstAttribute="width" constant="55" id="BZm-y9-81f"/>
-                        <constraint firstAttribute="height" constant="55" id="XSc-ZZ-g5c"/>
+                        <constraint firstAttribute="width" constant="60" id="BZm-y9-81f"/>
+                        <constraint firstAttribute="height" constant="60" id="XSc-ZZ-g5c"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                     <state key="normal" image="star_rate_icon" backgroundImage="orangebox_shadow"/>
@@ -40,13 +40,13 @@
             </subviews>
             <constraints>
                 <constraint firstItem="NV7-7j-LpW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2NV-22-30w"/>
-                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="-5" id="BXC-ft-gvX"/>
+                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="-10" id="BXC-ft-gvX"/>
                 <constraint firstItem="L3O-3Q-Ds2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FL2-E1-WOr"/>
-                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="-5" id="Jk3-BI-3OP"/>
-                <constraint firstItem="NV7-7j-LpW" firstAttribute="top" secondItem="4RE-OS-w26" secondAttribute="bottom" constant="10" id="ZaG-yk-pJW"/>
+                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="-10" id="Jk3-BI-3OP"/>
+                <constraint firstItem="NV7-7j-LpW" firstAttribute="top" secondItem="4RE-OS-w26" secondAttribute="bottom" constant="5" id="ZaG-yk-pJW"/>
                 <constraint firstAttribute="trailing" secondItem="NV7-7j-LpW" secondAttribute="trailing" id="kpO-Y0-1rd"/>
                 <constraint firstAttribute="bottom" secondItem="NV7-7j-LpW" secondAttribute="bottom" constant="8" id="o1P-Id-Hd1"/>
-                <constraint firstItem="L3O-3Q-Ds2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tgI-0Y-7Qy"/>
+                <constraint firstItem="L3O-3Q-Ds2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="tgI-0Y-7Qy"/>
                 <constraint firstItem="4RE-OS-w26" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vjT-w1-QlE"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
