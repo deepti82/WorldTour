@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripInfoOTG" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="aboutLocationText" destination="INo-B4-cyd" id="wmB-cl-lE3"/>
                 <outlet property="hotelsButton" destination="41I-ep-Viz" id="aYh-Nv-CVb"/>
                 <outlet property="hotelsCount" destination="8CH-Hm-NJL" id="uTQ-hk-YDj"/>
                 <outlet property="itinerariesButton" destination="SwL-DY-HmG" id="Foc-rI-bqL"/>

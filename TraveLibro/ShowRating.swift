@@ -36,8 +36,6 @@ class ShowRating: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        line.backgroundColor = UIColor.clear
-        
     }
     
     func loadViewFromNib() {
@@ -47,6 +45,8 @@ class ShowRating: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        
+        line.backgroundColor = UIColor.clear
     }
 
 }

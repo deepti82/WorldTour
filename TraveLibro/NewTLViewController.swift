@@ -61,6 +61,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var addedBuddies: [JSON]!
     var addView: AddActivityNew!
+    var backgroundReview = UIView()
     
     @IBOutlet weak var addPostsButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
@@ -1209,7 +1210,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
         checkIn.dateLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) //+ "  | "
         checkIn.timeLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
-        
+        checkIn.clipsToBounds = true
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), for: .touchUpInside)
         checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), for: .touchUpInside)
         
@@ -1356,15 +1357,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var totalHeight = 185
         
         lines = thoughts.characters.count / 35
-        if lines % 35 > 0 {
-            lines += 1
-        } else if lines == 0 {
+        if lines % 35 > 0 || lines == 0 {
             lines += 1
         }
         textHeight = CGFloat(lines) * 19.5
-        print("lines: \(lines) \(thoughts)")
         totalHeight += lines * 20
-        print("after lines: \(totalHeight)")
         
         if myView.photosTitle.frame.height > textHeight {
             
@@ -1380,13 +1377,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if photos > 1 {
             
             totalHeight += 360
-            print("after more photos: \(totalHeight)")
             
         } else if photos == 1 {
             
             myView.frame.size.height -= myView.photosStack.frame.height
             totalHeight += 300
-            print("after one photo: \(totalHeight)")
         }
         else if photos == 0 {
             

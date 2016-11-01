@@ -55,12 +55,9 @@ extension NewTLViewController {
                     
                 }
                 
-                
             }
             
-            
         }
-        
         
     }
     
@@ -108,23 +105,25 @@ extension NewTLViewController {
         
         let lastCount = myReview.count - 1
         
-        let background = UIView(frame: self.view.frame)
-        background.addGestureRecognizer(tapout)
-        background.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        self.view.addSubview(background)
-        self.view.bringSubview(toFront: background)
+        backgroundReview = UIView(frame: self.view.frame)
+        backgroundReview.addGestureRecognizer(tapout)
+        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        self.view.addSubview(backgroundReview)
+        self.view.bringSubview(toFront: backgroundReview)
         
-        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 315))
-        rating.center = background.center
+        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
+        rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.ratingDisplay(myReview[lastCount])
         rating.postReview.setTitle("CLOSE", for: UIControlState())
         rating.reviewTextView.isEditable = false
         rating.starsStack.isUserInteractionEnabled = false
+        rating.clipsToBounds = true
+        rating.postReview.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:))))
+        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
 //        rating.starCount.
         
-        background.addSubview(rating)
-        
+        backgroundReview.addSubview(rating)
         
     }
     
@@ -152,25 +151,27 @@ extension NewTLViewController {
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
         
-        let background = UIView(frame: self.view.frame)
-        background.addGestureRecognizer(tapout)
-        background.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        self.view.addSubview(background)
-        self.view.bringSubview(toFront: background)
+        backgroundReview = UIView(frame: self.view.frame)
+        backgroundReview.addGestureRecognizer(tapout)
+        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        self.view.addSubview(backgroundReview)
+        self.view.bringSubview(toFront: backgroundReview)
         
-        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 315))
-        rating.center = background.center
+        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
+        rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
+        rating.clipsToBounds = true
+        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
 //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
-        background.addSubview(rating)
+        backgroundReview.addSubview(rating)
         
         
     }
     
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
         
-        sender.view!.removeFromSuperview()
+        backgroundReview.removeFromSuperview()
         
     }
     
@@ -396,7 +397,7 @@ extension NewTLViewController {
         if flag == 0 {
             
             print("no subview")
-            self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+            self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
             self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), for: .touchUpInside)
             self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
             self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
@@ -413,6 +414,7 @@ extension NewTLViewController {
             self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: UIControlState())
             self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: UIControlState())
             self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: UIControlState())
+            self.infoView.aboutLocationText.text = "About \(latestCity)"
             self.infoView.layer.opacity = 1.0
             self.view.addSubview(self.infoView)
             self.view.bringSubview(toFront: self.infoView)
