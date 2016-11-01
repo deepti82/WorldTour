@@ -114,7 +114,7 @@ extension NewTLViewController {
         let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
-        rating.ratingDisplay(myReview[lastCount])
+        rating.ratingDisplay(myReview[0])
         rating.postReview.setTitle("CLOSE", for: UIControlState())
         rating.reviewTextView.isEditable = false
         rating.starsStack.isUserInteractionEnabled = false

@@ -1309,9 +1309,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
+                    let imageArr = ["disapointed", "sad", "good", "superface", "love"]
+                    
                     let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                     myReview = post["review"].array!
                     rateButton.showRating(Int(allReviews[lastReviewCount]["rating"].string!)!)
+                    rateButton.rating.setImage(UIImage(named: imageArr[Int(myReview[0]["rating"].string!)!]), for: .normal)
                     rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
                     rateButton.rating.setTitle(post["_id"].string!, for: .application)
                     rateButton.tag = Int(allReviews[lastReviewCount]["rating"].string!)!
