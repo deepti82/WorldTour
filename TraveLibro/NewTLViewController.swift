@@ -1198,7 +1198,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
 //        })
         var checkIn = PhotosOTG()
-        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)))
+        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts.string, photos: post["photos"].array!.count)))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
         checkIn.likeViewLabel.text = "0 Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
@@ -1353,12 +1353,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var lines = 0
         var textHeight: CGFloat = 0.0
         let myView = view as! PhotosOTG
-        var totalHeight = 200
+        var totalHeight = 185
         
-        lines = thoughts.characters.count/35
+        lines = thoughts.characters.count / 35
+        if lines % 35 > 0 {
+            lines += 1
+        } else if lines == 0 {
+            lines += 1
+        }
         textHeight = CGFloat(lines) * 19.5
-        
+        print("lines: \(lines) \(thoughts)")
         totalHeight += lines * 20
+        print("after lines: \(totalHeight)")
         
         if myView.photosTitle.frame.height > textHeight {
             
@@ -1373,19 +1379,20 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if photos > 1 {
             
-            totalHeight += 372
+            totalHeight += 360
+            print("after more photos: \(totalHeight)")
             
         } else if photos == 1 {
             
             myView.frame.size.height -= myView.photosStack.frame.height
-            totalHeight += 92
-            
+            totalHeight += 300
+            print("after one photo: \(totalHeight)")
         }
         else if photos == 0 {
             
             myView.frame.size.height -= myView.photosStack.frame.height
             myView.frame.size.height -= myView.mainPhoto.frame.height
-            totalHeight += 20
+            totalHeight += 0
             
         }
         
