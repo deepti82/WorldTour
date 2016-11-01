@@ -69,7 +69,12 @@ class EndJourneyViewController: UIViewController {
         
         getAllImages()
         
-        userDp.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
+        if currentUser["profilePicture"] != "" {
+            userDp.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
+        } else {
+            userDp.image = UIImage(named: "darkBg")
+        }
+        
         makeTLProfilePicture(userDp)
         endJourneyTitle.text = "\(currentUser["name"]) has ended the \(journey["name"]) Journey"
         
@@ -160,7 +165,8 @@ class EndJourneyViewController: UIViewController {
                 }
                 else {
                     
-                   self.makeCoverPicture(image: self.journey["startLocationPic"].string!)
+                    let image = self.journey["startLocationPic"].string!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    self.makeCoverPicture(image: image!)
                     
                 }
                 

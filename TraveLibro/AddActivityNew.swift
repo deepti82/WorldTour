@@ -32,6 +32,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var thoughtsCharacterCount: UILabel!
     
     @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var postButtonUp: UIButton!
     
     @IBOutlet weak var facebookShare: UIButton!
     @IBOutlet weak var whatsappShare: UIButton!

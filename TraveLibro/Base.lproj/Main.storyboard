@@ -3263,7 +3263,7 @@
                                             <outlet property="delegate" destination="73T-Id-WOj" id="eCy-AL-485"/>
                                         </connections>
                                     </collectionView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_waves_flag" translatesAutoresizingMaskIntoConstraints="NO" id="FzV-dF-2z1">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_waves_flag" translatesAutoresizingMaskIntoConstraints="NO" id="FzV-dF-2z1">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="KDG-z2-7pc"/>
                                             <constraint firstAttribute="width" constant="100" id="XLF-Vy-gG0"/>
@@ -4267,7 +4267,7 @@ IHRvZ2V0aGVyLg
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NEB-XP-wm5"/>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add a caption..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8Jq-OB-qMj">
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="op0-c5-d8j"/>
                                 </constraints>
@@ -4339,19 +4339,19 @@ IHRvZ2V0aGVyLg
                         <constraints>
                             <constraint firstItem="AVK-iA-xk6" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="7cI-o9-b9A"/>
                             <constraint firstAttribute="trailing" secondItem="AVK-iA-xk6" secondAttribute="trailing" constant="20" id="ClB-zz-T1u"/>
-                            <constraint firstItem="8Jq-OB-qMj" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="25" id="GAF-Mq-cAv"/>
+                            <constraint firstItem="8Jq-OB-qMj" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="15" id="GAF-Mq-cAv"/>
                             <constraint firstItem="9ki-Pv-9l2" firstAttribute="centerY" secondItem="vpb-lr-1yP" secondAttribute="centerY" id="TqF-jY-s4b"/>
-                            <constraint firstAttribute="trailing" secondItem="NEB-XP-wm5" secondAttribute="trailing" constant="5" id="U6M-Eu-P0u"/>
+                            <constraint firstAttribute="trailing" secondItem="NEB-XP-wm5" secondAttribute="trailing" id="U6M-Eu-P0u"/>
                             <constraint firstItem="8C8-Ua-az5" firstAttribute="top" secondItem="8Jq-OB-qMj" secondAttribute="bottom" constant="8" id="VPX-Cu-a19"/>
                             <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="8C8-Ua-az5" secondAttribute="bottom" constant="20" id="ZdU-1V-WtQ"/>
                             <constraint firstItem="rnY-Ri-P74" firstAttribute="centerY" secondItem="vpb-lr-1yP" secondAttribute="centerY" id="jM1-tA-yay"/>
                             <constraint firstItem="9ki-Pv-9l2" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="20" id="lhi-vs-LH8"/>
                             <constraint firstAttribute="trailing" secondItem="rnY-Ri-P74" secondAttribute="trailing" constant="20" id="r9a-iM-ush"/>
-                            <constraint firstAttribute="trailing" secondItem="8Jq-OB-qMj" secondAttribute="trailing" constant="25" id="tZZ-0l-p7w"/>
-                            <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="NEB-XP-wm5" secondAttribute="bottom" constant="20" id="vkB-n9-nVS"/>
+                            <constraint firstAttribute="trailing" secondItem="8Jq-OB-qMj" secondAttribute="trailing" constant="15" id="tZZ-0l-p7w"/>
+                            <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="NEB-XP-wm5" secondAttribute="bottom" id="vkB-n9-nVS"/>
                             <constraint firstItem="8C8-Ua-az5" firstAttribute="centerX" secondItem="vpb-lr-1yP" secondAttribute="centerX" id="w9h-9A-nny"/>
-                            <constraint firstItem="NEB-XP-wm5" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="5" id="wBI-Vd-clH"/>
-                            <constraint firstItem="NEB-XP-wm5" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" constant="20" id="zdx-Yx-2ys"/>
+                            <constraint firstItem="NEB-XP-wm5" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="wBI-Vd-clH"/>
+                            <constraint firstItem="NEB-XP-wm5" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="zdx-Yx-2ys"/>
                         </constraints>
                     </view>
                     <connections>
@@ -6266,7 +6266,7 @@ IHRvZ2V0aGVyLg
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rKb-oh-IuE" id="ycg-7z-oYc">
-                                    <frame key="frameInset" width="375" height="44"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvF-nQ-3hz">

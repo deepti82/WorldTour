@@ -35,6 +35,7 @@
                 <outlet property="photosIntialView" destination="1TE-3y-V6h" id="wUV-Rb-2ve"/>
                 <outlet property="photosStack" destination="PSi-cU-6MX" id="ssQ-hB-KOC"/>
                 <outlet property="postButton" destination="vYv-ZD-NnK" id="VKq-Ny-YNC"/>
+                <outlet property="postButtonUp" destination="iHa-x2-5Ah" id="Ro5-qW-JVe"/>
                 <outlet property="postCancelButton" destination="rvI-eo-dUr" id="oZh-yb-AW7"/>
                 <outlet property="tagFriendButton" destination="HYl-RF-34A" id="Lcr-AT-5Nz"/>
                 <outlet property="tagFriendsView" destination="bpn-an-Nad" id="W6L-dU-GuQ"/>

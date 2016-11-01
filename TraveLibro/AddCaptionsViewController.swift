@@ -109,21 +109,21 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("wcjwbiiouwebcwecbneiuwcbuciewrbcqjb")
-        print(photoIndex)
-        print(photoData)
-        print(photoURL)
-        print(photoImage)
-        
-        imageIds = photoIndex
-        
-        for i in 0..<photoImage.count {
-            completeImages[i].image = photoImage[i]
-        }
+//        print("wcjwbiiouwebcwecbneiuwcbuciewrbcqjb")
+//        print(photoIndex)
+//        print(photoData)
+//        print(photoURL)
+//        print(photoImage)
+//        
+//        imageIds = photoIndex
+//        
+//        for i in 0..<photoImage.count {
+//            completeImages[i].image = photoImage[i]
+//        }
         
         let leftButton = UIButton()
         leftButton.setTitle("Cancel", for: UIControlState())
-        leftButton.addTarget(self, action: #selector(NewTLViewController.gotoProfile(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 60, height: 30)
         
         let rightButton = UIButton()
@@ -138,6 +138,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         captionTextView.clipsToBounds = true
         captionTextView.layer.zPosition = 1000
         imageStackView.layer.zPosition = 1000
+        captionTextView.textContainerInset = UIEdgeInsetsMake(5, 10, 5, 10)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
@@ -163,7 +164,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
         print("index is: \(index)")
         
-//        captionTextView.text = allIds[index]
+        captionTextView.text = allIds[index]
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done
         
@@ -241,7 +242,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     }
     
     func addToLocalDB() {
-        
+        print(imageIds[index])
+        print(captionTextView.text)
         PhotosDB.insertCaption("\(imageIds[index])", caption: captionTextView.text)
         
     }
@@ -322,6 +324,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
         captionTextView.text = ""
         
+    }
+    
+    func goBack(_ sender: UIButton) {
+        self.popVC(sender)
     }
     
     override func didReceiveMemoryWarning() {

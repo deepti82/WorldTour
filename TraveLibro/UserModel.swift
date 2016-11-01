@@ -84,12 +84,13 @@ public class User {
         }
     }
 
-    func getUser(_ userid: String) -> (String, String, String, String, String, String, String, Bool)  {
+    func getUser(_ userid: String) -> (String, String, String, String, String, String, String, String, Bool)  {
 
         var Name = ""
         var useremail = ""
         var loginType = ""
         var socialid = ""
+        var profilepicture = ""
         var userbadge = ""
         var homecountry = ""
         var homecity = ""
@@ -104,6 +105,7 @@ public class User {
             useremail = newval![email]
             loginType = newval![logintype]
             socialid = newval![socialId]
+            profilepicture = newval![profilePicture]!
             userbadge = newval![userBadge]!
             homecountry = newval![homeCountry]!
             homecity = newval![homeCity]!
@@ -111,7 +113,7 @@ public class User {
             //print(firstName, lastName, useremail, userdob, usergender, usermobile, userstatus, loginType, facebookid, twitterid, googleid, instagramid, userbadgeImage, userbadgeName, homecountry, homecity, isloggedin)
             
         }
-        return (Name, useremail, loginType, socialid, userbadge, homecountry, homecity, isloggedin)
+        return (Name, useremail, loginType, socialid, profilepicture, userbadge, homecountry, homecity, isloggedin)
     }
     
     func getExistingUser() -> String {
