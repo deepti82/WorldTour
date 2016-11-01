@@ -200,14 +200,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-                let minDate = dateFormatter.date(from: "\(self.myJourney["startTime"])")!.toLocalTime()
+                //let minDate = dateFormatter.date(from: "\(self.myJourney["startTime"])")!.toLocalTime()
                 
                 //Create the view
                 self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
                 self.inputview.backgroundColor = UIColor.white
                 self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
                 self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
-                self.datePickerView.minimumDate = minDate
+                //self.datePickerView.minimumDate = minDate
                 self.datePickerView.maximumDate = Date()
                 
                 addTopBorder(mainBlueColor, view: self.datePickerView, borderWidth: 1)
@@ -219,7 +219,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 doneButton.setTitle("SAVE", for: UIControlState())
                 doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
                 doneButton.setTitleColor(mainBlueColor, for: UIControlState())
-                doneButton.setTitle(sender.title(for: .application), for: .application)
+                doneButton.setTitle(sender.title(for: .application)!, for: .application)
                 
                 let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
                 cancelButton.setTitle("CANCEL", for: UIControlState())
@@ -1580,7 +1580,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.inputview.addSubview(self.datePickerView) // add date picker to UIView
             
             let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
-            doneButton.setTitle("SAVE", for: UIControlState())
+            doneButton.setTitle("SAVE", for: .normal)
             doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
             doneButton.setTitleColor(mainBlueColor, for: UIControlState())
             doneButton.setTitle(sender.title(for: .application), for: .application)
@@ -1683,21 +1683,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func doneButtonJourney(_ sender: UIButton){
-//        request.changeDateTimeJourney(sender.title(for: .application)!, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
-//            DispatchQueue.main.async(execute: {
-//                
-//                if response.error != nil {
-//                    print("error: \(response.error!.localizedDescription)")
-//                } else if response["value"].bool! {
-//                    print("edited date time response")
-//                    print("\(response)")
-//                } else {
-//                    
-//                }
-//                
-//            })
-//            
-//        })
+        request.changeDateTimeJourney(sender.title(for: .application)!, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    print("error: \(response.error!.localizedDescription)")
+                } else if response["value"].bool! {
+                    print("edited date time response")
+                    print("\(response)")
+                } else {
+                    
+                }
+                
+            })
+            
+        })
         
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
     }
@@ -1828,7 +1828,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        addView.thoughtsTextView.resignFirstResponder()
         print("\(otgView.nameJourneyTF.text)")
         print("\(self.title)")
-        self.title = otgView.nameJourneyTF.text
+        self.title = "On The Go" //otgView.nameJourneyTF.text
         print("text field: \(textField)")
         
         if textField == otgView.nameJourneyTF {

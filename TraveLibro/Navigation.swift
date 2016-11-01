@@ -1440,11 +1440,11 @@ class Navigation {
         
         do {
             
-            let params = ["uniqueId": id, "date": date, "type": "changeDateTime"]
+            let params = ["_id": id, "startTime": date]
             
             print("change date time params: \(params)")
             
-            let opt = try HTTP.POST(adminUrl + "post/editData", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + "journey/editData", parameters: [params])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

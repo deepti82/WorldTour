@@ -256,6 +256,7 @@ extension NewTLViewController {
         otgView.nameJourneyTF.delegate = self
         otgView.locationLabel.returnKeyType = .done
         otgView.locationLabel.delegate = self
+        otgView.optionsButton.setTitle(journey["_id"].string, for: .application)
         otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
         otgView.clipsToBounds = true
         
@@ -286,8 +287,11 @@ extension NewTLViewController {
             let dateFormatterTwo = DateFormatter()
             dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
             self.currentTime = dateFormatterTwo.string(from: Date())
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            let localDate = formatter.date(from: journey["startTime"].string!)
             print("time: \(self.currentTime)")
-            self.otgView.timestampDate.text = self.currentTime
+            self.otgView.timestampDate.text = dateFormatterTwo.string(from: localDate!) //self.currentTime
             
             let jc = journey["kindOfJourney"].array!
             
