@@ -270,7 +270,8 @@ extension NewTLViewController {
             mainScroll.frame.origin.y = height
             otgView.journeyName.isHidden = false
             otgView.journeyName.text = journey["name"].string!
-            self.title = journey["name"].string!
+            //self.title = journey["name"].string!
+            self.title = "On The Go"
             otgView.startJourneyButton.isHidden = true
             otgView.detectLocationView.isHidden = true
             otgView.addBuddiesButton.isHidden = true

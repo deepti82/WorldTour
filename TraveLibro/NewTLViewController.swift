@@ -407,6 +407,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var currentCity = ""
     var currentCountry = ""
+    var currentLat = ""
+    var currentLong = ""
     
     func putLocationName(_ selectedLocation: String, placeId: String) {
         
@@ -425,6 +427,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     self.addView.categoryLabel.text = response["data"].string!
                     self.currentCity = response["city"].string!
                     self.currentCountry = response["country"].string!
+                    self.currentLat = response["lat"].string!
+                    self.currentLong = response["long"].string!
                     
                 }
                 else {
@@ -531,7 +535,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             if Reachability.isConnectedToNetwork() {
                 
                 print("internet is connected post")
-                request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, completion: {(response) in
+                request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, lat: currentLat, long: currentLong, completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
                         
@@ -1018,7 +1022,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         //rightButton.setBackgroundImage(UIImage(named: "i_circle"), for: UIControlState())
         //rightButton.setImage(UIImage(named: "info_icon"), for: UIControlState())
         rightButton.setTitle("i", for: UIControlState())
-        rightButton.layer.borderWidth = 1.0
+        rightButton.layer.borderWidth = 1.5
         rightButton.layer.borderColor = UIColor.white.cgColor
         rightButton.layer.cornerRadius = rightButton.frame.width / 2
         rightButton.clipsToBounds = true
@@ -1029,7 +1033,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         getJourney()
         
-        self.title = "\(currentUser["firstName"].string!)'s New On The Go"
+        self.title = "On The Go" //"\(currentUser["firstName"].string!)'s New On The Go"
         
         TLLoader = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         TLLoader.center = self.view.center
@@ -1314,7 +1318,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                     myReview = post["review"].array!
                     rateButton.showRating(Int(allReviews[lastReviewCount]["rating"].string!)!)
-                    rateButton.rating.setImage(UIImage(named: imageArr[Int(myReview[0]["rating"].string!)!]), for: .normal)
+                    //rateButton.rating.setImage(UIImage(named: imageArr[Int(myReview[0]["rating"].string!)! - 1]), for: .normal)
                     rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
                     rateButton.rating.setTitle(post["_id"].string!, for: .application)
                     rateButton.tag = Int(allReviews[lastReviewCount]["rating"].string!)!
@@ -1359,8 +1363,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let myView = view as! PhotosOTG
         var totalHeight = 185
         
-        lines = thoughts.characters.count / 35
-        if lines % 35 > 0 || lines == 0 {
+        lines = thoughts.characters.count / 36
+        if lines % 36 > 0 || lines == 0 {
             lines += 1
         }
         textHeight = CGFloat(lines) * 19.5

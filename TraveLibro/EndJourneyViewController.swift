@@ -22,6 +22,11 @@ class EndJourneyViewController: UIViewController {
     @IBOutlet weak var buddyCount: UILabel!
     @IBOutlet var categoryImages: [UIImageView]!
     @IBOutlet var buddiesImages: [UIImageView]!
+    
+    @IBOutlet weak var changePhotoText: UILabel!
+    @IBOutlet weak var changePhotoButton: UIButton!
+    
+    
     var journeyImages: [String] = []
     var journey: JSON!
     
@@ -32,6 +37,7 @@ class EndJourneyViewController: UIViewController {
             let selectImage = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
             selectImage.whichView = "SelectCover"
             selectImage.images = journeyImages
+            self.navigationController?.navigationItem.leftBarButtonItem?.title = ""
             self.navigationController?.pushViewController(selectImage, animated: true)
             
         }
@@ -145,7 +151,7 @@ class EndJourneyViewController: UIViewController {
     
     func getAllImages() {
         
-        print("in get all images: \(journey!)")
+        //print("in get all images: \(journey!)")
         request.getJourneyPhotos(journeyId: journey["_id"].string!, completion: {(response) in
             
             if response.error != nil {
@@ -154,9 +160,19 @@ class EndJourneyViewController: UIViewController {
             }
             else if response["value"].bool! {
                 
-                for image in response["data"]["photos"].array! {
+                let photosArr = response["data"]["photos"].array!
+                
+                if photosArr != [] {
+                
+                    for image in response["data"]["photos"].array! {
+                        
+                        self.journeyImages.append(image["name"].string!)
+                        
+                    }
                     
-                    self.journeyImages.append(image["name"].string!)
+                } else {
+                    
+                    print("no images")
                     
                 }
                 if response["data"]["photos"].array!.count > 0 {
@@ -167,6 +183,10 @@ class EndJourneyViewController: UIViewController {
                     
                     let image = self.journey["startLocationPic"].string!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                     self.makeCoverPicture(image: image!)
+                    
+                    // installed will remove spacing and constraints
+                    //self.changePhotoText.isHidden = true
+                    //self.changePhotoButton.isHidden = true
                     
                 }
                 
@@ -195,7 +215,7 @@ class EndJourneyViewController: UIViewController {
         
         DispatchQueue.main.async(execute: {
             
-            self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
+            //self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
             
         })
         

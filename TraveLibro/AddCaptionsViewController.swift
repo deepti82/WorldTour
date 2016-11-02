@@ -164,7 +164,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
         print("index is: \(index)")
         
-        captionTextView.text = allIds[index]
+        //captionTextView.text = allIds[index]
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done
         

@@ -4,7 +4,8 @@ import SwiftHTTP
 //import Alamofire
 
 let apiUrl = "http://104.155.207.185:92/api/"
-var adminUrl = "http://192.168.2.8:1337/api/"
+//var adminUrl = "http://192.168.2.8:1337/api/"
+var adminUrl = "http://192.168.43.157:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
 
 class Navigation {
@@ -1106,11 +1107,11 @@ class Navigation {
         }
     }
     
-    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, completion: @escaping ((JSON) -> Void)) {
+    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, lat: String, long: String, completion: @escaping ((JSON) -> Void)) {
         
 //        do {
         
-            let checkIn = ["location": location, "category": locationCategory, "city": city, "country": country]
+            let checkIn = ["location": location, "category": locationCategory, "city": city, "country": country, "lat": lat, "long": long]
             
             var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName]
             params["photos"] = JSON(photosArray)

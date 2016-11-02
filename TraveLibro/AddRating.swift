@@ -90,8 +90,8 @@ class AddRating: UIView, UITextViewDelegate {
             stars[i].setImage(UIImage(named: "star_check"), for: UIControlState())
             
         }
-        smiley.setImage(UIImage(named: imageArr[Int(review["rating"].string!)!]), for: UIControlState())
-        reviewConclusion.text = moodArr[Int(review["rating"].string!)!]
+        smiley.setImage(UIImage(named: imageArr[Int(review["rating"].string!)! - 1]), for: UIControlState())
+        reviewConclusion.text = moodArr[Int(review["rating"].string!)! - 1]
         
     }
     

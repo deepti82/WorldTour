@@ -24,6 +24,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.leftBarButtonItem?.title = ""
+        
 //        self.addObserver(self, forKeyPath: "whichView", options: .Prior, context: nil)
 //        if isEmptyProfile {
 //            
