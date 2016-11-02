@@ -91,7 +91,7 @@ class AddYourRatingViewController: UIViewController {
         rating.lines = rating.reviewDescription.text!.characters.count/55
         rating.textViewHeight = CGFloat(rating.lines) * 19.2
         
-        if rating.reviewDescription.frame.height > rating.textViewHeight {
+        if Float(rating.reviewDescription.frame.height) > Float(rating.textViewHeight) {
             
             let heightDifference = rating.reviewDescription.frame.height - rating.textViewHeight
             rating.frame.size.height -= heightDifference
