@@ -106,7 +106,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                 
                 else {
                     
-                    if let abc = response["value"].string {
+                    if response["value"].string != nil {
                         
                         self.allCountries = response["data"].array!
 //                        print("countries data: \(self.allCountries)")
@@ -215,7 +215,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                 }
                 else {
                     
-                    if let abc = response["value"].string {
+                    if response["value"].string != nil {
                         
                         let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
                         self.navigationController?.pushViewController(cityVC, animated: true)
