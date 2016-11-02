@@ -66,6 +66,8 @@ class EndJourneyViewController: UIViewController {
         self.customNavigationBar(left: leftButton, right: rightButton)
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
+        self.journeyCoverPic.backgroundColor = UIColor.white
+        self.journeyCoverPic.image = UIImage(named: "")
         
         //calendarIcon.text = String(format: "%C", args: faicon["calendar"])
         //clockIcon.text = String(format: "%C", arguments: faicon["clock"])
@@ -216,6 +218,13 @@ class EndJourneyViewController: UIViewController {
         DispatchQueue.main.async(execute: {
             
             //self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
+            
+            let imageString = self.journey["startLocationPic"].string!
+            let mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+            do {
+                let data = try! Data(contentsOf: mapurl!)
+                self.journeyCoverPic.image = UIImage(data: data)
+            }
             
         })
         

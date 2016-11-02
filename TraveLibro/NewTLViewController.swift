@@ -407,8 +407,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var currentCity = ""
     var currentCountry = ""
-    var currentLat = ""
-    var currentLong = ""
+    //var currentLat = ""
+    //var currentLong = ""
     
     func putLocationName(_ selectedLocation: String, placeId: String) {
         
@@ -427,8 +427,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     self.addView.categoryLabel.text = response["data"].string!
                     self.currentCity = response["city"].string!
                     self.currentCountry = response["country"].string!
-                    self.currentLat = response["lat"].string!
-                    self.currentLong = response["long"].string!
+                    //self.currentLat = response["lat"].string!
+                    //self.currentLong = response["long"].string!
                     
                 }
                 else {
@@ -535,7 +535,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             if Reachability.isConnectedToNetwork() {
                 
                 print("internet is connected post")
-                request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, lat: currentLat, long: currentLong, completion: {(response) in
+                request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
                         
@@ -2552,7 +2552,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.addWidthToPhotoLayout(visibleImage.frame.width + 10.0)
                         self.addView.horizontalScrollForPhotos.addSubview(visibleImage)
                         
-//                        dispatch_sync(dispatch_get_main_queue(),  {
+                        DispatchQueue.main.sync(execute: {
                         
                             do {
                                 
@@ -2615,7 +2615,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                 
                             }
                             
-//                        })
+                        })
                         
                         print("asset array: \(assetArray)")
                         self.tempAssets = assetArray
@@ -2628,18 +2628,22 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
-                    let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-                    addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-                    addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: UIControlState())
-                    addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-                    addMorePhotosButton.layer.cornerRadius = 5.0
-                    addMorePhotosButton.clipsToBounds = true
-                    addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
-                    addMorePhotosButton.tag = 2
-                    self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
-                    self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
-//                    self.addView.horizontalScrollForPhotos.
-                    self.storePhotos(assetArray)
+                    DispatchQueue.main.sync(execute: {
+                    
+                        let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+                        addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+                        addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: UIControlState())
+                        addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+                        addMorePhotosButton.layer.cornerRadius = 5.0
+                        addMorePhotosButton.clipsToBounds = true
+                        addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
+                        addMorePhotosButton.tag = 2
+                        self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
+                        self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+    //                    self.addView.horizontalScrollForPhotos.
+                        self.storePhotos(assetArray)
+                        
+                    })
                     //**************************** MIDHET'S CODE ******************************
                     
 //                                        let addButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))

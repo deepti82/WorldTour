@@ -299,7 +299,7 @@
             </subviews>
             <constraints>
                 <constraint firstItem="5Kf-mk-SOs" firstAttribute="top" secondItem="WnS-pJ-OkX" secondAttribute="top" id="20A-vs-fr9"/>
-                <constraint firstItem="gWj-jG-WvQ" firstAttribute="leading" secondItem="ayp-RI-d3A" secondAttribute="trailing" constant="8" symbolic="YES" id="23y-3y-nz4"/>
+                <constraint firstItem="gWj-jG-WvQ" firstAttribute="leading" secondItem="ayp-RI-d3A" secondAttribute="trailing" constant="15" id="23y-3y-nz4"/>
                 <constraint firstItem="cOI-L9-d0U" firstAttribute="top" secondItem="RO1-ny-Mfq" secondAttribute="bottom" id="2qe-YA-NV7"/>
                 <constraint firstAttribute="trailing" secondItem="MYo-lh-LFg" secondAttribute="trailing" constant="8" id="2qh-xc-mJW"/>
                 <constraint firstItem="UPf-M7-nYe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5IC-cb-tqF"/>

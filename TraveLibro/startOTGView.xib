@@ -156,7 +156,7 @@
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="london_image" translatesAutoresizingMaskIntoConstraints="NO" id="vov-Dh-v4k">
                             <constraints>
-                                <constraint firstAttribute="height" constant="175" id="Osr-QD-W5L"/>
+                                <constraint firstAttribute="height" constant="200" id="Osr-QD-W5L"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="you_are_in" translatesAutoresizingMaskIntoConstraints="NO" id="b9h-EL-mQr">

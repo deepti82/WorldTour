@@ -231,7 +231,9 @@ extension NewTLViewController {
         mainScroll.showsVerticalScrollIndicator = false
         mainScroll.showsHorizontalScrollIndicator = false
         refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        let attributes = [NSForegroundColorAttributeName: UIColor.white]
+        let attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: attributes)
+        refreshControl.attributedTitle = attributedTitle
         refreshControl.tintColor = lightOrangeColor
         //        mainScroll.addSubview(refreshControl)
         mainScroll.contentSize.height = self.view.frame.height
@@ -240,7 +242,7 @@ extension NewTLViewController {
         if isInitialPost {
             
             layout = VerticalLayout(width: self.view.frame.width)
-            layout.frame.origin.y = 540
+            layout.frame.origin.y = 560
             mainScroll.addSubview(self.layout)
             isInitialPost = false
             
