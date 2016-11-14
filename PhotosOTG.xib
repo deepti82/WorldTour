@@ -156,7 +156,7 @@
                     </constraints>
                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                    <state key="normal" image="location_icon" backgroundImage="orangebox"/>
+                    <state key="normal" image="location_icon" backgroundImage="orangeboxopac"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WnS-pJ-OkX">
                     <constraints>
@@ -347,7 +347,7 @@
         <image name="like_empty_icon" width="34" height="30"/>
         <image name="location_icon" width="200" height="200"/>
         <image name="options_icon" width="30" height="30"/>
-        <image name="orangebox" width="117" height="117"/>
+        <image name="orangeboxopac" width="117" height="117"/>
         <image name="photobar1" width="60" height="60"/>
         <image name="photobar2" width="60" height="60"/>
         <image name="photobar3" width="60" height="60"/>

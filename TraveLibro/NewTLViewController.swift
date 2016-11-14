@@ -407,8 +407,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var currentCity = ""
     var currentCountry = ""
-    //var currentLat = ""
-    //var currentLong = ""
+    var currentLat: Float!
+    var currentLong: Float!
     
     func putLocationName(_ selectedLocation: String, placeId: String) {
         
@@ -427,8 +427,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     self.addView.categoryLabel.text = response["data"].string!
                     self.currentCity = response["city"].string!
                     self.currentCountry = response["country"].string!
-                    //self.currentLat = response["lat"].string!
-                    //self.currentLong = response["long"].string!
+                    self.currentLat = response["lat"].float!
+                    self.currentLong = response["long"].float!
                     
                 }
                 else {
@@ -521,7 +521,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             backView.isHidden = true
             
             print("buddies: \(buddies)")
-            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: addView.categoryLabel.text!, Country: currentCountry, City: currentCity, Status: thoughts)
+            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: addView.categoryLabel.text!, Latitude: "\(currentLat!)", Longitude: "\(currentLong!)", Country: currentCountry, City: currentCity, Status: thoughts)
             
             let latestPost = post.getRowCount()
             
@@ -535,7 +535,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             if Reachability.isConnectedToNetwork() {
                 
                 print("internet is connected post")
-                request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, completion: {(response) in
+                request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, latitude: "\(currentLat!)", longitude: "\(currentLong!)", photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
                         
@@ -1010,7 +1010,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getDarkBackGroundBlur(self)
+        getDarkBackGroundBlue(self)
         
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
@@ -1256,7 +1256,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
             
-            checkIn.mainPhoto.isHidden = true
+            checkIn.mainPhoto.isHidden = false
             checkIn.photosStack.isHidden = true
             checkIn.photosHC.constant = 0.0
 //            checkIn.frame.size.height = 250.0
@@ -1286,6 +1286,33 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     let index = checkIn.otherPhotosStack.count - i - 1
                     checkIn.otherPhotosStack[index].isHidden = true
                     
+                }
+                
+            }
+            
+            if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
+                
+                checkIn.mainPhoto.isHidden = false
+                checkIn.photosStack.isHidden = true
+                checkIn.photosHC.constant = 300.0
+                
+                if post["showMap"].bool! {
+                    print("map shown")
+                    
+                    // CHECKIN MAP IMAGE
+                    let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)"
+                    print("\(imageString)")
+                    let mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                    do {
+                        let data = try! Data(contentsOf: mapurl!)
+                        print("image data: \(data)")
+                        checkIn.mainPhoto.image = UIImage(data: data)
+                    } catch _ {
+                        print("Unable to set map image")
+                    }
+
+                } else {
+                    print("map not shown")
                 }
                 
             }
@@ -1363,8 +1390,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let myView = view as! PhotosOTG
         var totalHeight = 185
         
-        lines = thoughts.characters.count / 36
-        if lines % 36 > 0 || lines == 0 {
+        lines = thoughts.characters.count / 34
+        if lines % 34 > 0 || lines == 0 {
             lines += 1
         }
         textHeight = CGFloat(lines) * 19.5
@@ -1394,7 +1421,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             myView.frame.size.height -= myView.photosStack.frame.height
             myView.frame.size.height -= myView.mainPhoto.frame.height
-            totalHeight += 0
+            totalHeight += 300 // CHECKIN MAP IMAGE
             
         }
         
@@ -2251,6 +2278,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let data = try! Data(contentsOf: mapurl!)
             print("image data: \(data)")
             self.otgView.cityImage.image = UIImage(data: data)
+        } catch _ {
+            print("Unable to set map image")
         }
         
 //        } else {

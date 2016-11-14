@@ -25,6 +25,7 @@ class EndJourneyViewController: UIViewController {
     
     @IBOutlet weak var changePhotoText: UILabel!
     @IBOutlet weak var changePhotoButton: UIButton!
+    @IBOutlet weak var changePhotoViewHeight: NSLayoutConstraint!
     
     
     var journeyImages: [String] = []
@@ -175,6 +176,9 @@ class EndJourneyViewController: UIViewController {
                 } else {
                     
                     print("no images")
+                    self.changePhotoText.isHidden = true
+                    self.changePhotoButton.isHidden = true
+                    self.changePhotoViewHeight.constant = 47.0
                     
                 }
                 if response["data"]["photos"].array!.count > 0 {
