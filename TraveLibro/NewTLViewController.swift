@@ -1013,7 +1013,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         getDarkBackGroundBlue(self)
         
         let leftButton = UIButton()
-        leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         
@@ -1205,11 +1205,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var checkIn = PhotosOTG()
         checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts.string, photos: post["photos"].array!.count)))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
-        checkIn.likeViewLabel.text = "0 Likes"
+        checkIn.likeViewLabel.text = "\(post["like"].array!.count) Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
         checkIn.commentButton.setTitle(post["uniqueId"].string!, for: .normal)
         otherCommentId = post["_id"].string!
         currentPost = post
+        
+        if post["like"].array!.contains(JSON(user.getExistingUser())) {
+            checkIn.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
+        }
+        
         checkIn.optionsButton.setTitle(post["_id"].string!, for: .normal)
         checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
         checkIn.dateLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) //+ "  | "

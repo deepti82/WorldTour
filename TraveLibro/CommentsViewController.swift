@@ -30,7 +30,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 
         getAllComments()
         commentsTable.tableFooterView = UIView()
-        commentsTable.estimatedRowHeight = 70.0
+        commentsTable.estimatedRowHeight = 80.0
         commentsTable.rowHeight = UITableViewAutomaticDimension
         
         NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -68,7 +68,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func setAllComments(_ comment: String) {
         
-        request.commentOnPost(postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, completion: {(response) in
+        request.commentOnPost(postId, postId: otherId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: [], completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -94,7 +94,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func getAllComments() {
         
-        request.getComments(otherId, completion: {(response) in
+        request.getComments(otherId, userId: currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -128,10 +128,24 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CommentTableViewCell
-        cell.profileName.text = comments[(indexPath as NSIndexPath).row]["user"]["name"].string!
+        cell.profileName.text = comments[indexPath.row]["user"]["name"].string!
         cell.profileComment.text = comments[(indexPath as NSIndexPath).row]["text"].string!
-        cell.profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(comments[(indexPath as NSIndexPath).row]["user"]["profilePicture"])&width=100")!))
-        makeTLProfilePicture(cell.profileImage)
+        DispatchQueue.main.async(execute: {
+            cell.profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(self.comments[indexPath.row]["user"]["profilePicture"])&width=100")!))
+            makeTLProfilePicture(cell.profileImage)
+        })
+        
+        let dateFormatter = DateFormatter()
+        let timeFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        let date = dateFormatter.date(from: comments[indexPath.row]["createdAt"].string!)
+        dateFormatter.dateFormat = "dd MMM, yyyy"
+        timeFormatter.dateFormat = "hh:mm a"
+        cell.calendarText.text = "\(dateFormatter.string(from: date!))"
+        cell.clockText.text = "\(timeFormatter.string(from: date!))"
+        cell.clockIcon.text = String(format: "%C", faicon["clock"]!)
+        cell.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+        
         return cell
         
     }
@@ -145,5 +159,9 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileComment: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var calendarIcon: UILabel!
+    @IBOutlet weak var clockIcon: UILabel!
+    @IBOutlet weak var calendarText: UILabel!
+    @IBOutlet weak var clockText: UILabel!
     
 }

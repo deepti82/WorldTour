@@ -74,6 +74,20 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        tableView.estimatedRowHeight = 145
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.allowsSelection = false
+        
+        let dateFormatter = DateFormatter()
+        let timeFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        let date = dateFormatter.date(from: notifications[indexPath.row]["createdAt"].string!)
+        dateFormatter.dateFormat = "dd MMM, yyyy"
+        timeFormatter.dateFormat = "hh:mm a"
+        
+        let getImageUrl = adminUrl + "upload/readFile?file=\(self.notifications[indexPath.row]["userFrom"]["profilePicture"].string!)"
+        let data = try? Data(contentsOf: URL(string: getImageUrl)!)
+        
         if notifications[(indexPath as NSIndexPath).row]["type"].string! == "request" {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "bigCell") as! NotifyBigTableViewCell
@@ -83,6 +97,22 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             cell.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
             cell.acceptButton.addTarget(self, action: #selector(NotificationSubViewController.acceptTag(_:)), for: .touchUpInside)
             cell.declineButton.addTarget(self, action: #selector(NotificationSubViewController.declineTag(_:)), for: .touchUpInside)
+            
+            cell.profile.image = nil
+            
+            if data != nil {
+                cell.profile.image = UIImage(data: data!)
+                makeTLProfilePicture(cell.profile)
+            }
+            
+            cell.calendarText.text = "\(dateFormatter.string(from: date!))"
+            cell.clockText.text = "\(timeFormatter.string(from: date!))"
+            
+            cell.acceptButton.layer.cornerRadius = 3.0
+            cell.declineButton.layer.cornerRadius = 3.0
+            cell.acceptButton.clipsToBounds = true
+            cell.declineButton.clipsToBounds = true
+            
             return cell
             
 //            if indexPath.row == 0 {
@@ -97,8 +127,45 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as! messageNotifyTableViewCell
-        return cell
+        if notifications[(indexPath as NSIndexPath).row]["type"].string! == "post" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "simpleCell") as! simpleNotifyTableViewCell
+            cell.profile.image = nil
+            
+            if data != nil {
+                cell.profile.image = UIImage(data: data!)
+                makeTLProfilePicture(cell.profile)
+            }
+            
+            cell.calendarText.text = "\(dateFormatter.string(from: date!))"
+            cell.clockText.text = "\(timeFormatter.string(from: date!))"
+            
+            cell.actionText.text = notifications[indexPath.row]["message"].string!
+            cell.timeAgo.isHidden = true
+            cell.clockIcon.text = String(format: "%C", faicon["clock"]!)
+            cell.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+            cell.imageForNotify.isHidden = true
+            return cell
+        }
+        
+        //if notifications[(indexPath as NSIndexPath).row]["type"].string! == "message" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as! messageNotifyTableViewCell
+            cell.profile.image = nil
+        
+            if data != nil {
+                cell.profile.image = UIImage(data: data!)
+                makeTLProfilePicture(cell.profile)
+            }
+        
+            cell.calenderText.text = "\(dateFormatter.string(from: date!))"
+            cell.clockText.text = "\(timeFormatter.string(from: date!))"
+        
+            cell.clockIcon.text = String(format: "%C", faicon["clock"]!)
+            cell.calenderIcon.text = String(format: "%C", faicon["calendar"]!)
+            cell.imageForMessage.isHidden = true
+            cell.timeAgo.isHidden = true
+            cell.messageText.text = notifications[indexPath.row]["message"].string!
+            return cell
+        //}
         
     }
     
@@ -130,7 +197,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         if notifications[(indexPath as NSIndexPath).row]["type"].string! == "request" {
                 
-            return 180
+            return 145
         }
             
         return 65
@@ -175,7 +242,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
 class simpleNotifyTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profile: UIImageView!
-    @IBOutlet weak var username: UILabel!
+    //@IBOutlet weak var username: UILabel!
     @IBOutlet weak var actionText: UILabel!
     @IBOutlet weak var timeAgo: UILabel!
     @IBOutlet weak var clockIcon: UILabel!
@@ -206,5 +273,9 @@ class messageNotifyTableViewCell: UITableViewCell {
     @IBOutlet weak var messageText: UILabel!
     @IBOutlet weak var timeAgo: UILabel!
     @IBOutlet weak var imageForMessage: UIImageView!
+    @IBOutlet weak var calenderIcon: UILabel!
+    @IBOutlet weak var clockIcon: UILabel!
+    @IBOutlet weak var calenderText: UILabel!
+    @IBOutlet weak var clockText: UILabel!
     
 }

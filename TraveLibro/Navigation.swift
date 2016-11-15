@@ -1283,15 +1283,15 @@ class Navigation {
         }
     }
     
-    func commentOnPost(_ id: String, userId: String, commentText: String, userName: String, completion: @escaping ((JSON) -> Void)) {
+    func commentOnPost(_ id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: JSON, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "comment" : ["user":  userId, "text": commentText, "name": userName]] as [String : Any]
+            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "post", "hashtag" : hashtags] as [String : Any]
               
             print("set comment params: \(params)")
             
-            let opt = try HTTP.POST(adminUrl + "post/addComment", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + "comment/addComment", parameters: [params])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -1309,11 +1309,11 @@ class Navigation {
         }
     }
     
-    func getComments(_ id: String, completion: @escaping ((JSON) -> Void)) {
+    func getComments(_ id: String, userId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id]
+            let params = ["_id": id, "user": userId]
             
             print("comment params: \(params)")
             
