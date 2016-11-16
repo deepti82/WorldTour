@@ -198,7 +198,6 @@ extension UIViewController {
         self.navigationItem.leftBarButtonItem = leftBarButton
         self.navigationItem.rightBarButtonItem = rightBarButton
         
-        
 //        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.setBackwardController(_:))), animated: true)
 //        self.navigationController?.toolbar.barTintColor = mainBlueColor
 //        self.navigationController?.navigationBar.barTintColor = mainBlueColor

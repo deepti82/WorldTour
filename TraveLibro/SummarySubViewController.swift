@@ -50,7 +50,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         tripSummaryView.layer.cornerRadius = 5
 //        tripSummaryView.clipsToBounds = true
         
-        cellSubview = VerticalLayout(width: self.view.frame.width)
+        cellSubview = VerticalLayout(width: self.view.frame.width - 20)
 //        cellSubview.backgroundColor = UIColor.whiteColor()
 //        cellSubview.frame.size.height = cellView.frame.height
         cellSubview.clipsToBounds = true
@@ -160,10 +160,10 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         print("sacsacdasd \(tripCountData["checkIn"].array!.count)")
         
         for i in 0..<tripCountData["checkIn"].array!.count {
-            let drawView = drawLine(frame: CGRect(x: 0, y: 0, width: 3, height: 30))
+            let drawView = drawLine(frame: CGRect(x: 0, y: 0, width: 3, height: 35))
             drawView.center.x = cellSubview.frame.width / 2
             drawView.backgroundColor = UIColor.clear
-            let cell = tripSummaryEach(frame: CGRect(x: 0, y: 30, width: cellSubview.frame.width, height: 75))
+            let cell = tripSummaryEach(frame: CGRect(x: 0, y: 0, width: cellSubview.frame.width, height: 75))
             cell.layer.cornerRadius = 5
             cell.clipsToBounds = true
             summaryTitle = NSMutableAttributedString(string: "\(tripCountData["checkIn"][i]["thoughts"].string!)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])

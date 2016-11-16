@@ -51,6 +51,8 @@
 		3AF1870A1D785EE800A86BC1 /* forDpFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187091D785EE800A86BC1 /* forDpFour.swift */; };
 		3AF187101D786B2300A86BC1 /* DisplayPagesThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1870F1D786B2300A86BC1 /* DisplayPagesThreeViewController.swift */; };
 		3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */; };
+		3AFB01C61DDC30DA00BCD523 /* AddRatingCountries.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */; };
+		3AFB01C81DDC310500BCD523 /* AddRatingCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */; };
 		C20163E01D26911C00A2F70B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163DF1D26911C00A2F70B /* UserModel.swift */; };
 		C20163E21D26972B00A2F70B /* ProfileImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20163E11D26972B00A2F70B /* ProfileImage.xib */; };
 		C20163E41D26997600A2F70B /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163E31D26997600A2F70B /* ProfileImage.swift */; };
@@ -405,6 +407,8 @@
 		3AF187091D785EE800A86BC1 /* forDpFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = forDpFour.swift; sourceTree = "<group>"; };
 		3AF1870F1D786B2300A86BC1 /* DisplayPagesThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPagesThreeViewController.swift; sourceTree = "<group>"; };
 		3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPagesFourViewController.swift; sourceTree = "<group>"; };
+		3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddRatingCountries.xib; sourceTree = "<group>"; };
+		3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRatingCountries.swift; sourceTree = "<group>"; };
 		3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -797,6 +801,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				3AFB01C41DDC30AC00BCD523 /* AddRatingCountries */,
 				C2889D3D1DB1180200B302AF /* ShowRating */,
 				3ABFD8E11DA9299000A51034 /* RatingCheckIn */,
 				3ABFD8DC1DA8C76D00A51034 /* ChangeCity */,
@@ -992,6 +997,15 @@
 				3AF187051D7858D900A86BC1 /* forDPThree.swift */,
 			);
 			name = forDPThree;
+			sourceTree = "<group>";
+		};
+		3AFB01C41DDC30AC00BCD523 /* AddRatingCountries */ = {
+			isa = PBXGroup;
+			children = (
+				3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */,
+				3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */,
+			);
+			name = AddRatingCountries;
 			sourceTree = "<group>";
 		};
 		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
@@ -2106,6 +2120,7 @@
 				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
 				C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */,
 				C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */,
+				3AFB01C61DDC30DA00BCD523 /* AddRatingCountries.xib in Resources */,
 				C2A5C1D51CF9A7F90035EF0E /* MoreAboutMe.xib in Resources */,
 				C2A6E25D1CE9C88D00D3F845 /* TripInfoView.xib in Resources */,
 				C23EB1D51CFED110005B5CE8 /* LocalLifeRecommends.xib in Resources */,
@@ -2341,6 +2356,7 @@
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
 				36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */,
 				3AF187061D7858D900A86BC1 /* forDPThree.swift in Sources */,
+				3AFB01C81DDC310500BCD523 /* AddRatingCountries.swift in Sources */,
 				C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */,
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,

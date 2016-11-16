@@ -1073,6 +1073,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    var hideStatusBar = false
+    
+    func didSwipe() {
+        hideStatusBar = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.hidesBarsOnSwipe = true
+        navigationController?.hidesBarsOnTap = false
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(NewTLViewController.didSwipe))
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(NewTLViewController.didSwipe))
+        swipeUp.direction = UISwipeGestureRecognizerDirection.up
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        self.view.addGestureRecognizer(swipeUp)
+        self.view.addGestureRecognizer(swipeDown)
+
+    }
+    
     func gotoProfile(_ sender: UIButton) {
         
         if isJourneyOngoing {
@@ -2280,9 +2300,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("image url: \(getImageUrl)")
         let mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
         do {
-            let data = try! Data(contentsOf: mapurl!)
-            print("image data: \(data)")
-            self.otgView.cityImage.image = UIImage(data: data)
+            DispatchQueue.main.async(execute: {
+                let data = try! Data(contentsOf: mapurl!)
+                print("image data: \(data)")
+                self.otgView.cityImage.image = UIImage(data: data)
+            })
         } catch _ {
             print("Unable to set map image")
         }
@@ -2951,7 +2973,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         print("in updated locations")
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        if manager.location?.coordinate != nil {
+            let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         userLocation = locValue
         var coverImage: String!
@@ -2992,7 +3015,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 })
             })
         }
-        
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

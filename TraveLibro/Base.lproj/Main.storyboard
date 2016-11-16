@@ -4236,6 +4236,7 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                                     </label>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2P-BP-9MV"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -4243,8 +4244,12 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                             <constraint firstAttribute="trailing" secondItem="9FH-Aw-azd" secondAttribute="trailing" constant="10" id="60M-da-9A9"/>
                             <constraint firstItem="fcO-3i-6P2" firstAttribute="top" secondItem="g0h-ZY-5ni" secondAttribute="bottom" id="6tI-G5-Ti8"/>
                             <constraint firstItem="9FH-Aw-azd" firstAttribute="top" secondItem="4cx-aQ-QKP" secondAttribute="bottom" constant="175" id="GUX-zg-uL4"/>
+                            <constraint firstItem="X2P-BP-9MV" firstAttribute="top" secondItem="fcO-3i-6P2" secondAttribute="bottom" id="LQG-Mm-TjC"/>
+                            <constraint firstItem="X2P-BP-9MV" firstAttribute="leading" secondItem="YE4-vJ-lfT" secondAttribute="leading" id="UD9-La-J6d"/>
+                            <constraint firstItem="AsL-Fb-qJX" firstAttribute="top" secondItem="X2P-BP-9MV" secondAttribute="bottom" id="ZQf-Nc-oJg"/>
                             <constraint firstItem="fcO-3i-6P2" firstAttribute="leading" secondItem="YE4-vJ-lfT" secondAttribute="leading" id="dFj-kW-MUo"/>
                             <constraint firstItem="4cx-aQ-QKP" firstAttribute="leading" secondItem="YE4-vJ-lfT" secondAttribute="leading" id="gex-q4-jcO"/>
+                            <constraint firstAttribute="trailing" secondItem="X2P-BP-9MV" secondAttribute="trailing" id="lEK-XF-yhn"/>
                             <constraint firstAttribute="trailing" secondItem="fcO-3i-6P2" secondAttribute="trailing" id="mGq-S2-6Tk"/>
                             <constraint firstItem="g0h-ZY-5ni" firstAttribute="top" secondItem="4cx-aQ-QKP" secondAttribute="bottom" constant="-5" id="qqM-FT-EHj"/>
                             <constraint firstItem="g0h-ZY-5ni" firstAttribute="leading" secondItem="YE4-vJ-lfT" secondAttribute="leading" id="u8W-Zs-yjH"/>
@@ -4263,6 +4268,7 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                         <outlet property="clockIcon" destination="byr-ew-T0W" id="zNc-De-fWo"/>
                         <outlet property="endJourneyTitle" destination="CDT-iu-Skl" id="qlM-0j-46A"/>
                         <outlet property="journeyCoverPic" destination="g0h-ZY-5ni" id="oBN-Sj-EBs"/>
+                        <outlet property="rateCountriesView" destination="X2P-BP-9MV" id="n4T-BS-8FG"/>
                         <outlet property="userDp" destination="PRX-Wd-AUB" id="jQE-dE-akd"/>
                         <outletCollection property="buddiesImages" destination="d91-sv-cpS" collectionClass="NSMutableArray" id="HmG-Zj-Tsu"/>
                         <outletCollection property="buddiesImages" destination="AnQ-lj-jGF" collectionClass="NSMutableArray" id="eis-Nc-LrI"/>
@@ -7682,7 +7688,7 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                             <constraint firstItem="lI7-SC-Nzp" firstAttribute="top" secondItem="ZK7-hL-Hfr" secondAttribute="bottom" constant="100" id="Im3-bw-3ej"/>
                             <constraint firstItem="TVa-tU-QKf" firstAttribute="top" secondItem="MFp-q9-aYv" secondAttribute="bottom" id="RxL-81-RBU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MFp-q9-aYv" secondAttribute="trailing" id="eSV-Fu-9TU"/>
-                            <constraint firstItem="MFp-q9-aYv" firstAttribute="top" secondItem="lI7-SC-Nzp" secondAttribute="bottom" id="fDk-NQ-Fi9"/>
+                            <constraint firstItem="MFp-q9-aYv" firstAttribute="top" secondItem="lI7-SC-Nzp" secondAttribute="bottom" constant="5" id="fDk-NQ-Fi9"/>
                             <constraint firstItem="lI7-SC-Nzp" firstAttribute="centerX" secondItem="Yld-dB-KQe" secondAttribute="centerX" id="qTz-yL-hUE"/>
                         </constraints>
                     </view>
@@ -7949,7 +7955,7 @@ bCBtZW1vcmllcyB0b2dldGhlci4
         <scene sceneID="IA2-So-XyF">
             <objects>
                 <collectionViewController storyboardIdentifier="photoGridContainer" id="yHG-Rd-GYo" customClass="TripSummaryPhotoGridViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
