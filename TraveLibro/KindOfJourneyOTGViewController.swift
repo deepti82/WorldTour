@@ -17,6 +17,7 @@ class KindOfJourneyOTGViewController: UIViewController {
     var selectedIndexG1 = 1
     var selectedIndexG2 = 1
     var selectedIndexG3 = 1
+    var selectedCategories :JSON = []
     
     var backVC: NewTLViewController!
     
@@ -28,6 +29,8 @@ class KindOfJourneyOTGViewController: UIViewController {
         super.viewDidLoad()
         
         getBackGround(self)
+        print("in controller selectedCategories")
+        print(selectedCategories)
         
         let allControllers = self.navigationController?.viewControllers
         backVC = allControllers![allControllers!.count - 2] as! NewTLViewController
@@ -37,7 +40,12 @@ class KindOfJourneyOTGViewController: UIViewController {
         doneButton.layer.cornerRadius = 5
         
         for button in groupOneCategoryButtons {
-            
+            for cat in selectedCategories {
+                if cat as! String == button.titleLabel?.text {
+                    backVC.journeyCategories.append(button.titleLabel!.text!)
+                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                }
+            }
 //            indexGroupOne += 1
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
@@ -50,6 +58,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         for button in groupTwoCategoryButtons {
             
 //            indexGroupTwo += 1
+            print(button.titleLabel?.text)
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
 //            button.tag = indexGroupTwo
