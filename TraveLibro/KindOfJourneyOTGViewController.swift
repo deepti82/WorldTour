@@ -29,8 +29,6 @@ class KindOfJourneyOTGViewController: UIViewController {
         super.viewDidLoad()
         
         getBackGround(self)
-        print("in controller selectedCategories")
-        print(selectedCategories)
         
         let allControllers = self.navigationController?.viewControllers
         backVC = allControllers![allControllers!.count - 2] as! NewTLViewController
@@ -41,7 +39,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         
         for button in groupOneCategoryButtons {
             for cat in selectedCategories {
-                if cat as! String == button.titleLabel?.text {
+                if cat.1.stringValue == (button.titleLabel?.text)! {
                     backVC.journeyCategories.append(button.titleLabel!.text!)
                     button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
                 }
@@ -58,7 +56,12 @@ class KindOfJourneyOTGViewController: UIViewController {
         for button in groupTwoCategoryButtons {
             
 //            indexGroupTwo += 1
-            print(button.titleLabel?.text)
+            for cat in selectedCategories {
+                if cat.1.stringValue == (button.titleLabel?.text)! {
+                    backVC.journeyCategories.append(button.titleLabel!.text!)
+                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                }
+            }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
 //            button.tag = indexGroupTwo
@@ -68,6 +71,12 @@ class KindOfJourneyOTGViewController: UIViewController {
         for button in groupThreeCategoryButtons {
             
 //            indexGroupThree += 1
+            for cat in selectedCategories {
+                if cat.1.stringValue == (button.titleLabel?.text)! {
+                    backVC.journeyCategories.append(button.titleLabel!.text!)
+                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                }
+            }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
 //            button.tag = indexGroupThree
