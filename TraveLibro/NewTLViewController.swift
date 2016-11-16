@@ -194,7 +194,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func optionsAction(_ sender: UIButton) {
         let optionsController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         optionsController.addAction(UIAlertAction(title: "Edit City", style: .default, handler: nil))
-        optionsController.addAction(UIAlertAction(title: "Edit Category", style: .default, handler: nil))
+        optionsController.addAction(UIAlertAction(title: "Edit Category", style: .default, handler: { action -> Void in
+            print("edit category clicked.")
+            let chooseCategory = self.storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
+            print(self.myJourney["kindOfJourney"])
+            chooseCategory.selectedCategories = self.myJourney["kindOfJourney"]
+            self.navigationController?.pushViewController(chooseCategory, animated: true)
+            
+        }))
         optionsController.addAction(UIAlertAction(title: "Change Date & Time", style: .default, handler:
             { action -> Void in
                 
