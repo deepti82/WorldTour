@@ -300,7 +300,6 @@ class EndJourneyViewController: UIViewController {
     func addRatingCountries(_ sender: UIButton) {
         print("journey id: \(sender.titleLabel!.text!)")
         let countryVisited: JSON = journey["countryVisited"]
-        let numberOfCountriesVisited = countryVisited.count
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(EndJourneyViewController.reviewTapOut(_:)))
         backgroundReview = UIView(frame: self.view.frame)
@@ -315,22 +314,14 @@ class EndJourneyViewController: UIViewController {
         rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
         rating.clipsToBounds = true
         rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+        rating.countryVisitedData = countryVisited
+        rating.journeyData = journey
         //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
         //rating.postReview.addGestureRecognizer(tapout)
+        rating.getRatingData(data: countryVisited)
+        //getRatingData(num: i, data: countryVisited, view: rating)
         
-        for i in 0..<numberOfCountriesVisited {
-            rating.countryCount.text = "\(i + 1)/\(numberOfCountriesVisited) Countries Reviewed"
-            rating.countryName.text = countryVisited[i]["country"]["name"].string!
-            rating.postReview.setTitle(journey["_id"].string!, for: .application)
-            rating.postReview.setTitle(countryVisited[i]["country"]["_id"].string!, for: .disabled)
-            let imageURL = "\(adminUrl)upload/readFile?file=\(countryVisited[i]["country"]["flag"].string!)"
-            DispatchQueue.main.async(execute: {
-                do {
-                    let data = try? Data(contentsOf: URL(string: imageURL)!)
-                    rating.countryImage.image = UIImage(data: data!)
-                }
-            })
-        }
+        //for i in 0..<numberOfCountriesVisited {}
         
         backgroundReview.addSubview(rating)
     }

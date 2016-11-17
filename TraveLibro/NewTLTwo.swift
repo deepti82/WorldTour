@@ -413,6 +413,7 @@ extension NewTLViewController {
             self.infoView.hotelsButton.addTarget(self, action: #selector(NewTLViewController.gotoHotels(_:)), for: .touchUpInside)
             self.infoView.restaurantsButton.addTarget(self, action: #selector(NewTLViewController.gotoRestaurants(_:)), for: .touchUpInside)
             self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), for: .touchUpInside)
+            self.infoView.nearMeButton.addTarget(self, action: #selector(NewTLViewController.gotoNearMe(_:)), for: .touchUpInside)
             self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
             self.infoView.videosCount.setTitle("\(response["videos"])", for: UIControlState())
             self.infoView.photosCount.setTitle("\(response["photos"])", for: UIControlState())
@@ -475,6 +476,13 @@ extension NewTLViewController {
         vc.city = latestCity
         self.navigationController?.pushViewController(vc, animated: true)
         
+    }
+    
+    func gotoNearMe(_ sender: UIButton) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "nearMeVC") as! NearMeViewController
+        vc.city = latestCity
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     

@@ -27,8 +27,11 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
     let parent = EndJourneyViewController()
+    var countryVisitedData: JSON!
+    var journeyData: JSON!
+    var i = 1
     
-    @IBAction func postReviewTapped(_ sender: UIButton) {
+    @IBAction func postReviewTapped(_ sender: AnyObject) {
         
         let journeyId = sender.title(for: .application)!
         let countryId = sender.title(for: .disabled)!
@@ -38,7 +41,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
         
         reviewTextView.resignFirstResponder()
         
-        request.rateCountry(currentUser["_id"].string!, journeyId: journeyId, countryId: countryId, rating: "\(starCount)", review: reviewTextView.text, completion: {(response) in
+        request.rateCountry(currentUser["_id"].string!, journeyId: journeyId, countryId: countryId, rating: "\(starCount)", review: reviewTextView.text!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -49,9 +52,16 @@ class AddRatingCountries: UIView, UITextViewDelegate {
                 }
                 else if response["value"].bool! {
                     
-                    print("response arrived")
-                    sender.superview?.removeFromSuperview()
+                    print("response arrived \(countryId) \(self.starCount) \(self.reviewTextView.text!)")
+                    //sender.superview?.removeFromSuperview()
                     //self.parent.removeRatingButton(sender.title(for: .application)!)
+                    if self.countryVisitedData.count > self.i {
+                        self.i += 1
+                        print("i: \(self.i) \(self.countryVisitedData.count)")
+                        self.getRatingData(data: self.countryVisitedData)
+                    } else {
+                        sender.superview??.removeFromSuperview()
+                    }
                     
                 }
                 else {
@@ -64,6 +74,38 @@ class AddRatingCountries: UIView, UITextViewDelegate {
             
         })
         
+    }
+    
+    func getRatingData(data: JSON) {
+        if data.count > 0 {
+            self.reviewTextView.text = ""
+            self.smiley.setImage(UIImage(named: imageArr[0]), for: UIControlState())
+            reviewConclusion.text = moodArr[0]
+            for star in stars {
+                star.isSelected = false
+                star.isHighlighted = false
+            }
+            stars[0].isSelected = true
+            self.countryCount.text = "\(i)/\(data.count) Countries Reviewed"
+            self.countryName.text = data[i - 1]["country"]["name"].string!
+            self.postReview.setTitle(journeyData["_id"].string!, for: .application)
+            self.postReview.setTitle(data[i - 1]["country"]["_id"].string!, for: .disabled)
+            let imageURL = "\(adminUrl)upload/readFile?file=\(data[i - 1]["country"]["flag"].string!)"
+            DispatchQueue.main.async(execute: {
+                do {
+                    let data = try? Data(contentsOf: URL(string: imageURL)!)
+                    self.countryImage.image = UIImage(data: data!)
+                }
+            })
+//            view.postReviewTapped(view.postReview)
+//            if data.count > num {
+            
+//            } else {
+//                view.postReview.superview?.superview?.removeFromSuperview()
+//            }
+        } else {
+            // do nothing
+        }
     }
     
     override init(frame: CGRect) {
@@ -82,6 +124,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
             star.adjustsImageWhenHighlighted = false
             star.addTarget(self, action: #selector(AddRatingCountries.ratingButtonTapped), for: .touchDown)
         }
+        stars[0].isSelected = true
         
         //        self.clipsToBounds = true
     }
