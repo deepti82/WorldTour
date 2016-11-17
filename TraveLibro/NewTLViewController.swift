@@ -58,6 +58,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var currentTime: String!
     
     var journeyId: String!
+    var journeyID: String!
     
     var addedBuddies: [JSON]!
     var addView: AddActivityNew!
@@ -196,9 +197,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         optionsController.addAction(UIAlertAction(title: "Edit City", style: .default, handler: nil))
         optionsController.addAction(UIAlertAction(title: "Edit Category", style: .default, handler: { action -> Void in
             print("edit category clicked.")
+            print(self.journeyId)
             let chooseCategory = self.storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
             print(self.myJourney["kindOfJourney"])
             chooseCategory.selectedCategories = self.myJourney["kindOfJourney"]
+            chooseCategory.journeyID = self.journeyID
             self.navigationController?.pushViewController(chooseCategory, animated: true)
             
         }))
@@ -654,7 +657,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func getJourney() {
-        
+        print("myuser")
+        print(currentUser["_id"])
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
@@ -677,10 +681,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     }
                     
                     print("response get journey \(response["data"]["post"].array!)")
+                    
                     isJourneyOngoing = true
                     self.myJourney = response["data"]
+                    print("..........")
+                    print(self.myJourney["_id"])
+                    self.journeyID = self.myJourney["_id"].stringValue
                     if self.isInitialLoad {
-                        
                         self.isInitialLoad = false
                         self.showJourneyOngoing(journey: response["data"])
                         
@@ -1097,6 +1104,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         swipeDown.direction = UISwipeGestureRecognizerDirection.down
         self.view.addGestureRecognizer(swipeUp)
         self.view.addGestureRecognizer(swipeDown)
+//        isRefreshing = true
+        viewDidLoad()
 
     }
     
@@ -2307,11 +2316,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("image url: \(getImageUrl)")
         let mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
         do {
-            DispatchQueue.main.async(execute: {
-                let data = try! Data(contentsOf: mapurl!)
-                print("image data: \(data)")
-                self.otgView.cityImage.image = UIImage(data: data)
-            })
+//            DispatchQueue.main.async(execute: {
+//                let data = try! Data(contentsOf: mapurl!)
+//                print("image data: \(data)")
+//                self.otgView.cityImage.image = UIImage(data: data)
+//            })
         } catch _ {
             print("Unable to set map image")
         }

@@ -18,6 +18,7 @@ class KindOfJourneyOTGViewController: UIViewController {
     var selectedIndexG2 = 1
     var selectedIndexG3 = 1
     var selectedCategories :JSON = []
+    var journeyID = ""
     
     var backVC: NewTLViewController!
     
@@ -42,6 +43,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 if cat.1.stringValue == (button.titleLabel?.text)! {
                     backVC.journeyCategories.append(button.titleLabel!.text!)
                     button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                    button.tag = 1
                 }
             }
 //            indexGroupOne += 1
@@ -60,6 +62,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 if cat.1.stringValue == (button.titleLabel?.text)! {
                     backVC.journeyCategories.append(button.titleLabel!.text!)
                     button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                    button.tag = 1
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
@@ -75,6 +78,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 if cat.1.stringValue == (button.titleLabel?.text)! {
                     backVC.journeyCategories.append(button.titleLabel!.text!)
                     button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                    button.tag = 1
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), for: .touchUpInside)
@@ -96,9 +100,16 @@ class KindOfJourneyOTGViewController: UIViewController {
             
         }
         else {
+            print("categories before save")
+            print(backVC.journeyCategories)
+            request.kindOfJourney(journeyID, kindOfJourney: backVC.journeyCategories, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                self.backVC.showDetailsFn()
+                self.navigationController?.popViewController(animated: true)
+                })
+
+            })
             
-            backVC.showDetailsFn()
-            self.navigationController?.popViewController(animated: true)
             
         }
         
