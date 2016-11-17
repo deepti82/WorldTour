@@ -1462,6 +1462,31 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+    func kindOfJourney(_ id: String, kindOfJourney: [String], completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            print(kindOfJourney)
+            let params = ["_id":id,"kindOfJourney":kindOfJourney] as [String : Any]
+            
+            print("change date time params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "journey/editData", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
     
     func endJourney(_ journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON], photo: String, completion: @escaping ((JSON) -> Void)) {
         
