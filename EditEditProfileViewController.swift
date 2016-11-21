@@ -51,7 +51,7 @@ class EditEditProfileViewController: UIViewController {
     
     func editDate(_ sender: UIButton) {
         
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController!.popViewController(animated: true)
         
         
     }

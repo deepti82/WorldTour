@@ -1009,7 +1009,6 @@
 			isa = PBXGroup;
 			children = (
 				3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */,
-				3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */,
 			);
 			name = AddRatingCountries;
 			sourceTree = "<group>";
@@ -1640,6 +1639,7 @@
 		C2889D3D1DB1180200B302AF /* ShowRating */ = {
 			isa = PBXGroup;
 			children = (
+				3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */,
 				C2889D391DB0E91700B302AF /* ShowRating.xib */,
 				C2889D3B1DB0E98800B302AF /* ShowRating.swift */,
 			);

@@ -278,7 +278,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
                 }
                 else {
                     
-                    if let abc = response["value"].string {
+                    if response["value"].bool! {
                         
                         request.editUser(currentUser["_id"].string!, editField: "profilePicture", editFieldValue: response["data"][0].string!, completion: { _ in
                             

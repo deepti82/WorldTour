@@ -37,7 +37,7 @@ import CoreLocation
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
 
-class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
+class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     var myJourney: JSON!
     var isJourney = false
@@ -768,7 +768,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.isHidden = true
-//        
         
     }
     
@@ -1026,6 +1025,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         getDarkBackGroundBlue(self)
         
+        mainScroll.delegate = self
+        
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -1087,25 +1088,43 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    var hideStatusBar = false
+    var lastOffsetY :CGFloat = 0
     
-    func didSwipe() {
-        hideStatusBar = true
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
+        
+        print("in function one")
+        
+        lastOffsetY = scrollView.contentOffset.y
     }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView){
+        
+        print("in function two")
+        
+        let hide = scrollView.contentOffset.y > lastOffsetY
+        self.navigationController?.setNavigationBarHidden(hide, animated: true)
+        toolbarView.isHidden = hide
+    }
+    
+//    var hideStatusBar = false
+//    
+//    func didSwipe() {
+//        hideStatusBar = true
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.hidesBarsOnSwipe = true
-        navigationController?.hidesBarsOnTap = false
+//        navigationController?.hidesBarsOnSwipe = true
+//        navigationController?.hidesBarsOnTap = false
         
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(NewTLViewController.didSwipe))
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(NewTLViewController.didSwipe))
-        swipeUp.direction = UISwipeGestureRecognizerDirection.up
-        swipeDown.direction = UISwipeGestureRecognizerDirection.down
-        self.view.addGestureRecognizer(swipeUp)
-        self.view.addGestureRecognizer(swipeDown)
+//        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(NewTLViewController.didSwipe))
+//        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(NewTLViewController.didSwipe))
+//        swipeUp.direction = UISwipeGestureRecognizerDirection.up
+//        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+//        self.view.addGestureRecognizer(swipeUp)
+//        self.view.addGestureRecognizer(swipeDown)
 //        isRefreshing = true
-        viewDidLoad()
+//        viewDidLoad()
 
     }
     
@@ -1337,7 +1356,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 checkIn.photosStack.isHidden = true
                 checkIn.photosHC.constant = 300.0
                 
-                if post["showMap"].bool! {
+                if post["showMap"].boolValue && post["showMap"] != nil {
                     print("map shown")
                     
                     // CHECKIN MAP IMAGE
@@ -1382,15 +1401,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
-                    let imageArr = ["disapointed", "sad", "good", "superface", "love"]
+//                    let imageArr = ["disapointed", "sad", "good", "superface", "love"]
+//                    let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
                     
                     let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                     myReview = post["review"].array!
-                    rateButton.showRating(Int(allReviews[lastReviewCount]["rating"].string!)!)
-                    //rateButton.rating.setImage(UIImage(named: imageArr[Int(myReview[0]["rating"].string!)! - 1]), for: .normal)
+                    
+//                    rateButton.rating.setImage(UIImage(named: imageArr[Int(myReview[0]["rating"].string!)! - 1]), for: .normal)
                     rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
                     rateButton.rating.setTitle(post["_id"].string!, for: .application)
                     rateButton.tag = Int(allReviews[lastReviewCount]["rating"].string!)!
+//                    rateButton.ratingLabel.text = "Reviewed \(moodArr[Int(myReview[0]["rating"].string!)! - 1])"
                     layout.addSubview(rateButton)
                     addHeightToLayout(height: rateButton.frame.height + 20.0)
                     
@@ -1531,106 +1552,168 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Post", style: .default)
         {action -> Void in
             
-            self.isEdit = true
+//            self.isEdit = true
             
-            request.getOneJourneyPost(sender.titleLabel!.text!, completion: {(response) in
+            print("edit response function \(sender.titleLabel!.text!)")
+            
+            request.getOneJourneyPost(id: sender.titleLabel!.text!, completion: {(response) in
                 
-                if response.error != nil {
+                DispatchQueue.main.async(execute: {
                     
-                    print("error: \(response.error!.localizedDescription)")
+                    print("\(response["value"].bool!)")
                     
-                }
-                else if response["value"].bool! {
-                    
-                    self.newScroll.isHidden = false
-                    self.backView.isHidden = false
-                    self.addView.isHidden = false
-                    self.addView.postButton.setTitle("Edit", for: UIControlState())
-                    self.editPostId = sender.titleLabel!.text!
-//                    self.addView.postButton.addTarget(self, action: #selector(NewTLViewController.editPost(_:)), forControlEvents: .TouchUpInside)
-                    
-                    if response["data"]["checkIn"]["location"] != "" {
+                    if response.error != nil {
                         
-                        self.addView.addLocationButton.setTitle(response["data"]["checkIn"]["location"].string!, for: UIControlState())
-                        self.addView.categoryView.isHidden = true
-                        self.addView.categoryLabel.isHidden = false
-                        self.addView.locationHorizontalScroll.isHidden = false
+                        print("error: \(response.error!.localizedDescription)")
                         
                     }
-                    
+                    else if response["value"].bool! {
+                        
+                        print("edit response function one")
+                        
+                        var flag = 0
+                        var darkBlur: UIBlurEffect!
+                        var blurView: UIVisualEffectView!
+                        
+                        self.backView.frame = self.view.frame
+                        self.backView.tag = 8
+                        
+                        if self.view.viewWithTag(8) != nil {
+                            
+                            self.newScroll.isHidden = false
+                            self.backView.isHidden = false
+                            self.addView.isHidden = false
+                            
+                            
+                        }
+                        
+                        else {
+                            
+                            self.view.addSubview(self.backView)
+                            darkBlur = UIBlurEffect(style: .dark)
+                            blurView = UIVisualEffectView(effect: darkBlur)
+                            blurView.frame.size.height = self.backView.frame.height
+                            blurView.frame.size.width = self.backView.frame.width
+                            blurView.layer.zPosition = -1
+                            blurView.isUserInteractionEnabled = false
+                            self.backView.addSubview(blurView)
+                            self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+                            self.backView.addSubview(self.newScroll)
+                            self.addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+                            print("add view: \(self.addView)")
+                            self.displayFriendsCount()
+                            self.newScroll.addSubview(self.addView)
+                            self.newScroll.contentSize.height = self.view.frame.height
+                            self.addLocationTapped(nil)
+                        }
+                        
+                        
+                        self.addView.postButton.setTitle("Edit", for: .normal)
+                        self.editPostId = sender.titleLabel!.text!
+                        
+                        print("edit response function two")
+                        
+                        if response["data"]["checkIn"]["location"] != "" {
+                            
+                            self.addView.addLocationButton.setTitle(response["data"]["checkIn"]["location"].string!, for: .normal)
+                            self.addView.categoryView.isHidden = false
+                            self.addView.categoryLabel.isHidden = false
+                            self.addView.locationHorizontalScroll.isHidden = true
+                            self.addView.locationTag.tintColor = UIColor(red: 252, green: 80, blue: 71, alpha: 1)
+                        }
+                            
+                        else {
+                            
+                            self.addView.addLocationButton.setTitle("Add Location", for: .normal)
+                            self.addView.categoryView.isHidden = false
+                            self.addView.categoryLabel.isHidden = true
+                            
+                        }
+                        
+                        print("edit response function one")
+                        
+                        if response["data"]["photos"] != nil && response["data"]["photos"].array!.count > 0 {
+                            
+                            self.addView.photosFinalView.isHidden = false
+                            self.addView.photosIntialView.isHidden = true
+                            
+                        }
+                            
+                        else {
+                            
+                            self.addView.photosFinalView.isHidden = true
+                            self.addView.photosIntialView.isHidden = false
+                            
+                        }
+                        
+                        print("edit response function one")
+                        
+                        if response["data"]["videos"] != nil && response["data"]["videos"].array!.count > 0 {
+                            
+                            self.addView.videosFinalView.isHidden = false
+                            self.addView.videosInitialView.isHidden = true
+                            
+                        }
+                            
+                        else {
+                            
+                            self.addView.videosFinalView.isHidden = true
+                            self.addView.videosInitialView.isHidden = false
+                            
+                        }
+                        
+                        print("edit response function one")
+                        
+                        if response["data"]["thoughts"] != nil && response["data"]["thoughts"].string != "" {
+                            
+                            self.addView.thoughtsFinalView.isHidden = false
+                            self.addView.thoughtsInitalView.isHidden = true
+                            
+                        }
+                            
+                        else {
+                            
+                            self.addView.thoughtsFinalView.isHidden = true
+                            self.addView.thoughtsInitalView.isHidden = false
+                            
+                        }
+                        
+                        print("edit response function one")
+                        
+                        if response["data"]["buddies"] != nil && response["data"]["buddies"].array!.count == 1{
+                            
+                            self.addView.friendsCount.setTitle("\(response["data"]["buddies"].array!.count) Friend", for: .normal)
+                            self.addView.friendsTag.tintColor = UIColor(red: 252, green: 80, blue: 71, alpha: 1)
+                            
+                        }
+                            
+                        else if response["data"]["buddies"] != nil && response["data"]["buddies"].array!.count > 1 {
+                            
+                            self.addView.friendsCount.setTitle("\(response["data"]["buddies"].array!.count) Friends", for: .normal)
+                            self.addView.friendsTag.tintColor = UIColor(red: 252, green: 80, blue: 71, alpha: 1)
+                            
+                        }
+                        
+                        else {
+                            
+                            self.addView.friendsCount.setTitle("0 Friends", for: .normal)
+                            
+                        }
+                        
+                        print("edit response function one")
+                        
+                        
+                    }
                     else {
                         
-                        self.addView.addLocationButton.setTitle("Add Location", for: UIControlState())
-                        self.addView.categoryView.isHidden = false
-                        self.addView.categoryLabel.isHidden = true
+                        print("response error")
                         
                     }
-                    
-                    if response["data"]["photos"] != nil && response["data"]["photos"].array!.count > 0 {
-                        
-                        self.addView.photosFinalView.isHidden = false
-                        self.addView.photosIntialView.isHidden = true
-                        
-                    }
-                    
-                    else {
-                        
-                        self.addView.photosFinalView.isHidden = true
-                        self.addView.photosIntialView.isHidden = false
-                        
-                    }
-                    
-                    if response["data"]["videos"] != nil && response["data"]["videos"].array!.count > 0 {
-                        
-                        self.addView.videosFinalView.isHidden = false
-                        self.addView.videosInitialView.isHidden = true
-                        
-                    }
-                    
-                    else {
-                        
-                        self.addView.videosFinalView.isHidden = true
-                        self.addView.videosInitialView.isHidden = false
-                        
-                    }
-                    
-                    if response["data"]["thoughts"] != nil && response["data"]["thoughts"].string != "" {
-                        
-                        self.addView.thoughtsFinalView.isHidden = false
-                        self.addView.thoughtsInitalView.isHidden = true
-                        
-                    }
-                    
-                    else {
-                        
-                        self.addView.thoughtsFinalView.isHidden = true
-                        self.addView.thoughtsInitalView.isHidden = false
-                        
-                    }
-                    
-                    if response["data"]["buddies"] != nil && response["data"]["buddies"].array!.count > 0 {
-                        
-                        self.addView.friendsCount.setTitle("\(response["data"]["buddies"].array!.count) Friend(s)", for: UIControlState())
-                        
-                    }
-                    
-                    else {
-                        
-                       self.addView.friendsCount.setTitle("0 Friends", for: UIControlState())
-                        
-                    }
-                    
-                    
-                }
-                else {
-                    
-                    print("response error")
-                    
-                }
+                })
                 
             })
             
-            print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
+            //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
             
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
@@ -1763,10 +1846,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
+                    
                     print("error: \(response.error!.localizedDescription)")
                 } else if response["value"].bool! {
+                    
                     print("edited date time response")
-                    print("\(response)")
+                    self.journeyDateChanged(date: response["data"]["startTime"].string!)
                 } else {
                     
                 }
@@ -1879,7 +1964,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func closeView(_ sender: UIButton) {
         
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController!.popViewController(animated: true)
         
     }
     

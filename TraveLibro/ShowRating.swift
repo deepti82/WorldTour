@@ -17,20 +17,29 @@ class ShowRating: UIView {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var line: drawLine!
     
-//    var ratingCount = 0
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        loadViewFromNib ()
+        loadViewFromNib()
+        
+        ratingLabel.shadowColor = UIColor.black
+        ratingLabel.shadowOffset = CGSize(width: 2, height: 1)
+        ratingLabel.layer.masksToBounds = true
+        
+//        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categorise your current location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6l6-XA-HcG">
+//        <rect key="frame" x="87.5" y="28" width="200.5" height="19.5"/>
+//        <fontDescription key="fontDescription" name="Avenir-LightOblique" family="Avenir" pointSize="14"/>
+//        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+//        <nil key="highlightedColor"/>
+//        </label>
+        
         
     }
     
     func showRating(_ ratingCount: Int) {
         
         print("ratingCount: \(ratingCount)")
-//        rating.setImage(UIImage(named: imageArr[ratingCount]), forState: .Normal)
-//        ratingLabel.text = "Reviewed " + moodArr[ratingCount]
-        
+        rating.setImage(UIImage(named: imageArr[ratingCount]), for: .normal)
+        ratingLabel.text = "Reviewed " + moodArr[ratingCount]
     }
     
     required init?(coder aDecoder: NSCoder) {

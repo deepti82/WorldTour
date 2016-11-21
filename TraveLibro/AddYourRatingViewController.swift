@@ -8,32 +8,13 @@
 
 import UIKit
 
-//fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-//  switch (lhs, rhs) {
-//  case let (l?, r?):
-//    return l < r
-//  case (nil, _?):
-//    return true
-//  default:
-//    return false
-//  }
-//}
-//
-//fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-//  switch (lhs, rhs) {
-//  case let (l?, r?):
-//    return l > r
-//  default:
-//    return rhs < lhs
-//  }
-//}
-
-
 class AddYourRatingViewController: UIViewController {
     
     var layout: VerticalLayout!
     var journeyId = ""
     var reviews: [JSON] = []
+    var orangeLine: drawLine!
+    var scroll: UIScrollView! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,10 +22,10 @@ class AddYourRatingViewController: UIViewController {
         
         layout = VerticalLayout(width: self.view.frame.width)
         
-        let scroll = UIScrollView(frame: self.view.frame)
+        scroll = UIScrollView(frame: self.view.frame)
+        scroll.frame.origin.y = 100
         self.view.addSubview(scroll)
         scroll.showsVerticalScrollIndicator = false
-        scroll.addSubview(layout)
         
         getReviews()
         
@@ -54,37 +35,37 @@ class AddYourRatingViewController: UIViewController {
         makeTLProfilePicture(profileImage)
         layout.addSubview(profileImage)
         
-        scroll.contentSize.height = layout.frame.height
+        print("layout height: \(layout.frame.height)")
         
-        let orangeLine = drawLine(frame: CGRect(x: self.view.frame.width/2, y: 40, width: 10, height: layout.frame.height))
-//        orangeLine.frame.origin.y = profileImage.frame.origin..y
-        layout.addSubview(orangeLine)
-        orangeLine.layer.zPosition = 0
-        
+        orangeLine = drawLine(frame: CGRect(x: profileImage.center.x, y: profileImage.center.y, width: 10, height: layout.frame.height))
+        orangeLine.backgroundColor = UIColor.clear
+        scroll.addSubview(orangeLine)
+        scroll.addSubview(layout)
         
     }
     
     func addHeightToLayout(_ height: CGFloat) {
         
         layout.frame.size.height += height + 100
-        
+        orangeLine.frame.size.height += height + 100
+        scroll.contentSize.height = layout.frame.height
+        print("layout height: \(layout.frame.height)")
     }
     
     func showRating() {
         
         for review in reviews {
             
-            addRating(review)
-            
+            addRating(post: review)
         }
         
         
     }
     
-    func addRating(_ post: JSON) {
+    func addRating(post: JSON) {
         
         let rating = Rating(frame: CGRect(x: 0, y: 20, width: layout.frame.width, height: 225))
-        rating.checkInTitle.text = "YOUR REVIEW OF \(post["city"].string!.uppercased())"
+        rating.checkInTitle.text = "Your Review Of \(post["city"].string!.capitalized)"
         rating.reviewDescription.text = post["review"].string!
         rating.date.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["createdAt"].string!, isDate: true)
         rating.time.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["createdAt"].string!, isDate: false)
@@ -141,13 +122,6 @@ class AddYourRatingViewController: UIViewController {
         
     }
     
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     func getReviews() {
         
@@ -162,7 +136,7 @@ class AddYourRatingViewController: UIViewController {
                 }
                 else if response["value"].bool! {
                     
-                    self.reviews = response["data"].array!
+                    self.reviews = response["data"]["reviews"].array!
                     self.showRating()
                     
                 }

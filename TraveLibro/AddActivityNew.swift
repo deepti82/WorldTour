@@ -27,6 +27,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet var photosCollection: [UIImageView]!
     
     @IBOutlet weak var friendsCount: UIButton!
+    @IBOutlet weak var friendsTag: UIImageView!
     
     @IBOutlet weak var thoughtsTextView: UITextView!
     @IBOutlet weak var thoughtsCharacterCount: UILabel!

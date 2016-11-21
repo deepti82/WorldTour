@@ -271,7 +271,7 @@ extension UIViewController {
         let checkInVC = allVCs![(allVCs?.count)! - 2]
         print("checkin vc: \(checkInVC)")
         
-        self.navigationController?.popToViewController(checkInVC, animated: true)
+        self.navigationController!.popToViewController(checkInVC, animated: true)
         
     }
     
@@ -296,7 +296,7 @@ extension UIViewController {
     
     func popVC(_ sender: UIButton) {
         
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController!.popViewController(animated: true)
         
     }
     

@@ -103,6 +103,8 @@ extension NewTLViewController {
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
         
+        print("id: \(sender.title(for: .application))")
+        
         let lastCount = myReview.count - 1
         
         backgroundReview = UIView(frame: self.view.frame)
@@ -225,6 +227,40 @@ extension NewTLViewController {
         
     }
     
+    func journeyDateChanged(date: String) {
+        
+        var flag = 0
+        print("date is: \(date)")
+        
+        for view in self.view.subviews {
+            
+            if view.isKind(of: UIScrollView.self) {
+                
+                for subview in view.subviews {
+                    
+                    if subview.isKind(of:startOTGView.self) {
+                        
+                        print("inside here")
+                        let otg = subview as! startOTGView
+                        let dateFormatterTwo = DateFormatter()
+                        dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                        let localDate = dateFormatterTwo.date(from: date)
+                        otg.timestampDate.text = dateFormatterTwo.string(from: localDate!)
+                        flag = 1
+                    }
+                }
+            }
+        }
+        
+        if flag == 0 {
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            let localDate = formatter.date(from: date)
+            otgView.timestampDate.text = formatter.string(from: localDate!) //self.currentTime
+        }
+    }
+    
     func getScrollView(_ height: CGFloat, journey: JSON) {
         
         mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height))
@@ -287,14 +323,16 @@ extension NewTLViewController {
             
             detectLocation(nil)
             
-            let dateFormatterTwo = DateFormatter()
-            dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
-            self.currentTime = dateFormatterTwo.string(from: Date())
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-            let localDate = formatter.date(from: journey["startTime"].string!)
-            print("time: \(self.currentTime)")
-            self.otgView.timestampDate.text = dateFormatterTwo.string(from: localDate!) //self.currentTime
+            journeyDateChanged(date: journey["startTime"].string!)
+            
+//            let dateFormatterTwo = DateFormatter()
+//            dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+//            self.currentTime = dateFormatterTwo.string(from: Date())
+//            let formatter = DateFormatter()
+//            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//            let localDate = formatter.date(from: journey["startTime"].string!)
+//            print("time: \(self.currentTime)")
+//            self.otgView.timestampDate.text = dateFormatterTwo.string(from: localDate!) //self.currentTime
             
             let jc = journey["kindOfJourney"].array!
             

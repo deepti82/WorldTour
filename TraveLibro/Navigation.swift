@@ -236,7 +236,7 @@ class Navigation {
             
             print("add buddies params: \(params)")
             
-            let jsonData = try! params.rawData()
+            let jsonData = try params.rawData()
             
             // create post request
             let url = URL(string: adminUrl + "journey/addBuddy")!
@@ -676,33 +676,6 @@ class Navigation {
         
     }
     
-//    func getBucketList(id: String, completion: @escaping ((JSON) -> Void)) {
-//        
-//        do {
-//            
-//            //            let params = ["file": file]
-//            
-//            let opt = try HTTP.POST(adminUrl + "user/getBucketList", parameters: ["_id": id])
-//            var json = JSON(1);
-//            opt.start { response in
-//                //                print("started response: \(response)")
-//                if let err = response.error {
-//                    print("error: \(err.localizedDescription)")
-//                }
-//                else
-//                {
-//                    json  = JSON(data: response.data)
-//                    print(json)
-//                    completion(json)
-//                }
-//            }
-//        } catch let error {
-//            print("got an error creating the request: \(error)")
-//        }
-//        
-//        
-//    }
-    
     func addCountriesVisited(_ id: String, list: JSON, countryVisited: String, completion: @escaping ((JSON) -> Void)) {
         
 //        var jsonDict: NSDictionary!
@@ -739,8 +712,6 @@ class Navigation {
 //            jsonParams.append((year: "2016", countryId: "57c146ba528f42240deff3fe"))
             
         var params: JSON = ["_id": id, "countryId": countryVisited]
-            //            params["_id"].stringValue = id
-            //            params["countryId"].stringValue = countryVisited
         params["visited"] = list
         
             do {
@@ -755,27 +726,23 @@ class Navigation {
                 request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
                 request.httpBody = jsonData
                 
+                let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                    if error != nil{
+                        print("Error -> \(error)")
+                        return
+                    }
+                    
+                    do {
+                        let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                        print("response: \(JSON(result))")
+                        completion(JSON(result))
+                        
+                    } catch {
+                        print("Error: \(error)")
+                    }
+                }
                 
-//                let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-//                    if error != nil{
-//                        print("Error -> \(error)")
-//                        return
-//                    }
-//                    
-//                    do {
-//                        let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-//                        print("Result: \(result)")
-//                        completion(JSON(result))
-//                        
-//                    } catch {
-//                        print("Error: \(error)")
-//                    }
-//                })
-//                
-//                task.resume()
-//                return task
-                
-                
+                task.resume()
                 
             } catch {
                 print(error)
@@ -1335,32 +1302,6 @@ class Navigation {
         }
     }
     
-    func getOneJourneyPost(_ id: String, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            let params = ["_id": id]
-            
-            print("get one journey params: \(params)")
-            
-            let opt = try HTTP.POST(adminUrl + "post/getOne", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
-    
     func editPost(_ id: String, location:String, categoryLocation: String, thoughts: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -1388,12 +1329,43 @@ class Navigation {
         }
     }
     
+    func getOneJourneyPost(id: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+
+            let params = ["_id": id]
+
+            print("get one journey params: \(params)")
+
+            let opt = try HTTP.POST(adminUrl + "post/getOne", parameters: params)
+            var json = JSON(1)
+            
+            opt.start{(response) in
+
+//                if let err = response.error {
+//
+//                    print("error: \(err.localizedDescription)")
+//                }
+//
+//                else
+//                {
+                    print("making json")
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+//                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     func deletePost(_ id: String, uniqueId: String, user: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
             let params = ["_id": id, "type": "deletePost", "user": user, "uniqueId": uniqueId]
-            let opt = try HTTP.POST(adminUrl + "post/editData", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + "post/editData", parameters: params)
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -1495,7 +1467,7 @@ class Navigation {
             var params: JSON = ["_id": journeyId, "user": user, "uniqueId": uniqueId, "name": userName, "coverPhoto": photo]
             params["buddies"] = JSON(buddies)
             
-            let jsonData = try! params.rawData()
+            let jsonData = try params.rawData()
             
             // create post request
             let url = URL(string: adminUrl + "journey/endJourney")!

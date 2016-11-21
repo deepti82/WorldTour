@@ -23,7 +23,7 @@ class Rating: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        loadViewFromNib ()
+        loadViewFromNib()
         
         calendarIcon.text = String(format: "%C", faicon["calendar"]!)
         clockIcon.text = String(format: "%C", faicon["clock"]!)
