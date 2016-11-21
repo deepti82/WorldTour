@@ -24,6 +24,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.leftBarButtonItem?.title = ""
+        
 //        self.addObserver(self, forKeyPath: "whichView", options: .Prior, context: nil)
 //        if isEmptyProfile {
 //            
@@ -108,6 +110,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             return cell
         case "Monthly", "SelectCover":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
+            cell.photoBig.image = nil
+            cell.photoBig.backgroundColor = UIColor.white
             DispatchQueue.main.async(execute: {
                 cell.photoBig.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])")!))
             })
@@ -224,7 +228,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 
                 let endvc = vc as! EndJourneyViewController
                 endvc.coverImage = images[index] 
-                endvc.makeCoverPicture(image: images[index] as! String)
+                endvc.makeCoverPicture(image: images[index] )
                 self.navigationController!.popToViewController(endvc, animated: true)
                 
             }

@@ -859,7 +859,7 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     fileprivate func isLeftPointContainedWithinBezelRect(_ point: CGPoint) -> Bool{
-        var leftBezelRect: CGRect = CGRect.zero
+        let leftBezelRect: CGRect = CGRect.zero
         var tempRect: CGRect = CGRect.zero
         let bezelWidth: CGFloat = SlideMenuOptions.leftBezelWidth
         
@@ -878,7 +878,7 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     fileprivate func isRightPointContainedWithinBezelRect(_ point: CGPoint) -> Bool {
-        var rightBezelRect: CGRect = CGRect.zero
+        let rightBezelRect: CGRect = CGRect.zero
         var tempRect: CGRect = CGRect.zero
         let bezelWidth: CGFloat = view.bounds.width - SlideMenuOptions.rightBezelWidth
         

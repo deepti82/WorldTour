@@ -9,10 +9,9 @@
 import UIKit
 import SwiftHTTP
 
-
 class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
-    var allCountries: [JSON] = []
+    var allCountries: [JSON] = [["name":"India"],["name":"USA"]]
     
     @IBAction func AddNationality(_ sender: AnyObject) {
         
@@ -98,23 +97,23 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         request.getAllCountries({(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                print("countries")
+                print(response)
                 if response.error != nil {
                     
                     print("error: \(response.error?.localizedDescription)")
                     
-                }
-                
-                else {
-                    
-                    if let abc = response["value"].string {
+                }else {
+                    print("in else")
+                    if response["value"] == true {
+                        print("in else of if part")
                         
                         self.allCountries = response["data"].array!
 //                        print("countries data: \(self.allCountries)")
                         self.nationalityPickerView.reloadAllComponents()
                         
                     }
-                    
+                
                 }
                 
                 
@@ -216,7 +215,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                 }
                 else {
                     
-                    if let abc = response["value"].string {
+                    if response["value"].string != nil {
                         
                         let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
                         self.navigationController?.pushViewController(cityVC, animated: true)

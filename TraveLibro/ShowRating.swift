@@ -17,26 +17,25 @@ class ShowRating: UIView {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var line: drawLine!
     
-//    var ratingCount = 0
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        loadViewFromNib ()
+        loadViewFromNib()
+        
+        ratingLabel.shadowColor = UIColor.black
+        ratingLabel.shadowOffset = CGSize(width: 2, height: 1)
+        ratingLabel.layer.masksToBounds = true
         
     }
     
     func showRating(_ ratingCount: Int) {
         
         print("ratingCount: \(ratingCount)")
-//        rating.setImage(UIImage(named: imageArr[ratingCount]), forState: .Normal)
-//        ratingLabel.text = "Reviewed " + moodArr[ratingCount]
-        
+        rating.setImage(UIImage(named: imageArr[ratingCount]), for: .normal)
+        ratingLabel.text = "Reviewed " + moodArr[ratingCount]
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        line.backgroundColor = UIColor.clear
         
     }
     
@@ -47,6 +46,8 @@ class ShowRating: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        
+        line.backgroundColor = UIColor.clear
     }
 
 }

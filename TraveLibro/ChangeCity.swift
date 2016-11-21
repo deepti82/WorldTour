@@ -44,6 +44,18 @@ class ChangeCity: UIView {
         calendarIcon.text = String(format: "%C", faicon["calendar"]!)
         //timeIcon.font = FontAwesomeFont
         timeIcon.text = String(format: "%C", faicon["clock"]!)
+        
+        addShadow(dateLabel)
+        addShadow(timeLabel)
+        addShadow(calendarIcon)
+        addShadow(timeIcon)
+    }
+    
+    func addShadow(_ label: UILabel) {
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1.0
+        label.layer.shadowOffset = CGSize(width: 1, height: 2)
+        label.layer.shadowOpacity = 1.0
     }
     
 }

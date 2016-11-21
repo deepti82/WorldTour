@@ -13,6 +13,8 @@ class tripSummaryEach: UIView {
     @IBOutlet weak var summaryTitle: UILabel!
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var clockText: UILabel!
+    @IBOutlet weak var calendarText: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

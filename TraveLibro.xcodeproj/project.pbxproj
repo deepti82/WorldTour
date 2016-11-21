@@ -31,7 +31,13 @@
 		1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */; };
 		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
 		36006DB11DBB346600C7F44B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36006DB01DBB346600C7F44B /* SwiftyJSON.swift */; };
+		367B90F51DC23ADF00D76F13 /* ActiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F01DC23ADF00D76F13 /* ActiveBuilder.swift */; };
+		367B90F61DC23ADF00D76F13 /* ActiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F11DC23ADF00D76F13 /* ActiveLabel.swift */; };
+		367B90F71DC23ADF00D76F13 /* ActiveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F21DC23ADF00D76F13 /* ActiveType.swift */; };
+		367B90F81DC23ADF00D76F13 /* RegexParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F31DC23ADF00D76F13 /* RegexParser.swift */; };
+		367B90F91DC23ADF00D76F13 /* StringTrimExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F41DC23ADF00D76F13 /* StringTrimExtension.swift */; };
 		36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */; };
+		3AAA769F1DDDBE8800DCB6F2 /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA769E1DDDBE8800DCB6F2 /* NearMeViewController.swift */; };
 		3ABFD8DE1DA8CA2500A51034 /* ChangeCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */; };
 		3ABFD8E01DA8D4FC00A51034 /* ChangeCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABFD8DF1DA8D4FC00A51034 /* ChangeCity.swift */; };
 		3ABFD8E31DA929D700A51034 /* RatingCheckIn.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFD8E21DA929D700A51034 /* RatingCheckIn.xib */; };
@@ -46,6 +52,8 @@
 		3AF1870A1D785EE800A86BC1 /* forDpFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187091D785EE800A86BC1 /* forDpFour.swift */; };
 		3AF187101D786B2300A86BC1 /* DisplayPagesThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF1870F1D786B2300A86BC1 /* DisplayPagesThreeViewController.swift */; };
 		3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */; };
+		3AFB01C61DDC30DA00BCD523 /* AddRatingCountries.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */; };
+		3AFB01C81DDC310500BCD523 /* AddRatingCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */; };
 		C20163E01D26911C00A2F70B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163DF1D26911C00A2F70B /* UserModel.swift */; };
 		C20163E21D26972B00A2F70B /* ProfileImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20163E11D26972B00A2F70B /* ProfileImage.xib */; };
 		C20163E41D26997600A2F70B /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163E31D26997600A2F70B /* ProfileImage.swift */; };
@@ -380,7 +388,13 @@
 		1A944E461CCB8C8B007EB5BD /* JourneyTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JourneyTitleView.xib; sourceTree = "<group>"; };
 		1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
 		36006DB01DBB346600C7F44B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		367B90F01DC23ADF00D76F13 /* ActiveBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveBuilder.swift; sourceTree = "<group>"; };
+		367B90F11DC23ADF00D76F13 /* ActiveLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveLabel.swift; sourceTree = "<group>"; };
+		367B90F21DC23ADF00D76F13 /* ActiveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveType.swift; sourceTree = "<group>"; };
+		367B90F31DC23ADF00D76F13 /* RegexParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexParser.swift; sourceTree = "<group>"; };
+		367B90F41DC23ADF00D76F13 /* StringTrimExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTrimExtension.swift; sourceTree = "<group>"; };
 		36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
+		3AAA769E1DDDBE8800DCB6F2 /* NearMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeViewController.swift; sourceTree = "<group>"; };
 		3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeCity.xib; sourceTree = "<group>"; };
 		3ABFD8DF1DA8D4FC00A51034 /* ChangeCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeCity.swift; sourceTree = "<group>"; };
 		3ABFD8E21DA929D700A51034 /* RatingCheckIn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingCheckIn.xib; sourceTree = "<group>"; };
@@ -395,6 +409,8 @@
 		3AF187091D785EE800A86BC1 /* forDpFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = forDpFour.swift; sourceTree = "<group>"; };
 		3AF1870F1D786B2300A86BC1 /* DisplayPagesThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPagesThreeViewController.swift; sourceTree = "<group>"; };
 		3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayPagesFourViewController.swift; sourceTree = "<group>"; };
+		3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddRatingCountries.xib; sourceTree = "<group>"; };
+		3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRatingCountries.swift; sourceTree = "<group>"; };
 		3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -787,6 +803,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				3AFB01C41DDC30AC00BCD523 /* AddRatingCountries */,
 				C2889D3D1DB1180200B302AF /* ShowRating */,
 				3ABFD8E11DA9299000A51034 /* RatingCheckIn */,
 				3ABFD8DC1DA8C76D00A51034 /* ChangeCity */,
@@ -982,6 +999,14 @@
 				3AF187051D7858D900A86BC1 /* forDPThree.swift */,
 			);
 			name = forDPThree;
+			sourceTree = "<group>";
+		};
+		3AFB01C41DDC30AC00BCD523 /* AddRatingCountries */ = {
+			isa = PBXGroup;
+			children = (
+				3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */,
+			);
+			name = AddRatingCountries;
 			sourceTree = "<group>";
 		};
 		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
@@ -1439,6 +1464,7 @@
 				C24F84D91CFFFBF5002EA203 /* UserProfileSettingsViewController.swift */,
 				C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */,
 				C281FBED1D56170A00728BD9 /* VerifyIntermediateViewController.swift */,
+				3AAA769E1DDDBE8800DCB6F2 /* NearMeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1607,6 +1633,7 @@
 		C2889D3D1DB1180200B302AF /* ShowRating */ = {
 			isa = PBXGroup;
 			children = (
+				3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */,
 				C2889D391DB0E91700B302AF /* ShowRating.xib */,
 				C2889D3B1DB0E98800B302AF /* ShowRating.swift */,
 			);
@@ -1832,6 +1859,11 @@
 		C2DCAE3F1D17FC9600B35331 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				367B90F01DC23ADF00D76F13 /* ActiveBuilder.swift */,
+				367B90F11DC23ADF00D76F13 /* ActiveLabel.swift */,
+				367B90F21DC23ADF00D76F13 /* ActiveType.swift */,
+				367B90F31DC23ADF00D76F13 /* RegexParser.swift */,
+				367B90F41DC23ADF00D76F13 /* StringTrimExtension.swift */,
 				C2A2E7941D96858E005084A7 /* LoadingOverlay.swift */,
 				C263E3A81D1EAA4600D274FE /* FooterNavigation.swift */,
 				36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */,
@@ -1989,22 +2021,22 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Wohlig Technology";
 				TargetAttributes = {
 					1A944E031CCB4567007EB5BD = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = YVWVDTRG4B;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 					1A944E171CCB4567007EB5BD = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						TestTargetID = 1A944E031CCB4567007EB5BD;
 					};
 					1A944E221CCB4567007EB5BD = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						TestTargetID = 1A944E031CCB4567007EB5BD;
 					};
 				};
@@ -2091,6 +2123,7 @@
 				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
 				C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */,
 				C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */,
+				3AFB01C61DDC30DA00BCD523 /* AddRatingCountries.xib in Resources */,
 				C2A5C1D51CF9A7F90035EF0E /* MoreAboutMe.xib in Resources */,
 				C2A6E25D1CE9C88D00D3F845 /* TripInfoView.xib in Resources */,
 				C23EB1D51CFED110005B5CE8 /* LocalLifeRecommends.xib in Resources */,
@@ -2299,6 +2332,7 @@
 				C269078D1CF8633800F827E6 /* ProfilePic.swift in Sources */,
 				C24F84E71D00252F002EA203 /* SettingsViewController.swift in Sources */,
 				C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */,
+				367B90F91DC23ADF00D76F13 /* StringTrimExtension.swift in Sources */,
 				C256499A1D48EE5E0046E36D /* SummarySubViewController.swift in Sources */,
 				C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
@@ -2325,6 +2359,7 @@
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
 				36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */,
 				3AF187061D7858D900A86BC1 /* forDPThree.swift in Sources */,
+				3AFB01C81DDC310500BCD523 /* AddRatingCountries.swift in Sources */,
 				C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */,
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
@@ -2339,6 +2374,7 @@
 				C24909B81D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
 				C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */,
+				367B90F81DC23ADF00D76F13 /* RegexParser.swift in Sources */,
 				C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */,
 				C23EB1CD1CFEB044005B5CE8 /* CheckInLocalLife.swift in Sources */,
 				C2889D3C1DB0E98800B302AF /* ShowRating.swift in Sources */,
@@ -2353,6 +2389,7 @@
 				C24F84E21D001B91002EA203 /* ResetPassword.swift in Sources */,
 				C2488AFC1D51F98500FD5306 /* NewQuickItinerary.swift in Sources */,
 				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
+				367B90F61DC23ADF00D76F13 /* ActiveLabel.swift in Sources */,
 				C24B455C1D0ACAFA002EA009 /* Itineraries.swift in Sources */,
 				C26907911CF86F8200F827E6 /* ImageCheckbox.swift in Sources */,
 				C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */,
@@ -2373,6 +2410,7 @@
 				C266AA171D4B75B300174612 /* AllJourneysViewController.swift in Sources */,
 				C28A923F1D0E7E2E00CFEC7A /* HotelTypeSelect.swift in Sources */,
 				C25BE1F91CFC3ED900C98DD3 /* ProfilePostsViewController.swift in Sources */,
+				3AAA769F1DDDBE8800DCB6F2 /* NearMeViewController.swift in Sources */,
 				C2A6E2641CE9D2BB00D3F845 /* SpeechBubbleView.swift in Sources */,
 				C20A39981CE34C8D002EF1E6 /* FriendView.swift in Sources */,
 				C2BB45F01CFD96E300251E8C /* FollowersViewController.swift in Sources */,
@@ -2409,6 +2447,7 @@
 				C2ABDBB21CEC53B000D7542E /* StatusView.swift in Sources */,
 				C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */,
 				C281FBEB1D55EF4A00728BD9 /* QuickItineraryThree.swift in Sources */,
+				367B90F71DC23ADF00D76F13 /* ActiveType.swift in Sources */,
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
 				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,
 				C24846381D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift in Sources */,
@@ -2421,6 +2460,7 @@
 				C267302E1D27E93900F2C822 /* InviteFriendsViewController.swift in Sources */,
 				C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */,
 				C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */,
+				367B90F51DC23ADF00D76F13 /* ActiveBuilder.swift in Sources */,
 				1A3E4DC81CD398BB00105C3D /* TripSummaryProfile.swift in Sources */,
 				C25207371D096F27008F0E51 /* ExploreDestinationsViewController.swift in Sources */,
 				C28521BA1D365FDF001EF251 /* PagerTabViewController.swift in Sources */,
@@ -2583,7 +2623,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2634,7 +2674,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -2661,10 +2701,12 @@
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = TraveLibro/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
@@ -2693,10 +2735,12 @@
 					"$(SRCROOT)",
 				);
 				INFOPLIST_FILE = TraveLibro/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;

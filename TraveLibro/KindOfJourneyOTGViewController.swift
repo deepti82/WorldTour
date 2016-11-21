@@ -17,6 +17,8 @@ class KindOfJourneyOTGViewController: UIViewController {
     var selectedIndexG1 = 1
     var selectedIndexG2 = 1
     var selectedIndexG3 = 1
+    var selectedCategories :JSON = []
+    var journeyID = ""
     
     var backVC: NewTLViewController!
     
@@ -37,7 +39,13 @@ class KindOfJourneyOTGViewController: UIViewController {
         doneButton.layer.cornerRadius = 5
         
         for button in groupOneCategoryButtons {
-            
+            for cat in selectedCategories {
+                if cat.1.stringValue == (button.titleLabel?.text)! {
+                    backVC.journeyCategories.append(button.titleLabel!.text!)
+                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                    button.tag = 1
+                }
+            }
 //            indexGroupOne += 1
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
@@ -50,6 +58,13 @@ class KindOfJourneyOTGViewController: UIViewController {
         for button in groupTwoCategoryButtons {
             
 //            indexGroupTwo += 1
+            for cat in selectedCategories {
+                if cat.1.stringValue == (button.titleLabel?.text)! {
+                    backVC.journeyCategories.append(button.titleLabel!.text!)
+                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                    button.tag = 1
+                }
+            }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
 //            button.tag = indexGroupTwo
@@ -59,6 +74,13 @@ class KindOfJourneyOTGViewController: UIViewController {
         for button in groupThreeCategoryButtons {
             
 //            indexGroupThree += 1
+            for cat in selectedCategories {
+                if cat.1.stringValue == (button.titleLabel?.text)! {
+                    backVC.journeyCategories.append(button.titleLabel!.text!)
+                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                    button.tag = 1
+                }
+            }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
 //            button.tag = indexGroupThree
@@ -78,9 +100,16 @@ class KindOfJourneyOTGViewController: UIViewController {
             
         }
         else {
+            print("categories before save")
+            print(backVC.journeyCategories)
+            request.kindOfJourney(journeyID, kindOfJourney: backVC.journeyCategories, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                self.backVC.showDetailsFn()
+                self.navigationController?.popViewController(animated: true)
+                })
+
+            })
             
-            backVC.showDetailsFn()
-            self.navigationController?.popViewController(animated: true)
             
         }
         

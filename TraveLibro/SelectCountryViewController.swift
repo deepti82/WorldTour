@@ -131,7 +131,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                     
                     else {
                         
-                        if let abc = response["value"].string {
+                        if response["value"].bool! {
                             
                             self.countries = response["data"].array!
                             self.mainTableView.reloadData()
@@ -240,7 +240,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                     
                 else {
                     
-                    if let abc = response["value"].string {
+                    if response["value"].bool! {
                         
                         self.countries = response["data"].array!
                         self.mainTableView.reloadData()

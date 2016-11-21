@@ -25,6 +25,8 @@ public class Post {
     let thoughts = Expression<String?>("thoughts")
     let location = Expression<String>("location")
     let category = Expression<String>("category")
+    let latitude = Expression<String>("latitude")
+    let longitude = Expression<String>("longitude")
     let country = Expression<String>("country")
     let city = Expression<String>("city")
     let hasCompleted = Expression<Bool>("hasCompleted")
@@ -39,13 +41,15 @@ public class Post {
             t.column(thoughts)
             t.column(location)
             t.column(category)
+            t.column(latitude)
+            t.column(longitude)
             t.column(country)
             t.column(city)
             t.column(hasCompleted)
         })
     }
     
-    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Country: String, City: String, Status: String) {
+    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, Status: String) {
         
         DispatchQueue.main.async(execute: {
                 let photoinsert = self.post.insert(
@@ -55,6 +59,8 @@ public class Post {
                     self.date <- Date,
                     self.location <- Location,
                     self.category <- Category,
+                    self.latitude <- Latitude,
+                    self.longitude <- Longitude,
                     self.country <- Country,
                     self.city <- City,
                     self.thoughts <- Status,
@@ -212,6 +218,11 @@ public class Photo {
         
         return value
         
+    }
+    
+    func getRowCount() -> Int {
+        let count = try! db.scalar(photos.count)
+        return count
     }
     
     func flushRows(_ postId: String) {

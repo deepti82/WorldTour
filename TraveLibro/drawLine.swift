@@ -15,7 +15,7 @@ class drawLine: UIView {
         let context = UIGraphicsGetCurrentContext()
         context!.setLineWidth(5.0)
         context!.setStrokeColor(lightOrangeColor.cgColor)
-        context!.setLineDash(phase: 0, lengths: [7.5])
+        context!.setLineDash(phase: 0, lengths: [7.5, 1])
         context!.setLineCap(CGLineCap(rawValue: 500)!)
         
         context!.move(to: CGPoint(x: 0, y: 0))
@@ -34,7 +34,6 @@ class drawFooterLine: UIView {
         let context = UIGraphicsGetCurrentContext()
         context?.setLineWidth(2.0)
         context?.setStrokeColor(UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 255/255).cgColor)
-        //CGContextSetLineDash(context, 0, [7.5], 1)
         //CGContextSetLineCap(context, kCGLineCapRound)
         
         context?.move(to: CGPoint(x: 0, y: 0))

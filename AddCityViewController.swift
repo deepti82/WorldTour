@@ -154,7 +154,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                 else {
                     
-                    if let abc = response["value"].string {
+                    if response["value"].bool! {
                         
                         print("response arrived!")
                         print(response["data"]["predictions"].array!)

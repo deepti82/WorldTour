@@ -28,6 +28,7 @@ class TripInfoOTG: UIView {
     @IBOutlet weak var restaurantCount: UIButton!
     @IBOutlet weak var itinerariesCount: UIButton!
     @IBOutlet weak var nearMeCount: UIButton!
+    @IBOutlet weak var aboutLocationText: UILabel!
     
 //    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet var notifications: [UIButton]!

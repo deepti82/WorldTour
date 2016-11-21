@@ -198,7 +198,6 @@ extension UIViewController {
         self.navigationItem.leftBarButtonItem = leftBarButton
         self.navigationItem.rightBarButtonItem = rightBarButton
         
-        
 //        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.setBackwardController(_:))), animated: true)
 //        self.navigationController?.toolbar.barTintColor = mainBlueColor
 //        self.navigationController?.navigationBar.barTintColor = mainBlueColor
@@ -272,7 +271,7 @@ extension UIViewController {
         let checkInVC = allVCs![(allVCs?.count)! - 2]
         print("checkin vc: \(checkInVC)")
         
-        self.navigationController?.popToViewController(checkInVC, animated: true)
+        self.navigationController!.popToViewController(checkInVC, animated: true)
         
     }
     
@@ -297,7 +296,7 @@ extension UIViewController {
     
     func popVC(_ sender: UIButton) {
         
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController!.popViewController(animated: true)
         
     }
     

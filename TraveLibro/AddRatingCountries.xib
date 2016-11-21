@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddRatingCountries" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="countryCount" destination="ugh-Uh-vdg" id="Xi5-e2-97K"/>
+                <outlet property="countryImage" destination="7LR-5c-0p8" id="rjD-Xv-Q0O"/>
+                <outlet property="countryName" destination="JuA-PK-ZhW" id="uo4-Zp-NUe"/>
+                <outlet property="postReview" destination="u87-j5-vJ5" id="4TP-Bw-lao"/>
+                <outlet property="reviewConclusion" destination="g63-he-ITc" id="Sub-Ld-5pE"/>
+                <outlet property="reviewTextView" destination="sZd-PS-d57" id="i6n-Eq-GMs"/>
+                <outlet property="smiley" destination="lJl-Wx-mep" id="9R7-eZ-rpV"/>
+                <outlet property="starsStack" destination="7pg-E8-uJ8" id="cdc-0Z-Zen"/>
+                <outletCollection property="stars" destination="cyP-Pm-Xmh" collectionClass="NSMutableArray" id="gWu-Kt-cvW"/>
+                <outletCollection property="stars" destination="2D2-O7-4m9" collectionClass="NSMutableArray" id="u8d-8b-G3y"/>
+                <outletCollection property="stars" destination="eR7-Ql-v9h" collectionClass="NSMutableArray" id="Rx1-lF-DkP"/>
+                <outletCollection property="stars" destination="dbG-pU-36U" collectionClass="NSMutableArray" id="5e6-yk-xX2"/>
+                <outletCollection property="stars" destination="5pj-IF-z0f" collectionClass="NSMutableArray" id="wVe-48-RFC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="398" height="423"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ELF-wd-NgZ">
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcm-iH-nqP">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disappointed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g63-he-ITc">
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7pg-E8-uJ8">
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyP-Pm-Xmh">
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="8TD-hP-D8g"/>
+                                        <constraint firstAttribute="width" constant="25" id="lEc-nr-wTt"/>
+                                    </constraints>
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                                    <state key="normal" image="star_check"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2D2-O7-4m9">
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                                    <state key="normal" image="star_uncheck"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eR7-Ql-v9h">
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                                    <state key="normal" image="star_uncheck"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbG-pU-36U">
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                                    <state key="normal" image="star_uncheck"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pj-IF-z0f">
+                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
+                                    <state key="normal" image="star_uncheck"/>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIB-li-gbZ">
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Fill Me In..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sZd-PS-d57">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="90" id="2x5-ZR-rvG"/>
+                            </constraints>
+                            <color key="textColor" red="0.41960784309999999" green="0.41960784309999999" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJl-Wx-mep">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="C6H-2p-a9a"/>
+                                <constraint firstAttribute="width" constant="80" id="XDG-gj-9pW"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                            <state key="normal" image="disapointed" backgroundImage="green_bg_new_small"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u87-j5-vJ5">
+                            <color key="backgroundColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="MdQ-GW-Yo3"/>
+                                <constraint firstAttribute="height" constant="30" id="Mi1-nF-pHw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <state key="normal" title="POST">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="postReviewTapped:" destination="-1" eventType="touchUpInside" id="5f8-2h-RXl"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7LR-5c-0p8">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="GSH-JC-9jA"/>
+                                <constraint firstAttribute="width" constant="40" id="PlV-Nd-5ku"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="United Kingdom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuA-PK-ZhW">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="gLz-ag-PX9"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                            <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/2 Countries Reviewed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugh-Uh-vdg">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="O2p-Ot-cYs"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                            <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="u87-j5-vJ5" firstAttribute="centerX" secondItem="ELF-wd-NgZ" secondAttribute="centerX" id="0ry-Bn-bJ8"/>
+                        <constraint firstItem="ugh-Uh-vdg" firstAttribute="top" secondItem="JuA-PK-ZhW" secondAttribute="bottom" id="4v3-Vd-OoV"/>
+                        <constraint firstItem="lcm-iH-nqP" firstAttribute="top" secondItem="ELF-wd-NgZ" secondAttribute="top" id="Aqr-ZI-poy"/>
+                        <constraint firstItem="oIB-li-gbZ" firstAttribute="top" secondItem="7pg-E8-uJ8" secondAttribute="bottom" constant="15" id="CjW-OO-9CX"/>
+                        <constraint firstItem="ugh-Uh-vdg" firstAttribute="centerX" secondItem="JuA-PK-ZhW" secondAttribute="centerX" id="JbX-No-ucg"/>
+                        <constraint firstItem="u87-j5-vJ5" firstAttribute="centerX" secondItem="ELF-wd-NgZ" secondAttribute="centerX" id="JkF-np-ba0"/>
+                        <constraint firstItem="lcm-iH-nqP" firstAttribute="leading" secondItem="ELF-wd-NgZ" secondAttribute="leading" id="Kc0-W0-1xw"/>
+                        <constraint firstAttribute="trailing" secondItem="lcm-iH-nqP" secondAttribute="trailing" id="Kda-Hk-9pA"/>
+                        <constraint firstItem="oIB-li-gbZ" firstAttribute="centerX" secondItem="7pg-E8-uJ8" secondAttribute="centerX" id="LSz-Hb-Qxx"/>
+                        <constraint firstItem="7LR-5c-0p8" firstAttribute="top" secondItem="ELF-wd-NgZ" secondAttribute="top" constant="8" id="Mca-of-R9f"/>
+                        <constraint firstItem="7LR-5c-0p8" firstAttribute="centerX" secondItem="lJl-Wx-mep" secondAttribute="centerX" id="TYq-iK-YBf"/>
+                        <constraint firstItem="7pg-E8-uJ8" firstAttribute="centerX" secondItem="g63-he-ITc" secondAttribute="centerX" id="TdY-Rj-5Zm"/>
+                        <constraint firstAttribute="bottom" secondItem="lcm-iH-nqP" secondAttribute="bottom" constant="15" id="Xrh-UD-g2c"/>
+                        <constraint firstItem="sZd-PS-d57" firstAttribute="centerX" secondItem="ELF-wd-NgZ" secondAttribute="centerX" id="Yaf-fc-Opf"/>
+                        <constraint firstItem="JuA-PK-ZhW" firstAttribute="top" secondItem="7LR-5c-0p8" secondAttribute="bottom" constant="2" id="Zdu-cA-cWe"/>
+                        <constraint firstItem="u87-j5-vJ5" firstAttribute="top" secondItem="sZd-PS-d57" secondAttribute="bottom" constant="20" id="bTX-XL-DGj"/>
+                        <constraint firstItem="lJl-Wx-mep" firstAttribute="centerX" secondItem="ELF-wd-NgZ" secondAttribute="centerX" id="fYi-4U-M2D"/>
+                        <constraint firstAttribute="trailing" secondItem="sZd-PS-d57" secondAttribute="trailing" constant="16" id="g03-S6-3lL"/>
+                        <constraint firstItem="sZd-PS-d57" firstAttribute="centerX" secondItem="ELF-wd-NgZ" secondAttribute="centerX" id="hRr-Dy-yah"/>
+                        <constraint firstItem="g63-he-ITc" firstAttribute="top" secondItem="lJl-Wx-mep" secondAttribute="bottom" constant="8" id="hmU-Fz-FnX"/>
+                        <constraint firstItem="oIB-li-gbZ" firstAttribute="centerX" secondItem="sZd-PS-d57" secondAttribute="centerX" id="kyd-Td-lPT"/>
+                        <constraint firstItem="lJl-Wx-mep" firstAttribute="top" secondItem="ugh-Uh-vdg" secondAttribute="bottom" constant="13" id="muk-iM-gnW"/>
+                        <constraint firstItem="sZd-PS-d57" firstAttribute="top" secondItem="oIB-li-gbZ" secondAttribute="bottom" constant="8" symbolic="YES" id="ujf-W3-H2F"/>
+                        <constraint firstItem="JuA-PK-ZhW" firstAttribute="centerX" secondItem="7LR-5c-0p8" secondAttribute="centerX" id="unP-gG-1PH"/>
+                        <constraint firstItem="7pg-E8-uJ8" firstAttribute="top" secondItem="g63-he-ITc" secondAttribute="bottom" constant="8" symbolic="YES" id="vcE-IV-tdS"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="ELF-wd-NgZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ACF-mD-BYs"/>
+                <constraint firstItem="ELF-wd-NgZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QyL-lf-UxN"/>
+                <constraint firstAttribute="bottom" secondItem="ELF-wd-NgZ" secondAttribute="bottom" id="Srw-e8-11L"/>
+                <constraint firstAttribute="trailing" secondItem="ELF-wd-NgZ" secondAttribute="trailing" id="kXk-wz-OaW"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="5" y="-49"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="disapointed" width="68" height="69"/>
+        <image name="green_bg_new_small" width="60" height="60"/>
+        <image name="star_check" width="27" height="25"/>
+        <image name="star_uncheck" width="27" height="25"/>
+    </resources>
+</document>

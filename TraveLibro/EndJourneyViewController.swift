@@ -22,6 +22,13 @@ class EndJourneyViewController: UIViewController {
     @IBOutlet weak var buddyCount: UILabel!
     @IBOutlet var categoryImages: [UIImageView]!
     @IBOutlet var buddiesImages: [UIImageView]!
+    
+    @IBOutlet weak var changePhotoText: UILabel!
+    @IBOutlet weak var changePhotoButton: UIButton!
+    @IBOutlet weak var changePhotoViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var rateCountriesView: UIView!
+    
     var journeyImages: [String] = []
     var journey: JSON!
     
@@ -32,6 +39,7 @@ class EndJourneyViewController: UIViewController {
             let selectImage = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
             selectImage.whichView = "SelectCover"
             selectImage.images = journeyImages
+            self.navigationController?.navigationItem.leftBarButtonItem?.title = ""
             self.navigationController?.pushViewController(selectImage, animated: true)
             
         }
@@ -51,11 +59,19 @@ class EndJourneyViewController: UIViewController {
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        rightButton.setTitle("Done", for: UIControlState())
-        rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
+        //rightButton.setTitle("Done", for: UIControlState())
+        //rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
+        let image = UIImage(cgImage: (UIImage(named: "arrow_prev")?.cgImage!)!, scale: 1.0, orientation: .upMirrored)
+        rightButton.setImage(image, for: UIControlState())
         rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 10, y: 0, width: 70, height: 30)
+        rightButton.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
         self.customNavigationBar(left: leftButton, right: rightButton)
+        
+        rateCountries()
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
+        self.journeyCoverPic.backgroundColor = UIColor.white
+        self.journeyCoverPic.image = UIImage(named: "")
         
         //calendarIcon.text = String(format: "%C", args: faicon["calendar"])
         //clockIcon.text = String(format: "%C", arguments: faicon["clock"])
@@ -65,7 +81,15 @@ class EndJourneyViewController: UIViewController {
         
         getAllImages()
         
-        userDp.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
+        if currentUser["profilePicture"] != "" {
+            DispatchQueue.main.async(execute: {
+                self.userDp.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
+            })
+        
+        } else {
+            userDp.image = UIImage(named: "darkBg")
+        }
+        
         makeTLProfilePicture(userDp)
         endJourneyTitle.text = "\(currentUser["name"]) has ended the \(journey["name"]) Journey"
         
@@ -136,7 +160,7 @@ class EndJourneyViewController: UIViewController {
     
     func getAllImages() {
         
-        print("in get all images: \(journey!)")
+        //print("in get all images: \(journey!)")
         request.getJourneyPhotos(journeyId: journey["_id"].string!, completion: {(response) in
             
             if response.error != nil {
@@ -145,18 +169,36 @@ class EndJourneyViewController: UIViewController {
             }
             else if response["value"].bool! {
                 
-                for image in response["data"].array! {
+                let photosArr = response["data"]["photos"].array!
+                
+                if photosArr != [] {
+                
+                    for image in response["data"]["photos"].array! {
+                        
+                        self.journeyImages.append(image["name"].string!)
+                        
+                    }
                     
-                    self.journeyImages.append(image.string!)
+                } else {
+                    
+                    print("no images")
+                    self.changePhotoText.isHidden = true
+                    self.changePhotoButton.isHidden = true
+                    self.changePhotoViewHeight.constant = 47.0
                     
                 }
-                if response["data"].array!.count > 0 {
+                if response["data"]["photos"].array!.count > 0 {
                     
                     self.randomImage()
                 }
                 else {
                     
-                   self.makeCoverPicture(image: self.journey["startLocationPic"].string!)
+                    let image = self.journey["startLocationPic"].string!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    self.makeCoverPicture(image: image!)
+                    
+                    // installed will remove spacing and constraints
+                    //self.changePhotoText.isHidden = true
+                    //self.changePhotoButton.isHidden = true
                     
                 }
                 
@@ -185,7 +227,14 @@ class EndJourneyViewController: UIViewController {
         
         DispatchQueue.main.async(execute: {
             
-            self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
+            //self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
+            
+            let imageString = self.journey["startLocationPic"].string!
+            let mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+            do {
+                let data = try! Data(contentsOf: mapurl!)
+                self.journeyCoverPic.image = UIImage(data: data)
+            }
             
         })
         
@@ -235,6 +284,51 @@ class EndJourneyViewController: UIViewController {
             }
             
         }
+        
+    }
+    
+    func rateCountries() {
+        let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+        rateButton.rateCheckInLabel.text = "Rate This Countries?"
+        rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.addRatingCountries(_:)), for: .touchUpInside)
+        rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
+        rateCountriesView.addSubview(rateButton)
+    }
+    
+    var backgroundReview = UIView()
+    
+    func addRatingCountries(_ sender: UIButton) {
+        print("journey id: \(sender.titleLabel!.text!)")
+        let countryVisited: JSON = journey["countryVisited"]
+        
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(EndJourneyViewController.reviewTapOut(_:)))
+        backgroundReview = UIView(frame: self.view.frame)
+        backgroundReview.addGestureRecognizer(tapout)
+        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        self.view.addSubview(backgroundReview)
+        self.view.bringSubview(toFront: backgroundReview)
+        
+        let rating = AddRatingCountries(frame: CGRect(x: 0, y: 0, width: width - 40, height: 423))
+        rating.center = backgroundReview.center
+        rating.layer.cornerRadius = 5
+        rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
+        rating.clipsToBounds = true
+        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+        rating.countryVisitedData = countryVisited
+        rating.journeyData = journey
+        //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
+        //rating.postReview.addGestureRecognizer(tapout)
+        rating.getRatingData(data: countryVisited)
+        //getRatingData(num: i, data: countryVisited, view: rating)
+        
+        //for i in 0..<numberOfCountriesVisited {}
+        
+        backgroundReview.addSubview(rating)
+    }
+    
+    func reviewTapOut(_ sender: UITapGestureRecognizer) {
+        
+        backgroundReview.removeFromSuperview()
         
     }
 
