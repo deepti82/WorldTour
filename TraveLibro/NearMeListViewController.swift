@@ -15,6 +15,9 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     var ratingIndex: Int!
     var nearMeListJSON: [JSON] = []
     var nearMeAddress = NSMutableAttributedString()
+    
+    let lat = "19.0451378"
+    let long = "72.8632416"
 
     @IBOutlet weak var nearMeListTableView: UITableView!
     
@@ -32,8 +35,6 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     
     func getNearMeValues() {
         
-        let lat = "19.0451378"
-        let long = "72.8632416"
         print(nearMeType)
         
         request.getNearMeList(lat: lat, long: long, type: nearMeType, completion: {(response) in
@@ -94,6 +95,12 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nearMeDetailController = storyboard?.instantiateViewController(withIdentifier: "nearMeDetail") as! NearMeDetailViewController
+        nearMeDetailController.nearMeDetailJSON = nearMeListJSON[indexPath.section]
+        navigationController?.pushViewController(nearMeDetailController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
