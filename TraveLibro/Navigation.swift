@@ -1337,7 +1337,7 @@ class Navigation {
 
             print("get one journey params: \(params)")
 
-            let opt = try HTTP.POST(adminUrl + "post/getOne", parameters: params)
+            let opt = try! HTTP.POST(adminUrl + "post/getOne", parameters: params)
             var json = JSON(1)
             
             opt.start{(response) in

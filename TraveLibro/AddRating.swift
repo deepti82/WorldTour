@@ -49,8 +49,8 @@ class AddRating: UIView, UITextViewDelegate {
                 else if response["value"].bool! {
                     
                     print("response arrived")
-//                    self.removeFromSuperview()
-//                    self.parent.removeRatingButton(sender.title(for: .application)!)
+                    self.removeFromSuperview()
+                    self.parent.removeRatingButton(sender.title(for: .application)!)
                     
                 }
                 else {
