@@ -27,35 +27,41 @@ class AddRating: UIView, UITextViewDelegate {
     
     @IBAction func postReviewTapped(_ sender: UIButton) {
         
-            print("post id in review: \(sender.title(for: .application)!)")
-            let post = sender.title(for: .application)!
-            reviewTextView.resignFirstResponder()
+        print("post id in review: \(sender.title(for: .application)!)")
+        let post = sender.title(for: .application)!
+        reviewTextView.resignFirstResponder()
+        var reviewBody = ""
+        
+        if reviewTextView.text != nil && reviewTextView.text != "Fill Me In..." {
             
-            request.rateCheckIn(currentUser["_id"].string!, postId: post, rating: "\(starCount)", review: reviewTextView.text, completion: {(response) in
+            reviewBody = reviewTextView.text
+        }
+        
+        request.rateCheckIn(currentUser["_id"].string!, postId: post, rating: "\(starCount)", review: reviewBody, completion: {(response) in
+            
+            DispatchQueue.main.async(execute: {
                 
-                DispatchQueue.main.async(execute: {
+                if response.error != nil {
                     
-                    if response.error != nil {
-                        
-                        print("error: \(response.error!.localizedDescription)")
-                        
-                    }
-                    else if response["value"].bool! {
-                        
-                        print("response arrived")
-                        sender.superview!.superview!.removeFromSuperview()
-                        self.parent.removeRatingButton(sender.title(for: .application)!)
-                        
-                    }
-                    else {
-                        
-                        print("response error!")
-                        
-                    }
+                    print("error: \(response.error!.localizedDescription)")
                     
-                })
+                }
+                else if response["value"].bool! {
+                    
+                    print("response arrived")
+                    self.removeFromSuperview()
+                    self.parent.removeRatingButton(sender.title(for: .application)!)
+                    
+                }
+                else {
+                    
+                    print("response error!")
+                    
+                }
                 
             })
+            
+        })
         
     }
     override init(frame: CGRect) {

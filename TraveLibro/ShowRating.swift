@@ -35,7 +35,7 @@ class ShowRating: UIView {
         
     }
     
-    func showRating(_ ratingCount: Int) {
+    func showRating(ratingCount: Int) {
         
         print("ratingCount: \(ratingCount)")
         rating.setImage(UIImage(named: imageArr[ratingCount]), for: .normal)

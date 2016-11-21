@@ -1342,18 +1342,18 @@ class Navigation {
             
             opt.start{(response) in
 
-//                if let err = response.error {
-//
-//                    print("error: \(err.localizedDescription)")
-//                }
-//
-//                else
-//                {
+                if let err = response.error {
+
+                    print("error: \(err.localizedDescription)")
+                }
+
+                else
+                {
                     print("making json")
                     json  = JSON(data: response.data)
                     print(json)
                     completion(json)
-//                }
+                }
             }
         } catch let error {
             print("got an error creating the request: \(error)")

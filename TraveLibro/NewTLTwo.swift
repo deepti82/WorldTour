@@ -105,29 +105,53 @@ extension NewTLViewController {
         
         print("id: \(sender.title(for: .application))")
         
-        let lastCount = myReview.count - 1
+        request.getOneJourneyPost(id: sender.title(for: .application)!, completion: {(response) in
+            
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    self.myReview = response["data"]["review"].array!
+                    
+                    self.backgroundReview = UIView(frame: self.view.frame)
+                    self.backgroundReview.addGestureRecognizer(tapout)
+                    self.backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+                    self.view.addSubview(self.backgroundReview)
+                    self.view.bringSubview(toFront: self.backgroundReview)
+                   
+                    let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
+                    rating.center = self.backgroundReview.center
+                    rating.layer.cornerRadius = 5
+                    rating.ratingDisplay(self.myReview[0])
+                    rating.postReview.setTitle("CLOSE", for: .normal)
+                    rating.reviewTextView.isEditable = false
+                    rating.starsStack.isUserInteractionEnabled = false
+                    rating.clipsToBounds = true
+                    rating.postReview.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:))))
+                    rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+                    
+                    self.backgroundReview.addSubview(rating)
+                    
+                    
+                }
+                else {
+                    
+                    print("response error")
+                }
+                
+            })
+            
+        })
         
-        backgroundReview = UIView(frame: self.view.frame)
-        backgroundReview.addGestureRecognizer(tapout)
-        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        self.view.addSubview(backgroundReview)
-        self.view.bringSubview(toFront: backgroundReview)
-        
-        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
-        rating.center = backgroundReview.center
-        rating.layer.cornerRadius = 5
-        rating.ratingDisplay(myReview[0])
-        rating.postReview.setTitle("CLOSE", for: UIControlState())
-        rating.reviewTextView.isEditable = false
-        rating.starsStack.isUserInteractionEnabled = false
-        rating.clipsToBounds = true
-        rating.postReview.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:))))
-        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
-//        rating.starCount.
-        
-        backgroundReview.addSubview(rating)
+        print("completed review")
         
     }
+    
     
     func addRatingPost(_ sender: UIButton) {
         
@@ -164,7 +188,7 @@ extension NewTLViewController {
         rating.layer.cornerRadius = 5
         rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
         rating.clipsToBounds = true
-        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+//        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
 //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
         backgroundReview.addSubview(rating)
         
@@ -179,24 +203,47 @@ extension NewTLViewController {
     
     func removeRatingButton(_ postId: String) {
         
-//        print("layout: \(layout.subviews)")
+        print("layout: \(layout.subviews)")
+        backgroundReview.removeFromSuperview()
         
-//        for subview in layout.subviews {
-//            
-//            if subview.isKindOfClass(AddRating) {
-//                
-//                let view = subview as! AddRating
-//                if view.postReview.titleForState(.Application)! == postId {
-//                    
-//                    removeHeightFromLayout(view.frame.height)
-//                    view.removeFromSuperview()
-//                    
-//                }
-//                
-//                
-//            }
-//            
-//        }
+        request.getOneJourneyPost(id: postId, completion: {(response) in
+            
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    for subview in self.layout.subviews {
+                        
+                        if subview.tag == 10 {
+                            
+                            let view = subview as! RatingCheckIn
+                            print("remove rating \(view.rateCheckInButton.title(for: .application))")
+                            if view.rateCheckInButton.title(for: .application)! == postId {
+                                
+                                self.removeHeightFromLayout(view.frame.height)
+                                view.removeFromSuperview()
+                                self.showReviewButton(post: response["data"])
+                            }
+                            
+                            
+                        }
+                        
+                    }
+                    
+                }
+                else {
+                    
+                    print("response error")
+                }
+                
+            })
+            
+        })
         
     }
     
