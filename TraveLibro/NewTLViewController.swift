@@ -531,7 +531,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             backView.isHidden = true
             
             print("buddies: \(buddies)")
-            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: addView.categoryLabel.text!, Latitude: "\(currentLat!)", Longitude: "\(currentLong!)", Country: currentCountry, City: currentCity, Status: thoughts)
+//            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: addView.categoryLabel.text!, Latitude: "\(currentLat!)", Longitude: "\(currentLong!)", Country: currentCountry, City: currentCity, Status: thoughts)
             
             let latestPost = post.getRowCount()
             
