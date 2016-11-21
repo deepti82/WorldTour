@@ -1363,14 +1363,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)"
                     print("\(imageString)")
                     let mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                    do {
-                        let data = try! Data(contentsOf: mapurl!)
-                        print("image data: \(data)")
-                        checkIn.mainPhoto.image = UIImage(data: data)
-                    } catch _ {
-                        print("Unable to set map image")
-                    }
-
+                    DispatchQueue.main.async(execute: {
+                        do {
+                            let data = try! Data(contentsOf: mapurl!)
+                            print("image data: \(data)")
+                            checkIn.mainPhoto.image = UIImage(data: data)
+                        } catch _ {
+                            print("Unable to set map image")
+                        }
+                    })
                 } else {
                     print("map not shown")
                 }
