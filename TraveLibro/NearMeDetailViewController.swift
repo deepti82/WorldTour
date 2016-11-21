@@ -94,6 +94,9 @@ class NearMeDetailViewController: UIViewController {
                         self.nearMePhone = NSMutableAttributedString(string: "Phone :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
                         self.nearMePhone.append(NSAttributedString(string: " \(self.nearMeDetailJSON["international_phone_number"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
                         self.phone.attributedText = self.nearMePhone
+                        let tap = UITapGestureRecognizer(target: self, action: #selector(NearMeDetailViewController.callTap(_:)))
+                        self.phone.addGestureRecognizer(tap)
+                        //UIApplication.shared.open(URL(string: "tel://\(self.nearMeDetailJSON["international_phone_number"].string!)")!)
                         
                     } else {
                         self.phone.isHidden = true
@@ -133,6 +136,15 @@ class NearMeDetailViewController: UIViewController {
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = self.nearMeDetailJSON["name"].string!
         mapItem.openInMaps(launchOptions: options)
+    }
+    
+    func callTap(_ sender: UITapGestureRecognizer) {
+        let num = "tel://\(self.nearMeDetailJSON["international_phone_number"].string!)".replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
+        let url: URL = URL(string: num)!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+        
     }
     
     func getWeekDay() -> Int? {

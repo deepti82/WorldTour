@@ -117,7 +117,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
             let rating = nearMeListJSON[indexPath.section]["rating"]
             print("\(nearMeListJSON[indexPath.section]["name"].string!): \(rating)")
             for (index, star) in cell.stars.enumerated() {
-                star.isSelected = index < Int(roundf(rating.floatValue))
+                star.isSelected = index < Int(roundf(rating.float!))
             }
         }
         
