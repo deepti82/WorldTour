@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation
 
-class NearMeListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class NearMeListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     var city: String!
     var nearMeType: String!
@@ -16,8 +17,9 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     var nearMeListJSON: [JSON] = []
     var nearMeAddress = NSMutableAttributedString()
     
-    let lat = "19.0451378"
-    let long = "72.8632416"
+    var lat: Double!
+    var long: Double!
+    let locationManager = CLLocationManager()
 
     @IBOutlet weak var nearMeListTableView: UITableView!
     
@@ -28,33 +30,58 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         navigationController?.hidesBarsOnSwipe = false
         //nearMeListTableView.isHidden = true
         
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startMonitoringSignificantLocationChanges()
+        
         nearMeListTableView.delegate = self
         nearMeListTableView.dataSource = self
-        getNearMeValues()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if manager.location?.coordinate != nil {
+            let locValue: CLLocationCoordinate2D = manager.location!.coordinate
+            lat = locValue.latitude
+            long = locValue.longitude
+            getNearMeValues()
+        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error while updating location " + error.localizedDescription)
     }
     
     func getNearMeValues() {
         
         print(nearMeType)
         
-        request.getNearMeList(lat: lat, long: long, type: nearMeType, completion: {(response) in
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    print("error: \(response.error!.localizedDescription)")
-                }
-                else if response["value"].bool! {
+        if lat != nil && long != nil {
+        
+            request.getNearMeList(lat: "\(lat!)", long: "\(long!)", type: nearMeType, completion: {(response) in
+                DispatchQueue.main.async(execute: {
                     
-                    self.nearMeListJSON = response["data"].array!
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        
+                        self.nearMeListJSON = response["data"].array!
+                        self.nearMeListTableView.reloadData()
+                    }
+                    else {
+                        print("response error")
+                    }
                     self.nearMeListTableView.reloadData()
-                }
-                else {
-                    print("response error")
-                }
-                self.nearMeListTableView.reloadData()
+                })
+                //self.nearMeListTableView.isHidden = false
             })
-            //self.nearMeListTableView.isHidden = false
-        })
+            
+        } else {
+            print("no lat long found")
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,6 +128,8 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         let nearMeDetailController = storyboard?.instantiateViewController(withIdentifier: "nearMeDetail") as! NearMeDetailViewController
         //nearMeDetailController.nearMeDetailJSON = nearMeListJSON[indexPath.section]
         nearMeDetailController.nearMePlaceId = nearMeListJSON[indexPath.section]["place_id"].string!
+        nearMeDetailController.currentLat = lat
+        nearMeDetailController.currentLong = long
         navigationController?.pushViewController(nearMeDetailController, animated: true)
     }
     

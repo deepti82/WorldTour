@@ -7,17 +7,19 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 class NearMeDetailViewController: UIViewController {
     
     var nearMeDetailJSON: JSON!
     var nearMePlaceId: String!
     
-    var currentLat: String!
-    var currentLong: String!
+    var currentLat: Double!
+    var currentLong: Double!
     
-    var nearMeLat: String!
-    var nearMeLong: String!
+    var nearMeLat: Double!
+    var nearMeLong: Double!
     
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var name: UILabel!
@@ -25,6 +27,7 @@ class NearMeDetailViewController: UIViewController {
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var phone: UILabel!
     @IBOutlet weak var openingHours: UILabel!
+    @IBOutlet weak var directions: UIButton!
     
     var nearMeDistance = NSMutableAttributedString()
     var nearMeAddress = NSMutableAttributedString()
@@ -38,6 +41,12 @@ class NearMeDetailViewController: UIViewController {
         navigationController?.hidesBarsOnSwipe = false
         
         detailView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        detailView.isHidden = true
+        
+        directions.layer.borderWidth = 1.0
+        directions.layer.borderColor = mainOrangeColor.cgColor
+        directions.layer.cornerRadius = 5.0
+        directions.clipsToBounds = true
         
         getPlaceDetail()
 
@@ -59,23 +68,85 @@ class NearMeDetailViewController: UIViewController {
                     
                     self.name.text = self.nearMeDetailJSON["name"].string!
                     
+                    self.nearMeLat = self.nearMeDetailJSON["geometry"]["location"]["lat"].double!
+                    self.nearMeLong = self.nearMeDetailJSON["geometry"]["location"]["lng"].double!
+                    
+                    let currentCoordinate = CLLocation(latitude: self.currentLat, longitude: self.currentLong)
+                    let nearMeCoordinate = CLLocation(latitude: self.nearMeLat, longitude: self.nearMeLong)
+                    let distanceInMeters = currentCoordinate.distance(from: nearMeCoordinate)
+                    
                     self.nearMeDistance = NSMutableAttributedString(string: "Distance from You :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-                    self.nearMeDistance.append(NSAttributedString(string: " 0.08m", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!]))
+                    self.nearMeDistance.append(NSAttributedString(string: " \(Float(distanceInMeters))m", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!]))
+                    self.distance.attributedText = self.nearMeDistance
                     
-                    self.nearMeAddress = NSMutableAttributedString(string: "Address :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
-                    self.nearMeAddress.append(NSAttributedString(string: " \(self.nearMeDetailJSON["vicinity"].string!)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
+                    if self.nearMeDetailJSON["vicinity"].string != nil && self.nearMeDetailJSON["vicinity"].string != "" {
                     
-                    self.nearMePhone = NSMutableAttributedString(string: "Phone :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
-                    self.nearMePhone.append(NSAttributedString(string: " \(self.nearMeDetailJSON["vicinity"].string!)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
+                        self.nearMeAddress = NSMutableAttributedString(string: "Address :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+                        self.nearMeAddress.append(NSAttributedString(string: " \(self.nearMeDetailJSON["vicinity"].string!)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
+                        self.address.attributedText = self.nearMeAddress
+                        
+                    } else {
+                        self.address.isHidden = true
+                    }
                     
-                    self.nearMeLat = self.nearMeDetailJSON["geometry"]["location"]["lat"].string!
-                    self.nearMeLong = self.nearMeDetailJSON["geometry"]["location"]["lng"].string!
+                    if self.nearMeDetailJSON["international_phone_number"].string != nil && self.nearMeDetailJSON["international_phone_number"].string != "" {
+                    
+                        self.nearMePhone = NSMutableAttributedString(string: "Phone :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+                        self.nearMePhone.append(NSAttributedString(string: " \(self.nearMeDetailJSON["international_phone_number"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
+                        self.phone.attributedText = self.nearMePhone
+                        
+                    } else {
+                        self.phone.isHidden = true
+                    }
+                    
+                    if self.nearMeDetailJSON["opening_hours"]["weekday_text"][self.getWeekDay()!].string != nil && self.nearMeDetailJSON["opening_hours"]["weekday_text"][self.getWeekDay()!].string != "" {
+                    
+                        self.nearMeOpeningHours = NSMutableAttributedString(string: "Opening Hours :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+                        self.nearMeOpeningHours.append(NSAttributedString(string: " \(self.nearMeDetailJSON["opening_hours"]["weekday_text"][self.getWeekDay()!])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
+                        self.openingHours.attributedText = self.nearMeOpeningHours
+                        
+                    } else {
+                        self.openingHours.isHidden = true
+                    }
+                    
+                    self.detailView.isHidden = false
                     
                 } else {
                     print("response error")
                 }
             })
         })
+    }
+    
+    @IBAction func directionsClick(_ sender: AnyObject) {
+        let latitude: CLLocationDegrees = nearMeLat
+        let longitude: CLLocationDegrees = nearMeLong
+        
+        let regionDistance: CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = self.nearMeDetailJSON["name"].string!
+        mapItem.openInMaps(launchOptions: options)
+    }
+    
+    func getWeekDay() -> Int? {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let myCalendar = Calendar(identifier: .gregorian)
+        var weekDay = myCalendar.component(.weekday, from: Date())
+        print("weekDay: \(weekDay)")
+        
+        if weekDay == 1 {
+            weekDay = 8
+        }
+        weekDay -= 2
+        return weekDay
     }
 
     /*

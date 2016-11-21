@@ -1532,6 +1532,7 @@ class Navigation {
         do {
             
             let params = ["lat": lat, "long": long, "type": type]
+            print("near me params: \(params)")
             let opt = try HTTP.POST(adminUrl + "post/getNearMe", parameters: params)
             var json = JSON(1);
             opt.start {response in
