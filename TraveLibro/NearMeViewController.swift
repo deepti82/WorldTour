@@ -36,11 +36,19 @@ class NearMeViewController: UIViewController, UICollectionViewDelegateFlowLayout
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nearMeCell", for: indexPath) as! NearMeCell
         cell.button.imageView?.image = UIImage(named: "backpack")?.withRenderingMode(.alwaysTemplate)
         cell.button.imageView?.tintColor = mainBlueColor
+        cell.button.isUserInteractionEnabled = false
         cell.button.setBackgroundImage(UIImage(named: "halfnhalfbg"), for: .normal)
         cell.button.layer.cornerRadius = 25.0
         cell.button.clipsToBounds = true
         cell.label.text = textArr[indexPath.row]
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
+        nearMeListController.city = city
+        nearMeListController.nearMeType = textArr[indexPath.row]
+        navigationController?.pushViewController(nearMeListController, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
