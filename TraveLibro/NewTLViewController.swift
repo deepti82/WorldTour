@@ -1814,8 +1814,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm:ss"
         dateSelected = dateFormatter.string(from: sender.date)
-        timeSelected = timeFormatter.string(from: sender.date)
-        print(timeSelected)
+        timeSelected = timeFormatter.string(from: sender.date.toGlobalTime())
+//        print(timeSelected)
     }
     
     func doneButton(_ sender: UIButton){
@@ -1848,7 +1848,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 } else if response["value"].bool! {
                     
                     print("edited date time response")
-                    self.journeyDateChanged(date: response["data"]["startTime"].string!)
+                    self.journeyDateChanged(date: "\(self.dateSelected)T\(self.timeSelected).000Z")
                 } else {
                     
                 }

@@ -217,23 +217,23 @@ extension NewTLViewController {
                 }
                 else if response["value"].bool! {
                     
-                    for subview in self.layout.subviews {
-                        
-                        if subview.tag == 10 {
-                            
-                            let view = subview as! RatingCheckIn
-                            print("remove rating \(view.rateCheckInButton.title(for: .application))")
-                            if view.rateCheckInButton.title(for: .application)! == postId {
-                                
-                                self.removeHeightFromLayout(view.frame.height)
-                                view.removeFromSuperview()
-                                self.showReviewButton(post: response["data"])
-                            }
-                            
-                            
-                        }
-                        
-                    }
+//                    for subview in self.layout.subviews {
+//                        
+//                        if subview.tag == 10 {
+//                            
+//                            let view = subview as! RatingCheckIn
+//                            print("remove rating \(view.rateCheckInButton.title(for: .application))")
+//                            if view.rateCheckInButton.title(for: .application)! == postId {
+//                                
+//                                self.removeHeightFromLayout(view.frame.height)
+//                                view.removeFromSuperview()
+//                                self.showReviewButton(post: response["data"])
+//                            }
+//                            
+//                            
+//                        }
+//                        
+//                    }
                     
                 }
                 else {
@@ -289,10 +289,9 @@ extension NewTLViewController {
                         
                         print("inside here")
                         let otg = subview as! startOTGView
-                        let dateFormatterTwo = DateFormatter()
-                        dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                        let localDate = dateFormatterTwo.date(from: date)
-                        otg.timestampDate.text = dateFormatterTwo.string(from: localDate!)
+                        let localDate = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: date, isDate: true)
+                        let localTime = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: date, isDate: false)
+                        otg.timestampDate.text = "\(localDate), \(localTime)"
                         flag = 1
                     }
                 }
@@ -301,11 +300,29 @@ extension NewTLViewController {
         
         if flag == 0 {
             
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-            let localDate = formatter.date(from: date)
-            otgView.timestampDate.text = formatter.string(from: localDate!) //self.currentTime
+            let localDate = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: date, isDate: true)
+            let localTime = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: date, isDate: false)
+            otgView.timestampDate.text = "\(localDate), \(localTime)" //self.currentTime
         }
+    }
+    
+    func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = givenFormat
+        let date = dateFormatter.date(from: date)
+        
+        dateFormatter.dateFormat = getFormat
+        
+        if isDate {
+            
+            dateFormatter.dateStyle = .medium
+            
+        }
+        
+        let goodDate = dateFormatter.string(from: date!)
+        return goodDate
+        
     }
     
     func getScrollView(_ height: CGFloat, journey: JSON) {
@@ -371,15 +388,6 @@ extension NewTLViewController {
             detectLocation(nil)
             
             journeyDateChanged(date: journey["startTime"].string!)
-            
-//            let dateFormatterTwo = DateFormatter()
-//            dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
-//            self.currentTime = dateFormatterTwo.string(from: Date())
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-//            let localDate = formatter.date(from: journey["startTime"].string!)
-//            print("time: \(self.currentTime)")
-//            self.otgView.timestampDate.text = dateFormatterTwo.string(from: localDate!) //self.currentTime
             
             let jc = journey["kindOfJourney"].array!
             
