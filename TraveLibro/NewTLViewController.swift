@@ -500,12 +500,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
             if addedBuddies.count > 0 {
                 
-//                for buddy in addedBuddies {
-//                    
-//                    buddies.append(buddy["_id"].string!)
-//                    
-//                }
-                
                 buddies = addedBuddies
                 print("buddies: \(buddies)")
                 
@@ -1382,9 +1376,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 if post["review"].array!.count > 0 {
                     
-                    let allReviews = post["review"].array!
-                    let lastReviewCount = post["review"].array!.count - 1
-                    
                     for subview in layout.subviews {
                         
                         if subview.isKind(of: RatingCheckIn.self) {
@@ -1401,19 +1392,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
-//                    let imageArr = ["disapointed", "sad", "good", "superface", "love"]
-//                    let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
-                    
-                    let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
-                    myReview = post["review"].array!
-                    
-//                    rateButton.rating.setImage(UIImage(named: imageArr[Int(myReview[0]["rating"].string!)! - 1]), for: .normal)
-                    rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
-                    rateButton.rating.setTitle(post["_id"].string!, for: .application)
-                    rateButton.tag = Int(allReviews[lastReviewCount]["rating"].string!)!
-//                    rateButton.ratingLabel.text = "Reviewed \(moodArr[Int(myReview[0]["rating"].string!)! - 1])"
-                    layout.addSubview(rateButton)
-                    addHeightToLayout(height: rateButton.frame.height + 20.0)
+                    showReviewButton(post: post)
                     
                 }
                 
@@ -1425,6 +1404,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)
                     layout.addSubview(rateButton)
                     addHeightToLayout(height: rateButton.frame.height + 20.0)
+                    rateButton.tag = 10
                     
                 }
             
@@ -1443,6 +1423,23 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
     }
+    
+    func showReviewButton(post: JSON) {
+        
+        let allReviews = post["review"].array!
+        let lastReviewCount = post["review"].array!.count - 1
+        let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+//        myReview = post["review"].array!
+        rateButton.showRating(ratingCount: Int(allReviews[0]["rating"].string!)! - 1)
+        rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
+        rateButton.rating.setTitle(post["_id"].string!, for: .application)
+        rateButton.tag = Int(allReviews[lastReviewCount]["rating"].string!)!
+        layout.addSubview(rateButton)
+        addHeightToLayout(height: rateButton.frame.height + 20.0)
+        
+    }
+    
+    
     
     var myReview: [JSON] = []
     
@@ -1817,8 +1814,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm:ss"
         dateSelected = dateFormatter.string(from: sender.date)
-        timeSelected = timeFormatter.string(from: sender.date)
-        print(timeSelected)
+        timeSelected = timeFormatter.string(from: sender.date.toGlobalTime())
+//        print(timeSelected)
     }
     
     func doneButton(_ sender: UIButton){
@@ -1851,7 +1848,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 } else if response["value"].bool! {
                     
                     print("edited date time response")
-                    self.journeyDateChanged(date: response["data"]["startTime"].string!)
+                    self.journeyDateChanged(date: "\(self.dateSelected)T\(self.timeSelected).000Z")
                 } else {
                     
                 }

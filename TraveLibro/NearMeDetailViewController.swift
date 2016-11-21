@@ -139,7 +139,7 @@ class NearMeDetailViewController: UIViewController {
     }
     
     func callTap(_ sender: UITapGestureRecognizer) {
-        let num = "tel://\(self.nearMeDetailJSON["international_phone_number"].string!)".replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
+        let num = "telprompt://\(self.nearMeDetailJSON["international_phone_number"].string!)".replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
         let url: URL = URL(string: num)!
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
