@@ -5083,11 +5083,11 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Jkh-X1-auK" customClass="cityLabelTableViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1" width="1000" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Jkh-X1-auK" customClass="cityLabelTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jkh-X1-auK" id="GZc-yN-t79">
-                                            <frame key="frameInset" width="1000" height="43"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mumbai" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3P2-OH-F5q">
@@ -5124,11 +5124,11 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                                             <outlet property="seperatorView" destination="fxE-6R-103" id="Mx0-Yz-rRF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="childCell" rowHeight="175" id="gNj-sT-apK" customClass="cityExploreTableViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="45" width="1000" height="175"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="childCell" rowHeight="175" id="gNj-sT-apK" customClass="cityExploreTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="45" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gNj-sT-apK" id="51J-jH-sAJ">
-                                            <frame key="frameInset" width="1000" height="174"/>
+                                            <frame key="frameInset" width="375" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mumbai, India" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opg-Zm-HhE">
@@ -5233,11 +5233,11 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                                             <outlet property="placeTitle" destination="Rq8-fD-Bbv" id="mZM-xI-b43"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="allReviewsCell" rowHeight="125" id="cxD-F6-DRj" customClass="allReviewsMLTableViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="220" width="1000" height="125"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="allReviewsCell" rowHeight="125" id="cxD-F6-DRj" customClass="allReviewsMLTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="220" width="375" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxD-F6-DRj" id="ejy-q3-W2P">
-                                            <frame key="frameInset" width="1000" height="124"/>
+                                            <frame key="frameInset" width="375" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Girgaon Beach" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0p-GP-bS2">
@@ -5336,11 +5336,11 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                                             <outlet property="ratingButton" destination="iYJ-AF-WmI" id="a4j-ZE-wZZ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerCell" rowHeight="50" id="4ub-zU-lcM" customClass="reviewsHeaderCell" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="345" width="1000" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="headerCell" rowHeight="50" id="4ub-zU-lcM" customClass="reviewsHeaderCell" customModule="TraveLibro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="345" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4ub-zU-lcM" id="25w-aS-aWL">
-                                            <frame key="frameInset" width="1000" height="49"/>
+                                            <frame key="frameInset" width="375" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XW7-9R-xg9">
@@ -7440,7 +7440,7 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MomentsLargeImageCell" id="dJC-vc-gmU" customClass="photosTwoCollectionViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="48" y="97" width="90" height="90"/>
+                                        <rect key="frame" x="79" y="97" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
@@ -7462,7 +7462,7 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="travelLifeMomentsCell" id="43x-JB-4r9" customClass="TravelLifeMomentsCollectionViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="140" y="40" width="165" height="204"/>
+                                        <rect key="frame" x="202" y="40" width="165" height="204"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="165" height="204"/>
@@ -7552,7 +7552,7 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="localLifeMomentsCell" id="teO-jh-8Gl" customClass="LocalLifeMomentsCollectionViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="307" y="46" width="165" height="192"/>
+                                        <rect key="frame" x="16" y="246" width="165" height="192"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="165" height="192"/>
@@ -7650,7 +7650,7 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reviewsCell" id="5YM-rT-Z3h" customClass="reviewsCollectionViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="474" y="105" width="160" height="75"/>
+                                        <rect key="frame" x="183" y="305" width="160" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="160" height="75"/>
@@ -7700,7 +7700,7 @@ bCBtZW1vcmllcyB0b2dldGhlci4
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="headerCell" id="Xa2-Ew-lqv" customClass="TitleHeaderView" customModule="TraveLibro" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="35"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="35"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2QC-9a-7Mm">

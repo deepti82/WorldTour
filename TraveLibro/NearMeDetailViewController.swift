@@ -11,6 +11,7 @@ import UIKit
 class NearMeDetailViewController: UIViewController {
     
     var nearMeDetailJSON: JSON!
+    var nearMePlaceId: String!
     
     var currentLat: String!
     var currentLong: String!
@@ -37,10 +38,8 @@ class NearMeDetailViewController: UIViewController {
         navigationController?.hidesBarsOnSwipe = false
         
         detailView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
-        name.text = nearMeDetailJSON["name"].string!
-            
-        nearMeLat = nearMeDetailJSON["geometry"]["location"]["lat"].string!
-        nearMeLong = nearMeDetailJSON["geometry"]["location"]["lng"].string!
+        
+        getPlaceDetail()
 
         // Do any additional setup after loading the view.
     }
@@ -50,6 +49,34 @@ class NearMeDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func getPlaceDetail() {
+        request.getNearMeDetail(placeId: nearMePlaceId, completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                if response.error != nil {
+                    print("error: \(response.error!.localizedDescription)")
+                } else if response["value"].bool! {
+                    self.nearMeDetailJSON = response["data"]
+                    
+                    self.name.text = self.nearMeDetailJSON["name"].string!
+                    
+                    self.nearMeDistance = NSMutableAttributedString(string: "Distance from You :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+                    self.nearMeDistance.append(NSAttributedString(string: " 0.08m", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!]))
+                    
+                    self.nearMeAddress = NSMutableAttributedString(string: "Address :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+                    self.nearMeAddress.append(NSAttributedString(string: " \(self.nearMeDetailJSON["vicinity"].string!)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
+                    
+                    self.nearMePhone = NSMutableAttributedString(string: "Phone :", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+                    self.nearMePhone.append(NSAttributedString(string: " \(self.nearMeDetailJSON["vicinity"].string!)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
+                    
+                    self.nearMeLat = self.nearMeDetailJSON["geometry"]["location"]["lat"].string!
+                    self.nearMeLong = self.nearMeDetailJSON["geometry"]["location"]["lng"].string!
+                    
+                } else {
+                    print("response error")
+                }
+            })
+        })
+    }
 
     /*
     // MARK: - Navigation

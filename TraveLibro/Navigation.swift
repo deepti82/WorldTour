@@ -1579,6 +1579,30 @@ class Navigation {
         
     }
     
+    func getNearMeDetail(placeId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["placeId": placeId]
+            let opt = try HTTP.POST(adminUrl + "post/getNearMePlaceDetail", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
     func rateCheckIn(_ userId: String, postId: String, rating: String, review: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
