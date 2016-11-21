@@ -203,7 +203,7 @@ extension NewTLViewController {
     
     func removeRatingButton(_ postId: String) {
         
-        print("layout: \(layout.subviews)")
+//        print("layout: \(layout.subviews)")
         backgroundReview.removeFromSuperview()
         
         request.getOneJourneyPost(id: postId, completion: {(response) in
@@ -217,23 +217,25 @@ extension NewTLViewController {
                 }
                 else if response["value"].bool! {
                     
-                    for subview in self.layout.subviews {
-                        
-                        if subview.tag == 10 {
-                            
-                            let view = subview as! RatingCheckIn
-                            print("remove rating \(view.rateCheckInButton.title(for: .application))")
-                            if view.rateCheckInButton.title(for: .application)! == postId {
-                                
-                                self.removeHeightFromLayout(view.frame.height)
-                                view.removeFromSuperview()
-                                self.showReviewButton(post: response["data"])
-                            }
-                            
-                            
-                        }
-                        
-                    }
+                    print("self is: \(self.layout)")
+                    
+//                    for subview in self.layout.subviews {
+//                        
+//                        if subview.tag == 10 {
+//                            
+//                            let view = subview as! RatingCheckIn
+//                            print("remove rating \(view.rateCheckInButton.title(for: .application))")
+//                            if view.rateCheckInButton.title(for: .application)! == postId {
+//                                
+//                                self.removeHeightFromLayout(view.frame.height)
+//                                view.removeFromSuperview()
+//                                self.showReviewButton(post: response["data"])
+//                            }
+//                            
+//                            
+//                        }
+//                        
+//                    }
                     
                 }
                 else {
