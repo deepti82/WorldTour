@@ -20,6 +20,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     var allIds: [String] = []
     var imageIds: [String] = []
     var allPhotos: [JSON] = []
+    var currentId = 0
     
     let photoCount = 0
     var photoIndex: [String] = []
@@ -53,6 +54,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             captionVC.currentSender = allImages[index!]
             captionVC.allPhotos = allPhotos
             captionVC.imageIds = imageIds
+            captionVC.currentId = currentId - 1
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -76,6 +78,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             captionVC.allPhotos = allPhotos
             captionVC.allIds = allIds
             captionVC.imageIds = imageIds
+            captionVC.currentId = currentId + 1
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -234,7 +237,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             captionVC.currentSender = allImages[index]
             captionVC.allPhotos = allPhotos
             captionVC.allIds = allIds
-            captionVC.imageIds = imageIds
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -242,9 +244,11 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     }
     
     func addToLocalDB() {
-        print(imageIds[index])
+        print(currentId)
+        let nextId = currentId + 1
+        imageIds.append("\(nextId)")
         print(captionTextView.text)
-        PhotosDB.insertCaption("\(imageIds[index])", caption: captionTextView.text)
+        PhotosDB.insertCaption("\(currentId)", caption: captionTextView.text)
         
     }
     

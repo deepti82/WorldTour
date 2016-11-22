@@ -142,7 +142,11 @@ class NearMeDetailViewController: UIViewController {
         let num = "telprompt://\(self.nearMeDetailJSON["international_phone_number"].string!)".replacingOccurrences(of: "-", with: "").replacingOccurrences(of: " ", with: "")
         let url: URL = URL(string: num)!
         if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+            } else {
+                // Fallback on earlier versions
+            }
         }
         
     }

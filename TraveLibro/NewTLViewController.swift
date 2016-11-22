@@ -971,16 +971,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-//        print("image: \(image)")
+        self.dismiss(animated: true, completion: nil)
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        print("image: \(image)")
+        photosAdded(selectedImages: [image])
+        
+        let captionButton = UIButton()
+        captionButton.setImage(image, for: .normal)
+        addCaption(captionButton)
 //        print("imageName: \(image.CIImage)")
         
-        let videoURL = info["UIImagePickerControllerReferenceURL"] as! URL
-        let video = info[UIImagePickerControllerLivePhoto] as! AVAsset
-        print("video: ", videoURL, video)
-        uploadVideo(videoURL, video: video)
-        picker.dismiss(animated: true, completion: nil)
+//        let videoURL = info["UIImagePickerControllerReferenceURL"] as! URL
+//        let video = info[UIImagePickerControllerLivePhoto] as! AVAsset
+//        print("video: ", videoURL, video)
+//        uploadVideo(videoURL, video: video)
+//        picker.dismiss(animated: true, completion: nil)
     
     }
     
@@ -1083,21 +1088,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func changeTabBar(hidden:Bool, animated: Bool){
-        let tabBar = self.tabBarController?.tabBar
-        if tabBar!.isHidden == hidden{ return }
-        let frame = tabBar?.frame
-        let offset = (hidden ? (frame?.size.height)! : -(frame?.size.height)!)
-        let duration:TimeInterval = (animated ? 0.5 : 0.0)
-        tabBar?.isHidden = false
-        if frame != nil
-        {
-            UIView.animate(withDuration: duration, animations: {tabBar!.frame = frame!.offsetBy(dx: 0, dy: offset)}, completion: {
-                print($0)
-                if $0 {
-                    tabBar?.isHidden = hidden
-                }
-            })
-        }
+//        let tabBar = self.tabBarController?.tabBar
+//        if tabBar!.isHidden == hidden{ return }
+//        let frame = tabBar?.frame
+//        let offset = (hidden ? (frame?.size.height)! : -(frame?.size.height)!)
+//        let duration:TimeInterval = (animated ? 0.5 : 0.0)
+//        tabBar?.isHidden = false
+//        if frame != nil
+//        {
+//            UIView.animate(withDuration: duration, animations: {tabBar!.frame = frame!.offsetBy(dx: 0, dy: offset)}, completion: {
+//                print($0)
+//                if $0 {
+//                    tabBar?.isHidden = hidden
+//                }
+//            })
+//        }
     }
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView){
@@ -1367,18 +1372,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("map shown")
                     
                     // CHECKIN MAP IMAGE
-                    let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)"
-                    print("\(imageString)")
-                    let mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                    DispatchQueue.main.async(execute: {
-                        do {
-                            let data = try! Data(contentsOf: mapurl!)
-                            print("image data: \(data)")
-                            checkIn.mainPhoto.image = UIImage(data: data)
-                        } catch _ {
-                            print("Unable to set map image")
+                    if post["checkIn"]["lat"].string != nil && post["checkIn"]["long"].string != nil {
+                        
+                        let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)"
+                        print("\(imageString)")
+                        var mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        if mapurl == nil {
+                            mapurl = URL(string: "")
                         }
-                    })
+                        DispatchQueue.main.async(execute: {
+//                            do {
+//                                let data = try! Data(contentsOf: mapurl!)
+////                                print("image data: \(data)")
+//                                checkIn.mainPhoto.image = UIImage(data: data)
+//                            } catch _ {
+//                                print("Unable to set map image")
+//                            }
+                        })
+                    }
                 } else {
                     print("map not shown")
                 }
@@ -2589,14 +2600,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let deleteAction = UIAlertAction(title: "Take Photos", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
-//            self.imagePicker.allowsEditing = true
-//            self.imagePicker.sourceType = .Camera
-//            //            imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
-//            self.presentViewController(self.imagePicker, animated: true, completion: nil)
-            let multipleImage = BSImagePickerViewController()
-            multipleImage.maxNumberOfSelections = self.selectPhotosCount
-            multipleImage.takePhotos = true
-            
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = .camera
+            self.present(self.imagePicker, animated: true, completion: nil)
         })
         let saveAction = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -2606,75 +2612,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             self.bs_presentImagePickerController(multipleImage, animated: true,
                 select: { (asset:PHAsset) -> Void in
-                    //                    print("Selected: \(asset)")
+                    
+                    print("Selected: \(asset)")
+                    
                 }, deselect: { (asset: PHAsset) -> Void in
-                    //                    print("Deselected: \(asset)")
+                    
+                    print("Deselected: \(asset)")
+                    
                 }, cancel: { (assets: [PHAsset]) -> Void in
-                    //                    print("Cancel: \(assets)")
+                    
+                    print("Cancel: \(assets)")
+                    
                 }, finish: { (assets: [PHAsset]) -> Void in
-                    
-//                    let myAssets = assets
-//                    let photoCount = myAssets.count
-//                    var photoIndex: [String] = []
-//                    var photoData: [Data] = []
-//                    var photoURL: [URL] = []
-//                    var photoImage: [UIImage] = []
-//                    let photoDb = Photo()
-//                    
-//                    print("count: \(photoCount)")
-//                    
-//                    for asset in myAssets {
-//                        let image = self.getAssetThumbnail(asset)
-//                        //let assetIndex = assets.index(of: asset)
-//                        let assetIndex = "\(photoDb.getRowCount() + 1)"
-//                        let documentPath = getDocumentsDirectory()
-//                        
-//                        // Save image to Local
-//                        let imageData = UIImageJPEGRepresentation(image, 0.05)
-//                        let imagePath = "file://" + documentPath + "/image\(assetIndex).jpg"
-//                        do {
-//                            try! imageData?.write(to: URL(string: imagePath)!)
-//                        }
-//                        
-//                        // Save image details
-//                        photoURL.append(URL(string: imagePath)!)
-//                        photoIndex.append(assetIndex)
-//                        photoData.append(imageData!)
-//                        photoImage.append(image)
-//                        print(imagePath)
-//                        
-//                        // Save to local database
-//                        photoDb.setPhotos("\(assetIndex)", Name: imagePath, Data: imageData!, Caption: "")
-//                        
-//                        let visibleImage = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-//                        visibleImage.tag = 1
-//                        DispatchQueue.main.async {
-//                            visibleImage.setImage(UIImage(data: imageData!), for: UIControlState())
-//                        }
-//                        visibleImage.layer.cornerRadius = 5.0
-//                        visibleImage.clipsToBounds = true
-//                        visibleImage.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
-//                        self.addWidthToPhotoLayout(visibleImage.frame.width + 10.0)
-//                        self.addView.horizontalScrollForPhotos.addSubview(visibleImage)
-//                        self.addView.photosIntialView.isHidden = true
-//                        self.addView.photosFinalView.isHidden = false
-//                    }
-                    
-//                    DispatchQueue.main.async {
-//                        let captionVC = self.storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-//                        captionVC.photoIndex = photoIndex
-//                        captionVC.photoData = photoData
-//                        captionVC.photoURL = photoURL
-//                        captionVC.photoImage = photoImage
-//                        
-//                        captionVC.imagesArray = photoImage as [UIView]
-//                        print("sender image: \(sender.currentImage), \(sender), \(addView.horizontalScrollForPhotos.subviews), \(allImageIds)")
-//                        captionVC.currentImage = photoImage[0]
-//                        captionVC.currentSender = sender
-//                        captionVC.imageIds = allrows
-//                        captionVC.allIds = allImageIds
-//                        self.present(captionVC, animated: true, completion: nil)
-//                    }
                     
                     //**************************** MIDHET'S CODE ******************************
                     self.addView.photosIntialView.isHidden = true
@@ -2714,7 +2663,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     for asset in assets {
                         
                         let image = self.getAssetThumbnail(asset)
-                        let temp: Bool!
                         let assetIndex = assets.index(of: asset)
                         
                         print("got uiimage: \(image)")
@@ -2732,9 +2680,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                             do {
                                 
-//                                print("export file: \(NSURL(string: exportFilePath)!), \(image), \(image.scale)")
                                 let tempImage = UIImageJPEGRepresentation(image, 0.87)
-                                //                            print("temp Image: \(tempImage)")
                                 
                                 if tempImage == nil {
                                     
@@ -2743,14 +2689,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     let newImage = UIGraphicsGetImageFromCurrentImageContext()
                                     UIGraphicsEndImageContext()
                                     let newTemp = UIImageJPEGRepresentation(newImage!, 0.50)
-//                                    temp = try newTemp!.write(to: URL(string: exportFilePath)!, options: [])
                                     visibleImage.setImage(UIImage(data: newTemp!), for: UIControlState())
                                     
                                 }
                                     
                                 else {
-                                    
-//                                    temp = try tempImage!.write(to: URL(string: exportFilePath)!, options: [])
                                     
                                     if index <= self.addView.photosCollection.count - 1 {
                                         
@@ -2759,7 +2702,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     }
                                     
                                 }
-//                                print("temp: \(temp)")
                                 print("file created")
                                 visibleImage.layer.cornerRadius = 5.0
                                 visibleImage.clipsToBounds = true
@@ -2768,20 +2710,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                 self.addView.photosFinalView.isHidden = false
                                 self.addHeightToNewActivity(self.addView.photosFinalView.frame.height - self.addView.photosIntialView.frame.height)
                                 self.addView.photosCount.text = "(\(assets.count))"
-                                
-//                                if assets.count < 4 {
-//                                    
-//                                    //                                self.addView.photosCollection[assetIndex!].addSubview(layerAbove)
-//                                    //                                self.addView.photosCollection[assetIndex!].userInteractionEnabled = false
-//                                    
-//                                }
-//                                    
-//                                else {
-//                                    
-//                                    //                                self.addView.photosCollection[3].addSubview(layerAbove)
-//                                    //                                self.addView.photosCollection[3].userInteractionEnabled = false
-//                                    
-//                                }
                                 
                                 index = index + 1
                                 
@@ -2816,67 +2744,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         addMorePhotosButton.tag = 2
                         self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
                         self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
-    //                    self.addView.horizontalScrollForPhotos.
                         self.storePhotos(assetArray)
                         
                     })
-                    //**************************** MIDHET'S CODE ******************************
-                    
-//                                        let addButton = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-//                                        addButton.center = CGPointMake(layerAbove.frame.width/2, layerAbove.frame.height/2)
-////                                        addButton.image =
-//                                        layerAbove.addSubview(addButton)
-//                                        layerAbove.clipsToBounds = true
-                    
-//                    var uploadArray: [String] = []
-                    
-                    
-                    
-//                    request.uploadPhotosMultiple(assetArray, completion: {(response) in
-//                        
-//                        dispatch_sync(dispatch_get_main_queue(), {
-//
-//                            if response.error != nil {
-//
-//                                print("error: \(response.error!.localizedDescription)")
-//
-//                            }
-//                            else if response["value"].bool! {
-//
-////                                if self.photosCount >= assets.count {
-////
-////                                    self.photosCount = 0
-////                                    //                                    self.addView.postButton.hidden = false
-////
-////                                }
-////
-////                                self.photosCount += 1
-////                                print("response upload photos \(asset)")
-////                                self.uploadedphotos.append(response["data"][0].string!)
-////
-////                                if asset == assetArray.last {
-////
-////                                    print("assert number: \(asset)")
-//
-//                                    print("out of upload for loop")
-//                                    self.addView.postButton.hidden = false
-//                                    
-////                                }
-//                                
-//                            }
-//                            else {
-//                                
-//                                print("response error!")
-//                                self.addView.postButton.hidden = false
-//                                
-//                            }
-//                            
-//                        })
-//                        
-//                    })
-                    
-                    
-                    
                 }, completion: nil)
         })
         
@@ -2891,6 +2761,36 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         optionMenu.addAction(cancelAction)
         
         self.present(optionMenu, animated: true, completion: nil)
+        
+    }
+    
+    func photosAdded(selectedImages: [UIImage]) {
+        
+        self.addView.photosIntialView.isHidden = true
+        self.addView.photosFinalView.isHidden = false
+        self.addView.photosCount.text = "\(self.allAssets.count)"
+        
+        for each in selectedImages {
+            
+            let visibleImage = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+            visibleImage.tag = 1
+            visibleImage.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
+            visibleImage.setImage(each, for: .normal)
+            self.addWidthToPhotoLayout(visibleImage.frame.width + 10.0)
+            self.addView.horizontalScrollForPhotos.addSubview(visibleImage)
+            
+        }
+        
+        let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+        addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: UIControlState())
+        addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+        addMorePhotosButton.layer.cornerRadius = 5.0
+        addMorePhotosButton.clipsToBounds = true
+        addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
+        addMorePhotosButton.tag = 2
+        self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
+        self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
         
     }
     
