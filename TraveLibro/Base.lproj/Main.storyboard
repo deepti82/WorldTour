@@ -1015,7 +1015,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3k-d4-cCn">
-                                                <rect key="frame" x="60" y="0.0" width="63.5" height="40"/>
+                                                <rect key="frame" x="60" y="0.0" width="63" height="40"/>
                                                 <color key="backgroundColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="lAA-tl-Snc"/>
@@ -1035,7 +1035,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06T-wX-9pd">
-                                                <rect key="frame" x="120.5" y="0.0" width="63" height="40"/>
+                                                <rect key="frame" x="120" y="0.0" width="64" height="40"/>
                                                 <color key="backgroundColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="60" id="Xg2-Fh-pTP"/>
@@ -1054,7 +1054,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Coa-fl-ZH6">
-                                                <rect key="frame" x="180.5" y="0.0" width="63" height="40"/>
+                                                <rect key="frame" x="181" y="0.0" width="63" height="40"/>
                                                 <color key="backgroundColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="NOx-z0-prl"/>
@@ -1074,7 +1074,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6T-FG-XZT">
-                                                <rect key="frame" x="240.5" y="0.0" width="63.5" height="40"/>
+                                                <rect key="frame" x="241" y="0.0" width="63" height="40"/>
                                                 <color key="backgroundColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Fj9-TT-EO4"/>
