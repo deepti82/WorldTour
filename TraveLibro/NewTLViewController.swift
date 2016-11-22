@@ -1072,17 +1072,44 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("in function one")
         
-        lastOffsetY = scrollView.contentOffset.y
+//        lastOffsetY = scrollView.contentOffset.y
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            changeTabBar(hidden: true, animated: true)
+        }
+        else{
+            changeTabBar(hidden: false, animated: true)
+        }
+    }
+    
+    func changeTabBar(hidden:Bool, animated: Bool){
+        let tabBar = self.tabBarController?.tabBar
+        if tabBar!.isHidden == hidden{ return }
+        let frame = tabBar?.frame
+        let offset = (hidden ? (frame?.size.height)! : -(frame?.size.height)!)
+        let duration:TimeInterval = (animated ? 0.5 : 0.0)
+        tabBar?.isHidden = false
+        if frame != nil
+        {
+            UIView.animate(withDuration: duration, animations: {tabBar!.frame = frame!.offsetBy(dx: 0, dy: offset)}, completion: {
+                print($0)
+                if $0 {
+                    tabBar?.isHidden = hidden
+                }
+            })
+        }
     }
     
     func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView){
         
         print("in function two")
         
-        let hide = scrollView.contentOffset.y > lastOffsetY
-        self.navigationController?.setNavigationBarHidden(hide, animated: true)
-        self.navigationController?.isToolbarHidden = hide
-        toolbarView.isHidden = hide
+//        let hide = scrollView.contentOffset.y > lastOffsetY
+//        self.navigationController?.setNavigationBarHidden(hide, animated: true)
+//        self.navigationController?.isToolbarHidden = hide
+//        toolbarView.isHidden = hide
+        
+        
     }
     
 //    var hideStatusBar = false

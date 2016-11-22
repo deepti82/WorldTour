@@ -2826,7 +2826,7 @@
 				1A944E2B1CCB4567007EB5BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		1A944E2C1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibro" */ = {
 			isa = XCConfigurationList;
@@ -2835,7 +2835,7 @@
 				1A944E2E1CCB4567007EB5BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		1A944E2F1CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroTests" */ = {
 			isa = XCConfigurationList;
@@ -2844,7 +2844,7 @@
 				1A944E311CCB4567007EB5BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		1A944E321CCB4567007EB5BD /* Build configuration list for PBXNativeTarget "TraveLibroUITests" */ = {
 			isa = XCConfigurationList;
@@ -2853,7 +2853,7 @@
 				1A944E341CCB4567007EB5BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
