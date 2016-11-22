@@ -75,6 +75,7 @@ extension NewTLViewController {
 //        }
         
         let buddyView = SayBye(frame: CGRect(x: 0, y: 10, width: 300, height: 250))
+        buddyView.center = self.view.center
         buddyView.profileName.text = post["user"]["name"].string!
         buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
         makeTLProfilePicture(buddyView.profileImageView)
@@ -132,6 +133,7 @@ extension NewTLViewController {
                     rating.reviewTextView.isEditable = false
                     rating.starsStack.isUserInteractionEnabled = false
                     rating.clipsToBounds = true
+                    rating.navController = self.navigationController!
                     rating.postReview.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:))))
                     rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
                     
@@ -188,6 +190,7 @@ extension NewTLViewController {
         rating.layer.cornerRadius = 5
         rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
         rating.clipsToBounds = true
+        rating.navController = self.navigationController!
 //        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
 //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
         backgroundReview.addSubview(rating)
@@ -219,23 +222,25 @@ extension NewTLViewController {
                     
                     print("self is: \(self.layout)")
                     
-//                    for subview in self.layout.subviews {
-//                        
-//                        if subview.tag == 10 {
-//                            
-//                            let view = subview as! RatingCheckIn
-//                            print("remove rating \(view.rateCheckInButton.title(for: .application))")
-//                            if view.rateCheckInButton.title(for: .application)! == postId {
-//                                
-//                                self.removeHeightFromLayout(view.frame.height)
-//                                view.removeFromSuperview()
-//                                self.showReviewButton(post: response["data"])
-//                            }
-//                            
-//                            
-//                        }
-//                        
-//                    }
+                    for subview in self.layout.subviews {
+                        
+                        if subview.tag == 10 {
+                            
+                            let view = subview as! RatingCheckIn
+                            let viewIndex = self.layout.subviews.index(of: subview)
+                            print("index: \(viewIndex)")
+                            print("remove rating \(view.rateCheckInButton.title(for: .application))")
+                            if view.rateCheckInButton.title(for: .application)! == postId {
+                                
+                                self.removeHeightFromLayout(view.frame.height)
+                                view.removeFromSuperview()
+                                self.showReviewButton(post: response["data"], isIndex: true, index: viewIndex)
+                            }
+                            
+                            
+                        }
+                        
+                    }
                     
                 }
                 else {
@@ -337,7 +342,7 @@ extension NewTLViewController {
         let attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: attributes)
         refreshControl.attributedTitle = attributedTitle
         refreshControl.tintColor = lightOrangeColor
-        //        mainScroll.addSubview(refreshControl)
+        mainScroll.delegate = self
         mainScroll.contentSize.height = self.view.frame.height
         mainScroll.addSubview(refreshControl)
         

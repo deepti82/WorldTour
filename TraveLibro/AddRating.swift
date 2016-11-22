@@ -23,6 +23,7 @@ class AddRating: UIView, UITextViewDelegate {
     
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
+    var navController = UINavigationController()
     
     @IBAction func postReviewTapped(_ sender: UIButton) {
         
@@ -50,7 +51,7 @@ class AddRating: UIView, UITextViewDelegate {
                     print("response arrived")
                     self.removeFromSuperview()
 //                    self.parent.removeRatingButton(sender.title(for: .application)!)
-                    for subvc in navigation.viewControllers {
+                    for subvc in self.navController.viewControllers {
                         
                         if subvc.isKind(of: NewTLViewController.self) {
                             

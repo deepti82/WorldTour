@@ -13,26 +13,6 @@ import BSImagePicker
 //import DKImagePickerController
 import Photos
 import CoreLocation
-//fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-//  switch (lhs, rhs) {
-//  case let (l?, r?):
-//    return l < r
-//  case (nil, _?):
-//    return true
-//  default:
-//    return false
-//  }
-//}
-//
-//fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-//  switch (lhs, rhs) {
-//  case let (l?, r?):
-//    return l > r
-//  default:
-//    return rhs < lhs
-//  }
-//}
-
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
@@ -139,7 +119,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             if subview.tag == 8 {
                 
                 flag = 1
-                
+                backView.isHidden = false
+                addView.isHidden = false
+                newScroll.isHidden = false
             }
             
         }
@@ -1080,9 +1062,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         self.view.addSubview(TLLoader)
         
+        mainScroll.delegate = self
+        
     }
     
-    var lastOffsetY :CGFloat = 0
+    var lastOffsetY: CGFloat = 0
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
         
@@ -1097,6 +1081,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let hide = scrollView.contentOffset.y > lastOffsetY
         self.navigationController?.setNavigationBarHidden(hide, animated: true)
+        self.navigationController?.isToolbarHidden = hide
         toolbarView.isHidden = hide
     }
     
@@ -1108,6 +1093,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
 //        navigationController?.hidesBarsOnSwipe = true
 //        navigationController?.hidesBarsOnTap = false
         
@@ -1392,7 +1378,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     
-                    showReviewButton(post: post)
+                    showReviewButton(post: post, isIndex: false, index: nil)
                     
                 }
                 
@@ -1424,7 +1410,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func showReviewButton(post: JSON) {
+    func showReviewButton(post: JSON, isIndex: Bool, index: Int?) {
         
         let allReviews = post["review"].array!
         let lastReviewCount = post["review"].array!.count - 1
@@ -1434,7 +1420,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
         rateButton.rating.setTitle(post["_id"].string!, for: .application)
         rateButton.tag = Int(allReviews[lastReviewCount]["rating"].string!)!
-        layout.addSubview(rateButton)
+        
+        if isIndex {
+            
+            layout.insertSubview(rateButton, at: index!)
+        }
+        else {
+            
+            layout.addSubview(rateButton)
+        }
         addHeightToLayout(height: rateButton.frame.height + 20.0)
         
     }
