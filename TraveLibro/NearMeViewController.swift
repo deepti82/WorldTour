@@ -34,13 +34,17 @@ class NearMeViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nearMeCell", for: indexPath) as! NearMeCell
-        cell.button.imageView?.image = UIImage(named: imageArr[0])?.withRenderingMode(.alwaysTemplate)
+        
+        //cell.button.imageView?.image = UIImage(named: self.imageArr[indexPath.row])?.withRenderingMode(.alwaysTemplate)
+        cell.button.setImage(UIImage(named: self.imageArr[indexPath.row])?.withRenderingMode(.alwaysTemplate), for: .normal)
+        cell.button.imageView?.contentMode = .scaleAspectFit
         cell.button.imageView?.tintColor = mainBlueColor
         cell.button.isUserInteractionEnabled = false
         cell.button.setBackgroundImage(UIImage(named: "orange"), for: .normal)
         cell.button.layer.cornerRadius = 25.0
         cell.button.clipsToBounds = true
-        cell.label.text = textArr[indexPath.item]
+        cell.label.text = self.textArr[indexPath.row]
+        
         return cell
     }
     

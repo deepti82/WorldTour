@@ -105,7 +105,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
             star.setImage(UIImage(named: "star_uncheck")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: .selected)
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: [.highlighted, .selected])
-            star.imageView?.tintColor = UIColor.darkGray
+            //star.imageView?.tintColor = UIColor.darkGray
             star.adjustsImageWhenHighlighted = false
         }
         
@@ -130,6 +130,9 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         nearMeDetailController.nearMePlaceId = nearMeListJSON[indexPath.section]["place_id"].string!
         nearMeDetailController.currentLat = lat
         nearMeDetailController.currentLong = long
+        if nearMeListJSON[indexPath.section]["rating"] != nil {
+            nearMeDetailController.nearMeRating = Int(roundf(nearMeListJSON[indexPath.section]["rating"].float!))
+        }
         navigationController?.pushViewController(nearMeDetailController, animated: true)
     }
     

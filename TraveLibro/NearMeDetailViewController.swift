@@ -14,6 +14,7 @@ class NearMeDetailViewController: UIViewController {
     
     var nearMeDetailJSON: JSON!
     var nearMePlaceId: String!
+    var nearMeRating: Int!
     
     var currentLat: Double!
     var currentLong: Double!
@@ -28,6 +29,7 @@ class NearMeDetailViewController: UIViewController {
     @IBOutlet weak var phone: UILabel!
     @IBOutlet weak var openingHours: UILabel!
     @IBOutlet weak var directions: UIButton!
+    @IBOutlet var stars: [UIButton]!
     
     var nearMeDistance = NSMutableAttributedString()
     var nearMeAddress = NSMutableAttributedString()
@@ -110,6 +112,19 @@ class NearMeDetailViewController: UIViewController {
                         
                     } else {
                         self.openingHours.isHidden = true
+                    }
+                    
+                    for star in self.stars {
+                        star.setImage(UIImage(named: "star_uncheck")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+                        star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: .selected)
+                        star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: [.highlighted, .selected])
+                        star.adjustsImageWhenHighlighted = false
+                    }
+                    
+                    if self.nearMeRating != nil {
+                        for (index, star) in self.stars.enumerated() {
+                            star.isSelected = index < self.nearMeRating
+                        }
                     }
                     
                     self.detailView.isHidden = false
