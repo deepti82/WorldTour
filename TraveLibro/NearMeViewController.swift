@@ -13,7 +13,7 @@ class NearMeViewController: UIViewController, UICollectionViewDelegateFlowLayout
     @IBOutlet weak var nearMeCollectionView: UICollectionView!
     var city: String!
     
-    let imageArr: [String] = []
+    let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     let textArr: [String] = ["Restaurants & Bars", "Netunre & Parks", "Sights & Landmarks", "Museums & Galleries", "Zoos & Aqua", "Shopping", "Religious", "Cinema & Theatre", "Hotels & Accomodations", "Transportation", "Health & Beauty", "Rentals", "Entertainment", "Essentials", "Emergency", "Other"]
     
     override func viewDidLoad() {
@@ -34,13 +34,13 @@ class NearMeViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nearMeCell", for: indexPath) as! NearMeCell
-        cell.button.imageView?.image = UIImage(named: "backpack")?.withRenderingMode(.alwaysTemplate)
+        cell.button.imageView?.image = UIImage(named: imageArr[0])?.withRenderingMode(.alwaysTemplate)
         cell.button.imageView?.tintColor = mainBlueColor
         cell.button.isUserInteractionEnabled = false
-        cell.button.setBackgroundImage(UIImage(named: "halfnhalfbg"), for: .normal)
+        cell.button.setBackgroundImage(UIImage(named: "orange"), for: .normal)
         cell.button.layer.cornerRadius = 25.0
         cell.button.clipsToBounds = true
-        cell.label.text = textArr[indexPath.row]
+        cell.label.text = textArr[indexPath.item]
         return cell
     }
     
