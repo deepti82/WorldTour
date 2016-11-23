@@ -11,4 +11,5 @@ target 'TraveLibro' do
   pod 'TwitterKit'
   pod 'TwitterCore'
   pod 'SQLite.swift', :git=> 'https://github.com/stephencelis/SQLite.swift.git', :branch => 'prepare-0.11.1'
+  pod 'imglyKit', '~> 5.0'
 end

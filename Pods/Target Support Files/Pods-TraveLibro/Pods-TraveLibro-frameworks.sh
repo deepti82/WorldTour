@@ -92,6 +92,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftHTTP/SwiftHTTP.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TabPageViewController/TabPageViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework"
+  install_framework "${PODS_ROOT}/imglyKit/imglyKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
@@ -102,4 +103,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SwiftHTTP/SwiftHTTP.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TabPageViewController/TabPageViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework"
+  install_framework "${PODS_ROOT}/imglyKit/imglyKit.framework"
 fi
