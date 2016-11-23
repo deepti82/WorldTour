@@ -339,6 +339,19 @@
 		C2FA1E1B1D5498380034DE97 /* QIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E1A1D5498380034DE97 /* QIViewController.swift */; };
 		C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */; };
 		C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */; };
+		FCB2D6831DE4721F0008634B /* AdobeCreativeSDKCoreResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCB2D6821DE4721E0008634B /* AdobeCreativeSDKCoreResources.bundle */; };
+		FCB2D6851DE472440008634B /* AdobeCreativeSDKImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCB2D6841DE472440008634B /* AdobeCreativeSDKImageResources.bundle */; };
+		FCB2D6871DE472A40008634B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6861DE472A40008634B /* Accelerate.framework */; };
+		FCB2D6891DE472AD0008634B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6881DE472AD0008634B /* CoreData.framework */; };
+		FCB2D68B1DE472D60008634B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */; };
+		FCB2D68D1DE472E50008634B /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D68C1DE472E50008634B /* libz.1.2.5.tbd */; };
+		FCB2D68F1DE472F20008634B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D68E1DE472F20008634B /* Foundation.framework */; };
+		FCB2D6911DE472FC0008634B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6901DE472FC0008634B /* MessageUI.framework */; };
+		FCB2D6931DE4731F0008634B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6921DE4731F0008634B /* OpenGLES.framework */; };
+		FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6941DE4732A0008634B /* QuartzCore.framework */; };
+		FCB2D6971DE473380008634B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6961DE473380008634B /* StoreKit.framework */; };
+		FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6981DE4740B0008634B /* UIKit.framework */; };
+		FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D69A1DE474180008634B /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -701,6 +714,19 @@
 		C2FA1E1A1D5498380034DE97 /* QIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QIViewController.swift; sourceTree = "<group>"; };
 		C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityOTG.xib; sourceTree = "<group>"; };
 		C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityOTG.swift; sourceTree = "<group>"; };
+		FCB2D6821DE4721E0008634B /* AdobeCreativeSDKCoreResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKCoreResources.bundle; path = ../../docs/Aviary/AdobeCreativeSDKDynamicFrameworks/AdobeCreativeSDKCore.framework/AdobeCreativeSDKCoreResources.bundle; sourceTree = "<group>"; };
+		FCB2D6841DE472440008634B /* AdobeCreativeSDKImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKImageResources.bundle; path = ../../docs/Aviary/AdobeCreativeSDKDynamicFrameworks/AdobeCreativeSDKImage.framework/AdobeCreativeSDKImageResources.bundle; sourceTree = "<group>"; };
+		FCB2D6861DE472A40008634B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		FCB2D6881DE472AD0008634B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		FCB2D68C1DE472E50008634B /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		FCB2D68E1DE472F20008634B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FCB2D6901DE472FC0008634B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		FCB2D6921DE4731F0008634B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		FCB2D6941DE4732A0008634B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FCB2D6961DE473380008634B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		FCB2D6981DE4740B0008634B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FCB2D69A1DE474180008634B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -708,6 +734,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */,
+				FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */,
+				FCB2D6971DE473380008634B /* StoreKit.framework in Frameworks */,
+				FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */,
+				FCB2D6931DE4731F0008634B /* OpenGLES.framework in Frameworks */,
+				FCB2D6911DE472FC0008634B /* MessageUI.framework in Frameworks */,
+				FCB2D68F1DE472F20008634B /* Foundation.framework in Frameworks */,
+				FCB2D68D1DE472E50008634B /* libz.1.2.5.tbd in Frameworks */,
+				FCB2D68B1DE472D60008634B /* libsqlite3.0.tbd in Frameworks */,
+				FCB2D6891DE472AD0008634B /* CoreData.framework in Frameworks */,
+				FCB2D6871DE472A40008634B /* Accelerate.framework in Frameworks */,
 				C2AC013B1D8D44C800B99868 /* Pods_TraveLibro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -750,6 +787,8 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
+				FCB2D6841DE472440008634B /* AdobeCreativeSDKImageResources.bundle */,
+				FCB2D6821DE4721E0008634B /* AdobeCreativeSDKCoreResources.bundle */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -1016,6 +1055,17 @@
 		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FCB2D69A1DE474180008634B /* WebKit.framework */,
+				FCB2D6981DE4740B0008634B /* UIKit.framework */,
+				FCB2D6961DE473380008634B /* StoreKit.framework */,
+				FCB2D6941DE4732A0008634B /* QuartzCore.framework */,
+				FCB2D6921DE4731F0008634B /* OpenGLES.framework */,
+				FCB2D6901DE472FC0008634B /* MessageUI.framework */,
+				FCB2D68E1DE472F20008634B /* Foundation.framework */,
+				FCB2D68C1DE472E50008634B /* libz.1.2.5.tbd */,
+				FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */,
+				FCB2D6881DE472AD0008634B /* CoreData.framework */,
+				FCB2D6861DE472A40008634B /* Accelerate.framework */,
 				3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */,
 				7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */,
 				163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */,
@@ -2072,6 +2122,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB2D6851DE472440008634B /* AdobeCreativeSDKImageResources.bundle in Resources */,
+				FCB2D6831DE4721F0008634B /* AdobeCreativeSDKCoreResources.bundle in Resources */,
 				C22138F11D546EB6008D9DEE /* QuickItineraryTwo.xib in Resources */,
 				C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */,
 				C2E159B91D74068000A5B721 /* EmptyScreenView.xib in Resources */,
@@ -2716,12 +2768,63 @@
 				INFOPLIST_FILE = TraveLibro/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-all_load",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"Accounts\"",
+					"-framework",
+					"\"BSGridCollectionViewLayout\"",
+					"-framework",
+					"\"BSImagePicker\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"DKChainableAnimationKit\"",
+					"-framework",
+					"\"Fabric\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"SQLite\"",
+					"-framework",
+					"\"SafariServices\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"Simplicity\"",
+					"-framework",
+					"\"Social\"",
+					"-framework",
+					"\"SwiftHTTP\"",
+					"-framework",
+					"\"TabPageViewController\"",
+					"-framework",
+					"\"TwitterCore\"",
+					"-framework",
+					"\"TwitterKit\"",
+					"-framework",
+					"\"UIImageViewModeScaleAspect\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/.build/debug";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2754,13 +2857,12 @@
 				);
 				INFOPLIST_FILE = TraveLibro/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/.build/debug";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

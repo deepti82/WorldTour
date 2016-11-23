@@ -13,6 +13,7 @@ import BSImagePicker
 //import DKImagePickerController
 import Photos
 import CoreLocation
+import DKChainableAnimationKit
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
@@ -176,7 +177,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func optionsAction(_ sender: UIButton) {
         let optionsController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        optionsController.addAction(UIAlertAction(title: "Edit City", style: .default, handler: nil))
+        //optionsController.addAction(UIAlertAction(title: "Edit City", style: .default, handler: nil))
         optionsController.addAction(UIAlertAction(title: "Edit Category", style: .default, handler: { action -> Void in
             print("edit category clicked.")
             print(self.journeyId)
@@ -1071,50 +1072,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    var lastOffsetY: CGFloat = 0
-    
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView){
-        
-        print("in function one")
-        
-//        lastOffsetY = scrollView.contentOffset.y
-        
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-            changeTabBar(hidden: true, animated: true)
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            //self.toolbarView.isHidden = true
+            self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
+            //self.newScroll.frame.origin.y = 0
         }
         else{
-            changeTabBar(hidden: false, animated: true)
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.toolbarView.animation.makeOpacity(1.0).animate(0.5)
+            //self.newScroll.frame.origin.y = 60
+            //self.toolbarView.isHidden = false
         }
-    }
-    
-    func changeTabBar(hidden:Bool, animated: Bool){
-//        let tabBar = self.tabBarController?.tabBar
-//        if tabBar!.isHidden == hidden{ return }
-//        let frame = tabBar?.frame
-//        let offset = (hidden ? (frame?.size.height)! : -(frame?.size.height)!)
-//        let duration:TimeInterval = (animated ? 0.5 : 0.0)
-//        tabBar?.isHidden = false
-//        if frame != nil
-//        {
-//            UIView.animate(withDuration: duration, animations: {tabBar!.frame = frame!.offsetBy(dx: 0, dy: offset)}, completion: {
-//                print($0)
-//                if $0 {
-//                    tabBar?.isHidden = hidden
-//                }
-//            })
-//        }
-    }
-    
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView){
-        
-        print("in function two")
-        
-//        let hide = scrollView.contentOffset.y > lastOffsetY
-//        self.navigationController?.setNavigationBarHidden(hide, animated: true)
-//        self.navigationController?.isToolbarHidden = hide
-//        toolbarView.isHidden = hide
-        
-        
     }
     
 //    var hideStatusBar = false

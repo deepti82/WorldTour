@@ -274,7 +274,7 @@ extension NewTLViewController {
         }
         else {
             
-            height = 70
+            height = 0
             getScrollView(height, journey: journey)
             
         }
