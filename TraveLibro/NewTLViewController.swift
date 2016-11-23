@@ -45,7 +45,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var addView: AddActivityNew!
     var backgroundReview = UIView()
     
-    @IBOutlet weak var addPostsButton: UIButton!
+    var addPostsButton: UIButton!
+    var mainFooter: FooterViewNew!
+    
+    //@IBOutlet weak var addPostsButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var toolbarView: UIView!
     
@@ -83,7 +86,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var newScroll: UIScrollView!
     let backView = UIView()
     
-    @IBAction func addPosts(_ sender: AnyObject) {
+    //@IBAction func addPosts(_ sender: AnyObject) {
+    func addPosts(_ sender: UIButton) {
+        print("djksbnvsdjvvjsdbvsjk;vbs;jkvbsjkvbsjvbsdiuvbiuvjbevo;bwviju;bs;")
         
 //        addPosts = AddPostsOTGView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
 //        addPosts.addPhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosTL(_:)), forControlEvents: .TouchUpInside)
@@ -142,11 +147,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("in the add posts function")
         uploadedphotos = []
         newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        backView.layer.zPosition = 10
         backView.addSubview(newScroll)
         
         addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         print("add view: \(addView)")
         displayFriendsCount()
+        addView.layer.zPosition = 10
         newScroll.addSubview(addView)
         newScroll.contentSize.height = self.view.frame.height
         addLocationTapped(nil)
@@ -1052,6 +1059,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.clipsToBounds = true
         mainScroll.clipsToBounds = true
         
+        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 60, height: 60))
+        self.addPostsButton.setImage(UIImage(named: "add_circle_opac"), for: .normal)
+        self.addPostsButton.addTarget(self, action: #selector(NewTLViewController.addPosts(_:)), for: .touchUpInside)
+        //addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(NewTLViewController.addPosts(_:))))
+        self.addPostsButton.layer.zPosition = 5
+        self.view.addSubview(self.addPostsButton)
+        
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 55, width: self.view.frame.width, height: 55))
+        self.mainFooter.layer.zPosition = 5
+        self.view.addSubview(self.mainFooter)
+        
         infoButton.isHidden = true
         addPostsButton.isHidden = true
         
@@ -1075,15 +1093,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            //self.toolbarView.isHidden = true
             self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
-            //self.newScroll.frame.origin.y = 0
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+                self.addPostsButton.frame.origin.y = self.view.frame.height + 10
+                self.mainFooter.frame.origin.y = self.view.frame.height + 85
+            }, completion: nil)
         }
         else{
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.toolbarView.animation.makeOpacity(1.0).animate(0.5)
-            //self.newScroll.frame.origin.y = 60
-            //self.toolbarView.isHidden = false
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+                self.addPostsButton.frame.origin.y = self.view.frame.height - 120
+                self.mainFooter.frame.origin.y = self.view.frame.height - 55
+            }, completion: nil)
         }
     }
     
