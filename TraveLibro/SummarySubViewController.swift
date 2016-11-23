@@ -26,7 +26,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var mileageText: UILabel!
     
     var labels: [JSON] = []
-    var images = ["martini_icon", "nature_checkin", "palm_trees_icon", "martini_icon", "nature_checkin", "palm_trees_icon"]
+    var images = ["restaurantsandbars", "leaftrans", "hotels-1", "shopping-1", "nature_checkin", "sightstrans", "museumstrans", "zootrans", "religious-1", "cinematrans", "planetrans", "othersdottrans"]
     var journeyId = ""
     var tripCountData: JSON = []
     var cellSubview: VerticalLayout!
@@ -56,31 +56,6 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         cellSubview.clipsToBounds = true
         cellView.addSubview(cellSubview)
         
-//        let cellOne = tripSummaryEach(frame: CGRect(x: 0, y: 0, width: cellSubview.frame.width, height: 75))
-//        cellOne.layer.cornerRadius = 5
-//        cellOne.clipsToBounds = true
-//        cellSubview.addSubview(cellOne)
-//
-//        let cellTwo = tripSummaryEach(frame: CGRect(x: 0, y: 20, width: cellSubview.frame.width, height: 75))
-//        cellTwo.layer.cornerRadius = 5
-//        cellTwo.clipsToBounds = true
-//        cellSubview.addSubview(cellTwo)
-//        
-//        let cellThree = tripSummaryEach(frame: CGRect(x: 0, y: 20, width: cellSubview.frame.width, height: 75))
-//        cellThree.layer.cornerRadius = 5
-//        cellThree.clipsToBounds = true
-//        cellSubview.addSubview(cellThree)
-//        
-//        let cellFour = tripSummaryEach(frame: CGRect(x: 0, y: 20, width: cellSubview.frame.width, height: 75))
-//        cellFour.layer.cornerRadius = 5
-//        cellFour.clipsToBounds = true
-//        cellSubview.addSubview(cellFour)
-//        
-//        let cellFive = tripSummaryEach(frame: CGRect(x: 0, y: 20, width: cellSubview.frame.width, height: 75))
-//        cellFive.layer.cornerRadius = 5
-//        cellFive.clipsToBounds = true
-//        cellSubview.addSubview(cellFive)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -92,10 +67,43 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TripStatsCollectionViewCell
-        cell.statImage.setImage(UIImage(named: images[(indexPath as NSIndexPath).item]), for: UIControlState())
-        cell.statLabel.text = labels[indexPath.item]["name"].string!
+        cell.statImage.setImage(UIImage(named: getImageName(categoryLabel: labels[indexPath.item]["name"].string!)), for: .normal)
+        let title = NSMutableAttributedString(string: labels[indexPath.item]["name"].string!, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 10)!])
+        let count = NSMutableAttributedString(string: "\(labels[indexPath.item]["count"].int!) ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 10)!])
+        count.append(title)
+        cell.statLabel.attributedText = title
         return cell
         
+    }
+    
+    func getImageName(categoryLabel: String) -> String {
+        
+        switch categoryLabel {
+        case "Restaurants & Bars":
+            return images[0]
+        case "Shopping":
+            return images[3]
+        case "Hotels":
+            return images[2]
+        case "Nature & Parks":
+            return images[1]
+        case "Sights and Landmarks":
+            return images[5]
+        case "Museums and Galleries":
+            return images[6]
+        case "Zoo and Aquariums":
+            return images[7]
+        case "Religious":
+            return images[8]
+        case "Cinema and Theatres":
+            return images[9]
+        case "Hotels and Accomodations":
+            return images[10]
+        case "Transportation":
+            return images[10]
+        default:
+            return images[11]
+        }
     }
     
     func getCountView() {

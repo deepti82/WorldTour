@@ -278,12 +278,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             print("inside add caption")
             if captionTextView.text != "" &&  captionTextView.text != "Add a caption..." {
                 
-                allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
+//                allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
                 
             }
             else {
                 
-                allPhotos.append(["name": allIds[index], "caption": ""])
+//                allPhotos.append(["name": allIds[index], "caption": ""])
             }
         }
         
