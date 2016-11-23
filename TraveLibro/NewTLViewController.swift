@@ -1269,6 +1269,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         checkIn.commentButton.setTitle(post["uniqueId"].string!, for: .normal)
         otherCommentId = post["_id"].string!
         currentPost = post
+        print("post: \(post)")
         
         if post["like"].array!.contains(JSON(user.getExistingUser())) {
             checkIn.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
@@ -1298,6 +1299,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             photos = post["photos"].array!
             checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
+            checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
+            
+            let likeMainPhoto = UITapGestureRecognizer(target: self, action: #selector(PhotosOTG.sendLikes(_:)))
+            likeMainPhoto.numberOfTapsRequired = 2
+            checkIn.mainPhoto.addGestureRecognizer(likeMainPhoto)
+            checkIn.mainPhoto.isUserInteractionEnabled = true
             print("photobar count: \(photos.count)")
             
             var count = 4
@@ -1373,13 +1380,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             mapurl = URL(string: "")
                         }
                         DispatchQueue.main.async(execute: {
-//                            do {
-//                                let data = try! Data(contentsOf: mapurl!)
-////                                print("image data: \(data)")
-//                                checkIn.mainPhoto.image = UIImage(data: data)
-//                            } catch _ {
-//                                print("Unable to set map image")
-//                            }
+                            do {
+                                let data = try! Data(contentsOf: mapurl!)
+//                                print("image data: \(data)")
+                                checkIn.mainPhoto.image = UIImage(data: data)
+                            } catch _ {
+                                print("Unable to set map image")
+                            }
                         })
                     }
                 } else {
@@ -1438,6 +1445,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             break
         }
         
+    }
+    
+    func openSinglePhoto(_ sender: AnyObject) {
+        print("single photo: \(sender)")
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.mainImage?.image = sender.image
+        self.present(singlePhotoController, animated: true, completion: nil)
     }
     
     func showReviewButton(post: JSON, isIndex: Bool, index: Int?) {
@@ -2421,7 +2435,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("image name: \(imageString)")
         let getImageUrl = adminUrl + "upload/readFile?file=" + imageString + "&width=500"
         print("image url: \(getImageUrl)")
-        let mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+        let mapurl = URL(string: imageString)
         do {
 //            DispatchQueue.main.async(execute: {
 //                let data = try! Data(contentsOf: mapurl!)
@@ -2896,9 +2910,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             print("photos array: \(photo)")
             if let data = try? Data(contentsOf: photo) {
-                //DispatchQueue.main.sync(execute: {
+                DispatchQueue.main.sync(execute: {
                     photos.setPhotos("\(postCount + 1)", Name: nil, Data: data, Caption: nil)
-                //})
+                })
             } else {
                 print("\(#line) no data found from photos")
             }

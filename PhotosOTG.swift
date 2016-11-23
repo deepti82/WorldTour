@@ -119,6 +119,11 @@ class PhotosOTG: UIView {
 //            print("Success. You just tapped the \(hashtag) hashtag")
 //        }
         
+        likeButton.tintColor = mainBlueColor
+        commentButton.tintColor = mainBlueColor
+        shareButton.tintColor = mainBlueColor
+        optionsButton.tintColor = mainBlueColor
+        
         mainPhoto.autoresizingMask = [.flexibleHeight]
         
         likeHeart.text = String(format: "%C", faicon["likes"]!)
