@@ -339,8 +339,6 @@
 		C2FA1E1B1D5498380034DE97 /* QIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E1A1D5498380034DE97 /* QIViewController.swift */; };
 		C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */; };
 		C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */; };
-		FCB2D6831DE4721F0008634B /* AdobeCreativeSDKCoreResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCB2D6821DE4721E0008634B /* AdobeCreativeSDKCoreResources.bundle */; };
-		FCB2D6851DE472440008634B /* AdobeCreativeSDKImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCB2D6841DE472440008634B /* AdobeCreativeSDKImageResources.bundle */; };
 		FCB2D6871DE472A40008634B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6861DE472A40008634B /* Accelerate.framework */; };
 		FCB2D6891DE472AD0008634B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6881DE472AD0008634B /* CoreData.framework */; };
 		FCB2D68B1DE472D60008634B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */; };
@@ -714,8 +712,6 @@
 		C2FA1E1A1D5498380034DE97 /* QIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QIViewController.swift; sourceTree = "<group>"; };
 		C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityOTG.xib; sourceTree = "<group>"; };
 		C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityOTG.swift; sourceTree = "<group>"; };
-		FCB2D6821DE4721E0008634B /* AdobeCreativeSDKCoreResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKCoreResources.bundle; path = ../../docs/Aviary/AdobeCreativeSDKDynamicFrameworks/AdobeCreativeSDKCore.framework/AdobeCreativeSDKCoreResources.bundle; sourceTree = "<group>"; };
-		FCB2D6841DE472440008634B /* AdobeCreativeSDKImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKImageResources.bundle; path = ../../docs/Aviary/AdobeCreativeSDKDynamicFrameworks/AdobeCreativeSDKImage.framework/AdobeCreativeSDKImageResources.bundle; sourceTree = "<group>"; };
 		FCB2D6861DE472A40008634B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FCB2D6881DE472AD0008634B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -787,8 +783,6 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
-				FCB2D6841DE472440008634B /* AdobeCreativeSDKImageResources.bundle */,
-				FCB2D6821DE4721E0008634B /* AdobeCreativeSDKCoreResources.bundle */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -2122,8 +2116,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCB2D6851DE472440008634B /* AdobeCreativeSDKImageResources.bundle in Resources */,
-				FCB2D6831DE4721F0008634B /* AdobeCreativeSDKCoreResources.bundle in Resources */,
 				C22138F11D546EB6008D9DEE /* QuickItineraryTwo.xib in Resources */,
 				C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */,
 				C2E159B91D74068000A5B721 /* EmptyScreenView.xib in Resources */,
