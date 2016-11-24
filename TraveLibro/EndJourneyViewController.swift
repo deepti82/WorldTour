@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class EndJourneyViewController: UIViewController {
 
     @IBOutlet weak var endJourneyTitle: UILabel!

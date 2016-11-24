@@ -1749,7 +1749,7 @@ class Navigation {
     func getMentions(userId: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
-            let params = ["search": searchText, "_id": userId, "fromTag": true]
+            let params = ["search": searchText, "_id": userId, "fromTag": true] as [String: Any]
             let opt = try HTTP.POST(adminUrl + "user/searchBuddy", parameters: params)
             var json = JSON(1);
             opt.start {response in
