@@ -5,6 +5,7 @@ PODS:
     - UIImageViewModeScaleAspect (~> 1.5.0)
   - DKChainableAnimationKit (2.0.0)
   - Fabric (1.6.10)
+  - imglyKit (5.0.6)
   - Simplicity (2.0.1)
   - SQLite.swift (0.11.1):
     - SQLite.swift/standard (= 0.11.1)
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - BSImagePicker (~> 2.4)
   - DKChainableAnimationKit (from `https://github.com/Draveness/DKChainableAnimationKit.git`, branch `master`)
   - Fabric
+  - imglyKit (~> 5.0)
   - Simplicity
   - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `prepare-0.11.1`)
   - SwiftHTTP (~> 2.0.0)
@@ -55,6 +57,7 @@ SPEC CHECKSUMS:
   BSImagePicker: 9ad3385318ca0db7e792b51ea8929cfc39284c56
   DKChainableAnimationKit: 20401b3ad31b57d90548bfdb214077f2d2d79d49
   Fabric: c73f371ee543e3f0b80608f2674750e4910d1669
+  imglyKit: b78152c784cdcdf64297de33ad474bd7f13c7de9
   Simplicity: 58ce0c6569baf45e48ccd25432274ae899097517
   SQLite.swift: 1af00c95130fba962653aa136e3ecb0b8890796b
   SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
@@ -63,6 +66,6 @@ SPEC CHECKSUMS:
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 61874b2ccaba2f03cf06e9f411be0c69bc63bd3d
+PODFILE CHECKSUM: 47943c5d312d48d514e0f245b0dbaa8e7196e5eb
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.0.1

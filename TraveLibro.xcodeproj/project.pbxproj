@@ -340,17 +340,7 @@
 		C2FA1E1B1D5498380034DE97 /* QIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E1A1D5498380034DE97 /* QIViewController.swift */; };
 		C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */; };
 		C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */; };
-		FCB2D6871DE472A40008634B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6861DE472A40008634B /* Accelerate.framework */; };
-		FCB2D6891DE472AD0008634B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6881DE472AD0008634B /* CoreData.framework */; };
-		FCB2D68B1DE472D60008634B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */; };
-		FCB2D68D1DE472E50008634B /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D68C1DE472E50008634B /* libz.1.2.5.tbd */; };
-		FCB2D68F1DE472F20008634B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D68E1DE472F20008634B /* Foundation.framework */; };
-		FCB2D6911DE472FC0008634B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6901DE472FC0008634B /* MessageUI.framework */; };
-		FCB2D6931DE4731F0008634B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6921DE4731F0008634B /* OpenGLES.framework */; };
-		FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6941DE4732A0008634B /* QuartzCore.framework */; };
-		FCB2D6971DE473380008634B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6961DE473380008634B /* StoreKit.framework */; };
-		FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6981DE4740B0008634B /* UIKit.framework */; };
-		FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D69A1DE474180008634B /* WebKit.framework */; };
+		FCB078361DE578BE00E7818F /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB078351DE578BE00E7818F /* ImgLyKitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -714,17 +704,7 @@
 		C2FA1E1A1D5498380034DE97 /* QIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QIViewController.swift; sourceTree = "<group>"; };
 		C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityOTG.xib; sourceTree = "<group>"; };
 		C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityOTG.swift; sourceTree = "<group>"; };
-		FCB2D6861DE472A40008634B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		FCB2D6881DE472AD0008634B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		FCB2D68C1DE472E50008634B /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
-		FCB2D68E1DE472F20008634B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		FCB2D6901DE472FC0008634B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		FCB2D6921DE4731F0008634B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		FCB2D6941DE4732A0008634B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		FCB2D6961DE473380008634B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		FCB2D6981DE4740B0008634B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		FCB2D69A1DE474180008634B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FCB078351DE578BE00E7818F /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -732,17 +712,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */,
-				FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */,
-				FCB2D6971DE473380008634B /* StoreKit.framework in Frameworks */,
-				FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */,
-				FCB2D6931DE4731F0008634B /* OpenGLES.framework in Frameworks */,
-				FCB2D6911DE472FC0008634B /* MessageUI.framework in Frameworks */,
-				FCB2D68F1DE472F20008634B /* Foundation.framework in Frameworks */,
-				FCB2D68D1DE472E50008634B /* libz.1.2.5.tbd in Frameworks */,
-				FCB2D68B1DE472D60008634B /* libsqlite3.0.tbd in Frameworks */,
-				FCB2D6891DE472AD0008634B /* CoreData.framework in Frameworks */,
-				FCB2D6871DE472A40008634B /* Accelerate.framework in Frameworks */,
 				C2AC013B1D8D44C800B99868 /* Pods_TraveLibro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,17 +1020,6 @@
 		70E6CB1E8C296A54FDB1A1A7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FCB2D69A1DE474180008634B /* WebKit.framework */,
-				FCB2D6981DE4740B0008634B /* UIKit.framework */,
-				FCB2D6961DE473380008634B /* StoreKit.framework */,
-				FCB2D6941DE4732A0008634B /* QuartzCore.framework */,
-				FCB2D6921DE4731F0008634B /* OpenGLES.framework */,
-				FCB2D6901DE472FC0008634B /* MessageUI.framework */,
-				FCB2D68E1DE472F20008634B /* Foundation.framework */,
-				FCB2D68C1DE472E50008634B /* libz.1.2.5.tbd */,
-				FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */,
-				FCB2D6881DE472AD0008634B /* CoreData.framework */,
-				FCB2D6861DE472A40008634B /* Accelerate.framework */,
 				3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */,
 				7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */,
 				163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */,
@@ -2081,6 +2039,7 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = YVWVDTRG4B;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 					1A944E171CCB4567007EB5BD = {
 						CreatedOnToolsVersion = 7.3;
@@ -2319,7 +2278,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C24246BA1D5DA67E0020199E /* ShellScript */ = {
@@ -2420,6 +2379,7 @@
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
 				3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */,
+				FCB078361DE578BE00E7818F /* ImgLyKitViewController.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
 				C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */,
 				C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */,
@@ -2817,7 +2777,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cc0585b6-d20d-46fd-a42e-1a40ba617774";
+				PROVISIONING_PROFILE_SPECIFIER = WohligDev;
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -2856,7 +2817,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cc0585b6-d20d-46fd-a42e-1a40ba617774";
+				PROVISIONING_PROFILE_SPECIFIER = WohligDev;
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
