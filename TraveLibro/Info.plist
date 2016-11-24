@@ -82,6 +82,8 @@
 	<string>$(PRODUCT_NAME) will use Camera</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) will use Library</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
