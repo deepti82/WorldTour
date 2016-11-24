@@ -1340,6 +1340,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             photos = post["photos"].array!
             checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
+            checkIn.mainPhoto.tag = 0
+            checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
             
             let likeMainPhoto = UITapGestureRecognizer(target: self, action: #selector(PhotosOTG.sendLikes(_:)))
             likeMainPhoto.numberOfTapsRequired = 2
@@ -1360,6 +1362,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 print("in the for loop \(post["photos"][i + 1]["name"])")
                 checkIn.otherPhotosStack[i].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")!))
                 checkIn.otherPhotosStack[i].isHidden = false
+                checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
+                checkIn.otherPhotosStack[i].tag = i + 1
+                checkIn.otherPhotosStack[i].accessibilityLabel = post["_id"].string!
+                
+                checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
                 
             }
             
@@ -1413,7 +1420,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     // CHECKIN MAP IMAGE
                     if post["checkIn"]["lat"].string != nil && post["checkIn"]["long"].string != nil {
                         
-                        let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)"
+                        let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)&key=\(mapKey)"
                         print("\(imageString)")
                         var mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
                         if mapurl == nil {
@@ -1491,7 +1498,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("single photo: \(sender)")
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
         singlePhotoController.mainImage?.image = sender.image
-        //self.present(singlePhotoController, animated: true, completion: nil)
+        singlePhotoController.index = sender.tag
+        singlePhotoController.postId = sender.accessibilityLabel
+        self.present(singlePhotoController, animated: true, completion: nil)
         //self.navigationController?.pushViewController(singlePhotoController, animated: true)
     }
     

@@ -23,13 +23,20 @@ class SinglePhotoViewController: UIViewController {
     @IBOutlet weak var likeText: UILabel!
     @IBOutlet weak var commentText: UILabel!
     
+    var index: Int!
+    var postId: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        print("current post \(postId!) \(index!)")
+        
+        let leftButton = UIButton(frame: CGRect(x: 10, y: 30, width: 30, height: 30))
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        self.customNavigationBar(left: leftButton, right: nil)
+        leftButton.layer.zPosition = 100
+        self.view.addSubview(leftButton)
+        //self.customNavigationBar(left: leftButton, right: nil)
         
         self.view.backgroundColor = UIColor.black
         bottomView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
@@ -64,7 +71,8 @@ class SinglePhotoViewController: UIViewController {
     }
     
     override func popVC(_ sender: UIButton) {
-        self.navigationController!.popViewController(animated: true)
+        //self.navigationController!.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 
     /*
