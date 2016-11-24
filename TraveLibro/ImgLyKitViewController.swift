@@ -13,19 +13,12 @@ class ImgLyKitViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let configuration = Configuration() { builder in
-//            builder.backgroundColor = UIColor.clear
-//        }
-//        let cameraViewController = CameraViewController(configuration:configuration)
-//        present(cameraViewController, animated: true, completion: nil)
+        let configuration = Configuration() { builder in
+            builder.backgroundColor = UIColor.clear
+        }
+        let cameraViewController = CameraViewController(configuration:configuration)
+        present(cameraViewController, animated: true, completion: nil)
         
-        let cameraViewController = IMGLYCameraViewController(recordingModes: [.Photo, .Video])
-        cameraViewController.maximumVideoLength = 15
-        cameraViewController.squareMode = true
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = cameraViewController
-        window?.makeKeyAndVisible()
 
     }
     
