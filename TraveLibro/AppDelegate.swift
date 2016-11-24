@@ -110,8 +110,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            hasLoggedInOnce = true
             
             print("user: \(user.getExistingUser())")
-            
-            nvc = UINavigationController(rootViewController: mainViewController)
+            let imgLy = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
+            nvc = UINavigationController(rootViewController: imgLy)
             
             let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
             
