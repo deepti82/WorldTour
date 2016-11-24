@@ -13,7 +13,6 @@ class ImgLyKitViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD
         let configuration = Configuration() { builder in
             builder.backgroundColor = UIColor.clear
         }
@@ -55,19 +54,14 @@ class ImgLyKitViewController: UIViewController {
             // Disable flash
             options.allowedFlashModes = [ .off ]
         }
-=======
-        let cameraViewController = CameraViewController()
-        present(cameraViewController, animated: true, completion: nil)
-        // Do any additional setup after loading the view.
->>>>>>> parent of 850ba3f... git
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
 
@@ -78,4 +72,17 @@ class ImgLyKitViewController: UIViewController {
     }
     */
 
+}
+public final class VideoRecordButton: UIControl{
+    public var isRecording = true
+    public override func cancelTracking(with event: UIEvent?) {
+        print("canceled")
+    }
+    public override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        print("recording started")
+        return true
+    }
+    public override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        print("recording end")
+    }
 }
