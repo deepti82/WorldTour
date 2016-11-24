@@ -1421,7 +1421,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         }
                         DispatchQueue.main.async(execute: {
                             do {
-                                let data = try! Data(contentsOf: mapurl!)
+                                let data = try Data(contentsOf: mapurl!)
 //                                print("image data: \(data)")
                                 checkIn.mainPhoto.image = UIImage(data: data)
                             } catch _ {

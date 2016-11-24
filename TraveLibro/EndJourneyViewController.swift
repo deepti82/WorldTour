@@ -229,7 +229,7 @@ class EndJourneyViewController: UIViewController {
             //self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
             
             let imageString = self.journey["startLocationPic"].string!
-            let mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+            let mapurl = URL(string: "\(adminUrl)upload/readFile?file=\(imageString)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
             do {
                 let data = try! Data(contentsOf: mapurl!)
                 self.journeyCoverPic.image = UIImage(data: data)
