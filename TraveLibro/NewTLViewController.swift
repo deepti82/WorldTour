@@ -507,6 +507,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             newScroll.isHidden = true
             backView.isHidden = true
             
+            let thoughtsArray = thoughts.components(separatedBy: " ")
+            var hashtags: [String] = []
+            
+            print("thoughts array is: \(thoughtsArray)")
+            
+            for eachString in thoughtsArray {
+                if eachString.contains("#") {
+                    hashtags.append(eachString)
+                }
+            }
+            
             print("buddies: \(buddies)")
 //            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: addView.categoryLabel.text!, Latitude: "\(currentLat!)", Longitude: "\(currentLong!)", Country: currentCountry, City: currentCity, Status: thoughts)
             
@@ -518,11 +529,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             }
             
+            var myLatitude = UserLocation()
+            
+            if currentLat != nil && currentLong != nil {
+                myLatitude = UserLocation.init(latitude: currentLat, longitude: currentLong)
+            }
             
             if Reachability.isConnectedToNetwork() {
                 
                 print("internet is connected post")
-                request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, latitude: "\(currentLat!)", longitude: "\(currentLong!)", photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, completion: {(response) in
+                request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, latitude: "\(myLatitude.latitude)", longitude: "\(myLatitude.longitude)", photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, hashtags: hashtags, completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
                         
@@ -1172,7 +1188,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            
 //        }
         
-        var thoughts = NSMutableAttributedString()
+        var thoughts = String()
         var postTitle = ""
         var photos: [JSON] = []
 //        let tags = ActiveLabel()
@@ -1180,30 +1196,27 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if post["thoughts"] != nil && post["thoughts"].string != "" {
             
             print("thoughtts if statement")
-            
-            thoughts = NSMutableAttributedString(string: "\(post["thoughts"]) ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-            postTitle = "\(post["thoughts"]) "
-            
+            thoughts = post["thoughts"].string!
         }
         
-        let buddyAnd = NSAttributedString(string: " and", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-        let buddyWith = NSAttributedString(string: "— with ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+        let buddyAnd = " and"
+        let buddyWith = "— with "
         
         switch post["buddies"].array!.count {
         
         case 1:
             print("buddies if statement")
             thoughts.append(buddyWith)
-            let buddyName = NSAttributedString(string: "\(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            let buddyName = "\(post["buddies"][0]["name"])"
             thoughts.append(buddyName)
 //            postTitle += "— with \(post["buddies"][0]["name"])"
         case 2:
             print("buddies if statement")
             thoughts.append(buddyWith)
-            let buddyName = NSAttributedString(string: "\(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            let buddyName = post["buddies"][0]["name"].string!
             thoughts.append(buddyName)
             thoughts.append(buddyAnd)
-            let buddyCount = NSAttributedString(string: " 1 other", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            let buddyCount = " 1 other"
             thoughts.append(buddyCount)
             postTitle += " and 1 other"
         case 0:
@@ -1211,10 +1224,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             break
         default:
             print("buddies if statement")
-            let buddyCount = NSAttributedString(string: " \(post["buddies"].array!.count - 1)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
-            let buddyOthers = NSAttributedString(string: " others", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+            let buddyCount = " \(post["buddies"].array!.count - 1)"
+            let buddyOthers = " others"
             thoughts.append(buddyWith)
-            let buddyName = NSAttributedString(string: "\(post["buddies"][0]["name"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            let buddyName = "\(post["buddies"][0]["name"])"
             thoughts.append(buddyName)
             thoughts.append(buddyAnd)
             thoughts.append(buddyCount)
@@ -1225,8 +1238,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
             
             print("checkin location if statement")
-            let buddyAt = NSAttributedString(string: " at", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-            let buddyLocation = NSAttributedString(string: " \(post["checkIn"]["location"])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+            let buddyAt = " at"
+            let buddyLocation = " \(post["checkIn"]["location"])"
             thoughts.append(buddyAt)
             thoughts.append(buddyLocation)
             postTitle += " at \(post["checkIn"]["location"])"
@@ -1240,7 +1253,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
 //        })
         var checkIn = PhotosOTG()
-        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts.string, photos: post["photos"].array!.count)))
+        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts, photos: post["photos"].array!.count)))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
         checkIn.likeViewLabel.text = "\(post["like"].array!.count) Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
@@ -1263,8 +1276,35 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("is edit: \(isEdit), postid: \(post["_id"].string!)")
         
 //        print("\(#line) \(NSAttributedString(attributedString: thoughts))")
-        checkIn.photosTitle.attributedText = thoughts
-//        checkIn.photosTitle.text = postTitle
+//        checkIn.photosTitle.text =
+        checkIn.photosTitle.enabledTypes = [.hashtag, .url]
+        checkIn.photosTitle.customize {label in
+            label.text = thoughts
+            label.hashtagColor = UIColor(red: 85.0/255, green: 172.0/255, blue: 238.0/255, alpha: 1)
+            label.mentionColor = UIColor(red: 238.0/255, green: 85.0/255, blue: 96.0/255, alpha: 1)
+            label.URLColor = UIColor(red: 85.0/255, green: 238.0/255, blue: 151.0/255, alpha: 1)
+            label.handleMentionTap {
+                
+                let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Mention", message: $0, preferredStyle: .alert)
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            }
+            label.handleHashtagTap {
+                
+                let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Hashtag", message: $0, preferredStyle: .alert)
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            }
+            label.handleURLTap { let actionSheetControllerIOS8: UIAlertController =
+                
+                UIAlertController(title: "Url", message: "\($0)", preferredStyle: .alert)
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            }
+        }
 
         for image in checkIn.otherPhotosStack {
             
@@ -3013,4 +3053,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("Error while updating location " + error.localizedDescription)
         
     }
+}
+
+struct UserLocation {
+    var latitude: Float = 0
+    var longitude: Float = 0
 }

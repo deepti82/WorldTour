@@ -14,12 +14,9 @@ class PhotosOTG: UIView {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var postDp: UIImageView!
     @IBOutlet weak var stackView: UIView!
-//    @IBOutlet weak var timestampView: UIView!
     @IBOutlet weak var likeHeart: UILabel!
-//    @IBOutlet weak var photosTitle: ActiveLabel!
-    @IBOutlet weak var photosTitle: UILabel!
+    @IBOutlet weak var photosTitle: ActiveLabel!
     @IBOutlet weak var likeViewLabel: UILabel!
-//    @IBOutlet var mainView: UIView!
     @IBOutlet weak var photosStack: UIStackView!
     @IBOutlet weak var mainPhoto: UIImageView!
     @IBOutlet weak var line1: UIView!
@@ -111,13 +108,8 @@ class PhotosOTG: UIView {
         bgView.layer.shadowColor = UIColor.black.cgColor
         bgView.layer.shadowOffset = CGSize(width: 2, height: 1)
         
-//        photosTitle.numberOfLines = 0
-//        let customType = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"
-//        photosTitle.enabledTypes = [.mention, .hashtag, .url, customType]
-//        photosTitle.textColor = UIColor.black
-//        photosTitle.handleHashtagTap { hashtag in
-//            print("Success. You just tapped the \(hashtag) hashtag")
-//        }
+        photosTitle.numberOfLines = 0
+        let customType = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"
         
         mainPhoto.autoresizingMask = [.flexibleHeight]
         

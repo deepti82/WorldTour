@@ -1074,13 +1074,13 @@ class Navigation {
         }
     }
     
-    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, latitude: String, longitude: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, completion: @escaping ((JSON) -> Void)) {
+    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, latitude: String, longitude: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, hashtags: [String], completion: @escaping ((JSON) -> Void)) {
         
 //        do {
         
         let checkIn = ["location": location, "category": locationCategory, "city": city, "country": country, "lat": latitude, "long": longitude]
         
-            var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName]
+            var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags]
             params["photos"] = JSON(photosArray)
             params["buddies"] = JSON(buddies)
             let jsonData = try! params.rawData()
@@ -1250,11 +1250,11 @@ class Navigation {
         }
     }
     
-    func commentOnPost(_ id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: JSON, completion: @escaping ((JSON) -> Void)) {
+    func commentOnPost(id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "post", "hashtag" : hashtags] as [String : Any]
+            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "post", "hashtag" : hashtags, "tagUser": []] as [String : Any]
               
             print("set comment params: \(params)")
             
@@ -1714,6 +1714,52 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     print("trip summary response: \(json)")
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func getHashtags(hashtag: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let params = ["hashtag": hashtag]
+            let opt = try HTTP.POST(adminUrl + "hashtag/findHash", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print("hashtag response: \(json)")
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func getMentions(userId: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let params = ["search": searchText, "_id": userId, "fromTag": true]
+            let opt = try HTTP.POST(adminUrl + "user/searchBuddy", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print("mention response: \(json)")
                     completion(json)
                 }
             }

@@ -84,6 +84,7 @@
 		C22138F81D547C42008D9DEE /* QuickItineraryFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22138F71D547C42008D9DEE /* QuickItineraryFour.swift */; };
 		C2276FF01D9906770052D942 /* EditCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2276FEF1D9906770052D942 /* EditCategoryViewController.swift */; };
 		C234B0601D79A67600397FE5 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */; };
+		C239CAC81DE5C7E00095FDED /* SuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C239CAC71DE5C7E00095FDED /* SuggestionsViewController.swift */; };
 		C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B34D81D7AF0AE00EBBF25 /* ProfilePicFancy.swift */; };
 		C23B34DB1D7AF3DA00EBBF25 /* ProfilePicFancy.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23B34DA1D7AF3DA00EBBF25 /* ProfilePicFancy.xib */; };
 		C23B3BDE1D423CDE0075B733 /* EachItineraryPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C23B3BDD1D423CDD0075B733 /* EachItineraryPhotosViewController.swift */; };
@@ -339,8 +340,6 @@
 		C2FA1E1B1D5498380034DE97 /* QIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E1A1D5498380034DE97 /* QIViewController.swift */; };
 		C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */; };
 		C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */; };
-		FCB2D6831DE4721F0008634B /* AdobeCreativeSDKCoreResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCB2D6821DE4721E0008634B /* AdobeCreativeSDKCoreResources.bundle */; };
-		FCB2D6851DE472440008634B /* AdobeCreativeSDKImageResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FCB2D6841DE472440008634B /* AdobeCreativeSDKImageResources.bundle */; };
 		FCB2D6871DE472A40008634B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6861DE472A40008634B /* Accelerate.framework */; };
 		FCB2D6891DE472AD0008634B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6881DE472AD0008634B /* CoreData.framework */; };
 		FCB2D68B1DE472D60008634B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */; };
@@ -349,7 +348,6 @@
 		FCB2D6911DE472FC0008634B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6901DE472FC0008634B /* MessageUI.framework */; };
 		FCB2D6931DE4731F0008634B /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6921DE4731F0008634B /* OpenGLES.framework */; };
 		FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6941DE4732A0008634B /* QuartzCore.framework */; };
-		FCB2D6971DE473380008634B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6961DE473380008634B /* StoreKit.framework */; };
 		FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6981DE4740B0008634B /* UIKit.framework */; };
 		FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D69A1DE474180008634B /* WebKit.framework */; };
 /* End PBXBuildFile section */
@@ -458,6 +456,7 @@
 		C22138F71D547C42008D9DEE /* QuickItineraryFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryFour.swift; sourceTree = "<group>"; };
 		C2276FEF1D9906770052D942 /* EditCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCategoryViewController.swift; sourceTree = "<group>"; };
 		C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		C239CAC71DE5C7E00095FDED /* SuggestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsViewController.swift; sourceTree = "<group>"; };
 		C23B34D81D7AF0AE00EBBF25 /* ProfilePicFancy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePicFancy.swift; sourceTree = "<group>"; };
 		C23B34DA1D7AF3DA00EBBF25 /* ProfilePicFancy.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProfilePicFancy.xib; path = ../ProfilePicFancy.xib; sourceTree = "<group>"; };
 		C23B3BDD1D423CDD0075B733 /* EachItineraryPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EachItineraryPhotosViewController.swift; sourceTree = "<group>"; };
@@ -714,8 +713,6 @@
 		C2FA1E1A1D5498380034DE97 /* QIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QIViewController.swift; sourceTree = "<group>"; };
 		C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityOTG.xib; sourceTree = "<group>"; };
 		C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityOTG.swift; sourceTree = "<group>"; };
-		FCB2D6821DE4721E0008634B /* AdobeCreativeSDKCoreResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKCoreResources.bundle; path = ../../docs/Aviary/AdobeCreativeSDKDynamicFrameworks/AdobeCreativeSDKCore.framework/AdobeCreativeSDKCoreResources.bundle; sourceTree = "<group>"; };
-		FCB2D6841DE472440008634B /* AdobeCreativeSDKImageResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AdobeCreativeSDKImageResources.bundle; path = ../../docs/Aviary/AdobeCreativeSDKDynamicFrameworks/AdobeCreativeSDKImage.framework/AdobeCreativeSDKImageResources.bundle; sourceTree = "<group>"; };
 		FCB2D6861DE472A40008634B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FCB2D6881DE472AD0008634B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -724,7 +721,6 @@
 		FCB2D6901DE472FC0008634B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		FCB2D6921DE4731F0008634B /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		FCB2D6941DE4732A0008634B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		FCB2D6961DE473380008634B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		FCB2D6981DE4740B0008634B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCB2D69A1DE474180008634B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -736,7 +732,6 @@
 			files = (
 				FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */,
 				FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */,
-				FCB2D6971DE473380008634B /* StoreKit.framework in Frameworks */,
 				FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */,
 				FCB2D6931DE4731F0008634B /* OpenGLES.framework in Frameworks */,
 				FCB2D6911DE472FC0008634B /* MessageUI.framework in Frameworks */,
@@ -787,8 +782,6 @@
 		1A944DFB1CCB4567007EB5BD = {
 			isa = PBXGroup;
 			children = (
-				FCB2D6841DE472440008634B /* AdobeCreativeSDKImageResources.bundle */,
-				FCB2D6821DE4721E0008634B /* AdobeCreativeSDKCoreResources.bundle */,
 				1A944E061CCB4567007EB5BD /* TraveLibro */,
 				1A944E1B1CCB4567007EB5BD /* TraveLibroTests */,
 				1A944E261CCB4567007EB5BD /* TraveLibroUITests */,
@@ -818,6 +811,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C239CAC71DE5C7E00095FDED /* SuggestionsViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -1057,7 +1051,6 @@
 			children = (
 				FCB2D69A1DE474180008634B /* WebKit.framework */,
 				FCB2D6981DE4740B0008634B /* UIKit.framework */,
-				FCB2D6961DE473380008634B /* StoreKit.framework */,
 				FCB2D6941DE4732A0008634B /* QuartzCore.framework */,
 				FCB2D6921DE4731F0008634B /* OpenGLES.framework */,
 				FCB2D6901DE472FC0008634B /* MessageUI.framework */,
@@ -2084,6 +2077,11 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = YVWVDTRG4B;
 						LastSwiftMigration = 0810;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					1A944E171CCB4567007EB5BD = {
 						CreatedOnToolsVersion = 7.3;
@@ -2122,8 +2120,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCB2D6851DE472440008634B /* AdobeCreativeSDKImageResources.bundle in Resources */,
-				FCB2D6831DE4721F0008634B /* AdobeCreativeSDKCoreResources.bundle in Resources */,
 				C22138F11D546EB6008D9DEE /* QuickItineraryTwo.xib in Resources */,
 				C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */,
 				C2E159B91D74068000A5B721 /* EmptyScreenView.xib in Resources */,
@@ -2388,6 +2384,7 @@
 				C2A27A4E1CEDCE4C00F74DD1 /* SignInFullView.swift in Sources */,
 				C2756C4D1D05884D0083CEBD /* VerifyEmailViewController.swift in Sources */,
 				C269078D1CF8633800F827E6 /* ProfilePic.swift in Sources */,
+				C239CAC81DE5C7E00095FDED /* SuggestionsViewController.swift in Sources */,
 				C24F84E71D00252F002EA203 /* SettingsViewController.swift in Sources */,
 				C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */,
 				367B90F91DC23ADF00D76F13 /* StringTrimExtension.swift in Sources */,

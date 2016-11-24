@@ -8,19 +8,32 @@
 
 import UIKit
 
-
-class CommentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CommentsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
     
     var postId = ""
     var comments: [JSON] = []
     var otherId = ""
+    var hashtags: [String] = []
+    var mentions: [String] = []
+    var suggestionFor = "hashtag"
     
+    @IBOutlet weak var container: UIView!
     @IBOutlet weak var commentsTable: UITableView!
     @IBOutlet weak var addComment: UITextView!
     @IBAction func sendComment(_ sender: UIButton?) {
         
         print("inside send comments")
         addComment.resignFirstResponder()
+        let commentText = addComment.text.components(separatedBy: " ")
+        print("comment text: \(commentText)")
+        for eachText in commentText {
+            if eachText.contains("#") {
+                hashtags.append(eachText)
+            }
+            else if eachText.contains("@") {
+                mentions.append(eachText)
+            }
+        }
         setAllComments(addComment.text)
         addComment.text = ""
         
@@ -36,12 +49,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         addComment.returnKeyType = .done
+        addComment.delegate = self
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func keyboardWillShow(_ notification: Notification) {
@@ -66,9 +75,32 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    func textViewDidChange(textView: UITextView) {
+        
+        if textView.text.contains("#") {
+            container.alpha = 1
+            suggestionFor = "hashtag"
+            
+        }
+        else if textView.text.contains("@") {
+            container.alpha = 1
+            suggestionFor = "mentions"
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "myEmbeddedSegue") {
+            let childViewController = segue.destination as! SuggestionsViewController
+            childViewController.whichSuggestion = suggestionFor
+            let commentText = addComment.text.components(separatedBy: " ")
+            childViewController.textVar = commentText.last!
+        }
+    }
+    
     func setAllComments(_ comment: String) {
         
-        request.commentOnPost(postId, postId: otherId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: [], completion: {(response) in
+        request.commentOnPost(id: postId, postId: otherId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -146,6 +178,30 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.clockIcon.text = String(format: "%C", faicon["clock"]!)
         cell.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
         
+        cell.profileComment.customize {label in
+            label.handleMentionTap {
+                
+                let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Mention", message: $0, preferredStyle: .alert)
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            }
+            label.handleHashtagTap {
+                
+                let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Hashtag", message: $0, preferredStyle: .alert)
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            }
+            label.handleURLTap { let actionSheetControllerIOS8: UIAlertController =
+                
+                UIAlertController(title: "Url", message: "\($0)", preferredStyle: .alert)
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            }
+        }
+        
         return cell
         
     }
@@ -155,9 +211,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 
 class CommentTableViewCell: UITableViewCell {
     
-//    @IBOutlet weak var profileImage: UIView!
     @IBOutlet weak var profileName: UILabel!
-    @IBOutlet weak var profileComment: UILabel!
+    @IBOutlet weak var profileComment: ActiveLabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var calendarIcon: UILabel!
     @IBOutlet weak var clockIcon: UILabel!

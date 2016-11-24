@@ -33,7 +33,7 @@
                 <outlet property="optionsButton" destination="WnS-pJ-OkX" id="uql-DE-Vwb"/>
                 <outlet property="photosHC" destination="uOT-zL-YX6" id="umw-FT-MDr"/>
                 <outlet property="photosStack" destination="fBo-H1-fh1" id="z0E-Rf-f0d"/>
-                <outlet property="photosTitle" destination="vd1-yL-ysy" id="f13-qd-osW"/>
+                <outlet property="photosTitle" destination="vd1-yL-ysy" id="WaC-pF-CWw"/>
                 <outlet property="postDp" destination="1g4-89-Biy" id="iuz-wD-LJ4"/>
                 <outlet property="shareButton" destination="cME-3i-AUg" id="791-U4-JYh"/>
                 <outlet property="stackView" destination="MYo-lh-LFg" id="ipZ-Aa-eHN"/>
@@ -128,31 +128,10 @@
                         </button>
                     </subviews>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd1-yL-ysy">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evening by the beach! :) with Sarvesh Brahme and 1 other at Girgaon" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd1-yL-ysy" customClass="ActiveLabel" customModule="TraveLibro" customModuleProvider="target">
                     <rect key="frame" x="76" y="58" width="263" height="39"/>
-                    <attributedString key="attributedText">
-                        <fragment content="Evening by the beach! :) with ">
-                            <attributes>
-                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="14" name="Avenir-Roman"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content="Sarvesh Brahme">
-                            <attributes>
-                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="14" name="Avenir-Medium"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                        <fragment content=" and 1 other at Girgaon">
-                            <attributes>
-                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <font key="NSFont" size="14" name="Avenir-Roman"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DYS-JX-k0k">
@@ -196,10 +175,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="400" height="15"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMV-7H-ZkZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="199" height="15"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="198.5" height="15"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvd-8x-WCk">
-                                            <rect key="frame" x="88" y="0.0" width="30" height="15"/>
+                                            <rect key="frame" x="88.5" y="0.0" width="29.5" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="46l-Qa-d8Q"/>
                                             </constraints>
@@ -208,7 +187,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan 2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOT-Lp-xjs">
-                                            <rect key="frame" x="123" y="0.0" width="66" height="15"/>
+                                            <rect key="frame" x="123" y="0.0" width="65.5" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="MkJ-4o-hRf"/>
                                             </constraints>
@@ -227,7 +206,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DO-0w-LnM">
-                                    <rect key="frame" x="200" y="0.0" width="1" height="15"/>
+                                    <rect key="frame" x="199.5" y="0.0" width="1" height="15"/>
                                     <color key="backgroundColor" red="0.41960784309999999" green="0.41960784309999999" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="1ed-UO-omq"/>
@@ -235,10 +214,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3yy-th-Mw6">
-                                    <rect key="frame" x="202" y="0.0" width="198" height="15"/>
+                                    <rect key="frame" x="201.5" y="0.0" width="198.5" height="15"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giL-Yh-ey6">
-                                            <rect key="frame" x="12" y="0.0" width="35" height="15"/>
+                                            <rect key="frame" x="12" y="0.0" width="34.5" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="9Ic-6b-cX3"/>
                                             </constraints>
@@ -247,7 +226,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:20 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znb-5Y-hoH">
-                                            <rect key="frame" x="52" y="0.0" width="51" height="15"/>
+                                            <rect key="frame" x="51.5" y="0.0" width="51" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="NJP-I5-Qi2"/>
                                             </constraints>
@@ -282,16 +261,16 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ayp-RI-d3A">
-                    <rect key="frame" x="16" y="558" width="111" height="17"/>
+                    <rect key="frame" x="16" y="558" width="110" height="16.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Kv-T3-tFz">
-                            <rect key="frame" x="0.0" y="0.0" width="35" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="34.5" height="16.5"/>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="14"/>
                             <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="155660 Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMb-Vv-ncu">
-                            <rect key="frame" x="40" y="0.0" width="71" height="17"/>
+                            <rect key="frame" x="39.5" y="0.0" width="70.5" height="16.5"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <color key="textColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -299,7 +278,7 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gWj-jG-WvQ">
-                    <rect key="frame" x="142" y="558" width="129" height="15"/>
+                    <rect key="frame" x="141" y="558" width="129" height="15"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speech_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Iz-Gn5">
                             <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
