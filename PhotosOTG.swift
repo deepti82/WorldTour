@@ -111,6 +111,11 @@ class PhotosOTG: UIView {
         photosTitle.numberOfLines = 0
         let customType = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"
         
+        likeButton.tintColor = mainBlueColor
+        commentButton.tintColor = mainBlueColor
+        shareButton.tintColor = mainBlueColor
+        optionsButton.tintColor = mainBlueColor
+        
         mainPhoto.autoresizingMask = [.flexibleHeight]
         
         likeHeart.text = String(format: "%C", faicon["likes"]!)

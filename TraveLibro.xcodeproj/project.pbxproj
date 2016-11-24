@@ -38,6 +38,7 @@
 		367B90F91DC23ADF00D76F13 /* StringTrimExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F41DC23ADF00D76F13 /* StringTrimExtension.swift */; };
 		36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */; };
 		3A38275E1DDEE4BB007F181D /* NearMeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */; };
+		3A7A7D901DE5A921005F409C /* SinglePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A7D8F1DE5A921005F409C /* SinglePhotoViewController.swift */; };
 		3A9F8C7B1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F8C7A1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift */; };
 		3AAA769F1DDDBE8800DCB6F2 /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA769E1DDDBE8800DCB6F2 /* NearMeViewController.swift */; };
 		3ABFD8DE1DA8CA2500A51034 /* ChangeCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */; };
@@ -409,6 +410,7 @@
 		367B90F41DC23ADF00D76F13 /* StringTrimExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTrimExtension.swift; sourceTree = "<group>"; };
 		36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeListViewController.swift; sourceTree = "<group>"; };
+		3A7A7D8F1DE5A921005F409C /* SinglePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoViewController.swift; sourceTree = "<group>"; };
 		3A9F8C7A1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeDetailViewController.swift; sourceTree = "<group>"; };
 		3AAA769E1DDDBE8800DCB6F2 /* NearMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeViewController.swift; sourceTree = "<group>"; };
 		3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeCity.xib; sourceTree = "<group>"; };
@@ -1516,7 +1518,7 @@
 				3AAA769E1DDDBE8800DCB6F2 /* NearMeViewController.swift */,
 				3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */,
 				3A9F8C7A1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift */,
-				FCB078351DE578BE00E7818F /* ImgLyKitViewController.swift */,
+				3A7A7D8F1DE5A921005F409C /* SinglePhotoViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2363,6 +2365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */,
+				3A7A7D901DE5A921005F409C /* SinglePhotoViewController.swift in Sources */,
 				C24F84DC1D000CF5002EA203 /* MoreAboutMe.swift in Sources */,
 				C2A2E7931D96565F005084A7 /* SearchLocationTableViewController.swift in Sources */,
 				C267302C1D27D49100F2C822 /* SelectGenderViewController.swift in Sources */,
