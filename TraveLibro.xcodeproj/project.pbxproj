@@ -351,7 +351,6 @@
 		FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6941DE4732A0008634B /* QuartzCore.framework */; };
 		FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6981DE4740B0008634B /* UIKit.framework */; };
 		FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D69A1DE474180008634B /* WebKit.framework */; };
-		FCB078361DE578BE00E7818F /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB078351DE578BE00E7818F /* ImgLyKitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -726,7 +725,6 @@
 		FCB2D6941DE4732A0008634B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FCB2D6981DE4740B0008634B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCB2D69A1DE474180008634B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		FCB078351DE578BE00E7818F /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2082,12 +2080,12 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = YVWVDTRG4B;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
 							};
 						};
-						ProvisioningStyle = Manual;
 					};
 					1A944E171CCB4567007EB5BD = {
 						CreatedOnToolsVersion = 7.3;
@@ -2428,7 +2426,6 @@
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
 				3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */,
-				FCB078361DE578BE00E7818F /* ImgLyKitViewController.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
 				C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */,
 				C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */,
