@@ -1491,7 +1491,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("single photo: \(sender)")
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
         singlePhotoController.mainImage?.image = sender.image
-        self.present(singlePhotoController, animated: true, completion: nil)
+        //self.present(singlePhotoController, animated: true, completion: nil)
+        //self.navigationController?.pushViewController(singlePhotoController, animated: true)
     }
     
     func showReviewButton(post: JSON, isIndex: Bool, index: Int?) {
@@ -2475,15 +2476,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("image name: \(imageString)")
         let getImageUrl = adminUrl + "upload/readFile?file=" + imageString + "&width=500"
         print("image url: \(getImageUrl)")
-        let mapurl = URL(string: imageString)
-        do {
-//            DispatchQueue.main.async(execute: {
-//                let data = try! Data(contentsOf: mapurl!)
-//                print("image data: \(data)")
-//                self.otgView.cityImage.image = UIImage(data: data)
-//            })
-        } catch _ {
-            print("Unable to set map image")
+        if let mapurl = URL(string: getImageUrl) {
+            do {
+                DispatchQueue.main.async(execute: {
+                    let data = try! Data(contentsOf: mapurl)
+                    print("image data: \(data)")
+                    self.otgView.cityImage.image = UIImage(data: data)
+                })
+            } catch _ {
+                print("Unable to set map image")
+            }
         }
         
 //        } else {

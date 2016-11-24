@@ -26,6 +26,11 @@ class SinglePhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let leftButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        self.customNavigationBar(left: leftButton, right: nil)
+        
         self.view.backgroundColor = UIColor.black
         bottomView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         bottomView.layer.zPosition = 100
@@ -56,6 +61,10 @@ class SinglePhotoViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func popVC(_ sender: UIButton) {
+        self.navigationController!.popViewController(animated: true)
     }
 
     /*
