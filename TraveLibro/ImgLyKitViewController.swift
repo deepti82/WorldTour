@@ -15,6 +15,10 @@ class ImgLyKitViewController: UIViewController {
         super.viewDidLoad()
         let configuration = Configuration() { builder in
             builder.backgroundColor = UIColor.clear
+            builder.configureCameraViewController(){cameraConf in
+                cameraConf.allowedRecordingModes = [.video]
+                cameraConf.maximumVideoLength = 6
+            }
         }
         let cameraViewController = CameraViewController(configuration:configuration)
         present(cameraViewController, animated: true, completion: nil)
