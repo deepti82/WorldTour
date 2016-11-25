@@ -1341,6 +1341,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             photos = post["photos"].array!
             checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
+            checkIn.mainPhoto.tag = 0
+            checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
             
             let likeMainPhoto = UITapGestureRecognizer(target: self, action: #selector(PhotosOTG.sendLikes(_:)))
             likeMainPhoto.numberOfTapsRequired = 2
@@ -1361,6 +1363,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 print("in the for loop \(post["photos"][i + 1]["name"])")
                 checkIn.otherPhotosStack[i].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")!))
                 checkIn.otherPhotosStack[i].isHidden = false
+                checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
+                checkIn.otherPhotosStack[i].tag = i + 1
+                checkIn.otherPhotosStack[i].accessibilityLabel = post["_id"].string!
+                
+                checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
                 
             }
             
@@ -1414,7 +1421,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     // CHECKIN MAP IMAGE
                     if post["checkIn"]["lat"].string != nil && post["checkIn"]["long"].string != nil {
                         
-                        let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)"
+                        let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)&key=\(mapKey)"
                         print("\(imageString)")
                         var mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
                         if mapurl == nil {
@@ -1492,7 +1499,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("single photo: \(sender)")
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
         singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.postId = sender.view.accessibilityLabel
         self.present(singlePhotoController, animated: true, completion: nil)
+        //self.navigationController?.pushViewController(singlePhotoController, animated: true)
     }
     
     func showReviewButton(post: JSON, isIndex: Bool, index: Int?) {
@@ -2476,15 +2486,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("image name: \(imageString)")
         let getImageUrl = adminUrl + "upload/readFile?file=" + imageString + "&width=500"
         print("image url: \(getImageUrl)")
-        let mapurl = URL(string: imageString)
-        do {
-//            DispatchQueue.main.async(execute: {
-//                let data = try! Data(contentsOf: mapurl!)
-//                print("image data: \(data)")
-//                self.otgView.cityImage.image = UIImage(data: data)
-//            })
-        } catch _ {
-            print("Unable to set map image")
+        if let mapurl = URL(string: getImageUrl) {
+            do {
+                DispatchQueue.main.async(execute: {
+                    let data = try! Data(contentsOf: mapurl)
+                    print("image data: \(data)")
+                    self.otgView.cityImage.image = UIImage(data: data)
+                })
+            } catch _ {
+                print("Unable to set map image")
+            }
         }
         
 //        } else {
@@ -2651,6 +2662,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.imagePicker.sourceType = .camera
             self.present(self.imagePicker, animated: true, completion: nil)
         })
+        let customeAction = UIAlertAction(title: "Photo Editor", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+            let imgLyKit = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
+            self.present(imgLyKit, animated: true, completion: nil)
+            
+        })
         let saveAction = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
@@ -2806,6 +2825,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(saveAction)
         optionMenu.addAction(cancelAction)
+        optionMenu.addAction(customeAction)
         
         self.present(optionMenu, animated: true, completion: nil)
         

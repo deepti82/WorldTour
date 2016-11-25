@@ -18,6 +18,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var mentions: [String] = []
     var mentionSuggestions: [JSON] = []
     var hashtagSuggestions: [JSON] = []
+    var previousHashtags: [String] = []
+    var editComment: JSON!
     
     @IBOutlet weak var mentionSuggestionsTable: UITableView!
     @IBOutlet weak var hashTagSuggestionsTable: UITableView!
@@ -39,8 +41,44 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 mentions.append(eachText)
             }
         }
-        setAllComments(addComment.text)
-        addComment.text = ""
+        
+        if isEdit {
+            
+            let set1: Set = Set(previousHashtags)
+            let set2: Set = Set(hashtags)
+            
+            let intersection = set1.intersection(set2)
+            
+            addedHashtags = Array(set2.subtracting(intersection))
+            removedHashtags = Array(set1.subtracting(intersection))
+            
+            request.editComment(commentId: editComment["_id"].string!, commentText: editComment["text"].string!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        
+                        self.getAllComments()
+                    }
+                    else {
+                        
+                        
+                    }
+                    
+                })
+                
+            })
+            
+        }
+        else {
+            setAllComments(addComment.text)
+            addComment.text = ""
+        }
         
     }
     override func viewDidLoad() {
@@ -80,12 +118,23 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    var removedHashtags: [String] = []
+    var addedHashtags: [String] = []
+    var isEdit = false
+    
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         if self.comments[indexPath.row]["user"]["_id"].string! == currentUser["_id"].string! {
             
             let more = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
-                print("more button tapped")
+                print("edit button tapped")
+                
+                self.addComment.text = self.comments[indexPath.row]["text"].string!
+                self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
+                self.editComment = self.comments[indexPath.row]
+                self.isEdit = true
+                
             }
             more.backgroundColor = UIColor.lightGray
             
@@ -125,7 +174,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             let share = UITableViewRowAction(style: .normal, title: "Reply") { action, index in
                 print("share button tapped")
                 
-                let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string) "
+                let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string!) "
                 self.addComment.text = userTag
                 
             }
@@ -140,6 +189,24 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
     }
+    
+    func getHashtagsFromText(oldText: String) -> [String] {
+        
+        var hashtags: [String] = []
+        
+        let oldTextArray = oldText.components(separatedBy: " ")
+        
+        for word in oldTextArray {
+            
+            if word.contains("#") {
+                hashtags.append(word)
+            }
+            
+        }
+        
+        return hashtags
+    }
+    
     
 //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
 //        // the cells you would like the actions to appear needs to be editable
