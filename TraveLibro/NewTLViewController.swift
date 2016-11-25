@@ -1291,6 +1291,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         checkIn.likeViewLabel.text = "\(post["like"].array!.count) Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
         checkIn.commentButton.setTitle(post["uniqueId"].string!, for: .normal)
+        checkIn.commentButton.setTitle(post["_id"].string!, for: .application)
         otherCommentId = post["_id"].string!
         currentPost = post
         print("post: \(post)")

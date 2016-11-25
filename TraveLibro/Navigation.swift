@@ -1836,4 +1836,54 @@ class Navigation {
         
     }
     
+    func deleteComment(commentId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let params = ["_id": commentId, "type": "post"] as [String: Any]
+//            let editComment = ["_id", "text", "user", "name"]
+            
+            
+            let opt = try HTTP.POST(adminUrl + "comment/deletePostComment", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print("delete comment response: \(json)")
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func editComment(commentId: String, commentText: String, userId:  String, userName: String, hashtag: [String], addedHashtags: [String], removedHashtags: [String], completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let params = ["_id": commentId, "text": commentText, "user": userId, "name": userName, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
+            
+            let opt = try HTTP.POST(adminUrl + "comment/editComment", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print("edit comment response: \(json)")
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
 }

@@ -8,70 +8,44 @@
 
 import UIKit
 
-class SuggestionsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SuggestionsViewController: UIViewController {
     
     var suggestions: [JSON] = []
     var whichSuggestion = "hashtag"
     var textVar = ""
     
+    @IBOutlet weak var suggestionsTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        
-        
+        getSuggestions()
+//        suggestionsTable.footer View = UIView()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return suggestions.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SuggestionsTableViewCell
-        return cell
-        
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        
+//        return suggestions.count
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        
+//        
+//        
+//    }
     
     func getSuggestions() {
         
         if whichSuggestion == "hashtag" {
-            getHashtags()
+            print("get hashtag")
+//            getHashtags()
         }
         else if whichSuggestion == "mentions" {
+            print("get mentions")
             getMentions()
         }
     }
     
-    func getHashtags() {
-        
-        request.getHashtags(hashtag: textVar, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-//                    self.comments = response["data"]["comment"].array!
-//                    self.commentsTable.reloadData()
-                    
-                }
-                else {
-                    
-                    
-                }
-                
-            })
-            
-        })
-        
-    }
+
     
     func getMentions() {
         
@@ -87,7 +61,7 @@ class SuggestionsViewController: UIViewController, UITableViewDataSource, UITabl
                 else if response["value"].bool! {
                     
                     //                    self.comments = response["data"]["comment"].array!
-                    //                    self.commentsTable.reloadData()
+                    self.suggestionsTable.reloadData()
                     
                 }
                 else {
@@ -102,9 +76,3 @@ class SuggestionsViewController: UIViewController, UITableViewDataSource, UITabl
     
 }
 
-class SuggestionsTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var statistics: UILabel!
-    
-}
