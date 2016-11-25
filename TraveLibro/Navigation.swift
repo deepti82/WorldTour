@@ -7,6 +7,7 @@ let apiUrl = "http://104.155.207.185:92/api/"
 var adminUrl = "http://192.168.2.8:1337/api/"
 //var adminUrl = "http://192.168.43.157:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
+let apiSecretKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {
     
@@ -1760,6 +1761,29 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     print("mention response: \(json)")
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func deleteComment(commentId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let params = ["_id": commentId, "type": "post"] as [String: Any]
+            let opt = try HTTP.POST(adminUrl + "comment/deletePostComment", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print("delete comment response: \(json)")
                     completion(json)
                 }
             }

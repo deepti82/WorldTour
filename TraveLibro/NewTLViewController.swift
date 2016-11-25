@@ -1280,6 +1280,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         checkIn.likeViewLabel.text = "\(post["like"].array!.count) Likes"
         checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
         checkIn.commentButton.setTitle(post["uniqueId"].string!, for: .normal)
+        checkIn.commentButton.setTitle(post["_id"].string!, for: .application)
         otherCommentId = post["_id"].string!
         currentPost = post
         print("post: \(post)")
@@ -1421,7 +1422,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         }
                         DispatchQueue.main.async(execute: {
                             do {
-                                let data = try! Data(contentsOf: mapurl!)
+                                let data = try Data(contentsOf: mapurl!)
 //                                print("image data: \(data)")
                                 checkIn.mainPhoto.image = UIImage(data: data)
                             } catch _ {
@@ -1947,7 +1948,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("comment button tapped")
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = sender.titleLabel!.text!
-        comment.otherId = otherCommentId
+        comment.otherId = sender.title(for: .application)!
         self.navigationController?.pushViewController(comment, animated: true)
         
     }
