@@ -39,6 +39,7 @@
 		36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */; };
 		3A38275E1DDEE4BB007F181D /* NearMeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */; };
 		3A7A7D901DE5A921005F409C /* SinglePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A7D8F1DE5A921005F409C /* SinglePhotoViewController.swift */; };
+		3A7D360B1DE8441700786A83 /* PhotoCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D360A1DE8441700786A83 /* PhotoCommentViewController.swift */; };
 		3A9F8C7B1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F8C7A1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift */; };
 		3AAA769F1DDDBE8800DCB6F2 /* NearMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA769E1DDDBE8800DCB6F2 /* NearMeViewController.swift */; };
 		3ABFD8DE1DA8CA2500A51034 /* ChangeCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */; };
@@ -411,6 +412,7 @@
 		36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeListViewController.swift; sourceTree = "<group>"; };
 		3A7A7D8F1DE5A921005F409C /* SinglePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoViewController.swift; sourceTree = "<group>"; };
+		3A7D360A1DE8441700786A83 /* PhotoCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCommentViewController.swift; sourceTree = "<group>"; };
 		3A9F8C7A1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeDetailViewController.swift; sourceTree = "<group>"; };
 		3AAA769E1DDDBE8800DCB6F2 /* NearMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeViewController.swift; sourceTree = "<group>"; };
 		3ABFD8DD1DA8CA2500A51034 /* ChangeCity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeCity.xib; sourceTree = "<group>"; };
@@ -1520,6 +1522,7 @@
 				3A9F8C7A1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift */,
 				3A7A7D8F1DE5A921005F409C /* SinglePhotoViewController.swift */,
 				FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */,
+				3A7D360A1DE8441700786A83 /* PhotoCommentViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2437,6 +2440,7 @@
 				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,
 				C24909B81D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
+				3A7D360B1DE8441700786A83 /* PhotoCommentViewController.swift in Sources */,
 				C25BE1F71CFC2A2300C98DD3 /* InProfileOTGPost.swift in Sources */,
 				367B90F81DC23ADF00D76F13 /* RegexParser.swift in Sources */,
 				C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */,

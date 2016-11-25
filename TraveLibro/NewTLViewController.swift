@@ -1498,8 +1498,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("single photo: \(sender)")
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
         singlePhotoController.mainImage?.image = sender.image
-        singlePhotoController.index = sender.tag
-        singlePhotoController.postId = sender.accessibilityLabel
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.postId = sender.view.accessibilityLabel
         self.present(singlePhotoController, animated: true, completion: nil)
         //self.navigationController?.pushViewController(singlePhotoController, animated: true)
     }
