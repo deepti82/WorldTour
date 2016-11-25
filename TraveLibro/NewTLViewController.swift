@@ -90,7 +90,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     //@IBAction func addPosts(_ sender: AnyObject) {
     func addPosts(_ sender: UIButton) {
-        print("djksbnvsdjvvjsdbvsjk;vbs;jkvbsjkvbsjvbsdiuvbiuvjbevo;bwviju;bs;")
         
 //        addPosts = AddPostsOTGView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
 //        addPosts.addPhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosTL(_:)), forControlEvents: .TouchUpInside)
