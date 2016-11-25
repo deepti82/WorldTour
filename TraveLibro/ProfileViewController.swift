@@ -246,19 +246,22 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             print("isUrl: \(isUrl)")
             
             if isUrl {
-                
-                print("inside if statement")
-                let data = try? Data(contentsOf: URL(string: imageName)!)
-                
-                if data != nil {
+                DispatchQueue.main.async(execute: {
+                    print("inside if statement")
+                    let data = try? Data(contentsOf: URL(string: imageName)!)
                     
-                    print("some problem in data \(data)")
-                    //                uploadView.addButton.setImage(, forState: .Normal)
-                    profilePicture.image = UIImage(data: data!)
-                    profile.image.image = UIImage(data: data!)
-//                    makeTLProfilePicture(profile.image)
-                    makeTLProfilePicture(profilePicture)
-                }
+                    if data != nil {
+                        
+                        print("some problem in data \(data)")
+                        //                uploadView.addButton.setImage(, forState: .Normal)
+                        self.profilePicture.image = UIImage(data: data!)
+                        //self.profilePicture.layer.zPosition = 100
+                        self.profilePicture.isHidden = true
+                        profile.image.image = UIImage(data: data!)
+    //                    makeTLProfilePicture(profile.image)
+                        makeTLProfilePicture(self.profilePicture)
+                    }
+                })
             }
                 
             else {
@@ -275,6 +278,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     //uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
                     print("inside if statement \(profilePicture.image)")
                     profilePicture.image = UIImage(data: data!)
+                    //self.profilePicture.layer.zPosition = 100
+                    self.profilePicture.isHidden = true
                     print("sideMenu.profilePicture.image: \(profilePicture.image)")
                     profile.image.image = UIImage(data: data!)
                     makeTLProfilePicture(profilePicture)

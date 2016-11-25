@@ -57,6 +57,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let getBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         getBuddies.whichView = "TLMiddle"
         getBuddies.uniqueId = journeyId
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(getBuddies, animated: true)
         
     }
@@ -72,6 +73,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
         end.journey = myJourney
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController!.pushViewController(end, animated: true)
         
     }
@@ -192,6 +194,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             print(self.myJourney["kindOfJourney"])
             chooseCategory.selectedCategories = self.myJourney["kindOfJourney"]
             chooseCategory.journeyID = self.journeyID
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(chooseCategory, animated: true)
             
         }))
@@ -281,6 +284,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         next.addedFriends = addedBuddies
 //        addBuddies.uniqueId = journeyId
 //        addBuddies.journeyName = otgView.journeyName.text!
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController!.pushViewController(next, animated: true)
         
     }
@@ -325,6 +329,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "searchLocationsVC") as! SearchLocationTableViewController
         searchVC.places = self.locationArray
         searchVC.location = userLocation
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
@@ -343,6 +348,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("select another category tapped")
         
         let chooseCategory = storyboard?.instantiateViewController(withIdentifier: "editCategory") as! EditCategoryViewController
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(chooseCategory, animated: true)
         
 //        addView.editCategoryPickerView.hidden = false
@@ -792,6 +798,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func gotoSummaries(_ sender: UIButton) {
         
         let summaryVC = storyboard?.instantiateViewController(withIdentifier: "summaryTLVC") as! CollectionViewController
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(summaryVC, animated: true)
         summaryVC.journey = myJourney["_id"].string!
 //        infoView.animation.makeOpacity(0.0).animate(0.5)
@@ -803,6 +810,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func gotoPhotos(_ sender: UIButton) {
         
         let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(photoVC, animated: true)
         photoVC.whichView = "photo"
         photoVC.journey = myJourney["_id"].string!
@@ -815,6 +823,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func gotoReviews (_ sender: UIButton) {
         
         let ratingVC = storyboard?.instantiateViewController(withIdentifier: "ratingTripSummary") as! AddYourRatingViewController
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(ratingVC, animated: true)
         ratingVC.journeyId = myJourney["_id"].string!
 //        infoView.animation.makeOpacity(0.0).animate(0.5)
@@ -1017,6 +1026,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let checkInVC = storyboard?.instantiateViewController(withIdentifier: "checkInSearch") as! CheckInSearchViewController
         checkInVC.whichView = "TL"
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(checkInVC, animated: true)
         
     }
@@ -1153,6 +1163,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if isJourneyOngoing {
             
             let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController!.pushViewController(profile, animated: false)
             
         }
@@ -1501,7 +1512,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         singlePhotoController.index = sender.view.tag
         singlePhotoController.postId = sender.view.accessibilityLabel
         self.present(singlePhotoController, animated: true, completion: nil)
-        //self.navigationController?.pushViewController(singlePhotoController, animated: true)
     }
     
     func showReviewButton(post: JSON, isIndex: Bool, index: Int?) {
@@ -1958,6 +1968,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = sender.titleLabel!.text!
         comment.otherId = otherCommentId
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(comment, animated: true)
         
     }
@@ -2043,6 +2054,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func newItinerary(_ sender: UIButton) {
         
         let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(itineraryVC, animated: true)
         
     }
@@ -2125,6 +2137,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("inside journey category button")
         let categoryVC = storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(categoryVC, animated: true)
 //        showDetailsFn()
         
@@ -2260,6 +2273,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addBuddies.journeyName = otgView.journeyName.text!
         print("add buddies: \(addBuddies)")
         print("navigation: \(self.navigationController)")
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController!.pushViewController(addBuddies, animated: true)
 //        showBuddies()
 //        mainScroll.layer.zPosition = -1
@@ -2887,6 +2901,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             captionVC.currentSender = sender
             captionVC.imageIds = allrows
             captionVC.allIds = allImageIds
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController!.pushViewController(captionVC, animated: true)
             
 //        }
