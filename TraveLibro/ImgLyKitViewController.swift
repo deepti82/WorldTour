@@ -22,17 +22,46 @@ class ImgLyKitViewController: UIViewController {
     }
     
     func reloadRec(){
-        let configuration = Configuration() { builder in
-            builder.backgroundColor = UIColor.clear
-            builder.configureCameraViewController(){ cameraConf in
-                cameraConf.allowedRecordingModes = [.video]
-                cameraConf.maximumVideoLength = 6
-            }
-        }
-        let cameraViewController = CameraViewController(configuration:configuration)
-        present(cameraViewController, animated: true, completion: nil)
+//        let imgSample = UIImage(named:"add_profile_pic")
+//        let configuration = Configuration() { builder in
+//            builder.backgroundColor = UIColor.clear
+//            builder.configureCameraViewController(){ cameraConf in
+//                cameraConf.allowedRecordingModes = [.photo]
+//                cameraConf.maximumVideoLength = 6
+//                cameraConf
+//            }
+//        
+////            builder.configureToolStackController(){toolSck in
+////                toolSck.accessibilityNavigationStyle = .automatic
+////                addLeftBarButtonWithImage(imgSample!)
+////            }
+//        }
+//        let cameraViewController = CameraViewController(configuration:configuration)
+//        present(cameraViewController, animated: true, completion: {data in
+//            print(data)
+//        })
+        
+        
+        let sampleImage = UIImage(named: "add_profile_pic")
+        let photoEditViewController = PhotoEditViewController(photo: sampleImage!)
+        tool
+        let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
+        toolStackController.navigationItem.title = "Editor"
+        toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: "cancel:")
+        toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: "save:")
+        
+//        toolStackController.delegate = self
+        
+        let navigationController = UINavigationController(rootViewController: toolStackController)
+        navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.barStyle = .black
+        
+        present(navigationController, animated: true, completion: nil)
 
     }
+    
+    
+    
     
 //    private func customizeCameraController(builder: ConfigurationBuilder) {
 //        builder.configureCameraViewController { options in
