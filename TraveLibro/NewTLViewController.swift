@@ -2661,6 +2661,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.imagePicker.sourceType = .camera
             self.present(self.imagePicker, animated: true, completion: nil)
         })
+        let customeAction = UIAlertAction(title: "Photo Editor", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+            let imgLyKit = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
+            self.present(imgLyKit, animated: true, completion: nil)
+            
+        })
         let saveAction = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
@@ -2816,6 +2824,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(saveAction)
         optionMenu.addAction(cancelAction)
+        optionMenu.addAction(customeAction)
         
         self.present(optionMenu, animated: true, completion: nil)
         
