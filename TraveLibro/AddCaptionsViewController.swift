@@ -37,10 +37,11 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     var index: Int!
     
-    @IBAction func editPhoto(_ sender: AnyObject) {
+    @IBAction func editPhoto(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let imgLyKit = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
+        imgLyKit.currentImage = currentImage
         self.present(imgLyKit, animated: true, completion: nil)
     }
     

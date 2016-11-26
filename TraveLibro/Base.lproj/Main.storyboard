@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lQN-uy-ufQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -4681,7 +4681,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="editPhoto:" destination="Atl-4x-b1t" eventType="touchUpInside" id="Opa-7E-MAx"/>
+                                    <action selector="editPhoto:" destination="Atl-4x-b1t" eventType="touchUpInside" id="5XD-vQ-cPE"/>
                                     <action selector="previousImageCaption:" destination="Atl-4x-b1t" eventType="touchUpInside" id="JGc-Bv-sL3"/>
                                 </connections>
                             </button>

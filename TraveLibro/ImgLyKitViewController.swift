@@ -11,6 +11,8 @@ import imglyKit
 
 class ImgLyKitViewController: UIViewController {
     
+    var currentImage = UIImage()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,9 +43,10 @@ class ImgLyKitViewController: UIViewController {
 //            print(data)
 //        })
         
-        
+        print("current image")
+        print(currentImage)
         let sampleImage = UIImage(named: "add_profile_pic")
-        let photoEditViewController = PhotoEditViewController(photo: sampleImage!)
+        let photoEditViewController = PhotoEditViewController(photo: currentImage)
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
         toolStackController.navigationItem.title = "Editor"
         toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
