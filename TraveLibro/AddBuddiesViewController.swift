@@ -160,17 +160,41 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        print("which view: \(whichView)")
         
-        let rightButton = UIButton()
-        rightButton.setTitle("", for: UIControlState())
-//        rightButton.addTarget(self, action: nil, for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 8, width: 80, height: 30)
+        if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
+            
+            self.title = "Added Buddies"
+            
+            let leftButton = UIButton()
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            
+            let rightButton = UIButton()
+            leftButton.setImage(UIImage(named: "arrow_next_fa"), for: .normal)
+            rightButton.addTarget(self, action: #selector(self.saveButtonTapped(_:)), for: .touchUpInside)
+            rightButton.frame = CGRect(x: 0, y: 8, width: 80, height: 30)
+            
+            self.customNavigationBar(left: leftButton, right: rightButton)
+            
+        }
         
-        self.customNavigationBar(left: leftButton, right: rightButton)
+        else {
+         
+            let leftButton = UIButton()
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            
+            let rightButton = UIButton()
+            rightButton.setTitle("", for: UIControlState())
+            //        rightButton.addTarget(self, action: nil, for: .touchUpInside)
+            rightButton.frame = CGRect(x: 0, y: 8, width: 80, height: 30)
+            
+            self.customNavigationBar(left: leftButton, right: rightButton)
+            
+        }
         
         request.getFollowers(currentUser["_id"].string!, completion: {(response) in
             

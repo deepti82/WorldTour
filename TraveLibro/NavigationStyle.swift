@@ -176,15 +176,7 @@ extension UIViewController {
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
-//        self.navigationController?.navigationBar.barTintColor = UIColor.whiteColor().colorWithAlphaComponent(0.1)
-//        self.navigationController?.view.backgroundColor = UIColor.clearColor()
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-//        addBlurEffect()
-//            UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        
-//        self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.barStyle = .black
-//        self.navigationController?.navigationBar.translucent = false
         
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
         
@@ -194,21 +186,9 @@ extension UIViewController {
         let rightBarButton = UIBarButtonItem()
         rightBarButton.customView = right
         
-//        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: UIImage(named: "add_fa_icon"), style: .Plain, target: self, action: #selector(UIViewController.setForwardController(_:))), animated: true)
         self.navigationItem.leftBarButtonItem = leftBarButton
         self.navigationItem.rightBarButtonItem = rightBarButton
         
-//        self.navigationItem.setRightBarButtonItem(UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.setBackwardController(_:))), animated: true)
-//        self.navigationController?.toolbar.barTintColor = mainBlueColor
-//        self.navigationController?.navigationBar.barTintColor = mainBlueColor
-//        self.navigationController?.navigationBar.barStyle = .Black
-//        
-//        self.navigationItem.setLeftBarButtonItem(UIBarButtonItem(image: UIImage(named: "arrow_next_fa"), style: .Plain, target: self, action: #selector(UIViewController.setBackwardController(_:))), animated: true)
-//        self.navigationController?.toolbar.barTintColor = mainBlueColor
-//        self.navigationController?.navigationBar.barTintColor = mainBlueColor
-//        self.navigationController?.navigationBar.barStyle = .Black
-        
-        //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
         
