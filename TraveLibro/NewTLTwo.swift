@@ -75,10 +75,13 @@ extension NewTLViewController {
 //        }
         
         let buddyView = SayBye(frame: CGRect(x: 0, y: 10, width: 300, height: 250))
-        buddyView.center = self.view.center
+        buddyView.center.x = self.view.center.x
         buddyView.profileName.text = post["user"]["name"].string!
-        buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
-        makeTLProfilePicture(buddyView.profileImageView)
+        DispatchQueue.main.async(execute: {
+            buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
+            print("\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")
+            makeTLProfilePicture(buddyView.profileImageView)
+        })
         layout.addSubview(buddyView)
         addHeightToLayout(height: buddyView.frame.height)
         
