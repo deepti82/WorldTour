@@ -99,22 +99,31 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        addPosts.animation.makeOpacity(1.0).animate(0.5)
 //        getJourney()
         
-        //let vc = storyboard?.instantiateViewControllerWithIdentifier("") as! CreatePostViewController
-        //self.navigationController.pushViewController()
+        //let vc = storyboard?.instantiateViewController(withIdentifier: "createPost") as! CreatePostViewController
+        //self.navigationController?.pushViewController(vc, animated: true)
         
         let postButton = UIButton()
         postButton.setTitle("Post", for: .normal)
+        postButton.titleLabel?.textColor = UIColor.white
         postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
         postButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
+        
+        let cancelButton = UIButton()
+        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.titleLabel?.textColor = UIColor.white
+        //cancelButton.addTarget(self, action: nil, for: .touchUpInside)
+        cancelButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
+        
         
 //        let leftButton = UIButton()
 //        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
 //        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
 //        leftButton.frame = CGRectMake(-10, 0, 30, 30)
 
-        self.customNavigationBar(left: nil, right: nil)
-        self.customNavigationBar(left: nil, right: postButton)
+        //self.customNavigationBar(left: nil, right: nil)
+        //self.customNavigationBar(left: nil, right: postButton)
         
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
 //        if Reachability.isConnectedToNetwork() {
         
@@ -154,7 +163,33 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         backView.layer.zPosition = 10
         backView.addSubview(newScroll)
         
-        addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
+        toolbar.barTintColor = mainBlueColor
+        toolbar.tintColor = UIColor.white
+        
+        var items = [UIBarButtonItem]()
+        
+//        var cancelButtonItem = UIBarButtonItem()
+//        cancelButtonItem.setTitle("Cancel", for: .normal)
+//        cancelButtonItem.titleLabel?.textColor = UIColor.white
+//        //cancelButtonItem.addTarget(self, action: nil, for: .touchUpInside)
+//        cancelButtonItem.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
+//        
+//        var postButtonItem = UIBarButtonItem()
+//        postButtonItem.setTitle("Post", for: .normal)
+//        postButtonItem.titleLabel?.textColor = UIColor.white
+//        //postButtonItem.addTarget(self, action: nil, for: .touchUpInside)
+//        postButtonItem.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
+        
+        items.append(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(NewTLViewController.closeAdd(_:))))
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
+        items.append(UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(NewTLViewController.newPost(_:))))
+        toolbar.items = items
+        backView.addSubview(toolbar)
+        
+        addView = AddActivityNew(frame: CGRect(x: 0, y: -20, width: self.view.frame.width, height: self.view.frame.height))
+        addView.postCancelButton.isHidden = true
+        addView.postButtonUp.isHidden = true
         print("add view: \(addView)")
         displayFriendsCount()
         addView.layer.zPosition = 10

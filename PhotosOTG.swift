@@ -124,6 +124,8 @@ class PhotosOTG: UIView {
         
         lineUp.backgroundColor = UIColor.clear
         
+        commentIcon.tintColor = mainBlueColor
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
