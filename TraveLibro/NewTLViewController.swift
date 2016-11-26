@@ -99,6 +99,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        addPosts.animation.makeOpacity(1.0).animate(0.5)
 //        getJourney()
         
+        //let vc = storyboard?.instantiateViewControllerWithIdentifier("") as! CreatePostViewController
+        //self.navigationController.pushViewController()
+        
         let postButton = UIButton()
         postButton.setTitle("Post", for: .normal)
         postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
