@@ -8064,7 +8064,7 @@
         <!--Create Post View Controller-->
         <scene sceneID="3Ir-EE-qWf">
             <objects>
-                <viewController id="jDx-ic-H3C" customClass="CreatePostViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createPost" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jDx-ic-H3C" customClass="CreatePostViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3p3-SB-gW0"/>
                         <viewControllerLayoutGuide type="bottom" id="AcE-vl-9JP"/>
@@ -8072,8 +8072,22 @@
                     <view key="view" contentMode="scaleToFill" id="irO-9b-cz8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zs9-Pd-Puf">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zs9-Pd-Puf" firstAttribute="leading" secondItem="irO-9b-cz8" secondAttribute="leading" id="K23-0s-ThX"/>
+                            <constraint firstItem="Zs9-Pd-Puf" firstAttribute="top" secondItem="3p3-SB-gW0" secondAttribute="bottom" id="Up1-9R-G1Z"/>
+                            <constraint firstAttribute="trailing" secondItem="Zs9-Pd-Puf" secondAttribute="trailing" id="Xaq-Qk-wgo"/>
+                            <constraint firstItem="AcE-vl-9JP" firstAttribute="top" secondItem="Zs9-Pd-Puf" secondAttribute="bottom" id="aSe-bh-D8E"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="Zs9-Pd-Puf" id="ZIq-wy-NM2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLz-8o-oY6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

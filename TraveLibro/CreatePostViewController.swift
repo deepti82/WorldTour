@@ -10,6 +10,7 @@ import UIKit
 
 class CreatePostViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     var newScroll: UIScrollView!
     let backView = UIView()
     var darkBlur: UIBlurEffect!
@@ -41,7 +42,7 @@ class CreatePostViewController: UIViewController {
                 flag = 1
                 backView.isHidden = false
                 addView.isHidden = false
-                newScroll.isHidden = false
+                scrollView.isHidden = false
             }
         }
         
@@ -56,17 +57,11 @@ class CreatePostViewController: UIViewController {
             backView.addSubview(blurView)
         }
         
-        print("in the add posts function")
-        //uploadedphotos = []
-        newScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        backView.layer.zPosition = 10
-        backView.addSubview(newScroll)
-        
         addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         //displayFriendsCount()
         addView.layer.zPosition = 10
-        newScroll.addSubview(addView)
-        newScroll.contentSize.height = self.view.frame.height
+        scrollView.addSubview(addView)
+        scrollView.contentSize.height = self.view.frame.height
         //addLocationTapped(nil)
         
         addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), for: .touchUpInside)
