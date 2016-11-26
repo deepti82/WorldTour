@@ -566,7 +566,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             
                             print("response arrived new post!")
                             post.flushRows(Int64(latestPost))
-                            photo.flushRows(String(latestPost))
+//                            photo.flushRows(localId: String(latestPost))
                             buddy.flushRows(String(latestPost))
                             self.getJourney()
                             
@@ -786,7 +786,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let postCount = postDb.getRowCount() + 1
         let photosDb = Photo()
         
-        photosDb.flushRows(String(postCount))
+//        photosDb.flushRows(localId: String(postCount))
         
         addView.categoryView.isHidden = true
         addView.categoryLabel.isHidden = false
@@ -999,6 +999,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             })
             
 //        })
+        
+        print(retimage)
+        return retimage
+    }
+    
+    func getAssetData(_ asset: PHAsset) -> Data {
+        
+        var retimage = Data()
+        
+        let options = PHImageRequestOptions()
+        options.isSynchronous = true
+        
+        PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .aspectFit, options: options, resultHandler: {(result, info) in
+            
+            print("thumbnail result: \(result!)")
+            print("thumbnail info: \(info)")
+            retimage = UIImagePNGRepresentation(result!)!
+        })
         
         print(retimage)
         return retimage
@@ -2708,127 +2726,36 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }, finish: { (assets: [PHAsset]) -> Void in
                     
                     //**************************** MIDHET'S CODE ******************************
-                    self.addView.photosIntialView.isHidden = true
-                    self.addView.photosFinalView.isHidden = false
-                    self.addView.photosCount.text = "\(self.allAssets.count)"
-                    self.selectPhotosCount = self.selectPhotosCount - self.allAssets.count
-                    self.addView.horizontalScrollForPhotos.isUserInteractionEnabled = true
                     
-                    for subview in self.addView.horizontalScrollForPhotos.subviews {
+                    if sender.tag == 1 {
                         
-                        if subview.tag == 1 {
-                            
-                            self.removeWidthToPhotoLayout(subview.frame.width + 10.0)
-                            subview.removeFromSuperview()
-                            
-                        }
+                        self.photosAddedMore = true
                         
                     }
                     
-                    
-                    var index = 0
-                    
-                    
-                    if Reachability.isConnectedToNetwork() {
-                        self.addView.postButton.isHidden = true
-                    }
-                    print("Finish: \(self.addView.postButton.isHidden)")
-                    
-                    var assetArray: [URL] = []
-                    
-                    if self.previouslyAddedPhotos != nil {
-                        
-                        assetArray = self.previouslyAddedPhotos
-                        
+                    if !self.photosAddedMore {
+                        self.photosGroupId += 1
                     }
                     
-                    for asset in assets {
-                        
-                        let image = self.getAssetThumbnail(asset)
-                        let assetIndex = assets.index(of: asset)
-                        
-                        print("got uiimage: \(image)")
-                        
-                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(assetIndex!).jpg"
-                        assetArray.append(URL(string: exportFilePath)!)
-                        
-                        let visibleImage = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-                        visibleImage.tag = 1
-                        visibleImage.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
-                        self.addWidthToPhotoLayout(visibleImage.frame.width + 10.0)
-                        self.addView.horizontalScrollForPhotos.addSubview(visibleImage)
-                        
-                        DispatchQueue.main.sync(execute: {
-                        
-                            do {
-                                
-                                let tempImage = UIImageJPEGRepresentation(image, 0.87)
-                                
-                                if tempImage == nil {
-                                    
-                                    UIGraphicsBeginImageContext(image.size)
-                                    image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
-                                    let newImage = UIGraphicsGetImageFromCurrentImageContext()
-                                    UIGraphicsEndImageContext()
-                                    let newTemp = UIImageJPEGRepresentation(newImage!, 0.50)
-                                    visibleImage.setImage(UIImage(data: newTemp!), for: UIControlState())
-                                    
-                                }
-                                    
-                                else {
-                                    
-                                    if index <= self.addView.photosCollection.count - 1 {
-                                        
-                                        visibleImage.setImage(UIImage(data: tempImage!), for: UIControlState())
-                                        
-                                    }
-                                    
-                                }
-                                print("file created")
-                                visibleImage.layer.cornerRadius = 5.0
-                                visibleImage.clipsToBounds = true
-                                
-                                self.addView.photosIntialView.isHidden = true
-                                self.addView.photosFinalView.isHidden = false
-                                self.addHeightToNewActivity(self.addView.photosFinalView.frame.height - self.addView.photosIntialView.frame.height)
-                                self.addView.photosCount.text = "(\(assets.count))"
-                                
-                                index = index + 1
-                                
-                            } catch let error as NSError {
-                                
-                                print("error creating file: \(error.localizedDescription)")
-                                
-                            }
-                            
-                        })
-                        
-                        print("asset array: \(assetArray)")
-                        self.tempAssets = assetArray
-                        self.allAssets += assetArray
-                        
-                        if self.previouslyAddedPhotos == nil {
-                            
-                            self.uploadedphotos = []
-                        }
-                        
-                    }
+                    self.photosAdded(assets: assets)
                     
-                    DispatchQueue.main.sync(execute: {
+//                    var index = 0
+//                    
+//                    
+//                    if Reachability.isConnectedToNetwork() {
+//                        
+//                    }
+//                    print("Finish: \(self.addView.postButton.isHidden)")
+//                    
+//                    var assetArray: [URL] = []
+//                    
+//                    if self.previouslyAddedPhotos != nil {
+//                        
+//                        assetArray = self.previouslyAddedPhotos
+//                        
+//                    }
                     
-                        let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-                        addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-                        addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: UIControlState())
-                        addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-                        addMorePhotosButton.layer.cornerRadius = 5.0
-                        addMorePhotosButton.clipsToBounds = true
-                        addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
-                        addMorePhotosButton.tag = 2
-                        self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
-                        self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
-                        self.storePhotos(assetArray)
-                        
-                    })
+                    
                 }, completion: nil)
         })
         
@@ -2845,6 +2772,73 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         self.present(optionMenu, animated: true, completion: nil)
         
+    }
+    
+    var photosAddedMore = false
+    var photosGroupId = 0
+    
+    func photosAdded(assets: [PHAsset]) {
+        
+        self.addView.photosIntialView.isHidden = true
+        self.addView.photosFinalView.isHidden = false
+//        self.addView.photosCount.text = "\(self.allAssets.count)"
+//        self.selectPhotosCount = self.selectPhotosCount - self.allAssets.count
+//        self.addView.horizontalScrollForPhotos.isUserInteractionEnabled = true
+        
+        for subview in self.addView.horizontalScrollForPhotos.subviews {
+            
+            if subview.tag == 1 {
+                
+                self.removeWidthToPhotoLayout(subview.frame.width + 10.0)
+                subview.removeFromSuperview()
+                
+            }
+            
+        }
+        
+        self.addView.postButton.isEnabled = false
+        
+        var allImages: [UIImage] = []
+        
+        for asset in assets {
+            
+            allImages.append(getAssetThumbnail(asset))
+            addPhotoToLayout(photo: getAssetThumbnail(asset))
+            let photoData = getAssetData(asset)
+            photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
+        }
+        
+        allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
+        let captionButton = UIButton()
+        captionButton.setImage(allImages[0], for: .normal)
+        addCaption(captionButton)
+        
+        DispatchQueue.main.sync(execute: {
+            
+            let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+            addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
+            addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+            addMorePhotosButton.layer.cornerRadius = 5.0
+            addMorePhotosButton.clipsToBounds = true
+            addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
+            addMorePhotosButton.tag = 1
+            self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
+            self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+            
+        })
+        
+    }
+    
+    func addPhotoToLayout(photo: UIImage) {
+        
+        let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+        photosButton.setImage(photo, for: .normal)
+        photosButton.layer.cornerRadius = 5.0
+        photosButton.clipsToBounds = true
+        photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
+        self.addWidthToPhotoLayout(photosButton.frame.width)
+        self.addView.horizontalScrollForPhotos.addSubview(photosButton)
     }
     
     func photosAdded(selectedImages: [UIImage]) {
@@ -2895,31 +2889,34 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("add new captions")
         
-//        if !addView.postButton.hidden {
+        var allPhotos: [UIButton] = []
         
             let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = addView.horizontalScrollForPhotos.subviews
-            print("sender image: \(sender.currentImage), \(sender), \(addView.horizontalScrollForPhotos.subviews), \(allImageIds)")
+        
+        for subview in addView.horizontalScrollForPhotos.subviews {
+            
+            if subview.tag != 1 {
+                
+                let view = subview as! UIButton
+                allPhotos.append(view)
+                
+            }
+            
+        }
+        
+            print("sender image: \(sender.currentImage), \(sender), \(addView.horizontalScrollForPhotos.subviews), \(allImageIds) \(allPhotos)")
+        
+        DispatchQueue.main.sync(execute: {
+        
             captionVC.currentImage = sender.currentImage!
             captionVC.currentSender = sender
-            captionVC.imageIds = allrows
-            captionVC.allIds = allImageIds
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+            captionVC.allImages = allPhotos
+            captionVC.allIds = self.allImageIds
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController!.pushViewController(captionVC, animated: true)
             
-//        }
-//        else {
-//            
-//            let alert = UIAlertController(title: nil, message:
-//                "photos not uploaded yet!", preferredStyle: .Alert)
-//            self.presentViewController(alert, animated: false, completion: nil)
-//            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler:
-//                {action in
-//                    self.dismissViewControllerAnimated(false, completion: nil)
-//            }))
-//            
-//        }
-        
+        })
         
     }
     
@@ -2989,7 +2986,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             print("photos array: \(photo)")
             if let data = try? Data(contentsOf: photo) {
                 DispatchQueue.main.sync(execute: {
-                    photos.setPhotos("\(postCount + 1)", Name: nil, Data: data, Caption: nil)
+                    photos.setPhotos(name: nil, data: data, caption: nil, groupId: Int64(photosGroupId))
                 })
             } else {
                 print("\(#line) no data found from photos")
@@ -2997,7 +2994,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        allrows = photos.getPhotosOfPost("\(postCount + 1)")
+        allrows = photos.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
         print("allrows: \(allrows)")
         var localids: [Int64] = []
         for eachRow in allrows {

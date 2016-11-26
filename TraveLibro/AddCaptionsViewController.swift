@@ -35,7 +35,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var imageStackView: UIStackView!
     
-    var index: Int!
+    var index = 0
     
     @IBAction func previousImageCaption(_ sender: AnyObject) {
         
@@ -49,12 +49,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             print("previous caption")
             let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
-            captionVC.currentImage = allImages[index!].currentImage!
+            captionVC.currentImage = allImages[index].currentImage!
             captionVC.allIds = allIds
-            captionVC.currentSender = allImages[index!]
+            captionVC.currentSender = allImages[index]
             captionVC.allPhotos = allPhotos
             captionVC.imageIds = imageIds
             captionVC.currentId = currentId - 1
+            captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -79,6 +80,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             captionVC.allIds = allIds
             captionVC.imageIds = imageIds
             captionVC.currentId = currentId + 1
+            captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -112,18 +114,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        print("wcjwbiiouwebcwecbneiuwcbuciewrbcqjb")
-//        print(photoIndex)
-//        print(photoData)
-//        print(photoURL)
-//        print(photoImage)
-//        
-//        imageIds = photoIndex
-//        
-//        for i in 0..<photoImage.count {
-//            completeImages[i].image = photoImage[i]
-//        }
-        
         let leftButton = UIButton()
         leftButton.setTitle("Cancel", for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
@@ -153,21 +143,20 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
         print("new controller")
         
-        for images in imagesArray {
-            
-            if images.tag != 2 {
-                print("in all images append")
-                allImages.append(images as! UIButton)
-            }
-            
-        }
+//        for images in imagesArray {
+//            
+//            if images.tag != 1 {
+//                print("in all images append")
+//                allImages.append(images as! UIButton)
+//            }
+//            
+//        }
         
         imageForCaption.image = currentImage
-        index = allImages.index(of: currentSender)
+//        index = allImages.index(of: currentSender)!
         
         print("index is: \(index)")
         
-        //captionTextView.text = allIds[index]
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done
         
@@ -220,7 +209,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             
             if senderImageView.image == image.currentImage {
                 
-                index = allImages.index(of: image)
+                index = allImages.index(of: image)!
                 print("index in image tapped: \(index)")
                 
             }
@@ -237,6 +226,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             captionVC.currentSender = allImages[index]
             captionVC.allPhotos = allPhotos
             captionVC.allIds = allIds
+            captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -248,8 +238,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         let nextId = currentId + 1
         imageIds.append("\(nextId)")
         print(captionTextView.text)
-        PhotosDB.insertCaption("\(currentId)", caption: captionTextView.text)
         
+        if captionTextView.text != nil && captionTextView.text != "Add a caption..." {
+            PhotosDB.insertCaption(imageLocalId: Int64(currentId), caption: captionTextView.text)
+        }
     }
     
     func addNewCaption() {
@@ -263,12 +255,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             if photo["name"].string! == allIds[index] && captionTextView.text == photo["caption"].string! {
                 
                 flag = 1
-                break
             }
             else if photo["name"].string! == allIds[index] && captionTextView.text != photo["caption"].string! {
                 
                 allPhotos.remove(at: allPhotos.index(of: photo)!)
-                break
             }
             
         }
@@ -278,12 +268,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             print("inside add caption")
             if captionTextView.text != "" &&  captionTextView.text != "Add a caption..." {
                 
-//                allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
+                allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
                 
             }
             else {
                 
-//                allPhotos.append(["name": allIds[index], "caption": ""])
+                allPhotos.append(["name": allIds[index], "caption": ""])
             }
         }
         
@@ -334,12 +324,4 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         self.popVC(sender)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-
 }

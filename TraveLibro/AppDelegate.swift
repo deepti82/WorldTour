@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if(onlyOnce)
         {
             onlyOnce = false
-            print(path)
+            print("database path: \(path)")
         }
         return db;
         

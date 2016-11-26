@@ -113,7 +113,7 @@ public class Photo {
     let photos = Table("Photos")
     
     let id = Expression<Int64>("id")
-    let postid = Expression<String>("postId")
+    let groupid = Expression<Int64>("groupId")
     let name = Expression<String?>("photoName")
     let data = Expression<Data>("photoData")
     let caption = Expression<String?>("caption")
@@ -122,23 +122,23 @@ public class Photo {
     init() {
         try! db.run(photos.create(ifNotExists: true) { t in
             t.column(id, primaryKey: true)
-            t.column(postid)
+            t.column(groupid)
             t.column(name, unique: true)
             t.column(data, unique: true)
             t.column(caption)
         })
     }
     
-    func setPhotos(_ postId: String, Name: String?, Data: Foundation.Data, Caption: String?) {
+    func setPhotos(name: String?, data: Data, caption: String?, groupId: Int64) {
         
 //        dispatch_sync(dispatch_get_main_queue(),{
-            let count = try! db.scalar(self.photos.filter(self.data == Data).count)
+            let count = try! db.scalar(self.photos.filter(self.data == data).count)
             if(count == 0) {
                 let photoinsert = self.photos.insert(
-                    self.postid <- postId,
-                    self.name <- Name,
-                    self.data <- Data,
-                    self.caption <- Caption
+                    self.name <- name,
+                    self.data <- data,
+                    self.caption <- caption,
+                    self.groupid <- groupId
                 )
                 do {
                     try! db.run(photoinsert)
@@ -146,24 +146,23 @@ public class Photo {
                     
                 }
             } else {
-                let updaterow = self.photos.filter(self.data == Data)
-                try! db.run(updaterow.update(self.name <- Name))
-                try! db.run(updaterow.update(self.postid <- postId))
-                try! db.run(updaterow.update(self.data <- Data))
-                try! db.run(updaterow.update(self.caption <- Caption))
+                let updaterow = self.photos.filter(self.data == data)
+                try! db.run(updaterow.update(self.name <- name))
+                try! db.run(updaterow.update(self.data <- data))
+                try! db.run(updaterow.update(self.caption <- caption))
             }
 //        })
         
     }
     
-    func insertCaption(_ imageId: String, caption: String) {
+    func insertCaption(imageLocalId: Int64, caption: String) {
         
-        let count = try! db.scalar(self.photos.filter(self.id == Int64(imageId)!).count)
+        let count = try! db.scalar(self.photos.filter(self.id == Int64(imageLocalId)).count)
         if(count == 0) {
             print("no photos with same data found")
         } else {
-            let updaterow = self.photos.filter(self.id == Int64(imageId)!)
-            print("update row: \(imageId)")
+            let updaterow = self.photos.filter(self.id == Int64(imageLocalId))
+            print("update row: \(imageLocalId)")
             try! db.run(updaterow.update(self.caption <- caption))
         }
     }
@@ -180,15 +179,15 @@ public class Photo {
         }
     }
     
-    func getPhotosOfPost(_ post: String) -> [String] {
+    func getPhotosIdsOfPost(photosGroup: Int64) -> [String] {
         
         var value: [String] = []
         
-        let count = try! db.scalar(self.photos.filter(self.postid == post).count)
+        let count = try! db.scalar(self.photos.filter(self.groupid == photosGroup).count)
         if(count == 0) {
             print("")
         } else {
-            for row in try! db.prepare(self.photos.filter(self.postid == post)) {
+            for row in try! db.prepare(self.photos.filter(self.groupid == photosGroup)) {
                 
                 let photoId = String(row[id])
                 value.append(photoId)
@@ -200,34 +199,34 @@ public class Photo {
         
     }
     
-    func getPhotoNamesForPost(_ postId: String) -> [String] {
-        
-        var value: [String] = []
-        
-        let count = try! db.scalar(self.photos.filter(self.postid == postId).count)
-        if(count == 0) {
-            print("")
-        } else {
-            for row in try! db.prepare(self.photos.filter(self.postid == postId)) {
-                
-                let photoName = String(describing: row[name])
-                value.append(photoName)
-                
-            }
-        }
-        
-        return value
-        
-    }
+//    func getPhotoNamesForPost(_ postId: String) -> [String] {
+//        
+//        var value: [String] = []
+//        
+//        let count = try! db.scalar(self.photos.filter(self.postid == postId).count)
+//        if(count == 0) {
+//            print("")
+//        } else {
+//            for row in try! db.prepare(self.photos.filter(self.postid == postId)) {
+//                
+//                let photoName = String(describing: row[name])
+//                value.append(photoName)
+//                
+//            }
+//        }
+//        
+//        return value
+//        
+//    }
     
     func getRowCount() -> Int {
         let count = try! db.scalar(photos.count)
         return count
     }
     
-    func flushRows(_ postId: String) {
+    func flushRows(localId: Int64) {
         
-        let tempPhotos = photos.filter(postid == postId)
+        let tempPhotos = photos.filter(id == localId)
         do {
             if try! db.run(tempPhotos.delete()) > 0 {
                 print("deleted alice")
