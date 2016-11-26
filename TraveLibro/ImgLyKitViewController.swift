@@ -44,7 +44,6 @@ class ImgLyKitViewController: UIViewController {
         
         let sampleImage = UIImage(named: "add_profile_pic")
         let photoEditViewController = PhotoEditViewController(photo: sampleImage!)
-        tool
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
         toolStackController.navigationItem.title = "Editor"
         toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: "cancel:")
