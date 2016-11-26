@@ -44,20 +44,27 @@ class ImgLyKitViewController: UIViewController {
         
         let sampleImage = UIImage(named: "add_profile_pic")
         let photoEditViewController = PhotoEditViewController(photo: sampleImage!)
-        tool
+        
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
         toolStackController.navigationItem.title = "Editor"
-        toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: "cancel:")
-        toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: "save:")
-        
-//        toolStackController.delegate = self
-        
-        let navigationController = UINavigationController(rootViewController: toolStackController)
+        toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
+        toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
+            let navigationController = UINavigationController(rootViewController: toolStackController)
         navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.barStyle = .black
         
         present(navigationController, animated: true, completion: nil)
 
+    }
+    
+    
+    func toolStackController(toolStackController: ToolStackController, didFinishWithImage image: UIImage){
+        print("in tool stack ctrl")
+        print(image)
+    }
+    
+    func cancel(_ sender: UIGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     

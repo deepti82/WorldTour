@@ -37,6 +37,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     
     var index: Int!
     
+    @IBAction func editPhoto(_ sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
+        self.present(imgLyKit, animated: true, completion: nil)
+    }
+    
     @IBAction func previousImageCaption(_ sender: AnyObject) {
         
         addToLocalDB()
