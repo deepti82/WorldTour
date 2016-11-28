@@ -102,6 +102,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         //let vc = storyboard?.instantiateViewController(withIdentifier: "createPost") as! CreatePostViewController
         //self.navigationController?.pushViewController(vc, animated: true)
         
+//        var localIds: [Int] = []
+        
+        
+//        for each in allImageIds {
+//            
+//            localIds.append(Int64(allImageIds))
+//        }
+        
         let postButton = UIButton()
         postButton.setTitle("Post", for: .normal)
         postButton.titleLabel?.textColor = UIColor.white
@@ -496,7 +504,29 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func newPost(_ sender: UIButton) {
         
+        print("in new post")
+        
+//        DispatchQueue.main.sync(execute: {
+        
+            for photoToBeUploaded in photosToBeUploaded {
+                tempAssets.append(URL(string: photoToBeUploaded.url)!)
+                localDbPhotoIds.append(Int(photoToBeUploaded.localId))
+            }
+        
+            uploadMultiplePhotos(tempAssets, localIds: localDbPhotoIds)
+        
+            self.addView.postButton.isHidden = true
+        
+//        })
+        
         print("photos new post \(uploadedphotos)")
+        
+    }
+    
+    var prevPosts: [JSON] = []
+    var initialPost = true
+    
+    func postPartTwo() {
         
         let post = Post()
         let buddy = Buddy()
@@ -524,9 +554,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 print("location: \(location)")
                 
             }
-            if uploadedphotos.count > 0 {
+            if photosToBeUploaded.count > 0 {
                 
-                photos = uploadedphotos
+                for eachPhoto in photosToBeUploaded {
+                    
+                    print("photos caption: \(eachPhoto.caption)")
+                    photos.append(["name": eachPhoto.serverId, "caption": eachPhoto.caption])
+                }
+                
+//                photos = uploadedphotos
                 print("photos new post \(photos)")
                 
             }
@@ -574,7 +610,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
             
             print("buddies: \(buddies)")
-//            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: addView.categoryLabel.text!, Latitude: "\(currentLat!)", Longitude: "\(currentLong!)", Country: currentCountry, City: currentCity, Status: thoughts)
+            //            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: addView.categoryLabel.text!, Latitude: "\(currentLat!)", Longitude: "\(currentLong!)", Country: currentCountry, City: currentCity, Status: thoughts)
             
             let latestPost = post.getRowCount()
             
@@ -606,7 +642,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             
                             print("response arrived new post!")
                             post.flushRows(Int64(latestPost))
-//                            photo.flushRows(localId: String(latestPost))
+                            //                            photo.flushRows(localId: String(latestPost))
                             buddy.flushRows(String(latestPost))
                             self.getJourney()
                             
@@ -629,12 +665,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     })
                 })
                 
-            } else {
-//                let alertController = UIAlertController(title: "No Internet", message: "There is no internet, please try later.", preferredStyle: .alert)
-//                alertController.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-//                present(alertController, animated: false, completion: nil)
             }
-        
+            
         }
             
         else {
@@ -691,7 +723,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         
                     }
-
+                    
                 })
                 
             })
@@ -699,9 +731,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
     }
-    
-    var prevPosts: [JSON] = []
-    var initialPost = true
     
     
     func getJourney() {
@@ -2815,14 +2844,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var photosAddedMore = false
     var photosGroupId = 0
+    var photosToBeUploaded: [PhotoUpload] = []
     
     func photosAdded(assets: [PHAsset]) {
         
         self.addView.photosIntialView.isHidden = true
         self.addView.photosFinalView.isHidden = false
-//        self.addView.photosCount.text = "\(self.allAssets.count)"
-//        self.selectPhotosCount = self.selectPhotosCount - self.allAssets.count
-//        self.addView.horizontalScrollForPhotos.isUserInteractionEnabled = true
         
         for subview in self.addView.horizontalScrollForPhotos.subviews {
             
@@ -2835,15 +2862,38 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        self.addView.postButton.isEnabled = false
+//        self.addView.postButton.isEnabled = false
         
         var allImages: [UIImage] = []
+        var index = 0
         
         for asset in assets {
             
+            if  !photosAddedMore {
+                
+                index = assets.index(of: asset)!
+            }
+            
             allImages.append(getAssetThumbnail(asset))
-            addPhotoToLayout(photo: getAssetThumbnail(asset))
             let photoData = getAssetData(asset)
+            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).png"
+            print("export url: \(exportFileUrl)")
+            do {
+                let image = getAssetThumbnail(asset)
+                
+                if let data = UIImagePNGRepresentation(image) {
+                    try data.write(to: URL(string: exportFileUrl)!)
+                }
+                
+                allAssets.append(NSURL(string: exportFileUrl)! as URL)
+                photosToBeUploaded.append(PhotoUpload(localId: Int64(index), caption: "", serverId: "", url: exportFileUrl))
+                print("file created")
+            } catch let error as NSError {
+                
+                print("error creating file: \(error.localizedDescription)")
+                
+            }
+            addPhotoToLayout(photo: getAssetThumbnail(asset))
             photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
         }
         
@@ -2949,9 +2999,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         DispatchQueue.main.sync(execute: {
         
             captionVC.currentImage = sender.currentImage!
-            captionVC.currentSender = sender
+            captionVC.currentSender = allPhotos[0]
             captionVC.allImages = allPhotos
-            captionVC.allIds = self.allImageIds
+            captionVC.allPhotos = self.photosToBeUploaded
+            captionVC.getPhotoIds(groupId: Int64(photosGroupId))
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController!.pushViewController(captionVC, animated: true)
             
@@ -2960,12 +3011,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     var tempAssets: [URL] = []
-    var allImageIds: [String] = []
-    var localDbPhotoIds: [Int64] = []
+    var allImageIds: [Int] = []
+    var localDbPhotoIds: [Int] = []
     
 //    var uploadedPhotos: [String] = []
     
-    func uploadMultiplePhotos(_ assets: [URL], localIds: [Int64]) {
+    func uploadMultiplePhotos(_ assets: [URL], localIds: [Int]) {
         
         var photosCount = 0
         let photoDB = Photo()
@@ -2980,8 +3031,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         else if response["value"].bool! {
                             
                             photoDB.insertName(response["localId"].string!, Name: response["data"][0].string!)
-                            self.allImageIds.append(response["data"][0].string!)
+//                            self.allImageIds.append(response["data"][0].string!)
                             self.uploadedphotos.append(["name": response["data"][0].string!, "caption": ""])
+                            
+                            for (index, eachPhoto) in self.photosToBeUploaded.enumerated() {
+                                
+                                if eachPhoto.localId == Int64(response["localId"].string!) {
+                                    self.photosToBeUploaded[index].serverId = response["data"][0].string!
+                                }
+                                
+                            }
+                            
+                            
                             print("assets: \(self.tempAssets)")
                             if self.tempAssets.count > 1 {
                                 
@@ -2996,7 +3057,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                 print("done")
                                 self.tempAssets = []
                                 self.addView.postButton.isHidden = false
+                                self.postPartTwo()
                                 
+                            }
+                            else {
+                                print("no temp assets")
                             }
                             
                             
@@ -3013,43 +3078,43 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     var allrows: [String] = []
-    func storePhotos(_ photoArray: [URL]) {
-        
-        allrows = []
-        let postDb = Post()
-        let photos = Photo()
-        let postCount = postDb.getRowCount()
-        
-        for photo in photoArray {
-            
-            print("photos array: \(photo)")
-            if let data = try? Data(contentsOf: photo) {
-                DispatchQueue.main.sync(execute: {
-                    photos.setPhotos(name: nil, data: data, caption: nil, groupId: Int64(photosGroupId))
-                })
-            } else {
-                print("\(#line) no data found from photos")
-            }
-            
-        }
-        
-        allrows = photos.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
-        print("allrows: \(allrows)")
-        var localids: [Int64] = []
-        for eachRow in allrows {
-            
-            localids.append(Int64(eachRow)!)
-            
-        }
-        
-        localDbPhotoIds = localids
-        
-        if Reachability.isConnectedToNetwork() {
-            print("internet is connected")
-            uploadMultiplePhotos(photoArray, localIds: localids)
-        }
-        
-    }
+//    func storePhotos(_ photoArray: [URL]) {
+//        
+//        allrows = []
+//        let postDb = Post()
+//        let photos = Photo()
+//        let postCount = postDb.getRowCount()
+//        
+//        for photo in photoArray {
+//            
+//            print("photos array: \(photo)")
+//            if let data = try? Data(contentsOf: photo) {
+//                DispatchQueue.main.sync(execute: {
+//                    photos.setPhotos(name: nil, data: data, caption: nil, groupId: Int64(photosGroupId))
+//                })
+//            } else {
+//                print("\(#line) no data found from photos")
+//            }
+//            
+//        }
+//        
+//        allrows = photos.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId)) as! [String]
+//        print("allrows: \(allrows)")
+//        var localids: [Int64] = []
+//        for eachRow in allrows {
+//            
+//            localids.append(Int64(eachRow)!)
+//            
+//        }
+//        
+//        localDbPhotoIds = localids
+//        
+//        if Reachability.isConnectedToNetwork() {
+//            print("internet is connected")
+//            uploadMultiplePhotos(photoArray, localIds: localids)
+//        }
+//        
+//    }
     
     
     func addPhotosAgain(_ sender: UIButton) {

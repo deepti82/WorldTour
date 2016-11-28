@@ -47,6 +47,8 @@ let photo = Photo()
 let width = UIScreen.main.bounds.size.width
 let height = UIScreen.main.bounds.size.height
 
+var editedImage = UIImage()
+
 var leftViewController: SideNavigationMenuViewController!
 
 @UIApplicationMain
