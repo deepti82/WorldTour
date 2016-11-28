@@ -142,6 +142,7 @@ public class Photo {
                 )
                 do {
                     try! db.run(photoinsert)
+                    print("photo added!")
                 } catch _ {
                     
                 }
@@ -179,9 +180,9 @@ public class Photo {
         }
     }
     
-    func getPhotosIdsOfPost(photosGroup: Int64) -> [String] {
+    func getPhotosIdsOfPost(photosGroup: Int64) -> [Int] {
         
-        var value: [String] = []
+        var value: [Int] = []
         
         let count = try! db.scalar(self.photos.filter(self.groupid == photosGroup).count)
         if(count == 0) {
@@ -189,7 +190,7 @@ public class Photo {
         } else {
             for row in try! db.prepare(self.photos.filter(self.groupid == photosGroup)) {
                 
-                let photoId = String(row[id])
+                let photoId = Int(row[id])
                 value.append(photoId)
                 
             }
@@ -198,6 +199,26 @@ public class Photo {
         return value
         
     }
+    
+    func getCaption(_ photoId: Int) -> String? {
+        
+//        var returnStr = ""
+        do {
+            let count = try! db.scalar(self.photos.filter(id == Int64(photoId)).count)
+            if(count == 0) {
+                print("no captions found")
+            }
+            else {
+                let newval = try! db.pluck(self.photos.filter(id == Int64(photoId)))
+                if newval![caption] != nil {
+                    return newval?[caption]
+                }
+            }
+        }
+        
+        return nil
+    }
+    
     
 //    func getPhotoNamesForPost(_ postId: String) -> [String] {
 //        
@@ -208,7 +229,8 @@ public class Photo {
 //            print("")
 //        } else {
 //            for row in try! db.prepare(self.photos.filter(self.postid == postId)) {
-//                
+// 
+    
 //                let photoName = String(describing: row[name])
 //                value.append(photoName)
 //                

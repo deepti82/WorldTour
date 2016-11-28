@@ -10,8 +10,8 @@ import Foundation
 
 struct PhotoUpload {
     
-    let data: NSData
-    let localId: Int64
-    let caption: String
-    let serverId: String
+    var localId: Int64
+    var caption: String
+    var serverId: String
+    var url: String
 }
