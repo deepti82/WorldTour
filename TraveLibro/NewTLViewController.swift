@@ -14,11 +14,12 @@ import BSImagePicker
 import Photos
 import CoreLocation
 import DKChainableAnimationKit
+import imglyKit
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
 
-class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
+class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate,ToolStackControllerDelegate {
     
     var myJourney: JSON!
     var isJourney = false
@@ -84,6 +85,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         getInfoCount()
         
     }
+    
+    
     
     var newScroll: UIScrollView!
     let backView = UIView()
@@ -3080,6 +3083,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let deleteAction = UIAlertAction(title: "Take Video", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
+            let photoEditViewController = PhotoEditViewController(photo: currentImage)
+            
+            
+            
+            
+            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
+            toolStackController.delegate = self
+            toolStackController.navigationItem.title = "Editor"
+            
+            toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
+            
+            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
+            
+            let navigationController = UINavigationController(rootViewController: toolStackController)
+            
+            navigationController.navigationBar.isTranslucent = false
+            navigationController.navigationBar.barStyle = .black
+            
+            present(navigationController, animated: true, completion: nil)
+            
 //            self.imagePicker.allowsEditing = true
 //            self.imagePicker.sourceType = .Camera
 //            self.presentViewController(self.imagePicker, animated: true, completion: nil)
@@ -3106,6 +3129,37 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.present(optionMenu, animated: true, completion: nil)
         
         
+    }
+    
+    func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
+        
+        print("in tool stack ctrl")
+        print(image)
+        print(editedImage)
+        isEditedImage = true
+        editedImage = image
+        print(editedImage)
+        self.viewDidLoad()
+        dismiss(animated: true, completion:nil)
+        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        //        self.present(imgLyKit, animated: true, completion: nil)
+    }
+    
+    func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
+        print("on cancel toolstackcontroller")
+        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //        ////
+        //        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        //        //        self.present(imgLyKit, animated: true, completion: nil)
+        //
+        //        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion:nil)
+        
+    }
+    
+    func toolStackControllerDidFail(_ toolStackController: ToolStackController){
+        print("on fail toolstackcontroller")
     }
     
     func addThoughts(_ sender: UIButton) {
