@@ -206,7 +206,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             }
             
         }
-        if editedImage == UIImage(""){
+        if editedImage == UIImage(named: ""){
             imageForCaption.image = editedImage
         }else{
         imageForCaption.image = currentImage
