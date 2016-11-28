@@ -172,8 +172,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             let favoriteImage = UIImageView(image: UIImage(named: "delete.png"))
             favoriteImage.contentMode = .scaleAspectFit
-            let scaled = UIImage(cgImage: (favoriteImage.image?.cgImage)!, scale: UIScreen.main.scale, orientation: (favoriteImage.image?.imageOrientation)!)
-            favorite.backgroundColor = UIColor(patternImage: scaled)
+            favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
             
             return [more, favorite]
         }

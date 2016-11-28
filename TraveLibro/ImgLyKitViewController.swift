@@ -9,14 +9,14 @@
 import UIKit
 import imglyKit
 
-class ImgLyKitViewController: UIViewController {
+class ImgLyKitViewController: UIViewController,ToolStackControllerDelegate {
     
     var currentImage = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        reloadRec()
+//        reloadRec()
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -45,13 +45,17 @@ class ImgLyKitViewController: UIViewController {
         
         print("current image")
         print(currentImage)
-        let sampleImage = UIImage(named: "add_profile_pic")
         let photoEditViewController = PhotoEditViewController(photo: currentImage)
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
+        toolStackController.delegate = self
         toolStackController.navigationItem.title = "Editor"
+        
         toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
+        
         toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
-            let navigationController = UINavigationController(rootViewController: toolStackController)
+        
+        let navigationController = UINavigationController(rootViewController: toolStackController)
+        
         navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.barStyle = .black
         
@@ -60,9 +64,31 @@ class ImgLyKitViewController: UIViewController {
     }
     
     
-    func toolStackController(toolStackController: ToolStackController, didFinishWithImage image: UIImage){
+    func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
+        
         print("in tool stack ctrl")
         print(image)
+            self.currentImage = image
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let addCaptions = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        addCaptions.currentImage = image
+        self.navigationController?.present(addCaptions, animated: true, completion: nil)
+        }
+    
+    func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
+        print("on cancel toolstackcontroller")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+////        
+//        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+//        self.present(imgLyKit, animated: true, completion: nil)
+        
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion:nil)
+
+    }
+    
+    func toolStackControllerDidFail(_ toolStackController: ToolStackController){
+        print("on fail toolstackcontroller")
     }
     
     func cancel(_ sender: UIGestureRecognizer) {
@@ -112,14 +138,18 @@ class ImgLyKitViewController: UIViewController {
     }
     
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+//        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//            
+//            if segue.identifier == "goBackCaption" {
+//                
+//                let photoGrid = segue.destination as! AddCaptionsViewController
+//                photoGrid.currentImage = currentImage
+//                
+//            }
+//        }
     
 }

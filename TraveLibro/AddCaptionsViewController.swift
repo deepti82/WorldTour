@@ -8,9 +8,10 @@
 
 import UIKit
 import Photos
+import imglyKit
 
 
-class AddCaptionsViewController: UIViewController, UITextViewDelegate {
+class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStackControllerDelegate {
     
     var imagesArray: [UIView] = []
     var currentImage = UIImage()
@@ -38,11 +39,27 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
     var index: Int!
     
     @IBAction func editPhoto(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let photoEditViewController = PhotoEditViewController(photo: currentImage)
+        let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
+        toolStackController.delegate = self
+        toolStackController.navigationItem.title = "Editor"
         
-        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
-        imgLyKit.currentImage = currentImage
-        self.present(imgLyKit, animated: true, completion: nil)
+        toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
+        
+        toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
+        
+        let navigationController = UINavigationController(rootViewController: toolStackController)
+        
+        navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.barStyle = .black
+        
+        present(navigationController, animated: true, completion: nil)
+
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
+//        imgLyKit.currentImage = currentImage
+//        self.present(imgLyKit, animated: true, completion: nil)
     }
     
     @IBAction func previousImageCaption(_ sender: AnyObject) {
@@ -70,6 +87,33 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
             
         }
         
+    }
+    
+    func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
+        
+        print("in tool stack ctrl")
+        print(image)
+        self.currentImage = image
+        dismiss(animated: true, completion:nil)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+//        self.present(imgLyKit, animated: true, completion: nil)
+    }
+    
+    func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
+        print("on cancel toolstackcontroller")
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        ////
+//        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+//        //        self.present(imgLyKit, animated: true, completion: nil)
+//        
+//        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion:nil)
+        
+    }
+    
+    func toolStackControllerDidFail(_ toolStackController: ToolStackController){
+        print("on fail toolstackcontroller")
     }
     
     @IBAction func nextImageCaption(_ sender: AnyObject) {
@@ -154,10 +198,25 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate {
         
         print("new controller")
         
-        imageForCaption.image = currentImage
-        index = allImages.index(of: currentSender)!
-        getPhotoCaption()
+        for images in imagesArray {
+            
+            if images.tag != 2 {
+                print("in all images append")
+                allImages.append(images as! UIButton)
+            }
+            
+        }
         
+        if editedImage == UIImage(named: "") {
+            
+            imageForCaption.image = editedImage
+        }
+        else {
+            
+            imageForCaption.image = currentImage
+        }
+        
+        index = allImages.index(of: currentSender)!
         print("index is: \(index)")
         
         captionTextView.delegate = self

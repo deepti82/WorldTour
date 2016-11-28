@@ -195,7 +195,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        //postButtonItem.addTarget(self, action: nil, for: .touchUpInside)
 //        postButtonItem.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
         
+        let addButton = UIBarButtonItem(title: "Add Activity", style: .plain, target: self, action: nil)
+        //addButton.isEnabled = false
+        
         items.append(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(NewTLViewController.closeAdd(_:))))
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
+        items.append(addButton)
         items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
         items.append(UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(NewTLViewController.newPost(_:))))
         toolbar.items = items
