@@ -203,14 +203,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         print("new controller")
         
-        for images in imagesArray {
-            
-            if images.tag != 2 {
-                print("in all images append")
-                allImages.append(images as! UIButton)
-            }
-            
-        }
+//        for images in imagesArray {
+//            
+//            if images.tag != 2 {
+//                print("in all images append")
+//                allImages.append(images as! UIButton)
+//            }
+//            
+//        }
+        //  jagruti's code
         
         if (isEditedImage){
             imageForCaption.image = editedImage
@@ -221,6 +222,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             imageForCaption.image = currentImage
             print("in current image")
         }
+        
+        //  jagruti's code
         index = allImages.index(of: currentSender)
         print("index is: \(index)")
         
