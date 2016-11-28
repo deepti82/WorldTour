@@ -14,11 +14,12 @@ import BSImagePicker
 import Photos
 import CoreLocation
 import DKChainableAnimationKit
+import imglyKit
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
 
-class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
+class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate,ToolStackControllerDelegate {
     
     var myJourney: JSON!
     var isJourney = false
@@ -85,30 +86,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    
+    
     var newScroll: UIScrollView!
     let backView = UIView()
     
     //@IBAction func addPosts(_ sender: AnyObject) {
     func addPosts(_ sender: UIButton) {
-        
-//        addPosts = AddPostsOTGView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-//        addPosts.addPhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosTL(_:)), forControlEvents: .TouchUpInside)
-//        addPosts.addCheckInButton.addTarget(self, action: #selector(NewTLViewController.addCheckInTL(_:)), forControlEvents: .TouchUpInside)
-//        addPosts.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:))))
-//        self.view.addSubview(addPosts)
-//        addPosts.animation.makeOpacity(1.0).animate(0.5)
-//        getJourney()
-        
-        //let vc = storyboard?.instantiateViewController(withIdentifier: "createPost") as! CreatePostViewController
-        //self.navigationController?.pushViewController(vc, animated: true)
-        
-//        var localIds: [Int] = []
-        
-        
-//        for each in allImageIds {
-//            
-//            localIds.append(Int64(allImageIds))
-//        }
         
         let postButton = UIButton()
         postButton.setTitle("Post", for: .normal)
@@ -122,18 +106,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         //cancelButton.addTarget(self, action: nil, for: .touchUpInside)
         cancelButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
         
-        
-//        let leftButton = UIButton()
-//        leftButton.setImage(UIImage(named: "arrow_prev"), forState: .Normal)
-//        leftButton.addTarget(self, action: #selector(self.popVC(_:)), forControlEvents: .TouchUpInside)
-//        leftButton.frame = CGRectMake(-10, 0, 30, 30)
-
-        //self.customNavigationBar(left: nil, right: nil)
-        //self.customNavigationBar(left: nil, right: postButton)
-        
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-//        if Reachability.isConnectedToNetwork() {
         print("in the add posts function")
         
         var flag = 0
@@ -143,23 +117,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         backView.frame = self.view.frame
         backView.tag = 8
         
-//        for subview in  {
-        
-            if (self.view.viewWithTag(8) != nil) {
-                
-                print("tag is 8")
-                flag = 1
-                backView.isHidden = false
-                addView.isHidden = false
-                newScroll.isHidden = false
-                addView.locationHorizontalScroll.isHidden = false
-                addView.addLocationButton.setTitle("Add Location", for: .normal)
-                addView.categoryView.isHidden = true
-                addView.horizontal.isHidden = false
-                getAllLocations()
-            }
+        if (self.view.viewWithTag(8) != nil) {
             
-//        }
+            print("tag is 8")
+            flag = 1
+            backView.isHidden = false
+            addView.isHidden = false
+            newScroll.isHidden = false
+            addView.locationHorizontalScroll.isHidden = false
+            addView.addLocationButton.setTitle("Add Location", for: .normal)
+            addView.categoryView.isHidden = true
+            addView.horizontal.isHidden = false
+            getAllLocations()
+        }
         
         else {
          
@@ -175,68 +145,43 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
             backView.layer.zPosition = 10
             backView.addSubview(newScroll)
+                
+            let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
+            toolbar.barTintColor = mainBlueColor
+            toolbar.tintColor = UIColor.white
+            
+            var items = [UIBarButtonItem]()
+            
+            let addButton = UIBarButtonItem(title: "Add Activity", style: .plain, target: self, action: nil)
+            
+            items.append(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(NewTLViewController.closeAdd(_:))))
+            items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
+            items.append(addButton)
+            items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
+            items.append(UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(NewTLViewController.newPost(_:))))
+            toolbar.items = items
+            backView.addSubview(toolbar)
+            
+            addView = AddActivityNew(frame: CGRect(x: 0, y: -20, width: self.view.frame.width, height: self.view.frame.height))
+            addView.postCancelButton.isHidden = true
+            addView.postButtonUp.isHidden = true
+            print("add view: \(addView)")
+            displayFriendsCount()
+            addView.layer.zPosition = 10
+            newScroll.addSubview(addView)
+            newScroll.contentSize.height = self.view.frame.height
+            addLocationTapped(nil)
+            
+            addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), for: .touchUpInside)
+            addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), for: .touchUpInside)
+            addView.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
+            addView.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), for: .touchUpInside)
+            addView.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
+            addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
+            addView.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
+            addView.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
+
         }
-        
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
-        toolbar.barTintColor = mainBlueColor
-        toolbar.tintColor = UIColor.white
-        
-        var items = [UIBarButtonItem]()
-        
-//        var cancelButtonItem = UIBarButtonItem()
-//        cancelButtonItem.setTitle("Cancel", for: .normal)
-//        cancelButtonItem.titleLabel?.textColor = UIColor.white
-//        //cancelButtonItem.addTarget(self, action: nil, for: .touchUpInside)
-//        cancelButtonItem.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
-//        
-//        var postButtonItem = UIBarButtonItem()
-//        postButtonItem.setTitle("Post", for: .normal)
-//        postButtonItem.titleLabel?.textColor = UIColor.white
-//        //postButtonItem.addTarget(self, action: nil, for: .touchUpInside)
-//        postButtonItem.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
-        
-        let addButton = UIBarButtonItem(title: "Add Activity", style: .plain, target: self, action: nil)
-        //addButton.isEnabled = false
-        
-        items.append(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(NewTLViewController.closeAdd(_:))))
-        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
-        items.append(addButton)
-        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
-        items.append(UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(NewTLViewController.newPost(_:))))
-        toolbar.items = items
-        backView.addSubview(toolbar)
-        
-        addView = AddActivityNew(frame: CGRect(x: 0, y: -20, width: self.view.frame.width, height: self.view.frame.height))
-        addView.postCancelButton.isHidden = true
-        addView.postButtonUp.isHidden = true
-        print("add view: \(addView)")
-        displayFriendsCount()
-        addView.layer.zPosition = 10
-        newScroll.addSubview(addView)
-        newScroll.contentSize.height = self.view.frame.height
-        addLocationTapped(nil)
-            
-            
-//        }
-//        else {
-//            
-//            let alert = UIAlertController(title: "No Internet Connection Found!", message: "", preferredStyle: .Alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-//            self.presentViewController(alert, animated: true, completion: nil)
-//            
-//        }
-        
-        addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), for: .touchUpInside)
-        addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), for: .touchUpInside)
-        addView.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
-        addView.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), for: .touchUpInside)
-        addView.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
-        addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
-        addView.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
-        addView.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
-        
-//        let tapOut = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeAdd(_:)))
-//        addView.addGestureRecognizer(tapOut)
         
     }
     
@@ -2865,8 +2810,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-//        self.addView.postButton.isEnabled = false
-        
         var allImages: [UIImage] = []
         var index = 0
         
@@ -2876,6 +2819,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 index = assets.index(of: asset)!
             }
+            
+            print("add caption index: \(index)")
             
             allImages.append(getAssetThumbnail(asset))
             let photoData = getAssetData(asset)
@@ -2983,8 +2928,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         var allPhotos: [UIButton] = []
         
-            let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-            captionVC.imagesArray = addView.horizontalScrollForPhotos.subviews
+        let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        captionVC.imagesArray = addView.horizontalScrollForPhotos.subviews
         
         for subview in addView.horizontalScrollForPhotos.subviews {
             
@@ -2997,7 +2942,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-            print("sender image: \(sender.currentImage), \(sender), \(addView.horizontalScrollForPhotos.subviews), \(allImageIds) \(allPhotos)")
+        print("sender image: \(sender.currentImage), \(sender), \(addView.horizontalScrollForPhotos.subviews.count), \(allImageIds.count) \(allPhotos.count)")
         
 //        DispatchQueue.main.sync(execute: {
         
@@ -3138,6 +3083,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let deleteAction = UIAlertAction(title: "Take Video", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
+            let photoEditViewController = PhotoEditViewController(photo: currentImage)
+            
+            
+            
+            
+            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
+            toolStackController.delegate = self
+            toolStackController.navigationItem.title = "Editor"
+            
+            toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
+            
+            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
+            
+            let navigationController = UINavigationController(rootViewController: toolStackController)
+            
+            navigationController.navigationBar.isTranslucent = false
+            navigationController.navigationBar.barStyle = .black
+            
+            present(navigationController, animated: true, completion: nil)
+            
 //            self.imagePicker.allowsEditing = true
 //            self.imagePicker.sourceType = .Camera
 //            self.presentViewController(self.imagePicker, animated: true, completion: nil)
@@ -3166,6 +3131,37 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
+        
+        print("in tool stack ctrl")
+        print(image)
+        print(editedImage)
+        isEditedImage = true
+        editedImage = image
+        print(editedImage)
+        self.viewDidLoad()
+        dismiss(animated: true, completion:nil)
+        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        //        self.present(imgLyKit, animated: true, completion: nil)
+    }
+    
+    func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
+        print("on cancel toolstackcontroller")
+        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //        ////
+        //        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        //        //        self.present(imgLyKit, animated: true, completion: nil)
+        //
+        //        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion:nil)
+        
+    }
+    
+    func toolStackControllerDidFail(_ toolStackController: ToolStackController){
+        print("on fail toolstackcontroller")
+    }
+    
     func addThoughts(_ sender: UIButton) {
         
         addView.thoughtsFinalView.isHidden = false
@@ -3187,10 +3183,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         userLocation = locValue
         var coverImage: String!
         
-//        if self.whichButton == "AddActivity" {
-//            
-//            
-//        }
         if !isJourneyOngoing {
             
             request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
@@ -3231,9 +3223,4 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("Error while updating location " + error.localizedDescription)
         
     }
-}
-
-struct UserLocation {
-    var latitude: Float = 0
-    var longitude: Float = 0
 }
