@@ -141,7 +141,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             //more.backgroundColor = UIColor.lightGray
             let moreImage = UIImageView(image: UIImage(named: "edit.png"))
-            moreImage.contentMode = .scaleAspectFit
+            moreImage.contentMode = .scaleAspectFill
             more.backgroundColor = UIColor(patternImage: moreImage.image!)
             
             let favorite = UITableViewRowAction(style: .normal, title: "                ") { action, index in
