@@ -190,6 +190,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         getCount()
         
+        profilePicture.isHidden = true
+        
         MAMatterView.layer.opacity = 0.0
 //         let footer = getFooter(frame: CGRect(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 45))
 //        footer.layer.zPosition = 100

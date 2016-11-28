@@ -64,6 +64,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     @IBAction func previousImageCaption(_ sender: AnyObject) {
         
+        
         addToLocalDB()
 //        addNewCaption()
         
@@ -93,7 +94,11 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         print("in tool stack ctrl")
         print(image)
-        self.currentImage = image
+        print(editedImage)
+        isEditedImage = true
+        editedImage = image
+        print(editedImage)
+        self.viewDidLoad()
         dismiss(animated: true, completion:nil)
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
@@ -206,17 +211,25 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
 //            }
 //            
 //        }
+
+        //  jagruti's code
         
-        if editedImage == UIImage(named: "") {
-            
+        if (isEditedImage){
+        
             imageForCaption.image = editedImage
+            isEditedImage = false
+            editedImage = UIImage()
+            print("in edit image")
         }
-        else {
+        else{
             
             imageForCaption.image = currentImage
+            print("in current image")
         }
         
-        index = allImages.index(of: currentSender)!
+        //  jagruti's code
+        
+        index = allImages.index(of: currentSender)
         print("index is: \(index)")
         getPhotoCaption()
         

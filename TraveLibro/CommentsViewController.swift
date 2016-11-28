@@ -130,7 +130,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if self.comments[indexPath.row]["user"]["_id"].string! == currentUser["_id"].string! {
             
-            let more = UITableViewRowAction(style: .normal, title: "                ") { action, index in
+            let more = UITableViewRowAction(style: .normal, title: "            ") { action, index in
                 print("edit button tapped")
                 
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
@@ -144,7 +144,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             moreImage.contentMode = .scaleAspectFit
             more.backgroundColor = UIColor(patternImage: moreImage.image!)
             
-            let favorite = UITableViewRowAction(style: .normal, title: "                ") { action, index in
+            let favorite = UITableViewRowAction(style: .normal, title: "            ") { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
                     
@@ -170,7 +170,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 
             }
-            let favoriteImage = UIImageView(image: UIImage(named: "delete.png"))
+            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 80))
+            favoriteImage.image = UIImage(named: "delete.png")
             favoriteImage.contentMode = .scaleAspectFit
             favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
             
@@ -179,7 +180,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         else {
             
-            let share = UITableViewRowAction(style: .normal, title: "               ") { action, index in
+            let share = UITableViewRowAction(style: .normal, title: "           ") { action, index in
                 print("reply button tapped")
                 
                 let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string!)"
@@ -188,7 +189,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             share.backgroundColor = UIColor(patternImage: UIImage(named: "reply")!)
             
-            let report = UITableViewRowAction(style: .normal, title: "              ") { action, index in
+            let report = UITableViewRowAction(style: .normal, title: "          ") { action, index in
                 print("report button tapped")
                 let actionSheet: UIAlertController = UIAlertController(title: "Why are you reporting this comment?", message: nil, preferredStyle: .actionSheet)
                 //actionSheet.view.tintColor = UIColor.red
