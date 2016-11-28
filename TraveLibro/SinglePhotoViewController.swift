@@ -12,6 +12,7 @@ class SinglePhotoViewController: UIViewController {
 
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var imageCaption: UILabel!
     
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
@@ -63,19 +64,12 @@ class SinglePhotoViewController: UIViewController {
         shareButton.tintColor = UIColor.white
         commentIcon.tintColor = UIColor.white
         
-        likeIcon.textColor = UIColor.white
-        likeText.textColor = UIColor.white
-        commentText.textColor = UIColor.white
-        
         likeIcon.text = String(format: "%C", faicon["likes"]!)
-        //commentIcon.text = String(format: "%C", faicon["comments"]!)
         
-        likeText.text = "0 Like"
-        commentText.text = "0 Comment"
+        likeText.text = "0 Likes"
+        commentText.text = "0 Comments"
         
         currentIndex = index
-
-        // Do any additional setup after loading the view.
         
         getPost(postId!)
         
@@ -195,25 +189,27 @@ class SinglePhotoViewController: UIViewController {
                     
                 else if response["value"].bool! {
                     
-                    //self.photos = response["data"]
-                    //print("photos: \(self.photos)")
-                    
                     let data: JSON = response["data"]
                     
                     DispatchQueue.main.async(execute: {
-                        let imageString = URL(string: "\(adminUrl)upload/readFile?file=\(data["name"].string!)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                        do {
-                            let data = try! Data(contentsOf: imageString!)
-                            self.mainImage.image = UIImage(data: data)
-                        }
+                        let data = try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(data["name"].string!)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+                        self.mainImage.image = UIImage(data: data)
                     })
                     
+                    if data["caption"].string != nil && data["caption"].string != "" {
+                        
+                        self.imageCaption.text = data["caption"].string!
+                    }
+                    
                     if data["like"].array!.contains(JSON(user.getExistingUser())) {
-                        self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+                        
+                        self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
                         self.likeButton.tintColor = UIColor.white
                         self.hasLiked = true
-                    } else {
-                        self.likeButton.setImage(UIImage(named: "like_empty_icon"), for: UIControlState())
+                    }
+                    else {
+                        
+                        self.likeButton.setImage(UIImage(named: "like_empty_icon"), for: .normal)
                         self.hasLiked = false
                     }
                     

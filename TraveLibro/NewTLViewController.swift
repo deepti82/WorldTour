@@ -501,6 +501,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("in new post")
         
+        self.addView.isHidden = false
+        self.newScroll.isHidden = false
+        self.backView.isHidden = false
+        
 //        DispatchQueue.main.sync(execute: {
         
             for photoToBeUploaded in photosToBeUploaded {
