@@ -198,14 +198,14 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         print("new controller")
         
-        for images in imagesArray {
-            
-            if images.tag != 2 {
-                print("in all images append")
-                allImages.append(images as! UIButton)
-            }
-            
-        }
+//        for images in imagesArray {
+//            
+//            if images.tag != 2 {
+//                print("in all images append")
+//                allImages.append(images as! UIButton)
+//            }
+//            
+//        }
         
         if editedImage == UIImage(named: "") {
             
@@ -218,6 +218,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         index = allImages.index(of: currentSender)!
         print("index is: \(index)")
+        getPhotoCaption()
         
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done

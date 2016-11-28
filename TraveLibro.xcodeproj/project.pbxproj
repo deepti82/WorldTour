@@ -65,8 +65,6 @@
 		C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */; };
 		C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */; };
 		C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */; };
-		C20682351DE6F6D500921B5C /* MentionSuggestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20682341DE6F6D500921B5C /* MentionSuggestionsViewController.swift */; };
-		C20682371DE6F76100921B5C /* MentionSuggestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20682361DE6F76100921B5C /* MentionSuggestionTableViewController.swift */; };
 		C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = C20938FB1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib */; };
 		C20938FE1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */; };
 		C20939011D11557B00CBA70F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20939001D11557B00CBA70F /* HomeViewController.swift */; };
@@ -446,8 +444,6 @@
 		C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCardsViewController.swift; sourceTree = "<group>"; };
 		C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayCardsViewController.swift; sourceTree = "<group>"; };
 		C20352361CEF433500A20BB2 /* SideNavigationMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideNavigationMenuViewController.swift; sourceTree = "<group>"; };
-		C20682341DE6F6D500921B5C /* MentionSuggestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionSuggestionsViewController.swift; sourceTree = "<group>"; };
-		C20682361DE6F76100921B5C /* MentionSuggestionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionSuggestionTableViewController.swift; sourceTree = "<group>"; };
 		C20938FB1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreAboutMeScrollForProfile.xib; sourceTree = "<group>"; };
 		C20938FD1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAboutMeScrollForProfile.swift; sourceTree = "<group>"; };
 		C20939001D11557B00CBA70F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
@@ -818,17 +814,13 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
-				C2C41B881DE9951A0018D72B /* Structures.swift */,
-				C20682341DE6F6D500921B5C /* MentionSuggestionsViewController.swift */,
-				C20682361DE6F76100921B5C /* MentionSuggestionTableViewController.swift */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
-				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
 				C20163DE1D26910D00A2F70B /* Models */,
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
+				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C239CAC71DE5C7E00095FDED /* SuggestionsViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -1429,6 +1421,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C239CAC71DE5C7E00095FDED /* SuggestionsViewController.swift */,
 				C270C4131DA8F68E009EA9DA /* EndJourneyViewController.swift */,
 				C2E56EA41DA5390000D81B0A /* AddCaptionsViewController.swift */,
 				C2A026CE1D9AA82D00D548AB /* CommentsViewController.swift */,
@@ -1929,6 +1922,7 @@
 		C2DCAE3F1D17FC9600B35331 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C2C41B881DE9951A0018D72B /* Structures.swift */,
 				367B90F01DC23ADF00D76F13 /* ActiveBuilder.swift */,
 				367B90F11DC23ADF00D76F13 /* ActiveLabel.swift */,
 				367B90F21DC23ADF00D76F13 /* ActiveType.swift */,
@@ -2433,9 +2427,7 @@
 				3A9F8C7B1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift in Sources */,
 				C22138F31D547846008D9DEE /* QuickItineraryTwo.swift in Sources */,
 				C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */,
-				C20682351DE6F6D500921B5C /* MentionSuggestionsViewController.swift in Sources */,
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
-				C20682371DE6F76100921B5C /* MentionSuggestionTableViewController.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
 				C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */,
 				36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */,

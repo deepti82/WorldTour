@@ -15,3 +15,8 @@ struct PhotoUpload {
     var serverId: String
     var url: String
 }
+
+struct UserLocation {
+    var latitude: Float = 0
+    var longitude: Float = 0
+}

@@ -133,7 +133,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     func makeFAButton(_ faValue: String, button: UIButton) {
         
         let edit = String(format: "%C", faicon[faValue]!)
-        button.setTitle(edit, for: UIControlState())
+        button.setTitle(edit, for: .normal)
         
     }
     

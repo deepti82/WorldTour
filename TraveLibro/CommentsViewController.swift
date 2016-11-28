@@ -367,22 +367,22 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 //        
 //    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "myEmbeddedSegue") {
-            print("hashtag segue")
-            let childViewController = segue.destination as! SuggestionsViewController
-            childViewController.getSuggestions()
-            let commentText = addComment.text.components(separatedBy: " ")
-            childViewController.textVar = commentText.last!
-        }
-        else if (segue.identifier == "myEmbeddedSegueTwo") {
-            print("mention segue")
-            let childViewController = segue.destination as! MentionSuggestionsViewController
-//            childViewController.getMentions()
-            let commentText = addComment.text.components(separatedBy: " ")
-            childViewController.textVar = commentText.last!
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if (segue.identifier == "myEmbeddedSegue") {
+//            print("hashtag segue")
+//            let childViewController = segue.destination as! SuggestionsViewController
+//            childViewController.getSuggestions()
+//            let commentText = addComment.text.components(separatedBy: " ")
+//            childViewController.textVar = commentText.last!
+//        }
+//        else if (segue.identifier == "myEmbeddedSegueTwo") {
+//            print("mention segue")
+//            let childViewController = segue.destination as! MentionSuggestionsViewController
+////            childViewController.getMentions()
+//            let commentText = addComment.text.components(separatedBy: " ")
+//            childViewController.textVar = commentText.last!
+//        }
+//    }
     
     func getMentions() {
         
