@@ -89,18 +89,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="14O-S3-hwN"/>
-                                <constraint firstAttribute="height" constant="30" id="WyG-az-3pn"/>
-                                <constraint firstAttribute="width" constant="30" id="qTg-uT-BDU"/>
                                 <constraint firstAttribute="height" constant="25" id="r3L-a5-P9b"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                             <state key="normal" image="like_empty_icon"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="WyG-az-3pn"/>
-                                    <exclude reference="qTg-uT-BDU"/>
-                                </mask>
-                            </variation>
                             <connections>
                                 <action selector="sendLikes:" destination="-1" eventType="touchUpInside" id="jHT-4o-NE6"/>
                             </connections>

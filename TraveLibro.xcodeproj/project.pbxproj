@@ -298,6 +298,7 @@
 		C2BFA9761CF2D2A900DC2066 /* MyLifeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2BFA9751CF2D2A900DC2066 /* MyLifeViewController.swift */; };
 		C2C30D641CE1C9C5001189FC /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */; };
 		C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */; };
+		C2C41B891DE9951A0018D72B /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C41B881DE9951A0018D72B /* Structures.swift */; };
 		C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2C965951CE458B7007BDA34 /* Date&Time.xib */; };
 		C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C965981CE45A51007BDA34 /* Date&Time.swift */; };
 		C2C9659B1CE4979D007BDA34 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C9659A1CE4979D007BDA34 /* CheckInViewController.swift */; };
@@ -677,6 +678,7 @@
 		C2BFA9751CF2D2A900DC2066 /* MyLifeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeViewController.swift; sourceTree = "<group>"; };
 		C2C30D631CE1C9C5001189FC /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AddFriendsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C2C30D651CE1CD9F001189FC /* AddFriendsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewCell.swift; sourceTree = "<group>"; };
+		C2C41B881DE9951A0018D72B /* Structures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		C2C965951CE458B7007BDA34 /* Date&Time.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Date&Time.xib"; sourceTree = "<group>"; };
 		C2C965981CE45A51007BDA34 /* Date&Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date&Time.swift"; sourceTree = "<group>"; };
 		C2C9659A1CE4979D007BDA34 /* CheckInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
@@ -816,6 +818,7 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
+				C2C41B881DE9951A0018D72B /* Structures.swift */,
 				C20682341DE6F6D500921B5C /* MentionSuggestionsViewController.swift */,
 				C20682361DE6F76100921B5C /* MentionSuggestionTableViewController.swift */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
@@ -2488,6 +2491,7 @@
 				C20939051D11655200CBA70F /* NavigationMainViewController.swift in Sources */,
 				C267302A1D27D30300F2C822 /* ChooseCityViewController.swift in Sources */,
 				C266AA171D4B75B300174612 /* AllJourneysViewController.swift in Sources */,
+				C2C41B891DE9951A0018D72B /* Structures.swift in Sources */,
 				C28A923F1D0E7E2E00CFEC7A /* HotelTypeSelect.swift in Sources */,
 				C25BE1F91CFC3ED900C98DD3 /* ProfilePostsViewController.swift in Sources */,
 				3AAA769F1DDDBE8800DCB6F2 /* NearMeViewController.swift in Sources */,
@@ -2774,7 +2778,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-DEVELOPMENT_TEAM = YVWVDTRG4B;
+				DEVELOPMENT_TEAM = YVWVDTRG4B;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2789,7 +2793,7 @@ DEVELOPMENT_TEAM = YVWVDTRG4B;
 					USE_CSDK_COMPONENTS,
 				);
 				INFOPLIST_FILE = TraveLibro/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2862,7 +2866,7 @@ DEVELOPMENT_TEAM = YVWVDTRG4B;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-DEVELOPMENT_TEAM = YVWVDTRG4B;
+				DEVELOPMENT_TEAM = YVWVDTRG4B;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2881,7 +2885,7 @@ DEVELOPMENT_TEAM = YVWVDTRG4B;
 					USE_CSDK_COMPONENTS,
 				);
 				INFOPLIST_FILE = TraveLibro/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wohlig.TraveLibro;
 				PRODUCT_NAME = "$(TARGET_NAME)";

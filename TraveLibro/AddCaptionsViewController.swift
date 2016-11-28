@@ -18,9 +18,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var allImages: [UIButton] = []
     var currentSender = UIButton()
     let PhotosDB = Photo()
-    var allIds: [String] = []
-    var imageIds: [String] = []
-    var allPhotos: [JSON] = []
+    var allIds: [Int] = []
+    var imageIds: [Int] = []
+    var allPhotos: [PhotoUpload] = []
     var currentId = 0
     
     let photoCount = 0
@@ -65,7 +65,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     @IBAction func previousImageCaption(_ sender: AnyObject) {
         
         addToLocalDB()
-        addNewCaption()
+//        addNewCaption()
         
         index = index - 1
         
@@ -74,12 +74,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             print("previous caption")
             let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
-            captionVC.currentImage = allImages[index!].currentImage!
+            captionVC.currentImage = allImages[index].currentImage!
             captionVC.allIds = allIds
-            captionVC.currentSender = allImages[index!]
+            captionVC.currentSender = allImages[index]
             captionVC.allPhotos = allPhotos
+            captionVC.index = index
             captionVC.imageIds = imageIds
-            captionVC.currentId = currentId - 1
+//            captionVC.getPhotoCaption()
+            captionVC.currentId = allIds[index]
+            captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -116,7 +119,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     @IBAction func nextImageCaption(_ sender: AnyObject) {
         
         addToLocalDB()
-        addNewCaption()
+//        addNewCaption()
         
         index = index + 1
         
@@ -128,9 +131,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.currentImage = allImages[index].currentImage!
             captionVC.currentSender = allImages[index]
             captionVC.allPhotos = allPhotos
+            captionVC.index = index
             captionVC.allIds = allIds
             captionVC.imageIds = imageIds
+//            captionVC.getPhotoCaption()
             captionVC.currentId = currentId + 1
+            captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -149,10 +155,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             
             if subview.isKind(of: NewTLViewController.self) {
                 addToLocalDB()
-                addNewCaption()
                 print("done caption")
                 let myView = subview as! NewTLViewController
-                myView.uploadedphotos = allPhotos
+                myView.photosToBeUploaded = allPhotos
                 self.navigationController!.popToViewController(myView, animated: true)
                 
             }
@@ -163,18 +168,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        print("wcjwbiiouwebcwecbneiuwcbuciewrbcqjb")
-//        print(photoIndex)
-//        print(photoData)
-//        print(photoURL)
-//        print(photoImage)
-//        
-//        imageIds = photoIndex
-//        
-//        for i in 0..<photoImage.count {
-//            completeImages[i].image = photoImage[i]
-//        }
         
         let leftButton = UIButton()
         leftButton.setTitle("Cancel", for: UIControlState())
@@ -218,11 +211,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         }else{
         imageForCaption.image = currentImage
         }
-        index = allImages.index(of: currentSender)
-        
+        index = allImages.index(of: currentSender)        
         print("index is: \(index)")
         
-        //captionTextView.text = allIds[index]
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done
         
@@ -265,6 +256,35 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
     }
     
+    func getPhotoIds(groupId: Int64) {
+        
+        allIds = photo.getPhotosIdsOfPost(photosGroup: groupId)
+//        getPhotoCaption()
+    }
+    
+//    override func viewDidDisappear(_ animated: Bool) {
+//        
+//        addNewCaption()
+//        
+//    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        addNewCaption()
+    }
+    
+    func getPhotoCaption() {
+        
+        let imageCaption = photo.getCaption(allIds[index])
+        print("caption: \(index) \(imageCaption) \(allPhotos[index].caption)")
+        if allPhotos[index].caption != "" {
+            captionTextView.text = allPhotos[index].caption
+        }
+        else {
+            captionTextView.text = "Add a caption..."
+        }
+    }
+    
     func imageTapped(_ sender: UITapGestureRecognizer) {
         
         print("image tapped")
@@ -275,7 +295,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             
             if senderImageView.image == image.currentImage {
                 
-                index = allImages.index(of: image)
+                index = allImages.index(of: image)!
                 print("index in image tapped: \(index)")
                 
             }
@@ -284,7 +304,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         if index < allImages.count {
             
-            addNewCaption()
+//            addNewCaption()
             print("next caption")
             let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
@@ -292,6 +312,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.currentSender = allImages[index]
             captionVC.allPhotos = allPhotos
             captionVC.allIds = allIds
+            captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
             
         }
@@ -299,50 +320,26 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     func addToLocalDB() {
-        print(currentId)
-        let nextId = currentId + 1
-        imageIds.append("\(nextId)")
-        print(captionTextView.text)
-        PhotosDB.insertCaption("\(currentId)", caption: captionTextView.text)
         
+        print(currentId)
+        print(captionTextView.text)
+        
+        if captionTextView.text != nil && captionTextView.text != "Add a caption..." {
+//            PhotosDB.insertCaption(imageLocalId: Int64(currentId), caption: captionTextView.text)
+            addNewCaption()
+            allPhotos[index].caption = captionTextView.text
+        }
     }
     
     func addNewCaption() {
         
-        var flag = 0
-        
-//        let imageData = UIImageJPEGRepresentation(currentImage, 0.5)
-        
-        for photo in allPhotos {
+        for (i, eachPhoto) in allPhotos.enumerated() {
             
-            if photo["name"].string! == allIds[index] && captionTextView.text == photo["caption"].string! {
+            if eachPhoto.localId == Int64(allIds[index]) && captionTextView.text != "" {
                 
-                flag = 1
-                break
-            }
-            else if photo["name"].string! == allIds[index] && captionTextView.text != photo["caption"].string! {
-                
-                allPhotos.remove(at: allPhotos.index(of: photo)!)
-                break
-            }
-            
-        }
-        
-        if flag == 0 {
-            
-            print("inside add caption")
-            if captionTextView.text != "" &&  captionTextView.text != "Add a caption..." {
-                
-//                allPhotos.append(["name": allIds[index], "caption": captionTextView.text])
-                
-            }
-            else {
-                
-//                allPhotos.append(["name": allIds[index], "caption": ""])
+                allPhotos[i].caption = captionTextView.text
             }
         }
-        
-        print("photos: \(allPhotos)")
         
     }
     
@@ -366,9 +363,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             
             captionTextView.resignFirstResponder()
             
+            photo.insertCaption(imageLocalId: Int64(allIds[index]), caption: captionTextView.text)
+            
+            addNewCaption()
+            
             if captionTextView.text == "" {
                 
-                captionTextView.text = "Add Caption..."
+                captionTextView.text = "Add a caption..."
                 
             }
             return true
@@ -389,12 +390,4 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         self.popVC(sender)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    
-
 }

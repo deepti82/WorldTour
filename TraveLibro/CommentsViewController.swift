@@ -29,6 +29,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var addComment: UITextView!
     @IBAction func sendComment(_ sender: UIButton?) {
         
+        mentionSuggestionsTable.isHidden = true
+        hashTagSuggestionsTable.isHidden = true
+        
         print("inside send comments")
         addComment.resignFirstResponder()
         let commentText = addComment.text.components(separatedBy: " ")
@@ -127,7 +130,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if self.comments[indexPath.row]["user"]["_id"].string! == currentUser["_id"].string! {
             
-            let more = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+            let more = UITableViewRowAction(style: .normal, title: "                ") { action, index in
                 print("edit button tapped")
                 
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
@@ -136,9 +139,12 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.isEdit = true
                 
             }
-            more.backgroundColor = UIColor.lightGray
+            //more.backgroundColor = UIColor.lightGray
+            let moreImage = UIImageView(image: UIImage(named: "edit.png"))
+            moreImage.contentMode = .scaleAspectFit
+            more.backgroundColor = UIColor(patternImage: moreImage.image!)
             
-            let favorite = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            let favorite = UITableViewRowAction(style: .normal, title: "                ") { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
                     
@@ -164,26 +170,48 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 
             }
-            favorite.backgroundColor = UIColor.orange
+            let favoriteImage = UIImageView(image: UIImage(named: "delete.png"))
+            favoriteImage.contentMode = .scaleAspectFit
+            let scaled = UIImage(cgImage: (favoriteImage.image?.cgImage)!, scale: UIScreen.main.scale, orientation: (favoriteImage.image?.imageOrientation)!)
+            favorite.backgroundColor = UIColor(patternImage: scaled)
             
             return [more, favorite]
         }
         
         else {
             
-            let share = UITableViewRowAction(style: .normal, title: "Reply") { action, index in
-                print("share button tapped")
+            let share = UITableViewRowAction(style: .normal, title: "               ") { action, index in
+                print("reply button tapped")
                 
-                let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string!) "
+                let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string!)"
                 self.addComment.text = userTag
                 
             }
-            share.backgroundColor = UIColor.blue
+            share.backgroundColor = UIColor(patternImage: UIImage(named: "reply")!)
             
-            let report = UITableViewRowAction(style: .normal, title: "Report") { action, index in
-                print("share button tapped")
+            let report = UITableViewRowAction(style: .normal, title: "              ") { action, index in
+                print("report button tapped")
+                let actionSheet: UIAlertController = UIAlertController(title: "Why are you reporting this comment?", message: nil, preferredStyle: .actionSheet)
+                //actionSheet.view.tintColor = UIColor.red
+                
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+                    print("Cancel")
+                }
+                actionSheet.addAction(cancelActionButton)
+                
+                let spamActionButton: UIAlertAction = UIAlertAction(title: "Spam or Scam", style: .default) { action -> Void in
+                    print("Spam or Scam")
+                }
+                
+                actionSheet.addAction(spamActionButton)
+                
+                let abusiveActionButton: UIAlertAction = UIAlertAction(title: "Abusive Content", style: .default) { action -> Void in
+                    print("Abusive Content")
+                }
+                actionSheet.addAction(abusiveActionButton)
+                self.present(actionSheet, animated: true, completion: nil)
             }
-            report.backgroundColor = UIColor.blue
+            report.backgroundColor = UIColor(patternImage: UIImage(named: "report")!)
             
             return [share, report]
         }
@@ -246,6 +274,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 //            containerTwo.alpha = 1
 //            container.alpha = 0
 //            performSegue(withIdentifier: "myEmbeddedSegueTwo", sender: nil)
+        } else {
+            hashTagSuggestionsTable.isHidden = true
+            mentionSuggestionsTable.isHidden = true
         }
     }
     
@@ -269,8 +300,12 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func modifyText(textView: UITextView, modifiedString: String, replacableString: String) {
         
-        let myString = textView.text as NSString
-        textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString)
+        if replacableString == "" {
+            textView.text = "\(textView.text!)\(modifiedString)"
+        } else {
+            let myString = textView.text as NSString
+            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString)
+        }
 
     }
     

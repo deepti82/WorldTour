@@ -358,7 +358,7 @@ class Navigation {
         
     }
     
-    func uploadPhotos(_ file: URL, localDbId: Int64?, completion: @escaping ((JSON) -> Void)) {
+    func uploadPhotos(_ file: URL, localDbId: Int?, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
@@ -369,7 +369,7 @@ class Navigation {
                 id = "\(localDbId!)"
             }
             
-            print("inside upload files: \(id)")
+            print("inside upload files: \(id) \(file)")
             
             let opt = try HTTP.POST(adminUrl + "upload", parameters: ["localId": id, "file": Upload(fileUrl: file)])
             var json = JSON(1);
