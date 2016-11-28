@@ -115,6 +115,11 @@ class PhotosOTG: UIView {
         commentButton.tintColor = mainBlueColor
         shareButton.tintColor = mainBlueColor
         optionsButton.tintColor = mainBlueColor
+        commentIcon.tintColor = mainBlueColor
+        
+        likeButton.imageView?.contentMode = .scaleAspectFit
+        commentButton.imageView?.contentMode = .scaleAspectFit
+        shareButton.imageView?.contentMode = .scaleAspectFit
         
         mainPhoto.autoresizingMask = [.flexibleHeight]
         
@@ -123,9 +128,6 @@ class PhotosOTG: UIView {
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         
         lineUp.backgroundColor = UIColor.clear
-        
-        commentIcon.tintColor = mainBlueColor
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

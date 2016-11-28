@@ -1915,7 +1915,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             addTopBorder(mainBlueColor, view: self.datePickerView, borderWidth: 1)
             addTopBorder(mainBlueColor, view: self.inputview, borderWidth: 1)
-            
             self.inputview.addSubview(self.datePickerView) // add date picker to UIView
             
             let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
@@ -2052,7 +2051,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("comment button tapped")
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = sender.titleLabel!.text!
-        comment.otherId = otherCommentId
+        comment.otherId = sender.title(for: .application)!
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(comment, animated: true)
         
