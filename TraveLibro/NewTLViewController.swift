@@ -2999,7 +2999,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
             print("sender image: \(sender.currentImage), \(sender), \(addView.horizontalScrollForPhotos.subviews), \(allImageIds) \(allPhotos)")
         
-        DispatchQueue.main.sync(execute: {
+//        DispatchQueue.main.sync(execute: {
         
             captionVC.currentImage = sender.currentImage!
             captionVC.currentSender = allPhotos[0]
@@ -3009,7 +3009,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController!.pushViewController(captionVC, animated: true)
             
-        })
+//        })
         
     }
     
