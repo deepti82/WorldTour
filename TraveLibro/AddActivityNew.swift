@@ -71,8 +71,6 @@ class AddActivityNew: UIView, UITextViewDelegate {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        
-        
         makeFAButton("fbSquare", button: facebookShare)
         makeFAButton("whatsapp", button: whatsappShare)
         makeFAButton("googleSquare", button: googleShare)
@@ -83,51 +81,15 @@ class AddActivityNew: UIView, UITextViewDelegate {
         horizontal = HorizontalLayout(height: locationHorizontalScroll.frame.height)
         horizontalScrollForPhotos = HorizontalLayout(height: photoScroll.frame.height)
         
-        editCategoryPickerView.isHidden = true
-        editCategoryPVBar.isHidden = true
-        
-//        let tapOne = UITapGestureRecognizer(target: self, action: #selector(AddActivityNew.ImageStackTap(_:)))
-//        photosCollection[0].addGestureRecognizer(tapOne)
-        
-//        editCategoryPickerView.delegate = self
-        
-//        for i in 0 ..< 5 {
-//            
-//            let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
-//            horizontal.addSubview(oneButton)
-//            styleHorizontalButton(oneButton, buttonTitle: eachButtonText)
-//            buttonCollection.append(oneButton)
-//            
-//        }
-        
-//        let buttonOne = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
-//        horizontal.addSubview(buttonOne)
-//        styleHorizontalButton(buttonOne, buttonTitle: "buttonOne")
-//       
-//        
-//        let buttonTwo = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
-//        horizontal.addSubview(buttonTwo)
-//        styleHorizontalButton(buttonTwo, buttonTitle: "buttonTwo")
-//        
-//        let buttonThree = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
-//        horizontal.addSubview(buttonThree)
-//        styleHorizontalButton(buttonThree, buttonTitle: "buttonOne")
-//        
-//        let buttonFour = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
-//        horizontal.addSubview(buttonFour)
-//        styleHorizontalButton(buttonFour, buttonTitle: "buttonFour")
-//        
-//        let buttonFive = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: locationHorizontalScroll.frame.height))
-//        horizontal.addSubview(buttonFive)
-//        styleHorizontalButton(buttonFive, buttonTitle: "buttonFive")
-        
+//        editCategoryPickerView.isHidden = true
+//        editCategoryPVBar.isHidden = true
         
         locationHorizontalScroll.addSubview(horizontal)
         photoScroll.addSubview(horizontalScrollForPhotos)
         
-        photosFinalView.isHidden = true
-        videosFinalView.isHidden = true
-        thoughtsFinalView.isHidden = true
+//        photosFinalView.isHidden = true
+//        videosFinalView.isHidden = true
+//        thoughtsFinalView.isHidden = true
         
 //        for photo in photosCollection {
 //            
@@ -231,12 +193,6 @@ class AddActivityNew: UIView, UITextViewDelegate {
         view.layer.cornerRadius = 5.0
         
     }
-    
-//    func ImageStackTap(sender: UITapGestureRecognizer) {
-//        
-//        print("tapped image")
-//        
-//    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

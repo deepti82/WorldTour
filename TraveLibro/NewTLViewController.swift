@@ -134,26 +134,34 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
 //        if Reachability.isConnectedToNetwork() {
+        print("in the add posts function")
         
         var flag = 0
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
         
         backView.frame = self.view.frame
+        backView.tag = 8
         
-        for subview in self.view.subviews {
-            
-            if subview.tag == 8 {
+//        for subview in  {
+        
+            if (self.view.viewWithTag(8) != nil) {
                 
+                print("tag is 8")
                 flag = 1
                 backView.isHidden = false
                 addView.isHidden = false
                 newScroll.isHidden = false
+                addView.locationHorizontalScroll.isHidden = false
+                addView.addLocationButton.setTitle("Add Location", for: .normal)
+                addView.categoryView.isHidden = true
+                addView.horizontal.isHidden = false
+                getAllLocations()
             }
             
-        }
+//        }
         
-        if flag == 0 {
+        else {
          
             self.view.addSubview(backView)
             darkBlur = UIBlurEffect(style: .dark)
@@ -163,13 +171,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             blurView.layer.zPosition = -1
             blurView.isUserInteractionEnabled = false
             backView.addSubview(blurView)
+            uploadedphotos = []
+            newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+            backView.layer.zPosition = 10
+            backView.addSubview(newScroll)
         }
-        
-        print("in the add posts function")
-        uploadedphotos = []
-        newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-        backView.layer.zPosition = 10
-        backView.addSubview(newScroll)
         
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
         toolbar.barTintColor = mainBlueColor
@@ -506,6 +512,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("in new post")
         
+        self.addView.isHidden = false
+        self.newScroll.isHidden = false
+        self.backView.isHidden = false
+        
 //        DispatchQueue.main.sync(execute: {
         
             for photoToBeUploaded in photosToBeUploaded {
@@ -591,12 +601,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             }
             
-            addView.categoryView.isHidden = true
-            addView.categoryLabel.isHidden = false
-            addView.locationHorizontalScroll.isHidden = false
-            addView.isHidden = true
-            newScroll.isHidden = true
-            backView.isHidden = true
+//            addView.categoryView.isHidden = true
+//            addView.categoryLabel.isHidden = false
+//            addView.locationHorizontalScroll.isHidden = false
+//            addView.isHidden = true
+//            newScroll.isHidden = true
+//            backView.isHidden = true
             
             let thoughtsArray = thoughts.components(separatedBy: " ")
             var hashtags: [String] = []
@@ -708,7 +718,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         print("edited response")
                         self.addView.categoryView.isHidden = true
-                        self.addView.categoryLabel.isHidden = false
+                        self.addView.categoryLabel.isHidden = true
                         self.addView.locationHorizontalScroll.isHidden = false
                         self.addView.isHidden = true
                         self.newScroll.isHidden = true
@@ -1233,17 +1243,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        navigationController?.hidesBarsOnSwipe = true
-//        navigationController?.hidesBarsOnTap = false
-        
-//        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(NewTLViewController.didSwipe))
-//        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(NewTLViewController.didSwipe))
-//        swipeUp.direction = UISwipeGestureRecognizerDirection.up
-//        swipeDown.direction = UISwipeGestureRecognizerDirection.down
-//        self.view.addGestureRecognizer(swipeUp)
-//        self.view.addGestureRecognizer(swipeDown)
-//        isRefreshing = true
-//        viewDidLoad()
+        if (self.view.viewWithTag(8) != nil) {
+            
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
 
     }
     

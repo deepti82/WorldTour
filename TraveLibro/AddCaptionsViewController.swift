@@ -206,12 +206,17 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             }
             
         }
-        if editedImage == UIImage(named: ""){
+        
+        if editedImage == UIImage(named: "") {
+            
             imageForCaption.image = editedImage
-        }else{
-        imageForCaption.image = currentImage
         }
-        index = allImages.index(of: currentSender)        
+        else {
+            
+            imageForCaption.image = currentImage
+        }
+        
+        index = allImages.index(of: currentSender)!
         print("index is: \(index)")
         
         captionTextView.delegate = self
