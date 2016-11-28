@@ -167,14 +167,14 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             self.title = "Added Buddies"
             
             let leftButton = UIButton()
-            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: .normal)
             leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
             leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             
             let rightButton = UIButton()
-            leftButton.setImage(UIImage(named: "arrow_next_fa"), for: .normal)
+            rightButton.setImage(UIImage(named: "arrow_next_fa"), for: .normal)
             rightButton.addTarget(self, action: #selector(self.saveButtonTapped(_:)), for: .touchUpInside)
-            rightButton.frame = CGRect(x: 0, y: 8, width: 80, height: 30)
+            rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             
             self.customNavigationBar(left: leftButton, right: rightButton)
             
