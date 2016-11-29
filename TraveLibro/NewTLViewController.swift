@@ -3080,34 +3080,34 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addHeightToNewActivity(5.0)
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let deleteAction = UIAlertAction(title: "Take Video", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            
-            let photoEditViewController = PhotoEditViewController(photo: currentImage)
-            
-            
-            
-            
-            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
-            toolStackController.delegate = self
-            toolStackController.navigationItem.title = "Editor"
-            
-            toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
-            
-            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
-            
-            let navigationController = UINavigationController(rootViewController: toolStackController)
-            
-            navigationController.navigationBar.isTranslucent = false
-            navigationController.navigationBar.barStyle = .black
-            
-            present(navigationController, animated: true, completion: nil)
-            
-//            self.imagePicker.allowsEditing = true
-//            self.imagePicker.sourceType = .Camera
-//            self.presentViewController(self.imagePicker, animated: true, completion: nil)
-            
-        })
+//        let deleteAction = UIAlertAction(title: "Take Video", style: .default, handler: {
+//            (alert: UIAlertAction!) -> Void in
+//            
+//            let photoEditViewController = PhotoEditViewController(photo: currentImage)
+//            
+//            
+//            
+//            
+//            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
+//            toolStackController.delegate = self
+//            toolStackController.navigationItem.title = "Editor"
+//            
+//            toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
+//            
+//            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
+//            
+//            let navigationController = UINavigationController(rootViewController: toolStackController)
+//            
+//            navigationController.navigationBar.isTranslucent = false
+//            navigationController.navigationBar.barStyle = .black
+//            
+//            present(navigationController, animated: true, completion: nil)
+//            
+////            self.imagePicker.allowsEditing = true
+////            self.imagePicker.sourceType = .Camera
+////            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+//            
+//        })
         let saveAction = UIAlertAction(title: "Album", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
