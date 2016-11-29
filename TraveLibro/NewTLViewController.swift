@@ -1475,15 +1475,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         if mapurl == nil {
                             mapurl = URL(string: "")
                         }
-                        DispatchQueue.main.async(execute: {
-                            do {
-                                let data = try Data(contentsOf: mapurl!)
-//                                print("image data: \(data)")
-                                checkIn.mainPhoto.image = UIImage(data: data)
-                            } catch _ {
-                                print("Unable to set map image")
-                            }
-                        })
+                        checkIn.mainPhoto.loadImageFromURL(imageString)
                     }
                 } else {
                     print("map not shown")
@@ -2534,32 +2526,27 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func makeCoverPic(_ imageString: String) {
         
         print("image name: \(imageString)")
-        let getImageUrl = adminUrl + "upload/readFile?file=" + imageString + "&width=500"
+        let getImageUrl = adminUrl + "upload/readFile?file=\(imageString)&width=500"
         print("image url: \(getImageUrl)")
-        if let mapurl = URL(string: getImageUrl) {
-            do {
-                DispatchQueue.main.async(execute: {
-                    let data = try! Data(contentsOf: mapurl)
-                    print("image data: \(data)")
-                    self.otgView.cityImage.image = UIImage(data: data)
-                })
-            } catch _ {
-                print("Unable to set map image")
-            }
-        }
+//        if let mapurl = URL(string: getImageUrl) {
+//            do {
+//                DispatchQueue.main.async(execute: {
+//                    let data = try! Data(contentsOf: mapurl)
+//                    print("image data: \(data)")
+//                    self.otgView.cityImage.image = UIImage(data: data)
+//                })
+//            } catch _ {
+//                print("Unable to set map image")
+//            }
+//        }
+
+        self.otgView.cityImage.loadImageFromURL(getImageUrl)
         
 //        } else {
 //            print("no image data found")
 //        }
         
         
-    }
-    
-    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
-        URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
-            completion(data, response, error)
-            }.resume()
     }
     
     var locationPic: String!
@@ -3122,7 +3109,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             print("Cancelled")
         })
         
-        optionMenu.addAction(deleteAction)
+        //optionMenu.addAction(deleteAction)
         optionMenu.addAction(saveAction)
         optionMenu.addAction(cancelAction)
         

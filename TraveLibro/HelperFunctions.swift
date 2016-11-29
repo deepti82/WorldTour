@@ -425,3 +425,22 @@ func getDocumentsDirectory() -> String {
     let documentsDirectory = paths[0]
     return documentsDirectory
 }
+
+extension UIImageView {
+
+    func loadImageFromURL(_ imageURL: String) {
+        if let dataURL = URL(string: imageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
+            do {
+                DispatchQueue.main.async(execute: {
+                    let data = try! Data(contentsOf: dataURL)
+                    self.image = UIImage(data: data)
+                })
+            } catch _ {
+                print("Unable to set image")
+            }
+        }
+    }
+    
+    
+
+}
