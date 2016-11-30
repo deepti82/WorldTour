@@ -10,7 +10,6 @@ import UIKit
 import Photos
 import imglyKit
 
-
 class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStackControllerDelegate {
     
     var imagesArray: [UIView] = []
@@ -35,16 +34,21 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     @IBOutlet weak var bottomStack: UIStackView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var imageStackView: UIStackView!
+    @IBOutlet weak var editImageButton: UIButton!
     
     var index = 0
+    var editedIndex: Int!
     
     @IBAction func editPhoto(_ sender: Any) {
+        
+        editImageButton.tag = index
+        
         let photoEditViewController = PhotoEditViewController(photo: currentImage)
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
         toolStackController.delegate = self
         toolStackController.navigationItem.title = "Editor"
         
-        toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
+        toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(PhotoEditViewController.cancel(_:)))
         
         toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
         
@@ -76,7 +80,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.index = index
             captionVC.imageIds = imageIds
 //            captionVC.getPhotoCaption()
-            captionVC.currentId = allIds[index]
+//            captionVC.currentId = allIds[index]
             captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
             
@@ -91,12 +95,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
         
         print("in tool stack ctrl")
-        print(image)
-        print(editedImage)
+//        print(image)
+//        print(editedImage)
         isEditedImage = true
         editedImage = image
         print(editedImage)
-        self.viewDidLoad()
+//        self.viewDidLoad()
         dismiss(animated: true, completion:nil)
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
@@ -209,14 +213,11 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         print("new controller")
         
-//        for images in imagesArray {
-//            
-//            if images.tag != 2 {
-//                print("in all images append")
-//                allImages.append(images as! UIButton)
-//            }
-//            
-//        }
+        for eachImage in allImages {
+            
+            let i = allImages.index(of: eachImage)
+            editedImagesArray.append([i!: eachImage.currentImage!])
+        }
         
         
 //        else{
@@ -278,16 +279,53 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         return allImages.index(of: currentSender)!
     }
     
-    var editedImagesArray: [[Int: UIImage]] = []
+    var editedImagesArray: [Dictionary<Int,UIImage>] = []
     
     func updateImage() {
         
-        editedImagesArray.append([index: editedImage])
+        editedImagesArray[index][index] = editedImage
         imageForCaption.image = editedImage
-//        allImages[index].setImage(editedImage, for: .normal)
-        editedImage = UIImage()
-        print("in edit image")
         
+        print("index after editing is: \(index) \(editedIndex) \(editImageButton.tag)")
+        
+        isEditedImage = false
+//        allImages[editedIndex].setImage(editedImage, for: .normal)
+//        updateImageInFile()
+        
+    }
+    
+    var loader = LoadingOverlay()
+    
+    func updateImageInFile() {
+        
+        let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(editedIndex).jpg"
+        
+        print("export url: \(exportFileUrl)")
+        
+        loader.showOverlay(self.view)
+        
+        DispatchQueue.main.async(execute: {
+            
+            do {
+                print("edited image: \(editedImage)")
+                
+                if let data = UIImageJPEGRepresentation(editedImage, 0.35) {
+                    try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
+                }
+                print("edit file created")
+                editedImage = UIImage()
+                print("in edit image")
+                isEditedImage = false
+                
+            } catch let error as NSError {
+                
+                print("error creating file: \(error.localizedDescription)")
+                
+            }
+            
+        })
+        
+        loader.hideOverlayView()
     }
     
     func getPhotoIds(groupId: Int64) {
@@ -300,14 +338,19 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
+        index = getIndex()
+        
         getPhotoCaption(ind: index)
         
         if (isEditedImage) {
             
+            editedIndex = editImageButton.tag
             updateImage()
         }
         
     }
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         

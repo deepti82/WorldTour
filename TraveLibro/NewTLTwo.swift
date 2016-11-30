@@ -63,38 +63,40 @@ extension NewTLViewController {
     
     func addActivityToOriginalState() {
         
-        addView.photosIntialView.isHidden = false
-        addView.photosFinalView.isHidden = true
+        photosToBeUploaded = []
+//        photosGroupId += 1
         
-        for view in addView.horizontalScrollForPhotos.subviews {
-            
-            view.removeFromSuperview()
-        }
-        
-        addView.videosInitialView.isHidden = false
-        addView.videosFinalView.isHidden = true
-        addView.thoughtsInitalView.isHidden = true
-        addView.thoughtsFinalView.isHidden = false
-        addView.thoughtsTextView.text = "Fill Me In..."
-        addView.locationHorizontalScroll.isHidden = false
-        addView.addLocationButton.setTitle("Add Location", for: .normal)
-        addView.categoryView.isHidden = true
-        addView.categoryLabel.text = ""
-        addView.horizontal.isHidden = false
-        addView.postButton.isHidden = false
-        
-        for view in addView.horizontal.subviews {
-            
-            view.removeFromSuperview()
-        }
-        
-        getAllLocations()
+//        addView.photosIntialView.isHidden = false
+//        addView.photosFinalView.isHidden = true
+//        
+//        for view in addView.horizontalScrollForPhotos.subviews {
+//            
+//            view.removeFromSuperview()
+//        }
+//        
+//        addView.videosInitialView.isHidden = false
+//        addView.videosFinalView.isHidden = true
+//        addView.thoughtsInitalView.isHidden = true
+//        addView.thoughtsFinalView.isHidden = false
+//        addView.thoughtsTextView.text = "Fill Me In..."
+//        addView.locationHorizontalScroll.isHidden = false
+//        addView.addLocationButton.setTitle("Add Location", for: .normal)
+//        addView.categoryView.isHidden = true
+//        addView.categoryLabel.text = ""
+//        addView.horizontal.isHidden = false
+//        addView.postButton.isHidden = false
+//        
+//        for view in addView.horizontal.subviews {
+//            
+//            view.removeFromSuperview()
+//        }
+//        
+//        getAllLocations()
         
     }
     
     func hideAddActivity() {
         
-//        addActivityToOriginalState()
         backView.isHidden = true
         addView.removeFromSuperview()
         newScroll.isHidden = true
@@ -117,6 +119,7 @@ extension NewTLViewController {
             self.addView = AddActivityNew()
             self.addView.frame = self.view.frame
             self.newScroll.addSubview(self.addView)
+            self.addLocationTapped(nil)
         }
             
         else {

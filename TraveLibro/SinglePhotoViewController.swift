@@ -137,7 +137,7 @@ class SinglePhotoViewController: UIViewController {
         print(currentIndex)
         if currentIndex >= photos.count {
             currentIndex = Int(currentIndex) - 1
-        } else {
+        } else {		
             self.getSinglePhoto(photos[currentIndex!].string!)
         }
     }

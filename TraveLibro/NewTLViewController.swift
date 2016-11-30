@@ -15,6 +15,8 @@ import Photos
 import CoreLocation
 import DKChainableAnimationKit
 import imglyKit
+import AVKit
+import AVFoundation
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
@@ -595,6 +597,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             post.flushRows(Int64(latestPost))
                             //                            photo.flushRows(localId: String(latestPost))
                             buddy.flushRows(String(latestPost))
+                            self.addActivityToOriginalState()
                             self.getJourney()
                             
                         }
@@ -1037,7 +1040,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             print("thumbnail result: \(result!)")
             print("thumbnail info: \(info)")
-            retimage = UIImagePNGRepresentation(result!)!
+            retimage = UIImageJPEGRepresentation(result!, 0.35)!
         })
         
         print(retimage)
@@ -1049,6 +1052,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.dismiss(animated: true, completion: nil)
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         print("image: \(image)")
+        
         photosAdded(selectedImages: [image])
         
 //        let captionButton = UIButton()
@@ -1892,7 +1896,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         { action -> Void in
             
             print("inside delete post \(self.currentPost)")
-            request.deletePost(self.currentPost["_id"].string!, uniqueId: self.currentPost["uniqueId"].string!, user: self.currentPost["user"]["_id"].string!, completion: {(response) in
+            request.deletePost(self.currentPost["_id"].string!, uniqueId: self.myJourney["uniqueId"].string!, user: self.currentPost["user"]["_id"].string!, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -2698,14 +2702,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.imagePicker.sourceType = .camera
             self.present(self.imagePicker, animated: true, completion: nil)
         })
-        let customeAction = UIAlertAction(title: "Photo Editor", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-            let imgLyKit = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
-            self.present(imgLyKit, animated: true, completion: nil)
-            
-        })
+//        let customeAction = UIAlertAction(title: "Photo Editor", style: .default, handler: {
+//            (alert: UIAlertAction!) -> Void in
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//            let imgLyKit = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
+//            self.present(imgLyKit, animated: true, completion: nil)
+//            
+//        })
         let saveAction = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
@@ -2713,7 +2717,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             multipleImage.maxNumberOfSelections = self.selectPhotosCount
             
             self.bs_presentImagePickerController(multipleImage, animated: true,
-                select: { (asset:PHAsset) -> Void in
+                select: { (asset: PHAsset) -> Void in
                     
                     print("Selected: \(asset)")
                     
@@ -2728,6 +2732,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }, finish: { (assets: [PHAsset]) -> Void in
                     
                     //**************************** MIDHET'S CODE ******************************
+                    
+//                    self.addView.photosCount.text = "\(self.addView.horizontalScrollForPhotos.subviews.count - 1)"
                     
                     if sender.tag == 1 {
                         
@@ -2770,7 +2776,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(saveAction)
         optionMenu.addAction(cancelAction)
-        optionMenu.addAction(customeAction)
+//        optionMenu.addAction(customeAction)
         
         self.present(optionMenu, animated: true, completion: nil)
         
@@ -2810,7 +2816,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             allImages.append(getAssetThumbnail(asset))
             let photoData = getAssetData(asset)
-            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).png"
+            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
             print("export url: \(exportFileUrl)")
             
             DispatchQueue.main.async(execute: {
@@ -2818,7 +2824,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 do {
                     let image = self.getAssetThumbnail(asset)
                     
-                    if let data = UIImagePNGRepresentation(image) {
+                    if let data = UIImageJPEGRepresentation(image, 0.35) {
                         try data.write(to: URL(string: exportFileUrl)!)
                     }
                     
@@ -2860,13 +2866,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addPhotoToLayout(photo: UIImage) {
         
-        let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-        photosButton.setImage(photo, for: .normal)
-        photosButton.layer.cornerRadius = 5.0
-        photosButton.clipsToBounds = true
-        photosButton.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
-        self.addWidthToPhotoLayout(photosButton.frame.width)
-        self.addView.horizontalScrollForPhotos.addSubview(photosButton)
+//        DispatchQueue.main.sync {
+        
+            let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+            photosButton.setImage(photo, for: .normal)
+            photosButton.layer.cornerRadius = 5.0
+            photosButton.clipsToBounds = true
+            photosButton.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
+            self.addWidthToPhotoLayout(photosButton.frame.width)
+            self.addView.horizontalScrollForPhotos.addSubview(photosButton)
+            
+//        }
     }
     
     func photosAdded(selectedImages: [UIImage]) {
@@ -2903,7 +2913,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             print("add caption index: \(index)")
             
             allImages.append(each)
-            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).png"
+            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
             print("export url: \(exportFileUrl)")
             
             self.allAssets.append(NSURL(string: exportFileUrl)! as URL)
@@ -2913,7 +2923,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 do {
                     
-                    if let data = UIImagePNGRepresentation(each) {
+                    if let data = UIImageJPEGRepresentation(each, 0.35) {
                         try data.write(to: URL(string: exportFileUrl)!)
                     }
                     print("file created")
@@ -2925,7 +2935,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             })
             
             addPhotoToLayout(photo: each)
-            let photoData: Data = UIImagePNGRepresentation(each)!
+            let photoData: Data = UIImageJPEGRepresentation(each, 0.35)!
             photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
         }
         
@@ -2983,6 +2993,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
         captionVC.imagesArray = addView.horizontalScrollForPhotos.subviews
+        self.addView.photosCount.text = "\(self.addView.horizontalScrollForPhotos.subviews.count - 1)"
         
         for subview in addView.horizontalScrollForPhotos.subviews {
             
@@ -3005,6 +3016,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             captionVC.allPhotos = self.photosToBeUploaded
             captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))
             self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        //End Loader
             self.navigationController!.pushViewController(captionVC, animated: true)
             
 //        })
@@ -3126,6 +3139,28 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    func completionVideoBlock(result:UIImage?,img:URL?){
+        DispatchQueue.main.async(execute: {
+            print("in completion block")
+            print(result)
+            print(img)
+            self.dismiss(animated: true, completion:nil)
+            let player = AVPlayer(url: img!)
+            let playerController = AVPlayerViewController()
+            playerController.player = player
+            self.present(playerController, animated: true) {
+                player.play()
+            }
+        })
+        
+        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //
+        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "videoView") as! VideoViewController
+        //        imgLyKit.filepath = img!
+        //        self.navigationController?.present(imgLyKit, animated: true, completion: nil)
+        
+    }
+    
     func addVideos(_ sender: UIButton) {
         
         addView.videosInitialView.isHidden = false
@@ -3133,50 +3168,48 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addHeightToNewActivity(5.0)
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-//        let deleteAction = UIAlertAction(title: "Take Video", style: .default, handler: {
-//            (alert: UIAlertAction!) -> Void in
-//            
-//            let photoEditViewController = PhotoEditViewController(photo: currentImage)
-//            
-//            
-//            
-//            
-//            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
-//            toolStackController.delegate = self
-//            toolStackController.navigationItem.title = "Editor"
-//            
-//            toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
-//            
-//            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
-//            
-//            let navigationController = UINavigationController(rootViewController: toolStackController)
-//            
-//            navigationController.navigationBar.isTranslucent = false
-//            navigationController.navigationBar.barStyle = .black
-//            
-//            present(navigationController, animated: true, completion: nil)
-//            
-////            self.imagePicker.allowsEditing = true
-////            self.imagePicker.sourceType = .Camera
-////            self.presentViewController(self.imagePicker, animated: true, completion: nil)
-//            
-//        })
-        let saveAction = UIAlertAction(title: "Album", style: .default, handler: {
+        
+        let deleteAction = UIAlertAction(title: "Take Video", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
-//            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .photoLibrary
-            self.imagePicker.mediaTypes = ["public.movie"]
-            self.present(self.imagePicker, animated: true, completion: nil)
-            
+            let configuration = Configuration() { builder in
+                builder.backgroundColor = UIColor.clear
+                builder.configureCameraViewController(){ cameraConf in
+                    cameraConf.allowedRecordingModes = [.video]
+                    cameraConf.maximumVideoLength = 6
+                }
+                
+                builder.configureToolStackController(){toolSck in
+                    toolSck.mainToolbarBackgroundColor = UIColor.white
+                    toolSck.secondaryToolbarBackgroundColor = UIColor.white
+                    toolSck.useNavigationControllerForNavigationButtons = true
+                    toolSck.useNavigationControllerForTitles = true
+                }
+                
+            }
+            let cameraViewController = CameraViewController(configuration:configuration)
+            cameraViewController.completionBlock = self.completionVideoBlock
+            self.present(cameraViewController, animated: true, completion: nil)
         })
+
+        
+//
+//        let saveAction = UIAlertAction(title: "Album", style: .default, handler: {
+//            (alert: UIAlertAction!) -> Void in
+//            
+////            self.imagePicker.allowsEditing = true
+//            self.imagePicker.sourceType = .photoLibrary
+//            self.imagePicker.mediaTypes = ["public.movie"]
+//            self.present(self.imagePicker, animated: true, completion: nil)
+//            
+//        })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Cancelled")
         })
         
-        //optionMenu.addAction(deleteAction)
-        optionMenu.addAction(saveAction)
+        optionMenu.addAction(deleteAction)
+//        optionMenu.addAction(saveAction)
         optionMenu.addAction(cancelAction)
         
         self.present(optionMenu, animated: true, completion: nil)
@@ -3223,11 +3256,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func checkForEditedImages(editedImagesArray: [[Int: UIImage]]) {
+    func checkForEditedImages(editedImagesArray: [Dictionary<Int,UIImage>]) {
         
         print("in edited images fucntion")
         
         let subviewCount = addView.horizontalScrollForPhotos.subviews.count - 2
+        
+        print("all edited images: \(editedImagesArray)")
         
         for subview in addView.horizontalScrollForPhotos.subviews {
             
@@ -3240,20 +3275,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 DispatchQueue.main.async(execute: {
                     
-                    for editedImage in editedImagesArray {
-                        
-                        if eachImage.currentImage != editedImage[index] && index < subviewCount {
+//                    for editImage in editedImagesArray {
+                    
+                        if eachImage.currentImage != editedImagesArray[index][index] && index < subviewCount {
                             
-                            eachImage.setImage(editedImage[index], for: .normal)
+                            eachImage.setImage(editedImagesArray[index][index], for: .normal)
                             
-                            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).png"
+                            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
+                            
                             print("edit export url: \(exportFileUrl)")
                             
                             DispatchQueue.main.async(execute: {
                                 
+                                //                                if editedImage[index] != nil {
+                                
                                 do {
-                                    print("edited image: \(editedImage[index])")
-                                    if let data = UIImagePNGRepresentation(editedImage[index]!) {
+                                    print("edited image: \(editedImagesArray[index][index])")
+                                    
+                                    if let data = UIImageJPEGRepresentation(editedImagesArray[index][index]!, 0.35) {
                                         try data.write(to: URL(string: exportFileUrl)!)
                                     }
                                     print("edit file created")
@@ -3262,12 +3301,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     print("error creating file: \(error.localizedDescription)")
                                     
                                 }
+                                
+                                //                                }
+                                
                             })
                             
                         }
                         
                         
-                    }
+//                    }
                     
                 })
                 

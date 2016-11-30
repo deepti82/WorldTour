@@ -251,8 +251,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let commentText = textView.text.components(separatedBy: " ")
         textVar = commentText.last!
-        container.alpha = 0
-        containerTwo.alpha = 0
+//        container.alpha = 0
+//        containerTwo.alpha = 0
         
         if textVar.contains("#") {
             hashTagSuggestionsTable.isHidden = false
