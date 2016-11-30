@@ -4,6 +4,7 @@ import SwiftHTTP
 //import Alamofire
 
 let apiUrl = "http://104.155.207.185:92/api/"
+//var adminUrl = "http://192.168.2.8:1337/api/"
 var adminUrl = "http://104.199.132.38/api/"
 //var adminUrl = "http://192.168.43.157:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"

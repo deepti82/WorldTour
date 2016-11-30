@@ -2151,6 +2151,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        //imageCache = nil
     }
     
     func startOTGJourney(_ sender: UIButton) {
@@ -2839,7 +2840,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             })
             
             addPhotoToLayout(photo: getAssetThumbnail(asset))
-            photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
+//            photo.setPhotos(name: nil, data: ph.otoData, caption: nil, groupId: Int64(photosGroupId))
         }
         
         allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
