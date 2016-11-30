@@ -2834,7 +2834,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             })
             
             addPhotoToLayout(photo: getAssetThumbnail(asset))
-            photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
+//            photo.setPhotos(name: nil, data: ph.otoData, caption: nil, groupId: Int64(photosGroupId))
         }
         
         allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))

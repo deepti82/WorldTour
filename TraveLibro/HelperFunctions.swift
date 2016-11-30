@@ -442,25 +442,33 @@ extension UIImageView {
 
         } else {
 
-            if let dataURL = URL(string: imageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
-                do {
-                    DispatchQueue.main.async(execute: {
-                        let data = try! Data(contentsOf: dataURL)
-                        let image = UIImage(data: data)
-                        self.image = image
+            DispatchQueue.global(qos: .background).async {
 
-                        // IMAGE CACHE
-                        //imageCache[self] = image
-                        imageCache.setObject(image!, forKey: imageURL as AnyObject)
-                    })
-                } catch _ {
-                    print("Unable to set image")
+                if let dataURL = URL(string: imageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
+                    do {
+                        DispatchQueue.main.async(execute: {
+                            let data = try! Data(contentsOf: dataURL)
+                            let image = UIImage(data: data)
+                            self.image = image
+
+                            // IMAGE CACHE
+                            //imageCache[self] = image
+                            imageCache.setObject(image!, forKey: imageURL as AnyObject)
+                        })
+                    } catch _ {
+                        print("Unable to set image")
+                    }
                 }
+
             }
 
         }
     }
 
+}
+
+func log(_ message: String, _ filename: String = #file, _ line: Int = #line, _ function: String = #function) {
+    print("\((filename as NSString).lastPathComponent):\(line) \(function):\r\(message)\n\n")
 }
 
 //func imageDefaultCaching() {
