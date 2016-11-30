@@ -2149,6 +2149,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        //imageCache = nil
     }
     
     func startOTGJourney(_ sender: UIButton) {

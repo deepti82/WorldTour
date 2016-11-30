@@ -6,6 +6,7 @@
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import Simplicity
 import SwiftHTTP
@@ -401,7 +402,7 @@ open class Reachability {
 }
 
 extension Data {
-    
+
     var uint8: UInt8 {
         get {
             var number: UInt8 = 0
@@ -412,12 +413,12 @@ extension Data {
 }
 
 extension UInt8 {
-    
+
 //    var data: Data {
 //        var int = self
 //        return Data(bytes: UnsafePointer<UInt8>(&int), count: sizeof(UInt8))
 //    }
-    
+
 }
 
 func getDocumentsDirectory() -> String {
@@ -426,21 +427,45 @@ func getDocumentsDirectory() -> String {
     return documentsDirectory
 }
 
+// IMAGE CACHING
+
+//var imageCache = [String: UIImage]()
+var imageCache = NSCache<AnyObject, AnyObject>()
+
 extension UIImageView {
 
     func loadImageFromURL(_ imageURL: String) {
-        if let dataURL = URL(string: imageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
-            do {
-                DispatchQueue.main.async(execute: {
-                    let data = try! Data(contentsOf: dataURL)
-                    self.image = UIImage(data: data)
-                })
-            } catch _ {
-                print("Unable to set image")
+
+        if let image = imageCache.object(forKey: self) as? UIImage {
+
+            self.image = image
+
+        } else {
+
+            if let dataURL = URL(string: imageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
+                do {
+                    DispatchQueue.main.async(execute: {
+                        let data = try! Data(contentsOf: dataURL)
+                        let image = UIImage(data: data)
+                        self.image = image
+
+                        // IMAGE CACHE
+                        //imageCache[self] = image
+                        imageCache.setObject(image!, forKey: imageURL as AnyObject)
+                    })
+                } catch _ {
+                    print("Unable to set image")
+                }
             }
+
         }
     }
-    
-    
 
 }
+
+//func imageDefaultCaching() {
+//    let memoryCapacity = 500 * 1024 * 1024
+//    let diskCapacity = 500 * 1024 * 1024
+//    let urlCache = Foundation.URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
+//    URLCache.setSharedURLCache(urlCache)
+//}

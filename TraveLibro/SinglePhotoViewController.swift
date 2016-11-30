@@ -63,6 +63,8 @@ class SinglePhotoViewController: UIViewController {
         commentButton.tintColor = UIColor.white
         shareButton.tintColor = UIColor.white
         commentIcon.tintColor = UIColor.white
+        likeText.textColor = UIColor.white
+        commentText.textColor = UIColor.white
         
         likeIcon.text = String(format: "%C", faicon["likes"]!)
         
@@ -78,14 +80,10 @@ class SinglePhotoViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        //imageCache = nil
     }
     
     @IBAction func sendLike(_ sender: UIButton) {
-//        if sender.tag == 1 {
-//            sender.tag = 0
-//        } else {
-//            sender.tag = 1
-//        }
         
         print("send likes: \(hasLiked!)")
         
@@ -190,12 +188,10 @@ class SinglePhotoViewController: UIViewController {
                 else if response["value"].bool! {
                     
                     let data: JSON = response["data"]
-                    
-                    DispatchQueue.main.async(execute: {
-                        let data = try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(data["name"].string!)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
-                        self.mainImage.image = UIImage(data: data)
-                    })
-                    
+
+                    let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
+                    self.mainImage.loadImageFromURL(mainImageString)
+
                     if data["caption"].string != nil && data["caption"].string != "" {
                         
                         self.imageCaption.text = data["caption"].string!
