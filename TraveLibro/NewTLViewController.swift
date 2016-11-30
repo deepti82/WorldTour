@@ -54,6 +54,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     @IBAction func addMoreBuddies(_ sender: AnyObject) {
         
+//        addView.resignThoughtsTexViewKeyboard()
+//        let isTextView = textFieldShouldReturn(otgView.locationLabel)
         let getBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         getBuddies.whichView = "TLMiddle"
         getBuddies.uniqueId = journeyId
@@ -114,35 +116,33 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         backView.frame = self.view.frame
         backView.tag = 8
         
-        if (self.view.viewWithTag(8) != nil) {
-            
-            print("tag is 8")
-            flag = 1
-            backView.isHidden = false
-            addView.isHidden = false
-            newScroll.isHidden = false
-            addView.locationHorizontalScroll.isHidden = false
-            addView.addLocationButton.setTitle("Add Location", for: .normal)
-            addView.categoryView.isHidden = true
-            addView.horizontal.isHidden = false
-            getAllLocations()
-        }
+        showAddActivity(view: self.view)
+        getJourneyBuddies(journey: myJourney)
         
-        else {
-         
-            self.view.addSubview(backView)
-            darkBlur = UIBlurEffect(style: .dark)
-            blurView = UIVisualEffectView(effect: darkBlur)
-            blurView.frame.size.height = backView.frame.height
-            blurView.frame.size.width = backView.frame.width
-            blurView.layer.zPosition = -1
-            blurView.isUserInteractionEnabled = false
-            backView.addSubview(blurView)
-            uploadedphotos = []
-            newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-            backView.layer.zPosition = 10
-            backView.addSubview(newScroll)
-                
+//        if (self.view.viewWithTag(8) != nil) {
+//            
+//            print("tag is 8")
+//            flag = 1
+//            hideAddActivity()
+//        }
+//        
+//        else {
+        
+//            self.view.addSubview(backView)
+//            darkBlur = UIBlurEffect(style: .dark)
+//            blurView = UIVisualEffectView(effect: darkBlur)
+//            blurView.frame.size.height = backView.frame.height
+//            blurView.frame.size.width = backView.frame.width
+//            blurView.layer.zPosition = -1
+//            blurView.isUserInteractionEnabled = false
+//            backView.addSubview(blurView)
+//            uploadedphotos = []
+//            newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+//            backView.layer.zPosition = 10
+//            backView.addSubview(newScroll)
+            
+            
+            
             let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
             toolbar.barTintColor = mainBlueColor
             toolbar.tintColor = UIColor.white
@@ -159,16 +159,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             toolbar.items = items
             backView.addSubview(toolbar)
             
-            addView = AddActivityNew(frame: CGRect(x: 0, y: -20, width: self.view.frame.width, height: self.view.frame.height))
-            addView.postCancelButton.isHidden = true
-            addView.postButtonUp.isHidden = true
-            print("add view: \(addView)")
-            displayFriendsCount()
-            addView.layer.zPosition = 10
-            newScroll.addSubview(addView)
-            newScroll.contentSize.height = self.view.frame.height
-            addLocationTapped(nil)
-            
+
             addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), for: .touchUpInside)
             addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), for: .touchUpInside)
             addView.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
@@ -178,7 +169,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             addView.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
             addView.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
 
-        }
+//        }
         
     }
     
@@ -277,6 +268,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func tagMoreBuddies(_ sender: UIButton) {
         
+        addView.resignThoughtsTexViewKeyboard()
+//        let isTextView = textFieldShouldReturn(otgView.locationLabel)
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         next.whichView = "TLTags"
         next.addedFriends = addedBuddies
@@ -307,9 +300,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             oneButton.layoutIfNeeded()
             oneButton.resizeToFitSubviews(addView.locationHorizontalScroll.frame.height, finalHeight: addView.locationHorizontalScroll.frame.height)
             oneButton.addTarget(self, action: #selector(NewTLViewController.selectLocation(_:)), for: .touchUpInside)
-//            let stringSize = CGSizeFromString(locationArray[i]["name"].string!)
-//            print("string size: \(stringSize)")
-//            oneButton.frame.size.width = stringSize.width
             addView.buttonCollection.append(oneButton)
             
         }
@@ -454,10 +444,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("in new post")
         
-        self.addView.isHidden = false
-        self.newScroll.isHidden = false
-        self.backView.isHidden = false
-        
 //        DispatchQueue.main.sync(execute: {
         
             for photoToBeUploaded in photosToBeUploaded {
@@ -465,14 +451,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 localDbPhotoIds.append(Int(photoToBeUploaded.localId))
             }
         
+        if tempAssets.count > 0 {
+            
             uploadMultiplePhotos(tempAssets, localIds: localDbPhotoIds)
+            
+        }
+        
+        else {
+            
+            postPartTwo()
+        }
+        
+        hideAddActivity()
         
             self.addView.postButton.isHidden = true
         
 //        })
         
         print("photos new post \(uploadedphotos)")
-        
     }
     
     var prevPosts: [JSON] = []
@@ -809,12 +805,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
 //        photosDb.flushRows(localId: String(postCount))
         
-        addView.categoryView.isHidden = true
-        addView.categoryLabel.isHidden = false
-        addView.locationHorizontalScroll.isHidden = false
-        addView.isHidden = true
-        newScroll.isHidden = true
-        backView.isHidden = true
+        hideAddActivity()
+        
+//        addView.categoryView.isHidden = true
+//        addView.categoryLabel.isHidden = false
+//        addView.locationHorizontalScroll.isHidden = false
+//        addView.isHidden = true
+//        newScroll.isHidden = true
+//        backView.isHidden = true
         
     }
     
@@ -1050,9 +1048,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("image: \(image)")
         photosAdded(selectedImages: [image])
         
-        let captionButton = UIButton()
-        captionButton.setImage(image, for: .normal)
-        addCaption(captionButton)
+//        let captionButton = UIButton()
+//        captionButton.setImage(image, for: .normal)
+//        addCaption(captionButton)
+        
 //        print("imageName: \(image.CIImage)")
         
 //        let videoURL = info["UIImagePickerControllerReferenceURL"] as! URL
@@ -2115,9 +2114,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        textField.resignFirstResponder()
-//        otgView.locationLabel.resignFirstResponder()
-//        addView.thoughtsTextView.resignFirstResponder()
+        otgView.locationLabel.resignFirstResponder()
+        addView.thoughtsTextView.resignFirstResponder()
         print("\(otgView.nameJourneyTF.text)")
         print("\(self.title)")
         self.title = "On The Go" //otgView.nameJourneyTF.text
@@ -2300,7 +2298,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func addBuddies(_ sender: UIButton) {
         
 //        print("here 3")
-        
+//        addView.resignThoughtsTexViewKeyboard()
+//        let isTextView = textFieldShouldReturn(otgView.locationLabel)
         let addBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         addBuddies.whichView = "TL"
         addBuddies.uniqueId = journeyId
@@ -2823,21 +2822,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let photoData = getAssetData(asset)
             let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).png"
             print("export url: \(exportFileUrl)")
-            do {
-                let image = getAssetThumbnail(asset)
+            
+            DispatchQueue.main.async(execute: {
                 
-                if let data = UIImagePNGRepresentation(image) {
-                    try data.write(to: URL(string: exportFileUrl)!)
+                do {
+                    let image = self.getAssetThumbnail(asset)
+                    
+                    if let data = UIImagePNGRepresentation(image) {
+                        try data.write(to: URL(string: exportFileUrl)!)
+                    }
+                    
+                    self.allAssets.append(NSURL(string: exportFileUrl)! as URL)
+                    self.photosToBeUploaded.append(PhotoUpload(localId: Int64(index), caption: "", serverId: "", url: exportFileUrl))
+                    print("file created")
+                } catch let error as NSError {
+                    
+                    print("error creating file: \(error.localizedDescription)")
+                    
                 }
-                
-                allAssets.append(NSURL(string: exportFileUrl)! as URL)
-                photosToBeUploaded.append(PhotoUpload(localId: Int64(index), caption: "", serverId: "", url: exportFileUrl))
-                print("file created")
-            } catch let error as NSError {
-                
-                print("error creating file: \(error.localizedDescription)")
-                
-            }
+            })
+            
             addPhotoToLayout(photo: getAssetThumbnail(asset))
             photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
         }
@@ -2870,7 +2874,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         photosButton.setImage(photo, for: .normal)
         photosButton.layer.cornerRadius = 5.0
         photosButton.clipsToBounds = true
-        photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
+        photosButton.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
         self.addWidthToPhotoLayout(photosButton.frame.width)
         self.addView.horizontalScrollForPhotos.addSubview(photosButton)
     }
@@ -2881,27 +2885,89 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.addView.photosFinalView.isHidden = false
         self.addView.photosCount.text = "\(self.allAssets.count)"
         
-        for each in selectedImages {
+        for subview in self.addView.horizontalScrollForPhotos.subviews {
             
-            let visibleImage = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-            visibleImage.tag = 1
-            visibleImage.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
-            visibleImage.setImage(each, for: .normal)
-            self.addWidthToPhotoLayout(visibleImage.frame.width + 10.0)
-            self.addView.horizontalScrollForPhotos.addSubview(visibleImage)
+            if subview.tag == 1 {
+                
+                self.removeWidthToPhotoLayout(subview.frame.width + 10.0)
+                subview.removeFromSuperview()
+                photosAddedMore = true
+            }
             
         }
         
-        let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-        addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: UIControlState())
-        addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-        addMorePhotosButton.layer.cornerRadius = 5.0
-        addMorePhotosButton.clipsToBounds = true
-        addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
-        addMorePhotosButton.tag = 2
-        self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
-        self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+        var allImages: [UIImage] = []
+        var index = 0
+        
+        for each in selectedImages {
+            
+            if  !photosAddedMore {
+                
+                index = selectedImages.index(of: each)!
+            }
+            
+            else {
+                index += self.addView.horizontalScrollForPhotos.subviews.count
+            }
+            
+            print("add caption index: \(index)")
+            
+            allImages.append(each)
+            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).png"
+            print("export url: \(exportFileUrl)")
+            
+            self.allAssets.append(NSURL(string: exportFileUrl)! as URL)
+            self.photosToBeUploaded.append(PhotoUpload(localId: Int64(index), caption: "", serverId: "", url: exportFileUrl))
+            
+            DispatchQueue.main.async(execute: {
+                
+                do {
+                    
+                    if let data = UIImagePNGRepresentation(each) {
+                        try data.write(to: URL(string: exportFileUrl)!)
+                    }
+                    print("file created")
+                } catch let error as NSError {
+                    
+                    print("error creating file: \(error.localizedDescription)")
+                    
+                }
+            })
+            
+            addPhotoToLayout(photo: each)
+            let photoData: Data = UIImagePNGRepresentation(each)!
+            photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
+        }
+        
+        allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
+        let captionButton = UIButton()
+        captionButton.setImage(allImages[0], for: .normal)
+        addCaption(captionButton)
+        
+        DispatchQueue.main.async(execute: {
+            
+            let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+            addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
+            addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+            addMorePhotosButton.layer.cornerRadius = 5.0
+            addMorePhotosButton.clipsToBounds = true
+            addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
+            addMorePhotosButton.tag = 1
+            self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
+            self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+            
+        })
+        
+//        for each in selectedImages {
+//            
+//            let visibleImage = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+//            visibleImage.tag = 1
+//            visibleImage.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
+//            visibleImage.setImage(each, for: .normal)
+//            self.addWidthToPhotoLayout(visibleImage.frame.width + 10.0)
+//            self.addView.horizontalScrollForPhotos.addSubview(visibleImage)
+//        }
         
     }
     
@@ -2939,15 +3005,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        print("sender image: \(sender.currentImage), \(sender), \(addView.horizontalScrollForPhotos.subviews.count), \(allImageIds.count) \(allPhotos.count)")
+        print("sender image: \(sender), \(addView.horizontalScrollForPhotos.subviews.count), \(allImageIds.count) \(allPhotos.count)")
         
-//        DispatchQueue.main.sync(execute: {
+//        DispatchQueue.main.async(execute: {
         
             captionVC.currentImage = sender.currentImage!
             captionVC.currentSender = allPhotos[0]
             captionVC.allImages = allPhotos
             captionVC.allPhotos = self.photosToBeUploaded
-            captionVC.getPhotoIds(groupId: Int64(photosGroupId))
+            captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController!.pushViewController(captionVC, animated: true)
             
@@ -3113,6 +3179,62 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addView.thoughtsFinalView.isHidden = false
         addView.thoughtsInitalView.isHidden = true
         addHeightToNewActivity(10.0)
+        
+    }
+    
+    func checkForEditedImages(editedImagesArray: [[Int: UIImage]]) {
+        
+        print("in edited images fucntion")
+        
+        let subviewCount = addView.horizontalScrollForPhotos.subviews.count - 2
+        
+        for subview in addView.horizontalScrollForPhotos.subviews {
+            
+            if subview.tag != 1 {
+                
+                let eachImage = subview as! UIButton
+                let index = addView.horizontalScrollForPhotos.subviews.index(of: subview)!
+                
+                print("edited index: \(index)")
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    for editedImage in editedImagesArray {
+                        
+                        if eachImage.currentImage != editedImage[index] && index < subviewCount {
+                            
+                            eachImage.setImage(editedImage[index], for: .normal)
+                            
+                            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).png"
+                            print("edit export url: \(exportFileUrl)")
+                            
+                            DispatchQueue.main.async(execute: {
+                                
+                                do {
+                                    print("edited image: \(editedImage[index])")
+                                    if let data = UIImagePNGRepresentation(editedImage[index]!) {
+                                        try data.write(to: URL(string: exportFileUrl)!)
+                                    }
+                                    print("edit file created")
+                                } catch let error as NSError {
+                                    
+                                    print("error creating file: \(error.localizedDescription)")
+                                    
+                                }
+                            })
+                            
+                        }
+                        
+                        
+                    }
+                    
+                })
+                
+            }
+            
+        }
+        
+        print("for loop over")
         
     }
     
