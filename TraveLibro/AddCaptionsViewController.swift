@@ -54,12 +54,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         navigationController.navigationBar.barStyle = .black
         
         present(navigationController, animated: true, completion: nil)
-
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
-//        imgLyKit.currentImage = currentImage
-//        self.present(imgLyKit, animated: true, completion: nil)
     }
     
     @IBAction func previousImageCaption(_ sender: AnyObject) {
@@ -223,8 +217,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
 //            }
 //            
 //        }
-
-        //  jagruti's code
         
         
 //        else{

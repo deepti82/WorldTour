@@ -14,11 +14,12 @@ import BSImagePicker
 import Photos
 import CoreLocation
 import DKChainableAnimationKit
+import imglyKit
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
 
-class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
+class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate,ToolStackControllerDelegate {
     
     var myJourney: JSON!
     var isJourney = false
@@ -86,6 +87,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         getInfoCount()
         
     }
+    
+    
     
     var newScroll: UIScrollView!
     let backView = UIView()
@@ -1471,15 +1474,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         if mapurl == nil {
                             mapurl = URL(string: "")
                         }
-                        DispatchQueue.main.async(execute: {
-                            do {
-                                let data = try Data(contentsOf: mapurl!)
-//                                print("image data: \(data)")
-                                checkIn.mainPhoto.image = UIImage(data: data)
-                            } catch _ {
-                                print("Unable to set map image")
-                            }
-                        })
+                        checkIn.mainPhoto.loadImageFromURL(imageString)
                     }
                 } else {
                     print("map not shown")
@@ -2530,32 +2525,27 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func makeCoverPic(_ imageString: String) {
         
         print("image name: \(imageString)")
-        let getImageUrl = adminUrl + "upload/readFile?file=" + imageString + "&width=500"
+        let getImageUrl = adminUrl + "upload/readFile?file=\(imageString)&width=500"
         print("image url: \(getImageUrl)")
-        if let mapurl = URL(string: getImageUrl) {
-            do {
-                DispatchQueue.main.async(execute: {
-                    let data = try! Data(contentsOf: mapurl)
-                    print("image data: \(data)")
-                    self.otgView.cityImage.image = UIImage(data: data)
-                })
-            } catch _ {
-                print("Unable to set map image")
-            }
-        }
+//        if let mapurl = URL(string: getImageUrl) {
+//            do {
+//                DispatchQueue.main.async(execute: {
+//                    let data = try! Data(contentsOf: mapurl)
+//                    print("image data: \(data)")
+//                    self.otgView.cityImage.image = UIImage(data: data)
+//                })
+//            } catch _ {
+//                print("Unable to set map image")
+//            }
+//        }
+
+        self.otgView.cityImage.loadImageFromURL(getImageUrl)
         
 //        } else {
 //            print("no image data found")
 //        }
         
         
-    }
-    
-    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
-        URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
-            completion(data, response, error)
-            }.resume()
     }
     
     var locationPic: String!
@@ -3143,14 +3133,34 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addHeightToNewActivity(5.0)
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let deleteAction = UIAlertAction(title: "Take Video", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            
-//            self.imagePicker.allowsEditing = true
-//            self.imagePicker.sourceType = .Camera
-//            self.presentViewController(self.imagePicker, animated: true, completion: nil)
-            
-        })
+//        let deleteAction = UIAlertAction(title: "Take Video", style: .default, handler: {
+//            (alert: UIAlertAction!) -> Void in
+//            
+//            let photoEditViewController = PhotoEditViewController(photo: currentImage)
+//            
+//            
+//            
+//            
+//            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
+//            toolStackController.delegate = self
+//            toolStackController.navigationItem.title = "Editor"
+//            
+//            toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
+//            
+//            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
+//            
+//            let navigationController = UINavigationController(rootViewController: toolStackController)
+//            
+//            navigationController.navigationBar.isTranslucent = false
+//            navigationController.navigationBar.barStyle = .black
+//            
+//            present(navigationController, animated: true, completion: nil)
+//            
+////            self.imagePicker.allowsEditing = true
+////            self.imagePicker.sourceType = .Camera
+////            self.presentViewController(self.imagePicker, animated: true, completion: nil)
+//            
+//        })
         let saveAction = UIAlertAction(title: "Album", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
@@ -3165,13 +3175,44 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             print("Cancelled")
         })
         
-        optionMenu.addAction(deleteAction)
+        //optionMenu.addAction(deleteAction)
         optionMenu.addAction(saveAction)
         optionMenu.addAction(cancelAction)
         
         self.present(optionMenu, animated: true, completion: nil)
         
         
+    }
+    
+    func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
+        
+        print("in tool stack ctrl")
+        print(image)
+        print(editedImage)
+        isEditedImage = true
+        editedImage = image
+        print(editedImage)
+        self.viewDidLoad()
+        dismiss(animated: true, completion:nil)
+        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        //        self.present(imgLyKit, animated: true, completion: nil)
+    }
+    
+    func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
+        print("on cancel toolstackcontroller")
+        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //        ////
+        //        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        //        //        self.present(imgLyKit, animated: true, completion: nil)
+        //
+        //        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion:nil)
+        
+    }
+    
+    func toolStackControllerDidFail(_ toolStackController: ToolStackController){
+        print("on fail toolstackcontroller")
     }
     
     func addThoughts(_ sender: UIButton) {
