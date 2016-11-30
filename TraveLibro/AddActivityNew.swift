@@ -139,7 +139,10 @@ class AddActivityNew: UIView, UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         
-        thoughtsTextView.text = ""
+        if thoughtsTextView.text == "Fill Me In..." {
+            
+            thoughtsTextView.text = ""
+        }
         
     }
     
@@ -168,6 +171,12 @@ class AddActivityNew: UIView, UITextViewDelegate {
         }
         
         return number <= 180
+        
+    }
+    
+    func resignThoughtsTexViewKeyboard() {
+        
+        thoughtsTextView.resignFirstResponder()
         
     }
     

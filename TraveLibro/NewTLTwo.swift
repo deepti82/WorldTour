@@ -61,12 +61,119 @@ extension NewTLViewController {
         
     }
     
+    func addActivityToOriginalState() {
+        
+        addView.photosIntialView.isHidden = false
+        addView.photosFinalView.isHidden = true
+        
+        for view in addView.horizontalScrollForPhotos.subviews {
+            
+            view.removeFromSuperview()
+        }
+        
+        addView.videosInitialView.isHidden = false
+        addView.videosFinalView.isHidden = true
+        addView.thoughtsInitalView.isHidden = true
+        addView.thoughtsFinalView.isHidden = false
+        addView.thoughtsTextView.text = "Fill Me In..."
+        addView.locationHorizontalScroll.isHidden = false
+        addView.addLocationButton.setTitle("Add Location", for: .normal)
+        addView.categoryView.isHidden = true
+        addView.categoryLabel.text = ""
+        addView.horizontal.isHidden = false
+        addView.postButton.isHidden = false
+        
+        for view in addView.horizontal.subviews {
+            
+            view.removeFromSuperview()
+        }
+        
+        getAllLocations()
+        
+    }
+    
+    func hideAddActivity() {
+        
+//        addActivityToOriginalState()
+        backView.isHidden = true
+        addView.removeFromSuperview()
+        newScroll.isHidden = true
+    }
+    
+    func showAddActivity(view: UIView) {
+        
+        var darkBlur: UIBlurEffect!
+        var blurView: UIVisualEffectView!
+        
+        self.backView.frame = self.view.frame
+        self.backView.tag = 8
+        
+        if self.view.viewWithTag(8) != nil {
+            
+            print("view with tag 8")
+            
+            self.newScroll.isHidden = false
+            self.backView.isHidden = false
+            self.addView = AddActivityNew()
+            self.addView.frame = self.view.frame
+            self.newScroll.addSubview(self.addView)
+        }
+            
+        else {
+            
+            print("no tag 8")
+            
+            self.view.addSubview(self.backView)
+            darkBlur = UIBlurEffect(style: .dark)
+            blurView = UIVisualEffectView(effect: darkBlur)
+            blurView.frame.size.height = self.backView.frame.height
+            blurView.frame.size.width = self.backView.frame.width
+            blurView.layer.zPosition = -1
+            blurView.isUserInteractionEnabled = false
+            self.backView.addSubview(blurView)
+            self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+            self.backView.addSubview(self.newScroll)
+            self.addView = AddActivityNew()
+            self.addView.frame = self.view.frame
+            print("add view: \(self.addView)")
+            self.newScroll.addSubview(self.addView)
+            self.newScroll.contentSize.height = self.view.frame.height
+            backView.addSubview(newScroll)
+            self.addLocationTapped(nil)
+        }
+        
+        addView.layer.zPosition = 10
+        backView.layer.zPosition = 10
+        newScroll.contentSize.height = self.view.frame.height
+        addLocationTapped(nil)
+    }
+    
+//    func editImageInFile(exportUrl: String, image: UIImage) {
+//        
+//        DispatchQueue.main.async(execute: {
+//            
+//            do {
+//                
+//                if let data = UIImagePNGRepresentation(editedImagesArray[index][index]!) {
+//                    try data.write(to: URL(string: exportFileUrl)!)
+//                }
+//                print("edit file created")
+//            } catch let error as NSError {
+//                
+//                print("error creating file: \(error.localizedDescription)")
+//                
+//            }
+//        })
+//        
+//        
+//    }
+    
     func buddyLeaves(_ post: JSON) {
         
         prevPosts.append(post)
         
 //        if isInitialPost {
-//            
+//
 //            layout = VerticalLayout(width: self.view.frame.width)
 //            layout.frame.origin.y = 600
 //            mainScroll.addSubview(layout)
@@ -412,7 +519,8 @@ extension NewTLViewController {
             self.journeyId = journey["uniqueId"].string!
             showDetailsFn()
             
-            addedBuddies = journey["buddies"].array!
+            getJourneyBuddies(journey: journey)
+//            addedBuddies = journey["buddies"].array!
             countLabel = journey["buddies"].array!.count
             showBuddies()
             
@@ -459,6 +567,11 @@ extension NewTLViewController {
         self.view.bringSubview(toFront: addPostsButton)
         self.view.bringSubview(toFront: infoButton)
         
+    }
+    
+    func getJourneyBuddies(journey: JSON) {
+        
+        addedBuddies = journey["buddies"].array!
     }
     
     func getInfoCount() {
