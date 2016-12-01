@@ -157,6 +157,7 @@
 		C25207341D095442008F0E51 /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207331D095442008F0E51 /* SearchFieldView.swift */; };
 		C25207371D096F27008F0E51 /* ExploreDestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */; };
 		C25207391D09A4F7008F0E51 /* FeaturedCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */; };
+		C25297261DF00E92007A8571 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25297251DF00E92007A8571 /* Extensions.swift */; };
 		C25443501CD7391900C2C6CD /* OnTheGoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */; };
 		C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25443541CD75F2900C2C6CD /* drawLine.swift */; };
 		C25649951D48C6F60046E36D /* TripInfoOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C25649941D48C6F60046E36D /* TripInfoOTG.xib */; };
@@ -535,6 +536,7 @@
 		C25207331D095442008F0E51 /* SearchFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		C25207361D096F27008F0E51 /* ExploreDestinationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreDestinationsViewController.swift; sourceTree = "<group>"; };
 		C25207381D09A4F7008F0E51 /* FeaturedCitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedCitiesViewController.swift; sourceTree = "<group>"; };
+		C25297251DF00E92007A8571 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C254434F1CD7391900C2C6CD /* OnTheGoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnTheGoViewController.swift; sourceTree = "<group>"; };
 		C25443541CD75F2900C2C6CD /* drawLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = drawLine.swift; sourceTree = "<group>"; };
 		C25649941D48C6F60046E36D /* TripInfoOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripInfoOTG.xib; sourceTree = "<group>"; };
@@ -1942,6 +1944,7 @@
 				C234B05F1D79A67600397FE5 /* UIViewControllerExtension.swift */,
 				C26B4DE81D13E48200213055 /* Layout.swift */,
 				C29C33C21D7061DB00DC5B36 /* HelperFunctions.swift */,
+				C25297251DF00E92007A8571 /* Extensions.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -2600,6 +2603,7 @@
 				C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */,
 				C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */,
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,
+				C25297261DF00E92007A8571 /* Extensions.swift in Sources */,
 				C24909BC1D4A3E41007EB6B4 /* AddPostsOTGView.swift in Sources */,
 				C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */,
 				C2FA1E171D5495870034DE97 /* QuickItinerariesViewController.swift in Sources */,

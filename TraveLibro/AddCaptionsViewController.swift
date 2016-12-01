@@ -28,6 +28,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var photoURL: [URL] = []
     var photoImage: [UIImage] = []
     
+    var editedImage = UIImage()
+    var isEditedImage = false
+    
     @IBOutlet var completeImages: [UIImageView]!
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var imageForCaption: UIImageView!
@@ -41,7 +44,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     @IBAction func editPhoto(_ sender: Any) {
         
-        editImageButton.tag = index
+//        editImageButton.tag = index
         
         let photoEditViewController = PhotoEditViewController(photo: currentImage)
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
@@ -95,28 +98,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
         
         print("in tool stack ctrl")
-//        print(image)
-//        print(editedImage)
         isEditedImage = true
         editedImage = image
-        print(editedImage)
-//        self.viewDidLoad()
-        dismiss(animated: true, completion:nil)
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-//        self.present(imgLyKit, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
-        print("on cancel toolstackcontroller")
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        ////
-//        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-//        //        self.present(imgLyKit, animated: true, completion: nil)
-//        
-//        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion:nil)
         
+        print("on cancel toolstackcontroller")
+        dismiss(animated: true, completion:nil)
     }
     
     func toolStackControllerDidFail(_ toolStackController: ToolStackController){
@@ -286,7 +276,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         editedImagesArray[index][index] = editedImage
         imageForCaption.image = editedImage
         
-        print("index after editing is: \(index) \(editedIndex) \(editImageButton.tag)")
+        print("index after editing is: \(index)")
         
         isEditedImage = false
 //        allImages[editedIndex].setImage(editedImage, for: .normal)
@@ -307,15 +297,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         DispatchQueue.main.async(execute: {
             
             do {
-                print("edited image: \(editedImage)")
+                print("edited image: \(self.editedImage)")
                 
-                if let data = UIImageJPEGRepresentation(editedImage, 0.35) {
+                if let data = UIImageJPEGRepresentation(self.editedImage, 0.35) {
                     try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
                 }
                 print("edit file created")
-                editedImage = UIImage()
+                self.editedImage = UIImage()
                 print("in edit image")
-                isEditedImage = false
+                self.isEditedImage = false
                 
             } catch let error as NSError {
                 
@@ -338,14 +328,16 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        index = getIndex()
-        
         getPhotoCaption(ind: index)
         
         if (isEditedImage) {
             
-            editedIndex = editImageButton.tag
             updateImage()
+        }
+        
+        else {
+            
+            index = getIndex()
         }
         
     }

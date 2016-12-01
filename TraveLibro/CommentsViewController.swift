@@ -304,6 +304,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             textView.text = "\(textView.text!)\(modifiedString)"
         } else {
             let myString = textView.text as NSString
+            
             textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString)
         }
 

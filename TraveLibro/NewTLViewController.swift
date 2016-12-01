@@ -21,7 +21,7 @@ import AVFoundation
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
 
-class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate,ToolStackControllerDelegate {
+class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
     var myJourney: JSON!
     var isJourney = false
@@ -1390,7 +1390,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if post["photos"] != nil && post["photos"].array!.count > 0 {
             
             photos = post["photos"].array!
-            checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
+            //checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
+            checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
             checkIn.mainPhoto.tag = 0
             checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
@@ -1412,7 +1413,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             for i in 0 ..< count {
                 
                 print("in the for loop \(post["photos"][i + 1]["name"])")
-                checkIn.otherPhotosStack[i].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")!))
+                //checkIn.otherPhotosStack[i].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")!))
+                checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")
                 checkIn.otherPhotosStack[i].isHidden = false
                 checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
                 checkIn.otherPhotosStack[i].tag = i + 1
@@ -1424,12 +1426,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
+        else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 && post["checkIn"]["location"] != "" {
             
             checkIn.mainPhoto.isHidden = false
             checkIn.photosStack.isHidden = true
             checkIn.photosHC.constant = 0.0
-//            checkIn.frame.size.height = 250.0
+            checkIn.frame.size.height = 250.0
             
         }
         
@@ -3218,36 +3220,36 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
-        
-        print("in tool stack ctrl")
-        print(image)
-        print(editedImage)
-        isEditedImage = true
-        editedImage = image
-        print(editedImage)
-        self.viewDidLoad()
-        dismiss(animated: true, completion:nil)
-        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-        //        self.present(imgLyKit, animated: true, completion: nil)
-    }
-    
-    func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
-        print("on cancel toolstackcontroller")
-        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //        ////
-        //        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-        //        //        self.present(imgLyKit, animated: true, completion: nil)
-        //
-        //        navigationController?.popViewController(animated: true)
-        dismiss(animated: true, completion:nil)
-        
-    }
-    
-    func toolStackControllerDidFail(_ toolStackController: ToolStackController){
-        print("on fail toolstackcontroller")
-    }
+//    func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
+//        
+//        print("in tool stack ctrl")
+//        print(image)
+//        print(editedImage)
+//        isEditedImage = true
+//        editedImage = image
+//        print(editedImage)
+//        self.viewDidLoad()
+//        dismiss(animated: true, completion:nil)
+//        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+//        //        self.present(imgLyKit, animated: true, completion: nil)
+//    }
+//    
+//    func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
+//        print("on cancel toolstackcontroller")
+//        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        //        ////
+//        //        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+//        //        //        self.present(imgLyKit, animated: true, completion: nil)
+//        //
+//        //        navigationController?.popViewController(animated: true)
+//        dismiss(animated: true, completion:nil)
+//        
+//    }
+//    
+//    func toolStackControllerDidFail(_ toolStackController: ToolStackController){
+//        print("on fail toolstackcontroller")
+//    }
     
     func addThoughts(_ sender: UIButton) {
         
@@ -3294,7 +3296,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                     print("edited image: \(editedImagesArray[index][index])")
                                     
                                     if let data = UIImageJPEGRepresentation(editedImagesArray[index][index]!, 0.35) {
-                                        try data.write(to: URL(string: exportFileUrl)!)
+                                        try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
                                     }
                                     print("edit file created")
                                 } catch let error as NSError {
