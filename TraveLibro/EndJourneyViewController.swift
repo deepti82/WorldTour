@@ -82,7 +82,7 @@ class EndJourneyViewController: UIViewController {
         
         if currentUser["profilePicture"] != "" {
             DispatchQueue.main.async(execute: {
-                self.userDp.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
+                self.userDp.loadImageFromURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")
             })
         
         } else {
@@ -97,25 +97,25 @@ class EndJourneyViewController: UIViewController {
         
         if buddies.count >= 3 {
             
-            buddiesImages[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!))
+            buddiesImages[0].loadImageFromURL("\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")
             makeTLProfilePicture(buddiesImages[0])
-            buddiesImages[1].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!))
+            buddiesImages[1].loadImageFromURL("\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")
             makeTLProfilePicture(buddiesImages[1])
             buddyCount.text = "+\(buddies.count - 2)"
             
         }
         else if buddies.count == 2 {
             
-            buddiesImages[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!))
+            buddiesImages[0].loadImageFromURL("\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")
             makeTLProfilePicture(buddiesImages[0])
-            buddiesImages[1].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!))
+            buddiesImages[1].loadImageFromURL("\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")
             makeTLProfilePicture(buddiesImages[1])
             buddyCount.isHidden = true
             
         }
         else if buddies.count == 1 {
             
-            buddiesImages[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!))
+            buddiesImages[0].loadImageFromURL("\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")
             makeTLProfilePicture(buddiesImages[0])
             buddiesImages[1].isHidden = true
             buddyCount.isHidden = true
@@ -229,11 +229,7 @@ class EndJourneyViewController: UIViewController {
             //self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
             
             let imageString = self.journey["startLocationPic"].string!
-            let mapurl = URL(string: "\(adminUrl)upload/readFile?file=\(imageString)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-            do {
-                let data = try! Data(contentsOf: mapurl!)
-                self.journeyCoverPic.image = UIImage(data: data)
-            }
+            self.journeyCoverPic.loadImageFromURL("\(adminUrl)upload/readFile?file=\(imageString)")
             
         })
         
@@ -275,6 +271,7 @@ class EndJourneyViewController: UIViewController {
         print("\(self.navigationController!.viewControllers)")
         let allvcs = self.navigationController!.viewControllers
         for vc in allvcs {
+            
             
             if vc.isKind(of: ProfileViewController.self) {
                 
