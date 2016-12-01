@@ -73,15 +73,21 @@ class PhotosOTG: UIView {
                     
                     if sender.tag == 1 {
                         
-                        sender.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
+                        sender.setImage(UIImage(named: "favorite-heart-button"), for: .normal)
                         self.likeCount += 1
                         self.likeViewLabel.text = "\(self.likeCount) Likes"
                         
                     }
                     else {
                         
-                        sender.setImage(UIImage(named: "like_empty_icon"), for: UIControlState())
-                        self.likeCount -= 1
+                        sender.setImage(UIImage(named: "like_empty_icon"), for: .normal)
+                        
+                        if self.likeCount <= 0 {
+                            self.likeCount = 0
+                        } else {
+                            self.likeCount -= 1
+                        }
+                        
                         self.likeViewLabel.text = "\(self.likeCount) Likes"
                         
                     }
