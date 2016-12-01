@@ -80,6 +80,10 @@ class EndJourneyViewController: UIViewController {
         
         getAllImages()
         
+        self.userDp.image = nil
+        buddiesImages[0].image = nil
+        buddiesImages[1].image = nil
+        
         if currentUser["profilePicture"] != "" {
             DispatchQueue.main.async(execute: {
                 self.userDp.loadImageFromURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")
@@ -229,7 +233,12 @@ class EndJourneyViewController: UIViewController {
             //self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
             
             let imageString = self.journey["startLocationPic"].string!
-            self.journeyCoverPic.loadImageFromURL("\(adminUrl)upload/readFile?file=\(imageString)&width=250")
+            
+            if imageString.contains("maps.googleapis.com") {
+                self.journeyCoverPic.loadImageFromURL("\(imageString)")
+            } else {
+                self.journeyCoverPic.loadImageFromURL("\(adminUrl)upload/readFile?file=\(imageString)&width=250")
+            }
             
         })
         

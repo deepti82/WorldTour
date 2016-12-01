@@ -125,6 +125,17 @@ class SinglePhotoViewController: UIViewController {
         })
     }
     
+    @IBAction func sendComment(_ sender: UIButton) {
+        let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
+        comment.postId = postId!
+        if singlePhotoJSON != nil {
+            comment.otherId = singlePhotoJSON["name"].string!
+            comment.photoId = singlePhotoJSON["_id"].string!
+        }
+        //self.navigationController?.pushViewController(comment, animated: true)
+        self.present(comment, animated: true, completion: nil)
+    }
+    
     override func popVC(_ sender: UIButton) {
         //self.navigationController!.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
@@ -176,6 +187,8 @@ class SinglePhotoViewController: UIViewController {
         })
     }
     
+    var singlePhotoJSON: JSON!
+    
     func getSinglePhoto(_ photoId: String) {
         request.getOnePostPhotos(photoId, singlePost["user"].string!, completion: {(response) in
             
@@ -188,6 +201,7 @@ class SinglePhotoViewController: UIViewController {
                 else if response["value"].bool! {
                     
                     let data: JSON = response["data"]
+                    self.singlePhotoJSON = response["data"]
 
                     let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
                     self.mainImage.loadImageFromURL(mainImageString)
