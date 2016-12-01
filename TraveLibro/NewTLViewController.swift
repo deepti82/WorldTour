@@ -2532,7 +2532,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func makeCoverPic(_ imageString: String) {
         
         print("image name: \(imageString)")
-        let getImageUrl = adminUrl + "upload/readFile?file=\(imageString)&width=500"
+        let getImageUrl = adminUrl + "upload/readFile?file=\(imageString)&width=250"
         print("image url: \(getImageUrl)")
 //        if let mapurl = URL(string: getImageUrl) {
 //            do {
