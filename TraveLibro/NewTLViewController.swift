@@ -451,15 +451,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
 //        DispatchQueue.main.sync(execute: {
         
-            for photoToBeUploaded in photosToBeUploaded {
-                tempAssets.append(URL(string: photoToBeUploaded.url)!)
-                localDbPhotoIds.append(Int(photoToBeUploaded.localId))
-            }
+        for photoToBeUploaded in photosToBeUploaded {
+            tempAssets.append(URL(string: photoToBeUploaded.url)!)
+            localDbPhotoIds.append(Int(photoToBeUploaded.localId))
+        }
         
         if tempAssets.count > 0 {
             
             uploadMultiplePhotos(tempAssets, localIds: localDbPhotoIds)
-            
         }
         
         else {
@@ -479,11 +478,38 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var prevPosts: [JSON] = []
     var initialPost = true
     
-    func postPartTwo() {
+    func storeOfflinePost(id: String, time: String, loc: String, locCategory: String, lat: String, long: String, thoughts: String, buddies: [JSON]) {
         
         let post = Post()
         let buddy = Buddy()
         let photo = Photo()
+        
+        post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: time, Location: loc, Category: locCategory, Latitude: lat, Longitude: long, Country: currentCountry, City: currentCity, Status: thoughts)
+        let postId = post.getRowCount()
+        
+        for eachBuddy in buddies {
+            
+            buddy.setBuddies("\(postId+1)", userId: eachBuddy["_id"].string!, userName: eachBuddy["name"].string!, userDp: eachBuddy["profilePicture"].string!, userEmail: eachBuddy["email"].string!)
+        }
+        
+        for eachPhoto in photosToBeUploaded {
+            
+            var imageData = Data()
+            
+            do {
+                
+                imageData = try Data(contentsOf: URL(string: eachPhoto.url)!)
+            } catch _ {
+                
+                print("image reading failed")
+            }
+            
+            photo.setPhotos(name: eachPhoto.serverId, data: imageData, caption: eachPhoto.caption, groupId: Int64(postId))
+        }
+        
+    }
+    
+    func postPartTwo() {
         
         if !isEdit {
             
@@ -563,21 +589,23 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
             
             print("buddies: \(buddies)")
-            //            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: addView.categoryLabel.text!, Latitude: "\(currentLat!)", Longitude: "\(currentLong!)", Country: currentCountry, City: currentCity, Status: thoughts)
             
-            let latestPost = post.getRowCount()
+//            let latestPost = post.getRowCount()
             
-            for eachBuddy in buddies {
-                
-                buddy.setBuddies("\(latestPost+1)", userId: eachBuddy["_id"].string!, userName: eachBuddy["name"].string!, userDp: eachBuddy["profilePicture"].string!, userEmail: eachBuddy["email"].string!)
-                
-            }
+//            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: , Latitude: , Longitude: , Country: , City: currentCity, Status: )
             
             var myLatitude = UserLocation()
             
             if currentLat != nil && currentLong != nil {
                 myLatitude = UserLocation.init(latitude: currentLat, longitude: currentLong)
             }
+            
+            let dateFormatterTwo = DateFormatter()
+            dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+            self.currentTime = dateFormatterTwo.string(from: Date())
+            print("time: \(currentTime)")
+            
+            storeOfflinePost(id: id, time: currentTime, loc: location, locCategory: locationCategory, lat: "\(myLatitude.latitude)", long: "\(myLatitude.longitude)", thoughts: thoughts, buddies: buddies)
             
             if Reachability.isConnectedToNetwork() {
                 
@@ -594,9 +622,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         else if response["value"].bool! {
                             
                             print("response arrived new post!")
-                            post.flushRows(Int64(latestPost))
-                            //                            photo.flushRows(localId: String(latestPost))
-                            buddy.flushRows(String(latestPost))
                             self.addActivityToOriginalState()
                             self.getJourney()
                             
@@ -2842,7 +2867,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             })
             
             addPhotoToLayout(photo: getAssetThumbnail(asset))
-//            photo.setPhotos(name: nil, data: ph.otoData, caption: nil, groupId: Int64(photosGroupId))
+            photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
         }
         
         allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))

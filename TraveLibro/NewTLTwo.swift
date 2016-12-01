@@ -64,6 +64,16 @@ extension NewTLViewController {
     func addActivityToOriginalState() {
         
         photosToBeUploaded = []
+        
+        let post = Post()
+        let buddy = Buddy()
+        
+        let postId = post.getRowCount()
+        
+        post.flushRows(Int64(postId))
+        photo.flushRows(localId: Int64(postId))
+        buddy.flushRows(String(postId))
+        
 //        photosGroupId += 1
         
 //        addView.photosIntialView.isHidden = false

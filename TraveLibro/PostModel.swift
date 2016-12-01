@@ -92,6 +92,44 @@ public class Post {
         try! db.run(post.drop(ifExists: true))
     }
     
+    func getPost(postId: Int64) -> (String, String, String, String, String, String, String, String, String, String, String) {
+        
+        var user = ""
+        var journey = ""
+        var postType = ""
+        var postDate = ""
+        var postLocation = ""
+        var postCategory = ""
+        var postLatitude = ""
+        var postLongitude = ""
+        var postCountry = ""
+        var postCity = ""
+        var postStatus = ""
+        
+        let count = try! db.scalar(self.post.filter(self.id == postId).count)
+        if(count == 0) {
+            print("")
+        } else {
+            let newval = try! db.pluck(self.post.filter(self.id == postId))
+            user = newval![userId]
+            journey = newval![journeyId]
+            postType = newval![type]
+            postDate = newval![date]
+            postLocation = newval![location]
+            postCategory = newval![category]
+            postLatitude = newval![latitude]
+            postLongitude = newval![longitude]
+            postCountry = newval![country]
+            postCity = newval![city]
+            postStatus = newval![country]
+            //print(firstName, lastName, useremail, userdob, usergender, usermobile, userstatus, loginType, facebookid, twitterid, googleid, instagramid, userbadgeImage, userbadgeName, homecountry, homecity, isloggedin)
+            
+        }
+        return (user, journey, postType, postDate, postLocation, postCategory, postLatitude, postLongitude, postCountry, postCity, postStatus)
+        
+        
+    }
+    
     func flushRows(_ postId: Int64) {
         
         let posts = post.filter(id == postId)
@@ -123,8 +161,8 @@ public class Photo {
         try! db.run(photos.create(ifNotExists: true) { t in
             t.column(id, primaryKey: true)
             t.column(groupid)
-            t.column(name, unique: true)
-            t.column(data, unique: true)
+            t.column(name)
+            t.column(data)
             t.column(caption)
         })
     }
@@ -240,6 +278,28 @@ public class Photo {
 //        return value
 //        
 //    }
+    
+    func getPhotos(postId: String) -> (String, Data, String) {
+        
+        var Name = ""
+        var photoData = Data()
+        var photoCaption = ""
+        
+        let count = try! db.scalar(self.photos.filter(self.groupid == id).count)
+        if(count == 0) {
+            print("")
+        } else {
+            let newval = try! db.pluck(self.photos.filter(self.groupid == id))
+            Name = newval![name]!
+            photoData = newval![data]
+            photoCaption = newval![caption]!
+            //print(firstName, lastName, useremail, userdob, usergender, usermobile, userstatus, loginType, facebookid, twitterid, googleid, instagramid, userbadgeImage, userbadgeName, homecountry, homecity, isloggedin)
+            
+        }
+        return (Name, photoData, photoCaption)
+        
+    }
+    
     
     func getRowCount() -> Int {
         let count = try! db.scalar(photos.count)
