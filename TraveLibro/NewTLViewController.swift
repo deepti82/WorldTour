@@ -507,6 +507,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             photo.setPhotos(name: eachPhoto.serverId, data: imageData, caption: eachPhoto.caption, groupId: Int64(postId))
         }
         
+        var offlinePost = PhotosOTG()
+        offlinePost = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: offlinePost, thoughts: thoughts, photos: photosToBeUploaded.count)))
+        let imageData = Data(contentsOf: URL(string: photosToBeUploaded[0].url)!)
+        offlinePost.mainPhoto.image = UIImage(data: imageData)
+        
     }
     
     func postPartTwo() {
@@ -601,7 +606,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
             
             let dateFormatterTwo = DateFormatter()
-            dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+            dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
             self.currentTime = dateFormatterTwo.string(from: Date())
             print("time: \(currentTime)")
             
@@ -610,7 +615,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             if Reachability.isConnectedToNetwork() {
                 
                 print("internet is connected post")
-                request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, latitude: "\(myLatitude.latitude)", longitude: "\(myLatitude.longitude)", photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, hashtags: hashtags, completion: {(response) in
+                request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, latitude: "\(myLatitude.latitude)", longitude: "\(myLatitude.longitude)", photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, hashtags: hashtags, date: currentTime, completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
                         
@@ -1733,34 +1738,35 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.backView.frame = self.view.frame
                         self.backView.tag = 8
                         
-                        if self.view.viewWithTag(8) != nil {
-                            
-                            self.newScroll.isHidden = false
-                            self.backView.isHidden = false
-                            self.addView.isHidden = false
-                            
-                            
-                        }
+                        self.showAddActivity(view: self.view)
                         
-                        else {
-                            
-                            self.view.addSubview(self.backView)
-                            darkBlur = UIBlurEffect(style: .dark)
-                            blurView = UIVisualEffectView(effect: darkBlur)
-                            blurView.frame.size.height = self.backView.frame.height
-                            blurView.frame.size.width = self.backView.frame.width
-                            blurView.layer.zPosition = -1
-                            blurView.isUserInteractionEnabled = false
-                            self.backView.addSubview(blurView)
-                            self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-                            self.backView.addSubview(self.newScroll)
-                            self.addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-                            print("add view: \(self.addView)")
-                            self.displayFriendsCount()
-                            self.newScroll.addSubview(self.addView)
-                            self.newScroll.contentSize.height = self.view.frame.height
-                            self.addLocationTapped(nil)
-                        }
+//                        if self.view.viewWithTag(8) != nil {
+//                            
+//                            self.newScroll.isHidden = false
+//                            self.backView.isHidden = false
+//                            
+//                            
+//                        }
+                        
+//                        else {
+//                            
+//                            self.view.addSubview(self.backView)
+//                            darkBlur = UIBlurEffect(style: .dark)
+//                            blurView = UIVisualEffectView(effect: darkBlur)
+//                            blurView.frame.size.height = self.backView.frame.height
+//                            blurView.frame.size.width = self.backView.frame.width
+//                            blurView.layer.zPosition = -1
+//                            blurView.isUserInteractionEnabled = false
+//                            self.backView.addSubview(blurView)
+//                            self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+//                            self.backView.addSubview(self.newScroll)
+//                            self.addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+//                            print("add view: \(self.addView)")
+//                            self.displayFriendsCount()
+//                            self.newScroll.addSubview(self.addView)
+//                            self.newScroll.contentSize.height = self.view.frame.height
+//                            self.addLocationTapped(nil)
+//                        }
                         
                         
                         self.addView.postButton.setTitle("Edit", for: .normal)

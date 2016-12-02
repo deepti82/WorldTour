@@ -27,7 +27,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
 
     @IBOutlet weak var editComment: UITextView!
     @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var navigationItem: UINavigationItem!
+//    @IBOutlet weak var navigationItem: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()

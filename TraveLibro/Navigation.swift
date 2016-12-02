@@ -1076,7 +1076,7 @@ class Navigation {
         }
     }
     
-    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, latitude: String, longitude: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, hashtags: [String], completion: @escaping ((JSON) -> Void)) {
+    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, latitude: String, longitude: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, hashtags: [String], date: String, completion: @escaping ((JSON) -> Void)) {
         
         
         var lat = ""
@@ -1100,7 +1100,7 @@ class Navigation {
             checkIn = [:]
         }
         
-            var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags]
+            var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags, "date": date]
             params["photos"] = JSON(photosArray)
             params["buddies"] = JSON(buddies)
             let jsonData = try! params.rawData()
@@ -1641,11 +1641,11 @@ class Navigation {
         
     }
     
-    func getJourneyPhotos(journeyId: String, completion: @escaping ((JSON) -> Void)) {
+    func getJourneyPhotos(journeyId: String, userId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": journeyId]
+            let params = ["_id": journeyId, "user": userId]
             let opt = try HTTP.POST(adminUrl + "journey/getPhotos", parameters: params)
             var json = JSON(1);
             opt.start {response in
