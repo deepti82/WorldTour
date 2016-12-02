@@ -20,6 +20,8 @@ class KindOfJourneyOTGViewController: UIViewController {
     var selectedCategories :JSON = []
     var journeyID = ""
     
+    var isEdit = false
+    
     var backVC: NewTLViewController!
     
     @IBOutlet var groupThreeCategoryButtons: [UIButton]!
@@ -99,22 +101,47 @@ class KindOfJourneyOTGViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
             
         }
-        else {
+        else if isEdit {
             print("categories before save")
             print(backVC.journeyCategories)
             request.kindOfJourney(journeyID, kindOfJourney: backVC.journeyCategories, completion: {(response) in
+                
                 DispatchQueue.main.async(execute: {
-                self.backVC.showDetailsFn()
-                self.navigationController?.popViewController(animated: true)
+                
+                if response.error != nil {
+                    print("error: \(response.error?.localizedDescription)")
+                }
+                else if response["value"].bool! {
+                    
+                    print("is editing? \(self.isEdit)")
+                    self.goBack()
+                    
+                }
+                else {
+                    
+                    print("response error!")
+                    
+                }
+                
                 })
-
             })
             
             
         }
+        else {
+            
+            self.goBack()
+        }
+        
         
 //        self.navigationController?.pushViewController(backVC, animated: true)
         
+    }
+    
+    func goBack() {
+        
+        self.backVC.showDetailsFn(isEdit: self.isEdit)
+        self.navigationController!.popViewController(animated: true)
     }
     
     func selectGroupOne(_ sender: UIButton) {
@@ -201,20 +228,6 @@ class KindOfJourneyOTGViewController: UIViewController {
             sender.tag = 0
             
         }
-        
-//        for button in groupThreeCategoryButtons {
-//            
-//            if selectedIndexG3 == button.tag {
-//                
-//                button.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
-//                
-//            }
-//            
-//        }
-//        
-//        selectedIndexG3 = sender.tag
-//        sender.setBackgroundImage(UIImage(named: "green_bg_new_small"), forState: .Normal)
-        
     }
     
     override func didReceiveMemoryWarning() {

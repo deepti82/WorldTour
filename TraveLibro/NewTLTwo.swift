@@ -530,7 +530,7 @@ extension NewTLViewController {
             makeCoverPic("\(journey["startLocationPic"])")
             
             self.journeyId = journey["uniqueId"].string!
-            showDetailsFn()
+            showDetailsFn(isEdit: false)
             
             getJourneyBuddies(journey: journey)
 //            addedBuddies = journey["buddies"].array!

@@ -188,6 +188,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             print(self.myJourney["kindOfJourney"])
             chooseCategory.selectedCategories = self.myJourney["kindOfJourney"]
             chooseCategory.journeyID = self.journeyID
+            chooseCategory.isEdit = true
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(chooseCategory, animated: true)
             
@@ -2504,7 +2505,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func showDetailsFn() {
+    func showDetailsFn(isEdit: Bool) {
         
         if !isJourneyOngoing {
             
@@ -2550,6 +2551,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
 //        print("here 1")
+        
         var kindOfJourneyStack: [String] = []
         
         for i in 0 ..< journeyCategories.count {
@@ -2592,7 +2594,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.journeyCategoryThree.isHidden = true
             
         }
-        
+            
         else if journeyCategories.count == 2 {
             
             otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
@@ -2600,7 +2602,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.journeyCategoryThree.isHidden = true
             
         }
-        
+            
         else {
             
             otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
@@ -2609,12 +2611,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-//        print("here 2")
-        
-        otgView.selectCategoryButton.isHidden = true
-        otgView.journeyDetails.isHidden = false
-        otgView.buddyStack.isHidden = true
-        otgView.addBuddiesButton.isHidden = false
+        if !isEdit {
+            otgView.selectCategoryButton.isHidden = true
+            otgView.journeyDetails.isHidden = false
+            otgView.buddyStack.isHidden = true
+            otgView.addBuddiesButton.isHidden = false
+        }
         
     }
     
