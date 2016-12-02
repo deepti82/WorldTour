@@ -442,25 +442,25 @@ extension UIImageView {
 
         } else {
 
-            DispatchQueue.global(qos: .background).async {
+//            DispatchQueue.main.async(execute: {
 
                 if let dataURL = URL(string: imageURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
-                    do {
-                        DispatchQueue.main.async(execute: {
-                            let data = try! Data(contentsOf: dataURL)
-                            let image = UIImage(data: data)
-                            self.image = image
 
-                            // IMAGE CACHE
-                            //imageCache[self] = image
-                            imageCache.setObject(image!, forKey: imageURL as AnyObject)
-                        })
-                    } catch _ {
-                        print("Unable to set image")
-                    }
+                        do {
+                                let data = try Data(contentsOf: dataURL)
+                                let image = UIImage(data: data)
+                                self.image = image
+
+                                // IMAGE CACHE
+                                //imageCache[self] = image
+                                imageCache.setObject(image!, forKey: imageURL as AnyObject)
+                        } catch _ {
+                            print("Unable to set image")
+                        }
+//                    })
                 }
 
-            }
+//            })
 
         }
     }
