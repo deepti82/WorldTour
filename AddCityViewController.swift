@@ -105,37 +105,37 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         print("city name: \(cityTextField.text), \(currentUser["_id"])")
         
-        if cityTextField.text != nil {
+        if cityTextField.text != "" {
             
-         cityName = cityTextField.text!
-            
+            cityName = cityTextField.text!
+            request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    print(response["value"])
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error?.localizedDescription)")
+                        
+                    } else if response["value"] == true {
+                        
+                        print("response arrived!")
+                        let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
+                        self.navigationController?.pushViewController(selectGenderVC, animated: true)
+                        
+                    } else {
+                        
+                        print("response error: \(response["data"])")
+                        
+                    }
+                })
+                
+            })
+        } else {
+            alert(message: "Please Select City.", title: "Select City")
         }
         
-        request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error?.localizedDescription)")
-                    
-                }
-                
-                else if response["value"].bool! {
-                    
-                    print("response arrived!")
-                    let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
-                    self.navigationController?.pushViewController(selectGenderVC, animated: true)
-                    
-                }
-                else {
-                    
-                    print("response error: \(response["data"])")
-                    
-                }
-            })
-            
-        })
+        
         
     }
     

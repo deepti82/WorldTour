@@ -133,39 +133,24 @@ class DisplayPagesFourViewController: UIViewController {
         
         print("your ideal holiday: \(yourIdeal)")
         
-        var json: JSON!
         
-        json["kindOfJourney"] = JSON(kindOfJourney)
-        json["youUsuallyGo"] = JSON(youUsuallyGo)
-        json["preferToTravel"] = JSON(preferToTravel)
-        json["yourIdeal"] = JSON(yourIdeal)
+        let req = ["holidayType":yourIdeal]
         
-        print("json: \(json)")
+        request.addKindOfJourney(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
+            DispatchQueue.main.async(execute: {
+                if responce["value"] != true{
+                    self.alert(message: "Enable to save", title: "Holiday Type")
+                    
+                }
+                let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+                //        self.slideMenuController()?.changeMainViewController(next, close: true)
+                self.navigationController?.pushViewController(next, animated: true)
+                
+            })
+        })
+
         
-//        request.editUser(currentUser["_id"].string!, editField: "", editFieldValue: "", completion: {(response) in
-//            
-//            if response.error != nil {
-//                
-//                print("error: \(response.error?.localizedDescription)")
-//                
-//            }
-//            
-//            else if response["value"].bool! {
-//                
-//                print("response arrived!")
-//                
-//            }
-//            
-//            else {
-//                
-//                print("response error: \(response["error"])")
-//                
-//            }
-//        })
         
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-//        self.slideMenuController()?.changeMainViewController(next, close: true)
-        self.navigationController?.pushViewController(next, animated: true)
     }
     
     override func didReceiveMemoryWarning() {

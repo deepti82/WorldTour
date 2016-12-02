@@ -139,9 +139,9 @@ public class User {
         try! db.run(user.drop(ifExists: true))
     }
 
-    func logOut(_ id: String) -> Bool {
-        return false
-    }
+//    func logOut(_ id: String) -> Bool {
+//        try! self.db.execute("DROP TABLE user")
+//    }
 
     func uploadPhotos(_ media: [String]) -> Bool {
         return false

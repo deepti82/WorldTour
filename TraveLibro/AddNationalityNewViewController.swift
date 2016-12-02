@@ -12,6 +12,7 @@ import SwiftHTTP
 class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     var allCountries: [JSON] = [["name":"India"],["name":"USA"]]
+    var nationalityID = ""
     
     @IBAction func AddNationality(_ sender: AnyObject) {
         
@@ -54,7 +55,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         getDarkBackGroundBlur(self)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.setImage(UIImage(named: ""), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
@@ -69,30 +70,36 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
         self.title = "Country of Origin"
         
-//        if currentUser["homeCountry"] != nil {
-//            
-//            addNationality.hidden = true
-//            addNationalityButton.hidden = true
-//            userNationatilty.hidden = false
-//            userNationatilty.setTitle(currentUser["homeCountry"].string!, forState: .Normal)
-//            
-//        }
+        
+        
+        if currentUser["homeCountry"] != nil {
+            
+            addNationality.isHidden = true
+            addNationalityButton.isHidden = true
+            userNationatilty.isHidden = false
+            userNationatilty.setTitle(currentUser["homeCountry"]["name"].stringValue, for: .normal)
+            nationalityID = currentUser["homeCountry"]["_id"].stringValue
+            
+        }
         
 //        let toolBar = UIToolbar()
-//        toolBar.barStyle = UIBarStyle.Default
-//        toolBar.translucent = true
+//        toolBar.barStyle = UIBarStyle.default
+//        toolBar.isTranslucent = true
 //        //        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
 //        toolBar.sizeToFit()
 //        
-//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddNationalityNewViewController.donePicker(_:)))
-//        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddNationalityNewViewController.cancelPicker(_:)))
+//        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(AddNationalityNewViewController.donePickerView(_:)))
+//        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+//        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(AddNationalityNewViewController.cancelPickerView(_:)))
 //        
 //        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-//        toolBar.userInteractionEnabled = true
+//        toolBar.isUserInteractionEnabled = true
 //        
-//        toolBar.frame = CGRectMake(0, 0, pickNationalityMainView.frame.width, 30)
+//        toolBar.frame = CGRect(x: 0, y: 0,width: pickNationalityMainView.frame.width,height: 30)
 //        pickNationalityMainView.addSubview(toolBar)
+        
+        
+        
         
         request.getAllCountries({(response) in
             
@@ -124,19 +131,6 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         })
         
     }
-    
-//    func donePicker(sender: AnyObject) {
-//        
-//        
-//        
-//    }
-//    
-//    func cancelPicker(sender: AnyObject) {
-//        
-//        pickNationalityMainView.hidden = true
-//        
-//    }
-    
     func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
         
         return 1
@@ -144,7 +138,6 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-//        print("countries count: \(allCountries.count)")
         
         if allCountries.count != 0 {
             
@@ -175,6 +168,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         addNationality.isHidden = true
         addNationalityButton.isHidden = true
         userNationatilty.setTitle(allCountries[row]["name"].string, for: UIControlState())
+        nationalityID = allCountries[row]["_id"].string!
         
     }
 
@@ -190,47 +184,37 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         if userNationatilty.titleLabel!.text == "Button" {
             
             countrySelected = ""
+            alert(message: "Select Country", title: "Please Select Origin Country")
             
-        }
-        
-        else if userNationatilty.titleLabel!.text != nil {
+        } else if userNationatilty.titleLabel!.text != nil {
             
-            countrySelected = userNationatilty.titleLabel!.text!
-            
-        }
-        
-//        print("current user: \(currentUser)")
-        
-        
-//        let signUpCityVC = self.storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
-//        self.navigationController?.pushViewController(signUpCityVC, animated: true)
-        
-        request.editUser(currentUser["_id"].string!, editField: "homeCountry", editFieldValue: countrySelected, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
+            countrySelected = nationalityID
+            request.editUser(currentUser["_id"].string!, editField: "homeCountry", editFieldValue: countrySelected, completion: {(response) in
                 
-                if response.error != nil {
-                    
-                    print("error: \(response.error?.localizedDescription)")
-                }
-                else {
-                    
-                    if response["value"].string != nil {
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
                         
-                        let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
-                        self.navigationController?.pushViewController(cityVC, animated: true)
+                        self.alert(message: "Select Country", title: "Please try agin later...")
+                        print("error: \(response.error?.localizedDescription)")
+                        
+                    } else {
+                        if response["value"] == true {
+                            let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
+                            self.navigationController?.pushViewController(cityVC, animated: true)
+                            
+                        } else {
+                            
+                            print("response error: \(response["data"])")
+                        }
                         
                     }
-                        
-                    else {
-                        
-                        print("response error: \(response["data"])")
-                    }
                     
-                }
-                
+                })
             })
-        })
+
+            
+        }
+        
         
     }
 

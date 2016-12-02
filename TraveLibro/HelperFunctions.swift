@@ -35,7 +35,7 @@ class SocialLoginClass: UIViewController {
         
         Simplicity.login(googlePermissions) { (accessToken, error) in
             
-            print("access token \(accessToken!)")
+//            print("access token \(accessToken!)")
             if accessToken != nil {
                 
                 do {

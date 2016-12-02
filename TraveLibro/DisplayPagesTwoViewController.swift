@@ -8,7 +8,7 @@
 
 import UIKit
 
-var youUsuallyGo: String!
+var youUsuallyGo: String = ""
 
 class DisplayPagesTwoViewController: UIViewController {
 
@@ -106,8 +106,22 @@ class DisplayPagesTwoViewController: UIViewController {
     func nextPage(_ sender: AnyObject) {
         
         print("you usually go: \(youUsuallyGo)")
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "displayThree") as! DisplayPagesThreeViewController
-        self.navigationController?.pushViewController(next, animated: true)
+        
+        let req = ["usuallyGo":youUsuallyGo]
+        
+        request.addUsuallyGo(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
+            DispatchQueue.main.async(execute: {
+                if responce["value"] != true{
+                    self.alert(message: "Enable to save You usually go.", title: "You usually go.")
+                    
+                }
+                let next = self.storyboard?.instantiateViewController(withIdentifier: "displayThree") as! DisplayPagesThreeViewController
+                self.navigationController?.pushViewController(next, animated: true)
+                
+            })
+        })
+
+        
     }
     
     var selected: UIButton!
@@ -136,7 +150,7 @@ class DisplayPagesTwoViewController: UIViewController {
         
         selected = sender
         selected.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
-        youUsuallyGo = selected.titleLabel?.text
+        youUsuallyGo = (selected.titleLabel?.text)!
         
 //        if flag == 1 {
 //          

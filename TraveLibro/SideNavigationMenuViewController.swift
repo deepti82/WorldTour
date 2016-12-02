@@ -21,7 +21,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var inviteFriendsController:UIViewController!
     var rateUsController:UIViewController!
     var feedbackController:UIViewController!
-    var logOutController:UIViewController!
+    var loginViewController:UIViewController!
     var settingsViewController: UIViewController!
     var localLifeController: UIViewController!
     var myProfileViewController: UIViewController!
@@ -54,7 +54,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             
 //            print("inside if statement \(sideMenu.profilePicture)")
             profileName.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
-            imageName = currentUser["profilePicture"].string!
+                imageName = currentUser["profilePicture"].string!
             print("image: \(imageName)")
             
             let isUrl = verifyUrl(imageName)
@@ -126,8 +126,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let FBController = storyboard!.instantiateViewController(withIdentifier: "FeedbackVC") as! FeedbackViewController
         self.feedbackController = UINavigationController(rootViewController: FBController)
         
-        let logOutController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
-        self.logOutController = UINavigationController(rootViewController: logOutController)
+        let loginController = storyboard!.instantiateViewController(withIdentifier: "logIn") as! LogInViewController
+        self.loginViewController = UINavigationController(rootViewController: loginController)
         
         let localLifeController = storyboard!.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
         self.localLifeController = UINavigationController(rootViewController: localLifeController)
@@ -197,7 +197,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         case 6:
             self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
         case 7:
-            self.slideMenuController()?.changeMainViewController(self.logOutController, close: true)
+            print("drop table")
+            user.dropTable()
+            self.slideMenuController()?.changeMainViewController(self.loginViewController, close: true)
         case 8:
             self.slideMenuController()?.changeMainViewController(self.localLifeController, close: true)
         default:
