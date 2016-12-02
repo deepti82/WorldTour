@@ -186,7 +186,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             print(self.journeyId)
             let chooseCategory = self.storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
             print(self.myJourney["kindOfJourney"])
-            chooseCategory.selectedCategories = self.myJourney["kindOfJourney"]
+            
+            if self.journeyCategories.count > 0 {
+            
+                chooseCategory.selectedCategories = JSON(self.journeyCategories)
+            }
+            else {
+                
+                chooseCategory.selectedCategories = self.myJourney["kindOfJourney"]
+//                self.journeyCategories = self.myJourney["kindOfJourney"].array! as! [String]
+            }
             chooseCategory.journeyID = self.journeyID
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(chooseCategory, animated: true)
@@ -2560,45 +2569,56 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-//        print("here 1")
+        print("here 1 \(journeyCategories)")
         var kindOfJourneyStack: [String] = []
         
         for i in 0 ..< journeyCategories.count {
-            
             switch journeyCategories[i] {
             case "adventure":
+                print("1")
                 kindOfJourneyStack.append("adventure")
             case "backpacking":
+                print("2")
                 kindOfJourneyStack.append("backpacking")
             case "business":
+                print("3")
                 kindOfJourneyStack.append("business_new")
             case "religious":
+                print("3")
                 kindOfJourneyStack.append("religious")
             case "romance":
+                print("4")
                 kindOfJourneyStack.append("romance")
             case "budget":
+                print("5")
                 kindOfJourneyStack.append("luxury")
             case "luxury":
+                print("6")
                 kindOfJourneyStack.append("luxury_new")
             case "family":
+                print("7")
                 kindOfJourneyStack.append("family")
             case "friends":
+                print("8")
                 kindOfJourneyStack.append("friends")
             case "solo":
+                print("9")
                 kindOfJourneyStack.append("solo")
             case "betterhalf":
+                print("10")
                 kindOfJourneyStack.append("partner")
             case "colleague":
+                print("11")
                 kindOfJourneyStack.append("colleague")
             default:
                 break
             }
-            
         }
         
         if journeyCategories.count == 1 {
             
             otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+            otgView.journeyCategoryOne.isHidden = false
             otgView.journeyCategoryTwo.isHidden = true
             otgView.journeyCategoryThree.isHidden = true
             
@@ -2607,7 +2627,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         else if journeyCategories.count == 2 {
             
             otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+            otgView.journeyCategoryOne.isHidden = false
             otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+            otgView.journeyCategoryTwo.isHidden = false
             otgView.journeyCategoryThree.isHidden = true
             
         }
@@ -2615,8 +2637,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         else {
             
             otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+            otgView.journeyCategoryOne.isHidden = false
             otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+            otgView.journeyCategoryTwo.isHidden = false
             otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+            otgView.journeyCategoryThree.isHidden = false
             
         }
         
