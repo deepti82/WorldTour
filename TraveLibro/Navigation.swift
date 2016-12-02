@@ -39,6 +39,7 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     print(json)
+                    
                     completion(json)
                 }
             }
@@ -67,7 +68,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }
@@ -541,6 +541,32 @@ class Navigation {
     }
     
     func addKindOfJourney(_ id: String, editFieldValue: [String: [String]], completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id, "travelConfig": editFieldValue] as [String : Any]
+            
+            let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: [params])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+        
+    }
+    func addUsuallyGo(_ id: String, editFieldValue: [String: String], completion: @escaping ((JSON) -> Void)) {
         
         do {
             

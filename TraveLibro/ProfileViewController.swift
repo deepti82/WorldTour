@@ -350,7 +350,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 socialId = currentUser["facebookID"].string!
             }
             
-            user.setUser(currentUser["_id"].string!, name: currentUser["name"].string!, useremail: currentUser["email"].string!, profilepicture: currentUser["profilePicture"].string!, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: currentUser["userBadgeImage"].string!, homecountry: currentUser["homeCountry"]["name"].string!, homecity: currentUser["homeCity"].string!, isloggedin: currentUser["alreadyLoggedIn"].bool!)
+            user.setUser(currentUser["_id"].stringValue, name: currentUser["name"].stringValue, useremail: currentUser["email"].stringValue, profilepicture: currentUser["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: currentUser["userBadgeImage"].stringValue, homecountry: currentUser["homeCountry"]["name"].stringValue, homecity: currentUser["homeCity"].stringValue, isloggedin: currentUser["alreadyLoggedIn"].bool!)
         }
         else {
             
