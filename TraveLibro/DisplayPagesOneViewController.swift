@@ -67,6 +67,9 @@ class DisplayPagesOneViewController: UIViewController {
                 }
                 else if response["value"].bool! {
                     
+                    for button in self.buttonsForView {
+                        print(button.titleLabel?.text!)
+                    }
                     profilePic = response["data"]["profilePicture"].string!
                     print("image: \(profilePic)")
                     self.setImage()
@@ -169,12 +172,21 @@ class DisplayPagesOneViewController: UIViewController {
     
     func nextPage(_ sender: AnyObject) {
         
-        print("kind of journey: \(kindOfJourney)")
+        let req = ["kindOfHoliday":kindOfJourney]
         
-//        request.editUser(currentUser["_id"].string!, editField: <#T##String#>, editFieldValue: <#T##String#>, completion: <#T##((JSON) -> Void)##((JSON) -> Void)##(JSON) -> Void#>)
+        request.addKindOfJourney(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
+            DispatchQueue.main.async(execute: {
+                if responce["value"] != true{
+                    self.alert(message: "Enable to save Kind of holiday", title: "Kind of holiday")
+
+                }
+                let next = self.storyboard?.instantiateViewController(withIdentifier: "displayTwo") as! DisplayPagesTwoViewController
+                self.navigationController?.pushViewController(next, animated: true)
+
+            })
+        })
         
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "displayTwo") as! DisplayPagesTwoViewController
-        self.navigationController?.pushViewController(next, animated: true)
+        
     }
 
     override func didReceiveMemoryWarning() {

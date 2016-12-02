@@ -141,8 +141,21 @@ class DisplayPagesThreeViewController: UIViewController {
         
         print("prefer to travel: \(preferToTravel)")
         
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "displayFour") as! DisplayPagesFourViewController
-        self.navigationController?.pushViewController(next, animated: true)
+        let req = ["preferToTravel":preferToTravel]
+        
+        request.addKindOfJourney(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
+            DispatchQueue.main.async(execute: {
+                if responce["value"] != true{
+                    self.alert(message: "Enable to save", title: "Prefer To Travel")
+                    
+                }
+                let next = self.storyboard?.instantiateViewController(withIdentifier: "displayFour") as! DisplayPagesFourViewController
+                self.navigationController?.pushViewController(next, animated: true)
+                
+            })
+        })
+
+        
     }
 
     override func didReceiveMemoryWarning() {

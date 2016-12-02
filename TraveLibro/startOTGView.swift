@@ -52,7 +52,10 @@ class startOTGView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
+        if nameJourneyTF == viewWithTag(1) as? UITextField {
+            print("taggedItIs")
+            
+        }
         startJourneyButton.layer.cornerRadius = 5
         
         let rocketLabel = UILabel(frame: CGRect(x: -22, y: -5, width: 22, height: 30))

@@ -64,6 +64,16 @@ extension NewTLViewController {
     func addActivityToOriginalState() {
         
         photosToBeUploaded = []
+        
+        let post = Post()
+        let buddy = Buddy()
+        
+        let postId = post.getRowCount()
+        
+        post.flushRows(Int64(postId))
+        photo.flushRows(localId: Int64(postId))
+        buddy.flushRows(String(postId))
+        
 //        photosGroupId += 1
         
 //        addView.photosIntialView.isHidden = false
@@ -634,13 +644,13 @@ extension NewTLViewController {
             self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), for: .touchUpInside)
             self.infoView.nearMeButton.addTarget(self, action: #selector(NewTLViewController.gotoNearMe(_:)), for: .touchUpInside)
             self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
-            self.infoView.videosCount.setTitle("\(response["videos"])", for: UIControlState())
-            self.infoView.photosCount.setTitle("\(response["photos"])", for: UIControlState())
-            self.infoView.ratingCount.setTitle("\(response["review"])", for: UIControlState())
-            self.infoView.mustDoCount.setTitle("\(response["mustDo"])", for: UIControlState())
-            self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: UIControlState())
-            self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: UIControlState())
-            self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: UIControlState())
+            self.infoView.videosCount.setTitle("\(response["videos"])", for: .normal)
+            self.infoView.photosCount.setTitle("\(response["photos"])", for: .normal)
+            self.infoView.ratingCount.setTitle("\(response["review"])", for: .normal)
+            self.infoView.mustDoCount.setTitle("\(response["mustDo"])", for: .normal)
+            self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: .normal)
+            self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: .normal)
+            self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: .normal)
             self.infoView.aboutLocationText.text = "About \(latestCity)"
             self.infoView.layer.opacity = 1.0
             self.view.addSubview(self.infoView)
@@ -650,11 +660,11 @@ extension NewTLViewController {
         else {
             
             print("yes subview")
-            myInfo.videosCount.setTitle("\(response["videos"])", for: UIControlState())
-            myInfo.photosCount.setTitle("\(response["photos"])", for: UIControlState())
-            myInfo.ratingCount.setTitle("\(response["review"])", for: UIControlState())
-            myInfo.mustDoCount.setTitle("\(response["mustDo"])", for: UIControlState())
-            myInfo.hotelsCount.setTitle("\(response["hotel"])", for: UIControlState())
+            myInfo.videosCount.setTitle("\(response["videos"])", for: .normal)
+            myInfo.photosCount.setTitle("\(response["photos"])", for: .normal)
+            myInfo.ratingCount.setTitle("\(response["review"])", for: .normal)
+            myInfo.mustDoCount.setTitle("\(response["mustDo"])", for: .normal)
+            myInfo.hotelsCount.setTitle("\(response["hotel"])", for: .normal)
             myInfo.isHidden = false
             myInfo.layer.opacity = 1.0
             

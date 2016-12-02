@@ -39,6 +39,7 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     print(json)
+                    
                     completion(json)
                 }
             }
@@ -67,7 +68,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }
@@ -541,6 +541,32 @@ class Navigation {
     }
     
     func addKindOfJourney(_ id: String, editFieldValue: [String: [String]], completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id, "travelConfig": editFieldValue] as [String : Any]
+            
+            let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: [params])
+            var json = JSON(1);
+            opt.start { response in
+                //                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+        
+    }
+    func addUsuallyGo(_ id: String, editFieldValue: [String: String], completion: @escaping ((JSON) -> Void)) {
         
         do {
             
@@ -1076,7 +1102,7 @@ class Navigation {
         }
     }
     
-    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, latitude: String, longitude: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, hashtags: [String], completion: @escaping ((JSON) -> Void)) {
+    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, latitude: String, longitude: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, hashtags: [String], date: String, completion: @escaping ((JSON) -> Void)) {
         
         
         var lat = ""
@@ -1100,7 +1126,7 @@ class Navigation {
             checkIn = [:]
         }
         
-            var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags]
+            var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags, "date": date]
             params["photos"] = JSON(photosArray)
             params["buddies"] = JSON(buddies)
             let jsonData = try! params.rawData()
@@ -1641,11 +1667,11 @@ class Navigation {
         
     }
     
-    func getJourneyPhotos(journeyId: String, completion: @escaping ((JSON) -> Void)) {
+    func getJourneyPhotos(journeyId: String, userId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": journeyId]
+            let params = ["_id": journeyId, "user": userId]
             let opt = try HTTP.POST(adminUrl + "journey/getPhotos", parameters: params)
             var json = JSON(1);
             opt.start {response in
