@@ -27,7 +27,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
 
     @IBOutlet weak var editComment: UITextView!
     @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var navigationItem: UINavigationItem!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         let leftBarButton = UIBarButtonItem()
         leftBarButton.customView = leftButton
         
-        navigationItem.leftBarButtonItem = leftBarButton
+        navItem.leftBarButtonItem = leftBarButton
         
         getAllComments()
         commentTableView.tableFooterView = UIView()
