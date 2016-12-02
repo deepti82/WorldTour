@@ -2444,7 +2444,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         otgView.locationLabel.resignFirstResponder()
-        addView.thoughtsTextView.resignFirstResponder()
+//        addView.thoughtsTextView.resignFirstResponder()
         print("\(otgView.nameJourneyTF.text)")
         print("\(self.title)")
         self.title = "On The Go" //otgView.nameJourneyTF.text
@@ -2491,7 +2491,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.nameJourneyView.layer.opacity = 0.0
         otgView.nameJourneyView.isHidden = false
         otgView.nameJourneyView.animation.makeOpacity(1.0).makeHeight(otgView.nameJourneyView.frame.height).animate(0.5)
-        otgView.bonVoyageLabel.animation.makeScale(2.0).makeOpacity(0.0).animate(0.5)
+        otgView.bonVoyageLabel.animation.makeOpacity(0.0).animate(0.5)
         
     }
 
