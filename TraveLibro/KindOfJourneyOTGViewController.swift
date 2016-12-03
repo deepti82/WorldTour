@@ -17,7 +17,7 @@ class KindOfJourneyOTGViewController: UIViewController {
     var selectedIndexG1 = 1
     var selectedIndexG2 = 1
     var selectedIndexG3 = 1
-    var selectedCategories :JSON = []
+    var selectedCategories: JSON = []
     var journeyID = ""
     
     var isEdit = false
@@ -28,6 +28,7 @@ class KindOfJourneyOTGViewController: UIViewController {
     @IBOutlet var groupTwoCategoryButtons: [UIButton]!
     @IBOutlet var groupOneCategoryButtons: [UIButton]!
     @IBOutlet weak var doneButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -103,7 +104,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         }
         else if isEdit {
             print("categories before save")
-            print(backVC.journeyCategories)
+//            print(backVC.journeyCategories)
             request.kindOfJourney(journeyID, kindOfJourney: backVC.journeyCategories, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
@@ -132,9 +133,6 @@ class KindOfJourneyOTGViewController: UIViewController {
             
             self.goBack()
         }
-        
-        
-//        self.navigationController?.pushViewController(backVC, animated: true)
         
     }
     
@@ -228,11 +226,6 @@ class KindOfJourneyOTGViewController: UIViewController {
             sender.tag = 0
             
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }

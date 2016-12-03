@@ -45,7 +45,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         let leftBarButton = UIBarButtonItem()
         leftBarButton.customView = leftButton
         
-        navigationItem.leftBarButtonItem = leftBarButton
+        //navItem.leftBarButtonItem = leftBarButton
         
         getAllComments()
         commentTableView.tableFooterView = UIView()

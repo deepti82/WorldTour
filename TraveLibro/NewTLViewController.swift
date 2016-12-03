@@ -2427,10 +2427,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    var keyboardHidden = false
+    
+    
     func keyboardWillShow(_ notification: Notification) {
         
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y -= keyboardSize.height
+            
+            if !keyboardHidden {
+                
+                self.view.frame.origin.y -= keyboardSize.height
+                keyboardHidden = true
+            }
+            
         }
         
     }
@@ -2457,6 +2466,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.journeyName.isHidden = false
             otgView.journeyName.text = otgView.nameJourneyTF.text
             journeyName = otgView.nameJourneyTF.text
+            otgView.nameJourneyTF.resignFirstResponder()
             
             height = 100.0
             mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
@@ -2510,6 +2520,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if !isJourneyOngoing {
             
             let journeyName = otgView.nameJourneyTF.text!
+            height = 40.0
+            mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
             
             print("show details function")
             
@@ -2528,6 +2540,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.journeyId = response["data"]["uniqueId"].string!
                         isJourneyOngoing = true
                         print("unique id: \(self.journeyId)")
+//                        self.getJourney()
                     }
                         
                     else {
@@ -2612,6 +2625,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         if !isEdit {
+            
             otgView.selectCategoryButton.isHidden = true
             otgView.journeyDetails.isHidden = false
             otgView.buddyStack.isHidden = true
@@ -2631,14 +2645,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        print("here 3")
 //        addView.resignThoughtsTexViewKeyboard()
 //        let isTextView = textFieldShouldReturn(otgView.locationLabel)
-        let addBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
-        addBuddies.whichView = "TL"
-        addBuddies.uniqueId = journeyId
-        addBuddies.journeyName = otgView.journeyName.text!
-        print("add buddies: \(addBuddies)")
-        print("navigation: \(self.navigationController)")
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController!.pushViewController(addBuddies, animated: true)
+        let addBuddiesVC = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
+        addBuddiesVC.whichView = "TL"
+        
+        if journeyId != nil {
+            
+            addBuddiesVC.uniqueId = journeyId
+            addBuddiesVC.journeyName = otgView.journeyName.text!
+            print("add buddies: \(addBuddies)")
+            print("navigation: \(self.navigationController)")
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController!.pushViewController(addBuddiesVC, animated: true)
+        }
+        else {
+            addBuddies(sender)
+        } 
 //        showBuddies()
 //        mainScroll.layer.zPosition = -1
 //
@@ -3171,7 +3192,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             })
             
             addPhotoToLayout(photo: getAssetThumbnail(asset))
-            photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
+//            photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
         }
         
         allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
