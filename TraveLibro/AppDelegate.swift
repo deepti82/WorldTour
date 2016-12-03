@@ -47,6 +47,12 @@ let photo = Photo()
 let width = UIScreen.main.bounds.size.width
 let height = UIScreen.main.bounds.size.height
 
+var kindOfJourney: [String] = []
+var youUsuallyGo: String = ""
+var preferToTravel: [String] = []
+var yourIdeal: [String] = []
+var travelConfig: [String: [String]] = [:]
+
 var leftViewController: SideNavigationMenuViewController!
 
 @UIApplicationMain
@@ -85,47 +91,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
         
+        let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
+        
 //        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
         
         leftViewController.mainViewController = nvc
         
+        print("get existing user")
+        print(user.getExistingUser())
+        
         if user.getExistingUser() == "" {
-            
+            print("in if")
             nvc = UINavigationController(rootViewController: signInVC)
             
             let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
             
             self.window?.rootViewController = slideMenuController
+            nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+            //        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
+            nvc.navigationBar.barStyle = .blackTranslucent
+            nvc.navigationBar.isTranslucent = true
             
-        }
-        else {
-            
-//            _ = storyboard.instantiateViewControllerWithIdentifier("DisplayCards") as! DisplayCardsViewController
-//            
-//            nvc = UINavigationController(rootViewController: signInVC)
-//            
-//            let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
-//            
-//            self.window?.rootViewController = slideMenuController
-//            hasLoggedInOnce = true
-            
-            print("user: \(user.getExistingUser())")
-            
-            nvc = UINavigationController(rootViewController: mainViewController)
-            
-            let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
-            
-            self.window?.rootViewController = slideMenuController
-            
+        }else {
+            print("in else")
+            request.getUser(user.getExistingUser(), completion: {(request) in
+                DispatchQueue.main.async(execute: {
+                    print("from database")
+                    print(request)
+                    currentUser = request["data"]
+                if request["data"]["alreadyLoggedIn"] == false {
+//
+                    nvc = UINavigationController(rootViewController: nationality)
+                    
+                    let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+                    
+                    self.window?.rootViewController = slideMenuController
+                    
+//                    navigation.pushViewController(nationalityPage, animated: true)
+                    
+                }else{
+                    
+                    nvc = UINavigationController(rootViewController: mainViewController)
+                    
+                    let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+                    
+                    self.window?.rootViewController = slideMenuController
+                }
+                    nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+                    //        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
+                    nvc.navigationBar.barStyle = .blackTranslucent
+                    nvc.navigationBar.isTranslucent = true
+                })
+            })
         }
         
-//        nvc.setNavigationBarItem()
-        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-//        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
-        nvc.navigationBar.barStyle = .blackTranslucent
-        nvc.navigationBar.isTranslucent = true
-//            .addSublayer(sublayer)
-//        nvc.navigationBar.barStyle = .Black
+////        nvc.setNavigationBarItem()
+//        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+////        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
+//        nvc.navigationBar.barStyle = .blackTranslucent
+//        nvc.navigationBar.isTranslucent = true
+////            .addSublayer(sublayer)
+////        nvc.navigationBar.barStyle = .Black
         
     }
     

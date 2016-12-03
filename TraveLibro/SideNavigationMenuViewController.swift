@@ -73,9 +73,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                     profile.image.image = UIImage(data: data!)
                     makeTLProfilePicture(profilePicture)
                 }
-            }
                 
-            else {
+            } else {
                 
                 let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
                 
@@ -126,7 +125,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let FBController = storyboard!.instantiateViewController(withIdentifier: "FeedbackVC") as! FeedbackViewController
         self.feedbackController = UINavigationController(rootViewController: FBController)
         
-        let loginController = storyboard!.instantiateViewController(withIdentifier: "logIn") as! LogInViewController
+        let loginController = storyboard!.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
         self.loginViewController = UINavigationController(rootViewController: loginController)
         
         let localLifeController = storyboard!.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
@@ -199,7 +198,10 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         case 7:
             print("drop table")
             user.dropTable()
-            self.slideMenuController()?.changeMainViewController(self.loginViewController, close: true)
+            let passcodemodal = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+            
+            self.present(passcodemodal, animated: true, completion: nil)
+            
         case 8:
             self.slideMenuController()?.changeMainViewController(self.localLifeController, close: true)
         default:

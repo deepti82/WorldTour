@@ -11,7 +11,7 @@
 import UIKit
 
 
-var yourIdeal: [String] = []
+
 
 class DisplayPagesFourViewController: UIViewController {
 
@@ -134,16 +134,18 @@ class DisplayPagesFourViewController: UIViewController {
         print("your ideal holiday: \(yourIdeal)")
         
         
-        let req = ["holidayType":yourIdeal]
-        
-        request.addKindOfJourney(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
+        let req = ["kindOfHoliday":kindOfJourney,"usuallyGo":youUsuallyGo,"preferToTravel":preferToTravel,"holidayType":yourIdeal] as [String : Any]
+//
+        request.addCard(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
             DispatchQueue.main.async(execute: {
                 if responce["value"] != true{
                     self.alert(message: "Enable to save", title: "Holiday Type")
                     
                 }
+                request.getUser(currentUser["_id"].stringValue, completion: {(responce) in
+                    
+                })
                 let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-                //        self.slideMenuController()?.changeMainViewController(next, close: true)
                 self.navigationController?.pushViewController(next, animated: true)
                 
             })
