@@ -5,6 +5,7 @@ PODS:
     - UIImageViewModeScaleAspect (~> 1.5.0)
   - DKChainableAnimationKit (2.0.0)
   - Fabric (1.6.10)
+  - HanekeSwift (0.10.1)
   - imglyKit (5.0.6)
   - Simplicity (2.0.1)
   - SQLite.swift (0.11.1):
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - BSImagePicker (~> 2.4)
   - DKChainableAnimationKit (from `https://github.com/Draveness/DKChainableAnimationKit.git`, branch `master`)
   - Fabric
+  - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
   - imglyKit (~> 5.0)
   - Simplicity
   - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `prepare-0.11.1`)
@@ -34,6 +36,9 @@ EXTERNAL SOURCES:
   DKChainableAnimationKit:
     :branch: master
     :git: https://github.com/Draveness/DKChainableAnimationKit.git
+  HanekeSwift:
+    :branch: feature/swift-3
+    :git: https://github.com/Haneke/HanekeSwift.git
   SQLite.swift:
     :branch: prepare-0.11.1
     :git: https://github.com/stephencelis/SQLite.swift.git
@@ -45,6 +50,9 @@ CHECKOUT OPTIONS:
   DKChainableAnimationKit:
     :commit: 82b9d7ce1f12d8c44a6c9d8582c086d6ca400c8f
     :git: https://github.com/Draveness/DKChainableAnimationKit.git
+  HanekeSwift:
+    :commit: 1157a124ec699f4ad926cb054f1d0bfce88ae7a9
+    :git: https://github.com/Haneke/HanekeSwift.git
   SQLite.swift:
     :commit: d95a518178570c805bb18b971d264b8a48edbcf5
     :git: https://github.com/stephencelis/SQLite.swift.git
@@ -57,6 +65,7 @@ SPEC CHECKSUMS:
   BSImagePicker: 9ad3385318ca0db7e792b51ea8929cfc39284c56
   DKChainableAnimationKit: 20401b3ad31b57d90548bfdb214077f2d2d79d49
   Fabric: c73f371ee543e3f0b80608f2674750e4910d1669
+  HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
   imglyKit: b78152c784cdcdf64297de33ad474bd7f13c7de9
   Simplicity: 58ce0c6569baf45e48ccd25432274ae899097517
   SQLite.swift: 1af00c95130fba962653aa136e3ecb0b8890796b
@@ -66,6 +75,6 @@ SPEC CHECKSUMS:
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 47943c5d312d48d514e0f245b0dbaa8e7196e5eb
+PODFILE CHECKSUM: 9be40b3098d3201e4c4a5b9c49dce2205efd2ea0
 
 COCOAPODS: 1.0.1

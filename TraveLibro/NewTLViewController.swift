@@ -17,6 +17,7 @@ import DKChainableAnimationKit
 import imglyKit
 import AVKit
 import AVFoundation
+import Haneke
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
@@ -620,7 +621,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             photos = post["photos"].array!
             //checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
-            checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=250")
+            checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500") as! URL)
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
             checkIn.mainPhoto.tag = 0
 //            checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
@@ -1694,7 +1695,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if post["photos"] != nil && post["photos"].array!.count > 0 {
             
             photos = post["photos"].array!
-            checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=250")
+            checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500") as! URL)
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
             checkIn.mainPhoto.tag = 0
             checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
@@ -1716,7 +1717,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             for i in 0 ..< count {
                 
                 print("in the for loop \(post["photos"][i + 1]["name"])")
-                checkIn.otherPhotosStack[i].loadImageFromURL("\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=250")
+                let imgg = photos[i + 1]["name"]
+                checkIn.otherPhotosStack[i].hnk_setImageFromURL(NSURL(string:"\(adminUrl)upload/readFile?file=\(imgg)&width=250") as! URL)
                 checkIn.otherPhotosStack[i].isHidden = false
                 checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
                 checkIn.otherPhotosStack[i].tag = i + 1
