@@ -20,7 +20,7 @@ class ProfileMainView: UIView {
             super.init(frame: frame)
             loadViewFromNib ()
             
-//            let profile = ProfilePic(frame: CGRect(x: 0, y: 0, width: ProfileImageView.frame.width, height: ProfileImageView.frame.height))
+//            let profile = profilePic(frame: CGRect(x: 0, y: 0, width: ProfileImageView.frame.width, height: ProfileImageView.frame.height))
 //            ProfileImageView.addSubview(profile)
             
 //            self.addObserver(self, forKeyPath: "hasChanged", options: .New, context: nil)
