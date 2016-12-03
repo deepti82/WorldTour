@@ -226,7 +226,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             }
             
             if currentUser["homeCity"] != nil {
-                
+                print("place homecity")
+                print(currentUser)
+                print(currentUser["homeCity"])
                 let place = currentUser["homeCity"].string!.components(separatedBy: ",")
                 
                 print("place: \(place)")
@@ -357,7 +359,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             let currentUserId = user.getExistingUser()
             let myUser = user.getUser(currentUserId)
             let nameTemp = myUser.0.components(separatedBy: " ")
-            currentUser = ["_id": currentUserId, "name": myUser.0, "firstName": nameTemp[0], "lastName": nameTemp[1], "email": myUser.1, "homeCity": myUser.6, "profilePicture": myUser.4, "homeCountry": ["name": myUser.6]]
+//            currentUser = ["_id": currentUserId, "name": myUser.0, "firstName": nameTemp[0], "lastName": nameTemp[1], "email": myUser.1, "homeCity": myUser.6, "profilePicture": myUser.4, "homeCountry": ["name": myUser.6]]
             
             print("my user:  \((myUser.0)) \(currentUser["name"]) \(nameTemp)")
             print("my user 2:  \(currentUser)")

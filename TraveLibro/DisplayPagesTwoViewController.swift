@@ -8,7 +8,7 @@
 
 import UIKit
 
-var youUsuallyGo: String = ""
+
 
 class DisplayPagesTwoViewController: UIViewController {
 
@@ -107,19 +107,19 @@ class DisplayPagesTwoViewController: UIViewController {
         
         print("you usually go: \(youUsuallyGo)")
         
-        let req = ["usuallyGo":youUsuallyGo]
-        
-        request.addUsuallyGo(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
-            DispatchQueue.main.async(execute: {
-                if responce["value"] != true{
-                    self.alert(message: "Enable to save You usually go.", title: "You usually go.")
-                    
-                }
+//        let req = ["usuallyGo":youUsuallyGo]
+//        
+//        request.addUsuallyGo(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
+//            DispatchQueue.main.async(execute: {
+//                if responce["value"] != true{
+//                    self.alert(message: "Enable to save You usually go.", title: "You usually go.")
+//                    
+//                }
                 let next = self.storyboard?.instantiateViewController(withIdentifier: "displayThree") as! DisplayPagesThreeViewController
                 self.navigationController?.pushViewController(next, animated: true)
                 
-            })
-        })
+//            })
+//        })
 
         
     }

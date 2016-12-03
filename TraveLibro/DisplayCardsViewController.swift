@@ -11,7 +11,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     let titles = ["Your kind of a holiday", "You usually go", "Prefer to travel", "Your ideal holiday type"]
     let checkBoxNumber = [6, 3, 8, 11]
     
-    var travelConfig: [String: [String]] = [:]
+    
     var dataIndex = 0
     
     override func viewDidLoad() {
