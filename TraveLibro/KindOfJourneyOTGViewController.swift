@@ -49,10 +49,8 @@ class KindOfJourneyOTGViewController: UIViewController {
                     button.tag = 1
                 }
             }
-//            indexGroupOne += 1
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-//            button.tag = indexGroupOne
             
         }
         
@@ -60,7 +58,6 @@ class KindOfJourneyOTGViewController: UIViewController {
         
         for button in groupTwoCategoryButtons {
             
-//            indexGroupTwo += 1
             for cat in selectedCategories {
                 if cat.1.stringValue == (button.titleLabel?.text)! {
                     backVC.journeyCategories.append(button.titleLabel!.text!)
@@ -70,13 +67,11 @@ class KindOfJourneyOTGViewController: UIViewController {
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-//            button.tag = indexGroupTwo
             
         }
         
         for button in groupThreeCategoryButtons {
             
-//            indexGroupThree += 1
             for cat in selectedCategories {
                 if cat.1.stringValue == (button.titleLabel?.text)! {
                     backVC.journeyCategories.append(button.titleLabel!.text!)
@@ -86,7 +81,6 @@ class KindOfJourneyOTGViewController: UIViewController {
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), for: .touchUpInside)
             button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-//            button.tag = indexGroupThree
             
         }
         
@@ -144,17 +138,6 @@ class KindOfJourneyOTGViewController: UIViewController {
     
     func selectGroupOne(_ sender: UIButton) {
         
-//        for button in groupOneCategoryButtons {
-//            
-//            if selectedIndexG1 == button.tag {
-//                
-//                button.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
-//                
-//            }
-//            
-//        }
-//        
-//        selectedIndexG1 = sender.tag
         if sender.tag == 0 {
             backVC.journeyCategories.append(sender.titleLabel!.text!)
             print("element added: \(backVC.journeyCategories)")
@@ -163,15 +146,6 @@ class KindOfJourneyOTGViewController: UIViewController {
         }
         
         else {
-            
-//            for buttonTitle in backVC.journeyCategories {
-//                
-//                if buttonTitle == sender.titleLabel?.text {
-//                    
-//                    
-//                }
-//                
-//            }
             
             backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
             print("element removed: \(backVC.journeyCategories)")
@@ -196,20 +170,6 @@ class KindOfJourneyOTGViewController: UIViewController {
             sender.tag = 0
             
         }
-        
-//        for button in groupTwoCategoryButtons {
-//            
-//            if selectedIndexG2 == button.tag {
-//                
-//                button.setBackgroundImage(UIImage(named: "graybox"), forState: .Normal)
-//                
-//            }
-//            
-//        }
-//        
-//        selectedIndexG2 = sender.tag
-//        sender.setBackgroundImage(UIImage(named: "green_bg_new_small"), forState: .Normal)
-        
     }
     
     func selectGroupThree(_ sender: UIButton) {
@@ -227,5 +187,4 @@ class KindOfJourneyOTGViewController: UIViewController {
             
         }
     }
-
 }
