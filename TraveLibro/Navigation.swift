@@ -2006,5 +2006,4 @@ class Navigation {
         }
         
     }
-    
 }

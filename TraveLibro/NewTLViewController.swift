@@ -98,25 +98,25 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     //@IBAction func addPosts(_ sender: AnyObject) {
     func addPosts(_ sender: UIButton) {
         
-        let postButton = UIButton()
-        postButton.setTitle("Post", for: .normal)
-        postButton.titleLabel?.textColor = UIColor.white
-        postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
-        postButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
-        
-        let cancelButton = UIButton()
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.titleLabel?.textColor = UIColor.white
-        //cancelButton.addTarget(self, action: nil, for: .touchUpInside)
-        cancelButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        let postButton = UIButton()
+//        postButton.setTitle("Post", for: .normal)
+//        postButton.titleLabel?.textColor = UIColor.white
+//        postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
+//        postButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
+//        
+//        let cancelButton = UIButton()
+//        cancelButton.setTitle("Cancel", for: .normal)
+//        cancelButton.titleLabel?.textColor = UIColor.white
+//        //cancelButton.addTarget(self, action: nil, for: .touchUpInside)
+//        cancelButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
+//        
+//        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         print("in the add posts function")
         
-        var flag = 0
-        var darkBlur: UIBlurEffect!
-        var blurView: UIVisualEffectView!
+//        var flag = 0
+//        var darkBlur: UIBlurEffect!
+//        var blurView: UIVisualEffectView!
         
         backView.frame = self.view.frame
         backView.tag = 8
@@ -124,47 +124,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         showAddActivity(view: self.view)
         getJourneyBuddies(journey: myJourney)
         
-//        if (self.view.viewWithTag(8) != nil) {
-//            
-//            print("tag is 8")
-//            flag = 1
-//            hideAddActivity()
-//        }
-//        
-//        else {
-        
-//            self.view.addSubview(backView)
-//            darkBlur = UIBlurEffect(style: .dark)
-//            blurView = UIVisualEffectView(effect: darkBlur)
-//            blurView.frame.size.height = backView.frame.height
-//            blurView.frame.size.width = backView.frame.width
-//            blurView.layer.zPosition = -1
-//            blurView.isUserInteractionEnabled = false
-//            backView.addSubview(blurView)
-//            uploadedphotos = []
-//            newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-//            backView.layer.zPosition = 10
-//            backView.addSubview(newScroll)
-            
-            
-            
-            let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
-            toolbar.barTintColor = mainBlueColor
-            toolbar.tintColor = UIColor.white
-            
-            var items = [UIBarButtonItem]()
-            
-            let addButton = UIBarButtonItem(title: "Add Activity", style: .plain, target: self, action: nil)
-            
-            items.append(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(NewTLViewController.closeAdd(_:))))
-            items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
-            items.append(addButton)
-            items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
-            items.append(UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(NewTLViewController.newPost(_:))))
-            toolbar.items = items
-            backView.addSubview(toolbar)
-            
-
             addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), for: .touchUpInside)
             addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), for: .touchUpInside)
             addView.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
@@ -661,7 +620,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             photos = post["photos"].array!
             //checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
-            checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")
+            checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=250")
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
             checkIn.mainPhoto.tag = 0
 //            checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
@@ -1735,8 +1694,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if post["photos"] != nil && post["photos"].array!.count > 0 {
             
             photos = post["photos"].array!
-            //checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
-            checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")
+            checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=250")
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
             checkIn.mainPhoto.tag = 0
             checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
@@ -1758,13 +1716,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             for i in 0 ..< count {
                 
                 print("in the for loop \(post["photos"][i + 1]["name"])")
-                //checkIn.otherPhotosStack[i].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")!))
-                checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")
+                checkIn.otherPhotosStack[i].loadImageFromURL("\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=250")
                 checkIn.otherPhotosStack[i].isHidden = false
                 checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
                 checkIn.otherPhotosStack[i].tag = i + 1
                 checkIn.otherPhotosStack[i].accessibilityLabel = post["_id"].string!
-                
                 checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
                 
             }
@@ -1996,7 +1952,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let buddy = BuddyOTG(frame: CGRect(x: 0, y: 0, width: 245, height: 260))
         buddy.center.x = self.view.center.x
-        buddy.profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])&width=500")!))
+        buddy.profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])&width=250")!))
         buddy.joinJourneytext.text = "\(post["user"]["name"]) has joined this journey"
         makeTLProfilePicture(buddy.profileImage)
         layout.addSubview(buddy)
@@ -2046,50 +2002,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         print("edit response function one")
                         
-                        var flag = 0
-                        var darkBlur: UIBlurEffect!
-                        var blurView: UIVisualEffectView!
+//                        var flag = 0
+//                        var darkBlur: UIBlurEffect!
+//                        var blurView: UIVisualEffectView!
                         
                         self.backView.frame = self.view.frame
                         self.backView.tag = 8
                         
                         self.showAddActivity(view: self.view)
                         
-//                        if self.view.viewWithTag(8) != nil {
-//                            
-//                            self.newScroll.isHidden = false
-//                            self.backView.isHidden = false
-//                            
-//                            
-//                        }
-                        
-//                        else {
-//                            
-//                            self.view.addSubview(self.backView)
-//                            darkBlur = UIBlurEffect(style: .dark)
-//                            blurView = UIVisualEffectView(effect: darkBlur)
-//                            blurView.frame.size.height = self.backView.frame.height
-//                            blurView.frame.size.width = self.backView.frame.width
-//                            blurView.layer.zPosition = -1
-//                            blurView.isUserInteractionEnabled = false
-//                            self.backView.addSubview(blurView)
-//                            self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-//                            self.backView.addSubview(self.newScroll)
-//                            self.addView = AddActivityNew(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-//                            print("add view: \(self.addView)")
-//                            self.displayFriendsCount()
-//                            self.newScroll.addSubview(self.addView)
-//                            self.newScroll.contentSize.height = self.view.frame.height
-//                            self.addLocationTapped(nil)
-//                        }
-                        
-                        
                         self.addView.postButton.setTitle("Edit", for: .normal)
                         self.editPostId = sender.titleLabel!.text!
                         
                         print("edit response function two")
                         
-                        if response["data"]["checkIn"]["location"] != "" {
+                        if response["data"]["checkIn"]["location"] != "" && response["data"]["checkIn"]["location"] != nil {
                             
                             self.addView.addLocationButton.setTitle(response["data"]["checkIn"]["location"].string!, for: .normal)
                             self.addView.categoryView.isHidden = false
@@ -2101,7 +2028,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         else {
                             
                             self.addView.addLocationButton.setTitle("Add Location", for: .normal)
-                            self.addView.categoryView.isHidden = false
+                            self.addView.categoryView.isHidden = true
+                            self.addView.locationHorizontalScroll.isHidden = false
                             self.addView.categoryLabel.isHidden = true
                             
                         }
@@ -2111,6 +2039,29 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         if response["data"]["photos"] != nil && response["data"]["photos"].array!.count > 0 {
                             
                             self.addView.photosFinalView.isHidden = false
+                            
+                            for photo in response["data"]["photos"].array! {
+                                
+                                do {
+                                    
+                                    let image = try UIImage(data: Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(photo["name"])&width=250")!))
+                                    self.addPhotoToLayout(photo: image!)
+                                } catch _ {
+                                    
+                                }
+                            }
+                            
+                            let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+                            addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+                            addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
+                            addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+                            addMorePhotosButton.layer.cornerRadius = 5.0
+                            addMorePhotosButton.clipsToBounds = true
+                            addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
+                            addMorePhotosButton.tag = 1
+                            self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
+                            self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+                            
                             self.addView.photosIntialView.isHidden = true
                             
                         }
@@ -2143,6 +2094,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         if response["data"]["thoughts"] != nil && response["data"]["thoughts"].string != "" {
                             
                             self.addView.thoughtsFinalView.isHidden = false
+                            self.addView.thoughtsTextView.text = response["data"]["thoughts"].string!
                             self.addView.thoughtsInitalView.isHidden = true
                             
                         }
@@ -2395,7 +2347,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func getImage(_ myImage: UIImageView, imageValue: String) {
         
-        myImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(imageValue)&width=500")!))
+        myImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(imageValue)&width=250")!))
         
         
     }
@@ -2772,7 +2724,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             else if imageUrl != "" {
                 
-                let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
+                let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=250"
                 let data = try? Data(contentsOf: URL(string: getImageUrl)!)
                 if data != nil && i <= 2 {
                     
@@ -3397,7 +3349,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        DispatchQueue.main.async(execute: {
         
             captionVC.currentImage = sender.currentImage!
-            captionVC.currentSender = allPhotos[0]
+            captionVC.currentSender = sender
             captionVC.allImages = allPhotos
             captionVC.allPhotos = self.photosToBeUploaded
             captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))
