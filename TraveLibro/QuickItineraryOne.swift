@@ -2,14 +2,16 @@ import UIKit
 
 class QuickItineraryOne: UIView {
 
+    @IBOutlet weak var tripTitle: UITextField!
+    
+    @IBOutlet weak var monthPickerView: UITextField!
+  
+    @IBOutlet weak var durationTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var yearPickerView: UITextField!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
-        nextButton.layer.cornerRadius = 5
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -862,7 +862,6 @@
 				C2D070D41D953366003249F8 /* AddActivityNew */,
 				C24F84FB1D005A48002EA203 /* AccountVerified */,
 				C2A4C8851D840289008394A3 /* AddActivityOTG */,
-				C20A18FB1D229DC900760BF9 /* AddCheckIn */,
 				1A4CA11C1CCE17F900EE9A90 /* AddCircle */,
 				C2A27A5D1CEDEFA500F74DD1 /* AddDisplayPic */,
 				C2A6E26F1CE9E65700D3F845 /* AddFriendOTG */,
@@ -1997,6 +1996,7 @@
 		C2F773E31DA3989600865096 /* BuddyLeaves */ = {
 			isa = PBXGroup;
 			children = (
+				C20A18FB1D229DC900760BF9 /* AddCheckIn */,
 				C2873E8B1D9E8E510001431B /* BuddyLeaves.xib */,
 				C2873E8D1D9E90580001431B /* BuddyLeaves.swift */,
 			);
