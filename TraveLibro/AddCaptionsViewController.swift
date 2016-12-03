@@ -358,12 +358,18 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     func getPhotoCaption(ind: Int) {
         
 //        let imageCaption = photo.getCaption(allIds[index])
-//        print("\(#line) caption: \(ind) \(allPhotos[ind].caption)")
-        if allPhotos[ind].caption != "" {
-            captionTextView.text = allPhotos[ind].caption
-        }
-        else {
-            captionTextView.text = "Add a caption..."
+        
+        if allPhotos.count > 0 {
+            
+            print("\(#line) caption: \(ind) \(allPhotos[ind].caption)")
+            if allPhotos[ind].caption != "" {
+                captionTextView.text = allPhotos[ind].caption
+            }
+            else {
+                captionTextView.text = "Add a caption..."
+            }
+            
+            
         }
     }
     
