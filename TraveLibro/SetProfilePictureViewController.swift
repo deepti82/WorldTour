@@ -14,6 +14,12 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     var uploadView: AddDisplayPic!
     var tempImage: UIImage!
     
+    var kindOfJourney: [String] = []
+    var youUsuallyGo: String = ""
+    var preferToTravel: [String] = []
+    var yourIdeal: [String] = []
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -24,12 +24,11 @@ extension UIViewController {
             
             print("storyboard: \(navigation)")
             
-            //            profileVC.initialEntrance = true
-            //            self.slideMenuController()?.changeMainViewController(profileVC, close: true)
+                        profileVC.initialEntrance = true
+                        self.slideMenuController()?.changeMainViewController(profileVC, close: true)
             navigation.pushViewController(profileVC, animated: true)
             
-        }
-        else {
+        } else {
             
             //            print("nationality: \(nationalityPage)")
             //            nationalityPage.whichView = "selectNationality"

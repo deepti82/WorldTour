@@ -63,6 +63,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewDidLoad()
+    }
+    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         
         ipTextField.resignFirstResponder()

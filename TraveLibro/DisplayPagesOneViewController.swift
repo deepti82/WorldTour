@@ -10,7 +10,7 @@ import UIKit
 
 var profilePic: String!
 
-var kindOfJourney: [String] = []
+
 
 let emptyCircle = String(format: "%C", faicon["emptyCircle"]!)
 let fullCircle = String(format: "%C", faicon["fullCircle"]!)
@@ -172,19 +172,19 @@ class DisplayPagesOneViewController: UIViewController {
     
     func nextPage(_ sender: AnyObject) {
         
-        let req = ["kindOfHoliday":kindOfJourney]
-        
-        request.addKindOfJourney(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
-            DispatchQueue.main.async(execute: {
-                if responce["value"] != true{
-                    self.alert(message: "Enable to save Kind of holiday", title: "Kind of holiday")
-
-                }
+//        let req = ["kindOfHoliday":kindOfJourney]
+//        
+//        request.addKindOfJourney(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
+//            DispatchQueue.main.async(execute: {
+//                if responce["value"] != true{
+//                    self.alert(message: "Enable to save Kind of holiday", title: "Kind of holiday")
+//
+//                }
                 let next = self.storyboard?.instantiateViewController(withIdentifier: "displayTwo") as! DisplayPagesTwoViewController
                 self.navigationController?.pushViewController(next, animated: true)
 
-            })
-        })
+//            })
+//        })
         
         
     }

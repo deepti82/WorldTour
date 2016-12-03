@@ -18,7 +18,7 @@ class Navigation {
         
         print("name: \(firstName), \(lastName)")
         
-        var json = JSON(1);
+        var json1 = JSON(1);
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
         
         let deviceParams = ["_id": deviceId, "os": "iOS"]
@@ -37,10 +37,31 @@ class Navigation {
                 }
                 else
                 {
-                    json  = JSON(data: response.data)
-                    print(json)
+                    json1  = JSON(data: response.data)
+                    var json = json1["data"]
+                    print("\(#line)\(json)")
+                    print(json["googleID"])
+                    var socialType = ""
+                    var socialId = ""
                     
-                    completion(json)
+                    if json["googleID"].string! != "" {
+                        socialType = "google"
+                        socialId = json["googleID"].string!
+                    }
+                    else if json["instagramID"].string! != "" {
+                        socialType = "instagram"
+                        socialId = json["instagramID"].string!
+                    }
+                    else if json["twitterID"].string! != "" {
+                        socialType = "twitter"
+                        socialId = json["twitterID"].string!
+                    }
+                    else if json["facebookID"].string! != "" {
+                        socialType = "facebook"
+                        socialId = json["facebookID"].string!
+                    }
+                    user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!)
+                    completion(json1)
                 }
             }
         } catch let error {
@@ -566,7 +587,7 @@ class Navigation {
         
         
     }
-    func addUsuallyGo(_ id: String, editFieldValue: [String: String], completion: @escaping ((JSON) -> Void)) {
+    func addCard(_ id: String, editFieldValue: [String:Any], completion: @escaping ((JSON) -> Void)) {
         
         do {
             
@@ -589,7 +610,6 @@ class Navigation {
         } catch let error {
             print("got an error creating the request: \(error)")
         }
-        
         
     }
     
@@ -1120,24 +1140,28 @@ class Navigation {
         }
         
         
-        var checkIn = ["location": location, "category": locationCategory, "city": city, "country": country, "lat": lat, "long": long]
+        var checkIn: JSON = ["location": location, "category": locationCategory, "city": city, "country": country, "lat": lat, "long": long]
         
         if location == "" && locationCategory == "" && city == "" && country == "" && lat == "" && long == "" {
+            
             checkIn = [:]
         }
         
-            var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags, "date": date]
-            params["photos"] = JSON(photosArray)
-            params["buddies"] = JSON(buddies)
-            let jsonData = try! params.rawData()
-            // create post request
-            let url = URL(string: adminUrl + "post/save3")!
-            let request = NSMutableURLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            // insert json data to the request
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
+        var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags, "date": date]
+        params["photos"] = JSON(photosArray)
+        params["buddies"] = JSON(buddies)
+        
+        print("post params \(params)")
+        
+        let jsonData = try! params.rawData()
+        // create post request
+        let url = URL(string: adminUrl + "post/save3")!
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        // insert json data to the request
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{
@@ -1982,5 +2006,4 @@ class Navigation {
         }
         
     }
-    
 }

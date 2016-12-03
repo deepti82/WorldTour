@@ -30,6 +30,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     var editedImage = UIImage()
     var isEditedImage = false
+    var isDeletedImage = false
     
     @IBOutlet var completeImages: [UIImageView]!
     @IBOutlet weak var captionTextView: UITextView!
@@ -41,6 +42,76 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     var index = 0
     var editedIndex: Int!
+    var deletedIndex: Int!
+    
+    @IBAction func deletePhoto(_ sender: UIButton) {
+        
+        isDeletedImage = true
+        
+        if allImages.count == 1 {
+            
+            self.popVC(sender)
+        }
+        
+        else if index == 0 {
+            
+            index += 1
+            
+            print("prev index: \(index - 1) current index: \(index)")
+            
+            deletedIndex = index - 1
+            
+            let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+            captionVC.imagesArray = imagesArray
+            captionVC.deletedIndex = deletedIndex
+            captionVC.currentImage = allImages[index].currentImage!
+            captionVC.allIds = allIds
+            captionVC.currentSender = allImages[index]
+            captionVC.allPhotos = allPhotos
+            captionVC.index = index
+            captionVC.imageIds = imageIds
+            captionVC.allImages = allImages
+            self.navigationController!.pushViewController(captionVC, animated: false)
+        }
+        
+        else if index >= allImages.count - 1 {
+            
+            index = 0
+            
+            print("prev index: \(index - 1) current index: \(index)")
+            
+            let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+            captionVC.imagesArray = [imagesArray.remove(at: allImages.count - 1)]
+            captionVC.currentImage = allImages[index].currentImage!
+            captionVC.allIds = [allIds.removeLast()]
+            captionVC.currentSender = allImages[index]
+            captionVC.allPhotos = [allPhotos.removeLast()]
+            captionVC.index = index
+            captionVC.imageIds = [imageIds.remove(at: allImages.count - 1)]
+            captionVC.allImages = [allImages.remove(at: allImages.count - 1)]
+            self.navigationController!.pushViewController(captionVC, animated: false)
+        }
+        
+        else {
+            
+            index += 1
+            
+            print("prev index: \(index - 1) current index: \(index)")
+            
+            let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+            self.navigationController!.pushViewController(captionVC, animated: false)
+            captionVC.imagesArray = [imagesArray.remove(at: index - 1)]
+            captionVC.currentImage = allImages[index - 1].currentImage!
+            captionVC.allIds = [allIds.remove(at: index - 1)]
+            captionVC.currentSender = allImages[index - 1]
+            captionVC.allPhotos = allPhotos.filter({$0.serverId != allPhotos[index - 1].serverId})
+            captionVC.index = index
+            captionVC.imageIds = [imageIds.remove(at: index - 1)]
+            captionVC.allImages = [allImages.remove(at: index - 1)]
+
+        }
+        
+    }
     
     @IBAction func editPhoto(_ sender: Any) {
         
@@ -358,12 +429,18 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     func getPhotoCaption(ind: Int) {
         
 //        let imageCaption = photo.getCaption(allIds[index])
-        print("\(#line) caption: \(ind) \(allPhotos[ind].caption)")
-        if allPhotos[ind].caption != "" {
-            captionTextView.text = allPhotos[ind].caption
-        }
-        else {
-            captionTextView.text = "Add a caption..."
+        
+        if allPhotos.count > 0 {
+            
+            print("\(#line) caption: \(ind) \(allPhotos[ind].caption)")
+            if allPhotos[ind].caption != "" {
+                captionTextView.text = allPhotos[ind].caption
+            }
+            else {
+                captionTextView.text = "Add a caption..."
+            }
+            
+            
         }
     }
     
@@ -427,6 +504,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
                 allPhotos[i].caption = captionTextView.text
             }
         }
+        
+    }
+    
+    func deletePhoto(deletedIndex: Int) {
+        
+        
+        
         
     }
     

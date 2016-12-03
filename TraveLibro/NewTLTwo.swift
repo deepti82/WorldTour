@@ -130,6 +130,7 @@ extension NewTLViewController {
             self.addView.frame = self.view.frame
             self.newScroll.addSubview(self.addView)
             self.addLocationTapped(nil)
+            self.getAllLocations()
         }
             
         else {
@@ -158,6 +159,23 @@ extension NewTLViewController {
         addView.layer.zPosition = 10
         backView.layer.zPosition = 10
         newScroll.contentSize.height = self.view.frame.height
+        
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
+        toolbar.barTintColor = mainBlueColor
+        toolbar.tintColor = UIColor.white
+        
+        var items = [UIBarButtonItem]()
+        
+        let addButton = UIBarButtonItem(title: "Add Activity", style: .plain, target: self, action: nil)
+        
+        items.append(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(NewTLViewController.closeAdd(_:))))
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
+        items.append(addButton)
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
+        items.append(UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(NewTLViewController.newPost(_:))))
+        toolbar.items = items
+        backView.addSubview(toolbar)
+        
         addLocationTapped(nil)
     }
     
@@ -530,7 +548,7 @@ extension NewTLViewController {
             makeCoverPic("\(journey["startLocationPic"])")
             
             self.journeyId = journey["uniqueId"].string!
-            showDetailsFn()
+            showDetailsFn(isEdit: false)
             
             getJourneyBuddies(journey: journey)
 //            addedBuddies = journey["buddies"].array!
