@@ -54,8 +54,8 @@ class NewProfilePosts: UIView {
         OTGLabelView.layer.cornerRadius = 5
         OTGLabelView.clipsToBounds = true
         
-        let profileImage = ProfileImage(frame: CGRect(x: 0, y: 0, width: profileImageView.frame.width, height: profileImageView.frame.height))
-        profileImageView.addSubview(profileImage)
+//        let profileImage = ProfileImage(frame: CGRect(x: 0, y: 0, width: profileImageView.frame.width, height: profileImageView.frame.height))
+//        profileImageView.addSubview(profileImage)
         
         likesLabel.text = String(format: "%C", faicon["likes"]!)
         

@@ -223,13 +223,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 self.inputview.addSubview(self.datePickerView) // add date picker to UIView
                 
                 let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
-                doneButton.setTitle("SAVE", for: UIControlState())
+                doneButton.setTitle("SAVE", for: .normal)
                 doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-                doneButton.setTitleColor(mainBlueColor, for: UIControlState())
+                doneButton.setTitleColor(mainBlueColor, for: .normal)
                 doneButton.setTitle(sender.title(for: .application)!, for: .application)
                 
                 let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-                cancelButton.setTitle("CANCEL", for: UIControlState())
+                cancelButton.setTitle("CANCEL", for: .normal)
                 cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
                 cancelButton.setTitleColor(mainBlueColor, for: UIControlState())
                 
@@ -688,7 +688,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 checkIn.otherPhotosStack[i].isHidden = false
                 checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
                 checkIn.otherPhotosStack[i].tag = i + 1
-                checkIn.otherPhotosStack[i].accessibilityLabel = post["_id"].string!
+//                checkIn.otherPhotosStack[i].accessibilityLabel = post["_id"].string!
                 
                 checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
                 
@@ -696,7 +696,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
             
-        else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 && post["checkIn"]["location"] != "" {
+        else if post["photos"] != nil && post["photos"].array!.count == 0 && post["checkIn"]["location"] != "" {
             
             checkIn.mainPhoto.isHidden = false
             checkIn.photosStack.isHidden = true
@@ -708,6 +708,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         //checkIn.frame.size.height = setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
         print("subviews count: \(layout.subviews.count)")
         
+        checkIn.tag = 11
         layout.addSubview(checkIn)
         layout.layoutIfNeeded()
         
@@ -934,6 +935,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             
                             print("response arrived new post!")
                             self.addActivityToOriginalState()
+                            var isRemoved = false
+                            if self.layout.viewWithTag(11) != nil && !isRemoved {
+                                
+                                let subview = self.layout.viewWithTag(11)
+                                subview!.removeFromSuperview()
+                                print("subviews: \(subview)")
+                                print("removed")
+                                isRemoved = true
+                            }
                             self.getJourney()
                             
                         }
@@ -1021,7 +1031,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
     }
-    
     
     func getJourney() {
         print("myuser")

@@ -45,7 +45,7 @@ class KindOfJourneyOTGViewController: UIViewController {
             for cat in selectedCategories {
                 if cat.1.stringValue == (button.titleLabel?.text)! {
                     backVC.journeyCategories.append(button.titleLabel!.text!)
-                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
                     button.tag = 1
                 }
             }
@@ -61,7 +61,7 @@ class KindOfJourneyOTGViewController: UIViewController {
             for cat in selectedCategories {
                 if cat.1.stringValue == (button.titleLabel?.text)! {
                     backVC.journeyCategories.append(button.titleLabel!.text!)
-                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
                     button.tag = 1
                 }
             }
@@ -75,7 +75,7 @@ class KindOfJourneyOTGViewController: UIViewController {
             for cat in selectedCategories {
                 if cat.1.stringValue == (button.titleLabel?.text)! {
                     backVC.journeyCategories.append(button.titleLabel!.text!)
-                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+                    button.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
                     button.tag = 1
                 }
             }
@@ -141,7 +141,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         if sender.tag == 0 {
             backVC.journeyCategories.append(sender.titleLabel!.text!)
             print("element added: \(backVC.journeyCategories)")
-            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
             sender.tag = 1
         }
         
@@ -149,7 +149,7 @@ class KindOfJourneyOTGViewController: UIViewController {
             
             backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
             print("element removed: \(backVC.journeyCategories)")
-            sender.setBackgroundImage(UIImage(named: "graybox"), for: UIControlState())
+            sender.setBackgroundImage(UIImage(named: "graybox"), for: .normal)
             sender.tag = 0
         }
         
@@ -160,13 +160,13 @@ class KindOfJourneyOTGViewController: UIViewController {
         
         if sender.tag == 0 {
             backVC.journeyCategories.append(sender.titleLabel!.text!)
-            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
             sender.tag = 1
         }
             
         else {
             backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
-            sender.setBackgroundImage(UIImage(named: "graybox"), for: UIControlState())
+            sender.setBackgroundImage(UIImage(named: "graybox"), for: .normal)
             sender.tag = 0
             
         }
@@ -176,13 +176,13 @@ class KindOfJourneyOTGViewController: UIViewController {
         
         if sender.tag == 0 {
             backVC.journeyCategories.append(sender.titleLabel!.text!)
-            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())
+            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
             sender.tag = 1
         }
             
         else {
             backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
-            sender.setBackgroundImage(UIImage(named: "graybox"), for: UIControlState())
+            sender.setBackgroundImage(UIImage(named: "graybox"), for: .normal)
             sender.tag = 0
             
         }
