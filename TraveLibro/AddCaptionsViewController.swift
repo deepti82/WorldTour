@@ -53,27 +53,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             self.popVC(sender)
         }
         
-        else if index == 0 {
-            
-            index += 1
-            
-            print("prev index: \(index - 1) current index: \(index)")
-            
-            deletedIndex = index - 1
-            
-            let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-            captionVC.imagesArray = imagesArray
-            captionVC.deletedIndex = deletedIndex
-            captionVC.currentImage = allImages[index].currentImage!
-            captionVC.allIds = allIds
-            captionVC.currentSender = allImages[index]
-            captionVC.allPhotos = allPhotos
-            captionVC.index = index
-            captionVC.imageIds = imageIds
-            captionVC.allImages = allImages
-            self.navigationController!.pushViewController(captionVC, animated: false)
-        }
-        
         else if index >= allImages.count - 1 {
             
             index = 0
@@ -81,14 +60,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             print("prev index: \(index - 1) current index: \(index)")
             
             let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-            captionVC.imagesArray = [imagesArray.remove(at: allImages.count - 1)]
+            captionVC.imagesArray = imagesArray
             captionVC.currentImage = allImages[index].currentImage!
-            captionVC.allIds = [allIds.removeLast()]
+            captionVC.allIds = allIds
             captionVC.currentSender = allImages[index]
-            captionVC.allPhotos = [allPhotos.removeLast()]
+            captionVC.allPhotos = allPhotos
             captionVC.index = index
-            captionVC.imageIds = [imageIds.remove(at: allImages.count - 1)]
-            captionVC.allImages = [allImages.remove(at: allImages.count - 1)]
+            captionVC.imageIds = imageIds
+            captionVC.allImages = allImages
+            captionVC.deletePhoto(deletedIndex: allImages.count - 1)
             self.navigationController!.pushViewController(captionVC, animated: false)
         }
         
@@ -99,15 +79,16 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             print("prev index: \(index - 1) current index: \(index)")
             
             let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-            self.navigationController!.pushViewController(captionVC, animated: false)
-            captionVC.imagesArray = [imagesArray.remove(at: index - 1)]
-            captionVC.currentImage = allImages[index - 1].currentImage!
-            captionVC.allIds = [allIds.remove(at: index - 1)]
-            captionVC.currentSender = allImages[index - 1]
-            captionVC.allPhotos = allPhotos.filter({$0.serverId != allPhotos[index - 1].serverId})
+            captionVC.imagesArray = imagesArray
+            captionVC.currentImage = allImages[index].currentImage!
+            captionVC.allIds = allIds
+            captionVC.currentSender = allImages[index]
+            captionVC.allPhotos = allPhotos
             captionVC.index = index
-            captionVC.imageIds = [imageIds.remove(at: index - 1)]
-            captionVC.allImages = [allImages.remove(at: index - 1)]
+            captionVC.imageIds = imageIds
+            captionVC.allImages = allImages
+            captionVC.deletePhoto(deletedIndex: index - 1)
+            self.navigationController!.pushViewController(captionVC, animated: false)
 
         }
         
@@ -153,8 +134,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.allPhotos = allPhotos
             captionVC.index = index
             captionVC.imageIds = imageIds
-//            captionVC.getPhotoCaption()
-//            captionVC.currentId = allIds[index]
+            //            captionVC.getPhotoCaption()
+            //            captionVC.currentId = allIds[index]
             captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
             
@@ -202,7 +183,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.index = index
             captionVC.allIds = allIds
             captionVC.imageIds = imageIds
-//            captionVC.getPhotoCaption()
             captionVC.currentId = currentId + 1
             captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
@@ -509,9 +489,11 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     func deletePhoto(deletedIndex: Int) {
         
-        
-        
-        
+        imagesArray = [imagesArray.remove(at: deletedIndex)]
+        allIds = [allIds.remove(at: deletedIndex)]
+        allPhotos = [allPhotos.remove(at: deletedIndex)]
+        imageIds = [imageIds.remove(at: deletedIndex)]
+        allImages = [allImages.remove(at: deletedIndex)]
     }
     
     func keyboardWillShow(_ notification: Notification) {
