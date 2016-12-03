@@ -1143,21 +1143,25 @@ class Navigation {
         var checkIn: JSON = ["location": location, "category": locationCategory, "city": city, "country": country, "lat": lat, "long": long]
         
         if location == "" && locationCategory == "" && city == "" && country == "" && lat == "" && long == "" {
-            checkIn = []
+            
+            checkIn = [:]
         }
         
-            var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags, "date": date]
-            params["photos"] = JSON(photosArray)
-            params["buddies"] = JSON(buddies)
-            let jsonData = try! params.rawData()
-            // create post request
-            let url = URL(string: adminUrl + "post/save3")!
-            let request = NSMutableURLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            // insert json data to the request
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
+        var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags, "date": date]
+        params["photos"] = JSON(photosArray)
+        params["buddies"] = JSON(buddies)
+        
+        print("post params \(params)")
+        
+        let jsonData = try! params.rawData()
+        // create post request
+        let url = URL(string: adminUrl + "post/save3")!
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        // insert json data to the request
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
             
             let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
                 if error != nil{

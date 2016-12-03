@@ -2445,18 +2445,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    var keyboardHidden = false
+//    var keyboardHidden = false
     
     
     func keyboardWillShow(_ notification: Notification) {
         
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
-            if !keyboardHidden {
-                
+//            if !keyboardHidden {
+            
                 self.view.frame.origin.y -= keyboardSize.height
-                keyboardHidden = true
-            }
+//                keyboardHidden = true
+//            }
             
         }
         
