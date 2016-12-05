@@ -68,7 +68,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.index = index
             captionVC.imageIds = imageIds
             captionVC.allImages = allImages
-            captionVC.deletePhoto(deletedIndex: allImages.count - 1)
+            captionVC.deletedIndex =  allImages.count - 1
+            captionVC.isDeletedImage = true
             self.navigationController!.pushViewController(captionVC, animated: false)
         }
         
@@ -87,7 +88,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.index = index
             captionVC.imageIds = imageIds
             captionVC.allImages = allImages
-            captionVC.deletePhoto(deletedIndex: index - 1)
+            captionVC.deletedIndex =  index - 1
+            captionVC.isDeletedImage = true
             self.navigationController!.pushViewController(captionVC, animated: false)
 
         }
@@ -244,6 +246,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         imageStackView.layer.zPosition = 1000
         captionTextView.textContainerInset = UIEdgeInsetsMake(5, 10, 5, 10)
         
+        index = getIndex()
+        
+        if isDeletedImage {
+            deletePhoto(deletedIndex: deletedIndex)
+        }
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
@@ -260,18 +268,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             editedImagesArray.append([i!: eachImage.currentImage!])
         }
         
+        imageForCaption.image = currentImage
         
-//        else{
-//            
-            imageForCaption.image = currentImage
-//            print("in current image")
-//        }
-        
-        //  jagruti's code
-        
-        index = getIndex()
         print("index is: \(index)")
-//        getPhotoCaption()
         
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done
@@ -386,10 +385,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             updateImage()
         }
         
-        else {
-            
-            index = getIndex()
-        }
+//        else {
+//            
+//            index = getIndex()
+//        }
         
     }
     
@@ -489,11 +488,20 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     func deletePhoto(deletedIndex: Int) {
         
-        imagesArray = [imagesArray.remove(at: deletedIndex)]
-        allIds = [allIds.remove(at: deletedIndex)]
-        allPhotos = [allPhotos.remove(at: deletedIndex)]
-        imageIds = [imageIds.remove(at: deletedIndex)]
-        allImages = [allImages.remove(at: deletedIndex)]
+        imagesArray.remove(at: deletedIndex)
+        print("local ids: \(allIds)")
+        print("all photos: \(allPhotos)")
+        print("images Ids: \(imageIds)")
+        print("all images: \(allImages)")
+//        allIds.remove(at: deletedIndex)
+//        allPhotos.remove(at: deletedIndex)
+//        imageIds.remove(at: deletedIndex)
+        allImages.remove(at: deletedIndex)
+        print("end of modifications")
+        print("local ids: \(allIds)")
+        print("all photos: \(allPhotos)")
+        print("images Ids: \(imageIds)")
+        print("all images: \(allImages)")
     }
     
     func keyboardWillShow(_ notification: Notification) {
@@ -543,7 +551,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     func goBack(_ sender: UIButton) {
-        self.popVC(sender)
+        
+        for viewController in self.navigationController!.viewControllers {
+            
+            if viewController.isKind(of: NewTLViewController.self) {
+                
+                let newtlVC = viewController as! NewTLViewController
+                self.navigationController!.popToViewController(newtlVC, animated: true)
+            }
+        }
     }
     
 }
