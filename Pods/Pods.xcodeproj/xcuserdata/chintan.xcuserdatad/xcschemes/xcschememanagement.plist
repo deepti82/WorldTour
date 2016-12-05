@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HanekeSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TraveLibro.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,32 +72,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>397E3A7BCCD78284089608824B58A999</key>
+		<key>245B6A6C17133F35F1E02F0B66307BD5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3DB2E5728AABE2DB141F9C1E1FD2B9AF</key>
+		<key>2C27A6AD68DA9FD7A13CBEFA3EA25D41</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>75BF244A6B37F9A9223F4238DEC205B1</key>
+		<key>2C2B1953A91633859BF7AD238FF567A0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D4F6A55958E0565DE28441BD7EDF94D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6EAB47A7F417E8E016CE1EFFDF5029BD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8A84E6E1160C22F78C8F6AA07ED9EEC0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>8AA3DDB8797222294E1288CB197A8347</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B2B943BF93088642EFAF4D80ABF2AD40</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BDE5DB65C154C962A7C68AE1A13647F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
