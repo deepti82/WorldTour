@@ -2006,4 +2006,27 @@ class Navigation {
         }
         
     }
+
+
+func monthYearDuration(title: String, month: String, year: Int, duration: Int, completion: @escaping ((JSON) -> Void)) {
+    do {
+        let params = ["month": month, "year": year, "title": title, "duration": duration] as [String : Any]
+        let opt = try HTTP.POST(adminUrl + "itinerary/saveQuickItinerary", parameters: params)
+        var json = JSON(1);
+        opt.start  {response in
+            if let err = response.error {
+                print("error: \(err.localizedDescription)")
+            }
+            else
+            {
+                json = JSON(data: response.data)
+                print("saveDurationResponse: \(json)")
+                completion(json)
+            }
+            }
+    } catch let error {
+        print("got an error creating the request")
+    }
+}
+
 }

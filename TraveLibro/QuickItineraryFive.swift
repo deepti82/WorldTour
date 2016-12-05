@@ -10,6 +10,7 @@ import UIKit
 
 class QuickItineraryFive: UIView {
 
+    @IBOutlet weak var saveButton: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
