@@ -315,7 +315,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     func getIndex() -> Int {
+        print("all images....")
         
+        print(allImages)
         return allImages.index(of: currentSender)!
     }
     
