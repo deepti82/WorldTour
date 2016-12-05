@@ -282,6 +282,7 @@
 		C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */; };
 		C2AC013B1D8D44C800B99868 /* Pods_TraveLibro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */; };
 		C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2AC5D1A1CF32CE0008E5887 /* PopularJourneyView.xib */; };
+		C2AE193B1DF57078006FF114 /* ImageCropperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AE193A1DF57077006FF114 /* ImageCropperViewController.swift */; };
 		C2B0B2C51D93B7D0001243EF /* BuddyOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2B0B2C41D93B7D0001243EF /* BuddyOTG.xib */; };
 		C2B0B2C71D93BF23001243EF /* BuddyOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B0B2C61D93BF23001243EF /* BuddyOTG.swift */; };
 		C2B4423D1CF41B0600967689 /* PopularJourneysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B4423C1CF41B0600967689 /* PopularJourneysViewController.swift */; };
@@ -655,6 +656,7 @@
 		C2ABDBB31CEC53C300D7542E /* StatusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StatusView.xib; path = ../StatusView.xib; sourceTree = "<group>"; };
 		C2ABDBB81CEC8B7D00D7542E /* TrialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrialViewController.swift; sourceTree = "<group>"; };
 		C2AC5D1A1CF32CE0008E5887 /* PopularJourneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularJourneyView.xib; sourceTree = "<group>"; };
+		C2AE193A1DF57077006FF114 /* ImageCropperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCropperViewController.swift; sourceTree = "<group>"; };
 		C2B0B2C41D93B7D0001243EF /* BuddyOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BuddyOTG.xib; sourceTree = "<group>"; };
 		C2B0B2C61D93BF23001243EF /* BuddyOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuddyOTG.swift; sourceTree = "<group>"; };
 		C2B4423C1CF41B0600967689 /* PopularJourneysViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularJourneysViewController.swift; sourceTree = "<group>"; };
@@ -1472,6 +1474,7 @@
 				C27F6BFE1CF03DF90049F012 /* ProfileViewController.swift */,
 				C2FA1E1A1D5498380034DE97 /* QIViewController.swift */,
 				C2FA1E161D5495870034DE97 /* QuickItinerariesViewController.swift */,
+				C2AE193A1DF57077006FF114 /* ImageCropperViewController.swift */,
 				C2DCB36D1CE723C3006E5CBD /* RatingReviewViewController.swift */,
 				C2A2E7921D96565F005084A7 /* SearchLocationTableViewController.swift */,
 				C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */,
@@ -2484,6 +2487,7 @@
 				367B90F71DC23ADF00D76F13 /* ActiveType.swift in Sources */,
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
 				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,
+				C2AE193B1DF57078006FF114 /* ImageCropperViewController.swift in Sources */,
 				C24846381D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift in Sources */,
 				C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */,
 				36006DB11DBB346600C7F44B /* SwiftyJSON.swift in Sources */,
@@ -2726,6 +2730,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = YVWVDTRG4B;
@@ -2803,6 +2808,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2814,6 +2820,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = YVWVDTRG4B;

@@ -69,7 +69,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         case "All":
             return CGSize(width: 30, height: 30)
         case "Monthly", "SelectCover":
-            return CGSize(width: 115, height: 115)
+            return CGSize(width: 110, height: 110)
         case "Local Life", "Travel Life":
             return CGSize(width: 165, height: 204)
         default:
@@ -90,9 +90,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
             cell.photoBig.image = nil
             cell.photoBig.backgroundColor = UIColor.white
-            DispatchQueue.main.async(execute: {
-                cell.photoBig.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])")!))
-            })
+//            DispatchQueue.main.async(execute: {
+                cell.photoBig.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=200")!)
+//            })
             return cell
         case "Local Life":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localLifeMomentsCell", for: indexPath) as! LocalLifeMomentsCollectionViewCell
@@ -199,6 +199,12 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func selectImage(_ index: Int) {
         
         print("inside select image")
+        
+//        let imageCropperVC = self.storyboard!.instantiateViewController(withIdentifier: "imageCropperVC") as! ImageCropperViewController
+//        print("selected image: \(images[index])")
+//        imageCropperVC.sentImage = images[index]
+//        self.navigationController?.pushViewController(imageCropperVC, animated: true)
+        
         let allvcs = self.navigationController!.viewControllers
         for vc in allvcs {
             

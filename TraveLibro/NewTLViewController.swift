@@ -3351,7 +3351,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        DispatchQueue.main.async(execute: {
         
             captionVC.currentImage = sender.currentImage!
-            captionVC.currentSender = sender
+            captionVC.currentSender = allPhotos[0]
             captionVC.allImages = allPhotos
             captionVC.allPhotos = self.photosToBeUploaded
             captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))
