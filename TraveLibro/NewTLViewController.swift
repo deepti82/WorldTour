@@ -998,14 +998,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                print("in getJourney")
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
                 else if response["value"].bool! {
-                    
+                    print("in value true")
                     self.detectLocation(nil)
                     
                     self.latestCity = response["data"]["startLocation"].string!
@@ -1024,12 +1024,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print(self.myJourney["_id"])
                     self.journeyID = self.myJourney["_id"].stringValue
                     if self.isInitialLoad {
+                        print("i im isInitialLoad")
                         self.isInitialLoad = false
                         self.showJourneyOngoing(journey: response["data"])
                         
                     }
                     else {
-                        
+                        print("i im not in isInitialLoad")
                         let allPosts = response["data"]["post"].array!
                         self.getAllPosts(allPosts)
                         
@@ -1776,7 +1777,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         if mapurl == nil {
                             mapurl = URL(string: "")
                         }
-                        checkIn.mainPhoto.loadImageFromURL(imageString)
+                        checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string:imageString) as! URL)
                     }
                 } else {
                     print("map not shown")
@@ -1947,7 +1948,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let buddy = BuddyOTG(frame: CGRect(x: 0, y: 0, width: 245, height: 260))
         buddy.center.x = self.view.center.x
-        buddy.profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])&width=250")!))
+        buddy.profileImage.hnk_setImageFromURL(NSURL(string:"\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])&width=250") as! URL)
         buddy.joinJourneytext.text = "\(post["user"]["name"]) has joined this journey"
         makeTLProfilePicture(buddy.profileImage)
         layout.addSubview(buddy)
@@ -3298,15 +3299,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
         let captionButton = UIButton()
         captionButton.setImage(allImages[0], for: .normal)
-        
-//        if photosAddedMore {
-//            
-//            captionButton.tag = 3
-//        }
-//        else {
-        
-            captionButton.tag = 2
-//        }
+        captionButton.tag = 2
         addCaption(captionButton)
         
         DispatchQueue.main.async(execute: {
