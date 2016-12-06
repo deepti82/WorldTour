@@ -10,6 +10,9 @@ import UIKit
 import Photos
 import imglyKit
 
+var editedImage = UIImage()
+var isEditedImage = false
+
 class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStackControllerDelegate {
     
     var imagesArray: [UIView] = []
@@ -28,8 +31,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var photoURL: [URL] = []
     var photoImage: [UIImage] = []
     
-    var editedImage = UIImage()
-    var isEditedImage = false
     var isDeletedImage = false
     
     @IBOutlet var completeImages: [UIImageView]!
@@ -100,6 +101,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
 //        editImageButton.tag = index
         
+        isGoingToEdit = true
+
         let photoEditViewController = PhotoEditViewController(photo: currentImage)
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
         toolStackController.delegate = self
@@ -109,12 +112,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
         
-        let navigationController = UINavigationController(rootViewController: toolStackController)
+        let nvc = UINavigationController(rootViewController: toolStackController)
         
-        navigationController.navigationBar.isTranslucent = false
-        navigationController.navigationBar.barStyle = .black
+        nvc.navigationBar.isTranslucent = false
+        nvc.navigationBar.barStyle = .black
         
-        present(navigationController, animated: true, completion: nil)
+        self.present(nvc, animated: true, completion: nil)
     }
     
     @IBAction func previousImageCaption(_ sender: AnyObject) {
@@ -227,6 +230,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("new controller")
+        
         let leftButton = UIButton()
         leftButton.setTitle("Cancel", for: .normal)
         leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
@@ -260,15 +265,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
         
-        print("new controller")
-        
         for eachImage in allImages {
             
             let i = allImages.index(of: eachImage)
             editedImagesArray.append([i!: eachImage.currentImage!])
         }
         
-        imageForCaption.image = currentImage
+        imageForCaption.image = currentSender.currentImage!
         
         print("index is: \(index)")
         
@@ -315,9 +318,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     func getIndex() -> Int {
-        print("all images....")
         
-        print(allImages)
         return allImages.index(of: currentSender)!
     }
     
@@ -325,14 +326,16 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     func updateImage() {
         
+        editedIndex = getIndex()
+        index = getIndex()
         editedImagesArray[index][index] = editedImage
         imageForCaption.image = editedImage
-        
+        currentSender.setImage(editedImage, for: .normal)
         print("index after editing is: \(index)")
         
         isEditedImage = false
 //        allImages[editedIndex].setImage(editedImage, for: .normal)
-//        updateImageInFile()
+        updateImageInFile()
         
     }
     
@@ -349,15 +352,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         DispatchQueue.main.async(execute: {
             
             do {
-                print("edited image: \(self.editedImage)")
+                print("edited image: \(editedImage)")
                 
-                if let data = UIImageJPEGRepresentation(self.editedImage, 0.35) {
+                if let data = UIImageJPEGRepresentation(editedImage, 0.35) {
                     try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
                 }
                 print("edit file created")
-                self.editedImage = UIImage()
+                editedImage = UIImage()
                 print("in edit image")
-                self.isEditedImage = false
+                isEditedImage = false
                 
             } catch let error as NSError {
                 
@@ -376,34 +379,23 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
 //        getPhotoCaption()
     }
     
+    var isGoingToEdit = true
+    
     override func viewDidAppear(_ animated: Bool) {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        getPhotoCaption(ind: index)
+        print("in view did appear")
         
         if (isEditedImage) {
             
             updateImage()
         }
         
-//        else {
-//            
-//            index = getIndex()
-//        }
-        
-    }
-    
-    
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-//        addNewCaption(ind: index)
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
+        else if !isGoingToEdit {
+            
+            getPhotoCaption(ind: index)
+        }
         
     }
     

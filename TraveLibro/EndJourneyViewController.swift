@@ -295,9 +295,11 @@ class EndJourneyViewController: UIViewController {
         
     }
     
+    var countriesVisited: [JSON] = []
+    
     func rateCountries() {
         
-        let countriesVisited = journey["countryVisited"].array!
+         countriesVisited = journey["countryVisited"].array!
 //        let scrollView = UIScrollView()
 //        scrollView.frame = rateCountriesView.frame
        let rateCountriesLayout = VerticalLayout(width: self.view.frame.width)
@@ -308,6 +310,7 @@ class EndJourneyViewController: UIViewController {
             
             let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
             rateButton.rateCheckInLabel.text = "Rate \(eachRating["country"]["name"])?"
+            rateButton.rateCheckInButton.tag = countriesVisited.index(of: eachRating)!
             rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.postReview(_:)), for: .touchUpInside)
             rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
             rateCountriesLayout.addSubview(rateButton)
@@ -340,10 +343,12 @@ class EndJourneyViewController: UIViewController {
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
+        rating.postReview.setTitle(countriesVisited[sender.tag]["country"]["_id"].string!, for: .disabled)
         rating.clipsToBounds = true
         rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
-//        rating.countryVisitedData = countryVisited
+        rating.countryVisitedData = countriesVisited[sender.tag]
         rating.journeyData = journey
+        rating.backgroundSuperview = backgroundReview
 //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), for: .TouchUpInside)
 //        rating.getRatingData(data: countryVisited)
         backgroundReview.addSubview(rating)

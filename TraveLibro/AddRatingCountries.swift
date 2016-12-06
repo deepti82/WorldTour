@@ -30,18 +30,26 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     var countryVisitedData: JSON!
     var journeyData: JSON!
     var i = 1
+    var backgroundSuperview: UIView!
     
     @IBAction func postReviewTapped(_ sender: AnyObject) {
         
         let journeyId = sender.title(for: .application)!
         let countryId = sender.title(for: .disabled)!
         
+        var reviewText = ""
+        
+        if reviewTextView.text != nil && reviewTextView.text != "Fill Me In..." {
+            
+            reviewText = reviewTextView.text
+        }
+        
         print("journey id in review: \(journeyId)")
         print("country id in review: \(countryId)")
         
         reviewTextView.resignFirstResponder()
         
-        request.rateCountry(currentUser["_id"].string!, journeyId: journeyId, countryId: countryId, rating: "\(starCount)", review: reviewTextView.text!, completion: {(response) in
+        request.rateCountry(currentUser["_id"].string!, journeyId: journeyId, countryId: countryId, rating: "\(starCount)", review: reviewText, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -55,13 +63,17 @@ class AddRatingCountries: UIView, UITextViewDelegate {
                     print("response arrived \(countryId) \(self.starCount) \(self.reviewTextView.text!)")
                     //sender.superview?.removeFromSuperview()
                     //self.parent.removeRatingButton(sender.title(for: .application)!)
-                    if self.countryVisitedData.count > self.i {
-                        self.i += 1
-                        print("i: \(self.i) \(self.countryVisitedData.count)")
-                        self.getRatingData(data: self.countryVisitedData)
-                    } else {
-                        sender.superview??.removeFromSuperview()
+//                    if self.countryVisitedData.count > self.i {
+//                        self.i += 1
+//                        print("i: \(self.i) \(self.countryVisitedData.count)")
+//                        self.getRatingData(data: self.countryVisitedData)
+//                    } else {
+                        sender.view.removeFromSuperview()
+                    if self.backgroundSuperview != nil {
+                        self.backgroundSuperview.removeFromSuperview()
+                        
                     }
+//                    }
                     
                 }
                 else {

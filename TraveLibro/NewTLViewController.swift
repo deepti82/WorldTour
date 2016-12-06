@@ -3033,6 +3033,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = .camera
+            if sender.tag == 1 {
+                
+                self.photosAddedMore = true
+            }
             self.present(self.imagePicker, animated: true, completion: nil)
         })
 //        let customeAction = UIAlertAction(title: "Photo Editor", style: .default, handler: {
@@ -3294,6 +3298,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
         let captionButton = UIButton()
         captionButton.setImage(allImages[0], for: .normal)
+        
+//        if photosAddedMore {
+//            
+//            captionButton.tag = 3
+//        }
+//        else {
+        
+            captionButton.tag = 2
+//        }
         addCaption(captionButton)
         
         DispatchQueue.main.async(execute: {
@@ -3372,7 +3385,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             captionVC.currentSender = sender
         }
-        
+//        captionVC.index = captionVC.getIndex()
         
             captionVC.allImages = allPhotos
             captionVC.allPhotos = self.photosToBeUploaded
