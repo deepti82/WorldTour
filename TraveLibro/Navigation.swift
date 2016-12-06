@@ -2008,10 +2008,10 @@ class Navigation {
     }
 
 
-func monthYearDuration(title: String, month: String, year: Int, duration: Int, completion: @escaping ((JSON) -> Void)) {
+    func postQuickitenary(json:JSON, completion: @escaping ((JSON) -> Void)) {
     do {
-        let params = ["month": month, "year": year, "title": title, "duration": duration] as [String : Any]
-        let opt = try HTTP.POST(adminUrl + "itinerary/saveQuickItinerary", parameters: params)
+       // let params = ["month": month, "year": year, "title": title, "duration": duration] as [String : Any]
+        let opt = try HTTP.POST(adminUrl + "itinerary/saveQuickItinerary", parameters: [])
         var json = JSON(1);
         opt.start  {response in
             if let err = response.error {
@@ -2028,5 +2028,6 @@ func monthYearDuration(title: String, month: String, year: Int, duration: Int, c
         print("got an error creating the request")
     }
 }
+    
 
 }

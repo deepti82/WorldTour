@@ -8,21 +8,46 @@
 
 import UIKit
 
-class QuickItineraryThree: UIView {
+class QuickItineraryThree: UIView, UITextFieldDelegate {
 
-    @IBOutlet weak var nextButton: UIButton!
+   
     @IBOutlet weak var addCountry: UIButton!
-    @IBOutlet weak var addCity: UIButton!
+    @IBOutlet var quickThree: UIView!
+    
+    @IBOutlet weak var cityVisitedText: UITextField!
+    @IBOutlet weak var countryVisitedText: UITextField!
+    @IBOutlet weak var showCountryCityView: UIView!
+    @IBOutlet weak var cityDropDown: UIButton!
+    @IBOutlet weak var countryDropDown: UIButton!
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
-        nextButton.layer.cornerRadius = 5
+    
         addCountry.layer.cornerRadius = 5
-        addCity.layer.cornerRadius = 5
+//        addCountry.layer.cornerRadius = 5
+//        addCity.layer.cornerRadius = 5
+       
+        cityVisitedText.delegate = self
+        countryVisitedText.delegate = self
+
+        
         
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //        textField.resignFirstResponder()
+//        one.durationTextField.resignFirstResponder()
+//        one.monthPickerView.resignFirstResponder()
+//        one.tripTitle.resignFirstResponder()
+//        one.yearPickerView.resignFirstResponder()
+        cityVisitedText.resignFirstResponder()
+        countryVisitedText.resignFirstResponder()
+        return true
+        
+    }
+
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -35,6 +60,6 @@ class QuickItineraryThree: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
-    }
-
-}
+         }
+    
+   }

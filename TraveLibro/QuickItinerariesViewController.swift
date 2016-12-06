@@ -14,6 +14,7 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
     var onDateSelected: ((_ month: Int, _ year: Int) -> Void)?
     var one = QuickItineraryOne()
     var two = QuickItineraryTwo()
+    var three = QuickItineraryThree()
     var months: [String]!
     var years: [Int] = []
     var yearsPicker: [Int] = []
@@ -23,8 +24,13 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
     var datePickerView: UIDatePicker = UIDatePicker()
     var date = NSDate()
     var currentYear: Int = 0
-    var monthYearduration: JSON = ["title": "", "year": "", "month": "", "duration": ""]
+    var quickItinery: JSON = ["title": "", "year": "", "month": "", "duration": "", "itenaryType": ""]
     var currentMonth: String = ""
+    let verticalLayout = VerticalLayout(width: 360)
+    func searchCountry(search:String) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.commonSetup()
@@ -48,10 +54,10 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
             let components = calendar.dateComponents([.month , .year], from: date as Date)
             dateFormatter.dateFormat = "yyyy"
             one.durationTextField.delegate = self
-            monthYearduration["title"] = JSON(one.tripTitle.text!)
-            monthYearduration["month"] = JSON(one.monthPickerView.text!)
-            monthYearduration["year"] = JSON(one.yearPickerView.text!)
-            monthYearduration["duration"] = JSON(one.durationTextField.text!)
+            quickItinery["title"] = JSON(one.tripTitle.text!)
+            quickItinery["month"] = JSON(one.monthPickerView.text!)
+            quickItinery["year"] = JSON(one.yearPickerView.text!)
+            quickItinery["duration"] = JSON(one.durationTextField.text!)
            // one.nextButton.addTarget(self, action:#selector(QuickItinerariesViewController.nextButtonPressed(_:)), for: .touchUpInside)
             
             
@@ -69,8 +75,8 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
             let two = QuickItineraryTwo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 450))
             two.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             self.view.addSubview(two)
-            
-            
+           
+            quickItinery["itenaryType"] = JSON(eachButton)
             for eachButton in two.TypeButton {
                 
                 eachButton.addTarget(self, action: #selector(QuickItinerariesViewController.typeButtonPressed(_:)), for: .touchUpInside)
@@ -81,6 +87,11 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
             let three = QuickItineraryThree(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 350))
             three.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             self.view.addSubview(three)
+            three.countryDropDown.isHidden = true
+            three.cityDropDown.isHidden = true
+            three.showCountryCityView.addSubview(verticalLayout)
+            three.addCountry.addTarget(self, action: #selector(QuickItinerariesViewController.addCountryFunction(_:)), for: .touchUpInside)
+            
         case "Four":
             let four = QuickItineraryFour(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 400))
             four.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
@@ -95,75 +106,40 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
             break
             
         }
+        
+       
+    
+   
+    //func nextButtonPressed(_ sender: UIButton){
+       //let storyboard = UIStoryboard(name: "QuickItineraryTwo", bundle: Bundle(for: TabPageViewController.self))
+        
+   // }
+
+   
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+        one.durationTextField.resignFirstResponder()
+        one.monthPickerView.resignFirstResponder()
+        one.tripTitle.resignFirstResponder()
+        one.yearPickerView.resignFirstResponder()
+        three.cityVisitedText.resignFirstResponder()
+        three.countryVisitedText.resignFirstResponder()
+        return true
+        
+    }
+    
+    
+    //One
+    
         for i in 0..<35{
             yearsPicker.append(currentYear)
             currentYear -= 1
             print("\(yearsPicker[i])")
         }
-}
-    var i = 0
-    func typeButtonPressed(_ sender: UIButton!){
-        if sender.tag == 0 {
-             print("backgroundchange: \(sender.currentTitle)")
-            sender.setBackgroundImage(UIImage(named: "orangebox"), for: .normal)
-        eachButton.append(sender.title(for: .application)!)
-           
-            sender.tag = 1
-        }
-        else {
-            sender.setBackgroundImage(UIImage(named: "bluebox"), for: .normal)
-            eachButton = eachButton.filter({$0 != sender.currentTitle})
-            sender.tag = 0
-            i += 1
-        }
-    }
-    
-    
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
-                   replacementString string: String) -> Bool
-    {
-        if range.length + range.location > (one.durationTextField.text?.characters.count)! {
-            return false
-        }
-    let newLength = (one.durationTextField.text?.characters.count)! + string.characters.count - range.length
-        return newLength <= 3
     }
 
-    //func nextButtonPressed(_ sender: UIButton){
-       //let storyboard = UIStoryboard(name: "QuickItineraryTwo", bundle: Bundle(for: TabPageViewController.self))
         
-   // }
-    func saveButtonPressed(_ sender: UIButton) {
-        request.monthYearDuration(title: monthYearduration["title"].string!, month:  monthYearduration["month"].string!, year: monthYearduration["year"].int!, duration: monthYearduration["duration"].int!, completion: {(response) in
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    print("nothing")
-                }
-                else {
-                    print("nothing")
-                    
-                }
-            })
-        })
-    }
-
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        one.durationTextField.resignFirstResponder()
-        one.monthPickerView.resignFirstResponder()
-        one.tripTitle.resignFirstResponder()
-        one.yearPickerView.resignFirstResponder()
-        return true
-        
-    }
-    
     func commonSetup() {
         // population years
         var years: [Int] = []
@@ -231,6 +207,17 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
             break
         }
     }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
+                   replacementString string: String) -> Bool
+    {
+        if range.length + range.location > (one.durationTextField.text?.characters.count)! {
+            return false
+        }
+        let newLength = (one.durationTextField.text?.characters.count)! + string.characters.count - range.length
+        return newLength <= 3
+    }
+
         /*func monthChanged(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
             //var components = Calendar.current.shortMonthSymbols
@@ -243,8 +230,93 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
         one.monthPickerView.text = strDate
         
     }*/
+    //Two
     
+    func typeButtonPressed(_ sender: UIButton!){
+        if sender.tag == 0 {
+            print("backgroundchange: \(sender.currentTitle)")
+            sender.setBackgroundImage(UIImage(named: "orangebox"), for: .normal)
+            eachButton.append(sender.title(for: .application)!)
+            
+            sender.tag = 1
+        }
+        else {
+            sender.setBackgroundImage(UIImage(named: "bluebox"), for: .normal)
+            eachButton = eachButton.filter({$0 != sender.currentTitle})
+            sender.tag = 0
+            
+        }
+    }
 
+    
+    
+    //three
+    func addCountryFunction(_ sender: UIButton) {
+        
+        let showCountryButton = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 20))
+        //showCountryButton.backgroundColor = UIColor.yellow
+        showCountryButton.layoutIfNeeded()
+        showCountryButton.titleLabel?.textAlignment = NSTextAlignment.left
+        showCountryButton.setTitleColor(UIColor.black, for: .normal)
+        verticalLayout.addSubview(showCountryButton)
+        let cancelLabel = UILabel(frame: CGRect(x: 5, y: 5, width: 10, height: 10))
+        cancelLabel.font = UIFont(name: "FontAwesome", size: 15)
+        cancelLabel.text = String(format: "%C", faicon["close"]!)
+        cancelLabel.textColor = UIColor(colorLiteralRed: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+        showCountryButton.addSubview(cancelLabel)
+        
+        showCountryButton.addTarget(self, action: #selector(QuickItinerariesViewController.removeCountryCity(_:)), for: .touchUpInside)
+        //increaseHeight(buttonHeight: 20)
+        if three.countryVisitedText != nil && three.cityVisitedText != nil {
+            styleHorizontalButton(showCountryButton, buttonTitle: "\(three.countryVisitedText.text!), \(three.cityVisitedText.text!)")
+        }
+    }
+
+    
+    func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
+        
+        //        print("inside the style horizontal button")
+        //button.backgroundColor = UIColor.clear
+        button.titleLabel!.font = avenirFont
+        button.titleLabel?.backgroundColor = UIColor.black
+        button.setTitle(buttonTitle, for: UIControlState())
+        button.setTitleColor(mainBlueColor, for: UIControlState())
+        button.layer.cornerRadius = 5
+        button.layer.borderColor = UIColor.darkGray.cgColor
+        button.layer.borderWidth = 1.0
+        
+    }
+    
+    func removeCountryCity(_ sender: UIButton){
+        sender.removeFromSuperview()
+    }
+
+//    func increaseHeight(buttonHeight: Int) {
+//        if three.quickThree.frame.height <= view.frame.height - 100{
+//            three.quickThree.animation.makeHeight(CGFloat(buttonHeight)).animate(0.5)
+//        }
+//    }
+
+//five
+    func saveButtonPressed(_ sender: UIButton) {
+        request.postQuickitenary(json: quickItinery,  completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    print("nothing")
+                }
+                else {
+                    print("nothing")
+                    
+                }
+            })
+        })
+    }
 
 
 }

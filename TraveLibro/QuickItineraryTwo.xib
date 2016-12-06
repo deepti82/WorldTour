@@ -72,7 +72,7 @@
                                             </constraints>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" image="business" backgroundImage="bluebox"/>
+                                            <state key="normal" title="business" image="business" backgroundImage="bluebox"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QD4-8Y-EpW">
                                             <rect key="frame" x="0.0" y="70" width="65" height="18"/>
@@ -93,7 +93,7 @@
                                             </constraints>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" image="family" backgroundImage="bluebox"/>
+                                            <state key="normal" title="family" image="family" backgroundImage="bluebox"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0RK-Sf-0rT">
                                             <rect key="frame" x="0.0" y="70" width="65" height="18"/>
@@ -220,23 +220,16 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Xzv-6v-Y8y">
                                     <rect key="frame" x="90" y="0.0" width="65" height="88"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RWh-AM-HDQ">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWh-AM-HDQ">
                                             <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="65" id="DhW-qb-RKv"/>
                                                 <constraint firstAttribute="width" constant="50" id="lgU-EZ-uSY"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                            <state key="normal" image="religious" backgroundImage="bluebox">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="religious">
-                                                        <attributes>
-                                                            <font key="NSFont" metaFont="system" size="18"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                            </state>
+                                            <state key="normal" title="religious" image="religious" backgroundImage="bluebox"/>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="lgU-EZ-uSY"/>
