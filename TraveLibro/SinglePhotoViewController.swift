@@ -86,8 +86,13 @@ class SinglePhotoViewController: UIViewController {
     @IBAction func sendLike(_ sender: UIButton) {
         
         print("send likes: \(hasLiked!)")
-        
-        request.postPhotosLike(photos[currentIndex!].string!, postId: postId!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
+        print(currentIndex)
+        print(photos[currentIndex!])
+        print(postId)
+        print(currentUser["_id"].string!)
+        print(currentUser["name"].string!)
+        print(hasLiked)
+        request.postPhotosLike(photos[currentIndex!]["_id"].string!, postId: postId!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
