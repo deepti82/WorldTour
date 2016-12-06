@@ -147,7 +147,7 @@ class SinglePhotoViewController: UIViewController {
         if currentIndex >= photos.count {
             currentIndex = Int(currentIndex) - 1
         } else {		
-            self.getSinglePhoto(photos[currentIndex!].string!)
+            self.getSinglePhoto(photos[currentIndex!]["_id"].string!)
         }
     }
     
@@ -157,7 +157,9 @@ class SinglePhotoViewController: UIViewController {
         if currentIndex < 0 {
             currentIndex = Int(currentIndex) + 1
         } else {
-            self.getSinglePhoto(photos[currentIndex!].string!)
+            print(photos)
+            print(photos[currentIndex])
+            self.getSinglePhoto(photos[currentIndex!]["_id"].string!)
         }
     }
     
@@ -190,7 +192,9 @@ class SinglePhotoViewController: UIViewController {
     var singlePhotoJSON: JSON!
     
     func getSinglePhoto(_ photoId: String) {
-        request.getOnePostPhotos(photoId, singlePost["user"].string!, completion: {(response) in
+        print(photoId)
+        print(singlePost["user"]["_id"].string)
+        request.getOnePostPhotos(photoId, singlePost["user"]["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -204,7 +208,7 @@ class SinglePhotoViewController: UIViewController {
                     self.singlePhotoJSON = response["data"]
 
                     let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
-                    self.mainImage.loadImageFromURL(mainImageString)
+                    self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
 
                     if data["caption"].string != nil && data["caption"].string != "" {
                         
