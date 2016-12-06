@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -170,7 +170,7 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7r-hX-X00">
                     <rect key="frame" x="0.0" y="188" width="400" height="360"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="london_image" translatesAutoresizingMaskIntoConstraints="NO" id="vov-Dh-v4k">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="vov-Dh-v4k">
                             <rect key="frame" x="0.0" y="113" width="400" height="200"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="200" id="Osr-QD-W5L"/>
@@ -201,7 +201,7 @@
                                     <state key="normal" image="options_icon"/>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan, 2014," textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2V-7e-khq">
-                                    <rect key="frame" x="167" y="33" width="67" height="16"/>
+                                    <rect key="frame" x="167.5" y="33" width="66.5" height="15.5"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -244,23 +244,23 @@
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nL6-3q-GMr">
-                                    <rect key="frame" x="203" y="-10" width="189" height="55"/>
+                                    <rect key="frame" x="203.5" y="-10" width="188.5" height="55"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-fe-VPq">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-fe-VPq">
                                             <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="55" id="AJj-fj-ZLm"/>
                                                 <constraint firstAttribute="width" constant="55" id="PuY-fE-812"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="pen-me-O9a">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="pen-me-O9a">
                                             <rect key="frame" x="57" y="0.0" width="55" height="55"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="55" id="Ip9-DU-LY6"/>
                                                 <constraint firstAttribute="width" constant="55" id="c5c-xG-lKf"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="WjW-hp-cGM">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="WjW-hp-cGM">
                                             <rect key="frame" x="114" y="0.0" width="55" height="55"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="55" id="WbL-Ar-WXH"/>
@@ -268,7 +268,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdm-8p-FYV">
-                                            <rect key="frame" x="171" y="0.0" width="18" height="55"/>
+                                            <rect key="frame" x="171" y="0.0" width="17.5" height="55"/>
                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                             <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -377,10 +377,9 @@
         <image name="backpacking" width="100" height="100"/>
         <image name="journey_shoes" width="90" height="107"/>
         <image name="location" width="73" height="73"/>
-        <image name="london_image" width="740" height="294"/>
+        <image name="logo-default" width="180" height="180"/>
         <image name="luxury_icon" width="51" height="60"/>
         <image name="options_icon" width="30" height="30"/>
-        <image name="profile_pic_new" width="150" height="150"/>
         <image name="you_are_in" width="245" height="105"/>
     </resources>
 </document>

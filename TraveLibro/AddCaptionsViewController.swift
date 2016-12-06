@@ -53,27 +53,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             self.popVC(sender)
         }
         
-        else if index == 0 {
-            
-            index += 1
-            
-            print("prev index: \(index - 1) current index: \(index)")
-            
-            deletedIndex = index - 1
-            
-            let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-            captionVC.imagesArray = imagesArray
-            captionVC.deletedIndex = deletedIndex
-            captionVC.currentImage = allImages[index].currentImage!
-            captionVC.allIds = allIds
-            captionVC.currentSender = allImages[index]
-            captionVC.allPhotos = allPhotos
-            captionVC.index = index
-            captionVC.imageIds = imageIds
-            captionVC.allImages = allImages
-            self.navigationController!.pushViewController(captionVC, animated: false)
-        }
-        
         else if index >= allImages.count - 1 {
             
             index = 0
@@ -81,14 +60,16 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             print("prev index: \(index - 1) current index: \(index)")
             
             let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-            captionVC.imagesArray = [imagesArray.remove(at: allImages.count - 1)]
+            captionVC.imagesArray = imagesArray
             captionVC.currentImage = allImages[index].currentImage!
-            captionVC.allIds = [allIds.removeLast()]
+            captionVC.allIds = allIds
             captionVC.currentSender = allImages[index]
-            captionVC.allPhotos = [allPhotos.removeLast()]
+            captionVC.allPhotos = allPhotos
             captionVC.index = index
-            captionVC.imageIds = [imageIds.remove(at: allImages.count - 1)]
-            captionVC.allImages = [allImages.remove(at: allImages.count - 1)]
+            captionVC.imageIds = imageIds
+            captionVC.allImages = allImages
+            captionVC.deletedIndex =  allImages.count - 1
+            captionVC.isDeletedImage = true
             self.navigationController!.pushViewController(captionVC, animated: false)
         }
         
@@ -99,15 +80,17 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             print("prev index: \(index - 1) current index: \(index)")
             
             let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-            self.navigationController!.pushViewController(captionVC, animated: false)
-            captionVC.imagesArray = [imagesArray.remove(at: index - 1)]
-            captionVC.currentImage = allImages[index - 1].currentImage!
-            captionVC.allIds = [allIds.remove(at: index - 1)]
-            captionVC.currentSender = allImages[index - 1]
-            captionVC.allPhotos = allPhotos.filter({$0.serverId != allPhotos[index - 1].serverId})
+            captionVC.imagesArray = imagesArray
+            captionVC.currentImage = allImages[index].currentImage!
+            captionVC.allIds = allIds
+            captionVC.currentSender = allImages[index]
+            captionVC.allPhotos = allPhotos
             captionVC.index = index
-            captionVC.imageIds = [imageIds.remove(at: index - 1)]
-            captionVC.allImages = [allImages.remove(at: index - 1)]
+            captionVC.imageIds = imageIds
+            captionVC.allImages = allImages
+            captionVC.deletedIndex =  index - 1
+            captionVC.isDeletedImage = true
+            self.navigationController!.pushViewController(captionVC, animated: false)
 
         }
         
@@ -153,8 +136,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.allPhotos = allPhotos
             captionVC.index = index
             captionVC.imageIds = imageIds
-//            captionVC.getPhotoCaption()
-//            captionVC.currentId = allIds[index]
+            //            captionVC.getPhotoCaption()
+            //            captionVC.currentId = allIds[index]
             captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
             
@@ -202,7 +185,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.index = index
             captionVC.allIds = allIds
             captionVC.imageIds = imageIds
-//            captionVC.getPhotoCaption()
             captionVC.currentId = currentId + 1
             captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
@@ -264,6 +246,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         imageStackView.layer.zPosition = 1000
         captionTextView.textContainerInset = UIEdgeInsetsMake(5, 10, 5, 10)
         
+        index = getIndex()
+        
+        if isDeletedImage {
+            deletePhoto(deletedIndex: deletedIndex)
+        }
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
@@ -280,18 +268,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             editedImagesArray.append([i!: eachImage.currentImage!])
         }
         
+        imageForCaption.image = currentImage
         
-//        else{
-//            
-            imageForCaption.image = currentImage
-//            print("in current image")
-//        }
-        
-        //  jagruti's code
-        
-        index = getIndex()
         print("index is: \(index)")
-//        getPhotoCaption()
         
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done
@@ -336,7 +315,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     func getIndex() -> Int {
+        print("all images....")
         
+        print(allImages)
         return allImages.index(of: currentSender)!
     }
     
@@ -406,10 +387,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             updateImage()
         }
         
-        else {
-            
-            index = getIndex()
-        }
+//        else {
+//            
+//            index = getIndex()
+//        }
         
     }
     
@@ -509,9 +490,20 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     func deletePhoto(deletedIndex: Int) {
         
-        
-        
-        
+        imagesArray.remove(at: deletedIndex)
+        print("local ids: \(allIds)")
+        print("all photos: \(allPhotos)")
+        print("images Ids: \(imageIds)")
+        print("all images: \(allImages)")
+//        allIds.remove(at: deletedIndex)
+//        allPhotos.remove(at: deletedIndex)
+//        imageIds.remove(at: deletedIndex)
+        allImages.remove(at: deletedIndex)
+        print("end of modifications")
+        print("local ids: \(allIds)")
+        print("all photos: \(allPhotos)")
+        print("images Ids: \(imageIds)")
+        print("all images: \(allImages)")
     }
     
     func keyboardWillShow(_ notification: Notification) {
@@ -561,7 +553,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     func goBack(_ sender: UIButton) {
-        self.popVC(sender)
+        
+        for viewController in self.navigationController!.viewControllers {
+            
+            if viewController.isKind(of: NewTLViewController.self) {
+                
+                let newtlVC = viewController as! NewTLViewController
+                self.navigationController!.popToViewController(newtlVC, animated: true)
+            }
+        }
     }
     
 }

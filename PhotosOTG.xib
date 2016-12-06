@@ -64,20 +64,20 @@
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fBo-H1-fh1">
                     <rect key="frame" x="8" y="441" width="255" height="60"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photobar1" translatesAutoresizingMaskIntoConstraints="NO" id="4Yz-8T-KC9">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="4Yz-8T-KC9">
                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="DgZ-eC-S7W"/>
                                 <constraint firstAttribute="width" constant="60" id="g4A-E8-wJa"/>
                             </constraints>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photobar2" translatesAutoresizingMaskIntoConstraints="NO" id="TCm-Tl-NiZ">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="TCm-Tl-NiZ">
                             <rect key="frame" x="65" y="0.0" width="60" height="60"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photobar3" translatesAutoresizingMaskIntoConstraints="NO" id="sxI-he-pkt">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="sxI-he-pkt">
                             <rect key="frame" x="130" y="0.0" width="60" height="60"/>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photobar4" translatesAutoresizingMaskIntoConstraints="NO" id="y4B-Ym-Fgl">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="y4B-Ym-Fgl">
                             <rect key="frame" x="195" y="0.0" width="60" height="60"/>
                         </imageView>
                     </subviews>
@@ -287,7 +287,7 @@
                         </label>
                     </subviews>
                 </stackView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" image="disney-world" translatesAutoresizingMaskIntoConstraints="NO" id="RVr-gn-Jae">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="RVr-gn-Jae">
                     <rect key="frame" x="0.0" y="133" width="400" height="300"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="267" id="uL1-Hu-MzX"/>
@@ -299,7 +299,7 @@
                         </mask>
                     </variation>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-89-Biy">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="1g4-89-Biy">
                     <rect key="frame" x="8" y="24" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="RDI-S6-W5c"/>
@@ -354,16 +354,11 @@
         </view>
     </objects>
     <resources>
-        <image name="disney-world" width="638" height="580"/>
         <image name="like_empty_icon" width="34" height="30"/>
         <image name="location_icon" width="200" height="200"/>
+        <image name="logo-default" width="180" height="180"/>
         <image name="options_icon" width="30" height="30"/>
         <image name="orangeboxopac" width="117" height="117"/>
-        <image name="photobar1" width="60" height="60"/>
-        <image name="photobar2" width="60" height="60"/>
-        <image name="photobar3" width="60" height="60"/>
-        <image name="photobar4" width="60" height="60"/>
-        <image name="profile_icon" width="59" height="60"/>
         <image name="share_icon" width="21" height="30"/>
         <image name="speech_icon" width="30" height="30"/>
     </resources>

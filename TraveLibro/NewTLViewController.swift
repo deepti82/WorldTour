@@ -17,6 +17,7 @@ import DKChainableAnimationKit
 import imglyKit
 import AVKit
 import AVFoundation
+import Haneke
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
@@ -620,7 +621,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             photos = post["photos"].array!
             //checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
-            checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=250")
+            checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500") as! URL)
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
             checkIn.mainPhoto.tag = 0
 //            checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
@@ -1309,26 +1310,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         var retimage = UIImage()
         print(retimage)
-        
-//        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async {
         
             let options = PHImageRequestOptions()
             options.isSynchronous = true
             
             PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .aspectFit, options: options, resultHandler: {(result, info) in
                 
-//                dispatch_async(dispatch_get_main_queue(), {
-                
                     print("thumbnail result: \(result!)")
                     print("thumbnail info: \(info)")
                     retimage = result!
-                    
-//                })
                 
             })
-            
-//        })
-        
+        }
         print(retimage)
         return retimage
     }
@@ -1694,7 +1688,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if post["photos"] != nil && post["photos"].array!.count > 0 {
             
             photos = post["photos"].array!
-            checkIn.mainPhoto.loadImageFromURL("\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=250")
+            checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500") as! URL)
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
             checkIn.mainPhoto.tag = 0
             checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
@@ -1716,7 +1710,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             for i in 0 ..< count {
                 
                 print("in the for loop \(post["photos"][i + 1]["name"])")
-                checkIn.otherPhotosStack[i].loadImageFromURL("\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=250")
+                let imgg = photos[i + 1]["name"]
+                checkIn.otherPhotosStack[i].hnk_setImageFromURL(NSURL(string:"\(adminUrl)upload/readFile?file=\(imgg)&width=250") as! URL)
                 checkIn.otherPhotosStack[i].isHidden = false
                 checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
                 checkIn.otherPhotosStack[i].tag = i + 1
@@ -3082,8 +3077,25 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     if !self.photosAddedMore {
                         self.photosGroupId += 1
                     }
+                    var img11 = [UIImage]()
                     
-                    self.photosAdded(assets: assets)
+                    DispatchQueue.main.async {
+                        
+                        let options = PHImageRequestOptions()
+                        options.isSynchronous = true
+                        for n in 0...assets.count-1{
+                        PHImageManager.default().requestImage(for: assets[n], targetSize: CGSize(width: assets[n].pixelWidth, height: assets[n].pixelHeight), contentMode: .aspectFit, options: options, resultHandler: {(result, info) in
+                            
+                            img11.append(result!)
+                            
+                            
+                        })
+                        }
+                        self.photosAdded(assets: img11)
+                    }
+
+                    
+                    
                     
 //                    var index = 0
 //                    
@@ -3124,7 +3136,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var photosGroupId = 0
     var photosToBeUploaded: [PhotoUpload] = []
     
-    func photosAdded(assets: [PHAsset]) {
+    func photosAdded(assets: [UIImage]) {
+        
         
         self.addView.photosIntialView.isHidden = true
         self.addView.photosFinalView.isHidden = false
@@ -3152,15 +3165,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             print("add caption index: \(index)")
             
-            allImages.append(getAssetThumbnail(asset))
-            let photoData = getAssetData(asset)
+            allImages.append(asset)
+//            let photoData = getAssetData(asset)
             let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
             print("export url: \(exportFileUrl)")
             
-            DispatchQueue.main.async(execute: {
-                
+//            DispatchQueue.main.async(execute: {
+            
                 do {
-                    let image = self.getAssetThumbnail(asset)
+                    let image = asset
                     
                     if let data = UIImageJPEGRepresentation(image, 0.35) {
                         try data.write(to: URL(string: exportFileUrl)!)
@@ -3174,9 +3187,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error creating file: \(error.localizedDescription)")
                     
                 }
-            })
+//            })
             
-            addPhotoToLayout(photo: getAssetThumbnail(asset))
+            addPhotoToLayout(photo: asset)
 //            photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
         }
         
@@ -3185,8 +3198,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         captionButton.setImage(allImages[0], for: .normal)
         addCaption(captionButton)
         
-        DispatchQueue.main.sync(execute: {
-            
+//        DispatchQueue.main.sync(execute: {
+        
             let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
             addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
@@ -3198,7 +3211,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
             self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
             
-        })
+//        })
         
     }
     
@@ -3311,15 +3324,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addWidthToPhotoLayout(_ width: CGFloat) {
         
-        addView.horizontalScrollForPhotos.frame.size.width = addView.horizontalScrollForPhotos.frame.size.width + width
-        addView.photoScroll.contentSize.width = addView.photoScroll.contentSize.width + width
+        addView.horizontalScrollForPhotos.frame.size.width = addView.horizontalScrollForPhotos.frame.size.width + width + 25.0
+        addView.photoScroll.contentSize.width = addView.photoScroll.contentSize.width + width + 25.0
         
     }
     
     func removeWidthToPhotoLayout(_ width: CGFloat) {
         
-        addView.horizontalScrollForPhotos.frame.size.width = addView.horizontalScrollForPhotos.frame.size.width - width
-        addView.photoScroll.contentSize.width = addView.photoScroll.contentSize.width - width
+        addView.horizontalScrollForPhotos.frame.size.width = addView.horizontalScrollForPhotos.frame.size.width - width - 25.0
+        addView.photoScroll.contentSize.width = addView.photoScroll.contentSize.width - width - 25.0
         
     }
     
@@ -3349,7 +3362,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        DispatchQueue.main.async(execute: {
         
             captionVC.currentImage = sender.currentImage!
-            captionVC.currentSender = sender
+            captionVC.currentSender = allPhotos[0]
             captionVC.allImages = allPhotos
             captionVC.allPhotos = self.photosToBeUploaded
             captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))

@@ -1705,7 +1705,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+                    print("journey photos: \(json)")
                     completion(json)
                 }
             }

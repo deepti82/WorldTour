@@ -27,6 +27,8 @@ class EndJourneyViewController: UIViewController {
     @IBOutlet weak var changePhotoViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var rateCountriesView: UIView!
+    @IBOutlet weak var rateCountriesScroll: UIScrollView!
+    @IBOutlet weak var rateCountriesLayout: VerticalLayout!
     
     var journeyImages: [String] = []
     var journey: JSON!
@@ -294,47 +296,66 @@ class EndJourneyViewController: UIViewController {
     }
     
     func rateCountries() {
-        let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
-        rateButton.rateCheckInLabel.text = "Rate This Countries?"
-        rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.addRatingCountries(_:)), for: .touchUpInside)
-        rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
-        rateCountriesView.addSubview(rateButton)
+        
+        let countriesVisited = journey["countryVisited"].array!
+//        let scrollView = UIScrollView()
+//        scrollView.frame = rateCountriesView.frame
+       let rateCountriesLayout = VerticalLayout(width: self.view.frame.width)
+       rateCountriesScroll.addSubview(rateCountriesLayout)
+//        rateCountriesView.addSubview(scrollView)
+        
+        for eachRating in countriesVisited {
+            
+            let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+            rateButton.rateCheckInLabel.text = "Rate \(eachRating["country"]["name"])?"
+//            rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.addRatingCountries(_:)), for: .touchUpInside)
+            rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
+            rateCountriesLayout.addSubview(rateButton)
+            addHeightToLayout(height: 150, layoutView: rateCountriesLayout, scroll: rateCountriesScroll)
+        }
+        
     }
     
-    var backgroundReview = UIView()
-    
-    func addRatingCountries(_ sender: UIButton) {
-        print("journey id: \(sender.titleLabel!.text!)")
-        let countryVisited: JSON = journey["countryVisited"]
+    func addHeightToLayout(height: CGFloat, layoutView: VerticalLayout, scroll: UIScrollView) {
         
-        let tapout = UITapGestureRecognizer(target: self, action: #selector(EndJourneyViewController.reviewTapOut(_:)))
-        backgroundReview = UIView(frame: self.view.frame)
-        backgroundReview.addGestureRecognizer(tapout)
-        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        self.view.addSubview(backgroundReview)
-        self.view.bringSubview(toFront: backgroundReview)
-        
-        let rating = AddRatingCountries(frame: CGRect(x: 0, y: 0, width: width - 40, height: 423))
-        rating.center = backgroundReview.center
-        rating.layer.cornerRadius = 5
-        rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
-        rating.clipsToBounds = true
-        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
-        rating.countryVisitedData = countryVisited
-        rating.journeyData = journey
-        //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
-        //rating.postReview.addGestureRecognizer(tapout)
-        rating.getRatingData(data: countryVisited)
-        //getRatingData(num: i, data: countryVisited, view: rating)
-        
-        //for i in 0..<numberOfCountriesVisited {}
-        
-        backgroundReview.addSubview(rating)
+        layoutView.frame.size.height += height
+        scroll.contentSize.height += height
     }
+    
+    
+//    var backgroundReview = UIView()
+    
+//    func addRatingCountries(_ sender: UIButton) {
+//        print("journey id: \(sender.titleLabel!.text!)")
+//        
+//        let tapout = UITapGestureRecognizer(target: self, action: #selector(EndJourneyViewController.reviewTapOut(_:)))
+//        backgroundReview = UIView(frame: self.view.frame)
+//        backgroundReview.addGestureRecognizer(tapout)
+//        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+//        self.view.addSubview(backgroundReview)
+//        self.view.bringSubview(toFront: backgroundReview)
+//        
+//        let rating = AddRatingCountries(frame: CGRect(x: 0, y: 0, width: width - 40, height: 423))
+//        rating.center = backgroundReview.center
+//        rating.layer.cornerRadius = 5
+//        rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
+//        rating.clipsToBounds = true
+//        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+//        rating.countryVisitedData = countryVisited
+//        rating.journeyData = journey
+//        //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
+//        //rating.postReview.addGestureRecognizer(tapout)
+//        rating.getRatingData(data: countryVisited)
+//        //getRatingData(num: i, data: countryVisited, view: rating)
+//        
+//        //for i in 0..<numberOfCountriesVisited {}
+//        
+//        backgroundReview.addSubview(rating)
+//    }
     
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
         
-        backgroundReview.removeFromSuperview()
+//        backgroundReview.removeFromSuperview()
         
     }
 
