@@ -176,7 +176,7 @@ class SinglePhotoViewController: UIViewController {
                     self.photos = response["data"]["photos"].array!
                     print("photos: \(self.photos)")
                     
-                    self.getSinglePhoto(self.photos[self.index!].string!)
+                    self.getSinglePhoto(self.photos[self.index!]["_id"].string!)
                 }
                     
                 else {

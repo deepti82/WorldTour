@@ -215,10 +215,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
                 print("done caption")
                 let myView = subview as! NewTLViewController
                 myView.photosToBeUploaded = allPhotos
-                if isEditedImage {
-                    myView.checkForEditedImages(editedImagesArray: editedImagesArray)
-                    isEditedImage = false
-                }
+//                if isEditedImage {
+//                    myView.checkForEditedImages(editedImagesArray: editedImagesArray)
+//                    isEditedImage = false
+//                }
                 self.navigationController!.popToViewController(myView, animated: true)
                 
             }
@@ -328,12 +328,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         editedIndex = getIndex()
         index = getIndex()
-        editedImagesArray[index][index] = editedImage
+//        editedImagesArray[index][index] = editedImage
         imageForCaption.image = editedImage
         currentSender.setImage(editedImage, for: .normal)
         print("index after editing is: \(index)")
         
-        isEditedImage = false
+//        isEditedImage = false
 //        allImages[editedIndex].setImage(editedImage, for: .normal)
         updateImageInFile()
         
@@ -343,9 +343,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     func updateImageInFile() {
         
-        let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(editedIndex).jpg"
+        let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
         
-        print("export url: \(exportFileUrl)")
+        print("edited image export url: \(exportFileUrl)")
         
         loader.showOverlay(self.view)
         
