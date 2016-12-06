@@ -19,6 +19,15 @@ class QuickItineraryTwo: UIView {
         
         nextButton.layer.cornerRadius = 5
         
+        let array = ["adventure", "business", "family", "romance", "backpacking", "budget", "luxury", "religious", "friends"]
+        
+        for button in TypeButton {
+            
+            let index = TypeButton.index(of: button)
+            button.setTitle(array[index!], for: .application)
+            
+        }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
