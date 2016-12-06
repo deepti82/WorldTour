@@ -3196,6 +3196,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
         let captionButton = UIButton()
         captionButton.setImage(allImages[0], for: .normal)
+        captionButton.tag = 2
         addCaption(captionButton)
         
 //        DispatchQueue.main.sync(execute: {
@@ -3362,7 +3363,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        DispatchQueue.main.async(execute: {
         
             captionVC.currentImage = sender.currentImage!
+        
+        if sender.tag == 2 {
+            
             captionVC.currentSender = allPhotos[0]
+        }
+        else {
+            
+            captionVC.currentSender = sender
+        }
+        
+        
             captionVC.allImages = allPhotos
             captionVC.allPhotos = self.photosToBeUploaded
             captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))
