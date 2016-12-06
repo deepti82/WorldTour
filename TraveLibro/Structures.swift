@@ -17,6 +17,6 @@ struct PhotoUpload {
 }
 
 struct UserLocation {
-    var latitude: Float = 0
-    var longitude: Float = 0
+    var latitude: String
+    var longitude: String
 }

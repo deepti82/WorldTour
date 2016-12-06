@@ -606,6 +606,7 @@ extension NewTLViewController {
     func getJourneyBuddies(journey: JSON) {
         
         addedBuddies = journey["buddies"].array!
+        print("\(#line) added buddies are: \(addedBuddies)")
     }
     
     func getInfoCount() {

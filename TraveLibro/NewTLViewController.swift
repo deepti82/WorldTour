@@ -45,7 +45,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var journeyId: String!
     var journeyID: String!
     
-    var addedBuddies: [JSON]!
+    var addedBuddies: [JSON] = []
     var addView: AddActivityNew!
     var backgroundReview = UIView()
     
@@ -247,7 +247,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        let isTextView = textFieldShouldReturn(otgView.locationLabel)
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         next.whichView = "TLTags"
-        next.addedFriends = addedBuddies
+        
+        if addedBuddies != nil {
+            
+            next.addedFriends = addedBuddies
+        }
 //        addBuddies.uniqueId = journeyId
 //        addBuddies.journeyName = otgView.journeyName.text!
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -656,7 +660,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
             
-        else if post["photos"] != nil && post["photos"].array!.count == 0 && post["checkIn"]["location"] != "" {
+        else if post["photos"] != nil && post["photos"].array!.count == 0 && post["checkIn"]["location"] == "" {
             
             checkIn.mainPhoto.isHidden = false
             checkIn.photosStack.isHidden = true
@@ -792,6 +796,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             var videos: [String] = []
             var buddies: [JSON] = []
             var id = ""
+            var myLatitude = UserLocation(latitude: "", longitude: "")
             
             if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" && addView.thoughtsTextView.text != "Fill Me In..." {
                 
@@ -804,7 +809,23 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 location = addView.addLocationButton.titleLabel!.text!
                 print("location: \(location)")
                 
+                if currentLat != nil && currentLong != nil {
+                    myLatitude = UserLocation(latitude: "\(currentLat)", longitude: "\(currentLong)")
+                }
+                
+                if addView.categoryLabel.text != "Label" && addView.categoryLabel.text != "" {
+                    
+                    locationCategory = addView.categoryLabel.text!
+                    
+                }
+                
             }
+            else {
+                
+                currentCity = ""
+                currentCountry = ""
+            }
+            
             if photosToBeUploaded.count > 0 {
                 
                 for eachPhoto in photosToBeUploaded {
@@ -836,12 +857,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             }
             
-            if addView.categoryLabel.text != "Label" && addView.categoryLabel.text != "" {
-                
-                locationCategory = addView.categoryLabel.text!
-                
-            }
-            
 //            addView.categoryView.isHidden = true
 //            addView.categoryLabel.isHidden = false
 //            addView.locationHorizontalScroll.isHidden = false
@@ -865,12 +880,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            let latestPost = post.getRowCount()
             
 //            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: , Latitude: , Longitude: , Country: , City: currentCity, Status: )
-            
-            var myLatitude = UserLocation()
-            
-            if currentLat != nil && currentLong != nil {
-                myLatitude = UserLocation.init(latitude: currentLat, longitude: currentLong)
-            }
             
             let dateFormatterTwo = DateFormatter()
             dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
@@ -1771,13 +1780,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     // CHECKIN MAP IMAGE
                     if post["checkIn"]["lat"].string != nil && post["checkIn"]["long"].string != nil {
                         
+                        let getKey = post["imageUrl"].string?.components(separatedBy: "=")
+                        print("getting key: \(getKey)")
+                        mapKey = getKey!.last!
+                        
                         let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)&key=\(mapKey)"
                         print("\(imageString)")
                         var mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
                         if mapurl == nil {
                             mapurl = URL(string: "")
                         }
-                        checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string:imageString) as! URL)
+                        checkIn.mainPhoto.loadImageFromURL(imageString)
                     }
                 } else {
                     print("map not shown")

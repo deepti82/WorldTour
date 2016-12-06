@@ -68,10 +68,9 @@ class AddRatingCountries: UIView, UITextViewDelegate {
 //                        print("i: \(self.i) \(self.countryVisitedData.count)")
 //                        self.getRatingData(data: self.countryVisitedData)
 //                    } else {
-                        sender.view.removeFromSuperview()
+                    sender.view.removeFromSuperview()
                     if self.backgroundSuperview != nil {
                         self.backgroundSuperview.removeFromSuperview()
-                        
                     }
 //                    }
                     
