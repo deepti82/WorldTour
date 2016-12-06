@@ -1029,6 +1029,7 @@
 		3AFB01C41DDC30AC00BCD523 /* AddRatingCountries */ = {
 			isa = PBXGroup;
 			children = (
+				3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */,
 				3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */,
 			);
 			name = AddRatingCountries;
@@ -1658,7 +1659,6 @@
 		C2889D3D1DB1180200B302AF /* ShowRating */ = {
 			isa = PBXGroup;
 			children = (
-				3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */,
 				C2889D391DB0E91700B302AF /* ShowRating.xib */,
 				C2889D3B1DB0E98800B302AF /* ShowRating.swift */,
 			);

@@ -77,9 +77,10 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     }
     
     func getRatingData(data: JSON) {
+        
         if data.count > 0 {
             self.reviewTextView.text = ""
-            self.smiley.setImage(UIImage(named: imageArr[0]), for: UIControlState())
+            self.smiley.setImage(UIImage(named: imageArr[0]), for: .normal)
             reviewConclusion.text = moodArr[0]
             for star in stars {
                 star.isSelected = false
