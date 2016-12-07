@@ -40,6 +40,7 @@ class PhotosOTG: UIView {
     @IBOutlet weak var photosHC: NSLayoutConstraint!
     
     var likeCount = 0
+    var mapImage: String!
     
     @IBAction func sendLikes(_ sender: UIButton) {
             
@@ -148,5 +149,10 @@ class PhotosOTG: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
     }
-
+    
+    func setMapImage(mapUrl: String) {
+        
+        mainPhoto.hnk_setImageFromURL(URL(string: mapUrl)!)
+    }
+    
 }

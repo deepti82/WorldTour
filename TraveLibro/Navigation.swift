@@ -8,7 +8,7 @@ let apiUrl = "http://104.155.207.185:92/api/"
 var adminUrl = "http://104.199.132.38/api/"
 //var adminUrl = "http://192.168.43.157:1337/api/"
 let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
-let mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
+var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {
     
@@ -1142,10 +1142,10 @@ class Navigation {
         
         var checkIn: JSON = ["location": location, "category": locationCategory, "city": city, "country": country, "lat": lat, "long": long]
         
-        if location == "" && locationCategory == "" && city == "" && country == "" && lat == "" && long == "" {
-            
-            checkIn = [:]
-        }
+//        if location == "" && locationCategory == "" && city == "" && country == "" && lat == "" && long == "" {
+//            
+//            checkIn = [:]
+//        }
         
         var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags, "date": date]
         params["photos"] = JSON(photosArray)

@@ -26,7 +26,6 @@ extension NewTLViewController {
                 
                 if id == subview.optionsButton.titleLabel!.text! {
                     
-                    print("inside removing subviews")
                     removeHeightFromLayout(subview.frame.height)
                     subview.removeFromSuperview()
                     
@@ -49,7 +48,6 @@ extension NewTLViewController {
                 
                 if  subview.optionsButton.titleLabel!.text! == id {
                     
-                    print("inside delete subview")
                     removeHeightFromLayout(subview.frame.height)
                     subview.removeFromSuperview()
                     
@@ -122,7 +120,6 @@ extension NewTLViewController {
         
         if self.view.viewWithTag(8) != nil {
             
-            print("view with tag 8")
             
             self.newScroll.isHidden = false
             self.backView.isHidden = false
@@ -135,7 +132,6 @@ extension NewTLViewController {
             
         else {
             
-            print("no tag 8")
             
             self.view.addSubview(self.backView)
             darkBlur = UIBlurEffect(style: .dark)
@@ -149,7 +145,6 @@ extension NewTLViewController {
             self.backView.addSubview(self.newScroll)
             self.addView = AddActivityNew()
             self.addView.frame = self.view.frame
-            print("add view: \(self.addView)")
             self.newScroll.addSubview(self.addView)
             self.newScroll.contentSize.height = self.view.frame.height
             backView.addSubview(newScroll)
@@ -217,7 +212,6 @@ extension NewTLViewController {
         buddyView.profileName.text = post["user"]["name"].string!
         DispatchQueue.main.async(execute: {
             buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
-            print("\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")
             makeTLProfilePicture(buddyView.profileImageView)
         })
         layout.addSubview(buddyView)
@@ -227,7 +221,6 @@ extension NewTLViewController {
     
     func cityChanges(_ post: JSON) {
         
-        print("in change city post")
         prevPosts.append(post)
         
         let changeCityView = ChangeCity(frame: CGRect(x: 0, y: 0, width: width - 120, height: 155))
@@ -245,7 +238,6 @@ extension NewTLViewController {
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
         
-        print("id: \(sender.title(for: .application))")
         
         request.getOneJourneyPost(id: sender.title(for: .application)!, completion: {(response) in
             
@@ -316,7 +308,6 @@ extension NewTLViewController {
 //        self.view.addSubview(backView)
 //        self.view.bringSubviewToFront(backView)
         
-        print("post id: \(sender.titleLabel!.text)")
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
         
@@ -361,7 +352,6 @@ extension NewTLViewController {
                 }
                 else if response["value"].bool! {
                     
-                    print("self is: \(self.layout)")
                     
                     for subview in self.layout.subviews {
                         
@@ -369,8 +359,7 @@ extension NewTLViewController {
                             
                             let view = subview as! RatingCheckIn
                             let viewIndex = self.layout.subviews.index(of: subview)
-                            print("index: \(viewIndex)")
-                            print("remove rating \(view.rateCheckInButton.title(for: .application))")
+                            
                             if view.rateCheckInButton.title(for: .application)! == postId {
                                 
                                 self.removeHeightFromLayout(view.frame.height)
@@ -399,11 +388,13 @@ extension NewTLViewController {
         
         if !isJourneyOngoing {
             
-            print("no journey ongoing")
             height = self.view.frame.height/2
             addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             addNewView.layer.zPosition = 1000
-            addNewView.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!))
+            
+            //            addNewView.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!))
+            
+            addNewView.profilePicture.hnk_setImageFromURL(NSURL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100") as! URL)
             makeTLProfilePicture(addNewView.profilePicture)
             addNewView.profileName.text = currentUser["name"].string!
             self.view.addSubview(addNewView)
@@ -425,7 +416,6 @@ extension NewTLViewController {
     func journeyDateChanged(date: String) {
         
         var flag = 0
-        print("date is: \(date)")
         
         for view in self.view.subviews {
             
@@ -562,7 +552,6 @@ extension NewTLViewController {
         
         if !showDetails {
             
-            print("in no show details \(self.view.subviews) \(mainScroll.subviews)")
             
             self.view.addSubview(mainScroll)
             
@@ -574,7 +563,6 @@ extension NewTLViewController {
                         
                         if subview.isKind(of: startOTGView.self) {
                             
-                            print("in duplication one")
                             view.removeFromSuperview()
                             
                         }
@@ -603,6 +591,7 @@ extension NewTLViewController {
     func getJourneyBuddies(journey: JSON) {
         
         addedBuddies = journey["buddies"].array!
+        print("\(#line) added buddies are: \(addedBuddies)")
     }
     
     func getInfoCount() {
@@ -633,7 +622,6 @@ extension NewTLViewController {
     
     func showInfo(_ response: JSON) {
         
-        print("response of count: \(response)")
         var flag = 0
         var myInfo: TripInfoOTG!
         
@@ -650,7 +638,6 @@ extension NewTLViewController {
         
         if flag == 0 {
             
-            print("no subview")
             self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
             self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), for: .touchUpInside)
             self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
@@ -677,7 +664,6 @@ extension NewTLViewController {
         }
         else {
             
-            print("yes subview")
             myInfo.videosCount.setTitle("\(response["videos"])", for: .normal)
             myInfo.photosCount.setTitle("\(response["photos"])", for: .normal)
             myInfo.ratingCount.setTitle("\(response["review"])", for: .normal)
@@ -735,7 +721,6 @@ extension NewTLViewController {
     
     func uploadVideo(_ url: URL, video: AVAsset) {
         
-        print("format: \(url.lastPathComponent)")
         
 //        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("\(url.lastPathComponent)")
 //        let video =

@@ -12,7 +12,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var buddiesTableView: UITableView!
     
     var whichView = "LL"
-    var addedFriends: [JSON]! = []
+    var addedFriends: [JSON] = []
     var addedFriendsImages: [String] = []
     var flag = 0
     
@@ -62,8 +62,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                                 
                                 print("is kind of class new tl view controller")
                                 let backVC = vc as! NewTLViewController
-                                backVC.countLabel = self.addedFriends!.count
-                                backVC.addedBuddies = self.addedFriends!
+                                backVC.countLabel = self.addedFriends.count
+                                backVC.addedBuddies = self.addedFriends
 //                                backVC.getCurrentOTG()
                                 backVC.showBuddies()
                                 self.navigationController!.popToViewController(backVC, animated: true)
@@ -166,6 +166,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
             self.title = "Added Buddies"
             
+            print("addedFriends: \(addedFriends)")
+            print("friends json: \(allFriendsJson)")
+            
             let leftButton = UIButton()
             leftButton.setImage(UIImage(named: "arrow_prev"), for: .normal)
             leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
@@ -183,13 +186,12 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         else {
          
             let leftButton = UIButton()
-            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: .normal)
             leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
             leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             
             let rightButton = UIButton()
-            rightButton.setTitle("", for: UIControlState())
-            //        rightButton.addTarget(self, action: nil, for: .touchUpInside)
+            rightButton.setTitle("", for: .normal)
             rightButton.frame = CGRect(x: 0, y: 8, width: 80, height: 30)
             
             self.customNavigationBar(left: leftButton, right: rightButton)
@@ -208,10 +210,10 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                 else if response["value"].bool! {
                     
-                    self.allFriendsJson = response["data"]["followers"].array!
+//                    self.allFriendsJson = response["data"]["followers"].array!
+                    self.formatAllFriends(friends: response["data"]["followers"].array!)
                     print("friends: \(self.allFriendsJson)")
-//                    self.friendsCount = self.allFriendsJson.count
-                    self.buddiesTableView.reloadData()
+                    
                 }
                 
                 else {
@@ -223,16 +225,11 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
         })
         
-//        setCheckInNavigationBarItem(addCheckIn)
-        
         for _ in 0 ..< 3 {
             
             addedFriendsImages.append("profile_icon")
             
         }
-//        addedFriendsImages[0] = "profile_icon"
-//        addedFriendsImages[1] = "profile_icon"
-//        addedFriendsImages[2] = "profile_icon"
         
         search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.frame.width - 10, height: 30))
         search.searchField.returnKeyType = .done
@@ -269,6 +266,16 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    func formatAllFriends(friends: [JSON]) {
+        
+        for friend in friends {
+            
+            allFriendsJson.append(["name": friend["name"].string!, "_id": friend["_id"].string!, "email": friend["email"].string!, "profilePicture": friend["profilePicture"].string!])
+        }
+        
+        self.buddiesTableView.reloadData()
+    }
+    
     func getSearchResults(_ sender: UITextField) {
         
         print("sender: \(search.searchField.text!)")
@@ -285,8 +292,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                 else if response["value"].bool! {
                     
                     self.allFriendsJson = response["data"].array!
-                    self.friendsTable.reloadData()
-                    
+                    self.buddiesTableView.reloadData()
                 }
                 else {
                     
@@ -304,12 +310,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.navigationController!.popViewController(animated: true)
         
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -338,10 +338,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             if data != nil  && imageUrl != "" {
                 
                 print("some problem in data \(data)")
-                //                uploadView.addButton.setImage(, forState: .Normal)
                 cell.buddyProfileImage.image = UIImage(data: data!)
-                //                cell.buddyDp.image = UIImage(data: data!)
-                //                    makeTLProfilePicture(profile.image)
                 makeTLProfilePicture(cell.buddyProfileImage)
             }
         }
@@ -349,34 +346,21 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         else if imageUrl != "" {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
-            
-            //                print("getImageUrl: \(getImageUrl)")
-            
-            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-            //                print("data: \(data)")
+            let data = try! Data(contentsOf: URL(string: getImageUrl)!)
             
             if data != nil {
                 
-                //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
                 print("inside if statement \(cell.buddyProfileImage.image)")
-                cell.buddyProfileImage.image = UIImage(data: data!)
+                cell.buddyProfileImage.image = UIImage(data: data)
                 print("sideMenu.profilePicture.image: \(cell.buddyProfileImage.image)")
-                cell.buddyProfileImage.image = UIImage(data: data!)
+                cell.buddyProfileImage.image = UIImage(data: data)
                 makeTLProfilePicture(cell.buddyProfileImage)
             }
             
         }
         
-        
-//        let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
-//        
-//        if imageData != nil {
-//            
-//            cell.buddyProfileImage.image = UIImage(data:imageData!)
-//        }
-        
         cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
-        if (indexPath as NSIndexPath).row % 2 == 0 {
+        if indexPath.row % 2 == 0 {
             
             cell.backgroundColor = UIColor.white.withAlphaComponent(0.5)
             
@@ -387,7 +371,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
         }
          
-        if addedFriends.contains(allFriendsJson[(indexPath as NSIndexPath).row]) {
+        if addedFriends.contains(allFriendsJson[indexPath.row]) {
+            
+            print("friend already added")
             
             if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
                 
@@ -539,7 +525,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             if cell.tintColor == mainOrangeColor {
                 
                 cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
-                if let index = addedFriends.index(of: allFriendsJson[(indexPath as NSIndexPath).row]) {
+                if let index = addedFriends.index(of: allFriendsJson[indexPath.row]) {
                     
                     addedFriends.remove(at: index)
                     
@@ -551,7 +537,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             else {
                 
                 cell.tintColor = mainOrangeColor
-                addedFriends.append(allFriendsJson[(indexPath as NSIndexPath).row])
+                addedFriends.append(allFriendsJson[indexPath.row])
                 
             }
             
