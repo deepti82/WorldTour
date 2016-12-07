@@ -68,7 +68,10 @@ class EndJourneyViewController: UIViewController {
         rightButton.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
         self.customNavigationBar(left: leftButton, right: rightButton)
         
-        rateCountries()
+        getAllCountryReviews()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
         self.journeyCoverPic.backgroundColor = UIColor.white
@@ -247,6 +250,14 @@ class EndJourneyViewController: UIViewController {
         
     }
     
+    func makeCoverPictureImage(image: String) {
+        
+        DispatchQueue.main.async(execute: {
+            
+            self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
+        })
+    }
+    
     func doneEndJourney(_ sender: UIButton) {
         
         print("clicked done journey")
@@ -296,33 +307,99 @@ class EndJourneyViewController: UIViewController {
     }
     
     var countriesVisited: [JSON] = []
+    var rateCountriesLayoutMod: VerticalLayout!
+    
+    func getAllCountryReviews() {
+        
+        var reviews = ["Disappointed", "Sad", "Good", "Super", "In Love"]
+        var reviewSmileys = ["disapointed", "sad", "good", "superface", "love"]
+        countriesVisited = journey["countryVisited"].array!
+        rateCountriesLayoutMod = VerticalLayout(width: self.view.frame.width)
+        rateCountriesScroll.addSubview(rateCountriesLayoutMod)
+        
+        if journey["review"].array!.count > 0 {
+            
+            for eachCountry in countriesVisited {
+                
+                var flag = 0
+                var countryJSON: JSON!
+                
+                for eachReview in journey["review"].array! {
+                    
+                    if eachReview["country"]["_id"].string! == eachCountry["country"]["_id"].string! {
+                        
+                        flag = 1
+                        let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+                        print("rating: \(Int(eachReview["rating"].string!))")
+                        rateButton.ratingLabel.text = "Reviewed \(reviews[Int(eachReview["rating"].string!)! - 1])"
+                        rateButton.rating.setImage(UIImage(named: reviewSmileys[Int(eachReview["rating"].string!)! - 1]), for: .normal)
+//                        rateButton.rateCheckInButton.tag = countriesVisited.index(of: eachRating)!
+//                        rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.postReview(_:)), for: .touchUpInside)
+//                        rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
+                        rateCountriesLayoutMod.addSubview(rateButton)
+                        addHeightToLayout(height: 150, layoutView: rateCountriesLayoutMod, scroll: rateCountriesScroll)
+                    }
+                    
+                    else {
+                        
+                        countryJSON = eachCountry
+                    }
+                }
+                
+                if flag == 0 {
+                    
+                    getRatingLayout(eachRating: countryJSON)
+                }
+            }
+        }
+        else {
+            
+            rateCountries()
+        }
+        
+    }
     
     func rateCountries() {
-        
-         countriesVisited = journey["countryVisited"].array!
-//        let scrollView = UIScrollView()
-//        scrollView.frame = rateCountriesView.frame
-       let rateCountriesLayout = VerticalLayout(width: self.view.frame.width)
-       rateCountriesScroll.addSubview(rateCountriesLayout)
 //        rateCountriesView.addSubview(scrollView)
         
         for eachRating in countriesVisited {
             
-            let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
-            rateButton.rateCheckInLabel.text = "Rate \(eachRating["country"]["name"])?"
-            rateButton.rateCheckInButton.tag = countriesVisited.index(of: eachRating)!
-            rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.postReview(_:)), for: .touchUpInside)
-            rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
-            rateCountriesLayout.addSubview(rateButton)
-            addHeightToLayout(height: 150, layoutView: rateCountriesLayout, scroll: rateCountriesScroll)
+            getRatingLayout(eachRating: eachRating)
         }
         
+    }
+    
+    func getRatingLayout(eachRating: JSON) {
+        
+        let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+        rateButton.rateCheckInLabel.text = "Rate \(eachRating["country"]["name"])?"
+        rateButton.rateCheckInButton.tag = countriesVisited.index(of: eachRating)!
+        rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.postReview(_:)), for: .touchUpInside)
+        rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
+        rateCountriesLayoutMod.addSubview(rateButton)
+        addHeightToLayout(height: 150, layoutView: rateCountriesLayoutMod, scroll: rateCountriesScroll)
     }
     
     func addHeightToLayout(height: CGFloat, layoutView: VerticalLayout, scroll: UIScrollView) {
         
         layoutView.frame.size.height += height
         scroll.contentSize.height += height
+    }
+    
+    func keyboardWillShow(_ notification: Notification) {
+        
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            self.view.frame.origin.y -= keyboardSize.height
+        }
+    }
+    
+    func keyboardWillHide(_ notification: Notification) {
+        
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            self.view.frame.origin.y += keyboardSize.height
+        }
     }
     
     
@@ -344,13 +421,13 @@ class EndJourneyViewController: UIViewController {
         rating.layer.cornerRadius = 5
         rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
         rating.postReview.setTitle(countriesVisited[sender.tag]["country"]["_id"].string!, for: .disabled)
+        rating.countryName.text = countriesVisited[sender.tag]["country"]["name"].string!
+        rating.countryImage.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(countriesVisited[sender.tag]["country"]["flag"])")!)
         rating.clipsToBounds = true
         rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
         rating.countryVisitedData = countriesVisited[sender.tag]
         rating.journeyData = journey
         rating.backgroundSuperview = backgroundReview
-//        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), for: .TouchUpInside)
-//        rating.getRatingData(data: countryVisited)
         backgroundReview.addSubview(rating)
     }
     

@@ -810,7 +810,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                print("location: \(location)")
                 
                 if currentLat != nil && currentLong != nil {
-                    myLatitude = UserLocation(latitude: "\(currentLat)", longitude: "\(currentLong)")
+                    myLatitude = UserLocation(latitude: "\(currentLat!)", longitude: "\(currentLong!)")
                 }
                 
                 if addView.categoryLabel.text != "Label" && addView.categoryLabel.text != "" {
@@ -1727,7 +1727,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             checkIn.mainPhoto.isHidden = false
             checkIn.photosStack.isHidden = true
             checkIn.photosHC.constant = 0.0
-            checkIn.frame.size.height = 250.0
+//            checkIn.frame.size.height = 250.0
             
         }
         
@@ -2152,13 +2152,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
             doneButton.setTitle("SAVE", for: .normal)
             doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-            doneButton.setTitleColor(mainBlueColor, for: UIControlState())
+            doneButton.setTitleColor(mainBlueColor, for: .normal)
             doneButton.setTitle(sender.title(for: .application), for: .application)
             
             let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-            cancelButton.setTitle("CANCEL", for: UIControlState())
+            cancelButton.setTitle("CANCEL", for: .normal)
             cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-            cancelButton.setTitleColor(mainBlueColor, for: UIControlState())
+            cancelButton.setTitleColor(mainBlueColor, for: .normal)
             
             self.inputview.addSubview(doneButton) // add Button to UIView
             self.inputview.addSubview(cancelButton) // add Cancel to UIView
@@ -2937,46 +2937,46 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addLocationTapped(_ sender: UIButton?) {
         
-        print("locations = \(userLocation.latitude) \(userLocation.longitude)")
-        request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
+        if userLocation != nil {
             
-            DispatchQueue.main.async(execute: {
+            print("locations = \(userLocation.latitude) \(userLocation.longitude)")
+            
+            request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
                 
-                if (response.error != nil) {
+                DispatchQueue.main.async(execute: {
                     
-                    print("error: \(response.error?.localizedDescription)")
-                    
-                }
-                    
-                else if response["value"].bool! {
-                    
-                    self.locationArray = response["data"].array!
-                    
-                    if self.initialLocationLoad {
+                    if (response.error != nil) {
                         
-                        self.getAllLocations()
-                        self.initialLocationLoad = false
+                        print("error: \(response.error?.localizedDescription)")
                         
                     }
-                    
-                    if sender != nil {
                         
-                        self.gotoSearchLocation(sender!)
+                    else if response["value"].bool! {
+                        
+                        self.locationArray = response["data"].array!
+                        
+                        if self.initialLocationLoad {
+                            
+                            self.getAllLocations()
+                            self.initialLocationLoad = false
+                            
+                        }
+                        
+                        if sender != nil {
+                            
+                            self.gotoSearchLocation(sender!)
+                            
+                        }
                         
                     }
-                    
-                }
-                    
-                else {
-                    
-                }
-                
-                
+                        
+                    else {
+                        
+                        self.addLocationTapped(nil)
+                    }
+                })
             })
-            
-            
-        })
-        
+        }
     }
     
     var photosCount: Int = 0
