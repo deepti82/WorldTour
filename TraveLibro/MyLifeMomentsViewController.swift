@@ -176,7 +176,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         else if whichView == "SelectCover" {
             
             print("inside select cover")
-            selectImage((indexPath as NSIndexPath).item)
+            selectImage(indexPath.item)
             
         }
         
@@ -212,7 +212,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 
                 let endvc = vc as! EndJourneyViewController
                 endvc.coverImage = images[index] 
-                endvc.makeCoverPicture(image: images[index] )
+                endvc.makeCoverPictureImage(image: images[index])
                 self.navigationController!.popToViewController(endvc, animated: true)
                 
             }

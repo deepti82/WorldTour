@@ -1727,7 +1727,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             checkIn.mainPhoto.isHidden = false
             checkIn.photosStack.isHidden = true
             checkIn.photosHC.constant = 0.0
-            checkIn.frame.size.height = 250.0
+//            checkIn.frame.size.height = 250.0
             
         }
         
@@ -2152,13 +2152,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
             doneButton.setTitle("SAVE", for: .normal)
             doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-            doneButton.setTitleColor(mainBlueColor, for: UIControlState())
+            doneButton.setTitleColor(mainBlueColor, for: .normal)
             doneButton.setTitle(sender.title(for: .application), for: .application)
             
             let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-            cancelButton.setTitle("CANCEL", for: UIControlState())
+            cancelButton.setTitle("CANCEL", for: .normal)
             cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-            cancelButton.setTitleColor(mainBlueColor, for: UIControlState())
+            cancelButton.setTitleColor(mainBlueColor, for: .normal)
             
             self.inputview.addSubview(doneButton) // add Button to UIView
             self.inputview.addSubview(cancelButton) // add Cancel to UIView
