@@ -810,7 +810,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                print("location: \(location)")
                 
                 if currentLat != nil && currentLong != nil {
-                    myLatitude = UserLocation(latitude: "\(currentLat)", longitude: "\(currentLong)")
+                    myLatitude = UserLocation(latitude: "\(currentLat!)", longitude: "\(currentLong!)")
                 }
                 
                 if addView.categoryLabel.text != "Label" && addView.categoryLabel.text != "" {
@@ -2937,46 +2937,46 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addLocationTapped(_ sender: UIButton?) {
         
-        print("locations = \(userLocation.latitude) \(userLocation.longitude)")
-        request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
+        if userLocation != nil {
             
-            DispatchQueue.main.async(execute: {
+            print("locations = \(userLocation.latitude) \(userLocation.longitude)")
+            
+            request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
                 
-                if (response.error != nil) {
+                DispatchQueue.main.async(execute: {
                     
-                    print("error: \(response.error?.localizedDescription)")
-                    
-                }
-                    
-                else if response["value"].bool! {
-                    
-                    self.locationArray = response["data"].array!
-                    
-                    if self.initialLocationLoad {
+                    if (response.error != nil) {
                         
-                        self.getAllLocations()
-                        self.initialLocationLoad = false
+                        print("error: \(response.error?.localizedDescription)")
                         
                     }
-                    
-                    if sender != nil {
                         
-                        self.gotoSearchLocation(sender!)
+                    else if response["value"].bool! {
+                        
+                        self.locationArray = response["data"].array!
+                        
+                        if self.initialLocationLoad {
+                            
+                            self.getAllLocations()
+                            self.initialLocationLoad = false
+                            
+                        }
+                        
+                        if sender != nil {
+                            
+                            self.gotoSearchLocation(sender!)
+                            
+                        }
                         
                     }
-                    
-                }
-                    
-                else {
-                    
-                }
-                
-                
+                        
+                    else {
+                        
+                        self.addLocationTapped(nil)
+                    }
+                })
             })
-            
-            
-        })
-        
+        }
     }
     
     var photosCount: Int = 0

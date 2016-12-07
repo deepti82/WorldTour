@@ -1131,7 +1131,6 @@ class Navigation {
         if latitude != "0.0" {
             
             lat = latitude
-            
         }
         
         if longitude != "0.0" {
@@ -1139,13 +1138,7 @@ class Navigation {
             long = longitude
         }
         
-        
-        var checkIn: JSON = ["location": location, "category": locationCategory, "city": city, "country": country, "lat": lat, "long": long]
-        
-//        if location == "" && locationCategory == "" && city == "" && country == "" && lat == "" && long == "" {
-//            
-//            checkIn = [:]
-//        }
+        let checkIn: JSON = ["location": location, "category": locationCategory, "city": city, "country": country, "lat": lat, "long": long]
         
         var params: JSON = ["type": "travel-life", "thoughts": thoughts, "checkIn": checkIn, "videos": videosArray, "user": userId, "journey": journeyId, "username": userName, "hashtag": hashtags, "date": date]
         params["photos"] = JSON(photosArray)

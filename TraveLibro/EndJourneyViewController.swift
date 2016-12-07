@@ -307,38 +307,48 @@ class EndJourneyViewController: UIViewController {
     }
     
     var countriesVisited: [JSON] = []
+    var rateCountriesLayoutMod: VerticalLayout!
     
     func getAllCountryReviews() {
         
         var reviews = ["Disappointed", "Sad", "Good", "Super", "In Love"]
         var reviewSmileys = ["disapointed", "sad", "good", "superface", "love"]
         countriesVisited = journey["countryVisited"].array!
-        let rateCountriesLayout = VerticalLayout(width: self.view.frame.width)
-        rateCountriesScroll.addSubview(rateCountriesLayout)
+        rateCountriesLayoutMod = VerticalLayout(width: self.view.frame.width)
+        rateCountriesScroll.addSubview(rateCountriesLayoutMod)
         
         if journey["review"].array!.count > 0 {
             
-            for eachReview in journey["review"].array! {
+            for eachCountry in countriesVisited {
                 
-                for eachCountry in countriesVisited {
+                var flag = 0
+                var countryJSON: JSON!
+                
+                for eachReview in journey["review"].array! {
                     
                     if eachReview["country"]["_id"].string! == eachCountry["country"]["_id"].string! {
                         
+                        flag = 1
                         let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
-                        print("rating: \(eachReview["rating"].int)")
-                        rateButton.ratingLabel.text = "Reviewed \(reviews[Int(eachReview["rating"].string!)!])"
-                        rateButton.rating.setImage(UIImage(named: reviewSmileys[Int(eachReview["rating"].string!)!]), for: .normal)
+                        print("rating: \(Int(eachReview["rating"].string!))")
+                        rateButton.ratingLabel.text = "Reviewed \(reviews[Int(eachReview["rating"].string!)! - 1])"
+                        rateButton.rating.setImage(UIImage(named: reviewSmileys[Int(eachReview["rating"].string!)! - 1]), for: .normal)
 //                        rateButton.rateCheckInButton.tag = countriesVisited.index(of: eachRating)!
 //                        rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.postReview(_:)), for: .touchUpInside)
 //                        rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
-                        rateCountriesLayout.addSubview(rateButton)
-                        addHeightToLayout(height: 150, layoutView: rateCountriesLayout, scroll: rateCountriesScroll)
+                        rateCountriesLayoutMod.addSubview(rateButton)
+                        addHeightToLayout(height: 150, layoutView: rateCountriesLayoutMod, scroll: rateCountriesScroll)
                     }
                     
                     else {
                         
-                        getRatingLayout(eachRating: eachCountry)
+                        countryJSON = eachCountry
                     }
+                }
+                
+                if flag == 0 {
+                    
+                    getRatingLayout(eachRating: countryJSON)
                 }
             }
         }
@@ -366,8 +376,8 @@ class EndJourneyViewController: UIViewController {
         rateButton.rateCheckInButton.tag = countriesVisited.index(of: eachRating)!
         rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.postReview(_:)), for: .touchUpInside)
         rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
-        rateCountriesLayout.addSubview(rateButton)
-        addHeightToLayout(height: 150, layoutView: rateCountriesLayout, scroll: rateCountriesScroll)
+        rateCountriesLayoutMod.addSubview(rateButton)
+        addHeightToLayout(height: 150, layoutView: rateCountriesLayoutMod, scroll: rateCountriesScroll)
     }
     
     func addHeightToLayout(height: CGFloat, layoutView: VerticalLayout, scroll: UIScrollView) {
