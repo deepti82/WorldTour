@@ -287,25 +287,28 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             mentionSuggestionsTable.isHidden = true
             let cell = mentionSuggestionsTable.cellForRow(at: indexPath) as! MentionSuggestionsTableViewCell
             mentions.append(mentionSuggestions[indexPath.row]["_id"].string!)
-            modifyText(textView: addComment, modifiedString: cell.titleLabel.text!, replacableString: textVar)
+            modifyText(textView: addComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "@")
         case 1:
             hashTagSuggestionsTable.isHidden = true
             let cell = hashTagSuggestionsTable.cellForRow(at: indexPath) as! SuggestionsTableViewCell
-            modifyText(textView: addComment, modifiedString: cell.titleLabel.text!, replacableString: textVar)
+            modifyText(textView: addComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "#")
         default:
             break
         }
         
     }
     
-    func modifyText(textView: UITextView, modifiedString: String, replacableString: String) {
+    func modifyText(textView: UITextView, modifiedString: String, replacableString: String, whichView: String) {
         
         if replacableString == "" {
             textView.text = "\(textView.text!)\(modifiedString)"
         } else {
+            
             let myString = textView.text as NSString
             
-            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString)
+            let myRange = myString.range(of: whichView, options: .backwards)
+            
+            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
         }
 
     }
