@@ -26,7 +26,7 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
     var currentYear: Int = 0
     var quickItinery: JSON = ["title": "", "year": "", "month": "", "duration": "", "itenaryType": ""]
     var currentMonth: String = ""
-    let verticalLayout = VerticalLayout(width: 360)
+    
     func searchCountry(search:String) {
         
     }
@@ -53,8 +53,7 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
             let dateFormatter = DateFormatter()
             let components = calendar.dateComponents([.month , .year], from: date as Date)
             dateFormatter.dateFormat = "yyyy"
-            one.durationTextField.delegate = self
-            quickItinery["title"] = JSON(one.tripTitle.text!)
+                        quickItinery["title"] = JSON(one.tripTitle.text!)
             quickItinery["month"] = JSON(one.monthPickerView.text!)
             quickItinery["year"] = JSON(one.yearPickerView.text!)
             quickItinery["duration"] = JSON(one.durationTextField.text!)
@@ -87,10 +86,7 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
             let three = QuickItineraryThree(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 350))
             three.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             self.view.addSubview(three)
-            three.countryDropDown.isHidden = true
-            three.cityDropDown.isHidden = true
-            three.showCountryCityView.addSubview(verticalLayout)
-            three.addCountry.addTarget(self, action: #selector(QuickItinerariesViewController.addCountryFunction(_:)), for: .touchUpInside)
+            
             
         case "Four":
             let four = QuickItineraryFour(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 400))
@@ -117,17 +113,6 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
 
    
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-        one.durationTextField.resignFirstResponder()
-        one.monthPickerView.resignFirstResponder()
-        one.tripTitle.resignFirstResponder()
-        one.yearPickerView.resignFirstResponder()
-        three.cityVisitedText.resignFirstResponder()
-        three.countryVisitedText.resignFirstResponder()
-        return true
-        
-    }
     
     
     //One
@@ -251,47 +236,7 @@ class QuickItinerariesViewController: UIViewController, UIPickerViewDelegate, UI
     
     
     //three
-    func addCountryFunction(_ sender: UIButton) {
-        
-        let showCountryButton = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 20))
-        //showCountryButton.backgroundColor = UIColor.yellow
-        showCountryButton.layoutIfNeeded()
-        showCountryButton.titleLabel?.textAlignment = NSTextAlignment.left
-        showCountryButton.setTitleColor(UIColor.black, for: .normal)
-        verticalLayout.addSubview(showCountryButton)
-        let cancelLabel = UILabel(frame: CGRect(x: 5, y: 5, width: 10, height: 10))
-        cancelLabel.font = UIFont(name: "FontAwesome", size: 15)
-        cancelLabel.text = String(format: "%C", faicon["close"]!)
-        cancelLabel.textColor = UIColor(colorLiteralRed: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-        showCountryButton.addSubview(cancelLabel)
-        
-        showCountryButton.addTarget(self, action: #selector(QuickItinerariesViewController.removeCountryCity(_:)), for: .touchUpInside)
-        //increaseHeight(buttonHeight: 20)
-        if three.countryVisitedText != nil && three.cityVisitedText != nil {
-            styleHorizontalButton(showCountryButton, buttonTitle: "\(three.countryVisitedText.text!), \(three.cityVisitedText.text!)")
-        }
-    }
-
-    
-    func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
-        
-        //        print("inside the style horizontal button")
-        //button.backgroundColor = UIColor.clear
-        button.titleLabel!.font = avenirFont
-        button.titleLabel?.backgroundColor = UIColor.black
-        button.setTitle(buttonTitle, for: UIControlState())
-        button.setTitleColor(mainBlueColor, for: UIControlState())
-        button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.darkGray.cgColor
-        button.layer.borderWidth = 1.0
-        
-    }
-    
-    func removeCountryCity(_ sender: UIButton){
-        sender.removeFromSuperview()
-    }
-
-//    func increaseHeight(buttonHeight: Int) {
+    //    func increaseHeight(buttonHeight: Int) {
 //        if three.quickThree.frame.height <= view.frame.height - 100{
 //            three.quickThree.animation.makeHeight(CGFloat(buttonHeight)).animate(0.5)
 //        }
