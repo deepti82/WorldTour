@@ -190,6 +190,7 @@
 		C267302A1D27D30300F2C822 /* ChooseCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26730291D27D30300F2C822 /* ChooseCityViewController.swift */; };
 		C267302C1D27D49100F2C822 /* SelectGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C267302B1D27D49100F2C822 /* SelectGenderViewController.swift */; };
 		C267302E1D27E93900F2C822 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C267302D1D27E93900F2C822 /* InviteFriendsViewController.swift */; };
+		C268EBB01DF8491C002EDA30 /* QuickItineraryPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = C268EBAF1DF8491C002EDA30 /* QuickItineraryPreview.xib */; };
 		C269077D1CF819BA00F827E6 /* GenderInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = C269077C1CF819BA00F827E6 /* GenderInfo.xib */; };
 		C269077F1CF819EB00F827E6 /* GenderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C269077E1CF819EB00F827E6 /* GenderInfo.swift */; };
 		C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = C26907811CF826B900F827E6 /* LocationTextField.xib */; };
@@ -568,6 +569,7 @@
 		C26730291D27D30300F2C822 /* ChooseCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCityViewController.swift; sourceTree = "<group>"; };
 		C267302B1D27D49100F2C822 /* SelectGenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectGenderViewController.swift; sourceTree = "<group>"; };
 		C267302D1D27E93900F2C822 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
+		C268EBAF1DF8491C002EDA30 /* QuickItineraryPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickItineraryPreview.xib; sourceTree = "<group>"; };
 		C269077C1CF819BA00F827E6 /* GenderInfo.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GenderInfo.xib; path = ../GenderInfo.xib; sourceTree = "<group>"; };
 		C269077E1CF819EB00F827E6 /* GenderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderInfo.swift; path = ../GenderInfo.swift; sourceTree = "<group>"; };
 		C26907811CF826B900F827E6 /* LocationTextField.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationTextField.xib; path = ../LocationTextField.xib; sourceTree = "<group>"; };
@@ -807,6 +809,7 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
+				C268EBAF1DF8491C002EDA30 /* QuickItineraryPreview.xib */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				C20163DE1D26910D00A2F70B /* Models */,
@@ -2131,6 +2134,7 @@
 				3ABFD8E31DA929D700A51034 /* RatingCheckIn.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				C2803BC41CF41F99007A906E /* BlogView.xib in Resources */,
+				C268EBB01DF8491C002EDA30 /* QuickItineraryPreview.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
 				C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */,
