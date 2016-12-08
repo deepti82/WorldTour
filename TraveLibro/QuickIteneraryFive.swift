@@ -8,9 +8,10 @@
 
 import UIKit
 
-class QuickIteneraryFive: UIViewController {
+class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    override func viewDidLoad() {
+    @IBOutlet weak var collectionViewPhotos: UICollectionView!
+        override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -21,7 +22,16 @@ class QuickIteneraryFive: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosFromGallery", for: indexPath)
+            as! photosSelection
+        return cell
+    }
     /*
     // MARK: - Navigation
 
@@ -31,5 +41,8 @@ class QuickIteneraryFive: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    class photosSelection: UICollectionViewCell {
+        
+    }
 
 }
