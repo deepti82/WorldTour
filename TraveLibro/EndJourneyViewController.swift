@@ -289,21 +289,25 @@ class EndJourneyViewController: UIViewController {
         
     }
     
+    var loader = LoadingOverlay()
+    
     func goBack() {
-            
+        
+        loader.showOverlay(self.view)
+        
         print("\(self.navigationController!.viewControllers)")
         let allvcs = self.navigationController!.viewControllers
+        
         for vc in allvcs {
-            
             
             if vc.isKind(of: ProfileViewController.self) {
                 
                 self.navigationController!.popToViewController(vc, animated: true)
                 
             }
-            
         }
         
+        loader.hideOverlayView()
     }
     
     var countriesVisited: [JSON] = []
