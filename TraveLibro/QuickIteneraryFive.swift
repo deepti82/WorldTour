@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class QuickIteneraryFive: UIViewController {
 
     @IBOutlet weak var collectionViewPhotos: UICollectionView!
         override func viewDidLoad() {
@@ -27,11 +27,11 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         return 3
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosFromGallery", for: indexPath)
-            as! photosSelection
-        return cell
-    }
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosFromGallery", for: indexPath)
+//            as! photosSelection
+//        return cell
+//    }
     /*
     // MARK: - Navigation
 
@@ -41,8 +41,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         // Pass the selected object to the new view controller.
     }
     */
-    class photosSelection: UICollectionViewCell {
-        
-    }
+//    class photosSelection: UICollectionViewCell {
+//        print("hello")
+//    }
 
 }
