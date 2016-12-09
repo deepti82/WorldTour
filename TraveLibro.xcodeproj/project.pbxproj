@@ -267,6 +267,8 @@
 		C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */; };
 		C2A2E7931D96565F005084A7 /* SearchLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A2E7921D96565F005084A7 /* SearchLocationTableViewController.swift */; };
 		C2A2E7951D96858E005084A7 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A2E7941D96858E005084A7 /* LoadingOverlay.swift */; };
+		C2A36D011DF92A090091AD56 /* QuickItineraryPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A36D001DF92A090091AD56 /* QuickItineraryPreview.swift */; };
+		C2A36D041DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A36D031DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift */; };
 		C2A5C1D51CF9A7F90035EF0E /* MoreAboutMe.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D41CF9A7F90035EF0E /* MoreAboutMe.xib */; };
 		C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2A5C1D61CF9B09E0035EF0E /* TraveLifeVideoPost.xib */; };
 		C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2A5C1D81CF9BA5E0035EF0E /* TraveLifeVideoPost.swift */; };
@@ -646,6 +648,8 @@
 		C2A27A601CEDF0F500F74DD1 /* SelectCountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCountryViewController.swift; sourceTree = "<group>"; };
 		C2A2E7921D96565F005084A7 /* SearchLocationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationTableViewController.swift; sourceTree = "<group>"; };
 		C2A2E7941D96858E005084A7 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingOverlay.swift; path = ../LoadingOverlay.swift; sourceTree = "<group>"; };
+		C2A36D001DF92A090091AD56 /* QuickItineraryPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryPreview.swift; sourceTree = "<group>"; };
+		C2A36D031DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryPreviewViewController.swift; sourceTree = "<group>"; };
 		C2A5C1D21CF973120035EF0E /* DJB My Mood Ring Says Blah.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DJB My Mood Ring Says Blah.ttf"; sourceTree = "<group>"; };
 		C2A5C1D31CF9731B0035EF0E /* JennaSue.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = JennaSue.ttf; sourceTree = "<group>"; };
 		C2A5C1D41CF9A7F90035EF0E /* MoreAboutMe.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreAboutMe.xib; sourceTree = "<group>"; };
@@ -809,7 +813,6 @@
 		1A944E061CCB4567007EB5BD /* TraveLibro */ = {
 			isa = PBXGroup;
 			children = (
-				C268EBAF1DF8491C002EDA30 /* QuickItineraryPreview.xib */,
 				C2DCAE3F1D17FC9600B35331 /* Helpers */,
 				1A944E3E1CCB6297007EB5BD /* Fonts */,
 				C20163DE1D26910D00A2F70B /* Models */,
@@ -817,6 +820,7 @@
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
+				C2A36D031DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -845,6 +849,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				C2A36D021DF92FBD0091AD56 /* QuickItineraryPreview */,
 				3AFB01C41DDC30AC00BCD523 /* AddRatingCountries */,
 				C2889D3D1DB1180200B302AF /* ShowRating */,
 				3ABFD8E11DA9299000A51034 /* RatingCheckIn */,
@@ -1764,6 +1769,15 @@
 			name = SignUpFullView;
 			sourceTree = "<group>";
 		};
+		C2A36D021DF92FBD0091AD56 /* QuickItineraryPreview */ = {
+			isa = PBXGroup;
+			children = (
+				C268EBAF1DF8491C002EDA30 /* QuickItineraryPreview.xib */,
+				C2A36D001DF92A090091AD56 /* QuickItineraryPreview.swift */,
+			);
+			name = QuickItineraryPreview;
+			sourceTree = "<group>";
+		};
 		C2A4C8851D840289008394A3 /* AddActivityOTG */ = {
 			isa = PBXGroup;
 			children = (
@@ -2406,6 +2420,7 @@
 				C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */,
 				C28A92511D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift in Sources */,
 				3A9F8C7B1DE2BDC1007F3CF0 /* NearMeDetailViewController.swift in Sources */,
+				C2A36D011DF92A090091AD56 /* QuickItineraryPreview.swift in Sources */,
 				C22138F31D547846008D9DEE /* QuickItineraryTwo.swift in Sources */,
 				C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */,
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
@@ -2576,6 +2591,7 @@
 				C25649971D48D7670046E36D /* TripInfoOTG.swift in Sources */,
 				1A944E081CCB4567007EB5BD /* AppDelegate.swift in Sources */,
 				843510E21DF7F86400C3D8EE /* QuickIteneraryThree.swift in Sources */,
+				C2A36D041DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift in Sources */,
 				C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */,
 				C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */,
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,
