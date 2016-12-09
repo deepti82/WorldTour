@@ -270,8 +270,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             locationCount = locationArray.count - 1
             
         }
-        
-        for i in 0 ..< locationCount {
+        if locationCount >= 0 {
+        for i in 0 ... locationCount {
             
             let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 200, height: addView.locationHorizontalScroll.frame.height))
             addView.horizontal.addSubview(oneButton)
@@ -281,6 +281,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             oneButton.addTarget(self, action: #selector(NewTLViewController.selectLocation(_:)), for: .touchUpInside)
             addView.buttonCollection.append(oneButton)
             
+        }
         }
         
         let buttonSix = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: addView.locationHorizontalScroll.frame.height))
@@ -648,7 +649,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
 //                print("in the for loop \(post["photos"][i + 1]["name"])")
                 //checkIn.otherPhotosStack[i].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")!))
-                checkIn.otherPhotosStack[i].loadImageFromURL(photosToBeUploaded[i + 1].url)
+                checkIn.otherPhotosStack[i].hnk_setImageFromURL(URL(string:photosToBeUploaded[i + 1].url)!)
                 checkIn.otherPhotosStack[i].isHidden = false
                 checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
                 checkIn.otherPhotosStack[i].tag = i + 1
@@ -1764,7 +1765,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 if post["showMap"].boolValue && post["showMap"] != nil {
                     
                     // CHECKIN MAP IMAGE
-                    if post["checkIn"]["lat"].string != nil && post["checkIn"]["long"].string != nil {
+                    if ( post["checkIn"]["lat"].string != nil && post["checkIn"]["lat"] != "" ) && post["checkIn"]["long"].string != nil {
                         
                         let getKey = post["imageUrl"].string?.components(separatedBy: "=")
                         print("getting key: \(getKey)")
@@ -1775,7 +1776,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         if mapurl == nil {
                             mapurl = URL(string: "")
                         }
-                        checkIn.mainPhoto.loadImageFromURL(imageString)
+                        checkIn.mainPhoto.hnk_setImageFromURL(URL(string:imageString)!)
                     }
                 } else {
                     print("map not shown")
@@ -2848,7 +2849,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            }
 //        }
 
-        self.otgView.cityImage.loadImageFromURL(getImageUrl)
+        self.otgView.cityImage.hnk_setImageFromURL(URL(string:getImageUrl)!)
         
 //        } else {
 //            print("no image data found")

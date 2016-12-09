@@ -91,7 +91,7 @@ class EndJourneyViewController: UIViewController {
         
         if currentUser["profilePicture"] != "" {
             DispatchQueue.main.async(execute: {
-                self.userDp.loadImageFromURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")
+                self.userDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!)
             })
         
         } else {
@@ -106,25 +106,25 @@ class EndJourneyViewController: UIViewController {
         
         if buddies.count >= 3 {
             
-            buddiesImages[0].loadImageFromURL("\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")
+            buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
             makeTLProfilePicture(buddiesImages[0])
-            buddiesImages[1].loadImageFromURL("\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")
+            buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
             makeTLProfilePicture(buddiesImages[1])
             buddyCount.text = "+\(buddies.count - 2)"
             
         }
         else if buddies.count == 2 {
             
-            buddiesImages[0].loadImageFromURL("\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")
+            buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
             makeTLProfilePicture(buddiesImages[0])
-            buddiesImages[1].loadImageFromURL("\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")
+            buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
             makeTLProfilePicture(buddiesImages[1])
             buddyCount.isHidden = true
             
         }
         else if buddies.count == 1 {
             
-            buddiesImages[0].loadImageFromURL("\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")
+            buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
             makeTLProfilePicture(buddiesImages[0])
             buddiesImages[1].isHidden = true
             buddyCount.isHidden = true
@@ -240,10 +240,10 @@ class EndJourneyViewController: UIViewController {
             let imageString = self.journey["startLocationPic"].string!
             
             if imageString.contains("maps.googleapis.com") {
-                self.journeyCoverPic.loadImageFromURL("\(imageString)")
+                self.journeyCoverPic.hnk_setImageFromURL(URL(string:imageString)!)
             }
             else {
-                self.journeyCoverPic.loadImageFromURL("\(adminUrl)upload/readFile?file=\(imageString)&width=250")
+                self.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=250")!)
             }
             
         })
