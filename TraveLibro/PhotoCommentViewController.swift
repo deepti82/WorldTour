@@ -87,7 +87,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             addedHashtags = Array(set2.subtracting(intersection))
             removedHashtags = Array(set1.subtracting(intersection))
             
-            request.editComment(commentId: addComment["_id"].string!, commentText: addComment["text"].string!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, completion: {(response) in
+            request.editComment(type: "photo", commentId: addComment["_id"].string!, commentText: addComment["text"].string!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     

@@ -1976,10 +1976,10 @@ class Navigation {
         
     }
     
-    func editComment(commentId: String, commentText: String, userId:  String, userName: String, hashtag: [String], addedHashtags: [String], removedHashtags: [String], completion: @escaping ((JSON) -> Void)) {
+    func editComment(type: String, commentId: String, commentText: String, userId:  String, userName: String, hashtag: [String], addedHashtags: [String], removedHashtags: [String], completion: @escaping ((JSON) -> Void)) {
         
         do {
-            let params = ["_id": commentId, "text": commentText, "user": userId, "name": userName, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
+            let params = ["type":type, "_id": commentId, "text": commentText, "user": userId, "name": userName, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
             
             let opt = try HTTP.POST(adminUrl + "comment/editComment", parameters: params)
             var json = JSON(1);

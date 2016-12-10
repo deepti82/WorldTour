@@ -31,11 +31,11 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         mentionSuggestionsTable.isHidden = true
         hashTagSuggestionsTable.isHidden = true
+        hashtags = []
+        mentions = []
         
-        print("inside send comments")
         addComment.resignFirstResponder()
         let commentText = addComment.text.components(separatedBy: " ")
-        print("comment text: \(commentText)")
         for eachText in commentText {
             if eachText.contains("#") {
                 hashtags.append(eachText)
@@ -54,28 +54,29 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             
             addedHashtags = Array(set2.subtracting(intersection))
             removedHashtags = Array(set1.subtracting(intersection))
-            
-            request.editComment(commentId: editComment["_id"].string!, commentText: editComment["text"].string!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
+            if addComment.text != "" {
+                request.editComment(type: "post", commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, completion: {(response) in
                     
-                    if response.error != nil {
+                    DispatchQueue.main.async(execute: {
                         
-                        print("error: \(response.error!.localizedDescription)")
+                        if response.error != nil {
+                            
+                            print("error: \(response.error!.localizedDescription)")
+                            
+                        }
+                        else if response["value"].bool! {
+                            
+                            self.getAllComments()
+                        }
+                        else {
+                            
+                            
+                        }
                         
-                    }
-                    else if response["value"].bool! {
-                        
-                        self.getAllComments()
-                    }
-                    else {
-                        
-                        
-                    }
+                    })
                     
                 })
-                
-            })
+            }
             
         }
         else {
@@ -86,7 +87,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print("print print print")
+        
         getAllComments()
         commentsTable.tableFooterView = UIView()
         commentsTable.estimatedRowHeight = 80.0

@@ -425,6 +425,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        print("in new post")
         
 //        DispatchQueue.main.sync(execute: {
+        print("on post clicked")
+        print(photosToBeUploaded)
         
         for photoToBeUploaded in photosToBeUploaded {
             tempAssets.append(URL(string: photoToBeUploaded.url)!)
@@ -1472,6 +1474,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -1776,7 +1780,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         if mapurl == nil {
                             mapurl = URL(string: "")
                         }
-                        checkIn.mainPhoto.hnk_setImageFromURL(URL(string:imageString)!)
+                        checkIn.mainPhoto.hnk_setImageFromURL(mapurl!)
                     }
                 } else {
                     print("map not shown")
