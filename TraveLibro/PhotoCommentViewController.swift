@@ -17,6 +17,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     var hashtags: [String] = []
     var mentions: [String] = []
     var mentionSuggestions: [JSON] = []
+    
     var hashtagSuggestions: [JSON] = []
     var previousHashtags: [String] = []
     var addComment: JSON!
@@ -64,6 +65,9 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         mentionTableView.isHidden = true
         hashtagTableView.isHidden = true
         
+        hashtags = []
+        mentions = []
+        
         print("inside send comments")
         editComment.resignFirstResponder()
         let commentText = editComment.text.components(separatedBy: " ")
@@ -87,7 +91,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             addedHashtags = Array(set2.subtracting(intersection))
             removedHashtags = Array(set1.subtracting(intersection))
             
-            request.editComment(type: "photo", commentId: addComment["_id"].string!, commentText: addComment["text"].string!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, completion: {(response) in
+            request.editComment(type: "photo", commentId: addComment["_id"].string!, commentText: editComment.text, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -348,24 +352,42 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             mentionTableView.isHidden = true
             let cell = mentionTableView.cellForRow(at: indexPath) as! PhotoMentionTableViewCell
             mentions.append(mentionSuggestions[indexPath.row]["_id"].string!)
-            modifyText(textView: editComment, modifiedString: cell.titleLabel.text!, replacableString: textVar)
+            modifyText(textView: editComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "@")
         case 1:
             hashtagTableView.isHidden = true
             let cell = hashtagTableView.cellForRow(at: indexPath) as! PhotoSuggestionsTableViewCell
-            modifyText(textView: editComment, modifiedString: cell.titleLabel.text!, replacableString: textVar)
+            modifyText(textView: editComment, modifiedString: cell.titleLabel.text!, replacableString: textVar, whichView: "#")
         default:
             break
         }
         
     }
     
-    func modifyText(textView: UITextView, modifiedString: String, replacableString: String) {
+//    func modifyText(textView: UITextView, modifiedString: String, replacableString: String) {
+//        
+//        if replacableString == "" {
+//            textView.text = "\(textView.text!)\(modifiedString)"
+//        } else {
+//            let myString = textView.text as NSString
+//            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString)
+//        }
+//        
+//    }
+    
+    func modifyText(textView: UITextView, modifiedString: String, replacableString: String, whichView: String) {
         
         if replacableString == "" {
+            
             textView.text = "\(textView.text!)\(modifiedString)"
+            
         } else {
+            
             let myString = textView.text as NSString
-            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString)
+            
+            let myRange = myString.range(of: whichView, options: .backwards)
+            
+            textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
+            
         }
         
     }

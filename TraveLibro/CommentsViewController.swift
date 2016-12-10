@@ -304,7 +304,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     func modifyText(textView: UITextView, modifiedString: String, replacableString: String, whichView: String) {
         
         if replacableString == "" {
+            
             textView.text = "\(textView.text!)\(modifiedString)"
+            
         } else {
             
             let myString = textView.text as NSString
@@ -312,6 +314,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             let myRange = myString.range(of: whichView, options: .backwards)
             
             textView.text = myString.replacingOccurrences(of: replacableString, with: modifiedString, options: .backwards, range: myRange)
+            
         }
 
     }
