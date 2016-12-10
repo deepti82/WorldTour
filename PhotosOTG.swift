@@ -108,7 +108,7 @@ class PhotosOTG: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        postDp.loadImageFromURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")
+        postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)
         makeTLProfilePicture(postDp)
         
         bgView.layer.cornerRadius = 5
