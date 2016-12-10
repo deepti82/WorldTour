@@ -2979,6 +2979,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
     }
     
+    
     var photosCount: Int = 0
     var previouslyAddedPhotos: [URL]!
     var allAssets: [URL] = []
@@ -3034,7 +3035,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     print("Cancel: \(assets)")
                     
-                }, finish: { (assets: [PHAsset]) -> Void in
+            }, finish: { (assets: [PHAsset]) -> Void in
                     
                     //**************************** MIDHET'S CODE ******************************
                     

@@ -1714,6 +1714,7 @@
 			);
 			name = FilterBlogs;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		C28A92571D0EED6C00CFEC7A /* FilterRestaurants */ = {
 			isa = PBXGroup;

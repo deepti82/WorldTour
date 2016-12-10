@@ -10,6 +10,8 @@ import UIKit
 
 class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDelegate  {
 
+    @IBOutlet weak var cityTableTitle: UILabel!
+    @IBOutlet weak var countryTableTitle: UILabel!
     @IBOutlet weak var cityTableView: UITableView!
     @IBOutlet weak var countryTableView: UITableView!
     @IBOutlet weak var showCountryCityVisited: UIView!
