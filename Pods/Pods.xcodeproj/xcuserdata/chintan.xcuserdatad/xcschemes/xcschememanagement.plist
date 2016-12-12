@@ -7,93 +7,72 @@
 		<key>AsyncSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>1</integer>
+			<false/>
 		</dict>
 		<key>BSGridCollectionViewLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>2</integer>
+			<false/>
 		</dict>
 		<key>BSImagePicker-BSImagePicker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>3</integer>
+			<false/>
 		</dict>
 		<key>BSImagePicker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>4</integer>
+			<false/>
+		</dict>
+		<key>Cent.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>DKChainableAnimationKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>5</integer>
+			<false/>
 		</dict>
 		<key>Dollar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>6</integer>
+			<false/>
 		</dict>
 		<key>HanekeSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>7</integer>
+			<false/>
 		</dict>
 		<key>Pods-TraveLibro.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>8</integer>
+			<false/>
 		</dict>
 		<key>SQLite.swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>9</integer>
+			<false/>
 		</dict>
 		<key>Simplicity.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>10</integer>
+			<false/>
 		</dict>
 		<key>SwiftHTTP.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>11</integer>
+			<false/>
 		</dict>
 		<key>TabPageViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>12</integer>
+			<false/>
 		</dict>
 		<key>UIImageViewModeScaleAspect.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false />
-			<key>orderHint</key>
-			<integer>13</integer>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -101,67 +80,72 @@
 		<key>0FF38C485BD8E73F614C919F834D6EAB</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>186526C95A6E6A368E316AEBD475C8CB</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
+		</dict>
+		<key>21981BD422205F07E3594868193146EE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>22A17EAE44512A167C52F52D67024F83</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 		<key>2C2B1953A91633859BF7AD238FF567A0</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
-		<key>555713F7637A770AF4C4489B1C4C932C</key>
+		<key>4E307F847AC3BEDF2FA9B74017BB9908</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
-		<key>7983CCC90B4D8FB8D4B219DC255E2F91</key>
+		<key>7166B8868F1A8AD86CF75945558FF914</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>8AA3DDB8797222294E1288CB197A8347</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
-		<key>9FCACD297FEE30AC868E30E35E5789E5</key>
+		<key>8E31BE5ECFD4BB527F13D35057FBF39B</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
+		</dict>
+		<key>C094B8AFF903F670231857231174AF86</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 		<key>C59EE95662AD4757E7FCE220DB1AFA41</key>
 		<dict>
 			<key>primary</key>
-			<true />
-		</dict>
-		<key>C94C522C145A1EC31B86746A5865436D</key>
-		<dict>
-			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>D1DC35DB2C695031A72543555FB23729</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
-		<key>DCE81E765B311F65F10AC66664E0D1D2</key>
+		<key>E2AC85D95FA506270692FF3F9B06EBF7</key>
 		<dict>
 			<key>primary</key>
-			<true />
-		</dict>
-		<key>E0F4E936EFEC7CBC3DF62260AE71782B</key>
-		<dict>
-			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 		<key>F7DE5171AA3C53DA4E4A078B795C78EE</key>
 		<dict>
 			<key>primary</key>
-			<true />
+			<true/>
 		</dict>
 	</dict>
 </dict>

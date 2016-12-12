@@ -204,10 +204,6 @@ class EndJourneyViewController: UIViewController {
                     let image = self.journey["startLocationPic"].string!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                     self.makeCoverPicture(image: image!)
                     
-                    // installed will remove spacing and constraints
-                    //self.changePhotoText.isHidden = true
-                    //self.changePhotoButton.isHidden = true
-                    
                 }
                 
             }

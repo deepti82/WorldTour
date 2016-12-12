@@ -104,9 +104,6 @@ class Navigation {
         
         var json = JSON(1);
         let params = ["_id":id]
-        print(params)
-        print(adminUrl + "user/getOne");
-
         do {
             let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
             //            print("request: \(opt)")

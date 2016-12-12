@@ -1,18 +1,10 @@
-//
-//  NewTLViewController.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 26/07/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 import EventKitUI
 
 import BSImagePicker
 
 import Dollar
-//import DKImagePickerController
+import Cent
 import Photos
 import CoreLocation
 import DKChainableAnimationKit
@@ -41,7 +33,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var journeyName: String!
     var locationData = ""
     let locationManager = CLLocationManager()
-//    var locValue:CLLocationCoordinate2D!
+    
     var journeyCategories = [String] ()
     var currentTime: String!
     
@@ -54,15 +46,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var addPostsButton: UIButton!
     var mainFooter: FooterViewNew!
-    
-    //@IBOutlet weak var addPostsButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var toolbarView: UIView!
     
     @IBAction func addMoreBuddies(_ sender: AnyObject) {
-        
-//        addView.resignThoughtsTexViewKeyboard()
-//        let isTextView = textFieldShouldReturn(otgView.locationLabel)
         let getBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         getBuddies.whichView = "TLMiddle"
         getBuddies.uniqueId = journeyId
@@ -73,12 +60,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     @IBAction func endJourneyTapped(_ sender: UIButton) {
         
-//        getCurrentOTG()
-        
-//        dispatch_sync(dispatch_get_main_queue(), {
-        
-            self.getJourney()
-//        })
+        self.getJourney()
+        //        })
         
         let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
         end.journey = myJourney
@@ -87,7 +70,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-//    @IBOutlet weak var endJourney: UIButton!
+
     @IBAction func infoCircle(_ sender: AnyObject) {
         
         getInfoCount()
@@ -99,65 +82,41 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var newScroll: UIScrollView!
     let backView = UIView()
     
-    //@IBAction func addPosts(_ sender: AnyObject) {
     func addPosts(_ sender: UIButton) {
-        
-//        let postButton = UIButton()
-//        postButton.setTitle("Post", for: .normal)
-//        postButton.titleLabel?.textColor = UIColor.white
-//        postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
-//        postButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
-//        
-//        let cancelButton = UIButton()
-//        cancelButton.setTitle("Cancel", for: .normal)
-//        cancelButton.titleLabel?.textColor = UIColor.white
-//        //cancelButton.addTarget(self, action: nil, for: .touchUpInside)
-//        cancelButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
-//        
-//        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
-//        print("in the add posts function")
-        
-//        var flag = 0
-//        var darkBlur: UIBlurEffect!
-//        var blurView: UIVisualEffectView!
-        
         backView.frame = self.view.frame
         backView.tag = 8
         
         showAddActivity(view: self.view)
         getJourneyBuddies(journey: myJourney)
         
-            addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), for: .touchUpInside)
-            addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), for: .touchUpInside)
-            addView.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
-            addView.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), for: .touchUpInside)
-            addView.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
-            addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
-            addView.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
-            addView.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
-
-//        }
+        addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), for: .touchUpInside)
+        addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), for: .touchUpInside)
+        addView.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
+        addView.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), for: .touchUpInside)
+        addView.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
+        addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
+        addView.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
+        addView.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
+        
+        //        }
         
     }
     
     func optionsAction(_ sender: UIButton) {
         let optionsController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        //optionsController.addAction(UIAlertAction(title: "Edit City", style: .default, handler: nil))
+    
         optionsController.addAction(UIAlertAction(title: "Edit Category", style: .default, handler: { action -> Void in
-//            print("edit category clicked.")
-//            print(self.journeyId)
             let chooseCategory = self.storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
-//            print(self.myJourney["kindOfJourney"])
+            //            print(self.myJourney["kindOfJourney"])
             
             if self.journeyCategories.count > 0 {
-            
+                
                 chooseCategory.selectedCategories = JSON(self.journeyCategories)
             }
             else {
                 
                 chooseCategory.selectedCategories = self.myJourney["kindOfJourney"]
-//                self.journeyCategories = self.myJourney["kindOfJourney"].array! as! [String]
+                //                self.journeyCategories = self.myJourney["kindOfJourney"].array! as! [String]
             }
             chooseCategory.journeyID = self.journeyID
             chooseCategory.isEdit = true
@@ -208,7 +167,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 self.handleDatePicker(self.datePickerView) // Set the date on start.
                 self.view.addSubview(self.inputview)
                 
-            }))
+        }))
         optionsController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(optionsController, animated: true, completion: nil)
     }
@@ -233,7 +192,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addHeightToNewActivity(_ height: CGFloat) {
         
-//        print("height: \(height), \(newScroll.contentSize.height)")
+        //        print("height: \(height), \(newScroll.contentSize.height)")
         addView.frame.size.height = addView.frame.height + height
         //addView.blurView.frame.size.height = addView.frame.height
         //addView.darkBlur = UIBlurEffect(style: .Dark)
@@ -247,7 +206,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func tagMoreBuddies(_ sender: UIButton) {
         
         addView.resignThoughtsTexViewKeyboard()
-//        let isTextView = textFieldShouldReturn(otgView.locationLabel)
+        //        let isTextView = textFieldShouldReturn(otgView.locationLabel)
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         next.whichView = "TLTags"
         
@@ -255,8 +214,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             next.addedFriends = addedBuddies
         }
-//        addBuddies.uniqueId = journeyId
-//        addBuddies.journeyName = otgView.journeyName.text!
+        //        addBuddies.uniqueId = journeyId
+        //        addBuddies.journeyName = otgView.journeyName.text!
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController!.pushViewController(next, animated: true)
         
@@ -264,7 +223,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func getAllLocations() {
         
-//        print("all locations: \(locationArray)")
+        //        print("all locations: \(locationArray)")
         
         var locationCount = 5
         
@@ -274,17 +233,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         if locationCount >= 0 {
-        for i in 0 ... locationCount {
-            
-            let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 200, height: addView.locationHorizontalScroll.frame.height))
-            addView.horizontal.addSubview(oneButton)
-            addView.styleHorizontalButton(oneButton, buttonTitle: "\(locationArray[i]["name"].string!)")
-            oneButton.layoutIfNeeded()
-            oneButton.resizeToFitSubviews(addView.locationHorizontalScroll.frame.height, finalHeight: addView.locationHorizontalScroll.frame.height)
-            oneButton.addTarget(self, action: #selector(NewTLViewController.selectLocation(_:)), for: .touchUpInside)
-            addView.buttonCollection.append(oneButton)
-            
-        }
+            for i in 0 ... locationCount {
+                
+                let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 200, height: addView.locationHorizontalScroll.frame.height))
+                addView.horizontal.addSubview(oneButton)
+                addView.styleHorizontalButton(oneButton, buttonTitle: "\(locationArray[i]["name"].string!)")
+                oneButton.layoutIfNeeded()
+                oneButton.resizeToFitSubviews(addView.locationHorizontalScroll.frame.height, finalHeight: addView.locationHorizontalScroll.frame.height)
+                oneButton.addTarget(self, action: #selector(NewTLViewController.selectLocation(_:)), for: .touchUpInside)
+                addView.buttonCollection.append(oneButton)
+                
+            }
         }
         
         let buttonSix = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: addView.locationHorizontalScroll.frame.height))
@@ -312,58 +271,20 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-//    var pickerView = UIPickerView()
+    //    var pickerView = UIPickerView()
     
     func selectAnotherCategory(_ sender: UIButton) {
         
-//        print("select another category tapped")
+        //        print("select another category tapped")
         
         let chooseCategory = storyboard?.instantiateViewController(withIdentifier: "editCategory") as! EditCategoryViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(chooseCategory, animated: true)
-        
-//        addView.editCategoryPickerView.hidden = false
-//        addView.editCategoryPVBar.hidden = false
-        
-//        pickerView = UIPickerView(frame: CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.width, height: 200))
-//        
-//        let barView = UIView(frame: CGRect(x: 0, y: 0, width: pickerView.frame.width, height: 50))
-//        pickerView.addSubview(barView)
-//        
-//        let left = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: barView.frame.height))
-//        left.setTitle("Cancel", forState: .Normal)
-//        left.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 14)
-//        left.addTarget(self, action: #selector(NewTLViewController.cancelPickerView(_:)), forControlEvents: .TouchUpInside)
-//        barView.addSubview(left)
-//        
-//        let right = UIButton(frame: CGRect(x: barView.frame.width - 100, y: 0, width: 100, height: barView.frame.height))
-//        right.setTitle("Done", forState: .Normal)
-//        right.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 14)
-//        right.addTarget(self, action: #selector(NewTLViewController.donePickerView(_:)), forControlEvents: .TouchUpInside)
-//        barView.addSubview(right)
-//        
-//        self.view.addSubview(pickerView)
+      
         
     }
     
-//    func cancelPickerView(sender: UIButton) {
-//        
-//        print("picker view cancelled")
-//        
-//        pickerView.hidden = true
-//        
-//    }
-//    
-//    func donePickerView(sender: UIButton) {
-//        
-//        print("picker view done")
-//        
-//        pickerView.hidden = true
-//        
-//        
-//    }
-    
-    
+
     func selectLocation(_ sender: UIButton) {
         
         var id = ""
@@ -425,9 +346,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func newPost(_ sender: UIButton) {
         
-//        print("in new post")
-        
-//        DispatchQueue.main.sync(execute: {
         print("on post clicked")
         print(photosToBeUploaded)
         
@@ -440,7 +358,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             uploadMultiplePhotos(tempAssets, localIds: localDbPhotoIds)
         }
-        
+            
         else {
             
             postPartTwo()
@@ -448,11 +366,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         hideAddActivity()
         
-            self.addView.postButton.isHidden = true
+        self.addView.postButton.isHidden = true
         
-//        })
+        //        })
         
-//        print("photos new post \(uploadedphotos)")
+        //        print("photos new post \(uploadedphotos)")
     }
     
     var prevPosts: [JSON] = []
@@ -486,7 +404,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 imageData = try Data(contentsOf: URL(string: eachPhoto.url)!)
             } catch _ {
                 
-//                print("image reading failed")
             }
             
             photo.setPhotos(name: eachPhoto.serverId, data: imageData, caption: eachPhoto.caption, groupId: Int64(postId))
@@ -498,23 +415,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         offlineJson["check"]["lat"] = JSON(lat)
         offlineJson["check"]["category"] = JSON(locCategory)
         
-//        print("json data offline: \(offlineJson)")
+    
         showOfflinePost(post: offlineJson, postId: postId)
         
     }
     
     func showOfflinePost(post: JSON, postId: Int) {
-        
-//        print("previous posts: \(prevPosts.count)")
-//        print("current post: \(post)")
-        
         var thoughts = String()
         var postTitle = ""
         var photos: [JSON] = []
         
         if post["thoughts"] != nil && post["thoughts"].string != "" {
             
-//            print("thoughtts if statement")
             thoughts = post["thoughts"].string!
         }
         
@@ -524,12 +436,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         switch post["buddies"].array!.count {
             
         case 1:
-//            print("buddies if statement")
+            
             thoughts.append(buddyWith)
             let buddyName = "\(post["buddies"][0]["name"])"
             thoughts.append(buddyName)
         case 2:
-//            print("buddies if statement")
+            //            print("buddies if statement")
             thoughts.append(buddyWith)
             let buddyName = post["buddies"][0]["name"].string!
             thoughts.append(buddyName)
@@ -538,10 +450,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             thoughts.append(buddyCount)
             postTitle += " and 1 other"
         case 0:
-//            print("buddies if statement")
+            //            print("buddies if statement")
             break
         default:
-//            print("buddies if statement")
+            //            print("buddies if statement")
             let buddyCount = " \(post["buddies"].array!.count - 1)"
             let buddyOthers = " others"
             thoughts.append(buddyWith)
@@ -555,7 +467,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
             
-//            print("checkin location if statement")
+            //            print("checkin location if statement")
             let buddyAt = " at"
             let buddyLocation = " \(post["checkIn"]["location"])"
             thoughts.append(buddyAt)
@@ -565,32 +477,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-//        self.editPost(post["_id"].string!)
-        
         var checkIn = PhotosOTG()
         checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts, photos: post["photos"].array!.count)))
-//        checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
-//        checkIn.likeViewLabel.text = "\(post["like"].array!.count) Likes"
-//        checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
-//        checkIn.commentButton.setTitle(post["uniqueId"].string!, for: .normal)
-//        checkIn.commentButton.setTitle(post["_id"].string!, for: .application)
-//        otherCommentId = post["_id"].string!
-        currentPost = post
-//        print("post: \(post)")
-        
-//        if post["like"].array!.contains(JSON(user.getExistingUser())) {
-//            checkIn.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
-//        }
-        
-        //checkIn.optionsButton.setTitle(post["_id"].string!, for: .normal)
-       // checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
-//        checkIn.dateLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) //+ "  | "
-//        checkIn.timeLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
         checkIn.clipsToBounds = true
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), for: .touchUpInside)
         checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), for: .touchUpInside)
         
-//        print("is edit: \(isEdit), postid: \(post["_id"].string!)")
+        //        print("is edit: \(isEdit), postid: \(post["_id"].string!)")
         
         checkIn.photosTitle.enabledTypes = [.hashtag, .url]
         checkIn.photosTitle.customize {label in
@@ -630,36 +523,32 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if post["photos"] != nil && post["photos"].array!.count > 0 {
             
             photos = post["photos"].array!
-            //checkIn.mainPhoto.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500")!))
             checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500") as! URL)
             checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
             checkIn.mainPhoto.tag = 0
-//            checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
             
             let likeMainPhoto = UITapGestureRecognizer(target: self, action: #selector(PhotosOTG.sendLikes(_:)))
             likeMainPhoto.numberOfTapsRequired = 2
             checkIn.mainPhoto.addGestureRecognizer(likeMainPhoto)
             checkIn.mainPhoto.isUserInteractionEnabled = true
-//            print("photobar count: \(photos.count)")
+            //            print("photobar count: \(photos.count)")
             
             var count = 4
             if photos.count < 5 {
                 
                 count = photos.count - 1
-//                print("in the if statement \(count)")
+                //                print("in the if statement \(count)")
                 
             }
             
             for i in 0 ..< count {
                 
-//                print("in the for loop \(post["photos"][i + 1]["name"])")
-                //checkIn.otherPhotosStack[i].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(photos[i + 1]["name"])&width=500")!))
+
                 checkIn.otherPhotosStack[i].hnk_setImageFromURL(URL(string:photosToBeUploaded[i + 1].url)!)
                 checkIn.otherPhotosStack[i].isHidden = false
                 checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
                 checkIn.otherPhotosStack[i].tag = i + 1
-//                checkIn.otherPhotosStack[i].accessibilityLabel = post["_id"].string!
-                
+
                 checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
                 
             }
@@ -675,119 +564,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        //checkIn.frame.size.height = setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
-//        print("subviews count: \(layout.subviews.count)")
-        
         checkIn.tag = 11
         layout.addSubview(checkIn)
         layout.layoutIfNeeded()
         
-//        print("subviews count after: \(layout.subviews.count)")
-        
-//        let layoutTemp = layout
-//        layout.removeFromSuperview()
-//        mainScroll.addSubview(layoutTemp!)
-        
-        //setHeight(checkIn, height: checkInHeight)
-//        print("layout views: \(checkIn.frame.size.height)")
         addHeightToLayout(height: checkIn.frame.height + 50.0)
-        
-//        switch whichPost {
-//        case "CheckIn":
-//            checkIn.whatPostIcon.setImage(UIImage(named: "location_icon"), for: .normal)
-//            
-//            if post["photos"].array!.count < checkIn.otherPhotosStack.count {
-//                
-//                print("in photo comparison")
-//                
-//                let difference = checkIn.otherPhotosStack.count - post["photos"].array!.count
-//                
-//                for i in 0 ..< difference {
-//                    
-//                    print("in difference for loop")
-//                    
-//                    let index = checkIn.otherPhotosStack.count - i - 1
-//                    checkIn.otherPhotosStack[index].isHidden = true
-//                    
-//                }
-//                
-//            }
-//            
-//            if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
-//                
-//                checkIn.mainPhoto.isHidden = false
-//                checkIn.photosStack.isHidden = true
-//                checkIn.photosHC.constant = 300.0
-//                
-//                if post["showMap"].boolValue && post["showMap"] != nil {
-//                    print("map shown")
-//                    
-//                    // CHECKIN MAP IMAGE
-//                    if post["checkIn"]["lat"].string != nil && post["checkIn"]["long"].string != nil {
-//                        
-//                        let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)&key=\(mapKey)"
-//                        print("\(imageString)")
-//                        var mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-//                        if mapurl == nil {
-//                            mapurl = URL(string: "")
-//                        }
-//                        checkIn.mainPhoto.loadImageFromURL(imageString)
-//                    }
-//                } else {
-//                    print("map not shown")
-//                }
-//                
-//            }
-//            
-//            if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
-//                
-//                if post["review"].array!.count > 0 {
-//                    
-//                    for subview in layout.subviews {
-//                        
-//                        if subview.isKind(of: RatingCheckIn.self) {
-//                            
-//                            let myView = subview as! RatingCheckIn
-//                            if myView.rateCheckInButton.currentTitle! == post["_id"].string! {
-//                                
-//                                subview.removeFromSuperview()
-//                                removeHeightFromLayout(subview.frame.height)
-//                                
-//                            }
-//                            
-//                        }
-//                        
-//                    }
-//                    
-//                    showReviewButton(post: post, isIndex: false, index: nil)
-//                    
-//                }
-//                    
-//                else {
-//                    
-//                    let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
-//                    rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
-//                    rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
-//                    rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)
-//                    layout.addSubview(rateButton)
-//                    addHeightToLayout(height: rateButton.frame.height + 20.0)
-//                    rateButton.tag = 10
-//                    
-//                }
-//                
-//            }
-//            
-//        case "Photos":
-//            checkIn.whatPostIcon.setImage(UIImage(named: "camera_icon"), for: .normal)
-//        case "Videos":
-//            checkIn.whatPostIcon.setImage(UIImage(named: "video"), for: .normal)
-//        case "Thoughts":
-//            checkIn.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: .normal)
-//            checkIn.mainPhoto.removeFromSuperview()
-//            checkIn.photosStack.removeFromSuperview()
-//        default:
-//            break
-//        }
+     
         
     }
     
@@ -807,13 +589,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" && addView.thoughtsTextView.text != "Fill Me In..." {
                 
                 thoughts = addView.thoughtsTextView.text
-//                print("thoughts: \(thoughts)")
+                //                print("thoughts: \(thoughts)")
                 
             }
             if addView.addLocationButton.titleLabel!.text != nil && addView.addLocationButton.titleLabel!.text != "" && addView.addLocationButton.titleLabel!.text != "Add Location" {
                 
                 location = addView.addLocationButton.titleLabel!.text!
-//                print("location: \(location)")
+                //                print("location: \(location)")
                 
                 if currentLat != nil && currentLong != nil {
                     myLatitude = UserLocation(latitude: "\(currentLat!)", longitude: "\(currentLong!)")
@@ -836,44 +618,34 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 for eachPhoto in photosToBeUploaded {
                     
-//                    print("photos caption: \(eachPhoto.caption)")
+                    //                    print("photos caption: \(eachPhoto.caption)")
                     photos.append(["name": eachPhoto.serverId, "caption": eachPhoto.caption])
                 }
-                
-//                photos = uploadedphotos
-//                print("photos new post \(photos)")
                 
             }
             if uploadedVideos.count > 0 {
                 
                 videos = uploadedVideos
-//                print("videos: \(videos)")
+                //                print("videos: \(videos)")
                 
             }
             if addedBuddies.count > 0 {
                 
                 buddies = addedBuddies
-//                print("buddies: \(buddies)")
+                //                print("buddies: \(buddies)")
                 
             }
             if journeyId != nil && journeyId != "" {
                 
                 id = journeyId
-//                print("id: \(id)")
+                //                print("id: \(id)")
                 
             }
-            
-//            addView.categoryView.isHidden = true
-//            addView.categoryLabel.isHidden = false
-//            addView.locationHorizontalScroll.isHidden = false
-//            addView.isHidden = true
-//            newScroll.isHidden = true
-//            backView.isHidden = true
             
             let thoughtsArray = thoughts.components(separatedBy: " ")
             var hashtags: [String] = []
             
-//            print("thoughts array is: \(thoughtsArray)")
+            //            print("thoughts array is: \(thoughtsArray)")
             
             for eachString in thoughtsArray {
                 if eachString.contains("#") {
@@ -881,42 +653,36 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
             }
             
-//            print("buddies: \(buddies)")
-            
-//            let latestPost = post.getRowCount()
-            
-//            post.setPost(currentUser["_id"].string!, JourneyId: id, Type: "travelLife", Date: currentTime, Location: location, Category: , Latitude: , Longitude: , Country: , City: currentCity, Status: )
-            
             let dateFormatterTwo = DateFormatter()
             dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
             self.currentTime = dateFormatterTwo.string(from: Date())
-//            print("time: \(currentTime)")
+            //            print("time: \(currentTime)")
             
             storeOfflinePost(id: id, time: currentTime, loc: location, locCategory: locationCategory, lat: "\(myLatitude.latitude)", long: "\(myLatitude.longitude)", thoughts: thoughts, buddies: buddies)
             
             if Reachability.isConnectedToNetwork() {
                 
-//                print("internet is connected post")
+                //                print("internet is connected post")
                 request.postTravelLife(thoughts, location: location, locationCategory: locationCategory, latitude: "\(myLatitude.latitude)", longitude: "\(myLatitude.longitude)", photosArray: photos, videosArray: videos, buddies: buddies, userId: currentUser["_id"].string!, journeyId: id, userName: currentUser["name"].string!, city: currentCity, country: currentCountry, hashtags: hashtags, date: currentTime, completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
                         
                         if response.error != nil {
                             
-//                            print("error: \(response.error!.localizedDescription)")
+                            //                            print("error: \(response.error!.localizedDescription)")
                             
                         }
                         else if response["value"].bool! {
                             
-//                            print("response arrived new post!")
+                            //                            print("response arrived new post!")
                             self.addActivityToOriginalState()
                             var isRemoved = false
                             if self.layout.viewWithTag(11) != nil && !isRemoved {
                                 
                                 let subview = self.layout.viewWithTag(11)
                                 subview!.removeFromSuperview()
-//                                print("subviews: \(subview)")
-//                                print("removed")
+                                //                                print("subviews: \(subview)")
+                                //                                print("removed")
                                 isRemoved = true
                             }
                             self.getJourney()
@@ -933,7 +699,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                                 {action in
                                     alert.dismiss(animated: true, completion: nil)
                             }))
-//                            print("response error!")
+                            //                            print("response error!")
                             
                         }
                         
@@ -965,7 +731,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" && addView.thoughtsTextView.text != "Fill me in" {
                 
                 thoughts = addView.thoughtsTextView.text
-//                print("\(#line) \(addView.thoughtsTextView.text)")
+                //                print("\(#line) \(addView.thoughtsTextView.text)")
                 
             }
             
@@ -975,13 +741,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                     if response.error != nil {
                         
-//                        print("error: \(response.error!.localizedDescription)")
+                        //                        print("error: \(response.error!.localizedDescription)")
                         
                     }
                         
                     else if response["value"].bool! {
                         
-//                        print("edited response")
+                        //                        print("edited response")
                         self.addView.categoryView.isHidden = true
                         self.addView.categoryLabel.isHidden = true
                         self.addView.locationHorizontalScroll.isHidden = false
@@ -1008,19 +774,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getJourney() {
-//        print("myuser")
-//        print(currentUser["_id"])
+        //        print("myuser")
+        //        print(currentUser["_id"])
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-//                print("in getJourney")
+                //                print("in getJourney")
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
                     
                 }
                 else if response["value"].bool! {
-//                    print("in value true")
+                    //                    print("in value true")
                     self.detectLocation(nil)
                     
                     self.latestCity = response["data"]["startLocation"].string!
@@ -1031,21 +797,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.isRefreshing = false
                     }
                     
-//                    print("response get journey \(response["data"]["post"].array!)")
+                    //                    print("response get journey \(response["data"]["post"].array!)")
                     
                     isJourneyOngoing = true
                     self.myJourney = response["data"]
-//                    print("..........")
-//                    print(self.myJourney["_id"])
+                    //                    print("..........")
+                    //                    print(self.myJourney["_id"])
                     self.journeyID = self.myJourney["_id"].stringValue
                     if self.isInitialLoad {
-//                        print("i im isInitialLoad")
+                        //                        print("i im isInitialLoad")
                         self.isInitialLoad = false
                         self.showJourneyOngoing(journey: response["data"])
                         
                     }
                     else {
-//                        print("i im not in isInitialLoad")
+                        //                        print("i im not in isInitialLoad")
                         let allPosts = response["data"]["post"].array!
                         self.getAllPosts(allPosts)
                         
@@ -1054,14 +820,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
                 else if response["error"]["message"] == "No ongoing journey found" {
                     
-//                    print("inside no ongoing journey")
+                    //                    print("inside no ongoing journey")
                     isJourneyOngoing = false
                     self.showJourneyOngoing(journey: JSON(""))
                     
                 }
                 else {
-                 
-//                    print("response error!")
+                    
+                    //                    print("response error!")
                     
                 }
             })
@@ -1106,7 +872,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             else if !self.prevPosts.contains(post) {
                 
-//                print("my post id: \(post["_id"])")
+                //                print("my post id: \(post["_id"])")
                 
                 self.configurePost(post)
                 
@@ -1125,22 +891,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func closeAdd(_ sender: UIButton) {
         
-//        addView.animation.makeOpacity(0.0).animate(0.5)
+        //        addView.animation.makeOpacity(0.0).animate(0.5)
         let postDb = Post()
         let postCount = postDb.getRowCount() + 1
         let photosDb = Photo()
         
-//        photosDb.flushRows(localId: String(postCount))
+        //        photosDb.flushRows(localId: String(postCount))
         
         hideAddActivity()
-        
-//        addView.categoryView.isHidden = true
-//        addView.categoryLabel.isHidden = false
-//        addView.locationHorizontalScroll.isHidden = false
-//        addView.isHidden = true
-//        newScroll.isHidden = true
-//        backView.isHidden = true
-        
     }
     
     func gotoSummaries(_ sender: UIButton) {
@@ -1149,7 +907,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(summaryVC, animated: true)
         summaryVC.journey = myJourney["_id"].string!
-//        infoView.animation.makeOpacity(0.0).animate(0.5)
+        //        infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.isHidden = true
         
         
@@ -1163,7 +921,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         photoVC.whichView = "photo"
         photoVC.journey = myJourney["_id"].string!
         photoVC.creationDate = myJourney["startTime"].string!
-//        infoView.animation.makeOpacity(0.0).animate(0.5)
+        //        infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.isHidden = true
         
     }
@@ -1174,172 +932,32 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(ratingVC, animated: true)
         ratingVC.journeyId = myJourney["_id"].string!
-//        infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.isHidden = true
         
     }
     
     func writeImageToFile(_ path: String, completeBlock: (_ success: Bool) -> Void) {
-        
-//        request.uploadPhotos(NSURL(fileURLWithPath: path), completion: {(response) in
-//
-//            print("response: \(response)")
-//            completeBlock(success: true)
-//
-//        })
-        
+
     }
     
     let imagePicker = UIImagePickerController()
     var uploadedphotos: [JSON] = []
-    
-//    func addPhotosTL(sender: UIButton) {
-//        
-//        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-//        
-//        let deleteAction = UIAlertAction(title: "Take Photos", style: .Default, handler: {
-//            (alert: UIAlertAction!) -> Void in
-//            
-//            self.imagePicker.allowsEditing = true
-//            self.imagePicker.sourceType = .Camera
-////            imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
-//            self.presentViewController(self.imagePicker, animated: true, completion: nil)
-//            
-//        })
-//        let saveAction = UIAlertAction(title: "Photos Library", style: .Default, handler: {
-//            (alert: UIAlertAction!) -> Void in
-//            
-//            let multipleImage = BSImagePickerViewController()
-//            multipleImage.maxNumberOfSelections = 200
-//            
-//            self.bs_presentImagePickerController(multipleImage, animated: true,
-//                select: { (asset:PHAsset) -> Void in
-////                    print("Selected: \(asset)")
-//                }, deselect: { (asset: PHAsset) -> Void in
-////                    print("Deselected: \(asset)")
-//                }, cancel: { (assets: [PHAsset]) -> Void in
-////                    print("Cancel: \(assets)")
-//                }, finish: { (assets: [PHAsset]) -> Void in
-//                    
-//                    print("Finish: \(assets)")
-//                    
-//                    for asset in assets {
-//                        
-//                        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/image.jpg")
-//                        
-//                        do {
-//                            
-//                            //            try filemanager.removeItemAtPath("asset.jpg")
-//                            
-//                            //            try filemanager.createFileAtPath("image.jpg", contents: NSData(), attributes: nil)
-//                            let image = self.getAssetThumbnail(asset)
-//                            try UIImageJPEGRepresentation(image, 1.0)!.writeToURL(NSURL(string: exportFilePath)!, atomically: false)
-//                            print("file created")
-//                            request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
-//                                
-//                                print("response upload photos")
-//
-//                            })
-//                        } catch let error as NSError {
-//                            
-//                            print("error creating file: \(error.localizedDescription)")
-//                            
-//                        }
-//                        
-////                        PHImageManager.defaultManager().requestImageDataForAsset(image, options: nil) {
-////                            imageData,dataUTI,orientation,info in
-////                            let imageURL = info!["PHImageFileURLKey"] as! NSURL
-////                            print("imageURL: \(imageURL)")
-////                            
-////                            request.uploadPhotos(NSURL(string: exportFilePath)!, completion: {(response) in
-////                                
-////                                print("response arrived!")
-////                                
-////                            })
-////                            
-////                        }
-//                        
-//                    }
-//                    
-//                    
-//                    
-//                }, completion: nil)
-//            
-////            let pickerController = DKImagePickerController()
-//            
-////            pickerController.didSelectAssets = {(assets: [DKAsset]) in
-////                
-////                print("didSelectAssets")
-////                print(assets)
-////                
-////                
-//////                for image in assets {
-////////                    var info: [NSObject : AnyObject]
-////////                    let tempImage = info[image] as! UIImage
-//////                    
-////////                    print("partial path: \(resourcePath)")
-//////                    if let resourcePath = NSBundle.mainBundle().resourcePath {
-////////                        print("partial path: \(resourcePath)")
-////////                        let imgName = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-////////                        print("name: \(imgName)")
-//////                        
-////////                        let imagename = "IMG_kdslkglkd_dngslgldnsgls_001.jpg"
-////////                        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-////////                        let destinationPath = String(documentsPath) + "/" + imagename
-//////////                        UIImageJPEGRepresentation(image,1.0)!.writeToFile(destinationPath, atomically: true)
-////////                        
-////////                        print(destinationPath);
-//////                        let imageData: NSData = UIImagePNGRepresentation(image)
-//////                        self.writeImageToFile(, completeBlock: {(response) in
-//////                            
-//////                            print("response: \(response)")
-//////                            
-//////                        })
-////////                        let path = resourcePath + "/" + imgName
-////////                        print("path: \(path)")
-//////                        
-//////                    }
-//////                    
-//////                }
-////                
-////            }
-//            
-////            self.presentViewController(multipleImage, animated: true) {}
-//        })
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
-//            (alert: UIAlertAction!) -> Void in
-//            print("Cancelled")
-//        })
-//        
-//        
-//        optionMenu.addAction(deleteAction)
-//        optionMenu.addAction(saveAction)
-//        optionMenu.addAction(cancelAction)
-//        
-//        self.presentViewController(optionMenu, animated: true, completion: nil)
-//        
-//        
-//    }
+
     
     func getAssetThumbnail(_ asset: PHAsset) -> UIImage {
         
         var retimage = UIImage()
-//        print(retimage)
         DispatchQueue.main.async {
-        
+            
             let options = PHImageRequestOptions()
             options.isSynchronous = true
             
             PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .aspectFit, options: options, resultHandler: {(result, info) in
-                
-//                    print("thumbnail result: \(result!)")
-//                    print("thumbnail info: \(info)")
-                    retimage = result!
+                retimage = result!
                 
             })
         }
-//        print(retimage)
+        //        print(retimage)
         return retimage
     }
     
@@ -1352,12 +970,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .aspectFit, options: options, resultHandler: {(result, info) in
             
-//            print("thumbnail result: \(result!)")
-//            print("thumbnail info: \(info)")
             retimage = UIImageJPEGRepresentation(result!, 0.35)!
         })
-        
-//        print(retimage)
+    
         return retimage
     }
     
@@ -1365,22 +980,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         self.dismiss(animated: true, completion: nil)
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-//        print("image: \(image)")
+        //        print("image: \(image)")
         
         photosAdded(selectedImages: [image])
         
-//        let captionButton = UIButton()
-//        captionButton.setImage(image, for: .normal)
-//        addCaption(captionButton)
         
-//        print("imageName: \(image.CIImage)")
-        
-//        let videoURL = info["UIImagePickerControllerReferenceURL"] as! URL
-//        let video = info[UIImagePickerControllerLivePhoto] as! AVAsset
-//        print("video: ", videoURL, video)
-//        uploadVideo(videoURL, video: video)
-//        picker.dismiss(animated: true, completion: nil)
-    
     }
     
     func addCheckInTL(sender: UIButton) {
@@ -1431,14 +1035,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         imagePicker.delegate = self
         
-//        let darkBlur = UIBlurEffect(style: .dark)
-//        let blurView = UIVisualEffectView(effect: darkBlur)
-//        blurView.frame = toolbarView.frame
-//        blurView.tag = 10
-//        blurView.layer.zPosition = -1
-//        blurView.isUserInteractionEnabled = false
-//        blurView.clipsToBounds = true
-//        toolbarView.addSubview(blurView)
+        //        let darkBlur = UIBlurEffect(style: .dark)
+        //        let blurView = UIVisualEffectView(effect: darkBlur)
+        //        blurView.frame = toolbarView.frame
+        //        blurView.tag = 10
+        //        blurView.layer.zPosition = -1
+        //        blurView.isUserInteractionEnabled = false
+        //        blurView.clipsToBounds = true
+        //        toolbarView.addSubview(blurView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -1463,10 +1067,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.view.bringSubview(toFront: infoButton)
         self.view.bringSubview(toFront: addPostsButton)
         
-//        addView.editCategoryPickerView.delegate = self
-//        pickerView.delegate = self
+        //        addView.editCategoryPickerView.delegate = self
+        //        pickerView.delegate = self
         
-//        otgView.locationLabel.inputView = pickerView
+        //        otgView.locationLabel.inputView = pickerView
         otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), for: .editingChanged)
         
         self.view.bringSubview(toFront: toolbarView)
@@ -1498,11 +1102,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
     }
     
-//    var hideStatusBar = false
-//    
-//    func didSwipe() {
-//        hideStatusBar = true
-//    }
+    //    var hideStatusBar = false
+    //
+    //    func didSwipe() {
+    //        hideStatusBar = true
+    //    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -1511,7 +1115,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
-
+        
     }
     
     func gotoProfile(_ sender: UIButton) {
@@ -1530,17 +1134,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         
-//        let viewControllers = self.navigationController!.viewControllers
+        //        let viewControllers = self.navigationController!.viewControllers
         
-//        for vc in viewControllers {
-//            
-//            if vc.isKindOfClass(ProfileViewController) {
-//                
-//                self.navigationController!.showViewController(vc, sender: nil)
-//                
-//            }
-//            
-//        }
+        //        for vc in viewControllers {
+        //
+        //            if vc.isKindOfClass(ProfileViewController) {
+        //
+        //                self.navigationController!.showViewController(vc, sender: nil)
+        //
+        //            }
+        //
+        //        }
         
     }
     
@@ -1548,7 +1152,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func refresh(_ sender: AnyObject) {
         
-//        print("in refresh")
+        //        print("in refresh")
         isRefreshing = true
         getJourney()
         
@@ -1561,30 +1165,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func showPost(_ whichPost: String, post: JSON) {
         
-//        print("previous posts: \(prevPosts.count)")
-//        print("current post: \(post)")
-
-//        var isEditId = ""
-//
-//        for prevPost in prevPosts {
-//            
-//            if prevPost["_id"].string! == post["_id"].string! {
-//                
-//                print("is in the edit id")
-//                isEditId = prevPost["_id"].string!
-//                
-//            }
-//            
-//        }
-        
         var thoughts = String()
         var postTitle = ""
         var photos: [JSON] = []
-//        let tags = ActiveLabel()
+        //        let tags = ActiveLabel()
         
         if post["thoughts"] != nil && post["thoughts"].string != "" {
             
-//            print("thoughtts if statement")
+            //            print("thoughtts if statement")
             thoughts = post["thoughts"].string!
         }
         
@@ -1592,12 +1180,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let buddyWith = "— with "
         
         switch post["buddies"].array!.count {
-        
+            
         case 1:
             thoughts.append(buddyWith)
             let buddyName = "\(post["buddies"][0]["name"])"
             thoughts.append(buddyName)
-//            postTitle += "— with \(post["buddies"][0]["name"])"
+        //            postTitle += "— with \(post["buddies"][0]["name"])"
         case 2:
             thoughts.append(buddyWith)
             let buddyName = post["buddies"][0]["name"].string!
@@ -1631,215 +1219,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-//        dispatch_sync(dispatch_get_main_queue(), {
+        self.editPost(post["_id"].string!)
         
-          self.editPost(post["_id"].string!)
-            
-//        })
-        var checkIn = PhotosOTG()
-        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts, photos: post["photos"].array!.count)))
-        checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
-        checkIn.likeViewLabel.text = "\(post["like"].array!.count) Likes"
-        checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
-        checkIn.commentButton.setTitle(post["uniqueId"].string!, for: .normal)
-        checkIn.commentButton.setTitle(post["_id"].string!, for: .application)
-        otherCommentId = post["_id"].string!
-        currentPost = post
-        
-        if post["like"].array!.contains(JSON(user.getExistingUser())) {
-            checkIn.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
-        }
-        
-        checkIn.optionsButton.setTitle(post["_id"].string!, for: .normal)
-        checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
-        checkIn.dateLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) //+ "  | "
-        checkIn.timeLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
-        checkIn.clipsToBounds = true
-        checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), for: .touchUpInside)
-        checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), for: .touchUpInside)
-        
-        
-//        print("\(#line) \(NSAttributedString(attributedString: thoughts))")
-//        checkIn.photosTitle.text =
-        checkIn.photosTitle.enabledTypes = [.hashtag, .url]
-        checkIn.photosTitle.customize {label in
-            label.text = thoughts
-            label.hashtagColor = UIColor(red: 85.0/255, green: 172.0/255, blue: 238.0/255, alpha: 1)
-            label.mentionColor = UIColor(red: 238.0/255, green: 85.0/255, blue: 96.0/255, alpha: 1)
-            label.URLColor = UIColor(red: 85.0/255, green: 238.0/255, blue: 151.0/255, alpha: 1)
-            label.handleMentionTap {
-                
-                let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Mention", message: $0, preferredStyle: .alert)
-                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
-                actionSheetControllerIOS8.addAction(cancelActionButton)
-                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
-            }
-            label.handleHashtagTap {
-                
-                let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Hashtag", message: $0, preferredStyle: .alert)
-                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
-                actionSheetControllerIOS8.addAction(cancelActionButton)
-                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
-            }
-            label.handleURLTap { let actionSheetControllerIOS8: UIAlertController =
-                
-                UIAlertController(title: "Url", message: "\($0)", preferredStyle: .alert)
-                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
-                actionSheetControllerIOS8.addAction(cancelActionButton)
-                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
-            }
-        }
+        //        })
 
-        for image in checkIn.otherPhotosStack {
-            
-            image.isHidden = true
-            
-        }
-        
-        if post["photos"] != nil && post["photos"].array!.count > 0 {
-            
-            photos = post["photos"].array!
-            checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500") as! URL)
-            checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
-            checkIn.mainPhoto.tag = 0
-            checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
-            
-            let likeMainPhoto = UITapGestureRecognizer(target: self, action: #selector(PhotosOTG.sendLikes(_:)))
-            likeMainPhoto.numberOfTapsRequired = 2
-            checkIn.mainPhoto.addGestureRecognizer(likeMainPhoto)
-            checkIn.mainPhoto.isUserInteractionEnabled = true
-            
-            var count = 4
-            if photos.count < 5 {
-                
-                count = photos.count - 1
-                
-            }
-            
-            for i in 0 ..< count {
-                
-                let imgg = photos[i + 1]["name"]
-                checkIn.otherPhotosStack[i].hnk_setImageFromURL(NSURL(string:"\(adminUrl)upload/readFile?file=\(imgg)&width=250") as! URL)
-                checkIn.otherPhotosStack[i].isHidden = false
-                checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
-                checkIn.otherPhotosStack[i].tag = i + 1
-                checkIn.otherPhotosStack[i].accessibilityLabel = post["_id"].string!
-                checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
-                
-            }
-            
-        }
-        
-        else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 && post["checkIn"]["location"] != "" {
-            
-            checkIn.mainPhoto.isHidden = false
-            checkIn.photosStack.isHidden = true
-            checkIn.photosHC.constant = 0.0
-//            checkIn.frame.size.height = 250.0
-            
-        }
-        
-        //checkIn.frame.size.height = setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
-        layout.addSubview(checkIn)
-        //setHeight(checkIn, height: checkInHeight)
-        addHeightToLayout(height: checkIn.frame.height + 50.0)
-        
-        switch whichPost {
-        case "CheckIn":
-            checkIn.whatPostIcon.setImage(UIImage(named: "location_icon"), for: .normal)
-
-            if post["photos"].array!.count < checkIn.otherPhotosStack.count {
-                
-                
-                let difference = checkIn.otherPhotosStack.count - post["photos"].array!.count
-                
-                for i in 0 ..< difference {
-                    
-                    
-                    let index = checkIn.otherPhotosStack.count - i - 1
-                    checkIn.otherPhotosStack[index].isHidden = true
-                    
-                }
-                
-            }
-            
-            if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
-                
-                checkIn.mainPhoto.isHidden = false
-                checkIn.photosStack.isHidden = true
-                checkIn.photosHC.constant = 300.0
-                
-                if post["showMap"].boolValue && post["showMap"] != nil {
-                    
-                    // CHECKIN MAP IMAGE
-                    if ( post["checkIn"]["lat"].string != nil && post["checkIn"]["lat"] != "" ) && post["checkIn"]["long"].string != nil {
-                        
-                        let getKey = post["imageUrl"].string?.components(separatedBy: "=")
-                        print("getting key: \(getKey)")
-                        mapKey = getKey!.last!
-                        
-                        let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)&key=\(mapKey)"
-                        var mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-                        if mapurl == nil {
-                            mapurl = URL(string: "")
-                        }
-                        checkIn.mainPhoto.hnk_setImageFromURL(mapurl!)
-                    }
-                } else {
-                    print("map not shown")
-                }
-                
-            }
-            
-            if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
-                
-                if post["review"].array!.count > 0 {
-                    
-                    for subview in layout.subviews {
-                        
-                        if subview.isKind(of: RatingCheckIn.self) {
-                            
-                            let myView = subview as! RatingCheckIn
-                            if myView.rateCheckInButton.currentTitle! == post["_id"].string! {
-                                
-                                subview.removeFromSuperview()
-                                removeHeightFromLayout(subview.frame.height)
-                                
-                            }
-                            
-                        }
-                        
-                    }
-                    
-                    showReviewButton(post: post, isIndex: false, index: nil)
-                    
-                }
-                
-                else {
-            
-                    let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
-                    rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
-                    rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
-                    rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)
-                    layout.addSubview(rateButton)
-                    addHeightToLayout(height: rateButton.frame.height + 20.0)
-                    rateButton.tag = 10
-                    
-                }
-            
-            }
-            
-        case "Photos":
-            checkIn.whatPostIcon.setImage(UIImage(named: "camera_icon"), for: .normal)
-        case "Videos":
-            checkIn.whatPostIcon.setImage(UIImage(named: "video"), for: .normal)
-        case "Thoughts":
-            checkIn.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: .normal)
-            checkIn.mainPhoto.removeFromSuperview()
-            checkIn.photosStack.removeFromSuperview()
-        default:
-            break
-        }
         
     }
     
@@ -1856,7 +1239,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let allReviews = post["review"].array!
         let lastReviewCount = post["review"].array!.count - 1
         let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
-//        myReview = post["review"].array!
+        //        myReview = post["review"].array!
         rateButton.showRating(ratingCount: Int(allReviews[0]["rating"].string!)! - 1)
         rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
         rateButton.rating.setTitle(post["_id"].string!, for: .application)
@@ -1983,7 +1366,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Post", style: .default)
         {action -> Void in
             
-//            self.isEdit = true
+            //            self.isEdit = true
             
             
             request.getOneJourneyPost(id: sender.titleLabel!.text!, completion: {(response) in
@@ -2000,9 +1383,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     else if response["value"].bool! {
                         
                         
-//                        var flag = 0
-//                        var darkBlur: UIBlurEffect!
-//                        var blurView: UIVisualEffectView!
+                        //                        var flag = 0
+                        //                        var darkBlur: UIBlurEffect!
+                        //                        var blurView: UIVisualEffectView!
                         
                         self.backView.frame = self.view.frame
                         self.backView.tag = 8
@@ -2114,7 +1497,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             self.addView.friendsTag.tintColor = UIColor(red: 252, green: 80, blue: 71, alpha: 1)
                             
                         }
-                        
+                            
                         else {
                             
                             self.addView.friendsCount.setTitle("0 Friends", for: .normal)
@@ -2235,7 +1618,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         timeFormatter.dateFormat = "HH:mm:ss"
         dateSelected = dateFormatter.string(from: sender.date)
         timeSelected = timeFormatter.string(from: sender.date.toGlobalTime())
-//        print(timeSelected)
+        //        print(timeSelected)
     }
     
     func doneButton(_ sender: UIButton){
@@ -2386,18 +1769,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-//    var keyboardHidden = false
+    //    var keyboardHidden = false
     
     
     func keyboardWillShow(_ notification: Notification) {
         
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
-//            if !keyboardHidden {
+            //            if !keyboardHidden {
             
-                self.view.frame.origin.y -= keyboardSize.height
-//                keyboardHidden = true
-//            }
+            self.view.frame.origin.y -= keyboardSize.height
+            //                keyboardHidden = true
+            //            }
             
         }
         
@@ -2412,7 +1795,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         otgView.locationLabel.resignFirstResponder()
-//        addView.thoughtsTextView.resignFirstResponder()
+        //        addView.thoughtsTextView.resignFirstResponder()
         self.title = "On The Go" //otgView.nameJourneyTF.text
         
         if textField == otgView.nameJourneyTF {
@@ -2426,24 +1809,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             height = 100.0
             mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
-    //        otgView.animation.makeY(mainScroll.frame.origin.y - height).animate(0.5)
+            //        otgView.animation.makeY(mainScroll.frame.origin.y - height).animate(0.5)
             otgView.detectLocationView.layer.opacity = 0.0
             otgView.detectLocationView.isHidden = false
             otgView.detectLocationView.animation.thenAfter(0.5).makeOpacity(1.0).animate(0.5)
             
         }
         
-//        else if textField == otgView.locationLabel {
-//            
-//            locationData = otgView.locationLabel.text
-//            getCoverPic()
-//            
-//        }
+        //        else if textField == otgView.locationLabel {
+        //
+        //            locationData = otgView.locationLabel.text
+        //            getCoverPic()
+        //
+        //        }
         
         return false
         
     }
- 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -2460,13 +1843,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.bonVoyageLabel.animation.makeOpacity(0.0).animate(0.5)
         
     }
-
+    
     func journeyCategory(_ sender: UIButton) {
         
         let categoryVC = storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(categoryVC, animated: true)
-//        showDetailsFn()
+        //        showDetailsFn()
         
     }
     
@@ -2492,7 +1875,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         self.journeyId = response["data"]["uniqueId"].string!
                         isJourneyOngoing = true
-//                        self.getJourney()
+                        //                        self.getJourney()
                     }
                         
                     else {
@@ -2607,10 +1990,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func addBuddies(_ sender: UIButton) {
-        
-//        print("here 3")
-//        addView.resignThoughtsTexViewKeyboard()
-//        let isTextView = textFieldShouldReturn(otgView.locationLabel)
         let addBuddiesVC = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         addBuddiesVC.whichView = "TL"
         
@@ -2623,65 +2002,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         else {
             addBuddies(sender)
-        } 
-//        showBuddies()
-//        mainScroll.layer.zPosition = -1
-//
+        }
         
     }
     
-//    func getCurrentOTG() {
-//        
-//        print("in otg")
-//        
-//        request.getOTGJourney(currentUser["_id"].string!, completion: {(response) in
-//            
-//            dispatch_async(dispatch_get_main_queue(), {
-//                
-//                if response.error != nil {
-//                    
-//                    print("error: \(response.error?.localizedDescription)")
-//                    
-//                }
-//                    
-//                else if response["value"].bool! {
-//                    
-//                    self.myJourney = response["data"]
-//                    
-//                }
-//                    
-//                else {
-//                    
-//                    print("response: \(response)")
-//                    
-//                }
-//                
-//                
-//            })
-//        })
-//        
-//    }
     
     func showBuddies() {
-        
-//        dispatch_async(dispatch_get_main_queue(), {
-//            
-//            self.getCurrentOTG()
-//            
-//        })
-        
-//        var buddies: [JSON]! = []
-//        
-//        if myJourney != nil {
-//            
-//            print("In show buddies \(myJourney["buddies"])")
-//            buddies = myJourney["buddies"].array!
-//            countLabel = buddies.count
-//            
-//        }
-        
         print("added buddies: \(addedBuddies)")
-
+        
         for i in 0 ..< addedBuddies.count {
             
             let imageUrl = addedBuddies[i]["profilePicture"].string!
@@ -2705,38 +2033,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=250"
                 let data = try? Data(contentsOf: URL(string: getImageUrl)!)
                 if data != nil && i <= 2 {
-                    
                     otgView.buddyStackPictures[i].image = UIImage(data: data!)
-//                    otgView.buddyStackPictures[i].image = UIImage(data: data!)
                     makeTLProfilePicture(otgView.buddyStackPictures[i])
-                    
                 }
-                
             }
-            
-//            let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
-//            
-//            if imageData != nil {
-//
-//                otgView.buddyStackPictures[i].image = UIImage(data:imageData!)
-//            }
-            
-            
-//            if imageData != nil  && i == 0 {
-//                
-//                otgView.dpFriendOne.image =
-//            }
-//                
-//            else if imageData != nil  && i == 1 {
-//                
-//                otgView.dpFriendTwo.image = UIImage(data:imageData!)
-//            }
-//                
-//            else if imageData != nil  && i == 2 {
-//                
-//                otgView.dpFriendThree.image = UIImage(data:imageData!)
-//            }
-            
         }
         
         switch countLabel {
@@ -2764,59 +2064,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             break
         }
         
-//        if countLabel > 3 {
-//            
-//            
-//            
-//            
-//            
-//        }
-//        else if countLabel == 3 {
-//            
-//            
-//            
-//            
-//        }
-//        else if countLabel == 1 {
-//            
-//            
-//            
-//        }
-//        else if countLabel == 2 {
-//            
-//            
-//        }
-//        else if countLabel == 0 {
-//            
-//            
-//            
-//            
-//        }
-        
-//        otgView.dpFriendOne.image = UIImage(named: "")
-//        otgView.dpFriendTwo.image = UIImage(named: "")
-//        otgView.dpFriendThree.image = UIImage(named: "")
-        
+
         otgView.buddyStack.isHidden = false
         otgView.addBuddiesButton.isHidden = true
         infoButton.isHidden = true
         addPostsButton.isHidden = false
-        
-//        for view in self.view.subviews {
-//            
-//            for subview in view.subviews {
-//                
-//                if subview.isKind(of: UIVisualEffectView.self) && subview.tag != 10 {
-//                    
-//                    view.removeFromSuperview()
-//                    
-//                }
-//                
-//            }
-//            
-//            
-//        }
-        
         otgView.lineThree.isHidden = false
         toolbarView.isHidden = false
         
@@ -2843,7 +2095,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func makeCoverPic(_ imageString: String) {
         var  getImageUrl = adminUrl + "upload/readFile?file=\(imageString)&width=250"
-      
+        
         if imageString.range(of:"https://") != nil{
             getImageUrl = imageString;
         }
@@ -2884,21 +2136,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     self.locationPic = response["data"].string!
                     
                 }
-                else {
-                    
-                    
-                }
-                
-//                if self.locationData != nil {
-                
-                    //                    let dateFormatterOne = NSDateFormatter()
-                    ////                    dateFormatter.dateFormat = "YYYY-MM-DD"
-                    //
-                    //
-                    //                    dateFormatterOne.dateStyle = .LongStyle
-                    //                    let currentDate = dateFormatterOne.stringFromDate(NSDate())
-                    //                    print("date: \(currentDate)")
-                
+             
                 if !isJourneyOngoing {
                     
                     let dateFormatterTwo = DateFormatter()
@@ -2922,7 +2160,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                 }
                 
-//                }
+                //                }
                 
             })
             
@@ -2983,15 +2221,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var allAssets: [URL] = []
     
     func addPhotos(_ sender: AnyObject) {
-        
-//        let captionTap = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.addCaption(_:)))
-//        captionTap.delegate = self
-        
-//        addView.photosIntialView.hidden = true
-//        addView.photosFinalView.hidden = false
-        
-//        addView.postButton.enabled = true
-        
+
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -3006,14 +2236,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
             self.present(self.imagePicker, animated: true, completion: nil)
         })
-//        let customeAction = UIAlertAction(title: "Photo Editor", style: .default, handler: {
-//            (alert: UIAlertAction!) -> Void in
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//
-//            let imgLyKit = storyboard.instantiateViewController(withIdentifier: "ImgLyKit") as! ImgLyKitViewController
-//            self.present(imgLyKit, animated: true, completion: nil)
-//            
-//        })
+
         let saveAction = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
@@ -3021,71 +2244,49 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             multipleImage.maxNumberOfSelections = self.selectPhotosCount
             
             self.bs_presentImagePickerController(multipleImage, animated: true,
-                select: { (asset: PHAsset) -> Void in
-                    
-                    print("Selected: \(asset)")
-                    
-                }, deselect: { (asset: PHAsset) -> Void in
-                    
-                    print("Deselected: \(asset)")
-                    
-                }, cancel: { (assets: [PHAsset]) -> Void in
-                    
-                    print("Cancel: \(assets)")
-                    
+                                                 select: { (asset: PHAsset) -> Void in
+                                                    
+                                                    print("Selected: \(asset)")
+                                                    
+            }, deselect: { (asset: PHAsset) -> Void in
+                
+                print("Deselected: \(asset)")
+                
+            }, cancel: { (assets: [PHAsset]) -> Void in
+                
+                print("Cancel: \(assets)")
+                
             }, finish: { (assets: [PHAsset]) -> Void in
+                
+                
+                if sender.tag == 1 {
                     
-                    //**************************** MIDHET'S CODE ******************************
+                    self.photosAddedMore = true
                     
-//                    self.addView.photosCount.text = "\(self.addView.horizontalScrollForPhotos.subviews.count - 1)"
+                }
+                
+                if !self.photosAddedMore {
+                    self.photosGroupId += 1
+                }
+                var img11 = [UIImage]()
+                
+                DispatchQueue.main.async {
                     
-                    if sender.tag == 1 {
-                        
-                        self.photosAddedMore = true
-                        
-                    }
-                    
-                    if !self.photosAddedMore {
-                        self.photosGroupId += 1
-                    }
-                    var img11 = [UIImage]()
-                    
-                    DispatchQueue.main.async {
-                        
-                        let options = PHImageRequestOptions()
-                        options.isSynchronous = true
-                        for n in 0...assets.count-1{
+                    let options = PHImageRequestOptions()
+                    options.isSynchronous = true
+                    for n in 0...assets.count-1{
                         PHImageManager.default().requestImage(for: assets[n], targetSize: CGSize(width: assets[n].pixelWidth, height: assets[n].pixelHeight), contentMode: .aspectFit, options: options, resultHandler: {(result, info) in
                             
                             img11.append(result!)
                             
                             
                         })
-                        }
-                        self.photosAdded(assets: img11)
                     }
-
-                    
-                    
-                    
-//                    var index = 0
-//                    
-//                    
-//                    if Reachability.isConnectedToNetwork() {
-//                        
-//                    }
-//                    print("Finish: \(self.addView.postButton.isHidden)")
-//                    
-//                    var assetArray: [URL] = []
-//                    
-//                    if self.previouslyAddedPhotos != nil {
-//                        
-//                        assetArray = self.previouslyAddedPhotos
-//                        
-//                    }
-                    
-                    
-                }, completion: nil)
+                    self.photosAdded(assets: img11)
+                }
+                
+                
+            }, completion: nil)
         })
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -3097,7 +2298,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         optionMenu.addAction(deleteAction)
         optionMenu.addAction(saveAction)
         optionMenu.addAction(cancelAction)
-//        optionMenu.addAction(customeAction)
+        //        optionMenu.addAction(customeAction)
         
         self.present(optionMenu, animated: true, completion: nil)
         
@@ -3136,29 +2337,29 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             
             allImages.append(asset)
-//            let photoData = getAssetData(asset)
+            //            let photoData = getAssetData(asset)
             let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
             
-//            DispatchQueue.main.async(execute: {
+            //            DispatchQueue.main.async(execute: {
             
-                do {
-                    let image = asset
-                    
-                    if let data = UIImageJPEGRepresentation(image, 0.35) {
-                        try data.write(to: URL(string: exportFileUrl)!)
-                    }
-                    
-                    self.allAssets.append(NSURL(string: exportFileUrl)! as URL)
-                    self.photosToBeUploaded.append(PhotoUpload(localId: Int64(index), caption: "", serverId: "", url: exportFileUrl))
-                } catch let error as NSError {
-                    
-                    print("error creating file: \(error.localizedDescription)")
-                    
+            do {
+                let image = asset
+                
+                if let data = UIImageJPEGRepresentation(image, 0.35) {
+                    try data.write(to: URL(string: exportFileUrl)!)
                 }
-//            })
+                
+                self.allAssets.append(NSURL(string: exportFileUrl)! as URL)
+                self.photosToBeUploaded.append(PhotoUpload(localId: Int64(index), caption: "", serverId: "", url: exportFileUrl))
+            } catch let error as NSError {
+                
+                print("error creating file: \(error.localizedDescription)")
+                
+            }
+            //            })
             
             addPhotoToLayout(photo: asset)
-//            photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
+            //            photo.setPhotos(name: nil, data: photoData, caption: nil, groupId: Int64(photosGroupId))
         }
         
         allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
@@ -3167,36 +2368,36 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         captionButton.tag = 2
         addCaption(captionButton)
         
-//        DispatchQueue.main.sync(execute: {
+        //        DispatchQueue.main.sync(execute: {
         
-            let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-            addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-            addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
-            addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-            addMorePhotosButton.layer.cornerRadius = 5.0
-            addMorePhotosButton.clipsToBounds = true
-            addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
-            addMorePhotosButton.tag = 1
-            self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
-            self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
-            
-//        })
+        let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+        addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
+        addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+        addMorePhotosButton.layer.cornerRadius = 5.0
+        addMorePhotosButton.clipsToBounds = true
+        addMorePhotosButton.addTarget(self, action: #selector(NewTLViewController.addPhotosAgain(_:)), for: .touchUpInside)
+        addMorePhotosButton.tag = 1
+        self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
+        self.addView.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+        
+        //        })
         
     }
     
     func addPhotoToLayout(photo: UIImage) {
         
-//        DispatchQueue.main.sync {
+        //        DispatchQueue.main.sync {
         
-            let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-            photosButton.setImage(photo, for: .normal)
-            photosButton.layer.cornerRadius = 5.0
-            photosButton.clipsToBounds = true
-            photosButton.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
-            self.addWidthToPhotoLayout(photosButton.frame.width)
-            self.addView.horizontalScrollForPhotos.addSubview(photosButton)
-            
-//        }
+        let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+        photosButton.setImage(photo, for: .normal)
+        photosButton.layer.cornerRadius = 5.0
+        photosButton.clipsToBounds = true
+        photosButton.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
+        self.addWidthToPhotoLayout(photosButton.frame.width)
+        self.addView.horizontalScrollForPhotos.addSubview(photosButton)
+        
+        //        }
     }
     
     func photosAdded(selectedImages: [UIImage]) {
@@ -3225,7 +2426,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 index = selectedImages.index(of: each)!
             }
-            
+                
             else {
                 index += self.addView.horizontalScrollForPhotos.subviews.count
             }
@@ -3277,15 +2478,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         })
         
-//        for each in selectedImages {
-//            
-//            let visibleImage = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-//            visibleImage.tag = 1
-//            visibleImage.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
-//            visibleImage.setImage(each, for: .normal)
-//            self.addWidthToPhotoLayout(visibleImage.frame.width + 10.0)
-//            self.addView.horizontalScrollForPhotos.addSubview(visibleImage)
-//        }
         
     }
     
@@ -3324,9 +2516,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         
-//        DispatchQueue.main.async(execute: {
+        //        DispatchQueue.main.async(execute: {
         
-            captionVC.currentImage = sender.currentImage!
+        captionVC.currentImage = sender.currentImage!
         
         if sender.tag == 2 {
             
@@ -3336,17 +2528,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             captionVC.currentSender = sender
         }
-//        captionVC.index = captionVC.getIndex()
+        //        captionVC.index = captionVC.getIndex()
         
-            captionVC.allImages = allPhotos
-            captionVC.allPhotos = self.photosToBeUploaded
-            captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        captionVC.allImages = allPhotos
+        captionVC.allPhotos = self.photosToBeUploaded
+        captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         //End Loader
-            self.navigationController!.pushViewController(captionVC, animated: true)
-            
-//        })
+        self.navigationController!.pushViewController(captionVC, animated: true)
+        
+        //        })
         
     }
     
@@ -3354,104 +2546,68 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var allImageIds: [Int] = []
     var localDbPhotoIds: [Int] = []
     
-//    var uploadedPhotos: [String] = []
+    //    var uploadedPhotos: [String] = []
     
     func uploadMultiplePhotos(_ assets: [URL], localIds: [Int]) {
         
         var photosCount = 0
         let photoDB = Photo()
         
-                request.uploadPhotos(tempAssets[0], localDbId: localIds[0], completion: {(response) in
-                        
-                        if response.error != nil {
-                            
-                            print("error: \(response.error!.localizedDescription)")
-                            
-                        }
-                        else if response["value"].bool! {
-                            
-                            photoDB.insertName(response["localId"].string!, Name: response["data"][0].string!)
-//                            self.allImageIds.append(response["data"][0].string!)
-                            self.uploadedphotos.append(["name": response["data"][0].string!, "caption": ""])
-                            
-                            for (index, eachPhoto) in self.photosToBeUploaded.enumerated() {
-                                
-                                if eachPhoto.localId == Int64(response["localId"].string!) {
-                                    self.photosToBeUploaded[index].serverId = response["data"][0].string!
-                                }
-                                
-                            }
-                            
-                            
-                            if self.tempAssets.count > 1 {
-                                
-                                self.tempAssets.removeFirst()
-                                self.localDbPhotoIds.removeFirst()
-                                self.uploadMultiplePhotos(self.tempAssets, localIds: self.localDbPhotoIds)
-                                
-                            }
-                            else if self.tempAssets.count == 1 {
-                                
-                                self.tempAssets = []
-                                self.addView.postButton.isHidden = false
-                                self.postPartTwo()
-                                
-                            }
-                            else {
-                                print("no temp assets")
-                            }
-                            
-                            
-                        }
-                        else {
-                            
-                            print("response error!")
-                            self.uploadMultiplePhotos(self.tempAssets, localIds: self.localDbPhotoIds)
-                            
-                        }
+        request.uploadPhotos(tempAssets[0], localDbId: localIds[0], completion: {(response) in
+            
+            if response.error != nil {
+                
+                print("error: \(response.error!.localizedDescription)")
+                
+            }
+            else if response["value"].bool! {
+                
+                photoDB.insertName(response["localId"].string!, Name: response["data"][0].string!)
+                //                            self.allImageIds.append(response["data"][0].string!)
+                self.uploadedphotos.append(["name": response["data"][0].string!, "caption": ""])
+                
+                for (index, eachPhoto) in self.photosToBeUploaded.enumerated() {
                     
-                })
+                    if eachPhoto.localId == Int64(response["localId"].string!) {
+                        self.photosToBeUploaded[index].serverId = response["data"][0].string!
+                    }
+                    
+                }
+                
+                
+                if self.tempAssets.count > 1 {
+                    
+                    self.tempAssets.removeFirst()
+                    self.localDbPhotoIds.removeFirst()
+                    self.uploadMultiplePhotos(self.tempAssets, localIds: self.localDbPhotoIds)
+                    
+                }
+                else if self.tempAssets.count == 1 {
+                    
+                    self.tempAssets = []
+                    self.addView.postButton.isHidden = false
+                    self.postPartTwo()
+                    
+                }
+                else {
+                    print("no temp assets")
+                }
+                
+                
+            }
+            else {
+                
+                print("response error!")
+                self.uploadMultiplePhotos(self.tempAssets, localIds: self.localDbPhotoIds)
+                
+            }
+            
+        })
         
     }
     
     var allrows: [String] = []
-//    func storePhotos(_ photoArray: [URL]) {
-//        
-//        allrows = []
-//        let postDb = Post()
-//        let photos = Photo()
-//        let postCount = postDb.getRowCount()
-//        
-//        for photo in photoArray {
-//            
-//            print("photos array: \(photo)")
-//            if let data = try? Data(contentsOf: photo) {
-//                DispatchQueue.main.sync(execute: {
-//                    photos.setPhotos(name: nil, data: data, caption: nil, groupId: Int64(photosGroupId))
-//                })
-//            } else {
-//                print("\(#line) no data found from photos")
-//            }
-//            
-//        }
-//        
-//        allrows = photos.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId)) as! [String]
-//        print("allrows: \(allrows)")
-//        var localids: [Int64] = []
-//        for eachRow in allrows {
-//            
-//            localids.append(Int64(eachRow)!)
-//            
-//        }
-//        
-//        localDbPhotoIds = localids
-//        
-//        if Reachability.isConnectedToNetwork() {
-//            print("internet is connected")
-//            uploadMultiplePhotos(photoArray, localIds: localids)
-//        }
-//        
-//    }
+   
     
     
     func addPhotosAgain(_ sender: UIButton) {
@@ -3473,12 +2629,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
         })
         
-        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //
-        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "videoView") as! VideoViewController
-        //        imgLyKit.filepath = img!
-        //        self.navigationController?.present(imgLyKit, animated: true, completion: nil)
-        
+
     }
     
     func addVideos(_ sender: UIButton) {
@@ -3511,62 +2662,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             cameraViewController.completionBlock = self.completionVideoBlock
             self.present(cameraViewController, animated: true, completion: nil)
         })
-
         
-//
-//        let saveAction = UIAlertAction(title: "Album", style: .default, handler: {
-//            (alert: UIAlertAction!) -> Void in
-//            
-////            self.imagePicker.allowsEditing = true
-//            self.imagePicker.sourceType = .photoLibrary
-//            self.imagePicker.mediaTypes = ["public.movie"]
-//            self.present(self.imagePicker, animated: true, completion: nil)
-//            
-//        })
+  
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Cancelled")
         })
         
         optionMenu.addAction(deleteAction)
-//        optionMenu.addAction(saveAction)
+        //        optionMenu.addAction(saveAction)
         optionMenu.addAction(cancelAction)
         
         self.present(optionMenu, animated: true, completion: nil)
         
         
     }
-    
-//    func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
-//        
-//        print("in tool stack ctrl")
-//        print(image)
-//        print(editedImage)
-//        isEditedImage = true
-//        editedImage = image
-//        print(editedImage)
-//        self.viewDidLoad()
-//        dismiss(animated: true, completion:nil)
-//        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-//        //        self.present(imgLyKit, animated: true, completion: nil)
-//    }
-//    
-//    func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
-//        print("on cancel toolstackcontroller")
-//        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        //        ////
-//        //        //        let imgLyKit = storyboard.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-//        //        //        self.present(imgLyKit, animated: true, completion: nil)
-//        //
-//        //        navigationController?.popViewController(animated: true)
-//        dismiss(animated: true, completion:nil)
-//        
-//    }
-//    
-//    func toolStackControllerDidFail(_ toolStackController: ToolStackController){
-//        print("on fail toolstackcontroller")
-//    }
     
     func addThoughts(_ sender: UIButton) {
         
@@ -3592,38 +2702,38 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 DispatchQueue.main.async(execute: {
                     
-//                    for editImage in editedImagesArray {
+                    //                    for editImage in editedImagesArray {
                     
-                        if eachImage.currentImage != editedImagesArray[index][index] && index < subviewCount {
+                    if eachImage.currentImage != editedImagesArray[index][index] && index < subviewCount {
+                        
+                        eachImage.setImage(editedImagesArray[index][index], for: .normal)
+                        
+                        let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
+                        
+                        
+                        DispatchQueue.main.async(execute: {
                             
-                            eachImage.setImage(editedImagesArray[index][index], for: .normal)
+                            //                                if editedImage[index] != nil {
                             
-                            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
-                            
-                            
-                            DispatchQueue.main.async(execute: {
+                            do {
                                 
-                                //                                if editedImage[index] != nil {
-                                
-                                do {
-                                    
-                                    if let data = UIImageJPEGRepresentation(editedImagesArray[index][index]!, 0.35) {
-                                        try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
-                                    }
-                                } catch let error as NSError {
-                                    
-                                    print("error creating file: \(error.localizedDescription)")
-                                    
+                                if let data = UIImageJPEGRepresentation(editedImagesArray[index][index]!, 0.35) {
+                                    try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
                                 }
+                            } catch let error as NSError {
                                 
-                                //                                }
+                                print("error creating file: \(error.localizedDescription)")
                                 
-                            })
+                            }
                             
-                        }
+                            //                                }
+                            
+                        })
                         
-                        
-//                    }
+                    }
+                    
+                    
+                    //                    }
                     
                 })
                 
@@ -3643,40 +2753,40 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if manager.location?.coordinate != nil {
             let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        userLocation = locValue
-        var coverImage: String!
-        
-        if !isJourneyOngoing {
+            userLocation = locValue
+            var coverImage: String!
             
-            request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
+            if !isJourneyOngoing {
                 
-                DispatchQueue.main.async(execute: {
+                request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
                     
-                    if (response.error != nil) {
+                    DispatchQueue.main.async(execute: {
                         
-                        print("error: \(response.error?.localizedDescription)")
+                        if (response.error != nil) {
+                            
+                            print("error: \(response.error?.localizedDescription)")
+                            
+                        }
+                            
+                        else if response["value"].bool! {
+                            
+                            self.places = response["data"]["placeId"].array!
+                            self.locationData = response["data"]["name"].string!
+                            self.otgView.locationLabel.text = response["data"]["name"].string!
+                            self.locationName = self.locationData
+                            self.locationLat = String(locValue.latitude)
+                            self.locationLong = String(locValue.longitude)
+                            self.getCoverPic()
+                            
+                        }
+                        else {
+                            
+                            print("response error!")
+                        }
                         
-                    }
-                        
-                    else if response["value"].bool! {
-                        
-                        self.places = response["data"]["placeId"].array!
-                        self.locationData = response["data"]["name"].string!
-                        self.otgView.locationLabel.text = response["data"]["name"].string!
-                        self.locationName = self.locationData
-                        self.locationLat = String(locValue.latitude)
-                        self.locationLong = String(locValue.longitude)
-                        self.getCoverPic()
-                        
-                    }
-                    else {
-                        
-                        print("response error!")
-                    }
-                    
+                    })
                 })
-            })
-        }
+            }
         }
     }
     

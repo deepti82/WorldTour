@@ -12,6 +12,7 @@ pod 'HanekeSwift', :git=> 'https://github.com/Haneke/HanekeSwift.git', :branch =
   pod 'SQLite.swift', :git=> 'https://github.com/stephencelis/SQLite.swift.git', :branch => 'prepare-0.11.1'
   pod 'imglyKit', '~> 5.0'
   pod 'Dollar'
+  pod 'Cent'
   pod 'AsyncSwift'
 end
 
