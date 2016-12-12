@@ -77,10 +77,12 @@ class Navigation {
 //        print("device id: \(deviceId)")
         let params = ["_id":id, editField:editFieldValue]
         print(params)
-        
+        print(adminUrl + "user/editUser");
+
         do {
             let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: params)
             //            print("request: \(opt)")
+            print(adminUrl + "user/editUser");
             opt.start { response in
                 print("started response: \(response)")
                 if let err = response.error {
@@ -101,11 +103,10 @@ class Navigation {
     func getUser(_ id: String, completion: @escaping ((JSON) -> Void)) {
         
         var json = JSON(1);
-        //        let deviceId = UIDevice.currentDevice().identifierForVendor!.UUIDString
-        //        print("device id: \(deviceId)")
         let params = ["_id":id]
         print(params)
-        
+        print(adminUrl + "user/getOne");
+
         do {
             let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
             //            print("request: \(opt)")

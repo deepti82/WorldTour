@@ -64,8 +64,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
 //        self.resizeView(8);
         
-        let sideMenu = storyboard!.instantiateViewController(withIdentifier: "sideMenu") as! SideNavigationMenuViewController
-        sideMenu.view.setNeedsDisplay()
+       
         
 //        var imageName = ""
 //        

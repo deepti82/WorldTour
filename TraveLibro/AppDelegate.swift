@@ -9,7 +9,7 @@
 import UIKit
 import Contacts
 import Simplicity
-import Fabric
+
 import TwitterKit
 import SQLite
 
@@ -57,7 +57,7 @@ var leftViewController: SideNavigationMenuViewController!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     
     static func getDatabase () -> Connection {
@@ -79,9 +79,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-//        let path = NSSearchPathForDirectoriesInDomains(
-//            .DocumentDirectory, .UserDomainMask, true
-//            ).first!
+        //        let path = NSSearchPathForDirectoriesInDomains(
+        //            .DocumentDirectory, .UserDomainMask, true
+        //            ).first!
         
         var nvc: UINavigationController!
         
@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
-//        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
+        //        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
         
         leftViewController.mainViewController = nvc
         
@@ -115,57 +115,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else {
             print("in else")
             request.getUser(user.getExistingUser(), completion: {(request) in
-                DispatchQueue.main.async(execute: {
+                print("Jagz is great");
+                DispatchQueue.main.async {
                     print("from database")
                     print(request)
                     currentUser = request["data"]
-                if request["data"]["alreadyLoggedIn"] == false {
-//
-                    nvc = UINavigationController(rootViewController: nationality)
-                    
-                    let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
-                    
-                    self.window?.rootViewController = slideMenuController
-                    
-//                    navigation.pushViewController(nationalityPage, animated: true)
-                    
-                }else{
-                    
-                    nvc = UINavigationController(rootViewController: mainViewController)
-                    
-                    let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
-                    
-                    self.window?.rootViewController = slideMenuController
-                }
+                    if request["data"]["alreadyLoggedIn"] == false {
+                        //
+                        nvc = UINavigationController(rootViewController: nationality)
+                        
+                        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+                        
+                        self.window?.rootViewController = slideMenuController
+                        
+                        //                    navigation.pushViewController(nationalityPage, animated: true)
+                        
+                    }else{
+                        
+                        nvc = UINavigationController(rootViewController: mainViewController)
+                        
+                        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+                        
+                        self.window?.rootViewController = slideMenuController
+                    }
                     nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-                    //        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
                     nvc.navigationBar.barStyle = .blackTranslucent
                     nvc.navigationBar.isTranslucent = true
-                })
+                }
             })
         }
         
-////        nvc.setNavigationBarItem()
-//        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-////        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
-//        nvc.navigationBar.barStyle = .blackTranslucent
-//        nvc.navigationBar.isTranslucent = true
-////            .addSublayer(sublayer)
-////        nvc.navigationBar.barStyle = .Black
+        ////        nvc.setNavigationBarItem()
+        //        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+        ////        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
+        //        nvc.navigationBar.barStyle = .blackTranslucent
+        //        nvc.navigationBar.isTranslucent = true
+        ////            .addSublayer(sublayer)
+        ////        nvc.navigationBar.barStyle = .Black
         
     }
     
-//    static func gotoCreateMenuView() {
-//        
-////        createMenuView(AppDelegate())
-//        
-//    }
+    //    static func gotoCreateMenuView() {
+    //
+    ////        createMenuView(AppDelegate())
+    //
+    //    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-//        let post = Post()
-//        post.drop()
-//        photo.drop()
+        //        let post = Post()
+        //        post.drop()
+        //        photo.drop()
         createMenuView()
         AppDelegate.getDatabase()
         
@@ -205,20 +205,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageController.currentPageIndicatorTintColor = mainBlueColor
         pageController.backgroundColor = UIColor.clear
         
-//        self.addObserver(self, forKeyPath: "profileViewY", options: .New, context: nil)
+        //        self.addObserver(self, forKeyPath: "profileViewY", options: .New, context: nil)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = UITabBarController()
         let homeVC = storyboard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         let feedVC = storyboard.instantiateViewController(withIdentifier: "Activity") as! ProfilePostsViewController
         tabBarController.viewControllers = [homeVC, feedVC]
-//        window?.rootViewController = tabBarController
-
-        let image = UIImage(named: "adventure_icon")
-
-        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
+        //        window?.rootViewController = tabBarController
         
-        Fabric.with([Twitter.self])
+        let image = UIImage(named: "adventure_icon")
+        
+        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
         
         return true
     }
@@ -229,45 +227,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-//    func application(application: UIApplication,
-//                     openURL url: NSURL,
-//                             sourceApplication: String?,
-//                             annotation: AnyObject) -> Bool {
-//        return FBSDKApplicationDelegate.sharedInstance().application(
-//            application,
-//            openURL: url,
-//            sourceApplication: sourceApplication,
-//            annotation: annotation)
-//    }
+    //    func application(application: UIApplication,
+    //                     openURL url: NSURL,
+    //                             sourceApplication: String?,
+    //                             annotation: AnyObject) -> Bool {
+    //        return FBSDKApplicationDelegate.sharedInstance().application(
+    //            application,
+    //            openURL: url,
+    //            sourceApplication: sourceApplication,
+    //            annotation: annotation)
+    //    }
     
-//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-//        
-//        print("this function is getting called!!")
-//        
-//    }
-
+    //    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    //
+    //        print("this function is getting called!!")
+    //
+    //    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
 }
 
 func addTopBorder(_ color: UIColor, view: UIView, borderWidth: CGFloat) {
