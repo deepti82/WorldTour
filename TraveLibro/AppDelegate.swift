@@ -9,7 +9,7 @@
 import UIKit
 import Contacts
 import Simplicity
-import Fabric
+
 import TwitterKit
 import SQLite
 
@@ -217,8 +217,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let image = UIImage(named: "adventure_icon")
         
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: image, tag: 1)
-        
-        Fabric.with([Twitter.self])
         
         return true
     }
