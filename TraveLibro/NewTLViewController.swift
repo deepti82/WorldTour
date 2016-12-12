@@ -10,6 +10,8 @@ import UIKit
 import EventKitUI
 
 import BSImagePicker
+
+import Dollar
 //import DKImagePickerController
 import Photos
 import CoreLocation
@@ -18,6 +20,7 @@ import imglyKit
 import AVKit
 import AVFoundation
 import Haneke
+
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
@@ -2839,26 +2842,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var coverImage: String!
     
     func makeCoverPic(_ imageString: String) {
-        
-        let getImageUrl = adminUrl + "upload/readFile?file=\(imageString)&width=250"
-//        if let mapurl = URL(string: getImageUrl) {
-//            do {
-//                DispatchQueue.main.async(execute: {
-//                    let data = try! Data(contentsOf: mapurl)
-//                    print("image data: \(data)")
-//                    self.otgView.cityImage.image = UIImage(data: data)
-//                })
-//            } catch _ {
-//                print("Unable to set map image")
-//            }
-//        }
-
-        self.otgView.cityImage.hnk_setImageFromURL(URL(string:getImageUrl)!)
-        
-//        } else {
-//            print("no image data found")
-//        }
-        
+        var  getImageUrl = adminUrl + "upload/readFile?file=\(imageString)&width=250"
+      
+        if imageString.range(of:"https://") != nil{
+            getImageUrl = imageString;
+        }
+        do {
+            let url1 = URL(string:getImageUrl);
+            try self.otgView.cityImage.hnk_setImageFromURL(url1!)
+        }
+        catch _ {
+            
+        }
         
     }
     
@@ -2886,9 +2881,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     
                 }
                 else if response["value"].bool! {
-                    
                     self.locationPic = response["data"].string!
-                    self.makeCoverPic(response["data"].string!)
                     
                 }
                 else {

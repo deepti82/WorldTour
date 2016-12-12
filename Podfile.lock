@@ -1,9 +1,11 @@
 PODS:
+  - AsyncSwift (2.0.0)
   - BSGridCollectionViewLayout (1.2.0)
   - BSImagePicker (2.5.0):
     - BSGridCollectionViewLayout (~> 1.2.0)
     - UIImageViewModeScaleAspect (~> 1.5.0)
   - DKChainableAnimationKit (2.0.0)
+  - Dollar (6.1.0)
   - Fabric (1.6.11)
   - HanekeSwift (0.10.1)
   - imglyKit (5.0.6)
@@ -20,8 +22,10 @@ PODS:
   - UIImageViewModeScaleAspect (1.5)
 
 DEPENDENCIES:
+  - AsyncSwift
   - BSImagePicker (~> 2.4)
   - DKChainableAnimationKit (from `https://github.com/Draveness/DKChainableAnimationKit.git`, branch `master`)
+  - Dollar
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
   - imglyKit (~> 5.0)
   - Simplicity
@@ -60,9 +64,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/EndouMari/TabPageViewController.git
 
 SPEC CHECKSUMS:
+  AsyncSwift: 6ba6ed9ecb51344458063f7c86fe447ab824e313
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
   BSImagePicker: 9ad3385318ca0db7e792b51ea8929cfc39284c56
   DKChainableAnimationKit: 20401b3ad31b57d90548bfdb214077f2d2d79d49
+  Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
   imglyKit: b78152c784cdcdf64297de33ad474bd7f13c7de9
@@ -74,6 +80,6 @@ SPEC CHECKSUMS:
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 042ef0fa330259a46766900e40b0466455a64bb5
+PODFILE CHECKSUM: 896c80016b80be172d83d9b09395c537ed2abdef
 
 COCOAPODS: 1.1.1
