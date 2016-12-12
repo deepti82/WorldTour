@@ -92,7 +92,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
                     print("test imagepicker")
                     let manage1 = PHImageManager.default()
                     let option1 = PHImageRequestOptions()
-                    var n = 0
+//                    var n = 0
                     option1.isSynchronous = true
                     for n in 0...assets.count - 1{
                         print(n)
