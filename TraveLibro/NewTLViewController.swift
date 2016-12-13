@@ -2733,6 +2733,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             self.otgView.detectLocationView.isHidden = true
                             self.otgView.placeLabel.text = self.locationData
                             self.otgView.timestampDate.text = self.currentTime
+                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
                             //                    self.otgView.timestampTime.text =
                             self.otgView.cityView.layer.opacity = 0.0
                             self.otgView.cityView.isHidden = false
