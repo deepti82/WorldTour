@@ -44,7 +44,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                         let backVC = vc as! NewTLViewController
                         backVC.countLabel = self.addedFriends.count
                         backVC.addedBuddies = self.addedFriends
-                        //                                backVC.getCurrentOTG()
+                        backVC.getJourney()
                         backVC.showBuddies()
                         self.navigationController!.popToViewController(backVC, animated: true)
                         
