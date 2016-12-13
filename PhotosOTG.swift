@@ -128,7 +128,7 @@ class PhotosOTG: UIView {
         commentButton.imageView?.contentMode = .scaleAspectFit
         shareButton.imageView?.contentMode = .scaleAspectFit
         
-//        mainPhoto.autoresizingMask = [.flexibleHeight]
+        mainPhoto.autoresizingMask = [.flexibleHeight]
         
         likeHeart.text = String(format: "%C", faicon["likes"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)
