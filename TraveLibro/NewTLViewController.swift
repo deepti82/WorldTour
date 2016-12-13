@@ -61,7 +61,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     @IBAction func endJourneyTapped(_ sender: UIButton) {
         
         self.getJourney()
-        //        })
         
         let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
         end.journey = myJourney
@@ -775,22 +774,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func getJourney() {
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
-            
             DispatchQueue.main.async(execute: {
-                //                print("in getJourney")
                 if response.error != nil {
-                    
                     print("error: \(response.error!.localizedDescription)")
-                    
                 }
                 else if response["value"].bool! {
-                    //                    print("in value true")
                     self.detectLocation(nil)
-                    
                     self.latestCity = response["data"]["startLocation"].string!
-                    
                     if self.isRefreshing {
-                        
                         self.refreshControl.endRefreshing()
                         self.isRefreshing = false
                     }
@@ -814,13 +805,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.getAllPosts(allPosts)
                         
                     }
-                    
-                }
-                else if response["error"]["message"] == "No ongoing journey found" {
-                    
-                    //                    print("inside no ongoing journey")
-                    isJourneyOngoing = false
-                    self.showJourneyOngoing(journey: JSON(""))
                     
                 }
                 else {
@@ -1012,8 +996,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let rightButton = UIButton()
         rightButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        //rightButton.setBackgroundImage(UIImage(named: "i_circle"), for: UIControlState())
-        //rightButton.setImage(UIImage(named: "info_icon"), for: UIControlState())
+        
         rightButton.setTitle("i", for: UIControlState())
         rightButton.layer.borderWidth = 1.5
         rightButton.layer.borderColor = UIColor.white.cgColor
@@ -1033,15 +1016,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         imagePicker.delegate = self
         
-        //        let darkBlur = UIBlurEffect(style: .dark)
-        //        let blurView = UIVisualEffectView(effect: darkBlur)
-        //        blurView.frame = toolbarView.frame
-        //        blurView.tag = 10
-        //        blurView.layer.zPosition = -1
-        //        blurView.isUserInteractionEnabled = false
-        //        blurView.clipsToBounds = true
-        //        toolbarView.addSubview(blurView)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
@@ -1051,7 +1025,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 60, height: 60))
         self.addPostsButton.setImage(UIImage(named: "add_circle_opac"), for: .normal)
         self.addPostsButton.addTarget(self, action: #selector(NewTLViewController.addPosts(_:)), for: .touchUpInside)
-        //addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(NewTLViewController.addPosts(_:))))
+        
         self.addPostsButton.layer.zPosition = 5
         self.view.addSubview(self.addPostsButton)
         
@@ -1065,10 +1039,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.view.bringSubview(toFront: infoButton)
         self.view.bringSubview(toFront: addPostsButton)
         
-        //        addView.editCategoryPickerView.delegate = self
-        //        pickerView.delegate = self
-        
-        //        otgView.locationLabel.inputView = pickerView
         otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), for: .editingChanged)
         
         self.view.bringSubview(toFront: toolbarView)

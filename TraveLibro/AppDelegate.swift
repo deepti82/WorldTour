@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         leftViewController.mainViewController = nvc
         
         if user.getExistingUser() == "" {
-            print("in if")
+            
             nvc = UINavigationController(rootViewController: signInVC)
             
             let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)

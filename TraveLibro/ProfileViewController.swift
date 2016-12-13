@@ -275,6 +275,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func gotoOTG(_ sender: UITapGestureRecognizer) {
         
+        
+        
+        
         var isThere = 0
         let vcs = self.navigationController!.viewControllers
         
@@ -288,7 +291,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         if isThere == 0 {
             let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
             tlVC.isJourney = false
+            if(currentUser["journeyId"].stringValue == "-1") {
+                isJourneyOngoing = false
+                tlVC.showJourneyOngoing(journey: JSON(""))
+            }
             self.navigationController?.pushViewController(tlVC, animated: false)
+            
+            
         }
     }
     
