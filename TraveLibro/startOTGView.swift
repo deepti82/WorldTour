@@ -54,7 +54,6 @@ class startOTGView: UIView {
         loadViewFromNib ()
         if nameJourneyTF == viewWithTag(1) as? UITextField {
             print("taggedItIs")
-            
         }
         startJourneyButton.layer.cornerRadius = 5
         

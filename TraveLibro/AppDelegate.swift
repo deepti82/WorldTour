@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  TraveLibro
-//
-//  Created by Wohlig Technology on 23/04/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 import Contacts
 import Simplicity
@@ -81,10 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        //        let path = NSSearchPathForDirectoriesInDomains(
-        //            .DocumentDirectory, .UserDomainMask, true
-        //            ).first!
-        
         var nvc: UINavigationController!
         
         leftViewController = storyboard.instantiateViewController(withIdentifier: "sideMenu") as! SideNavigationMenuViewController
@@ -95,12 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
-        //        self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
         
         leftViewController.mainViewController = nvc
-        
-        print("get existing user")
-        print(user.getExistingUser())
         
         if user.getExistingUser() == "" {
             print("in if")
@@ -110,28 +94,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.window?.rootViewController = slideMenuController
             nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-            //        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
             nvc.navigationBar.barStyle = .blackTranslucent
             nvc.navigationBar.isTranslucent = true
             
-        }else {
-            print("in else")
+        } else {
             request.getUser(user.getExistingUser(), completion: {(request) in
-                print("Jagz is great");
                 DispatchQueue.main.async {
-                    print("from database")
-                    print(request)
                     currentUser = request["data"]
                     if request["data"]["alreadyLoggedIn"] == false {
-                        //
                         nvc = UINavigationController(rootViewController: nationality)
                         
                         let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
                         
                         self.window?.rootViewController = slideMenuController
-                        
-                        //                    navigation.pushViewController(nationalityPage, animated: true)
-                        
                     }else{
                         
                         nvc = UINavigationController(rootViewController: mainViewController)
@@ -146,28 +121,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             })
         }
-        
-        ////        nvc.setNavigationBarItem()
-        //        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        ////        let sublayer = UIVisualEffectView(effect: UIVibrancyEffect(forBlurEffect: UIBlurEffect(style: .Light)))
-        //        nvc.navigationBar.barStyle = .blackTranslucent
-        //        nvc.navigationBar.isTranslucent = true
-        ////            .addSublayer(sublayer)
-        ////        nvc.navigationBar.barStyle = .Black
-        
     }
     
-    //    static func gotoCreateMenuView() {
-    //
-    ////        createMenuView(AppDelegate())
-    //
-    //    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        //        let post = Post()
-        //        post.drop()
-        //        photo.drop()
         createMenuView()
         AppDelegate.getDatabase()
         
@@ -229,22 +186,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    //    func application(application: UIApplication,
-    //                     openURL url: NSURL,
-    //                             sourceApplication: String?,
-    //                             annotation: AnyObject) -> Bool {
-    //        return FBSDKApplicationDelegate.sharedInstance().application(
-    //            application,
-    //            openURL: url,
-    //            sourceApplication: sourceApplication,
-    //            annotation: annotation)
-    //    }
-    
-    //    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-    //
-    //        print("this function is getting called!!")
-    //
-    //    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

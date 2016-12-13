@@ -2114,59 +2114,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var locationLat: String = ""
     var locationLong: String = ""
     
-    func getCoverPic() {
-        
-        var temp: [String] = []
-        
-        for place in places {
-            
-            temp.append(place.string!)
-        }
-        
-        request.getJourneyCoverPic(locationName, lat: locationLat, long: locationLong, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    self.locationPic = response["data"].string!
-                    
-                }
-             
-                if !isJourneyOngoing {
-                    
-                    let dateFormatterTwo = DateFormatter()
-                    dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
-                    self.currentTime = dateFormatterTwo.string(from: Date())
-                    
-                    self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.5)
-                    self.otgView.detectLocationView.isHidden = true
-                    self.otgView.placeLabel.text = self.locationData
-                    self.otgView.timestampDate.text = self.currentTime
-                    //                    self.otgView.timestampTime.text =
-                    self.otgView.cityView.layer.opacity = 0.0
-                    self.otgView.cityView.isHidden = false
-                    self.otgView.cityView.animation.makeOpacity(1.0).animate(0.5)
-                    self.otgView.journeyDetails.isHidden = true
-                    self.otgView.selectCategoryButton.isHidden = false
-                    self.height = 250.0
-                    self.mainScroll.animation.makeY(60.0).animate(0.7)
-                    self.otgView.animation.makeY(0.0).animate(0.7)
-                    
-                    
-                }
-                
-                //                }
-                
-            })
-            
-        })
-    }
-    
     var whichButton = "OTGLocation"
     var locationArray: [JSON] = []
     var initialLocationLoad = true
@@ -2770,13 +2717,32 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             
                         else if response["value"].bool! {
                             
-                            self.places = response["data"]["placeId"].array!
                             self.locationData = response["data"]["name"].string!
                             self.otgView.locationLabel.text = response["data"]["name"].string!
+                            self.locationPic = response["data"]["image"].string!
                             self.locationName = self.locationData
                             self.locationLat = String(locValue.latitude)
                             self.locationLong = String(locValue.longitude)
-                            self.getCoverPic()
+                            
+                            
+                            let dateFormatterTwo = DateFormatter()
+                            dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+                            self.currentTime = dateFormatterTwo.string(from: Date())
+                            
+                            self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.5)
+                            self.otgView.detectLocationView.isHidden = true
+                            self.otgView.placeLabel.text = self.locationData
+                            self.otgView.timestampDate.text = self.currentTime
+                            //                    self.otgView.timestampTime.text =
+                            self.otgView.cityView.layer.opacity = 0.0
+                            self.otgView.cityView.isHidden = false
+                            self.otgView.cityView.animation.makeOpacity(1.0).animate(0.5)
+                            self.otgView.journeyDetails.isHidden = true
+                            self.otgView.selectCategoryButton.isHidden = false
+                            self.height = 250.0
+                            self.mainScroll.animation.makeY(60.0).animate(0.7)
+                            self.otgView.animation.makeY(0.0).animate(0.7)
+                            
                             
                         }
                         else {
