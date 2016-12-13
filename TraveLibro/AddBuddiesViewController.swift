@@ -362,9 +362,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
             if data != nil {
                 
-                print("inside if statement \(cell.buddyProfileImage.image)")
+                
                 cell.buddyProfileImage.image = UIImage(data: data)
-                print("sideMenu.profilePicture.image: \(cell.buddyProfileImage.image)")
+                
                 cell.buddyProfileImage.image = UIImage(data: data)
                 makeTLProfilePicture(cell.buddyProfileImage)
             }
@@ -481,9 +481,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             if data != nil {
                 
                 //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
-                print("inside if statement \(cell.buddyDp.image)")
                 cell.buddyDp.image = UIImage(data: data!)
-                print("sideMenu.profilePicture.image: \(cell.buddyDp.image)")
+
                 cell.buddyDp.image = UIImage(data: data!)
                 makeTLProfilePicture(cell.buddyDp)
             }

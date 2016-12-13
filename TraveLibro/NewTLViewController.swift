@@ -774,8 +774,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getJourney() {
-        //        print("myuser")
-        //        print(currentUser["_id"])
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {

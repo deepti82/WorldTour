@@ -45,30 +45,23 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         var imageName = ""
         
-        print("in view did load, current user: \(currentUser)")
-        
         let profile = ProfilePicFancy(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
         profileNew.addSubview(profile)
         
         if currentUser != nil {
             
-//            print("inside if statement \(sideMenu.profilePicture)")
             profileName.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
                 imageName = currentUser["profilePicture"].string!
-            print("image: \(imageName)")
-            
+        
+
             let isUrl = verifyUrl(imageName)
-            print("isUrl: \(isUrl)")
             
             if isUrl {
-                
-                print("inside if statement")
+            
                 let data = try? Data(contentsOf: URL(string: imageName)!)
                 
                 if data != nil {
                     
-                    print("some problem in data \(data)")
-                    //                uploadView.addButton.setImage(, forState: .Normal)
                     profilePicture.image = UIImage(data: data!)
                     profile.image.image = UIImage(data: data!)
                     makeTLProfilePicture(profilePicture)
@@ -78,18 +71,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 
                 let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
                 
-//                print("getImageUrl: \(getImageUrl)")
-                
                 let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-//                print("data: \(data)")
                 
                 if data != nil {
-                    
-                    //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
-                    print("inside if statement \(profilePicture.image)")
                     profilePicture.image = UIImage(data: data!)
                     profile.image.image = UIImage(data: data!)
-                    print("sideMenu.profilePicture.image: \(profilePicture.image)")
+                    
                     makeTLProfilePicture(profilePicture)
                 }
                 
@@ -135,24 +122,13 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
         self.mainViewController = UINavigationController(rootViewController: homeController)
-        
-//        let tapForProfile = UIGestureRecognizer(target: self, action: #selector(self.profileTap(_:)))
-//        profileView.addGestureRecognizer(tapForProfile)
-        
-    }
+   }
     
     @IBAction func profileTap(_ sender: AnyObject) {
         
         self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)
         
     }
-    
-//    func profileTap (sender: UITapGestureRecognizer? = nil) {
-//        
-//        let myProfileController = storyboard!.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
-//        self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
-//        
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -196,7 +172,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         case 6:
             self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
         case 7:
-            print("drop table")
+            
             user.dropTable()
             let passcodemodal = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
             
