@@ -23,6 +23,9 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     let verticalLayout = VerticalLayout(width: 360)
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("demo checking checking")
+        print(quickItinery)
+        getCountry()
         addCountry.layer.cornerRadius = 5
         addCountry.addTarget(self, action: #selector(addCountryFunction(_:)), for: .touchUpInside)
         showCountryCityVisited.addSubview(verticalLayout)
@@ -31,6 +34,12 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         countryVisitedButton.isHidden = true
         cityVisitedButton.isHidden = true
         // Do any additional setup after loading the view.
+    }
+    
+    func getCountry() {
+        request.getAllCountries({(request) in
+            print(request)
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,6 +93,24 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         return true
         
     }
+    
+    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        
+//        return names.count
+//        
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        
+//        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AddFriendsViewCell
+//        
+//        cell.friendImage.image = images[(indexPath as NSIndexPath).row]
+//        cell.friendName.text = names[(indexPath as NSIndexPath).row]
+//        
+//        return cell
+//    }
+
 
     /*
     // MARK: - Navigation

@@ -23,11 +23,14 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var datePickerView: UIDatePicker = UIDatePicker()
     var date = NSDate()
     var currentYear: Int = 0
-    var quickItinery: JSON = ["title": "", "year": "", "month": "", "duration": "", "itenaryType": ""]
+    
+    
     var currentMonth: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        quickItinery = ["title": "", "year": "", "month": "", "duration": ""]
+        
         pickerView.dataSource = self
         pickerView.delegate = self
         pickerView.frame = CGRect(x: 0, y: 240, width: view.frame.width, height: 200)
@@ -44,6 +47,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         quickItinery["duration"] = JSON(durationTextField.text!)
         currentYear = Int(dateFormatter.string(from: date as Date))!
         self.durationTextField.delegate = self
+        self.tripTitle.delegate = self
         self.commonSetup()
         for i in 0..<35{
             yearsPicker.append(currentYear)
@@ -136,7 +140,15 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         durationTextField.resignFirstResponder()
+        tripTitle.resignFirstResponder()
         return true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        print("view gone gone.......")
+        quickItinery["title"] = JSON(tripTitle.text!)
+        quickItinery["month"] = JSON(monthPickerView.text!)
+        quickItinery["year"] = JSON(yearPickerView.text!)
+        quickItinery["duration"] = JSON(durationTextField.text!)
     }
 
     /*

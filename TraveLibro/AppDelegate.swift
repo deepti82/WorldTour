@@ -13,6 +13,7 @@ import Simplicity
 import TwitterKit
 import SQLite
 
+
 let contactsObject = CNContactStore()
 let mainBlueColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1) // #232D4A
 let navBlueColor = UIColor(red: 21/255, green: 25/255, blue: 54/255, alpha: 1) // #151936
@@ -52,6 +53,7 @@ var youUsuallyGo: String = ""
 var preferToTravel: [String] = []
 var yourIdeal: [String] = []
 var travelConfig: [String: [String]] = [:]
+var quickItinery: JSON = []
 
 var leftViewController: SideNavigationMenuViewController!
 

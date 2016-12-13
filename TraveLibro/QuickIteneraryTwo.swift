@@ -14,15 +14,15 @@ class QuickIteneraryTwo: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     
     var eachButton: [String] = []
-    var quickItinery: JSON = ["title": "", "year": "", "month": "", "duration": "", "itenaryType": ""]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        quickItinery["itineraryType"] = []
         nextButton.layer.cornerRadius = 5
         
-        let array = ["adventure", "business", "family", "romance", "backpacking", "budget", "luxury", "religious", "friends"]
+        let array = ["adventure", "business", "family", "budget", "backpacking", "romance", "friends", "religious", "luxury"]
         
-        quickItinery["itenaryType"] = JSON(eachButton)
+        quickItinery["itineraryType"] = JSON(eachButton)
         for eachButton in typeButton {
             
             eachButton.addTarget(self, action: #selector(typeButtonPressed(_:)), for: .touchUpInside)
@@ -36,18 +36,19 @@ class QuickIteneraryTwo: UIViewController {
             
         }
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(quickItinery)
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func typeButtonPressed(_ sender: UIButton!){
         if sender.tag == 0 {
-            print("backgroundchange: \(sender.currentTitle)")
             sender.setBackgroundImage(UIImage(named: "orangebox"), for: .normal)
             eachButton.append(sender.title(for: .application)!)
             
@@ -59,16 +60,8 @@ class QuickIteneraryTwo: UIViewController {
             sender.tag = 0
             
         }
+        print(eachButton)
+        quickItinery["itineraryType"] = JSON(eachButton)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
