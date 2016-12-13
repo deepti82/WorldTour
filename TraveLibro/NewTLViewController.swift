@@ -558,7 +558,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             checkIn.mainPhoto.isHidden = false
             checkIn.photosStack.isHidden = true
-            checkIn.photosHC.constant = 0.0
+//            checkIn.photosHC.constant = 0.0
             checkIn.frame.size.height = 250.0
             
         }
@@ -1133,6 +1133,22 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func showPost(_ whichPost: String, post: JSON) {
         
+        //        print("previous posts: \(prevPosts.count)")
+        //        print("current post: \(post)")
+        
+        //        var isEditId = ""
+        //
+        //        for prevPost in prevPosts {
+        //
+        //            if prevPost["_id"].string! == post["_id"].string! {
+        //
+        //                print("is in the edit id")
+        //                isEditId = prevPost["_id"].string!
+        //
+        //            }
+        //
+        //        }
+        
         var thoughts = String()
         var postTitle = ""
         var photos: [JSON] = []
@@ -1187,10 +1203,215 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
+        //        dispatch_sync(dispatch_get_main_queue(), {
+        
         self.editPost(post["_id"].string!)
         
         //        })
-
+        var checkIn = PhotosOTG()
+        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts, photos: post["photos"].array!.count)))
+        checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
+        checkIn.likeViewLabel.text = "\(post["like"].array!.count) Likes"
+        checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
+        checkIn.commentButton.setTitle(post["uniqueId"].string!, for: .normal)
+        checkIn.commentButton.setTitle(post["_id"].string!, for: .application)
+        otherCommentId = post["_id"].string!
+        currentPost = post
+        
+        if post["like"].array!.contains(JSON(user.getExistingUser())) {
+            checkIn.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
+        }
+        
+        checkIn.optionsButton.setTitle(post["_id"].string!, for: .normal)
+        checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
+        checkIn.dateLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) //+ "  | "
+        checkIn.timeLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
+        checkIn.clipsToBounds = true
+        checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), for: .touchUpInside)
+        checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), for: .touchUpInside)
+        
+        
+        //        print("\(#line) \(NSAttributedString(attributedString: thoughts))")
+        //        checkIn.photosTitle.text =
+        checkIn.photosTitle.enabledTypes = [.hashtag, .url]
+        checkIn.photosTitle.customize {label in
+            label.text = thoughts
+            label.hashtagColor = UIColor(red: 85.0/255, green: 172.0/255, blue: 238.0/255, alpha: 1)
+            label.mentionColor = UIColor(red: 238.0/255, green: 85.0/255, blue: 96.0/255, alpha: 1)
+            label.URLColor = UIColor(red: 85.0/255, green: 238.0/255, blue: 151.0/255, alpha: 1)
+            label.handleMentionTap {
+                
+                let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Mention", message: $0, preferredStyle: .alert)
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            }
+            label.handleHashtagTap {
+                
+                let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Hashtag", message: $0, preferredStyle: .alert)
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            }
+            label.handleURLTap { let actionSheetControllerIOS8: UIAlertController =
+                
+                UIAlertController(title: "Url", message: "\($0)", preferredStyle: .alert)
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+                self.present(actionSheetControllerIOS8, animated: true, completion: nil)
+            }
+        }
+        
+        for image in checkIn.otherPhotosStack {
+            
+            image.isHidden = true
+            
+        }
+        
+        if post["photos"] != nil && post["photos"].array!.count > 0 {
+            
+            photos = post["photos"].array!
+            checkIn.mainPhoto.hnk_setImageFromURL(NSURL(string: "\(adminUrl)upload/readFile?file=\(post["photos"][0]["name"].string!)&width=500") as! URL)
+            checkIn.mainPhoto.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
+            checkIn.mainPhoto.tag = 0
+            checkIn.mainPhoto.accessibilityLabel = post["_id"].string!
+            
+            let likeMainPhoto = UITapGestureRecognizer(target: self, action: #selector(PhotosOTG.sendLikes(_:)))
+            likeMainPhoto.numberOfTapsRequired = 2
+            checkIn.mainPhoto.addGestureRecognizer(likeMainPhoto)
+            checkIn.mainPhoto.isUserInteractionEnabled = true
+            
+            var count = 4
+            if photos.count < 5 {
+                
+                count = photos.count - 1
+                
+            }
+            
+            for i in 0 ..< count {
+                
+                let imgg = photos[i + 1]["name"]
+                checkIn.otherPhotosStack[i].hnk_setImageFromURL(NSURL(string:"\(adminUrl)upload/readFile?file=\(imgg)&width=250") as! URL)
+                checkIn.otherPhotosStack[i].isHidden = false
+                checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
+                checkIn.otherPhotosStack[i].tag = i + 1
+                checkIn.otherPhotosStack[i].accessibilityLabel = post["_id"].string!
+                checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
+                
+            }
+            
+        }
+            
+        else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 && post["checkIn"]["location"] != "" {
+            
+            checkIn.mainPhoto.isHidden = false
+            checkIn.photosStack.isHidden = true
+//            checkIn.photosHC.constant = 0.0
+            //            checkIn.frame.size.height = 250.0
+            
+        }
+        
+        //checkIn.frame.size.height = setHeight(view: checkIn, thoughts: checkIn.photosTitle.text!, photos: post["photos"].array!.count)
+        layout.addSubview(checkIn)
+        //setHeight(checkIn, height: checkInHeight)
+        addHeightToLayout(height: checkIn.frame.height + 50.0)
+        
+        switch whichPost {
+        case "CheckIn":
+            checkIn.whatPostIcon.setImage(UIImage(named: "location_icon"), for: .normal)
+            
+            if post["photos"].array!.count < checkIn.otherPhotosStack.count {
+                
+                
+                let difference = checkIn.otherPhotosStack.count - post["photos"].array!.count
+                
+                for i in 0 ..< difference {
+                    
+                    
+                    let index = checkIn.otherPhotosStack.count - i - 1
+                    checkIn.otherPhotosStack[index].isHidden = true
+                    
+                }
+                
+            }
+            
+            if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
+                
+                checkIn.mainPhoto.isHidden = false
+                checkIn.photosStack.isHidden = true
+//                checkIn.photosHC.constant = 300.0
+                
+                if post["showMap"].boolValue && post["showMap"] != nil {
+                    
+                    // CHECKIN MAP IMAGE
+                    if ( post["checkIn"]["lat"].string != nil && post["checkIn"]["lat"] != "" ) && post["checkIn"]["long"].string != nil {
+                        
+                        let getKey = post["imageUrl"].string?.components(separatedBy: "=")
+                        print("getting key: \(getKey)")
+                        mapKey = getKey!.last!
+                        
+                        let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)&key=\(mapKey)"
+                        var mapurl = URL(string: imageString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                        if mapurl == nil {
+                            mapurl = URL(string: "")
+                        }
+                        checkIn.mainPhoto.hnk_setImageFromURL(mapurl!)
+                    }
+                } else {
+                    print("map not shown")
+                }
+                
+            }
+            
+            if post["checkIn"]["location"] != nil && post["checkIn"]["location"] != "" {
+                
+                if post["review"].array!.count > 0 {
+                    
+                    for subview in layout.subviews {
+                        
+                        if subview.isKind(of: RatingCheckIn.self) {
+                            
+                            let myView = subview as! RatingCheckIn
+                            if myView.rateCheckInButton.currentTitle! == post["_id"].string! {
+                                
+                                subview.removeFromSuperview()
+                                removeHeightFromLayout(subview.frame.height)
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    showReviewButton(post: post, isIndex: false, index: nil)
+                    
+                }
+                    
+                else {
+                    
+                    let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+                    rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
+                    rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
+                    rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)
+                    layout.addSubview(rateButton)
+                    addHeightToLayout(height: rateButton.frame.height + 20.0)
+                    rateButton.tag = 10
+                    
+                }
+                
+            }
+            
+        case "Photos":
+            checkIn.whatPostIcon.setImage(UIImage(named: "camera_icon"), for: .normal)
+        case "Videos":
+            checkIn.whatPostIcon.setImage(UIImage(named: "video"), for: .normal)
+        case "Thoughts":
+            checkIn.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: .normal)
+            checkIn.mainPhoto.removeFromSuperview()
+            checkIn.photosStack.removeFromSuperview()
+        default:
+            break
+        }
         
     }
     
