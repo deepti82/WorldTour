@@ -349,6 +349,7 @@
 		C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */; };
 		FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
+		FCA9E4221E00145B00F0845A /* QuickIteneraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */; };
 		FCB2D6871DE472A40008634B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6861DE472A40008634B /* Accelerate.framework */; };
 		FCB2D6891DE472AD0008634B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6881DE472AD0008634B /* CoreData.framework */; };
 		FCB2D68B1DE472D60008634B /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */; };
@@ -731,6 +732,7 @@
 		C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityOTG.swift; sourceTree = "<group>"; };
 		FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
+		FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryTableViewController.swift; sourceTree = "<group>"; };
 		FCB2D6861DE472A40008634B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FCB2D6881DE472AD0008634B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FCB2D68A1DE472D60008634B /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -1523,6 +1525,7 @@
 				C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */,
 				C281FBED1D56170A00728BD9 /* VerifyIntermediateViewController.swift */,
 				FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */,
+				FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2514,6 +2517,7 @@
 				C20A18F61D225E9C00760BF9 /* CategoriseCheckInViewController.swift in Sources */,
 				C28A92471D0E95ED00CFEC7A /* PopularBloggersViewController.swift in Sources */,
 				C25207341D095442008F0E51 /* SearchFieldView.swift in Sources */,
+				FCA9E4221E00145B00F0845A /* QuickIteneraryTableViewController.swift in Sources */,
 				C24F84DA1CFFFBF5002EA203 /* UserProfileSettingsViewController.swift in Sources */,
 				C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
