@@ -1,11 +1,3 @@
-//
-//  SideNavigationMenuViewController.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 20/05/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 
 var initialLogin = true
@@ -33,15 +25,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileNew: UIView!
     @IBAction func SettingsTap(_ sender: AnyObject) {
-        
         self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         var imageName = ""
         
@@ -51,37 +39,17 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         if currentUser != nil {
             
             profileName.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
-                imageName = currentUser["profilePicture"].string!
-        
-
+                imageName = currentUser["profilePicture"].stringValue
             let isUrl = verifyUrl(imageName)
-            
-            if isUrl {
-            
-                let data = try? Data(contentsOf: URL(string: imageName)!)
-                
-                if data != nil {
-                    
-                    profilePicture.image = UIImage(data: data!)
-                    profile.image.image = UIImage(data: data!)
-                    makeTLProfilePicture(profilePicture)
-                }
-                
+            if (isUrl) {
+                profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
+                profile.image.hnk_setImageFromURL(URL(string:imageName)!)
             } else {
-                
-                let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
-                
-                let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-                
-                if data != nil {
-                    profilePicture.image = UIImage(data: data!)
-                    profile.image.image = UIImage(data: data!)
-                    
-                    makeTLProfilePicture(profilePicture)
-                }
-                
+                let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
+                profilePicture.hnk_setImageFromURL(getImageUrl!)
+                profile.image.hnk_setImageFromURL(getImageUrl!)
             }
-            
+            makeTLProfilePicture(profilePicture)
         }
 
         
@@ -172,12 +140,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         case 6:
             self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
         case 7:
-            
             user.dropTable()
             let passcodemodal = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
-            
             self.present(passcodemodal, animated: true, completion: nil)
-            
         case 8:
             self.slideMenuController()?.changeMainViewController(self.localLifeController, close: true)
         default:

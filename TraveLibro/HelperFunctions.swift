@@ -16,9 +16,8 @@ func verifyUrl (_ urlString: String?) -> Bool {
     
     if let urlString = urlString {
         
-        if let url = URL(string: urlString) {
-            
-            return UIApplication.shared.canOpenURL(url)
+        if urlString.range(of:"http") != nil {
+            return true
         }
     }
     return false

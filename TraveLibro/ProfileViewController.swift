@@ -174,33 +174,16 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             let isUrl = verifyUrl(imageName)
             
             if isUrl {
-                DispatchQueue.main.async(execute: {
-                    let data = try? Data(contentsOf: URL(string: imageName)!)
-                    
-                    if data != nil {
-                        self.profilePicture.image = UIImage(data: data!)
-                        self.profilePicture.isHidden = true
-                        profile.image.image = UIImage(data: data!)
-                        makeTLProfilePicture(self.profilePicture)
-                    }
-                })
+                self.profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
+                self.profilePicture.isHidden = true
+                profile.image.hnk_setImageFromURL(URL(string:imageName)!)
             }
-                
             else {
-                
-                let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=500"
-                
-                let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-                
-                if data != nil {
-                    profilePicture.image = UIImage(data: data!)
-                    self.profilePicture.isHidden = true
-                    profile.image.image = UIImage(data: data!)
-                    makeTLProfilePicture(profilePicture)
-                }
-                
+                let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
+                profilePicture.hnk_setImageFromURL(getImageUrl!)
+                profile.image.hnk_setImageFromURL(getImageUrl!)
             }
-            
+            makeTLProfilePicture(self.profilePicture)
         }
 
         let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 110, width: self.view.frame.size.width - 10, height: 55))
