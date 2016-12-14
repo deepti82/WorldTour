@@ -10,9 +10,26 @@ import UIKit
 
 class QuickIteneraryTableViewController: UITableViewController {
 
+    var countries: JSON = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(SelectGenderViewController.gotoDP(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: nil)
+        request.getAllCountries({(request) in
+            print(request["data"])
+            self.countries = request["data"]
+            self.tableView.reloadData()
+        })
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -32,7 +49,7 @@ class QuickIteneraryTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return countries.count
     }
 
     
