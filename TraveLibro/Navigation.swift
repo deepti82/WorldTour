@@ -2021,6 +2021,29 @@ class Navigation {
 }
     
     
+    func getAllCityC(_ search: String, country: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let params = ["search":search,"country":country]
+            print(params)
+            let opt = try HTTP.POST(adminUrl + "city/searchCity", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    
     func getCityCountry(_ search: String, id: String, completion: @escaping ((JSON) -> Void)) {
         
         do {

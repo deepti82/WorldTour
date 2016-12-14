@@ -46,6 +46,9 @@ var preferToTravel: [String] = []
 var yourIdeal: [String] = []
 var travelConfig: [String: [String]] = [:]
 var quickItinery: JSON = []
+var selectedCountry: JSON = []
+var selectedCity: JSON = []
+var selectedStatus: String = ""
 
 var leftViewController: SideNavigationMenuViewController!
 

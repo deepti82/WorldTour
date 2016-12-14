@@ -9,7 +9,7 @@
 import UIKit
 
 class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDelegate {
-
+    
     @IBOutlet weak var cityTableTitle: UILabel!
     @IBOutlet weak var countryTableTitle: UILabel!
     var countries: JSON = []
@@ -26,25 +26,54 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         super.viewDidLoad()
         print("demo checking checking")
         print(quickItinery)
-        getCountry()
+        if selectedCountry.count != 0 {
+            countryVisited.text = selectedCountry[0]["name"].string
+        }
+        //        getCountry()
         addCountry.layer.cornerRadius = 5
         addCountry.addTarget(self, action: #selector(addCountryFunction(_:)), for: .touchUpInside)
         showCountryCityVisited.addSubview(verticalLayout)
         cityVisited.delegate = self
-//        countryVisited.delegate = self
+        //        countryVisited.delegate = self
         
         countryVisitedButton.isHidden = true
         cityVisitedButton.isHidden = true
-//        cityTableView.delegate = self
-//        cityTableView.dataSource = self
+        //        cityTableView.delegate = self
+        //        cityTableView.dataSource = self
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func countryClicked(_ sender: UITextField) {
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if selectedCountry.count != 0 {
+            countryVisited.text = selectedCountry["name"].string
+        }
+        
+        if selectedCity.count != 0 {
+            var a = ""
+            for i in 0 ... selectedCity.count - 1 {
+                a = a + selectedCity[i]["name"].stringValue
+            }
+            cityVisited.text = a
+        }
+        
+    }
+    
+    @IBAction func countryChange(_ sender: UITextField) {
         print("country clicked")
+        selectedStatus = "country"
         let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
         self.navigationController?.pushViewController(next, animated: true)
     }
+    
+    @IBAction func cityChange(_ sender: UITextField) {
+        print("city clicked")
+        selectedStatus = "city"
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+        self.navigationController?.pushViewController(next, animated: true)
+    }
+    
+    
     func getCountry() {
         request.getAllCountries({(request) in
             print(request["data"])
@@ -52,7 +81,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
             self.cityTableView.reloadData()
         })
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -98,7 +127,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     func removeCountryCity(_ sender: UIButton){
         sender.removeFromSuperview()
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         cityVisited.resignFirstResponder()
         countryVisited.resignFirstResponder()
@@ -106,26 +135,26 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         
     }
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
+    //    func numberOfSections(in tableView: UITableView) -> Int {
+    //        return 1
+    //    }
     
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Countries
-//        print(self.countries[indexPath.row]["name"])
-//        cell.textLabel?.text = self.countries[indexPath.row]["name"].stringValue
-//        return cell
-//        
-//    }
-
+    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //
+    //        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Countries
+    //        print(self.countries[indexPath.row]["name"])
+    //        cell.textLabel?.text = self.countries[indexPath.row]["name"].stringValue
+    //        return cell
+    //
+    //    }
     
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        
-//        return countries.count
-//        
-//    }
-
+    
+    //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //
+    //        return countries.count
+    //        
+    //    }
+    
 }
 
 class Countries: UITableViewCell {
