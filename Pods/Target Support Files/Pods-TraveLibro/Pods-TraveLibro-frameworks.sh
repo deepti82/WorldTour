@@ -84,9 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AsyncSwift/Async.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSImagePicker/BSImagePicker.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Cent/Cent.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DKChainableAnimationKit/DKChainableAnimationKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Dollar/Dollar.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HanekeSwift/Haneke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SQLite.swift/SQLite.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Simplicity/Simplicity.framework"
@@ -96,9 +99,12 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${PODS_ROOT}/imglyKit/imglyKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/AsyncSwift/Async.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/BSImagePicker/BSImagePicker.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Cent/Cent.framework"
   install_framework "$BUILT_PRODUCTS_DIR/DKChainableAnimationKit/DKChainableAnimationKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Dollar/Dollar.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HanekeSwift/Haneke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SQLite.swift/SQLite.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Simplicity/Simplicity.framework"

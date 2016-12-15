@@ -394,7 +394,7 @@ extension NewTLViewController {
             
             //            addNewView.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!))
             
-            addNewView.profilePicture.hnk_setImageFromURL(NSURL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100") as! URL)
+            addNewView.profilePicture.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=500")!)
             makeTLProfilePicture(addNewView.profilePicture)
             addNewView.profileName.text = currentUser["name"].string!
             self.view.addSubview(addNewView)
@@ -535,7 +535,7 @@ extension NewTLViewController {
                 
             }
             
-            makeCoverPic("\(journey["startLocationPic"])")
+            makeCoverPic(journey["startLocationPic"].stringValue)
             
             self.journeyId = journey["uniqueId"].string!
             showDetailsFn(isEdit: false)

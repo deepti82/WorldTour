@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AsyncSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>BSGridCollectionViewLayout.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,7 +24,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Cent.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DKChainableAnimationKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Dollar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -72,12 +87,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>245B6A6C17133F35F1E02F0B66307BD5</key>
+		<key>21981BD422205F07E3594868193146EE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2C27A6AD68DA9FD7A13CBEFA3EA25D41</key>
+		<key>22A17EAE44512A167C52F52D67024F83</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,17 +102,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6D4F6A55958E0565DE28441BD7EDF94D</key>
+		<key>4E307F847AC3BEDF2FA9B74017BB9908</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6EAB47A7F417E8E016CE1EFFDF5029BD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8A84E6E1160C22F78C8F6AA07ED9EEC0</key>
+		<key>7166B8868F1A8AD86CF75945558FF914</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,7 +117,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8E31BE5ECFD4BB527F13D35057FBF39B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C094B8AFF903F670231857231174AF86</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C59EE95662AD4757E7FCE220DB1AFA41</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D1DC35DB2C695031A72543555FB23729</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E2AC85D95FA506270692FF3F9B06EBF7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

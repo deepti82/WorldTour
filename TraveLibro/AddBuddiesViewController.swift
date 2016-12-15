@@ -32,63 +32,75 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         print("added friends: \(addedFriends), \(currentUser["_id"].string!)")
         
-        for friend in addedFriends {
-            
-            addedFriendUsers.append(friend)
-            
-        }
         if whichView == "TL" {
             
-            let finalFriends: JSON = JSON(addedFriendUsers)
-            
-            request.addBuddiesOTG(finalFriends, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, journeyId: uniqueId, inMiddle: false, journeyName: journeyName, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
+            if(addedFriends.count == 0) {
+                let allControllers = self.navigationController!.viewControllers
+                for vc in allControllers {
                     
-                    if response.error != nil {
+                    if vc.isKind(of: NewTLViewController.self) {
                         
-                        print("response: \(response.error?.localizedDescription)")
+                        print("is kind of class new tl view controller")
+                        let backVC = vc as! NewTLViewController
+                        backVC.countLabel = self.addedFriends.count
+                        backVC.addedBuddies = self.addedFriends
+                        backVC.getJourney()
+                        backVC.showBuddies()
+                        self.navigationController!.popToViewController(backVC, animated: true)
                         
                     }
-                        
-                    else if response["value"].bool! {
-                        
-//                        print("response: \(response.description)")
-                        let allControllers = self.navigationController!.viewControllers
-//                        print("count: \(allControllers)")
-                        for vc in allControllers {
-                            
-                            if vc.isKind(of: NewTLViewController.self) {
+                    
+                }
+            } else {
+                for friend in addedFriends {
+                    addedFriendUsers.append(friend)
+                }
+                let finalFriends: JSON = JSON(addedFriendUsers)
+                request.addBuddiesOTG(finalFriends, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, journeyId: uniqueId, inMiddle: false, journeyName: journeyName, completion: {(response) in
+                    
+                    DispatchQueue.main.async(execute: {
+                        if response.error != nil {
+                            print("response: \(response.error?.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            let allControllers = self.navigationController!.viewControllers
+                            for vc in allControllers {
                                 
-                                print("is kind of class new tl view controller")
-                                let backVC = vc as! NewTLViewController
-                                backVC.countLabel = self.addedFriends.count
-                                backVC.addedBuddies = self.addedFriends
-//                                backVC.getCurrentOTG()
-                                backVC.showBuddies()
-                                self.navigationController!.popToViewController(backVC, animated: true)
+                                if vc.isKind(of: NewTLViewController.self) {
+                                    
+                                    print("is kind of class new tl view controller")
+                                    let backVC = vc as! NewTLViewController
+                                    backVC.countLabel = self.addedFriends.count
+                                    backVC.addedBuddies = self.addedFriends
+                                    //                                backVC.getCurrentOTG()
+                                    backVC.showBuddies()
+                                    self.navigationController!.popToViewController(backVC, animated: true)
+                                    
+                                }
                                 
                             }
                             
                         }
+                            
+                        else {
+                            
+                            let alert = UIAlertController(title: nil, message:
+                                "response error!", preferredStyle: .alert)
+                            self.present(alert, animated: false, completion: nil)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler:
+                                {action in
+                                    alert.dismiss(animated: true, completion: nil)
+                            }))
+                            print("response error")
+                            
+                        }
                         
-                    }
-                    
-                    else {
-                        
-                        let alert = UIAlertController(title: nil, message:
-                            "response error!", preferredStyle: .alert)
-                        self.present(alert, animated: false, completion: nil)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler:
-                            {action in
-                                alert.dismiss(animated: true, completion: nil)
-                        }))
-                        print("response error")
-                        
-                    }
-                    
+                    })
                 })
-            })
+            }
+           
+            
+            
             
         }
         else if whichView == "TLMiddle" {
@@ -350,9 +362,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
             if data != nil {
                 
-                print("inside if statement \(cell.buddyProfileImage.image)")
+                
                 cell.buddyProfileImage.image = UIImage(data: data)
-                print("sideMenu.profilePicture.image: \(cell.buddyProfileImage.image)")
+                
                 cell.buddyProfileImage.image = UIImage(data: data)
                 makeTLProfilePicture(cell.buddyProfileImage)
             }
@@ -469,9 +481,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             if data != nil {
                 
                 //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
-                print("inside if statement \(cell.buddyDp.image)")
                 cell.buddyDp.image = UIImage(data: data!)
-                print("sideMenu.profilePicture.image: \(cell.buddyDp.image)")
+
                 cell.buddyDp.image = UIImage(data: data!)
                 makeTLProfilePicture(cell.buddyDp)
             }

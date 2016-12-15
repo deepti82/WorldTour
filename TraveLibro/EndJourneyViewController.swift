@@ -204,10 +204,6 @@ class EndJourneyViewController: UIViewController {
                     let image = self.journey["startLocationPic"].string!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                     self.makeCoverPicture(image: image!)
                     
-                    // installed will remove spacing and constraints
-                    //self.changePhotoText.isHidden = true
-                    //self.changePhotoButton.isHidden = true
-                    
                 }
                 
             }
@@ -265,7 +261,6 @@ class EndJourneyViewController: UIViewController {
         request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
@@ -273,8 +268,10 @@ class EndJourneyViewController: UIViewController {
                 }
                 else if response["value"].bool! {
                     
-                    print("response arrived!")
-                    self.goBack()
+                    request.getUser(user.getExistingUser(), completion: {(request) in
+                        currentUser = request["data"]
+                        self.goBack()
+                    })
                     
                 }
                 else {

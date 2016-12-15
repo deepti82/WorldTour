@@ -63,67 +63,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         
-//        if initialEntrance {
-//            
-////            doRemove = false
-//            slideMenuController()?.changeMainViewController(self, close: false)
-//            initialEntrance = false
-//            
-//        }
-        
     }
     
     var allCount: JSON!
-    
-    func getCount() {
-        
-        print("in get count")
-        var userId = ""
-        
-        if user.getExistingUser() != "" {
-            
-            userId = user.getExistingUser()
-        }
-        else if currentUser["_id"] != nil {
-            userId = currentUser["_id"].string!
-        }
-        
-        request.getBucketListCount(userId, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error?.localizedDescription)")
-                    
-                }
-                    
-                else if response["value"].bool! {
-                    
-                    self.allCount = response["data"]
-                    self.setCount()
-                }
-                    
-                else {
-                    
-                    print("response error: \(response["error"])")
-                    
-                }
-                
-            })
-            
-            
-        })
-        
-        
-    }
+
     
     func setCount() {
         
-        print("in set count")
-        
         for i in 0 ..< labels.count {
-            
+            print(allCount);
             switch i {
             case 0:
                 labels[0] = "\(allCount["following_count"]) Following"
@@ -164,15 +112,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.navigationController?.isNavigationBarHidden = false
         getDarkBackGround(self)
         
-        print("navigation: \(self.navigationController)")
-        
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
-        
-        getUser()
+        self.allCount = currentUser
+        self.getUser()
         
         locationIcon.text = String(format: "%C", faicon["location"]!)
         
@@ -188,22 +134,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
         footer.notifyView.addGestureRecognizer(tapFour)
         
-        getCount()
+        
         
         profilePicture.isHidden = true
         
         MAMatterView.layer.opacity = 0.0
-//         let footer = getFooter(frame: CGRect(x: 0, y: self.view.frame.height - 45, width: self.view.frame.width, height: 45))
-//        footer.layer.zPosition = 100
-//        self.view.addSubview(footer)
         
-//        let profileSquare = ProfileMainView(frame: CGRect(x: 10, y: self.view.frame.size.height/3 - 100, width: self.view.frame.size.width - 20,  height: 500))
-//        self.view.addSubview(profileSquare)
-        
-//        MAMScrollView = UIScrollView(frame: CGRect(x: 10, y: self.view.frame.size.height/3 - 45, width: self.view.frame.size.width - 20, height: 600))
-//        MAMScrollView!.scrollEnabled = true
-//        self.view.addSubview(MAMScrollView!)
-//      
         MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
         
         let MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
@@ -213,8 +149,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         var imageName = ""
         
         if currentUser != nil {
-            
-            //            print("inside if statement \(sideMenu.profilePicture)")
             self.title = "\(currentUser["firstName"])'s Profile"
             profileUsername.text = "\(currentUser["firstName"].string!) \(currentUser["lastName"].string!)"
             imageName = currentUser["profilePicture"].string!
@@ -226,13 +160,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             }
             
             if currentUser["homeCity"] != nil {
-                print("place homecity")
-                print(currentUser)
-                print(currentUser["homeCity"])
                 let place = currentUser["homeCity"].string!.components(separatedBy: ",")
-                
-                print("place: \(place)")
-                
                 placeLabel.text = " \(place[0])"
                 
             }
@@ -243,60 +171,21 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 
             }
             
-            
-            print("image: \(imageName)")
-            
             let isUrl = verifyUrl(imageName)
-            print("isUrl: \(isUrl)")
             
             if isUrl {
-                DispatchQueue.main.async(execute: {
-                    print("inside if statement")
-                    let data = try? Data(contentsOf: URL(string: imageName)!)
-                    
-                    if data != nil {
-                        
-                        print("some problem in data \(data)")
-                        //                uploadView.addButton.setImage(, forState: .Normal)
-                        self.profilePicture.image = UIImage(data: data!)
-                        //self.profilePicture.layer.zPosition = 100
-                        self.profilePicture.isHidden = true
-                        profile.image.image = UIImage(data: data!)
-    //                    makeTLProfilePicture(profile.image)
-                        makeTLProfilePicture(self.profilePicture)
-                    }
-                })
+                self.profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
+                self.profilePicture.isHidden = true
+                profile.image.hnk_setImageFromURL(URL(string:imageName)!)
             }
-                
             else {
-                
-                let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
-                
-//                print("getImageUrl: \(getImageUrl)")
-                
-                let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-//                print("data: \(data)")
-                
-                if data != nil {
-                    
-                    //uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
-                    print("inside if statement \(profilePicture.image)")
-                    profilePicture.image = UIImage(data: data!)
-                    //self.profilePicture.layer.zPosition = 100
-                    self.profilePicture.isHidden = true
-                    print("sideMenu.profilePicture.image: \(profilePicture.image)")
-                    profile.image.image = UIImage(data: data!)
-                    makeTLProfilePicture(profilePicture)
-                }
-                
+                let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
+                profilePicture.hnk_setImageFromURL(getImageUrl!)
+                profile.image.hnk_setImageFromURL(getImageUrl!)
             }
-            
+            makeTLProfilePicture(self.profilePicture)
         }
 
-//
-//        MAMScrollView!.contentSize.height = 750
-//        MAMScrollView?.delegate = self
-        
         let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 110, width: self.view.frame.size.width - 10, height: 55))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
@@ -310,23 +199,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
         
-//        self.view.bringSubviewToFront(profileCollectionView)
-        
-//        self.addObserver(self, forKeyPath: "profileViewYPosition", options: .New, context: nil)
-        
-//        profileViewYPosition = profileViewY
-        
-//        self.view.setNeedsDisplay()
-        
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
         
     }
-    
-//    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-//        
-//        print("this function is getting called!!")
-//        
-//    }
     
     func getUser() {
         
@@ -353,17 +228,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             }
             
             user.setUser(currentUser["_id"].stringValue, name: currentUser["name"].stringValue, useremail: currentUser["email"].stringValue, profilepicture: currentUser["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: currentUser["userBadgeImage"].stringValue, homecountry: currentUser["homeCountry"]["name"].stringValue, homecity: currentUser["homeCity"].stringValue, isloggedin: currentUser["alreadyLoggedIn"].bool!)
+            
+            setCount()
         }
         else {
             
             let currentUserId = user.getExistingUser()
             let myUser = user.getUser(currentUserId)
             let nameTemp = myUser.0.components(separatedBy: " ")
-//            currentUser = ["_id": currentUserId, "name": myUser.0, "firstName": nameTemp[0], "lastName": nameTemp[1], "email": myUser.1, "homeCity": myUser.6, "profilePicture": myUser.4, "homeCountry": ["name": myUser.6]]
-            
-            print("my user:  \((myUser.0)) \(currentUser["name"]) \(nameTemp)")
-            print("my user 2:  \(currentUser)")
-            
+            setCount()
         }
         
     }
@@ -374,7 +247,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
             if vc.isKind(of: NewTLViewController.self) {
                 
-                print("inside if statement")
                 
             }
             
@@ -389,81 +261,41 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func gotoOTG(_ sender: UITapGestureRecognizer) {
         
+        
+        
+        
         var isThere = 0
         let vcs = self.navigationController!.viewControllers
         
         for vc in vcs {
-            
             if vc.isKind(of: NewTLViewController.self) {
-                
-                print("already contains a otg")
                 self.navigationController!.popToViewController(vc, animated: false)
                 isThere = 1
-                
             }
-            
-            
         }
-        
+
         if isThere == 0 {
-            
             let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
             tlVC.isJourney = false
+            if(currentUser["journeyId"].stringValue == "-1") {
+                isJourneyOngoing = false
+                tlVC.showJourneyOngoing(journey: JSON(""))
+            }
             self.navigationController?.pushViewController(tlVC, animated: false)
             
+            
         }
-        
-//        if vcs.contains(tlVC) {
-//            
-//            
-//            
-//        }
-        
-//        request.getJourney(currentUser["_id"].string!, completion: {(response) in
-//            
-//            if response.error != nil {
-//                
-//                print("error: \(response.error!.localizedDescription)")
-//            }
-//            else if response["value"].bool! {
-//                
-//                let tlVC = self.storyboard!.instantiateViewControllerWithIdentifier("newTL") as! NewTLViewController
-//                tlVC.isJourney = true
-//                self.navigationController?.pushViewController(tlVC, animated: false)
-//                
-//            }
-//            else if response["data"]["error"] == nil {
-//                
-//                if flag == 0 {
-                    
-//                }
-                
-//            }
-//            else {
-//                
-//                print("response error")
-//                
-//            }
-//            
-//        })
-        
     }
     
     func MAMStacKTap(_ sender: UITapGestureRecognizer) {
-        
         self.MAMTapped(sender)
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func search(_ sender: AnyObject) {
-        
-        print("Search Tapped!")
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -475,11 +307,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let textTwo = NSMutableAttributedString(string: valueArray[1], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 12)!])
         
         if valueArray.count > 2 {
-        
             let textThree = NSAttributedString(string: valueArray[2], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 12)!])
             textTwo.append(NSAttributedString(string: " "))
             textTwo.append(textThree)
-            
         }
         
         let fullText = NSMutableAttributedString(attributedString: textOne)
@@ -488,7 +318,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProfileDetailCell
         cell.infoLabel.attributedText = fullText
-//        print("Loading \(cell.infoLabel.attributedText)")
         
         if (indexPath as NSIndexPath).row == labels.count - 1 {
             cell.separatorView.isHidden = true
@@ -498,9 +327,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return labels.count
-        
     }
     
     func gotoBucketList() {
@@ -510,9 +337,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             DispatchQueue.main.async(execute: {
                 
                 if let error = response.error {
-                    
-                    print("error- \(error.code): \(error.localizedDescription)")
-                    
                 }
                     
                 else if response["value"].bool! {
@@ -613,36 +437,23 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             followersVC.whichView = "Following"
             self.navigationController?.pushViewController(followersVC, animated: true)
             break
-//            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("NoFollowing") as! NoFollowingViewController
-//            self.navigationController?.pushViewController(followersVC, animated: true)
-//            break
         case 1:
-//            let followersVC = storyboard?.instantiateViewControllerWithIdentifier("followers") as! FollowersViewController
-//            followersVC.whichView = "No Followers"
-//            self.navigationController?.pushViewController(followersVC, animated: true)
             let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
             followersVC.whichView = "Followers"
             self.navigationController?.pushViewController(followersVC, animated: true)
             break
         case 2:
             gotoCountriesVisited()
-//            let bucketVC = storyboard?.instantiateViewControllerWithIdentifier("bucketList") as! BucketListTableViewController
-//            bucketVC.whichView = "CountriesVisited"
-//            self.navigationController?.pushViewController(bucketVC, animated: true)
-//            let noBucketVC = storyboard?.instantiateViewControllerWithIdentifier("emptyPages") as! EmptyPagesViewController
-//            self.navigationController?.pushViewController(noBucketVC, animated: true)
             break
         case 3:
             gotoBucketList()
             break
         case 4 :
             let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
-//            journeys.whichView = "All"
             self.navigationController?.pushViewController(journeys, animated: true)
             break
         case 5:
             let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
-//            journeys.whichView = "All"
             self.navigationController?.pushViewController(journeys, animated: true)
             break
         case 6 :
@@ -659,32 +470,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         }
         
     }
-    
-//    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-//        
-//        print("fn 2")
-//        scrollView.delegate = self
-//        MAMScrollView?.layer.zPosition = 20
-//        
-//    }
-//    
-//    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        
-//        
-//        MAMScrollView?.layer.zPosition = 0
-//    }
-//    
-//    func scrollViewDidScrollToTop(scrollView: UIScrollView) {
-//        
-//        MAMScrollView?.layer.zPosition = 20
-//        
-//    }
-//    
-//    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-//        
-//        MAMScrollView?.layer.zPosition = 0
-//        
-//    }
     
     func MyLifeDetailsShow(_ sender: AnyObject) {
         

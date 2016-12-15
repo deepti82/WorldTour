@@ -13,6 +13,8 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
 //    let variousViews = ["One", "Two", "Three", "Four", "Five"]
 //    var quickTwo: QuickIteneraryTwo!
 //    var quickOne: QuickIteneraryOne!
+    var selectedView = false
+    var inx = 0
      var viewControllers1 = [UIViewController]()
     
     override func viewDidLoad() {
@@ -40,7 +42,13 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         viewControllers1.append(quickThree)
         viewControllers1.append(quickFour)
         viewControllers1.append(quickFive)
-        setViewControllers([quickOne], direction: .forward, animated: false, completion: nil)
+        if selectedView {
+            setViewControllers([quickThree], direction: .forward, animated: false, completion: nil)
+            inx = 2
+        }else{
+            setViewControllers([quickOne], direction: .forward, animated: false, completion: nil)
+            inx = 0
+        }
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -124,7 +132,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         
-        return 0
+        return inx
     }
 
 }
