@@ -70,39 +70,45 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func setCount() {
         
-        for i in 0 ..< labels.count {
-            print(allCount);
-            switch i {
-            case 0:
-                labels[0] = "\(allCount["following_count"]) Following"
-                break
-            case 1:
-                labels[1] = "\(allCount["followers_count"]) Followers"
-                break
-            case 2:
-                labels[2] = "\(allCount["countriesVisited_count"]) Countries Visited"
-                break
-            case 3:
-                labels[3] = "\(allCount["bucketList_count"]) Bucket List"
-                break
-            case 4:
-                labels[4] = "\(allCount["journeysCreated_count"]) Journeys"
-                break
-            case 5:
-                labels[5] = "\(allCount["checkins_count"]) Check Ins"
-                break
-            case 6:
-                labels[6] = "\(allCount["photos_count"]) Photos"
-                break
-            case 7:
-                labels[7] = "\(allCount["reviews_count"]) Reviews"
-                break
-            default:
-                break
+        if (allCount["following_count"].stringValue == "" || allCount["following_count"].stringValue == " ")
+        {
+            print("ERROR OCCUERED");
+        } else {
+            for i in 0 ..< labels.count {
+                
+                switch i {
+                case 0:
+                    labels[0] = allCount["following_count"].stringValue + " Following"
+                    break
+                case 1:
+                    labels[1] = allCount["followers_count"].stringValue + " Followers"
+                    break
+                case 2:
+                    labels[2] = allCount["countriesVisited_count"].stringValue + " Countries Visited"
+                    break
+                case 3:
+                    labels[3] = allCount["bucketList_count"].stringValue + " Bucket List"
+                    break
+                case 4:
+                    labels[4] = allCount["journeysCreated_count"].stringValue + " Journeys"
+                    break
+                case 5:
+                    labels[5] = allCount["checkins_count"].stringValue + " Check Ins"
+                    break
+                case 6:
+                    labels[6] = allCount["photos_count"].stringValue + " Photos"
+                    break
+                case 7:
+                    labels[7] = allCount["reviews_count"].stringValue + " Reviews"
+                    break
+                default:
+                    break
+                }
             }
+            
+            profileCollectionView.reloadData()
         }
         
-        profileCollectionView.reloadData()
     }
     
     
@@ -226,17 +232,27 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 socialType = "facebook"
                 socialId = currentUser["facebookID"].string!
             }
-            
             user.setUser(currentUser["_id"].stringValue, name: currentUser["name"].stringValue, useremail: currentUser["email"].stringValue, profilepicture: currentUser["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: currentUser["userBadgeImage"].stringValue, homecountry: currentUser["homeCountry"]["name"].stringValue, homecity: currentUser["homeCity"].stringValue, isloggedin: currentUser["alreadyLoggedIn"].bool!)
-            
-            setCount()
+            request.getUser(user.getExistingUser(), completion: {(request) in
+                DispatchQueue.main.async {
+                    currentUser = request["data"]
+                    self.setCount()
+                }
+            });
+           
         }
         else {
-            
             let currentUserId = user.getExistingUser()
             let myUser = user.getUser(currentUserId)
             let nameTemp = myUser.0.components(separatedBy: " ")
-            setCount()
+            request.getUser(user.getExistingUser(), completion: {(request) in
+                DispatchQueue.main.async {
+                    currentUser = request["data"]
+                    self.setCount()
+                }
+            });
+            
+            
         }
         
     }
@@ -301,6 +317,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let myValues = labels[(indexPath as NSIndexPath).item]
+        
+        print(myValues);
         let valueArray = myValues.characters.split{$0 == " "}.map(String.init)
         
         let textOne = NSAttributedString(string: valueArray[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
