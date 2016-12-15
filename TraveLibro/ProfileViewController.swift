@@ -134,7 +134,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
         footer.notifyView.addGestureRecognizer(tapFour)
         self.allCount = currentUser
-        setCount()
+        
         
         profilePicture.isHidden = true
         
@@ -228,12 +228,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             }
             
             user.setUser(currentUser["_id"].stringValue, name: currentUser["name"].stringValue, useremail: currentUser["email"].stringValue, profilepicture: currentUser["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: currentUser["userBadgeImage"].stringValue, homecountry: currentUser["homeCountry"]["name"].stringValue, homecity: currentUser["homeCity"].stringValue, isloggedin: currentUser["alreadyLoggedIn"].bool!)
+            
+            setCount()
         }
         else {
             
             let currentUserId = user.getExistingUser()
             let myUser = user.getUser(currentUserId)
             let nameTemp = myUser.0.components(separatedBy: " ")
+            setCount()
         }
         
     }
