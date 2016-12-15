@@ -17,6 +17,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var settingsViewController: UIViewController!
     var localLifeController: UIViewController!
     var myProfileViewController: UIViewController!
+    var signOutViewController: UIViewController!
     
     let labels = ["Popular Journeys", "Explore Destinations", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
     
@@ -89,6 +90,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let myProfileController = storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         self.myProfileViewController = UINavigationController(rootViewController: myProfileController)
         
+        let signoutView = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+        self.signOutViewController =  UINavigationController(rootViewController: signoutView)
+        
         self.mainViewController = UINavigationController(rootViewController: homeController)
    }
     
@@ -141,8 +145,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
         case 7:
             user.dropTable()
-            let passcodemodal = self.storyboard?.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
-            self.present(passcodemodal, animated: true, completion: nil)
+            
+            self.slideMenuController()?.changeMainViewController(self.signOutViewController, close: true)
         case 8:
             self.slideMenuController()?.changeMainViewController(self.localLifeController, close: true)
         default:

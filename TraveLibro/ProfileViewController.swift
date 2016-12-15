@@ -191,7 +191,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             }
             makeTLProfilePicture(self.profilePicture)
         }
-
+        
         let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 110, width: self.view.frame.size.width - 10, height: 55))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
@@ -207,6 +207,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
         
+    }
+    
+    
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+       super.viewDidLoad()
     }
     
     func getUser() {
