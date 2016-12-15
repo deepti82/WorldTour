@@ -23,6 +23,9 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     let imagePicker = UIImagePickerController()
     var selectPhotosCount = 10
         override func viewDidLoad() {
+            
+        print("width for iphone")
+        print(self.view.frame.width)
         super.viewDidLoad()
         photosCollection.dataSource = self
         photosCollection.delegate = self
@@ -57,6 +60,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.thumbnail1.count
     }
@@ -68,6 +73,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         cell.photosImage.image = self.thumbnail1[indexPath.row]
         return cell
     }
+    
     
     
     func addTripPhotosGallery(_ sender: UIButton){

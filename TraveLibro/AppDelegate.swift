@@ -49,6 +49,7 @@ var quickItinery: JSON = []
 var selectedCountry: JSON = []
 var selectedCity: JSON = []
 var selectedStatus: String = ""
+var destinationVisited: JSON = []
 
 var leftViewController: SideNavigationMenuViewController!
 

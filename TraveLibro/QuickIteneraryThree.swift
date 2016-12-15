@@ -106,6 +106,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         showCountryButton.addTarget(self, action: #selector(removeCountryCity(_:)), for: .touchUpInside)
         //increaseHeight(buttonHeight: 20)
         if countryVisited != nil && cityVisited != nil {
+            var a:JSON = ["name":"\(countryVisited.text!):  \(cityVisited.text!)"]
+            destinationVisited.arrayObject?.append(a.object)
             styleHorizontalButton(showCountryButton, buttonTitle: "\(countryVisited.text!):  \(cityVisited.text!)")
             showCountryButton.translatesAutoresizingMaskIntoConstraints = true
             

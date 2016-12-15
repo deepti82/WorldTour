@@ -19,7 +19,7 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         super.viewDidLoad()
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.popVCIn(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
@@ -39,6 +39,13 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
 //                self.tableView.reloadData()
 //            })
         }
+    }
+    
+    func popVCIn(_ sender: UIButton) {
+        
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+        next.selectedView = true
+        self.navigationController?.pushViewController(next, animated: true)
     }
     
     func searchCityFun(search: String) {
@@ -88,6 +95,7 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         }else{
             if selectedStatus == "country" {
                 selectedCountry = countries[indexPath.row]
+                selectedCity = []
             }else{
                 selectedCity = countries[indexPath.row]
             }        }
