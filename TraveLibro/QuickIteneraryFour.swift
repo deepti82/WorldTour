@@ -32,6 +32,15 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+//        if action == #selector(copy(_:)) {
+//            return false
+//        }
+        
+        return false
+    }
+    
     func boldText(_ sender: UIButton) {
         let range = descriptionTextView.selectedRange
         let string = NSMutableAttributedString(attributedString: descriptionTextView.attributedText)
