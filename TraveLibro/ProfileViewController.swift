@@ -71,7 +71,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func setCount() {
         
         for i in 0 ..< labels.count {
-            
+            print(allCount);
             switch i {
             case 0:
                 labels[0] = "\(allCount["following_count"]) Following"
@@ -117,7 +117,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
-        
+        self.allCount = currentUser
         self.getUser()
         
         locationIcon.text = String(format: "%C", faicon["location"]!)
@@ -133,7 +133,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         footer.TLView.addGestureRecognizer(tlTap)
         let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
         footer.notifyView.addGestureRecognizer(tapFour)
-        self.allCount = currentUser
+        
         
         
         profilePicture.isHidden = true
