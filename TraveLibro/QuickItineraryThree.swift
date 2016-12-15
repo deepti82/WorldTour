@@ -10,15 +10,13 @@ import UIKit
 
 class QuickItineraryThree: UIView, UITextFieldDelegate {
 
-   
-    @IBOutlet weak var addCountry: UIButton!
-    @IBOutlet var quickThree: UIView!
     
-    @IBOutlet weak var cityVisitedText: UITextField!
-    @IBOutlet weak var countryVisitedText: UITextField!
-    @IBOutlet weak var showCountryCityView: UIView!
-    @IBOutlet weak var cityDropDown: UIButton!
-    @IBOutlet weak var countryDropDown: UIButton!
+   
+    @IBOutlet var quickThree: UIView!
+   
+    var showCountryButton = UIButton(frame: CGRect(x: 0, y: 0, width: 300, height: 20))
+    var cancelLabel = UILabel(frame: CGRect(x: 5, y: 5, width: 10, height: 10))
+
     
     
     
@@ -30,13 +28,16 @@ class QuickItineraryThree: UIView, UITextFieldDelegate {
 //        addCountry.layer.cornerRadius = 5
 //        addCity.layer.cornerRadius = 5
        
-        
-        countryDropDown.isHidden = true
-        cityDropDown.isHidden = true
+        showCountryButton.layoutIfNeeded()
+        showCountryButton.titleLabel?.textAlignment = NSTextAlignment.left
+        showCountryButton.setTitleColor(UIColor.black, for: .normal)
+        cancelLabel.font = UIFont(name: "FontAwesome", size: 15)
+        cancelLabel.text = String(format: "%C", faicon["close"]!)
+        cancelLabel.textColor = UIColor(colorLiteralRed: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+        showCountryButton.addSubview(cancelLabel)
+        showCountryButton.sizeToFit()
         
 
- 
-        
         
     }
         
@@ -54,5 +55,9 @@ class QuickItineraryThree: UIView, UITextFieldDelegate {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
          }
+    
+    
+        
+               //showCountryButton.backgroundColor = UIColor.yellow
     
    }

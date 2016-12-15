@@ -851,6 +851,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				847AACF81E02AE5F001C8ACA /* New Group */,
 				C2A36D021DF92FBD0091AD56 /* QuickItineraryPreview */,
 				3AFB01C41DDC30AC00BCD523 /* AddRatingCountries */,
 				C2889D3D1DB1180200B302AF /* ShowRating */,
@@ -1073,6 +1074,13 @@
 				163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		847AACF81E02AE5F001C8ACA /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		C20163DE1D26910D00A2F70B /* Models */ = {

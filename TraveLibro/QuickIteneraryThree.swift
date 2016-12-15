@@ -9,7 +9,7 @@
 import UIKit
 
 class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDelegate {
-    
+    let three = QuickItineraryThree()
     @IBOutlet weak var cityTableTitle: UILabel!
     @IBOutlet weak var countryTableTitle: UILabel!
     var countries: JSON = []
@@ -21,7 +21,9 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     @IBOutlet weak var addCountry: UIButton!
     @IBOutlet weak var cityVisited: UITextField!
     @IBOutlet weak var countryVisited: UITextField!
-    let verticalLayout = VerticalLayout(width: 360)
+    let verticalLayout = VerticalLayout(width: 300)
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("demo checking checking")
@@ -73,7 +75,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         self.navigationController?.pushViewController(next, animated: true)
     }
     
-    
     func getCountry() {
         request.getAllCountries({(request) in
             print(request["data"])
@@ -89,23 +90,15 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     
     
     func addCountryFunction(_ sender: UIButton) {
-        
-        let showCountryButton = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 20))
         //showCountryButton.backgroundColor = UIColor.yellow
-        showCountryButton.layoutIfNeeded()
-        showCountryButton.titleLabel?.textAlignment = NSTextAlignment.left
-        showCountryButton.setTitleColor(UIColor.black, for: .normal)
-        verticalLayout.addSubview(showCountryButton)
-        let cancelLabel = UILabel(frame: CGRect(x: 5, y: 5, width: 10, height: 10))
-        cancelLabel.font = UIFont(name: "FontAwesome", size: 15)
-        cancelLabel.text = String(format: "%C", faicon["close"]!)
-        cancelLabel.textColor = UIColor(colorLiteralRed: 35/255, green: 45/255, blue: 74/255, alpha: 1)
-        showCountryButton.addSubview(cancelLabel)
+        three.quickThree.frame = CGRect(x: 14 , y: 209, width: 300, height: 58)
+        verticalLayout.addSubview(three.showCountryButton)
+        three.showCountryButton.addSubview(three.cancelLabel)
         
-        showCountryButton.addTarget(self, action: #selector(removeCountryCity(_:)), for: .touchUpInside)
+        three.showCountryButton.addTarget(self, action: #selector(removeCountryCity(_:)), for: .touchUpInside)
         //increaseHeight(buttonHeight: 20)
         if countryVisited != nil && cityVisited != nil {
-            styleHorizontalButton(showCountryButton, buttonTitle: "\(countryVisited.text!), \(cityVisited.text!)")
+            styleHorizontalButton(three.showCountryButton, buttonTitle: "\(countryVisited.text!), \(cityVisited.text!)")
         }
     }
     

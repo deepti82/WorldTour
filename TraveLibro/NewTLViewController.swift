@@ -1047,6 +1047,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         mainScroll.delegate = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
+        
     }
     
     
@@ -1960,9 +1964,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     //    var keyboardHidden = false
     
+     var viewHeight = 0
     
     func keyboardWillShow(_ notification: Notification) {
-        
+        view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
 
@@ -1975,17 +1980,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
     }
-    
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
             self.view.frame.origin.y += keyboardSize.height
             }
-        }
+            }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        otgView.nameJourneyTF.resignFirstResponder()
         otgView.locationLabel.resignFirstResponder()
         //        addView.thoughtsTextView.resignFirstResponder()
         self.title = "On The Go" //otgView.nameJourneyTF.text
@@ -1999,12 +2002,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             journeyName = otgView.nameJourneyTF.text
             otgView.nameJourneyTF.resignFirstResponder()
             
-            height = 100.0
-            mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
+            height = 100
+//            mainScroll.animation.makeY(mainScroll.frame.origin.y - height).thenAfter(0.3).animate(0.3)
             //        otgView.animation.makeY(mainScroll.frame.origin.y - height).animate(0.5)
             otgView.detectLocationView.layer.opacity = 0.0
             otgView.detectLocationView.isHidden = false
-            otgView.detectLocationView.animation.thenAfter(0.5).makeOpacity(1.0).animate(0.5)
+            otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
             
         }
         
