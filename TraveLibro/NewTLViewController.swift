@@ -190,12 +190,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func addHeightToNewActivity(_ height: CGFloat) {
-        
-        //        print("height: \(height), \(newScroll.contentSize.height)")
         addView.frame.size.height = addView.frame.height + height
-        //addView.blurView.frame.size.height = addView.frame.height
-        //addView.darkBlur = UIBlurEffect(style: .Dark)
-        //addView.blurView = UIVisualEffectView(effect: addView.darkBlur)
         newScroll.contentSize.height = addView.frame.height
         newScroll.bounces = false
         newScroll.showsVerticalScrollIndicator = false
@@ -1047,6 +1042,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         mainScroll.delegate = self
         
+
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
@@ -1074,12 +1070,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
     }
     
-    //    var hideStatusBar = false
-    //
-    //    func didSwipe() {
-    //        hideStatusBar = true
-    //    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -1104,19 +1094,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.popVC(sender)
             
         }
-        
-        
-        //        let viewControllers = self.navigationController!.viewControllers
-        
-        //        for vc in viewControllers {
-        //
-        //            if vc.isKindOfClass(ProfileViewController) {
-        //
-        //                self.navigationController!.showViewController(vc, sender: nil)
-        //
-        //            }
-        //
-        //        }
         
     }
     
@@ -1416,7 +1393,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         default:
             break
         }
-        
+        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height)
+        mainScroll.setContentOffset(bottomOffset, animated: true)
     }
     
     func openSinglePhoto(_ sender: AnyObject) {

@@ -10,22 +10,13 @@ extension UIViewController {
     
     func gotoNationalityPage() {
         
-        print("inside nationality function")
-        
-        //        let tempStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        let nationalityPage = self.storyboard!.instantiateViewControllerWithIdentifier("SelectCountryVC") as! SelectCountryViewController
-        //        print("nationality: \(nationalityPage)")
-        //        nationalityPage.whichView = "selectNationality"
-        //        self.navigationController?.pushViewController(nationalityPage, animated: true)
-                print("navigation: \(self.storyboard)")
-        //        print("navigation: \(self.navigationController)")
-        
         if currentUser["alreadyLoggedIn"].bool! {
             
             print("storyboard: \(navigation)")
             
                         profileVC.initialEntrance = true
                         self.slideMenuController()?.changeMainViewController(profileVC, close: true)
+            
             navigation.pushViewController(profileVC, animated: true)
             
         } else {

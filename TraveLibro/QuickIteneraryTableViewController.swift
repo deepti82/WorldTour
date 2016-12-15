@@ -19,7 +19,7 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         super.viewDidLoad()
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.popVCIn(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
@@ -41,12 +41,20 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         }
     }
     
+    func popVCIn(_ sender: UIButton) {
+        
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+        next.selectedView = true
+        self.navigationController?.pushViewController(next, animated: true)
+    }
+    
     func searchCityFun(search: String) {
         request.getAllCityC(search, country: selectedCountry["_id"].stringValue, completion:{(request) in
             DispatchQueue.main.async(execute: {
-                print(request["data"])
+                if (request["data"].count != 0){
                 self.countriesSearchResults = request["data"]
                 self.tableView.reloadData()
+                }
             })
         })
     }
@@ -80,19 +88,17 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(countriesSearchResults)
+        
         if isSearch {
-            selectedCity.arrayObject?.append(countriesSearchResults[indexPath.row])
+            let c:JSON = countriesSearchResults[indexPath.row]
+            selectedCity.arrayObject?.append(c.object)
         }else{
             if selectedStatus == "country" {
                 selectedCountry = countries[indexPath.row]
+                selectedCity = []
             }else{
                 selectedCity = countries[indexPath.row]
-            }
-//            let next = self.storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
-//            next.selectedView = true
-//            self.navigationController?.pushViewController(next, animated: true)
-        }
+            }        }
         let next = self.storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
         next.selectedView = true
         self.navigationController?.pushViewController(next, animated: true)

@@ -23,6 +23,7 @@ func verifyUrl (_ urlString: String?) -> Bool {
     return false
 }
 
+
 class SocialLoginClass: UIViewController {
     
     let signIn = SignInViewController()
@@ -169,30 +170,6 @@ class SocialLoginClass: UIViewController {
                 } catch let error {
                     print("got an error creating the request: \(error)")
                 }
-                //
-                ////                do {
-                ////                    let opt = try HTTP.GET("https://graph.facebook.com/v2.5/me/picture?redirect=0&me/picture?redirect=0&height=1000&width=1000&access_token=\(accessToken)")
-                ////                    opt.start { response in
-                ////                        if let err = response.error {
-                ////                            print("error: \(err.localizedDescription)")
-                ////                            return //also notify app of failure as needed
-                ////                        }
-                ////
-                ////                        print("opt finished: \(response.description)")
-                ////                        let json = JSON(data: response.data)
-                ////                        print("picture url: \(json["data"]["url"].string!)")
-                ////
-                ////                    }
-                ////                } catch let error {
-                ////                    print("got an error creating the request: \(error)")
-                ////                }
-                //
-                //            }
-                //            else
-                //            {
-                //                print(error!.localizedDescription)
-                //            }
-                
             }
         }
     }
@@ -234,13 +211,6 @@ class SocialLoginClass: UIViewController {
                 
                 print("session response: \(session!.userID)")
                 print("signed in as \(session!.userName)");
-                //                let client2 = TWTRAPIClient()
-                //                client2.loadUserWithID(session!.userID) { (user, error) -> Void in
-                //
-                //                    print("user info: \(user)")
-                //
-                //                }
-                
                 let client = TWTRAPIClient()
                 let statusesShowEndpoint = "https://api.twitter.com/1.1/users/show.json"
                 let params = ["user_id": session!.userID, "screen_name": session!.userName]
@@ -293,48 +263,6 @@ class SocialLoginClass: UIViewController {
                 print("error: \(error!.localizedDescription)");
             }
         }
-        
-        
-        //        let client = TWTRAPIClient.clientWithCurrentUser()
-        //        let request = client.URLRequestWithMethod("GET",
-        //                                                  URL: "https://api.twitter.com/1.1/account/verify_credentials.json",
-        //                                                  parameters: ["include_email": "true", "skip_status": "true"],
-        //                                                  error: nil)
-        //
-        //        client.sendTwitterRequest(request) { response, data, connectionError in
-        //
-        //            print("response: \(response)")
-        //
-        //        }
-        
-        
-        
-        //        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.twitter.com")!)
-        
-        //        let provider = OAuth2(clientId: "1cyOA7neQUM0nm5BpN8qu6NXR", authorizationEndpoint: NSURL(fileURLWithPath: "https://api.twitter.com/oauth/authorize"), redirectEndpoint: NSURL(fileURLWithPath: ""), grantType: .Implicit)
-        //
-        //        Simplicity.login(provider) { (accessToken, error) in
-        //
-        //            print("accesstakoen: \(accessToken)")
-        //
-        //        }
-        //        do {
-        ////            let fbURL = "https://graph.facebook.com/v2.7/me?fields=id,name,email,location,gender,first_name,middle_name,last_name,birthday,picture&access_token=\(accessToken!)"
-        //            let opt = try HTTP.GET("https://api.twitter.com/oauth/request_token", parameters: nil, headers: ["oauth_consumer_key": "1cyOA7neQUM0nm5BpN8qu6NXR"])
-        ////            print("fbURL: \(fbURL)")
-        //            opt.start { response in
-        //                if let err = response.error {
-        //                    print("error: \(err.localizedDescription)")
-        //                    return //also notify app of failure as needed
-        //                }
-        //                
-        //                print("opt finished: \(response.description)")
-        //                let json = JSON(data: response.data)
-        //                print("json: \(json)")
-        //            }
-        //        } catch let error {
-        //            print("got an error creating the request: \(error)")
-        //        }
         
     }
     

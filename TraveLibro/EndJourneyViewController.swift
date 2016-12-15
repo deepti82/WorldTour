@@ -257,6 +257,15 @@ class EndJourneyViewController: UIViewController {
     func doneEndJourney(_ sender: UIButton) {
         
         print("clicked done journey")
+        request.getUser(user.getExistingUser(), completion: {(response) in
+            
+            DispatchQueue.main.async(execute: {
+                currentUser = response["data"]
+
+                self.goBack()
+            })
+            
+        })
         
         request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
             
@@ -268,10 +277,7 @@ class EndJourneyViewController: UIViewController {
                 }
                 else if response["value"].bool! {
                     
-                    request.getUser(user.getExistingUser(), completion: {(request) in
-                        currentUser = request["data"]
-                        self.goBack()
-                    })
+                   
                     
                 }
                 else {
@@ -291,8 +297,6 @@ class EndJourneyViewController: UIViewController {
     func goBack() {
         
         loader.showOverlay(self.view)
-        
-        print("\(self.navigationController!.viewControllers)")
         let allvcs = self.navigationController!.viewControllers
         
         for vc in allvcs {
@@ -300,6 +304,7 @@ class EndJourneyViewController: UIViewController {
             if vc.isKind(of: ProfileViewController.self) {
                 
                 self.navigationController!.popToViewController(vc, animated: true)
+                
                 
             }
         }
@@ -334,9 +339,6 @@ class EndJourneyViewController: UIViewController {
                         print("rating: \(Int(eachReview["rating"].string!))")
                         rateButton.ratingLabel.text = "Reviewed \(reviews[Int(eachReview["rating"].string!)! - 1])"
                         rateButton.rating.setImage(UIImage(named: reviewSmileys[Int(eachReview["rating"].string!)! - 1]), for: .normal)
-//                        rateButton.rateCheckInButton.tag = countriesVisited.index(of: eachRating)!
-//                        rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.postReview(_:)), for: .touchUpInside)
-//                        rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
                         rateCountriesLayoutMod.addSubview(rateButton)
                         addHeightToLayout(height: 150, layoutView: rateCountriesLayoutMod, scroll: rateCountriesScroll)
                     }
