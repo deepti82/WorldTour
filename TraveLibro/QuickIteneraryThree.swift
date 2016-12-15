@@ -24,8 +24,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     let verticalLayout = VerticalLayout(width: 360)
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("demo checking checking")
-        print(quickItinery)
         if selectedCountry.count != 0 {
             countryVisited.text = selectedCountry[0]["name"].string
         }
@@ -49,10 +47,16 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
             countryVisited.text = selectedCountry["name"].string
         }
         
+        
         if selectedCity.count != 0 {
             var a = ""
             for i in 0 ... selectedCity.count - 1 {
-                a = a + selectedCity[i]["name"].stringValue
+                if i == 0 {
+                    a = a + selectedCity[i]["name"].stringValue
+                }else{
+                    a = a + ", " + selectedCity[i]["name"].stringValue
+                }
+                
             }
             cityVisited.text = a
         }
@@ -60,14 +64,12 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     }
     
     @IBAction func countryChange(_ sender: UITextField) {
-        print("country clicked")
         selectedStatus = "country"
         let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
         self.navigationController?.pushViewController(next, animated: true)
     }
     
     @IBAction func cityChange(_ sender: UITextField) {
-        print("city clicked")
         selectedStatus = "city"
         let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
         self.navigationController?.pushViewController(next, animated: true)
@@ -76,7 +78,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     
     func getCountry() {
         request.getAllCountries({(request) in
-            print(request["data"])
             self.countries = request["data"]
             self.cityTableView.reloadData()
         })
@@ -90,7 +91,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     
     func addCountryFunction(_ sender: UIButton) {
         
-        let showCountryButton = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 20))
+        let showCountryButton = UIButton(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 20))
         //showCountryButton.backgroundColor = UIColor.yellow
         showCountryButton.layoutIfNeeded()
         showCountryButton.titleLabel?.textAlignment = NSTextAlignment.left
@@ -105,7 +106,9 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         showCountryButton.addTarget(self, action: #selector(removeCountryCity(_:)), for: .touchUpInside)
         //increaseHeight(buttonHeight: 20)
         if countryVisited != nil && cityVisited != nil {
-            styleHorizontalButton(showCountryButton, buttonTitle: "\(countryVisited.text!), \(cityVisited.text!)")
+            styleHorizontalButton(showCountryButton, buttonTitle: "\(countryVisited.text!):  \(cityVisited.text!)")
+            showCountryButton.translatesAutoresizingMaskIntoConstraints = true
+            
         }
     }
     

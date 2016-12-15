@@ -44,9 +44,10 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     func searchCityFun(search: String) {
         request.getAllCityC(search, country: selectedCountry["_id"].stringValue, completion:{(request) in
             DispatchQueue.main.async(execute: {
-                print(request["data"])
+                if (request["data"].count != 0){
                 self.countriesSearchResults = request["data"]
                 self.tableView.reloadData()
+                }
             })
         })
     }
@@ -80,19 +81,16 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(countriesSearchResults)
+        
         if isSearch {
-            selectedCity.arrayObject?.append(countriesSearchResults[indexPath.row])
+            let c:JSON = countriesSearchResults[indexPath.row]
+            selectedCity.arrayObject?.append(c.object)
         }else{
             if selectedStatus == "country" {
                 selectedCountry = countries[indexPath.row]
             }else{
                 selectedCity = countries[indexPath.row]
-            }
-//            let next = self.storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
-//            next.selectedView = true
-//            self.navigationController?.pushViewController(next, animated: true)
-        }
+            }        }
         let next = self.storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
         next.selectedView = true
         self.navigationController?.pushViewController(next, animated: true)
