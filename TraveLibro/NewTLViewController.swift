@@ -2391,23 +2391,25 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
 //            if !keyboardHidden {
-            
-                self.view.frame.origin.y -= keyboardSize.height
+            if self.view.frame.origin.y == 0{
+               self.view.frame.origin.y -= keyboardSize.height
 //                keyboardHidden = true
 //            }
-            
+            }
         }
         
     }
     
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
             self.view.frame.origin.y += keyboardSize.height
+            }
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+        otgView.nameJourneyTF.resignFirstResponder()
         otgView.locationLabel.resignFirstResponder()
 //        addView.thoughtsTextView.resignFirstResponder()
         self.title = "On The Go" //otgView.nameJourneyTF.text

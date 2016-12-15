@@ -73,7 +73,6 @@ class startOTGView: UIView {
         nameJourneyView.layer.shadowRadius = 1.0
         
         optionsButton.tintColor = UIColor.white
-        
 //        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
 //        clockIcon.text = String(format: "%C", faicon["clock"]!)
         
@@ -136,6 +135,5 @@ class startOTGView: UIView {
         self.addSubview(view);
     }
     
-    
-
+  
 }
