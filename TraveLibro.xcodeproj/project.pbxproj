@@ -2091,7 +2091,7 @@
 					1A944E031CCB4567007EB5BD = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = YVWVDTRG4B;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {

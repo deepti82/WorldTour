@@ -36,7 +36,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         pickerView.frame = CGRect(x: 0, y: 240, width: view.frame.width, height: 200)
         yearPickerView.inputView = pickerView
         monthPickerView.inputView = pickerView
-        var calendar = NSCalendar.current
+        let calendar = NSCalendar.current
         let dateFormatterMonth = DateFormatter()
         let dateFormatter = DateFormatter()
         let components = calendar.dateComponents([.month , .year], from: date as Date)
