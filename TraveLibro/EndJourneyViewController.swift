@@ -1,15 +1,7 @@
-//
-//  EndJourneyViewController.swift
-//  TraveLibro
-//
-//  Created by Wohlig Technology on 10/8/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 
 class EndJourneyViewController: UIViewController {
-
+    
     @IBOutlet weak var endJourneyTitle: UILabel!
     @IBOutlet weak var calendarIcon: UILabel!
     @IBOutlet weak var clockIcon: UILabel!

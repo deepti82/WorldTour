@@ -1,8 +1,6 @@
 import UIKit
 import EventKitUI
-
 import BSImagePicker
-
 import Dollar
 import Cent
 import Photos
@@ -13,9 +11,11 @@ import AVKit
 import AVFoundation
 import Haneke
 
-
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
+
+var userLocation: CLLocationCoordinate2D!
+var globalNavigationController:UINavigationController!
 
 class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
@@ -55,49 +55,32 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         getBuddies.uniqueId = journeyId
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(getBuddies, animated: true)
-        
     }
     
     @IBAction func endJourneyTapped(_ sender: UIButton) {
-        
         self.getJourney()
-        
         let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
         end.journey = myJourney
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController!.pushViewController(end, animated: true)
-        
     }
     
 
     @IBAction func infoCircle(_ sender: AnyObject) {
-        
         getInfoCount()
-        
     }
     
     
     
     var newScroll: UIScrollView!
-    let backView = UIView()
+    var backView:UIView!
     
     func addPosts(_ sender: UIButton) {
-        backView.frame = self.view.frame
-        backView.tag = 8
+        
         
         showAddActivity(view: self.view)
         getJourneyBuddies(journey: myJourney)
         
-        addView.addLocationButton.addTarget(self, action: #selector(NewTLViewController.addLocationTapped(_:)), for: .touchUpInside)
-        addView.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), for: .touchUpInside)
-        addView.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
-        addView.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), for: .touchUpInside)
-        addView.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
-        addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
-        addView.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
-        addView.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
-        
-        //        }
         
     }
     
@@ -113,9 +96,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 chooseCategory.selectedCategories = JSON(self.journeyCategories)
             }
             else {
-                
                 chooseCategory.selectedCategories = self.myJourney["kindOfJourney"]
-                //                self.journeyCategories = self.myJourney["kindOfJourney"].array! as! [String]
             }
             chooseCategory.journeyID = self.journeyID
             chooseCategory.isEdit = true
@@ -128,14 +109,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-                //let minDate = dateFormatter.date(from: "\(self.myJourney["startTime"])")!.toLocalTime()
-                
-                //Create the view
                 self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
                 self.inputview.backgroundColor = UIColor.white
                 self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
                 self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
-                //self.datePickerView.minimumDate = minDate
                 self.datePickerView.maximumDate = Date()
                 
                 addTopBorder(mainBlueColor, view: self.datePickerView, borderWidth: 1)
@@ -173,15 +150,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func displayFriendsCount() {
         
-        if addedBuddies != nil && addedBuddies.count > 0 {
+        if (addedBuddies.count > 0) {
             
             if addedBuddies.count == 1 {
-                
                 addView.friendsCount.setTitle("1 Friend", for: UIControlState())
-                
             }
             else {
-                
                 addView.friendsCount.setTitle("\(addedBuddies.count) Friends", for: UIControlState())
             }
             
@@ -215,48 +189,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func getAllLocations() {
-        
-        //        print("all locations: \(locationArray)")
-        
-        var locationCount = 5
-        
-        if locationArray.count < 5 {
-            
-            locationCount = locationArray.count - 1
-            
-        }
-        if locationCount >= 0 {
-            for i in 0 ... locationCount {
-                
-                let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 200, height: addView.locationHorizontalScroll.frame.height))
-                addView.horizontal.addSubview(oneButton)
-                addView.styleHorizontalButton(oneButton, buttonTitle: "\(locationArray[i]["name"].string!)")
-                oneButton.layoutIfNeeded()
-                oneButton.resizeToFitSubviews(addView.locationHorizontalScroll.frame.height, finalHeight: addView.locationHorizontalScroll.frame.height)
-                oneButton.addTarget(self, action: #selector(NewTLViewController.selectLocation(_:)), for: .touchUpInside)
-                addView.buttonCollection.append(oneButton)
-                
-            }
-        }
-        
-        let buttonSix = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: addView.locationHorizontalScroll.frame.height))
-        addView.horizontal.addSubview(buttonSix)
-        addView.styleHorizontalButton(buttonSix, buttonTitle: "Search")
-        addView.buttonCollection.append(buttonSix)
-        buttonSix.addTarget(self, action: #selector(NewTLViewController.gotoSearchLocation(_:)), for: .touchUpInside)
-        
-    }
-    
-    func gotoSearchLocation(_ sender: UIButton) {
-        
-        let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "searchLocationsVC") as! SearchLocationTableViewController
-        searchVC.places = self.locationArray
-        searchVC.location = userLocation
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(searchVC, animated: true)
-    }
-    
     func hideLocation() {
         
         addView.locationHorizontalScroll.isHidden = true
@@ -278,60 +210,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-
-    func selectLocation(_ sender: UIButton) {
-        
-        var id = ""
-        
-        for location in locationArray {
-            
-            if location["name"].string! == sender.titleLabel!.text! {
-                
-                id = location["place_id"].string!
-                
-            }
-            
-        }
-        
-        putLocationName(sender.titleLabel!.text!, placeId: id)
-        
-    }
-    
     var currentCity = ""
     var currentCountry = ""
     var currentLat: Float!
     var currentLong: Float!
     
-    func putLocationName(_ selectedLocation: String, placeId: String) {
-        
-        self.addView.addLocationButton.setTitle(selectedLocation, for: UIControlState())
-        self.addView.locationTag.tintColor = lightOrangeColor
-        request.getPlaceId(placeId, completion: { response in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    self.addView.categoryLabel.text = response["data"].string!
-                    self.currentCity = response["city"].string!
-                    self.currentCountry = response["country"].string!
-                    self.currentLat = response["lat"].float!
-                    self.currentLong = response["long"].float!
-                    
-                }
-                else {
-                    
-                }
-            })
-        })
-        
-        hideLocation()
-        
-    }
+    
     
     
     var uploadedVideos: [String] = []
@@ -342,6 +226,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         print("on post clicked")
         print(photosToBeUploaded)
+        print(tempAssets);
         
         for photoToBeUploaded in photosToBeUploaded {
             tempAssets.append(URL(string: photoToBeUploaded.url)!)
@@ -349,22 +234,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         if tempAssets.count > 0 {
-            
+            print("PRIRIRIIR");
             uploadMultiplePhotos(tempAssets, localIds: localDbPhotoIds)
         }
             
         else {
-            
+            print("PRIRIRIIR 2222");
             postPartTwo()
         }
         
         hideAddActivity()
         
         self.addView.postButton.isHidden = true
-        
-        //        })
-        
-        //        print("photos new post \(uploadedphotos)")
     }
     
     var prevPosts: [JSON] = []
@@ -579,12 +460,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             var buddies: [JSON] = []
             var id = ""
             var myLatitude = UserLocation(latitude: "", longitude: "")
-            
             if addView.thoughtsTextView.text != nil && addView.thoughtsTextView.text != "" && addView.thoughtsTextView.text != "Fill Me In..." {
-                
                 thoughts = addView.thoughtsTextView.text
-                //                print("thoughts: \(thoughts)")
-                
             }
             if addView.addLocationButton.titleLabel!.text != nil && addView.addLocationButton.titleLabel!.text != "" && addView.addLocationButton.titleLabel!.text != "Add Location" {
                 
@@ -596,14 +473,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
                 
                 if addView.categoryLabel.text != "Label" && addView.categoryLabel.text != "" {
-                    
                     locationCategory = addView.categoryLabel.text!
-                    
                 }
-                
             }
             else {
-                
                 currentCity = ""
                 currentCountry = ""
             }
@@ -867,14 +740,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func closeAdd(_ sender: UIButton) {
-        
-        //        addView.animation.makeOpacity(0.0).animate(0.5)
         let postDb = Post()
         let postCount = postDb.getRowCount() + 1
         let photosDb = Photo()
-        
-        //        photosDb.flushRows(localId: String(postCount))
-        
         hideAddActivity()
     }
     
@@ -977,13 +845,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var refreshControl = UIRefreshControl()
     var isInitialLoad = true
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        getDarkBackGroundBlue(self)
-        
-        mainScroll.delegate = self
-        
+    func setTopNavigation(text: String) {
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -999,12 +861,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         rightButton.clipsToBounds = true
         rightButton.titleLabel?.font = avenirBold
         rightButton.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
-        
+        self.title = text
         self.customNavigationBar(left: leftButton, right: rightButton)
-        
+        globalNavigationController  = self.navigationController
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getDarkBackGroundBlue(self)
+        mainScroll.delegate = self
+        setTopNavigation(text: "On The Go");
         getJourney()
-        
-        self.title = "On The Go" //"\(currentUser["firstName"].string!)'s New On The Go"
         
         TLLoader = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         TLLoader.center = self.view.center
@@ -1070,13 +937,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if (self.view.viewWithTag(8) != nil) {
-            
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-        }
+    override func viewWillAppear(_ animated: Bool) {
         
     }
     
@@ -1113,23 +974,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var latestCity = ""
     
     func showPost(_ whichPost: String, post: JSON) {
-        
-        //        print("previous posts: \(prevPosts.count)")
-        //        print("current post: \(post)")
-        
-        //        var isEditId = ""
-        //
-        //        for prevPost in prevPosts {
-        //
-        //            if prevPost["_id"].string! == post["_id"].string! {
-        //
-        //                print("is in the edit id")
-        //                isEditId = prevPost["_id"].string!
-        //
-        //            }
-        //
-        //        }
-        
+
         var thoughts = String()
         var postTitle = ""
         var photos: [JSON] = []
@@ -1184,11 +1029,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         
-        //        dispatch_sync(dispatch_get_main_queue(), {
-        
         self.editPost(post["_id"].string!)
-        
-        //        })
         var checkIn = PhotosOTG()
         checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts, photos: post["photos"].array!.count)))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
@@ -2306,29 +2147,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         print("error: \(response.error?.localizedDescription)")
                         
                     }
-                        
                     else if response["value"].bool! {
-                        
+                        print(response["data"]);
                         self.locationArray = response["data"].array!
-                        
-                        if self.initialLocationLoad {
-                            
-                            self.getAllLocations()
-                            self.initialLocationLoad = false
-                            
-                        }
-                        
-                        if sender != nil {
-                            
-                            self.gotoSearchLocation(sender!)
-                            
-                        }
-                        
-                    }
-                        
-                    else {
-                        
-                        self.addLocationTapped(nil)
+//                        self.getAllLocations()
                     }
                 })
             })
@@ -2866,7 +2688,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     
-    var userLocation: CLLocationCoordinate2D!
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

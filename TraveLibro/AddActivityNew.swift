@@ -1,6 +1,8 @@
 
 import UIKit
 
+var globalAddActivityNew:AddActivityNew!
+
 class AddActivityNew: UIView, UITextViewDelegate {
 
     @IBOutlet weak var locationView: UIView!
@@ -53,24 +55,21 @@ class AddActivityNew: UIView, UITextViewDelegate {
     
     @IBOutlet weak var photoScroll: UIScrollView!
     @IBOutlet weak var postCancelButton: UIButton!
-//    @IBAction func cancelTapped(sender: AnyObject) {
-//        
-//        self.hidden = true
-//        
-//    }
-    
-    
+    var locationArray: [JSON] = []
+    var currentCity = ""
+    var currentCountry = ""
+    var currentLat: Float!
+    var currentLong: Float!
+
     var eachButtonText = ""
     var buttonCollection: [UIButton] = []
     var horizontal: HorizontalLayout!
     var horizontalScrollForPhotos: HorizontalLayout!
-    
-//    var parent = NewTLViewController()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
+        globalAddActivityNew = self;
         makeFAButton("fbSquare", button: facebookShare)
         makeFAButton("whatsapp", button: whatsappShare)
         makeFAButton("googleSquare", button: googleShare)
@@ -80,22 +79,9 @@ class AddActivityNew: UIView, UITextViewDelegate {
         
         horizontal = HorizontalLayout(height: locationHorizontalScroll.frame.height)
         horizontalScrollForPhotos = HorizontalLayout(height: photoScroll.frame.height)
-        
-//        editCategoryPickerView.isHidden = true
-//        editCategoryPVBar.isHidden = true
-        
+  
         locationHorizontalScroll.addSubview(horizontal)
         photoScroll.addSubview(horizontalScrollForPhotos)
-        
-//        photosFinalView.isHidden = true
-//        videosFinalView.isHidden = true
-//        thoughtsFinalView.isHidden = true
-        
-//        for photo in photosCollection {
-//            
-//            photo.layer.cornerRadius = 5.0
-//            
-//        }
         
         getStylesOn(locationView)
         getStylesOn(photosIntialView)
@@ -180,22 +166,6 @@ class AddActivityNew: UIView, UITextViewDelegate {
         
     }
     
-//    var dropdownCityOptions: [String] = ["one", "two", "three", "four", "five", "six"]
-//    
-//    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-//        
-//        return 1
-//    }
-//    
-//    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        
-//        return dropdownCityOptions.count
-//    }
-//    
-//    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        
-//        return dropdownCityOptions[row]
-//    }
     
     func getStylesOn(_ view: UIView) {
         
@@ -214,6 +184,129 @@ class AddActivityNew: UIView, UITextViewDelegate {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
+        addLocationTapped();
+        
+        
+        self.addLocationButton.addTarget(self, action: #selector(self.gotoSearchLocation(_:)), for: .touchUpInside)
+        self.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), for: .touchUpInside)
+        self.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
+        self.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), for: .touchUpInside)
+        self.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
+        self.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
+        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
+        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
     }
+    
+    func addLocationTapped() {
+        
+        if userLocation != nil {
+            
+            print("locations = \(userLocation.latitude) \(userLocation.longitude)")
+            
+            request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if (response.error != nil) {
+                        
+                        print("error: \(response.error?.localizedDescription)")
+                        
+                    }
+                        
+                    else if response["value"].bool! {
+                        print(response["data"]);
+                        self.locationArray = response["data"].array!;
+                        self.getAllLocations();
+                    }
+                   
+                })
+            })
+        }
+    }
+    
+    
+    
+    func getAllLocations() {
+        
+        var locationCount = 5
+        if locationArray.count < 5 {
+            locationCount = locationArray.count - 1
+        }
+        if locationCount >= 0 {
+            for i in 0 ... locationCount {
+                let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 200, height: self.locationHorizontalScroll.frame.height))
+                self.horizontal.addSubview(oneButton)
+                self.styleHorizontalButton(oneButton, buttonTitle: "\(locationArray[i]["name"].string!)")
+                oneButton.layoutIfNeeded()
+                oneButton.resizeToFitSubviews(self.locationHorizontalScroll.frame.height, finalHeight: self.locationHorizontalScroll.frame.height)
+                oneButton.addTarget(self, action: #selector(self.selectLocation(_:)), for: .touchUpInside)
+                self.buttonCollection.append(oneButton)
+                
+            }
+        }
+        let buttonSix = UIButton(frame: CGRect(x: 10, y: 0, width: 100, height: self.locationHorizontalScroll.frame.height))
+        self.horizontal.addSubview(buttonSix)
+        self.styleHorizontalButton(buttonSix, buttonTitle: "Search")
+        self.buttonCollection.append(buttonSix)
+        buttonSix.addTarget(self, action: #selector(self.gotoSearchLocation(_:)), for: .touchUpInside)
+    }
+
+    func selectLocation(_ sender: UIButton) {
+        
+        var id = ""
+        
+        for location in locationArray {
+            
+            if location["name"].string! == sender.titleLabel!.text! {
+                
+                id = location["place_id"].string!
+                
+            }
+            
+        }
+        
+        self.putLocationName(sender.titleLabel!.text!, placeId: id)
+        
+    }
+    
+    func putLocationName(_ selectedLocation: String, placeId: String) {
+        
+        self.addLocationButton.setTitle(selectedLocation, for: UIControlState())
+        self.locationTag.tintColor = lightOrangeColor
+        request.getPlaceId(placeId, completion: { response in
+            
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    self.categoryLabel.text = response["data"].string!
+                    self.currentCity = response["city"].string!
+                    self.currentCountry = response["country"].string!
+                    self.currentLat = response["lat"].float!
+                    self.currentLong = response["long"].float!
+                    
+                }
+                else {
+                    
+                }
+            })
+        })
+        
+//        hideLocation()
+        
+    }
+    func gotoSearchLocation(_ sender: UIButton) {
+        
+        let searchVC = storyboard!.instantiateViewController(withIdentifier: "searchLocationsVC") as! SearchLocationTableViewController
+        searchVC.places = self.locationArray
+        searchVC.location = userLocation
+        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.pushViewController(searchVC, animated: true)
+    }
+
 
 }

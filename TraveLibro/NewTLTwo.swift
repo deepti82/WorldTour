@@ -60,87 +60,39 @@ extension NewTLViewController {
     }
     
     func addActivityToOriginalState() {
-        
         photosToBeUploaded = []
-        
         let post = Post()
         let buddy = Buddy()
-        
         let postId = post.getRowCount()
-        
         post.flushRows(Int64(postId))
         photo.flushRows(localId: Int64(postId))
         buddy.flushRows(String(postId))
-        
-//        photosGroupId += 1
-        
-//        addView.photosIntialView.isHidden = false
-//        addView.photosFinalView.isHidden = true
-//        
-//        for view in addView.horizontalScrollForPhotos.subviews {
-//            
-//            view.removeFromSuperview()
-//        }
-//        
-//        addView.videosInitialView.isHidden = false
-//        addView.videosFinalView.isHidden = true
-//        addView.thoughtsInitalView.isHidden = true
-//        addView.thoughtsFinalView.isHidden = false
-//        addView.thoughtsTextView.text = "Fill Me In..."
-//        addView.locationHorizontalScroll.isHidden = false
-//        addView.addLocationButton.setTitle("Add Location", for: .normal)
-//        addView.categoryView.isHidden = true
-//        addView.categoryLabel.text = ""
-//        addView.horizontal.isHidden = false
-//        addView.postButton.isHidden = false
-//        
-//        for view in addView.horizontal.subviews {
-//            
-//            view.removeFromSuperview()
-//        }
-//        
-//        getAllLocations()
-        
     }
     
     func hideAddActivity() {
-        
-        backView.isHidden = true
         addView.removeFromSuperview()
-        newScroll.isHidden = true
+        backView.removeFromSuperview()
+        self.setTopNavigation(text: "On The Go");
     }
     
     func showAddActivity(view: UIView) {
+        //Add Dard Blur Background
+        
         
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
-        
+        self.backView = UIView();
         self.backView.frame = self.view.frame
-        self.backView.tag = 8
+        self.view.addSubview(self.backView)
+        self.backView.frame = self.view.frame
+        darkBlur = UIBlurEffect(style: .dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = self.backView.frame.height
+        blurView.frame.size.width = self.backView.frame.width
+        blurView.layer.zPosition = -1
+        blurView.isUserInteractionEnabled = false
+        self.backView.addSubview(blurView)
         
-        if self.view.viewWithTag(8) != nil {
-            
-            
-            self.newScroll.isHidden = false
-            self.backView.isHidden = false
-            self.addView = AddActivityNew()
-            self.addView.frame = self.view.frame
-            self.newScroll.addSubview(self.addView)
-            self.addLocationTapped(nil)
-            self.getAllLocations()
-        }
-            
-        else {
-            
-            
-            self.view.addSubview(self.backView)
-            darkBlur = UIBlurEffect(style: .dark)
-            blurView = UIVisualEffectView(effect: darkBlur)
-            blurView.frame.size.height = self.backView.frame.height
-            blurView.frame.size.width = self.backView.frame.width
-            blurView.layer.zPosition = -1
-            blurView.isUserInteractionEnabled = false
-            self.backView.addSubview(blurView)
             self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
             self.backView.addSubview(self.newScroll)
             self.addView = AddActivityNew()
@@ -148,64 +100,30 @@ extension NewTLViewController {
             self.newScroll.addSubview(self.addView)
             self.newScroll.contentSize.height = self.view.frame.height
             backView.addSubview(newScroll)
-            self.addLocationTapped(nil)
-        }
         
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
+        
+        let rightButton = UIButton()
+        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        
+        rightButton.setTitle("Post", for: UIControlState())
+        rightButton.titleLabel?.font = avenirBold
+        rightButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:) ), for: .touchUpInside)
+        self.title = "Add Activity"
+        self.customNavigationBar(left: leftButton, right: rightButton)
+
         addView.layer.zPosition = 10
         backView.layer.zPosition = 10
         newScroll.contentSize.height = self.view.frame.height
-        
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60))
-        toolbar.barTintColor = mainBlueColor
-        toolbar.tintColor = UIColor.white
-        
-        var items = [UIBarButtonItem]()
-        
-        let addButton = UIBarButtonItem(title: "Add Activity", style: .plain, target: self, action: nil)
-        
-        items.append(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(NewTLViewController.closeAdd(_:))))
-        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
-        items.append(addButton)
-        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil))
-        items.append(UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(NewTLViewController.newPost(_:))))
-        toolbar.items = items
-        backView.addSubview(toolbar)
-        
-        addLocationTapped(nil)
     }
-    
-//    func editImageInFile(exportUrl: String, image: UIImage) {
-//        
-//        DispatchQueue.main.async(execute: {
-//            
-//            do {
-//                
-//                if let data = UIImagePNGRepresentation(editedImagesArray[index][index]!) {
-//                    try data.write(to: URL(string: exportFileUrl)!)
-//                }
-//                print("edit file created")
-//            } catch let error as NSError {
-//                
-//                print("error creating file: \(error.localizedDescription)")
-//                
-//            }
-//        })
-//        
-//        
-//    }
+
     
     func buddyLeaves(_ post: JSON) {
         
         prevPosts.append(post)
-        
-//        if isInitialPost {
-//
-//            layout = VerticalLayout(width: self.view.frame.width)
-//            layout.frame.origin.y = 600
-//            mainScroll.addSubview(layout)
-//            isInitialPost = false
-//            
-//        }
         
         let buddyView = SayBye(frame: CGRect(x: 0, y: 10, width: 300, height: 250))
         buddyView.center.x = self.view.center.x
