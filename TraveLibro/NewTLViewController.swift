@@ -1041,10 +1041,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.view.addSubview(TLLoader)
         
         mainScroll.delegate = self
-        
-
-        NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
         
     }
@@ -1981,7 +1977,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.nameJourneyTF.resignFirstResponder()
             
             height = 100
-//            mainScroll.animation.makeY(mainScroll.frame.origin.y - height).thenAfter(0.3).animate(0.3)
+            mainScroll.animation.makeY(mainScroll.frame.origin.y - height).thenAfter(0.3).animate(0.3)
             //        otgView.animation.makeY(mainScroll.frame.origin.y - height).animate(0.5)
             otgView.detectLocationView.layer.opacity = 0.0
             otgView.detectLocationView.isHidden = false
