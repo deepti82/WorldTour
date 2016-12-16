@@ -224,8 +224,8 @@
 		C2803BC61CF424EB007A906E /* BlogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2803BC51CF424EB007A906E /* BlogView.swift */; };
 		C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2803BC71CF426A8007A906E /* BlogViewViewController.swift */; };
 		C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2803BCA1CF43504007A906E /* AccordionViewController.swift */; };
-		C281FBE91D55D58000728BD9 /* QuickItineraryThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = C281FBE81D55D58000728BD9 /* QuickItineraryThree.xib */; };
-		C281FBEB1D55EF4A00728BD9 /* QuickItineraryThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = C281FBEA1D55EF4A00728BD9 /* QuickItineraryThree.swift */; };
+		C281FBE91D55D58000728BD9 /* ItineraryThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = C281FBE81D55D58000728BD9 /* ItineraryThree.xib */; };
+		C281FBEB1D55EF4A00728BD9 /* ItineraryThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = C281FBEA1D55EF4A00728BD9 /* ItineraryThree.swift */; };
 		C281FBEE1D56170A00728BD9 /* VerifyIntermediateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C281FBED1D56170A00728BD9 /* VerifyIntermediateViewController.swift */; };
 		C2823AFE1D45E09C0065A76C /* FooterViewNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2823AFD1D45E09C0065A76C /* FooterViewNew.swift */; };
 		C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2823B001D4625830065A76C /* NotificationSubViewController.swift */; };
@@ -350,6 +350,7 @@
 		C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */; };
 		FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
+		FC9A0C181E03CE5D00BC3F7A /* TagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */; };
 		FCA9E4221E00145B00F0845A /* QuickIteneraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */; };
 		FCB2D6871DE472A40008634B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6861DE472A40008634B /* Accelerate.framework */; };
 		FCB2D6891DE472AD0008634B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6881DE472AD0008634B /* CoreData.framework */; };
@@ -607,8 +608,8 @@
 		C2803BC51CF424EB007A906E /* BlogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogView.swift; sourceTree = "<group>"; };
 		C2803BC71CF426A8007A906E /* BlogViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogViewViewController.swift; sourceTree = "<group>"; };
 		C2803BCA1CF43504007A906E /* AccordionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccordionViewController.swift; sourceTree = "<group>"; };
-		C281FBE81D55D58000728BD9 /* QuickItineraryThree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickItineraryThree.xib; sourceTree = "<group>"; };
-		C281FBEA1D55EF4A00728BD9 /* QuickItineraryThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickItineraryThree.swift; sourceTree = "<group>"; };
+		C281FBE81D55D58000728BD9 /* ItineraryThree.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItineraryThree.xib; sourceTree = "<group>"; };
+		C281FBEA1D55EF4A00728BD9 /* ItineraryThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItineraryThree.swift; sourceTree = "<group>"; };
 		C281FBED1D56170A00728BD9 /* VerifyIntermediateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyIntermediateViewController.swift; sourceTree = "<group>"; };
 		C2823AFD1D45E09C0065A76C /* FooterViewNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterViewNew.swift; sourceTree = "<group>"; };
 		C2823B001D4625830065A76C /* NotificationSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSubViewController.swift; sourceTree = "<group>"; };
@@ -734,6 +735,7 @@
 		C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityOTG.swift; sourceTree = "<group>"; };
 		FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
+		FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsView.xib; sourceTree = "<group>"; };
 		FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryTableViewController.swift; sourceTree = "<group>"; };
 		FCB2D6861DE472A40008634B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FCB2D6881DE472AD0008634B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -925,7 +927,7 @@
 				C2FA1E141D54883E0034DE97 /* QuickItineraryFive */,
 				C2FA1E151D5493B50034DE97 /* QuickItineraryFour */,
 				C26730241D27A84200F2C822 /* QuickItineraryOne */,
-				C281FBEC1D55F8B400728BD9 /* QuickItineraryThree */,
+				C281FBEC1D55F8B400728BD9 /* ItineraryThree */,
 				C22138F41D54787C008D9DEE /* QuickItineraryTwo */,
 				3AEEB0071CE6F63B0085EEF5 /* Rating */,
 				C24F84EC1D0045A8002EA203 /* ReportProblem */,
@@ -948,6 +950,7 @@
 				C269077B1CF8161600F827E6 /* TripSummaryItinerary */,
 				C213BB741D01882200B452AC /* TutorialCards */,
 				C2EA3A1C1CDB81CE00122941 /* TypeOfJourney */,
+				FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -1666,13 +1669,13 @@
 			name = BlogView;
 			sourceTree = "<group>";
 		};
-		C281FBEC1D55F8B400728BD9 /* QuickItineraryThree */ = {
+		C281FBEC1D55F8B400728BD9 /* ItineraryThree */ = {
 			isa = PBXGroup;
 			children = (
-				C281FBE81D55D58000728BD9 /* QuickItineraryThree.xib */,
-				C281FBEA1D55EF4A00728BD9 /* QuickItineraryThree.swift */,
+				C281FBE81D55D58000728BD9 /* ItineraryThree.xib */,
+				C281FBEA1D55EF4A00728BD9 /* ItineraryThree.swift */,
 			);
-			name = QuickItineraryThree;
+			name = ItineraryThree;
 			sourceTree = "<group>";
 		};
 		C2823AFF1D45E1A80065A76C /* FooterNew */ = {
@@ -2188,7 +2191,7 @@
 				C248704A1D0BEE75003CB0DD /* MoreAboutTrip.xib in Resources */,
 				C24B45631D0AE664002EA009 /* PopularAgents.xib in Resources */,
 				1A944E0F1CCB4567007EB5BD /* Assets.xcassets in Resources */,
-				C281FBE91D55D58000728BD9 /* QuickItineraryThree.xib in Resources */,
+				C281FBE91D55D58000728BD9 /* ItineraryThree.xib in Resources */,
 				C25BE1F51CFC23EC00C98DD3 /* InProfileOTGPost.xib in Resources */,
 				C25649951D48C6F60046E36D /* TripInfoOTG.xib in Resources */,
 				C24B45691D0AF5C4002EA009 /* EachMustDo.xib in Resources */,
@@ -2249,6 +2252,7 @@
 				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
 				C20A39961CE34AD0002EF1E6 /* FriendView.xib in Resources */,
+				FC9A0C181E03CE5D00BC3F7A /* TagsView.xib in Resources */,
 				C2488AFA1D51F93D00FD5306 /* NewQuickItinerary.xib in Resources */,
 				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,
 				C24870511D0C2DA6003CB0DD /* HotelsCustomHeader.xib in Resources */,
@@ -2538,7 +2542,7 @@
 				C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */,
 				843510E01DF7F84600C3D8EE /* QuickIteneraryTwo.swift in Sources */,
 				843510DE1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift in Sources */,
-				C281FBEB1D55EF4A00728BD9 /* QuickItineraryThree.swift in Sources */,
+				C281FBEB1D55EF4A00728BD9 /* ItineraryThree.swift in Sources */,
 				367B90F71DC23ADF00D76F13 /* ActiveType.swift in Sources */,
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
 				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,

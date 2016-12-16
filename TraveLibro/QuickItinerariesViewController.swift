@@ -14,7 +14,7 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate {
     var onDateSelected: ((_ month: Int, _ year: Int) -> Void)?
     var one = QuickItineraryOne()
     var two = QuickItineraryTwo()
-    var three = QuickItineraryThree()
+    var three = QuickIteneraryThree()
     
     func searchCountry(search:String) {
         
@@ -50,7 +50,7 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate {
            
             
         case "Three":
-            let three = QuickItineraryThree(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 350))
+            let three = ItineraryThree(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 350))
             three.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             self.view.addSubview(three)
             
