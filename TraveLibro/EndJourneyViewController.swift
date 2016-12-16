@@ -255,10 +255,6 @@ class EndJourneyViewController: UIViewController {
     }
     
     func doneEndJourney(_ sender: UIButton) {
-        
-        print("clicked done journey")
-        
-        
         request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
             
             request.getUser(user.getExistingUser(), completion: {(response) in
@@ -268,13 +264,8 @@ class EndJourneyViewController: UIViewController {
                     
                     self.goBack()
                 })
-                
             })
-            
-            
         })
-        
-        
     }
     
     var loader = LoadingOverlay()
