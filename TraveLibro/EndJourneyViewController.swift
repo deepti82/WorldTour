@@ -257,35 +257,20 @@ class EndJourneyViewController: UIViewController {
     func doneEndJourney(_ sender: UIButton) {
         
         print("clicked done journey")
-        request.getUser(user.getExistingUser(), completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                currentUser = response["data"]
-
-                self.goBack()
-            })
-            
-        })
+        
         
         request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
             
-            DispatchQueue.main.async(execute: {
-                if response.error != nil {
+            request.getUser(user.getExistingUser(), completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    currentUser = response["data"]
                     
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                   
-                    
-                }
-                else {
-                    
-                    print("response error")
-                }
+                    self.goBack()
+                })
                 
             })
+            
             
         })
         
