@@ -39,6 +39,7 @@ class ItineraryThree: UIView, UITextFieldDelegate {
     
     func doubleTapped() {
         print("demo")
+        self.removeFromSuperview()
     }
     
                //showCountryButton.backgroundColor = UIColor.yellow

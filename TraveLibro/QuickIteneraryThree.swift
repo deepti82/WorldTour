@@ -61,11 +61,11 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         if selectedCity.count != 0 {
             
             cityVisited.text = createCity(cities: selectedCity)
-            for i in 0..<quickItinery["countryVisited"].count {
-                createCityCountry(json: quickItinery["countryVisited"][i])
-            }
+            
         }
-        
+        for i in 0..<quickItinery["countryVisited"].count {
+            createCityCountry(json: quickItinery["countryVisited"][i])
+        }
         
         
     }
@@ -109,7 +109,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     
     func createCityCountry(json:JSON) {
         let three = ItineraryThree()
-        three.frame = CGRect(x: 0, y: 0, width: 300, height: 30)
+        three.frame = CGRect(x: 0, y: 5, width: 300, height: 30)
         three.cityCountry.text = "\(json["name"]):  \(createCity(cities: json["cityVisited"]))"
         
         styleHorizontalButton(three)
