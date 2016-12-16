@@ -160,20 +160,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let myCell = tableView.cellForRow(at: indexPath) as! searchLocationsTableViewCell
-        var previous: NewTLViewController!
-        
-        for vc in self.navigationController!.viewControllers {
-            
-            if vc.isKind(of: NewTLViewController.self) {
-                
-                previous = vc as! NewTLViewController
-                
-            }
-            
-        }
-        
         var myId = ""
-        
         if shouldShowSearchResults {
             
             searchController.searchBar.resignFirstResponder()
@@ -207,9 +194,9 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
             
         }
         
-        previous.putLocationName(myCell.placeName.text!, placeId: myId)
-        self.navigationController?.popToViewController(previous, animated: true)
-        
+        globalAddActivityNew.putLocationName(myCell.placeName.text!, placeId: myId)
+//        self.navigationController?.popToViewController(previous, animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
 
 }

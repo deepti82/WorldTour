@@ -1,15 +1,7 @@
-//
-//  EndJourneyViewController.swift
-//  TraveLibro
-//
-//  Created by Wohlig Technology on 10/8/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 
 class EndJourneyViewController: UIViewController {
-
+    
     @IBOutlet weak var endJourneyTitle: UILabel!
     @IBOutlet weak var calendarIcon: UILabel!
     @IBOutlet weak var clockIcon: UILabel!
@@ -255,41 +247,17 @@ class EndJourneyViewController: UIViewController {
     }
     
     func doneEndJourney(_ sender: UIButton) {
-        
-        print("clicked done journey")
-        request.getUser(user.getExistingUser(), completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                currentUser = response["data"]
-
-                self.goBack()
-            })
-            
-        })
-        
         request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
             
-            DispatchQueue.main.async(execute: {
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                   
-                    
-                }
-                else {
-                    
-                    print("response error")
-                }
+            request.getUser(user.getExistingUser(), completion: {(response) in
                 
+                DispatchQueue.main.async(execute: {
+                    currentUser = response["data"]
+                    
+                    self.goBack()
+                })
             })
-            
         })
-        
-        
     }
     
     var loader = LoadingOverlay()
