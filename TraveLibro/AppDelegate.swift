@@ -50,6 +50,7 @@ var selectedCountry: JSON = []
 var selectedCity: JSON = []
 var selectedStatus: String = ""
 var destinationVisited: JSON = []
+var storyboard: UIStoryboard!
 
 var leftViewController: SideNavigationMenuViewController!
 
@@ -75,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     internal func createMenuView() {
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         var nvc: UINavigationController!
         

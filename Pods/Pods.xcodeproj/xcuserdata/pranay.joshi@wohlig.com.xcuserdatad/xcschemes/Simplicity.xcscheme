@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8A84E6E1160C22F78C8F6AA07ED9EEC0"
+               BlueprintIdentifier = "C094B8AFF903F670231857231174AF86"
                BuildableName = "Simplicity.framework"
                BlueprintName = "Simplicity"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8A84E6E1160C22F78C8F6AA07ED9EEC0"
+            BlueprintIdentifier = "C094B8AFF903F670231857231174AF86"
             BuildableName = "Simplicity.framework"
             BlueprintName = "Simplicity"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8A84E6E1160C22F78C8F6AA07ED9EEC0"
+            BlueprintIdentifier = "C094B8AFF903F670231857231174AF86"
             BuildableName = "Simplicity.framework"
             BlueprintName = "Simplicity"
             ReferencedContainer = "container:Pods.xcodeproj">

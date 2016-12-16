@@ -112,11 +112,10 @@ class startOTGView: UIView {
         journeyName.shadowOffset = CGSize(width: 2, height: 1)
         journeyName.layer.masksToBounds = true
         
-        placeLabel.shadowColor = UIColor.black
         placeLabel.shadowOffset = CGSize(width: 2, height: 1)
         placeLabel.layer.masksToBounds = true
         
-        timestampDate.shadowColor = UIColor.black
+        
         timestampDate.shadowOffset = CGSize(width: 2, height: 1)
         timestampDate.layer.masksToBounds = true
         
