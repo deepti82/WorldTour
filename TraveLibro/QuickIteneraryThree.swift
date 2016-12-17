@@ -23,10 +23,10 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     @IBOutlet weak var cityVisited: UITextField!
     @IBOutlet weak var countryVisited: UITextField!
     let verticalLayout = VerticalLayout(width: 300)
+    var viewAdded = false
     
     
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.scrView.insertSubview(self.verticalLayout, at: 0)
@@ -37,12 +37,12 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         if selectedCountry.count != 0 {
             countryVisited.text = selectedCountry[0]["name"].string
         }
+        
         //        getCountry()
         addCountry.layer.cornerRadius = 5
         addCountry.addTarget(self, action: #selector(addCountryFunction(_:)), for: .touchUpInside)
         showCountryCityVisited.addSubview(verticalLayout)
         cityVisited.delegate = self
-        //        countryVisited.delegate = self
         
         countryVisitedButton.isHidden = true
         cityVisitedButton.isHidden = true
@@ -52,12 +52,13 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        viewAdded = false
+        print("in appear")
         
         if selectedCountry.count != 0 {
             countryVisited.text = selectedCountry["name"].string
         }
         
-        print(selectedCity)
         if selectedCity.count != 0 {
             
             cityVisited.text = createCity(cities: selectedCity)
@@ -72,7 +73,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     
     func createCity(cities:JSON) -> String {
         var a = ""
-        for i in 0...cities.count - 1 {
+        for i in 0...cities.count {
             if i == 0 {
                 a = a + cities[i]["name"].stringValue
             }else{
@@ -118,14 +119,28 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         self.scrView.contentSize = CGSize(width: self.verticalLayout.frame.width, height: self.verticalLayout.frame.height)
     }
     
-   
+    
     
     func addCountryFunction(_ sender: UIButton) {
+        if !viewAdded {
+            viewAdded = true
+            var a: JSON = ["country":selectedCountry["_id"], "name":selectedCountry["name"], "cityVisited":selectedCity]
+            if quickItinery["countryVisited"].contains(where: {$0.1["country"] == selectedCountry["_id"]}) {
+                let b = quickItinery["countryVisited"].index(where: {$0.1["country"] == selectedCountry["_id"]})
+                let c = quickItinery["countryVisited"][b!].0
+                
+                quickItinery["countryVisited"][c] = a
+                print(quickItinery["countryVisited"])
+                createCityCountry(json: a)
+            }else{
+                quickItinery["countryVisited"].arrayObject?.append(a.object)
+                createCityCountry(json: a)
         
-        var a: JSON = ["country":selectedCountry["_id"], "name":selectedCountry["name"], "cityVisited":selectedCity]
+        }
+            
+            
+        }
         
-        quickItinery["countryVisited"].arrayObject?.append(a.object)
-        createCityCountry(json: a)
     }
     
     
@@ -136,15 +151,11 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         button.layer.borderWidth = 1.0
         
     }
-    func removeCountryCity(sender: UITapGestureRecognizer? = nil) {
-            print("demo")
-    }
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         cityVisited.resignFirstResponder()
         countryVisited.resignFirstResponder()
         return true
-        
     }
 }

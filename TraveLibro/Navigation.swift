@@ -2025,7 +2025,6 @@ class Navigation {
         
         do {
             let params = ["search":search,"country":country]
-            print(params)
             let opt = try HTTP.POST(adminUrl + "city/searchCity", parameters: params)
             var json = JSON(1);
             opt.start {response in
@@ -2057,14 +2056,13 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }
         } catch let error {
             print("got an error creating the request: \(error)")
         }
+        
     }
  
-
 }
