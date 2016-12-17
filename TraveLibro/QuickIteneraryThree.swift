@@ -71,14 +71,17 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     
     func createCity(cities:JSON) -> String {
         var a = ""
-        for i in 0...cities.count {
-            if i == 0 {
-                a = a + cities[i]["name"].stringValue
-            }else{
-                a = a + ", " + cities[i]["name"].stringValue
+        if cities.count != 0 {
+            for i in 0...cities.count {
+                if i == 0 {
+                    a = a + cities[i]["name"].stringValue
+                }else{
+                    a = a + ", " + cities[i]["name"].stringValue
+                }
+                
             }
-            
         }
+        
         return a
     }
     
@@ -141,7 +144,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
                 createCityCountry()
                 
             }
-            
             
         }
         
