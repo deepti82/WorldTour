@@ -10,6 +10,7 @@ import UIKit
 
 class AddNewOTG: UIView {
 
+    @IBOutlet weak var addProfileImage: UIImageView!
     @IBOutlet weak var startNewJourney: UIButton!
     @IBOutlet weak var documentItineraries: UIButton!
     @IBOutlet weak var closeView: UILabel!

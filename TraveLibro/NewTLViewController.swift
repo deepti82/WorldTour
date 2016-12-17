@@ -1750,7 +1750,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func newOtg(_ sender: UIButton) {
-        
+        otgView.bonVoyageLabel.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
         addNewView.animation.makeOpacity(0.0).animate(0.5)
         addNewView.isHidden = true
         getScrollView(height, journey: JSON(""))
@@ -1844,7 +1844,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.nameJourneyView.layer.opacity = 0.0
         otgView.nameJourneyView.isHidden = false
         otgView.nameJourneyView.animation.makeOpacity(1.0).makeHeight(otgView.nameJourneyView.frame.height).animate(0.5)
-        otgView.bonVoyageLabel.animation.makeOpacity(0.0).animate(0.5)
+        otgView.bonVoyageLabel.animation.makeOpacity(0.0).animate(0.10)
+        
+        
         
     }
     
