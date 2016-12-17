@@ -2431,7 +2431,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addCaption(_ sender: UIButton) {
         
-        
         var allPhotos: [UIButton] = []
         
         let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
