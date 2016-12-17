@@ -55,6 +55,8 @@ class AddActivityNew: UIView, UITextViewDelegate {
     
     @IBOutlet weak var photoScroll: UIScrollView!
     @IBOutlet weak var postCancelButton: UIButton!
+    
+    var newScroll : UIScrollView!
     var locationArray: [JSON] = []
     var currentCity = ""
     var currentCountry = ""
@@ -190,11 +192,33 @@ class AddActivityNew: UIView, UITextViewDelegate {
         self.addLocationButton.addTarget(self, action: #selector(self.gotoSearchLocation(_:)), for: .touchUpInside)
         self.photosButton.addTarget(self, action: #selector(NewTLViewController.addPhotos(_:)), for: .touchUpInside)
         self.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
-        self.thoughtsButton.addTarget(self, action: #selector(NewTLViewController.addThoughts(_:)), for: .touchUpInside)
+        self.thoughtsButton.addTarget(self, action: #selector(self.addThoughts(_:)), for: .touchUpInside)
         self.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
         self.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
         self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
         self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
+    }
+    
+    func closeAdd(_ sender: UIButton) {
+        let postDb = Post()
+        let postCount = postDb.getRowCount() + 1
+        let photosDb = Photo()
+        //hideAddActivity()
+    }
+    
+    func addThoughts(_ sender: UIButton) {
+        
+        self.thoughtsFinalView.isHidden = false
+        self.thoughtsInitalView.isHidden = true
+        addHeightToNewActivity(10.0)
+        
+    }
+    func addHeightToNewActivity(_ height: CGFloat) {
+        self.frame.size.height = self.frame.height + height
+        newScroll.contentSize.height = self.frame.height
+        newScroll.bounces = false
+        newScroll.showsVerticalScrollIndicator = false
+        
     }
     
     func addLocationTapped() {

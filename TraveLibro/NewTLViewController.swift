@@ -163,13 +163,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func addHeightToNewActivity(_ height: CGFloat) {
-        addView.frame.size.height = addView.frame.height + height
-        newScroll.contentSize.height = addView.frame.height
-        newScroll.bounces = false
-        newScroll.showsVerticalScrollIndicator = false
-        
-    }
+    
     
     func tagMoreBuddies(_ sender: UIButton) {
         
@@ -2574,7 +2568,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         addView.videosInitialView.isHidden = false
         addView.videosFinalView.isHidden = true
-        addHeightToNewActivity(5.0)
+//        addHeightToNewActivity(5.0)
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         
@@ -2616,13 +2610,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func addThoughts(_ sender: UIButton) {
-        
-        addView.thoughtsFinalView.isHidden = false
-        addView.thoughtsInitalView.isHidden = true
-        addHeightToNewActivity(10.0)
-        
-    }
+    
     
     func checkForEditedImages(editedImagesArray: [Dictionary<Int,UIImage>]) {
         

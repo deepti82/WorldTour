@@ -97,6 +97,7 @@ extension NewTLViewController {
             self.backView.addSubview(self.newScroll)
             self.addView = AddActivityNew()
             self.addView.frame = self.view.frame
+        self.addView.newScroll = self.newScroll;
             self.newScroll.addSubview(self.addView)
             self.newScroll.contentSize.height = self.view.frame.height
             backView.addSubview(newScroll)
