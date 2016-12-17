@@ -64,9 +64,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
             cityVisited.text = createCity(cities: selectedCity)
             
         }
-        for i in 0..<quickItinery["countryVisited"].count {
-            createCityCountry(json: quickItinery["countryVisited"][i])
-        }
+        createCityCountry()
         
         
     }
@@ -108,15 +106,22 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     
-    func createCityCountry(json:JSON) {
-        let three = ItineraryThree()
-        three.frame = CGRect(x: 0, y: 5, width: 300, height: 30)
-        three.cityCountry.text = "\(json["name"]):  \(createCity(cities: json["cityVisited"]))"
+    func createCityCountry() {
+        self.verticalLayout.removeAll()
+        if quickItinery["countryVisited"].count != 0{
+            for i in 0...quickItinery["countryVisited"].count - 1 {
+                let three = ItineraryThree()
+                three.frame = CGRect(x: 0, y: 5, width: 300, height: 30)
+                three.cityCountry.text = "\(quickItinery["countryVisited"][i]["name"]):  \(createCity(cities: quickItinery["countryVisited"][i]["cityVisited"]))"
+                
+                styleHorizontalButton(three)
+                self.verticalLayout.addSubview(three)
+                self.verticalLayout.layoutSubviews()
+                self.scrView.contentSize = CGSize(width: self.verticalLayout.frame.width, height: self.verticalLayout.frame.height)
+                
+            }
+        }
         
-        styleHorizontalButton(three)
-        self.verticalLayout.addSubview(three)
-        self.verticalLayout.layoutSubviews()
-        self.scrView.contentSize = CGSize(width: self.verticalLayout.frame.width, height: self.verticalLayout.frame.height)
     }
     
     
@@ -129,14 +134,13 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
                 let b = quickItinery["countryVisited"].index(where: {$0.1["country"] == selectedCountry["_id"]})
                 let c = quickItinery["countryVisited"][b!].0
                 
-                quickItinery["countryVisited"][c] = a
-                print(quickItinery["countryVisited"])
-                createCityCountry(json: a)
+                quickItinery["countryVisited"][Int(c)!] = a
+                createCityCountry()
             }else{
                 quickItinery["countryVisited"].arrayObject?.append(a.object)
-                createCityCountry(json: a)
-        
-        }
+                createCityCountry()
+                
+            }
             
             
         }
