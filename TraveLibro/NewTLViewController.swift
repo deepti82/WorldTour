@@ -183,13 +183,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func hideLocation() {
-        
-        addView.locationHorizontalScroll.isHidden = true
-        addView.categoryView.isHidden = false
-        addView.editCategory.addTarget(self, action: #selector(NewTLViewController.selectAnotherCategory(_:)), for: .touchUpInside)
-        
-    }
+    
     
     //    var pickerView = UIPickerView()
     

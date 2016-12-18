@@ -19,6 +19,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var tagFriendButton: UIButton!
     @IBOutlet weak var videosButton: UIButton!
     
+    @IBOutlet weak var finalThoughtTag: UIImageView!
     @IBOutlet weak var photosCount: UILabel!
     @IBOutlet weak var videosCount: UILabel!
     
@@ -171,8 +172,13 @@ class AddActivityNew: UIView, UITextViewDelegate {
         let number = newText.characters.count
         thoughtsCharacterCount.text = String(180 - number)
         
+        if(number != 0) {
+            self.finalThoughtTag.tintColor = lightOrangeColor
+        } else {
+            self.finalThoughtTag.tintColor = mainBlueColor
+        }
+        
         if thoughtsCharacterCount.text == "-1" {
-            
             thoughtsCharacterCount.text = "0"
         }
         
@@ -211,9 +217,9 @@ class AddActivityNew: UIView, UITextViewDelegate {
         self.photosButton.addTarget(self, action: #selector(self.addPhotos(_:)), for: .touchUpInside)
 //        self.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
         self.thoughtsButton.addTarget(self, action: #selector(self.addThoughts(_:)), for: .touchUpInside)
-        self.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
+//        self.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
         self.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
-        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
+//        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
 //        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
     }
     
@@ -229,6 +235,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
         self.thoughtsFinalView.isHidden = false
         self.thoughtsInitalView.isHidden = true
         addHeightToNewActivity(10.0)
+        thoughtsTextView.becomeFirstResponder()
         
     }
     func addHeightToNewActivity(_ height: CGFloat) {
@@ -266,6 +273,13 @@ class AddActivityNew: UIView, UITextViewDelegate {
         }
     }
     
+    func hideLocation() {
+        
+        self.locationHorizontalScroll.isHidden = true
+        self.categoryView.isHidden = false
+        self.editCategory.addTarget(self, action: #selector(NewTLViewController.selectAnotherCategory(_:)), for: .touchUpInside)
+        
+    }
     
     
     func getAllLocations() {
@@ -338,7 +352,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
             })
         })
         
-//        hideLocation()
+        self.hideLocation()
         
     }
     func gotoSearchLocation(_ sender: UIButton) {
@@ -355,7 +369,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let deleteAction = UIAlertAction(title: "Take Photos", style: .default, handler: {
+        let takePhotos = UIAlertAction(title: "Take Photos", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
             self.imagePicker.allowsEditing = true
@@ -367,7 +381,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
             globalNavigationController?.pushViewController(self.imagePicker, animated: true)
         })
         
-        let saveAction = UIAlertAction(title: "Photos Library", style: .default, handler: {
+        let photoLibrary = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
             let multipleImage = BSImagePickerViewController()
@@ -420,8 +434,8 @@ class AddActivityNew: UIView, UITextViewDelegate {
         })
         
         
-        optionMenu.addAction(deleteAction)
-        optionMenu.addAction(saveAction)
+        optionMenu.addAction(takePhotos)
+        optionMenu.addAction(photoLibrary)
         optionMenu.addAction(cancelAction)
         //        optionMenu.addAction(customeAction)
         

@@ -25,6 +25,7 @@
                 <outlet property="editCategoryPVBar" destination="f0N-zJ-iqX" id="XNN-Yc-rw8"/>
                 <outlet property="editCategoryPickerView" destination="xuR-LV-saS" id="98J-aF-ZRF"/>
                 <outlet property="facebookShare" destination="a9x-np-zvE" id="m4A-iZ-hq9"/>
+                <outlet property="finalThoughtTag" destination="c8E-qV-K5f" id="5e8-LY-Q9r"/>
                 <outlet property="friendsCount" destination="gG2-Pr-Xdf" id="dqW-mi-WFJ"/>
                 <outlet property="friendsTag" destination="ef0-Lp-5lX" id="Yjj-56-7Zr"/>
                 <outlet property="googleShare" destination="FMo-fu-Icw" id="NR8-uA-mJR"/>
@@ -39,8 +40,6 @@
                 <outlet property="photosIntialView" destination="1TE-3y-V6h" id="wUV-Rb-2ve"/>
                 <outlet property="photosStack" destination="PSi-cU-6MX" id="ssQ-hB-KOC"/>
                 <outlet property="postButton" destination="vYv-ZD-NnK" id="VKq-Ny-YNC"/>
-                <outlet property="postButtonUp" destination="iHa-x2-5Ah" id="Ro5-qW-JVe"/>
-                <outlet property="postCancelButton" destination="rvI-eo-dUr" id="oZh-yb-AW7"/>
                 <outlet property="tagFriendButton" destination="HYl-RF-34A" id="Lcr-AT-5Nz"/>
                 <outlet property="tagFriendsView" destination="bpn-an-Nad" id="W6L-dU-GuQ"/>
                 <outlet property="thoughtsButton" destination="8kC-xs-RoI" id="L2w-xL-Mn2"/>
@@ -65,7 +64,7 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="950"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="txv-38-x7m">
+                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="txv-38-x7m">
                     <rect key="frame" x="80" y="465" width="240" height="40"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9x-np-zvE">
@@ -109,7 +108,7 @@
                         </button>
                     </subviews>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYv-ZD-NnK">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYv-ZD-NnK">
                     <rect key="frame" x="163" y="530" width="75" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="75" id="a6A-db-lXj"/>
@@ -120,14 +119,14 @@
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share On" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSh-Jn-unO">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Share On" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSh-Jn-unO">
                     <rect key="frame" x="165" y="436" width="71" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ss0-9c-S8e">
-                    <rect key="frame" x="8" y="53" width="384" height="358"/>
+                    <rect key="frame" x="8" y="10" width="384" height="358"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VXQ-PW-bYX">
                             <rect key="frame" x="0.0" y="0.0" width="384" height="75"/>
@@ -492,32 +491,6 @@
                         </view>
                     </subviews>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fm-p5-skK">
-                    <rect key="frame" x="8" y="20" width="384" height="25"/>
-                    <subviews>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvI-eo-dUr">
-                            <rect key="frame" x="8" y="-4" width="46" height="33"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                            <state key="normal" title="Cancel">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHa-x2-5Ah">
-                            <rect key="frame" x="346" y="-4" width="30" height="33"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
-                            <state key="normal" title="Post">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="rvI-eo-dUr" firstAttribute="centerY" secondItem="7Fm-p5-skK" secondAttribute="centerY" id="KpR-8n-fiI"/>
-                        <constraint firstAttribute="height" constant="25" id="TY6-Di-gvx"/>
-                        <constraint firstItem="rvI-eo-dUr" firstAttribute="leading" secondItem="7Fm-p5-skK" secondAttribute="leading" constant="8" id="WEO-dJ-LcN"/>
-                        <constraint firstAttribute="trailing" secondItem="iHa-x2-5Ah" secondAttribute="trailing" constant="8" id="fch-YY-frg"/>
-                        <constraint firstItem="iHa-x2-5Ah" firstAttribute="centerY" secondItem="7Fm-p5-skK" secondAttribute="centerY" id="jKT-mK-QH6"/>
-                    </constraints>
-                </view>
                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xuR-LV-saS">
                     <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                     <color key="backgroundColor" red="0.270588249" green="0.71764707569999997" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -547,7 +520,6 @@
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="ss0-9c-S8e" firstAttribute="top" secondItem="7Fm-p5-skK" secondAttribute="bottom" constant="8" id="05b-Tz-3ro"/>
                 <constraint firstItem="f0N-zJ-iqX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1wS-lt-y4Y"/>
                 <constraint firstItem="vYv-ZD-NnK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="625-1Y-6Mv"/>
                 <constraint firstAttribute="trailing" secondItem="xuR-LV-saS" secondAttribute="trailing" id="Brh-8x-fHk"/>
@@ -556,16 +528,14 @@
                 <constraint firstAttribute="trailing" secondItem="f0N-zJ-iqX" secondAttribute="trailing" id="MSJ-xe-KTY"/>
                 <constraint firstItem="uSh-Jn-unO" firstAttribute="top" secondItem="f0N-zJ-iqX" secondAttribute="bottom" constant="8" id="Mbx-vM-0lx"/>
                 <constraint firstAttribute="trailing" secondItem="ss0-9c-S8e" secondAttribute="trailing" constant="8" id="P9F-7j-A7o"/>
-                <constraint firstItem="7Fm-p5-skK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="XvI-du-rlt"/>
+                <constraint firstItem="ss0-9c-S8e" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Szv-FK-scK"/>
                 <constraint firstAttribute="bottom" secondItem="xuR-LV-saS" secondAttribute="bottom" id="YjL-wh-UYY"/>
                 <constraint firstItem="vYv-ZD-NnK" firstAttribute="top" secondItem="txv-38-x7m" secondAttribute="bottom" constant="25" id="aoW-y6-PPW"/>
                 <constraint firstItem="uSh-Jn-unO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dJe-gS-s5Q"/>
                 <constraint firstItem="uSh-Jn-unO" firstAttribute="top" secondItem="ss0-9c-S8e" secondAttribute="bottom" constant="25" id="fJx-Ed-Ajw"/>
-                <constraint firstAttribute="trailing" secondItem="7Fm-p5-skK" secondAttribute="trailing" constant="8" id="fcH-ha-kfT"/>
                 <constraint firstItem="ss0-9c-S8e" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="hPL-AV-7EO"/>
                 <constraint firstItem="f0N-zJ-iqX" firstAttribute="top" secondItem="xuR-LV-saS" secondAttribute="top" id="md9-JB-D8Z"/>
                 <constraint firstItem="xuR-LV-saS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="me8-hu-zJY"/>
-                <constraint firstItem="7Fm-p5-skK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="vYQ-Cl-5tv"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
