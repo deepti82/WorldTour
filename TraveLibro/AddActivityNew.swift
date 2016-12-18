@@ -121,6 +121,14 @@ class AddActivityNew: UIView, UITextViewDelegate {
         postButton.layer.borderWidth = 1.0
         
     }
+    @IBAction func clearLocation(_ sender: Any) {
+        self.locationHorizontalScroll.isHidden = false
+        self.categoryView.isHidden = true
+        self.editCategory.addTarget(self, action: #selector(self.selectAnotherCategory(_:)), for: .touchUpInside)
+        self.addLocationButton.setTitle("Add Location", for: UIControlState())
+        self.locationTag.tintColor = mainBlueColor
+    }
+    
     
     func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
         
@@ -255,30 +263,30 @@ class AddActivityNew: UIView, UITextViewDelegate {
             request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
-                    
                     if (response.error != nil) {
-                        
                         print("error: \(response.error?.localizedDescription)")
-                        
                     }
-                        
                     else if response["value"].bool! {
                         print(response["data"]);
                         self.locationArray = response["data"].array!;
                         self.getAllLocations();
                     }
-                   
                 })
             })
         }
     }
     
     func hideLocation() {
-        
         self.locationHorizontalScroll.isHidden = true
         self.categoryView.isHidden = false
-        self.editCategory.addTarget(self, action: #selector(NewTLViewController.selectAnotherCategory(_:)), for: .touchUpInside)
-        
+        self.editCategory.addTarget(self, action: #selector(self.selectAnotherCategory(_:)), for: .touchUpInside)
+    }
+    
+    func selectAnotherCategory(_ sender: UIButton) {
+        let chooseCategory = storyboard?.instantiateViewController(withIdentifier: "editCategory") as! EditCategoryViewController
+        chooseCategory.categoryTextView = self.categoryLabel;
+        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.pushViewController(chooseCategory, animated: true)
     }
     
     

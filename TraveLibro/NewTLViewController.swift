@@ -187,16 +187,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     //    var pickerView = UIPickerView()
     
-    func selectAnotherCategory(_ sender: UIButton) {
-        
-        //        print("select another category tapped")
-        
-        let chooseCategory = storyboard?.instantiateViewController(withIdentifier: "editCategory") as! EditCategoryViewController
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(chooseCategory, animated: true)
-      
-        
-    }
     
     var currentCity = ""
     var currentCountry = ""
