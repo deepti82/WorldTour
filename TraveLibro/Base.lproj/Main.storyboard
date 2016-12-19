@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
+
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -6037,6 +6039,7 @@
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
                                                     <action selector="cityChange:" destination="ili-bA-qU2" eventType="editingChanged" id="CvR-Q8-uka"/>
+                                                    <action selector="cityClick:" destination="ili-bA-qU2" eventType="touchDown" id="a7I-Yr-M7o"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -6097,6 +6100,7 @@
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
                                                     <action selector="countryChange:" destination="ili-bA-qU2" eventType="editingChanged" id="dhb-Pv-RB2"/>
+                                                    <action selector="countryClick:" destination="ili-bA-qU2" eventType="touchDown" id="Sii-Aa-cFs"/>
                                                 </connections>
                                             </textField>
                                         </subviews>

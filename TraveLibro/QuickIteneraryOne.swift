@@ -52,7 +52,6 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         for i in 0..<35{
             yearsPicker.append(currentYear)
             currentYear -= 1
-            print("\(yearsPicker[i])")
         }
 
         // Do any additional setup after loading the view.
@@ -144,11 +143,16 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         return true
     }
     override func viewWillDisappear(_ animated: Bool) {
-        print("view gone gone.......")
         quickItinery["title"] = JSON(tripTitle.text!)
         quickItinery["month"] = JSON(monthPickerView.text!)
-        quickItinery["year"] = JSON(yearPickerView.text!)
-        quickItinery["duration"] = JSON(durationTextField.text!)
+        if yearPickerView.text != "" {
+            quickItinery["year"] = JSON(Int(yearPickerView.text!)!)
+        }
+        if durationTextField.text != "" {
+            quickItinery["duration"] = JSON(Int(durationTextField.text!)!)
+
+        }
+    
     }
 
     /*

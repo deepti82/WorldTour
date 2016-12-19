@@ -173,11 +173,14 @@ extension UIViewController {
         let leftBarButton = UIBarButtonItem()
         leftBarButton.customView = left
         
+        if (right != nil) {
         let rightBarButton = UIBarButtonItem()
         rightBarButton.customView = right
+            self.navigationItem.rightBarButtonItem = rightBarButton
+
+        }
         
         self.navigationItem.leftBarButtonItem = leftBarButton
-        self.navigationItem.rightBarButtonItem = rightBarButton
         
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()

@@ -39,7 +39,7 @@ class QuickIteneraryTwo: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(quickItinery)
+//        print(quickItinery)
 
     }
 
@@ -60,7 +60,6 @@ class QuickIteneraryTwo: UIViewController {
             sender.tag = 0
             
         }
-        print(eachButton)
         quickItinery["itineraryType"] = JSON(eachButton)
     }
 

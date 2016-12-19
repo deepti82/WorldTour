@@ -1999,10 +1999,10 @@ class Navigation {
     }
 
 
-    func postQuickitenary(json:JSON, completion: @escaping ((JSON) -> Void)) {
+    func postQuickitenary(title:String, year:Int, month:String, completion: @escaping ((JSON) -> Void)) {
     do {
-       // let params = ["month": month, "year": year, "title": title, "duration": duration] as [String : Any]
-        let opt = try HTTP.POST(adminUrl + "itinerary/saveQuickItinerary", parameters: [])
+        let parm = ["title":title, "year":year, "month":month, "user":currentUser["_id"], "status":false] as [String : Any]
+        let opt = try HTTP.POST(adminUrl + "itinerary/saveQuickItinerary" , parameters: parm)
         var json = JSON(1);
         opt.start  {response in
             if let err = response.error {
