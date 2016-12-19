@@ -11,11 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddNewOTG" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-<<<<<<< HEAD
-                <outlet property="AddnewProfile" destination="rQu-0O-wnk" id="z4M-JF-tkC"/>
-=======
                 <outlet property="addProfileImage" destination="rQu-0O-wnk" id="Kht-i0-rCh"/>
->>>>>>> origin/level-3-
+
                 <outlet property="closeView" destination="3nM-54-wPd" id="dyF-Z4-gd2"/>
                 <outlet property="documentItineraries" destination="OGf-eg-Pvm" id="kvN-ci-AKf"/>
                 <outlet property="startNewJourney" destination="q6e-ep-Zyt" id="qia-EZ-So8"/>
