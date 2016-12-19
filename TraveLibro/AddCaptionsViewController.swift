@@ -278,8 +278,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         for image in completeImages {
             
@@ -497,18 +497,28 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         print("images Ids: \(imageIds)")
         print("all images: \(allImages)")
     }
+    var viewHeight = 0
     
     func keyboardWillShow(_ notification: Notification) {
-        
+        view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y -= keyboardSize.height
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+                //                keyboardHidden = true
+                //            }
+            }
+
         }
         
     }
     
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y += keyboardSize.height
+            
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+
         }
     }
     

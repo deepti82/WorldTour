@@ -1734,7 +1734,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func newOtg(_ sender: UIButton) {
-        otgView.bonVoyageLabel.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
+        otgView.bonVoyageLabel.animation.easeIn.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
         addNewView.animation.makeOpacity(0.0).animate(0.5)
         addNewView.isHidden = true
         getScrollView(height, journey: JSON(""))
@@ -1902,31 +1902,31 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 print("3")
                 kindOfJourneyStack.append("business_new")
             case "religious":
-                print("3")
+                print("4")
                 kindOfJourneyStack.append("religious")
             case "romance":
-                print("4")
+                print("5")
                 kindOfJourneyStack.append("romance")
             case "budget":
-                print("5")
+                print("6")
                 kindOfJourneyStack.append("luxury")
             case "luxury":
-                print("6")
+                print("7")
                 kindOfJourneyStack.append("luxury_new")
             case "family":
-                print("7")
+                print("8")
                 kindOfJourneyStack.append("family")
             case "friends":
-                print("8")
+                print("9")
                 kindOfJourneyStack.append("friends")
             case "solo":
-                print("9")
+                print("10")
                 kindOfJourneyStack.append("solo")
             case "betterhalf":
-                print("10")
+                print("11")
                 kindOfJourneyStack.append("partner")
             case "colleague":
-                print("11")
+                print("12")
                 kindOfJourneyStack.append("colleague")
             default:
                 break
@@ -1958,8 +1958,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.journeyCategoryOne.isHidden = false
             otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
             otgView.journeyCategoryTwo.isHidden = false
-            otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
             otgView.journeyCategoryThree.isHidden = false
+//            print("indexprob\(kindOfJourneyStack[3])")
+//            otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+           
             
         }
         

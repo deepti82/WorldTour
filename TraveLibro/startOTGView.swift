@@ -57,12 +57,14 @@ class startOTGView: UIView {
         }
         startJourneyButton.layer.cornerRadius = 5
         
+        
+        
         let rocketLabel = UILabel(frame: CGRect(x: -22, y: -5, width: 22, height: 30))
         rocketLabel.font = UIFont(name: "FontAwesome", size: 15)
         rocketLabel.text = String(format: "%C", faicon["rocket"]!)
         rocketLabel.textColor = UIColor.white
         startJourneyButton.titleLabel?.addSubview(rocketLabel)
-        
+        bonVoyageLabel.animation.easeIn.makeOpacity(0.0).thenAfter(0.0).animate(0.0)
         nameJourneyTF.attributedPlaceholder = NSAttributedString(string: "Name Your Journey", attributes: [NSForegroundColorAttributeName: UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)])
         
         nameJourneyView.layer.cornerRadius = 5
@@ -110,7 +112,7 @@ class startOTGView: UIView {
         journeyName.shadowColor = UIColor.black
         journeyName.shadowOffset = CGSize(width: 2, height: 1)
         journeyName.layer.masksToBounds = true
-        
+        bonVoyageLabel.animation.makeOpacity(1.0).thenAfter(0.0).animate(1.0)
         placeLabel.shadowOffset = CGSize(width: 2, height: 1)
         placeLabel.layer.masksToBounds = true
         
@@ -127,6 +129,7 @@ class startOTGView: UIView {
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "startOTGView", bundle: bundle)
+       
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
