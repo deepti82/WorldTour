@@ -513,28 +513,34 @@ extension NewTLViewController {
     }
     
     func getInfoCount() {
+        if (myJourney != nil) {
+            print(myJourney!)
+        }else{
+            print("my journey")
+        }
         
-        request.infoCount(myJourney["_id"].string!, city: latestCity, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    self.showInfo(response["data"])
-                }
-                else {
-                    
-                    print("response error")
-                }
-                
-            })
-            
-        })
+        
+//        request.infoCount(myJourney["_id"].string!, city: latestCity, completion: {(response) in
+//            
+//            DispatchQueue.main.async(execute: {
+//                
+//                if response.error != nil {
+//                    
+//                    print("error: \(response.error!.localizedDescription)")
+//                    
+//                }
+//                else if response["value"].bool! {
+//                    
+//                    self.showInfo(response["data"])
+//                }
+//                else {
+//                    
+//                    print("response error")
+//                }
+//                
+//            })
+//            
+//        })
         
     }
     

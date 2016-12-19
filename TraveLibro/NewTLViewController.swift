@@ -840,16 +840,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         rightButton.titleLabel?.font = avenirBold
         rightButton.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
         self.title = text
-        self.customNavigationBar(left: leftButton, right: rightButton)
+        if (myJourney != nil) {
+            self.customNavigationBar(left: leftButton, right: nil)
+        }else{
+            self.customNavigationBar(left: leftButton, right: rightButton)
+        }
         globalNavigationController  = self.navigationController
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGroundBlue(self)
+        getJourney()
         mainScroll.delegate = self
         setTopNavigation(text: "On The Go");
-        getJourney()
+        
         
         TLLoader = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         TLLoader.center = self.view.center
