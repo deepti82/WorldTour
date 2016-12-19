@@ -166,7 +166,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func tagMoreBuddies(_ sender: UIButton) {
-        
+        print("add buddies")
         addView.resignThoughtsTexViewKeyboard()
         //        let isTextView = textFieldShouldReturn(otgView.locationLabel)
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
@@ -841,9 +841,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         rightButton.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
         self.title = text
         if (myJourney != nil) {
-            self.customNavigationBar(left: leftButton, right: nil)
-        }else{
             self.customNavigationBar(left: leftButton, right: rightButton)
+            
+        }else{
+            self.customNavigationBar(left: leftButton, right: nil)
         }
         globalNavigationController  = self.navigationController
     }
@@ -853,7 +854,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         getDarkBackGroundBlue(self)
         getJourney()
         mainScroll.delegate = self
-        setTopNavigation(text: "On The Go");
+        
         
         
         TLLoader = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -891,6 +892,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.view.addSubview(TLLoader)
         
         mainScroll.delegate = self
+        setTopNavigation(text: "On The Go");
 
         
     }
@@ -917,7 +919,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        print("on appear")
+        setTopNavigation(text: "On The Go");
     }
     
     func gotoProfile(_ sender: UIButton) {
@@ -1840,7 +1843,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func journeyCategory(_ sender: UIButton) {
-        
+        print("kind of journey")
         let categoryVC = storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(categoryVC, animated: true)
