@@ -117,7 +117,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         initialLogin = false
         self.navigationController?.isNavigationBarHidden = false
         getDarkBackGround(self)
-        
+        profilePicture.contentMode = .scaleAspectFit
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)

@@ -250,33 +250,20 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     }
 
     func getCount() {
-        
         request.getTripSummaryCount("tripSummary", journeyId: journeyId, userId: currentUser["_id"].string!, completion: {(response) in
-            
             DispatchQueue.main.async(execute: {
-                
                 if response.error != nil {
-                    
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
-                    
                     self.tripCountData = response["data"]
                     self.labels = response["data"]["checkInCount"].array!
                     self.checkInCollectionView.reloadData()
                     self.getCountView()
-                    
                 }
-                else {
-                    
-                }
-                
             })
         })
-        
-        
     }
-
 }
 
 class TripStatsCollectionViewCell: UICollectionViewCell {

@@ -163,13 +163,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func addHeightToNewActivity(_ height: CGFloat) {
-        addView.frame.size.height = addView.frame.height + height
-        newScroll.contentSize.height = addView.frame.height
-        newScroll.bounces = false
-        newScroll.showsVerticalScrollIndicator = false
-        
-    }
+    
     
     func tagMoreBuddies(_ sender: UIButton) {
         
@@ -189,26 +183,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func hideLocation() {
-        
-        addView.locationHorizontalScroll.isHidden = true
-        addView.categoryView.isHidden = false
-        addView.editCategory.addTarget(self, action: #selector(NewTLViewController.selectAnotherCategory(_:)), for: .touchUpInside)
-        
-    }
+    
     
     //    var pickerView = UIPickerView()
     
-    func selectAnotherCategory(_ sender: UIButton) {
-        
-        //        print("select another category tapped")
-        
-        let chooseCategory = storyboard?.instantiateViewController(withIdentifier: "editCategory") as! EditCategoryViewController
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(chooseCategory, animated: true)
-      
-        
-    }
     
     var currentCity = ""
     var currentCountry = ""
@@ -1756,7 +1734,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func newOtg(_ sender: UIButton) {
-        
+        otgView.bonVoyageLabel.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
         addNewView.animation.makeOpacity(0.0).animate(0.5)
         addNewView.isHidden = true
         getScrollView(height, journey: JSON(""))
@@ -1850,7 +1828,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.nameJourneyView.layer.opacity = 0.0
         otgView.nameJourneyView.isHidden = false
         otgView.nameJourneyView.animation.makeOpacity(1.0).makeHeight(otgView.nameJourneyView.frame.height).animate(0.5)
-        otgView.bonVoyageLabel.animation.makeOpacity(0.0).animate(0.5)
+        otgView.bonVoyageLabel.animation.makeOpacity(0.0).animate(0.10)
+        
+        
         
     }
     
@@ -2435,7 +2415,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addCaption(_ sender: UIButton) {
         
-        
         var allPhotos: [UIButton] = []
         
         let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
@@ -2574,7 +2553,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         addView.videosInitialView.isHidden = false
         addView.videosFinalView.isHidden = true
-        addHeightToNewActivity(5.0)
+//        addHeightToNewActivity(5.0)
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         
@@ -2616,13 +2595,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func addThoughts(_ sender: UIButton) {
-        
-        addView.thoughtsFinalView.isHidden = false
-        addView.thoughtsInitalView.isHidden = true
-        addHeightToNewActivity(10.0)
-        
-    }
+    
     
     func checkForEditedImages(editedImagesArray: [Dictionary<Int,UIImage>]) {
         

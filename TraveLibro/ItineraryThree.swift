@@ -38,7 +38,6 @@ class ItineraryThree: UIView, UITextFieldDelegate {
     }
     
     func doubleTapped() {
-        print("demo")
         self.removeFromSuperview()
     }
     

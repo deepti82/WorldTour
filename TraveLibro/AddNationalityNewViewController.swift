@@ -192,6 +192,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
             request.editUser(currentUser["_id"].string!, editField: "homeCountry", editFieldValue: countrySelected, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
+                    
                     if response.error != nil {
                         
                         self.alert(message: "Select Country", title: "Please try agin later...")
@@ -199,22 +200,23 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                         
                     } else {
                         if response["value"] == true {
+                            
                             let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
                             self.navigationController?.pushViewController(cityVC, animated: true)
                             
                         } else {
                             
                             print("response error: \(response["data"])")
+                            
                         }
-                        
+
                     }
                     
                 })
+                
             })
 
-            
         }
-        
         
     }
 
