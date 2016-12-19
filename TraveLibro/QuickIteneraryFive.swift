@@ -24,34 +24,31 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     var selectPhotosCount = 10
         override func viewDidLoad() {
             
-        print("width for iphone")
-        print(self.view.frame.width)
         super.viewDidLoad()
         photosCollection.dataSource = self
         photosCollection.delegate = self
         photoGallerySecondView.isHidden = true
             addTripPhotos.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
             photosAddMore.addTarget(self, action: #selector(addMoreTripPhotos(_:)), for: .touchUpInside)
-            request.postQuickitenary(json: quickItinery,  completion: {(response) in
-                DispatchQueue.main.async(execute: {
-                    
-                    if response.error != nil {
-                        
-                        print("error: \(response.error!.localizedDescription)")
-                        
-                    }
-                    else if response["value"].bool! {
-                        print("nothing")
-                    }
-                    else {
-                        print("nothing")
-                        
-                    }
-                })
-            })
+//            request.postQuickitenary(json: quickItinery,  completion: {(response) in
+//                DispatchQueue.main.async(execute: {
+//                    
+//                    if response.error != nil {
+//                        
+//                        print("error: \(response.error!.localizedDescription)")
+//                        
+//                    }
+//                    else if response["value"].bool! {
+//                        print("nothing")
+//                    }
+//                    else {
+//                        print("nothing")
+//                        
+//                    }
+//                })
+//            })
  quickItinery["name"] = JSON(thumbnail1)
         // Do any additional setup after loading the view.
-            print("ImageDikhao \(quickItinery["name"])")
     }
 
     override func didReceiveMemoryWarning() {

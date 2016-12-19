@@ -10,25 +10,14 @@ import UIKit
 
 class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate  {
     
-//    let variousViews = ["One", "Two", "Three", "Four", "Five"]
-//    var quickTwo: QuickIteneraryTwo!
-//    var quickOne: QuickIteneraryOne!
     var selectedView = false
     var inx = 0
-     var viewControllers1 = [UIViewController]()
+    var viewControllers1 = [UIViewController]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         getDarkBackGround(self)
-//        one.durationTextField.delegate = self
-        
-        
-        //let myVC = viewControllerAtIndex(0) as! QuickItinerariesViewController
-        //let viewControllers = [myVC]
-       
-       
-        let leftButton = UIButton()
         self.delegate = self
         self.dataSource = self
         
@@ -49,38 +38,117 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
             setViewControllers([quickOne], direction: .forward, animated: false, completion: nil)
             inx = 0
         }
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
-        let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
-//        rightButton.addTarget(self, action: #selector(), forControlEvents: .TouchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
-        
-        self.customNavigationBar(left: leftButton, right: rightButton)
-        
-        
-        
-//        one.durationTextField.delegate = self
+        createNavigation()
         
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    
+    func createNavigation() {
+        let leftButton = UIButton()
+        if inx == 0 {
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        }else{
+            leftButton.addTarget(self, action: #selector(self.prevPage(_:)), for: .touchUpInside)
+        }
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        //        leftButton.addTarget(self, action: #selector(self.prevPage(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
-//        switch <#value#> {
-//        case <#pattern#>:
-//            <#code#>
-//        default:
-//            <#code#>
-//        }
+        let rightButton = UIButton()
+        if inx == 4 {
+            rightButton.setTitle("Done", for: .normal)
+            rightButton.addTarget(self, action: #selector(self.donePage(_:)), for: .touchUpInside)
+            rightButton.frame = CGRect(x: 0, y: 8, width: 45, height: 30)
+        }else{
+            rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+            rightButton.addTarget(self, action: #selector(self.nextPage(_:)), for: .touchUpInside)
+            rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
+        }
         
-        let currentIndex = viewControllers1.index(of: viewController)!
-        let previousIndex = abs((currentIndex - 1) % (viewControllers1.count))
-        return viewControllers1[previousIndex]
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
+        
     }
+    
+    func prevPage(_ sender: UIButton) {
+        if inx > 0 {
+            inx = inx - 1
+            self.setViewControllers([viewControllers1[inx]], direction: UIPageViewControllerNavigationDirection.reverse, animated: true, completion: nil)
+            createNavigation()
+        }
         
-
+        
+    }
+    
+    func nextPage(_ sender: UIButton) {
+        if inx < 4 {
+            inx = inx + 1
+            self.setViewControllers([viewControllers1[inx]], direction: UIPageViewControllerNavigationDirection.forward, animated: true, completion: nil)
+            createNavigation()
+        }
+        
+        
+    }
+    func donePage(_ sender: UIButton) {
+        print("done")
+        
+        quickItinery["user"] = currentUser["_id"]
+        quickItinery["status"] = false
+        print(quickItinery)
+        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue,  completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                print(response)
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    print("nothing")
+                }
+                else {
+                    print("nothing")
+                    
+                }
+            })
+        })
+    }
+    
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        print("before ......")
+        let currentIndex = self.viewControllers1.index(of: viewController)!
+        self.inx = currentIndex
+        print(self.inx)
+        self.createNavigation()
+        if currentIndex > 0{
+            
+            let previousIndex = abs((currentIndex - 1) % (self.viewControllers1.count))
+            
+            return viewControllers1[previousIndex]
+        }else{
+            return nil
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        print("After.....")
+        let currentIndex = self.viewControllers1.index(of: viewController)!
+        self.inx = currentIndex
+        print(self.inx)
+        self.createNavigation()
+        if currentIndex < 4{
+            
+            let nextIndex = abs((currentIndex + 1) % (self.viewControllers1.count))
+            
+            return viewControllers1[nextIndex]
+        }else{
+            return nil
+        }
+    }
+    
+    
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -91,40 +159,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         self.view.endEditing(true)
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        
-        let currentIndex = viewControllers1.index(of: viewController)!
-        let nextIndex = abs((currentIndex + 1) % (viewControllers1.count))
-        return viewControllers1[nextIndex]
-    }
     
-    
-//    func viewControllerAtIndex(_ index: Int) -> UIViewController {
-//        
-//        print("index: \(index)")
-//        
-//        if((viewControllers?.count == 0) || (index >= (viewControllers?.count)!)) {
-//            
-//            return QuickItinerariesViewController()
-//        }
-//        
-//       var quickIntinerary: UIViewController!
-//        
-//        switch index {
-//        case 0:
-//            return quickOne
-//        case 1:
-//            return quickTwo
-//        default:
-//            break
-//        }
-//        return quickIntinerary
-////        let myVC = storyboard?.instantiateViewController(withIdentifier: "quickItinerary") as! QuickItinerariesViewController
-////        myVC.whichView = variousViews[index]
-////        myVC.pageIndex = index
-////        return myVC
-//    }
-//    
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         
         return viewControllers1.count
@@ -134,5 +169,5 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         
         return inx
     }
-
+    
 }

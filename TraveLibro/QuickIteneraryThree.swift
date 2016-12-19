@@ -53,7 +53,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     
     override func viewDidAppear(_ animated: Bool) {
         viewAdded = false
-        print("in appear")
         
         if selectedCountry.count != 0 {
             countryVisited.text = selectedCountry["name"].string
@@ -72,7 +71,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     func createCity(cities:JSON) -> String {
         var a = ""
         if cities.count != 0 {
-            for i in 0...cities.count {
+            for i in 0...cities.count - 1 {
                 if i == 0 {
                     a = a + cities[i]["name"].stringValue
                 }else{
@@ -91,6 +90,16 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         self.navigationController?.pushViewController(next, animated: true)
     }
     
+    @IBAction func countryClick(_ sender: UITextField) {
+        selectedStatus = "country"
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+        self.navigationController?.pushViewController(next, animated: true)
+    }
+    @IBAction func cityClick(_ sender: UITextField) {
+        selectedStatus = "city"
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+        self.navigationController?.pushViewController(next, animated: true)
+    }
     @IBAction func cityChange(_ sender: UITextField) {
         selectedStatus = "city"
         let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController

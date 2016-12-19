@@ -1902,10 +1902,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 print("3")
                 kindOfJourneyStack.append("business_new")
             case "religious":
-                print("3")
+                print("4")
                 kindOfJourneyStack.append("religious")
             case "romance":
-                print("4")
+                print("5")
                 kindOfJourneyStack.append("romance")
             case "budget":
                 print("5")
