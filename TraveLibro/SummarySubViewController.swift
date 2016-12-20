@@ -159,7 +159,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         let date = Date()
 //        date.toGlobalTime()
         dayCount.text = "\(getDays(tripCountData["startTime"].string!, postDate: "\(date)")) Days"
-        mileageText.text = "0 km"
+//        mileageText.text = "0 km"
         
         
         for i in 0..<tripCountData["checkIn"].array!.count {
@@ -255,7 +255,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
                         self.labels = response["data"]["checkInCount"].array!
                     }
                     self.checkInCollectionView.reloadData()
-//                    self.getCountView()
+                    self.getCountView()
                 }
             })
         })
