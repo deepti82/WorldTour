@@ -31,6 +31,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var photoImage: [UIImage] = []
     var imageArr:[PostImage] = []
     var isDeletedImage = false
+    var currentImageIndex = 0;
     
     @IBOutlet var completeImages: [UIImageView]!
     @IBOutlet weak var captionTextView: UITextView!
@@ -117,6 +118,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     @IBAction func previousImageCaption(_ sender: AnyObject) {
+        
         
         
         addToLocalDB(ind: index)
@@ -302,11 +304,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             completeImages[i].isHidden = false
             
             if completeImages[i].image == imageForCaption.image {
-                
+                currentImageIndex = i;
                 print("inside equality")
                 completeImages[i].layer.borderColor = mainOrangeColor.cgColor
                 completeImages[i].layer.borderWidth = 1.0
-                
             }
             
         }
