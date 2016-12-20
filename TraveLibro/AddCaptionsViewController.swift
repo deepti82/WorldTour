@@ -104,30 +104,18 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
         toolStackController.delegate = self
         toolStackController.navigationItem.title = "Editor"
-        
         //toolStackController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: photoEditViewController, action: #selector(ImgLyKitViewController.cancel(_:)))
-        
         toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
-        
         let nvc = UINavigationController(rootViewController: toolStackController)
-        
         nvc.navigationBar.isTranslucent = false
         nvc.navigationBar.barStyle = .black
-        
         self.present(nvc, animated: true, completion: nil)
     }
     
     @IBAction func previousImageCaption(_ sender: AnyObject) {
-        
-        
-        
         addToLocalDB(ind: index)
-//        addNewCaption(ind: index)
-        
         index = index - 1
-        
         if index >= 0 {
-            
             print("previous caption \(index)")
             let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
@@ -137,11 +125,11 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.allPhotos = allPhotos
             captionVC.index = index
             captionVC.imageIds = imageIds
+            captionVC.imageArr = self.imageArr
             //            captionVC.getPhotoCaption()
             //            captionVC.currentId = allIds[index]
             captionVC.allImages = allImages
             self.navigationController!.pushViewController(captionVC, animated: false)
-            
         }
         
         else {
@@ -188,6 +176,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.imageIds = imageIds
             captionVC.currentId = currentId + 1
             captionVC.allImages = allImages
+            captionVC.imageArr = self.imageArr
             self.navigationController!.pushViewController(captionVC, animated: false)
         }
         
@@ -291,27 +280,22 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         }
         
         if allImages.count <= 5 {
-            
             bottomStack.isHidden = true
-            
         }
         
         for i in 0 ..< allImages.count {
-            
             let image = allImages[i].currentImage
             print("image to be set: \(image)")
             completeImages[i].image = image
             completeImages[i].isHidden = false
-            
             if completeImages[i].image == imageForCaption.image {
                 currentImageIndex = i;
-                print("inside equality")
                 completeImages[i].layer.borderColor = mainOrangeColor.cgColor
                 completeImages[i].layer.borderWidth = 1.0
             }
-            
         }
         
+        captionTextView.text = imageArr[currentImageIndex].caption
     }
     
     func getIndex() -> Int {
@@ -385,12 +369,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         print("in view did appear")
         
         if (isEditedImage) {
-            
             updateImage()
         }
         
         else if !isGoingToEdit {
-            
             getPhotoCaption(ind: index)
         }
         
@@ -404,7 +386,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             
             print("\(#line) caption: \(ind) \(allPhotos[ind].caption)")
             if allPhotos[ind].caption != "" {
-                captionTextView.text = allPhotos[ind].caption
+                captionTextView.text = imageArr[ind].caption
             }
             else {
                 captionTextView.text = "Add a caption..."
@@ -444,6 +426,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionVC.allPhotos = allPhotos
             captionVC.allIds = allIds
             captionVC.allImages = allImages
+            captionVC.imageArr = self.imageArr
 //            captionVC.getPhotoCaption()
             self.navigationController!.pushViewController(captionVC, animated: false)
             
@@ -540,6 +523,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         if captionTextView.text == "Add a caption..." {
             captionTextView.text = ""
         }
+    }
+    func textViewDidChange(_ textView: UITextView) {
+        print(captionTextView.text)
+        print(currentImageIndex);
+        print(imageArr);
+        imageArr[currentImageIndex].caption = captionTextView.text
     }
     
     func goBack(_ sender: UIButton) {
