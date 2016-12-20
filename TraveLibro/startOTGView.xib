@@ -313,7 +313,7 @@
                         <constraint firstAttribute="trailing" secondItem="h75-8D-si8" secondAttribute="trailing" id="sEd-hu-qtp"/>
                     </constraints>
                 </view>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W5b-nR-cLh">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W5b-nR-cLh" customClass="SpringButton" customModule="Spring">
                     <rect key="frame" x="16" y="548" width="368" height="55"/>
                     <color key="backgroundColor" red="0.76862746479999999" green="0.94117647410000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -324,6 +324,13 @@
                     <state key="normal" title="Add Buddies">
                         <color key="titleColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                            <real key="value" value="1000"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="animation" value="flash"/>
+                    </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
             <constraints>

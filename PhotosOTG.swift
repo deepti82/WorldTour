@@ -73,8 +73,8 @@ class PhotosOTG: UIView {
                 else if response["value"].bool! {
                     
                     if sender.tag == 1 {
-                        
                         sender.setImage(UIImage(named: "favorite-heart-button"), for: .normal)
+                        sender.tintColor = mainOrangeColor
                         self.likeCount += 1
                         self.likeViewLabel.text = "\(self.likeCount) Likes"
                         
@@ -82,7 +82,7 @@ class PhotosOTG: UIView {
                     else {
                         
                         sender.setImage(UIImage(named: "like_empty_icon"), for: .normal)
-                        
+                        sender.tintColor = mainBlueColor
                         if self.likeCount <= 0 {
                             self.likeCount = 0
                         } else {
