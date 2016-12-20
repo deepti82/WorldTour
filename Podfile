@@ -1,7 +1,7 @@
 platform :ios, '9.0'
 
 target 'TraveLibro' do
-pod 'HanekeSwift', :git=> 'https://github.com/Haneke/HanekeSwift.git', :branch => 'feature/swift-3'
+  pod 'HanekeSwift', :git=> 'https://github.com/Haneke/HanekeSwift.git', :branch => 'feature/swift-3'
   pod 'BSImagePicker', '~> 2.4'
   pod 'DKChainableAnimationKit', :git=> 'https://github.com/Draveness/DKChainableAnimationKit.git', :branch => 'master'
   pod 'TabPageViewController', :git=> 'https://github.com/EndouMari/TabPageViewController.git', :branch => 'swift_3'
@@ -14,6 +14,7 @@ pod 'HanekeSwift', :git=> 'https://github.com/Haneke/HanekeSwift.git', :branch =
   pod 'Dollar'
   pod 'Cent'
   pod 'AsyncSwift'
+  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
 end
 
 use_frameworks!
