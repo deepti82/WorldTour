@@ -10,6 +10,6 @@ import Foundation
 public class PostImage {
     var imageUrl: URL!
     var image = UIImage()
-    var comment = ""
+    var caption = ""
     
 }

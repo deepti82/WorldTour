@@ -86,9 +86,10 @@ class ListPhotosViewController: UIViewController {
                     
                 }
                 else if response["value"].bool! {
-                    
-                    self.photos = response["data"].array!
+                    if response["data"]["photos"] != nil {
+                    self.photos = response["data"]["photos"].array!
                     self.makeLayout()
+                    }
                     
                 }
                 else {
