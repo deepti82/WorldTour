@@ -1,6 +1,7 @@
 import UIKit
 import BSImagePicker
 import Photos
+import imglyKit
 
 var globalAddActivityNew:AddActivityNew!
 
@@ -360,12 +361,27 @@ class AddActivityNew: UIView, UITextViewDelegate {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let takePhotos = UIAlertAction(title: "Take Photos", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .camera
-            if sender.tag == 1 {
-                self.photosAddedMore = true
+            
+            
+            let cameraViewController = CameraViewController()
+            func abc(image:UIImage?,url:URL?) -> Void
+            {
+                print("Chintan Rocks");
+                let imgA:[UIImage] = [image!]
+                cameraViewController.dismiss(animated: true, completion: nil)
+                globalAddActivityNew.photosAdded(assets: imgA)
+                
             }
-            globalNavigationController?.pushViewController(self.imagePicker, animated: true)
+            cameraViewController.completionBlock = abc;
+            globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
+        
+//            self.imagePicker.allowsEditing = true
+//            self.imagePicker.sourceType = .camera
+//            if sender.tag == 1 {
+//                self.photosAddedMore = true
+//            }
+//            globalNavigationController?.pushViewController(self.imagePicker, animated: true)
+            
         })
         let photoLibrary = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
