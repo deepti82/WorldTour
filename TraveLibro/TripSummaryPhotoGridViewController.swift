@@ -34,9 +34,11 @@ class TripSummaryPhotoGridViewController: UICollectionViewController {
                     
                 }
                 else if response["value"].bool! {
+                    if response["data"]["photos"] != nil {
+                    self.myPhotos = response["data"]["photos"].array!
                     
-                    self.myPhotos = response["data"].array!
                     self.collectionView!.reloadData()
+                    }
                     
                 }
                 else {
