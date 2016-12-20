@@ -24,13 +24,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var imageIds: [Int] = []
     var allPhotos: [PhotoUpload] = []
     var currentId = 0
-    
     let photoCount = 0
     var photoIndex: [String] = []
     var photoData: [Data] = []
     var photoURL: [URL] = []
     var photoImage: [UIImage] = []
-    
+    var imageArr:[PostImage] = []
     var isDeletedImage = false
     
     @IBOutlet var completeImages: [UIImageView]!
@@ -528,31 +527,21 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
 //            photo.insertCaption(imageLocalId: Int64(allIds[index]), caption: captionTextView.text)
             
 //            addNewCaption(ind: index)
-            
             if captionTextView.text == "" {
-                
                 captionTextView.text = "Add a caption..."
-                
             }
             return true
-            
         }
-        
         return true
-        
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        
         if captionTextView.text == "Add a caption..." {
-            
             captionTextView.text = ""
         }
-        
     }
     
     func goBack(_ sender: UIButton) {
-        
         for viewController in self.navigationController!.viewControllers {
             
             if viewController.isKind(of: NewTLViewController.self) {

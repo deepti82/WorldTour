@@ -922,9 +922,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
     }
     
+<<<<<<< HEAD
     override func viewDidAppear(_ animated: Bool) {
         print("on appear")
         setTopNavigation(text: "On The Go");
+=======
+    override func viewWillAppear(_ animated: Bool) {
+//        print("on appear")
+//        setTopNavigation(text: "On The Go");
+>>>>>>> origin/level-3-
     }
     
     func gotoProfile(_ sender: UIButton) {
