@@ -227,7 +227,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
         //        self.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
         self.thoughtsButton.addTarget(self, action: #selector(self.addThoughts(_:)), for: .touchUpInside)
         //        self.tagFriendButton.addTarget(self, action: #selector(NewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
-        self.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
+        self.postButton.addTarget(self, action: #selector(globalNewTLViewController.newPost(_:)), for: .touchUpInside)
         //        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
         //        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
     }
@@ -419,7 +419,6 @@ class AddActivityNew: UIView, UITextViewDelegate {
     func photosAdded(assets: [UIImage]) {
         self.photosIntialView.isHidden = true
         self.photosFinalView.isHidden = false
-        
         for subview in self.horizontalScrollForPhotos.subviews {
             if subview.tag == 1 {
                 self.removeWidthToPhotoLayout(subview.frame.width + 10.0)
