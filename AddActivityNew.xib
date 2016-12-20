@@ -18,6 +18,7 @@
             <connections>
                 <outlet property="addLocationButton" destination="BbX-7c-94W" id="Xfu-eC-X5U"/>
                 <outlet property="cancelButton" destination="a7k-EX-5Er" id="3Uw-hc-p2H"/>
+                <outlet property="cancelLocationButton" destination="TwC-rr-X4U" id="eqa-d6-Omv"/>
                 <outlet property="categoryLabel" destination="pHV-iD-8r7" id="wZa-Zv-9uZ"/>
                 <outlet property="categoryView" destination="aWx-B8-ihx" id="DS7-BU-lng"/>
                 <outlet property="doneButton" destination="kfx-FD-UNk" id="uHb-Fm-vEQ"/>
@@ -34,6 +35,7 @@
                 <outlet property="locationView" destination="VXQ-PW-bYX" id="pHc-SM-skL"/>
                 <outlet property="moreOptions" destination="MiR-Zp-fad" id="tUF-lB-lGx"/>
                 <outlet property="photoScroll" destination="rLJ-tm-RUv" id="qH2-c2-96R"/>
+                <outlet property="photoTag" destination="tWP-Xu-eyz" id="6AM-gC-Trm"/>
                 <outlet property="photosButton" destination="5rB-xD-i1a" id="rUV-id-Q9r"/>
                 <outlet property="photosCount" destination="yiQ-le-KDq" id="7My-zD-ScJ"/>
                 <outlet property="photosFinalView" destination="tij-q0-ySJ" id="4ez-jh-eKK"/>
@@ -42,12 +44,14 @@
                 <outlet property="postButton" destination="vYv-ZD-NnK" id="VKq-Ny-YNC"/>
                 <outlet property="tagFriendButton" destination="HYl-RF-34A" id="Lcr-AT-5Nz"/>
                 <outlet property="tagFriendsView" destination="bpn-an-Nad" id="W6L-dU-GuQ"/>
+                <outlet property="thoughtInitialTag" destination="oUM-Jh-Qah" id="lTY-2a-myH"/>
                 <outlet property="thoughtsButton" destination="8kC-xs-RoI" id="L2w-xL-Mn2"/>
                 <outlet property="thoughtsCharacterCount" destination="GgR-i1-3KR" id="89s-4q-qdw"/>
                 <outlet property="thoughtsFinalView" destination="ITD-l3-ZCF" id="3t2-ao-VHn"/>
                 <outlet property="thoughtsInitalView" destination="PM4-mA-ULq" id="LkW-if-uH9"/>
                 <outlet property="thoughtsTextView" destination="VNW-ZV-hJh" id="stt-cb-Ufm"/>
                 <outlet property="twitterShare" destination="XDb-hl-Qfq" id="OBR-VQ-g7U"/>
+                <outlet property="videoTag" destination="QT8-lh-TbD" id="1UD-Ap-PmC"/>
                 <outlet property="videosButton" destination="Yyl-Bk-bch" id="fdO-wb-A5h"/>
                 <outlet property="videosCount" destination="26j-9I-gSj" id="Ufm-vo-UcQ"/>
                 <outlet property="videosFinalView" destination="hS0-gT-IGp" id="maS-ig-jrH"/>

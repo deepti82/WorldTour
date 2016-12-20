@@ -55,11 +55,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         }
         
         else if index >= allImages.count - 1 {
-            
             index = 0
-            
             print("prev index: \(index - 1) current index: \(index)")
-            
             let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
             captionVC.imagesArray = imagesArray
             captionVC.currentImage = allImages[index].currentImage!

@@ -1,4 +1,3 @@
-
 import UIKit
 import BSImagePicker
 import Photos
@@ -58,7 +57,11 @@ class AddActivityNew: UIView, UITextViewDelegate {
     
     @IBOutlet weak var photoScroll: UIScrollView!
     @IBOutlet weak var postCancelButton: UIButton!
+    @IBOutlet weak var photoTag: UIImageView!
+    @IBOutlet weak var thoughtInitialTag: UIImageView!
     
+    @IBOutlet weak var cancelLocationButton: UIButton!
+    @IBOutlet weak var videoTag: UIImageView!
     
     var tempAssets: [URL] = []
     var allImageIds: [Int] = []
@@ -73,7 +76,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     
     let imagePicker = UIImagePickerController()
     var photosAddedMore = false
-    var selectPhotosCount = 11
+    var selectPhotosCount = 0
     
     var newScroll : UIScrollView!
     var locationArray: [JSON] = []
@@ -119,19 +122,23 @@ class AddActivityNew: UIView, UITextViewDelegate {
         postButton.layer.cornerRadius = 5.0
         postButton.layer.borderColor = UIColor.white.cgColor
         postButton.layer.borderWidth = 1.0
-        
+        self.locationTag.tintColor = mainBlueColor
+        self.photoTag.tintColor = mainBlueColor
+        self.thoughtInitialTag.tintColor = mainBlueColor
+        self.videoTag.tintColor = mainBlueColor
+        self.cancelLocationButton.isHidden = true
     }
+    
     @IBAction func clearLocation(_ sender: Any) {
         self.locationHorizontalScroll.isHidden = false
         self.categoryView.isHidden = true
         self.editCategory.addTarget(self, action: #selector(self.selectAnotherCategory(_:)), for: .touchUpInside)
         self.addLocationButton.setTitle("Add Location", for: UIControlState())
         self.locationTag.tintColor = mainBlueColor
+        self.cancelLocationButton.isHidden = true
     }
     
-    
     func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
-        
 //        print("inside the style horizontal button")
         button.backgroundColor = UIColor.clear
         button.titleLabel!.font = avenirFont
@@ -141,15 +148,12 @@ class AddActivityNew: UIView, UITextViewDelegate {
         button.layer.borderColor = UIColor.darkGray.cgColor
         button.layer.borderWidth = 1.0
         locationHorizontalScroll.contentSize.width += button.frame.width + 10
-        
     }
     
     
     func makeFAButton(_ faValue: String, button: UIButton) {
-        
         let edit = String(format: "%C", faicon[faValue]!)
         button.setTitle(edit, for: .normal)
-        
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -195,16 +199,12 @@ class AddActivityNew: UIView, UITextViewDelegate {
     }
     
     func resignThoughtsTexViewKeyboard() {
-        
         thoughtsTextView.resignFirstResponder()
-        
     }
     
     
     func getStylesOn(_ view: UIView) {
-        
         view.layer.cornerRadius = 5.0
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -219,7 +219,6 @@ class AddActivityNew: UIView, UITextViewDelegate {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
         addLocationTapped();
-        
         
         self.addLocationButton.addTarget(self, action: #selector(self.gotoSearchLocation(_:)), for: .touchUpInside)
         self.photosButton.addTarget(self, action: #selector(self.addPhotos(_:)), for: .touchUpInside)
@@ -239,13 +238,12 @@ class AddActivityNew: UIView, UITextViewDelegate {
     }
     
     func addThoughts(_ sender: UIButton) {
-        
         self.thoughtsFinalView.isHidden = false
         self.thoughtsInitalView.isHidden = true
         addHeightToNewActivity(10.0)
         thoughtsTextView.becomeFirstResponder()
-        
     }
+    
     func addHeightToNewActivity(_ height: CGFloat) {
         self.frame.size.height = self.frame.height + height
         newScroll.contentSize.height = self.frame.height
@@ -346,13 +344,12 @@ class AddActivityNew: UIView, UITextViewDelegate {
                     
                 }
                 else if response["value"].bool! {
-                    
                     self.categoryLabel.text = response["data"].string!
                     self.currentCity = response["city"].string!
                     self.currentCountry = response["country"].string!
                     self.currentLat = response["lat"].float!
                     self.currentLong = response["long"].float!
-                    
+                    self.cancelLocationButton.isHidden = false
                 }
                 else {
                     
@@ -393,7 +390,6 @@ class AddActivityNew: UIView, UITextViewDelegate {
             (alert: UIAlertAction!) -> Void in
             
             let multipleImage = BSImagePickerViewController()
-            multipleImage.maxNumberOfSelections = self.selectPhotosCount
             
             globalNavigationController?.topViewController?.bs_presentImagePickerController(multipleImage, animated: true,
                                                  select: { (asset: PHAsset) -> Void in
@@ -410,20 +406,17 @@ class AddActivityNew: UIView, UITextViewDelegate {
                 
             }, finish: { (assets: [PHAsset]) -> Void in
                 
-                
                 if sender.tag == 1 {
-                    
                     self.photosAddedMore = true
-                    
                 }
                 
                 if !self.photosAddedMore {
                     self.photosGroupId += 1
                 }
+                
                 var img11 = [UIImage]()
                 
                 DispatchQueue.main.async {
-                    
                     let options = PHImageRequestOptions()
                     options.isSynchronous = true
                     for n in 0...assets.count-1{
@@ -450,28 +443,21 @@ class AddActivityNew: UIView, UITextViewDelegate {
         globalNavigationController?.topViewController?.present(optionMenu, animated: true, completion: nil)
 
     }
+    
     func removeWidthToPhotoLayout(_ width: CGFloat) {
-        
         self.horizontalScrollForPhotos.frame.size.width = self.horizontalScrollForPhotos.frame.size.width - width - 25.0
         self.photoScroll.contentSize.width = self.photoScroll.contentSize.width - width - 25.0
-        
     }
 
-    
-    
     func photosAdded(assets: [UIImage]) {
-        
-        
         self.photosIntialView.isHidden = true
         self.photosFinalView.isHidden = false
         
         for subview in self.horizontalScrollForPhotos.subviews {
-            
             if subview.tag == 1 {
                 self.removeWidthToPhotoLayout(subview.frame.width + 10.0)
                 subview.removeFromSuperview()
             }
-            
         }
         
         var allImages: [UIImage] = []
@@ -577,7 +563,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
         photosButton.setImage(photo, for: .normal)
         photosButton.layer.cornerRadius = 5.0
         photosButton.clipsToBounds = true
-        photosButton.addTarget(self, action: #selector(NewTLViewController.addCaption(_:)), for: .touchUpInside)
+        photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
         self.addWidthToPhotoLayout(photosButton.frame.width)
         self.horizontalScrollForPhotos.addSubview(photosButton)
         
