@@ -29,7 +29,6 @@ class OnlyPhoto: UIView {
         self.addSubview(sideIcon)
         
         likeViewLabel.textColor = mainBlueColor
-        
         likeHeart.font = UIFont(name: "FontAwesome", size: 12)
         likeHeart.text = String(format: "%C", faicon["likes"]!)
         

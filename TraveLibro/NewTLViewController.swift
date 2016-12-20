@@ -861,7 +861,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         mainScroll.delegate = self
         globalNewTLViewController = self;
         
+        otgView.nameJourneyTF.delegate = self
         
+        otgView.nameJourneyTF.becomeFirstResponder()
+        otgView.nameJourneyView.becomeFirstResponder()
         
         TLLoader = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         TLLoader.center = self.view.center
@@ -1836,7 +1839,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func startOTGJourney(_ sender: UIButton) {
-        
+        otgView.nameJourneyTF.becomeFirstResponder()
         sender.animation.makeHeight(0.0).animate(0.3)
         sender.isHidden = true
         otgView.nameJourneyView.layer.opacity = 0.0

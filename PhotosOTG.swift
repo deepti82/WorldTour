@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Spring
 
 class PhotosOTG: UIView {
 
@@ -25,7 +25,7 @@ class PhotosOTG: UIView {
     @IBOutlet weak var whatPostIcon: UIButton!
     @IBOutlet weak var lineUp: drawLine!
     
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
@@ -117,13 +117,11 @@ class PhotosOTG: UIView {
         
         photosTitle.numberOfLines = 0
         let customType = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"
-        
         likeButton.tintColor = mainBlueColor
         commentButton.tintColor = mainBlueColor
         shareButton.tintColor = mainBlueColor
         optionsButton.tintColor = mainBlueColor
         commentIcon.tintColor = mainBlueColor
-        
         likeButton.imageView?.contentMode = .scaleAspectFit
         commentButton.imageView?.contentMode = .scaleAspectFit
         shareButton.imageView?.contentMode = .scaleAspectFit
@@ -150,6 +148,10 @@ class PhotosOTG: UIView {
         self.addSubview(view)
     }
     
+    @IBAction func popEffect(_ sender: SpringButton) {
+       likeButton.animation = "pop"
+        likeButton.animateTo()
+    }
     func setMapImage(mapUrl: String) {
         
         mainPhoto.hnk_setImageFromURL(URL(string: mapUrl)!)
