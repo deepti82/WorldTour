@@ -16,6 +16,7 @@ var TLLoader = UIActivityIndicatorView()
 
 var userLocation: CLLocationCoordinate2D!
 var globalNavigationController:UINavigationController!
+var globalNewTLViewController:NewTLViewController!
 
 class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {
     
@@ -858,6 +859,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         getDarkBackGroundBlue(self)
         getJourney()
         mainScroll.delegate = self
+        globalNewTLViewController = self;
         
         
         
