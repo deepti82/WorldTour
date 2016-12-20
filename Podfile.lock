@@ -12,6 +12,7 @@ PODS:
   - HanekeSwift (0.10.1)
   - imglyKit (5.0.6)
   - Simplicity (2.0.1)
+  - Spring (1.0.3)
   - SQLite.swift (0.11.1):
     - SQLite.swift/standard (= 0.11.1)
   - SQLite.swift/standard (0.11.1)
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
   - imglyKit (~> 5.0)
   - Simplicity
+  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `prepare-0.11.1`)
   - SwiftHTTP (~> 2.0.0)
   - TabPageViewController (from `https://github.com/EndouMari/TabPageViewController.git`, branch `swift_3`)
@@ -45,6 +47,9 @@ EXTERNAL SOURCES:
   HanekeSwift:
     :branch: feature/swift-3
     :git: https://github.com/Haneke/HanekeSwift.git
+  Spring:
+    :branch: swift3
+    :git: https://github.com/MengTo/Spring.git
   SQLite.swift:
     :branch: prepare-0.11.1
     :git: https://github.com/stephencelis/SQLite.swift.git
@@ -59,6 +64,9 @@ CHECKOUT OPTIONS:
   HanekeSwift:
     :commit: 1157a124ec699f4ad926cb054f1d0bfce88ae7a9
     :git: https://github.com/Haneke/HanekeSwift.git
+  Spring:
+    :commit: 3a9227c6e9157e7b47f5ac1ee5abab2a56b50002
+    :git: https://github.com/MengTo/Spring.git
   SQLite.swift:
     :commit: d95a518178570c805bb18b971d264b8a48edbcf5
     :git: https://github.com/stephencelis/SQLite.swift.git
@@ -77,6 +85,7 @@ SPEC CHECKSUMS:
   HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
   imglyKit: b78152c784cdcdf64297de33ad474bd7f13c7de9
   Simplicity: 58ce0c6569baf45e48ccd25432274ae899097517
+  Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SQLite.swift: 1af00c95130fba962653aa136e3ecb0b8890796b
   SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
   TabPageViewController: a4b46480e21251000962abad071b538679dbc2ad
@@ -84,6 +93,6 @@ SPEC CHECKSUMS:
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 1b5c7ba53c82f0240cf189d5d593a3de831698e3
+PODFILE CHECKSUM: eded2a708a0fdefa7eca261a2fb8026b9988c052
 
 COCOAPODS: 1.1.1
