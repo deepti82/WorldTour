@@ -90,7 +90,7 @@ class AddActivityNew: UIView, UITextViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        global	New = self;
+        globalAddActivityNew = self;
         makeFAButton("fbSquare", button: facebookShare)
         makeFAButton("whatsapp", button: whatsappShare)
         makeFAButton("googleSquare", button: googleShare)
