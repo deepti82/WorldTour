@@ -314,7 +314,6 @@ extension NewTLViewController {
             addNewView.layer.zPosition = 1000
             addNewView.profilePicture.contentMode = .scaleAspectFill
 //            addNewView.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=500")!))
-            otgView.bonVoyageLabel.animation.makeOpacity(1.0).thenAfter(0.3).animate(1.0)
             addNewView.profilePicture.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=500")!)
             makeTLProfilePicture(addNewView.profilePicture)
             addNewView.profileName.text = currentUser["name"].string!

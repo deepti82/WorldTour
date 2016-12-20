@@ -45,6 +45,7 @@ class startOTGView: UIView {
     @IBOutlet weak var dpFriendTwo: UIImageView!
     @IBOutlet weak var dpFriendThree: UIImageView!
     
+    @IBOutlet weak var shoewImage: UIImageView!
     @IBOutlet var buddyStackPictures: [UIImageView]!
     @IBOutlet weak var optionsButton: UIButton!
     
@@ -64,7 +65,11 @@ class startOTGView: UIView {
         rocketLabel.text = String(format: "%C", faicon["rocket"]!)
         rocketLabel.textColor = UIColor.white
         startJourneyButton.titleLabel?.addSubview(rocketLabel)
-        bonVoyageLabel.animation.easeIn.makeOpacity(0.0).thenAfter(0.0).animate(0.0)
+        bonVoyageLabel.animation.thenAfter(0.5).animate(0.15).makeAlpha(1.0)
+        shoewImage.animation.thenAfter(0.20).animate(0.25).makeAlpha(1.0)
+        lineOne.animation.thenAfter(0.30).animate(0.35).makeAlpha(1.0)
+        startJourneyButton.animation.thenAfter(0.40).animate(0.45).makeAlpha(1.0)
+        lineTwo.animation.thenAfter(0.50).animate(0.55).makeAlpha(1.0)
         nameJourneyTF.attributedPlaceholder = NSAttributedString(string: "Name Your Journey", attributes: [NSForegroundColorAttributeName: UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)])
         
         nameJourneyView.layer.cornerRadius = 5
@@ -112,7 +117,7 @@ class startOTGView: UIView {
         journeyName.shadowColor = UIColor.black
         journeyName.shadowOffset = CGSize(width: 2, height: 1)
         journeyName.layer.masksToBounds = true
-        bonVoyageLabel.animation.makeOpacity(1.0).thenAfter(0.0).animate(1.0)
+        
         placeLabel.shadowOffset = CGSize(width: 2, height: 1)
         placeLabel.layer.masksToBounds = true
         

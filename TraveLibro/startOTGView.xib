@@ -38,6 +38,7 @@
                 <outlet property="optionsButton" destination="uDU-BI-qyt" id="y1K-c5-zXl"/>
                 <outlet property="placeLabel" destination="zV2-Ih-s2k" id="eUA-RR-N4L"/>
                 <outlet property="selectCategoryButton" destination="nWW-f4-BJZ" id="Fa8-qG-oJP"/>
+                <outlet property="shoewImage" destination="aZc-x0-efS" id="Wvq-Hp-W7d"/>
                 <outlet property="startJourneyButton" destination="IfS-Jb-lY3" id="AbO-sq-cbP"/>
                 <outlet property="timestampDate" destination="z2V-7e-khq" id="eFb-x4-02F"/>
                 <outletCollection property="journeyCategoryDetails" destination="Gv5-2Z-VcH" collectionClass="NSMutableArray" id="def-mz-sCB"/>
@@ -63,28 +64,28 @@
                         <constraint firstAttribute="width" constant="10" id="2Po-H3-PdJ"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7C-a2-fLC" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7C-a2-fLC" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
                     <rect key="frame" x="195" y="138" width="10" height="63"/>
                     <color key="backgroundColor" red="0.58426339289999996" green="0.88718180089999998" blue="0.26145754180000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="kq8-dj-z3y"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mK-u8-TND" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mK-u8-TND" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
                     <rect key="frame" x="195" y="78" width="10" height="37"/>
                     <color key="backgroundColor" red="0.58426339289999996" green="0.88718180089999998" blue="0.26145754180000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="dtq-YW-KbU"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="journey_shoes" translatesAutoresizingMaskIntoConstraints="NO" id="aZc-x0-efS">
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="journey_shoes" translatesAutoresizingMaskIntoConstraints="NO" id="aZc-x0-efS">
                     <rect key="frame" x="170" y="28" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="ADi-br-DF3"/>
                         <constraint firstAttribute="height" constant="60" id="mTq-mV-blT"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bon Voyage!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0m-qZ-68a">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bon Voyage!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0m-qZ-68a">
                     <rect key="frame" x="238" y="8" width="70" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="jjM-bC-cuR"/>
@@ -94,7 +95,7 @@
                     <color key="textColor" red="0.023529411764705882" green="0.88627450980392153" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfS-Jb-lY3">
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfS-Jb-lY3">
                     <rect key="frame" x="95" y="108" width="210" height="55"/>
                     <color key="backgroundColor" red="1" green="0.40784313729999999" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
