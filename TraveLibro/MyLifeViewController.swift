@@ -112,8 +112,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let frameWidth = self.view.frame.width - 25
         
-        print("in main my life")
-        
         journeysWC.constant = frameWidth/3
         momentsWC.constant = frameWidth/3
         reviewsWC.constant = frameWidth/3
@@ -164,8 +162,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.setDefaults()
         self.allRadioChecked(nil)
-        
-        print("to the end of view did load")
     }
     
     func exitMyLife(_ sender: AnyObject ) {
