@@ -34,7 +34,7 @@ class NewQuickItinerary: UIView {
         blurView.frame.size.width = self.frame.width
         blurView.layer.zPosition = -1
         blurView.isUserInteractionEnabled = false
-        blurView.alpha = 0.5
+        blurView.alpha = 0.75
         self.addSubview(blurView)
         let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
