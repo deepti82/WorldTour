@@ -651,6 +651,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.getAllPosts(allPosts)
                         
                     }
+                    self.setTopNavigation(text: "On The Go");
                     
                 }
                 else {
@@ -824,6 +825,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var isInitialLoad = true
     
     func setTopNavigation(text: String) {
+        print("----------------------top navigation")
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -842,11 +844,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.title = text
         if (myJourney != nil) {
             self.customNavigationBar(left: leftButton, right: rightButton)
+            globalNavigationController  = self.navigationController
             
         }else{
             self.customNavigationBar(left: leftButton, right: nil)
+            globalNavigationController  = self.navigationController
         }
-        globalNavigationController  = self.navigationController
+        
     }
     
     override func viewDidLoad() {
@@ -892,7 +896,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.view.addSubview(TLLoader)
         
         mainScroll.delegate = self
-        setTopNavigation(text: "On The Go");
+//        setTopNavigation(text: "On The Go");
 
         
     }
@@ -918,7 +922,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         print("on appear")
         setTopNavigation(text: "On The Go");
     }

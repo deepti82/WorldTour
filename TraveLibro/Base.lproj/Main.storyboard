@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
-
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -10218,7 +10216,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lI7-SC-Nzp">
                                 <rect key="frame" x="16" y="100" width="343" height="280"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="gKc-g7-gG6">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="gKc-g7-gG6">
                                         <rect key="frame" x="132" y="-30" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="VZL-wg-0BW"/>
@@ -10232,7 +10230,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="xdk-s8-KmF">
-                                        <rect key="frame" x="35" y="85.5" width="273" height="33"/>
+                                        <rect key="frame" x="85.5" y="85.5" width="172" height="33"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="4ie-Bh-fop">
                                                 <rect key="frame" x="0.0" y="0.0" width="71" height="33"/>
@@ -10265,39 +10263,8 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="N0G-Sn-1uC">
-                                                <rect key="frame" x="101" y="0.0" width="71" height="33"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mileage" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvN-Vj-jil">
-                                                        <rect key="frame" x="0.0" y="0.0" width="71" height="16.5"/>
-                                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                                                        <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duq-6q-cPi">
-                                                        <rect key="frame" x="0.0" y="16.5" width="71" height="16.5"/>
-                                                        <attributedString key="attributedText">
-                                                            <fragment content="14700">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" size="12" name="Avenir-Heavy"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                            <fragment content="km">
-                                                                <attributes>
-                                                                    <color key="NSColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <font key="NSFont" size="12" name="Avenir-Roman"/>
-                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                </attributes>
-                                                            </fragment>
-                                                        </attributedString>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="D2z-TM-0p2">
-                                                <rect key="frame" x="202" y="0.0" width="71" height="33"/>
+                                                <rect key="frame" x="101" y="0.0" width="71" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMI-WI-X4p">
                                                         <rect key="frame" x="0.0" y="0.0" width="71" height="16.5"/>
@@ -10500,9 +10467,9 @@
                         <outlet property="cellView" destination="MFp-q9-aYv" id="dhZ-eD-nDZ"/>
                         <outlet property="checkInCollectionView" destination="ySL-fM-Wy9" id="eoe-Rs-QH7"/>
                         <outlet property="countriesVisitedLabel" destination="OHm-Jx-0oj" id="zzu-DG-iaq"/>
+                        <outlet property="countryStackView" destination="ncp-sH-XDe" id="eQJ-yl-4Ru"/>
                         <outlet property="dayCount" destination="iGe-AW-yoy" id="p7X-3t-UaW"/>
                         <outlet property="likesNumber" destination="dzM-bo-OjD" id="JL8-yC-moi"/>
-                        <outlet property="mileageText" destination="duq-6q-cPi" id="Eey-qT-NGx"/>
                         <outlet property="profilePicture" destination="gKc-g7-gG6" id="92c-Ih-oom"/>
                         <outlet property="remainingCountries" destination="0wE-2r-VYB" id="ObU-au-TwH"/>
                         <outlet property="startDate" destination="Rsh-60-rHv" id="0Xb-e6-bNa"/>
@@ -10735,7 +10702,7 @@
                                             <constraint firstItem="dgU-4z-Fc9" firstAttribute="centerX" secondItem="hka-ay-0CT" secondAttribute="centerX" constant="60" id="uId-J3-Psz"/>
                                         </constraints>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="QfN-P4-1lr">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="QfN-P4-1lr">
                                         <rect key="frame" x="110" y="-60" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="28T-1u-vpw"/>

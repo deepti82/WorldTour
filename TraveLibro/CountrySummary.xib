@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CountrySummary" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="countryFlag" destination="emT-VH-P8i" id="9tg-P5-zcJ"/>
+                <outlet property="countryName" destination="BMV-44-cJd" id="2H5-OK-czZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="95" height="25"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indian_flag_new" translatesAutoresizingMaskIntoConstraints="NO" id="emT-VH-P8i">
+                    <rect key="frame" x="0.0" y="0.0" width="35" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="35" id="c8G-EI-O4p"/>
+                        <constraint firstAttribute="height" constant="25" id="rKV-wn-wJt"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMV-44-cJd">
+                    <rect key="frame" x="40" y="0.0" width="55" height="25"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                    <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="BMV-44-cJd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ajv-fB-ApL"/>
+                <constraint firstAttribute="trailing" secondItem="BMV-44-cJd" secondAttribute="trailing" id="Cx9-VJ-dKe"/>
+                <constraint firstItem="emT-VH-P8i" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fRF-AV-N9X"/>
+                <constraint firstAttribute="bottom" secondItem="emT-VH-P8i" secondAttribute="bottom" id="qTZ-he-bZM"/>
+                <constraint firstAttribute="bottom" secondItem="BMV-44-cJd" secondAttribute="bottom" id="rA5-Rb-W1D"/>
+                <constraint firstItem="BMV-44-cJd" firstAttribute="leading" secondItem="emT-VH-P8i" secondAttribute="trailing" constant="5" id="ySy-Vm-FZU"/>
+                <constraint firstItem="emT-VH-P8i" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="yoK-g0-vqd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-100.5" y="-261.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="indian_flag_new" width="70" height="70"/>
+    </resources>
+</document>

@@ -21,6 +21,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var countriesVisitedLabel: UILabel!
     @IBOutlet weak var likesNumber: UILabel!
     @IBOutlet weak var checkInCollectionView: UICollectionView!
+    @IBOutlet weak var countryStackView: UIStackView!
     @IBOutlet weak var startDate: UILabel!
     @IBOutlet weak var dayCount: UILabel!
     @IBOutlet weak var mileageText: UILabel!
@@ -43,16 +44,9 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
             makeTLProfilePicture(self.profilePicture)
         })
         
-        print("cell view: \(tripSummaryEach(frame: CGRect(x: 0, y: 0, width: cellView.frame.width, height: 100)))")
-        
-        print("cell view Two: \(cellView)")
-        
         tripSummaryView.layer.cornerRadius = 5
-//        tripSummaryView.clipsToBounds = true
         
         cellSubview = VerticalLayout(width: self.view.frame.width - 20)
-//        cellSubview.backgroundColor = UIColor.whiteColor()
-//        cellSubview.frame.size.height = cellView.frame.height
         cellSubview.clipsToBounds = true
         cellView.addSubview(cellSubview)
         
@@ -165,7 +159,6 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         dayCount.text = "\(getDays(tripCountData["startTime"].string!, postDate: "\(date)")) Days"
         mileageText.text = "0 km"
         
-        print("sacsacdasd \(tripCountData["checkIn"].array!.count)")
         
         for i in 0..<tripCountData["checkIn"].array!.count {
             let drawView = drawLine(frame: CGRect(x: 0, y: 0, width: 3, height: 35))
@@ -226,8 +219,6 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     
     func getDays(_ startDate: String, postDate: String) -> Int {
         
-        print("to date: \(postDate)")
-        
         let DFOne = DateFormatter()
         DFOne.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         let DFTwo = DateFormatter()
@@ -244,7 +235,6 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         
         let flags = NSCalendar.Unit.day
         let components = (calendar as NSCalendar).components(flags, from: date1, to: date2, options: [])
-        print("days: \(components.day)")
         return components.day!
         
     }
@@ -256,10 +246,13 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
+                   
                     self.tripCountData = response["data"]
-                    self.labels = response["data"]["checkInCount"].array!
+                    if response["data"]["checkInCount"] != nil {
+                        self.labels = response["data"]["checkInCount"].array!
+                    }
                     self.checkInCollectionView.reloadData()
-                    self.getCountView()
+//                    self.getCountView()
                 }
             })
         })

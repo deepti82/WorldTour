@@ -1882,7 +1882,6 @@ class Navigation {
         do {
             
             let params = ["type" : type, "_id": journeyId, "user": userId]
-//            print("journey type data: \(params)")
             let opt = try HTTP.POST(adminUrl + "journey/getCountData", parameters: params)
             var json = JSON(1);
             opt.start {response in
@@ -1892,7 +1891,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print("trip summary response: \(json)")
                     completion(json)
                 }
             }

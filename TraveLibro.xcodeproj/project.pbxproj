@@ -352,6 +352,8 @@
 		FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
 		FC9A0C181E03CE5D00BC3F7A /* TagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */; };
+		FC9A0C1A1E0924CD00BC3F7A /* CountrySummary.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9A0C191E0924CD00BC3F7A /* CountrySummary.xib */; };
+		FC9A0C1C1E0932E300BC3F7A /* CountrySummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A0C1B1E0932E300BC3F7A /* CountrySummary.swift */; };
 		FCA9E4221E00145B00F0845A /* QuickIteneraryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */; };
 		FCB2D6871DE472A40008634B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6861DE472A40008634B /* Accelerate.framework */; };
 		FCB2D6891DE472AD0008634B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6881DE472AD0008634B /* CoreData.framework */; };
@@ -738,6 +740,8 @@
 		FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
 		FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsView.xib; sourceTree = "<group>"; };
+		FC9A0C191E0924CD00BC3F7A /* CountrySummary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountrySummary.xib; sourceTree = "<group>"; };
+		FC9A0C1B1E0932E300BC3F7A /* CountrySummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountrySummary.swift; sourceTree = "<group>"; };
 		FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryTableViewController.swift; sourceTree = "<group>"; };
 		FCB2D6861DE472A40008634B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		FCB2D6881DE472AD0008634B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -953,6 +957,7 @@
 				C213BB741D01882200B452AC /* TutorialCards */,
 				C2EA3A1C1CDB81CE00122941 /* TypeOfJourney */,
 				FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */,
+				FC9A0C1D1E0932F500BC3F7A /* CountrySummary */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2032,6 +2037,15 @@
 			name = QuickItineraryFour;
 			sourceTree = "<group>";
 		};
+		FC9A0C1D1E0932F500BC3F7A /* CountrySummary */ = {
+			isa = PBXGroup;
+			children = (
+				FC9A0C191E0924CD00BC3F7A /* CountrySummary.xib */,
+				FC9A0C1B1E0932E300BC3F7A /* CountrySummary.swift */,
+			);
+			name = CountrySummary;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2258,6 +2272,7 @@
 				FC9A0C181E03CE5D00BC3F7A /* TagsView.xib in Resources */,
 				C2488AFA1D51F93D00FD5306 /* NewQuickItinerary.xib in Resources */,
 				1A944E0D1CCB4567007EB5BD /* Main.storyboard in Resources */,
+				FC9A0C1A1E0924CD00BC3F7A /* CountrySummary.xib in Resources */,
 				C24870511D0C2DA6003CB0DD /* HotelsCustomHeader.xib in Resources */,
 				C2A6E2591CE9C22200D3F845 /* TimelineScroll.xib in Resources */,
 			);
@@ -2423,6 +2438,7 @@
 				367B90F91DC23ADF00D76F13 /* StringTrimExtension.swift in Sources */,
 				C256499A1D48EE5E0046E36D /* SummarySubViewController.swift in Sources */,
 				C263E3A51D1E5D0C00D274FE /* NewThoughtsView.swift in Sources */,
+				FC9A0C1C1E0932E300BC3F7A /* CountrySummary.swift in Sources */,
 				C2DCB36E1CE723C3006E5CBD /* RatingReviewViewController.swift in Sources */,
 				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
