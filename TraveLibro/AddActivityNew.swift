@@ -2,10 +2,10 @@ import UIKit
 import BSImagePicker
 import Photos
 import imglyKit
-
+import Spring
 var globalAddActivityNew:AddActivityNew!
 
-class AddActivityNew: UIView, UITextViewDelegate {
+class AddActivityNew: SpringView, UITextViewDelegate {
     @IBOutlet weak var locationView: UIView!
     @IBOutlet weak var photosIntialView: UIView!
     @IBOutlet weak var photosFinalView: UIView!
@@ -63,6 +63,8 @@ class AddActivityNew: UIView, UITextViewDelegate {
     @IBOutlet weak var cancelLocationButton: UIButton!
     @IBOutlet weak var videoTag: UIImageView!
     
+    
+    var addedBuddies: [JSON] = []
     var tempAssets: [URL] = []
     var allImageIds: [Int] = []
     var localDbPhotoIds: [Int] = []
@@ -130,6 +132,10 @@ class AddActivityNew: UIView, UITextViewDelegate {
         self.videoTag.tintColor = mainBlueColor
         self.finalThoughtTag.tintColor = mainBlueColor
         self.cancelLocationButton.isHidden = true
+        
+        self.animation = "squeezeUp"
+        self.duration = 1.5
+        self.animate()
     }
     
     @IBAction func clearLocation(_ sender: Any) {
@@ -234,11 +240,23 @@ class AddActivityNew: UIView, UITextViewDelegate {
         //        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
         //        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
     }
+ 
     
     func tagMoreBuddies(_ sender: UIButton) {
-        var newTl = globalNavigationController.topViewController as! NewTLViewController;
-        newTl.tagMoreBuddies(sender);
+        self.resignThoughtsTexViewKeyboard()
+        //        let isTextView = textFieldShouldReturn(otgView.locationLabel)
+        let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
+        next.whichView = "TLTags"
+        if addedBuddies != nil {
+            next.addedFriends = addedBuddies
+        }
+        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.pushViewController(next, animated: true)
+        
     }
+
+
+    
     func newPost(_ sender: UIButton) {
         var newTl = globalNavigationController.topViewController as! NewTLViewController;
         newTl.newPost(sender);
