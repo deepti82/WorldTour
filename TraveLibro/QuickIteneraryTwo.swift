@@ -11,14 +11,12 @@ import UIKit
 class QuickIteneraryTwo: UIViewController {
     @IBOutlet var typeButton: [UIButton]!
     
-    @IBOutlet weak var nextButton: UIButton!
     
     var eachButton: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 //        quickItinery["itineraryType"] = []
-        nextButton.layer.cornerRadius = 5
         
         let array = ["adventure", "business", "family", "budget", "backpacking", "romance", "friends", "religious", "luxury"]
         if quickItinery["itineraryType"] == nil {

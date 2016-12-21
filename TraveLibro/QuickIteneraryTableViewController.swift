@@ -33,8 +33,10 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         
         if selectedStatus == "country" {
             request.getAllCountries({(request) in
+                DispatchQueue.main.async(execute: {
                 self.countries = request["data"]
                 self.tableView.reloadData()
+                })
             })
         }else {
 //            request.getAllCityC(searchCity, country: selectedCountry["_id"].stringValue, completion:{(request) in

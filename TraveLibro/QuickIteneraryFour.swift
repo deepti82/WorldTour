@@ -10,18 +10,16 @@ import UIKit
 
 class QuickIteneraryFour: UIViewController, UITextViewDelegate {
 
-    @IBOutlet weak var nextUitextView: UIButton!
+    
     @IBOutlet weak var descriptionTextView: UITextView!
-       @IBOutlet weak var nextButton: UIButton!
+    
     @IBOutlet weak var italicButton: UIButton!
     @IBOutlet weak var boldButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.delegate = self
-        nextUitextView.isHidden = true
         boldButton.setTitle(String(format: "%C", faicon["bold"]!), for: UIControlState())
         italicButton.setTitle(String(format: "%C", faicon["italics"]!), for: UIControlState())
-         nextButton.isHidden = true
          descriptionTextView.font = UIFont(name: "Arial-Italic", size: 14)
         boldButton.addTarget(self, action: #selector(boldText(_:)), for: .touchUpInside)
         italicButton.addTarget(self, action: #selector(italicText(_:)), for: .touchUpInside)
