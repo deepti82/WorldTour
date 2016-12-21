@@ -43,6 +43,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         addCountry.addTarget(self, action: #selector(addCountryFunction(_:)), for: .touchUpInside)
         showCountryCityVisited.addSubview(verticalLayout)
         cityVisited.delegate = self
+        countryVisited.delegate = self
         
         countryVisitedButton.isHidden = true
         cityVisitedButton.isHidden = true
@@ -84,26 +85,42 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         return a
     }
     
-    @IBAction func countryChange(_ sender: UITextField) {
-        selectedStatus = "country"
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
-        self.navigationController?.pushViewController(next, animated: true)
-    }
+//    @IBAction func countryChange(_ sender: UITextField) {
+//        selectedStatus = "country"
+//        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+//        self.navigationController?.pushViewController(next, animated: true)
+//    }
+//    
+//    @IBAction func countryClick(_ sender: UITextField) {
+//        print("country click")
+//        selectedStatus = "country"
+//        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+//        self.navigationController?.pushViewController(next, animated: true)
+//    }
+//    @IBAction func cityClick(_ sender: UITextField) {
+//        print("city clicked")
+//        selectedStatus = "city"
+//        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+//        self.navigationController?.pushViewController(next, animated: true)
+//    }
+//    @IBAction func cityChange(_ sender: UITextField) {
+//        selectedStatus = "city"
+//        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+//        self.navigationController?.pushViewController(next, animated: true)
+//    }
     
-    @IBAction func countryClick(_ sender: UITextField) {
-        selectedStatus = "country"
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
-        self.navigationController?.pushViewController(next, animated: true)
-    }
-    @IBAction func cityClick(_ sender: UITextField) {
-        selectedStatus = "city"
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
-        self.navigationController?.pushViewController(next, animated: true)
-    }
-    @IBAction func cityChange(_ sender: UITextField) {
-        selectedStatus = "city"
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
-        self.navigationController?.pushViewController(next, animated: true)
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 1 {
+            selectedStatus = "country"
+            let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+//            self.navigationController?.pushViewController(next, animated: true)
+            self.present(next, animated: true, completion: nil)
+        }else{
+            selectedStatus = "city"
+            let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+//            self.navigationController?.pushViewController(next, animated: true)
+            self.present(next, animated: true, completion: nil)
+        }
     }
     
     func getCountry() {

@@ -33,6 +33,14 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print(quickItinery)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        quickItinery["description"].stringValue = descriptionTextView.text
+    }
+    
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
 //        if action == #selector(copy(_:)) {
 //            return false

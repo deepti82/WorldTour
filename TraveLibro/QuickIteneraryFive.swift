@@ -18,7 +18,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var photosCollection: UICollectionView!
     @IBOutlet weak var addTripPhotos: UIButton!
     var thumbnail1 = [UIImage]()
-    var quickItinery: JSON = ["name": ""]
+//    var quickItinery: JSON = ["name": ""]
     let image1 = UIImage()
     let imagePicker = UIImagePickerController()
     var selectPhotosCount = 10
@@ -47,7 +47,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
 //                    }
 //                })
 //            })
- quickItinery["name"] = JSON(thumbnail1)
+//            quickItinery["name"] = JSON(thumbnail1)
         // Do any additional setup after loading the view.
     }
 
@@ -56,7 +56,9 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         // Dispose of any resources that can be recreated.
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        print(quickItinery)
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -165,18 +167,6 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     
-    
-
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
    
 }
 

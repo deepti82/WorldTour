@@ -17,12 +17,14 @@ class QuickIteneraryTwo: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        quickItinery["itineraryType"] = []
+//        quickItinery["itineraryType"] = []
         nextButton.layer.cornerRadius = 5
         
         let array = ["adventure", "business", "family", "budget", "backpacking", "romance", "friends", "religious", "luxury"]
+        if quickItinery["itineraryType"] == nil {
+            quickItinery["itineraryType"] = JSON(eachButton)
+        }
         
-        quickItinery["itineraryType"] = JSON(eachButton)
         for eachButton in typeButton {
             
             eachButton.addTarget(self, action: #selector(typeButtonPressed(_:)), for: .touchUpInside)
@@ -39,7 +41,7 @@ class QuickIteneraryTwo: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        print(quickItinery)
+        print(quickItinery)
 
     }
 

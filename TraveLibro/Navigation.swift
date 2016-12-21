@@ -1808,6 +1808,7 @@ class Navigation {
         do {
             
             let params = ["_id" : journeyId, "city" : city]
+            print(params)
             let opt = try HTTP.POST(adminUrl + "journey/getOnGoingCount", parameters: params)
             var json = JSON(1);
             opt.start {response in
@@ -1997,10 +1998,15 @@ class Navigation {
     }
 
 
-    func postQuickitenary(title:String, year:Int, month:String, completion: @escaping ((JSON) -> Void)) {
+    func postQuickitenary(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON, completion: @escaping ((JSON) -> Void)) {
     do {
-        let parm = ["title":title, "year":year, "month":month, "user":currentUser["_id"], "status":false] as [String : Any]
-        let opt = try HTTP.POST(adminUrl + "itinerary/saveQuickItinerary" , parameters: parm)
+        let parm = ["title":title, "year":year, "month":month, "countryVisited":countryVisited, "description":description, "itineraryType":itineraryType, "duration":duration, "user":currentUser["_id"], "status":false] as [String : Any]
+        
+        let header = ["Content-Type":"application/json"]
+
+        
+        let opt = try HTTP.POST(adminUrl + "itinerary/saveQuickItinerary" , parameters: parm, headers:header, requestSerializer: JSONParameterSerializer())
+        
         var json = JSON(1);
         opt.start  {response in
             if let err = response.error {
