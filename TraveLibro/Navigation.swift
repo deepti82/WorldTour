@@ -1190,6 +1190,72 @@ class Navigation {
 //        }
     }
     
+    //  quick itinerery 
+    func postQuickitenary(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON, completion: @escaping ((JSON) -> Void)) {
+        
+        var params: JSON = ["title":title, "year":year, "month":month, "description":description, "duration":duration, "user":currentUser["_id"], "status":false]
+        
+        params["itineraryType"] = itineraryType
+        params["countryVisited"] = countryVisited
+        
+        print("post params \(params)")
+        
+        let jsonData = try! params.rawData()
+        // create post request
+        let url = URL(string: adminUrl + "itinerary/saveQuickItinerary")!
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+            if error != nil{
+                print("Error -> \(error)")
+                return
+            }
+            
+            do {
+                let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                print("response Quick itirenery: \(JSON(result))")
+                completion(JSON(result))
+                
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+        
+        task.resume()
+    }
+    
+    
+    func postQuickitenary1(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON, completion: @escaping ((JSON) -> Void)) {
+        do {
+            let parm = ["title":title, "year":year, "month":month, "countryVisited":countryVisited, "description":description, "itineraryType":itineraryType, "duration":duration, "user":currentUser["_id"], "status":false] as [String : Any]
+            
+            let header = ["Content-Type":"application/json"]
+            
+            
+            let opt = try HTTP.POST(adminUrl + "itinerary/saveQuickItinerary" , parameters: parm, headers:header, requestSerializer: JSONParameterSerializer())
+            
+            var json = JSON(1);
+            opt.start  {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json = JSON(data: response.data)
+                    print("saveDurationResponse: \(json)")
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request")
+        }
+    }
+    
+    
     func getNotify(_ id: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -1998,31 +2064,7 @@ class Navigation {
     }
 
 
-    func postQuickitenary(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON, completion: @escaping ((JSON) -> Void)) {
-    do {
-        let parm = ["title":title, "year":year, "month":month, "countryVisited":countryVisited, "description":description, "itineraryType":itineraryType, "duration":duration, "user":currentUser["_id"], "status":false] as [String : Any]
-        
-        let header = ["Content-Type":"application/json"]
-
-        
-        let opt = try HTTP.POST(adminUrl + "itinerary/saveQuickItinerary" , parameters: parm, headers:header, requestSerializer: JSONParameterSerializer())
-        
-        var json = JSON(1);
-        opt.start  {response in
-            if let err = response.error {
-                print("error: \(err.localizedDescription)")
-            }
-            else
-            {
-                json = JSON(data: response.data)
-                print("saveDurationResponse: \(json)")
-                completion(json)
-            }
-            }
-    } catch let error {
-        print("got an error creating the request")
-    }
-}
+    
     
     
     func getAllCityC(_ search: String, country: String, completion: @escaping ((JSON) -> Void)) {

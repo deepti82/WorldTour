@@ -18,17 +18,6 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let leftButton = UIButton()
-//        leftButton.setTitle("Done", for: .normal)
-//        leftButton.addTarget(self, action: #selector(self.closeMe(_:)), for: .touchUpInside)
-//        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-
-//        let rightButton = UIButton()
-//        rightButton.setTitle("Done", for: .normal)
-//        rightButton.addTarget(self, action: #selector(self.closeMe(_:)), for: .touchUpInside)
-//        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
-
-//        self.customNavigationBar(left: leftButton, right: nil)
         print(selectedStatus)
         
         if selectedStatus == "country" {
@@ -117,9 +106,6 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         }
         UIApplication.shared.isStatusBarHidden = false
         self.dismiss(animated: true, completion: nil)
-//        let next = self.storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
-//        next.selectedView = true
-//        self.navigationController?.pushViewController(next, animated: true)
         
     }
     
