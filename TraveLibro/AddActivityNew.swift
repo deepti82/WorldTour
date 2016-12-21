@@ -215,6 +215,8 @@ class AddActivityNew: UIView, UITextViewDelegate {
     }
     
     func loadViewFromNib() {
+        
+        
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "AddActivityNew", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
@@ -227,10 +229,19 @@ class AddActivityNew: UIView, UITextViewDelegate {
         self.photosButton.addTarget(self, action: #selector(self.addPhotos(_:)), for: .touchUpInside)
         //        self.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
         self.thoughtsButton.addTarget(self, action: #selector(self.addThoughts(_:)), for: .touchUpInside)
-                self.tagFriendButton.addTarget(self, action: #selector(globalNewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
-        self.postButton.addTarget(self, action: #selector(globalNewTLViewController.newPost(_:)), for: .touchUpInside)
+                self.tagFriendButton.addTarget(self, action: #selector(self.tagMoreBuddies(_:)), for: .touchUpInside)
+        self.postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
         //        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
         //        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
+    }
+    
+    func tagMoreBuddies(_ sender: UIButton) {
+        var newTl = globalNavigationController.topViewController as! NewTLViewController;
+        newTl.tagMoreBuddies(sender);
+    }
+    func newPost(_ sender: UIButton) {
+        var newTl = globalNavigationController.topViewController as! NewTLViewController;
+        newTl.newPost(sender);
     }
     
     func closeAdd(_ sender: UIButton) {
@@ -362,15 +373,21 @@ class AddActivityNew: UIView, UITextViewDelegate {
         let takePhotos = UIAlertAction(title: "Take Photos", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
-            
-            let cameraViewController = CameraViewController()
+           
+            let configuration = Configuration() { builder in
+                builder.configureCameraViewController( { cameraConf in
+                        cameraConf.allowedRecordingModes = [.photo]
+                })
+            }
+
+            let cameraViewController = CameraViewController(configuration:configuration)
+//            let cameraViewController = CameraViewController()
+            cameraViewController.cameraController?.recordingMode = .photo
             func abc(image:UIImage?,url:URL?) -> Void
             {
-                print("Chintan Rocks");
                 let imgA:[UIImage] = [image!]
                 cameraViewController.dismiss(animated: true, completion: nil)
                 globalAddActivityNew.photosAdded(assets: imgA)
-                
             }
             cameraViewController.completionBlock = abc;
             globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
