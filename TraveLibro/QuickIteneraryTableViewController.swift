@@ -15,19 +15,21 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     var searchCity: String = ""
     var isSearch = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let leftButton = UIButton()
-        leftButton.setTitle("Done", for: .normal)
-        leftButton.addTarget(self, action: #selector(self.closeMe(_:)), for: .touchUpInside)
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        let leftButton = UIButton()
+//        leftButton.setTitle("Done", for: .normal)
+//        leftButton.addTarget(self, action: #selector(self.closeMe(_:)), for: .touchUpInside)
+//        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
 
 //        let rightButton = UIButton()
 //        rightButton.setTitle("Done", for: .normal)
 //        rightButton.addTarget(self, action: #selector(self.closeMe(_:)), for: .touchUpInside)
 //        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
 
-        self.customNavigationBar(left: leftButton, right: nil)
+//        self.customNavigationBar(left: leftButton, right: nil)
+        print(selectedStatus)
         
         if selectedStatus == "country" {
             request.getAllCountries({(request) in
@@ -41,7 +43,15 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
 //            })
         }
         
+        
         UIApplication.shared.isStatusBarHidden = true
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        UIApplication.shared.isStatusBarHidden = false
+        self.dismiss(animated: true, completion: nil)
         
     }
     
