@@ -403,9 +403,19 @@ class AddActivityNew: SpringView, UITextViewDelegate {
             cameraViewController.cameraController?.recordingMode = .photo
             func abc(image:UIImage?,url:URL?) -> Void
             {
-                let imgA:[UIImage] = [image!]
-                cameraViewController.dismiss(animated: true, completion: nil)
-                globalAddActivityNew.photosAdded(assets: imgA)
+                
+                let photoEffect = PhotoEffectThumbnailRenderer(inputImage: image!);
+                photoEffect.generateThumbnails(for: [(cameraViewController.cameraController?.photoEffect)!], of: (image?.size)!, singleCompletion: { (image:UIImage, num:Int) in
+                    DispatchQueue.main.async(execute: {
+                        let imgA:[UIImage] = [image]
+                        cameraViewController.dismiss(animated: true, completion: nil)
+                        globalAddActivityNew.photosAdded(assets: imgA)
+                    })
+                    
+                    
+                })
+                
+                
             }
             cameraViewController.completionBlock = abc;
             globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
