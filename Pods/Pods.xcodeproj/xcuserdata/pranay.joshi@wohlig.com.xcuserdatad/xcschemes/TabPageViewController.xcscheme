@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2AC85D95FA506270692FF3F9B06EBF7"
+               BlueprintIdentifier = "21384D6D89F0C4AE69ED05B08E96F46C"
                BuildableName = "TabPageViewController.framework"
                BlueprintName = "TabPageViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2AC85D95FA506270692FF3F9B06EBF7"
+            BlueprintIdentifier = "21384D6D89F0C4AE69ED05B08E96F46C"
             BuildableName = "TabPageViewController.framework"
             BlueprintName = "TabPageViewController"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2AC85D95FA506270692FF3F9B06EBF7"
+            BlueprintIdentifier = "21384D6D89F0C4AE69ED05B08E96F46C"
             BuildableName = "TabPageViewController.framework"
             BlueprintName = "TabPageViewController"
             ReferencedContainer = "container:Pods.xcodeproj">

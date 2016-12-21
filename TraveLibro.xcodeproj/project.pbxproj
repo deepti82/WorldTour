@@ -2116,7 +2116,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Wohlig Technology";
 				TargetAttributes = {
 					1A944E031CCB4567007EB5BD = {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Spring
 
 class SinglePhotoViewController: UIViewController {
 
@@ -14,7 +15,7 @@ class SinglePhotoViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var imageCaption: UILabel!
     
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     
@@ -84,7 +85,8 @@ class SinglePhotoViewController: UIViewController {
     }
     
     @IBAction func sendLike(_ sender: UIButton) {
-        
+       likeButton.animation = "pop"
+        likeButton.animateTo()
         print("send likes: \(hasLiked!)")
         print(currentIndex)
         print(photos[currentIndex!])

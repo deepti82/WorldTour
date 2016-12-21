@@ -13,7 +13,7 @@ class EditCategoryViewController: UIViewController, UICollectionViewDelegate, UI
     
     
     var categoryTextView: UILabel!
-    let categories: [JSON] = [["title": "Restaurants & Bars", "image": "palm_trees_icon"], ["title": "Natures & Parks", "image": "palm_trees_icon"], ["title": "Sights & Landmarks", "image": "palm_trees_icon"], ["title": "Museums & Galleries", "image": "palm_trees_icon"], ["title": "Adventures & Excursions", "image": "palm_trees_icon"], ["title": "Zoos & Aquariums", "image": "palm_trees_icon"], ["title": "Events & Festivals", "image": "palm_trees_icon"], ["title": "Shopping", "image": "palm_trees_icon"], ["title": "Beaches", "image": "palm_trees_icon"], ["title": "Religious", "image": "palm_trees_icon"], ["title": "Cinema & Theatres", "image": "palm_trees_icon"], ["title": "Hotels & Accomodation", "image": "palm_trees_icon"], ["title": "Airport", "image": "palm_trees_icon"], ["title": "Others", "image": "palm_trees_icon"]]
+    let categories: [JSON] = [["title": "Beaches", "image": "palm_trees_icon"], ["title": "Airport", "image": "planetrans"], ["title": "Hotels", "image": "hotels"], ["title": "Restaurants", "image": "restaurantsandbars"], ["title": "Netunre & parks", "image": "leaftrans"], ["title": "sights & Landmarks", "image": "sightstrans"], ["title": "Museums & Gallaries", "image": "museumstrans"], ["title": "Religious", "image": "religious"], ["title": "Shopping", "image": "shopping"], ["title": "Adventure & Excursion", "image": "adventureExcursion"], ["title": "Zoos & Aqua", "image": "zootrans"], ["title": "Cinemas & Theatre", "image": "cinematrans"], ["title": "Others", "image": "othersdottrans"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,8 @@ class EditCategoryViewController: UIViewController, UICollectionViewDelegate, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! categoryCollectionViewCell
+        cell.categoryButton.imageView?.contentMode = .scaleAspectFit
+        cell.categoryButton.setImage(UIImage(named:"\(categories[indexPath.row]["image"].string!)"), for: .normal)
         cell.categoryLabel.text = categories[indexPath.row]["title"].string!
         if(cell.categoryLabel.text == categoryTextView.text) {
             cell.categoryButton.setBackgroundImage(UIImage(named: "halfgreenbox"), for: UIControlState())

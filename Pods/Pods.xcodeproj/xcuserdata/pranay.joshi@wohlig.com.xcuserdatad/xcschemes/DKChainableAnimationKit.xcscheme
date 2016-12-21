@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "186526C95A6E6A368E316AEBD475C8CB"
+               BlueprintIdentifier = "A99CCBCEF1E2207E0BEAFEB7DC9B2471"
                BuildableName = "DKChainableAnimationKit.framework"
                BlueprintName = "DKChainableAnimationKit"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "186526C95A6E6A368E316AEBD475C8CB"
+            BlueprintIdentifier = "A99CCBCEF1E2207E0BEAFEB7DC9B2471"
             BuildableName = "DKChainableAnimationKit.framework"
             BlueprintName = "DKChainableAnimationKit"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "186526C95A6E6A368E316AEBD475C8CB"
+            BlueprintIdentifier = "A99CCBCEF1E2207E0BEAFEB7DC9B2471"
             BuildableName = "DKChainableAnimationKit.framework"
             BlueprintName = "DKChainableAnimationKit"
             ReferencedContainer = "container:Pods.xcodeproj">

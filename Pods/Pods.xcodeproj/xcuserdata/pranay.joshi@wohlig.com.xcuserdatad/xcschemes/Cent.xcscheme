@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4E307F847AC3BEDF2FA9B74017BB9908"
+               BlueprintIdentifier = "88ED818B56895E95E3498B73B597B922"
                BuildableName = "Cent.framework"
                BlueprintName = "Cent"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4E307F847AC3BEDF2FA9B74017BB9908"
+            BlueprintIdentifier = "88ED818B56895E95E3498B73B597B922"
             BuildableName = "Cent.framework"
             BlueprintName = "Cent"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4E307F847AC3BEDF2FA9B74017BB9908"
+            BlueprintIdentifier = "88ED818B56895E95E3498B73B597B922"
             BuildableName = "Cent.framework"
             BlueprintName = "Cent"
             ReferencedContainer = "container:Pods.xcodeproj">

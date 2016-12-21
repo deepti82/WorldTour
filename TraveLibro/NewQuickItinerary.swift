@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Spring
 
 class NewQuickItinerary: UIView {
 
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var itineraryButton: UIButton!
-    @IBOutlet weak var otgJourneyButton: UIButton!
+    @IBOutlet weak var otgJourneyButton: SpringButton!
     @IBOutlet var mainButtons: [UIButton]!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileName: UILabel!
@@ -39,11 +40,11 @@ class NewQuickItinerary: UIView {
         let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         blurView.contentView.addSubview(vibrancyEffectView)
-
+        
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
+      required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

@@ -124,8 +124,12 @@ class ListPhotosViewController: UIViewController {
         photoList.daysLabel.attributedText = attributedString
         photoList.timeLabel.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "HH:mm", date: photo["createdAt"].string!)
         if photo["isDoneLike"].bool! {
+            photoList.likeButton = UIButton(type: .custom)
+             let image = UIImage(named: "favorite-heart-button")
+            photoList.likeButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
+           
             
-            photoList.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
+            
         }
         addHeightToLayout(photoList.frame.height)
         layout.addSubview(photoList)

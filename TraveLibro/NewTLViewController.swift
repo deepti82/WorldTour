@@ -1032,6 +1032,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         currentPost = post
         
         if post["like"].array!.contains(JSON(user.getExistingUser())) {
+            let image = UIImage(named: "favorite-heart-button")
+            checkIn.likeButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
+
             checkIn.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
         }
         
