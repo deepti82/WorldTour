@@ -1,6 +1,7 @@
 import UIKit
 import BSImagePicker
 import Photos
+import imglyKit
 
 var globalAddActivityNew:AddActivityNew!
 
@@ -214,6 +215,8 @@ class AddActivityNew: UIView, UITextViewDelegate {
     }
     
     func loadViewFromNib() {
+        
+        
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "AddActivityNew", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
@@ -226,10 +229,19 @@ class AddActivityNew: UIView, UITextViewDelegate {
         self.photosButton.addTarget(self, action: #selector(self.addPhotos(_:)), for: .touchUpInside)
         //        self.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
         self.thoughtsButton.addTarget(self, action: #selector(self.addThoughts(_:)), for: .touchUpInside)
-                self.tagFriendButton.addTarget(self, action: #selector(globalNewTLViewController.tagMoreBuddies(_:)), for: .touchUpInside)
-        self.postButton.addTarget(self, action: #selector(globalNewTLViewController.newPost(_:)), for: .touchUpInside)
+                self.tagFriendButton.addTarget(self, action: #selector(self.tagMoreBuddies(_:)), for: .touchUpInside)
+        self.postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
         //        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
         //        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
+    }
+    
+    func tagMoreBuddies(_ sender: UIButton) {
+        var newTl = globalNavigationController.topViewController as! NewTLViewController;
+        newTl.tagMoreBuddies(sender);
+    }
+    func newPost(_ sender: UIButton) {
+        var newTl = globalNavigationController.topViewController as! NewTLViewController;
+        newTl.newPost(sender);
     }
     
     func closeAdd(_ sender: UIButton) {
@@ -360,12 +372,33 @@ class AddActivityNew: UIView, UITextViewDelegate {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let takePhotos = UIAlertAction(title: "Take Photos", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .camera
-            if sender.tag == 1 {
-                self.photosAddedMore = true
+            
+           
+            let configuration = Configuration() { builder in
+                builder.configureCameraViewController( { cameraConf in
+                        cameraConf.allowedRecordingModes = [.photo]
+                })
             }
-            globalNavigationController?.pushViewController(self.imagePicker, animated: true)
+
+            let cameraViewController = CameraViewController(configuration:configuration)
+//            let cameraViewController = CameraViewController()
+            cameraViewController.cameraController?.recordingMode = .photo
+            func abc(image:UIImage?,url:URL?) -> Void
+            {
+                let imgA:[UIImage] = [image!]
+                cameraViewController.dismiss(animated: true, completion: nil)
+                globalAddActivityNew.photosAdded(assets: imgA)
+            }
+            cameraViewController.completionBlock = abc;
+            globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
+        
+//            self.imagePicker.allowsEditing = true
+//            self.imagePicker.sourceType = .camera
+//            if sender.tag == 1 {
+//                self.photosAddedMore = true
+//            }
+//            globalNavigationController?.pushViewController(self.imagePicker, animated: true)
+            
         })
         let photoLibrary = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in

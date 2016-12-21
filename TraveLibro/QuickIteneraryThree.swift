@@ -43,6 +43,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         addCountry.addTarget(self, action: #selector(addCountryFunction(_:)), for: .touchUpInside)
         showCountryCityVisited.addSubview(verticalLayout)
         cityVisited.delegate = self
+        countryVisited.delegate = self
         
         countryVisitedButton.isHidden = true
         cityVisitedButton.isHidden = true
@@ -84,26 +85,16 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         return a
     }
     
-    @IBAction func countryChange(_ sender: UITextField) {
-        selectedStatus = "country"
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
-        self.navigationController?.pushViewController(next, animated: true)
-    }
-    
-    @IBAction func countryClick(_ sender: UITextField) {
-        selectedStatus = "country"
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
-        self.navigationController?.pushViewController(next, animated: true)
-    }
-    @IBAction func cityClick(_ sender: UITextField) {
-        selectedStatus = "city"
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
-        self.navigationController?.pushViewController(next, animated: true)
-    }
-    @IBAction func cityChange(_ sender: UITextField) {
-        selectedStatus = "city"
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
-        self.navigationController?.pushViewController(next, animated: true)
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.tag == 1 {
+            selectedStatus = "country"
+            let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+            self.present(next, animated: true, completion: nil)
+        }else{
+            selectedStatus = "city"
+            let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+            self.present(next, animated: true, completion: nil)
+        }
     }
     
     func getCountry() {
@@ -115,8 +106,10 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    
+    //  START CREATE COUNTRY-CITY VIEW
     
     func createCityCountry() {
         self.verticalLayout.removeAll()
@@ -135,8 +128,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         }
         
     }
-    
-    
     
     func addCountryFunction(_ sender: UIButton) {
         if !viewAdded {
@@ -158,7 +149,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         
     }
     
-    
     func styleHorizontalButton(_ button: UIView) {
         
         button.layer.cornerRadius = 5
@@ -166,6 +156,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         button.layer.borderWidth = 1.0
         
     }
+    
+    //  END CREATE COUNTRY-CITY VIEW
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

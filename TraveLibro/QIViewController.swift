@@ -95,23 +95,23 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         quickItinery["user"] = currentUser["_id"]
         quickItinery["status"] = false
         print(quickItinery)
-        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue,  completion: {(response) in
-            DispatchQueue.main.async(execute: {
-                print(response)
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    print("nothing")
-                }
-                else {
-                    print("nothing")
-                    
-                }
-            })
-        })
+//        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
+//            DispatchQueue.main.async(execute: {
+//                print(response)
+//                if response.error != nil {
+//                    
+//                    print("error: \(response.error!.localizedDescription)")
+//                    
+//                }
+//                else if response["value"].bool! {
+//                    print("nothing")
+//                }
+//                else {
+//                    print("nothing")
+//                    
+//                }
+//            })
+//        })
     }
     
     

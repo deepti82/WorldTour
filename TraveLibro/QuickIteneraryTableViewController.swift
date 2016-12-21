@@ -15,23 +15,28 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     var searchCity: String = ""
     var isSearch = false
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVCIn(_:)), for: .touchUpInside)
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        let leftButton = UIButton()
+//        leftButton.setTitle("Done", for: .normal)
+//        leftButton.addTarget(self, action: #selector(self.closeMe(_:)), for: .touchUpInside)
+//        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+
+//        let rightButton = UIButton()
+//        rightButton.setTitle("Done", for: .normal)
+//        rightButton.addTarget(self, action: #selector(self.closeMe(_:)), for: .touchUpInside)
+//        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
+
+//        self.customNavigationBar(left: leftButton, right: nil)
+        print(selectedStatus)
         
-        let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
-        rightButton.addTarget(self, action: #selector(SelectGenderViewController.gotoDP(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
-        
-        self.customNavigationBar(left: leftButton, right: nil)
         if selectedStatus == "country" {
             request.getAllCountries({(request) in
+                DispatchQueue.main.async(execute: {
                 self.countries = request["data"]
                 self.tableView.reloadData()
+                })
             })
         }else {
 //            request.getAllCityC(searchCity, country: selectedCountry["_id"].stringValue, completion:{(request) in
@@ -39,13 +44,23 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
 //                self.tableView.reloadData()
 //            })
         }
+        
+        
+        UIApplication.shared.isStatusBarHidden = true
+        
     }
     
-    func popVCIn(_ sender: UIButton) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
-        next.selectedView = true
-        self.navigationController?.pushViewController(next, animated: true)
+        UIApplication.shared.isStatusBarHidden = false
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func closeMe(_ sender: UIButton) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     func searchCityFun(search: String) {
@@ -98,10 +113,13 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
                 selectedCity = []
             }else{
                 selectedCity = countries[indexPath.row]
-            }        }
-        let next = self.storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
-        next.selectedView = true
-        self.navigationController?.pushViewController(next, animated: true)
+            }
+        }
+        UIApplication.shared.isStatusBarHidden = false
+        self.dismiss(animated: true, completion: nil)
+//        let next = self.storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+//        next.selectedView = true
+//        self.navigationController?.pushViewController(next, animated: true)
         
     }
     

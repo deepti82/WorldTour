@@ -856,10 +856,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalNewTLViewController = self;
         getDarkBackGroundBlue(self)
         getJourney()
         mainScroll.delegate = self
-        globalNewTLViewController = self;
+
         
         otgView.nameJourneyTF.delegate = self
         
