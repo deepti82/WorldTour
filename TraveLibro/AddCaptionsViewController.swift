@@ -37,10 +37,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var deletedIndex: Int!
     
     @IBAction func deletePhoto(_ sender: UIButton) {
-    
+        imageArr.remove(at: currentImageIndex)
+        if(imageArr.count == 1) {
+            self.goBack(UIButton());
+        }
+        
+        self.previousImageCaption(UIButton())
     }
     
-    @IBAction func editPhoto(_ sender: Any) {
+    @IBAction func editPhoto(_ sender: UIButton) {
         isGoingToEdit = true
         let photoEditViewController = PhotoEditViewController(photo: imageForCaption.image!)
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
@@ -54,13 +59,17 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     @IBAction func previousImageCaption(_ sender: AnyObject) {
-        
-        
+        if(currentImageIndex == 0 ) {
+            currentImageIndex = imageArr.count - 1;
+        }
+        else {
+            currentImageIndex = currentImageIndex - 1;
+        }
+        changeImage(number: currentImageIndex)
     }
     
     
     func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
-        
         print("in tool stack ctrl")
         isEditedImage = true
         editedImage = image
@@ -68,7 +77,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
-        
         print("on cancel toolstackcontroller")
         dismiss(animated: true, completion:nil)
     }
@@ -78,8 +86,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     @IBAction func nextImageCaption(_ sender: AnyObject) {
-        
-        
+        if(currentImageIndex == (imageArr.count - 1) ) {
+            currentImageIndex = 0;
+        }
+        else {
+            currentImageIndex = currentImageIndex + 1;
+        }
+        changeImage(number: currentImageIndex)
     }
     
     @IBAction func doneCaptions(_ sender: AnyObject) {
@@ -136,8 +149,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done
         captionTextView.resignFirstResponder()
-        NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         if(imageArr[currentImageIndex].caption == "") {
             captionTextView.text = "Add a caption..."
         } else {
@@ -190,6 +202,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     func updateImage() {
         imageForCaption.image = editedImage
+        imageArr[currentImageIndex].image = editedImage
         updateImageInFile()
     }
     
@@ -270,24 +283,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     var viewHeight = 0
-    func keyboardWillShow(_ notification: Notification) {
-        view.frame.origin.y = CGFloat(viewHeight)
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    func keyboardWillHide(_ notification: Notification) {
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-
-        }
-    }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
