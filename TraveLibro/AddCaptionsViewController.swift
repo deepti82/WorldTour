@@ -135,10 +135,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done
-        
+        captionTextView.resignFirstResponder()
         NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
         if(imageArr[currentImageIndex].caption == "") {
             captionTextView.text = "Add a caption..."
         } else {
@@ -167,9 +166,14 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     func changeImage(number:Int) {
         currentImageIndex = number
         captionTextView.resignFirstResponder()
-        imageForCaption.animation = "flipX";
-        imageForCaption.image = imageArr[currentImageIndex].image
-        imageForCaption.animate();
+        
+        self.imageForCaption.animation = "fall";
+        
+        imageForCaption.animateToNext {
+            self.imageForCaption.image = self.imageArr[self.currentImageIndex].image
+            self.imageForCaption.animation = "pop";
+            self.imageForCaption.animate();
+        }
 
         if(imageArr[currentImageIndex].caption == "") {
             captionTextView.text = "Add a caption..."
