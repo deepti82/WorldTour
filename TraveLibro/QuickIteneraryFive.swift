@@ -30,30 +30,10 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         photoGallerySecondView.isHidden = true
             addTripPhotos.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
             photosAddMore.addTarget(self, action: #selector(addMoreTripPhotos(_:)), for: .touchUpInside)
-//            request.postQuickitenary(json: quickItinery,  completion: {(response) in
-//                DispatchQueue.main.async(execute: {
-//                    
-//                    if response.error != nil {
-//                        
-//                        print("error: \(response.error!.localizedDescription)")
-//                        
-//                    }
-//                    else if response["value"].bool! {
-//                        print("nothing")
-//                    }
-//                    else {
-//                        print("nothing")
-//                        
-//                    }
-//                })
-//            })
-//            quickItinery["name"] = JSON(thumbnail1)
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -166,8 +146,6 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         
     }
     
-    
-   
 }
 
 class photosSelection: UICollectionViewCell {

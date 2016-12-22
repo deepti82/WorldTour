@@ -13,6 +13,8 @@ class ItineraryThree: UIView, UITextFieldDelegate {
     
     @IBOutlet weak var deleteMe: UIButton!
     @IBOutlet weak var cityCountry: UILabel!
+    var index : Int!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -38,6 +40,7 @@ class ItineraryThree: UIView, UITextFieldDelegate {
     }
     
     func doubleTapped() {
+        quickItinery["countryVisited"].arrayObject?.remove(at: index)
         self.removeFromSuperview()
     }
     

@@ -95,6 +95,14 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         quickItinery["user"] = currentUser["_id"]
         quickItinery["status"] = false
         print(quickItinery)
+        
+        for i in 0...quickItinery.count {
+            print(quickItinery[i])
+        }
+        
+    }
+    
+    func saveItinerary() {
         request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
             DispatchQueue.main.async(execute: {
                 print(response)
