@@ -487,8 +487,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
             let postImg = PostImage();
             postImg.image = asset;
             imageArr.append(postImg);
-            
-            
         }
         let captionButton = UIButton()
         captionButton.setImage(imageArr[0].image, for: .normal)
@@ -504,26 +502,22 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     
     
     func addCaption(_ sender: UIButton) {
-        
         let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
         captionVC.imageArr = imageArr
-        var i = 0
-        for subview in self.horizontalScrollForPhotos.subviews { 
-            let view = subview as! UIButton
-            if(view == sender) {
-                captionVC.currentImageIndex = i;
-            }
-            i = i + 1
-        }
+        captionVC.addActivity = self;
+        captionVC.currentImageIndex = sender.tag;
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController!.pushViewController(captionVC, animated: true)
     }
     
     func addPhotoToLayout() {
+        self.horizontalScrollForPhotos.removeAll()
+        print("imageArr " + String(imageArr.count) );
         for i in 0 ..< imageArr.count {
             let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
             photosButton.setImage(imageArr[i].image, for: .normal)
             photosButton.layer.cornerRadius = 5.0
+            photosButton.tag = i
             photosButton.clipsToBounds = true
             photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
             self.horizontalScrollForPhotos.addSubview(photosButton)
@@ -539,5 +533,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         self.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
         self.horizontalScrollForPhotos.layoutSubviews()
         self.photoScroll.contentSize = CGSize(width: self.horizontalScrollForPhotos.frame.width, height: self.horizontalScrollForPhotos.frame.height)
+        photosCount.text = "( " + String(imageArr.count) + " )";
     }
 }

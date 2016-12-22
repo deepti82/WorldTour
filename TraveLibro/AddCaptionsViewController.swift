@@ -9,6 +9,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     @IBOutlet weak var collectionVi: UICollectionView!
     var imagesArray: [UIView] = []
+    var addActivity:AddActivityNew!
     var currentImage = UIImage()
     var allImages: [UIButton] = []
     let PhotosDB = Photo()
@@ -39,6 +40,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     @IBAction func deletePhoto(_ sender: UIButton) {
         imageArr.remove(at: currentImageIndex)
+        if self.addActivity != nil {
+            self.addActivity.imageArr = imageArr;
+            self.addActivity.addPhotoToLayout()
+        }
         if(imageArr.count == 0) {
             self.goBack(UIButton());
         }
@@ -46,9 +51,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             collectionVi.reloadData()
             self.previousImageCaption(UIButton())
         }
-        
-        
-        
     }
     
     @IBAction func editPhoto(_ sender: UIButton) {
@@ -102,6 +104,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     @IBAction func doneCaptions(_ sender: AnyObject) {
+        if self.addActivity != nil {
+            self.addActivity.imageArr = imageArr;
+            self.addActivity.addPhotoToLayout()
+        }
         navigationController?.popViewController(animated: true)
     }
     
