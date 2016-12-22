@@ -1967,7 +1967,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
             otgView.journeyCategoryOne.isHidden = false
-            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+//            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
             otgView.journeyCategoryTwo.isHidden = false
             otgView.journeyCategoryThree.isHidden = true
             
