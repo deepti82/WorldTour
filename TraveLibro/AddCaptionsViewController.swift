@@ -39,11 +39,16 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     @IBAction func deletePhoto(_ sender: UIButton) {
         imageArr.remove(at: currentImageIndex)
-        if(imageArr.count == 1) {
+        if(imageArr.count == 0) {
             self.goBack(UIButton());
         }
-        collectionVi.reloadData()
-        self.previousImageCaption(UIButton())
+        else {
+            collectionVi.reloadData()
+            self.previousImageCaption(UIButton())
+        }
+        
+        
+        
     }
     
     @IBAction func editPhoto(_ sender: UIButton) {
@@ -97,14 +102,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     @IBAction func doneCaptions(_ sender: AnyObject) {
-        let allSubviews = self.navigationController!.viewControllers
-        for subview in allSubviews {
-            if subview.isKind(of: NewTLViewController.self) {
-                let myView = subview as! NewTLViewController
-                myView.photosToBeUploaded = allPhotos
-                self.navigationController!.popToViewController(myView, animated: true)
-            }
-        }
+        navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
@@ -157,6 +155,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionTextView.text = imageArr[currentImageIndex].caption
         }
         captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+//        collectionVi.scrollToItem(at: NSIndexPath(index: currentImageIndex) as IndexPath,at:UICollectionViewScrollPosition(rawValue: UInt(currentImageIndex)), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -197,6 +196,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionTextView.text = imageArr[currentImageIndex].caption
         }
         captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+//        collectionVi.scrollToItem(at: NSIndexPath(index: number) as IndexPath,at:UICollectionViewScrollPosition(rawValue: UInt(number)), animated: true)
+    
     }
     
     var editedImagesArray: [Dictionary<Int,UIImage>] = []
@@ -204,85 +205,22 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     func updateImage() {
         imageForCaption.image = editedImage
         imageArr[currentImageIndex].image = editedImage
-        updateImageInFile()
+        loader.hideOverlayView()
+        collectionVi.reloadData()
     }
     
     var loader = LoadingOverlay()
     
-    func updateImageInFile() {
-        
-        let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
-        
-        print("edited image export url: \(exportFileUrl)")
-        
-        loader.showOverlay(self.view)
-        
-        DispatchQueue.main.async(execute: {
-            
-            do {
-                print("edited image: \(editedImage)")
-                
-                if let data = UIImageJPEGRepresentation(editedImage, 0.35) {
-                    try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
-                }
-                print("edit file created")
-                editedImage = UIImage()
-                print("in edit image")
-                isEditedImage = false
-                
-            } catch let error as NSError {
-                
-                print("error creating file: \(error.localizedDescription)")
-                
-            }
-            
-        })
-        
-        loader.hideOverlayView()
-    }
-    
-    func getPhotoIds(groupId: Int64) {
-        
-        allIds = photo.getPhotosIdsOfPost(photosGroup: groupId)
-//        getPhotoCaption()
-    }
-    
     var isGoingToEdit = true
     
     override func viewDidAppear(_ animated: Bool) {
-        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
         print("in view did appear")
-        
         if (isEditedImage) {
             updateImage()
         }
-        
-        else if !isGoingToEdit {
-            getPhotoCaption(ind: index)
-        }
-        
     }
-    
-    func getPhotoCaption(ind: Int) {
-        
-//        let imageCaption = photo.getCaption(allIds[index])
-        
-        if allPhotos.count > 0 {
-            
-            print("\(#line) caption: \(ind) \(allPhotos[ind].caption)")
-            if allPhotos[ind].caption != "" {
-                captionTextView.text = imageArr[ind].caption
-            }
-            else {
-                captionTextView.text = "Add a caption..."
-            }
-            
-            
-        }
-    }
-    
+   
     var viewHeight = 0
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

@@ -2464,7 +2464,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         captionVC.allImages = allPhotos
         captionVC.allPhotos = self.photosToBeUploaded
-        captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         //End Loader
