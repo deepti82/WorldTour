@@ -2460,15 +2460,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         captionVC.currentImage = sender.currentImage!
         
-        if sender.tag == 2 {
-            
-            captionVC.currentSender = allPhotos[0]
-        }
-        else {
-            
-            captionVC.currentSender = sender
-        }
-        //        captionVC.index = captionVC.getIndex()
+       
         
         captionVC.allImages = allPhotos
         captionVC.allPhotos = self.photosToBeUploaded

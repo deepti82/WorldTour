@@ -472,7 +472,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
             (alert: UIAlertAction!) -> Void in
             print("Cancelled")
         })
-        
         optionMenu.addAction(takePhotos)
         optionMenu.addAction(photoLibrary)
         optionMenu.addAction(cancelAction)
@@ -539,7 +538,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         addMorePhotosButton.tag = 1
         self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
         self.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
-        
     }
     
     func addPhotosAgain(_ sender: UIButton) {
@@ -550,31 +548,16 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     
     func addCaption(_ sender: UIButton) {
         
-        var allPhotos: [UIButton] = []
-        
         let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
-        
-        captionVC.imagesArray = self.horizontalScrollForPhotos.subviews
         captionVC.imageArr = imageArr
-        for subview in self.horizontalScrollForPhotos.subviews {
-            if subview.tag != 1 {
-                let view = subview as! UIButton
-                allPhotos.append(view)
+        var i = 0
+        for subview in self.horizontalScrollForPhotos.subviews { 
+            let view = subview as! UIButton
+            if(view == sender) {
+                captionVC.currentImageIndex = i;
             }
+            i = i + 1
         }
-        
-        captionVC.currentImage = sender.currentImage!
-        
-        if sender.tag == 2 {
-            captionVC.currentSender = allPhotos[0]
-        }
-        else {
-            captionVC.currentSender = sender
-        }
-        
-        captionVC.allImages = allPhotos
-        captionVC.allPhotos = self.photosToBeUploaded
-        captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController!.pushViewController(captionVC, animated: true)
     }
