@@ -118,7 +118,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         if quickItinery["countryVisited"].count != 0{
             for i in 0...quickItinery["countryVisited"].count - 1 {
                 let three = ItineraryThree()
-                three.frame = CGRect(x: 0, y: 5, width: 300, height: )
+                three.frame = CGRect(x: 0, y: 5, width: 300, height: 300)
                 three.index = i
                 three.cityCountry.text = "\(quickItinery["countryVisited"][i]["name"]):  \(createCity(cities: quickItinery["countryVisited"][i]["cityVisited"]))"
                 
