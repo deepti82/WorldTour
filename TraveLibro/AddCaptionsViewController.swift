@@ -289,7 +289,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
     }
     
-      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageArr.count
     }
     
