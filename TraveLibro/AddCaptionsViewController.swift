@@ -245,13 +245,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             deletePhoto(deletedIndex: deletedIndex)
         }
         
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
-        self.view.addGestureRecognizer(swipeRight)
-        
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.nextImageCaption(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.view.addGestureRecognizer(swipeLeft)
+//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
+//        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+//        self.view.addGestureRecognizer(swipeRight)
+//        
+//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.nextImageCaption(_:)))
+//        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+//        self.view.addGestureRecognizer(swipeLeft)
         
         for eachImage in allImages {
             
@@ -297,12 +297,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addImages", for: indexPath) as! addImages
-<<<<<<< HEAD
-        cell.backgroundColor = UIColor.brown
+
+//        cell.backgroundColor = UIColor.brown
         cell.addImagesCollection.image = imageArr[indexPath.row].image
-=======
-//        cell.addImagesCollection.image = Image[indexPath.row]
->>>>>>> origin/level-3-
         return cell
     }
 
