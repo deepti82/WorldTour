@@ -474,15 +474,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         
     }
     
-    func photosAdded(assets: [UIImage]) {
-        self.photosIntialView.isHidden = true
-        self.photosFinalView.isHidden = false
-        for subview in self.horizontalScrollForPhotos.subviews {
-            if subview.tag == 1 {
-                subview.removeFromSuperview()
-            }
-        }
-        
+    func photosAdded(assets: [UIImage]) {        
         for asset in assets {
             let postImg = PostImage();
             postImg.image = asset;
@@ -512,7 +504,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     
     func addPhotoToLayout() {
         self.horizontalScrollForPhotos.removeAll()
-        print("imageArr " + String(imageArr.count) );
         for i in 0 ..< imageArr.count {
             let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
             photosButton.setImage(imageArr[i].image, for: .normal)
@@ -534,5 +525,12 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         self.horizontalScrollForPhotos.layoutSubviews()
         self.photoScroll.contentSize = CGSize(width: self.horizontalScrollForPhotos.frame.width, height: self.horizontalScrollForPhotos.frame.height)
         photosCount.text = "( " + String(imageArr.count) + " )";
+        if(imageArr.count == 0) {
+            self.photosIntialView.isHidden = false
+            self.photosFinalView.isHidden = true
+        } else {
+            self.photosIntialView.isHidden = true
+            self.photosFinalView.isHidden = false
+        }
     }
 }
