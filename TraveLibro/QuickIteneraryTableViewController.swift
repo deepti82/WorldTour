@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import  Toaster
 
 class QuickIteneraryTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
     
@@ -14,6 +15,7 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     var countriesSearchResults: JSON = []
     var searchCity: String = ""
     var isSearch = false
+    var searchTextGlob: String = ""
     
     
     override func viewDidLoad() {
@@ -23,15 +25,15 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         if selectedStatus == "country" {
             request.getAllCountries({(request) in
                 DispatchQueue.main.async(execute: {
-                self.countries = request["data"]
-                self.tableView.reloadData()
+                    self.countries = request["data"]
+                    self.tableView.reloadData()
                 })
             })
         }else {
-//            request.getAllCityC(searchCity, country: selectedCountry["_id"].stringValue, completion:{(request) in
-//                self.countries = request["data"]
-//                self.tableView.reloadData()
-//            })
+            //            request.getAllCityC(searchCity, country: selectedCountry["_id"].stringValue, completion:{(request) in
+            //                self.countries = request["data"]
+            //                self.tableView.reloadData()
+            //            })
         }
         
         
@@ -46,6 +48,12 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("in search bar ckicked")
+        print(searchTextGlob)
+        searchCityFun(search: searchTextGlob)
+    }
+    
     func closeMe(_ sender: UIButton) {
         
         self.dismiss(animated: true, completion: nil)
@@ -54,10 +62,13 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     
     func searchCityFun(search: String) {
         request.getAllCityC(search, country: selectedCountry["_id"].stringValue, completion:{(request) in
-            DispatchQueue.main.async(execute: {
+            DispatchQueue.main.sync(execute: {
+                print(request["data"])
                 if (request["data"].count != 0){
-                self.countriesSearchResults = request["data"]
-                self.tableView.reloadData()
+                    self.countriesSearchResults = request["data"]
+                    DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                    })
                 }
             })
         })
@@ -95,7 +106,12 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         
         if isSearch {
             let c:JSON = countriesSearchResults[indexPath.row]
-            selectedCity.arrayObject?.append(c.object)
+            if !selectedCity.contains(where: {$0.1["placeId"] == c["placeId"]}) {
+                selectedCity.arrayObject?.append(c.object)
+            }else{
+                let tstr = Toast(text: "City already exist")
+                tstr.show()
+            }
         }else{
             if selectedStatus == "country" {
                 selectedCountry = countries[indexPath.row]
@@ -112,6 +128,7 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         isSearch = true
+        searchTextGlob = searchText
         self.searchCityFun(search: searchText)
         
     }

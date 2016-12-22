@@ -63,6 +63,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
             
             cityVisited.text = createCity(cities: selectedCity)
             
+        }else{
+            cityVisited.text = ""
         }
         createCityCountry()
         

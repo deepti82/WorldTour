@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate  {
     
@@ -20,6 +21,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         getDarkBackGround(self)
         self.delegate = self
         self.dataSource = self
+        ToastView.appearance().backgroundColor = mainOrangeColor
         
         let quickOne: UIViewController = (storyboard?.instantiateViewController(withIdentifier: "quickOne"))!
         let quickTwo: UIViewController! = (storyboard?.instantiateViewController(withIdentifier: "quickTwo"))!
@@ -38,6 +40,16 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
             setViewControllers([quickOne], direction: .forward, animated: false, completion: nil)
             inx = 0
         }
+        createNavigation()
+        
+    }
+    
+    func changeView(changedIndex:Int, key:String) {
+        print(changedIndex)
+        inx = changedIndex
+        self.setViewControllers([viewControllers1[inx]], direction: UIPageViewControllerNavigationDirection.reverse, animated: true, completion: nil)
+        let tsrt = Toast(text: "Please enter \(key)")
+        tsrt.show()
         createNavigation()
         
     }
@@ -91,18 +103,50 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
     }
     func donePage(_ sender: UIButton) {
         print("done")
-        
         quickItinery["user"] = currentUser["_id"]
         quickItinery["status"] = false
         print(quickItinery)
+        var check = true
         
-        for i in 0...quickItinery.count {
-            print(quickItinery[i])
+        for (key, itm) in quickItinery {
+            if(check){
+            switch key {
+            case "title", "month", "year", "duration":
+                if itm == "" {
+                    self.changeView(changedIndex: 0, key: key)
+                    check = false
+                }
+                break
+            case "itineraryType":
+                if itm.count == 0 {
+                    self.changeView(changedIndex: 1, key: key)
+                    check = false
+                }
+                break
+            case "countryVisited":
+                if itm.count == 0 {
+                    self.changeView(changedIndex: 2, key: key)
+                    check = false
+                }
+                break
+            case "description":
+                if itm == "" {
+                    self.changeView(changedIndex: 3, key: key)
+                    check = false
+                }
+                break
+            default: break
+            }
+        }
+        }
+        if check {
+            saveItinerary()
         }
         
     }
     
     func saveItinerary() {
+        
         request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
             DispatchQueue.main.async(execute: {
                 print(response)
@@ -112,6 +156,8 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
                     
                 }
                 else if response["value"].bool! {
+                    quickItinery = []
+                    self.callBackViewC()
                     print("nothing")
                 }
                 else {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -3367,7 +3367,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -4595,21 +4595,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NEB-XP-wm5">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="NEB-XP-wm5">
+                                <rect key="frame" x="0.0" y="90" width="375" height="486"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Add a caption..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8Jq-OB-qMj">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Add a caption..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8Jq-OB-qMj">
                                 <rect key="frame" x="15" y="504" width="345" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="op0-c5-d8j"/>
-                                </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ki-Pv-9l2">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ki-Pv-9l2">
                                 <rect key="frame" x="20" y="317" width="30" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Prev">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4618,8 +4617,9 @@
                                     <action selector="previousImageCaption:" destination="Atl-4x-b1t" eventType="touchUpInside" id="41s-Nk-Zgl"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-Ri-P74">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-Ri-P74">
                                 <rect key="frame" x="322" y="317" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4628,8 +4628,9 @@
                                     <action selector="nextImageCaption:" destination="Atl-4x-b1t" eventType="touchUpInside" id="6ns-WJ-enS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVK-iA-xk6">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVK-iA-xk6">
                                 <rect key="frame" x="318" y="20" width="37" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4638,12 +4639,12 @@
                                     <action selector="doneCaptions:" destination="Atl-4x-b1t" eventType="touchUpInside" id="Lmr-po-hW3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BxF-9M-Jpw">
-                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PzD-u4-CXn">
+                                <rect key="frame" x="0.0" y="584" width="375" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="aGv-Ry-YKd"/>
+                                    <constraint firstAttribute="height" constant="80" id="7gP-IY-O4W"/>
                                 </constraints>
+<<<<<<< HEAD
                                 <state key="normal" image="edit_profile_icon">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -4669,20 +4670,28 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="1" minimumInteritemSpacing="1" id="tON-JG-wXb">
                                     <size key="itemSize" width="45" height="45"/>
+=======
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="1" minimumInteritemSpacing="1" id="tON-JG-wXb">
+                                    <size key="itemSize" width="80" height="80"/>
+>>>>>>> origin/level-3-
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addImages" id="WBL-hw-uN9" customClass="addImages" customModule="TraveLibro" customModuleProvider="target">
+<<<<<<< HEAD
                                         <rect key="frame" x="0.0" y="3" width="45" height="45"/>
+=======
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+>>>>>>> origin/level-3-
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TeA-HT-XPj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -4692,28 +4701,36 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Atl-4x-b1t" id="39E-vi-u8M"/>
+                                    <outlet property="delegate" destination="Atl-4x-b1t" id="gsv-td-lwi"/>
+                                </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BxF-9M-Jpw">
+                                <rect key="frame" x="0.0" y="40" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="LCh-Kz-6C3"/>
+                                </constraints>
+                                <state key="normal" image="edit_profile_icon">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editPhoto:" destination="Atl-4x-b1t" eventType="touchUpInside" id="5XD-vQ-cPE"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="NEB-XP-wm5" firstAttribute="top" secondItem="VYO-3s-fru" secondAttribute="bottom" constant="8" id="0Bx-Af-kQm"/>
-                            <constraint firstItem="VYO-3s-fru" firstAttribute="centerX" secondItem="vpb-lr-1yP" secondAttribute="centerX" id="2H5-Bo-U38"/>
-                            <constraint firstItem="AVK-iA-xk6" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="7cI-o9-b9A"/>
-                            <constraint firstAttribute="trailing" secondItem="AVK-iA-xk6" secondAttribute="trailing" constant="20" id="ClB-zz-T1u"/>
-                            <constraint firstItem="8Jq-OB-qMj" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="15" id="GAF-Mq-cAv"/>
-                            <constraint firstItem="9ki-Pv-9l2" firstAttribute="centerY" secondItem="vpb-lr-1yP" secondAttribute="centerY" id="TqF-jY-s4b"/>
-                            <constraint firstAttribute="trailing" secondItem="NEB-XP-wm5" secondAttribute="trailing" id="U6M-Eu-P0u"/>
-                            <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="NEB-XP-wm5" secondAttribute="bottom" id="VfB-pe-ssc"/>
-                            <constraint firstAttribute="trailing" secondItem="BxF-9M-Jpw" secondAttribute="trailing" id="gRT-8U-xDr"/>
-                            <constraint firstItem="BxF-9M-Jpw" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="hA9-8q-sHm"/>
-                            <constraint firstItem="rnY-Ri-P74" firstAttribute="centerY" secondItem="vpb-lr-1yP" secondAttribute="centerY" id="jM1-tA-yay"/>
-                            <constraint firstItem="VYO-3s-fru" firstAttribute="top" secondItem="BxF-9M-Jpw" secondAttribute="bottom" constant="8" id="l7z-50-r4g"/>
-                            <constraint firstItem="9ki-Pv-9l2" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="20" id="lhi-vs-LH8"/>
-                            <constraint firstAttribute="trailing" secondItem="rnY-Ri-P74" secondAttribute="trailing" constant="20" id="r9a-iM-ush"/>
-                            <constraint firstItem="BxF-9M-Jpw" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="sdR-Qd-1hI"/>
-                            <constraint firstAttribute="trailing" secondItem="8Jq-OB-qMj" secondAttribute="trailing" constant="15" id="tZZ-0l-p7w"/>
-                            <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="NEB-XP-wm5" secondAttribute="bottom" id="vkB-n9-nVS"/>
-                            <constraint firstItem="NEB-XP-wm5" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="wBI-Vd-clH"/>
+                            <constraint firstItem="BxF-9M-Jpw" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" constant="20" id="3KC-zf-6ON"/>
+                            <constraint firstItem="PzD-u4-CXn" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="5AU-me-p23"/>
+                            <constraint firstAttribute="trailing" secondItem="PzD-u4-CXn" secondAttribute="trailing" id="5RZ-sm-9uq"/>
+                            <constraint firstAttribute="trailing" secondItem="BxF-9M-Jpw" secondAttribute="trailing" id="8Dv-ED-eG4"/>
+                            <constraint firstItem="BxF-9M-Jpw" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="QlP-Xh-a7o"/>
+                            <constraint firstItem="PzD-u4-CXn" firstAttribute="top" secondItem="NEB-XP-wm5" secondAttribute="bottom" constant="8" id="Wox-Yt-X3Y"/>
+                            <constraint firstAttribute="trailing" secondItem="NEB-XP-wm5" secondAttribute="trailing" id="aqz-gG-RDB"/>
+                            <constraint firstItem="NEB-XP-wm5" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="nrb-mk-0Jx"/>
+                            <constraint firstItem="NEB-XP-wm5" firstAttribute="top" secondItem="BxF-9M-Jpw" secondAttribute="bottom" id="qGg-1f-o3P"/>
+                            <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="PzD-u4-CXn" secondAttribute="bottom" constant="3" id="spp-bO-HHc"/>
                         </constraints>
                     </view>
                     <connections>
