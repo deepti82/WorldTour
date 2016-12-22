@@ -1,7 +1,7 @@
 import UIKit
 import Photos
 import imglyKit
-
+import Spring
 var editedImage = UIImage()
 var isEditedImage = false
 
@@ -26,7 +26,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     @IBOutlet var completeImages: [UIImageView]!
     @IBOutlet weak var captionTextView: UITextView!
-    @IBOutlet weak var imageForCaption: UIImageView!
+    @IBOutlet weak var imageForCaption: SpringImageView!
     @IBOutlet weak var bottomStack: UIStackView!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var imageStackView: UIStackView!
@@ -167,7 +167,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     func changeImage(number:Int) {
         currentImageIndex = number
         captionTextView.resignFirstResponder()
+        imageForCaption.animation = "flipX";
         imageForCaption.image = imageArr[currentImageIndex].image
+        imageForCaption.animate();
+
         if(imageArr[currentImageIndex].caption == "") {
             captionTextView.text = "Add a caption..."
         } else {
@@ -260,9 +263,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         }
     }
     
-    func deletePhoto(deletedIndex: Int) {
-
-    }
     var viewHeight = 0
     func keyboardWillShow(_ notification: Notification) {
         view.frame.origin.y = CGFloat(viewHeight)
