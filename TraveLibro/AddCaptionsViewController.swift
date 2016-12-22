@@ -143,6 +143,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         } else {
             captionTextView.text = imageArr[currentImageIndex].caption
         }
+        captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -157,7 +158,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         cell.addImagesCollection.image = imageArr[indexPath.row].image
         cell.addImagesCollection.layer.cornerRadius = 5
         cell.addImagesCollection.clipsToBounds = true;
+        captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
         return cell
+        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         changeImage(number:indexPath.row);
@@ -180,8 +183,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         } else {
             captionTextView.text = imageArr[currentImageIndex].caption
         }
-        
-        
+        captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
     }
     
     var editedImagesArray: [Dictionary<Int,UIImage>] = []
