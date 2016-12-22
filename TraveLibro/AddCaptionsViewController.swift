@@ -7,6 +7,7 @@ var isEditedImage = false
 
 class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStackControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var collectionVi: UICollectionView!
     var imagesArray: [UIView] = []
     var currentImage = UIImage()
     var allImages: [UIButton] = []
@@ -41,7 +42,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         if(imageArr.count == 1) {
             self.goBack(UIButton());
         }
-        
+        collectionVi.reloadData()
         self.previousImageCaption(UIButton())
     }
     

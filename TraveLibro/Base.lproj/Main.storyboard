@@ -4741,6 +4741,7 @@
                     </view>
                     <connections>
                         <outlet property="captionTextView" destination="8Jq-OB-qMj" id="5nK-jO-9qM"/>
+                        <outlet property="collectionVi" destination="PzD-u4-CXn" id="xlf-Ir-EYD"/>
                         <outlet property="doneButton" destination="AVK-iA-xk6" id="1vv-v3-Q3T"/>
                         <outlet property="editImageButton" destination="zjf-9e-Otk" id="Yc0-C1-nap"/>
                         <outlet property="imageForCaption" destination="NEB-XP-wm5" id="dNZ-13-zOf"/>
