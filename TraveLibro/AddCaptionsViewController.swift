@@ -13,7 +13,7 @@ import imglyKit
 var editedImage = UIImage()
 var isEditedImage = false
 
-class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStackControllerDelegate {
+class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStackControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var imagesArray: [UIView] = []
     var currentImage = UIImage()
@@ -138,6 +138,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
     }
     
+    
     func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
         
         print("in tool stack ctrl")
@@ -235,7 +236,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         captionTextView.layer.cornerRadius = 5.0
         captionTextView.clipsToBounds = true
         captionTextView.layer.zPosition = 1000
-        imageStackView.layer.zPosition = 1000
+//        imageStackView.layer.zPosition = 1000
         captionTextView.textContainerInset = UIEdgeInsetsMake(5, 10, 5, 10)
         
         index = getIndex()
@@ -298,6 +299,16 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         captionTextView.text = imageArr[currentImageIndex].caption
     }
     
+      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addImages", for: indexPath) as! addImages
+        cell.addImagesCollection.image = allImages[indexPath.row]
+        return cell
+    }
+
     func getIndex() -> Int {
         
         return allImages.index(of: currentSender)!
@@ -542,4 +553,9 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         }
     }
     
+}
+
+class addImages: UICollectionViewCell {
+    
+    @IBOutlet weak var addImagesCollection: UIImageView!
 }
