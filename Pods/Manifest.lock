@@ -18,6 +18,7 @@ PODS:
   - SQLite.swift/standard (0.11.1)
   - SwiftHTTP (2.0.2)
   - TabPageViewController (0.2.1)
+  - Toaster (2.0.1)
   - TwitterCore (2.5.0):
     - Fabric
   - TwitterKit (2.5.0):
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `prepare-0.11.1`)
   - SwiftHTTP (~> 2.0.0)
   - TabPageViewController (from `https://github.com/EndouMari/TabPageViewController.git`, branch `swift_3`)
+  - Toaster (~> 2.0)
   - TwitterCore
   - TwitterKit
 
@@ -89,10 +91,11 @@ SPEC CHECKSUMS:
   SQLite.swift: 1af00c95130fba962653aa136e3ecb0b8890796b
   SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
   TabPageViewController: a4b46480e21251000962abad071b538679dbc2ad
+  Toaster: be65cd48e93a525b2a9cc4bd25a2bfc900e02d9f
   TwitterCore: 95c46af93112768a7983bd370d66023553601d01
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: eded2a708a0fdefa7eca261a2fb8026b9988c052
+PODFILE CHECKSUM: 14c0fc9c200c4b7e8401c0b104840af02c238808
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.1.1

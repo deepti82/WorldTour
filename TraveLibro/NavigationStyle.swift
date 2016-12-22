@@ -273,6 +273,10 @@ extension UIViewController {
         
     }
     
+    func callBackViewC() {
+        self.navigationController!.popViewController(animated: true)
+    }
+    
     func setFooterTabBar(_ vc: UIViewController) {
         
         let footer = getFooter(frame: CGRect(x: 0, y: vc.view.frame.height - 45, width: vc.view.frame.width, height: 45))

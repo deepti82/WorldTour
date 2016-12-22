@@ -15,6 +15,7 @@ target 'TraveLibro' do
   pod 'Cent'
   pod 'AsyncSwift'
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
+  pod 'Toaster', '~> 2.0'
 end
 
 use_frameworks!
