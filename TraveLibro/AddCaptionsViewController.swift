@@ -211,7 +211,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         super.viewDidLoad()
         
         print("new controller")
-        
+        self.captionTextView.delegate = self
         let leftButton = UIButton()
         leftButton.setTitle("Cancel", for: .normal)
         leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
