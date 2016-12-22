@@ -291,6 +291,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageArr.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -298,6 +299,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
 
 //        cell.backgroundColor = UIColor.brown
         cell.addImagesCollection.image = imageArr[indexPath.row].image
+        cell.addImagesCollection.layer.cornerRadius = 5
+        cell.addImagesCollection.clipsToBounds = true;
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -562,6 +565,5 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
 }
 
 class addImages: UICollectionViewCell {
-    
     @IBOutlet weak var addImagesCollection: UIImageView!
 }
