@@ -269,43 +269,36 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        for image in completeImages {
-            
-            image.isHidden = true
-            image.layer.cornerRadius = 2.0
-            image.clipsToBounds = true
-            image.isUserInteractionEnabled = true
-            let tap = UITapGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.imageTapped(_:)))
-            image.addGestureRecognizer(tap)
-            
-        }
+//        for image in completeImages {
+//            
+//            image.isHidden = true
+//            image.layer.cornerRadius = 2.0
+//            image.clipsToBounds = true
+//            image.isUserInteractionEnabled = true
+//            let tap = UITapGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.imageTapped(_:)))
+//            image.addGestureRecognizer(tap)
+//            
+//        }
         
-        if allImages.count <= 5 {
-            bottomStack.isHidden = true
-        }
-        
-        for i in 0 ..< allImages.count {
-            let image = allImages[i].currentImage
-            print("image to be set: \(image)")
-            completeImages[i].image = image
-            completeImages[i].isHidden = false
-            if completeImages[i].image == imageForCaption.image {
+        for i in 0 ..< imageArr.count {
+            let image = imageArr[i].image
+            if image == imageForCaption.image {
                 currentImageIndex = i;
-                completeImages[i].layer.borderColor = mainOrangeColor.cgColor
-                completeImages[i].layer.borderWidth = 1.0
+//                completeImages[i].layer.borderColor = mainOrangeColor.cgColor
+//                completeImages[i].layer.borderWidth = 1.0
             }
         }
-        
         captionTextView.text = imageArr[currentImageIndex].caption
     }
     
       func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return imageArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addImages", for: indexPath) as! addImages
-        cell.addImagesCollection.image = allImages[indexPath.row]
+        cell.backgroundColor = UIColor.brown
+        cell.addImagesCollection.image = imageArr[indexPath.row].image
         return cell
     }
 
