@@ -305,7 +305,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addImages", for: indexPath) as! addImages
-        cell.addImagesCollection.image = allImages[indexPath.row]
+//        cell.addImagesCollection.image = Image[indexPath.row]
         return cell
     }
 
