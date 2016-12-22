@@ -132,6 +132,8 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         self.videoTag.tintColor = mainBlueColor
         self.finalThoughtTag.tintColor = mainBlueColor
         self.cancelLocationButton.isHidden = true
+        self.friendsCount.isHidden = true;
+        self.friendsTag.tintColor = mainBlueColor
         
         self.animation = "squeezeUp"
         self.duration = 1.5
@@ -233,7 +235,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         
         self.addLocationButton.addTarget(self, action: #selector(self.gotoSearchLocation(_:)), for: .touchUpInside)
         self.photosButton.addTarget(self, action: #selector(self.addPhotos(_:)), for: .touchUpInside)
-        //        self.videosButton.addTarget(self, action: #selector(NewTLViewController.addVideos(_:)), for: .touchUpInside)
+        self.videosButton.addTarget(self, action: #selector(self.addVideos(_:)), for: .touchUpInside)
         self.thoughtsButton.addTarget(self, action: #selector(self.addThoughts(_:)), for: .touchUpInside)
                 self.tagFriendButton.addTarget(self, action: #selector(self.tagMoreBuddies(_:)), for: .touchUpInside)
         self.postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
@@ -248,17 +250,23 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         next.whichView = "TLTags"
         if addedBuddies != nil {
+            next.friendsTag = friendsTag
+            next.friendsCount = friendsCount;
             next.addedFriends = addedBuddies
         }
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(next, animated: true)
         
     }
+    func addVideos(_ sender: UIButton) {
+        let newTl = globalNavigationController.topViewController as! NewTLViewController;
+        newTl.addVideos(sender);
+    }
 
 
     
     func newPost(_ sender: UIButton) {
-        var newTl = globalNavigationController.topViewController as! NewTLViewController;
+        let newTl = globalNavigationController.topViewController as! NewTLViewController;
         newTl.newPost(sender);
     }
     
@@ -403,18 +411,20 @@ class AddActivityNew: SpringView, UITextViewDelegate {
             cameraViewController.cameraController?.recordingMode = .photo
             func abc(image:UIImage?,url:URL?) -> Void
             {
-                
                 let photoEffect = PhotoEffectThumbnailRenderer(inputImage: image!);
-                photoEffect.generateThumbnails(for: [(cameraViewController.cameraController?.photoEffect)!], of: (image?.size)!, singleCompletion: { (image:UIImage, num:Int) in
-                    DispatchQueue.main.async(execute: {
-                        let imgA:[UIImage] = [image]
-                        cameraViewController.dismiss(animated: true, completion: nil)
-                        globalAddActivityNew.photosAdded(assets: imgA)
+                if(cameraViewController.cameraController?.photoEffect != nil) {
+                    photoEffect.generateThumbnails(for: [(cameraViewController.cameraController?.photoEffect)!], of: (image?.size)!, singleCompletion: { (image:UIImage, num:Int) in
+                        DispatchQueue.main.async(execute: {
+                            let imgA:[UIImage] = [image]
+                            cameraViewController.dismiss(animated: true, completion: nil)
+                            globalAddActivityNew.photosAdded(assets: imgA)
+                        })
                     })
-                    
-                    
-                })
-                
+                } else {
+                    let imgA:[UIImage] = [image!]
+                    cameraViewController.dismiss(animated: true, completion: nil)
+                    globalAddActivityNew.photosAdded(assets: imgA)
+                }
                 
             }
             cameraViewController.completionBlock = abc;

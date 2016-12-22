@@ -10,6 +10,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var buddiesCollectionView: UICollectionView!
     @IBOutlet weak var buddiesTableView: UITableView!
+    var friendsTag:UIImageView!
+    var friendsCount:UIButton!
     
     var whichView = "LL"
     var addedFriends: [JSON] = []
@@ -29,9 +31,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         sender.isEnabled = false
         
         var addedFriendUsers: [JSON] = []
-        
-        print("added friends: \(addedFriends), \(currentUser["_id"].string!)")
-        
         if whichView == "TL" {
             
             if(addedFriends.count == 0) {
@@ -98,10 +97,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     })
                 })
             }
-           
-            
-            
-            
         }
         else if whichView == "TLMiddle" {
             
@@ -130,13 +125,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                                 let backVC = vc as! NewTLViewController
                                 backVC.getJourney()
                                 self.navigationController!.popToViewController(backVC, animated: true)
-                                
                             }
-                            
                         }
-                        
                     }
-                        
                     else {
                         
                         print("response error")
@@ -153,7 +144,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             for vc in allControllers {
                 
                 if vc.isKind(of: NewTLViewController.self) {
-                    
                     let backVC = vc as! NewTLViewController
                     backVC.addedBuddies = addedFriends
                     backVC.displayFriendsCount()
@@ -279,12 +269,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func formatAllFriends(friends: [JSON]) {
-        
         for friend in friends {
-            
             allFriendsJson.append(["name": friend["name"].string!, "_id": friend["_id"].string!, "email": friend["email"].string!, "profilePicture": friend["profilePicture"].string!])
         }
-        
         self.buddiesTableView.reloadData()
     }
     
@@ -319,12 +306,26 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func saveFriendChanges(_ sender: UIButton) {
-        
         self.navigationController!.popViewController(animated: true)
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if(self.friendsTag != nil && self.friendsCount != nil) {
+            if(allFriendsJson.count == 0) {
+                self.friendsTag.tintColor = mainBlueColor
+                self.friendsCount.isHidden = true;
+            }
+            else {
+                self.friendsTag.tintColor = mainOrangeColor
+                self.friendsCount.isHidden = false;
+                if(allFriendsJson.count == 1) {
+                    self.friendsCount.titleLabel?.text =  "1 Friend";
+                } else {
+                    self.friendsCount.titleLabel?.text =  String(allFriendsJson.count) + " Friends";
+                }
+            }
+        }
         
         return allFriendsJson.count
         
