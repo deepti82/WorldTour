@@ -1,11 +1,3 @@
-//
-//  AddCaptionsViewController.swift
-//  TraveLibro
-//
-//  Created by Wohlig Technology on 10/5/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 import Photos
 import imglyKit
@@ -245,13 +237,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             deletePhoto(deletedIndex: deletedIndex)
         }
         
-//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
-//        swipeRight.direction = UISwipeGestureRecognizerDirection.right
-//        self.view.addGestureRecognizer(swipeRight)
-//        
-//        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.nextImageCaption(_:)))
-//        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-//        self.view.addGestureRecognizer(swipeLeft)
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.nextImageCaption(_:)))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
         
         for eachImage in allImages {
             
@@ -288,7 +280,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
 //                completeImages[i].layer.borderWidth = 1.0
             }
         }
-        captionTextView.text = imageArr[currentImageIndex].caption
+        if(imageArr[currentImageIndex].caption == "") {
+            
+        } else {
+            captionTextView.text = imageArr[currentImageIndex].caption
+        }
+        
+        
     }
     
       func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -301,6 +299,20 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
 //        cell.backgroundColor = UIColor.brown
         cell.addImagesCollection.image = imageArr[indexPath.row].image
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("next caption")
+        let captionVC = self.storyboard!.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        let index = indexPath.row;
+        captionVC.imagesArray = imagesArray
+        captionVC.currentImage = allImages[index].currentImage!
+        captionVC.currentSender = allImages[index]
+        captionVC.allPhotos = allPhotos
+        captionVC.allIds = allIds
+        captionVC.allImages = allImages
+        captionVC.imageArr = self.imageArr
+        //            captionVC.getPhotoCaption()
+        self.navigationController!.pushViewController(captionVC, animated: false)
     }
 
     func getIndex() -> Int {
