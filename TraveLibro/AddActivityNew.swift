@@ -474,7 +474,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         
     }
     
-    func photosAdded(assets: [UIImage]) {        
+    func photosAdded(assets: [UIImage]) {
         for asset in assets {
             let postImg = PostImage();
             postImg.image = asset;
