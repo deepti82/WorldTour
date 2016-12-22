@@ -20,7 +20,6 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(selectedStatus)
         
         if selectedStatus == "country" {
             request.getAllCountries({(request) in
@@ -63,7 +62,6 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     func searchCityFun(search: String) {
         request.getAllCityC(search, country: selectedCountry["_id"].stringValue, completion:{(request) in
             DispatchQueue.main.sync(execute: {
-                print(request["data"])
                 if (request["data"].count != 0){
                     self.countriesSearchResults = request["data"]
                     DispatchQueue.main.async(execute: {

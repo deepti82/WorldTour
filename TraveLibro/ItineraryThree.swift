@@ -36,7 +36,8 @@ class ItineraryThree: UIView, UITextFieldDelegate {
         self.addSubview(view);
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(tap)
+        self.deleteMe.addGestureRecognizer(tap)
+//        view.addGestureRecognizer(tap)
     }
     
     func doubleTapped() {

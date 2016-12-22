@@ -1198,7 +1198,6 @@ class Navigation {
         params["itineraryType"] = itineraryType
         params["countryVisited"] = countryVisited
         
-        print("post params \(params)")
         
         let jsonData = try! params.rawData()
         // create post request
@@ -1217,7 +1216,6 @@ class Navigation {
             
             do {
                 let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                print("response Quick itirenery: \(JSON(result))")
                 completion(JSON(result))
                 
             } catch {

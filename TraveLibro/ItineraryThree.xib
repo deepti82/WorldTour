@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItineraryThree" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="cityCountry" destination="ZPa-xo-HVi" id="0Zb-Bi-1Ef"/>
                 <outlet property="deleteMe" destination="io4-cB-ff9" id="9wM-1C-7yJ"/>
             </connections>
         </placeholder>
@@ -28,21 +27,11 @@
                     </constraints>
                     <state key="normal" title="Button" image="delete"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPa-xo-HVi">
-                    <rect key="frame" x="30" y="0.0" width="270" height="15"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ZPa-xo-HVi" firstAttribute="leading" secondItem="io4-cB-ff9" secondAttribute="trailing" constant="5" id="CQ0-eI-qRe"/>
-                <constraint firstAttribute="bottom" secondItem="ZPa-xo-HVi" secondAttribute="bottom" id="Ex7-B2-oSH"/>
-                <constraint firstAttribute="trailing" secondItem="ZPa-xo-HVi" secondAttribute="trailing" id="KaP-I4-LkG"/>
                 <constraint firstItem="io4-cB-ff9" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cxT-fi-mbg"/>
                 <constraint firstItem="io4-cB-ff9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="t0a-Js-C8T"/>
-                <constraint firstItem="ZPa-xo-HVi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zOT-Dj-S0e"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

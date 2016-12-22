@@ -157,6 +157,8 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
                 }
                 else if response["value"].bool! {
                     quickItinery = []
+                    let tstr = Toast(text: "Itenary saved successfully.")
+                    tstr.show()
                     self.callBackViewC()
                     print("nothing")
                 }
