@@ -13,7 +13,7 @@ class EditCategoryViewController: UIViewController, UICollectionViewDelegate, UI
     
     
     var categoryTextView: UILabel!
-    let categories: [JSON] = [["title": "Beaches", "image": "palm_trees_icon"], ["title": "Airport", "image": "planetrans"], ["title": "Hotels", "image": "hotels"], ["title": "Restaurants", "image": "restaurantsandbars"], ["title": "Netunre & parks", "image": "leaftrans"], ["title": "sights & Landmarks", "image": "sightstrans"], ["title": "Museums & Gallaries", "image": "museumstrans"], ["title": "Religious", "image": "religious"], ["title": "Shopping", "image": "shopping"], ["title": "Adventure & Excursion", "image": "adventureExcursion"], ["title": "Zoos & Aqua", "image": "zootrans"], ["title": "Cinemas & Theatre", "image": "cinematrans"], ["title": "Others", "image": "othersdottrans"]]
+    let categories: [JSON] = [["title": "Beaches", "image": "palm_trees_icon"], ["title": "Airport", "image": "planetrans"], ["title": "Hotels", "image": "hotels-1"], ["title": "Restaurants", "image": "restaurantsandbars"], ["title": "Netunre & parks", "image": "leaftrans"], ["title": "sights & Landmarks", "image": "sightstrans"], ["title": "Museums & Gallaries", "image": "museumstrans"], ["title": "Religious", "image": "regli"], ["title": "Shopping", "image": "shopping"], ["title": "Adventure & Excursion", "image": "adventureExcursion"], ["title": "Zoos & Aqua", "image": "zootrans"], ["title": "Cinemas & Theatre", "image": "cinematrans"], ["title": "Others", "image": "othersdottrans"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
