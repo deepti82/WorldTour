@@ -311,21 +311,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if(self.friendsTag != nil && self.friendsCount != nil) {
-            if(allFriendsJson.count == 0) {
-                self.friendsTag.tintColor = mainBlueColor
-                self.friendsCount.isHidden = true;
-            }
-            else {
-                self.friendsTag.tintColor = mainOrangeColor
-                self.friendsCount.isHidden = false;
-                if(allFriendsJson.count == 1) {
-                    self.friendsCount.titleLabel?.text =  "1 Friend";
-                } else {
-                    self.friendsCount.titleLabel?.text =  String(allFriendsJson.count) + " Friends";
-                }
-            }
-        }
         
         return allFriendsJson.count
         
@@ -430,14 +415,27 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         if addedFriends == nil {
-            
+            return 0
+        }
+        else {
+            if(self.friendsTag != nil && self.friendsCount != nil) {
+                if(addedFriends.count == 0) {
+                    self.friendsTag.tintColor = mainBlueColor
+                    self.friendsCount.isHidden = true;
+                }
+                else {
+                    self.friendsTag.tintColor = mainOrangeColor
+                    self.friendsCount.isHidden = false;
+                    if(addedFriends.count == 1) {
+                        self.friendsCount.titleLabel?.text =  "1 Friend";
+                    } else {
+                        self.friendsCount.titleLabel?.text =  String(allFriendsJson.count) + " Friends";
+                    }
+                }
+            }
             return addedFriends.count
         }
-        
-        return addedFriends.count
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
