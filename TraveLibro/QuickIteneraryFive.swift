@@ -50,6 +50,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
             as! photosSelection
         
         cell.photosImage.image = self.thumbnail1[indexPath.row]
+       cell.photosImage.contentMode = .scaleAspectFill
         return cell
     }
     

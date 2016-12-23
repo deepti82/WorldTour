@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Spring
 
 class QuickIteneraryTwo: UIViewController {
     @IBOutlet var typeButton: [UIButton]!
     
+    @IBOutlet weak var adventureAnimation: SpringButton!
     
+    @IBOutlet weak var businessAnimation: SpringButton!
     var eachButton: [String] = []
 
     override func viewDidLoad() {
@@ -33,8 +36,7 @@ class QuickIteneraryTwo: UIViewController {
             
             let index = typeButton.index(of: button)
             button.setTitle(array[index!], for: .application)
-            
-        }
+                   }
         
     }
     
@@ -51,7 +53,11 @@ class QuickIteneraryTwo: UIViewController {
         if sender.tag == 0 {
             sender.setBackgroundImage(UIImage(named: "orangebox"), for: .normal)
             eachButton.append(sender.title(for: .application)!)
-            
+            businessAnimation.animation = "shake"
+            businessAnimation.animate()
+            adventureAnimation.animation = "wobble"
+            adventureAnimation.animate()
+
             sender.tag = 1
         }
         else {
@@ -63,4 +69,4 @@ class QuickIteneraryTwo: UIViewController {
         quickItinery["itineraryType"] = JSON(eachButton)
     }
 
-}
+  }

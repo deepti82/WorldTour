@@ -30,7 +30,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var imageForCaption: SpringImageView!
     @IBOutlet weak var bottomStack: UIStackView!
-    @IBOutlet weak var doneButton: UIButton!
+//    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var imageStackView: UIStackView!
     @IBOutlet weak var editImageButton: UIButton!
     
@@ -128,13 +128,16 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         self.customNavigationBar(left: leftButton, right: rightButton)
         
-        doneButton.isHidden = true
+       
         captionTextView.layer.cornerRadius = 5.0
         captionTextView.clipsToBounds = true
         captionTextView.layer.zPosition = 1000
 //        imageStackView.layer.zPosition = 1000
         captionTextView.textContainerInset = UIEdgeInsetsMake(5, 10, 5, 10)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
@@ -246,13 +249,13 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         }
     }
    
-    var viewHeight = 0
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             captionTextView.resignFirstResponder()
             if captionTextView.text == "" {
                 captionTextView.text = "Add a caption..."
+                 captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
             }
             return true
         }
@@ -262,10 +265,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     func textViewDidBeginEditing(_ textView: UITextView) {
         if captionTextView.text == "Add a caption..." {
             captionTextView.text = ""
+             captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
         }
     }
     func textViewDidChange(_ textView: UITextView) {
         imageArr[currentImageIndex].caption = captionTextView.text
+         captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
     }
     
     func goBack(_ sender: UIButton) {
@@ -276,6 +281,32 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             }
         }
     }
+//    var viewHeight1 = 0
+    
+    func keyboardWillShow(_ notification: Notification) {
+//        view.frame.origin.y = CGFloat(viewHeight1)
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            
+            //            if !keyboardHidden {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -=  keyboardSize.height
+                print("heightminusdikha\(keyboardSize.height)")
+                //                keyboardHidden = true
+                //            }
+            }
+        }
+        
+    }
+    func keyboardWillHide(_ notification: Notification) {
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                print("height dikha\(keyboardSize.height)")
+                self.view.frame.origin.y += 216.0
+            }
+        }
+    }
+
     
 }
 

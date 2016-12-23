@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Spring
 class startOTGView: UIView {
 
     
@@ -26,7 +26,7 @@ class startOTGView: UIView {
     @IBOutlet weak var detectLocationView: UIView!
     @IBOutlet weak var journeyName: UILabel!
     @IBOutlet weak var nameJourneyView: UIView!
-    @IBOutlet weak var startJourneyButton: UIButton!
+    @IBOutlet weak var startJourneyButton: SpringButton!
     @IBOutlet weak var nameJourneyTF: UITextField!
     @IBOutlet weak var locationLabel: UITextField!
     @IBOutlet weak var detectLocationButton: UIButton!
@@ -45,7 +45,7 @@ class startOTGView: UIView {
     @IBOutlet weak var dpFriendTwo: UIImageView!
     @IBOutlet weak var dpFriendThree: UIImageView!
     
-    @IBOutlet weak var shoewImage: UIImageView!
+    @IBOutlet weak var shoewImage: SpringImageView!
     @IBOutlet var buddyStackPictures: [UIImageView]!
     @IBOutlet weak var optionsButton: UIButton!
     
@@ -141,5 +141,10 @@ class startOTGView: UIView {
         self.addSubview(view);
     }
     
+    @IBAction func startOTGAnimation(_ sender: SpringButton) {
+        shoewImage.animation = "squeeze"
+        shoewImage.animate()
+       
+    }
   
 }
