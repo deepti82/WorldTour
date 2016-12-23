@@ -206,11 +206,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var category = ""
         if self.addView.categoryLabel.text != nil {
             category = self.addView.categoryLabel.text!
+            if(category == "Label") {
+                category = ""
+            }
         }
         
         var location = ""
         if self.addView.addLocationButton.titleLabel?.text != nil {
             location = (self.addView.addLocationButton.titleLabel?.text)!
+            if(location == "Add Location") {
+                location = ""
+            }
         }
         
         var thoughts = ""
@@ -569,6 +575,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    func detectLocation(_ sender: AnyObject?) {
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startMonitoringSignificantLocationChanges()
+    }
+    
     func getJourney() {
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
@@ -576,7 +589,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
-                    //                    self.detectLocation(nil)
+                    self.detectLocation(nil)
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
                         self.refreshControl.endRefreshing()
