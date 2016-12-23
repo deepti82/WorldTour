@@ -601,9 +601,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.refreshControl.endRefreshing()
                         self.isRefreshing = false
                     }
-                    
-                    //                    print("response get journey \(response["data"]["post"].array!)")
-                    
                     isJourneyOngoing = true
                     self.myJourney = response["data"]
                     //                    print("..........")
@@ -640,41 +637,25 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         for post in posts {
             
             if post["type"].string! == "join" {
-                
                 if !self.prevPosts.contains(post) {
-                    
                     self.BuddyJoinInLayout(post)
-                    
                 }
-                
             }
                 
             else if post["type"].string! == "left" {
-                
                 if !self.prevPosts.contains(post) {
-                    
                     self.buddyLeaves(post)
-                    
                 }
-                
             }
                 
             else if post["type"].string! == "cityChange" {
-                
                 if !self.prevPosts.contains(post) {
-                    
                     self.cityChanges(post)
-                    
                 }
-                
             }
                 
             else if !self.prevPosts.contains(post) {
-                
-                //                print("my post id: \(post["_id"])")
-                
                 self.configurePost(post)
-                
             }
             
         }
@@ -1635,13 +1616,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func addHeightToLayout(height: CGFloat) {
-        layout.frame.size.height = layout.frame.size.height + height
-        mainScroll.contentSize.height = mainScroll.contentSize.height + height
+        self.layout.layoutSubviews()
+        self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height)
     }
     
     func removeHeightFromLayout(_ height: CGFloat) {
-        layout.frame.size.height = layout.frame.size.height - height
-        mainScroll.contentSize.height = mainScroll.contentSize.height - height
+        addHeightToLayout(height:height)
     }
     
     func configurePost(_ post: JSON) {
