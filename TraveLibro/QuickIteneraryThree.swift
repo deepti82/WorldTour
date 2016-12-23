@@ -116,21 +116,43 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     func createCityCountry() {
         self.verticalLayout.removeAll()
         if quickItinery["countryVisited"].count != 0{
+            
             for i in 0...quickItinery["countryVisited"].count - 1 {
+                
                 let three = ItineraryThree()
-                three.frame = CGRect(x: 0, y: 5, width: 300, height: )
+                three.frame = CGRect(x: 0, y: 5, width: 300, height: 30)
                 three.index = i
                 three.cityCountry.text = "\(quickItinery["countryVisited"][i]["name"]):  \(createCity(cities: quickItinery["countryVisited"][i]["cityVisited"]))"
-                
                 styleHorizontalButton(three)
                 self.verticalLayout.addSubview(three)
                 self.verticalLayout.layoutSubviews()
                 self.scrView.contentSize = CGSize(width: self.verticalLayout.frame.width, height: self.verticalLayout.frame.height)
                 
+                for n in 0...quickItinery["countryVisited"][i]["cityVisited"].count - 1 {
+                    let lab = labpad()
+//                    lab.frame = CGRect(x: 0, y: 5, width: 200, height: 30)
+                    lab.font = UIFont.systemFont(ofSize: 12)
+
+                    let a = CGRect(x: 0, y: 5, width: 200, height: 30)
+                    lab.text = quickItinery["countryVisited"][i]["cityVisited"][n]["name"].stringValue
+                    lab.sizeToFit()
+                    lab.drawText(in: UIEdgeInsetsInsetRect(a, UIEdgeInsetsMake(5, 5, 5, 5)))
+                    
+                    
+                    styleHorizontalButton(lab)
+                    self.verticalLayout.addSubview(lab)
+                    self.verticalLayout.layoutSubviews()
+                    self.scrView.contentSize = CGSize(width: self.verticalLayout.frame.width, height: self.verticalLayout.frame.height)
+                    
+                }
+                
+                
             }
         }
         
     }
+    
+    
     
     func addCountryFunction(_ sender: UIButton) {
         if !viewAdded {
@@ -167,5 +189,13 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         cityVisited.resignFirstResponder()
         countryVisited.resignFirstResponder()
         return true
+    }
+}
+
+class labpad: UILabel {
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets.init(top: 0, left: 5, bottom: 0, right: 0)
+        
+        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
     }
 }

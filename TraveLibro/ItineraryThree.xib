@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItineraryThree" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="cityCountry" destination="aPY-P8-c6e" id="nud-Fg-rAa"/>
                 <outlet property="deleteMe" destination="io4-cB-ff9" id="9wM-1C-7yJ"/>
             </connections>
         </placeholder>
@@ -27,11 +28,21 @@
                     </constraints>
                     <state key="normal" title="Button" image="delete"/>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPY-P8-c6e">
+                    <rect key="frame" x="30" y="0.0" width="270" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="aPY-P8-c6e" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MNA-nq-8S8"/>
+                <constraint firstAttribute="bottom" secondItem="aPY-P8-c6e" secondAttribute="bottom" id="O4y-bh-1Nd"/>
                 <constraint firstItem="io4-cB-ff9" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="cxT-fi-mbg"/>
                 <constraint firstItem="io4-cB-ff9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="t0a-Js-C8T"/>
+                <constraint firstAttribute="trailing" secondItem="aPY-P8-c6e" secondAttribute="trailing" id="uuh-cm-oA2"/>
+                <constraint firstItem="aPY-P8-c6e" firstAttribute="leading" secondItem="io4-cB-ff9" secondAttribute="trailing" constant="5" id="w1l-eP-fhh"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
