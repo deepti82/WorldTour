@@ -43,7 +43,7 @@ public class PostImage {
         return documentsDirectory
     }
     
-    func saveImage() {
+    func save() {
         var filename:URL!
         
         if let data = UIImageJPEGRepresentation(self.image, 0.8) {
