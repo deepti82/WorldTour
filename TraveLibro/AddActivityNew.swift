@@ -144,6 +144,8 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         self.categoryLabel.text = "Label"
         self.locationTag.tintColor = mainBlueColor
         self.cancelLocationButton.isHidden = true
+        self.currentLat = 0
+        self.currentLong = 0
     }
     
     func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {

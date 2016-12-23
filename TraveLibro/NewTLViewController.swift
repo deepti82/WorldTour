@@ -194,17 +194,23 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let post  = Post();
         var buddies:[Buddy] = []
         
-        var lat:Float = 0
-        if self.addView.currentLat != nil {
-            lat = self.addView.currentLat!
+        var lat = ""
+        if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
+            lat = String(self.addView.currentLat!)
+            if(lat == "0.0") {
+                lat = ""
+            }
         }
-        var lng:Float = 0
-        if self.addView.currentLong != nil {
-            lng = self.addView.currentLong!
+        var lng = ""
+        if self.addView.currentLong != nil && self.addView.currentLong != 0.0 {
+            lng = String(self.addView.currentLong!)
+            if(lng == "0.0") {
+                lng = ""
+            }
         }
         
         var category = ""
-        if self.addView.categoryLabel.text != nil {
+        if self.addView.categoryLabel.text! != nil {
             category = self.addView.categoryLabel.text!
             if(category == "Label") {
                 category = ""
@@ -212,7 +218,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         var location = ""
-        if self.addView.addLocationButton.titleLabel?.text != nil {
+        if self.addView.addLocationButton.titleLabel?.text! != nil {
             location = (self.addView.addLocationButton.titleLabel?.text)!
             if(location == "Add Location") {
                 location = ""
@@ -220,11 +226,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         var thoughts = ""
-        if self.addView.thoughtsTextView.text != nil {
+        if self.addView.thoughtsTextView.text! != nil {
             thoughts = self.addView.thoughtsTextView.text!
         }
 
-        post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: String(Date().ticks), Location: location, Category: category, Latitude: String(lat), Longitude: String(lng), Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
+        post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: String(Date().ticks), Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
         
         self.addView.postButton.isHidden = true
     }
