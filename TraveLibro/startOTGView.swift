@@ -11,6 +11,7 @@ import Spring
 class startOTGView: UIView {
 
     
+    @IBOutlet weak var detectHide: UIButton!
     @IBOutlet weak var lineOne: drawLine!
     @IBOutlet weak var lineTwo: drawLine!
     @IBOutlet weak var lineThree: drawLine!

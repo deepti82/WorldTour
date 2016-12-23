@@ -409,7 +409,7 @@ extension NewTLViewController {
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
         //        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
-        otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
+//        otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
         otgView.nameJourneyTF.returnKeyType = .done
         otgView.nameJourneyTF.delegate = self
         otgView.locationLabel.returnKeyType = .done
@@ -441,7 +441,7 @@ extension NewTLViewController {
             otgView.journeyDetails.isHidden = false
             otgView.buddyStack.isHidden = false
             
-            detectLocation(nil)
+//            detectLocation(nil)
             
             journeyDateChanged(date: journey["startTime"].string!)
             

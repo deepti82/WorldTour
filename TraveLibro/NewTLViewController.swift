@@ -586,7 +586,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
-                    self.detectLocation(nil)
+//                    self.detectLocation(nil)
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
                         self.refreshControl.endRefreshing()
@@ -1752,7 +1752,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.title = "On The Go" //otgView.nameJourneyTF.text
         
         if textField == otgView.nameJourneyTF {
-            
+            otgView.detectLocationView.isHidden = true
             otgView.nameJourneyTF.isHidden = true
             otgView.nameJourneyView.isHidden = true
             otgView.journeyName.isHidden = false
@@ -1764,7 +1764,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             mainScroll.animation.makeY(mainScroll.frame.origin.y - height).thenAfter(0.3).animate(0.3)
             //        otgView.animation.makeY(mainScroll.frame.origin.y - height).animate(0.5)
             otgView.detectLocationView.layer.opacity = 0.0
-            otgView.detectLocationView.isHidden = false
+
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
             otgView.bonVoyageLabel.isHidden = true
             
@@ -1794,8 +1794,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.nameJourneyView.layer.opacity = 0.0
         otgView.nameJourneyView.isHidden = false
         otgView.nameJourneyView.animation.makeOpacity(1.0).makeHeight(otgView.nameJourneyView.frame.height).animate(0.5)
-        
-        
+        otgView.detectLocationView.isHidden = true
+        otgView.detectHide.isHidden = true
+        otgView.cityView.isHidden = true
+        otgView.locationLabel.isHidden = true
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startMonitoringSignificantLocationChanges()
+
         
         
     }
@@ -2034,21 +2041,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    func detectLocationViewTap(_ sender: UITapGestureRecognizer) {
-        
-        self.detectLocation(sender)
-        
-    }
-    
-    func detectLocation(_ sender: AnyObject?) {
-        
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
-        
-        
-    }
+//    func detectLocationViewTap(_ sender: UITapGestureRecognizer) {
+//        
+//        self.detectLocation(sender)
+//        
+//    }
+//    
+//    func detectLocation(_ sender: AnyObject?) {
+//        
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.startMonitoringSignificantLocationChanges()
+//        
+//        
+//    }
     
     var places: [JSON]!
     var coverImage: String!
