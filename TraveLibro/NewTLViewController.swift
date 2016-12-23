@@ -66,7 +66,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.navigationController!.pushViewController(end, animated: true)
     }
     
-
+    
     @IBAction func infoCircle(_ sender: AnyObject) {
         getInfoCount()
     }
@@ -77,17 +77,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var backView:UIView!
     
     func addPosts(_ sender: UIButton) {
-        
-        
         showAddActivity(view: self.view)
         getJourneyBuddies(journey: myJourney)
-        
-        
     }
     
     func optionsAction(_ sender: UIButton) {
         let optionsController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-    
+        
         optionsController.addAction(UIAlertAction(title: "Edit Category", style: .default, handler: { action -> Void in
             let chooseCategory = self.storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
             //            print(self.myJourney["kindOfJourney"])
@@ -150,18 +146,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func displayFriendsCount() {
-        
         if (addedBuddies.count > 0) {
-            
             if addedBuddies.count == 1 {
                 addView.friendsCount.setTitle("1 Friend", for: UIControlState())
             }
             else {
                 addView.friendsCount.setTitle("\(addedBuddies.count) Friends", for: UIControlState())
             }
-            
         }
-        
     }
     
     
@@ -174,7 +166,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         next.whichView = "TLTags"
         
         if addedBuddies != nil {
-            
             next.addedFriends = addedBuddies
         }
         //        addBuddies.uniqueId = journeyId
@@ -194,47 +185,47 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var currentLat: Float!
     var currentLong: Float!
     
-    
-    
-    
     var uploadedVideos: [String] = []
     var journeyBuddies: [String] = []
     var isEdit = false
     
     func newPost(_ sender: UIButton) {
-        
-        for image in self.addView.imageArr {
-            image.saveImage()
-        }
-        print("on post clicked")
-        print(photosToBeUploaded)
-        print(tempAssets);
-        
-        for photoToBeUploaded in photosToBeUploaded {
-            tempAssets.append(URL(string: photoToBeUploaded.url)!)
-            localDbPhotoIds.append(Int(photoToBeUploaded.localId))
-        }
-        
-        if tempAssets.count > 0 {
-            print("PRIRIRIIR");
-            uploadMultiplePhotos(tempAssets, localIds: localDbPhotoIds)
-        }
-            
-        else {
-            print("PRIRIRIIR 2222");
-            postPartTwo()
-        }
-        
         hideAddActivity()
+        let post  = Post();
+        var buddies:[Buddy] = []
         
+        var lat:Float = 0
+        if self.addView.currentLat != nil {
+            lat = self.addView.currentLat!
+        }
+        var lng:Float = 0
+        if self.addView.currentLong != nil {
+            lng = self.addView.currentLong!
+        }
         
+        var category = ""
+        if self.addView.categoryLabel.text != nil {
+            category = self.addView.categoryLabel.text!
+        }
+        
+        var location = ""
+        if self.addView.addLocationButton.titleLabel?.text != nil {
+            location = (self.addView.addLocationButton.titleLabel?.text)!
+        }
+        
+        var thoughts = ""
+        if self.addView.thoughtsTextView.text != nil {
+            thoughts = self.addView.thoughtsTextView.text!
+        }
+
+        post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: String(Date().ticks), Location: location, Category: category, Latitude: String(lat), Longitude: String(lng), Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
         
         self.addView.postButton.isHidden = true
     }
     
     var prevPosts: [JSON] = []
     var initialPost = true
-   
+    
     
     func showOfflinePost(post: JSON, postId: Int) {
         var thoughts = String()
@@ -359,12 +350,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             for i in 0 ..< count {
                 
-
+                
                 checkIn.otherPhotosStack[i].hnk_setImageFromURL(URL(string:photosToBeUploaded[i + 1].url)!)
                 checkIn.otherPhotosStack[i].isHidden = false
                 checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
                 checkIn.otherPhotosStack[i].tag = i + 1
-
+                
                 checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
                 
             }
@@ -375,7 +366,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             checkIn.mainPhoto.isHidden = false
             checkIn.photosStack.isHidden = true
-//            checkIn.photosHC.constant = 0.0
+            //            checkIn.photosHC.constant = 0.0
             checkIn.frame.size.height = 250.0
             
         }
@@ -385,7 +376,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         layout.layoutIfNeeded()
         
         addHeightToLayout(height: checkIn.frame.height + 50.0)
-     
+        
         
     }
     
@@ -465,7 +456,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
             self.currentTime = dateFormatterTwo.string(from: Date())
             //            print("time: \(currentTime)")
-          
+            
             if Reachability.isConnectedToNetwork() {
                 
                 //                print("internet is connected post")
@@ -481,7 +472,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         else if response["value"].bool! {
                             
                             //                            print("response arrived new post!")
-                            self.addActivityToOriginalState()
                             var isRemoved = false
                             if self.layout.viewWithTag(11) != nil && !isRemoved {
                                 
@@ -586,7 +576,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
-//                    self.detectLocation(nil)
+                    //                    self.detectLocation(nil)
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
                         self.refreshControl.endRefreshing()
@@ -680,9 +670,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func closeAdd(_ sender: UIButton) {
-        let postDb = Post()
-        let postCount = postDb.getRowCount() + 1
-        let photosDb = Photo()
         hideAddActivity()
     }
     
@@ -722,12 +709,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func writeImageToFile(_ path: String, completeBlock: (_ success: Bool) -> Void) {
-
+        
     }
     
     let imagePicker = UIImagePickerController()
     var uploadedphotos: [JSON] = []
-
+    
     
     func getAssetThumbnail(_ asset: PHAsset) -> UIImage {
         
@@ -757,10 +744,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             retimage = UIImageJPEGRepresentation(result!, 0.35)!
         })
-    
+        
         return retimage
     }
-
+    
     func addCheckInTL(sender: UIButton) {
         
         let checkInVC = storyboard?.instantiateViewController(withIdentifier: "checkInSearch") as! CheckInSearchViewController
@@ -809,7 +796,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         getDarkBackGroundBlue(self)
         getJourney()
         mainScroll.delegate = self
-
+        
         
         otgView.nameJourneyTF.delegate = self
         
@@ -851,8 +838,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.view.addSubview(TLLoader)
         
         mainScroll.delegate = self
-//        setTopNavigation(text: "On The Go");
-
+        //        setTopNavigation(text: "On The Go");
+        
         
     }
     
@@ -876,10 +863,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }, completion: nil)
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
-//        print("on appear")
-//        setTopNavigation(text: "On The Go");
+        //        print("on appear")
+        //        setTopNavigation(text: "On The Go");
     }
     
     func gotoProfile(_ sender: UIButton) {
@@ -915,7 +902,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var latestCity = ""
     
     func showPost(_ whichPost: String, post: JSON) {
-
+        
         var thoughts = String()
         var postTitle = ""
         var photos: [JSON] = []
@@ -984,7 +971,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if post["like"].array!.contains(JSON(user.getExistingUser())) {
             let image = UIImage(named: "favorite-heart-button")
             checkIn.likeButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
-
+            
             checkIn.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
         }
         
@@ -1072,7 +1059,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             checkIn.mainPhoto.isHidden = false
             checkIn.photosStack.isHidden = true
-//            checkIn.photosHC.constant = 0.0
+            //            checkIn.photosHC.constant = 0.0
             //            checkIn.frame.size.height = 250.0
             
         }
@@ -1105,7 +1092,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 checkIn.mainPhoto.isHidden = false
                 checkIn.photosStack.isHidden = true
-//                checkIn.photosHC.constant = 300.0
+                //                checkIn.photosHC.constant = 300.0
                 
                 if post["showMap"].boolValue && post["showMap"] != nil {
                     
@@ -1392,7 +1379,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
                             addMorePhotosButton.layer.cornerRadius = 5.0
                             addMorePhotosButton.clipsToBounds = true
-                           
+                            
                             
                         }
                             
@@ -1619,29 +1606,23 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func sendComments(_ sender: UIButton) {
-        
         print("comment button tapped")
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = sender.titleLabel!.text!
         comment.otherId = sender.title(for: .application)!
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(comment, animated: true)
-        
     }
     
     
     func addHeightToLayout(height: CGFloat) {
-        
         layout.frame.size.height = layout.frame.size.height + height
         mainScroll.contentSize.height = mainScroll.contentSize.height + height
-        
     }
     
     func removeHeightFromLayout(_ height: CGFloat) {
-        
         layout.frame.size.height = layout.frame.size.height - height
         mainScroll.contentSize.height = mainScroll.contentSize.height - height
-        
     }
     
     func configurePost(_ post: JSON) {
@@ -1670,10 +1651,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getImage(_ myImage: UIImageView, imageValue: String) {
-        
         myImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(imageValue)&width=250")!))
-        
-        
     }
     
     func showDropdown(_ sender: UITextField) {
@@ -1722,18 +1700,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     //    var keyboardHidden = false
     
-     var viewHeight = 0
+    var viewHeight = 0
     
     func keyboardWillShow(_ notification: Notification) {
         view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
-
-//            if !keyboardHidden {
+            
+            //            if !keyboardHidden {
             if self.view.frame.origin.y == 0{
-               self.view.frame.origin.y -= keyboardSize.height
-//                keyboardHidden = true
-//            }
+                self.view.frame.origin.y -= keyboardSize.height
+                //                keyboardHidden = true
+                //            }
             }
         }
         
@@ -1741,9 +1719,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
-            self.view.frame.origin.y += keyboardSize.height
+                self.view.frame.origin.y += keyboardSize.height
             }
-            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -1764,7 +1742,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             mainScroll.animation.makeY(mainScroll.frame.origin.y - height).thenAfter(0.3).animate(0.3)
             //        otgView.animation.makeY(mainScroll.frame.origin.y - height).animate(0.5)
             otgView.detectLocationView.layer.opacity = 0.0
-
+            
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
             otgView.bonVoyageLabel.isHidden = true
             
@@ -1802,7 +1780,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
-
+        
         
         
     }
@@ -1908,35 +1886,35 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if journeyCategories.count != 0 {
             if journeyCategories.count == 0{
-            otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-            otgView.journeyCategoryOne.isHidden = false
-            otgView.journeyCategoryTwo.isHidden = true
-            otgView.journeyCategoryThree.isHidden = true
-            
+                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+                otgView.journeyCategoryOne.isHidden = false
+                otgView.journeyCategoryTwo.isHidden = true
+                otgView.journeyCategoryThree.isHidden = true
+                
             }
             if journeyCategories.count == 1 {
+                
+                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+                otgView.journeyCategoryOne.isHidden = false
+                //            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+                otgView.journeyCategoryTwo.isHidden = false
+                otgView.journeyCategoryThree.isHidden = true
+                
+            }
+                
+            else  {
+                
+                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+                otgView.journeyCategoryOne.isHidden = false
+                //            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+                otgView.journeyCategoryTwo.isHidden = false
+                otgView.journeyCategoryThree.isHidden = false
+                print("indexprob\(kindOfJourneyStack.count)")
+                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+                
+                print("indexprob\(kindOfJourneyStack.count)")
+            }
             
-            otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-            otgView.journeyCategoryOne.isHidden = false
-            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-            otgView.journeyCategoryTwo.isHidden = false
-            otgView.journeyCategoryThree.isHidden = true
-            
-        }
-            
-        else  {
-           
-            otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-            otgView.journeyCategoryOne.isHidden = false
-            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-            otgView.journeyCategoryTwo.isHidden = false
-            otgView.journeyCategoryThree.isHidden = false
-           print("indexprob\(kindOfJourneyStack.count)")
-           otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
-           
-            print("indexprob\(kindOfJourneyStack.count)")
-        }
-        
         }
         if !isEdit {
             
@@ -2031,7 +2009,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             break
         }
         
-
+        
         otgView.buddyStack.isHidden = false
         otgView.addBuddiesButton.isHidden = true
         infoButton.isHidden = true
@@ -2040,22 +2018,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         toolbarView.isHidden = false
         
     }
-    
-//    func detectLocationViewTap(_ sender: UITapGestureRecognizer) {
-//        
-//        self.detectLocation(sender)
-//        
-//    }
-//    
-//    func detectLocation(_ sender: AnyObject?) {
-//        
-//        locationManager.requestAlwaysAuthorization()
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager.startMonitoringSignificantLocationChanges()
-//        
-//        
-//    }
     
     var places: [JSON]!
     var coverImage: String!
@@ -2103,7 +2065,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     else if response["value"].bool! {
                         print(response["data"]);
                         self.locationArray = response["data"].array!
-//                        self.getAllLocations()
+                        //                        self.getAllLocations()
                     }
                 })
             })
@@ -2115,13 +2077,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var previouslyAddedPhotos: [URL]!
     var allAssets: [URL] = []
     
-
+    
     var photosAddedMore = false
     var photosGroupId = 0
     var photosToBeUploaded: [PhotoUpload] = []
     
-
-   
+    
+    
     
     var tempAssets: [URL] = []
     var allImageIds: [Int] = []
@@ -2186,7 +2148,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     var allrows: [String] = []
-   
+    
     
     func completionVideoBlock(result:UIImage?,img:URL?){
         DispatchQueue.main.async(execute: {
@@ -2200,14 +2162,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
         })
         
-
+        
     }
     
     func addVideos(_ sender: UIButton) {
         
         addView.videosInitialView.isHidden = false
         addView.videosFinalView.isHidden = true
-//        addHeightToNewActivity(5.0)
+        //        addHeightToNewActivity(5.0)
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         
@@ -2234,7 +2196,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.present(cameraViewController, animated: true, completion: nil)
         })
         
-  
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
             print("Cancelled")

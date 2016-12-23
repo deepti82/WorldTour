@@ -59,13 +59,6 @@ extension NewTLViewController {
         
     }
     
-    func addActivityToOriginalState() {
-        photosToBeUploaded = []
-        let post = Post()
-        let buddy = Buddy()
-        let postId = post.getRowCount()
-        post.flushRows(Int64(postId))
-    }
     
     func hideAddActivity() {
         addView.removeFromSuperview()
@@ -94,33 +87,34 @@ extension NewTLViewController {
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         blurView.contentView.addSubview(vibrancyEffectView)
         self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
-            self.backView.addSubview(self.newScroll)
-            self.addView = AddActivityNew()
-            self.addView.frame = self.view.frame
+        self.backView.addSubview(self.newScroll)
+        self.addView = AddActivityNew()
+        self.addView.frame = self.view.frame
         self.addView.newScroll = self.newScroll;
-            self.newScroll.addSubview(self.addView)
-            self.newScroll.contentSize.height = self.view.frame.height
-            backView.addSubview(newScroll)
+        self.newScroll.addSubview(self.addView)
+        self.newScroll.contentSize.height = self.view.frame.height
+        backView.addSubview(newScroll)
         
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
         
         let rightButton = UIButton()
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
         rightButton.setTitle("Post", for: UIControlState())
         rightButton.titleLabel?.font = avenirBold
-        rightButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:) ), for: .touchUpInside)
-        self.title = "Add Activity"
-        self.customNavigationBar(left: leftButton, right: rightButton)
-
+        rightButton.addTarget(self, action: #selector(self.newPost(_:) ), for: .touchUpInside)
+        globalNavigationController.topViewController?.title = "Add Activity"
+        globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
+        
+        
         addView.layer.zPosition = 10
         backView.layer.zPosition = 10
         newScroll.contentSize.height = self.view.frame.height
     }
-
+    
     
     func buddyLeaves(_ post: JSON) {
         
@@ -148,7 +142,7 @@ extension NewTLViewController {
         layout.addSubview(changeCityView)
         addHeightToLayout(height: changeCityView.frame.height)
         
-//        print("\(#line) \(post)")
+        //        print("\(#line) \(post)")
         
         
     }
@@ -176,7 +170,7 @@ extension NewTLViewController {
                     self.backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
                     self.view.addSubview(self.backgroundReview)
                     self.view.bringSubview(toFront: self.backgroundReview)
-                   
+                    
                     let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
                     rating.center = self.backgroundReview.center
                     rating.layer.cornerRadius = 5
@@ -209,23 +203,23 @@ extension NewTLViewController {
     
     func addRatingPost(_ sender: UIButton) {
         
-//        let backView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-//        let mainView = UIView(frame: CGRect(x: 0, y: 0, width: width - 40, height: 280))
-//        mainView.center.x = self.view.center.x
-//        let ratingView = RatingAlert(frame: CGRect(x: 0, y: 0, width: 20, height: 200))
-//        ratingView.center = mainView.center
-//
-//        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-//        backView.center.y = self.view.frame.size.height / 2
-//
-//        mainView.backgroundColor = UIColor.whiteColor()
-//        //mainView.center = CGPointMake(backView.frame.size.width / 2, backView.frame.size.height / 2)
-//        mainView.layer.cornerRadius = 5
-//
-//        mainView.addSubview(ratingView)
-//        backView.addSubview(mainView)
-//        self.view.addSubview(backView)
-//        self.view.bringSubviewToFront(backView)
+        //        let backView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        //        let mainView = UIView(frame: CGRect(x: 0, y: 0, width: width - 40, height: 280))
+        //        mainView.center.x = self.view.center.x
+        //        let ratingView = RatingAlert(frame: CGRect(x: 0, y: 0, width: 20, height: 200))
+        //        ratingView.center = mainView.center
+        //
+        //        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        //        backView.center.y = self.view.frame.size.height / 2
+        //
+        //        mainView.backgroundColor = UIColor.whiteColor()
+        //        //mainView.center = CGPointMake(backView.frame.size.width / 2, backView.frame.size.height / 2)
+        //        mainView.layer.cornerRadius = 5
+        //
+        //        mainView.addSubview(ratingView)
+        //        backView.addSubview(mainView)
+        //        self.view.addSubview(backView)
+        //        self.view.bringSubviewToFront(backView)
         
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
@@ -242,8 +236,8 @@ extension NewTLViewController {
         rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
         rating.clipsToBounds = true
         rating.navController = self.navigationController!
-//        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
-//        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
+        //        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+        //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
         backgroundReview.addSubview(rating)
         
         
@@ -257,7 +251,7 @@ extension NewTLViewController {
     
     func removeRatingButton(_ postId: String) {
         
-//        print("layout: \(layout.subviews)")
+        //        print("layout: \(layout.subviews)")
         backgroundReview.removeFromSuperview()
         
         request.getOneJourneyPost(id: postId, completion: {(response) in
@@ -311,13 +305,13 @@ extension NewTLViewController {
             addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             addNewView.layer.zPosition = 1000
             addNewView.profilePicture.contentMode = .scaleAspectFill
-//            addNewView.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=500")!))
+            //            addNewView.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=500")!))
             addNewView.profilePicture.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=500")!)
             makeTLProfilePicture(addNewView.profilePicture)
             addNewView.profileName.text = currentUser["name"].string!
             self.view.addSubview(addNewView)
             addNewView.otgJourneyButton.addTarget(self, action: #selector(NewTLViewController.newOtg(_:)), for: .touchUpInside)
-           
+            
             addNewView.itineraryButton.addTarget(self, action: #selector(NewTLViewController.newItinerary(_:)), for: .touchUpInside)
             addNewView.closeButton.addTarget(self, action: #selector(NewTLViewController.closeView(_:)), for: .touchUpInside)
             
@@ -409,7 +403,7 @@ extension NewTLViewController {
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
         //        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
-//        otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
+        //        otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
         otgView.nameJourneyTF.returnKeyType = .done
         otgView.nameJourneyTF.delegate = self
         otgView.locationLabel.returnKeyType = .done
@@ -441,7 +435,7 @@ extension NewTLViewController {
             otgView.journeyDetails.isHidden = false
             otgView.buddyStack.isHidden = false
             
-//            detectLocation(nil)
+            //            detectLocation(nil)
             
             journeyDateChanged(date: journey["startTime"].string!)
             
@@ -459,7 +453,7 @@ extension NewTLViewController {
             showDetailsFn(isEdit: false)
             
             getJourneyBuddies(journey: journey)
-//            addedBuddies = journey["buddies"].array!
+            //            addedBuddies = journey["buddies"].array!
             countLabel = journey["buddies"].array!.count
             showBuddies()
             
@@ -537,7 +531,7 @@ extension NewTLViewController {
                 })
                 
             })
-
+            
         }else{
             print("my journey")
         }
@@ -648,27 +642,27 @@ extension NewTLViewController {
     func uploadVideo(_ url: URL, video: AVAsset) {
         
         
-//        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("\(url.lastPathComponent)")
-//        let video =
+        //        let exportFilePath = "file://" + NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("\(url.lastPathComponent)")
+        //        let video =
         
-//        request.uploadPhotos(url, completion: {(response) in
-//            
-//            if response.error != nil {
-//                
-//                print("response: \(response.error?.localizedDescription)")
-//                
-//            }
-//            else if response["value"].bool! {
-//                
-//                print("response arrived")
-//                
-//            }
-//            else {
-//                
-//                print("response error")
-//            }
-//            
-//        })
+        //        request.uploadPhotos(url, completion: {(response) in
+        //
+        //            if response.error != nil {
+        //
+        //                print("response: \(response.error?.localizedDescription)")
+        //
+        //            }
+        //            else if response["value"].bool! {
+        //                
+        //                print("response arrived")
+        //                
+        //            }
+        //            else {
+        //                
+        //                print("response error")
+        //            }
+        //            
+        //        })
         
     }
     

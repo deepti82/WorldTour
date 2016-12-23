@@ -57,7 +57,7 @@ public class Post {
         })
     }
     
-    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, Status: String,buddies:[Buddy],imageArr:[PostImage]) {
+    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, thoughts: String,buddies:[Buddy],imageArr:[PostImage]) {
         
         let photoinsert = self.post.insert(
             self.type <- Type,
@@ -70,7 +70,7 @@ public class Post {
             self.longitude <- Longitude,
             self.country <- Country,
             self.city <- City,
-            self.thoughts <- Status
+            self.thoughts <- thoughts
         )
         do {
             let postId = try db.run(photoinsert)

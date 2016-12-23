@@ -97,7 +97,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        globalAddActivityNew = self;
         makeFAButton("fbSquare", button: facebookShare)
         makeFAButton("whatsapp", button: whatsappShare)
         makeFAButton("googleSquare", button: googleShare)
@@ -135,9 +134,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         self.friendsCount.isHidden = true;
         self.friendsTag.tintColor = mainBlueColor
         
-        self.animation = "squeezeUp"
-        self.duration = 1.5
-        self.animate()
     }
     
     @IBAction func clearLocation(_ sender: Any) {
@@ -223,7 +219,14 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     }
     
     func loadViewFromNib() {
+        globalAddActivityNew = self;
         
+        
+        
+        
+        self.animation = "squeezeUp"
+        self.duration = 1.5
+        self.animate()
         
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "AddActivityNew", bundle: bundle)
@@ -237,7 +240,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         self.photosButton.addTarget(self, action: #selector(self.addPhotos(_:)), for: .touchUpInside)
         self.videosButton.addTarget(self, action: #selector(self.addVideos(_:)), for: .touchUpInside)
         self.thoughtsButton.addTarget(self, action: #selector(self.addThoughts(_:)), for: .touchUpInside)
-                self.tagFriendButton.addTarget(self, action: #selector(self.tagMoreBuddies(_:)), for: .touchUpInside)
+        self.tagFriendButton.addTarget(self, action: #selector(self.tagMoreBuddies(_:)), for: .touchUpInside)
         self.postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
         //        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
         //        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
@@ -246,7 +249,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     
     func tagMoreBuddies(_ sender: UIButton) {
         self.resignThoughtsTexViewKeyboard()
-        //        let isTextView = textFieldShouldReturn(otgView.locationLabel)
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         next.whichView = "TLTags"
         if addedBuddies != nil {
@@ -271,10 +273,8 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     }
     
     func closeAdd(_ sender: UIButton) {
-        let postDb = Post()
-        let postCount = postDb.getRowCount() + 1
-        let photosDb = Photo()
-        //hideAddActivity()
+        let newTl = globalNavigationController.topViewController as! NewTLViewController;
+        newTl.closeAdd(sender);
     }
     
     func addThoughts(_ sender: UIButton) {
@@ -365,6 +365,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     
     func putLocationName(_ selectedLocation: String, placeId: String) {
         self.addLocationButton.setTitle(selectedLocation, for: UIControlState())
+        
         self.locationTag.tintColor = lightOrangeColor
         request.getPlaceId(placeId, completion: { response in
             DispatchQueue.main.async(execute: {
