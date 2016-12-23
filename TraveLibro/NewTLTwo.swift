@@ -65,8 +65,6 @@ extension NewTLViewController {
         let buddy = Buddy()
         let postId = post.getRowCount()
         post.flushRows(Int64(postId))
-        photo.flushRows(localId: Int64(postId))
-        buddy.flushRows(String(postId))
     }
     
     func hideAddActivity() {
