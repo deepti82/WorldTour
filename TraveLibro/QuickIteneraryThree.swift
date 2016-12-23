@@ -120,11 +120,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
             for i in 0...quickItinery["countryVisited"].count - 1 {
                 
                 let three = ItineraryThree()
-<<<<<<< HEAD
                 three.frame = CGRect(x: 0, y: 5, width: 300, height: 30)
-=======
-                three.frame = CGRect(x: 0, y: 5, width: 300, height: 300)
->>>>>>> origin/level-3-
                 three.index = i
                 three.cityCountry.text = "\(quickItinery["countryVisited"][i]["name"]):  \(createCity(cities: quickItinery["countryVisited"][i]["cityVisited"]))"
                 styleHorizontalButton(three)
