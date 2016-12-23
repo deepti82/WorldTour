@@ -1856,7 +1856,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         var kindOfJourneyStack: [String] = []
         
-        for i in 0 ..< journeyCategories.count {
+        for i in 0..<journeyCategories.count {
             switch journeyCategories[i] {
             case "adventure":
                 print("1")
@@ -1899,38 +1899,38 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
         }
         
-        if journeyCategories.count == 1 {
-            
+        if journeyCategories.count != 0 {
+            if journeyCategories.count == 0{
             otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
             otgView.journeyCategoryOne.isHidden = false
             otgView.journeyCategoryTwo.isHidden = true
             otgView.journeyCategoryThree.isHidden = true
             
-        }
-            
-        else if journeyCategories.count == 2 {
-            
-            otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-            otgView.journeyCategoryOne.isHidden = false
-//            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-            otgView.journeyCategoryTwo.isHidden = false
-            otgView.journeyCategoryThree.isHidden = true
-            
-        }
-            
-        else {
+            }
+            if journeyCategories.count == 1 {
             
             otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
             otgView.journeyCategoryOne.isHidden = false
             otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
             otgView.journeyCategoryTwo.isHidden = false
-            otgView.journeyCategoryThree.isHidden = false
-//            print("indexprob\(kindOfJourneyStack[3])")
-//            otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
-           
+            otgView.journeyCategoryThree.isHidden = true
             
         }
+            
+        else  {
+           
+            otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+            otgView.journeyCategoryOne.isHidden = false
+            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+            otgView.journeyCategoryTwo.isHidden = false
+            otgView.journeyCategoryThree.isHidden = false
+           print("indexprob\(kindOfJourneyStack.count)")
+           otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+           
+            print("indexprob\(kindOfJourneyStack.count)")
+        }
         
+        }
         if !isEdit {
             
             otgView.selectCategoryButton.isHidden = true
@@ -1940,6 +1940,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
     }
+    
+    
     
     var countLabel: Int!
     var dpOne: String!
