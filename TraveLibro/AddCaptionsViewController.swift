@@ -7,7 +7,9 @@ var isEditedImage = false
 
 class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStackControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var collectionVi: UICollectionView!
     var imagesArray: [UIView] = []
+    var addActivity:AddActivityNew!
     var currentImage = UIImage()
     var allImages: [UIButton] = []
     let PhotosDB = Photo()
@@ -28,7 +30,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var imageForCaption: SpringImageView!
     @IBOutlet weak var bottomStack: UIStackView!
-    @IBOutlet weak var doneButton: UIButton!
+//    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var imageStackView: UIStackView!
     @IBOutlet weak var editImageButton: UIButton!
     
@@ -37,10 +39,21 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var deletedIndex: Int!
     
     @IBAction func deletePhoto(_ sender: UIButton) {
-    
+        imageArr.remove(at: currentImageIndex)
+        if self.addActivity != nil {
+            self.addActivity.imageArr = imageArr;
+            self.addActivity.addPhotoToLayout()
+        }
+        if(imageArr.count == 0) {
+            self.goBack(UIButton());
+        }
+        else {
+            collectionVi.reloadData()
+            self.previousImageCaption(UIButton())
+        }
     }
     
-    @IBAction func editPhoto(_ sender: Any) {
+    @IBAction func editPhoto(_ sender: UIButton) {
         isGoingToEdit = true
         let photoEditViewController = PhotoEditViewController(photo: imageForCaption.image!)
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
@@ -54,13 +67,17 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     @IBAction func previousImageCaption(_ sender: AnyObject) {
-        
-        
+        if(currentImageIndex == 0 ) {
+            currentImageIndex = imageArr.count - 1;
+        }
+        else {
+            currentImageIndex = currentImageIndex - 1;
+        }
+        changeImage(number: currentImageIndex)
     }
     
     
     func toolStackController(_ toolStackController: ToolStackController, didFinishWith image: UIImage){
-        
         print("in tool stack ctrl")
         isEditedImage = true
         editedImage = image
@@ -68,7 +85,6 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
-        
         print("on cancel toolstackcontroller")
         dismiss(animated: true, completion:nil)
     }
@@ -78,19 +94,21 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     @IBAction func nextImageCaption(_ sender: AnyObject) {
-        
-        
+        if(currentImageIndex == (imageArr.count - 1) ) {
+            currentImageIndex = 0;
+        }
+        else {
+            currentImageIndex = currentImageIndex + 1;
+        }
+        changeImage(number: currentImageIndex)
     }
     
     @IBAction func doneCaptions(_ sender: AnyObject) {
-        let allSubviews = self.navigationController!.viewControllers
-        for subview in allSubviews {
-            if subview.isKind(of: NewTLViewController.self) {
-                let myView = subview as! NewTLViewController
-                myView.photosToBeUploaded = allPhotos
-                self.navigationController!.popToViewController(myView, animated: true)
-            }
+        if self.addActivity != nil {
+            self.addActivity.imageArr = imageArr;
+            self.addActivity.addPhotoToLayout()
         }
+        navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
@@ -110,13 +128,16 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         
         self.customNavigationBar(left: leftButton, right: rightButton)
         
-        doneButton.isHidden = true
+       
         captionTextView.layer.cornerRadius = 5.0
         captionTextView.clipsToBounds = true
         captionTextView.layer.zPosition = 1000
 //        imageStackView.layer.zPosition = 1000
         captionTextView.textContainerInset = UIEdgeInsetsMake(5, 10, 5, 10)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
@@ -136,13 +157,19 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         captionTextView.delegate = self
         captionTextView.returnKeyType = .done
         captionTextView.resignFirstResponder()
-        NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         if(imageArr[currentImageIndex].caption == "") {
             captionTextView.text = "Add a caption..."
         } else {
             captionTextView.text = imageArr[currentImageIndex].caption
         }
+        captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+       
+        let indexPath = IndexPath(row: currentImageIndex, section: 0)
+        collectionVi.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        
+        
+//        collectionVi.scrollToItem(at: NSIndexPath(index: currentImageIndex) as IndexPath,at:UICollectionViewScrollPosition(rawValue: UInt(currentImageIndex)), animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -155,9 +182,21 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
 
 //        cell.backgroundColor = UIColor.brown
         cell.addImagesCollection.image = imageArr[indexPath.row].image
+        cell.addImagesCollection.contentMode = UIViewContentMode.scaleAspectFill
         cell.addImagesCollection.layer.cornerRadius = 5
         cell.addImagesCollection.clipsToBounds = true;
+        captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+        
+        if(currentImageIndex == indexPath.row) {
+            cell.addImagesCollection.layer.borderWidth = 1
+            cell.addImagesCollection.layer.borderColor = mainOrangeColor.cgColor
+        } else {
+            cell.addImagesCollection.layer.borderWidth = 0
+        }
+        
+        
         return cell
+        
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         changeImage(number:indexPath.row);
@@ -180,118 +219,43 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         } else {
             captionTextView.text = imageArr[currentImageIndex].caption
         }
+        captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+        collectionVi.reloadData()
         
-        
+        let indexPath = IndexPath(row: currentImageIndex, section: 0)
+        collectionVi.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+//        collectionVi.scrollToItem(at: NSIndexPath(index: number) as IndexPath,at:UICollectionViewScrollPosition(rawValue: UInt(number)), animated: true)
+    
     }
     
     var editedImagesArray: [Dictionary<Int,UIImage>] = []
     
     func updateImage() {
         imageForCaption.image = editedImage
-        updateImageInFile()
+        imageArr[currentImageIndex].image = editedImage
+        loader.hideOverlayView()
+        collectionVi.reloadData()
     }
     
     var loader = LoadingOverlay()
     
-    func updateImageInFile() {
-        
-        let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
-        
-        print("edited image export url: \(exportFileUrl)")
-        
-        loader.showOverlay(self.view)
-        
-        DispatchQueue.main.async(execute: {
-            
-            do {
-                print("edited image: \(editedImage)")
-                
-                if let data = UIImageJPEGRepresentation(editedImage, 0.35) {
-                    try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
-                }
-                print("edit file created")
-                editedImage = UIImage()
-                print("in edit image")
-                isEditedImage = false
-                
-            } catch let error as NSError {
-                
-                print("error creating file: \(error.localizedDescription)")
-                
-            }
-            
-        })
-        
-        loader.hideOverlayView()
-    }
-    
-    func getPhotoIds(groupId: Int64) {
-        
-        allIds = photo.getPhotosIdsOfPost(photosGroup: groupId)
-//        getPhotoCaption()
-    }
-    
     var isGoingToEdit = true
     
     override func viewDidAppear(_ animated: Bool) {
-        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
         print("in view did appear")
-        
         if (isEditedImage) {
             updateImage()
         }
-        
-        else if !isGoingToEdit {
-            getPhotoCaption(ind: index)
-        }
-        
     }
-    
-    func getPhotoCaption(ind: Int) {
-        
-//        let imageCaption = photo.getCaption(allIds[index])
-        
-        if allPhotos.count > 0 {
-            
-            print("\(#line) caption: \(ind) \(allPhotos[ind].caption)")
-            if allPhotos[ind].caption != "" {
-                captionTextView.text = imageArr[ind].caption
-            }
-            else {
-                captionTextView.text = "Add a caption..."
-            }
-            
-            
-        }
-    }
-    
-    var viewHeight = 0
-    func keyboardWillShow(_ notification: Notification) {
-        view.frame.origin.y = CGFloat(viewHeight)
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    func keyboardWillHide(_ notification: Notification) {
-        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-
-        }
-    }
+   
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             captionTextView.resignFirstResponder()
             if captionTextView.text == "" {
                 captionTextView.text = "Add a caption..."
+                 captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
             }
             return true
         }
@@ -301,10 +265,12 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     func textViewDidBeginEditing(_ textView: UITextView) {
         if captionTextView.text == "Add a caption..." {
             captionTextView.text = ""
+             captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
         }
     }
     func textViewDidChange(_ textView: UITextView) {
         imageArr[currentImageIndex].caption = captionTextView.text
+         captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
     }
     
     func goBack(_ sender: UIButton) {
@@ -315,6 +281,32 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             }
         }
     }
+//    var viewHeight1 = 0
+    
+    func keyboardWillShow(_ notification: Notification) {
+//        view.frame.origin.y = CGFloat(viewHeight1)
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            
+            //            if !keyboardHidden {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -=  keyboardSize.height
+                print("heightminusdikha\(keyboardSize.height)")
+                //                keyboardHidden = true
+                //            }
+            }
+        }
+        
+    }
+    func keyboardWillHide(_ notification: Notification) {
+        if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                print("height dikha\(keyboardSize.height)")
+                self.view.frame.origin.y += 216.0
+            }
+        }
+    }
+
     
 }
 

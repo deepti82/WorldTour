@@ -287,22 +287,13 @@ extension Date {
 extension UIView {
     
     func resizeToFitSubviews(_ initialHeight: CGFloat, finalHeight: CGFloat) {
-        
-        print("initial height: \(initialHeight)")
-        print("final height: \(finalHeight)")
-        
         if initialHeight < finalHeight {
-            
             self.frame.size.height += finalHeight - initialHeight
         }
-        
         else if finalHeight < initialHeight {
-            
             self.frame.size.height += initialHeight - finalHeight
         }
-        
         self.setNeedsLayout()
-        
     }
 }
 

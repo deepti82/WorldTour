@@ -1822,6 +1822,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.detectLocationView.layer.opacity = 0.0
             otgView.detectLocationView.isHidden = false
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
+            otgView.bonVoyageLabel.isHidden = true
             
         }
         
@@ -2464,7 +2465,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         captionVC.allImages = allPhotos
         captionVC.allPhotos = self.photosToBeUploaded
-        captionVC.getPhotoIds(groupId: Int64(self.photosGroupId))
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         //End Loader

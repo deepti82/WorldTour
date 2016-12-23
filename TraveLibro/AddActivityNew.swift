@@ -429,13 +429,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
             }
             cameraViewController.completionBlock = abc;
             globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
-        
-//            self.imagePicker.allowsEditing = true
-//            self.imagePicker.sourceType = .camera
-//            if sender.tag == 1 {
-//                self.photosAddedMore = true
-//            }
-//            globalNavigationController?.pushViewController(self.imagePicker, animated: true)
             
         })
         let photoLibrary = UIAlertAction(title: "Photos Library", style: .default, handler: {
@@ -481,63 +474,17 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         
     }
     
-    func removeWidthToPhotoLayout(_ width: CGFloat) {
-        self.horizontalScrollForPhotos.frame.size.width = self.horizontalScrollForPhotos.frame.size.width - width - 25.0
-        self.photoScroll.contentSize.width = self.photoScroll.contentSize.width - width - 25.0
-    }
-    
     func photosAdded(assets: [UIImage]) {
-        self.photosIntialView.isHidden = true
-        self.photosFinalView.isHidden = false
-        for subview in self.horizontalScrollForPhotos.subviews {
-            if subview.tag == 1 {
-                self.removeWidthToPhotoLayout(subview.frame.width + 10.0)
-                subview.removeFromSuperview()
-            }
-        }
-        var allImages: [UIImage] = []
-        var index = 0
-        
         for asset in assets {
-            if  !photosAddedMore {
-                index = assets.index(of: asset)!
-            }
             let postImg = PostImage();
             postImg.image = asset;
             imageArr.append(postImg);
-            self.photosCount.text = "( " + String(imageArr.count) + " )"
-            allImages.append(asset)
-            //            let photoData = getAssetData(asset)
-            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/image\(index).jpg"
-            do {
-                let image = asset
-                if let data = UIImageJPEGRepresentation(image, 0.35) {
-                    try data.write(to: URL(string: exportFileUrl)!)
-                }
-                self.allAssets.append(NSURL(string: exportFileUrl)! as URL)
-                self.photosToBeUploaded.append(PhotoUpload(localId: Int64(index), caption: "", serverId: "", url: exportFileUrl))
-            } catch let error as NSError {
-                print("error creating file: \(error.localizedDescription)")
-            }
-            addPhotoToLayout(photo: asset)
         }
-        
-        allImageIds = photo.getPhotosIdsOfPost(photosGroup: Int64(photosGroupId))
         let captionButton = UIButton()
-        captionButton.setImage(allImages[0], for: .normal)
-        captionButton.tag = 2
+        captionButton.setImage(imageArr[0].image, for: .normal)
+        captionButton.tag = 0
         self.addCaption(captionButton)
-        
-        let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-        addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
-        addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-        addMorePhotosButton.layer.cornerRadius = 5.0
-        addMorePhotosButton.clipsToBounds = true
-        addMorePhotosButton.addTarget(self, action: #selector(self.addPhotosAgain(_:)), for: .touchUpInside)
-        addMorePhotosButton.tag = 1
-        self.addWidthToPhotoLayout(addMorePhotosButton.frame.width)
-        self.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+        addPhotoToLayout();
     }
     
     func addPhotosAgain(_ sender: UIButton) {
@@ -547,34 +494,44 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     
     
     func addCaption(_ sender: UIButton) {
-        
         let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
         captionVC.imageArr = imageArr
-        var i = 0
-        for subview in self.horizontalScrollForPhotos.subviews { 
-            let view = subview as! UIButton
-            if(view == sender) {
-                captionVC.currentImageIndex = i;
-            }
-            i = i + 1
-        }
+        captionVC.addActivity = self;
+        captionVC.currentImageIndex = sender.tag;
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController!.pushViewController(captionVC, animated: true)
     }
     
-    func addPhotoToLayout(photo: UIImage) {
-        let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-        photosButton.setImage(photo, for: .normal)
-        photosButton.layer.cornerRadius = 5.0
-        photosButton.clipsToBounds = true
-        photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
-        self.addWidthToPhotoLayout(photosButton.frame.width)
-        self.horizontalScrollForPhotos.addSubview(photosButton)
+    func addPhotoToLayout() {
+        self.horizontalScrollForPhotos.removeAll()
+        for i in 0 ..< imageArr.count {
+            let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+            photosButton.setImage(imageArr[i].image, for: .normal)
+            photosButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+            photosButton.layer.cornerRadius = 5.0
+            photosButton.tag = i
+            photosButton.clipsToBounds = true
+            photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
+            self.horizontalScrollForPhotos.addSubview(photosButton)
+        }
+        let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+        addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
+        addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+        addMorePhotosButton.layer.cornerRadius = 5.0
+        addMorePhotosButton.clipsToBounds = true
+        addMorePhotosButton.addTarget(self, action: #selector(self.addPhotosAgain(_:)), for: .touchUpInside)
+        addMorePhotosButton.tag = 1
+        self.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+        self.horizontalScrollForPhotos.layoutSubviews()
+        self.photoScroll.contentSize = CGSize(width: self.horizontalScrollForPhotos.frame.width, height: self.horizontalScrollForPhotos.frame.height)
+        photosCount.text = "( " + String(imageArr.count) + " )";
+        if(imageArr.count == 0) {
+            self.photosIntialView.isHidden = false
+            self.photosFinalView.isHidden = true
+        } else {
+            self.photosIntialView.isHidden = true
+            self.photosFinalView.isHidden = false
+        }
     }
-    
-    func addWidthToPhotoLayout(_ width: CGFloat) {
-        self.horizontalScrollForPhotos.frame.size.width = self.horizontalScrollForPhotos.frame.size.width + width + 25.0
-        self.photoScroll.contentSize.width = self.photoScroll.contentSize.width + width + 25.0
-    }
-    
 }
