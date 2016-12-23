@@ -74,6 +74,8 @@ public class Post {
         )
         do {
             let postId = try db.run(photoinsert)
+            print("Post ID " + String(postId));
+            
             for buddy in buddies {
                 buddy.postID = Int(postId)
                 buddy.save();
@@ -83,7 +85,7 @@ public class Post {
                 image.save()
             }
         } catch _ {
-            
+            print("ERROR OCCURED");
         }
         
     }
