@@ -179,6 +179,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
 
 //        cell.backgroundColor = UIColor.brown
         cell.addImagesCollection.image = imageArr[indexPath.row].image
+        cell.addImagesCollection.contentMode = UIViewContentMode.scaleAspectFill
         cell.addImagesCollection.layer.cornerRadius = 5
         cell.addImagesCollection.clipsToBounds = true;
         captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))

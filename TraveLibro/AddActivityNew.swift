@@ -507,6 +507,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         for i in 0 ..< imageArr.count {
             let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
             photosButton.setImage(imageArr[i].image, for: .normal)
+            photosButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
