@@ -161,6 +161,11 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionTextView.text = imageArr[currentImageIndex].caption
         }
         captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+       
+        let indexPath = IndexPath(row: currentImageIndex, section: 0)
+        collectionVi.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        
+        
 //        collectionVi.scrollToItem(at: NSIndexPath(index: currentImageIndex) as IndexPath,at:UICollectionViewScrollPosition(rawValue: UInt(currentImageIndex)), animated: true)
     }
     
@@ -177,6 +182,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         cell.addImagesCollection.layer.cornerRadius = 5
         cell.addImagesCollection.clipsToBounds = true;
         captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+        
+        if(currentImageIndex == indexPath.row) {
+            cell.addImagesCollection.layer.borderWidth = 1
+            cell.addImagesCollection.layer.borderColor = mainOrangeColor.cgColor
+        } else {
+            cell.addImagesCollection.layer.borderWidth = 0
+        }
+        
+        
         return cell
         
     }
@@ -202,6 +216,10 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
             captionTextView.text = imageArr[currentImageIndex].caption
         }
         captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+        collectionVi.reloadData()
+        
+        let indexPath = IndexPath(row: currentImageIndex, section: 0)
+        collectionVi.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
 //        collectionVi.scrollToItem(at: NSIndexPath(index: number) as IndexPath,at:UICollectionViewScrollPosition(rawValue: UInt(number)), animated: true)
     
     }
