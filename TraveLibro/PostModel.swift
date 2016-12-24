@@ -34,10 +34,6 @@ public class Post {
     let date = Expression<String>("date")
     
     
-    
-    
-    
-    
     let hasCompleted = Expression<Bool>("hasCompleted")
     
     init() {

@@ -475,6 +475,13 @@ extension NewTLViewController {
         self.view.bringSubview(toFront: addPostsButton)
         self.view.bringSubview(toFront: infoButton)
         
+        self.scrollToBottom();
+        
+    }
+    func scrollToBottom() {
+//        self.mainScroll.scrollRectToVisible(CGRect(x: 1, y: 1, width: 1, height: 1), animated: true)
+//        let bottomOffset = CGPoint(x: 0, y: self.mainScroll.contentSize.height - self.mainScroll.bounds.size.height)
+//        self.mainScroll.setContentOffset(bottomOffset, animated: true)
     }
     
     func getJourneyBuddies(journey: JSON) {

@@ -211,7 +211,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 lng = ""
             }
         }
-        
+
         var category = ""
         if self.addView.categoryLabel.text! != nil {
             category = self.addView.categoryLabel.text!
@@ -796,6 +796,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         mainScroll.showsVerticalScrollIndicator = false
         mainScroll.showsHorizontalScrollIndicator = false
+        
         refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
         let attributes = [NSForegroundColorAttributeName: UIColor.white]
         let attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: attributes)
@@ -1615,12 +1616,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.navigationController?.pushViewController(comment, animated: true)
     }
     
-    
     func addHeightToLayout(height: CGFloat) {
         self.layout.layoutSubviews()
         self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height)
-        let bottomOffset = CGPoint(x: 0, y: self.mainScroll.contentSize.height - self.mainScroll.bounds.size.height)
-        self.mainScroll.setContentOffset(bottomOffset, animated: true)
+//        let bottomOffset = CGPoint(x: 0, y: self.mainScroll.contentSize.height - self.mainScroll.bounds.size.height)
+//        self.mainScroll.setContentOffset(bottomOffset, animated: true)
     }
     
     func removeHeightFromLayout(_ height: CGFloat) {
