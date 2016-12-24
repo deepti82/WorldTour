@@ -372,7 +372,7 @@ extension NewTLViewController {
     
     func getScrollView(_ height: CGFloat, journey: JSON) {
         
-        
+        self.layout.removeAll()
         
         if isInitialPost {
             isInitialPost = false
@@ -384,9 +384,7 @@ extension NewTLViewController {
 
         }
         else {
-           
-            
-            otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: self.view.frame.height))
+            otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 500))
             otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
             otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
             otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
@@ -413,6 +411,9 @@ extension NewTLViewController {
             otgView.placeLabel.text = journey["startLocation"].string!
             otgView.journeyDetails.isHidden = false
             otgView.buddyStack.isHidden = false
+            
+            layout.addSubview(otgView)
+            self.addHeightToLayout(height: 50.0)
             
             //            detectLocation(nil)
             
@@ -466,8 +467,7 @@ extension NewTLViewController {
                 }
                 
             }
-            layout.addSubview(otgView)
-            self.addHeightToLayout(height: 50.0)
+            
             
         }
         

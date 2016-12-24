@@ -803,7 +803,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         refreshControl.tintColor = lightOrangeColor
         mainScroll.addSubview(refreshControl)
         
-//        otgView.nameJourneyTF.delegate = self
+        
 //        otgView.nameJourneyTF.becomeFirstResponder()
 //        otgView.nameJourneyView.becomeFirstResponder()
 //        otgView.clipsToBounds = true
@@ -1619,6 +1619,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func addHeightToLayout(height: CGFloat) {
         self.layout.layoutSubviews()
         self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height)
+        let bottomOffset = CGPoint(x: 0, y: self.mainScroll.contentSize.height - self.mainScroll.bounds.size.height)
+        self.mainScroll.setContentOffset(bottomOffset, animated: true)
     }
     
     func removeHeightFromLayout(_ height: CGFloat) {
@@ -1677,7 +1679,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func newOtg(_ sender: UIButton) {
-        
+        setTopNavigation(text: "On The Go");
         addNewView.animation.makeOpacity(0.0).animate(0.5)
         addNewView.isHidden = true
         addNewView.removeFromSuperview()
@@ -1693,6 +1695,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.locationLabel.returnKeyType = .done
         otgView.locationLabel.delegate = self
         otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
+        otgView.nameJourneyTF.delegate = self
         otgView.clipsToBounds = true
         layout.addSubview(otgView)
         self.addHeightToLayout(height: 50.0)
@@ -1742,22 +1745,28 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.locationLabel.resignFirstResponder()
         self.title = "On The Go" 
         
-//        if textField == otgView.nameJourneyTF {
-//            otgView.detectLocationView.isHidden = true
-//            otgView.nameJourneyTF.isHidden = true
-//            otgView.nameJourneyView.isHidden = true
-//            otgView.journeyName.isHidden = false
-//            otgView.journeyName.text = otgView.nameJourneyTF.text
-//            journeyName = otgView.nameJourneyTF.text
-//            otgView.nameJourneyTF.resignFirstResponder()
-//            height = 100
-//            mainScroll.animation.makeY(mainScroll.frame.origin.y - height).thenAfter(0.3).animate(0.3)
-//            otgView.detectLocationView.layer.opacity = 0.0
-//            
-//            otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
-//            otgView.bonVoyageLabel.isHidden = true
-//            
-//        }
+        if textField == otgView.nameJourneyTF {
+            
+                    locationManager.requestAlwaysAuthorization()
+                    locationManager.delegate = self
+                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                    locationManager.startMonitoringSignificantLocationChanges()
+            
+            otgView.detectLocationView.isHidden = true
+            otgView.nameJourneyTF.isHidden = true
+            otgView.nameJourneyView.isHidden = true
+            otgView.journeyName.isHidden = false
+            otgView.journeyName.text = otgView.nameJourneyTF.text
+            journeyName = otgView.nameJourneyTF.text
+            otgView.nameJourneyTF.resignFirstResponder()
+            height = 100
+            mainScroll.animation.makeY(mainScroll.frame.origin.y - height).thenAfter(0.3).animate(0.3)
+            otgView.detectLocationView.layer.opacity = 0.0
+            
+            otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
+            otgView.bonVoyageLabel.isHidden = true
+            
+        }
         return false
         
     }
@@ -1779,10 +1788,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.detectHide.isHidden = true
         otgView.cityView.isHidden = true
         otgView.locationLabel.isHidden = true
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.delegate = self
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.startMonitoringSignificantLocationChanges()
     }
     
     func journeyCategory(_ sender: UIButton) {
