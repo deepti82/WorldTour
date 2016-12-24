@@ -384,7 +384,21 @@ extension NewTLViewController {
 
         }
         else {
-            mainScroll.frame.origin.y = height
+           
+            
+            otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: self.view.frame.height))
+            otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
+            otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
+            otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
+            //                otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
+            //                otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
+            otgView.nameJourneyTF.returnKeyType = .done
+            otgView.locationLabel.returnKeyType = .done
+            otgView.locationLabel.delegate = self
+            otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
+            otgView.clipsToBounds = true
+
+            
             otgView.journeyName.isHidden = false
             otgView.journeyName.text = journey["name"].string!
             //self.title = journey["name"].string!
@@ -428,8 +442,6 @@ extension NewTLViewController {
         }
         
         if !showDetails {
-            
-            
             self.view.addSubview(mainScroll)
             
             for view in self.view.subviews {
@@ -454,7 +466,6 @@ extension NewTLViewController {
                 }
                 
             }
-//            mainScroll.addSubview(otgView)
             layout.addSubview(otgView)
             self.addHeightToLayout(height: 50.0)
             

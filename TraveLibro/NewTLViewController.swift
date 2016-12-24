@@ -590,6 +590,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getJourney() {
+        
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
@@ -789,7 +790,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         globalNewTLViewController = self;
         getDarkBackGroundBlue(self)
-//        getJourney()
+        getJourney()
         mainScroll.delegate = self
         
         
@@ -1689,15 +1690,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         //                otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
         //                otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
         otgView.nameJourneyTF.returnKeyType = .done
-        otgView.nameJourneyTF.delegate = self
         otgView.locationLabel.returnKeyType = .done
         otgView.locationLabel.delegate = self
-//        otgView.optionsButton.setTitle(journey["_id"].string, for: .application)
         otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
         otgView.clipsToBounds = true
         layout.addSubview(otgView)
         self.addHeightToLayout(height: 50.0)
-        
     }
     
     func newItinerary(_ sender: UIButton) {
@@ -1742,35 +1740,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         otgView.locationLabel.resignFirstResponder()
-        //        addView.thoughtsTextView.resignFirstResponder()
-        self.title = "On The Go" //otgView.nameJourneyTF.text
+        self.title = "On The Go" 
         
-        if textField == otgView.nameJourneyTF {
-            otgView.detectLocationView.isHidden = true
-            otgView.nameJourneyTF.isHidden = true
-            otgView.nameJourneyView.isHidden = true
-            otgView.journeyName.isHidden = false
-            otgView.journeyName.text = otgView.nameJourneyTF.text
-            journeyName = otgView.nameJourneyTF.text
-            otgView.nameJourneyTF.resignFirstResponder()
-            
-            height = 100
-            mainScroll.animation.makeY(mainScroll.frame.origin.y - height).thenAfter(0.3).animate(0.3)
-            //        otgView.animation.makeY(mainScroll.frame.origin.y - height).animate(0.5)
-            otgView.detectLocationView.layer.opacity = 0.0
-            
-            otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
-            otgView.bonVoyageLabel.isHidden = true
-            
-        }
-        
-        //        else if textField == otgView.locationLabel {
-        //
-        //            locationData = otgView.locationLabel.text
-        //            getCoverPic()
-        //
-        //        }
-        
+//        if textField == otgView.nameJourneyTF {
+//            otgView.detectLocationView.isHidden = true
+//            otgView.nameJourneyTF.isHidden = true
+//            otgView.nameJourneyView.isHidden = true
+//            otgView.journeyName.isHidden = false
+//            otgView.journeyName.text = otgView.nameJourneyTF.text
+//            journeyName = otgView.nameJourneyTF.text
+//            otgView.nameJourneyTF.resignFirstResponder()
+//            height = 100
+//            mainScroll.animation.makeY(mainScroll.frame.origin.y - height).thenAfter(0.3).animate(0.3)
+//            otgView.detectLocationView.layer.opacity = 0.0
+//            
+//            otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
+//            otgView.bonVoyageLabel.isHidden = true
+//            
+//        }
         return false
         
     }
