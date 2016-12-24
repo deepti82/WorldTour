@@ -300,12 +300,10 @@ extension NewTLViewController {
     func showJourneyOngoing(journey: JSON) {
         
         if !isJourneyOngoing {
-            
             height = self.view.frame.height/2
             addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             addNewView.layer.zPosition = 1000
             addNewView.profilePicture.contentMode = .scaleAspectFill
-            //            addNewView.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=500")!))
             addNewView.profilePicture.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=500")!)
             makeTLProfilePicture(addNewView.profilePicture)
             addNewView.profileName.text = currentUser["name"].string!
@@ -314,13 +312,10 @@ extension NewTLViewController {
             
             addNewView.itineraryButton.addTarget(self, action: #selector(NewTLViewController.newItinerary(_:)), for: .touchUpInside)
             addNewView.closeButton.addTarget(self, action: #selector(NewTLViewController.closeView(_:)), for: .touchUpInside)
-            
         }
         else {
-            
             height = 0
             getScrollView(height, journey: journey)
-            
         }
         
     }
@@ -377,45 +372,18 @@ extension NewTLViewController {
     
     func getScrollView(_ height: CGFloat, journey: JSON) {
         
-        mainScroll = UIScrollView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height))
-        mainScroll.showsVerticalScrollIndicator = false
-        mainScroll.showsHorizontalScrollIndicator = false
-        refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
-        let attributes = [NSForegroundColorAttributeName: UIColor.white]
-        let attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: attributes)
-        refreshControl.attributedTitle = attributedTitle
-        refreshControl.tintColor = lightOrangeColor
-        mainScroll.delegate = self
-        mainScroll.contentSize.height = self.view.frame.height
-        mainScroll.addSubview(refreshControl)
+        
         
         if isInitialPost {
-
             isInitialPost = false
-            
         }
         
-        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 600))
-        otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
-        otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
-        otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
-        //        otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
-        //        otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
-        otgView.nameJourneyTF.returnKeyType = .done
-        otgView.nameJourneyTF.delegate = self
-        otgView.locationLabel.returnKeyType = .done
-        otgView.locationLabel.delegate = self
-        otgView.optionsButton.setTitle(journey["_id"].string, for: .application)
-        otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
-        otgView.clipsToBounds = true
+        
         
         if !isJourneyOngoing {
-            
-            mainScroll.animation.makeFrame(CGRect(x: 0, y: mainScroll.frame.origin.y - height, width: mainScroll.frame.width, height: mainScroll.frame.height)).animate(0.3)
-            
+
         }
         else {
-            
             mainScroll.frame.origin.y = height
             otgView.journeyName.isHidden = false
             otgView.journeyName.text = journey["name"].string!
@@ -486,8 +454,8 @@ extension NewTLViewController {
                 }
                 
             }
-            mainScroll.addSubview(otgView)
-//            layout.addSubview(otgView)
+//            mainScroll.addSubview(otgView)
+            layout.addSubview(otgView)
             self.addHeightToLayout(height: 50.0)
             
         }

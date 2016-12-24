@@ -24,13 +24,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var isJourney = false
     
     var height: CGFloat!
-    var otgView = startOTGView()
+    var otgView:startOTGView!
     var showDetails = false
-    var mainScroll = UIScrollView()
+    
     var infoView: TripInfoOTG!
     var addPosts: AddPostsOTGView!
     var addNewView = NewQuickItinerary()
     
+    @IBOutlet weak var mainScroll: UIScrollView!
     var journeyName: String!
     var locationData = ""
     let locationManager = CLLocationManager()
@@ -92,7 +93,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             //            print(self.myJourney["kindOfJourney"])
             
             if self.journeyCategories.count > 0 {
-                
                 chooseCategory.selectedCategories = JSON(self.journeyCategories)
             }
             else {
@@ -789,13 +789,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         globalNewTLViewController = self;
         getDarkBackGroundBlue(self)
-        getJourney()
+//        getJourney()
         mainScroll.delegate = self
         
-        otgView.nameJourneyTF.delegate = self
         
-        otgView.nameJourneyTF.becomeFirstResponder()
-        otgView.nameJourneyView.becomeFirstResponder()
+        mainScroll.showsVerticalScrollIndicator = false
+        mainScroll.showsHorizontalScrollIndicator = false
+        refreshControl.addTarget(self, action: #selector(NewTLViewController.refresh(_:)), for: .valueChanged)
+        let attributes = [NSForegroundColorAttributeName: UIColor.white]
+        let attributedTitle = NSAttributedString(string: "Pull To Refresh", attributes: attributes)
+        refreshControl.attributedTitle = attributedTitle
+        refreshControl.tintColor = lightOrangeColor
+        mainScroll.addSubview(refreshControl)
+        
+//        otgView.nameJourneyTF.delegate = self
+//        otgView.nameJourneyTF.becomeFirstResponder()
+//        otgView.nameJourneyView.becomeFirstResponder()
+//        otgView.clipsToBounds = true
+//        otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), for: .editingChanged)
         
         TLLoader = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         TLLoader.center = self.view.center
@@ -805,7 +816,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        otgView.clipsToBounds = true
+        
         mainScroll.clipsToBounds = true
         
         self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 60, height: 60))
@@ -825,15 +836,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.view.bringSubview(toFront: infoButton)
         self.view.bringSubview(toFront: addPostsButton)
         
-        otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), for: .editingChanged)
-        
         self.view.bringSubview(toFront: toolbarView)
         
         self.view.addSubview(TLLoader)
         
         mainScroll.delegate = self
-        
-        
     }
     
     
@@ -1672,7 +1679,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         addNewView.animation.makeOpacity(0.0).animate(0.5)
         addNewView.isHidden = true
-        getScrollView(height, journey: JSON(""))
+        addNewView.removeFromSuperview()
+//        getScrollView(height, journey: JSON(""))
+        
+        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: self.view.frame.height))
+        otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
+        otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
+        otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
+        //                otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
+        //                otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
+        otgView.nameJourneyTF.returnKeyType = .done
+        otgView.nameJourneyTF.delegate = self
+        otgView.locationLabel.returnKeyType = .done
+        otgView.locationLabel.delegate = self
+//        otgView.optionsButton.setTitle(journey["_id"].string, for: .application)
+        otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
+        otgView.clipsToBounds = true
+        layout.addSubview(otgView)
+        self.addHeightToLayout(height: 50.0)
         
     }
     
