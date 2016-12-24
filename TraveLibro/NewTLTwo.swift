@@ -390,10 +390,7 @@ extension NewTLViewController {
         mainScroll.addSubview(refreshControl)
         
         if isInitialPost {
-            
-            layout = VerticalLayout(width: self.view.frame.width)
-            layout.frame.origin.y = 560
-            mainScroll.addSubview(self.layout)
+
             isInitialPost = false
             
         }
@@ -489,8 +486,9 @@ extension NewTLViewController {
                 }
                 
             }
-            
             mainScroll.addSubview(otgView)
+//            layout.addSubview(otgView)
+            self.addHeightToLayout(height: 50.0)
             
         }
         

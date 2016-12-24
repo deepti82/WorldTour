@@ -49,6 +49,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var mainFooter: FooterViewNew!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var toolbarView: UIView!
+    var layout: VerticalLayout!
+    var refreshControl = UIRefreshControl()
+    var isInitialLoad = true
     
     @IBAction func addMoreBuddies(_ sender: AnyObject) {
         let getBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
@@ -385,8 +388,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         checkIn.tag = 11
         layout.addSubview(checkIn)
-        layout.layoutIfNeeded()
-        
         addHeightToLayout(height: checkIn.frame.height + 50.0)
         
         
@@ -603,14 +604,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     }
                     isJourneyOngoing = true
                     self.myJourney = response["data"]
-                    //                    print("..........")
-                    //                    print(self.myJourney["_id"])
                     self.journeyID = self.myJourney["_id"].stringValue
                     if self.isInitialLoad {
-                        //                        print("i im isInitialLoad")
                         self.isInitialLoad = false
                         self.showJourneyOngoing(journey: response["data"])
-                        
                     }
                     else {
                         //                        print("i im not in isInitialLoad")
@@ -619,11 +616,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     self.setTopNavigation(text: "On The Go");
-                    
                 }
                 else {
-                    
-                    //                    print("response error!")
                     
                 }
             })
@@ -757,9 +751,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    var layout: VerticalLayout!
-    var refreshControl = UIRefreshControl()
-    var isInitialLoad = true
+    
     
     func setTopNavigation(text: String) {
         print("----------------------top navigation")
@@ -792,11 +784,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.layout = VerticalLayout(width: self.view.frame.width)
+        mainScroll.addSubview(layout)
+        
         globalNewTLViewController = self;
         getDarkBackGroundBlue(self)
         getJourney()
         mainScroll.delegate = self
-        
         
         otgView.nameJourneyTF.delegate = self
         
@@ -838,7 +832,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.view.addSubview(TLLoader)
         
         mainScroll.delegate = self
-        //        setTopNavigation(text: "On The Go");
         
         
     }
@@ -1779,9 +1772,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
-        
-        
-        
     }
     
     func journeyCategory(_ sender: UIButton) {
@@ -1909,7 +1899,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 otgView.journeyCategoryTwo.isHidden = false
                 otgView.journeyCategoryThree.isHidden = false
                 print("indexprob\(kindOfJourneyStack.count)")
-                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+//                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
                 
                 print("indexprob\(kindOfJourneyStack.count)")
             }
