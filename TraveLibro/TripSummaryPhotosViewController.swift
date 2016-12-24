@@ -20,8 +20,16 @@ class TripSummaryPhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showNavigationIn(img:"grid")
+        
+        gridContainer.alpha = 1
+        listContainer.alpha = 0
+        
+    }
+    
+    func showNavigationIn(img: String) {
         let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+        rightButton.setImage(UIImage(named: img), for: UIControlState())
         rightButton.addTarget(self, action: #selector(TripSummaryPhotosViewController.changeView(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         
@@ -30,10 +38,6 @@ class TripSummaryPhotosViewController: UIViewController {
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
         self.customNavigationBar(left: leftButton, right: rightButton)
-        
-        gridContainer.alpha = 1
-        listContainer.alpha = 0
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,13 +49,13 @@ class TripSummaryPhotosViewController: UIViewController {
     func changeView(_ sender: UIButton) {
         
         if gridContainer.alpha == 1 {
-            
+            showNavigationIn(img:"list")
             gridContainer.alpha = 0
             listContainer.alpha = 1
             
         }
         else {
-            
+            showNavigationIn(img:"grid")
             gridContainer.alpha = 1
             listContainer.alpha = 0
         }

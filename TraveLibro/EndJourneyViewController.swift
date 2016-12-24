@@ -29,11 +29,14 @@ class EndJourneyViewController: UIViewController {
         
         if journeyImages.count > 0 {
             
-            let selectImage = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
-            selectImage.whichView = "SelectCover"
-            selectImage.images = journeyImages
-            self.navigationController?.navigationItem.leftBarButtonItem?.title = ""
-            self.navigationController?.pushViewController(selectImage, animated: true)
+            let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController?.pushViewController(photoVC, animated: true)
+            photoVC.whichView = "photo"
+            photoVC.journey = journey["_id"].string!
+            photoVC.creationDate = journey["startTime"].string!
+            
+            
             
         }
         else {
@@ -53,9 +56,7 @@ class EndJourneyViewController: UIViewController {
         
         let rightButton = UIButton()
         //rightButton.setTitle("Done", for: UIControlState())
-        //rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
-        let image = UIImage(cgImage: (UIImage(named: "arrow_prev")?.cgImage!)!, scale: 1.0, orientation: .upMirrored)
-        rightButton.setImage(image, for: UIControlState())
+        //rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)        rightButton.setTitle("Save", for: .normal)
         rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
         self.customNavigationBar(left: leftButton, right: rightButton)

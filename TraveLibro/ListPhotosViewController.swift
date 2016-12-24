@@ -111,7 +111,8 @@ class ListPhotosViewController: UIViewController {
     }
     
     func addPhoto(_ count: Int, photo: JSON) {
-        
+        print("in photo........")
+        print(photo)
         let photoList = PhotoList(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 425))
         photoList.videoIcon.isHidden = true
         photoList.commentCount.text = "\(photo["commentCount"]) Comments"
@@ -123,14 +124,15 @@ class ListPhotosViewController: UIViewController {
         attributedString.append(string)
         photoList.daysLabel.attributedText = attributedString
         photoList.timeLabel.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "HH:mm", date: photo["createdAt"].string!)
-        if photo["isDoneLike"].bool! {
-            photoList.likeButton = UIButton(type: .custom)
-             let image = UIImage(named: "favorite-heart-button")
-            photoList.likeButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
-           
-            
-            
+        if photo["isDoneLike"] != nil {
+            if photo["isDoneLike"].bool! {
+                photoList.likeButton = UIButton(type: .custom)
+                let image = UIImage(named: "favorite-heart-button")
+                photoList.likeButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
+                
+            }
         }
+        
         addHeightToLayout(photoList.frame.height)
         layout.addSubview(photoList)
         

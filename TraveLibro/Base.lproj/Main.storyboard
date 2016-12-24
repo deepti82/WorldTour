@@ -4362,7 +4362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="73Z-34-TXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8388" y="418.74062968515744"/>
+            <point key="canvasLocation" x="8389" y="441"/>
         </scene>
         <!--End Journey View Controller-->
         <scene sceneID="wF4-WZ-LZk">
@@ -4718,7 +4718,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kwa-Nf-79f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5821.6000000000004" y="-243.32833583208398"/>
+            <point key="canvasLocation" x="5822" y="-259"/>
         </scene>
         <!--Kind Of JourneyOTG View Controller-->
         <scene sceneID="ahg-hS-Cf1">
