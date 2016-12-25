@@ -113,7 +113,7 @@ class ListPhotosViewController: UIViewController {
     func addPhoto(_ count: Int, photo: JSON) {
         print("in photo........")
         print(photo)
-        let photoList = PhotoList(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 425))
+        let photoList = PhotoList(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 410))
         photoList.videoIcon.isHidden = true
         photoList.commentCount.text = "\(photo["commentCount"]) Comments"
         photoList.likeCount.text = "\(photo["likeCount"]) Likes"
