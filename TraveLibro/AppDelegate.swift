@@ -35,7 +35,6 @@ let request = Navigation()
 let shared = LoadingOverlay()
 
 let user = User()
-let photo = Photo()
 
 let width = UIScreen.main.bounds.size.width
 let height = UIScreen.main.bounds.size.height

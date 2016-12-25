@@ -12,7 +12,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var addActivity:AddActivityNew!
     var currentImage = UIImage()
     var allImages: [UIButton] = []
-    let PhotosDB = Photo()
+    
     var allIds: [Int] = []
     var imageIds: [Int] = []
     var allPhotos: [PhotoUpload] = []

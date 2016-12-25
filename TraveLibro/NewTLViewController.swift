@@ -2103,7 +2103,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func uploadMultiplePhotos(_ assets: [URL], localIds: [Int]) {
         
         var photosCount = 0
-        let photoDB = Photo()
+        
         
         request.uploadPhotos(tempAssets[0], localDbId: localIds[0], completion: {(response) in
             

@@ -33,6 +33,20 @@ public class Post {
     let longitude = Expression<String>("longitude")
     let date = Expression<String>("date")
     
+    var post_id:Int!;
+    var post_type:String!
+    var post_userId:String!
+    var post_journeyId:String!
+    var post_thoughts:String!
+    var post_location:String!
+    var post_category:String!
+    var post_city:String!
+    var post_country:String!
+    var post_latitude:String!
+    var post_longitude:String!
+    var post_date:String!
+    
+    
     
     let hasCompleted = Expression<Bool>("hasCompleted")
     
@@ -86,223 +100,50 @@ public class Post {
         
     }
     
-    func getPost(postId: Int64) -> (String, String, String, String, String, String, String, String, String, String, String) {
+    func getAllPost() -> [Post] {
+        var allPosts:[Post] = []
         
-        var user = ""
-        var journey = ""
-        var postType = ""
-        var postDate = ""
-        var postLocation = ""
-        var postCategory = ""
-        var postLatitude = ""
-        var postLongitude = ""
-        var postCountry = ""
-        var postCity = ""
-        var postStatus = ""
         
-        let count = try! db.scalar(self.post.filter(self.id == postId).count)
-        if(count == 0) {
-            print("")
-        } else {
-            let newval = try! db.pluck(self.post.filter(self.id == postId))
-            user = newval![userId]
-            journey = newval![journeyId]
-            postType = newval![type]
-            postDate = newval![date]
-            postLocation = newval![location]
-            postCategory = newval![category]
-            postLatitude = newval![latitude]
-            postLongitude = newval![longitude]
-            postCountry = newval![country]
-            postCity = newval![city]
-            postStatus = newval![country]
-            //print(firstName, lastName, useremail, userdob, usergender, usermobile, userstatus, loginType, facebookid, twitterid, googleid, instagramid, userbadgeImage, userbadgeName, homecountry, homecity, isloggedin)
-            
-        }
-        return (user, journey, postType, postDate, postLocation, postCategory, postLatitude, postLongitude, postCountry, postCity, postStatus)
-        
+        return allPosts
         
     }
     
+//    func getPost(postId: Int64) -> (String, String, String, String, String, String, String, String, String, String, String) {
+//        
+//        var user = ""
+//        var journey = ""
+//        var postType = ""
+//        var postDate = ""
+//        var postLocation = ""
+//        var postCategory = ""
+//        var postLatitude = ""
+//        var postLongitude = ""
+//        var postCountry = ""
+//        var postCity = ""
+//        var postStatus = ""
+//        
+//        let count = try! db.scalar(self.post.filter(self.id == postId).count)
+//        if(count == 0) {
+//            print("")
+//        } else {
+//            let newval = try! db.pluck(self.post.filter(self.id == postId))
+//            user = newval![userId]
+//            journey = newval![journeyId]
+//            postType = newval![type]
+//            postDate = newval![date]
+//            postLocation = newval![location]
+//            postCategory = newval![category]
+//            postLatitude = newval![latitude]
+//            postLongitude = newval![longitude]
+//            postCountry = newval![country]
+//            postCity = newval![city]
+//            postStatus = newval![country]
+//            //print(firstName, lastName, useremail, userdob, usergender, usermobile, userstatus, loginType, facebookid, twitterid, googleid, instagramid, userbadgeImage, userbadgeName, homecountry, homecity, isloggedin)
+//            
+//        }
+//        return (user, journey, postType, postDate, postLocation, postCategory, postLatitude, postLongitude, postCountry, postCity, postStatus)
+//    }
+    
 }
 
-public class Photo {
-    
-    //    let photos = Table("Photos")
-    //
-    //    let id = Expression<Int64>("id")
-    //    let groupid = Expression<Int64>("groupId")
-    //    let name = Expression<String?>("photoName")
-    //    let data = Expression<Data>("photoData")
-    //    let caption = Expression<String?>("caption")
-    //    let localurl = Expression<String>("localUrl")
-    //
-    //    init() {
-    //        try! db.run(photos.create(ifNotExists: true) { t in
-    //            t.column(id, primaryKey: true)
-    //            t.column(groupid)
-    //            t.column(name)
-    //            t.column(data)
-    //            t.column(caption)
-    //        })
-    //    }
-    //
-    //    func setPhotos(name: String?, data: Data, caption: String?, groupId: Int64) {
-    //
-    ////        dispatch_sync(dispatch_get_main_queue(),{
-    //            let count = try! db.scalar(self.photos.filter(self.data == data).count)
-    //            if(count == 0) {
-    //                let photoinsert = self.photos.insert(
-    //                    self.name <- name,
-    //                    self.data <- data,
-    //                    self.caption <- caption,
-    //                    self.groupid <- groupId
-    //                )
-    //                do {
-    //                    try! db.run(photoinsert)
-    //                    print("photo added!")
-    //                } catch _ {
-    //
-    //                }
-    //            } else {
-    //                let updaterow = self.photos.filter(self.data == data)
-    //                try! db.run(updaterow.update(self.name <- name))
-    //                try! db.run(updaterow.update(self.data <- data))
-    //                try! db.run(updaterow.update(self.caption <- caption))
-    //            }
-    ////        })
-    //
-    //    }
-    //
-    //    func insertCaption(imageLocalId: Int64, caption: String) {
-    //
-    //        let count = try! db.scalar(self.photos.filter(self.id == Int64(imageLocalId)).count)
-    //        if(count == 0) {
-    //            print("no photos with same data found")
-    //        } else {
-    //            let updaterow = self.photos.filter(self.id == Int64(imageLocalId))
-    //            print("update row: \(imageLocalId)")
-    //            try! db.run(updaterow.update(self.caption <- caption))
-    //        }
-    //    }
-    //
-    //    func insertName(_ imageId: String, Name: String) {
-    //
-    //        let count = try! db.scalar(self.photos.filter(self.id == Int64(imageId)!).count)
-    //        if(count == 0) {
-    //            print("no photos with same data found")
-    //        } else {
-    //            let updaterow = self.photos.filter(self.id == Int64(imageId)!)
-    //            print("update row: \(imageId)")
-    //            try! db.run(updaterow.update(self.name <- Name))
-    //        }
-    //    }
-    //
-    //    func getPhotosIdsOfPost(photosGroup: Int64) -> [Int] {
-    //
-    //        var value: [Int] = []
-    //
-    //        let count = try! db.scalar(self.photos.filter(self.groupid == photosGroup).count)
-    //        if(count == 0) {
-    //            print("")
-    //        } else {
-    //            for row in try! db.prepare(self.photos.filter(self.groupid == photosGroup)) {
-    //
-    //                let photoId = Int(row[id])
-    //                value.append(photoId)
-    //
-    //            }
-    //        }
-    //
-    //        return value
-    //
-    //    }
-    //
-    //    func getCaption(_ photoId: Int) -> String? {
-    //
-    ////        var returnStr = ""
-    //        do {
-    //            let count = try! db.scalar(self.photos.filter(id == Int64(photoId)).count)
-    //            if(count == 0) {
-    //                print("no captions found")
-    //            }
-    //            else {
-    //                let newval = try! db.pluck(self.photos.filter(id == Int64(photoId)))
-    //                if newval![caption] != nil {
-    //                    return newval?[caption]
-    //                }
-    //            }
-    //        }
-    //
-    //        return nil
-    //    }
-    //
-    //
-    ////    func getPhotoNamesForPost(_ postId: String) -> [String] {
-    ////
-    ////        var value: [String] = []
-    ////
-    ////        let count = try! db.scalar(self.photos.filter(self.postid == postId).count)
-    ////        if(count == 0) {
-    ////            print("")
-    ////        } else {
-    ////            for row in try! db.prepare(self.photos.filter(self.postid == postId)) {
-    ////
-    //
-    ////                let photoName = String(describing: row[name])
-    ////                value.append(photoName)
-    ////
-    ////            }
-    ////        }
-    ////
-    ////        return value
-    ////
-    ////    }
-    //
-    //    func getPhotos(postId: String) -> (String, Data, String) {
-    //
-    //        var Name = ""
-    //        var photoData = Data()
-    //        var photoCaption = ""
-    //
-    //        let count = try! db.scalar(self.photos.filter(self.groupid == id).count)
-    //        if(count == 0) {
-    //            print("")
-    //        } else {
-    //            let newval = try! db.pluck(self.photos.filter(self.groupid == id))
-    //            Name = newval![name]!
-    //            photoData = newval![data]
-    //            photoCaption = newval![caption]!
-    //            //print(firstName, lastName, useremail, userdob, usergender, usermobile, userstatus, loginType, facebookid, twitterid, googleid, instagramid, userbadgeImage, userbadgeName, homecountry, homecity, isloggedin)
-    //
-    //        }
-    //        return (Name, photoData, photoCaption)
-    //
-    //    }
-    //
-    //
-    //    func getRowCount() -> Int {
-    //        let count = try! db.scalar(photos.count)
-    //        return count
-    //    }
-    //
-    //    func flushRows(localId: Int64) {
-    //
-    //        let tempPhotos = photos.filter(id == localId)
-    //        do {
-    //            if try! db.run(tempPhotos.delete()) > 0 {
-    //                print("deleted alice")
-    //            } else {
-    //                print("alice not found")
-    //            }
-    //        } catch {
-    //            print("delete failed: \(error)")
-    //        }
-    //    }
-    //
-    //    func drop() {
-    //        try! db.run(photos.drop(ifExists: true))
-    //    }
-    
-}
 

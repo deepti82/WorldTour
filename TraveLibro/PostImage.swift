@@ -58,6 +58,29 @@ public class PostImage {
             print("ERROR FOUND");
         }
     }
+    
+    func uploadPhotos () {
+        
+        
+//        request.uploadPhotos(url, completion: {(response) in
+            //
+            //            if response.error != nil {
+            //
+            //                print("response: \(response.error?.localizedDescription)")
+            //
+            //            }
+            //            else if response["value"].bool! {
+            //
+            //                print("response arrived")
+            //
+            //            }
+            //            else {
+            //
+            //                print("response error")
+            //            }
+            //            
+            //        })
+    }
 }
 
 
