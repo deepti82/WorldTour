@@ -628,33 +628,26 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getAllPosts(_ posts: [JSON]) {
-        
         for post in posts {
-            
             if post["type"].string! == "join" {
                 if !self.prevPosts.contains(post) {
                     self.BuddyJoinInLayout(post)
                 }
             }
-                
             else if post["type"].string! == "left" {
                 if !self.prevPosts.contains(post) {
                     self.buddyLeaves(post)
                 }
             }
-                
             else if post["type"].string! == "cityChange" {
                 if !self.prevPosts.contains(post) {
                     self.cityChanges(post)
                 }
             }
-                
             else if !self.prevPosts.contains(post) {
                 self.configurePost(post)
             }
-            
         }
-        
     }
     
     func closeInfo(_ sender: UITapGestureRecognizer) {
@@ -902,6 +895,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var isInitialPost = true
     var otherCommentId = ""
     var latestCity = ""
+    
+    
+    func addPostLayout(_ post:Post) {
+        var checkIn = PhotosOTG()
+        checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: post.post_thoughts, photos: post.imageArr.count)))
+        layout.addSubview(checkIn)
+        addHeightToLayout(height: checkIn.frame.height + 50.0)
+        
+    }
     
     func showPost(_ whichPost: String, post: JSON) {
         

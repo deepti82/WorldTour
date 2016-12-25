@@ -7,6 +7,7 @@
 //
 import Foundation
 import SQLite
+import Haneke
 
 public class PostImage {
     var imageUrl: URL!
@@ -57,6 +58,31 @@ public class PostImage {
         catch {
             print("ERROR FOUND");
         }
+    }
+    func getAllImages(postNo:Int64) -> [PostImage] {
+        var allImages:[PostImage] = []
+        do {
+            let id = Expression<Int64>("id")
+            let post = Expression<Int64>("post")
+            let captions = Expression<String>("caption")
+            let localUrl = Expression<String>("localUrl")
+            let url = Expression<String>("url")
+
+            let query = photos.select(id,post,captions,localUrl,url)
+                .filter(post == postNo)
+            for photo in try db.prepare(query) {
+                let p = PostImage();
+                p.caption = String(photo[captions])
+                
+                p.imageUrl = URL(fileURLWithPath: String(photo[localUrl]))
+                allImages.append(p)
+            }
+        }
+        catch {
+        }
+        
+        
+        return allImages
     }
     
     func uploadPhotos () {

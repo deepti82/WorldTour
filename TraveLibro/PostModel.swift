@@ -16,8 +16,8 @@ public class Post {
     let post = Table("Post")
     
     
-    let imageArr:[PostImage] = []
-    let buddies:[Buddy] = []
+    var imageArr:[PostImage] = []
+    var buddies:[Buddy] = []
     // id, userid, journeyuniqueid, posttype, photos[], videos[], thought, checkin[], buddies[], iscompleted
     
     let id = Expression<Int64>("id")
@@ -100,8 +100,35 @@ public class Post {
         
     }
     
-    func getAllPost() -> [Post] {
+    func getAllPost(journey:String) -> [Post] {
         var allPosts:[Post] = []
+        do {
+            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date)
+                .filter(journeyId == journey)
+            for post in try db.prepare(query) {
+                let p = Post();
+                p.post_id = Int(post[id])
+                p.post_type = String(post[type])
+                p.post_userId = String(post[userId])
+                p.post_journeyId = String(post[journeyId])
+                p.post_thoughts = String(post[thoughts])
+                p.post_location = String(post[location])
+                p.post_category = String(post[category])
+                p.post_city = String(post[city])
+                p.post_country = String(post[country])
+                p.post_latitude = String(post[latitude])
+                p.post_longitude = String(post[longitude])
+                p.post_date = String(post[date])
+                
+                
+                var i = PostImage();
+                p.imageArr = i.getAllImages(postNo: post[id])
+                allPosts.append(p)
+            }
+        }
+        catch {
+            
+        }
         
         
         return allPosts

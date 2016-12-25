@@ -439,6 +439,13 @@ extension NewTLViewController {
             
             let allPosts = journey["post"].array!
             self.getAllPosts(allPosts)
+            var p = Post()
+            var offLinePost:[Post] = p.getAllPost(journey:journeyId);
+            for sPost in offLinePost {
+                self.addPostLayout(sPost)
+            }
+            print(offLinePost);
+            
             
         }
         
