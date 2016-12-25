@@ -781,6 +781,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.layout = VerticalLayout(width: self.view.frame.width)
         mainScroll.addSubview(layout)
         
+        var i  = PostImage();
+        i.uploadPhotos()
+        
         globalNewTLViewController = self;
         getDarkBackGroundBlue(self)
         getJourney()

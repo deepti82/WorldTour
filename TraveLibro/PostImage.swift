@@ -46,12 +46,13 @@ public class PostImage {
     
     func save() {
         var filename:URL!
-        
+        var filenameOnly = "";
         if let data = UIImageJPEGRepresentation(self.image, 0.8) {
-            filename = getDocumentsDirectory().appendingPathComponent( String(Date().ticks) + ".jpg" )
+            filenameOnly = String(Date().ticks) + ".jpg"
+            filename = getDocumentsDirectory().appendingPathComponent( filenameOnly )
             try? data.write(to: filename)
         }
-        let insert = photos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filename.absoluteString,url <- "")
+        let insert = photos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- "")
         do {
             try db.run(insert)
         }
@@ -67,7 +68,7 @@ public class PostImage {
             let captions = Expression<String>("caption")
             let localUrl = Expression<String>("localUrl")
             let url = Expression<String>("url")
-
+            
             let query = photos.select(id,post,captions,localUrl,url)
                 .filter(post == postNo)
             for photo in try db.prepare(query) {
@@ -85,27 +86,49 @@ public class PostImage {
         return allImages
     }
     
-    func uploadPhotos () {
+    func uploadPhotos() {
+        do {
+//            let id = Expression<Int64>("id")
+//            let post = Expression<Int64>("post")
+//            let captions = Expression<String>("caption")
+//            let localUrl = Expression<String>("localUrl")
+//            let url = Expression<String>("url")
+            var check = false;
+            let query = photos.select(id,post,captions,localUrl,url)
+                .filter(url == "")
+                .limit(1)
+            for photo in try db.prepare(query) {
+                check = true;
+                let url = getDocumentsDirectory().appendingPathComponent( String(photo[localUrl]) )
+                request.uploadPhotos(url, localDbId: 0,completion: {(response) in
+                    if response.error != nil {
+                        print("response: \(response.error?.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        print("CHECK THIS OUT");
+                        print(response["data"][0]);
+                        
+                        do {
+                            let singlePhoto = self.photos.filter(self.id == photo[self.id])
+                            let urlString = response["data"][0].stringValue
+                            try db.run(singlePhoto.update(self.url <- urlString ))
+                        }
+                        catch {
+                            
+                        }
+                        if(check) {
+                            self.uploadPhotos()
+                        }
+                    }
+                    else {
+                        print("response error")
+                    }
+                })
+            }
+        }
+        catch {
+        }
         
-        
-//        request.uploadPhotos(url, completion: {(response) in
-            //
-            //            if response.error != nil {
-            //
-            //                print("response: \(response.error?.localizedDescription)")
-            //
-            //            }
-            //            else if response["value"].bool! {
-            //
-            //                print("response arrived")
-            //
-            //            }
-            //            else {
-            //
-            //                print("response error")
-            //            }
-            //            
-            //        })
     }
 }
 
