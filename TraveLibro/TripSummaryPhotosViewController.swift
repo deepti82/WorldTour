@@ -21,6 +21,7 @@ class TripSummaryPhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         showNavigationIn(img:"grid")
         
         gridContainer.alpha = 1

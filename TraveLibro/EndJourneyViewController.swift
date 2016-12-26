@@ -21,12 +21,13 @@ class EndJourneyViewController: UIViewController {
     @IBOutlet weak var rateCountriesView: UIView!
     @IBOutlet weak var rateCountriesScroll: UIScrollView!
     @IBOutlet weak var rateCountriesLayout: VerticalLayout!
+    var coverImage = ""
+    var coverImageImg = UIImage()
     
-    var journeyImages: [String] = []
+    
     var journey: JSON!
     
     @IBAction func changePicture(_ sender: AnyObject) {
-        
         if journeyImages.count > 0 {
             
             let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
@@ -46,20 +47,22 @@ class EndJourneyViewController: UIViewController {
         }
         
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        journeyImages = []
+        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
-        //rightButton.setTitle("Done", for: UIControlState())
-        //rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)        rightButton.setTitle("Save", for: .normal)
+        
+        rightButton.setTitle("Save", for: .normal)
+        rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
         rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 10, y: 0, width: 30, height: 30)
+        rightButton.frame = CGRect(x: 10, y: 0, width: 40, height: 30)
         self.customNavigationBar(left: leftButton, right: rightButton)
         
         getAllCountryReviews()
@@ -160,6 +163,7 @@ class EndJourneyViewController: UIViewController {
         
     }
     
+    
     func getAllImages() {
         
         //print("in get all images: \(journey!)")
@@ -177,7 +181,7 @@ class EndJourneyViewController: UIViewController {
                 
                     for image in response["data"]["photos"].array! {
                         
-                        self.journeyImages.append(image["name"].string!)
+                        journeyImages.append(image["name"].string!)
                         
                     }
                     
@@ -210,14 +214,14 @@ class EndJourneyViewController: UIViewController {
         
     }
     
-    var coverImage = ""
+    
     
     func randomImage() {
         
         let randomIndex = Int(arc4random_uniform(UInt32(journeyImages.count)))
         print(journeyImages[randomIndex])
-        self.coverImage = self.journeyImages[randomIndex]
-        makeCoverPicture(image: self.journeyImages[randomIndex])
+        self.coverImage = journeyImages[randomIndex]
+        makeCoverPicture(image: journeyImages[randomIndex])
         
     }
     
@@ -241,25 +245,71 @@ class EndJourneyViewController: UIViewController {
     }
     
     func makeCoverPictureImage(image: String) {
-        
         DispatchQueue.main.async(execute: {
             
             self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
         })
     }
     
-    func doneEndJourney(_ sender: UIButton) {
-        request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
+    func makeCoverPictureImageEdited(image: UIImage) {
+        coverImageImg = image
+        DispatchQueue.main.async(execute: {
+            self.journeyCoverPic.image = image
             
-            request.getUser(user.getExistingUser(), completion: {(response) in
+        })
+
+    }
+    
+    func doneEndJourney(_ sender: UIButton) {
+        print(coverImage)
+        if coverImage.contains("UIImage") {
+            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/coverimage.jpg"
+            DispatchQueue.main.async(execute: {
                 
-                DispatchQueue.main.async(execute: {
-                    currentUser = response["data"]
+                do {
                     
-                    self.goBack()
+                    if let data = UIImageJPEGRepresentation(self.coverImageImg, 0.35) {
+                        try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
+                        request.uploadPhotos(URL(string: exportFileUrl)!, localDbId: 0, completion: {(responce) in
+                            if responce["value"] == true {
+                            self.coverImage = responce["data"][0].stringValue
+                                request.endJourney(self.journey["_id"].string!, uniqueId: self.journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: self.journey["buddies"].array!, photo: self.coverImage, completion: {(response) in
+                                    
+                                    request.getUser(user.getExistingUser(), completion: {(response) in
+                                        
+                                        DispatchQueue.main.async(execute: {
+                                            currentUser = response["data"]
+                                            
+                                            self.goBack()
+                                        })
+                                    })
+                                })
+                            }
+                        })
+                    }
+                } catch let error as NSError {
+                    
+                    print("error creating file: \(error.localizedDescription)")
+                    
+                }
+                                
+            })
+
+            
+        }else{
+            request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
+                
+                request.getUser(user.getExistingUser(), completion: {(response) in
+                    
+                    DispatchQueue.main.async(execute: {
+                        currentUser = response["data"]
+                        
+                        self.goBack()
+                    })
                 })
             })
-        })
+        }
+        
     }
     
     var loader = LoadingOverlay()

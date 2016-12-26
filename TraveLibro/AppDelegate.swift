@@ -33,6 +33,7 @@ var onlyOnce = true
 
 let request = Navigation()
 let shared = LoadingOverlay()
+var coverImageGrid = ""
 
 let user = User()
 
@@ -49,6 +50,7 @@ var selectedCountry: JSON = []
 var selectedCity: JSON = []
 var selectedStatus: String = ""
 var destinationVisited: JSON = []
+var journeyImages: [String] = []
 var storyboard: UIStoryboard!
 
 var leftViewController: SideNavigationMenuViewController!
