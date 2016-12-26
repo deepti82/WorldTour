@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/NewTLViewController.swift"
-            timestampString = "504408015.130798"
+            timestampString = "504408236.151898"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1699"
-            endingLineNumber = "1699"
+            startingLineNumber = "1702"
+            endingLineNumber = "1702"
             landmarkName = "newOtg(_:)"
             landmarkType = "7">
          </BreakpointContent>

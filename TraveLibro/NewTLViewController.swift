@@ -601,7 +601,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getJourney() {
-        layout.removeAll()
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
