@@ -19,6 +19,8 @@ class ListPhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("..................")
+        print(self.parent)
         getBackGround(self)
         
         getJourneyPhotos()

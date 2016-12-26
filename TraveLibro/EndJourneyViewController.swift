@@ -30,6 +30,7 @@ class EndJourneyViewController: UIViewController {
         if journeyImages.count > 0 {
             
             let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
+            photoVC.fromView = "endJourney"
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(photoVC, animated: true)
             photoVC.whichView = "photo"

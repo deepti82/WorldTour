@@ -12,6 +12,7 @@ class TripSummaryPhotosViewController: UIViewController {
 
     @IBOutlet weak var listContainer: UIView!
     @IBOutlet weak var gridContainer: UIView!
+    var fromView = ""
     
     var whichView : String!
     var journey = ""
@@ -37,7 +38,12 @@ class TripSummaryPhotosViewController: UIViewController {
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: -10, y: 0, width: 30, height: 30)
-        self.customNavigationBar(left: leftButton, right: rightButton)
+        if fromView == "endJourney" {
+            self.customNavigationBar(left: leftButton, right: nil)
+        }else{
+            self.customNavigationBar(left: leftButton, right: rightButton)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
