@@ -143,6 +143,9 @@ public class Post {
             for post in try db.prepare(query) {
                 check = true
                 let p = Post();
+                
+                var postID = post[id]
+                
                 p.post_id = Int(post[id])
                 p.post_type = String(post[type])
                 p.post_userId = String(post[userId])
@@ -163,14 +166,17 @@ public class Post {
                 var photosJson:[JSON] = []
                 
                 for img in p.imageArr {
+                    print(img.parseJson())
                     photosJson.append(img.parseJson())
                 }
+                print(photosJson)
                 
                 let checkInJson:JSON = ["location":p.post_location,"category":p.post_category,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
                 
                 
                 var params:JSON = ["type":"travel-life", "thoughts":p.post_thoughts,"user": p.post_userId,"journey":p.post_journeyId,"date":p.post_date]
                 params["checkIn"] = checkInJson
+                params["photos"] = JSON(photosJson)
                 
                 request.postTravelLifeJson(params, completion: {(response) in
                     if response.error != nil {
@@ -178,8 +184,9 @@ public class Post {
                     }
                     else if response["value"].bool! {
                         do {
-                            let singlePhoto = self.post.filter(self.id == self.post[self.id])
+                            let singlePhoto = self.post.filter(self.id == postID)
                             try db.run(singlePhoto.delete())
+                            i.deletePhotos(postID);
                         }
                         catch {
                             

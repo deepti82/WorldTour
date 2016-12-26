@@ -125,8 +125,19 @@ public class PostImage {
         }
         
     }
+    
+    func deletePhotos(_ post:Int64) {
+        do {
+            let query = self.photos.filter(self.post == post)
+            try db.run(query.delete())
+        }
+        catch {
+        }
+        
+    }
+    
     func parseJson() -> JSON {
-        let photoJson:JSON = ["name":self.url,"caption":self.serverUrl]
+        let photoJson:JSON = ["name":self.serverUrl,"caption":self.caption]
         return photoJson
     }
 }
