@@ -231,6 +231,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var thoughts = ""
         if self.addView.thoughtsTextView.text! != nil {
             thoughts = self.addView.thoughtsTextView.text!
+            if(location == "Fill Me In...") {
+                location = ""
+            }
         }
         
         let dateFormatterTwo = DateFormatter()
@@ -598,7 +601,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getJourney() {
-        
+        layout.removeAll()
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {

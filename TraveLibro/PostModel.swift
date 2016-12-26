@@ -167,16 +167,6 @@ public class Post {
             }
         }
         catch {
-            let allControllers = globalNavigationController.viewControllers
-            for vc in allControllers {
-                
-                if vc.isKind(of: NewTLViewController.self) {
-                    let backVC = vc as! NewTLViewController
-                    backVC.viewDidLoad()
-                    
-                }
-                
-            }
         }
         
         
@@ -250,7 +240,9 @@ public class Post {
                 })
             }
             if(!check) {
-                
+                if globalNewTLViewController != nil {
+                    globalNewTLViewController.getJourney()
+                }
             }
         }
         catch {
