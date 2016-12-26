@@ -216,7 +216,7 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         else if whichView == "Rest" {
             
-            cell.ratingStack.isHidden = true
+            cell.restaurantCuisines.isHidden = true
             
         }
         
