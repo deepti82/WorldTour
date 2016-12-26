@@ -96,12 +96,15 @@ public class Post {
             }
             
             let query = self.getAllPost(postid: postId)
+             print("dikha re post:\(query)")
             for post in query {
                 retPost = post;
+               
             }
         } catch _ {
             print("ERROR OCCURED");
         }
+
         return retPost;
     }
     

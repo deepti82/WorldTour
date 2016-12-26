@@ -13,6 +13,7 @@ class EachCityPagerViewController: UIViewController {
     var pageMenu : CAPSPageMenu?
     var whichView : String!
     var city = ""
+    var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,6 @@ class EachCityPagerViewController: UIViewController {
         nvcTwo = self.navigationController
         
         var controllerArray : [UIViewController] = []
-        
         let controllerOne = storyboard!.instantiateViewController(withIdentifier: "featuredTwo") as! FeaturedCitiesNewTwoViewController
         controllerOne.whichView = "MD"
         controllerOne.title = "Must Do's"
@@ -66,7 +66,7 @@ class EachCityPagerViewController: UIViewController {
         self.view.addSubview(pageMenu!.view)
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

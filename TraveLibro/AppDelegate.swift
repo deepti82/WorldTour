@@ -19,7 +19,7 @@ let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 var faicon = [String: UInt32]()
 
 var profileViewY:CGFloat = 45
-
+var whichView: String!
 var emailIcon: String!
 var whatsAppIcon: String!
 var facebookIcon: String!

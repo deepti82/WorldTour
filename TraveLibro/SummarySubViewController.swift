@@ -35,7 +35,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        countryStackView.isHidden = true
         getCount()
         
         userName.text = currentUser["name"].string!
@@ -224,6 +224,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         let DFOne = DateFormatter()
         DFOne.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         let DFTwo = DateFormatter()
+        
         DFTwo.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
         
         let start = DFOne.date(from: startDate)

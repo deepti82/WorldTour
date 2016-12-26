@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -64,7 +64,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="95"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwM-fP-FBC">
-                                                    <rect key="frame" x="7.5" y="15" width="65" height="65"/>
+                                                    <rect key="frame" x="8" y="15" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="65" id="CgE-p2-CMn"/>
                                                         <constraint firstAttribute="width" constant="65" id="UOC-P1-06F"/>
@@ -87,7 +87,7 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ews-Xo-32t">
-                                                    <rect key="frame" x="11" y="80" width="58.5" height="19.5"/>
+                                                    <rect key="frame" x="11.5" y="80" width="58.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -113,7 +113,7 @@
                                             <rect key="frame" x="90" y="0.0" width="80" height="95"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEb-F4-Nfj">
-                                                    <rect key="frame" x="7.5" y="15" width="65" height="65"/>
+                                                    <rect key="frame" x="8" y="15" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="65" id="IHP-1l-7N9"/>
                                                         <constraint firstAttribute="width" constant="65" id="h8L-zz-Xqz"/>
@@ -121,7 +121,7 @@
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                    <state key="normal" image="video" backgroundImage="bluebox"/>
+                                                    <state key="normal" image="photos_new" backgroundImage="bluebox"/>
                                                 </button>
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJ3-Xe-ZAm">
                                                     <rect key="frame" x="47" y="8" width="25" height="25"/>
@@ -135,8 +135,8 @@
                                                         <color key="titleColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n24-jA-pEF">
-                                                    <rect key="frame" x="19" y="80" width="42.5" height="19.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n24-jA-pEF">
+                                                    <rect key="frame" x="18" y="80" width="44" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -161,7 +161,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="95"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hB6-qV-KyG">
-                                                    <rect key="frame" x="7.5" y="15" width="65" height="65"/>
+                                                    <rect key="frame" x="8" y="15" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="TXs-tq-blg"/>
                                                         <constraint firstAttribute="height" constant="65" id="YR8-to-8zX"/>
@@ -169,7 +169,7 @@
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                    <state key="normal" image="photos_new" backgroundImage="bluebox"/>
+                                                    <state key="normal" image="video" backgroundImage="bluebox"/>
                                                 </button>
                                                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EfF-Bb-xdF">
                                                     <rect key="frame" x="47" y="8" width="25" height="25"/>
@@ -183,8 +183,8 @@
                                                         <color key="titleColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jI3-mr-Bbw">
-                                                    <rect key="frame" x="18" y="80" width="44" height="19.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jI3-mr-Bbw">
+                                                    <rect key="frame" x="19.5" y="80" width="42.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -205,7 +205,7 @@
                                             <rect key="frame" x="90" y="0.0" width="80" height="95"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1M-Nb-GVz">
-                                                    <rect key="frame" x="7.5" y="15" width="65" height="65"/>
+                                                    <rect key="frame" x="8" y="15" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="65" id="D6Q-df-4NU"/>
                                                         <constraint firstAttribute="width" constant="65" id="DYg-xd-5Fd"/>
@@ -228,7 +228,7 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPq-sL-yah">
-                                                    <rect key="frame" x="14.5" y="80" width="51" height="19.5"/>
+                                                    <rect key="frame" x="15" y="80" width="51" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -258,7 +258,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="95"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4Z-ce-kTM">
-                                                    <rect key="frame" x="7.5" y="15" width="65" height="65"/>
+                                                    <rect key="frame" x="8" y="15" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="AWy-Pn-2Gy"/>
                                                         <constraint firstAttribute="height" constant="65" id="Ztb-lJ-ls1"/>
@@ -307,7 +307,7 @@
                                             <rect key="frame" x="90" y="0.0" width="80" height="95"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41I-ep-Viz">
-                                                    <rect key="frame" x="7.5" y="15" width="65" height="65"/>
+                                                    <rect key="frame" x="8" y="15" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="65" id="gVh-iF-jAk"/>
                                                         <constraint firstAttribute="width" constant="65" id="pPx-Qo-2a6"/>
@@ -330,7 +330,7 @@
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hotels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A3d-gf-DH2">
-                                                    <rect key="frame" x="20" y="80" width="40.5" height="19.5"/>
+                                                    <rect key="frame" x="20.5" y="80" width="40.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -361,7 +361,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="95"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJA-RM-n9w">
-                                                    <rect key="frame" x="7.5" y="15" width="65" height="65"/>
+                                                    <rect key="frame" x="8" y="15" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="65" id="Cwd-rC-4ic"/>
                                                         <constraint firstAttribute="width" constant="65" id="yKf-13-xSX"/>
@@ -411,7 +411,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SwL-DY-HmG">
-                                                    <rect key="frame" x="7.5" y="15" width="65" height="65"/>
+                                                    <rect key="frame" x="8" y="15" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="4qS-5U-aJk"/>
                                                         <constraint firstAttribute="height" constant="65" id="nFr-7l-WE2"/>
@@ -453,7 +453,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="95"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OW6-ei-0Hu">
-                                                    <rect key="frame" x="7.5" y="15" width="65" height="65"/>
+                                                    <rect key="frame" x="8" y="15" width="65" height="65"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="08F-UZ-dHs"/>
                                                         <constraint firstAttribute="height" constant="65" id="yUb-Md-9HN"/>

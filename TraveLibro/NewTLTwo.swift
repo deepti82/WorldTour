@@ -69,7 +69,6 @@ extension NewTLViewController {
     func showAddActivity(view: UIView) {
         //Add Dard Blur Background
         
-        
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
         self.backView = UIView();
@@ -585,7 +584,6 @@ extension NewTLViewController {
     }
     
     func gotoMustDo(_ sender: UIButton) {
-        
         let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
         vc.city = latestCity
         self.navigationController?.pushViewController(vc, animated: true)
@@ -594,11 +592,12 @@ extension NewTLViewController {
     }
     
     func gotoHotels(_ sender: UIButton) {
+       
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
         vc.city = latestCity
         self.navigationController?.pushViewController(vc, animated: true)
-        
+      
         
     }
     

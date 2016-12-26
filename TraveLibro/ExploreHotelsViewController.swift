@@ -116,6 +116,7 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         
         getDarkBackGround(self)
         getHotels()
+        getRestaurants()
         
     }
     
@@ -188,8 +189,14 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "hotelCell") as! HotelsTableViewCell
+        if whichView == "Hotels" {
         cell.hotelNames.text = data[(indexPath as NSIndexPath).row]["name"].string!
         cell.hotelExpense.text = data[(indexPath as NSIndexPath).row]["budget"].string!
+        }
+        else {
+            cell.hotelNames.text = data[(indexPath as NSIndexPath).row]["name"].string!
+            cell.hotelExpense.text = data[(indexPath as NSIndexPath).row]["budget"].string!
+        }
 //        cell.hotelNames.text = hotelNames[indexPath.row]
         
         if (indexPath as NSIndexPath).row % 2 == 0 {
@@ -246,6 +253,31 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         if whichView == "Hotels" {
             
             view = "hotels"
+            request.cityTypeData("hotels", city: city, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        
+                        self.data = response["data"].array!
+                        self.myTableView.reloadData()
+                        
+                    }
+                    else {
+                        
+                        print("response error")
+                        
+                    }
+                    
+                })
+                
+            })
+
             
         }
         else if whichView == "Rest" {
@@ -255,38 +287,43 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         
-        request.cityTypeData("hotels", city: city, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    self.data = response["data"].array!
-                    self.myTableView.reloadData()
-                    
-                }
-                else {
-                    
-                    print("response error")
-                    
-                }
-                
-            })
-            
-        })
     }
     
+        func getRestaurants() {
+           var view = "Rest"
+            
+            if whichView == "Rest" {
+                view = "restaurants"
+                
+                request.cityTypeData("restaurants", city: city, completion: { (response) in
+                    DispatchQueue.main.async(execute: {
+                        if response.error != nil {
+                            
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            self.data = response["data"].array!
+                            print("showRestaurants: \(self.data)")
+                            self.myTableView.reloadData()
+                        }
+                        else {
+                            print("response error")
+                        }
+                    })
+                })
+            }
+            else if whichView == "Hotels" {
+                view = "hotels"
+            }
+        }
+    
+    
 //    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        
+//
 //        return 4
-//        
+//
 //    }
-//    
+//
 //    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 //        
 //        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("navCell", forIndexPath: indexPath) as! NavigationCollectionViewCell
