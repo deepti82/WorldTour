@@ -231,8 +231,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var thoughts = ""
         if self.addView.thoughtsTextView.text! != nil {
             thoughts = self.addView.thoughtsTextView.text!
-            if(location == "Fill Me In...") {
-                location = ""
+            if(thoughts == "Fill Me In...") {
+                thoughts = ""
             }
         }
         
@@ -915,7 +915,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: post.post_thoughts, photos: post.imageArr.count)))
         layout.addSubview(checkIn)
         addHeightToLayout(height: checkIn.frame.height + 50.0)
-        
+        self.scrollToBottom()
     }
     
     func showPost(_ whichPost: String, post: JSON) {

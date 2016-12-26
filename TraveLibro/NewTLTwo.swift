@@ -474,8 +474,6 @@ extension NewTLViewController {
                 }
                 
             }
-            
-            
         }
         
         self.view.bringSubview(toFront: toolbarView)
@@ -486,9 +484,8 @@ extension NewTLViewController {
         
     }
     func scrollToBottom() {
-//        self.mainScroll.scrollRectToVisible(CGRect(x: 1, y: 1, width: 1, height: 1), animated: true)
-//        let bottomOffset = CGPoint(x: 0, y: self.mainScroll.contentSize.height - self.mainScroll.bounds.size.height)
-//        self.mainScroll.setContentOffset(bottomOffset, animated: true)
+        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height)
+        mainScroll.setContentOffset(bottomOffset, animated: true)
     }
     
     func getJourneyBuddies(journey: JSON) {

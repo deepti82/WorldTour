@@ -241,6 +241,8 @@ public class Post {
             }
             if(!check) {
                 if globalNewTLViewController != nil {
+                    globalNewTLViewController.isInitialLoad = true
+                    globalNewTLViewController.prevPosts = []
                     globalNewTLViewController.getJourney()
                 }
             }
