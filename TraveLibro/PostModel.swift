@@ -135,42 +135,72 @@ public class Post {
         
     }
     
-//    func getPost(postId: Int64) -> (String, String, String, String, String, String, String, String, String, String, String) {
-//        
-//        var user = ""
-//        var journey = ""
-//        var postType = ""
-//        var postDate = ""
-//        var postLocation = ""
-//        var postCategory = ""
-//        var postLatitude = ""
-//        var postLongitude = ""
-//        var postCountry = ""
-//        var postCity = ""
-//        var postStatus = ""
-//        
-//        let count = try! db.scalar(self.post.filter(self.id == postId).count)
-//        if(count == 0) {
-//            print("")
-//        } else {
-//            let newval = try! db.pluck(self.post.filter(self.id == postId))
-//            user = newval![userId]
-//            journey = newval![journeyId]
-//            postType = newval![type]
-//            postDate = newval![date]
-//            postLocation = newval![location]
-//            postCategory = newval![category]
-//            postLatitude = newval![latitude]
-//            postLongitude = newval![longitude]
-//            postCountry = newval![country]
-//            postCity = newval![city]
-//            postStatus = newval![country]
-//            //print(firstName, lastName, useremail, userdob, usergender, usermobile, userstatus, loginType, facebookid, twitterid, googleid, instagramid, userbadgeImage, userbadgeName, homecountry, homecity, isloggedin)
-//            
-//        }
-//        return (user, journey, postType, postDate, postLocation, postCategory, postLatitude, postLongitude, postCountry, postCity, postStatus)
-//    }
-    
+    func uploadPost() {
+        do {
+            var check = false;
+            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date)
+                .limit(1)
+            for post in try db.prepare(query) {
+                check = true
+                let p = Post();
+                p.post_id = Int(post[id])
+                p.post_type = String(post[type])
+                p.post_userId = String(post[userId])
+                p.post_journeyId = String(post[journeyId])
+                p.post_thoughts = String(post[thoughts])
+                p.post_location = String(post[location])
+                p.post_category = String(post[category])
+                p.post_city = String(post[city])
+                p.post_country = String(post[country])
+                p.post_latitude = String(post[latitude])
+                p.post_longitude = String(post[longitude])
+                p.post_date = String(post[date])
+                
+                
+                let i = PostImage();
+                p.imageArr = i.getAllImages(postNo: post[id])
+
+                var photosJson:[JSON] = []
+                
+                for img in p.imageArr {
+                    photosJson.append(img.parseJson())
+                }
+                
+                let checkInJson:JSON = ["location":p.post_location,"category":p.post_category,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
+                
+                
+                var params:JSON = ["type":"travel-life", "thoughts":p.post_thoughts,"user": p.post_userId,"journey":p.post_journeyId,"date":p.post_date]
+                params["checkIn"] = checkInJson
+                
+                request.postTravelLifeJson(params, completion: {(response) in
+                    if response.error != nil {
+                        print("response: \(response.error?.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        do {
+                            let singlePhoto = self.post.filter(self.id == self.post[self.id])
+                            try db.run(singlePhoto.delete())
+                        }
+                        catch {
+                            
+                        }
+                        if(check) {
+                            self.uploadPost()
+                        }
+                    }
+                    else {
+                        print("response error")
+                    }
+                })
+            }
+            if(!check) {
+                
+            }
+        }
+        catch {
+            
+        }
+    }
 }
 
 

@@ -14,6 +14,7 @@ public class PostImage {
     var image = UIImage()
     var caption = ""
     var postId = 0
+    var serverUrl = ""
     
     let photos = Table("Photos")
     
@@ -74,25 +75,18 @@ public class PostImage {
             for photo in try db.prepare(query) {
                 let p = PostImage();
                 p.caption = String(photo[captions])
-                
+                p.serverUrl = String(photo[url])
                 p.imageUrl = URL(fileURLWithPath: String(photo[localUrl]))
                 allImages.append(p)
             }
         }
         catch {
         }
-        
-        
         return allImages
     }
     
     func uploadPhotos() {
         do {
-//            let id = Expression<Int64>("id")
-//            let post = Expression<Int64>("post")
-//            let captions = Expression<String>("caption")
-//            let localUrl = Expression<String>("localUrl")
-//            let url = Expression<String>("url")
             var check = false;
             let query = photos.select(id,post,captions,localUrl,url)
                 .filter(url == "")
@@ -105,9 +99,6 @@ public class PostImage {
                         print("response: \(response.error?.localizedDescription)")
                     }
                     else if response["value"].bool! {
-                        print("CHECK THIS OUT");
-                        print(response["data"][0]);
-                        
                         do {
                             let singlePhoto = self.photos.filter(self.id == photo[self.id])
                             let urlString = response["data"][0].stringValue
@@ -125,10 +116,18 @@ public class PostImage {
                     }
                 })
             }
+            if(!check) {
+                let po = Post();
+                po.uploadPost()
+            }
         }
         catch {
         }
         
+    }
+    func parseJson() -> JSON {
+        let photoJson:JSON = ["name":self.url,"caption":self.serverUrl]
+        return photoJson
     }
 }
 

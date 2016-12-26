@@ -1120,7 +1120,7 @@ class Navigation {
         }
     }
     
-    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, latitude: String, longitude: String, photosArray: [JSON], videosArray: [String], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, hashtags: [String], date: String, completion: @escaping ((JSON) -> Void)) {
+    func postTravelLife(_ thoughts: String, location: String, locationCategory: String, latitude: String, longitude: String, photosArray: [JSON], videosArray: [JSON], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, hashtags: [String], date: String, completion: @escaping ((JSON) -> Void)) {
         
         
         var lat = ""
@@ -1171,26 +1171,35 @@ class Navigation {
             }
             
             task.resume()
-            
-//            let opt = try HTTP.POST(adminUrl + "post/save3", parameters: [params])
-//            var json = JSON(1);
-//            opt.start {response in
-//                if let err = response.error {
-//                    print("error: \(err.localizedDescription)")
-//                }
-//                else
-//                {
-//                    json  = JSON(data: response.data)
-//                    print(json)
-//                    completion(json)
-//                }
-//            }
-//        } catch let error {
-//            print("got an error creating the request: \(error)")
-//        }
     }
     
-    //  quick itinerery 
+    
+    func postTravelLifeJson(_ params: JSON, completion: @escaping ((JSON) -> Void)) {
+        print("post params \(params)")
+        let jsonData = try! params.rawData()
+        let url = URL(string: adminUrl + "post/save3")!
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+            if error != nil{
+                print("Error -> \(error)")
+                return
+            }
+            do {
+                let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                print("response: \(JSON(result))")
+                completion(JSON(result))
+            } catch {
+                print("Error: \(error)")
+            }
+        }
+        task.resume()
+    }
+    
+    //  quick itinerery
     func postQuickitenary(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON, completion: @escaping ((JSON) -> Void)) {
         
         var params: JSON = ["title":title, "year":year, "month":month, "description":description, "duration":duration, "user":currentUser["_id"], "status":false]

@@ -232,8 +232,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if self.addView.thoughtsTextView.text! != nil {
             thoughts = self.addView.thoughtsTextView.text!
         }
+        
+        let dateFormatterTwo = DateFormatter()
+        dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        self.currentTime = dateFormatterTwo.string(from: Date())
 
-        post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: String(Date().ticks), Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
+        post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
         
         self.addView.postButton.isHidden = true
     }
@@ -401,7 +405,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             var location = ""
             var locationCategory = ""
             var photos: [JSON] = []
-            var videos: [String] = []
+            var videos: [JSON] = []
             var buddies: [JSON] = []
             var id = ""
             var myLatitude = UserLocation(latitude: "", longitude: "")
@@ -436,10 +440,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             }
             if uploadedVideos.count > 0 {
-                
-                videos = uploadedVideos
+//                videos = uploadedVideos as! [JSON]
                 //                print("videos: \(videos)")
-                
             }
             if addedBuddies.count > 0 {
                 
