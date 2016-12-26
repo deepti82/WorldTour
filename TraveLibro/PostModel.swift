@@ -67,8 +67,8 @@ public class Post {
         })
     }
     
-    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, thoughts: String,buddies:[Buddy],imageArr:[PostImage]) {
-        
+    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, thoughts: String,buddies:[Buddy],imageArr:[PostImage]) -> Post{
+        var retPost:Post!
         let photoinsert = self.post.insert(
             self.type <- Type,
             self.userId <- UserId,
@@ -94,10 +94,15 @@ public class Post {
                 image.postId = Int(postId)
                 image.save()
             }
+            
+            let query = self.getAllPost(postid: postId)
+            for post in query {
+                retPost = post;
+            }
         } catch _ {
             print("ERROR OCCURED");
         }
-        
+        return retPost;
     }
     
     func getAllPost(journey:String) -> [Post] {
@@ -128,6 +133,50 @@ public class Post {
         }
         catch {
             
+        }
+        
+        
+        return allPosts
+        
+    }
+    
+    func getAllPost(postid:Int64) -> [Post] {
+        var allPosts:[Post] = []
+        do {
+            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date)
+                .filter(id == postid)
+            for post in try db.prepare(query) {
+                let p = Post();
+                p.post_id = Int(post[id])
+                p.post_type = String(post[type])
+                p.post_userId = String(post[userId])
+                p.post_journeyId = String(post[journeyId])
+                p.post_thoughts = String(post[thoughts])
+                p.post_location = String(post[location])
+                p.post_category = String(post[category])
+                p.post_city = String(post[city])
+                p.post_country = String(post[country])
+                p.post_latitude = String(post[latitude])
+                p.post_longitude = String(post[longitude])
+                p.post_date = String(post[date])
+                
+                
+                var i = PostImage();
+                p.imageArr = i.getAllImages(postNo: post[id])
+                allPosts.append(p)
+            }
+        }
+        catch {
+            let allControllers = globalNavigationController.viewControllers
+            for vc in allControllers {
+                
+                if vc.isKind(of: NewTLViewController.self) {
+                    let backVC = vc as! NewTLViewController
+                    backVC.viewDidLoad()
+                    
+                }
+                
+            }
         }
         
         

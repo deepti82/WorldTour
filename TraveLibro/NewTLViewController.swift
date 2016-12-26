@@ -237,7 +237,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         self.currentTime = dateFormatterTwo.string(from: Date())
 
-        post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
+        let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
+        self.addPostLayout(po)
+        
+        let i = PostImage()
+        i.uploadPhotos()
+        
+        
         
         self.addView.postButton.isHidden = true
     }
