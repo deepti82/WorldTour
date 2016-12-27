@@ -24,6 +24,7 @@ class EachCityPagerViewController: UIViewController {
         nvcTwo = self.navigationController
         
         var controllerArray : [UIViewController] = []
+      
         let controllerOne = storyboard!.instantiateViewController(withIdentifier: "featuredTwo") as! FeaturedCitiesNewTwoViewController
         controllerOne.whichView = "MD"
         controllerOne.title = "Must Do's"

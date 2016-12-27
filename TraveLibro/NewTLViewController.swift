@@ -1897,7 +1897,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             case "solo":
                 print("10")
                 kindOfJourneyStack.append("solo")
-            case "betterhalf":
+            case "partner":
                 print("11")
                 kindOfJourneyStack.append("partner")
             case "colleague":
@@ -1909,35 +1909,52 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         if journeyCategories.count != 0 {
-            if journeyCategories.count == 0{
+            if journeyCategories.count == 1 {
                 otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
                 otgView.journeyCategoryOne.isHidden = false
                 otgView.journeyCategoryTwo.isHidden = true
                 otgView.journeyCategoryThree.isHidden = true
                 
-            }
-            if journeyCategories.count == 1 {
-                
+            }else if journeyCategories.count == 2 {
                 otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
                 otgView.journeyCategoryOne.isHidden = false
-                //            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
                 otgView.journeyCategoryTwo.isHidden = false
                 otgView.journeyCategoryThree.isHidden = true
-                
-            }
-                
-            else  {
-                
+            } else {
                 otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
                 otgView.journeyCategoryOne.isHidden = false
-                //            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
                 otgView.journeyCategoryTwo.isHidden = false
                 otgView.journeyCategoryThree.isHidden = false
                 print("indexprob\(kindOfJourneyStack.count)")
-//                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
                 
                 print("indexprob\(kindOfJourneyStack.count)")
+ 
             }
+//            if journeyCategories.count == 2 {
+//                
+//                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+//                otgView.journeyCategoryOne.isHidden = false
+//                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+//                otgView.journeyCategoryTwo.isHidden = false
+//                otgView.journeyCategoryThree.isHidden = true
+//                
+//            }
+//                
+//          for _ in 0...12 {
+//                
+//                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+//                otgView.journeyCategoryOne.isHidden = false
+//            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+//                otgView.journeyCategoryTwo.isHidden = false
+//                otgView.journeyCategoryThree.isHidden = false
+//                print("indexprob\(kindOfJourneyStack.count)")
+//              otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+//            
+//                print("indexprob\(kindOfJourneyStack.count)")
+            
             
         }
         if !isEdit {
