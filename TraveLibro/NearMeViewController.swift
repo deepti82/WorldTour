@@ -14,7 +14,7 @@ class NearMeViewController: UIViewController, UICollectionViewDelegateFlowLayout
     var city: String!
     
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
-    let textArr: [String] = ["Restaurants & Bars", "Netunre & Parks", "Sights & Landmarks", "Museums & Galleries", "Zoos & Aqua", "Shopping", "Religious", "Cinema & Theatre", "Hotels & Accomodations", "Transportation", "Health & Beauty", "Rentals", "Entertainment", "Essentials", "Emergency", "Other"]
+    let textArr: [String] = ["Restaurants & Bars", "Nature & Parks", "Sights & Landmarks", "Museums & Galleries", "Zoo & Aquariums", "Shopping", "Religious", "Cinema & Theatres", "Hotels & Accomodations", "Transportation", "Health & Beauty", "Rentals", "Entertainment", "Essentials", "Emergency", "Others"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
