@@ -13,6 +13,8 @@ public class Buddy {
     
     var buddyID = ""
     var postID = 0
+    var buddyName = ""
+    var buddyImg = ""
     let buddy = Table("Buddy")
     
     let id = Expression<Int64>("id")
