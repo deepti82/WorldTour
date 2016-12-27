@@ -253,12 +253,19 @@ public class Post {
              self.post_locationImage = json["imageUrl"].stringValue
         }
         for photo in json["photos"].arrayValue {
-            var img = PostImage();
-            adminUrl + "upload/readFile?file=" + photo["name"].stringValue + "&width=500"
-            img.urlToData()
+            let img = PostImage();
+            img.urlToData(photo["name"].stringValue)
             img.caption = photo["caption"].stringValue
-            imageArr.append(img);
+            self.imageArr.append(img);
         }
+        
+//        for buddy in json["buddies"].arrayValue {
+//            let img = PostImage();
+//            img.urlToData(photo["name"].stringValue)
+//            img.caption = photo["caption"].stringValue
+//            self.imageArr.append(img);
+//        }
+        
     }
     
     func uploadPost() {

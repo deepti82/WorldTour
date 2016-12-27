@@ -350,11 +350,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
         }
         
-        for image in checkIn.otherPhotosStack {
-            
-            image.isHidden = true
-            
-        }
+//        for image in checkIn.otherPhotosStack {
+//            
+//            image.isHidden = true
+//            
+//        }
         
         if post["photos"] != nil && post["photos"].array!.count > 0 {
             
@@ -377,17 +377,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             }
             
-            for i in 0 ..< count {
-                
-                
-                checkIn.otherPhotosStack[i].hnk_setImageFromURL(URL(string:photosToBeUploaded[i + 1].url)!)
-                checkIn.otherPhotosStack[i].isHidden = false
-                checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
-                checkIn.otherPhotosStack[i].tag = i + 1
-                
-                checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
-                
-            }
+//            for i in 0 ..< count {
+//                
+//                
+//                checkIn.otherPhotosStack[i].hnk_setImageFromURL(URL(string:photosToBeUploaded[i + 1].url)!)
+//                checkIn.otherPhotosStack[i].isHidden = false
+//                checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
+//                checkIn.otherPhotosStack[i].tag = i + 1
+//                
+//                checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
+//                
+//            }
             
         }
             
@@ -980,19 +980,20 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var checkIn = PhotosOTG()
         checkIn = PhotosOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: setHeight(view: checkIn, thoughts: thoughts, photos: post["photos"].array!.count)))
         checkIn.likeButton.setTitle(post["uniqueId"].string!, for: .normal)
-        checkIn.likeViewLabel.text = "\(post["like"].array!.count) Likes"
-        checkIn.commentCount.text = "\(post["comment"].array!.count) Comments"
+        checkIn.likeViewLabel.text = "\(post["likeCount"].stringValue) Likes"
+        checkIn.commentCount.text = "\(post["commentCount"].stringValue) Comments"
+        
         checkIn.commentButton.setTitle(post["uniqueId"].string!, for: .normal)
         checkIn.commentButton.setTitle(post["_id"].string!, for: .application)
         otherCommentId = post["_id"].string!
         currentPost = post
-        
-        if post["like"].array!.contains(JSON(user.getExistingUser())) {
-            let image = UIImage(named: "favorite-heart-button")
-            checkIn.likeButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
-            
-            checkIn.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
-        }
+        print(post);
+//        if post["like"].array!.contains(JSON(user.getExistingUser())) {
+//            let image = UIImage(named: "favorite-heart-button")
+//            checkIn.likeButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
+//            
+//            checkIn.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
+//        }
         
         checkIn.optionsButton.setTitle(post["_id"].string!, for: .normal)
         checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
@@ -1034,11 +1035,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
         }
         
-        for image in checkIn.otherPhotosStack {
-            
-            image.isHidden = true
-            
-        }
+//        for image in checkIn.otherPhotosStack {
+//            
+//            image.isHidden = true
+//            
+//        }
         
         if post["photos"] != nil && post["photos"].array!.count > 0 {
             
@@ -1060,24 +1061,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
             }
             
-            for i in 0 ..< count {
-                
-                let imgg = photos[i + 1]["name"]
-                checkIn.otherPhotosStack[i].hnk_setImageFromURL(NSURL(string:"\(adminUrl)upload/readFile?file=\(imgg)&width=250") as! URL)
-                checkIn.otherPhotosStack[i].isHidden = false
-                checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
-                checkIn.otherPhotosStack[i].tag = i + 1
-                checkIn.otherPhotosStack[i].accessibilityLabel = post["_id"].string!
-                checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
-                
-            }
+//            for i in 0 ..< count {
+//                
+//                let imgg = photos[i + 1]["name"]
+//                checkIn.otherPhotosStack[i].hnk_setImageFromURL(NSURL(string:"\(adminUrl)upload/readFile?file=\(imgg)&width=250") as! URL)
+//                checkIn.otherPhotosStack[i].isHidden = false
+//                checkIn.otherPhotosStack[i].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.openSinglePhoto(_:))))
+//                checkIn.otherPhotosStack[i].tag = i + 1
+//                checkIn.otherPhotosStack[i].accessibilityLabel = post["_id"].string!
+//                checkIn.otherPhotosStack[i].isUserInteractionEnabled = true
+//                
+//            }
             
         }
             
         else if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 && post["checkIn"]["location"] != "" {
             
             checkIn.mainPhoto.isHidden = false
-            checkIn.photosStack.isHidden = true
+//            checkIn.photosStack.isHidden = true
             //            checkIn.photosHC.constant = 0.0
             //            checkIn.frame.size.height = 250.0
             
@@ -1092,25 +1093,25 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         case "CheckIn":
             checkIn.whatPostIcon.setImage(UIImage(named: "location_icon"), for: .normal)
             
-            if post["photos"].array!.count < checkIn.otherPhotosStack.count {
-                
-                
-                let difference = checkIn.otherPhotosStack.count - post["photos"].array!.count
-                
-                for i in 0 ..< difference {
-                    
-                    
-                    let index = checkIn.otherPhotosStack.count - i - 1
-                    checkIn.otherPhotosStack[index].isHidden = true
-                    
-                }
-                
-            }
+//            if post["photos"].array!.count < checkIn.otherPhotosStack.count {
+//                
+//                
+//                let difference = checkIn.otherPhotosStack.count - post["photos"].array!.count
+//                
+//                for i in 0 ..< difference {
+//                    
+//                    
+//                    let index = checkIn.otherPhotosStack.count - i - 1
+//                    checkIn.otherPhotosStack[index].isHidden = true
+//                    
+//                }
+//                
+//            }
             
             if post["photos"].array!.count == 0 && post["videos"].array!.count == 0 {
                 
                 checkIn.mainPhoto.isHidden = false
-                checkIn.photosStack.isHidden = true
+//                checkIn.photosStack.isHidden = true
                 //                checkIn.photosHC.constant = 300.0
                 
                 if post["showMap"].boolValue && post["showMap"] != nil {
@@ -1180,7 +1181,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         case "Thoughts":
             checkIn.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: .normal)
             checkIn.mainPhoto.removeFromSuperview()
-            checkIn.photosStack.removeFromSuperview()
+//            checkIn.photosStack.removeFromSuperview()
         default:
             break
         }
@@ -1254,12 +1255,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         } else if photos == 1 {
             
-            myView.frame.size.height -= myView.photosStack.frame.height
+//            myView.frame.size.height -= myView.photosStack.frame.height
             totalHeight += 300
         }
         else if photos == 0 {
             
-            myView.frame.size.height -= myView.photosStack.frame.height
+//            myView.frame.size.height -= myView.photosStack.frame.height
             myView.frame.size.height -= myView.mainPhoto.frame.height
             totalHeight += 300 // CHECKIN MAP IMAGE
             
