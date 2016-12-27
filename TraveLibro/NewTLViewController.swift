@@ -56,6 +56,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     @IBAction func addMoreBuddies(_ sender: AnyObject) {
         let getBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
+        getBuddies.addedFriends = myJourney["buddies"].arrayValue
         getBuddies.whichView = "TLMiddle"
         getBuddies.uniqueId = journeyId
         self.navigationController?.setNavigationBarHidden(false, animated: true)

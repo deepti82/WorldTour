@@ -29,6 +29,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         
         sender.isEnabled = false
+        print(whichView)
         
         var addedFriendUsers: [JSON] = []
         if whichView == "TL" {
@@ -99,6 +100,10 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         else if whichView == "TLMiddle" {
+            
+            for friend in addedFriends {
+                addedFriendUsers.append(friend)
+            }
             
             let finalFriends: JSON = JSON(addedFriendUsers)
 //            saveButton.hidden = true
@@ -177,11 +182,12 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             
             let rightButton = UIButton()
-            rightButton.setImage(UIImage(named: "arrow_next_fa"), for: .normal)
+            rightButton.setTitle("Done", for: .normal)
             rightButton.addTarget(self, action: #selector(self.saveButtonTapped(_:)), for: .touchUpInside)
-            rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
             
             self.customNavigationBar(left: leftButton, right: rightButton)
+            
             
         }
         
@@ -285,11 +291,14 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                     print("error; \(response.error!.localizedDescription)")
                     
-                }
-                else if response["value"].bool! {
+                } else if response["value"].bool! {
                     
                     self.allFriendsJson = response["data"].array!
+                    print("$$$$$$$$$$$$$$")
+                    print(self.allFriendsJson)
+//                    print(self.allFriendsJson.contains({$0.1["_id"] == "57dd27f1e5130345f8864c44"}))
                     self.buddiesTableView.reloadData()
+                    
                 }
                 else {
                     
