@@ -39,6 +39,12 @@ public class PostImage {
         }
         
     }
+    
+    func urlToData(_ str:String) {
+        self.serverUrl = adminUrl + "upload/readFile?file=" + str + "&width=500"
+        self.imageUrl = URL(string: self.serverUrl)
+    }
+    
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]

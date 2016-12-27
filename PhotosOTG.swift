@@ -149,12 +149,32 @@ class PhotosOTG: UIView {
     }
     
     @IBAction func popEffect(_ sender: SpringButton) {
-       likeButton.animation = "pop"
+        likeButton.animation = "pop"
         likeButton.animateTo()
     }
     func setMapImage(mapUrl: String) {
-        
         mainPhoto.hnk_setImageFromURL(URL(string: mapUrl)!)
     }
-    
+    func generatePost(_ post: Post) {
+        post.getThought()
+        self.photosTitle.text = post.finalThought
+        
+        
+        post.getTypeOfPost()
+        print(post.typeOfPost);
+        if((post.typeOfPost) != nil) {
+            switch(post.typeOfPost) {
+            case "Location":
+                self.whatPostIcon.setImage(UIImage(named: "location_icon"), for: .normal)
+            case "Image":
+                self.whatPostIcon.setImage(UIImage(named: "camera_icon"), for: .normal)
+            case "Videos":
+                self.whatPostIcon.setImage(UIImage(named: "video"), for: .normal)
+            case "Thoughts":
+                self.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: .normal)
+            default:
+                break
+            }
+        }
+    }
 }

@@ -33,6 +33,10 @@ public class Post {
     let longitude = Expression<String>("longitude")
     let date = Expression<String>("date")
     
+    var finalThought:String!
+    
+    var typeOfPost:String!
+    
     var post_id:Int!;
     var post_type:String!
     var post_userId:String!
@@ -45,9 +49,7 @@ public class Post {
     var post_latitude:String!
     var post_longitude:String!
     var post_date:String!
-    
-    
-    
+    var post_locationImage:String!
     let hasCompleted = Expression<Bool>("hasCompleted")
     
     init() {
@@ -163,18 +165,100 @@ public class Post {
                 p.post_longitude = String(post[longitude])
                 p.post_date = String(post[date])
                 
-                
                 var i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
                 allPosts.append(p)
             }
         }
-        catch {
-        }
-        
-        
+        catch {}
         return allPosts
+    }
+    
+    func getThought () {
+        let post = self
+        var retText = ""
+        if(post.post_thoughts != nil && post.post_thoughts != "") {
+            retText = post.post_thoughts
+            if(post.post_location != nil && post.post_location != "") {
+                retText = retText + " at " + post.post_location
+                if(post.buddies.count == 1) {
+                    retText = retText + " with " + post.buddies[0].buddyName
+                } else if (post.buddies.count == 2) {
+                    retText = retText + " with " + post.buddies[0].buddyName + " and " + post.buddies[1].buddyName
+                } else if (post.buddies.count > 2) {
+                    let n = post.buddies.count - 1
+                    retText = retText + " with " + post.buddies[0].buddyName + " and " + String(n) + " others"
+                }
+            } else {
+                if(post.buddies.count == 1) {
+                    retText = retText + " with " + post.buddies[0].buddyName
+                } else if (post.buddies.count == 2) {
+                    retText = retText + " with " + post.buddies[0].buddyName + " and " + post.buddies[1].buddyName
+                } else if (post.buddies.count > 2) {
+                    let n = post.buddies.count - 1
+                    retText = retText + " with " + post.buddies[0].buddyName + " and " + String(n) + " others"
+                }
+            }
+        } else {
+            if(post.post_location != nil && post.post_location != "") {
+                retText = "At " + post.post_location
+                if(post.buddies.count == 1) {
+                    retText = retText + " with " + post.buddies[0].buddyName
+                } else if (post.buddies.count == 2) {
+                    retText = retText + " with " + post.buddies[0].buddyName + " and " + post.buddies[1].buddyName
+                } else if (post.buddies.count > 2) {
+                    let n = post.buddies.count - 1
+                    retText = retText + " with " + post.buddies[0].buddyName + " and " + String(n) + " others"
+                }
+            } else {
+                if(post.buddies.count == 1) {
+                    retText = "With " + post.buddies[0].buddyName
+                } else if (post.buddies.count == 2) {
+                    retText = "With " + post.buddies[0].buddyName + " and " + post.buddies[1].buddyName
+                } else if (post.buddies.count > 2) {
+                    let n = post.buddies.count - 1
+                    retText = "With " + post.buddies[0].buddyName + " and " + String(n) + " others"
+                }
+            }
+        }
+        self.finalThought = retText
+    }
+    
+    func getTypeOfPost() {
+        let post = self;
+        if(post.post_location != nil  && post.post_location != "") {
+            post.typeOfPost = "Location"
+        } else if(post.imageArr.count > 0) {
+            post.typeOfPost = "Image"
+        } else if(post.post_thoughts != nil && post.post_thoughts != "") {
+            post.typeOfPost = "Thoughts"
+        }
+    }
+    
+    func jsonToPost(_ json:JSON) {
         
+        self.post_id = json["_id"].intValue
+        self.post_type = json["type"].stringValue
+        self.post_userId = json["user"]["_id"].stringValue
+        self.post_journeyId = json["journey"].stringValue
+        self.post_thoughts = json["thoughts"].stringValue
+        self.post_location = json["checkIn"]["location"].stringValue
+        self.post_category = json["checkIn"]["category"].stringValue
+        self.post_city = json["checkIn"]["city"].stringValue
+        self.post_country = json["checkIn"]["country"].stringValue
+        self.post_latitude = json["checkIn"]["lat"].stringValue
+        self.post_longitude = json["checkIn"]["long"].stringValue
+        self.post_date = json["UTC"].stringValue
+        if(json["imageUrl"].string != nil) {
+             self.post_locationImage = json["imageUrl"].stringValue
+        }
+        for photo in json["photos"].arrayValue {
+            var img = PostImage();
+            adminUrl + "upload/readFile?file=" + photo["name"].stringValue + "&width=500"
+            img.urlToData()
+            img.caption = photo["caption"].stringValue
+            imageArr.append(img);
+        }
     }
     
     func uploadPost() {
@@ -204,7 +288,7 @@ public class Post {
                 
                 let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
-
+                
                 var photosJson:[JSON] = []
                 
                 for img in p.imageArr {
