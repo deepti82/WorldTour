@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreGraphics
 class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var tripTitle: UITextField!
     
@@ -23,13 +23,13 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var datePickerView: UIDatePicker = UIDatePicker()
     var date = NSDate()
     var currentYear: Int = 0
-    
-    
+   
     var currentMonth: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         quickItinery = ["title": "", "year": "", "month": "", "duration": ""]
+        
         
         pickerView.dataSource = self
         pickerView.delegate = self
