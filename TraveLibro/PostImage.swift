@@ -11,7 +11,7 @@ import Haneke
 
 public class PostImage {
     var imageUrl: URL!
-    var image = UIImage()
+    var image:UIImage!
     var caption = ""
     var postId = 0
     var serverUrl = ""
@@ -82,7 +82,8 @@ public class PostImage {
                 let p = PostImage();
                 p.caption = String(photo[captions])
                 p.serverUrl = String(photo[url])
-                p.imageUrl = URL(fileURLWithPath: String(photo[localUrl]))
+                p.imageUrl = getDocumentsDirectory().appendingPathComponent( photo[localUrl] )
+                p.image = UIImage(contentsOfFile: p.imageUrl.absoluteString)!
                 allImages.append(p)
             }
         }
@@ -128,6 +129,7 @@ public class PostImage {
             }
         }
         catch {
+            print(error);
         }
         
     }

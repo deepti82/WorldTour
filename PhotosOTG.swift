@@ -11,6 +11,7 @@ import Spring
 
 class PhotosOTG: UIView {
 
+    @IBOutlet weak var morePhotosScroll: UIScrollView!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var postDp: UIImageView!
     @IBOutlet weak var stackView: UIView!
@@ -39,9 +40,10 @@ class PhotosOTG: UIView {
     @IBOutlet weak var commentCount: UILabel!
     @IBOutlet weak var photosHC: NSLayoutConstraint!
     
+    @IBOutlet weak var likeCommentView: UIView!
     var likeCount = 0
     var mapImage: String!
-    
+    var horizontalScrollForPhotos:HorizontalLayout!
     @IBAction func sendLikes(_ sender: UIButton) {
             
         print("like button tapped \(sender.titleLabel!.text)")
@@ -133,6 +135,9 @@ class PhotosOTG: UIView {
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         
         lineUp.backgroundColor = UIColor.clear
+        
+        horizontalScrollForPhotos = HorizontalLayout(height: morePhotosScroll.frame.height)
+        morePhotosScroll.addSubview(horizontalScrollForPhotos)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -155,11 +160,50 @@ class PhotosOTG: UIView {
     func setMapImage(mapUrl: String) {
         mainPhoto.hnk_setImageFromURL(URL(string: mapUrl)!)
     }
+    
+    
+    func addPhotoToLayout(_ post: Post) {
+        self.horizontalScrollForPhotos.removeAll()
+        for i in 1 ..< post.imageArr.count {
+            let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+            photosButton.backgroundColor = mainGreenColor
+            
+            photosButton.imageView?.sizeToFit()
+            photosButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+            if(post.imageArr[i].image != nil) {
+                photosButton.setImage(post.imageArr[i].image, for: .normal)
+            } else {
+                photosButton.imageView?.hnk_setImageFromURL(post.imageArr[i].imageUrl)
+            }
+            print(post.imageArr[i].imageUrl.absoluteString);
+            
+            photosButton.layer.cornerRadius = 5.0
+            photosButton.tag = i
+            photosButton.clipsToBounds = true
+//            photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
+            self.horizontalScrollForPhotos.addSubview(photosButton)
+        }
+    
+        self.horizontalScrollForPhotos.layoutSubviews()
+        self.morePhotosScroll.contentSize = CGSize(width: self.horizontalScrollForPhotos.frame.width, height: self.horizontalScrollForPhotos.frame.height)
+    }
+    
     func generatePost(_ post: Post) {
         post.getThought()
         self.photosTitle.text = post.finalThought
+        print(post.imageArr.count);
+        
+        if(post.imageArr.count > 0) {
+            print(post.imageArr[0].imageUrl.absoluteString);
+            self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
+            
+            if(post.imageArr.count > 1) {
+                self.addPhotoToLayout(post)
+            }
+        }
         
         
+        self.likeCommentView.backgroundColor = mainOrangeColor
         post.getTypeOfPost()
         print(post.typeOfPost);
         if((post.typeOfPost) != nil) {

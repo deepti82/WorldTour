@@ -626,6 +626,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         let allPosts = response["data"]["post"].array!
                         self.getAllPosts(allPosts)
                         
+                        
                     }
                     self.setTopNavigation(text: "On The Go");
                 }
