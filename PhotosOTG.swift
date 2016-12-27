@@ -187,6 +187,18 @@ class PhotosOTG: UIView {
         self.horizontalScrollForPhotos.layoutSubviews()
         self.morePhotosScroll.contentSize = CGSize(width: self.horizontalScrollForPhotos.frame.width, height: self.horizontalScrollForPhotos.frame.height)
     }
+    var updateTimer:Timer!
+    func callFunction() {
+        let image = self.mainPhoto.image
+        
+        let widthInPixels = image?.cgImage?.width
+        let heightInPixels =  image?.cgImage?.height
+        print("function called")
+        if(widthInPixels != 180) {
+             updateTimer.invalidate()
+        }
+       
+    }
     
     func generatePost(_ post: Post) {
         post.getThought()
@@ -195,8 +207,9 @@ class PhotosOTG: UIView {
         
         if(post.imageArr.count > 0) {
             print(post.imageArr[0].imageUrl.absoluteString);
+            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFit
             self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
-            
+            updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: "callFunction", userInfo: nil, repeats: true)
             if(post.imageArr.count > 1) {
                 self.addPhotoToLayout(post)
             }
