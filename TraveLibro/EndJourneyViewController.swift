@@ -98,8 +98,11 @@ class EndJourneyViewController: UIViewController {
         makeTLProfilePicture(userDp)
         endJourneyTitle.text = "\(currentUser["name"]) has ended the \(journey["name"]) Journey"
         
+        //  ADD BUDDIES
+        
         let buddies = journey["buddies"].array!
         let categories = journey["kindOfJourney"].array!
+        
         
         if buddies.count >= 3 {
             
@@ -132,6 +135,8 @@ class EndJourneyViewController: UIViewController {
             buddyStack.isHidden = true
             
         }
+        
+        //  END BUDDIES
         
         if categories.count >= 3 {
             
@@ -219,7 +224,6 @@ class EndJourneyViewController: UIViewController {
     func randomImage() {
         
         let randomIndex = Int(arc4random_uniform(UInt32(journeyImages.count)))
-        print(journeyImages[randomIndex])
         self.coverImage = journeyImages[randomIndex]
         makeCoverPicture(image: journeyImages[randomIndex])
         
@@ -261,7 +265,6 @@ class EndJourneyViewController: UIViewController {
     }
     
     func doneEndJourney(_ sender: UIButton) {
-        print(coverImage)
         if coverImage.contains("UIImage") {
             let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/coverimage.jpg"
             DispatchQueue.main.async(execute: {
@@ -309,7 +312,6 @@ class EndJourneyViewController: UIViewController {
                 })
             })
         }
-        
     }
     
     var loader = LoadingOverlay()
