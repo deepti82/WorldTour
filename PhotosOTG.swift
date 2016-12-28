@@ -180,16 +180,16 @@ class PhotosOTG: UIView {
     func addPhotoToLayout(_ post: Post) {
         self.horizontalScrollForPhotos.removeAll()
         for i in 1 ..< post.imageArr.count {
-            let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+            let photosButton = UIImageView(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
             photosButton.backgroundColor = mainGreenColor
-            photosButton.imageView?.sizeToFit()
-            photosButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+            photosButton.contentMode = UIViewContentMode.scaleAspectFill
             if(post.imageArr[i].image != nil) {
-                photosButton.setImage(post.imageArr[i].image, for: .normal)
+                photosButton.image = post.imageArr[i].image
             } else {
-                photosButton.imageView?.frame.size.height = 65
-                photosButton.imageView?.frame.size.width = 65
-                photosButton.imageView?.hnk_setImageFromURL(post.imageArr[i].imageUrl)
+                photosButton.frame.size.height = 65
+                photosButton.frame.size.width = 65
+//                photosButton.image = UIImage(contentsOfFile: post.imageArr[i].imageUrl.absoluteString)
+                photosButton.hnk_setImageFromURL(post.imageArr[i].imageUrl)
             }
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
@@ -253,16 +253,25 @@ class PhotosOTG: UIView {
         
         if(post.imageArr.count > 0) {
             self.isImage = true;
-            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFit
+            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
-            updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: "callFunction", userInfo: nil, repeats: true)
+            updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PhotosOTG.callFunction), userInfo: nil, repeats: true)
             if(post.imageArr.count > 1) {
                 self.addPhotoToLayout(post)
                 isMoreImage = true;
             }
         } else {
-            self.setHeight(0)
+            if(post.post_locationImage != nil) {
+                self.isImage = true;
+                self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
+                print(post.post_locationImage)
+                self.mainPhoto.hnk_setImageFromURL(URL(string:post.post_locationImage)!)
+                updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PhotosOTG.callFunction), userInfo: nil, repeats: true)
+            } else {
+                self.setHeight(0)
+            }
         }
+        
         
         
 //        self.likeCommentView.backgroundColor = mainOrangeColor

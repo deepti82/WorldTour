@@ -250,7 +250,7 @@ public class Post {
         self.post_longitude = json["checkIn"]["long"].stringValue
         self.post_date = json["UTC"].stringValue
         if(json["imageUrl"].string != nil) {
-             self.post_locationImage = json["imageUrl"].stringValue
+            self.post_locationImage = json["imageUrl"].stringValue
         }
         for photo in json["photos"].arrayValue {
             let img = PostImage();
