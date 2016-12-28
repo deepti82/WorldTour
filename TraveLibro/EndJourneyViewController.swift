@@ -1,5 +1,8 @@
 import UIKit
 
+var globalEndJourneyViewController: UIViewController!
+
+
 class EndJourneyViewController: UIViewController {
     
     @IBOutlet weak var endJourneyTitle: UILabel!
@@ -49,7 +52,7 @@ class EndJourneyViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        globalEndJourneyViewController = self
         journeyImages = []
         
         let leftButton = UIButton()
@@ -165,6 +168,12 @@ class EndJourneyViewController: UIViewController {
         }
         
         
+    }
+    func checkView(newcountry:JSON) {
+        print("check view clicked")
+        print(newcountry)
+        self.journey = newcountry
+        self.getAllCountryReviews()
     }
     
     
@@ -338,6 +347,7 @@ class EndJourneyViewController: UIViewController {
     
     func getAllCountryReviews() {
         print("in all country review")
+//        rateCountriesLayoutMod.removeAll()
         var reviews = ["Disappointed", "Sad", "Good", "Super", "In Love"]
         var reviewSmileys = ["disapointed", "sad", "good", "superface", "love"]
         countriesVisited = journey["countryVisited"].array!
