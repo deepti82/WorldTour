@@ -1262,7 +1262,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         else if photos == 0 {
             
 //            myView.frame.size.height -= myView.photosStack.frame.height
-            myView.frame.size.height -= myView.mainPhoto.frame.height
+//            myView.frame.size.height -= myView.mainPhoto.frame.height
             totalHeight += 300 // CHECKIN MAP IMAGE
             
         }

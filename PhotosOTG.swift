@@ -12,6 +12,7 @@ import Spring
 class PhotosOTG: UIView {
 
     @IBOutlet weak var morePhotosScroll: UIScrollView!
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var postDp: UIImageView!
     @IBOutlet weak var stackView: UIView!
@@ -40,9 +41,16 @@ class PhotosOTG: UIView {
     @IBOutlet weak var commentCount: UILabel!
     @IBOutlet weak var photosHC: NSLayoutConstraint!
     
+    
+    
     @IBOutlet weak var likeCommentView: UIView!
+    var updateTimer:Timer!
+    var imageRatio:CGFloat = 1.0;
     var likeCount = 0
     var mapImage: String!
+    var newHeight:CGFloat = 400.0;
+    var isImage = false;
+    var isMoreImage = false;
     var horizontalScrollForPhotos:HorizontalLayout!
     @IBAction func sendLikes(_ sender: UIButton) {
             
@@ -187,7 +195,7 @@ class PhotosOTG: UIView {
         self.horizontalScrollForPhotos.layoutSubviews()
         self.morePhotosScroll.contentSize = CGSize(width: self.horizontalScrollForPhotos.frame.width, height: self.horizontalScrollForPhotos.frame.height)
     }
-    var updateTimer:Timer!
+    
     func callFunction() {
         let image = self.mainPhoto.image
         
@@ -195,30 +203,61 @@ class PhotosOTG: UIView {
         let heightInPixels =  image?.cgImage?.height
         print("function called")
         if(widthInPixels != 180) {
-             updateTimer.invalidate()
+            updateTimer.invalidate()
+            imageRatio = CGFloat(widthInPixels!)/CGFloat(heightInPixels!);
+            newHeight = screenWidth / imageRatio
+            setHeight(newHeight)
         }
+        
        
     }
+    
+    
+    func setHeight (_ imageHeight:CGFloat) {
+        var accheight:CGFloat = 60 + 75 + 90
+        
+        if(isImage) {
+            accheight = accheight + imageHeight
+            bgView.frame.size = CGSize(width: screenWidth, height: imageHeight)
+            mainPhoto.frame.size = CGSize(width: screenWidth, height: imageHeight)
+            if(isMoreImage) {
+                accheight = accheight + 60
+                morePhotosScroll.frame.origin.y = 60+75+imageHeight
+                likeCommentView.frame.origin.y = 60+75+imageHeight+60
+            } else {
+                morePhotosScroll.alpha = 0
+                likeCommentView.frame.origin.y = 60+75+imageHeight
+            }
+        } else {
+            bgView.alpha = 0
+            likeCommentView.frame.origin.y = 60+75
+        }
+        
+        self.frame.size = CGSize(width: screenWidth, height: accheight)
+        globalNewTLViewController.addHeightToLayout(height: 50.0)
+    };
+    
     
     func generatePost(_ post: Post) {
         post.getThought()
         self.photosTitle.text = post.finalThought
-        print(post.imageArr.count);
         
         if(post.imageArr.count > 0) {
-            print(post.imageArr[0].imageUrl.absoluteString);
+            self.isImage = true;
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFit
             self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
             updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: "callFunction", userInfo: nil, repeats: true)
             if(post.imageArr.count > 1) {
                 self.addPhotoToLayout(post)
+                isMoreImage = true;
             }
+        } else {
+            self.setHeight(0)
         }
         
         
         self.likeCommentView.backgroundColor = mainOrangeColor
         post.getTypeOfPost()
-        print(post.typeOfPost);
         if((post.typeOfPost) != nil) {
             switch(post.typeOfPost) {
             case "Location":

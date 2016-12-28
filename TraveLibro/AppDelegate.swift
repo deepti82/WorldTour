@@ -55,6 +55,11 @@ var storyboard: UIStoryboard!
 
 var leftViewController: SideNavigationMenuViewController!
 
+
+let screenSize = UIScreen.main.bounds
+let screenWidth = screenSize.width
+let screenHeight = screenSize.height
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     

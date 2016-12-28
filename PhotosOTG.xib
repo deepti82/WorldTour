@@ -23,6 +23,7 @@
                 <outlet property="commentCount" destination="uys-5H-aDf" id="fEY-tI-O7n"/>
                 <outlet property="commentIcon" destination="dT4-Iz-Gn5" id="uZr-cc-W18"/>
                 <outlet property="dateLabel" destination="1Ws-87-dYW" id="3IK-Ch-8wl"/>
+                <outlet property="headerView" destination="w2W-v3-gzJ" id="JK7-Bs-O3H"/>
                 <outlet property="likeButton" destination="vA0-yX-0yt" id="5Qm-QU-ePP"/>
                 <outlet property="likeCommentView" destination="c3m-8Q-okh" id="20b-b1-Tpp"/>
                 <outlet property="likeHeart" destination="W81-qL-SC8" id="ZlT-JN-tXE"/>
@@ -107,7 +108,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c3m-8Q-okh">
-                    <rect key="frame" x="-3" y="512" width="403" height="89"/>
+                    <rect key="frame" x="-3" y="512" width="403" height="90"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="speech_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Iz-Gn5">
