@@ -149,7 +149,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     }
     
     func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
-        //        print("inside the style horizontal button")
         button.backgroundColor = UIColor.clear
         button.titleLabel!.font = avenirFont
         button.setTitle(buttonTitle, for: UIControlState())
@@ -167,12 +166,9 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        
         if thoughtsTextView.text == "Fill Me In..." {
-            
             thoughtsTextView.text = ""
         }
-        
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

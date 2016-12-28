@@ -101,18 +101,12 @@ class PhotosOTG: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
-        
-        
-        
         postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)
         makeTLProfilePicture(postDp)
         
         bgView.layer.cornerRadius = 5
         bgView.layer.shadowColor = UIColor.black.cgColor
         bgView.layer.shadowOffset = CGSize(width: 2, height: 1)
-        
-        
         
         postDp.layer.cornerRadius = 10
         postDp.layer.borderWidth = 2

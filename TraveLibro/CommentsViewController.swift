@@ -100,9 +100,23 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         addComment.returnKeyType = .done
         addComment.delegate = self
         
+        
+        
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
+    
+        let rightButton = UIButton()
+        globalNavigationController.topViewController?.customNavigationBar(left: leftButton,right:rightButton)
+        
     }
     
     var viewHeight = 0
+    
+    func closeAdd(_ sender:UIButton) {
+        globalNavigationController?.popToRootViewController(animated: true)
+    }
     
     func keyboardWillShow(_ notification: Notification) {
         view.frame.origin.y = CGFloat(viewHeight)

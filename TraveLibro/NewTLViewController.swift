@@ -105,9 +105,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.navigationController?.pushViewController(chooseCategory, animated: true)
             
         }))
+        
         optionsController.addAction(UIAlertAction(title: "Change Date & Time", style: .default, handler:
             { action -> Void in
-                
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
                 self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
@@ -115,12 +115,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
                 self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
                 self.datePickerView.maximumDate = Date()
-                
                 addTopBorder(mainBlueColor, view: self.datePickerView, borderWidth: 1)
                 addTopBorder(mainBlueColor, view: self.inputview, borderWidth: 1)
-                
                 self.inputview.addSubview(self.datePickerView) // add date picker to UIView
-                
                 let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
                 doneButton.setTitle("SAVE", for: .normal)
                 doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
