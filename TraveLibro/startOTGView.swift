@@ -91,11 +91,11 @@ class startOTGView: UIView {
         detectLocationView.layer.shadowOpacity = 0.5
         detectLocationView.layer.shadowRadius = 1.0
         
-        cityDetails.layer.cornerRadius = 5
-        cityImage.layer.cornerRadius = 5
-        cityImage.layer.borderColor = UIColor.white.cgColor
-        cityImage.layer.borderWidth = 3.0
-        cityImage.clipsToBounds = true
+//        cityDetails.layer.cornerRadius = 5
+//        cityImage.layer.cornerRadius = 5
+//        cityImage.layer.borderColor = UIColor.white.cgColor
+//        cityImage.layer.borderWidth = 3.0
+//        cityImage.clipsToBounds = true
         
         selectCategoryButton.layer.cornerRadius = 5
         selectCategoryButton.layer.borderColor = UIColor.white.cgColor
