@@ -186,14 +186,14 @@ class PhotosOTG: UIView {
     func addPhotoToLayout(_ post: Post) {
         self.horizontalScrollForPhotos.removeAll()
         for i in 1 ..< post.imageArr.count {
-            let photosButton = UIImageView(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+            let photosButton = UIImageView(frame: CGRect(x: 10, y: 0, width: 55, height: 55))
             photosButton.backgroundColor = mainGreenColor
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
             if(post.post_isOffline) {
                 photosButton.image = post.imageArr[i].image
             } else {
-                photosButton.frame.size.height = 65
-                photosButton.frame.size.width = 65
+                photosButton.frame.size.height = 55
+                photosButton.frame.size.width = 55
                 photosButton.hnk_setImageFromURL(post.imageArr[i].imageUrl)
             }
             photosButton.layer.cornerRadius = 5.0
@@ -230,7 +230,7 @@ class PhotosOTG: UIView {
     
     
     func setHeight (_ imageHeight:CGFloat) {
-        var accheight:CGFloat = 60 + 75 + 90
+        var accheight:CGFloat = 50 + 75 + 90
         
         if(isImage) {
             accheight = accheight + imageHeight
@@ -238,15 +238,15 @@ class PhotosOTG: UIView {
             mainPhoto.frame.size = CGSize(width: screenWidth, height: imageHeight)
             if(isMoreImage) {
                 accheight = accheight + 60
-                morePhotosScroll.frame.origin.y = 60+75+imageHeight
-                likeCommentView.frame.origin.y = 60+75+imageHeight+60
+                morePhotosScroll.frame.origin.y = 50+75+imageHeight
+                likeCommentView.frame.origin.y = 50+75+imageHeight+60
             } else {
                 morePhotosScroll.alpha = 0
-                likeCommentView.frame.origin.y = 60+75+imageHeight
+                likeCommentView.frame.origin.y = 50+75+imageHeight
             }
         } else {
             bgView.alpha = 0
-            likeCommentView.frame.origin.y = 60+75
+            likeCommentView.frame.origin.y = 50+75
         }
         
         self.frame.size = CGSize(width: screenWidth, height: accheight)
