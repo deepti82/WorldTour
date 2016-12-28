@@ -383,7 +383,7 @@ extension NewTLViewController {
 
         }
         else {
-            otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 500))
+            otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 556))
             otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
             otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
             otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
@@ -483,8 +483,8 @@ extension NewTLViewController {
         
     }
     func scrollToBottom() {
-        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height)
-        mainScroll.setContentOffset(bottomOffset, animated: true)
+//        let bottomOffset = CGPoint(x: 0, y: mainScroll.contentSize.height - mainScroll.bounds.size.height)
+//        mainScroll.setContentOffset(bottomOffset, animated: true)
     }
     
     func getJourneyBuddies(journey: JSON) {

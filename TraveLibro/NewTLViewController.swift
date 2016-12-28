@@ -1203,7 +1203,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let lastReviewCount = post["review"].array!.count - 1
         let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
         //        myReview = post["review"].array!
-        rateButton.showRating(ratingCount: Int(allReviews[0]["rating"].string!)! - 1)
+//        rateButton.showRating(ratingCount: Int(allReviews[0]["rating"].string!)! - 1)
         rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
         rateButton.rating.setTitle(post["_id"].string!, for: .application)
         rateButton.tag = Int(allReviews[lastReviewCount]["rating"].string!)!
@@ -1653,9 +1653,43 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         po.jsonToPost(post);
         self.addPostLayout(po)
         
+        if post["review"].array!.count > 0 {
+            
+            for subview in layout.subviews {
+                
+                if subview.isKind(of: RatingCheckIn.self) {
+                    
+                    let myView = subview as! RatingCheckIn
+                    if myView.rateCheckInButton.currentTitle! == post["_id"].string! {
+                        
+                        subview.removeFromSuperview()
+                        removeHeightFromLayout(subview.frame.height)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            showReviewButton(post: post, isIndex: false, index: nil)
+            
+        }
+            
+        else {
+            
+            let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+            rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
+            rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
+            rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)
+            layout.addSubview(rateButton)
+            addHeightToLayout(height: rateButton.frame.height + 20.0)
+            rateButton.tag = 10
+            
+        }
+        
         
 //        if post["checkIn"]["location"] != nil &&  post["checkIn"].string != "" {
-//            
+//
 //            showPost("CheckIn", post: post)
 //        }
 //        else if post["photos"] != nil && post["photos"].array!.count > 0 {
