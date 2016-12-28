@@ -139,7 +139,6 @@ class EndJourneyViewController: UIViewController {
         //  END BUDDIES
         
         if categories.count >= 3 {
-            
             categoryImages[0].image = UIImage(named: "\(categories[0])")
             categoryImages[1].image = UIImage(named: "\(categories[1])")
             categoryImages[2].image = UIImage(named: "\(categories[2])")
@@ -338,7 +337,7 @@ class EndJourneyViewController: UIViewController {
     var rateCountriesLayoutMod: VerticalLayout!
     
     func getAllCountryReviews() {
-        
+        print("in all country review")
         var reviews = ["Disappointed", "Sad", "Good", "Super", "In Love"]
         var reviewSmileys = ["disapointed", "sad", "good", "superface", "love"]
         countriesVisited = journey["countryVisited"].array!
@@ -346,6 +345,10 @@ class EndJourneyViewController: UIViewController {
         rateCountriesScroll.addSubview(rateCountriesLayoutMod)
         
         if journey["review"].array!.count > 0 {
+            print("countriesVisited")
+            print(countriesVisited)
+            print("journey[review].array!")
+            print(journey["review"].array!)
             
             for eachCountry in countriesVisited {
                 
@@ -363,9 +366,7 @@ class EndJourneyViewController: UIViewController {
                         rateButton.rating.setImage(UIImage(named: reviewSmileys[Int(eachReview["rating"].string!)! - 1]), for: .normal)
                         rateCountriesLayoutMod.addSubview(rateButton)
                         addHeightToLayout(height: 150, layoutView: rateCountriesLayoutMod, scroll: rateCountriesScroll)
-                    }
-                    
-                    else {
+                    } else {
                         
                         countryJSON = eachCountry
                     }
