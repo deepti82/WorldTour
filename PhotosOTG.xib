@@ -133,6 +133,9 @@
                             <rect key="frame" x="41" y="17" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button" image="speech_icon"/>
+                            <connections>
+                                <action selector="sendComments:" destination="-1" eventType="touchUpInside" id="3Ya-zY-auN"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hQv-Ky-xKf">
                             <rect key="frame" x="74" y="17" width="25" height="25"/>

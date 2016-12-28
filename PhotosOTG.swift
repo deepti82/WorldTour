@@ -55,40 +55,29 @@ class PhotosOTG: UIView {
         print("like button tapped \(sender.titleLabel!.text)")
         
         var hasLiked = false
-        
         if sender.tag == 1 {
-            
             hasLiked = true
             sender.tag = 0
-            
         }
         else {
-            
             sender.tag = 1
         }
         
         print("send likes: \(sender.tag) \(hasLiked)")
-        
-        request.likePost(sender.titleLabel!.text!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
-            
+        print("post_uniqueId " + postTop.post_ids)
+        request.likePost(postTop.post_uniqueId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
             DispatchQueue.main.async(execute: {
-                
                 if response.error != nil {
-                    
                     print("error: \(response.error!.localizedDescription)")
-                    
                 }
                 else if response["value"].bool! {
-                    
                     if sender.tag == 1 {
                         sender.setImage(UIImage(named: "favorite-heart-button"), for: .normal)
                         sender.tintColor = mainOrangeColor
                         self.likeCount += 1
                         self.likeViewLabel.text = "\(self.likeCount) Likes"
-                        
                     }
                     else {
-                        
                         sender.setImage(UIImage(named: "like_empty_icon"), for: .normal)
                         sender.tintColor = mainBlueColor
                         if self.likeCount <= 0 {
@@ -96,11 +85,8 @@ class PhotosOTG: UIView {
                         } else {
                             self.likeCount -= 1
                         }
-                        
                         self.likeViewLabel.text = "\(self.likeCount) Likes"
-                        
                     }
-                    
                 }
                 else {
                     
@@ -329,6 +315,13 @@ class PhotosOTG: UIView {
                 break
             }
         }
+    }
+    @IBAction func sendComments(_ sender: UIButton) {
+        let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
+        comment.postId = postTop.post_ids
+        comment.otherId = sender.title(for: .application)!
+        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.pushViewController(comment, animated: true)
     }
     func openSinglePhoto(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController

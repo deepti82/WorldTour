@@ -36,7 +36,7 @@ public class Post {
     var finalThought:String!
     
     var typeOfPost:String!
-    
+    var post_uniqueId:String!
     var post_id:Int!;
     var post_ids:String!;
     var post_type:String!
@@ -249,6 +249,7 @@ public class Post {
     func jsonToPost(_ json:JSON) {
         
         self.post_ids = json["_id"].stringValue
+        self.post_uniqueId = json["uniqueId"].stringValue
         self.post_type = json["type"].stringValue
         self.post_userId = json["user"]["_id"].stringValue
         self.post_journeyId = json["journey"].stringValue
@@ -291,24 +292,18 @@ public class Post {
     }
     
     func changeDate(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = givenFormat
         let date = dateFormatter.date(from: date)
-        
         dateFormatter.dateFormat = getFormat
-        
         if isDate {
-            
             dateFormatter.dateStyle = .medium
-            
         }
-        
         let goodDate = dateFormatter.string(from: date!)
         return goodDate
-        
-        
     }
+    
+    
     
     func uploadPost() {
         do {
