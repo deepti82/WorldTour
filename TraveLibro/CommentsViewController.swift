@@ -102,17 +102,30 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    var viewHeight = 0
+    
     func keyboardWillShow(_ notification: Notification) {
-        
+        view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y -= keyboardSize.height
+            
+            
+            //            if !keyboardHidden {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= 258
+                print("ye tym bhi karna hai\(keyboardSize.height)")
+                //                keyboardHidden = true
+                //            }
+            }
         }
         
     }
     
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y += keyboardSize.height
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+                print("ye tym bhi karna hai plus\(keyboardSize.height)")
+            }
         }
     }
     
