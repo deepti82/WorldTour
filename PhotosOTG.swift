@@ -188,7 +188,6 @@ class PhotosOTG: UIView {
             } else {
                 photosButton.frame.size.height = 65
                 photosButton.frame.size.width = 65
-//                photosButton.image = UIImage(contentsOfFile: post.imageArr[i].imageUrl.absoluteString)
                 photosButton.hnk_setImageFromURL(post.imageArr[i].imageUrl)
             }
             photosButton.layer.cornerRadius = 5.0
