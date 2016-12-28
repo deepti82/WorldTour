@@ -60,6 +60,8 @@
 		3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */; };
 		3AFB01C61DDC30DA00BCD523 /* AddRatingCountries.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */; };
 		3AFB01C81DDC310500BCD523 /* AddRatingCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */; };
+		842484F41E139FBB00083115 /* PhotoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F31E139FBA00083115 /* PhotoHeaderView.xib */; };
+		842484F61E13A4C000083115 /* PhotoFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F51E13A4C000083115 /* PhotoFooterView.xib */; };
 		843510DE1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510DD1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift */; };
 		843510E01DF7F84600C3D8EE /* QuickIteneraryTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510DF1DF7F84600C3D8EE /* QuickIteneraryTwo.swift */; };
 		843510E21DF7F86400C3D8EE /* QuickIteneraryThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510E11DF7F86400C3D8EE /* QuickIteneraryThree.swift */; };
@@ -449,6 +451,8 @@
 		3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		842484F31E139FBA00083115 /* PhotoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoHeaderView.xib; sourceTree = "<group>"; };
+		842484F51E13A4C000083115 /* PhotoFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoFooterView.xib; sourceTree = "<group>"; };
 		843510DD1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryOne.swift; sourceTree = "<group>"; };
 		843510DF1DF7F84600C3D8EE /* QuickIteneraryTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryTwo.swift; sourceTree = "<group>"; };
 		843510E11DF7F86400C3D8EE /* QuickIteneraryThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryThree.swift; sourceTree = "<group>"; };
@@ -1839,6 +1843,8 @@
 			children = (
 				C2A6E2661CE9D48A00D3F845 /* PhotosOTG.xib */,
 				C2A6E2681CE9DA8B00D3F845 /* PhotosOTG.swift */,
+				842484F31E139FBA00083115 /* PhotoHeaderView.xib */,
+				842484F51E13A4C000083115 /* PhotoFooterView.xib */,
 			);
 			name = PhotosOTG;
 			sourceTree = "<group>";
@@ -2256,6 +2262,7 @@
 				C263E3A71D1E5D2300D274FE /* NewThoughtsView.xib in Resources */,
 				C24F84F01D004E59002EA203 /* NoFollowers.xib in Resources */,
 				C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */,
+				842484F61E13A4C000083115 /* PhotoFooterView.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
 				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
 				C2873E8C1D9E8E510001431B /* BuddyLeaves.xib in Resources */,
@@ -2266,6 +2273,7 @@
 				C267301F1D279D7900F2C822 /* AddNewOTG.xib in Resources */,
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
 				C26D619A1D43A9FF0036714C /* footerNew.xib in Resources */,
+				842484F41E139FBB00083115 /* PhotoHeaderView.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
 				3AF187081D785C9D00A86BC1 /* forDpFour.xib in Resources */,
 				C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */,
