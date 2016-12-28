@@ -998,8 +998,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         checkIn.optionsButton.setTitle(post["_id"].string!, for: .normal)
         checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
-        checkIn.dateLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true) //+ "  | "
-        checkIn.timeLabel.text = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
+        
         checkIn.clipsToBounds = true
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), for: .touchUpInside)
         checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), for: .touchUpInside)

@@ -10,7 +10,7 @@ import UIKit
 import Spring
 
 class PhotosOTG: UIView {
-
+    
     @IBOutlet weak var morePhotosScroll: UIScrollView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var bgView: UIView!
@@ -53,7 +53,7 @@ class PhotosOTG: UIView {
     var isMoreImage = false;
     var horizontalScrollForPhotos:HorizontalLayout!
     @IBAction func sendLikes(_ sender: UIButton) {
-            
+        
         print("like button tapped \(sender.titleLabel!.text)")
         
         var hasLiked = false
@@ -196,10 +196,10 @@ class PhotosOTG: UIView {
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
-//            photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
+            //            photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
             self.horizontalScrollForPhotos.addSubview(photosButton)
         }
-    
+        
         self.horizontalScrollForPhotos.layoutSubviews()
         self.morePhotosScroll.contentSize = CGSize(width: self.horizontalScrollForPhotos.frame.width, height: self.horizontalScrollForPhotos.frame.height)
     }
@@ -217,7 +217,7 @@ class PhotosOTG: UIView {
             setHeight(newHeight)
         }
         
-       
+        
     }
     
     
@@ -252,6 +252,27 @@ class PhotosOTG: UIView {
         
         headerView.frame.size = CGSize(width: screenWidth, height: 75)
         
+//        self.post_likeCount = json["likeCount"].intValue
+//        self.post_commentCount = json["commentCount"].intValue
+//        if(json["likeDone"].bool != nil) {
+//            self.post_likeDone = json["likeDone"].boolValue
+//        }
+        
+        if(post.post_likeCount == 0) {
+            self.likeViewLabel.text = "Be first to Like"
+        } else if(post.post_likeCount == 1) {
+            self.likeViewLabel.text = "1 Like"
+        } else if(post.post_likeCount > 1) {
+            self.likeViewLabel.text = "\(post.post_likeCount) Likes"
+        }
+        
+        if(post.post_commentCount == 0) {
+            self.commentCount.text = "Be first to Comment"
+        } else if(post.post_commentCount == 1) {
+            self.commentCount.text = "1 Comment"
+        } else if(post.post_commentCount > 1) {
+            self.commentCount.text = "\(post.post_commentCount) Comments"
+        }
         
         if(post.imageArr.count > 0) {
             self.isImage = true;
@@ -273,10 +294,7 @@ class PhotosOTG: UIView {
                 self.setHeight(0)
             }
         }
-        
-        
-        
-//        self.likeCommentView.backgroundColor = mainOrangeColor
+        //        self.likeCommentView.backgroundColor = mainOrangeColor
         post.getTypeOfPost()
         if((post.typeOfPost) != nil) {
             switch(post.typeOfPost) {
@@ -292,5 +310,7 @@ class PhotosOTG: UIView {
                 break
             }
         }
+        
+        
     }
 }

@@ -50,6 +50,11 @@ public class Post {
     var post_longitude:String!
     var post_date:String!
     var post_locationImage:String!
+    var post_dateDay:String!
+    var post_dateTime:String!
+    var post_likeCount:Int!
+    var post_commentCount:Int!
+    var post_likeDone = false
     let hasCompleted = Expression<Bool>("hasCompleted")
     
     init() {
@@ -248,10 +253,21 @@ public class Post {
         self.post_country = json["checkIn"]["country"].stringValue
         self.post_latitude = json["checkIn"]["lat"].stringValue
         self.post_longitude = json["checkIn"]["long"].stringValue
-        self.post_date = json["UTC"].stringValue
+        self.post_date = json["UTCModified"].stringValue
+        self.post_likeCount = json["likeCount"].intValue
+        self.post_commentCount = json["commentCount"].intValue
+        
+        self.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true)
+        self.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
+        
+        if(json["likeDone"].bool != nil) {
+            self.post_likeDone = json["likeDone"].boolValue
+        }
+        
         if(json["imageUrl"].string != nil) {
             self.post_locationImage = json["imageUrl"].stringValue
         }
+        
         for photo in json["photos"].arrayValue {
             let img = PostImage();
             img.urlToData(photo["name"].stringValue)
@@ -265,6 +281,26 @@ public class Post {
 //            img.caption = photo["caption"].stringValue
 //            self.imageArr.append(img);
 //        }
+        
+    }
+    
+    func changeDate(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = givenFormat
+        let date = dateFormatter.date(from: date)
+        
+        dateFormatter.dateFormat = getFormat
+        
+        if isDate {
+            
+            dateFormatter.dateStyle = .medium
+            
+        }
+        
+        let goodDate = dateFormatter.string(from: date!)
+        return goodDate
+        
         
     }
     
