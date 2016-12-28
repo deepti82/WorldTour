@@ -56,46 +56,43 @@ class AddRatingCountries: UIView, UITextViewDelegate {
         self.parent.checkView(newcountry: journeyData)
         
         
-//        request.rateCountry(currentUser["_id"].string!, journeyId: journeyId, countryId: countryId, rating: "\(starCount)", review: reviewText, completion: {(response) in
-//            
-//            DispatchQueue.main.async(execute: {
-//                
-//                if response.error != nil {
-//                    
-//                    print("error: \(response.error!.localizedDescription)")
-//                    
-//                }
-//                else if response["value"].bool! {
-//                    
-//                    print("response arrived \(countryId) \(self.starCount) \(self.reviewTextView.text!)")
-//                    self.countryVisitedData["rating"] = JSON(self.starCount)
-//                    print(self.countryVisitedData)
-//                    print(self.parent)
-//                    self.parent.journey["review"].arrayObject?.append(self.countryVisitedData.object)
-//                    self.parent.getAllCountryReviews()
-//                    //sender.superview?.removeFromSuperview()
-//                    //self.parent.removeRatingButton(sender.title(for: .application)!)
-////                    if self.countryVisitedData.count > self.i {
-////                        self.i += 1
-////                        print("i: \(self.i) \(self.countryVisitedData.count)")
-////                        self.getRatingData(data: self.countryVisitedData)
-////                    } else {
-//                    sender.removeFromSuperview()
-//                    if self.backgroundSuperview != nil {
-//                        self.backgroundSuperview.removeFromSuperview()
+        request.rateCountry(currentUser["_id"].string!, journeyId: journeyId, countryId: countryId, rating: "\(starCount)", review: reviewText, completion: {(response) in
+            
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    print("response arrived \(countryId) \(self.starCount) \(self.reviewTextView.text!)")
+                    self.countryVisitedData["rating"] = JSON(self.starCount)
+                    
+                    //sender.superview?.removeFromSuperview()
+                    //self.parent.removeRatingButton(sender.title(for: .application)!)
+//                    if self.countryVisitedData.count > self.i {
+//                        self.i += 1
+//                        print("i: \(self.i) \(self.countryVisitedData.count)")
+//                        self.getRatingData(data: self.countryVisitedData)
+//                    } else {
+                    sender.removeFromSuperview()
+                    if self.backgroundSuperview != nil {
+                        self.backgroundSuperview.removeFromSuperview()
+                    }
 //                    }
-////                    }
-//                    
-//                }
-//                else {
-//                    
-//                    print("response error!")
-//                    
-//                }
-//                
-//            })
-//            
-//        })
+                    
+                }
+                else {
+                    
+                    print("response error!")
+                    
+                }
+                
+            })
+            
+        })
         
     }
     
