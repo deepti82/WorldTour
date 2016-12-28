@@ -31,7 +31,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBz-We-C2u">
                     <rect key="frame" x="0.0" y="68" width="375" height="104"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-oe-jCW">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-oe-jCW">
                             <rect key="frame" x="8" y="-23" width="60" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="jVi-5c-hIN"/>
@@ -48,7 +48,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xvb-Pa-iMT">
+                        <button opaque="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xvb-Pa-iMT">
                             <rect key="frame" x="322" y="-23" width="45" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="Bv1-yR-vFG"/>

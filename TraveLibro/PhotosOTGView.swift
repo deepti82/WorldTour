@@ -1,5 +1,5 @@
 //
-//  PhotoOTGFooter.swift
+//  PhotosOTGView.swift
 //  TraveLibro
 //
 //  Created by Pranay Joshi on 28/12/16.
@@ -7,20 +7,11 @@
 //
 
 import UIKit
-import Spring
 
-class PhotoOTGFooter: UIView {
+class PhotosOTGView: UIView {
 
-    @IBOutlet weak var CloudUploadingView: UIView!
-    @IBOutlet weak var likeButton: SpringButton!
-    @IBOutlet weak var commentButton: SpringButton!
-    @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var optionButton: UIButton!
-    @IBOutlet weak var likeHeart: UILabel!
-    @IBOutlet weak var likeViewLabel: UILabel!
-    @IBOutlet weak var commentIcon: UIImageView!
-    @IBOutlet weak var commentCount: UILabel!
-   
+    @IBOutlet weak var mainPhoto: UIImageView!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,12 +25,12 @@ class PhotoOTGFooter: UIView {
     
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "PhotosOTGFooter", bundle: bundle)
+        let nib = UINib(nibName: "PhotosOTGView", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
     }
-
+   
 
 }

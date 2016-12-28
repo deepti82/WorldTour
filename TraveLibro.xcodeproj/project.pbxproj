@@ -64,6 +64,8 @@
 		842484F61E13A4C000083115 /* PhotoFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F51E13A4C000083115 /* PhotoFooterView.xib */; };
 		842484F91E13A9E600083115 /* PhotosOTGHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842484F81E13A9E600083115 /* PhotosOTGHeader.swift */; };
 		842484FC1E13AC6400083115 /* PhotoOTGFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842484FB1E13AC6400083115 /* PhotoOTGFooter.swift */; };
+		842484FF1E13BEE700083115 /* PhotoOTGCenter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484FE1E13BEE700083115 /* PhotoOTGCenter.xib */; };
+		842485011E13BF4600083115 /* PhotosOTGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842485001E13BF4600083115 /* PhotosOTGView.swift */; };
 		843510DE1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510DD1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift */; };
 		843510E01DF7F84600C3D8EE /* QuickIteneraryTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510DF1DF7F84600C3D8EE /* QuickIteneraryTwo.swift */; };
 		843510E21DF7F86400C3D8EE /* QuickIteneraryThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510E11DF7F86400C3D8EE /* QuickIteneraryThree.swift */; };
@@ -457,6 +459,8 @@
 		842484F51E13A4C000083115 /* PhotoFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoFooterView.xib; sourceTree = "<group>"; };
 		842484F81E13A9E600083115 /* PhotosOTGHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGHeader.swift; sourceTree = "<group>"; };
 		842484FB1E13AC6400083115 /* PhotoOTGFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoOTGFooter.swift; sourceTree = "<group>"; };
+		842484FE1E13BEE700083115 /* PhotoOTGCenter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoOTGCenter.xib; sourceTree = "<group>"; };
+		842485001E13BF4600083115 /* PhotosOTGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGView.swift; sourceTree = "<group>"; };
 		843510DD1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryOne.swift; sourceTree = "<group>"; };
 		843510DF1DF7F84600C3D8EE /* QuickIteneraryTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryTwo.swift; sourceTree = "<group>"; };
 		843510E11DF7F86400C3D8EE /* QuickIteneraryThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryThree.swift; sourceTree = "<group>"; };
@@ -871,6 +875,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				842484FD1E13BE8C00083115 /* PhotosOTGCenter */,
 				842484F71E13A94F00083115 /* PhotosOTGHeader */,
 				847AACF81E02AE5F001C8ACA /* PhotosOTGFooter */,
 				C2A36D021DF92FBD0091AD56 /* QuickItineraryPreview */,
@@ -1106,6 +1111,15 @@
 				842484F81E13A9E600083115 /* PhotosOTGHeader.swift */,
 			);
 			name = PhotosOTGHeader;
+			sourceTree = "<group>";
+		};
+		842484FD1E13BE8C00083115 /* PhotosOTGCenter */ = {
+			isa = PBXGroup;
+			children = (
+				842484FE1E13BEE700083115 /* PhotoOTGCenter.xib */,
+				842485001E13BF4600083115 /* PhotosOTGView.swift */,
+			);
+			name = PhotosOTGCenter;
 			sourceTree = "<group>";
 		};
 		847AACF81E02AE5F001C8ACA /* PhotosOTGFooter */ = {
@@ -2211,6 +2225,7 @@
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
 				C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */,
 				C24F85011D005FD2002EA203 /* TutorialCards.xib in Resources */,
+				842484FF1E13BEE700083115 /* PhotoOTGCenter.xib in Resources */,
 				C2A6E2671CE9D48A00D3F845 /* PhotosOTG.xib in Resources */,
 				C2823B031D464AAD0065A76C /* startOTGView.xib in Resources */,
 				C269078F1CF86DDF00F827E6 /* ImageCheckbox.xib in Resources */,
@@ -2432,6 +2447,7 @@
 			files = (
 				3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */,
 				3A7A7D901DE5A921005F409C /* SinglePhotoViewController.swift in Sources */,
+				842485011E13BF4600083115 /* PhotosOTGView.swift in Sources */,
 				C24F84DC1D000CF5002EA203 /* MoreAboutMe.swift in Sources */,
 				C2A2E7931D96565F005084A7 /* SearchLocationTableViewController.swift in Sources */,
 				C267302C1D27D49100F2C822 /* SelectGenderViewController.swift in Sources */,
