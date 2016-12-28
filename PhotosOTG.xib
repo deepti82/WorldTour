@@ -165,6 +165,9 @@
                             <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                             <state key="normal" title="Button" image="options_icon"/>
+                            <connections>
+                                <action selector="optionClick:" destination="-1" eventType="touchUpInside" id="HtF-YD-zrL"/>
+                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="speech_icon" translatesAutoresizingMaskIntoConstraints="NO" id="dT4-Iz-Gn5">
                             <rect key="frame" x="173" y="58" width="15" height="15"/>

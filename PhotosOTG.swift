@@ -330,4 +330,8 @@ class PhotosOTG: UIView {
         singlePhotoController.postId = postTop.post_ids
         globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
+    @IBAction func optionClick(_ sender: UIButton) {
+        globalNewTLViewController.chooseOptions(sender)
+    }
+    
 }
