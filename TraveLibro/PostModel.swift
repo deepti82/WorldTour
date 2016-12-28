@@ -38,6 +38,7 @@ public class Post {
     var typeOfPost:String!
     
     var post_id:Int!;
+    var post_ids:String!;
     var post_type:String!
     var post_userId:String!
     var post_journeyId:String!
@@ -247,7 +248,7 @@ public class Post {
     
     func jsonToPost(_ json:JSON) {
         
-        self.post_id = json["_id"].intValue
+        self.post_ids = json["_id"].stringValue
         self.post_type = json["type"].stringValue
         self.post_userId = json["user"]["_id"].stringValue
         self.post_journeyId = json["journey"].stringValue

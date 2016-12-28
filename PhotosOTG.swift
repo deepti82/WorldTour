@@ -39,6 +39,8 @@ class PhotosOTG: UIView {
     @IBOutlet weak var photosHC: NSLayoutConstraint!
     @IBOutlet weak var likeCommentView: UIView!
     
+    var postTop:Post!
+    
     var updateTimer:Timer!
     var imageRatio:CGFloat = 1.0;
     var likeCount = 0
@@ -147,9 +149,7 @@ class PhotosOTG: UIView {
         
         mainPhoto.autoresizingMask = [.flexibleHeight]
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
-        mainPhoto.isUserInteractionEnabled = true
-        mainPhoto.addGestureRecognizer(tapGestureRecognizer)
+        
         
         
         clockLabel.text = String(format: "%C", faicon["clock"]!)
@@ -255,6 +255,7 @@ class PhotosOTG: UIView {
     
     
     func generatePost(_ post: Post) {
+        self.postTop = post;
         post.getThought()
         self.photosTitle.text = post.finalThought
         
@@ -284,6 +285,11 @@ class PhotosOTG: UIView {
         if(post.imageArr.count > 0) {
             self.isImage = true;
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
+            mainPhoto.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
+            mainPhoto.addGestureRecognizer(tapGestureRecognizer)
+            mainPhoto.tag = 0
+
             if(post.post_isOffline) {
                 self.mainPhoto.image = post.imageArr[0].image
             } else {
@@ -328,7 +334,7 @@ class PhotosOTG: UIView {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
         singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
-        singlePhotoController.postId = sender.view.accessibilityLabel
+        singlePhotoController.postId = postTop.post_ids
         globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
 }
