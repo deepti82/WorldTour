@@ -1650,24 +1650,29 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         prevPosts.append(post)
         
-        if post["checkIn"]["location"] != nil &&  post["checkIn"].string != "" {
-            
-            showPost("CheckIn", post: post)
-        }
-        else if post["photos"] != nil && post["photos"].array!.count > 0 {
-            
-            showPost("Photos", post: post)
-            
-        }
-        else if post["videos"] != nil && post["videos"].array!.count > 0 {
-            
-            showPost("Videos", post: post)
-        }
-        else if post["thoughts"] != nil &&  post["thoughts"].string != "" {
-            
-            showPost("Thoughts", post: post)
-            
-        }
+        let po = Post();
+        po.jsonToPost(post);
+        self.addPostLayout(po)
+        
+        
+//        if post["checkIn"]["location"] != nil &&  post["checkIn"].string != "" {
+//            
+//            showPost("CheckIn", post: post)
+//        }
+//        else if post["photos"] != nil && post["photos"].array!.count > 0 {
+//            
+//            showPost("Photos", post: post)
+//            
+//        }
+//        else if post["videos"] != nil && post["videos"].array!.count > 0 {
+//            
+//            showPost("Videos", post: post)
+//        }
+//        else if post["thoughts"] != nil &&  post["thoughts"].string != "" {
+//            
+//            showPost("Thoughts", post: post)
+//            
+//        }
         
     }
     

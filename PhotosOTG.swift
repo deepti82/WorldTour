@@ -175,16 +175,15 @@ class PhotosOTG: UIView {
         for i in 1 ..< post.imageArr.count {
             let photosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
             photosButton.backgroundColor = mainGreenColor
-            
             photosButton.imageView?.sizeToFit()
             photosButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
             if(post.imageArr[i].image != nil) {
                 photosButton.setImage(post.imageArr[i].image, for: .normal)
             } else {
+                photosButton.imageView?.frame.size.height = 65
+                photosButton.imageView?.frame.size.width = 65
                 photosButton.imageView?.hnk_setImageFromURL(post.imageArr[i].imageUrl)
             }
-            print(post.imageArr[i].imageUrl.absoluteString);
-            
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
@@ -242,6 +241,9 @@ class PhotosOTG: UIView {
         post.getThought()
         self.photosTitle.text = post.finalThought
         
+        headerView.frame.size = CGSize(width: screenWidth, height: 75)
+        
+        
         if(post.imageArr.count > 0) {
             self.isImage = true;
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFit
@@ -256,7 +258,7 @@ class PhotosOTG: UIView {
         }
         
         
-        self.likeCommentView.backgroundColor = mainOrangeColor
+//        self.likeCommentView.backgroundColor = mainOrangeColor
         post.getTypeOfPost()
         if((post.typeOfPost) != nil) {
             switch(post.typeOfPost) {
