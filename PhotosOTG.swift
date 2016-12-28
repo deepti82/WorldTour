@@ -125,6 +125,13 @@ class PhotosOTG: UIView {
         bgView.layer.shadowColor = UIColor.black.cgColor
         bgView.layer.shadowOffset = CGSize(width: 2, height: 1)
         
+        
+        
+        postDp.layer.cornerRadius = 10
+        postDp.layer.borderWidth = 2
+        postDp.layer.borderColor = UIColor.orange.cgColor
+        
+        
         photosTitle.numberOfLines = 0
         let customType = ActiveType.custom(pattern: "\\swith\\b") //Regex that looks for "with"
         likeButton.tintColor = mainBlueColor
