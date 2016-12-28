@@ -55,6 +55,7 @@ public class Post {
     var post_likeCount:Int!
     var post_commentCount:Int!
     var post_likeDone = false
+    var post_isOffline = false
     let hasCompleted = Expression<Bool>("hasCompleted")
     
     init() {
@@ -134,7 +135,7 @@ public class Post {
                 p.post_latitude = String(post[latitude])
                 p.post_longitude = String(post[longitude])
                 p.post_date = String(post[date])
-                
+                p.post_isOffline = true;
                 
                 var i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])

@@ -186,7 +186,7 @@ class PhotosOTG: UIView {
             let photosButton = UIImageView(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
             photosButton.backgroundColor = mainGreenColor
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
-            if(post.imageArr[i].image != nil) {
+            if(post.post_isOffline) {
                 photosButton.image = post.imageArr[i].image
             } else {
                 photosButton.frame.size.height = 65
@@ -276,7 +276,12 @@ class PhotosOTG: UIView {
         if(post.imageArr.count > 0) {
             self.isImage = true;
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-            self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
+            if(post.post_isOffline) {
+                self.mainPhoto.image = post.imageArr[0].image
+            } else {
+                self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
+            }
+            
             updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PhotosOTG.callFunction), userInfo: nil, repeats: true)
             if(post.imageArr.count > 1) {
                 self.addPhotoToLayout(post)
