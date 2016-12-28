@@ -16,7 +16,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PhotosOTGHeader" customModule="TraveLibro" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="184"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -125,6 +125,16 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="PhotoOTGHeaderView" destination="wBz-We-C2u" id="4j9-uw-hcY"/>
+                <outlet property="calendarLabel" destination="3Ij-Yi-cXb" id="118-KZ-h0a"/>
+                <outlet property="clockLabel" destination="wh2-Li-LqP" id="4fp-sk-KKf"/>
+                <outlet property="dateLabel" destination="fid-yH-MEf" id="AuY-kH-kQh"/>
+                <outlet property="photosTitle" destination="po4-VN-8dh" id="NAK-bA-x7v"/>
+                <outlet property="postDp" destination="bcT-oe-jCW" id="EhC-td-Tqh"/>
+                <outlet property="timeLabel" destination="dUH-xH-sbU" id="V8T-0I-ART"/>
+                <outlet property="whatPostIcon" destination="Xvb-Pa-iMT" id="4DL-Gr-usq"/>
+            </connections>
             <point key="canvasLocation" x="-197.5" y="-241"/>
         </view>
     </objects>

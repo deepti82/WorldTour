@@ -62,6 +62,8 @@
 		3AFB01C81DDC310500BCD523 /* AddRatingCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */; };
 		842484F41E139FBB00083115 /* PhotoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F31E139FBA00083115 /* PhotoHeaderView.xib */; };
 		842484F61E13A4C000083115 /* PhotoFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F51E13A4C000083115 /* PhotoFooterView.xib */; };
+		842484F91E13A9E600083115 /* PhotosOTGHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842484F81E13A9E600083115 /* PhotosOTGHeader.swift */; };
+		842484FC1E13AC6400083115 /* PhotoOTGFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842484FB1E13AC6400083115 /* PhotoOTGFooter.swift */; };
 		843510DE1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510DD1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift */; };
 		843510E01DF7F84600C3D8EE /* QuickIteneraryTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510DF1DF7F84600C3D8EE /* QuickIteneraryTwo.swift */; };
 		843510E21DF7F86400C3D8EE /* QuickIteneraryThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510E11DF7F86400C3D8EE /* QuickIteneraryThree.swift */; };
@@ -453,6 +455,8 @@
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		842484F31E139FBA00083115 /* PhotoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoHeaderView.xib; sourceTree = "<group>"; };
 		842484F51E13A4C000083115 /* PhotoFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoFooterView.xib; sourceTree = "<group>"; };
+		842484F81E13A9E600083115 /* PhotosOTGHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGHeader.swift; sourceTree = "<group>"; };
+		842484FB1E13AC6400083115 /* PhotoOTGFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoOTGFooter.swift; sourceTree = "<group>"; };
 		843510DD1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryOne.swift; sourceTree = "<group>"; };
 		843510DF1DF7F84600C3D8EE /* QuickIteneraryTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryTwo.swift; sourceTree = "<group>"; };
 		843510E11DF7F86400C3D8EE /* QuickIteneraryThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryThree.swift; sourceTree = "<group>"; };
@@ -867,7 +871,8 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
-				847AACF81E02AE5F001C8ACA /* New Group */,
+				842484F71E13A94F00083115 /* PhotosOTGHeader */,
+				847AACF81E02AE5F001C8ACA /* PhotosOTGFooter */,
 				C2A36D021DF92FBD0091AD56 /* QuickItineraryPreview */,
 				3AFB01C41DDC30AC00BCD523 /* AddRatingCountries */,
 				C2889D3D1DB1180200B302AF /* ShowRating */,
@@ -1094,11 +1099,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		847AACF81E02AE5F001C8ACA /* New Group */ = {
+		842484F71E13A94F00083115 /* PhotosOTGHeader */ = {
 			isa = PBXGroup;
 			children = (
+				842484F31E139FBA00083115 /* PhotoHeaderView.xib */,
+				842484F81E13A9E600083115 /* PhotosOTGHeader.swift */,
 			);
-			name = "New Group";
+			name = PhotosOTGHeader;
+			sourceTree = "<group>";
+		};
+		847AACF81E02AE5F001C8ACA /* PhotosOTGFooter */ = {
+			isa = PBXGroup;
+			children = (
+				842484F51E13A4C000083115 /* PhotoFooterView.xib */,
+				842484FB1E13AC6400083115 /* PhotoOTGFooter.swift */,
+			);
+			name = PhotosOTGFooter;
 			sourceTree = "<group>";
 		};
 		C20163DE1D26910D00A2F70B /* Models */ = {
@@ -1843,8 +1859,6 @@
 			children = (
 				C2A6E2661CE9D48A00D3F845 /* PhotosOTG.xib */,
 				C2A6E2681CE9DA8B00D3F845 /* PhotosOTG.swift */,
-				842484F31E139FBA00083115 /* PhotoHeaderView.xib */,
-				842484F51E13A4C000083115 /* PhotoFooterView.xib */,
 			);
 			name = PhotosOTG;
 			sourceTree = "<group>";
@@ -2578,6 +2592,7 @@
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
 				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,
 				C2AE193B1DF57078006FF114 /* ImageCropperViewController.swift in Sources */,
+				842484FC1E13AC6400083115 /* PhotoOTGFooter.swift in Sources */,
 				C24846381D8AB4E2001AEF2D /* SelectNearbyLocationTableViewController.swift in Sources */,
 				C24F84DE1D001456002EA203 /* EditSettingsViewController.swift in Sources */,
 				36006DB11DBB346600C7F44B /* SwiftyJSON.swift in Sources */,
@@ -2650,6 +2665,7 @@
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,
 				C25297261DF00E92007A8571 /* Extensions.swift in Sources */,
 				C24909BC1D4A3E41007EB6B4 /* AddPostsOTGView.swift in Sources */,
+				842484F91E13A9E600083115 /* PhotosOTGHeader.swift in Sources */,
 				C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */,
 				C2FA1E171D5495870034DE97 /* QuickItinerariesViewController.swift in Sources */,
 				C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */,
