@@ -120,7 +120,7 @@ class PhotosOTG: UIView {
         
         
         
-              
+        
         postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)
         makeTLProfilePicture(postDp)
         
@@ -251,28 +251,27 @@ class PhotosOTG: UIView {
         self.photosTitle.text = post.finalThought
         
         headerView.frame.size = CGSize(width: screenWidth, height: 75)
-        
-//        self.post_likeCount = json["likeCount"].intValue
-//        self.post_commentCount = json["commentCount"].intValue
-//        if(json["likeDone"].bool != nil) {
-//            self.post_likeDone = json["likeDone"].boolValue
-//        }
-        
-        if(post.post_likeCount == 0) {
-            self.likeViewLabel.text = "Be first to Like"
-        } else if(post.post_likeCount == 1) {
-            self.likeViewLabel.text = "1 Like"
-        } else if(post.post_likeCount > 1) {
-            self.likeViewLabel.text = "\(post.post_likeCount) Likes"
+        if(post.post_likeCount != nil) {
+            if(post.post_likeCount == 0) {
+                self.likeViewLabel.text = "Be first to Like"
+            } else if(post.post_likeCount == 1) {
+                self.likeViewLabel.text = "1 Like"
+            } else if(post.post_likeCount > 1) {
+                self.likeViewLabel.text = "\(post.post_likeCount) Likes"
+            }
         }
         
-        if(post.post_commentCount == 0) {
-            self.commentCount.text = "Be first to Comment"
-        } else if(post.post_commentCount == 1) {
-            self.commentCount.text = "1 Comment"
-        } else if(post.post_commentCount > 1) {
-            self.commentCount.text = "\(post.post_commentCount) Comments"
+        if(post.post_commentCount != nil) {
+            if(post.post_commentCount == 0) {
+                self.commentCount.text = "Be first to Comment"
+            } else if(post.post_commentCount == 1) {
+                self.commentCount.text = "1 Comment"
+            } else if(post.post_commentCount > 1) {
+                self.commentCount.text = "\(post.post_commentCount) Comments"
+            }
         }
+        self.dateLabel.text = post.post_dateDay
+        self.timeLabel.text = post.post_dateTime
         
         if(post.imageArr.count > 0) {
             self.isImage = true;
@@ -294,8 +293,9 @@ class PhotosOTG: UIView {
                 self.setHeight(0)
             }
         }
-        //        self.likeCommentView.backgroundColor = mainOrangeColor
+        
         post.getTypeOfPost()
+        
         if((post.typeOfPost) != nil) {
             switch(post.typeOfPost) {
             case "Location":

@@ -170,6 +170,10 @@ public class Post {
                 p.post_longitude = String(post[longitude])
                 p.post_date = String(post[date])
                 
+                
+                p.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: p.post_date, isDate: true)
+                p.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: p.post_date, isDate: false)
+                
                 var i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
                 allPosts.append(p)
@@ -257,8 +261,8 @@ public class Post {
         self.post_likeCount = json["likeCount"].intValue
         self.post_commentCount = json["commentCount"].intValue
         
-        self.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["UTCModified"].string!, isDate: true)
-        self.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["UTCModified"].string!, isDate: false)
+        self.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: self.post_date, isDate: true)
+        self.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: self.post_date, isDate: false)
         
         if(json["likeDone"].bool != nil) {
             self.post_likeDone = json["likeDone"].boolValue
