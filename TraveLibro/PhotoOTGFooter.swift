@@ -39,6 +39,13 @@ class PhotoOTGFooter: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        
+        likeButton.tintColor = mainBlueColor
+        commentButton.tintColor = mainBlueColor
+        shareButton.tintColor = mainBlueColor
+        optionsButton.tintColor = mainBlueColor
+        commentIcon.tintColor = mainBlueColor
+        likeHeart.text = String(format: "%C", faicon["likes"]!)
     }
 
 

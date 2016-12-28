@@ -30,6 +30,11 @@ class PhotosOTGView: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        
+        
+//        bgView.layer.cornerRadius = 5
+//        bgView.layer.shadowColor = UIColor.black.cgColor
+//        bgView.layer.shadowOffset = CGSize(width: 2, height: 1)
     }
    
 

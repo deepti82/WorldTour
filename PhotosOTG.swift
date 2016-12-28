@@ -26,24 +26,19 @@ class PhotosOTG: UIView {
     @IBOutlet var otherPhotosStack: [UIImageView]!
     @IBOutlet weak var whatPostIcon: UIButton!
     @IBOutlet weak var lineUp: drawLine!
-    
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
-    
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    
     @IBOutlet weak var commentIcon: UIImageView!
     @IBOutlet weak var commentCount: UILabel!
     @IBOutlet weak var photosHC: NSLayoutConstraint!
-    
-    
-    
     @IBOutlet weak var likeCommentView: UIView!
+    
     var updateTimer:Timer!
     var imageRatio:CGFloat = 1.0;
     var likeCount = 0
@@ -52,6 +47,7 @@ class PhotosOTG: UIView {
     var isImage = false;
     var isMoreImage = false;
     var horizontalScrollForPhotos:HorizontalLayout!
+    
     @IBAction func sendLikes(_ sender: UIButton) {
         
         print("like button tapped \(sender.titleLabel!.text)")
@@ -142,13 +138,16 @@ class PhotosOTG: UIView {
         shareButton.tintColor = mainBlueColor
         optionsButton.tintColor = mainBlueColor
         commentIcon.tintColor = mainBlueColor
+        likeHeart.text = String(format: "%C", faicon["likes"]!)
+        
+        
         likeButton.imageView?.contentMode = .scaleAspectFit
         commentButton.imageView?.contentMode = .scaleAspectFit
         shareButton.imageView?.contentMode = .scaleAspectFit
         
         mainPhoto.autoresizingMask = [.flexibleHeight]
         
-        likeHeart.text = String(format: "%C", faicon["likes"]!)
+        
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         
@@ -315,7 +314,5 @@ class PhotosOTG: UIView {
                 break
             }
         }
-        
-        
     }
 }
