@@ -147,6 +147,10 @@ class PhotosOTG: UIView {
         
         mainPhoto.autoresizingMask = [.flexibleHeight]
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
+        mainPhoto.isUserInteractionEnabled = true
+        mainPhoto.addGestureRecognizer(tapGestureRecognizer)
+        
         
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
@@ -195,6 +199,11 @@ class PhotosOTG: UIView {
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
+            photosButton.isUserInteractionEnabled = true
+            photosButton.addGestureRecognizer(tapGestureRecognizer)
+            
             //            photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
             self.horizontalScrollForPhotos.addSubview(photosButton)
         }
@@ -314,5 +323,12 @@ class PhotosOTG: UIView {
                 break
             }
         }
+    }
+    func openSinglePhoto(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.postId = sender.view.accessibilityLabel
+        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
 }

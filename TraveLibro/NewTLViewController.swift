@@ -988,13 +988,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         checkIn.commentButton.setTitle(post["_id"].string!, for: .application)
         otherCommentId = post["_id"].string!
         currentPost = post
-        print(post);
-//        if post["like"].array!.contains(JSON(user.getExistingUser())) {
-//            let image = UIImage(named: "favorite-heart-button")
-//            checkIn.likeButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
-//            
-//            checkIn.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: UIControlState())
-//        }
         
         checkIn.optionsButton.setTitle(post["_id"].string!, for: .normal)
         checkIn.optionsButton.setTitle(post["uniqueId"].string!, for: .application)
@@ -1003,9 +996,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         checkIn.commentButton.addTarget(self, action: #selector(NewTLViewController.sendComments(_:)), for: .touchUpInside)
         checkIn.optionsButton.addTarget(self, action: #selector(NewTLViewController.chooseOptions(_:)), for: .touchUpInside)
         
-        
-        //        print("\(#line) \(NSAttributedString(attributedString: thoughts))")
-        //        checkIn.photosTitle.text =
         checkIn.photosTitle.enabledTypes = [.hashtag, .url]
         checkIn.photosTitle.customize {label in
             label.text = thoughts
