@@ -11,6 +11,7 @@ import UIKit
 class PhotosOTGView: UIView {
 
     @IBOutlet weak var mainPhoto: UIImageView!
+    @IBOutlet weak var bgView: UIView!
     
     
     override init(frame: CGRect) {
@@ -32,9 +33,9 @@ class PhotosOTGView: UIView {
         self.addSubview(view)
         
         
-//        bgView.layer.cornerRadius = 5
-//        bgView.layer.shadowColor = UIColor.black.cgColor
-//        bgView.layer.shadowOffset = CGSize(width: 2, height: 1)
+        bgView.layer.cornerRadius = 5
+        bgView.layer.shadowColor = UIColor.black.cgColor
+        bgView.layer.shadowOffset = CGSize(width: 2, height: 1)
     }
    
 

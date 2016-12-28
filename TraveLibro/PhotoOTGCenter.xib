@@ -19,12 +19,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="384"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vro-Om-fU8">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="322"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
                             <subviews>
                                 <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="4yv-vt-n3O">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="322"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="387" id="LLF-9h-EAE"/>
+                                        <constraint firstAttribute="height" constant="322" id="LLF-9h-EAE"/>
                                         <constraint firstAttribute="width" constant="375" id="mPv-af-KOR"/>
                                     </constraints>
                                 </imageView>
@@ -38,14 +38,14 @@
                         </view>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYL-sn-6xk">
                             <rect key="frame" x="-13" y="324" width="400" height="60"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.082352943720000002" green="0.098039217289999994" blue="0.21176470820000001" alpha="1" colorSpace="calibratedRGB"/>
                         </scrollView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="384" id="AF4-TR-bgH"/>
-                        <constraint firstItem="aYL-sn-6xk" firstAttribute="top" secondItem="Vro-Om-fU8" secondAttribute="bottom" constant="2" id="F4Y-Wj-3sM"/>
-                        <constraint firstAttribute="bottom" secondItem="Vro-Om-fU8" secondAttribute="bottom" constant="62" id="FlD-IP-frP"/>
+                        <constraint firstItem="aYL-sn-6xk" firstAttribute="top" secondItem="Vro-Om-fU8" secondAttribute="bottom" constant="-63" id="F4Y-Wj-3sM"/>
+                        <constraint firstAttribute="bottom" secondItem="Vro-Om-fU8" secondAttribute="bottom" constant="-3" id="FlD-IP-frP"/>
                         <constraint firstAttribute="width" constant="375" id="I70-fs-NzT"/>
                         <constraint firstItem="Vro-Om-fU8" firstAttribute="centerX" secondItem="aYL-sn-6xk" secondAttribute="centerX" id="LfZ-zY-eRE"/>
                         <constraint firstItem="Vro-Om-fU8" firstAttribute="top" secondItem="eOt-jS-QTu" secondAttribute="top" id="Xpw-YR-EP9"/>
@@ -64,6 +64,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bgView" destination="Vro-Om-fU8" id="iBR-lc-tL4"/>
                 <outlet property="mainPhoto" destination="4yv-vt-n3O" id="6WQ-OI-zi7"/>
             </connections>
             <point key="canvasLocation" x="26.5" y="-84"/>
