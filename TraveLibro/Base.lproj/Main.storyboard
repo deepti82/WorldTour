@@ -4582,6 +4582,10 @@
                         <outlet property="buddyCount" destination="u0Z-Ub-pFn" id="spD-u4-uZP"/>
                         <outlet property="buddyStack" destination="9Qg-ZT-AbL" id="nDd-5P-v5Y"/>
                         <outlet property="calendarIcon" destination="uVP-iP-rZI" id="8D0-Gg-x9y"/>
+                        <outlet property="categoryStack" destination="c8c-MS-4bm" id="0PK-j2-NeJ"/>
+                        <outlet property="changePhotoButton" destination="2ie-Ga-AIL" id="ZX6-fx-A0F"/>
+                        <outlet property="changePhotoText" destination="GU1-hJ-oGA" id="lk2-m1-a8e"/>
+                        <outlet property="changePhotoViewHeight" destination="4L7-iz-O8p" id="M72-NH-GLq"/>
                         <outlet property="clockIcon" destination="qUc-1s-jFG" id="qsT-vc-BTZ"/>
                         <outlet property="endJourneyTitle" destination="qde-pH-U43" id="mIO-e7-kmT"/>
                         <outlet property="journeyCoverPic" destination="4xF-lH-ad9" id="u7F-2S-EPI"/>
