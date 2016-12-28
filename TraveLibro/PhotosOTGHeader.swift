@@ -64,12 +64,12 @@ class PhotosOTGHeader: UIView {
         image.clipsToBounds = true
         
     }
-    func makeTLProfilePicture(_ image: UIButton) {
+    func makeTLProfilePicture(button: UIButton) {
         
-        image.layer.cornerRadius = (37/100) * image.frame.width
-        image.layer.borderWidth = 3.0
-        image.layer.borderColor = UIColor.white.cgColor
-        image.clipsToBounds = true
+        button.layer.cornerRadius = (37/100) * button.frame.width
+        button.layer.borderWidth = 3.0
+        button.layer.borderColor = UIColor.white.cgColor
+        button.clipsToBounds = true
         
     }
 
