@@ -35,7 +35,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        countryStackView.isHidden = true
+//        countryStackView.isHidden = true
         getCount()
         
         userName.text = currentUser["name"].string!

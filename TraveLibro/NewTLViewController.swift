@@ -1623,7 +1623,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addHeightToLayout(height: CGFloat) {
         self.layout.layoutSubviews()
-        self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height)
+        self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 258)
 //        let bottomOffset = CGPoint(x: 0, y: self.mainScroll.contentSize.height - self.mainScroll.bounds.size.height)
 //        self.mainScroll.setContentOffset(bottomOffset, animated: true)
     }
@@ -1729,7 +1729,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addNewView.removeFromSuperview()
 //        getScrollView(height, journey: JSON(""))
         
-        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: self.view.frame.height))
+        otgView = startOTGView(frame: CGRect(x: 0, y: 258, width: mainScroll.frame.width, height: self.view.frame.height + 258))
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
@@ -1796,6 +1796,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     locationManager.desiredAccuracy = kCLLocationAccuracyBest
                     locationManager.startMonitoringSignificantLocationChanges()
             
+//            otgView = startOTGView(frame: CGRect(x: 0, y: 258, width: mainScroll.frame.width, height: self.view.frame.height))
+//            self.otgView.frame.origin.y = self.view.frame.height + 258
             otgView.detectLocationView.isHidden = true
             otgView.nameJourneyTF.isHidden = true
             otgView.nameJourneyView.isHidden = true
@@ -1804,7 +1806,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             journeyName = otgView.nameJourneyTF.text
             otgView.nameJourneyTF.resignFirstResponder()
             height = 100
-            mainScroll.animation.makeY(mainScroll.frame.origin.y - height).thenAfter(0.3).animate(0.3)
+            mainScroll.animation.makeY(mainScroll.frame.origin.y + height).thenAfter(0.3).animate(0.3)
+            print("showmeTheHeight\(mainScroll.frame.origin.y + height)")
             otgView.detectLocationView.layer.opacity = 0.0
             
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
@@ -1854,7 +1857,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let journeyName = otgView.nameJourneyTF.text!
             height = 40.0
             mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
-            
+            print("chalShowMeHere \(mainScroll.frame.origin.y)")
             
             request.addNewOTG(journeyName, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, lp: locationPic, completion: {(response) in
                 

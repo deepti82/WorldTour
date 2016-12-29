@@ -91,12 +91,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         globalNavigationController.topViewController?.customNavigationBar(left: leftButton,right:rightButton)
     }
     
-    var viewHeight = 0
+    
     
     func closeAdd(_ sender:UIButton) {
-        globalNavigationController?.popToRootViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+
     }
     
+    var viewHeight = 0
     func keyboardWillShow(_ notification: Notification) {
         view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
