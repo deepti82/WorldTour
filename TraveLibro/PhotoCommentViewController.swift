@@ -61,6 +61,9 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func back(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBAction func sendComments(_ sender: UIButton?) {
         mentionTableView.isHidden = true
         hashtagTableView.isHidden = true
