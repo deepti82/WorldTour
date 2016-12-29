@@ -177,6 +177,8 @@ class PhotosOTG: UIView {
                 photosButton.frame.size.height = 55
                 photosButton.frame.size.width = 55
                 photosButton.hnk_setImageFromURL(post.imageArr[i].imageUrl)
+                self.UploadToCloud.alpha = 0
+                self.UploadingToCloudLabel.alpha = 0
             }
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
