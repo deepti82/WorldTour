@@ -14,6 +14,8 @@ class EndJourneyViewController: UIViewController {
     @IBOutlet weak var buddyStack: UIStackView!
     @IBOutlet weak var categoryStack: UIStackView!
     
+    @IBOutlet weak var endDate: UILabel!
+    @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var buddyCount: UILabel!
     @IBOutlet var categoryImages: [UIImageView]!
     @IBOutlet var buddiesImages: [UIImageView]!
@@ -56,6 +58,9 @@ class EndJourneyViewController: UIViewController {
         globalEndJourneyViewController = self
         journeyImages = []
         
+        ToastView.appearance().backgroundColor = endJourneyColor
+        
+        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
@@ -63,7 +68,7 @@ class EndJourneyViewController: UIViewController {
         
         let rightButton = UIButton()
         
-        rightButton.setTitle("Save", for: .normal)
+        rightButton.setTitle("Done", for: .normal)
         rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
         rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 10, y: 0, width: 40, height: 30)
@@ -286,8 +291,8 @@ class EndJourneyViewController: UIViewController {
                             if responce["value"] == true {
                             self.coverImage = responce["data"][0].stringValue
                                 request.endJourney(self.journey["_id"].string!, uniqueId: self.journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: self.journey["buddies"].array!, photo: self.coverImage, completion: {(response) in
-                                    
-                                    let tstr = Toast(text: "Journey ended .")
+                                    print("journey ended toaster")
+                                    let tstr = Toast(text: "Journey ended successfully. Have a good life.")
                                     tstr.show()
                                     
                                     request.getUser(user.getExistingUser(), completion: {(response) in
@@ -295,7 +300,7 @@ class EndJourneyViewController: UIViewController {
                                         DispatchQueue.main.async(execute: {
                                             currentUser = response["data"]
                                             
-                                            self.goBack()
+//                                            self.goBack()
                                         })
                                     })
                                 })
@@ -318,7 +323,8 @@ class EndJourneyViewController: UIViewController {
                     
                     DispatchQueue.main.async(execute: {
                         currentUser = response["data"]
-                        
+                        let tstr = Toast(text: "Journey ended successfully. Have a good life.")
+                        tstr.show()
                         self.goBack()
                     })
                 })

@@ -12,6 +12,7 @@ let navBlueColor = UIColor(red: 21/255, green: 25/255, blue: 54/255, alpha: 1) /
 let mainOrangeColor = UIColor(red: 252/255, green: 80/255, blue: 71/255, alpha: 1) // #FC5047
 let lightOrangeColor = UIColor(red: 255/255, green: 103/255, blue: 89/255, alpha: 1) // #FC5047
 let mainGreenColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1) // #4BCBBB
+let endJourneyColor = UIColor(red: 87/255, green: 211/255, blue: 199/255, alpha: 1) // #57D3C7
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
 let avenirBold = UIFont(name: "Avenir-Medium", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)

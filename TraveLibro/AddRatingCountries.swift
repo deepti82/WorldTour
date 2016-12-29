@@ -69,7 +69,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
                     
                     print("response arrived \(countryId) \(self.starCount) \(self.reviewTextView.text!)")
                     self.countryVisitedData["rating"] = JSON(self.starCount)
-                    self.parent.removeRatingButton()
+//                    self.parent.removeRatingButton()
                     //sender.superview?.removeFromSuperview()
                     //self.parent.removeRatingButton(sender.title(for: .application)!)
 //                    if self.countryVisitedData.count > self.i {
