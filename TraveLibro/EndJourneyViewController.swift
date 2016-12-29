@@ -1,4 +1,5 @@
 import UIKit
+import Toaster
 
 var globalEndJourneyViewController: UIViewController!
 
@@ -286,6 +287,9 @@ class EndJourneyViewController: UIViewController {
                             self.coverImage = responce["data"][0].stringValue
                                 request.endJourney(self.journey["_id"].string!, uniqueId: self.journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: self.journey["buddies"].array!, photo: self.coverImage, completion: {(response) in
                                     
+                                    let tstr = Toast(text: "Journey ended .")
+                                    tstr.show()
+                                    
                                     request.getUser(user.getExistingUser(), completion: {(response) in
                                         
                                         DispatchQueue.main.async(execute: {
@@ -341,6 +345,45 @@ class EndJourneyViewController: UIViewController {
         
         loader.hideOverlayView()
     }
+    
+    //  START UPDATE RATING
+    func removeRatingButton() {
+        
+        //        print("layout: \(layout.subviews)")
+        backgroundReview.removeFromSuperview()
+        rateCountriesLayoutMod.removeAll()
+        request.getJourney(currentUser["_id"].string!, completion: {(response) in
+
+            
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    self.journey = response["data"]
+                    self.getAllCountryReviews()
+                    
+                    
+                }
+                else {
+                    
+                    print("response error")
+                }
+                
+            })
+            
+        })
+        
+    }
+    //  END UPDATE RATING
+    
+    
+    
+    
+    
     
     var countriesVisited: [JSON] = []
     var rateCountriesLayoutMod: VerticalLayout!
