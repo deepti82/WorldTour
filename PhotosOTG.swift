@@ -177,16 +177,16 @@ class PhotosOTG: UIView {
                 photosButton.frame.size.height = 55
                 photosButton.frame.size.width = 55
                 photosButton.hnk_setImageFromURL(post.imageArr[i].imageUrl)
-                self.UploadToCloud.alpha = 0
-                self.UploadingToCloudLabel.alpha = 0
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
+                photosButton.isUserInteractionEnabled = true
+                photosButton.addGestureRecognizer(tapGestureRecognizer)
+                
             }
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
             
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
-            photosButton.isUserInteractionEnabled = true
-            photosButton.addGestureRecognizer(tapGestureRecognizer)
+           
             
             //            photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
             self.horizontalScrollForPhotos.addSubview(photosButton)
@@ -242,6 +242,11 @@ class PhotosOTG: UIView {
         self.postTop = post;
         post.getThought()
         self.photosTitle.text = post.finalThought
+        
+        if(!post.post_isOffline) {
+            self.UploadToCloud.alpha = 0
+            self.UploadingToCloudLabel.alpha = 0
+        }
         
         headerView.frame.size = CGSize(width: screenWidth, height: 75)
         if(post.post_likeCount != nil) {

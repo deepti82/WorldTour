@@ -54,7 +54,8 @@ public class PostImage {
     func save() {
         var filename:URL!
         var filenameOnly = "";
-        if let data = UIImageJPEGRepresentation(self.image, 0.8) {
+        self.image = self.image.resizeWith(width: 800.0)
+        if let data = UIImageJPEGRepresentation(self.image, 0.5) {
             filenameOnly = String(Date().ticks) + ".jpg"
             filename = getDocumentsDirectory().appendingPathComponent( filenameOnly )
             try? data.write(to: filename)
@@ -155,5 +156,32 @@ public class PostImage {
 extension Date {
     var ticks: UInt64 {
         return UInt64((self.timeIntervalSince1970 + 62_135_596_800) * 10_000_000)
+    }
+}
+
+
+
+extension UIImage {
+    func resizeWith(percentage: CGFloat) -> UIImage? {
+        let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: size.width * percentage, height: size.height * percentage)))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = self
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.render(in: context)
+        guard let result = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        UIGraphicsEndImageContext()
+        return result
+    }
+    func resizeWith(width: CGFloat) -> UIImage? {
+        let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = self
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.render(in: context)
+        guard let result = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        UIGraphicsEndImageContext()
+        return result
     }
 }
