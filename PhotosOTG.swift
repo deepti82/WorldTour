@@ -265,15 +265,16 @@ class PhotosOTG: UIView {
         if(post.imageArr.count > 0) {
             self.isImage = true;
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-            mainPhoto.isUserInteractionEnabled = true
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
-            mainPhoto.addGestureRecognizer(tapGestureRecognizer)
-            mainPhoto.tag = 0
+            
 
             if(post.post_isOffline) {
                 self.mainPhoto.image = post.imageArr[0].image
             } else {
                 self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
+                mainPhoto.isUserInteractionEnabled = true
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
+                mainPhoto.addGestureRecognizer(tapGestureRecognizer)
+                mainPhoto.tag = 0
             }
             
             updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PhotosOTG.callFunction), userInfo: nil, repeats: true)
