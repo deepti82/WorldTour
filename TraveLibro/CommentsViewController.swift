@@ -44,46 +44,30 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 mentions.append(eachText)
             }
         }
-        
         if isEdit {
-            
             let set1: Set = Set(previousHashtags)
             let set2: Set = Set(hashtags)
-            
             let intersection = set1.intersection(set2)
-            
             addedHashtags = Array(set2.subtracting(intersection))
             removedHashtags = Array(set1.subtracting(intersection))
             if addComment.text != "" {
                 request.editComment(type: "post", commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, completion: {(response) in
-                    
                     DispatchQueue.main.async(execute: {
-                        
                         if response.error != nil {
-                            
                             print("error: \(response.error!.localizedDescription)")
-                            
                         }
                         else if response["value"].bool! {
-                            
                             self.getAllComments()
                         }
-                        else {
-                            
-                            
-                        }
-                        
+                        else {}
                     })
-                    
                 })
             }
-            
         }
         else {
             setAllComments(addComment.text)
             addComment.text = ""
         }
-        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,17 +83,12 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(CommentsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         addComment.returnKeyType = .done
         addComment.delegate = self
-        
-        
-        
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
-    
         let rightButton = UIButton()
         globalNavigationController.topViewController?.customNavigationBar(left: leftButton,right:rightButton)
-        
     }
     
     var viewHeight = 0
@@ -121,14 +100,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     func keyboardWillShow(_ notification: Notification) {
         view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            
-            //            if !keyboardHidden {
             if self.view.frame.origin.y == 0{
                 self.view.frame.origin.y -= 258
                 print("ye tym bhi karna hai\(keyboardSize.height)")
-                //                keyboardHidden = true
-                //            }
             }
         }
         
@@ -138,7 +112,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
                 self.view.frame.origin.y += keyboardSize.height
-                print("ye tym bhi karna hai plus\(keyboardSize.height)")
             }
         }
     }
@@ -161,15 +134,11 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         if self.comments[indexPath.row]["user"]["_id"].string! == currentUser["_id"].string! {
             
             let more = UITableViewRowAction(style: .normal, title: "            ") { action, index in
-                print("edit button tapped")
-                
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
                 self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
                 self.editComment = self.comments[indexPath.row]
                 self.isEdit = true
-                
             }
-            //more.backgroundColor = UIColor.lightGray
             let moreImage = UIImageView(image: UIImage(named: "edit.png"))
             moreImage.contentMode = .scaleAspectFit
             more.backgroundColor = UIColor(patternImage: moreImage.image!)
@@ -265,33 +234,16 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         return hashtags
     }
     
-    
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        // the cells you would like the actions to appear needs to be editable
-//        return true
-//    }
-    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        // you need to implement this method too or you can't swipe to display the actions
-//    }
-    
     var textVar = ""
     
     func textViewDidChange(_ textView: UITextView) {
         
         let commentText = textView.text.components(separatedBy: " ")
         textVar = commentText.last!
-//        container.alpha = 0
-//        containerTwo.alpha = 0
-        
         if textVar.contains("#") {
             hashTagSuggestionsTable.isHidden = false
             mentionSuggestionsTable.isHidden = true
             getHashtags()
-            print("hashtag in text")
-//            container.alpha = 1
-//            containerTwo.alpha = 0
-//            performSegue(withIdentifier: "myEmbeddedSegue", sender: nil)
         }
         else if textVar.contains("@") {
             
@@ -299,11 +251,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             mentionSuggestionsTable.isHidden = false
             hashTagSuggestionsTable.isHidden = true
             getMentions()
-            print("mentions in text")
-//            suggestionFor = "mentions"
-//            containerTwo.alpha = 1
-//            container.alpha = 0
-//            performSegue(withIdentifier: "myEmbeddedSegueTwo", sender: nil)
         } else {
             hashTagSuggestionsTable.isHidden = true
             mentionSuggestionsTable.isHidden = true
@@ -345,82 +292,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
 
     }
-    
-//    var flag: [Int] = []
-//    var stack: [Int] = []
-//    
-//    // MARK: When TextField Changes
-//    
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        
-//        stack.append(Int(string)!)
-//        var newText = textField.text! as NSString
-//        
-//        if stack.count == 1 {
-//            
-//            let range = NSRange(location: newText.length - 1, length: 1)
-//            newText = newText.replacingCharacters(in: range, with: String(stack[0])) as NSString
-//            
-//        }
-//            
-//        else if stack.count == 2 {
-//            
-//            var range = NSRange(location: newText.length - 1, length: 1)
-//            newText = newText.replacingCharacters(in: range, with: String(stack[1])) as NSString
-//            range = NSRange(location: newText.length - 2, length: 1)
-//            newText = newText.replacingCharacters(in: range, with: String(stack[0])) as NSString
-//            
-//        }
-//            
-//        else {
-//            
-//            for digit in stack {
-//                
-//                var index = stack.index(of: digit)!
-//                if index >= newText.length - 4 {
-//                    index += 1
-//                }
-//                
-//                let range = NSRange(location: index + 1, length: 1)
-//                if index < 4 {
-//                    newText = newText.replacingCharacters(in: range, with: String(digit)) as NSString
-//                }
-//                else {
-//                    print("digit index: \(!flag.contains(index))")
-//                    if !flag.contains(index) {
-//                        newText = newText.appending(String(digit)) as NSString
-//                        flag.append(index)
-//                    }
-//                    newText = newText.replacingOccurrences(of: ".", with: "") as NSString
-//                    let tempText: NSMutableString = NSMutableString(string: newText as String)
-//                    tempText.insert(".", at: tempText.length - 2)
-//                    newText = tempText as NSString
-//                }
-//            }
-//        }
-//        
-//        print("range: \(flag), replacement string: \(newText as String)")
-//        textField.text = newText as String
-//        return false
-//        
-//    }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if (segue.identifier == "myEmbeddedSegue") {
-//            print("hashtag segue")
-//            let childViewController = segue.destination as! SuggestionsViewController
-//            childViewController.getSuggestions()
-//            let commentText = addComment.text.components(separatedBy: " ")
-//            childViewController.textVar = commentText.last!
-//        }
-//        else if (segue.identifier == "myEmbeddedSegueTwo") {
-//            print("mention segue")
-//            let childViewController = segue.destination as! MentionSuggestionsViewController
-////            childViewController.getMentions()
-//            let commentText = addComment.text.components(separatedBy: " ")
-//            childViewController.textVar = commentText.last!
-//        }
-//    }
     
     func getMentions() {
         
@@ -573,43 +444,27 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                     self.present(actionSheetControllerIOS8, animated: true, completion: nil)
                 }
             }
-            
             return cell
         }
-        
     }
     
     func getHashtags() {
-        
         request.getHashtags(hashtag: textVar, completion: {(response) in
-            
             DispatchQueue.main.async(execute: {
-                
                 if response.error != nil {
-                    
                     print("error: \(response.error!.localizedDescription)")
-                    
                 }
                 else if response["value"].bool! {
-                    
                     self.hashtagSuggestions = response["data"].array!
                     self.hashTagSuggestionsTable.reloadData()
-                    
                 }
-                else {
-                    
-                    
-                }
-                
+                else {}
             })
-            
         })
-        
     }
 }
 
 class CommentTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileComment: ActiveLabel!
     @IBOutlet weak var profileImage: UIImageView!
@@ -617,19 +472,15 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var clockIcon: UILabel!
     @IBOutlet weak var calendarText: UILabel!
     @IBOutlet weak var clockText: UILabel!
-    
 }
 
 class MentionSuggestionsTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var titleLabel: UILabel!
 }
 
 class SuggestionsTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var statistics: UILabel!
-    
 }
 
 
