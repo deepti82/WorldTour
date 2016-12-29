@@ -44,7 +44,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! gridCollectionViewCell
-        cell.photo.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(myPhotos[(indexPath as NSIndexPath).row])")!))
+        cell.photo.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?width=500&file=\(myPhotos[(indexPath as NSIndexPath).row])")!)
         return cell
         
     }
@@ -52,8 +52,8 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("one image clicked")
         
-        
-        let photoEditViewController = PhotoEditViewController(photo: UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(myPhotos[(indexPath as NSIndexPath).row])")!))!)
+        let cell = collectionView.cellForItem(at: indexPath) as! gridCollectionViewCell
+        let photoEditViewController = PhotoEditViewController(photo: cell.photo.image!)
         let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
         toolStackController.delegate = self
         toolStackController.navigationItem.title = "Editor"
