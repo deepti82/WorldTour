@@ -38,6 +38,8 @@ class PhotosOTG: UIView {
     @IBOutlet weak var commentCount: UILabel!
     @IBOutlet weak var photosHC: NSLayoutConstraint!
     @IBOutlet weak var likeCommentView: UIView!
+    @IBOutlet weak var UploadToCloud: UIView!
+    @IBOutlet weak var UploadingToCloudLabel: UILabel!
     
     var postTop:Post!
     
