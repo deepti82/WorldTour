@@ -1809,7 +1809,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             mainScroll.animation.makeY(mainScroll.frame.origin.y + height).thenAfter(0.3).animate(0.3)
             print("showmeTheHeight\(mainScroll.frame.origin.y + height)")
             otgView.detectLocationView.layer.opacity = 0.0
-            
+             otgView.nameJourneyView.animation.moveY(-25)
+            otgView.nameJourneyTF.animation.moveY(-50)
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
             otgView.bonVoyageLabel.isHidden = true
             

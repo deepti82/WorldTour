@@ -65,7 +65,7 @@
                     </constraints>
                 </view>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7C-a2-fLC" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="195" y="138" width="10" height="63"/>
+                    <rect key="frame" x="195" y="171" width="10" height="54"/>
                     <color key="backgroundColor" red="0.58426339289999996" green="0.88718180089999998" blue="0.26145754180000003" alpha="1" colorSpace="calibratedRGB"/>
                     <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                     <constraints>
@@ -73,7 +73,7 @@
                     </constraints>
                 </view>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mK-u8-TND" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="195" y="78" width="10" height="37"/>
+                    <rect key="frame" x="195" y="78" width="10" height="56"/>
                     <color key="backgroundColor" red="0.58426339289999996" green="0.88718180089999998" blue="0.26145754180000003" alpha="1" colorSpace="calibratedRGB"/>
                     <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                     <constraints>
@@ -365,11 +365,11 @@
                 <constraint firstItem="t7r-hX-X00" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fsS-XV-RGO"/>
                 <constraint firstItem="Owl-Le-09q" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="g5f-TV-zBI"/>
                 <constraint firstItem="6mK-u8-TND" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hZI-dD-RA7"/>
-                <constraint firstItem="n7C-a2-fLC" firstAttribute="bottom" secondItem="b9h-EL-mQr" secondAttribute="top" constant="10" id="he8-5e-rN6"/>
+                <constraint firstItem="n7C-a2-fLC" firstAttribute="bottom" secondItem="b9h-EL-mQr" secondAttribute="top" constant="34" id="he8-5e-rN6"/>
                 <constraint firstItem="Aqf-8y-8EK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hj5-AU-fIq"/>
-                <constraint firstItem="n7C-a2-fLC" firstAttribute="top" secondItem="Aqf-8y-8EK" secondAttribute="bottom" constant="-18" id="ixW-Af-VeR"/>
+                <constraint firstItem="n7C-a2-fLC" firstAttribute="top" secondItem="Aqf-8y-8EK" secondAttribute="bottom" constant="15" id="ixW-Af-VeR"/>
                 <constraint firstItem="W5e-5K-0xm" firstAttribute="top" secondItem="aZc-x0-efS" secondAttribute="bottom" constant="20" id="pPO-p2-siQ"/>
-                <constraint firstItem="6mK-u8-TND" firstAttribute="bottom" secondItem="Aqf-8y-8EK" secondAttribute="top" constant="19" id="rXt-fT-Xyd"/>
+                <constraint firstItem="6mK-u8-TND" firstAttribute="bottom" secondItem="Aqf-8y-8EK" secondAttribute="top" constant="38" id="rXt-fT-Xyd"/>
                 <constraint firstItem="W5b-nR-cLh" firstAttribute="top" secondItem="t7r-hX-X00" secondAttribute="bottom" id="sp6-U5-qEZ"/>
                 <constraint firstItem="l0m-qZ-68a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="wHn-cm-DuF"/>
                 <constraint firstItem="6mK-u8-TND" firstAttribute="top" secondItem="aZc-x0-efS" secondAttribute="bottom" constant="-10" id="wjm-QV-YRV"/>
