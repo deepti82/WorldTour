@@ -30,8 +30,10 @@ class CreatePostViewController: UIViewController {
         
         let postButton = UIButton()
         postButton.setTitle("Post", for: .normal)
+        postButton.frame.size.height = 40
+        postButton.frame.size.width = 40
         //postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
-        postButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 16)
+        postButton.titleLabel!.font = UIFont(name: "Avenir-Roman", size: 30)
 
         self.customNavigationBar(left: nil, right: postButton)
         

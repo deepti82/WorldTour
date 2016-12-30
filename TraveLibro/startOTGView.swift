@@ -46,6 +46,7 @@ class startOTGView: UIView {
     @IBOutlet weak var dpFriendTwo: UIImageView!
     @IBOutlet weak var dpFriendThree: UIImageView!
     
+    @IBOutlet weak var closeBuddies: UIButton!
     @IBOutlet weak var shoewImage: SpringImageView!
     @IBOutlet var buddyStackPictures: [UIImageView]!
     @IBOutlet weak var optionsButton: UIButton!
@@ -100,9 +101,10 @@ class startOTGView: UIView {
 //        cityImage.layer.borderWidth = 3.0
 //        cityImage.clipsToBounds = true
         
-        selectCategoryButton.layer.cornerRadius = 5
+//        selectCategoryButton.layer.cornerRadius = 5
         selectCategoryButton.layer.borderColor = UIColor.white.cgColor
-        selectCategoryButton.layer.borderWidth = 1.0
+        selectCategoryButton.layer.borderWidth = 2.0
+       
         
         for icon in journeyCategoryDetails {
             
@@ -110,9 +112,14 @@ class startOTGView: UIView {
             
         }
         
-        addBuddiesButton.layer.cornerRadius = 5
+        
+        closeBuddies.layer.cornerRadius = 15
+        closeBuddies.layer.borderWidth = 1.0
+        closeBuddies.layer.borderColor = UIColor(colorLiteralRed: 35/255, green: 45/255, blue: 74/255, alpha: 1.0).cgColor
+        
+        
         addBuddiesButton.layer.borderColor = UIColor.white.cgColor
-        addBuddiesButton.layer.borderWidth = 1.0
+        addBuddiesButton.layer.borderWidth = 5.0
         
         
         lineOne.backgroundColor = UIColor.clear

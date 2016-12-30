@@ -35,7 +35,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var journeyName: String!
     var locationData = ""
     let locationManager = CLLocationManager()
-    
+    var locationPic = ""
     var journeyCategories = [String] ()
     var currentTime: String!
     
@@ -1789,12 +1789,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.locationLabel.resignFirstResponder()
         self.title = "On The Go" 
         
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startMonitoringSignificantLocationChanges()
+        
         if textField == otgView.nameJourneyTF {
             
-                    locationManager.requestAlwaysAuthorization()
-                    locationManager.delegate = self
-                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-                    locationManager.startMonitoringSignificantLocationChanges()
+            otgView.closeBuddies.isHidden = true
+            otgView.cityView.isHidden = false
+            otgView.cityImage.isHidden = false
             
 //            otgView = startOTGView(frame: CGRect(x: 0, y: 258, width: mainScroll.frame.width, height: self.view.frame.height))
 //            self.otgView.frame.origin.y = self.view.frame.height + 258
@@ -1812,7 +1816,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
              otgView.nameJourneyView.animation.moveY(-25)
             otgView.nameJourneyTF.animation.moveY(-50)
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
+//             self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
             otgView.bonVoyageLabel.isHidden = true
+            print("placeText")
+            print("\(otgView.cityImage)")
             
         }
         return false
@@ -1836,6 +1843,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.detectHide.isHidden = true
         otgView.cityView.isHidden = true
         otgView.locationLabel.isHidden = true
+        otgView.closeBuddies.isHidden = true
 //        locationManager.requestAlwaysAuthorization()
 //        locationManager.delegate = self
 //        locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -1847,6 +1855,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let categoryVC = storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(categoryVC, animated: true)
+        otgView.closeBuddies.isHidden = false
         //        showDetailsFn()
         
     }
@@ -2057,7 +2066,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
             }
         }
-        
+
         switch countLabel {
         case 0:
             otgView.dpFriendOne.removeFromSuperview()
@@ -2112,7 +2121,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
-    var locationPic: String!
+    
     var locationName: String = ""
     var locationLat: String = ""
     var locationLong: String = ""
@@ -2382,8 +2391,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
                             self.currentTime = dateFormatterTwo.string(from: Date())
                             
-                            self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.5)
-                            self.otgView.detectLocationView.isHidden = true
+                            self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.0)
+                            self.otgView.detectLocationView.isHidden = false
                             self.otgView.placeLabel.text = self.locationData
                             self.otgView.timestampDate.text = self.currentTime
                             self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
