@@ -1729,7 +1729,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addNewView.removeFromSuperview()
 //        getScrollView(height, journey: JSON(""))
         
-        otgView = startOTGView(frame: CGRect(x: 0, y: 258, width: mainScroll.frame.width, height: self.view.frame.height + 258))
+        otgView = startOTGView(frame: CGRect(x: 0, y: 258, width: mainScroll.frame.width, height: self.view.frame.height))
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
@@ -1830,7 +1830,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         sender.isHidden = true
         otgView.nameJourneyView.layer.opacity = 0.0
         otgView.nameJourneyView.isHidden = false
-        otgView.nameJourneyView.animation.makeOpacity(1.0).makeHeight(otgView.nameJourneyView.frame.height).animate(0.5)
+        otgView.nameJourneyView.animation.makeOpacity(1.0).makeHeight(otgView.nameJourneyView.frame.height).animate(0.5).moveY(-25)
         otgView.detectLocationView.isHidden = true
         otgView.detectHide.isHidden = true
         otgView.cityView.isHidden = true

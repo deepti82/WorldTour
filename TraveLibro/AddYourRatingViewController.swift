@@ -37,7 +37,7 @@ class AddYourRatingViewController: UIViewController {
         
         print("layout height: \(layout.frame.height)")
         
-        orangeLine = drawLine(frame: CGRect(x: profileImage.center.x, y: profileImage.center.y, width: 10, height: layout.frame.height))
+        orangeLine = drawLine(frame: CGRect(x: profileImage.center.x, y: profileImage.center.y, width: 20, height: layout.frame.height))
         orangeLine.backgroundColor = UIColor.clear
         scroll.addSubview(orangeLine)
         scroll.addSubview(layout)

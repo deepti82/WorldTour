@@ -67,10 +67,11 @@ class startOTGView: UIView {
         rocketLabel.textColor = UIColor.white
         startJourneyButton.titleLabel?.addSubview(rocketLabel)
         bonVoyageLabel.animation.thenAfter(0.5).animate(0.15).makeAlpha(1.0)
-        shoewImage.animation.thenAfter(0.20).animate(0.25).makeAlpha(1.0)
-        lineOne.animation.thenAfter(0.30).animate(0.35).makeAlpha(1.0)
-        startJourneyButton.animation.thenAfter(0.40).animate(0.45).makeAlpha(1.0)
-        lineTwo.animation.thenAfter(0.50).animate(0.55).makeAlpha(1.0)
+        shoewImage.animation.thenAfter(0.20).animate(0.25).makeAlpha(1.0).moveY(-25)
+        lineOne.animation.thenAfter(0.30).animate(0.35).makeAlpha(1.0).moveY(-25)
+        startJourneyButton.animation.thenAfter(0.40).animate(0.45).makeAlpha(1.0).moveY(-25)
+        lineTwo.animation.thenAfter(0.50).animate(0.55).makeAlpha(1.0).moveY(-25)
+        nameJourneyTF.animation.moveY(50)
         nameJourneyTF.attributedPlaceholder = NSAttributedString(string: "Name Your Journey", attributes: [NSForegroundColorAttributeName: UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)])
         
         nameJourneyView.layer.cornerRadius = 5
@@ -110,6 +111,7 @@ class startOTGView: UIView {
         addBuddiesButton.layer.cornerRadius = 5
         addBuddiesButton.layer.borderColor = UIColor.white.cgColor
         addBuddiesButton.layer.borderWidth = 1.0
+        
         
         lineOne.backgroundColor = UIColor.clear
         lineTwo.backgroundColor = UIColor.clear
