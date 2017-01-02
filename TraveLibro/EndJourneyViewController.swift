@@ -29,6 +29,7 @@ class EndJourneyViewController: UIViewController {
     @IBOutlet weak var rateCountriesLayout: VerticalLayout!
     var coverImage = ""
     var coverImageImg = UIImage()
+    var currentTime: String!
     
     
     var journey: JSON!
@@ -59,6 +60,12 @@ class EndJourneyViewController: UIViewController {
         journeyImages = []
         
         ToastView.appearance().backgroundColor = endJourneyColor
+        print("...........................")
+        print(journey["createdAt"])
+        
+        let dateFormatterTwo = DateFormatter()
+        dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+//        self.currentTime = dateFormatterTwo.string(from: journey["createdAt"])
         
         
         let leftButton = UIButton()
@@ -357,7 +364,7 @@ class EndJourneyViewController: UIViewController {
         
         //        print("layout: \(layout.subviews)")
         backgroundReview.removeFromSuperview()
-        rateCountriesLayoutMod.removeAll()
+//        rateCountriesLayoutMod.removeAll()
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
 
             
@@ -370,8 +377,8 @@ class EndJourneyViewController: UIViewController {
                 }
                 else if response["value"].bool! {
                     self.journey = response["data"]
-                    self.getAllCountryReviews()
-                    
+                  //  self.getAllCountryReviews()
+                    self.reloadInputViews()
                     
                 }
                 else {
