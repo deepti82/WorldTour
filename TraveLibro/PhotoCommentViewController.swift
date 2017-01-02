@@ -61,6 +61,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         // Do any additional setup after loading the view.
     }
     
+    
     @IBAction func back(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -309,7 +310,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         return hashtags
     }
     
-    override func popVC(_ sender: UIButton) {
+     override func popVC(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     

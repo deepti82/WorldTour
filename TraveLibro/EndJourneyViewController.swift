@@ -214,8 +214,8 @@ class EndJourneyViewController: UIViewController {
                 } else {
                     
                     print("no images")
-                    self.changePhotoText.isHidden = true
-                    self.changePhotoButton.isHidden = true
+//                    self.changePhotoText.isHidden = true
+//                    self.changePhotoButton.isHidden = true
                     self.changePhotoViewHeight.constant = 47.0
                     
                 }

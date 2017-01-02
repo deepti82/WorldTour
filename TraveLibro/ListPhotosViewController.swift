@@ -22,7 +22,6 @@ class ListPhotosViewController: UIViewController {
         print("..................")
         print(self.parent)
         getBackGround(self)
-        
         getJourneyPhotos()
         
         layout = VerticalLayout(width: self.view.frame.width - 40)

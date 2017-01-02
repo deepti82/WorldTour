@@ -325,7 +325,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             label.mentionColor = UIColor(red: 238.0/255, green: 85.0/255, blue: 96.0/255, alpha: 1)
             label.URLColor = UIColor(red: 85.0/255, green: 238.0/255, blue: 151.0/255, alpha: 1)
             label.handleMentionTap {
-                
+                checkIn.animation.makeY(-25).animate(0.0)
                 let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: "Mention", message: $0, preferredStyle: .alert)
                 let cancelActionButton: UIAlertAction = UIAlertAction(title: "OK", style: .default) {action -> Void in}
                 actionSheetControllerIOS8.addAction(cancelActionButton)
@@ -660,10 +660,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func closeInfo(_ sender: UITapGestureRecognizer) {
-        
-        infoView.animation.makeOpacity(0.0).animate(0.5)
-        infoView.isHidden = true
-        
+        self.infoView.removeFromSuperview()
     }
     
     func closeAdd(_ sender: UIButton) {
@@ -2027,7 +2024,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func addBuddies(_ sender: UIButton) {
         let addBuddiesVC = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         addBuddiesVC.whichView = "TL"
-        
+        otgView.animation.makeY(25).animate(0.0)
         if journeyId != nil {
             
             addBuddiesVC.uniqueId = journeyId

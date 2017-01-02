@@ -528,24 +528,10 @@ extension NewTLViewController {
     
     func showInfo(_ response: JSON) {
         
-        var flag = 0
-        var myInfo: TripInfoOTG!
         
         
-        for subview in self.view.subviews {
-            
-            if subview.isKind(of: TripInfoOTG.self) {
-                
-                flag = 1
-                myInfo = subview as! TripInfoOTG
-                subview.frame.size.height = 1000
-            }
-            
-        }
-        
-        if flag == 0 {
-            self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.infoView.crollInoView.contentSize.height))
-            self.infoView.crollInoView.contentSize.height = 1000
+            self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: screenHeight))
+           // self.infoView.crollInoView.contentSize.height = 1000
             self.infoView.crollInoView.isScrollEnabled = true
             self.infoView.crollInoView.scrollsToTop = true
 
@@ -571,18 +557,6 @@ extension NewTLViewController {
             self.view.addSubview(self.infoView)
             self.view.bringSubview(toFront: self.infoView)
             
-        }
-        else {
-            
-            myInfo.videosCount.setTitle("\(response["videos"])", for: .normal)
-            myInfo.photosCount.setTitle("\(response["photos"])", for: .normal)
-            myInfo.ratingCount.setTitle("\(response["review"])", for: .normal)
-            myInfo.mustDoCount.setTitle("\(response["mustDo"])", for: .normal)
-            myInfo.hotelsCount.setTitle("\(response["hotel"])", for: .normal)
-            myInfo.isHidden = false
-            myInfo.layer.opacity = 1.0
-            
-        }
         
     }
     

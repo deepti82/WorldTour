@@ -50,12 +50,8 @@ class TripInfoOTG: UIView {
         blurView.layer.zPosition = -1
         blurView.isUserInteractionEnabled = false
         self.addSubview(blurView)
-        crollInoView.contentSize = CGSize(width: 1000, height: 1000)
-        crollInoView.contentSize.height = 1000
-//        closeButton.setTitle(String(format: "%C", faicon["close"]!), forState: .Normal)
-//        crollInoView.frame.size.height = 100000
-        self.layer.opacity = 0.0
         
+        self.layer.opacity = 0.0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,6 +65,7 @@ class TripInfoOTG: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
+        self.crollInoView.contentSize = CGSize(width: 2000, height: 2000)
     }
 
 }
