@@ -279,7 +279,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         print("sender: \(search.searchField.text!)")
         
-        request.getBuddySearch(currentUser["_id"].string!, searchtext: search.searchField.text!, completion: {(response) in
+        request.getBuddySearch(currentUser["_id"].string!, searchtext: search.searchField.text!, completion: {(response) in 
             
             DispatchQueue.main.async(execute: {
                 
@@ -342,9 +342,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                 cell.buddyProfileImage.image = UIImage(data: data!)
                 makeTLProfilePicture(cell.buddyProfileImage)
             }
-        }
-            
-        else if imageUrl != "" {
+        } else if imageUrl != "" {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
             let data = try! Data(contentsOf: URL(string: getImageUrl)!)
@@ -371,8 +369,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.backgroundColor = UIColor.white.withAlphaComponent(0.7)
             
         }
-         
-        if addedFriends.contains(allFriendsJson[indexPath.row]) {
+        
+        
+        if addedFriends.contains(where: {$0["_id"] == allFriendsJson[indexPath.row]["_id"]}) {
             
             print("friend already added")
             
@@ -475,10 +474,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
             
-            //                print("getImageUrl: \(getImageUrl)")
             
             let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-            //                print("data: \(data)")
             
             if data != nil {
                 
@@ -491,13 +488,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
         }
         
-//        let imageData = NSData(contentsOfURL: NSURL(string: imageUrl)!)
-//        
-//        if imageData != nil {
-//            
-//             = UIImage(data:imageData!)
-//            
-//        }
         
         if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
             
@@ -514,31 +504,13 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! addBuddiesTableViewCell
-//        print("tint: \(cell.tintColor)")
-        
-//        if cell.tintColor != UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1) {
-//            
-//            cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
-//            
-//        }
-//        else {
-//            
-//            if whichView == "LL" {
-//                
-//                cell.tintColor = mainGreenColor
-//                
-//            }
-//            else {
-//                
-//                cell.tintColor = mainOrangeColor
-//            }
-//        }
+        //        }
         if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
-            print("in clicked")
             if cell.tintColor == mainOrangeColor {
-                
+                print(" in if mainoragecolor")
                 cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 0)
-                if let index = addedFriends.index(of: allFriendsJson[indexPath.row]) {
+                print(addedFriends.index(where: {$0["_id"] == allFriendsJson[indexPath.row]["_id"]}) ?? -1)
+                if let index = addedFriends.index(where: {$0["_id"] == allFriendsJson[indexPath.row]["_id"]}) {
                     
                     addedFriends.remove(at: index)
                     

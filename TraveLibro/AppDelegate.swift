@@ -53,6 +53,7 @@ var selectedStatus: String = ""
 var destinationVisited: JSON = []
 var journeyImages: [String] = []
 var storyboard: UIStoryboard!
+var addedBuddies: JSON = []
 
 var leftViewController: SideNavigationMenuViewController!
 
