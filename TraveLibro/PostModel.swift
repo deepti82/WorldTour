@@ -95,6 +95,8 @@ public class Post {
             let postId = try db.run(photoinsert)
             print("Post ID " + String(postId));
             
+            
+            
             for buddy in buddies {
                 buddy.postID = Int(postId)
                 buddy.save();
@@ -108,6 +110,7 @@ public class Post {
              print("dikha re post:\(query)")
             for post in query {
                 retPost = post;
+                retPost.post_isOffline = true;
                
             }
         } catch _ {
