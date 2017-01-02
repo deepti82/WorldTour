@@ -1643,6 +1643,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let po = Post();
         po.jsonToPost(post);
         self.addPostLayout(po)
+        print(post);
+        if(post["checkIn"]["location"].stringValue != "") {
         
         if post["review"].array!.count > 0 {
             
@@ -1676,6 +1678,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             addHeightToLayout(height: rateButton.frame.height + 20.0)
             rateButton.tag = 10
             
+        }
         }
         
         

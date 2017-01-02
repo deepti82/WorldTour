@@ -251,22 +251,16 @@ class EndJourneyViewController: UIViewController {
     }
     
     func makeCoverPicture (image: String) {
-        
         DispatchQueue.main.async(execute: {
-            
             //self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
-            
             let imageString = self.journey["startLocationPic"].string!
-            
             if imageString.contains("maps.googleapis.com") {
                 self.journeyCoverPic.hnk_setImageFromURL(URL(string:imageString)!)
             }
             else {
                 self.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=250")!)
             }
-            
         })
-        
     }
     
     func makeCoverPictureImage(image: String) {
@@ -280,9 +274,7 @@ class EndJourneyViewController: UIViewController {
         coverImageImg = image
         DispatchQueue.main.async(execute: {
             self.journeyCoverPic.image = image
-            
         })
-
     }
     
     func doneEndJourney(_ sender: UIButton) {
@@ -410,19 +402,13 @@ class EndJourneyViewController: UIViewController {
         rateCountriesLayoutMod = VerticalLayout(width: self.view.frame.width)
         rateCountriesScroll.addSubview(rateCountriesLayoutMod)
         
+        
         if journey["review"].array!.count > 0 {
-            print("countriesVisited")
-            print(countriesVisited)
-            print("journey[review].array!")
-            print(journey["review"].array!)
-            
             for eachCountry in countriesVisited {
                 
                 var flag = 0
                 var countryJSON: JSON!
-                
                 for eachReview in journey["review"].array! {
-                    
                     if eachReview["country"]["_id"].string! == eachCountry["country"]["_id"].string! {
                         
                         flag = 1
@@ -433,19 +419,15 @@ class EndJourneyViewController: UIViewController {
                         rateCountriesLayoutMod.addSubview(rateButton)
                         addHeightToLayout(height: 150, layoutView: rateCountriesLayoutMod, scroll: rateCountriesScroll)
                     } else {
-                        
                         countryJSON = eachCountry
                     }
                 }
-                
                 if flag == 0 {
-                    
                     getRatingLayout(eachRating: countryJSON)
                 }
             }
         }
         else {
-            
             rateCountries()
         }
         

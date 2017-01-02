@@ -111,7 +111,6 @@ public class Post {
             for post in query {
                 retPost = post;
                 retPost.post_isOffline = true;
-               
             }
         } catch _ {
             print("ERROR OCCURED");
