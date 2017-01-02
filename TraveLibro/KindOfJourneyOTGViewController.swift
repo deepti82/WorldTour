@@ -160,7 +160,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         
         if sender.tag == 0 {
             backVC.journeyCategories.append(sender.titleLabel!.text!)
-            sender.setBackgroundImage(UIImage(named: "halfgreenbox"), for: .normal)
+            sender.setBackgroundImage(UIImage(named: "orange"), for: .normal)
             sender.tag = 1
         }
             

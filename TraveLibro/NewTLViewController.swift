@@ -1824,7 +1824,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.nameJourneyTF.animation.moveY(-50)
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
 //             self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
-            otgView.bonVoyageLabel.isHidden = true
+            otgView.bonVoyageLabel.isHidden = false
             print("placeText")
             print("\(otgView.cityImage)")
             
@@ -2392,21 +2392,20 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             self.locationName = self.locationData
                             self.locationLat = String(locValue.latitude)
                             self.locationLong = String(locValue.longitude)
-                            
+                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
                             
                             let dateFormatterTwo = DateFormatter()
                             dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
                             self.currentTime = dateFormatterTwo.string(from: Date())
-                            
                             self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.0)
                             self.otgView.detectLocationView.isHidden = false
                             self.otgView.placeLabel.text = self.locationData
                             self.otgView.timestampDate.text = self.currentTime
-                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
+                            
                             //                    self.otgView.timestampTime.text =
                             self.otgView.cityView.layer.opacity = 0.0
                             self.otgView.cityView.isHidden = false
-                            self.otgView.cityView.animation.makeOpacity(1.0).animate(0.5)
+                            self.otgView.cityView.animation.makeOpacity(1.0).animate(0.0)
                             self.otgView.journeyDetails.isHidden = true
                             self.otgView.selectCategoryButton.isHidden = false
                             self.height = 250.0

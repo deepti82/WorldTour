@@ -58,7 +58,7 @@
                             <state key="normal" image="location_icon" backgroundImage="orangeboxopac"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Evening by the beach! :) with Sarvesh Brahme and 1 other at Girgaon" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd1-yL-ysy" customClass="ActiveLabel" customModule="TraveLibro" customModuleProvider="target">
-                            <rect key="frame" x="76" y="10" width="272" height="41"/>
+                            <rect key="frame" x="76" y="10" width="245" height="41"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -293,7 +293,7 @@
                             </constraints>
                         </view>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWW-f4-BJZ">
-                            <rect key="frame" x="16" y="321" width="368" height="48"/>
+                            <rect key="frame" x="55" y="321" width="295" height="48"/>
                             <color key="backgroundColor" red="0.8027377724647522" green="0.94921046495437622" blue="0.94881397485733032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                             <state key="normal" title="Select Kind Of Journey">
@@ -309,10 +309,10 @@
                         <constraint firstAttribute="trailing" secondItem="vov-Dh-v4k" secondAttribute="trailing" id="Gne-FG-u5x"/>
                         <constraint firstAttribute="trailing" secondItem="dfr-Js-I8N" secondAttribute="trailing" id="H3M-Yn-qg2"/>
                         <constraint firstItem="h75-8D-si8" firstAttribute="top" secondItem="vov-Dh-v4k" secondAttribute="bottom" constant="-5" id="KoQ-19-jYH"/>
-                        <constraint firstAttribute="trailing" secondItem="nWW-f4-BJZ" secondAttribute="trailing" constant="16" id="RKt-Xl-dZW"/>
+                        <constraint firstAttribute="trailing" secondItem="nWW-f4-BJZ" secondAttribute="trailing" constant="50" id="RKt-Xl-dZW"/>
                         <constraint firstItem="vov-Dh-v4k" firstAttribute="top" secondItem="dfr-Js-I8N" secondAttribute="bottom" constant="-5" id="RXR-Xt-lh2"/>
                         <constraint firstItem="b9h-EL-mQr" firstAttribute="centerX" secondItem="vov-Dh-v4k" secondAttribute="centerX" id="Roe-wK-buY"/>
-                        <constraint firstItem="nWW-f4-BJZ" firstAttribute="leading" secondItem="t7r-hX-X00" secondAttribute="leading" constant="16" id="dFD-qP-4zA"/>
+                        <constraint firstItem="nWW-f4-BJZ" firstAttribute="leading" secondItem="t7r-hX-X00" secondAttribute="leading" constant="55" id="dFD-qP-4zA"/>
                         <constraint firstItem="dfr-Js-I8N" firstAttribute="leading" secondItem="t7r-hX-X00" secondAttribute="leading" id="klT-Ap-mJ0"/>
                         <constraint firstItem="h75-8D-si8" firstAttribute="leading" secondItem="t7r-hX-X00" secondAttribute="leading" id="pTI-kG-4Rb"/>
                         <constraint firstItem="vov-Dh-v4k" firstAttribute="leading" secondItem="t7r-hX-X00" secondAttribute="leading" id="qQw-Tc-TAD"/>
