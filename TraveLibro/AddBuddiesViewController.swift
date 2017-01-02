@@ -33,7 +33,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         var addedFriendUsers: [JSON] = []
         if whichView == "TL" {
-            
             if(addedFriends.count == 0) {
                 let allControllers = self.navigationController!.viewControllers
                 for vc in allControllers {
@@ -100,7 +99,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         else if whichView == "TLMiddle" {
-            
             for friend in addedFriends {
                 addedFriendUsers.append(friend)
             }
@@ -141,9 +139,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                 })
             })
-        }
-        else if whichView == "TLTags" {
-            
+        } else if whichView == "TLTags" {
             let allControllers = self.navigationController!.viewControllers
             
             for vc in allControllers {
@@ -452,6 +448,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! addedBuddiesCollectionViewCell
         cell.removeBuddyButton.setTitle(close, for: UIControlState())
         cell.buddyName.text = addedFriends[(indexPath as NSIndexPath).row]["name"].string!
+//        cell.acc
         
         let imageUrl = addedFriends[(indexPath as NSIndexPath).row]["profilePicture"].string!
         print("collection view dp: \(imageUrl)")
@@ -467,11 +464,10 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             if data != nil {
                 
                 print("some problem in data \(data)")
-                //                uploadView.addButton.setImage(, forState: .Normal)
                 cell.buddyDp.image = UIImage(data: data!)
-//                cell.buddyDp.image = UIImage(data: data!)
-                //                    makeTLProfilePicture(profile.image)
+                cell.buddyDp.image = UIImage(data: data!)
                 makeTLProfilePicture(cell.buddyDp)
+                
             }
         }
             
@@ -538,10 +534,10 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //            }
 //        }
         if whichView == "TL" || whichView == "TLMiddle" || whichView == "TLTags" {
-            
+            print("in clicked")
             if cell.tintColor == mainOrangeColor {
                 
-                cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
+                cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 0)
                 if let index = addedFriends.index(of: allFriendsJson[indexPath.row]) {
                     
                     addedFriends.remove(at: index)
@@ -549,9 +545,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
                 
 //                buddiesCollectionView.reloadData()
-            }
-            
-            else {
+            } else {
                 
                 cell.tintColor = mainOrangeColor
                 addedFriends.append(allFriendsJson[indexPath.row])

@@ -250,7 +250,6 @@ extension NewTLViewController {
     
     func removeRatingButton(_ postId: String) {
         
-        //        print("layout: \(layout.subviews)")
         backgroundReview.removeFromSuperview()
         
         request.getOneJourneyPost(id: postId, completion: {(response) in
