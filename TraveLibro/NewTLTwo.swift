@@ -531,20 +531,24 @@ extension NewTLViewController {
         var flag = 0
         var myInfo: TripInfoOTG!
         
+        
         for subview in self.view.subviews {
             
             if subview.isKind(of: TripInfoOTG.self) {
                 
                 flag = 1
                 myInfo = subview as! TripInfoOTG
-                
+                subview.frame.size.height = 1000
             }
             
         }
         
         if flag == 0 {
-            
-            self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height))
+            self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.infoView.crollInoView.contentSize.height))
+            self.infoView.crollInoView.contentSize.height = 1000
+            self.infoView.crollInoView.isScrollEnabled = true
+            self.infoView.crollInoView.scrollsToTop = true
+
             self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), for: .touchUpInside)
             self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
             self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)

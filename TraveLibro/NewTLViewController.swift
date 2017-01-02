@@ -789,7 +789,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         super.viewDidLoad()
         self.layout = VerticalLayout(width: self.view.frame.width)
         mainScroll.addSubview(layout)
-        
+        print("locationName??@")
+        print(locationData)
         var i  = PostImage();
         i.uploadPhotos()
         
@@ -798,6 +799,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         getJourney()
         mainScroll.delegate = self
         
+        
+        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 1000))
+
         
         mainScroll.showsVerticalScrollIndicator = false
         mainScroll.showsHorizontalScrollIndicator = false

@@ -25,7 +25,8 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var startDate: UILabel!
     @IBOutlet weak var dayCount: UILabel!
     @IBOutlet weak var mileageText: UILabel!
-    
+    @IBOutlet weak var collectionViewHidden: UIView!
+   
     var labels: [JSON] = []
     var images = ["restaurantsandbars", "leaftrans", "hotels-1", "shopping-1", "nature_checkin", "sightstrans", "museumstrans", "zootrans", "religious-1", "cinematrans", "planetrans", "othersdottrans"]
     var journeyId = ""
@@ -37,12 +38,13 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         super.viewDidLoad()
 //        countryStackView.isHidden = true
         getCount()
-        
         userName.text = currentUser["name"].string!
         DispatchQueue.main.async(execute: {
             self.profilePicture.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
             makeTLProfilePicture(self.profilePicture)
         })
+        
+       
         
         tripSummaryView.layer.cornerRadius = 5
         
@@ -66,7 +68,9 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         let count = NSMutableAttributedString(string: "\(labels[indexPath.item]["count"].int!) ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 10)!])
         count.append(title)
         cell.statLabel.attributedText = title
-        return cell
+        print("namecount????\(labels)")
+        
+              return cell
         
     }
     
@@ -142,7 +146,8 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
 //            remainingCountries.text = "\(tripCountData["countryVisited"].array!.count - 3)"
 //            
 //        }
-        
+        print("whatisThis")
+        print(labels)
         print("tripcountdata......")
         print(tripCountData)
         likesNumber.text = "\(tripCountData["likeCount"])"
@@ -254,8 +259,21 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
                     self.tripCountData = response["data"]
                     if response["data"]["checkInCount"] != nil {
                         self.labels = response["data"]["checkInCount"].array!
-                    }
-                    self.checkInCollectionView.reloadData()
+//                        self.dayCount.text = "\(response["data"]["checkInCount"].array!)"
+                        print("whatisThis\(self.labels)")
+                        
+                        
+
+                    }else {
+                        
+                            self.checkInCollectionView.isHidden = true
+                            self.countryStackView.isHidden = true
+                            self.collectionViewHidden.isHidden = true
+                            self.countriesVisitedLabel.isHidden = true
+                            self.tripSummaryView.animation.makeHeight(150).animate(0.0)
+                        }
+
+                                        self.checkInCollectionView.reloadData()
                     self.getCountView()
                 }
             })

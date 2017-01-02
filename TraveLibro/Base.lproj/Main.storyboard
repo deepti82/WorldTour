@@ -2869,7 +2869,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHq-Pp-N7Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1142" y="419"/>
+            <point key="canvasLocation" x="1141.5999999999999" y="418.74062968515744"/>
         </scene>
         <!--Location Category View Controller-->
         <scene sceneID="Ikw-lV-Hr6">
@@ -3367,16 +3367,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="86" y="245" width="172.5" height="30"/>
+                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
-                                                <rect key="frame" x="0.0" y="0.0" width="142.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
                                                 <fontDescription key="fontDescription" name="DJBMyMoodRingSaysBlah" family="DJB My Mood Ring Says Blah" pointSize="18"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fO-4a-a7e">
-                                                <rect key="frame" x="142.5" y="0.0" width="30" height="30"/>
+                                                <rect key="frame" x="124" y="0.0" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="Pp7-Hs-nOp"/>
                                                     <constraint firstAttribute="width" constant="30" id="Tyc-TN-7U1"/>
@@ -10357,6 +10357,7 @@
                     <connections>
                         <outlet property="cellView" destination="MFp-q9-aYv" id="dhZ-eD-nDZ"/>
                         <outlet property="checkInCollectionView" destination="ySL-fM-Wy9" id="eoe-Rs-QH7"/>
+                        <outlet property="collectionViewHidden" destination="quu-m8-KxH" id="dEF-Rx-JM9"/>
                         <outlet property="countriesVisitedLabel" destination="OHm-Jx-0oj" id="zzu-DG-iaq"/>
                         <outlet property="countryStackView" destination="ncp-sH-XDe" id="eQJ-yl-4Ru"/>
                         <outlet property="dayCount" destination="iGe-AW-yoy" id="p7X-3t-UaW"/>
@@ -10898,7 +10899,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bll-yb-qdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9493" y="2558"/>
+            <point key="canvasLocation" x="9491" y="2704"/>
         </scene>
         <!--Popular Bloggers-->
         <scene sceneID="rmz-aG-4q2">

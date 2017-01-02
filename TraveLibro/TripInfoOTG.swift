@@ -20,6 +20,7 @@ class TripInfoOTG: UIView {
     @IBOutlet weak var videosButton: UIButton!
     @IBOutlet weak var summaryButton: UIButton!
     
+    @IBOutlet weak var crollInoView: UIScrollView!
     @IBOutlet weak var videosCount: UIButton!
     @IBOutlet weak var photosCount: UIButton!
     @IBOutlet weak var ratingCount: UIButton!
@@ -49,9 +50,10 @@ class TripInfoOTG: UIView {
         blurView.layer.zPosition = -1
         blurView.isUserInteractionEnabled = false
         self.addSubview(blurView)
-        
+        crollInoView.contentSize = CGSize(width: 1000, height: 1000)
+        crollInoView.contentSize.height = 1000
 //        closeButton.setTitle(String(format: "%C", faicon["close"]!), forState: .Normal)
-        
+//        crollInoView.frame.size.height = 100000
         self.layer.opacity = 0.0
         
     }
