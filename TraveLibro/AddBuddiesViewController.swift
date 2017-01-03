@@ -14,12 +14,11 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     var friendsCount:UIButton!
     
     var whichView = "LL"
-    var addedFriends: [JSON] = []
+    var addedFriends: [JSON]!
     var frezzFriends: [JSON] = []
     var addedFriendsImages: [String] = []
     var flag = 0
-    var buddiesStatus = false
-    
+    var buddiesStatus = true
     var allFriendsJson: [JSON] = []
     //    var friendsCount = 0
     
@@ -34,18 +33,23 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
 //        var addedFriendUsers: [JSON] = []
         
         let allControllers = self.navigationController!.viewControllers
-                        for vc in allControllers {
         
-                            if vc.isKind(of: NewTLViewController.self) {
+        self.navigationController?.popViewController(animated: true)
         
-                                print("is kind of class new tl view controller")
-                                let backVC = vc as! NewTLViewController
-                                backVC.addedBuddies = self.addedFriends
-                                self.navigationController!.popToViewController(backVC, animated: true)
+//        globalNewTLViewController.getJourney()
         
-                            }
-                            
-                        }
+//                        for vc in allControllers {
+//        
+//                            if vc.isKind(of: NewTLViewController.self) {
+//        
+//                                print("is kind of class new tl view controller")
+//                                let backVC = vc as! NewTLViewController
+//                                backVC.addedBuddies = self.addedFriends
+//                                self.navigationController!.popToViewController(backVC, animated: true)
+//        
+//                            }
+//                            
+//                        }
         
         
 //        if whichView == "TL" {
@@ -136,9 +140,10 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("which view: \(whichView)")
+        print("which view: \(buddiesStatus)")
         
         if !buddiesStatus {
+            print("in if buddies not")
             frezzFriends = addedFriends
             addedFriends = []
         }

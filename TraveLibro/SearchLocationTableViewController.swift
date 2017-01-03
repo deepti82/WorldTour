@@ -104,15 +104,6 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         
         getSearchText()
         
-//        filteredArray = places.filter({(country) -> Bool in
-//            
-//            let text: NSString = country["name"].string!
-//            return (text.rangeOfString(searchString, options: .CaseInsensitiveSearch).location) != NSNotFound
-//            
-//        })
-        
-//        print("filtered array: \(filteredArray)")
-        
         tableView.reloadData()
     }
 
@@ -195,7 +186,6 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
         }
         
         globalAddActivityNew.putLocationName(myCell.placeName.text!, placeId: myId)
-//        self.navigationController?.popToViewController(previous, animated: true)
         self.navigationController?.popViewController(animated: true)
     }
 
