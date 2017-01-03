@@ -445,7 +445,7 @@ class EndJourneyViewController: UIViewController {
     
     func getRatingLayout(eachRating: JSON) {
         
-        let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+        let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: -70, width: width, height: 150))
         rateButton.rateCheckInLabel.text = "Rate \(eachRating["country"]["name"])?"
         rateButton.rateCheckInButton.tag = countriesVisited.index(of: eachRating)!
         rateButton.rateCheckInButton.addTarget(self, action: #selector(EndJourneyViewController.postReview(_:)), for: .touchUpInside)

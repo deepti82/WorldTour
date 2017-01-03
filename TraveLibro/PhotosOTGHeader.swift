@@ -31,8 +31,16 @@ class PhotosOTGHeader: UIView {
 
     
     func loadViewFromNib() {
+        PhotoOTGHeaderView.layer.cornerRadius = 5
+        PhotoOTGHeaderView.layer.shadowColor = UIColor.white.cgColor
+        PhotoOTGHeaderView.layer.shadowOffset = CGSize(width: 2, height: 1)
+        
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "PhotosOTGHeader", bundle: bundle)
+        postDp.layer.cornerRadius = 15
+        postDp.layer.borderWidth = 2
+        postDp.layer.borderColor = UIColor.orange.cgColor
+        
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]

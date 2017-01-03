@@ -12,19 +12,37 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PhotosOTGView" customModule="TraveLibro" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="394"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="453"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOt-jS-QTu">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="384"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="443"/>
                     <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYL-sn-6xk">
+                            <rect key="frame" x="-13" y="324" width="400" height="60"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </scrollView>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSE-Ki-cs9">
+                            <rect key="frame" x="0.0" y="384" width="375" height="14"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uploading To Cloud..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="elc-5L-mYF">
+                                    <rect key="frame" x="113" y="0.0" width="134" height="15"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vro-Om-fU8">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="322"/>
                             <subviews>
                                 <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="4yv-vt-n3O">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="322"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="387" id="LLF-9h-EAE"/>
+                                        <constraint firstAttribute="height" constant="322" id="LLF-9h-EAE"/>
                                         <constraint firstAttribute="width" constant="375" id="mPv-af-KOR"/>
                                     </constraints>
                                 </imageView>
@@ -36,20 +54,16 @@
                                 <constraint firstItem="4yv-vt-n3O" firstAttribute="leading" secondItem="Vro-Om-fU8" secondAttribute="leading" id="h1b-7J-gG5"/>
                             </constraints>
                         </view>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYL-sn-6xk">
-                            <rect key="frame" x="-13" y="324" width="400" height="60"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </scrollView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="384" id="AF4-TR-bgH"/>
+                        <constraint firstAttribute="height" constant="443" id="AF4-TR-bgH"/>
                         <constraint firstItem="aYL-sn-6xk" firstAttribute="top" secondItem="Vro-Om-fU8" secondAttribute="bottom" constant="2" id="F4Y-Wj-3sM"/>
-                        <constraint firstAttribute="bottom" secondItem="Vro-Om-fU8" secondAttribute="bottom" constant="62" id="FlD-IP-frP"/>
+                        <constraint firstAttribute="bottom" secondItem="Vro-Om-fU8" secondAttribute="bottom" constant="121" id="FlD-IP-frP"/>
                         <constraint firstAttribute="width" constant="375" id="I70-fs-NzT"/>
                         <constraint firstItem="Vro-Om-fU8" firstAttribute="centerX" secondItem="aYL-sn-6xk" secondAttribute="centerX" id="LfZ-zY-eRE"/>
                         <constraint firstItem="Vro-Om-fU8" firstAttribute="top" secondItem="eOt-jS-QTu" secondAttribute="top" id="Xpw-YR-EP9"/>
-                        <constraint firstAttribute="bottom" secondItem="aYL-sn-6xk" secondAttribute="bottom" id="cx9-B4-87j"/>
+                        <constraint firstAttribute="bottom" secondItem="aYL-sn-6xk" secondAttribute="bottom" constant="59" id="cx9-B4-87j"/>
                         <constraint firstItem="aYL-sn-6xk" firstAttribute="leading" secondItem="eOt-jS-QTu" secondAttribute="leading" constant="-13" id="dhY-av-PJC"/>
                         <constraint firstItem="Vro-Om-fU8" firstAttribute="leading" secondItem="eOt-jS-QTu" secondAttribute="leading" id="fvm-Zv-hmo"/>
                     </constraints>
@@ -64,9 +78,12 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="UploadingToCloudView" destination="cSE-Ki-cs9" id="nMn-jw-aV5"/>
+                <outlet property="bgView" destination="Vro-Om-fU8" id="6pi-16-jIZ"/>
                 <outlet property="mainPhoto" destination="4yv-vt-n3O" id="6WQ-OI-zi7"/>
+                <outlet property="uploadingToCloudLabel" destination="elc-5L-mYF" id="t8c-wx-I3G"/>
             </connections>
-            <point key="canvasLocation" x="26.5" y="-84"/>
+            <point key="canvasLocation" x="26.5" y="-54.5"/>
         </view>
     </objects>
     <resources>

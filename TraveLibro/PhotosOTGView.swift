@@ -12,6 +12,8 @@ class PhotosOTGView: UIView {
 
     @IBOutlet weak var mainPhoto: UIImageView!
     @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var UploadingToCloudView: UIView!
+    @IBOutlet weak var uploadingToCloudLabel: UILabel!
     
     
     override init(frame: CGRect) {
