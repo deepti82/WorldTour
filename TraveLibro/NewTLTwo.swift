@@ -134,12 +134,14 @@ extension NewTLViewController {
     func cityChanges(_ post: JSON) {
         
         prevPosts.append(post)
+        if(post["location"].string != nil) {
+            let changeCityView = ChangeCity(frame: CGRect(x: 0, y: 0, width: width - 120, height: 155))
+            changeCityView.center.x = width/2
+            changeCityView.cityButton.setTitle(post["location"].string!, for: .normal)
+            layout.addSubview(changeCityView)
+            addHeightToLayout(height: changeCityView.frame.height)
+        }
         
-        let changeCityView = ChangeCity(frame: CGRect(x: 0, y: 0, width: width - 120, height: 155))
-        changeCityView.center.x = width/2
-        changeCityView.cityButton.setTitle(post["location"].string!, for: .normal)
-        layout.addSubview(changeCityView)
-        addHeightToLayout(height: changeCityView.frame.height)
         
         //        print("\(#line) \(post)")
         
