@@ -24,9 +24,43 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     
     func getJourneyPhotos() {
         
-        self.myPhotos = journeyImages
         
-        self.collectionView!.reloadData()
+        if journeyImages == [] {
+            print("oooyyyy in journey images")
+            request.journeyTypeData(journeyId, type: "photos", userId: currentUser["_id"].string!, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        if response["data"]["photos"] != nil {
+                            for n in response["data"]["photos"].array! {
+                                self.myPhotos.append(n["name"].string!)
+                            }
+                        }
+                        self.collectionView!.reloadData()
+                        
+                    }
+                    else {
+                        
+                        print("response error")
+                        
+                    }
+                    
+                })
+                
+            })
+
+        }else{
+            self.myPhotos = journeyImages
+            self.collectionView!.reloadData()
+        }
+        
+        
         
     }
     
@@ -51,17 +85,19 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("one image clicked")
-        
-        let cell = collectionView.cellForItem(at: indexPath) as! gridCollectionViewCell
-        let photoEditViewController = PhotoEditViewController(photo: cell.photo.image!)
-        let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
-        toolStackController.delegate = self
-        toolStackController.navigationItem.title = "Editor"
-        toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
-        let nvc = UINavigationController(rootViewController: toolStackController)
-        nvc.navigationBar.isTranslucent = false
-        nvc.navigationBar.barStyle = .black
-        self.present(nvc, animated: true, completion: nil)
+        if journeyImages != [] {
+            let cell = collectionView.cellForItem(at: indexPath) as! gridCollectionViewCell
+            let photoEditViewController = PhotoEditViewController(photo: cell.photo.image!)
+            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
+            toolStackController.delegate = self
+            toolStackController.navigationItem.title = "Editor"
+            toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
+            let nvc = UINavigationController(rootViewController: toolStackController)
+            nvc.navigationBar.isTranslucent = false
+            nvc.navigationBar.barStyle = .black
+            self.present(nvc, animated: true, completion: nil)
+
+        }
         
             
     }
