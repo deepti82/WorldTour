@@ -754,7 +754,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func setTopNavigation(text: String) {
-        print("----------------------top navigation")
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -786,8 +785,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         super.viewDidLoad()
         self.layout = VerticalLayout(width: self.view.frame.width)
         mainScroll.addSubview(layout)
-        print("locationName??@")
-        print(locationData)
         var i  = PostImage();
         i.uploadPhotos()
         
@@ -873,8 +870,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //        print("on appear")
-        //        setTopNavigation(text: "On The Go");
     }
     
     func gotoProfile(_ sender: UIButton) {
@@ -898,7 +893,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func refresh(_ sender: AnyObject) {
         
-        //        print("in refresh")
         isRefreshing = true
         getJourney()
         
@@ -928,7 +922,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if post["thoughts"] != nil && post["thoughts"].string != "" {
             
-            //            print("thoughtts if statement")
             thoughts = post["thoughts"].string!
         }
         
@@ -1108,7 +1101,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     if ( post["checkIn"]["lat"].string != nil && post["checkIn"]["lat"] != "" ) && post["checkIn"]["long"].string != nil {
                         
                         let getKey = post["imageUrl"].string?.components(separatedBy: "=")
-                        print("getting key: \(getKey)")
                         mapKey = getKey!.last!
                         
                         let imageString = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x600&maptype=roadmap&markers=color:red|\(post["checkIn"]["lat"].string!),\(post["checkIn"]["long"].string!)&key=\(mapKey)"
@@ -1324,7 +1316,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 
                 DispatchQueue.main.async(execute: {
                     
-                    print("\(response["value"].bool!)")
                     
                     if response.error != nil {
                         
