@@ -141,11 +141,6 @@ extension NewTLViewController {
             layout.addSubview(changeCityView)
             addHeightToLayout(height: changeCityView.frame.height)
         }
-        
-        
-        //        print("\(#line) \(post)")
-        
-        
     }
     
     func showReviewPopup(_ sender: UIButton) {

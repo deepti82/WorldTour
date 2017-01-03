@@ -201,7 +201,6 @@ class PhotosOTG: UIView {
         
         let widthInPixels = image?.cgImage?.width
         let heightInPixels =  image?.cgImage?.height
-        print("function called")
         if(widthInPixels != 180) {
             updateTimer.invalidate()
             imageRatio = CGFloat(widthInPixels!)/CGFloat(heightInPixels!);
