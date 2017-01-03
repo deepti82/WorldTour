@@ -345,7 +345,8 @@ public class Post {
                 
                 let checkInJson:JSON = ["location":p.post_location,"category":p.post_category,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
                 
-                
+                print("chintan Shah");
+                print(checkInJson);
                 var params:JSON = ["type":"travel-life", "thoughts":p.post_thoughts,"user": p.post_userId,"journey":p.post_journeyId,"date":p.post_date]
                 params["checkIn"] = checkInJson
                 params["photos"] = JSON(photosJson)

@@ -93,7 +93,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     func closeAdd(_ sender:UIButton) {
         globalNavigationController?.popViewController(animated: true)
         if((globalNewTLViewController) != nil) {
-            globalNewTLViewController.refresh(sender)
+            globalNewTLViewController.getJourney()
         }
     }
     
