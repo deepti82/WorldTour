@@ -39,6 +39,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         switch(whichView) {
             case "AddActivity":
             globalAddActivityNew.buddyAdded(addedFriends);
+            case "NewTLView":
+            globalNewTLViewController.buddyAdded(addedFriends);
             default:
             break;
         }

@@ -2002,15 +2002,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var dpTwo: String!
     var dpThree: String!
     
+    func buddyAdded(_ json:[JSON]) {
+        print(json);
+        print("ADDING BUDDY");
+    }
     
     func addBuddies(_ sender: UIButton) {
         let addBuddiesVC = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
-        addBuddiesVC.whichView = "TL"
+        addBuddiesVC.whichView = "NewTLView"
         otgView.animation.makeY(25).animate(0.0)
         if journeyId != nil {
-            
-            addBuddiesVC.uniqueId = journeyId
-            addBuddiesVC.journeyName = otgView.journeyName.text!
+            addBuddiesVC.buddiesStatus  = false;
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController!.pushViewController(addBuddiesVC, animated: true)
         }
