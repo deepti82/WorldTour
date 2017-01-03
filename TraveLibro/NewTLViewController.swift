@@ -1450,7 +1450,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                 })
-                
             })
             
             //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
