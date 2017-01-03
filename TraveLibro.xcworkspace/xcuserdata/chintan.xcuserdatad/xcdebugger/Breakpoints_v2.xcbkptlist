@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/AddBuddiesViewController.swift"
-            timestampString = "505137195.47494"
+            timestampString = "505144963.270089"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "492"
-            endingLineNumber = "492">
+            startingLineNumber = "486"
+            endingLineNumber = "486">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

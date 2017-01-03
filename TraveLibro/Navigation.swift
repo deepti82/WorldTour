@@ -249,11 +249,11 @@ class Navigation {
         
     }
     
-    func addBuddiesOTG(_ friends: JSON, userId: String, userName: String, journeyId: String, inMiddle: Bool, journeyName: String, completion: @escaping ((JSON) -> Void)) {
+    func addBuddiesOTG(_ friends: [JSON], userId: String, userName: String, journeyId: String, inMiddle: Bool, journeyName: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             var params: JSON = ["uniqueId": journeyId, "inMiddle": inMiddle, "name": userName, "user": userId, "journeyName": journeyName]
-            params["buddies"] = friends
+            params["buddies"] = JSON(friends)
             
             print("add buddies params: \(params)")
             

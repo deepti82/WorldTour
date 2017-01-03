@@ -57,7 +57,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     @IBAction func addMoreBuddies(_ sender: AnyObject) {
         let getBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         getBuddies.addedFriends = myJourney["buddies"].arrayValue
-        getBuddies.whichView = "TLMiddle"
+        getBuddies.whichView = "NewTLMiddle"
+        getBuddies.buddiesStatus = false;
         getBuddies.uniqueId = journeyId
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(getBuddies, animated: true)
@@ -2003,8 +2004,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var dpThree: String!
     
     func buddyAdded(_ json:[JSON]) {
-        print(json);
+        
+        print(currentUser);
         print("ADDING BUDDY");
+        
+//         let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
+        
+        request.addBuddiesOTG(json, userId: currentUser["_id"].stringValue , userName: currentUser["name"].stringValue, journeyId: self.journeyId, inMiddle: true, journeyName: self.journeyName, completion: { (json) in
+            print(json)
+        })
     }
     
     func addBuddies(_ sender: UIButton) {
@@ -2012,7 +2020,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addBuddiesVC.whichView = "NewTLView"
         otgView.animation.makeY(25).animate(0.0)
         if journeyId != nil {
-            addBuddiesVC.buddiesStatus  = false;
+            addBuddiesVC.buddiesStatus  = true;
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController!.pushViewController(addBuddiesVC, animated: true)
         }

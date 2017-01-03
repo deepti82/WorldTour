@@ -28,26 +28,20 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         
         sender.isEnabled = false
-        print(whichView)
-        
-//        var addedFriendUsers: [JSON] = []
-        
-        let allControllers = self.navigationController!.viewControllers
         
         self.navigationController?.popViewController(animated: true)
         
+        print("Chintan Shaha");
+        print(whichView);
         switch(whichView) {
             case "AddActivity":
             globalAddActivityNew.buddyAdded(addedFriends);
-            case "NewTLView":
+            case "NewTLMiddle":
             globalNewTLViewController.buddyAdded(addedFriends);
             default:
             break;
         }
-        
-        
 //        globalNewTLViewController.getJourney()
-        
 //                        for vc in allControllers {
 //        
 //                            if vc.isKind(of: NewTLViewController.self) {
