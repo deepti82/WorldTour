@@ -1616,7 +1616,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addHeightToLayout(height: CGFloat) {
         self.layout.layoutSubviews()
-        self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 258)
+        self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height)
 //        let bottomOffset = CGPoint(x: 0, y: self.mainScroll.contentSize.height - self.mainScroll.bounds.size.height)
 //        self.mainScroll.setContentOffset(bottomOffset, animated: true)
     }
