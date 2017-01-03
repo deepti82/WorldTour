@@ -14,6 +14,7 @@ class EndJourneyViewController: UIViewController {
     @IBOutlet weak var buddyStack: UIStackView!
     @IBOutlet weak var categoryStack: UIStackView!
     
+    @IBOutlet weak var scrollEndJourneyView: UIScrollView!
     @IBOutlet weak var categoryOne: UIImageView!
     @IBOutlet weak var categoryTwo: UIImageView!
     @IBOutlet weak var categoryThree: UIImageView!
@@ -222,9 +223,9 @@ class EndJourneyViewController: UIViewController {
                 } else {
                     
                     print("no images")
-//                    self.changePhotoText.isHidden = true
-//                    self.changePhotoButton.isHidden = true
-                    self.changePhotoViewHeight.constant = 47.0
+                    self.changePhotoText.isHidden = true
+                   self.changePhotoButton.isHidden = true
+//                   self.changePhotoViewHeight.constant = 47.0
                     
                 }
                 if response["data"]["photos"].array!.count > 0 {
@@ -420,7 +421,7 @@ class EndJourneyViewController: UIViewController {
                     if eachReview["country"]["_id"].string! == eachCountry["country"]["_id"].string! {
                         
                         flag = 1
-                        let rateButton = ShowRating(frame: CGRect(x: 0, y: 140, width: width, height: 150))
+                        let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                         print("rating: \(Int(eachReview["rating"].string!))")
                         rateButton.ratingLabel.text = "Reviewed \(reviews[Int(eachReview["rating"].string!)! - 1])"
                         rateButton.rating.setImage(UIImage(named: reviewSmileys[Int(eachReview["rating"].string!)! - 1]), for: .normal)
@@ -468,19 +469,22 @@ class EndJourneyViewController: UIViewController {
         scroll.contentSize.height += height
     }
     
+    var viewHeight = 0
     func keyboardWillShow(_ notification: Notification) {
-        
+        view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            self.view.frame.origin.y -= keyboardSize.height
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= 258
+            }
         }
+        
     }
     
     func keyboardWillHide(_ notification: Notification) {
-        
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            self.view.frame.origin.y += keyboardSize.height
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
         }
     }
     

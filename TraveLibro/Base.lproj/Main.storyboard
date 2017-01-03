@@ -3367,7 +3367,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95.5" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -4486,7 +4486,7 @@
                                                         <rect key="frame" x="33" y="0.0" width="25" height="25"/>
                                                         <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </imageView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="luxury" translatesAutoresizingMaskIntoConstraints="NO" id="Kwz-k2-hfy">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="budget" translatesAutoresizingMaskIntoConstraints="NO" id="Kwz-k2-hfy">
                                                         <rect key="frame" x="66" y="0.0" width="25" height="25"/>
                                                         <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </imageView>
@@ -4588,12 +4588,11 @@
                         <outlet property="categoryTwo" destination="J5R-GH-EPK" id="eSX-NW-6Bo"/>
                         <outlet property="changePhotoButton" destination="2ie-Ga-AIL" id="ZX6-fx-A0F"/>
                         <outlet property="changePhotoText" destination="GU1-hJ-oGA" id="lk2-m1-a8e"/>
-                        <outlet property="changePhotoViewHeight" destination="4L7-iz-O8p" id="M72-NH-GLq"/>
                         <outlet property="clockIcon" destination="qUc-1s-jFG" id="qsT-vc-BTZ"/>
                         <outlet property="endDate" destination="XTS-ZM-evy" id="NLx-4J-sgO"/>
                         <outlet property="endJourneyTitle" destination="qde-pH-U43" id="mIO-e7-kmT"/>
                         <outlet property="endTime" destination="ucN-L7-foY" id="C2o-GJ-gUZ"/>
-                        <outlet property="journeyCoverPic" destination="4xF-lH-ad9" id="u7F-2S-EPI"/>
+                        <outlet property="journeyCoverPic" destination="4xF-lH-ad9" id="NYf-5f-icv"/>
                         <outlet property="rateCountriesScroll" destination="aXv-f4-Bdo" id="xxY-Ao-LYa"/>
                         <outlet property="rateCountriesView" destination="X2P-BP-9MV" id="n4T-BS-8FG"/>
                         <outlet property="userDp" destination="DFj-hD-bac" id="dTF-rr-mMx"/>
@@ -10684,7 +10683,7 @@
         <scene sceneID="IA2-So-XyF">
             <objects>
                 <collectionViewController storyboardIdentifier="photoGridContainer" id="yHG-Rd-GYo" customClass="TripSummaryPhotoGridViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

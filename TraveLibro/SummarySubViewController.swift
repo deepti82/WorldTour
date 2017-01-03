@@ -106,46 +106,48 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     
     func getCountView() {
         
-//        switch tripCountData["countryVisited"].array!.count {
-//        case 1:
-//            stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
-//            stackCountryNames[0].text = tripCountData["countryVisited"][0]["country"]["name"].string!
-//            stackFlags[1].isHidden = true
-//            stackFlags[2].isHidden = true
-//            stackCountryNames[1].isHidden = true
-//            stackCountryNames[2].isHidden = true
-//            remainingCountries.isHidden = true
-//        
-//        case 2:
-//            stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
-//            stackCountryNames[0].text = tripCountData["countryVisited"][0]["country"]["name"].string!
-//            stackFlags[1].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][1]["country"]["flag"])")!))
-//            stackCountryNames[1].text = tripCountData["countryVisited"][1]["country"]["name"].string!
-//            stackFlags[2].isHidden = true
-//            stackCountryNames[2].isHidden = true
-//            remainingCountries.isHidden = true
-//        
-//        case 3:
-//            stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
-//            stackCountryNames[0].text = tripCountData["countryVisited"][0]["country"]["name"].string!
-//            stackFlags[1].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][1]["country"]["flag"])")!))
-//            stackCountryNames[1].text = tripCountData["countryVisited"][1]["country"]["name"].string!
-//            stackFlags[2].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][2]["country"]["flag"])")!))
-//            stackCountryNames[2].text = tripCountData["countryVisited"][2]["country"]["name"].string!
-//            remainingCountries.isHidden = true
-//            
-//        default:
-//            for flag in stackFlags {
-//                
-//                flag.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][stackFlags.index(of: flag)!]["country"]["flag"])")!))
-//            }
-//            for flagName in stackCountryNames {
-//                
-//                flagName.text = tripCountData["countryVisited"][stackCountryNames.index(of: flagName)!]["country"]["name"].string!
-//            }
-//            remainingCountries.text = "\(tripCountData["countryVisited"].array!.count - 3)"
-//            
-//        }
+        switch tripCountData["countryVisited"].array!.count {
+        case 1:
+            stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
+            stackCountryNames[0].text = tripCountData["countryVisited"][0]["country"]["name"].string!
+            stackFlags[1].isHidden = true
+            stackFlags[2].isHidden = true
+            stackCountryNames[1].isHidden = true
+            stackCountryNames[2].isHidden = true
+            remainingCountries.isHidden = true
+        
+        case 2:
+            stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
+            stackCountryNames[0].text = tripCountData["countryVisited"][0]["country"]["name"].string!
+            stackFlags[1].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][1]["country"]["flag"])")!))
+            stackCountryNames[1].text = tripCountData["countryVisited"][1]["country"]["name"].string!
+            stackFlags[2].isHidden = true
+            stackCountryNames[2].isHidden = true
+            remainingCountries.isHidden = true
+        
+        case 3:
+            stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
+            stackCountryNames[0].text = tripCountData["countryVisited"][0]["country"]["name"].string!
+            stackFlags[1].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][1]["country"]["flag"])")!))
+            stackCountryNames[1].text = tripCountData["countryVisited"][1]["country"]["name"].string!
+            stackFlags[2].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][2]["country"]["flag"])")!))
+            stackCountryNames[2].text = tripCountData["countryVisited"][2]["country"]["name"].string!
+            remainingCountries.isHidden = true
+            
+        default:
+            for flag in stackFlags {
+                
+                flag.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][stackFlags.index(of: flag)!]["country"]["flag"])")!))
+            }
+            for flagName in stackCountryNames {
+                
+                flagName.text = tripCountData["countryVisited"][stackCountryNames.index(of: flagName)!]["country"]["name"].string!
+            }
+            remainingCountries.text = "\(tripCountData["countryVisited"].array!.count - 3)"
+            
+        }
+        
+        
         print("whatisThis")
         print(labels)
         print("tripcountdata......")
