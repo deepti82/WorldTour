@@ -255,7 +255,8 @@ class PhotosOTG: UIView {
             } else if(post.post_likeCount == 1) {
                 self.likeViewLabel.text = "1 Like"
             } else if(post.post_likeCount > 1) {
-                self.likeViewLabel.text = "\(post.post_likeCount) Likes"
+                let counts = String(post.post_likeCount)
+                self.likeViewLabel.text = "\(counts) Likes"
             }
         }
         
@@ -265,9 +266,11 @@ class PhotosOTG: UIView {
             } else if(post.post_commentCount == 1) {
                 self.commentCount.text = "1 Comment"
             } else if(post.post_commentCount > 1) {
-                self.commentCount.text = "\(post.post_commentCount) Comments"
+                let counts = String(post.post_commentCount)
+                self.commentCount.text = "\(counts) Comments"
             }
         }
+        
         self.dateLabel.text = post.post_dateDay
         self.timeLabel.text = post.post_dateTime
         

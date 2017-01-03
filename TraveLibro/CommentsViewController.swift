@@ -71,9 +71,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("print print print")
-        
         getAllComments()
         commentsTable.tableFooterView = UIView()
         commentsTable.estimatedRowHeight = 80.0
@@ -86,7 +83,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(CommentsViewController.closeAdd(_:)), for: .touchUpInside)
         let rightButton = UIButton()
         globalNavigationController.topViewController?.customNavigationBar(left: leftButton,right:rightButton)
     }
@@ -94,8 +91,10 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func closeAdd(_ sender:UIButton) {
-        self.dismiss(animated: true, completion: nil)
-
+        globalNavigationController?.popViewController(animated: true)
+        if((globalNewTLViewController) != nil) {
+            globalNewTLViewController.refresh(sender)
+        }
     }
     
     var viewHeight = 0
@@ -104,7 +103,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
                 self.view.frame.origin.y -= 258
-                print("ye tym bhi karna hai\(keyboardSize.height)")
             }
         }
         

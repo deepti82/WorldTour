@@ -1510,9 +1510,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.view.addSubview(self.inputview)
             
         }
-        
         actionSheetControllerIOS8.addAction(EditDnt)
-        
         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Post", style: .default)
         { action -> Void in
             
@@ -1533,16 +1531,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                     }
                     else {
-                        
                         print("response error")
-                        
                     }
-                    
-                    
                 })
-                
             })
-            
         }
         actionSheetControllerIOS8.addAction(DeletePost)
         
