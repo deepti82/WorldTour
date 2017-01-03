@@ -14,6 +14,9 @@ class EndJourneyViewController: UIViewController {
     @IBOutlet weak var buddyStack: UIStackView!
     @IBOutlet weak var categoryStack: UIStackView!
     
+    @IBOutlet weak var categoryOne: UIImageView!
+    @IBOutlet weak var categoryTwo: UIImageView!
+    @IBOutlet weak var categoryThree: UIImageView!
     @IBOutlet weak var endDate: UILabel!
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var buddyCount: UILabel!
@@ -62,6 +65,11 @@ class EndJourneyViewController: UIViewController {
         ToastView.appearance().backgroundColor = endJourneyColor
         print("...........................")
         print(journey["createdAt"])
+        
+        categoryOne.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
+        categoryTwo.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
+        categoryThree.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
+        
         
         let dateFormatterTwo = DateFormatter()
         dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"

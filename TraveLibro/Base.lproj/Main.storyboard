@@ -3367,7 +3367,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="95.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -4582,7 +4582,10 @@
                         <outlet property="buddyCount" destination="u0Z-Ub-pFn" id="spD-u4-uZP"/>
                         <outlet property="buddyStack" destination="9Qg-ZT-AbL" id="nDd-5P-v5Y"/>
                         <outlet property="calendarIcon" destination="uVP-iP-rZI" id="8D0-Gg-x9y"/>
+                        <outlet property="categoryOne" destination="Rt3-0A-lqw" id="5U0-Zj-edc"/>
                         <outlet property="categoryStack" destination="c8c-MS-4bm" id="0PK-j2-NeJ"/>
+                        <outlet property="categoryThree" destination="Kwz-k2-hfy" id="04S-es-ofK"/>
+                        <outlet property="categoryTwo" destination="J5R-GH-EPK" id="eSX-NW-6Bo"/>
                         <outlet property="changePhotoButton" destination="2ie-Ga-AIL" id="ZX6-fx-A0F"/>
                         <outlet property="changePhotoText" destination="GU1-hJ-oGA" id="lk2-m1-a8e"/>
                         <outlet property="changePhotoViewHeight" destination="4L7-iz-O8p" id="M72-NH-GLq"/>
@@ -10681,7 +10684,7 @@
         <scene sceneID="IA2-So-XyF">
             <objects>
                 <collectionViewController storyboardIdentifier="photoGridContainer" id="yHG-Rd-GYo" customClass="TripSummaryPhotoGridViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
