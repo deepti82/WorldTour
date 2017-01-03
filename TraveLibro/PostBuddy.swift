@@ -13,6 +13,7 @@ public class Buddy {
     
     var buddyID = ""
     var postID = 0
+    var buddyEmail = ""
     var buddyName = ""
     var buddyImg = ""
     let buddy = Table("Buddy")

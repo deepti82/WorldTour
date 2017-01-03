@@ -1,6 +1,5 @@
 import UIKit
 
-
 class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var searchView: UIView!
@@ -10,17 +9,18 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var buddiesCollectionView: UICollectionView!
     @IBOutlet weak var buddiesTableView: UITableView!
+    
+    var buddies:[Buddy]!
     var friendsTag:UIImageView!
     var friendsCount:UIButton!
     
     var whichView = "LL"
-    var addedFriends: [JSON]!
+    var addedFriends: [JSON] = []
     var frezzFriends: [JSON] = []
     var addedFriendsImages: [String] = []
     var flag = 0
     var buddiesStatus = true
     var allFriendsJson: [JSON] = []
-    //    var friendsCount = 0
     
     var uniqueId: String = ""
     var journeyName: String = ""
@@ -35,6 +35,14 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         let allControllers = self.navigationController!.viewControllers
         
         self.navigationController?.popViewController(animated: true)
+        
+        switch(whichView) {
+            case "AddActivity":
+            globalAddActivityNew.buddyAdded(addedFriends);
+            default:
+            break;
+        }
+        
         
 //        globalNewTLViewController.getJourney()
         

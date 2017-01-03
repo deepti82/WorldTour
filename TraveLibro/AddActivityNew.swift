@@ -18,6 +18,8 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     @IBOutlet weak var tagFriendButton: UIButton!
     @IBOutlet weak var videosButton: UIButton!
     
+    var buddies:[Buddy] = []
+    
     @IBOutlet weak var finalThoughtTag: UIImageView!
     @IBOutlet weak var photosCount: UILabel!
     @IBOutlet weak var videosCount: UILabel!
@@ -134,6 +136,26 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         self.friendsCount.isHidden = true;
         self.friendsTag.tintColor = mainBlueColor
         
+        
+        
+    }
+    
+    func buddyAdded(_ json:[JSON]) {
+        addedBuddies = json;
+        let count = json.count
+        if(count ==  1) {
+            self.friendsCount.setTitle("1 Friend", for: UIControlState())
+            self.friendsCount.isHidden = false;
+            self.friendsTag.tintColor = mainOrangeColor
+        } else if(count > 1)  {
+            self.friendsCount.setTitle("\(count) Friends", for: UIControlState())
+            self.friendsCount.isHidden = false;
+            self.friendsTag.tintColor = mainOrangeColor
+        } else if (count == 0) {
+            self.friendsCount.setTitle("0 Friend", for: UIControlState())
+            self.friendsCount.isHidden = true;
+            self.friendsTag.tintColor = mainBlueColor
+        }
     }
     
     @IBAction func clearLocation(_ sender: Any) {
@@ -244,20 +266,18 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         //        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
         //        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
     }
- 
     
     func tagMoreBuddies(_ sender: UIButton) {
         self.resignThoughtsTexViewKeyboard()
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
-        next.whichView = "TLTags"
+        next.whichView = "AddActivity"
+        print(addedBuddies);
         if addedBuddies != nil {
-            next.friendsTag = friendsTag
-            next.friendsCount = friendsCount;
             next.addedFriends = addedBuddies
+            next.buddiesStatus = true
         }
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(next, animated: true)
-        
     }
     func addVideos(_ sender: UIButton) {
         let newTl = globalNavigationController.topViewController as! NewTLViewController;
