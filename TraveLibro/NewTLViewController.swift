@@ -2003,14 +2003,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var dpTwo: String!
     var dpThree: String!
     
-    func buddyAdded(_ json:[JSON]) {
+    func buddyAdded(_ json:[JSON],inMiddle:Bool) {
         
         print(currentUser);
         print("ADDING BUDDY");
         
 //         let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
         
-        request.addBuddiesOTG(json, userId: currentUser["_id"].stringValue , userName: currentUser["name"].stringValue, journeyId: self.journeyId, inMiddle: true, journeyName: self.journeyName, completion: { (json) in
+        request.addBuddiesOTG(json, userId: currentUser["_id"].stringValue , userName: currentUser["name"].stringValue, journeyId: self.journeyId, inMiddle: inMiddle, journeyName: self.journeyName, completion: { (json) in
             print(json)
         })
     }
