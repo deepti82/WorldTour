@@ -297,10 +297,14 @@ class EndJourneyViewController: UIViewController {
                     
                     if let data = UIImageJPEGRepresentation(self.coverImageImg, 0.35) {
                         try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
+                        
                         request.uploadPhotos(URL(string: exportFileUrl)!, localDbId: 0, completion: {(responce) in
                             if responce["value"] == true {
+                                
                             self.coverImage = responce["data"][0].stringValue
-                                request.endJourney(self.journey["_id"].string!, uniqueId: self.journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: self.journey["buddies"].array!, photo: self.coverImage, completion: {(response) in
+                                
+                                request.endJourney(self.journey["_id"].string!, uniqueId: self.journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: self.journey["buddies"].array!, photo: self.coverImage, journeyName: self.journey["name"].stringValue, completion: {(response) in
+                                    
                                     print("journey ended toaster")
                                     let tstr = Toast(text: "Journey ended successfully. Have a good life.")
                                     tstr.show()
@@ -327,7 +331,7 @@ class EndJourneyViewController: UIViewController {
 
             
         }else{
-            request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, completion: {(response) in
+            request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, journeyName: journey["name"].stringValue, completion: {(response) in
                 
                 request.getUser(user.getExistingUser(), completion: {(response) in
                     
@@ -346,20 +350,8 @@ class EndJourneyViewController: UIViewController {
     
     func goBack() {
         
-        loader.showOverlay(self.view)
-        let allvcs = self.navigationController!.viewControllers
-        
-        for vc in allvcs {
-            
-            if vc.isKind(of: ProfileViewController.self) {
-                
-                self.navigationController!.popToViewController(vc, animated: true)
-                
-                
-            }
-        }
-        
-        loader.hideOverlayView()
+        let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        self.navigationController?.pushViewController(selectGenderVC, animated: true)
     }
     
     //  START UPDATE RATING
