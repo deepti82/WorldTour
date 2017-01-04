@@ -908,7 +908,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func addPostLayout(_ post:Post) {
         let checkIn = PhotosOTG2(width: self.view.frame.width)
         checkIn.generatePost(post)
-        checkIn.layoutSubviews()
         layout.addSubview(checkIn)
         addHeightToLayout(height: checkIn.frame.height + 50.0)
         self.scrollToBottom()
