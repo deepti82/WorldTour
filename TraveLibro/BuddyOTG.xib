@@ -57,13 +57,6 @@
                         <constraint firstAttribute="width" constant="125" id="yzf-5I-gwf"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hi_image" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Jp-Ix4">
-                    <rect key="frame" x="200" y="39" width="100" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="oF7-Uy-8UR"/>
-                        <constraint firstAttribute="width" constant="100" id="tcd-qg-Mdh"/>
-                    </constraints>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poG-co-vae">
                     <rect key="frame" x="60" y="8" width="45" height="45"/>
                     <constraints>
@@ -74,9 +67,16 @@
                     <inset key="contentEdgeInsets" minX="10" minY="12" maxX="10" maxY="12"/>
                     <state key="normal" image="add_people" backgroundImage="green_bg_new_small"/>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hi_image" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Jp-Ix4">
+                    <rect key="frame" x="200" y="34" width="100" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="oF7-Uy-8UR"/>
+                        <constraint firstAttribute="width" constant="100" id="tcd-qg-Mdh"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <constraints>
-                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="39" id="0Rb-Tl-VBL"/>
+                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="34" id="0Rb-Tl-VBL"/>
                 <constraint firstItem="poG-co-vae" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="0dA-ao-Bao"/>
                 <constraint firstItem="1jI-ml-e7H" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="38" id="2v6-dN-UHz"/>
                 <constraint firstItem="ZzG-uJ-PBX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="145" id="K4M-y6-7yt"/>
@@ -86,6 +86,7 @@
                 <constraint firstItem="ZzG-uJ-PBX" firstAttribute="centerX" secondItem="TjV-g0-pnn" secondAttribute="centerX" id="Zmr-HB-A9y"/>
                 <constraint firstItem="TjV-g0-pnn" firstAttribute="leading" secondItem="poG-co-vae" secondAttribute="trailing" constant="-17" id="cMn-WF-yne"/>
                 <constraint firstItem="TjV-g0-pnn" firstAttribute="top" secondItem="ZzG-uJ-PBX" secondAttribute="bottom" constant="27" id="iUN-Tt-HaP"/>
+                <constraint firstAttribute="trailing" secondItem="1jI-ml-e7H" secondAttribute="trailing" constant="22" id="ipw-a4-yRW"/>
                 <constraint firstItem="ZzG-uJ-PBX" firstAttribute="top" secondItem="poG-co-vae" secondAttribute="top" constant="-8" id="lQh-YV-T1v"/>
                 <constraint firstItem="poG-co-vae" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="qq2-jV-zzb"/>
             </constraints>
