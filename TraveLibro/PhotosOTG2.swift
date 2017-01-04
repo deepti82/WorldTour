@@ -77,7 +77,15 @@ class PhotosOTG2: VerticalLayout {
                     let heightInPixels =  image?.cgImage?.height
                     
                     if((heightInPixels) != nil) {
-                        self.mainPhoto.frame.size.height = CGFloat(heightInPixels!) / CGFloat(widthInPixels!) * self.frame.width
+                        let finalHeight =  CGFloat(heightInPixels!) / CGFloat(widthInPixels!) * self.frame.width;
+                        
+                        
+                        let maxheight = screenHeight - (60+65+113)
+                        if(finalHeight > maxheight) {
+                            self.mainPhoto.frame.size.height = maxheight
+                        } else {
+                            self.mainPhoto.frame.size.height = finalHeight
+                        }
                     }
                     
                     mainPhoto.frame.size.width = self.frame.width
