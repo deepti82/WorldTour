@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-uJ-PBX">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-uJ-PBX" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
                     <rect key="frame" x="145" y="0.0" width="10" height="29"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -72,7 +72,7 @@
                     <state key="normal" image="add_people" backgroundImage="green_bg_new_small"/>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hi_image" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Jp-Ix4">
-                    <rect key="frame" x="203" y="27" width="90" height="30"/>
+                    <rect key="frame" x="189" y="27" width="90" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="7J7-nm-AOy"/>
                         <constraint firstAttribute="height" constant="30" id="WVn-M9-CcL"/>
@@ -86,7 +86,7 @@
                 <constraint firstItem="ZzG-uJ-PBX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FsH-kf-4SF"/>
                 <constraint firstItem="ZzG-uJ-PBX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Maw-37-5aV"/>
                 <constraint firstItem="TjV-g0-pnn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="UbS-hh-5si"/>
-                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="leading" secondItem="TjV-g0-pnn" secondAttribute="trailing" constant="-10" id="jqg-bU-baW"/>
+                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="leading" secondItem="TjV-g0-pnn" secondAttribute="trailing" constant="-24" id="jqg-bU-baW"/>
                 <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="TjV-g0-pnn" secondAttribute="bottom" constant="8" id="ogT-eR-ps1"/>
                 <constraint firstItem="poG-co-vae" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="q7V-Ww-qhz"/>
                 <constraint firstItem="Baq-Jp-Ix4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="tcv-Ew-Knc"/>
