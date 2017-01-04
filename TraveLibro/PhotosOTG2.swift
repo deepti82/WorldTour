@@ -52,7 +52,8 @@ class PhotosOTG2: VerticalLayout {
         if(post.imageArr.count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 100))
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-            let heightForBlur = 20;
+            self.mainPhoto.clipsToBounds = true
+            let heightForBlur = 10;
             var thumbStr = "";
             if(!post.post_isOffline) {
                 thumbStr = "&width=\(heightForBlur)"
