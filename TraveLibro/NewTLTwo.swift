@@ -192,10 +192,7 @@ extension NewTLViewController {
                 
             })
             
-        })
-        
-        print("completed review")
-        
+        })        
     }
     
     
@@ -295,7 +292,6 @@ extension NewTLViewController {
     }
     
     func showJourneyOngoing(journey: JSON) {
-        
         if !isJourneyOngoing {
             height = self.view.frame.height/2
             addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -306,7 +302,6 @@ extension NewTLViewController {
             addNewView.profileName.text = currentUser["name"].string!
             self.view.addSubview(addNewView)
             addNewView.otgJourneyButton.addTarget(self, action: #selector(NewTLViewController.newOtg(_:)), for: .touchUpInside)
-            
             addNewView.itineraryButton.addTarget(self, action: #selector(NewTLViewController.newItinerary(_:)), for: .touchUpInside)
             addNewView.closeButton.addTarget(self, action: #selector(NewTLViewController.closeView(_:)), for: .touchUpInside)
         }
@@ -314,7 +309,6 @@ extension NewTLViewController {
             height = 0
             getScrollView(height, journey: journey)
         }
-        
     }
     
     func journeyDateChanged(date: String) {
@@ -328,8 +322,6 @@ extension NewTLViewController {
                 for subview in view.subviews {
                     
                     if subview.isKind(of:startOTGView.self) {
-                        
-                        print("inside here")
                         let otg = subview as! startOTGView
                         let localDate = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: date, isDate: true)
                         let localTime = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: date, isDate: false)
@@ -374,17 +366,12 @@ extension NewTLViewController {
         if isInitialPost {
             isInitialPost = false
         }
-        
-        
-        
-        if !isJourneyOngoing {
-
-        }
-        else {
+        if isJourneyOngoing {
             otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 556))
             otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
             otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
             otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
+            self.otgView.cityImage.hnk_setImageFromURL(URL(string: journey["startLocationPic"].stringValue)!)
             //                otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
             //                otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)
             otgView.nameJourneyTF.returnKeyType = .done
@@ -441,9 +428,6 @@ extension NewTLViewController {
             for sPost in offLinePost {
                 self.addPostLayout(sPost)
             }
-            print(offLinePost);
-            
-            
         }
         
         if !showDetails {
@@ -486,15 +470,13 @@ extension NewTLViewController {
     }
     
     func getJourneyBuddies(journey: JSON) {
-        
         addedBuddies = journey["buddies"].array!
-        print("\(#line) added buddies are: \(addedBuddies)")
     }
     
     func getInfoCount() {
         
         if (myJourney != nil) {
-            print(myJourney!)
+    
             request.infoCount(myJourney["_id"].string!, city: latestCity, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {

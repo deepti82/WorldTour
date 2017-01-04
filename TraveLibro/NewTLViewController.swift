@@ -161,7 +161,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func tagMoreBuddies(_ sender: UIButton) {
-        print("add buddies")
         addView.resignThoughtsTexViewKeyboard()
         //        let isTextView = textFieldShouldReturn(otgView.locationLabel)
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
@@ -1637,10 +1636,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
              otgView.nameJourneyView.animation.moveY(-25)
             otgView.nameJourneyTF.animation.moveY(-50)
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
-//             self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
+            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
             otgView.bonVoyageLabel.isHidden = false
-            print("placeText")
-            print("\(otgView.cityImage)")
             
         }
         return false
@@ -1672,7 +1669,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func journeyCategory(_ sender: UIButton) {
-        print("kind of journey")
         let categoryVC = storyboard?.instantiateViewController(withIdentifier: "kindOfJourneyVC") as! KindOfJourneyOTGViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(categoryVC, animated: true)
@@ -1688,7 +1684,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let journeyName = otgView.nameJourneyTF.text!
             height = 40.0
             mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
-            print("chalShowMeHere \(mainScroll.frame.origin.y)")
             
             request.addNewOTG(journeyName, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, lp: locationPic, completion: {(response) in
                 
@@ -1790,10 +1785,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
                 otgView.journeyCategoryTwo.isHidden = false
                 otgView.journeyCategoryThree.isHidden = false
-                print("indexprob\(kindOfJourneyStack.count)")
                 otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
-                
-                print("indexprob\(kindOfJourneyStack.count)")
  
             }
 //            if journeyCategories.count == 2 {
@@ -1839,13 +1831,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func buddyAdded(_ json:[JSON],inMiddle:Bool) {
         
-        print(currentUser);
-        print("ADDING BUDDY");
-        
 //         let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
         
         request.addBuddiesOTG(json, userId: currentUser["_id"].stringValue , userName: currentUser["name"].stringValue, journeyId: self.journeyId, inMiddle: inMiddle, journeyName: self.journeyName, completion: { (json) in
-            print(json)
         })
     }
     
@@ -1866,7 +1854,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func showBuddies() {
-        print("added buddies: \(addedBuddies)")
         
         for i in 0 ..< addedBuddies.count {
             
