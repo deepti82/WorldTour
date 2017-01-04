@@ -8,11 +8,12 @@
 
 import UIKit
 
-class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDelegate {
+class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDataSource,  UITableViewDelegate {
     
     @IBOutlet weak var cityTableTitle: UILabel!
     @IBOutlet weak var countryTableTitle: UILabel!
     var countries: JSON = []
+    @IBOutlet weak var countryListTable: UITableView!
     @IBOutlet weak var cityTableView: UITableView!
     @IBOutlet weak var scrView: UIScrollView!
     @IBOutlet weak var countryTableView: UITableView!
@@ -29,7 +30,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.scrView.insertSubview(self.verticalLayout, at: 0)
+//        self.scrView.insertSubview(self.verticalLayout, at: 0)
         if quickItinery["countryVisited"] == nil {
             quickItinery["countryVisited"] = []
         }
@@ -41,15 +42,14 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         //        getCountry()
         addCountry.layer.cornerRadius = 5
         addCountry.addTarget(self, action: #selector(addCountryFunction(_:)), for: .touchUpInside)
-        showCountryCityVisited.addSubview(verticalLayout)
+//        showCountryCityVisited.addSubview(verticalLayout)
         cityVisited.delegate = self
         countryVisited.delegate = self
         
         countryVisitedButton.isHidden = true
         cityVisitedButton.isHidden = true
-        //        cityTableView.delegate = self
-        //        cityTableView.dataSource = self
-        // Do any additional setup after loading the view.
+        countryListTable.delegate = self
+        countryListTable.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,7 +63,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
             
             cityVisited.text = createCity(cities: selectedCity)
             
-        }else{
+        } else {
             cityVisited.text = ""
         }
         createCityCountry()
@@ -87,7 +87,29 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
         return a
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return quickItinery["countryVisited"].count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return quickItinery["countryVisited"][section]["cityVisited"].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = self.countryListTable.dequeueReusableCell(withIdentifier: "countryCell", for: indexPath)
+        
+            cell.textLabel?.text = countries[indexPath.row]["name"].stringValue
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return quickItinery["countryVisited"][section]["name"].string
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("on text field")
         if textField.tag == 1 {
             selectedStatus = "country"
             let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
@@ -163,10 +185,12 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate,  UITableViewDe
                 let c = quickItinery["countryVisited"][b!].0
                 
                 quickItinery["countryVisited"][Int(c)!] = a
-                createCityCountry()
+                countryListTable.reloadData()
+//                createCityCountry()
             }else{
                 quickItinery["countryVisited"].arrayObject?.append(a.object)
-                createCityCountry()
+//                createCityCountry()
+                countryListTable.reloadData()
                 
             }
             
