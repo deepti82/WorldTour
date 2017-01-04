@@ -1263,7 +1263,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func BuddyJoinInLayout(_ post: JSON) {
-        print(post)
         prevPosts.append(post)
         
         let buddy = BuddyOTG(frame: CGRect(x: 0, y: 0, width: 245, height: 260))
@@ -1456,7 +1455,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let po = Post();
         po.jsonToPost(post);
         self.addPostLayout(po)
-        print(post);
+        
         if(post["checkIn"]["location"].stringValue != "") {
         
         if post["review"].array!.count > 0 {
