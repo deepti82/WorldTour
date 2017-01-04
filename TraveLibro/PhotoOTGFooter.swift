@@ -22,6 +22,7 @@ class PhotoOTGFooter: UIView {
     @IBOutlet weak var commentCount: UILabel!
     
     var likeCount:Int = 0
+    var commentCounts:Int = 0
    
     
     override init(frame: CGRect) {
@@ -78,6 +79,7 @@ class PhotoOTGFooter: UIView {
     func setCommentCount(_ post_commentCount:Int!) {
         
         if(post_commentCount != nil) {
+            self.commentCounts = post_commentCount
             if(post_commentCount == 0) {
                 self.commentCount.text = "0 Comment"
             } else if(post_commentCount == 1) {
@@ -129,7 +131,7 @@ class PhotoOTGFooter: UIView {
                         self.setLikeCount(self.likeCount)
                     }
                     else {
-                        self.setLikeSelected(true)
+                        self.setLikeSelected(false)
                         if self.likeCount <= 0 {
                             self.likeCount = 0
                         } else {
@@ -146,6 +148,10 @@ class PhotoOTGFooter: UIView {
             
         })
         
+    }
+    
+    @IBAction func optionClick(_ sender: UIButton) {
+        globalNewTLViewController.chooseOptions(sender)
     }
 
 

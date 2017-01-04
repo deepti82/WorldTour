@@ -887,11 +887,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var isRefreshing = false
     
     func refresh(_ sender: AnyObject) {
-        
-        isRefreshing = true
+        var isRefreshing = true
         getJourney()
-        
-        
     }
     
     var isInitialPost = true
@@ -1308,143 +1305,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             
             request.getOneJourneyPost(id: sender.titleLabel!.text!, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
-                    
-                    
-                    if response.error != nil {
-                        
-                        print("error: \(response.error!.localizedDescription)")
-                        
-                    }
-                    else if response["value"].bool! {
-                        
-                        
-                        //                        var flag = 0
-                        //                        var darkBlur: UIBlurEffect!
-                        //                        var blurView: UIVisualEffectView!
-                        
-                        self.backView.frame = self.view.frame
-                        self.backView.tag = 8
-                        
-                        self.showAddActivity(view: self.view)
-                        
-                        self.addView.postButton.setTitle("Edit", for: .normal)
-                        self.editPostId = sender.titleLabel!.text!
-                        
-                        
-                        if response["data"]["checkIn"]["location"] != "" && response["data"]["checkIn"]["location"] != nil {
-                            
-                            self.addView.addLocationButton.setTitle(response["data"]["checkIn"]["location"].string!, for: .normal)
-                            self.addView.categoryView.isHidden = false
-                            self.addView.categoryLabel.isHidden = false
-                            self.addView.locationHorizontalScroll.isHidden = true
-                            self.addView.locationTag.tintColor = UIColor(red: 252, green: 80, blue: 71, alpha: 1)
-                        }
-                            
-                        else {
-                            
-                            self.addView.addLocationButton.setTitle("Add Location", for: .normal)
-                            self.addView.categoryView.isHidden = true
-                            self.addView.locationHorizontalScroll.isHidden = false
-                            self.addView.categoryLabel.isHidden = true
-                            
-                        }
-                        
-                        
-                        if response["data"]["photos"] != nil && response["data"]["photos"].array!.count > 0 {
-                            
-                            self.addView.photosFinalView.isHidden = false
-                            
-                            for photo in response["data"]["photos"].array! {
-                                
-                                do {
-                                    
-                                    let image = try UIImage(data: Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(photo["name"])&width=250")!))
-                                    
-                                } catch _ {
-                                    
-                                }
-                            }
-                            
-                            let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-                            addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-                            addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
-                            addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-                            addMorePhotosButton.layer.cornerRadius = 5.0
-                            addMorePhotosButton.clipsToBounds = true
-                            
-                            
-                        }
-                            
-                        else {
-                            
-                            self.addView.photosFinalView.isHidden = true
-                            self.addView.photosIntialView.isHidden = false
-                            
-                        }
-                        
-                        
-                        if response["data"]["videos"] != nil && response["data"]["videos"].array!.count > 0 {
-                            
-                            self.addView.videosFinalView.isHidden = false
-                            self.addView.videosInitialView.isHidden = true
-                            
-                        }
-                            
-                        else {
-                            
-                            self.addView.videosFinalView.isHidden = true
-                            self.addView.videosInitialView.isHidden = false
-                            
-                        }
-                        
-                        
-                        if response["data"]["thoughts"] != nil && response["data"]["thoughts"].string != "" {
-                            
-                            self.addView.thoughtsFinalView.isHidden = false
-                            self.addView.thoughtsTextView.text = response["data"]["thoughts"].string!
-                            self.addView.thoughtsInitalView.isHidden = true
-                            
-                        }
-                            
-                        else {
-                            
-                            self.addView.thoughtsFinalView.isHidden = true
-                            self.addView.thoughtsInitalView.isHidden = false
-                            
-                        }
-                        
-                        
-                        if response["data"]["buddies"] != nil && response["data"]["buddies"].array!.count == 1{
-                            
-                            self.addView.friendsCount.setTitle("\(response["data"]["buddies"].array!.count) Friend", for: .normal)
-                            self.addView.friendsTag.tintColor = UIColor(red: 252, green: 80, blue: 71, alpha: 1)
-                            
-                        }
-                            
-                        else if response["data"]["buddies"] != nil && response["data"]["buddies"].array!.count > 1 {
-                            
-                            self.addView.friendsCount.setTitle("\(response["data"]["buddies"].array!.count) Friends", for: .normal)
-                            self.addView.friendsTag.tintColor = UIColor(red: 252, green: 80, blue: 71, alpha: 1)
-                            
-                        }
-                            
-                        else {
-                            
-                            self.addView.friendsCount.setTitle("0 Friends", for: .normal)
-                            
-                        }
-                        
-                        
-                        
-                    }
-                    else {
-                        
-                        print("response error")
-                        
-                    }
-                })
+              
             })
             
             //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
@@ -1501,24 +1362,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             request.deletePost(self.currentPost["_id"].string!, uniqueId: self.myJourney["uniqueId"].string!, user: self.currentPost["user"]["_id"].string!, completion: {(response) in
                 
-                DispatchQueue.main.async(execute: {
-                    
-                    if response.error != nil {
-                        
-                        print("error: \(response.error!.localizedDescription)")
-                        
-                    }
-                    else if response["value"].bool! {
-                        
-                        self.isDelete = true
-                        self.deletePostId = self.currentPost["_id"].string!
-                        self.deleteFromLayout(self.currentPost["_id"].string!)
-                        
-                    }
-                    else {
-                        print("response error")
-                    }
-                })
             })
         }
         actionSheetControllerIOS8.addAction(DeletePost)
@@ -1541,7 +1384,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         timeFormatter.dateFormat = "HH:mm:ss"
         dateSelected = dateFormatter.string(from: sender.date)
         timeSelected = timeFormatter.string(from: sender.date.toGlobalTime())
-        //        print(timeSelected)
     }
     
     func doneButton(_ sender: UIButton){
@@ -1602,8 +1444,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func addHeightToLayout(height: CGFloat) {
         self.layout.layoutSubviews()
         self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
-//        let bottomOffset = CGPoint(x: 0, y: self.mainScroll.contentSize.height - self.mainScroll.bounds.size.height)
-//        self.mainScroll.setContentOffset(bottomOffset, animated: true)
     }
     
     func removeHeightFromLayout(_ height: CGFloat) {

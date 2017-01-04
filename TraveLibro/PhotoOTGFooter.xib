@@ -67,6 +67,9 @@
                             <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                             <state key="normal" title="Button" image="options_icon"/>
+                            <connections>
+                                <action selector="optionClick:" destination="-1" eventType="touchUpInside" id="790-5Y-oGH"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
