@@ -10,14 +10,8 @@ import UIKit
 
 class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDataSource,  UITableViewDelegate {
     
-    @IBOutlet weak var cityTableTitle: UILabel!
-    @IBOutlet weak var countryTableTitle: UILabel!
     var countries: JSON = []
     @IBOutlet weak var countryListTable: UITableView!
-    @IBOutlet weak var cityTableView: UITableView!
-    @IBOutlet weak var scrView: UIScrollView!
-    @IBOutlet weak var countryTableView: UITableView!
-    @IBOutlet weak var showCountryCityVisited: UIView!
     @IBOutlet weak var cityVisitedButton: UIButton!
     @IBOutlet weak var countryVisitedButton: UIButton!
     @IBOutlet weak var addCountry: UIButton!
@@ -66,7 +60,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
         } else {
             cityVisited.text = ""
         }
-        createCityCountry()
         
         
     }
@@ -124,54 +117,12 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
     func getCountry() {
         request.getAllCountries({(request) in
             self.countries = request["data"]
-            self.cityTableView.reloadData()
+//            self.cityTableView.reloadData()
         })
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    
-    //  START CREATE COUNTRY-CITY VIEW
-    
-    func createCityCountry() {
-        self.verticalLayout.removeAll()
-        if quickItinery["countryVisited"].count != 0{
-            
-            for i in 0...quickItinery["countryVisited"].count - 1 {
-                
-                let three = ItineraryThree()
-                three.frame = CGRect(x: 0, y: 5, width: 300, height: 30)
-                three.index = i
-                three.cityCountry.text = "\(quickItinery["countryVisited"][i]["name"]):  \(createCity(cities: quickItinery["countryVisited"][i]["cityVisited"]))"
-                styleHorizontalButton(three)
-                self.verticalLayout.addSubview(three)
-                self.verticalLayout.layoutSubviews()
-                self.scrView.contentSize = CGSize(width: self.verticalLayout.frame.width, height: self.verticalLayout.frame.height)
-                
-                for n in 0...quickItinery["countryVisited"][i]["cityVisited"].count - 1 {
-                    let lab = labpad()
-//                    lab.frame = CGRect(x: 0, y: 5, width: 200, height: 30)
-                    lab.font = UIFont.systemFont(ofSize: 12)
-
-                    let a = CGRect(x: 0, y: 5, width: 200, height: 30)
-                    lab.text = quickItinery["countryVisited"][i]["cityVisited"][n]["name"].stringValue
-                    lab.sizeToFit()
-                    lab.drawText(in: UIEdgeInsetsInsetRect(a, UIEdgeInsetsMake(5, 5, 5, 5)))
-                    
-                    
-                    styleHorizontalButton(lab)
-                    self.verticalLayout.addSubview(lab)
-                    self.verticalLayout.layoutSubviews()
-                    self.scrView.contentSize = CGSize(width: self.verticalLayout.frame.width, height: self.verticalLayout.frame.height)
-                    
-                }
-                
-                
-            }
-        }
-        
     }
     
     
@@ -186,10 +137,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
                 
                 quickItinery["countryVisited"][Int(c)!] = a
                 countryListTable.reloadData()
-//                createCityCountry()
             }else{
                 quickItinery["countryVisited"].arrayObject?.append(a.object)
-//                createCityCountry()
                 countryListTable.reloadData()
                 
             }
