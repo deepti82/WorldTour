@@ -14,6 +14,7 @@ class PhotosOTG2: VerticalLayout {
     var centerView:PhotosOTGView!
     var footerView:PhotoOTGFooter!
     var mainPhoto:UIImageView!
+    var uploadingView:UploadingToCloud!
     
     func generatePost(_ post:Post) {
         //header generation only
@@ -52,25 +53,33 @@ class PhotosOTG2: VerticalLayout {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 100))
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             let heightForBlur = 20;
-            let imgStr = post.imageArr[0].imageUrl.absoluteString + "&width=\(heightForBlur)"
+            var thumbStr = "";
+            if(!post.post_isOffline) {
+                thumbStr = "&width=\(heightForBlur)"
+            }
+            let imgStr = post.imageArr[0].imageUrl.absoluteString + thumbStr
             
             if let url = URL(string: imgStr) {
                 if let data = NSData(contentsOf: url) {
                     self.mainPhoto.image = UIImage(data: data as Data)
-                }        
+                    
+                    let image = self.mainPhoto.image
+                    
+                    let widthInPixels =  image?.cgImage?.width
+                    let heightInPixels =  image?.cgImage?.height
+                    
+                    if((heightInPixels) != nil) {
+                        self.mainPhoto.frame.size.height = CGFloat(heightInPixels!) / CGFloat(widthInPixels!) * self.frame.width
+                    }
+                    
+                    mainPhoto.frame.size.width = self.frame.width
+                    self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
+                    self.addSubview(mainPhoto)
+                    
+                }
             }
             
-            let image = self.mainPhoto.image
             
-            let heightInPixels =  image?.cgImage?.height
-            
-            if((heightInPixels) != nil) {
-                self.mainPhoto.frame.size.height = CGFloat(heightInPixels!) / CGFloat(heightForBlur) * self.frame.width
-            }
-            
-            mainPhoto.frame.size.width = self.frame.width
-            self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
-            self.addSubview(mainPhoto)
         }
         
         //End of Image
@@ -83,22 +92,34 @@ class PhotosOTG2: VerticalLayout {
         }
         //End of Center
         
-        //Footer Generation Only
-        footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-        self.addSubview(footerView)
         
-        //End of Center
+        if(post.post_isOffline) {
+            //Offline Generation Only
+            uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 23))
+            self.addSubview(uploadingView)
+            //End of Footer
+        }
+        else {
+            //Footer Generation Only
+            footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            self.addSubview(footerView)
+            //End of Footer
+        }
+        
+        
+        
+        
         
         self.layoutSubviews()
         
     }
     
     func addPhotoToLayout(_ post: Post) {
-
+        
         centerView.horizontalScrollForPhotos.removeAll()
         for i in 1 ..< post.imageArr.count {
-            let photosButton = UIImageView(frame: CGRect(x: 10, y: 0, width: 55, height: 55))
-            photosButton.backgroundColor = mainGreenColor
+            let photosButton = UIImageView(frame: CGRect(x: 10, y: 3, width: 55, height: 55))
+            photosButton.backgroundColor = mainOrangeColor
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
             if(post.post_isOffline) {
                 photosButton.image = post.imageArr[i].image
@@ -106,106 +127,105 @@ class PhotosOTG2: VerticalLayout {
                 photosButton.frame.size.height = 55
                 photosButton.frame.size.width = 55
                 photosButton.hnk_setImageFromURL(post.imageArr[i].imageUrl)
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
-                photosButton.isUserInteractionEnabled = true
-                photosButton.addGestureRecognizer(tapGestureRecognizer)
+//                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
+//                photosButton.isUserInteractionEnabled = true
+//                photosButton.addGestureRecognizer(tapGestureRecognizer)
                 
             }
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
-            
             centerView.horizontalScrollForPhotos.addSubview(photosButton)
         }
         
         centerView.horizontalScrollForPhotos.layoutSubviews()
         centerView.morePhotosView.contentSize = CGSize(width: centerView.horizontalScrollForPhotos.frame.width, height: centerView.horizontalScrollForPhotos.frame.height)
     }
- 
     
-        //    func generatePost(_ post: Post) {
-        //        self.postTop = post;
-        //        post.getThought()
-        //        self.photosTitle.text = post.finalThought
-        //
-        //        if(!post.post_isOffline) {
-        //            self.UploadToCloud.alpha = 0
-        //            self.UploadingToCloudLabel.alpha = 0
-        //        }
-        //
-        //        headerView.frame.size = CGSize(width: screenWidth, height: 75)
-        //        if(post.post_likeCount != nil) {
-        //            if(post.post_likeCount == 0) {
-        //                self.likeViewLabel.text = "Be first to Like"
-        //            } else if(post.post_likeCount == 1) {
-        //                self.likeViewLabel.text = "1 Like"
-        //            } else if(post.post_likeCount > 1) {
-        //                let counts = String(post.post_likeCount)
-        //                self.likeViewLabel.text = "\(counts) Likes"
-        //            }
-        //        }
-        //
-        //        if(post.post_commentCount != nil) {
-        //            if(post.post_commentCount == 0) {
-        //                self.commentCount.text = "Be first to Comment"
-        //            } else if(post.post_commentCount == 1) {
-        //                self.commentCount.text = "1 Comment"
-        //            } else if(post.post_commentCount > 1) {
-        //                let counts = String(post.post_commentCount)
-        //                self.commentCount.text = "\(counts) Comments"
-        //            }
-        //        }
-        //
-        //        self.dateLabel.text = post.post_dateDay
-        //        self.timeLabel.text = post.post_dateTime
-        //
-        //        if(post.imageArr.count > 0) {
-        //            self.isImage = true;
-        //            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-        //
-        //
-        //            if(post.post_isOffline) {
-        //                self.mainPhoto.image = post.imageArr[0].image
-        //            } else {
-        //                self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
-        //                mainPhoto.isUserInteractionEnabled = true
-        //                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
-        //                mainPhoto.addGestureRecognizer(tapGestureRecognizer)
-        //                mainPhoto.tag = 0
-        //            }
-        //
-        //            updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PhotosOTG.callFunction), userInfo: nil, repeats: true)
-        //            if(post.imageArr.count > 1) {
-        //                self.addPhotoToLayout(post)
-        //                isMoreImage = true;
-        //            }
-        //        } else {
-        //            if(post.post_locationImage != nil) {
-        //                self.isImage = true;
-        //                self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-        //                print(post.post_locationImage)
-        //                self.mainPhoto.hnk_setImageFromURL(URL(string:post.post_locationImage)!)
-        //                updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PhotosOTG.callFunction), userInfo: nil, repeats: true)
-        //            } else {
-        //                self.setHeight(0)
-        //            }
-        //        }
-        //
-        //        post.getTypeOfPost()
-        //
-        //        if((post.typeOfPost) != nil) {
-        //            switch(post.typeOfPost) {
-        //            case "Location":
-        //                self.whatPostIcon.setImage(UIImage(named: "location_icon"), for: .normal)
-        //            case "Image":
-        //                self.whatPostIcon.setImage(UIImage(named: "camera_icon"), for: .normal)
-        //            case "Videos":
-        //                self.whatPostIcon.setImage(UIImage(named: "video"), for: .normal)
-        //            case "Thoughts":
-        //                self.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: .normal)
-        //            default:
-        //                break
-        //            }
-        //        }
-        //    }
+    
+    //    func generatePost(_ post: Post) {
+    //        self.postTop = post;
+    //        post.getThought()
+    //        self.photosTitle.text = post.finalThought
+    //
+    //        if(!post.post_isOffline) {
+    //            self.UploadToCloud.alpha = 0
+    //            self.UploadingToCloudLabel.alpha = 0
+    //        }
+    //
+    //        headerView.frame.size = CGSize(width: screenWidth, height: 75)
+    //        if(post.post_likeCount != nil) {
+    //            if(post.post_likeCount == 0) {
+    //                self.likeViewLabel.text = "Be first to Like"
+    //            } else if(post.post_likeCount == 1) {
+    //                self.likeViewLabel.text = "1 Like"
+    //            } else if(post.post_likeCount > 1) {
+    //                let counts = String(post.post_likeCount)
+    //                self.likeViewLabel.text = "\(counts) Likes"
+    //            }
+    //        }
+    //
+    //        if(post.post_commentCount != nil) {
+    //            if(post.post_commentCount == 0) {
+    //                self.commentCount.text = "Be first to Comment"
+    //            } else if(post.post_commentCount == 1) {
+    //                self.commentCount.text = "1 Comment"
+    //            } else if(post.post_commentCount > 1) {
+    //                let counts = String(post.post_commentCount)
+    //                self.commentCount.text = "\(counts) Comments"
+    //            }
+    //        }
+    //
+    //        self.dateLabel.text = post.post_dateDay
+    //        self.timeLabel.text = post.post_dateTime
+    //
+    //        if(post.imageArr.count > 0) {
+    //            self.isImage = true;
+    //            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
+    //
+    //
+    //            if(post.post_isOffline) {
+    //                self.mainPhoto.image = post.imageArr[0].image
+    //            } else {
+    //                self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
+    //                mainPhoto.isUserInteractionEnabled = true
+    //                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
+    //                mainPhoto.addGestureRecognizer(tapGestureRecognizer)
+    //                mainPhoto.tag = 0
+    //            }
+    //
+    //            updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PhotosOTG.callFunction), userInfo: nil, repeats: true)
+    //            if(post.imageArr.count > 1) {
+    //                self.addPhotoToLayout(post)
+    //                isMoreImage = true;
+    //            }
+    //        } else {
+    //            if(post.post_locationImage != nil) {
+    //                self.isImage = true;
+    //                self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
+    //                print(post.post_locationImage)
+    //                self.mainPhoto.hnk_setImageFromURL(URL(string:post.post_locationImage)!)
+    //                updateTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(PhotosOTG.callFunction), userInfo: nil, repeats: true)
+    //            } else {
+    //                self.setHeight(0)
+    //            }
+    //        }
+    //
+    //        post.getTypeOfPost()
+    //
+    //        if((post.typeOfPost) != nil) {
+    //            switch(post.typeOfPost) {
+    //            case "Location":
+    //                self.whatPostIcon.setImage(UIImage(named: "location_icon"), for: .normal)
+    //            case "Image":
+    //                self.whatPostIcon.setImage(UIImage(named: "camera_icon"), for: .normal)
+    //            case "Videos":
+    //                self.whatPostIcon.setImage(UIImage(named: "video"), for: .normal)
+    //            case "Thoughts":
+    //                self.whatPostIcon.setImage(UIImage(named: "pen_icon"), for: .normal)
+    //            default:
+    //                break
+    //            }
+    //        }
+    //    }
 }

@@ -10,7 +10,6 @@ import UIKit
 
 class UploadingToCloud: UIView {
 
-    @IBOutlet weak var UploadingToCloudLabel: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

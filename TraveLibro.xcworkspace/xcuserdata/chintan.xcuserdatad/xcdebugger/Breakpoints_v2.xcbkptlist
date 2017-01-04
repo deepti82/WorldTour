@@ -17,5 +17,117 @@
             endingLineNumber = "486">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TraveLibro/PhotosOTG2.swift"
+            timestampString = "505236489.809266"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "generatePost(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TraveLibro/PhotosOTG2.swift"
+            timestampString = "505236489.809266"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "generatePost(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TraveLibro.PhotosOTG2.generatePost (TraveLibro.Post) -&gt; ()"
+                  moduleName = "TraveLibro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/PhotosOTG2.swift"
+                  timestampString = "505236375.021102"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "10115">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TraveLibro.PhotosOTG2.generatePost (TraveLibro.Post) -&gt; ()"
+                  moduleName = "TraveLibro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/PhotosOTG2.swift"
+                  timestampString = "505236375.023026"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "10182">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TraveLibro/PhotosOTG2.swift"
+            timestampString = "505236489.809266"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "generatePost(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TraveLibro.PhotosOTG2.generatePost (TraveLibro.Post) -&gt; ()"
+                  moduleName = "TraveLibro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/PhotosOTG2.swift"
+                  timestampString = "505236375.871492"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "10201">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TraveLibro.PhotosOTG2.generatePost (TraveLibro.Post) -&gt; ()"
+                  moduleName = "TraveLibro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/PhotosOTG2.swift"
+                  timestampString = "505236375.873203"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "10287">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
