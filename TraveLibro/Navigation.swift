@@ -1175,7 +1175,7 @@ class Navigation {
     
     
     func postTravelLifeJson(_ params: JSON, completion: @escaping ((JSON) -> Void)) {
-        print("post params \(params)")
+        
         do {
             let jsonData = try params.rawData()
             let url = URL(string: adminUrl + "post/save3")!
@@ -1190,6 +1190,8 @@ class Navigation {
                     return
                 }
                 do {
+                    print(data);
+                    print(response);
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("response: \(JSON(result))")
                     completion(JSON(result))

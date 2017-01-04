@@ -194,7 +194,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func newPost(_ sender: UIButton) {
         hideAddActivity()
         let post  = Post();
-        var buddies:[Buddy] = []
+        
+        let buddies = JSON(self.addView.addedBuddies).rawString()
         
         var lat = ""
         if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
@@ -210,7 +211,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 lng = ""
             }
         }
-
         var category = ""
         if self.addView.categoryLabel.text! != nil {
             category = self.addView.categoryLabel.text!
@@ -239,7 +239,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         self.currentTime = dateFormatterTwo.string(from: Date())
 
-        let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
+        let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr)
         self.addPostLayout(po)
         
         let i = PostImage()

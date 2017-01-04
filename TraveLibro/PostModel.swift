@@ -17,6 +17,7 @@ public class Post {
     
     
     var imageArr:[PostImage] = []
+    var buddiesStr:String = "[]"
     var buddies:[Buddy] = []
     // id, userid, journeyuniqueid, posttype, photos[], videos[], thought, checkin[], buddies[], iscompleted
     
@@ -32,6 +33,7 @@ public class Post {
     let latitude = Expression<String>("latitude")
     let longitude = Expression<String>("longitude")
     let date = Expression<String>("date")
+    let buddyDb = Expression<String>("buddyDb")
     
     var finalThought:String!
     
@@ -73,10 +75,11 @@ public class Post {
             t.column(latitude)
             t.column(longitude)
             t.column(date)
+            t.column(buddyDb)
         })
     }
     
-    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, thoughts: String,buddies:[Buddy],imageArr:[PostImage]) -> Post{
+    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, thoughts: String,buddies:String,imageArr:[PostImage]) -> Post{
         var retPost:Post!
         let photoinsert = self.post.insert(
             self.type <- Type,
@@ -89,18 +92,14 @@ public class Post {
             self.longitude <- Longitude,
             self.country <- Country,
             self.city <- City,
-            self.thoughts <- thoughts
+            self.thoughts <- thoughts,
+            self.buddyDb <- buddies
         )
         do {
             let postId = try db.run(photoinsert)
             print("Post ID " + String(postId));
             
             
-            
-            for buddy in buddies {
-                buddy.postID = Int(postId)
-                buddy.save();
-            }
             for image in imageArr {
                 image.postId = Int(postId)
                 image.save()
@@ -284,13 +283,6 @@ public class Post {
             self.imageArr.append(img);
         }
         
-//        for buddy in json["buddies"].arrayValue {
-//            let img = PostImage();
-//            img.urlToData(photo["name"].stringValue)
-//            img.caption = photo["caption"].stringValue
-//            self.imageArr.append(img);
-//        }
-        
     }
     
     func changeDate(givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
@@ -310,7 +302,7 @@ public class Post {
     func uploadPost() {
         do {
             var check = false;
-            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date)
+            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
                 .limit(1)
             for post in try db.prepare(query) {
                 check = true
@@ -330,8 +322,9 @@ public class Post {
                 p.post_latitude = String(post[latitude])
                 p.post_longitude = String(post[longitude])
                 p.post_date = String(post[date])
+                p.buddiesStr = String(post[buddyDb])
                 
-                
+                print(p.buddiesStr);
                 let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
                 
@@ -341,17 +334,22 @@ public class Post {
                     print(img.parseJson())
                     photosJson.append(img.parseJson())
                 }
-                print(photosJson)
                 
                 let checkInJson:JSON = ["location":p.post_location,"category":p.post_category,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
                 
-                print("chintan Shah");
-                print(checkInJson);
                 var params:JSON = ["type":"travel-life", "thoughts":p.post_thoughts,"user": p.post_userId,"journey":p.post_journeyId,"date":p.post_date]
+                
+                if let data = p.buddiesStr.data(using: String.Encoding.utf8) {
+                    params["buddies"] = JSON(data:data)
+                }
+                
+
                 params["checkIn"] = checkInJson
                 params["photos"] = JSON(photosJson)
+                print(params);
                 
                 request.postTravelLifeJson(params, completion: {(response) in
+                    print(response);
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")
                     }
@@ -382,7 +380,7 @@ public class Post {
             }
         }
         catch {
-            
+            print("There is an error");
         }
     }
 }
