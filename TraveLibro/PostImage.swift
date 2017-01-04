@@ -41,7 +41,7 @@ public class PostImage {
     }
     
     func urlToData(_ str:String) {
-        self.serverUrl = adminUrl + "upload/readFile?file=" + str + "&width=500"
+        self.serverUrl = adminUrl + "upload/readFile?file=" + str
         self.imageUrl = URL(string: self.serverUrl)
     }
     

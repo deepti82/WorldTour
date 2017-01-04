@@ -11,7 +11,6 @@ import Spring
 
 class PhotoOTGFooter: UIView {
 
-    @IBOutlet weak var CloudUploadingView: UIView!
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: SpringButton!
     @IBOutlet weak var shareButton: UIButton!
@@ -34,7 +33,7 @@ class PhotoOTGFooter: UIView {
     
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "PhotosOTGFooter", bundle: bundle)
+        let nib = UINib(nibName: "PhotoOTGFooter", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -45,7 +44,9 @@ class PhotoOTGFooter: UIView {
         shareButton.tintColor = mainBlueColor
         optionButton.tintColor = mainBlueColor
         commentIcon.tintColor = mainBlueColor
+        
         likeHeart.text = String(format: "%C", faicon["likes"]!)
+        
     }
 
 

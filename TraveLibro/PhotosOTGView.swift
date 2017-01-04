@@ -10,12 +10,8 @@ import UIKit
 
 class PhotosOTGView: UIView {
 
-    @IBOutlet weak var mainPhoto: UIImageView!
-    @IBOutlet weak var bgView: UIView!
-    @IBOutlet weak var UploadingToCloudView: UIView!
-    @IBOutlet weak var uploadingToCloudLabel: UILabel!
-    
-    
+    @IBOutlet weak var morePhotosView: UIScrollView!
+    var horizontalScrollForPhotos:HorizontalLayout!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -34,10 +30,8 @@ class PhotosOTGView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
         
-        
-        bgView.layer.cornerRadius = 5
-        bgView.layer.shadowColor = UIColor.black.cgColor
-        bgView.layer.shadowOffset = CGSize(width: 2, height: 1)
+        self.horizontalScrollForPhotos = HorizontalLayout(height: morePhotosView.frame.height)
+        self.morePhotosView.addSubview(horizontalScrollForPhotos)
     }
    
 
