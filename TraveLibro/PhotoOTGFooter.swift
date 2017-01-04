@@ -45,7 +45,7 @@ class PhotoOTGFooter: UIView {
         optionButton.tintColor = mainBlueColor
         commentIcon.tintColor = mainBlueColor
         
-        likeHeart.text = String(format: "%C", faicon["likes"]!)
+        self.likeHeart.text = String(format: "%C", faicon["likes"]!)
         
     }
 

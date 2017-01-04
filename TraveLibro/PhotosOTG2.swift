@@ -17,6 +17,7 @@ class PhotosOTG2: VerticalLayout {
     var uploadingView:UploadingToCloud!
     
     func generatePost(_ post:Post) {
+        
         //header generation only
         header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 113 ))
         self.addSubview(header)
@@ -25,7 +26,13 @@ class PhotosOTG2: VerticalLayout {
         header.photosTitle.text = post.finalThought
         post.getTypeOfPost()
         
-        header.postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)
+        if(post.postCreator != nil) {
+            header.postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(post.postCreator["profilePicture"])&width=100")!)
+        }
+        else {
+            header.postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)
+        }
+        
         header.makeTLProfilePicture(header.postDp)
         
         header.dateLabel.text = post.post_dateDay
@@ -107,6 +114,30 @@ class PhotosOTG2: VerticalLayout {
         else {
             //Footer Generation Only
             footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            if(post.post_likeCount != nil) {
+                if(post.post_likeCount == 0) {
+                    footerView.likeViewLabel.text = "0 Like"
+                } else if(post.post_likeCount == 1) {
+                    footerView.likeViewLabel.text = "1 Like"
+                } else if(post.post_likeCount > 1) {
+                    let counts = String(post.post_likeCount)
+                    footerView.likeViewLabel.text = "\(counts) Likes"
+                }
+            }
+            
+            if(post.post_commentCount != nil) {
+                if(post.post_commentCount == 0) {
+                    footerView.commentCount.text = "0 Comment"
+                } else if(post.post_commentCount == 1) {
+                    footerView.commentCount.text = "1 Comment"
+                } else if(post.post_commentCount > 1) {
+                    let counts = String(post.post_commentCount)
+                    footerView.commentCount.text = "\(counts) Comments"
+                }
+            }
+            
+            
+            
             self.addSubview(footerView)
             //End of Footer
         }
@@ -131,10 +162,11 @@ class PhotosOTG2: VerticalLayout {
             } else {
                 photosButton.frame.size.height = 55
                 photosButton.frame.size.width = 55
-                photosButton.hnk_setImageFromURL(post.imageArr[i].imageUrl)
-//                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
-//                photosButton.isUserInteractionEnabled = true
-//                photosButton.addGestureRecognizer(tapGestureRecognizer)
+                var urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=100"
+                photosButton.hnk_setImageFromURL(URL(string:urlStr)!)
+                //                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
+                //                photosButton.isUserInteractionEnabled = true
+                //                photosButton.addGestureRecognizer(tapGestureRecognizer)
                 
             }
             photosButton.layer.cornerRadius = 5.0

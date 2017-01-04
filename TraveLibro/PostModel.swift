@@ -15,7 +15,7 @@ public class Post {
     
     let post = Table("Post")
     
-    
+    var postCreator:JSON!
     var imageArr:[PostImage] = []
     var buddiesStr:String = "[]"
     var buddies:[Buddy] = []
@@ -97,7 +97,6 @@ public class Post {
         )
         do {
             let postId = try db.run(photoinsert)
-            print("Post ID " + String(postId));
             
             
             for image in imageArr {
@@ -106,7 +105,6 @@ public class Post {
             }
             
             let query = self.getAllPost(postid: postId)
-             print("dikha re post:\(query)")
             for post in query {
                 retPost = post;
                 retPost.post_isOffline = true;
@@ -249,6 +247,8 @@ public class Post {
     
     func jsonToPost(_ json:JSON) {
         
+
+        self.postCreator = json["postCreator"]
         self.post_ids = json["_id"].stringValue
         self.post_uniqueId = json["uniqueId"].stringValue
         self.post_type = json["type"].stringValue
@@ -324,14 +324,12 @@ public class Post {
                 p.post_date = String(post[date])
                 p.buddiesStr = String(post[buddyDb])
                 
-                print(p.buddiesStr);
                 let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
                 
                 var photosJson:[JSON] = []
                 
                 for img in p.imageArr {
-                    print(img.parseJson())
                     photosJson.append(img.parseJson())
                 }
                 
@@ -346,10 +344,8 @@ public class Post {
 
                 params["checkIn"] = checkInJson
                 params["photos"] = JSON(photosJson)
-                print(params);
                 
                 request.postTravelLifeJson(params, completion: {(response) in
-                    print(response);
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")
                     }
