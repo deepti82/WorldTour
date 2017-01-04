@@ -10,7 +10,8 @@ import UIKit
 
 class PhotosOTGHeader: UIView {
 
-    @IBOutlet weak var PhotoOTGHeaderView: UIView!
+    
+    @IBOutlet weak var drawL: drawLine!
     @IBOutlet weak var postDp: UIImageView!
     @IBOutlet weak var whatPostIcon: UIButton!
     @IBOutlet weak var photosTitle: ActiveLabel!
@@ -31,15 +32,13 @@ class PhotosOTGHeader: UIView {
 
     
     func loadViewFromNib() {
-        PhotoOTGHeaderView.layer.cornerRadius = 5
-        PhotoOTGHeaderView.layer.shadowColor = UIColor.white.cgColor
-        PhotoOTGHeaderView.layer.shadowOffset = CGSize(width: 2, height: 1)
+        self.layer.cornerRadius = 5
+        self.layer.shadowColor = UIColor.white.cgColor
+        self.layer.shadowOffset = CGSize(width: 2, height: 1)
         
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "PhotosOTGHeader", bundle: bundle)
-        postDp.layer.cornerRadius = 15
-        postDp.layer.borderWidth = 2
-        postDp.layer.borderColor = UIColor.orange.cgColor
+
         
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
@@ -54,13 +53,12 @@ class PhotosOTGHeader: UIView {
         
         postDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=100")!)
         makeTLProfilePicture(postDp)
-
-        
         
         
         postDp.layer.cornerRadius = 10
         postDp.layer.borderWidth = 2
         postDp.layer.borderColor = UIColor.orange.cgColor
+        drawL.backgroundColor = UIColor.clear
         
     }
     

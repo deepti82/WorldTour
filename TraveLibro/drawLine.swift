@@ -20,6 +20,7 @@ class drawLine: UIView {
         context!.move(to: CGPoint(x: 0, y: 5))
         context!.addLine(to: CGPoint(x: 0, y: 200))
         context!.strokePath()
+        
     }
 
 }

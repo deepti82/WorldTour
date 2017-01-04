@@ -36,6 +36,7 @@
 		367B90F81DC23ADF00D76F13 /* RegexParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F31DC23ADF00D76F13 /* RegexParser.swift */; };
 		367B90F91DC23ADF00D76F13 /* StringTrimExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F41DC23ADF00D76F13 /* StringTrimExtension.swift */; };
 		369042C31E090E6700D266A7 /* PostImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369042C21E090E6700D266A7 /* PostImage.swift */; };
+		3690AB731E1CFA8500642A6A /* PhotosOTG2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3690AB721E1CFA8500642A6A /* PhotosOTG2.swift */; };
 		36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */; };
 		36EB3F981E0D81A000EFF9EC /* PostBuddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */; };
 		3A38275E1DDEE4BB007F181D /* NearMeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */; };
@@ -61,7 +62,7 @@
 		3AFB01C61DDC30DA00BCD523 /* AddRatingCountries.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */; };
 		3AFB01C81DDC310500BCD523 /* AddRatingCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */; };
 		841C9C461E14FAA6004E4CDD /* PhotosOTGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */; };
-		842484F41E139FBB00083115 /* PhotoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F31E139FBA00083115 /* PhotoHeaderView.xib */; };
+		842484F41E139FBB00083115 /* PhotosOTGHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F31E139FBA00083115 /* PhotosOTGHeader.xib */; };
 		842484F61E13A4C000083115 /* PhotoFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F51E13A4C000083115 /* PhotoFooterView.xib */; };
 		842484F91E13A9E600083115 /* PhotosOTGHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842484F81E13A9E600083115 /* PhotosOTGHeader.swift */; };
 		842484FC1E13AC6400083115 /* PhotoOTGFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842484FB1E13AC6400083115 /* PhotoOTGFooter.swift */; };
@@ -429,6 +430,7 @@
 		367B90F31DC23ADF00D76F13 /* RegexParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexParser.swift; sourceTree = "<group>"; };
 		367B90F41DC23ADF00D76F13 /* StringTrimExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTrimExtension.swift; sourceTree = "<group>"; };
 		369042C21E090E6700D266A7 /* PostImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostImage.swift; sourceTree = "<group>"; };
+		3690AB721E1CFA8500642A6A /* PhotosOTG2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTG2.swift; sourceTree = "<group>"; };
 		36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostBuddy.swift; sourceTree = "<group>"; };
 		3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeListViewController.swift; sourceTree = "<group>"; };
@@ -457,7 +459,7 @@
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGController.swift; sourceTree = "<group>"; };
-		842484F31E139FBA00083115 /* PhotoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoHeaderView.xib; sourceTree = "<group>"; };
+		842484F31E139FBA00083115 /* PhotosOTGHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosOTGHeader.xib; sourceTree = "<group>"; };
 		842484F51E13A4C000083115 /* PhotoFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoFooterView.xib; sourceTree = "<group>"; };
 		842484F81E13A9E600083115 /* PhotosOTGHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGHeader.swift; sourceTree = "<group>"; };
 		842484FB1E13AC6400083115 /* PhotoOTGFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoOTGFooter.swift; sourceTree = "<group>"; };
@@ -1109,7 +1111,7 @@
 		842484F71E13A94F00083115 /* PhotosOTGHeader */ = {
 			isa = PBXGroup;
 			children = (
-				842484F31E139FBA00083115 /* PhotoHeaderView.xib */,
+				842484F31E139FBA00083115 /* PhotosOTGHeader.xib */,
 				842484F81E13A9E600083115 /* PhotosOTGHeader.swift */,
 			);
 			name = PhotosOTGHeader;
@@ -1876,6 +1878,7 @@
 			children = (
 				C2A6E2661CE9D48A00D3F845 /* PhotosOTG.xib */,
 				C2A6E2681CE9DA8B00D3F845 /* PhotosOTG.swift */,
+				3690AB721E1CFA8500642A6A /* PhotosOTG2.swift */,
 			);
 			name = PhotosOTG;
 			sourceTree = "<group>";
@@ -2305,7 +2308,7 @@
 				C267301F1D279D7900F2C822 /* AddNewOTG.xib in Resources */,
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
 				C26D619A1D43A9FF0036714C /* footerNew.xib in Resources */,
-				842484F41E139FBB00083115 /* PhotoHeaderView.xib in Resources */,
+				842484F41E139FBB00083115 /* PhotosOTGHeader.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
 				3AF187081D785C9D00A86BC1 /* forDpFour.xib in Resources */,
 				C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */,
@@ -2653,6 +2656,7 @@
 				C2ABDBB91CEC8B7D00D7542E /* TrialViewController.swift in Sources */,
 				C2E697B51D3E510900E76F1E /* FeaturedCitiesRestViewController.swift in Sources */,
 				C2A27A611CEDF0F500F74DD1 /* SelectCountryViewController.swift in Sources */,
+				3690AB731E1CFA8500642A6A /* PhotosOTG2.swift in Sources */,
 				C26B4DE91D13E48200213055 /* Layout.swift in Sources */,
 				C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */,
 				C20938FE1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,15 +14,25 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotosOTGHeader" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="calendarLabel" destination="3Ij-Yi-cXb" id="Faf-IG-H5p"/>
+                <outlet property="clockLabel" destination="wh2-Li-LqP" id="Bu7-1w-10J"/>
+                <outlet property="dateLabel" destination="fid-yH-MEf" id="zFj-tN-lgA"/>
+                <outlet property="drawL" destination="Rt5-8f-vFp" id="saj-zl-fpX"/>
+                <outlet property="photosTitle" destination="po4-VN-8dh" id="tTs-h7-Tqg"/>
+                <outlet property="postDp" destination="bcT-oe-jCW" id="mVc-Pi-5fa"/>
+                <outlet property="timeLabel" destination="dUH-xH-sbU" id="vY3-cl-XCb"/>
+                <outlet property="whatPostIcon" destination="Xvb-Pa-iMT" id="MFj-11-55q"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PhotosOTGHeader" customModule="TraveLibro" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rt5-8f-vFp" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
                     <rect key="frame" x="182" y="0.0" width="10" height="48"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="lVN-cd-5Xr"/>
                         <constraint firstAttribute="height" constant="48" id="oET-MD-JN9"/>
@@ -49,7 +59,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xvb-Pa-iMT">
-                            <rect key="frame" x="337" y="0.0" width="30" height="30"/>
+                            <rect key="frame" x="337" y="16" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Bv1-yR-vFG"/>
                                 <constraint firstAttribute="width" constant="30" id="XUv-Vf-eCa"/>
@@ -107,7 +117,7 @@
                         <constraint firstAttribute="trailing" secondItem="Xvb-Pa-iMT" secondAttribute="trailing" constant="8" id="8X5-mF-Bu4"/>
                         <constraint firstItem="3Ij-Yi-cXb" firstAttribute="leading" secondItem="wBz-We-C2u" secondAttribute="leading" constant="98" id="Bh8-2a-lbh"/>
                         <constraint firstItem="bcT-oe-jCW" firstAttribute="leading" secondItem="wBz-We-C2u" secondAttribute="leading" constant="8" id="W95-f8-o1O"/>
-                        <constraint firstItem="Xvb-Pa-iMT" firstAttribute="top" secondItem="bcT-oe-jCW" secondAttribute="top" constant="-6" id="bA5-UG-LNw"/>
+                        <constraint firstItem="Xvb-Pa-iMT" firstAttribute="top" secondItem="bcT-oe-jCW" secondAttribute="top" constant="10" id="bA5-UG-LNw"/>
                         <constraint firstItem="po4-VN-8dh" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="-2" id="jdW-GF-scm"/>
                         <constraint firstItem="po4-VN-8dh" firstAttribute="leading" secondItem="bcT-oe-jCW" secondAttribute="trailing" constant="18" id="oE7-WV-but"/>
                         <constraint firstAttribute="width" constant="375" id="sYU-G7-HGg"/>
@@ -115,7 +125,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="wBz-We-C2u" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Fpp-Pn-N5d"/>
                 <constraint firstItem="Rt5-8f-vFp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="182" id="hkt-3T-4hK"/>
@@ -125,16 +134,6 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="PhotoOTGHeaderView" destination="wBz-We-C2u" id="4j9-uw-hcY"/>
-                <outlet property="calendarLabel" destination="3Ij-Yi-cXb" id="118-KZ-h0a"/>
-                <outlet property="clockLabel" destination="wh2-Li-LqP" id="4fp-sk-KKf"/>
-                <outlet property="dateLabel" destination="fid-yH-MEf" id="AuY-kH-kQh"/>
-                <outlet property="photosTitle" destination="po4-VN-8dh" id="NAK-bA-x7v"/>
-                <outlet property="postDp" destination="bcT-oe-jCW" id="EhC-td-Tqh"/>
-                <outlet property="timeLabel" destination="dUH-xH-sbU" id="V8T-0I-ART"/>
-                <outlet property="whatPostIcon" destination="Xvb-Pa-iMT" id="4DL-Gr-usq"/>
-            </connections>
             <point key="canvasLocation" x="-197.5" y="-273"/>
         </view>
     </objects>
