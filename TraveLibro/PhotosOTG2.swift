@@ -120,7 +120,7 @@ class PhotosOTG2: VerticalLayout {
         centerView.horizontalScrollForPhotos.removeAll()
         for i in 1 ..< post.imageArr.count {
             let photosButton = UIImageView(frame: CGRect(x: 10, y: 3, width: 55, height: 55))
-            photosButton.backgroundColor = mainOrangeColor
+            photosButton.backgroundColor = UIColor.white
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
             if(post.post_isOffline) {
                 photosButton.image = post.imageArr[i].image
