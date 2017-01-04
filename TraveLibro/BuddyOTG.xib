@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,24 +22,22 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-uJ-PBX">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-uJ-PBX">
                     <rect key="frame" x="145" y="0.0" width="10" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1jI-ml-e7H">
-                    <rect key="frame" x="0.0" y="-8" width="240" height="80"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jI-ml-e7H">
+                    <rect key="frame" x="38" y="160" width="240" height="80"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gayathri Padhye has joined this journey" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOk-LL-bg7">
-                            <rect key="frame" x="8" y="8" width="224" height="49.5"/>
+                            <rect key="frame" x="8" y="8" width="224" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="14 Jan 2014, 01:20 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nke-vo-uOh">
-                            <rect key="frame" x="48.5" y="57.5" width="143.5" height="19.5"/>
+                            <rect key="frame" x="49" y="58" width="144" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="0.41960784309999999" green="0.41960784309999999" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,23 +45,50 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="RWU-cd-LNZ"/>
+                        <constraint firstAttribute="height" constant="80" id="gio-9X-rZj"/>
+                    </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="TjV-g0-pnn">
-                    <rect key="frame" x="87.5" y="63" width="125" height="125"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="TjV-g0-pnn">
+                    <rect key="frame" x="88" y="27" width="125" height="125"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="125" id="uxJ-bU-D0q"/>
+                        <constraint firstAttribute="width" constant="125" id="yzf-5I-gwf"/>
+                    </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hi_image" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Jp-Ix4">
-                    <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hi_image" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Jp-Ix4">
+                    <rect key="frame" x="200" y="39" width="100" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="oF7-Uy-8UR"/>
+                        <constraint firstAttribute="width" constant="100" id="tcd-qg-Mdh"/>
+                    </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poG-co-vae">
-                    <rect key="frame" x="0.0" y="-2" width="45" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poG-co-vae">
+                    <rect key="frame" x="60" y="8" width="45" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="JfU-QW-oha"/>
+                        <constraint firstAttribute="width" constant="45" id="KLr-vM-pZm"/>
+                    </constraints>
                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <inset key="contentEdgeInsets" minX="10" minY="12" maxX="10" maxY="12"/>
                     <state key="normal" image="add_people" backgroundImage="green_bg_new_small"/>
                 </button>
             </subviews>
+            <constraints>
+                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="39" id="0Rb-Tl-VBL"/>
+                <constraint firstItem="poG-co-vae" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="0dA-ao-Bao"/>
+                <constraint firstItem="1jI-ml-e7H" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="38" id="2v6-dN-UHz"/>
+                <constraint firstItem="ZzG-uJ-PBX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="145" id="K4M-y6-7yt"/>
+                <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="TjV-g0-pnn" secondAttribute="bottom" constant="8" id="P7y-4F-Szs"/>
+                <constraint firstAttribute="trailing" secondItem="Baq-Jp-Ix4" secondAttribute="trailing" id="VIb-l3-BQb"/>
+                <constraint firstAttribute="bottom" secondItem="ZzG-uJ-PBX" secondAttribute="bottom" constant="260" id="WhF-BF-KWV"/>
+                <constraint firstItem="ZzG-uJ-PBX" firstAttribute="centerX" secondItem="TjV-g0-pnn" secondAttribute="centerX" id="Zmr-HB-A9y"/>
+                <constraint firstItem="TjV-g0-pnn" firstAttribute="leading" secondItem="poG-co-vae" secondAttribute="trailing" constant="-17" id="cMn-WF-yne"/>
+                <constraint firstItem="TjV-g0-pnn" firstAttribute="top" secondItem="ZzG-uJ-PBX" secondAttribute="bottom" constant="27" id="iUN-Tt-HaP"/>
+                <constraint firstItem="ZzG-uJ-PBX" firstAttribute="top" secondItem="poG-co-vae" secondAttribute="top" constant="-8" id="lQh-YV-T1v"/>
+                <constraint firstItem="poG-co-vae" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="60" id="qq2-jV-zzb"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="241" y="414"/>
@@ -73,6 +98,6 @@
         <image name="add_people" width="60" height="60"/>
         <image name="green_bg_new_small" width="60" height="60"/>
         <image name="hi_image" width="137" height="60"/>
-        <image name="profile_icon" width="59" height="60"/>
+        <image name="logo-default" width="180" height="180"/>
     </resources>
 </document>
