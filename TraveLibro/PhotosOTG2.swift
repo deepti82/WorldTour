@@ -79,8 +79,12 @@ class PhotosOTG2: VerticalLayout {
                     
                 }
             }
-            
-            
+        } else if(post.post_locationImage != nil && post.post_locationImage != "") {
+            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
+            self.mainPhoto.image = UIImage(named: "logo-default")
+            self.mainPhoto.hnk_setImageFromURL(URL(string:post.post_locationImage)!)
+            self.addSubview(mainPhoto)
         }
         
         //End of Image
@@ -120,7 +124,7 @@ class PhotosOTG2: VerticalLayout {
         centerView.horizontalScrollForPhotos.removeAll()
         for i in 1 ..< post.imageArr.count {
             let photosButton = UIImageView(frame: CGRect(x: 10, y: 3, width: 55, height: 55))
-            photosButton.backgroundColor = UIColor.white
+            photosButton.image = UIImage(named: "logo-default")
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
             if(post.post_isOffline) {
                 photosButton.image = post.imageArr[i].image
