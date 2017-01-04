@@ -371,7 +371,6 @@ extension NewTLViewController {
             otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
             otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
             otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
-            print(adminUrl + "upload/readFile?file=" + journey["startLocationPic"].stringValue)
             self.otgView.cityImage.hnk_setImageFromURL(URL(string: adminUrl + "upload/readFile?file=" + journey["startLocationPic"].stringValue)!)
             //                otgView.detectLocationView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.detectLocationViewTap(_:))))
             //                otgView.detectLocationButton.addTarget(self, action: #selector(NewTLViewController.detectLocation(_:)), for: .touchUpInside)

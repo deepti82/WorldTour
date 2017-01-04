@@ -5,6 +5,9 @@ import Simplicity
 import TwitterKit
 import SQLite
 
+import Haneke
+let cache = Shared.dataCache
+
 
 let contactsObject = CNContactStore()
 let mainBlueColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1) // #232D4A

@@ -57,7 +57,8 @@ class PhotosOTG2: VerticalLayout {
         //Image generation only
         
         if(post.imageArr.count > 0) {
-            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 100))
+            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
+            self.addSubview(self.mainPhoto)
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.clipsToBounds = true
             let heightForBlur = 10;
@@ -66,39 +67,39 @@ class PhotosOTG2: VerticalLayout {
                 thumbStr = "&width=\(heightForBlur)"
             }
             let imgStr = post.imageArr[0].imageUrl.absoluteString + thumbStr
-            
-            if let url = URL(string: imgStr) {
-                if let data = NSData(contentsOf: url) {
-                    self.mainPhoto.image = UIImage(data: data as Data)
+
+            cache.fetch(URL: URL(string:imgStr)!).onSuccess({ (data) in
+                self.mainPhoto.image = UIImage(data: data as Data)
+                
+                let image = self.mainPhoto.image
+                
+                let widthInPixels =  image?.cgImage?.width
+                let heightInPixels =  image?.cgImage?.height
+                
+                if((heightInPixels) != nil) {
+                    let finalHeight =  CGFloat(heightInPixels!) / CGFloat(widthInPixels!) * self.frame.width;
                     
-                    let image = self.mainPhoto.image
                     
-                    let widthInPixels =  image?.cgImage?.width
-                    let heightInPixels =  image?.cgImage?.height
-                    
-                    if((heightInPixels) != nil) {
-                        let finalHeight =  CGFloat(heightInPixels!) / CGFloat(widthInPixels!) * self.frame.width;
-                        
-                        
-                        let maxheight = screenHeight - (60+65+113)
-                        if(finalHeight > maxheight) {
-                            self.mainPhoto.frame.size.height = maxheight
-                        } else {
-                            self.mainPhoto.frame.size.height = finalHeight
-                        }
+                    let maxheight = screenHeight - (60+65+113)
+                    if(finalHeight > maxheight) {
+                        self.mainPhoto.frame.size.height = maxheight
+                    } else {
+                        self.mainPhoto.frame.size.height = finalHeight
                     }
-                    
-                    mainPhoto.frame.size.width = self.frame.width
-                    self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
-                    
-                    mainPhoto.isUserInteractionEnabled = true
-                    let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
-                    mainPhoto.addGestureRecognizer(tapGestureRecognizer)
-                    mainPhoto.tag = 0
-                    
-                    self.addSubview(mainPhoto)
                 }
-            }
+                
+                self.mainPhoto.frame.size.width = self.frame.width
+                self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
+                
+                self.mainPhoto.isUserInteractionEnabled = true
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
+                self.mainPhoto.addGestureRecognizer(tapGestureRecognizer)
+                self.mainPhoto.tag = 0
+                
+                
+                self.layoutSubviews()
+                globalNewTLViewController.addHeightToLayout(height: 50)
+            })
         } else if(post.post_locationImage != nil && post.post_locationImage != "") {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
