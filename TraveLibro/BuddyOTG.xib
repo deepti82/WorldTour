@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BuddyOTG" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="drawHeaderLine" destination="ZzG-uJ-PBX" id="675-4D-rsp"/>
                 <outlet property="infoview" destination="1jI-ml-e7H" id="qn9-Dx-cXH"/>
                 <outlet property="joinJourneytext" destination="dOk-LL-bg7" id="P6v-1j-TyS"/>
                 <outlet property="profileImage" destination="TjV-g0-pnn" id="dg2-Sy-yFX"/>
@@ -22,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-uJ-PBX" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-uJ-PBX" customClass="drawFooterLine" customModule="TraveLibro" customModuleProvider="target">
                     <rect key="frame" x="145" y="0.0" width="10" height="29"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
