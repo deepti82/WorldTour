@@ -7,7 +7,6 @@ class BuddyOTG: UIView {
     @IBOutlet weak var joinJourneytext: UILabel!
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var infoview: UIView!
-    @IBOutlet weak var drawHeaderLine: drawLine!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,7 +28,6 @@ class BuddyOTG: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
-        drawHeaderLine.backgroundColor = UIColor.clear
     }
 
 }

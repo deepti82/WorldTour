@@ -31,11 +31,9 @@ class drawFooterLine: UIView {
         
         let context = UIGraphicsGetCurrentContext()
         context?.setLineWidth(10.0)
-        context!.setLineDash(phase: 2, lengths: [10, 16])
-        context!.setStrokeColor(lightOrangeColor.cgColor)
-//        context?.setStrokeColor(UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 255/255).cgColor)
+        context?.setStrokeColor(UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 255/255).cgColor)
         //CGContextSetLineCap(context, kCGLineCapRound)
-        context!.setLineCap(CGLineCap(rawValue: 200)!)
+        
         context?.move(to: CGPoint(x: 0, y: 0))
         context?.addLine(to: CGPoint(x: 0, y: 45))
         

@@ -61,8 +61,6 @@
 		3AFB01C61DDC30DA00BCD523 /* AddRatingCountries.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */; };
 		3AFB01C81DDC310500BCD523 /* AddRatingCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */; };
 		841C9C461E14FAA6004E4CDD /* PhotosOTGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */; };
-		841E43A21E1CFA8A000D2E6B /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841E43A11E1CFA8A000D2E6B /* View.xib */; };
-		841E43A41E1CFC8F000D2E6B /* EndJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E43A31E1CFC8F000D2E6B /* EndJourneyView.swift */; };
 		842484F41E139FBB00083115 /* PhotoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F31E139FBA00083115 /* PhotoHeaderView.xib */; };
 		842484F61E13A4C000083115 /* PhotoFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F51E13A4C000083115 /* PhotoFooterView.xib */; };
 		842484F91E13A9E600083115 /* PhotosOTGHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842484F81E13A9E600083115 /* PhotosOTGHeader.swift */; };
@@ -459,8 +457,6 @@
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGController.swift; sourceTree = "<group>"; };
-		841E43A11E1CFA8A000D2E6B /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
-		841E43A31E1CFC8F000D2E6B /* EndJourneyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndJourneyView.swift; sourceTree = "<group>"; };
 		842484F31E139FBA00083115 /* PhotoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoHeaderView.xib; sourceTree = "<group>"; };
 		842484F51E13A4C000083115 /* PhotoFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoFooterView.xib; sourceTree = "<group>"; };
 		842484F81E13A9E600083115 /* PhotosOTGHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGHeader.swift; sourceTree = "<group>"; };
@@ -881,7 +877,6 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
-				841E43A01E1CF9BB000D2E6B /* endJourneyView */,
 				842484FD1E13BE8C00083115 /* PhotosOTGCenter */,
 				842484F71E13A94F00083115 /* PhotosOTGHeader */,
 				847AACF81E02AE5F001C8ACA /* PhotosOTGFooter */,
@@ -1109,15 +1104,6 @@
 				163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		841E43A01E1CF9BB000D2E6B /* endJourneyView */ = {
-			isa = PBXGroup;
-			children = (
-				841E43A11E1CFA8A000D2E6B /* View.xib */,
-				841E43A31E1CFC8F000D2E6B /* EndJourneyView.swift */,
-			);
-			name = endJourneyView;
 			sourceTree = "<group>";
 		};
 		842484F71E13A94F00083115 /* PhotosOTGHeader */ = {
@@ -2305,7 +2291,6 @@
 				C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */,
 				C25207321D094FAB008F0E51 /* SearchFieldView.xib in Resources */,
 				C28521B71D364680001EF251 /* FilterItineraryType.xib in Resources */,
-				841E43A21E1CFA8A000D2E6B /* View.xib in Resources */,
 				C263E3A71D1E5D2300D274FE /* NewThoughtsView.xib in Resources */,
 				C24F84F01D004E59002EA203 /* NoFollowers.xib in Resources */,
 				C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */,
@@ -2506,7 +2491,6 @@
 				C26B4DEF1D14288900213055 /* ConnectWithAgentViewController.swift in Sources */,
 				C28A92491D0EA12300CFEC7A /* BlogsListViewController.swift in Sources */,
 				C27E0F3A1D2A1EF10090880A /* FeedbackViewController.swift in Sources */,
-				841E43A41E1CFC8F000D2E6B /* EndJourneyView.swift in Sources */,
 				C2DCAE411D18063E00B35331 /* NavigationStyle.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
 				C20A18FF1D22A67700760BF9 /* AddBuddiesViewController.swift in Sources */,
