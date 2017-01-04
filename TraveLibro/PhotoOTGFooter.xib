@@ -41,11 +41,17 @@
                                 <constraint firstAttribute="height" constant="20" id="dFe-ju-aTO"/>
                             </constraints>
                             <state key="normal" title="Button" image="like_empty_icon"/>
+                            <connections>
+                                <action selector="sendLikes:" destination="-1" eventType="touchUpInside" id="gDv-q1-Knh"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4n-Bj-TR6" customClass="SpringButton" customModule="Spring">
                             <rect key="frame" x="52" y="7" width="20" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button" image="speech_icon"/>
+                            <connections>
+                                <action selector="sendComments:" destination="-1" eventType="touchUpInside" id="WLR-XU-PSj"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Se-5g-ZtM">
                             <rect key="frame" x="88" y="7" width="16" height="20"/>

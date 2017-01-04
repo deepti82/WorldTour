@@ -600,12 +600,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getJourney() {
+        
+        
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
+                    self.layout.removeAll()
+                    self.prevPosts = []
+                    self.isInitialLoad = true;
+                    
                     self.detectLocation(nil)
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
@@ -615,21 +621,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     isJourneyOngoing = true
                     self.myJourney = response["data"]
                     self.journeyID = self.myJourney["_id"].stringValue
-                    if self.isInitialLoad {
-                        self.isInitialLoad = false
-                        self.showJourneyOngoing(journey: response["data"])
-                    }
-                    else {
-                        //                        print("i im not in isInitialLoad")
-                        let allPosts = response["data"]["post"].array!
-                        self.getAllPosts(allPosts)
-                        
-                        
-                    }
+                    self.isInitialLoad = false
+                    self.showJourneyOngoing(journey: response["data"])
                     self.setTopNavigation(text: "On The Go");
-                }
-                else {
-                    
                 }
             })
             
@@ -1607,7 +1601,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addHeightToLayout(height: CGFloat) {
         self.layout.layoutSubviews()
-        self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height)
+        self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
 //        let bottomOffset = CGPoint(x: 0, y: self.mainScroll.contentSize.height - self.mainScroll.bounds.size.height)
 //        self.mainScroll.setContentOffset(bottomOffset, animated: true)
     }

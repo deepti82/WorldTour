@@ -119,44 +119,19 @@ class PhotosOTG2: VerticalLayout {
         else {
             //Footer Generation Only
             footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-            if(post.post_likeCount != nil) {
-                if(post.post_likeCount == 0) {
-                    footerView.likeViewLabel.text = "0 Like"
-                } else if(post.post_likeCount == 1) {
-                    footerView.likeViewLabel.text = "1 Like"
-                } else if(post.post_likeCount > 1) {
-                    let counts = String(post.post_likeCount)
-                    footerView.likeViewLabel.text = "\(counts) Likes"
-                }
-            }
-            
-            if(post.post_commentCount != nil) {
-                if(post.post_commentCount == 0) {
-                    footerView.commentCount.text = "0 Comment"
-                } else if(post.post_commentCount == 1) {
-                    footerView.commentCount.text = "1 Comment"
-                } else if(post.post_commentCount > 1) {
-                    let counts = String(post.post_commentCount)
-                    footerView.commentCount.text = "\(counts) Comments"
-                }
-            }
-            
-            
-            
+            footerView.postTop = self.postTop;
+            footerView.setLikeCount(post.post_likeCount)
+            footerView.setCommentCount(post.post_commentCount)
+            footerView.setLikeSelected(post.post_likeDone)
             self.addSubview(footerView)
             //End of Footer
         }
-        
-        
-        
-        
-        
         self.layoutSubviews()
         
     }
     
+    
     func addPhotoToLayout(_ post: Post) {
-        
         centerView.horizontalScrollForPhotos.removeAll()
         for i in 1 ..< post.imageArr.count {
             let photosButton = UIImageView(frame: CGRect(x: 10, y: 3, width: 55, height: 55))
@@ -172,14 +147,12 @@ class PhotosOTG2: VerticalLayout {
                 let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
                 photosButton.isUserInteractionEnabled = true
                 photosButton.addGestureRecognizer(tapGestureRecognizer)
-                
             }
             photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
             centerView.horizontalScrollForPhotos.addSubview(photosButton)
         }
-        
         centerView.horizontalScrollForPhotos.layoutSubviews()
         centerView.morePhotosView.contentSize = CGSize(width: centerView.horizontalScrollForPhotos.frame.width, height: centerView.horizontalScrollForPhotos.frame.height)
     }

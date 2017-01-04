@@ -93,6 +93,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     func closeAdd(_ sender:UIButton) {
         globalNavigationController?.popViewController(animated: true)
         if((globalNewTLViewController) != nil) {
+            
+            
             globalNewTLViewController.getJourney()
         }
     }
@@ -405,7 +407,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.profileName.text = comments[indexPath.row]["user"]["name"].string!
             cell.profileComment.text = comments[(indexPath as NSIndexPath).row]["text"].string!
             DispatchQueue.main.async(execute: {
-                cell.profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(self.comments[indexPath.row]["user"]["profilePicture"])&width=100")!))
+                cell.profileImage.image = UIImage(named: "logo-default")
+                cell.profileImage.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.comments[indexPath.row]["user"]["profilePicture"])&width=100")!)
                 makeTLProfilePicture(cell.profileImage)
             })
             
