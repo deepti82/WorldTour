@@ -37,6 +37,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
 //        countryStackView.isHidden = true
+        endJourneyState = false
         getCount()
         userName.text = currentUser["name"].string!
         DispatchQueue.main.async(execute: {

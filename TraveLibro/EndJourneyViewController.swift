@@ -63,6 +63,8 @@ class EndJourneyViewController: UIViewController {
         globalEndJourneyViewController = self
         journeyImages = []
         
+        endJourneyState = true
+        
         ToastView.appearance().backgroundColor = endJourneyColor
         print("...........................")
         print(journey["createdAt"])

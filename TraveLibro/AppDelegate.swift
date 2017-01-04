@@ -52,6 +52,7 @@ var selectedCity: JSON = []
 var selectedStatus: String = ""
 var destinationVisited: JSON = []
 var journeyImages: [String] = []
+var endJourneyState: Bool = true
 var storyboard: UIStoryboard!
 var addedBuddies: JSON = []
 
