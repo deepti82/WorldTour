@@ -82,8 +82,13 @@ class PhotosOTG2: VerticalLayout {
                     
                     mainPhoto.frame.size.width = self.frame.width
                     self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
-                    self.addSubview(mainPhoto)
                     
+                    mainPhoto.isUserInteractionEnabled = true
+                    let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
+                    mainPhoto.addGestureRecognizer(tapGestureRecognizer)
+                    mainPhoto.tag = 0
+                    
+                    self.addSubview(mainPhoto)
                 }
             }
         } else if(post.post_locationImage != nil && post.post_locationImage != "") {
@@ -162,11 +167,11 @@ class PhotosOTG2: VerticalLayout {
             } else {
                 photosButton.frame.size.height = 55
                 photosButton.frame.size.width = 55
-                var urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=100"
+                let urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=100"
                 photosButton.hnk_setImageFromURL(URL(string:urlStr)!)
-                //                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG.openSinglePhoto(_:)))
-                //                photosButton.isUserInteractionEnabled = true
-                //                photosButton.addGestureRecognizer(tapGestureRecognizer)
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
+                photosButton.isUserInteractionEnabled = true
+                photosButton.addGestureRecognizer(tapGestureRecognizer)
                 
             }
             photosButton.layer.cornerRadius = 5.0
@@ -179,6 +184,13 @@ class PhotosOTG2: VerticalLayout {
         centerView.morePhotosView.contentSize = CGSize(width: centerView.horizontalScrollForPhotos.frame.width, height: centerView.horizontalScrollForPhotos.frame.height)
     }
     
+    func openSinglePhoto(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.postId = postTop.post_ids
+        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+    }
     
     //    func generatePost(_ post: Post) {
     //        self.postTop = post;
