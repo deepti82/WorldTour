@@ -3367,7 +3367,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -4379,24 +4379,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2P-BP-9MV">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXv-f4-Bdo">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="aXv-f4-Bdo">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </scrollView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="aXv-f4-Bdo" firstAttribute="leading" secondItem="X2P-BP-9MV" secondAttribute="leading" id="Oey-sm-hT4"/>
-                                    <constraint firstAttribute="trailing" secondItem="aXv-f4-Bdo" secondAttribute="trailing" id="b2q-cl-79v"/>
-                                    <constraint firstItem="aXv-f4-Bdo" firstAttribute="top" secondItem="X2P-BP-9MV" secondAttribute="top" id="lZo-ia-gZK"/>
-                                    <constraint firstAttribute="bottom" secondItem="aXv-f4-Bdo" secondAttribute="bottom" id="rAm-i4-Euw"/>
+                                    <constraint firstItem="aXv-f4-Bdo" firstAttribute="leading" secondItem="X2P-BP-9MV" secondAttribute="leading" id="J9I-ff-2Xh"/>
+                                    <constraint firstAttribute="trailing" secondItem="aXv-f4-Bdo" secondAttribute="trailing" id="JCP-MZ-G0g"/>
+                                    <constraint firstItem="aXv-f4-Bdo" firstAttribute="top" secondItem="X2P-BP-9MV" secondAttribute="top" id="eeq-cY-u4M"/>
+                                    <constraint firstAttribute="bottom" secondItem="aXv-f4-Bdo" secondAttribute="bottom" id="hjW-1o-h9E"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="AsL-Fb-qJX" firstAttribute="top" secondItem="X2P-BP-9MV" secondAttribute="bottom" id="OZz-0R-Zaf"/>
-                            <constraint firstItem="X2P-BP-9MV" firstAttribute="top" secondItem="YE4-vJ-lfT" secondAttribute="top" id="Yuv-2d-0Ps"/>
-                            <constraint firstItem="X2P-BP-9MV" firstAttribute="leading" secondItem="YE4-vJ-lfT" secondAttribute="leading" id="bZe-K0-qG9"/>
-                            <constraint firstAttribute="trailing" secondItem="X2P-BP-9MV" secondAttribute="trailing" id="hVz-Os-sxt"/>
+                            <constraint firstItem="X2P-BP-9MV" firstAttribute="bottom" secondItem="AsL-Fb-qJX" secondAttribute="top" id="Os3-t3-FkB"/>
+                            <constraint firstItem="X2P-BP-9MV" firstAttribute="top" secondItem="YE4-vJ-lfT" secondAttribute="top" id="ZOG-9Q-9HD"/>
+                            <constraint firstItem="X2P-BP-9MV" firstAttribute="leading" secondItem="YE4-vJ-lfT" secondAttribute="leading" id="nPI-cv-IMR"/>
+                            <constraint firstAttribute="trailing" secondItem="X2P-BP-9MV" secondAttribute="trailing" id="wiP-x0-kXF"/>
                         </constraints>
                     </view>
                     <connections>

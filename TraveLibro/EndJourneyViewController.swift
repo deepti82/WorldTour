@@ -69,15 +69,19 @@ class EndJourneyViewController: UIViewController {
         print("...........................")
         print(journey["createdAt"])
         
-        categoryOne.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
-        categoryTwo.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
-        categoryThree.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
+        rateCountriesScroll.contentSize.height = 10000
         
-        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 300))
+        
+        endJourney.categoryOne.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
+        endJourney.categoryTwo.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
+        endJourney.categoryThree.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
+        
+        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 425))
         let dateFormatterTwo = DateFormatter()
         dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+        self.view.addSubview(endJourney)
 //        self.currentTime = dateFormatterTwo.string(from: journey["createdAt"])
-        
+        endJourney.changePhotoButton.addTarget(self, action: #selector(changePicture(_:)), for: .touchUpInside)
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -98,32 +102,32 @@ class EndJourneyViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(NewTLViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
-        self.journeyCoverPic.backgroundColor = UIColor.white
-        self.journeyCoverPic.image = UIImage(named: "")
+        endJourney.journeyCoverPic.backgroundColor = UIColor.white
+        endJourney.journeyCoverPic.image = UIImage(named: "")
         
         //calendarIcon.text = String(format: "%C", args: faicon["calendar"])
         //clockIcon.text = String(format: "%C", arguments: faicon["clock"])
         
-        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
-        clockIcon.text = String(format: "%C", faicon["clock"]!)
+        endJourney.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+        endJourney.clockIcon.text = String(format: "%C", faicon["clock"]!)
         
         getAllImages()
         
-        self.userDp.image = nil
-        buddiesImages[0].image = nil
-        buddiesImages[1].image = nil
+        endJourney.userDp.image = nil
+        endJourney.buddiesImages[0].image = nil
+        endJourney.buddiesImages[1].image = nil
         
         if currentUser["profilePicture"] != "" {
             DispatchQueue.main.async(execute: {
-                self.userDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!)
+                self.endJourney.userDp.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!)
             })
         
         } else {
-            userDp.image = UIImage(named: "darkBg")
+            endJourney.userDp.image = UIImage(named: "darkBg")
         }
         
-        makeTLProfilePicture(userDp)
-        endJourneyTitle.text = "\(currentUser["name"]) has ended the \(journey["name"]) Journey"
+        makeTLProfilePicture(endJourney.userDp)
+        endJourney.endJourneyTitle.text = "\(currentUser["name"]) has ended the \(journey["name"]) Journey"
         
         //  ADD BUDDIES
         
@@ -133,61 +137,61 @@ class EndJourneyViewController: UIViewController {
         
         if buddies.count >= 3 {
             
-            buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
+            endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
             makeTLProfilePicture(buddiesImages[0])
-            buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
+            endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
             makeTLProfilePicture(buddiesImages[1])
-            buddyCount.text = "+\(buddies.count - 2)"
+            endJourney.buddyCount.text = "+\(buddies.count - 2)"
             
         }
         else if buddies.count == 2 {
             
-            buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
+            endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
             makeTLProfilePicture(buddiesImages[0])
-            buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
+           endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
             makeTLProfilePicture(buddiesImages[1])
-            buddyCount.isHidden = true
+            endJourney.buddyCount.isHidden = true
             
         }
         else if buddies.count == 1 {
             
-            buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
+            endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
             makeTLProfilePicture(buddiesImages[0])
-            buddiesImages[1].isHidden = true
-            buddyCount.isHidden = true
+            endJourney.buddiesImages[1].isHidden = true
+            endJourney.buddyCount.isHidden = true
             
         }
         else {
             
-            buddyStack.isHidden = true
+            endJourney.buddyStack.isHidden = true
             
         }
         
         //  END BUDDIES
         
         if categories.count >= 3 {
-            categoryImages[0].image = UIImage(named: "\(categories[0])")
-            categoryImages[1].image = UIImage(named: "\(categories[1])")
-            categoryImages[2].image = UIImage(named: "\(categories[2])")
+            endJourney.categoryImages[0].image = UIImage(named: "\(categories[0])")
+            endJourney.categoryImages[1].image = UIImage(named: "\(categories[1])")
+            endJourney.categoryImages[2].image = UIImage(named: "\(categories[2])")
             
         }
         else if journey["kindOfJourney"].array!.count == 2 {
             
-            categoryImages[0].image = UIImage(named: "\(categories[0])")
-            categoryImages[1].image = UIImage(named: "\(categories[1])")
-            categoryImages[2].isHidden = true
+            endJourney.categoryImages[0].image = UIImage(named: "\(categories[0])")
+            endJourney.categoryImages[1].image = UIImage(named: "\(categories[1])")
+            endJourney.categoryImages[2].isHidden = true
             
         }
         else if journey["kindOfJourney"].array!.count == 1 {
             
-            categoryImages[0].image = UIImage(named: "\(categories[0])")
-            categoryImages[1].isHidden = true
-            categoryImages[2].isHidden = true
+            endJourney.categoryImages[0].image = UIImage(named: "\(categories[0])")
+            endJourney.categoryImages[1].isHidden = true
+            endJourney.categoryImages[2].isHidden = true
             
         }
         else {
             
-            categoryStack.isHidden = true
+            endJourney.categoryStack.isHidden = true
             
         }
         
@@ -225,8 +229,8 @@ class EndJourneyViewController: UIViewController {
                 } else {
                     
                     print("no images")
-                    self.changePhotoText.isHidden = true
-                   self.changePhotoButton.isHidden = true
+                    self.endJourney.changePhotoText.isHidden = true
+                   self.endJourney.changePhotoButton.isHidden = true
 //                   self.changePhotoViewHeight.constant = 47.0
                     
                 }
@@ -269,7 +273,7 @@ class EndJourneyViewController: UIViewController {
                 self.journeyCoverPic.hnk_setImageFromURL(URL(string:imageString)!)
             }
             else {
-                self.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=250")!)
+                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=250")!)
             }
         })
     }
@@ -277,14 +281,14 @@ class EndJourneyViewController: UIViewController {
     func makeCoverPictureImage(image: String) {
         DispatchQueue.main.async(execute: {
             
-            self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
+            self.endJourney.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
         })
     }
     
     func makeCoverPictureImageEdited(image: UIImage) {
         coverImageImg = image
         DispatchQueue.main.async(execute: {
-            self.journeyCoverPic.image = image
+            self.endJourney.journeyCoverPic.image = image
         })
     }
     
