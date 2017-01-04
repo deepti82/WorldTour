@@ -34,7 +34,7 @@ class EndJourneyViewController: UIViewController {
     var coverImage = ""
     var coverImageImg = UIImage()
     var currentTime: String!
-    
+    var endJourney = EndJourneyView()
     
     var journey: JSON!
     
@@ -73,7 +73,7 @@ class EndJourneyViewController: UIViewController {
         categoryTwo.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
         categoryThree.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
         
-        
+        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 30, width: self.view.frame.width, height: 300))
         let dateFormatterTwo = DateFormatter()
         dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
 //        self.currentTime = dateFormatterTwo.string(from: journey["createdAt"])
