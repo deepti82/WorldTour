@@ -179,6 +179,58 @@ extension NewTLViewController {
         
     }
     
+    func showEditActivity(_ post:Post) {
+        hideHeaderAndFooter(false)
+        var darkBlur: UIBlurEffect!
+        var blurView: UIVisualEffectView!
+        self.backView = UIView();
+        self.backView.frame = self.view.frame
+        self.view.addSubview(self.backView)
+        self.backView.frame = self.view.frame
+        darkBlur = UIBlurEffect(style: .dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = self.backView.frame.height
+        blurView.frame.size.width = self.backView.frame.width
+        blurView.layer.zPosition = -1
+        blurView.isUserInteractionEnabled = false
+        self.backView.addSubview(blurView)
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        blurView.contentView.addSubview(vibrancyEffectView)
+        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        self.backView.addSubview(self.newScroll)
+        self.addView = AddActivityNew()
+        self.addView.buddyAdded(myJourney["buddies"].arrayValue)
+        
+        self.addView.frame = self.view.frame
+        self.addView.editPost = post
+        self.addView.newScroll = self.newScroll;
+        self.newScroll.addSubview(self.addView)
+        self.newScroll.contentSize.height = self.view.frame.height
+        backView.addSubview(newScroll)
+        
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
+        
+        let rightButton = UIButton()
+        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        
+        rightButton.setTitle("Post", for: UIControlState())
+        rightButton.titleLabel?.font = avenirBold
+        rightButton.addTarget(self, action: #selector(self.editActivity(_:) ), for: .touchUpInside)
+        globalNavigationController.topViewController?.title = "Edit Activity"
+        globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
+        self.addView.layer.zPosition = 10
+        
+        backView.layer.zPosition = 10
+        newScroll.contentSize.height = self.view.frame.height
+        
+        self.addView.typeOfAddActivtiy = "EditActivity"
+        
+    }
+    
     
     
     

@@ -298,6 +298,9 @@ class AddActivityNew: SpringView, UITextViewDelegate {
             case "AddPhotosVideos":
                 let newTl = globalNavigationController.topViewController as! NewTLViewController;
                 newTl.savePhotoVideo(sender);
+            case "EditActivity":
+                let newTl = globalNavigationController.topViewController as! NewTLViewController;
+                newTl.editActivity(sender);
             default:
                 let newTl = globalNavigationController.topViewController as! NewTLViewController;
                 newTl.newPost(sender);   

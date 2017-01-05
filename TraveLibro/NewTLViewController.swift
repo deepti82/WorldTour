@@ -205,6 +205,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.addView.postButton.isHidden = true
     }
     
+    func editActivity(_ sender: UIButton) {
+        
+    }
+    
     func newPost(_ sender: UIButton) {
         hideAddActivity()
         let post  = Post();
