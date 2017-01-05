@@ -14,6 +14,7 @@ class PhotoOTGFooter: UIView {
     var postTop:Post!
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: SpringButton!
+    @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionButton: UIButton!
     @IBOutlet weak var likeHeart: UILabel!
@@ -51,6 +52,7 @@ class PhotoOTGFooter: UIView {
         commentIcon.tintColor = mainBlueColor
         likeButton.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
+        lineView.alpha = 0.3
         
     }
 
