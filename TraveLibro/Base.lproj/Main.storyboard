@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -4376,32 +4376,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2P-BP-9MV">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="aXv-f4-Bdo">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="aXv-f4-Bdo">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                    </scrollView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="aXv-f4-Bdo" firstAttribute="leading" secondItem="X2P-BP-9MV" secondAttribute="leading" id="J9I-ff-2Xh"/>
-                                    <constraint firstAttribute="trailing" secondItem="aXv-f4-Bdo" secondAttribute="trailing" id="JCP-MZ-G0g"/>
-                                    <constraint firstItem="aXv-f4-Bdo" firstAttribute="top" secondItem="X2P-BP-9MV" secondAttribute="top" id="eeq-cY-u4M"/>
-                                    <constraint firstAttribute="bottom" secondItem="aXv-f4-Bdo" secondAttribute="bottom" id="hjW-1o-h9E"/>
-                                </constraints>
-                            </view>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="X2P-BP-9MV" firstAttribute="bottom" secondItem="AsL-Fb-qJX" secondAttribute="top" id="Os3-t3-FkB"/>
-                            <constraint firstItem="X2P-BP-9MV" firstAttribute="top" secondItem="YE4-vJ-lfT" secondAttribute="top" id="ZOG-9Q-9HD"/>
-                            <constraint firstItem="X2P-BP-9MV" firstAttribute="leading" secondItem="YE4-vJ-lfT" secondAttribute="leading" id="nPI-cv-IMR"/>
-                            <constraint firstAttribute="trailing" secondItem="X2P-BP-9MV" secondAttribute="trailing" id="wiP-x0-kXF"/>
+                            <constraint firstItem="aXv-f4-Bdo" firstAttribute="leading" secondItem="YE4-vJ-lfT" secondAttribute="leading" id="8u7-9M-oFe"/>
+                            <constraint firstItem="AsL-Fb-qJX" firstAttribute="top" secondItem="aXv-f4-Bdo" secondAttribute="bottom" id="TPV-tz-dKV"/>
+                            <constraint firstItem="aXv-f4-Bdo" firstAttribute="top" secondItem="YE4-vJ-lfT" secondAttribute="top" id="cbc-dd-KLW"/>
+                            <constraint firstAttribute="trailing" secondItem="aXv-f4-Bdo" secondAttribute="trailing" id="kYK-2q-oFt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="rateCountriesScroll" destination="aXv-f4-Bdo" id="xxY-Ao-LYa"/>
-                        <outlet property="rateCountriesView" destination="X2P-BP-9MV" id="n4T-BS-8FG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSe-U7-5og" userLabel="First Responder" sceneMemberID="firstResponder"/>

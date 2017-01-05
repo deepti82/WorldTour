@@ -27,14 +27,13 @@ class EndJourneyViewController: UIViewController {
     @IBOutlet weak var changePhotoText: UILabel!
     @IBOutlet weak var changePhotoButton: UIButton!
     @IBOutlet weak var changePhotoViewHeight: NSLayoutConstraint!
-    
-    @IBOutlet weak var rateCountriesView: UIView!
     @IBOutlet weak var rateCountriesScroll: UIScrollView!
-    @IBOutlet weak var rateCountriesLayout: VerticalLayout!
+    var rateCountriesLayout: VerticalLayout!
     var coverImage = ""
     var coverImageImg = UIImage()
     var currentTime: String!
-    var endJourney = EndJourneyView()
+    var endJourney:EndJourneyView!
+    
     
     var journey: JSON!
     
@@ -58,6 +57,8 @@ class EndJourneyViewController: UIViewController {
         }
         
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         globalEndJourneyViewController = self
@@ -67,19 +68,28 @@ class EndJourneyViewController: UIViewController {
         
         ToastView.appearance().backgroundColor = endJourneyColor
         print("...........................")
-        print(journey["createdAt"])
+        print(journey)
+        self.rateCountriesLayout = VerticalLayout(width:self.view.frame.width)
+        self.rateCountriesScroll.addSubview(self.rateCountriesLayout)
         
-        rateCountriesScroll.contentSize.height = 10000
-        
+        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 425))
         
         endJourney.categoryOne.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
         endJourney.categoryTwo.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
         endJourney.categoryThree.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
         
-        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 425))
-        let dateFormatterTwo = DateFormatter()
-        dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
-        self.view.addSubview(endJourney)
+        
+        
+        
+        var rate = ShowRating(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 425))
+
+        rateCountriesLayout.addSubview(endJourney)
+        rateCountriesLayout.addSubview(rate)
+        
+        
+        scrollChange();
+        
+        
 //        self.currentTime = dateFormatterTwo.string(from: journey["createdAt"])
         endJourney.changePhotoButton.addTarget(self, action: #selector(changePicture(_:)), for: .touchUpInside)
         
@@ -146,11 +156,11 @@ class EndJourneyViewController: UIViewController {
         }
         else if buddies.count == 2 {
             
-            endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
-            makeTLProfilePicture(buddiesImages[0])
-           endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
-            makeTLProfilePicture(buddiesImages[1])
-            endJourney.buddyCount.isHidden = true
+//            endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
+//            makeTLProfilePicture(buddiesImages[0])
+//           endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
+//            makeTLProfilePicture(buddiesImages[1])
+//            endJourney.buddyCount.isHidden = true
             
         }
         else if buddies.count == 1 {
@@ -197,6 +207,13 @@ class EndJourneyViewController: UIViewController {
         
         
     }
+    
+    
+    func scrollChange() {
+        self.rateCountriesLayout.layoutSubviews()
+        self.rateCountriesScroll.contentSize = CGSize(width: self.rateCountriesLayout.frame.width, height: self.rateCountriesLayout.frame.height)
+    }
+    
     func checkView(newcountry:JSON) {
         print("check view clicked")
         print(newcountry)
@@ -341,6 +358,7 @@ class EndJourneyViewController: UIViewController {
                     
                     DispatchQueue.main.async(execute: {
                         currentUser = response["data"]
+                        globalNewTLViewController.removeFromParentViewController()
                         let tstr = Toast(text: "Journey ended successfully. Have a good life.")
                         tstr.show()
                         self.goBack()
@@ -459,6 +477,7 @@ class EndJourneyViewController: UIViewController {
         rateButton.rateCheckInButton.setTitle(journey["_id"].string!, for: .normal)
         rateCountriesLayoutMod.addSubview(rateButton)
         addHeightToLayout(height: 150, layoutView: rateCountriesLayoutMod, scroll: rateCountriesScroll)
+        
     }
     
     func addHeightToLayout(height: CGFloat, layoutView: VerticalLayout, scroll: UIScrollView) {
