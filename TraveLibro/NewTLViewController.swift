@@ -1635,7 +1635,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
              otgView.nameJourneyView.animation.moveY(-25)
             otgView.nameJourneyTF.animation.moveY(-50)
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
-            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
+//            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
             otgView.bonVoyageLabel.isHidden = false
             
         }

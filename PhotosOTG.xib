@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -123,7 +123,7 @@
                         <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vA0-yX-0yt" customClass="SpringButton" customModule="Spring">
                             <rect key="frame" x="8" y="17" width="25" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button" image="like_empty_icon"/>
+                            <state key="normal" title="Button" image="likeButton"/>
                             <connections>
                                 <action selector="popEffect:" destination="-1" eventType="touchUpInside" id="imq-GH-bhS"/>
                                 <action selector="sendLikes:" destination="-1" eventType="touchUpInside" id="Qt9-vW-jNc"/>
@@ -203,7 +203,7 @@
         </view>
     </objects>
     <resources>
-        <image name="like_empty_icon" width="34" height="30"/>
+        <image name="likeButton" width="128" height="128"/>
         <image name="location_icon" width="200" height="200"/>
         <image name="logo-default" width="180" height="180"/>
         <image name="options_icon" width="30" height="30"/>

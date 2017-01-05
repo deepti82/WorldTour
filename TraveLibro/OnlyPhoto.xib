@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -82,7 +82,7 @@
                                 <constraint firstAttribute="width" constant="20" id="r2a-s8-yyl"/>
                                 <constraint firstAttribute="width" constant="20" id="yMR-Gf-dES"/>
                             </constraints>
-                            <state key="normal" image="like_empty_icon"/>
+                            <state key="normal" image="likeButton"/>
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="PGM-bK-WmZ"/>
@@ -184,7 +184,7 @@
     </objects>
     <resources>
         <image name="disney-world" width="638" height="580"/>
-        <image name="like_empty_icon" width="34" height="30"/>
+        <image name="likeButton" width="128" height="128"/>
         <image name="options_icon" width="30" height="30"/>
         <image name="profile_icon" width="59" height="60"/>
         <image name="share_icon" width="21" height="30"/>

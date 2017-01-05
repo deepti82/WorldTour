@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,7 +40,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pNO-v4-v3B">
-                    <rect key="frame" x="0.0" y="58" width="400" height="542"/>
+                    <rect key="frame" x="0.0" y="58.5" width="400" height="541.5"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="5mp-4e-5gS">
                             <rect key="frame" x="8" y="-34" width="60" height="60"/>
@@ -50,7 +50,7 @@
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disney-world" translatesAutoresizingMaskIntoConstraints="NO" id="xmx-uq-hK9">
-                            <rect key="frame" x="0.0" y="102" width="400" height="350"/>
+                            <rect key="frame" x="0.0" y="101.5" width="400" height="350"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="350" id="Wj9-o2-vgf"/>
                             </constraints>
@@ -66,7 +66,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="zsA-MP-fZm">
-                            <rect key="frame" x="8" y="460" width="145" height="25"/>
+                            <rect key="frame" x="8" y="459.5" width="145" height="25"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="738-ie-ZlO">
                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -75,7 +75,7 @@
                                         <constraint firstAttribute="width" constant="25" id="pdG-4m-ue3"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="3" minY="4" maxX="3" maxY="4"/>
-                                    <state key="normal" image="like_empty_icon"/>
+                                    <state key="normal" image="likeButton"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5R-Ug-nQo">
                                     <rect key="frame" x="40" y="0.0" width="25" height="25"/>
@@ -95,14 +95,14 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPo-Ra-6Yn">
-                            <rect key="frame" x="8" y="493" width="384" height="1"/>
+                            <rect key="frame" x="8" y="492.5" width="384" height="1"/>
                             <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="3WI-PJ-0na"/>
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Qh-nA-3iQ">
-                            <rect key="frame" x="8" y="502" width="112" height="20"/>
+                            <rect key="frame" x="8" y="501.5" width="112" height="20"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LaB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiE-Ts-Fmz">
                                     <rect key="frame" x="0.0" y="0.0" width="25" height="20"/>
@@ -123,7 +123,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OJy-Ba-doi">
-                            <rect key="frame" x="155" y="502" width="87" height="20"/>
+                            <rect key="frame" x="155" y="501.5" width="87" height="20"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LaB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6d8-Vq-gNZ">
                                     <rect key="frame" x="0.0" y="0.0" width="25" height="20"/>
@@ -144,7 +144,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="hPD-5x-TVK">
-                            <rect key="frame" x="8" y="86" width="115" height="40"/>
+                            <rect key="frame" x="8" y="85.5" width="115" height="40"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indian_flag" translatesAutoresizingMaskIntoConstraints="NO" id="bJh-Jq-GPO">
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -168,7 +168,7 @@
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="has uploaded a new blog" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MrS-1V-YAO">
-                            <rect key="frame" x="8" y="61" width="384" height="17"/>
+                            <rect key="frame" x="8" y="61" width="384" height="16.5"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -233,7 +233,7 @@
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wTe-jb-siO">
-                            <rect key="frame" x="0.0" y="102" width="400" height="350"/>
+                            <rect key="frame" x="0.0" y="101.5" width="400" height="350"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp2-BL-LF7">
                                     <rect key="frame" x="0.0" y="270" width="400" height="80"/>
@@ -269,7 +269,7 @@
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$110,111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaG-yf-uhU">
-                                            <rect key="frame" x="288" y="55" width="51" height="17"/>
+                                            <rect key="frame" x="288.5" y="55.5" width="50.5" height="16.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -345,14 +345,14 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="namaste_icon" translatesAutoresizingMaskIntoConstraints="NO" id="E3r-RR-ovz">
-                            <rect key="frame" x="372" y="502" width="20" height="20"/>
+                            <rect key="frame" x="372" y="501.5" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="Lrs-nr-Rwi"/>
                                 <constraint firstAttribute="width" constant="20" id="efB-TT-hWu"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0D-w7-3nY">
-                            <rect key="frame" x="370" y="462" width="22" height="22"/>
+                            <rect key="frame" x="370" y="461.5" width="22" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="22" id="Cf2-SP-jgX"/>
                                 <constraint firstAttribute="height" constant="22" id="VZX-5f-6Ar"/>
@@ -437,7 +437,7 @@
         <image name="disney-world" width="638" height="580"/>
         <image name="indian_flag" width="38" height="30"/>
         <image name="korean_flag" width="38" height="30"/>
-        <image name="like_empty_icon" width="34" height="30"/>
+        <image name="likeButton" width="128" height="128"/>
         <image name="luxury_icon" width="51" height="60"/>
         <image name="namaste_icon" width="30" height="30"/>
         <image name="options_icon" width="30" height="30"/>

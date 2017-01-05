@@ -49,7 +49,7 @@ class PhotoOTGFooter: UIView {
         shareButton.tintColor = mainBlueColor
         optionButton.tintColor = mainBlueColor
         commentIcon.tintColor = mainBlueColor
-        
+        likeButton.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
         
     }
@@ -100,7 +100,7 @@ class PhotoOTGFooter: UIView {
             self.likeButton.tintColor = mainOrangeColor
         } else {
             self.likeButton.tag = 0
-            self.likeButton.setImage(UIImage(named: "like_empty_icon"), for: .normal)
+            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
             self.likeButton.tintColor = mainBlueColor
         }
     }
