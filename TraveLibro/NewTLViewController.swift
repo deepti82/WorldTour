@@ -1823,18 +1823,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if journeyCategories.count != 0 {
             if journeyCategories.count == 1 {
-                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-                otgView.journeyCategoryOne.isHidden = false
-                otgView.journeyCategoryTwo.isHidden = true
-                otgView.journeyCategoryThree.isHidden = true
+//                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+//                otgView.journeyCategoryOne.isHidden = false
+//                otgView.journeyCategoryTwo.isHidden = true
+//                otgView.journeyCategoryThree.isHidden = true
                 
             }else if journeyCategories.count == 2 {
-                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-                otgView.journeyCategoryOne.isHidden = false
-                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-                otgView.journeyCategoryTwo.isHidden = false
-                otgView.journeyCategoryThree.isHidden = true
+//                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+//                otgView.journeyCategoryOne.isHidden = false
+//                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+//                otgView.journeyCategoryTwo.isHidden = false
+//                otgView.journeyCategoryThree.isHidden = true
             } else {
+<<<<<<< HEAD
                 otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
                 otgView.journeyCategoryOne.isHidden = false
                 otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
@@ -1842,6 +1843,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 otgView.journeyCategoryThree.isHidden = false
                 otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
                 
+=======
+//                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+//                otgView.journeyCategoryOne.isHidden = false
+//                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+//                otgView.journeyCategoryTwo.isHidden = false
+//                otgView.journeyCategoryThree.isHidden = false
+//                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+ 
+>>>>>>> origin/level-3-
             }
             //            if journeyCategories.count == 2 {
             //

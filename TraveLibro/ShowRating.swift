@@ -24,8 +24,7 @@ class ShowRating: UIView {
         ratingLabel.shadowColor = UIColor.black
         ratingLabel.shadowOffset = CGSize(width: 2, height: 1)
         ratingLabel.layer.masksToBounds = true
-        
-        
+    
     }
     
     func showRating(ratingCount: Int) {
