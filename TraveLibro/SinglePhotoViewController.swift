@@ -115,7 +115,7 @@ class SinglePhotoViewController: UIViewController {
                     }
                     else {
                         
-                        sender.setImage(UIImage(named: "like_empty_icon"), for: UIControlState())
+                        sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
                         self.likeCount = Int(self.likeCount!) - 1
                         self.likeText.text = "\(self.likeCount!) Likes"
                         self.hasLiked = !self.hasLiked
@@ -230,7 +230,7 @@ class SinglePhotoViewController: UIViewController {
                     }
                     else {
                         
-                        self.likeButton.setImage(UIImage(named: "like_empty_icon"), for: .normal)
+                        self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
                         self.hasLiked = false
                     }
                     

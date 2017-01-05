@@ -80,7 +80,7 @@ class PhotosOTG: UIView {
                         self.likeViewLabel.text = "\(self.likeCount) Likes"
                     }
                     else {
-                        sender.setImage(UIImage(named: "like_empty_icon"), for: .normal)
+                        sender.setImage(UIImage(named: "likeButton"), for: .normal)
                         sender.tintColor = mainBlueColor
                         if self.likeCount <= 0 {
                             self.likeCount = 0
