@@ -88,8 +88,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func addPosts(_ sender: UIButton) {
         showAddActivity()
         getJourneyBuddies(journey: myJourney)
-        hide.buttons1.isHidden = true
-        hide.buttons.isHidden = true
     }
     
     func optionsAction(_ sender: UIButton) {
@@ -822,7 +820,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.navigationController?.navigationBar.addSubview(buttons)
         
         
-<<<<<<< HEAD
 
         buttons.nearMeButtonView.addTarget(self, action: #selector(NewTLViewController.success(_:)), for: .touchUpInside)
 
@@ -841,12 +838,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        otgView.nameJourneyView.becomeFirstResponder()
 //        otgView.clipsToBounds = true
 //        otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), for: .editingChanged)
-=======
-        //        otgView.nameJourneyTF.becomeFirstResponder()
-        //        otgView.nameJourneyView.becomeFirstResponder()
-        //        otgView.clipsToBounds = true
-        //        otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), for: .editingChanged)
->>>>>>> origin/level-3-
+
         
         TLLoader = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         TLLoader.center = self.view.center
@@ -894,8 +886,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("GoForIt")
     }
     
-<<<<<<< HEAD
-    
     func success(_ sender: UIButton){
         let nearMe = storyboard?.instantiateViewController(withIdentifier: "nearMeVC") as! NearMeViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -910,13 +900,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print("aflatoon")
     }
    
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-=======
+  
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
->>>>>>> origin/level-3-
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             self.hideVisual.animation.makeOpacity(0.0).animate(0.2)
             self.hideToolBar.animation.makeOpacity(0.0).animate(0.2)
@@ -1758,11 +1744,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.nameJourneyView.animation.moveY(-25)
             otgView.nameJourneyTF.animation.moveY(-50)
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
-<<<<<<< HEAD
+
             self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
-=======
-            //            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
->>>>>>> origin/level-3-
+
             otgView.bonVoyageLabel.isHidden = false
             
         }
@@ -1899,7 +1883,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                otgView.journeyCategoryTwo.isHidden = true
 //                otgView.journeyCategoryThree.isHidden = true
                 
-            }else if journeyCategories.count == 2 {
+            } else if journeyCategories.count == 2 {
 //                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
 //                otgView.journeyCategoryOne.isHidden = false
 //                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
