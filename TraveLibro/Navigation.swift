@@ -1597,7 +1597,7 @@ class Navigation {
             
             print("get one post photos params: \(params)")
             
-            let opt = try! HTTP.POST(adminUrl + "postphotos/updateLikePost", parameters: params)
+            let opt = try HTTP.POST(adminUrl + "postphotos/updateLikePost", parameters: params)
             var json = JSON(1)
             
             opt.start{(response) in
@@ -1634,7 +1634,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }
@@ -1647,13 +1646,14 @@ class Navigation {
         
         do {
             
-            let params = ["uniqueId": id, "date": date, "type": "changeDateTime"]
+            let params = ["uniqueId": id, "date": date, "type": "changeDateTime", "user": currentUser["_id"].stringValue]
             
             print("change date time params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "post/editData", parameters: [params])
             var json = JSON(1);
             opt.start {response in
+                print(response);
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }
@@ -2124,6 +2124,40 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
         
+    }
+    
+    
+    func postAddPhotosVideos (param:JSON, completion: @escaping ((JSON) -> Void) ) {
+        print(param);
+
+        do {
+            let jsonData = try param.rawData()
+            // create post request
+            let url = URL(string: adminUrl + "post/editData")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            task.resume()
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
     }
  
 }

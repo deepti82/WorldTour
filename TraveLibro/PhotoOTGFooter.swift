@@ -100,9 +100,9 @@ class PhotoOTGFooter: UIView {
     
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0) {
-            self.frame.size.height = 33;
+            self.frame.size.height = 37;
         } else {
-            self.frame.size.height = 65;
+            self.frame.size.height = 71;
         }
         PhotoOtg.layoutSubviews()
         globalNewTLViewController.addHeightToLayout(height: 500)
@@ -160,62 +160,42 @@ class PhotoOTGFooter: UIView {
                 else {
                     
                 }
-                
             })
-            
         })
-        
     }
     
     @IBAction func optionClick(_ sender: UIButton) {
-        
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
         let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-            
-            
         }
         actionSheetControllerIOS8.addAction(cancelActionButton)
-        
-        let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Check-in", style: .default)
+        let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
         {action -> Void in
-            
             //            self.isEdit = true
-            
-            
             request.getOneJourneyPost(id: sender.titleLabel!.text!, completion: {(response) in
-                
             })
-            
             //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
-            
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
         
         let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
         { action -> Void in
-            
-            
+            globalNewTLViewController.changeDateAndTime(self)
         }
         actionSheetControllerIOS8.addAction(EditDnt)
-        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete", style: .default)
+        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
         { action -> Void in
+            globalNewTLViewController.deletePost(self)
             
-            //                request.deletePost(self.currentPost["_id"].string!, uniqueId: self.myJourney["uniqueId"].string!, user: self.currentPost["user"]["_id"].string!, completion: {(response) in
-            //                })
-            
+            //  request.deletePost(self.currentPost["_id"].string!, uniqueId: self.myJourney["uniqueId"].string!, user: self.currentPost["user"]["_id"].string!, completion: {(response) in
+            //  })
         }
         actionSheetControllerIOS8.addAction(DeletePost)
-        
         let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
         { action -> Void in
-            
-            print("inside copy share")
-            
+            globalNewTLViewController.showEditAddActivity(self.postTop)
         }
         actionSheetControllerIOS8.addAction(share)
         globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
-    
-    
 }

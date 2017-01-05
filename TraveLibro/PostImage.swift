@@ -127,7 +127,7 @@ public class PostImage {
             }
             if(!check) {
                 let po = Post();
-                po.uploadPost()
+                po.uploadPost();
             }
         }
         catch {

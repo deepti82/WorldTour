@@ -14,7 +14,7 @@ let db = AppDelegate.getDatabase()
 public class Post {
     
     let post = Table("Post")
-    
+    var jsonPost:JSON!
     var postCreator:JSON!
     var imageArr:[PostImage] = []
     var buddiesStr:String = "[]"
@@ -247,7 +247,7 @@ public class Post {
     
     func jsonToPost(_ json:JSON) {
         
-
+        self.jsonPost = json
         self.postCreator = json["postCreator"]
         self.post_ids = json["_id"].stringValue
         self.post_uniqueId = json["uniqueId"].stringValue
@@ -368,9 +368,8 @@ public class Post {
                 })
             }
             if(!check) {
-                if globalNewTLViewController != nil {
-                    globalNewTLViewController.getJourney()
-                }
+                let pe = PostEditPhotosVideos();
+                pe.uploadPostPhotosVideos()
             }
         }
         catch {

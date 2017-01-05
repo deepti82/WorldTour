@@ -30,6 +30,7 @@
 		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
 		36006DB11DBB346600C7F44B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36006DB01DBB346600C7F44B /* SwiftyJSON.swift */; };
 		360C1A8F1E02A6F0009780B3 /* ConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */; };
+		362FA0CA1E1E78E500267736 /* PostEditPhotosVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */; };
 		367B90F51DC23ADF00D76F13 /* ActiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F01DC23ADF00D76F13 /* ActiveBuilder.swift */; };
 		367B90F61DC23ADF00D76F13 /* ActiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F11DC23ADF00D76F13 /* ActiveLabel.swift */; };
 		367B90F71DC23ADF00D76F13 /* ActiveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F21DC23ADF00D76F13 /* ActiveType.swift */; };
@@ -428,6 +429,7 @@
 		1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
 		36006DB01DBB346600C7F44B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigModel.swift; sourceTree = "<group>"; };
+		362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEditPhotosVideos.swift; sourceTree = "<group>"; };
 		367B90F01DC23ADF00D76F13 /* ActiveBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveBuilder.swift; sourceTree = "<group>"; };
 		367B90F11DC23ADF00D76F13 /* ActiveLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveLabel.swift; sourceTree = "<group>"; };
 		367B90F21DC23ADF00D76F13 /* ActiveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveType.swift; sourceTree = "<group>"; };
@@ -1170,6 +1172,7 @@
 				369042C21E090E6700D266A7 /* PostImage.swift */,
 				36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */,
 				C27C48081DB5ECDF00330ABF /* PostModel.swift */,
+				362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */,
 				C2488AB51D51D0E100FD5306 /* Navigation.swift */,
 				360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */,
 			);
@@ -2583,6 +2586,7 @@
 				C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */,
 				C28521B81D364680001EF251 /* FilterIntinerariesType.swift in Sources */,
 				C2E697B31D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift in Sources */,
+				362FA0CA1E1E78E500267736 /* PostEditPhotosVideos.swift in Sources */,
 				C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */,
 				C24B45651D0AE79A002EA009 /* PopularAgents.swift in Sources */,
 				C23B3BE01D4248F10075B733 /* EachCityPagerViewController.swift in Sources */,
