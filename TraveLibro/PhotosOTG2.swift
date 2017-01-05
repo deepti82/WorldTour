@@ -152,7 +152,7 @@ class PhotosOTG2: VerticalLayout {
                 photosButton.frame.size.width = 55
                 let urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=100"
                 photosButton.hnk_setImageFromURL(URL(string:urlStr)!)
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))
                 photosButton.isUserInteractionEnabled = true
                 photosButton.addGestureRecognizer(tapGestureRecognizer)
             }

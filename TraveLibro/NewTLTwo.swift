@@ -228,7 +228,26 @@ extension NewTLViewController {
         newScroll.contentSize.height = self.view.frame.height
         
         self.addView.typeOfAddActivtiy = "EditActivity"
+        if(post.imageArr.count > 0) {
+            self.addView.imageArr = post.imageArr
+            self.addView.addPhotoToLayout();
+        }
         
+        if(post.post_thoughts != "") {
+            self.addView.thoughtsTextView.text = post.post_thoughts
+            self.addView.thoughtsFinalView.isHidden = false
+            self.addView.thoughtsInitalView.isHidden = true
+            self.addView.addHeightToNewActivity(10.0)
+        }
+        
+        if(post.post_location != "") {
+            self.addView.putLocationName(post.post_location, placeId: nil)
+            self.addView.categoryLabel.text = post.post_category
+            self.addView.currentCity = post.post_city
+            self.addView.currentCountry = post.post_country
+            self.addView.currentLat = Float(post.post_latitude)
+            self.addView.currentLong = Float(post.post_longitude)
+        }
     }
     
     
@@ -309,7 +328,7 @@ extension NewTLViewController {
                 
             })
             
-        })        
+        })
     }
     
     
@@ -496,7 +515,7 @@ extension NewTLViewController {
             otgView.locationLabel.delegate = self
             otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
             otgView.clipsToBounds = true
-
+            
             
             otgView.journeyName.isHidden = false
             otgView.journeyName.text = journey["name"].string!
@@ -593,7 +612,7 @@ extension NewTLViewController {
     func getInfoCount() {
         
         if (myJourney != nil) {
-    
+            
             request.infoCount(myJourney["_id"].string!, city: latestCity, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
@@ -628,33 +647,33 @@ extension NewTLViewController {
         
         
         
-            self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: screenHeight))
-           // self.infoView.crollInoView.contentSize.height = 1000
-            self.infoView.crollInoView.isScrollEnabled = true
-            self.infoView.crollInoView.scrollsToTop = true
-
-            self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), for: .touchUpInside)
-            self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
-            self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
-            self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), for: .touchUpInside)
-            self.infoView.mustDoButton.addTarget(self, action: #selector(NewTLViewController.gotoMustDo(_:)), for: .touchUpInside)
-            self.infoView.hotelsButton.addTarget(self, action: #selector(NewTLViewController.gotoHotels(_:)), for: .touchUpInside)
-            self.infoView.restaurantsButton.addTarget(self, action: #selector(NewTLViewController.gotoRestaurants(_:)), for: .touchUpInside)
-            self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), for: .touchUpInside)
-            self.infoView.nearMeButton.addTarget(self, action: #selector(NewTLViewController.gotoNearMe(_:)), for: .touchUpInside)
-            self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
-            self.infoView.videosCount.setTitle("\(response["videos"])", for: .normal)
-            self.infoView.photosCount.setTitle("\(response["photos"])", for: .normal)
-            self.infoView.ratingCount.setTitle("\(response["review"])", for: .normal)
-            self.infoView.mustDoCount.setTitle("\(response["mustDo"])", for: .normal)
-            self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: .normal)
-            self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: .normal)
-            self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: .normal)
-            self.infoView.aboutLocationText.text = "About \(latestCity)"
-            self.infoView.layer.opacity = 1.0
-            self.view.addSubview(self.infoView)
-            self.view.bringSubview(toFront: self.infoView)
-            
+        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: screenHeight))
+        // self.infoView.crollInoView.contentSize.height = 1000
+        self.infoView.crollInoView.isScrollEnabled = true
+        self.infoView.crollInoView.scrollsToTop = true
+        
+        self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), for: .touchUpInside)
+        self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
+        self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
+        self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), for: .touchUpInside)
+        self.infoView.mustDoButton.addTarget(self, action: #selector(NewTLViewController.gotoMustDo(_:)), for: .touchUpInside)
+        self.infoView.hotelsButton.addTarget(self, action: #selector(NewTLViewController.gotoHotels(_:)), for: .touchUpInside)
+        self.infoView.restaurantsButton.addTarget(self, action: #selector(NewTLViewController.gotoRestaurants(_:)), for: .touchUpInside)
+        self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), for: .touchUpInside)
+        self.infoView.nearMeButton.addTarget(self, action: #selector(NewTLViewController.gotoNearMe(_:)), for: .touchUpInside)
+        self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
+        self.infoView.videosCount.setTitle("\(response["videos"])", for: .normal)
+        self.infoView.photosCount.setTitle("\(response["photos"])", for: .normal)
+        self.infoView.ratingCount.setTitle("\(response["review"])", for: .normal)
+        self.infoView.mustDoCount.setTitle("\(response["mustDo"])", for: .normal)
+        self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: .normal)
+        self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: .normal)
+        self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: .normal)
+        self.infoView.aboutLocationText.text = "About \(latestCity)"
+        self.infoView.layer.opacity = 1.0
+        self.view.addSubview(self.infoView)
+        self.view.bringSubview(toFront: self.infoView)
+        
         
     }
     
@@ -667,12 +686,12 @@ extension NewTLViewController {
     }
     
     func gotoHotels(_ sender: UIButton) {
-       
+        
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "eachCityPagerStripVC") as! EachCityPagerViewController
         vc.city = latestCity
         self.navigationController?.pushViewController(vc, animated: true)
-      
+        
         
     }
     
@@ -715,15 +734,15 @@ extension NewTLViewController {
         //
         //            }
         //            else if response["value"].bool! {
-        //                
+        //
         //                print("response arrived")
-        //                
+        //
         //            }
         //            else {
-        //                
+        //
         //                print("response error")
         //            }
-        //            
+        //
         //        })
         
     }

@@ -398,26 +398,28 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         self.putLocationName(sender.titleLabel!.text!, placeId: id)
     }
     
-    func putLocationName(_ selectedLocation: String, placeId: String) {
+    func putLocationName(_ selectedLocation: String, placeId: String!) {
         self.addLocationButton.setTitle(selectedLocation, for: UIControlState())
-        
         self.locationTag.tintColor = lightOrangeColor
-        request.getPlaceId(placeId, completion: { response in
-            DispatchQueue.main.async(execute: {
-                if response.error != nil { }
-                else if response["value"].bool! {
-                    self.categoryLabel.text = response["data"].string!
-                    self.currentCity = response["city"].string!
-                    self.currentCountry = response["country"].string!
-                    self.currentLat = response["lat"].float!
-                    self.currentLong = response["long"].float!
-                    self.cancelLocationButton.isHidden = false
-                }
-                else {
-                    
-                }
+        self.cancelLocationButton.isHidden = false
+        if(placeId != nil) {
+            request.getPlaceId(placeId, completion: { response in
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil { }
+                    else if response["value"].bool! {
+                        self.categoryLabel.text = response["data"].string!
+                        self.currentCity = response["city"].string!
+                        self.currentCountry = response["country"].string!
+                        self.currentLat = response["lat"].float!
+                        self.currentLong = response["long"].float!
+                    }
+                    else {
+                        
+                    }
+                })
             })
-        })
+
+        }
         
         self.hideLocation()
         
@@ -532,12 +534,13 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     func addCaption(_ sender: UIButton) {
         let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
         captionVC.imageArr = imageArr
-        captionVC.addActivity = self;
-        captionVC.currentImageIndex = sender.tag;
+        captionVC.addActivity = self
+        
+        captionVC.currentImageIndex = sender.tag
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController!.pushViewController(captionVC, animated: true)
     }
-    
+
     func addPhotoToLayout() {
         self.horizontalScrollForPhotos.removeAll()
         for i in 0 ..< imageArr.count {

@@ -172,8 +172,7 @@ class PhotoOTGFooter: UIView {
         let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
         {action -> Void in
             //            self.isEdit = true
-            request.getOneJourneyPost(id: sender.titleLabel!.text!, completion: {(response) in
-            })
+            globalNewTLViewController.showEditActivity(self.postTop)
             //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
