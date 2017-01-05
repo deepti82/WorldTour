@@ -32,6 +32,9 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     var i = 1
     var backgroundSuperview: UIView!
     
+    
+    var endJourney:EndJourneyViewController!
+    
     @IBAction func postReviewTapped(_ sender: AnyObject) {
         
         let journeyId = sender.title(for: .application)!
@@ -77,6 +80,8 @@ class AddRatingCountries: UIView, UITextViewDelegate {
 //                        print("i: \(self.i) \(self.countryVisitedData.count)")
 //                        self.getRatingData(data: self.countryVisitedData)
 //                    } else {
+                    
+//                    endJourney.journey
                     sender.removeFromSuperview()
                     if self.backgroundSuperview != nil {
                         self.backgroundSuperview.removeFromSuperview()

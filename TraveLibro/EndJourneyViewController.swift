@@ -66,6 +66,8 @@ class EndJourneyViewController: UIViewController {
         endJourneyState = true
         ToastView.appearance().backgroundColor = endJourneyColor
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
+        
+        setRating()
 
         
         //  START OF NAVIGATION BAR
@@ -95,7 +97,12 @@ class EndJourneyViewController: UIViewController {
         self.rateCountriesLayout = VerticalLayout(width:self.view.frame.width)
         self.rateCountriesScroll.addSubview(self.rateCountriesLayout)
         
-        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 425))
+        
+        
+        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 366))
+        endJourney.changeConstraint(height: 90)
+        
+//        endJourney.accesoriesVew.isHidden = true
         endJourney.categoryOne.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
         endJourney.categoryTwo.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
         endJourney.categoryThree.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
@@ -183,13 +190,34 @@ class EndJourneyViewController: UIViewController {
             
         }
         rateCountriesLayout.addSubview(endJourney)
-        
-        scrollChange();
+        createReview()
+        scrollChange()
         
         //  END VERTICAL LAYOUT
         
         
         
+    }
+    
+    var newJson: JSON = []
+    
+    func setRating() {
+        
+        print("sota baby")
+        
+        for n in journey["countryVisited"].array! {
+            if journey["review"].contains(where: {$0.1["country"]["_id"] == n["country"]["_id"]}) {
+                let a = journey["review"].index(where: {$0.1["country"]["_id"] == n["country"]["_id"]})
+                let c = journey["review"][a!].0
+                
+                newJson.arrayObject?.append(journey["review"][Int(c)!].object)
+            }else{
+                newJson.arrayObject?.append(n.object)
+
+            }
+        }
+        
+        print(newJson)
     }
     
     
@@ -199,9 +227,63 @@ class EndJourneyViewController: UIViewController {
     }
     
     func createReview() {
-        var rate = ShowRating(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150))
-        rateCountriesLayout.addSubview(rate)
-        scrollChange();
+        for (n,i) in newJson {
+            var rateState = self.getRatingImage(rate: i["rating"].stringValue)
+            let rate = ShowRating(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150))
+            rate.rating.setImage(UIImage(named:rateState["image"].stringValue), for: .normal)
+            rate.rating.setBackgroundImage(UIImage(named:rateState["back"].stringValue), for: .normal)
+            rate.ratingLabel.text = i["country"]["name"].stringValue
+            rate.rating.tag = Int(n)!
+            rate.rating.addTarget(self, action: #selector(EndJourneyViewController.postReview(_:)), for: .touchUpInside)
+
+            rateCountriesLayout.addSubview(rate)
+            
+            scrollChange()
+        }
+        
+    }
+    
+    var backgroundReview = UIView()
+    
+    func postReview(_ sender: UIButton) {
+        
+        print("journey id: \(sender)")
+        
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(EndJourneyViewController.reviewTapOut(_:)))
+        backgroundReview = UIView(frame: self.view.frame)
+        backgroundReview.addGestureRecognizer(tapout)
+        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        self.view.addSubview(backgroundReview)
+        self.view.bringSubview(toFront: backgroundReview)
+        
+        let rating = AddRatingCountries(frame: CGRect(x: 0, y: 0, width: width - 40, height: 423))
+        rating.endJourney = self;
+        rating.center = backgroundReview.center
+        rating.layer.cornerRadius = 5
+//        rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
+        rating.tag = sender.tag
+        
+        var rateState = self.getRatingImage(rate: newJson[sender.tag]["rating"].stringValue)
+//        rating.i = newJson[sender.tag]["rating"].stringValue
+        rating.smiley.setImage(UIImage(named:rateState["image"].stringValue), for: .normal)
+        rating.smiley.setBackgroundImage(UIImage(named:rateState["back"].stringValue), for: .normal)
+        
+        rating.postReview.setTitle(newJson[sender.tag]["country"]["_id"].string!, for: .disabled)
+        rating.countryName.text = newJson[sender.tag]["country"]["name"].string!
+        rating.countryImage.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(newJson[sender.tag]["country"]["flag"])")!)
+        rating.clipsToBounds = true
+        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
+        rating.countryVisitedData = newJson[sender.tag]
+        rating.journeyData = journey
+        rating.backgroundSuperview = backgroundReview
+        backgroundReview.addSubview(rating)
+        
+    }
+    
+    func reviewTapOut(_ sender: UITapGestureRecognizer) {
+        
+        backgroundReview.removeFromSuperview()
+        
     }
     
     func checkView(newcountry:JSON) {
@@ -231,12 +313,12 @@ class EndJourneyViewController: UIViewController {
                         journeyImages.append(image["name"].string!)
                         
                     }
+//                    self.endJourney.accesoriesVew.isHidden = false
                     
                 } else {
                     
                     print("no images")
-                    self.endJourney.changePhotoText.isHidden = true
-                   self.endJourney.changePhotoButton.isHidden = true
+//                    self.endJourney.accesoriesVew.isHidden = true
 //                   self.changePhotoViewHeight.constant = 47.0
                     
                 }

@@ -6,6 +6,12 @@ import Spring
 var globalAddActivityNew:AddActivityNew!
 
 class AddActivityNew: SpringView, UITextViewDelegate {
+    
+    
+    
+    var typeOfAddActivtiy:String = ""
+    var editPost:Post!
+    
     @IBOutlet weak var locationView: UIView!
     @IBOutlet weak var photosIntialView: UIView!
     @IBOutlet weak var photosFinalView: UIView!
@@ -287,8 +293,15 @@ class AddActivityNew: SpringView, UITextViewDelegate {
 
     
     func newPost(_ sender: UIButton) {
-        let newTl = globalNavigationController.topViewController as! NewTLViewController;
-        newTl.newPost(sender);
+        
+        switch(self.typeOfAddActivtiy) {
+            case "AddPhotosVideos":
+                let newTl = globalNavigationController.topViewController as! NewTLViewController;
+                newTl.savePhotoVideo(sender);
+            default:
+                let newTl = globalNavigationController.topViewController as! NewTLViewController;
+                newTl.newPost(sender);   
+        }
     }
     
     func closeAdd(_ sender: UIButton) {

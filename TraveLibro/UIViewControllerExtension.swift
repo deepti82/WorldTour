@@ -10,7 +10,22 @@ import UIKit
 
 extension UIViewController {
     
-
+    func getRatingImage(rate:String) -> JSON {
+        switch rate {
+        case "1":
+            return ["image":"disapointed","back":"green_bg_new_small"]
+        case "2":
+            return ["image":"sad","back":"green_bg_new_small"]
+        case "3":
+            return ["image":"good","back":"green_bg_new_small"]
+        case "4":
+            return ["image":"superface","back":"green_bg_new_small"]
+        case "5":
+            return ["image":"love","back":"green_bg_new_small"]
+        default:
+            return ["image":"star_rate_icon","back":"orangebox_shadow"]
+        }
+    }
     
 }
 
