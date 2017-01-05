@@ -15,7 +15,7 @@ class PhotosOTG2: VerticalLayout {
     var footerView:PhotoOTGFooter!
     var mainPhoto:UIImageView!
     var uploadingView:UploadingToCloud!
-    
+    var newTl:NewTLViewController!
     func generatePost(_ post:Post) {
         
         //header generation only
@@ -128,6 +128,7 @@ class PhotosOTG2: VerticalLayout {
         else {
             //Footer Generation Only
             footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            footerView.PhotoOtg = self;
             footerView.postTop = self.postTop;
             footerView.setLikeCount(post.post_likeCount)
             footerView.setCommentCount(post.post_commentCount)

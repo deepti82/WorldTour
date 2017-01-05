@@ -20,7 +20,7 @@ class PhotoOTGFooter: UIView {
     @IBOutlet weak var likeViewLabel: UILabel!
     @IBOutlet weak var commentIcon: UIImageView!
     @IBOutlet weak var commentCount: UILabel!
-    
+    var PhotoOtg:PhotosOTG2!
     
     var likeCount:Int = 0
     var commentCounts:Int = 0
@@ -76,8 +76,10 @@ class PhotoOTGFooter: UIView {
                 self.likeViewLabel.text = "\(counts) Likes"
             }
         }
+        self.checkHideView()
         
     }
+    
     func setCommentCount(_ post_commentCount:Int!) {
         
         if(post_commentCount != nil) {
@@ -91,6 +93,17 @@ class PhotoOTGFooter: UIView {
                 self.commentCount.text = "\(counts) Comments"
             }
         }
+        self.checkHideView()
+    }
+    
+    func checkHideView() {
+        if(self.commentCounts == 0  && self.likeCount == 0) {
+            self.frame.size.height = 33;
+        } else {
+            self.frame.size.height = 65;
+        }
+        PhotoOtg.layoutSubviews()
+        globalNewTLViewController.addHeightToLayout(height: 500)
     }
     
     func setLikeSelected (_ isSelected:Bool) {
