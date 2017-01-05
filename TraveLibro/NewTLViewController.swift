@@ -1835,23 +1835,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //                otgView.journeyCategoryTwo.isHidden = false
 //                otgView.journeyCategoryThree.isHidden = true
             } else {
-<<<<<<< HEAD
                 otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
                 otgView.journeyCategoryOne.isHidden = false
                 otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
                 otgView.journeyCategoryTwo.isHidden = false
                 otgView.journeyCategoryThree.isHidden = false
-                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
-                
-=======
-//                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-//                otgView.journeyCategoryOne.isHidden = false
-//                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-//                otgView.journeyCategoryTwo.isHidden = false
-//                otgView.journeyCategoryThree.isHidden = false
-//                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
- 
->>>>>>> origin/level-3-
+                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2]) 
             }
             //            if journeyCategories.count == 2 {
             //
