@@ -36,7 +36,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ih-9w-LfC" customClass="SpringButton" customModule="Spring">
-                            <rect key="frame" x="17" y="7" width="20" height="20"/>
+                            <rect key="frame" x="24" y="7" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="Pnm-GH-oQQ"/>
                                 <constraint firstAttribute="height" constant="20" id="dFe-ju-aTO"/>
@@ -46,16 +46,8 @@
                                 <action selector="sendLikes:" destination="-1" eventType="touchUpInside" id="gDv-q1-Knh"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4n-Bj-TR6" customClass="SpringButton" customModule="Spring">
-                            <rect key="frame" x="52" y="7" width="20" height="20"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button" image="speech_icon"/>
-                            <connections>
-                                <action selector="sendComments:" destination="-1" eventType="touchUpInside" id="WLR-XU-PSj"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Se-5g-ZtM">
-                            <rect key="frame" x="88" y="7" width="16" height="20"/>
+                            <rect key="frame" x="100" y="7" width="16" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button" image="shareButton"/>
                         </button>
@@ -72,12 +64,20 @@
                                 <action selector="optionClick:" destination="-1" eventType="touchUpInside" id="790-5Y-oGH"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4n-Bj-TR6" customClass="SpringButton" customModule="Spring">
+                            <rect key="frame" x="62" y="7" width="20" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button" image="speech_icon"/>
+                            <connections>
+                                <action selector="sendComments:" destination="-1" eventType="touchUpInside" id="WLR-XU-PSj"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="cZ2-Cx-gNB" firstAttribute="top" secondItem="VF2-i7-4DA" secondAttribute="top" constant="7" id="9sI-Ia-wkq"/>
                         <constraint firstAttribute="trailing" secondItem="cZ2-Cx-gNB" secondAttribute="trailing" constant="8" id="DOA-44-Msv"/>
-                        <constraint firstItem="7Ih-9w-LfC" firstAttribute="leading" secondItem="VF2-i7-4DA" secondAttribute="leading" constant="17" id="UC8-9N-t1S"/>
+                        <constraint firstItem="7Ih-9w-LfC" firstAttribute="leading" secondItem="VF2-i7-4DA" secondAttribute="leading" constant="24" id="UC8-9N-t1S"/>
                         <constraint firstItem="7Ih-9w-LfC" firstAttribute="top" secondItem="VF2-i7-4DA" secondAttribute="top" constant="7" id="iIf-Wp-sEn"/>
                         <constraint firstAttribute="height" constant="34" id="uaC-fe-vAv"/>
                     </constraints>
