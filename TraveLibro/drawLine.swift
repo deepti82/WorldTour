@@ -13,9 +13,9 @@ class drawLine: UIView {
     override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
-        context!.setLineWidth(10.0)
+        context!.setLineWidth(6.0)
         context!.setStrokeColor(lightOrangeColor.cgColor)
-        context!.setLineDash(phase: 2, lengths: [20, 16])
+        context!.setLineDash(phase: 2, lengths: [20, 8])
         context!.setLineCap(CGLineCap(rawValue: 200)!)
         context!.move(to: CGPoint(x: 0, y: 5))
         context!.addLine(to: CGPoint(x: 0, y: 200))
@@ -31,7 +31,7 @@ class drawFooterLine: UIView {
     override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
-        context?.setLineWidth(10.0)
+        context?.setLineWidth(8.0)
         context?.setStrokeColor(UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 255/255).cgColor)
         //CGContextSetLineCap(context, kCGLineCapRound)
         
@@ -49,7 +49,7 @@ class drawSeperatorLine: UIView {
     override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
-        context?.setLineWidth(10.0)
+        context?.setLineWidth(8.0)
         context?.setStrokeColor(UIColor.white.cgColor)
         //CGContextSetLineDash(context, 0, [7.5], 1)
         //CGContextSetLineCap(context, kCGLineCapRound)
@@ -68,7 +68,7 @@ class drawSeperatorLineTwo: UIView {
     override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
-        context?.setLineWidth(10.0)
+        context?.setLineWidth(8.0)
         context?.setStrokeColor(UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1).cgColor)
         //CGContextSetLineDash(context, 0, [7.5], 1)
         //CGContextSetLineCap(context, kCGLineCapRound)

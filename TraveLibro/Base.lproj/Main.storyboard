@@ -3367,7 +3367,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -4355,6 +4355,8 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="hideToolBar" destination="B0D-HB-0ge" id="sUd-90-Mvq"/>
+                        <outlet property="hideVisual" destination="FlO-Nh-JD4" id="WbX-F0-efe"/>
                         <outlet property="infoButton" destination="hJV-Ho-jdP" id="DWk-JK-dnU"/>
                         <outlet property="mainScroll" destination="1Wh-Vl-avT" id="srr-Co-0m2"/>
                         <outlet property="toolbarView" destination="b73-2X-Yk2" id="ydF-Ad-O4b"/>
@@ -4362,7 +4364,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="73Z-34-TXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8389" y="441"/>
+            <point key="canvasLocation" x="8388" y="440.32983508245883"/>
         </scene>
         <!--End Journey View Controller-->
         <scene sceneID="wF4-WZ-LZk">

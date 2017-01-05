@@ -171,7 +171,7 @@ extension UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
         
         let leftBarButton = UIBarButtonItem()
-        leftBarButton.customView = left
+        leftBarButton.customView = right
         
         if (right != nil) {
         let rightBarButton = UIBarButtonItem()
@@ -180,12 +180,41 @@ extension UIViewController {
 
         }
         
-        self.navigationItem.leftBarButtonItem = leftBarButton
+        self.navigationItem.rightBarButtonItem = leftBarButton
         
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
         
     }
+    
+    
+    func customNavigationBarNearMe(left: UIButton?, right: UIButton?) {
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
+        self.navigationController?.navigationBar.barStyle = .black
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
+        
+        
+        if (right != nil) {
+            let leftBarButton = UIBarButtonItem()
+            leftBarButton.customView = right
+
+            let rightBarButton = UIBarButtonItem()
+            rightBarButton.customView = right
+            self.navigationItem.rightBarButtonItem = rightBarButton
+            self.navigationItem.setRightBarButtonItems([rightBarButton, leftBarButton] , animated: true)
+        }
+        
+//        self.navigationItem.rightBarButtonItem = leftBarButton
+        
+        self.slideMenuController()?.removeLeftGestures()
+        self.slideMenuController()?.removeRightGestures()
+        
+    }
+
+    
     
     func setOnlyRightNavigationButton(_ button: UIButton) {
         
@@ -198,10 +227,13 @@ extension UIViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
         self.navigationController?.navigationBar.barStyle = .black
 //        self.navigationController?.navigationBar.translucent = false
+        let leftBarButton = UIBarButtonItem()
+        leftBarButton.customView = button
+
         
         let rightBarButton = UIBarButtonItem()
         rightBarButton.customView = button
-        self.navigationItem.rightBarButtonItem = rightBarButton
+        self.navigationItem.setRightBarButtonItems([rightBarButton, leftBarButton], animated: true)
         
         //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
         self.slideMenuController()?.removeLeftGestures()
@@ -210,6 +242,36 @@ extension UIViewController {
 //        self.slideMenuController()?.addRightGestures()
         
     }
+    
+    
+    func setOnlyRightNavigationButtonLeftRighgt(_ button: UIButton, button1: UIButton) {
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
+        
+        self.navigationController?.navigationBar.isTranslucent = true
+//        self.addLeftBarButtonWithImage(UIImage(named: "menu_left_icon")!)
+        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
+        self.navigationController?.navigationBar.barStyle = .black
+        //        self.navigationController?.navigationBar.translucent = false
+        let leftBarButton = UIBarButtonItem()
+        leftBarButton.customView = button1
+        
+        
+        let rightBarButton = UIBarButtonItem()
+        rightBarButton.customView = button
+        self.navigationItem.setRightBarButtonItems([rightBarButton, leftBarButton], animated: true)
+        
+        //self.addRightBarButtonWithImage(UIImage(named: "ic_notifications_black_24dp")!)
+        self.slideMenuController()?.removeLeftGestures()
+        self.slideMenuController()?.removeRightGestures()
+        self.slideMenuController()?.addLeftGestures()
+        //        self.slideMenuController()?.addRightGestures()
+        
+    }
+
+    
     
     func setOnlyLeftNavigationButton(_ button: UIButton) {
         
