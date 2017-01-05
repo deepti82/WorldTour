@@ -20,6 +20,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var hashtagSuggestions: [JSON] = []
     var previousHashtags: [String] = []
     var editComment: JSON!
+    var footerView: PhotoOTGFooter!
     
     @IBOutlet weak var mentionSuggestionsTable: UITableView!
     @IBOutlet weak var hashTagSuggestionsTable: UITableView!
@@ -92,11 +93,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func closeAdd(_ sender:UIButton) {
         globalNavigationController?.popViewController(animated: true)
-        if((globalNewTLViewController) != nil) {
-            
-            
-            globalNewTLViewController.getJourney()
-        }
+        
     }
     
     var viewHeight = 0
@@ -385,9 +382,11 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         case 1:
             return hashtagSuggestions.count
         default:
+            if(footerView != nil) {
+                footerView.setCommentCount(comments.count)
+            }
             return comments.count
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

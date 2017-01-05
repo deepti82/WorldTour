@@ -900,7 +900,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         checkIn.generatePost(post)
         layout.addSubview(checkIn)
         addHeightToLayout(height: checkIn.frame.height + 50.0)
-        self.scrollToBottom()
     }
     
     func showPost(_ whichPost: String, post: JSON) {
@@ -1442,6 +1441,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func addHeightToLayout(height: CGFloat) {
         self.layout.layoutSubviews()
         self.mainScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
+        self.scrollToBottom()
     }
     
     func removeHeightFromLayout(_ height: CGFloat) {
