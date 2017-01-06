@@ -29,7 +29,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     let parent = EndJourneyViewController()
     var countryVisitedData: JSON!
     var journeyData: JSON!
-    var i = 1
+    var i = 3
     var backgroundSuperview: UIView!
     
     
@@ -58,46 +58,62 @@ class AddRatingCountries: UIView, UITextViewDelegate {
         self.journeyData["review"].arrayObject?.append(self.countryVisitedData.object)
         self.parent.checkView(newcountry: journeyData)
         
+        print("lllllllllll")
+        endJourney.newJson[self.tag]["rating"] = JSON(starCount)
+        print(endJourney.newJson)
+        endJourney.createReview()
         
-        request.rateCountry(currentUser["_id"].string!, journeyId: journeyId, countryId: countryId, rating: "\(starCount)", review: reviewText, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    print("response arrived \(countryId) \(self.starCount) \(self.reviewTextView.text!)")
-                    self.countryVisitedData["rating"] = JSON(self.starCount)
-//                    self.parent.removeRatingButton()
-                    //sender.superview?.removeFromSuperview()
-                    //self.parent.removeRatingButton(sender.title(for: .application)!)
-//                    if self.countryVisitedData.count > self.i {
-//                        self.i += 1
-//                        print("i: \(self.i) \(self.countryVisitedData.count)")
-//                        self.getRatingData(data: self.countryVisitedData)
-//                    } else {
-                    
-//                    endJourney.journey
-                    sender.removeFromSuperview()
-                    if self.backgroundSuperview != nil {
-                        self.backgroundSuperview.removeFromSuperview()
-                    }
+//        endJourney.newJson[self.tag]["rating"]
+        
+        
+//        request.rateCountry(currentUser["_id"].string!, journeyId: journeyId, countryId: countryId, rating: "\(starCount)", review: reviewText, completion: {(response) in
+//            
+//            DispatchQueue.main.async(execute: {
+//                
+//                if response.error != nil {
+//                    
+//                    print("error: \(response.error!.localizedDescription)")
+//                    
+//                }
+//                else if response["value"].bool! {
+//                    
+//                    print("response arrived \(countryId) \(self.starCount) \(self.reviewTextView.text!)")
+//                    self.countryVisitedData["rating"] = JSON(self.starCount)
+////                    self.parent.removeRatingButton()
+//                    //sender.superview?.removeFromSuperview()
+//                    //self.parent.removeRatingButton(sender.title(for: .application)!)
+////                    if self.countryVisitedData.count > self.i {
+////                        self.i += 1
+////                        print("i: \(self.i) \(self.countryVisitedData.count)")
+////                        self.getRatingData(data: self.countryVisitedData)
+////                    } else {
+//                    
+////                    endJourney.journey
+//                    sender.removeFromSuperview()
+//                    if self.backgroundSuperview != nil {
+//                        self.backgroundSuperview.removeFromSuperview()
 //                    }
-                    
-                }
-                else {
-                    
-                    print("response error!")
-                    
-                }
-                
-            })
-            
-        })
+////                    }
+//                    
+//                }
+//                else {
+//                    
+//                    print("response error!")
+//                    
+//                }
+//                
+//            })
+//            
+//        })
+        
+    }
+    
+    func updateSmiley(point:Int) {
+
+        ratingIndex = point - 1
+        reviewConclusion.text = moodArr[point - 1]
+        smiley.setImage(UIImage(named: imageArr[point - 1]), for: UIControlState())
+        updateButtonSelectionStates()
         
     }
     

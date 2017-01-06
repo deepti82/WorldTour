@@ -100,6 +100,7 @@ class EndJourneyViewController: UIViewController {
         
         
         endJourney = EndJourneyView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 366))
+        endJourney.tag = 100
         endJourney.changeConstraint(height: 90)
         
 //        endJourney.accesoriesVew.isHidden = true
@@ -227,6 +228,13 @@ class EndJourneyViewController: UIViewController {
     }
     
     func createReview() {
+        
+        for subvw in rateCountriesLayout.subviews {
+            if subvw.tag != 100 {
+                subvw.removeFromSuperview()
+            }
+        }
+        
         for (n,i) in newJson {
             var rateState = self.getRatingImage(rate: i["rating"].stringValue)
             let rate = ShowRating(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150))
@@ -263,10 +271,13 @@ class EndJourneyViewController: UIViewController {
 //        rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
         rating.tag = sender.tag
         
-        var rateState = self.getRatingImage(rate: newJson[sender.tag]["rating"].stringValue)
-//        rating.i = newJson[sender.tag]["rating"].stringValue
-        rating.smiley.setImage(UIImage(named:rateState["image"].stringValue), for: .normal)
-        rating.smiley.setBackgroundImage(UIImage(named:rateState["back"].stringValue), for: .normal)
+        if newJson[sender.tag]["rating"] != nil {
+            var rateState = self.getRatingImage(rate: newJson[sender.tag]["rating"].stringValue)
+            rating.updateSmiley(point: newJson[sender.tag]["rating"].intValue)
+            rating.smiley.setImage(UIImage(named:rateState["image"].stringValue), for: .normal)
+            rating.smiley.setBackgroundImage(UIImage(named:rateState["back"].stringValue), for: .normal)
+        }
+        
         
         rating.postReview.setTitle(newJson[sender.tag]["country"]["_id"].string!, for: .disabled)
         rating.countryName.text = newJson[sender.tag]["country"]["name"].string!
