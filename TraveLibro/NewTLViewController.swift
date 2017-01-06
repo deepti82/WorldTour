@@ -361,9 +361,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let i = PostImage()
         i.uploadPhotos()
-        
-        
-        
         self.addView.postButton.isHidden = true
     }
     

@@ -286,7 +286,12 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         print(addedBuddies);
         if addedBuddies != nil {
             next.addedFriends = addedBuddies
-            next.buddiesStatus = true
+            if(self.typeOfAddActivtiy == "EditActivity") {
+                next.buddiesStatus = true
+            } else {
+                next.buddiesStatus = false
+            }
+            
         }
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(next, animated: true)
