@@ -766,30 +766,31 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     
+    
+    
     func setTopNavigation(text: String) {
         let leftButton = UIButton()
-        leftButton.frame = CGRect(x: -100, y: 0, width: 30, height: 30)
-        leftButton.setImage(UIImage(named: "location_icon"), for: UIControlState())
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         
         let rightButton = UIButton()
         rightButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         
-        rightButton.setImage(UIImage(named: "options_icon"), for: UIControlState())
-//        rightButton.layer.borderWidth = 1.5
-//        rightButton.layer.borderColor = UIColor.white.cgColor
-//        rightButton.layer.cornerRadius = rightButton.frame.width / 2
-//        rightButton.clipsToBounds = true
+        rightButton.setTitle("i", for: UIControlState())
+        rightButton.layer.borderWidth = 1.5
+        rightButton.layer.borderColor = UIColor.white.cgColor
+        rightButton.layer.cornerRadius = rightButton.frame.width / 2
+        rightButton.clipsToBounds = true
         rightButton.titleLabel?.font = avenirBold
-//        rightButton.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
         self.title = text
         if (myJourney != nil) {
-//            self.setOnlyRightNavigationButtonLeftRighgt(rightButton, button1: leftButton)
+            self.customNavigationBar(left: leftButton, right: rightButton)
             globalNavigationController  = self.navigationController
             
         }else{
-//            self.setOnlyRightNavigationButtonLeftRighgt(rightButton, button1: leftButton)
-//
+            self.customNavigationBar(left: leftButton, right: nil)
             globalNavigationController  = self.navigationController
         }
         
@@ -820,29 +821,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         refreshControl.attributedTitle = attributedTitle
         refreshControl.tintColor = lightOrangeColor
         mainScroll.addSubview(refreshControl)
-        buttons = NearMeOptionButton(frame: CGRect(x: 290, y: 0, width: 150, height: 60))
-        self.navigationController?.navigationBar.addSubview(buttons)
         
         
-
-        buttons.nearMeButtonView.addTarget(self, action: #selector(NewTLViewController.success(_:)), for: .touchUpInside)
-
-        
-        buttons.nearMeButtonView.addTarget(self, action: #selector(NewTLViewController.infoCircle(_:)), for: .touchUpInside)
-
-        
-        buttons1 = Buttons2(frame: CGRect(x: 302, y: -25, width: 150, height: 60))
-        self.toolbarView.addSubview(self.buttons1)
-        
-        buttons1.nearMe2.addTarget(self, action: #selector(NewTLViewController.willSee(_:)), for: .touchUpInside)
-        
-
-        
-//        otgView.nameJourneyTF.becomeFirstResponder()
-//        otgView.nameJourneyView.becomeFirstResponder()
-//        otgView.clipsToBounds = true
-//        otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), for: .editingChanged)
-
+        //        otgView.nameJourneyTF.becomeFirstResponder()
+        //        otgView.nameJourneyView.becomeFirstResponder()
+        //        otgView.clipsToBounds = true
+        //        otgView.locationLabel.addTarget(self, action: #selector(NewTLViewController.showDropdown(_:)), for: .editingChanged)
         
         TLLoader = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         TLLoader.center = self.view.center
@@ -871,20 +855,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         self.view.bringSubview(toFront: infoButton)
         self.view.bringSubview(toFront: addPostsButton)
-        self.view.bringSubview(toFront: buttons1)
+        
         self.view.bringSubview(toFront: toolbarView)
         
         self.view.addSubview(TLLoader)
         
-        buttons1.layer.zPosition = 10000
-        buttons.layer.zPosition = 1000000
-        buttons1.layer.zPosition = 1000000
-        buttons1.nearMe2.layer.zPosition = 1000000000000000000
-        buttons1.options2.layer.zPosition = 100000
         mainScroll.delegate = self
-        
-        
     }
+
     
     func willSee(_ sender: UIButton){
         print("GoForIt")
@@ -908,17 +886,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.hideVisual.animation.makeOpacity(0.0).animate(0.2)
-            self.hideToolBar.animation.makeOpacity(0.0).animate(0.2)
+            self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
             UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
                 self.addPostsButton.frame.origin.y = self.view.frame.height + 10
                 self.mainFooter.frame.origin.y = self.view.frame.height + 85
             }, completion: nil)
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.hideVisual.animation.makeOpacity(1.0).animate(0.2)
-           self.hideToolBar.animation.makeOpacity(1.0).animate(0.2)
-            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+            self.toolbarView.animation.makeOpacity(1.0).animate(0.5)
+            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                 self.addPostsButton.frame.origin.y = self.view.frame.height - 120
                 self.mainFooter.frame.origin.y = self.view.frame.height - 55
             }, completion: nil)
