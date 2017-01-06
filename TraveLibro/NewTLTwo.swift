@@ -238,7 +238,7 @@ extension NewTLViewController {
             self.addView.thoughtsFinalView.isHidden = false
             self.addView.thoughtsInitalView.isHidden = true
             self.addView.addHeightToNewActivity(10.0)
-            self.addView.countCharacters()
+            self.addView.countCharacters(post.post_thoughts.characters.count)
         }
         
         if(post.post_location != "") {

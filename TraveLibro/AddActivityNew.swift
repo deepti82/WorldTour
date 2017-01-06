@@ -230,14 +230,11 @@ class AddActivityNew: SpringView, UITextViewDelegate {
             thoughtsCharacterCount.text = "0"
         }
         
-        countCharacters()
-        
         return number <= 180
         
     }
     
-    func countCharacters() {
-        let number = thoughtsCharacterCount.text?.characters.count
+    func countCharacters(_ number:Int) {
         thoughtsCharacterCount.text = String(180 - number)
         
         if(number != 0) {
