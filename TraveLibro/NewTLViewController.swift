@@ -229,34 +229,63 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         //            username: "User name"
         //        }
         
+        
+        var lat = ""
+        if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
+            lat = String(self.addView.currentLat!)
+            if(lat == "0.0") {
+                lat = ""
+            }
+        }
+        var lng = ""
+        if self.addView.currentLong != nil && self.addView.currentLong != 0.0 {
+            lng = String(self.addView.currentLong!)
+            if(lng == "0.0") {
+                lng = ""
+            }
+        }
+        var category = ""
+        if self.addView.categoryLabel.text! != nil {
+            category = self.addView.categoryLabel.text!
+            if(category == "Label") {
+                category = ""
+            }
+        }
+        
+        var location = ""
+        if self.addView.addLocationButton.titleLabel?.text! != nil {
+            location = (self.addView.addLocationButton.titleLabel?.text)!
+            if(location == "Add Location") {
+                location = ""
+            }
+        }
+        
+        var thoughts = ""
+        if self.addView.thoughtsTextView.text! != nil {
+            thoughts = self.addView.thoughtsTextView.text!
+            if(thoughts == "Fill Me In...") {
+                thoughts = ""
+            }
+        }
+        
         var params:JSON = ["type":"editPost"];
         params["_id"] = JSON(self.addView.editPost.post_ids)
         params["user"] = JSON(self.addView.editPost.post_userId)
         params["uniqueId"] = JSON(self.addView.editPost.post_uniqueId)
         params["journeyUniqueId"] = JSON(self.myJourney["uniqueId"].stringValue)
         params["username"] = JSON(currentUser["name"].stringValue)
-        if(self.addView.addLocationButton.titleLabel?.text != nil && self.addView.currentLat != nil) {
-            let checkIn:JSON = [
-                "location": self.addView.addLocationButton.titleLabel?.text!,
-                "lat":String(self.addView.currentLat),
-                "long":String(self.addView.currentLong),
-                "city": self.addView.currentCity,
-                "country" : self.addView.currentCountry,
-                "category": self.addView.categoryLabel.text!
-            ]
-            params["checkIn"] = checkIn
-        } else {
-            let checkIn:JSON = [
-                "location": "",
-                "lat": "",
-                "long": "",
-                "city": "",
-                "country" : "",
-                "category": ""
-            ]
-            params["checkIn"] = checkIn
-        }
-       
+        params["thoughts"] = JSON(thoughts)
+        let checkIn:JSON = [
+            "location": location,
+            "lat": lat,
+            "long": lng,
+            "city": self.addView.currentCity,
+            "country" : self.addView.currentCountry,
+            "category": category
+        ]
+        params["checkIn"] = checkIn
+        
+        
         params["buddiesArr"] = JSON(self.addView.addedBuddies)
         
         var photosJson:[JSON] = []
@@ -265,8 +294,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             photosJson.append(img.parseJson())
         }
         params["photosArr"] = JSON(photosJson)
-        if(self.addView.editPost.post_location != self.addView.addLocationButton.titleLabel?.text) {
-            params["checkInChange"] = false
+        if(self.addView.editPost.post_location != location) {
+            params["checkInChange"] = true
         } else {
             params["checkInChange"] = false
         }

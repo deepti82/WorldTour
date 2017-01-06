@@ -173,6 +173,8 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         self.cancelLocationButton.isHidden = true
         self.currentLat = 0
         self.currentLong = 0
+        self.currentCity = ""
+        self.currentCountry = ""
     }
     
     func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
