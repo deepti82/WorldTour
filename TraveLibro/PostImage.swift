@@ -44,7 +44,7 @@ public class PostImage {
     func urlToData(_ str:String) {
         self.serverUrl = adminUrl + "upload/readFile?file=" + str
         self.imageUrl = URL(string: self.serverUrl)
-        cache.fetch(URL: URL(string:self.serverUrl)!).onSuccess({ (data) in
+        cache.fetch(URL: URL(string:self.serverUrl + "&width=200")!).onSuccess({ (data) in
             self.image = UIImage(data: data as Data)
         })
     }
