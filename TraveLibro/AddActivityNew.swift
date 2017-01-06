@@ -217,19 +217,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         let number = newText.characters.count
-        
-        thoughtsCharacterCount.text = String(180 - number)
-        
-        if(number != 0) {
-            self.finalThoughtTag.tintColor = lightOrangeColor
-        } else {
-            self.finalThoughtTag.tintColor = mainBlueColor
-        }
-        
-        if thoughtsCharacterCount.text == "-1" {
-            thoughtsCharacterCount.text = "0"
-        }
-        
+        self.countCharacters(number)
         return number <= 180
         
     }

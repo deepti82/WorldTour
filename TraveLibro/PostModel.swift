@@ -278,6 +278,7 @@ public class Post {
         
         for photo in json["photos"].arrayValue {
             let img = PostImage();
+            img.editId = photo["_id"].stringValue
             img.urlToData(photo["name"].stringValue)
             img.caption = photo["caption"].stringValue
             self.imageArr.append(img);

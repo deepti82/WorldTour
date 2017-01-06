@@ -2128,8 +2128,6 @@ class Navigation {
     
     
     func postAddPhotosVideos (param:JSON, completion: @escaping ((JSON) -> Void) ) {
-        print(param);
-
         do {
             let jsonData = try param.rawData()
             // create post request
@@ -2146,6 +2144,8 @@ class Navigation {
                 }
                 
                 do {
+                    print(data);
+                    print(response);
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("response: \(JSON(result))")
                     completion(JSON(result))
@@ -2159,5 +2159,5 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
- 
+    
 }

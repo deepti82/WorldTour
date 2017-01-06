@@ -15,6 +15,7 @@ public class PostImage {
     var caption = ""
     var postId = 0
     var serverUrl = ""
+    var editId = ""
     
     let photos = Table("Photos")
     
@@ -150,7 +151,10 @@ public class PostImage {
     }
     
     func parseJson() -> JSON {
-        let photoJson:JSON = ["name":self.serverUrl,"caption":self.caption]
+        var photoJson:JSON = ["name":self.serverUrl,"caption":self.caption]
+        if(self.editId != "") {
+            photoJson["_id"] = JSON(self.editId)
+        }
         return photoJson
     }
 }

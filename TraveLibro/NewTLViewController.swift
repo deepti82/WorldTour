@@ -31,7 +31,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var addNewView = NewQuickItinerary()
     var buttons1 = Buttons2()
     
-   
+    
     @IBOutlet weak var hideVisual: UIVisualEffectView!
     @IBOutlet weak var hideToolBar: UIStackView!
     @IBOutlet weak var mainScroll: UIScrollView!
@@ -206,7 +206,77 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func editActivity(_ sender: UIButton) {
+        //        params:{
+        //            type: "editPost",
+        //            _id: "Post _id",
+        //            user: "User _id",
+        //            photosArr:[{ _id : "Photo _id ", caption : "Caption"},{ _id : "Photo _id ", caption : "Caption"}]   --- all photos after deletion & with caption edited
+        //            videosArr:[{ _id : "Video _id ", caption : "Caption"},{ _id : "Video _id ", caption : "Caption"}]   --- all videos after deletion & with caption edited
+        //            checkIn:{
+        //                location: "",
+        //                lat: "",
+        //                long: "",
+        //                city: "",
+        //                country : "",
+        //                category: ""
+        //            },
+        //            checkInChange: true/false                 ----- if checkin location change then true else false
+        //            buddiesArr: [{ _id: "", name:"",email:""},{_id: "", name:"",email:""}],
+        //            uniqueId: "Post uniqueid",
+        //            journeyUniqueId : "Journey uniqueId",
+        //            addHashtag: ["",""]               ---------- hashtags added
+        //            removeHashtag :["",""]        ---------- hashtags removed
+        //            username: "User name"
+        //        }
         
+        var params:JSON = ["type":"editPost"];
+        params["_id"] = JSON(self.addView.editPost.post_ids)
+        params["user"] = JSON(self.addView.editPost.post_userId)
+        params["uniqueId"] = JSON(self.addView.editPost.post_uniqueId)
+        params["journeyUniqueId"] = JSON(self.myJourney["uniqueId"].stringValue)
+        params["username"] = JSON(currentUser["name"].stringValue)
+        if(self.addView.addLocationButton.titleLabel?.text != nil && self.addView.currentLat != nil) {
+            let checkIn:JSON = [
+                "location": self.addView.addLocationButton.titleLabel?.text!,
+                "lat":String(self.addView.currentLat),
+                "long":String(self.addView.currentLong),
+                "city": self.addView.currentCity,
+                "country" : self.addView.currentCountry,
+                "category": self.addView.categoryLabel.text!
+            ]
+            params["checkIn"] = checkIn
+        } else {
+            let checkIn:JSON = [
+                "location": "",
+                "lat": "",
+                "long": "",
+                "city": "",
+                "country" : "",
+                "category": ""
+            ]
+            params["checkIn"] = checkIn
+        }
+       
+        params["buddiesArr"] = JSON(self.addView.addedBuddies)
+        
+        var photosJson:[JSON] = []
+        
+        for img in self.addView.imageArr {
+            photosJson.append(img.parseJson())
+        }
+        params["photosArr"] = JSON(photosJson)
+        if(self.addView.editPost.post_location != self.addView.addLocationButton.titleLabel?.text) {
+            params["checkInChange"] = true
+        } else {
+            params["checkInChange"] = false
+        }
+        print(params)
+        
+        request.postAddPhotosVideos(param: params) { (json) in
+            print(json)
+            self.getJourney();
+        }
+        hideAddActivity()
     }
     
     func newPost(_ sender: UIButton) {
@@ -862,7 +932,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         mainScroll.delegate = self
     }
-
+    
     
     func willSee(_ sender: UIButton){
         print("GoForIt")
@@ -874,15 +944,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.navigationController?.pushViewController(nearMe, animated: true)
         buttons1.isHidden = true
         buttons.isHidden = true
-
-
+        
+        
     }
     
     @IBAction func nearMeAction(_ sender: UIButton) {
         print("aflatoon")
     }
-   
-  
+    
+    
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -924,7 +994,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.navigationController!.pushViewController(profile, animated: false)
             buttons1.isHidden = true
             buttons.isHidden = true
-    
+            
             
         }
         else {
@@ -932,7 +1002,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.popVC(sender)
             buttons1.isHidden = true
             buttons.isHidden = true
-
+            
         }
         
     }
@@ -1724,9 +1794,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.nameJourneyView.animation.moveY(-25)
             otgView.nameJourneyTF.animation.moveY(-50)
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
-
+            
             self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
-
+            
             otgView.bonVoyageLabel.isHidden = false
             
         }
@@ -1858,24 +1928,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if journeyCategories.count != 0 {
             if journeyCategories.count == 1 {
-//                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-//                otgView.journeyCategoryOne.isHidden = false
-//                otgView.journeyCategoryTwo.isHidden = true
-//                otgView.journeyCategoryThree.isHidden = true
+                //                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+                //                otgView.journeyCategoryOne.isHidden = false
+                //                otgView.journeyCategoryTwo.isHidden = true
+                //                otgView.journeyCategoryThree.isHidden = true
                 
             } else if journeyCategories.count == 2 {
-//                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-//                otgView.journeyCategoryOne.isHidden = false
-//                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-//                otgView.journeyCategoryTwo.isHidden = false
-//                otgView.journeyCategoryThree.isHidden = true
+                //                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+                //                otgView.journeyCategoryOne.isHidden = false
+                //                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+                //                otgView.journeyCategoryTwo.isHidden = false
+                //                otgView.journeyCategoryThree.isHidden = true
             } else {
                 otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
                 otgView.journeyCategoryOne.isHidden = false
                 otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
                 otgView.journeyCategoryTwo.isHidden = false
                 otgView.journeyCategoryThree.isHidden = false
-                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2]) 
+                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
             }
             //            if journeyCategories.count == 2 {
             //

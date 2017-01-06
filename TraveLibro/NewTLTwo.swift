@@ -200,7 +200,7 @@ extension NewTLViewController {
         self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
-        self.addView.buddyAdded(myJourney["buddies"].arrayValue)
+        
         
         self.addView.frame = self.view.frame
         self.addView.editPost = post
@@ -249,6 +249,8 @@ extension NewTLViewController {
             self.addView.currentLat = Float(post.post_latitude)
             self.addView.currentLong = Float(post.post_longitude)
         }
+    self.addView.buddyAdded(post.jsonPost["buddies"].array!)
+        
     }
     
     
