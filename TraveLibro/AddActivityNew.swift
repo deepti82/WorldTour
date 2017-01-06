@@ -9,6 +9,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     
     
     
+    @IBOutlet weak var finalImageTag: UIImageView!
     var typeOfAddActivtiy:String = ""
     var editPost:Post!
     
@@ -141,9 +142,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         self.cancelLocationButton.isHidden = true
         self.friendsCount.isHidden = true;
         self.friendsTag.tintColor = mainBlueColor
-        
-        
-        
+        self.finalImageTag.tintColor = mainOrangeColor
     }
     
     func buddyAdded(_ json:[JSON]) {
@@ -199,6 +198,8 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         }
     }
     
+    
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         if text == "\n" {
@@ -216,6 +217,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         let number = newText.characters.count
+        
         thoughtsCharacterCount.text = String(180 - number)
         
         if(number != 0) {
@@ -228,8 +230,25 @@ class AddActivityNew: SpringView, UITextViewDelegate {
             thoughtsCharacterCount.text = "0"
         }
         
+        countCharacters()
+        
         return number <= 180
         
+    }
+    
+    func countCharacters() {
+        let number = thoughtsCharacterCount.text?.characters.count
+        thoughtsCharacterCount.text = String(180 - number)
+        
+        if(number != 0) {
+            self.finalThoughtTag.tintColor = lightOrangeColor
+        } else {
+            self.finalThoughtTag.tintColor = mainBlueColor
+        }
+        
+        if thoughtsCharacterCount.text == "-1" {
+            thoughtsCharacterCount.text = "0"
+        }
     }
     
     func resignThoughtsTexViewKeyboard() {
@@ -553,15 +572,18 @@ class AddActivityNew: SpringView, UITextViewDelegate {
             photosButton.addTarget(self, action: #selector(self.addCaption(_:)), for: .touchUpInside)
             self.horizontalScrollForPhotos.addSubview(photosButton)
         }
-        let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
-        addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
-        addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
-        addMorePhotosButton.layer.cornerRadius = 5.0
-        addMorePhotosButton.clipsToBounds = true
-        addMorePhotosButton.addTarget(self, action: #selector(self.addPhotosAgain(_:)), for: .touchUpInside)
-        addMorePhotosButton.tag = 1
-        self.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+        if(self.typeOfAddActivtiy != "EditActivity") {
+            let addMorePhotosButton = UIButton(frame: CGRect(x: 10, y: 0, width: 65, height: 65))
+            addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
+            addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
+            addMorePhotosButton.layer.cornerRadius = 5.0
+            addMorePhotosButton.clipsToBounds = true
+            addMorePhotosButton.addTarget(self, action: #selector(self.addPhotosAgain(_:)), for: .touchUpInside)
+            addMorePhotosButton.tag = 1
+            self.horizontalScrollForPhotos.addSubview(addMorePhotosButton)
+        }
+        
         self.horizontalScrollForPhotos.layoutSubviews()
         self.photoScroll.contentSize = CGSize(width: self.horizontalScrollForPhotos.frame.width, height: self.horizontalScrollForPhotos.frame.height)
         photosCount.text = "( " + String(imageArr.count) + " )";

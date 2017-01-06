@@ -26,6 +26,7 @@
                 <outlet property="editCategoryPVBar" destination="f0N-zJ-iqX" id="XNN-Yc-rw8"/>
                 <outlet property="editCategoryPickerView" destination="xuR-LV-saS" id="98J-aF-ZRF"/>
                 <outlet property="facebookShare" destination="a9x-np-zvE" id="m4A-iZ-hq9"/>
+                <outlet property="finalImageTag" destination="kbT-nS-SQt" id="1G4-OW-mdC"/>
                 <outlet property="finalThoughtTag" destination="c8E-qV-K5f" id="5e8-LY-Q9r"/>
                 <outlet property="friendsCount" destination="gG2-Pr-Xdf" id="dqW-mi-WFJ"/>
                 <outlet property="friendsTag" destination="ef0-Lp-5lX" id="Yjj-56-7Zr"/>
@@ -130,7 +131,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="ss0-9c-S8e">
-                    <rect key="frame" x="8" y="10" width="384" height="358"/>
+                    <rect key="frame" x="8" y="10" width="384" height="730"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VXQ-PW-bYX">
                             <rect key="frame" x="0.0" y="0.0" width="384" height="75"/>
@@ -165,7 +166,7 @@
                                     <rect key="frame" x="41" y="43" width="335" height="24"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHV-iD-8r7">
-                                            <rect key="frame" x="16" y="2" width="37" height="21"/>
+                                            <rect key="frame" x="16" y="2.5" width="36.5" height="20.5"/>
                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -255,10 +256,10 @@
                             </constraints>
                         </view>
                         <view hidden="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="tij-q0-ySJ">
-                            <rect key="frame" x="0.0" y="158" width="384" height="0.0"/>
+                            <rect key="frame" x="0.0" y="170" width="384" height="75"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(11)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yiQ-le-KDq">
-                                    <rect key="frame" x="8" y="37" width="21" height="17"/>
+                                    <rect key="frame" x="8" y="37" width="20.5" height="16.5"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                     <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -272,7 +273,7 @@
                                     </constraints>
                                 </imageView>
                                 <stackView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PSi-cU-6MX">
-                                    <rect key="frame" x="53" y="-32" width="290" height="65"/>
+                                    <rect key="frame" x="53" y="5.5" width="290" height="65"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="RKu-9k-3hr">
                                             <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
@@ -293,7 +294,7 @@
                                     </subviews>
                                 </stackView>
                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLJ-tm-RUv">
-                                    <rect key="frame" x="53" y="-32" width="311" height="65"/>
+                                    <rect key="frame" x="53" y="5.5" width="311" height="65"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="65" id="H6n-w2-Tcv"/>
                                     </constraints>
@@ -314,7 +315,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5am-Wy-Zjj">
-                            <rect key="frame" x="0.0" y="171" width="384" height="45"/>
+                            <rect key="frame" x="0.0" y="270" width="384" height="45"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="QT8-lh-TbD">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
@@ -345,7 +346,7 @@
                             </constraints>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hS0-gT-IGp">
-                            <rect key="frame" x="0.0" y="229" width="384" height="0.0"/>
+                            <rect key="frame" x="0.0" y="340" width="384" height="75"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="b7J-PM-qZw">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
@@ -356,7 +357,7 @@
                                     </constraints>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1Hc-t3-BIl">
-                                    <rect key="frame" x="53" y="-32" width="290" height="65"/>
+                                    <rect key="frame" x="53" y="5.5" width="290" height="65"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_pic_new" translatesAutoresizingMaskIntoConstraints="NO" id="DA4-1B-fpM">
                                             <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
@@ -377,7 +378,7 @@
                                     </subviews>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(11)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26j-9I-gSj">
-                                    <rect key="frame" x="8" y="37" width="21" height="17"/>
+                                    <rect key="frame" x="8" y="37" width="20.5" height="16.5"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                     <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -395,7 +396,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PM4-mA-ULq">
-                            <rect key="frame" x="0.0" y="242" width="384" height="45"/>
+                            <rect key="frame" x="0.0" y="440" width="384" height="45"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pen_icon" translatesAutoresizingMaskIntoConstraints="NO" id="oUM-Jh-Qah">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
@@ -426,7 +427,7 @@
                             </constraints>
                         </view>
                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ITD-l3-ZCF">
-                            <rect key="frame" x="0.0" y="300" width="384" height="0.0"/>
+                            <rect key="frame" x="0.0" y="510" width="384" height="150"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pen_icon" translatesAutoresizingMaskIntoConstraints="NO" id="c8E-qV-K5f">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
@@ -465,7 +466,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpn-an-Nad">
-                            <rect key="frame" x="0.0" y="313" width="384" height="45"/>
+                            <rect key="frame" x="0.0" y="685" width="384" height="45"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_people" translatesAutoresizingMaskIntoConstraints="NO" id="ef0-Lp-5lX">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
