@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/Navigation.swift"
-            timestampString = "505365978.515295"
+            timestampString = "505366594.751015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2159"
-            endingLineNumber = "2159"
+            startingLineNumber = "2157"
+            endingLineNumber = "2157"
             landmarkName = "postAddPhotosVideos(param:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -40,43 +40,75 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/Navigation.swift"
-            timestampString = "505366142.97172"
+            timestampString = "505366594.751015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2153"
-            endingLineNumber = "2153"
+            startingLineNumber = "2151"
+            endingLineNumber = "2151"
             landmarkName = "postAddPhotosVideos(param:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TraveLibro/Navigation.swift"
+            timestampString = "505366594.751015"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2152"
+            endingLineNumber = "2152"
+            landmarkName = "postAddPhotosVideos(param:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TraveLibro/NewTLViewController.swift"
+            timestampString = "505366481.353782"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "editActivity(_:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "TraveLibro.Navigation.(postAddPhotosVideos (param : TraveLibro.JSON, completion : (TraveLibro.JSON) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "TraveLibro.NewTLViewController.editActivity (__ObjC.UIButton) -&gt; ()"
                   moduleName = "TraveLibro"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/Navigation.swift"
-                  timestampString = "505366337.102109"
+                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/NewTLViewController.swift"
+                  timestampString = "505366672.113194"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "2153"
-                  endingLineNumber = "2153"
-                  offsetFromSymbolStart = "2583">
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "19500">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "TraveLibro.Navigation.(postAddPhotosVideos (param : TraveLibro.JSON, completion : (TraveLibro.JSON) -&gt; ()) -&gt; ()).(closure #1)"
+                  symbolName = "TraveLibro.NewTLViewController.(editActivity (__ObjC.UIButton) -&gt; ()).(closure #1)"
                   moduleName = "TraveLibro"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/Navigation.swift"
-                  timestampString = "505366337.106461"
+                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/NewTLViewController.swift"
+                  timestampString = "505366672.116293"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "2153"
-                  endingLineNumber = "2153"
-                  offsetFromSymbolStart = "3145">
+                  startingLineNumber = "276"
+                  endingLineNumber = "276"
+                  offsetFromSymbolStart = "102">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -88,11 +120,123 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/Navigation.swift"
-            timestampString = "505366144.338213"
+            timestampString = "505366594.751015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2154"
-            endingLineNumber = "2154"
+            startingLineNumber = "2147"
+            endingLineNumber = "2147"
+            landmarkName = "postAddPhotosVideos(param:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TraveLibro/Navigation.swift"
+            timestampString = "505366494.57527"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2141"
+            endingLineNumber = "2141"
+            landmarkName = "postAddPhotosVideos(param:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TraveLibro/Navigation.swift"
+            timestampString = "505366495.024045"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2139"
+            endingLineNumber = "2139"
+            landmarkName = "postAddPhotosVideos(param:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TraveLibro/Navigation.swift"
+            timestampString = "505366585.985669"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2143"
+            endingLineNumber = "2143"
+            landmarkName = "postAddPhotosVideos(param:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TraveLibro/Navigation.swift"
+            timestampString = "505366635.393441"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2140"
+            endingLineNumber = "2140"
+            landmarkName = "postAddPhotosVideos(param:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TraveLibro.Navigation.postAddPhotosVideos (param : TraveLibro.JSON, completion : (TraveLibro.JSON) -&gt; ()) -&gt; ()"
+                  moduleName = "TraveLibro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/Navigation.swift"
+                  timestampString = "505366672.135114"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2140"
+                  endingLineNumber = "2140"
+                  offsetFromSymbolStart = "1355">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TraveLibro.Navigation.(postAddPhotosVideos (param : TraveLibro.JSON, completion : (TraveLibro.JSON) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "TraveLibro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/Navigation.swift"
+                  timestampString = "505366672.137779"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "2141"
+                  endingLineNumber = "2141"
+                  offsetFromSymbolStart = "34">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TraveLibro/Navigation.swift"
+            timestampString = "505366650.727611"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2158"
+            endingLineNumber = "2158"
             landmarkName = "postAddPhotosVideos(param:completion:)"
             landmarkType = "7">
          </BreakpointContent>

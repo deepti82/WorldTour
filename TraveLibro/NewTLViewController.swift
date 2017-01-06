@@ -266,7 +266,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         params["photosArr"] = JSON(photosJson)
         if(self.addView.editPost.post_location != self.addView.addLocationButton.titleLabel?.text) {
-            params["checkInChange"] = true
+            params["checkInChange"] = false
         } else {
             params["checkInChange"] = false
         }

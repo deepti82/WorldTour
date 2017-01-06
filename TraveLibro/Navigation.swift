@@ -2132,6 +2132,7 @@ class Navigation {
             let jsonData = try param.rawData()
             // create post request
             let url = URL(string: adminUrl + "post/editData")!
+            print(adminUrl + "post/editData");
             let request = NSMutableURLRequest(url: url)
             request.httpMethod = "POST"
             // insert json data to the request
@@ -2144,8 +2145,6 @@ class Navigation {
                 }
                 
                 do {
-                    print(data);
-                    print(response);
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     print("response: \(JSON(result))")
                     completion(JSON(result))
@@ -2155,7 +2154,7 @@ class Navigation {
                 }
             }
             task.resume()
-        } catch let error {
+        } catch {
             print("got an error creating the request: \(error)")
         }
     }
