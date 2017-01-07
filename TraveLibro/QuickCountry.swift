@@ -12,9 +12,23 @@ class QuickCountry: UIView {
 
     @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var deleteOut: UIButton!
+    var countryTag = 0
+    var parentView:QuickIteneraryThree!
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+    }
+    
+    @IBAction func deleteCountry(_ sender: Any) {
+        quickItinery["countryVisited"].arrayObject?.remove(at: self.countryTag)
+        parentView.createLayout()
+    }
+    
+    @IBAction func editCountry(_ sender: UIButton) {
+        selectedCountry = quickItinery["countryVisited"][self.countryTag]
+        selectedCity = quickItinery["countryVisited"][self.countryTag]["cityVisited"]
+        parentView.fillText()
     }
     
     required init?(coder aDecoder: NSCoder) {

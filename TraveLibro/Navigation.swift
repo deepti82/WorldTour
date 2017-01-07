@@ -2086,6 +2086,7 @@ class Navigation {
         
         do {
             let params = ["search":search,"country":country]
+            print(params)
             let opt = try HTTP.POST(adminUrl + "city/searchCity", parameters: params)
             var json = JSON(1);
             opt.start {response in

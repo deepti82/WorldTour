@@ -33,13 +33,28 @@
                         <constraint firstAttribute="width" constant="23" id="PFi-wb-dcC"/>
                     </constraints>
                     <state key="normal" title="X"/>
+                    <connections>
+                        <action selector="deleteCountry:" destination="-1" eventType="touchUpInside" id="wLH-7k-R1U"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc2-w8-hlc">
+                    <rect key="frame" x="298" y="9" width="30" height="17"/>
+                    <state key="normal" title="Edit">
+                        <color key="titleColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="editCountry:" destination="-1" eventType="touchUpInside" id="dO4-rP-O2t"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.3413611352" green="0.82557433840000005" blue="0.7822966576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="p04-mJ-4Sj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Hho-ki-wcH"/>
+                <constraint firstItem="p04-mJ-4Sj" firstAttribute="leading" secondItem="Cc2-w8-hlc" secondAttribute="trailing" constant="8" id="KX2-Hg-wqx"/>
                 <constraint firstItem="WN0-ZQ-TMG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="UhB-f8-RHj"/>
                 <constraint firstItem="WN0-ZQ-TMG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="cVG-Oz-9ta"/>
+                <constraint firstAttribute="bottom" secondItem="Cc2-w8-hlc" secondAttribute="bottom" constant="9" id="nji-gz-L4h"/>
+                <constraint firstItem="Cc2-w8-hlc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="pW1-ss-wqR"/>
                 <constraint firstAttribute="trailing" secondItem="p04-mJ-4Sj" secondAttribute="trailing" constant="16" id="xS7-Jh-a2R"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

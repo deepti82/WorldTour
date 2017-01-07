@@ -26,9 +26,9 @@ class QuickCity: UIView {
     }
     
     @IBAction func deleteCity(_ sender: UIButton) {
-        print(self.cityTag)
-        print(self.countryTag)
+        
         quickItinery["countryVisited"][self.countryTag]["cityVisited"].arrayObject?.remove(at: self.cityTag)
+        selectedCity.arrayObject?.remove(at: self.cityTag)
         parentView.createLayout()
         
     }

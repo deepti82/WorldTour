@@ -25,7 +25,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(quickScroll)
         
         self.view.bringSubview(toFront: cityVisited)
         
@@ -73,15 +72,18 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     }
     
     func createLayout() {
+        countryVisited.text = ""
+        cityVisited.text = ""
+        fillText()
         verticalLayout.removeAll()
-        print(self.quickScroll)
-        print("layout is creating")
-        print(quickItinery["countryVisited"])
         for (n,i) in quickItinery["countryVisited"] {
+            
             let quickCountry = QuickCountry(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
             
             quickCountry.countryName.text = i["name"].stringValue
             quickCountry.tag = Int(n)!
+            quickCountry.countryTag = Int(n)!
+            quickCountry.parentView = self
             verticalLayout.addSubview(quickCountry)
             
             for (no,ob) in i["cityVisited"] {
@@ -90,22 +92,14 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
                 quickCity.cityName.text = ob["name"].stringValue
                 quickCity.countryTag = Int(n)!
                 quickCity.tag = Int(no)!
-//                quickCity.deleteOut.
-//                quickCity.deleteOut.addTarget(self, action: #selector(deleteCity(_:)), for: .touchUpInside)
                 verticalLayout.addSubview(quickCity)
             }
         }
         scrollChange()
     }
     
-    func deleteCity(_ sender: UIButton) {
-        print(sender.tag)
-    }
-    
     func scrollChange() {
         self.verticalLayout.layoutSubviews()
-        print(self.verticalLayout.frame.height);
-        print(self.quickScroll)
         self.quickScroll.contentSize = CGSize(width: self.quickScroll.frame.width, height: self.verticalLayout.frame.height)
     }
     
@@ -156,7 +150,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         print("in country function")
         if !viewAdded {
             viewAdded = true
-            var a: JSON = ["country":selectedCountry["_id"], "name":selectedCountry["name"], "cityVisited":selectedCity]
+            var a: JSON = ["country":selectedCountry["_id"], "_id":selectedCountry["_id"], "name":selectedCountry["name"], "cityVisited":selectedCity]
             if quickItinery["countryVisited"].contains(where: {$0.1["country"] == selectedCountry["_id"]}) {
                 let b = quickItinery["countryVisited"].index(where: {$0.1["country"] == selectedCountry["_id"]})
                 let c = quickItinery["countryVisited"][b!].0

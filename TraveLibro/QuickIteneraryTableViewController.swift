@@ -60,8 +60,17 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     }
     
     func searchCityFun(search: String) {
-        request.getAllCityC(search, country: selectedCountry["_id"].stringValue, completion:{(request) in
+        print(selectedCountry)
+        var contid = selectedCountry["_id"].stringValue
+        if selectedCountry["country"] != nil {
+            contid = selectedCountry["country"].stringValue
+        }else{
+            contid = selectedCountry["_id"].stringValue
+        }
+        
+        request.getAllCityC(search, country: contid, completion:{(request) in
             DispatchQueue.main.sync(execute: {
+                print(request["data"])
                 if (request["data"].count != 0){
                     self.countriesSearchResults = request["data"]
                     DispatchQueue.main.async(execute: {
@@ -101,7 +110,6 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if isSearch {
             let c:JSON = countriesSearchResults[indexPath.row]
             if !selectedCity.contains(where: {$0.1["placeId"] == c["placeId"]}) {
