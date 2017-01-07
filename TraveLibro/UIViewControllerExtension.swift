@@ -10,6 +10,7 @@ import UIKit
 
 extension UIViewController {
     
+    
     func getRatingImage(rate:String) -> JSON {
         switch rate {
         case "1":

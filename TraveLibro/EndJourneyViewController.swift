@@ -434,6 +434,9 @@ class EndJourneyViewController: UIViewController {
 
             
         }else{
+            var tstr = Toast(text: "Wait a while.....")
+            tstr.show()
+            self.goBack()
             request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, journeyName: journey["name"].stringValue, completion: {(response) in
                 
                 request.getUser(user.getExistingUser(), completion: {(response) in
@@ -441,9 +444,9 @@ class EndJourneyViewController: UIViewController {
                     DispatchQueue.main.async(execute: {
                         currentUser = response["data"]
                         globalNewTLViewController.removeFromParentViewController()
-                        let tstr = Toast(text: "Journey ended successfully. Have a good life.")
+                        tstr = Toast(text: "Journey ended successfully. Have a good life.")
                         tstr.show()
-                        self.goBack()
+//                        self.goBack()
                     })
                 })
             })

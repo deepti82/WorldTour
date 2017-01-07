@@ -367,6 +367,8 @@
 		C2FA1E1B1D5498380034DE97 /* QIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FA1E1A1D5498380034DE97 /* QIViewController.swift */; };
 		C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */; };
 		C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */; };
+		FC0B9A951E1FB79C005D9206 /* QuickCountry.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC0B9A941E1FB79C005D9206 /* QuickCountry.xib */; };
+		FC0B9A971E1FB7C8005D9206 /* QuickCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9A961E1FB7C8005D9206 /* QuickCountry.swift */; };
 		FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
 		FC9A0C181E03CE5D00BC3F7A /* TagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */; };
@@ -773,6 +775,8 @@
 		C2FA1E1A1D5498380034DE97 /* QIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QIViewController.swift; sourceTree = "<group>"; };
 		C2FF64861D82ED0800F3866A /* AddActivityOTG.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddActivityOTG.xib; sourceTree = "<group>"; };
 		C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityOTG.swift; sourceTree = "<group>"; };
+		FC0B9A941E1FB79C005D9206 /* QuickCountry.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickCountry.xib; sourceTree = "<group>"; };
+		FC0B9A961E1FB7C8005D9206 /* QuickCountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickCountry.swift; sourceTree = "<group>"; };
 		FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
 		FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsView.xib; sourceTree = "<group>"; };
@@ -1000,6 +1004,7 @@
 				C2EA3A1C1CDB81CE00122941 /* TypeOfJourney */,
 				FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */,
 				FC9A0C1D1E0932F500BC3F7A /* CountrySummary */,
+				FC0B9A981E1FB7F8005D9206 /* QuickCountry */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2139,6 +2144,15 @@
 			name = QuickItineraryFour;
 			sourceTree = "<group>";
 		};
+		FC0B9A981E1FB7F8005D9206 /* QuickCountry */ = {
+			isa = PBXGroup;
+			children = (
+				FC0B9A941E1FB79C005D9206 /* QuickCountry.xib */,
+				FC0B9A961E1FB7C8005D9206 /* QuickCountry.swift */,
+			);
+			name = QuickCountry;
+			sourceTree = "<group>";
+		};
 		FC9A0C1D1E0932F500BC3F7A /* CountrySummary */ = {
 			isa = PBXGroup;
 			children = (
@@ -2307,6 +2321,7 @@
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
 				C24909AD1D49D094007EB6B4 /* tripSummaryEach.xib in Resources */,
+				FC0B9A951E1FB79C005D9206 /* QuickCountry.xib in Resources */,
 				C24B455A1D0ABDE4002EA009 /* Itineraries.xib in Resources */,
 				C248704A1D0BEE75003CB0DD /* MoreAboutTrip.xib in Resources */,
 				C24B45631D0AE664002EA009 /* PopularAgents.xib in Resources */,
@@ -2581,6 +2596,7 @@
 				C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */,
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
+				FC0B9A971E1FB7C8005D9206 /* QuickCountry.swift in Sources */,
 				FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
 				3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */,

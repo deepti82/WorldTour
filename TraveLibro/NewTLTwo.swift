@@ -197,10 +197,12 @@ extension NewTLViewController {
         let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         blurView.contentView.addSubview(vibrancyEffectView)
+        
+        
+        
         self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
-        
         
         self.addView.frame = self.view.frame
         self.addView.editPost = post

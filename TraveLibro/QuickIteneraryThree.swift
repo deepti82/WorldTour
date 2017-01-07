@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDataSource,  UITableViewDelegate {
+class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
     
     var countries: JSON = []
     @IBOutlet weak var countryListTable: UITableView!
@@ -24,7 +24,10 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.scrView.insertSubview(self.verticalLayout, at: 0)
+        
+        self.view.bringSubview(toFront: cityVisited)
+        
+        //        self.scrView.insertSubview(self.verticalLayout, at: 0)
         if quickItinery["countryVisited"] == nil {
             quickItinery["countryVisited"] = []
         }
@@ -40,8 +43,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
         cityVisited.delegate = self
         countryVisited.delegate = self
         
-        countryVisitedButton.isHidden = true
-        cityVisitedButton.isHidden = true
         countryListTable.delegate = self
         countryListTable.dataSource = self
     }
@@ -91,15 +92,62 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.countryListTable.dequeueReusableCell(withIdentifier: "countryCell", for: indexPath)
-        
-            cell.textLabel?.text = countries[indexPath.row]["name"].stringValue
+                
+        cell.textLabel?.text = quickItinery["countryVisited"][indexPath.section]["cityVisited"][indexPath.row]["name"].stringValue
+        let vw = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        let img = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        img.image = UIImage(named:"cross_icon")
+        vw.addSubview(img)
+        cell.accessoryView = vw
         
         return cell
     }
     
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//    
+//        let v = UITableViewHeaderFooterView()
+//        v.textLabel?.text = "Header Text"
+//        v.tag = section
+//        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(QuickIteneraryThree.headerTapped(_:)))
+////        tapRecognizer.delegate = self
+//        v.textLabel?.textColor = UIColor.white
+//        v.tintColor = endJourneyColor
+//                v.addGestureRecognizer(tapRecognizer)
+//        return v
+//        
+//    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+
+        view.tintColor = endJourneyColor
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white
+        let tap = UITapGestureRecognizer(target: self, action: #selector(QuickIteneraryThree.headerTapped(_:)))
+        header.tag = section
+
+        header.addGestureRecognizer(tap)
+        
+    }
+    
+    
+    
+    func headerTapped(_ sender: UITableViewHeaderFooterView) {
+        print("header clicked")
+        print(sender.tag)
+        quickItinery["countryVisited"].arrayObject?.remove(at: sender.tag)
+        countryListTable.reloadData()
+    }
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return quickItinery["countryVisited"][section]["name"].string
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected")
+        quickItinery["countryVisited"][indexPath.section]["cityVisited"].arrayObject?.remove(at: indexPath.row)
+        countryListTable.reloadData()
+    }
+    
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("on text field")
