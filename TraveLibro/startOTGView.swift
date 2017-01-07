@@ -158,5 +158,7 @@ class startOTGView: UIView {
         shoewImage.animate()
        
     }
-  
+    @IBAction func onBuddyCancel(_ sender: Any) {
+        globalNewTLViewController.getJourney()
+    }
 }
