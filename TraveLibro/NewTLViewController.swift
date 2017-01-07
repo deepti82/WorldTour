@@ -126,7 +126,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 doneButton.setTitle("SAVE", for: .normal)
                 doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
                 doneButton.setTitleColor(mainBlueColor, for: .normal)
-                doneButton.setTitle(sender.title(for: .application)!, for: .application)
+//                doneButton.setTitle(sender.title(for: .application)!, for: .application)
                 
                 let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
                 cancelButton.setTitle("CANCEL", for: .normal)
@@ -1591,7 +1591,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func doneButtonJourney(_ sender: UIButton){
-        request.changeDateTimeJourney(sender.title(for: .application)!, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
+        
+        request.changeDateTimeJourney(self.myJourney["_id"].stringValue, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
@@ -1733,7 +1734,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addNewView.removeFromSuperview()
         //        getScrollView(height, journey: JSON(""))
         
-        otgView = startOTGView(frame: CGRect(x: 0, y: 258, width: mainScroll.frame.width, height: self.view.frame.height))
+        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: self.view.frame.height))
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
@@ -1746,7 +1747,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.nameJourneyTF.delegate = self
         otgView.clipsToBounds = true
         layout.addSubview(otgView)
-        self.addHeightToLayout(height: 50.0)
+        self.addHeightToLayout(height: 500)
     }
     
     func newItinerary(_ sender: UIButton) {
@@ -2023,6 +2024,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func addBuddies(_ sender: UIButton) {
+        print("ADD BUDDIES");
         let addBuddiesVC = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         addBuddiesVC.whichView = "NewTLView"
         otgView.animation.makeY(25).animate(0.0)
@@ -2368,27 +2370,22 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             var coverImage: String!
             
             if !isJourneyOngoing {
-                
                 request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
-                    
                     DispatchQueue.main.async(execute: {
-                        
                         if (response.error != nil) {
-                            
                             print("error: \(response.error?.localizedDescription)")
-                            
                         }
-                            
                         else if response["value"].bool! {
-                            
+                            print(response["data"]);
                             self.locationData = response["data"]["name"].string!
                             self.otgView.locationLabel.text = response["data"]["name"].string!
                             self.locationPic = response["data"]["image"].string!
+                            self.makeCoverPic(self.locationPic)
+//                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
                             self.locationName = self.locationData
                             self.locationLat = String(locValue.latitude)
                             self.locationLong = String(locValue.longitude)
                             self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
-                            
                             let dateFormatterTwo = DateFormatter()
                             dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
                             self.currentTime = dateFormatterTwo.string(from: Date())

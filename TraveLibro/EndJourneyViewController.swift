@@ -368,8 +368,9 @@ class EndJourneyViewController: UIViewController {
         DispatchQueue.main.async(execute: {
             //self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
             let imageString = self.journey["startLocationPic"].string!
-            if imageString.contains("maps.googleapis.com") {
-                self.journeyCoverPic.hnk_setImageFromURL(URL(string:imageString)!)
+            print(imageString);
+            if imageString.contains("http") {
+                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:imageString)!)
             }
             else {
                 self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=250")!)
