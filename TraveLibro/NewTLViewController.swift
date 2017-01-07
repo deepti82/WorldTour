@@ -2404,7 +2404,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             self.mainScroll.animation.makeY(60.0).animate(0.7)
                             self.otgView.animation.makeY(0.0).animate(0.7)
                             
-                            
+                            self.scrollToBottom()
                         }
                         else {
                             
