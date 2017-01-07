@@ -17,7 +17,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cityVisited: UITextField!
     @IBOutlet weak var countryVisited: UITextField!
     @IBOutlet weak var quickScroll: UIScrollView!
-    let verticalLayout = VerticalLayout(width: 300)
+//    let verticalLayout = VerticalLayout(width: 300)
+    var verticalLayout: VerticalLayout!
     var viewAdded = false
     
     
@@ -27,6 +28,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         
         
         self.view.bringSubview(toFront: cityVisited)
+        self.verticalLayout = VerticalLayout(width:self.quickScroll.frame.width)
         
         //        self.scrView.insertSubview(self.verticalLayout, at: 0)
         if quickItinery["countryVisited"] == nil {
@@ -78,7 +80,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         verticalLayout.removeAll()
         for (n,i) in quickItinery["countryVisited"] {
             
-            let quickCountry = QuickCountry(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+            let quickCountry = QuickCountry(frame: CGRect(x: 0, y: 0, width: self.quickScroll.frame.width, height: 30))
             
             quickCountry.countryName.text = i["name"].stringValue
             quickCountry.tag = Int(n)!
@@ -87,7 +89,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
             verticalLayout.addSubview(quickCountry)
             
             for (no,ob) in i["cityVisited"] {
-                let quickCity = QuickCity(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+                let quickCity = QuickCity(frame: CGRect(x: 0, y: 0, width: self.quickScroll.frame.width, height: 30))
                 quickCity.parentView = self
                 quickCity.cityName.text = ob["name"].stringValue
                 quickCity.countryTag = Int(n)!

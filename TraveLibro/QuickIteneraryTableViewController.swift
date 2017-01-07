@@ -112,7 +112,9 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isSearch {
             let c:JSON = countriesSearchResults[indexPath.row]
+            print(c)
             if !selectedCity.contains(where: {$0.1["placeId"] == c["placeId"]}) {
+                
                 selectedCity.arrayObject?.append(c.object)
             }else{
                 let tstr = Toast(text: "City already exist")
