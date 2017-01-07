@@ -8,15 +8,15 @@
 
 import UIKit
 
-class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
+class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
     var countries: JSON = []
-    @IBOutlet weak var countryListTable: UITableView!
     @IBOutlet weak var cityVisitedButton: UIButton!
     @IBOutlet weak var countryVisitedButton: UIButton!
     @IBOutlet weak var addCountry: UIButton!
     @IBOutlet weak var cityVisited: UITextField!
     @IBOutlet weak var countryVisited: UITextField!
+    @IBOutlet weak var quickScroll: UIScrollView!
     let verticalLayout = VerticalLayout(width: 300)
     var viewAdded = false
     
@@ -24,6 +24,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(quickScroll)
         
         self.view.bringSubview(toFront: cityVisited)
         
@@ -36,6 +38,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
             countryVisited.text = selectedCountry[0]["name"].string
         }
         
+        self.quickScroll.addSubview(self.verticalLayout)
+        
         //        getCountry()
         addCountry.layer.cornerRadius = 5
         addCountry.addTarget(self, action: #selector(addCountryFunction(_:)), for: .touchUpInside)
@@ -43,15 +47,20 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
         cityVisited.delegate = self
         countryVisited.delegate = self
         
-        countryListTable.delegate = self
-        countryListTable.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         viewAdded = false
+        fillText()
         
+        
+    }
+    
+    func fillText() {
         if selectedCountry.count != 0 {
             countryVisited.text = selectedCountry["name"].string
+        }else{
+            countryVisited.text = ""
         }
         
         if selectedCity.count != 0 {
@@ -61,8 +70,43 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
         } else {
             cityVisited.text = ""
         }
-        
-        
+    }
+    
+    func createLayout() {
+        verticalLayout.removeAll()
+        print(self.quickScroll)
+        print("layout is creating")
+        print(quickItinery["countryVisited"])
+        for (n,i) in quickItinery["countryVisited"] {
+            let quickCountry = QuickCountry(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+            
+            quickCountry.countryName.text = i["name"].stringValue
+            quickCountry.tag = Int(n)!
+            verticalLayout.addSubview(quickCountry)
+            
+            for (no,ob) in i["cityVisited"] {
+                let quickCity = QuickCity(frame: CGRect(x: 0, y: 0, width: 300, height: 30))
+                quickCity.parentView = self
+                quickCity.cityName.text = ob["name"].stringValue
+                quickCity.countryTag = Int(n)!
+                quickCity.tag = Int(no)!
+//                quickCity.deleteOut.
+//                quickCity.deleteOut.addTarget(self, action: #selector(deleteCity(_:)), for: .touchUpInside)
+                verticalLayout.addSubview(quickCity)
+            }
+        }
+        scrollChange()
+    }
+    
+    func deleteCity(_ sender: UIButton) {
+        print(sender.tag)
+    }
+    
+    func scrollChange() {
+        self.verticalLayout.layoutSubviews()
+        print(self.verticalLayout.frame.height);
+        print(self.quickScroll)
+        self.quickScroll.contentSize = CGSize(width: self.quickScroll.frame.width, height: self.verticalLayout.frame.height)
     }
     
     func createCity(cities:JSON) -> String {
@@ -79,73 +123,6 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
         }
         
         return a
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return quickItinery["countryVisited"].count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return quickItinery["countryVisited"][section]["cityVisited"].count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = self.countryListTable.dequeueReusableCell(withIdentifier: "countryCell", for: indexPath)
-                
-        cell.textLabel?.text = quickItinery["countryVisited"][indexPath.section]["cityVisited"][indexPath.row]["name"].stringValue
-        let vw = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        let img = UIImageView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        img.image = UIImage(named:"cross_icon")
-        vw.addSubview(img)
-        cell.accessoryView = vw
-        
-        return cell
-    }
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//    
-//        let v = UITableViewHeaderFooterView()
-//        v.textLabel?.text = "Header Text"
-//        v.tag = section
-//        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(QuickIteneraryThree.headerTapped(_:)))
-////        tapRecognizer.delegate = self
-//        v.textLabel?.textColor = UIColor.white
-//        v.tintColor = endJourneyColor
-//                v.addGestureRecognizer(tapRecognizer)
-//        return v
-//        
-//    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
-
-        view.tintColor = endJourneyColor
-        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = UIColor.white
-        let tap = UITapGestureRecognizer(target: self, action: #selector(QuickIteneraryThree.headerTapped(_:)))
-        header.tag = section
-
-        header.addGestureRecognizer(tap)
-        
-    }
-    
-    
-    
-    func headerTapped(_ sender: UITableViewHeaderFooterView) {
-        print("header clicked")
-        print(sender.tag)
-        quickItinery["countryVisited"].arrayObject?.remove(at: sender.tag)
-        countryListTable.reloadData()
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return quickItinery["countryVisited"][section]["name"].string
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected")
-        quickItinery["countryVisited"][indexPath.section]["cityVisited"].arrayObject?.remove(at: indexPath.row)
-        countryListTable.reloadData()
     }
     
     
@@ -176,6 +153,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
     
     
     func addCountryFunction(_ sender: UIButton) {
+        print("in country function")
         if !viewAdded {
             viewAdded = true
             var a: JSON = ["country":selectedCountry["_id"], "name":selectedCountry["name"], "cityVisited":selectedCity]
@@ -184,13 +162,14 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate, UITableViewDat
                 let c = quickItinery["countryVisited"][b!].0
                 
                 quickItinery["countryVisited"][Int(c)!] = a
-                countryListTable.reloadData()
+                createLayout()
             }else{
                 quickItinery["countryVisited"].arrayObject?.append(a.object)
-                countryListTable.reloadData()
-                
+                createLayout()
             }
-            
+            selectedCountry = []
+            selectedCity = []
+            fillText()
         }
         
     }

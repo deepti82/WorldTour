@@ -369,6 +369,8 @@
 		C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */; };
 		FC0B9A951E1FB79C005D9206 /* QuickCountry.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC0B9A941E1FB79C005D9206 /* QuickCountry.xib */; };
 		FC0B9A971E1FB7C8005D9206 /* QuickCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9A961E1FB7C8005D9206 /* QuickCountry.swift */; };
+		FC0B9A9A1E20BCC4005D9206 /* QuickCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC0B9A991E20BCC4005D9206 /* QuickCity.xib */; };
+		FC0B9A9C1E20BD00005D9206 /* QuickCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9A9B1E20BD00005D9206 /* QuickCity.swift */; };
 		FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
 		FC9A0C181E03CE5D00BC3F7A /* TagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */; };
@@ -777,6 +779,8 @@
 		C2FF64881D82F8DD00F3866A /* AddActivityOTG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddActivityOTG.swift; sourceTree = "<group>"; };
 		FC0B9A941E1FB79C005D9206 /* QuickCountry.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickCountry.xib; sourceTree = "<group>"; };
 		FC0B9A961E1FB7C8005D9206 /* QuickCountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickCountry.swift; sourceTree = "<group>"; };
+		FC0B9A991E20BCC4005D9206 /* QuickCity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickCity.xib; sourceTree = "<group>"; };
+		FC0B9A9B1E20BD00005D9206 /* QuickCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickCity.swift; sourceTree = "<group>"; };
 		FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
 		FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsView.xib; sourceTree = "<group>"; };
@@ -1005,6 +1009,7 @@
 				FC9A0C171E03CE5D00BC3F7A /* TagsView.xib */,
 				FC9A0C1D1E0932F500BC3F7A /* CountrySummary */,
 				FC0B9A981E1FB7F8005D9206 /* QuickCountry */,
+				FC0B9A9D1E20BD2A005D9206 /* QuickCity */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2153,6 +2158,15 @@
 			name = QuickCountry;
 			sourceTree = "<group>";
 		};
+		FC0B9A9D1E20BD2A005D9206 /* QuickCity */ = {
+			isa = PBXGroup;
+			children = (
+				FC0B9A991E20BCC4005D9206 /* QuickCity.xib */,
+				FC0B9A9B1E20BD00005D9206 /* QuickCity.swift */,
+			);
+			name = QuickCity;
+			sourceTree = "<group>";
+		};
 		FC9A0C1D1E0932F500BC3F7A /* CountrySummary */ = {
 			isa = PBXGroup;
 			children = (
@@ -2376,6 +2390,7 @@
 				842484F61E13A4C000083115 /* PhotoOTGFooter.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
 				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
+				FC0B9A9A1E20BCC4005D9206 /* QuickCity.xib in Resources */,
 				C2873E8C1D9E8E510001431B /* BuddyLeaves.xib in Resources */,
 				C2ABDBB41CEC53C300D7542E /* StatusView.xib in Resources */,
 				C2D594501CF487960007F50B /* MyLifeTabs.xib in Resources */,
@@ -2613,6 +2628,7 @@
 				367B90F81DC23ADF00D76F13 /* RegexParser.swift in Sources */,
 				C2803BCB1CF43504007A906E /* AccordionViewController.swift in Sources */,
 				C23EB1CD1CFEB044005B5CE8 /* CheckInLocalLife.swift in Sources */,
+				FC0B9A9C1E20BD00005D9206 /* QuickCity.swift in Sources */,
 				C2889D3C1DB0E98800B302AF /* ShowRating.swift in Sources */,
 				3AF1870A1D785EE800A86BC1 /* forDpFour.swift in Sources */,
 				C2488AB61D51D0E100FD5306 /* Navigation.swift in Sources */,
