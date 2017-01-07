@@ -2110,17 +2110,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var coverImage: String!
     
     func makeCoverPic(_ imageString: String) {
-        var  getImageUrl = adminUrl + "upload/readFile?file=\(imageString)&width=250"
+        var  getImageUrl = adminUrl + "upload/readFile?file=\(imageString)&width=650"
         
         if imageString.range(of:"https://") != nil{
             getImageUrl = imageString;
         }
         do {
+            print(getImageUrl);
             let url1 = URL(string:getImageUrl);
-            try self.otgView.cityImage.hnk_setImageFromURL(url1!)
+            self.otgView.cityImage.hnk_setImageFromURL(url1!)
         }
         catch _ {
-            
+            print("There is an eror");
         }
         
     }
