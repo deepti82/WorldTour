@@ -230,6 +230,8 @@ class EndJourneyViewController: UIViewController {
     
     func createReview() {
         
+        self.backgroundReview.removeFromSuperview()
+        
         for subvw in rateCountriesLayout.subviews {
             if subvw.tag != 100 {
                 subvw.removeFromSuperview()
@@ -275,6 +277,9 @@ class EndJourneyViewController: UIViewController {
         if newJson[sender.tag]["rating"] != nil {
             var rateState = self.getRatingImage(rate: newJson[sender.tag]["rating"].stringValue)
             rating.updateSmiley(point: newJson[sender.tag]["rating"].intValue)
+            if newJson[sender.tag]["review"] != nil && newJson[sender.tag]["review"] != "" {
+                rating.reviewTextView.text = newJson[sender.tag]["review"].stringValue
+            }
             rating.smiley.setImage(UIImage(named:rateState["image"].stringValue), for: .normal)
             rating.smiley.setBackgroundImage(UIImage(named:rateState["back"].stringValue), for: .normal)
         }

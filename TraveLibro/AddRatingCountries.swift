@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class AddRatingCountries: UIView, UITextViewDelegate {
     
@@ -47,70 +48,48 @@ class AddRatingCountries: UIView, UITextViewDelegate {
             reviewText = reviewTextView.text
         }
         
-        print("journey id in review: \(journeyId)")
-        print("country id in review: \(countryId)")
-        
         reviewTextView.resignFirstResponder()
         self.countryVisitedData["rating"] = JSON(self.starCount)
         self.countryVisitedData["rating"] = JSON(self.starCount)
-        print(self.countryVisitedData)
-        print(journeyData)
         self.journeyData["review"].arrayObject?.append(self.countryVisitedData.object)
         self.parent.checkView(newcountry: journeyData)
         
-        print("lllllllllll")
         endJourney.newJson[self.tag]["rating"] = JSON(starCount)
-        print(endJourney.newJson)
+        endJourney.newJson[self.tag]["review"] = JSON(reviewTextView.text)
         endJourney.createReview()
+        self.removeFromSuperview()
         
-//        endJourney.newJson[self.tag]["rating"]
         
-        
-//        request.rateCountry(currentUser["_id"].string!, journeyId: journeyId, countryId: countryId, rating: "\(starCount)", review: reviewText, completion: {(response) in
-//            
-//            DispatchQueue.main.async(execute: {
-//                
-//                if response.error != nil {
-//                    
-//                    print("error: \(response.error!.localizedDescription)")
-//                    
-//                }
-//                else if response["value"].bool! {
-//                    
-//                    print("response arrived \(countryId) \(self.starCount) \(self.reviewTextView.text!)")
-//                    self.countryVisitedData["rating"] = JSON(self.starCount)
-////                    self.parent.removeRatingButton()
-//                    //sender.superview?.removeFromSuperview()
-//                    //self.parent.removeRatingButton(sender.title(for: .application)!)
-////                    if self.countryVisitedData.count > self.i {
-////                        self.i += 1
-////                        print("i: \(self.i) \(self.countryVisitedData.count)")
-////                        self.getRatingData(data: self.countryVisitedData)
-////                    } else {
-//                    
-////                    endJourney.journey
-//                    sender.removeFromSuperview()
-//                    if self.backgroundSuperview != nil {
-//                        self.backgroundSuperview.removeFromSuperview()
-//                    }
-////                    }
-//                    
-//                }
-//                else {
-//                    
-//                    print("response error!")
-//                    
-//                }
-//                
-//            })
-//            
-//        })
+        request.rateCountry(currentUser["_id"].string!, journeyId: journeyData["_id"].stringValue, countryId: countryId, rating: "\(starCount)", review: reviewText, completion: {(response) in
+            
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    let tstr = Toast(text: "You rated \(self.countryName.text!) as \(self.reviewConclusion.text!)")
+                    tstr.show()
+                    
+                }
+                else {
+                    let tstr = Toast(text: "Enable to rate \(self.countryName.text!). try again later!!!")
+                    tstr.show()
+                    print("response error!")
+                    
+                }
+                
+            })
+            
+        })
         
     }
     
     func updateSmiley(point:Int) {
 
-        ratingIndex = point - 1
+        ratingIndex = point
         reviewConclusion.text = moodArr[point - 1]
         smiley.setImage(UIImage(named: imageArr[point - 1]), for: UIControlState())
         updateButtonSelectionStates()
