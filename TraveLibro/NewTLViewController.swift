@@ -2024,6 +2024,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func addBuddies(_ sender: UIButton) {
+        print("ADD BUDDIES");
         let addBuddiesVC = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         addBuddiesVC.whichView = "NewTLView"
         otgView.animation.makeY(25).animate(0.0)
