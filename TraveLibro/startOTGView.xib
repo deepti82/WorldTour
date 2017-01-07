@@ -24,6 +24,8 @@
                 <outlet property="dpFriendOne" destination="PPf-fe-VPq" id="9LG-mX-81n"/>
                 <outlet property="dpFriendThree" destination="WjW-hp-cGM" id="jao-rb-mgw"/>
                 <outlet property="dpFriendTwo" destination="pen-me-O9a" id="MR2-J8-TdE"/>
+                <outlet property="drawLine3" destination="M7q-Dd-RBy" id="4uR-O6-LL1"/>
+                <outlet property="drawLine4" destination="psy-uQ-f9t" id="Qxv-VR-JVC"/>
                 <outlet property="journeyBuddiesCount" destination="Fdm-8p-FYV" id="XMW-GI-JGf"/>
                 <outlet property="journeyCategoryOne" destination="Gv5-2Z-VcH" id="DcC-TZ-rG4"/>
                 <outlet property="journeyCategoryThree" destination="Nno-oE-E88" id="3UK-px-mDj"/>
@@ -58,6 +60,10 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="646"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M7q-Dd-RBy" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
+                    <rect key="frame" x="180" y="560" width="20" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Owl-Le-09q" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                     <color key="backgroundColor" red="0.58426339289999996" green="0.88718180089999998" blue="0.26145754180000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -157,6 +163,11 @@
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7r-hX-X00">
                     <rect key="frame" x="0.0" y="200" width="400" height="360"/>
                     <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="psy-uQ-f9t" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
+                            <rect key="frame" x="190" y="300" width="20" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="vov-Dh-v4k">
                             <rect key="frame" x="0.0" y="113" width="400" height="200"/>
                             <constraints>
@@ -173,8 +184,11 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfr-Js-I8N">
                             <rect key="frame" x="0.0" y="68" width="400" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="London" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zV2-Ih-s2k">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zV2-Ih-s2k">
                                     <rect key="frame" x="169" y="4" width="62" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="62" id="YhG-eS-eBT"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>

@@ -11,6 +11,9 @@ import Spring
 class startOTGView: UIView {
 
     
+  
+    @IBOutlet weak var drawLine4: drawLine!
+    @IBOutlet weak var drawLine3: drawLine!
     @IBOutlet weak var detectHide: UIButton!
     @IBOutlet weak var lineOne: drawLine!
     @IBOutlet weak var lineTwo: drawLine!
@@ -60,7 +63,8 @@ class startOTGView: UIView {
         }
         startJourneyButton.layer.cornerRadius = 5
         
-        
+        drawLine3.isHidden = true
+        drawLine3.isHidden = true
         
         let rocketLabel = UILabel(frame: CGRect(x: -22, y: -5, width: 22, height: 30))
         rocketLabel.font = UIFont(name: "FontAwesome", size: 15)
