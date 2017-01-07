@@ -2115,14 +2115,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if imageString.range(of:"https://") != nil{
             getImageUrl = imageString;
         }
-        do {
-            print(getImageUrl);
-            let url1 = URL(string:getImageUrl);
-            self.otgView.cityImage.hnk_setImageFromURL(url1!)
-        }
-        catch _ {
-            print("There is an eror");
-        }
+        print(getImageUrl);
+        let url1 = URL(string:getImageUrl);
+        self.otgView.cityImage.hnk_setImageFromURL(url1!)
         
     }
     
