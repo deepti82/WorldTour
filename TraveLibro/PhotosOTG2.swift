@@ -129,7 +129,7 @@ class PhotosOTG2: VerticalLayout {
         
         //Center Generation Only
         if(post.imageArr.count > 1) {
-            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 60 ))
+            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 96 ))
             addPhotoToLayout(post)
             self.addSubview(centerView)
         }
@@ -159,14 +159,14 @@ class PhotosOTG2: VerticalLayout {
     func addPhotoToLayout(_ post: Post) {
         centerView.horizontalScrollForPhotos.removeAll()
         for i in 1 ..< post.imageArr.count {
-            let photosButton = UIImageView(frame: CGRect(x: 10, y: 3, width: 55, height: 55))
+            let photosButton = UIImageView(frame: CGRect(x: 10, y: 5, width: 87, height: 87))
             photosButton.image = UIImage(named: "logo-default")
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
             if(post.post_isOffline) {
                 photosButton.image = post.imageArr[i].image
             } else {
-                photosButton.frame.size.height = 55
-                photosButton.frame.size.width = 55
+                photosButton.frame.size.height = 82
+                photosButton.frame.size.width = 82
                 let urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=100"
                 photosButton.hnk_setImageFromURL(URL(string:urlStr)!)
                 let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))

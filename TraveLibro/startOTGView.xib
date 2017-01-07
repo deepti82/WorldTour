@@ -287,8 +287,8 @@
                             </constraints>
                         </view>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWW-f4-BJZ">
-                            <rect key="frame" x="21" y="321" width="360" height="50"/>
-                            <color key="backgroundColor" red="0.8027377724647522" green="0.94921046495437622" blue="0.94881397485733032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="31" y="321" width="340" height="50"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                             <state key="normal" title="Select Kind Of Journey">
                                 <color key="titleColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -303,10 +303,10 @@
                         <constraint firstAttribute="trailing" secondItem="vov-Dh-v4k" secondAttribute="trailing" id="Gne-FG-u5x"/>
                         <constraint firstAttribute="trailing" secondItem="dfr-Js-I8N" secondAttribute="trailing" id="H3M-Yn-qg2"/>
                         <constraint firstItem="h75-8D-si8" firstAttribute="top" secondItem="vov-Dh-v4k" secondAttribute="bottom" constant="-5" id="KoQ-19-jYH"/>
-                        <constraint firstAttribute="trailing" secondItem="nWW-f4-BJZ" secondAttribute="trailing" constant="19" id="RKt-Xl-dZW"/>
+                        <constraint firstAttribute="trailing" secondItem="nWW-f4-BJZ" secondAttribute="trailing" constant="29" id="RKt-Xl-dZW"/>
                         <constraint firstItem="vov-Dh-v4k" firstAttribute="top" secondItem="dfr-Js-I8N" secondAttribute="bottom" constant="-5" id="RXR-Xt-lh2"/>
                         <constraint firstItem="b9h-EL-mQr" firstAttribute="centerX" secondItem="vov-Dh-v4k" secondAttribute="centerX" id="Roe-wK-buY"/>
-                        <constraint firstItem="nWW-f4-BJZ" firstAttribute="leading" secondItem="t7r-hX-X00" secondAttribute="leading" constant="21" id="dFD-qP-4zA"/>
+                        <constraint firstItem="nWW-f4-BJZ" firstAttribute="leading" secondItem="t7r-hX-X00" secondAttribute="leading" constant="31" id="dFD-qP-4zA"/>
                         <constraint firstItem="dfr-Js-I8N" firstAttribute="leading" secondItem="t7r-hX-X00" secondAttribute="leading" id="klT-Ap-mJ0"/>
                         <constraint firstItem="h75-8D-si8" firstAttribute="leading" secondItem="t7r-hX-X00" secondAttribute="leading" id="pTI-kG-4Rb"/>
                         <constraint firstItem="vov-Dh-v4k" firstAttribute="leading" secondItem="t7r-hX-X00" secondAttribute="leading" id="qQw-Tc-TAD"/>
@@ -335,8 +335,8 @@
                     </constraints>
                 </view>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W5b-nR-cLh" customClass="SpringButton" customModule="Spring">
-                    <rect key="frame" x="16" y="593" width="360" height="50"/>
-                    <color key="backgroundColor" red="0.76862746479999999" green="0.94117647410000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="31" y="593" width="340" height="50"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="OVO-QV-P7v"/>
                     </constraints>
@@ -354,7 +354,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhn-pK-LF4">
-                    <rect key="frame" x="335" y="606" width="25" height="25"/>
+                    <rect key="frame" x="325" y="606" width="25" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="25" id="lp3-dH-OXr"/>
                     </constraints>
@@ -373,15 +373,15 @@
                 <constraint firstItem="dgM-iP-oY1" firstAttribute="top" secondItem="W5e-5K-0xm" secondAttribute="bottom" constant="45" id="9uS-3G-KUz"/>
                 <constraint firstItem="n7C-a2-fLC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="A8Q-Eb-QHd"/>
                 <constraint firstItem="lhn-pK-LF4" firstAttribute="centerY" secondItem="W5b-nR-cLh" secondAttribute="centerY" constant="0.5" id="AG1-6G-0ON"/>
-                <constraint firstItem="W5b-nR-cLh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-4" id="AcH-gt-IXo"/>
+                <constraint firstItem="W5b-nR-cLh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="1" id="AcH-gt-IXo"/>
                 <constraint firstItem="Aqf-8y-8EK" firstAttribute="top" secondItem="aZc-x0-efS" secondAttribute="bottom" constant="15" id="CNS-dl-bGa"/>
                 <constraint firstItem="W5e-5K-0xm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-4" id="Cmc-dk-wtV"/>
                 <constraint firstItem="IfS-Jb-lY3" firstAttribute="top" secondItem="aZc-x0-efS" secondAttribute="bottom" constant="35" id="FWS-Cd-qYb"/>
-                <constraint firstAttribute="trailing" secondItem="lhn-pK-LF4" secondAttribute="trailing" constant="40" id="HEN-dc-m9S"/>
+                <constraint firstAttribute="trailing" secondItem="lhn-pK-LF4" secondAttribute="trailing" constant="50" id="HEN-dc-m9S"/>
                 <constraint firstItem="aZc-x0-efS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="IrR-Vi-FLl"/>
                 <constraint firstItem="IfS-Jb-lY3" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Isp-Kw-3An"/>
                 <constraint firstItem="lhn-pK-LF4" firstAttribute="top" secondItem="t7r-hX-X00" secondAttribute="bottom" constant="46" id="LBJ-jH-T0F"/>
-                <constraint firstAttribute="trailing" secondItem="W5b-nR-cLh" secondAttribute="trailing" constant="24" id="M1h-4y-Alb"/>
+                <constraint firstAttribute="trailing" secondItem="W5b-nR-cLh" secondAttribute="trailing" constant="29" id="M1h-4y-Alb"/>
                 <constraint firstItem="t7r-hX-X00" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MeP-UU-TNN"/>
                 <constraint firstAttribute="trailing" secondItem="W5e-5K-0xm" secondAttribute="trailing" constant="24" id="SZu-tS-bxS"/>
                 <constraint firstItem="t7r-hX-X00" firstAttribute="top" secondItem="dgM-iP-oY1" secondAttribute="top" constant="-20" id="TUQ-VW-nhd"/>
@@ -389,7 +389,7 @@
                 <constraint firstItem="W5e-5K-0xm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Yio-E4-4wj"/>
                 <constraint firstItem="Owl-Le-09q" firstAttribute="top" secondItem="t7r-hX-X00" secondAttribute="bottom" constant="-17" id="a9f-90-wEA"/>
                 <constraint firstAttribute="trailing" secondItem="t7r-hX-X00" secondAttribute="trailing" id="c71-0t-rEX"/>
-                <constraint firstItem="W5b-nR-cLh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="cGR-n1-34u"/>
+                <constraint firstItem="W5b-nR-cLh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="31" id="cGR-n1-34u"/>
                 <constraint firstItem="dgM-iP-oY1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="cnz-td-Znq"/>
                 <constraint firstItem="l0m-qZ-68a" firstAttribute="leading" secondItem="aZc-x0-efS" secondAttribute="trailing" constant="8" id="dpD-dc-GLm"/>
                 <constraint firstItem="t7r-hX-X00" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="esC-Cm-re6"/>

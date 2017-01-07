@@ -11,6 +11,7 @@ import Spring
 
 class PhotoOTGFooter: UIView {
     
+//    @IBOutlet weak var LineView1: UIView!
     @IBOutlet var footerView: UIView!
     var postTop:Post!
     @IBOutlet weak var likeButton: SpringButton!
@@ -53,8 +54,12 @@ class PhotoOTGFooter: UIView {
         commentIcon.tintColor = mainBlueColor
         likeButton.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
-        lineView.alpha = 0.3
-        footerView.alpha = 0.9
+        lineView.alpha = 0.5
+//        LineView1.alpha = 0.3
+//        footerView.alpha = 0.9
+        shareButton.imageView?.contentMode = .scaleAspectFit
+        commentButton.imageView?.contentMode = .scaleAspectFit
+        likeButton.imageView?.contentMode = .scaleAspectFit
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
@@ -101,9 +106,9 @@ class PhotoOTGFooter: UIView {
     
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0) {
-            self.frame.size.height = 37;
+            self.frame.size.height = 40;
         } else {
-            self.frame.size.height = 71;
+            self.frame.size.height = 75;
         }
         PhotoOtg.layoutSubviews()
         globalNewTLViewController.addHeightToLayout(height: 500)

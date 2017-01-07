@@ -1,7 +1,9 @@
 import UIKit
+import DKChainableAnimationKit
 
 class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
+    @IBOutlet weak var youCanOnly: UILabel!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var peopleImage: UIImageView!
     @IBOutlet weak var friendsTable: UITableView!
@@ -9,6 +11,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var buddiesCollectionView: UICollectionView!
     @IBOutlet weak var buddiesTableView: UITableView!
+    @IBOutlet weak var allFriends: UILabel!
     
     var buddies:[Buddy]!
     var friendsTag:UIImageView!
@@ -44,6 +47,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             default:
             break;
         }
+        
+    
 //        globalNewTLViewController.getJourney()
 //                        for vc in allControllers {
 //        
@@ -146,7 +151,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        moveUp()
         print("which view: \(buddiesStatus)")
         
         if !buddiesStatus {
@@ -154,9 +159,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             frezzFriends = addedFriends
             addedFriends = []
         }
-        
-            self.title = "Added Buddies"
-            
+        allFriends.textColor = mainOrangeColor
+            self.title = "Add Buddies"
+            addedBuddies.layer.zPosition = 100
             print("addedFriends: \(addedFriends)")
             print("friends json: \(allFriendsJson)")
             
@@ -180,11 +185,16 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
         }
         
-        search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.frame.width - 10, height: 30))
+        search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.frame.width - 70 , height: 30))
         search.searchField.returnKeyType = .done
         searchView.addSubview(search)
         
         peopleImage.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+        
+        
+        
+        addedBuddies.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+
         
         
             getBackGround(self)
@@ -202,6 +212,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
     }
+    
+    
     
     func formatAllFriends(friends: [JSON]) {
         for friend in friends {
@@ -280,27 +292,15 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         if isUrl {
             
             print("inside if statement")
-            let data = try? Data(contentsOf: URL(string: imageUrl)!)
             
-            if data != nil  && imageUrl != "" {
-                
-                print("some problem in data \(data)")
-                cell.buddyProfileImage.image = UIImage(data: data!)
-                makeTLProfilePicture(cell.buddyProfileImage)
-            }
+            cell.buddyProfileImage.hnk_setImageFromURL(URL(string:imageUrl)!)
+            makeTLProfilePicture(cell.buddyProfileImage)
+            
         } else if imageUrl != "" {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
-            let data = try! Data(contentsOf: URL(string: getImageUrl)!)
-            
-            
-            if data != nil {
-                
-                
-                cell.buddyProfileImage.hnk_setImageFromURL(URL(string:getImageUrl)!)
-                
-                makeTLProfilePicture(cell.buddyProfileImage)
-            }
+            cell.buddyProfileImage.hnk_setImageFromURL(URL(string:getImageUrl)!)
+            makeTLProfilePicture(cell.buddyProfileImage)
             
         }
         
@@ -390,34 +390,16 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if isUrl && imageUrl != "" {
             
-            print("inside if statement")
-            let data = try? Data(contentsOf: URL(string: imageUrl)!)
+            cell.buddyDp.hnk_setImageFromURL(URL(string: imageUrl)!)
+            makeTLProfilePicture(cell.buddyDp)
             
-            if data != nil {
-                
-                print("some problem in data \(data)")
-                cell.buddyDp.image = UIImage(data: data!)
-                cell.buddyDp.image = UIImage(data: data!)
-                makeTLProfilePicture(cell.buddyDp)
-                
-            }
         }
             
         else if imageUrl != "" {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
             
-            
-            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-            
-            if data != nil {
-                
-                //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
-                cell.buddyDp.image = UIImage(data: data!)
-                
-                cell.buddyDp.image = UIImage(data: data!)
-                makeTLProfilePicture(cell.buddyDp)
-            }
+            cell.buddyDp.hnk_setImageFromURL(URL(string: getImageUrl)!)
             
         }
         
@@ -427,6 +409,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.buddyName.textColor = mainBlueColor
             
         cell.removeBuddyButton.layer.zPosition = 10
+        if  cell.removeBuddyButton.tag == 0 {
+//            moveDown()
+        }
         return cell
         
         
@@ -463,7 +448,23 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         addedFriends.remove(at: (indexPath as NSIndexPath).item)
         collectionView.reloadData()
         buddiesTableView.reloadData()
-        
+//        moveUp()
+    }
+    
+    
+    func moveUp() {
+        searchView.animation.moveY(-50).animate(0.0)
+        allFriends.animation.moveY(-50).animate(0.0)
+        youCanOnly.animation.moveY(-50).animate(0.0)
+        buddiesTableView.animation.moveY(-50).animate(0.0)
+    }
+    
+    func moveDown(){
+        searchView.animation.moveY(70).animate(0.0)
+        allFriends.animation.moveY(50).animate(0.0)
+        youCanOnly.animation.moveY(50).animate(0.0)
+        buddiesTableView.animation.moveY(50).animate(0.0)
+  
     }
     
 }
