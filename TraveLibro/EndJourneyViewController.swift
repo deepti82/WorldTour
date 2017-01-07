@@ -51,7 +51,8 @@ class EndJourneyViewController: UIViewController {
             
         }
         else {
-            
+            let tstr = Toast(text: "No Pictures of Journey.")
+            tstr.show()
             print("No pictures found")
         }
         

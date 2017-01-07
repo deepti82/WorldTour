@@ -44,7 +44,6 @@ class AddRatingCountries: UIView, UITextViewDelegate {
         var reviewText = ""
         
         if reviewTextView.text != nil && reviewTextView.text != "Fill Me In..." {
-            
             reviewText = reviewTextView.text
         }
         
