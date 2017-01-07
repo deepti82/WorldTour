@@ -135,25 +135,26 @@ class EndJourneyViewController: UIViewController {
         if buddies.count >= 3 {
             
             endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
-            makeTLProfilePicture(buddiesImages[0])
+            makeTLProfilePicture(endJourney.buddiesImages[0])
             endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
-            makeTLProfilePicture(buddiesImages[1])
+            makeTLProfilePicture(endJourney.buddiesImages[1])
             endJourney.buddyCount.text = "+\(buddies.count - 2)"
             
         }
         else if buddies.count == 2 {
             
-            //            endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
-            //            makeTLProfilePicture(buddiesImages[0])
-            //           endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
-            //            makeTLProfilePicture(buddiesImages[1])
-            //            endJourney.buddyCount.isHidden = true
+                        endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
+                        makeTLProfilePicture(endJourney.buddiesImages[0])
+                       endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
+                        makeTLProfilePicture(endJourney.buddiesImages[1])
+                        endJourney.buddyCount.isHidden = true
             
         }
         else if buddies.count == 1 {
             
             endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
-            makeTLProfilePicture(buddiesImages[0])
+            print(endJourney.buddiesImages[0])
+            makeTLProfilePicture(endJourney.buddiesImages[0])
             endJourney.buddiesImages[1].isHidden = true
             endJourney.buddyCount.isHidden = true
             
