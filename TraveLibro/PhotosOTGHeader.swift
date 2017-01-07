@@ -19,6 +19,7 @@ class PhotosOTGHeader: UIView {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var footer: UIView!
   
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,6 +32,10 @@ class PhotosOTGHeader: UIView {
 
     
     func loadViewFromNib() {
+        
+        
+        
+        
         self.layer.cornerRadius = 5
         self.layer.shadowColor = UIColor.white.cgColor
         self.layer.shadowOffset = CGSize(width: 2, height: 1)
@@ -49,8 +54,8 @@ class PhotosOTGHeader: UIView {
 //        lineUp.backgroundColor = UIColor.clear
         
         postDp.layer.cornerRadius = 10
-        postDp.layer.borderWidth = 2
-        postDp.layer.borderColor = UIColor.orange.cgColor
+//        postDp.layer.borderWidth = 0.5
+        postDp.layer.borderColor = UIColor(hex: "#FF6858").cgColor
         drawL.backgroundColor = UIColor.clear
         
     }

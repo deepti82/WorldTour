@@ -11,6 +11,7 @@ import Spring
 
 class PhotoOTGFooter: UIView {
     
+    @IBOutlet var footerView: UIView!
     var postTop:Post!
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: SpringButton!
@@ -53,7 +54,7 @@ class PhotoOTGFooter: UIView {
         likeButton.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
         lineView.alpha = 0.3
-        
+        footerView.alpha = 0.9
     }
     
     @IBAction func sendComments(_ sender: UIButton) {

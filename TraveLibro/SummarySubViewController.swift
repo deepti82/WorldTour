@@ -11,6 +11,7 @@ import UIKit
 
 class SummarySubViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var tripSummaryView: UIView!
     @IBOutlet weak var profilePicture: UIImageView!
@@ -45,8 +46,8 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
             makeTLProfilePicture(self.profilePicture)
         })
         
-       
-        
+        hide()
+//       countryStackView.isHidden = true
         tripSummaryView.layer.cornerRadius = 5
         
         cellSubview = VerticalLayout(width: self.view.frame.width - 20)
@@ -208,6 +209,32 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         }
     }
     
+    func hide() {
+        profilePicture.isHidden = true
+        userName.isHidden = true
+        startDate.isHidden = true
+        dayCount.isHidden = true
+        likesNumber.isHidden = true
+        checkInCollectionView.isHidden = true
+        countryStackView.isHidden = true
+        countriesVisitedLabel.isHidden = true
+        likesLabel.isHidden = true
+    }
+    
+    
+    func show() {
+        profilePicture.isHidden = false
+        userName.isHidden = false
+        startDate.isHidden = false
+        dayCount.isHidden = false
+        likesNumber.isHidden = false
+        checkInCollectionView.isHidden = false
+        countryStackView.isHidden = false
+        countriesVisitedLabel.isHidden = false
+        likesLabel.isHidden = true
+    }
+    
+    
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
         let dateFormatter = DateFormatter()
@@ -276,8 +303,11 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
                             self.tripSummaryView.animation.makeHeight(150).animate(0.0)
                         }
 
-                                        self.checkInCollectionView.reloadData()
                     self.getCountView()
+                    self.checkInCollectionView.reloadData()
+                    self.show()
+//                    self.countryStackView.isHidden = false
+                   
                 }
             })
         })

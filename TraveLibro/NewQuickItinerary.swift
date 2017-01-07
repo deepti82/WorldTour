@@ -40,7 +40,7 @@ class NewQuickItinerary: UIView {
         let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         blurView.contentView.addSubview(vibrancyEffectView)
-        
+    
         
     }
     

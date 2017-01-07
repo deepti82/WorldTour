@@ -13,9 +13,9 @@ class drawLine: UIView {
     override func draw(_ rect: CGRect) {
         
         let context = UIGraphicsGetCurrentContext()
-        context!.setLineWidth(6.0)
+        context!.setLineWidth(8.0)
         context!.setStrokeColor(lightOrangeColor.cgColor)
-        context!.setLineDash(phase: 2, lengths: [20, 8])
+        context!.setLineDash(phase: 2, lengths: [12, 8])
         context!.setLineCap(CGLineCap(rawValue: 200)!)
         context!.move(to: CGPoint(x: 0, y: 5))
         context!.addLine(to: CGPoint(x: 0, y: 200))

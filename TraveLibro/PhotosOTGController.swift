@@ -17,7 +17,7 @@ class PhotosOTGController: UIViewController {
         super.viewDidLoad()
         
         photoHeader = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: 400, height: 184))
-        
+                
         photoCenter = PhotosOTGView(frame: CGRect(x: 0, y: 200, width: 400, height: 394))
         
         photoFooter = PhotoOTGFooter(frame: CGRect(x: 0, y: 600, width: 400, height: 184))

@@ -110,9 +110,9 @@ class PhotosOTG: UIView {
         bgView.layer.shadowColor = UIColor.black.cgColor
         bgView.layer.shadowOffset = CGSize(width: 2, height: 1)
         
-        postDp.layer.cornerRadius = 17.5
-        postDp.layer.borderWidth = 2
-        postDp.layer.borderColor = UIColor.orange.cgColor
+        postDp.layer.cornerRadius = 15
+        postDp.layer.borderWidth = 1
+        postDp.layer.borderColor = UIColor(hex: "FF6858").cgColor
         
         
         photosTitle.numberOfLines = 0

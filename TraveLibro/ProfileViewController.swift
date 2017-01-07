@@ -13,11 +13,13 @@ var doRemove: Bool = true
 
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
 
+    @IBOutlet weak var livesInStack: UIStackView!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profile_badge: UIImageView!
 //    @IBOutlet weak var profileLocation: UILabel!
     @IBOutlet weak var profileUsername: UILabel!
     @IBOutlet weak var isPhotographer: UILabel!
+    @IBOutlet weak var moreAboutMe: UILabel!
     
     var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
@@ -39,6 +41,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var initialEntrance = false
     var user = User()
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var MAMButton: UIButton!
     @IBAction func MAMTapped(_ sender: AnyObject?) {
         
@@ -114,6 +117,41 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
+        let darkBlur1 = UIBlurEffect(style: UIBlurEffectStyle.prominent)
+        let blurView1 = UIVisualEffectView(effect: darkBlur1)
+        blurView1.frame.size.height = self.mainProfileView.frame.height
+        blurView1.frame.size.width = self.mainProfileView.frame.width
+        //        blurView.layer.zPosition = -1
+        //        blurView.alpha = 0.5
+        blurView1.isUserInteractionEnabled = false
+        MAMatterView.addSubview(blurView1)
+        
+        
+        
+        
+        
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.prominent)
+        let blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = self.mainProfileView.frame.height
+        blurView.frame.size.width = self.mainProfileView.frame.width
+//        blurView.layer.zPosition = -1
+       blurView.alpha = 0.9
+        blurView.isUserInteractionEnabled = false
+        self.mainProfileView.addSubview(blurView)
+        
+        
+        MAMButton.layer.zPosition = 500000
+        moreAboutMe.layer.zPosition = 500000
+        collectionView.layer.zPosition = 500000
+        isPhotographer.layer.zPosition = 500000
+        profileView.layer.zPosition = 500000
+        profile_badge.layer.zPosition = 500000
+        profile_badge.layer.zPosition = 500000
+        profileUsername.layer.zPosition = 500000
+        MAMatterView.layer.zPosition = 500000
+        livesInStack.layer.zPosition = 500000
         initialLogin = false
         self.navigationController?.isNavigationBarHidden = false
         getDarkBackGround(self)
@@ -303,7 +341,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             if(currentUser["journeyId"].stringValue == "-1") {
                 isJourneyOngoing = false
                 tlVC.showJourneyOngoing(journey: JSON(""))
+//                self.navigationController?.navigationBar.isHidden = true
             }
+           
+
             self.navigationController?.pushViewController(tlVC, animated: false)
             
             
@@ -343,7 +384,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProfileDetailCell
         cell.infoLabel.attributedText = fullText
-        
+        cell.infoLabel.layer.zPosition = 50000
         if (indexPath as NSIndexPath).row == labels.count - 1 {
             cell.separatorView.isHidden = true
         }

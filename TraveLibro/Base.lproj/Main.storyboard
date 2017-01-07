@@ -3513,7 +3513,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <constraints>
                                     <constraint firstItem="CCU-j2-b3f" firstAttribute="top" secondItem="MYd-vb-oWn" secondAttribute="bottom" constant="16" id="1bO-9q-nhA"/>
                                     <constraint firstItem="ogf-zC-WaX" firstAttribute="top" secondItem="hKw-kR-G0H" secondAttribute="top" constant="-30" id="1k0-Wu-2Uj"/>
@@ -3551,10 +3551,13 @@
                         <outlet property="MAMButton" destination="6fO-4a-a7e" id="PX3-xd-fUq"/>
                         <outlet property="MAMStack" destination="HEf-Pa-zSZ" id="7kg-I7-pJh"/>
                         <outlet property="MAMatterView" destination="Hhm-4w-xeC" id="rBn-IV-zoC"/>
+                        <outlet property="collectionView" destination="JVb-V2-2Zg" id="wHh-ci-QFv"/>
                         <outlet property="isPhotographer" destination="JrE-nA-UMs" id="QDr-0b-U9Y"/>
+                        <outlet property="livesInStack" destination="dwA-HX-W2Y" id="ast-9j-y5Z"/>
                         <outlet property="livesLabel" destination="fIX-Vs-ZKH" id="S22-Nq-Yf6"/>
                         <outlet property="locationIcon" destination="acm-rW-2OD" id="xhB-6R-P5K"/>
                         <outlet property="mainProfileView" destination="hKw-kR-G0H" id="XZY-E0-T9r"/>
+                        <outlet property="moreAboutMe" destination="m1F-gD-cCl" id="bSm-ZF-qce"/>
                         <outlet property="placeLabel" destination="dA8-bh-ZYi" id="Bt8-7M-e4u"/>
                         <outlet property="profileCollectionView" destination="JVb-V2-2Zg" id="YKw-M1-gvT"/>
                         <outlet property="profilePicture" destination="FzV-dF-2z1" id="9Fo-Z8-EXh"/>
@@ -10158,6 +10161,7 @@
                         <outlet property="countriesVisitedLabel" destination="OHm-Jx-0oj" id="zzu-DG-iaq"/>
                         <outlet property="countryStackView" destination="ncp-sH-XDe" id="eQJ-yl-4Ru"/>
                         <outlet property="dayCount" destination="iGe-AW-yoy" id="p7X-3t-UaW"/>
+                        <outlet property="likesLabel" destination="yMI-WI-X4p" id="zMI-zx-iwI"/>
                         <outlet property="likesNumber" destination="dzM-bo-OjD" id="JL8-yC-moi"/>
                         <outlet property="profilePicture" destination="gKc-g7-gG6" id="92c-Ih-oom"/>
                         <outlet property="remainingCountries" destination="0wE-2r-VYB" id="ObU-au-TwH"/>
