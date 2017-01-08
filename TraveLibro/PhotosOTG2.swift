@@ -22,14 +22,6 @@ class PhotosOTG2: VerticalLayout {
         header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 113 ))
         self.addSubview(header)
         
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
-        let blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame.size.height = header.footer.frame.size.height
-        blurView.frame.size.width = header.footer.frame.size.width
-        //        blurView.layer.zPosition = -1
-//        blurView.alpha = 0.9
-        blurView.isUserInteractionEnabled = false
-        header.footer.addSubview(blurView)
         header.postDp.layer.zPosition = 5
         header.calendarLabel.layer.zPosition = 5
         header.clockLabel.layer.zPosition = 5

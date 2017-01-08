@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -223,6 +223,15 @@
                         <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h75-8D-si8">
                             <rect key="frame" x="0.0" y="308" width="400" height="50"/>
                             <subviews>
+                                <visualEffectView opaque="NO" alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGx-Ye-hJf">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="nEI-Hn-zNJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </view>
+                                    <color key="backgroundColor" white="1" alpha="0.14999999999999999" colorSpace="calibratedWhite"/>
+                                    <blurEffect style="light"/>
+                                </visualEffectView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qDE-Og-Mnz">
                                     <rect key="frame" x="8" y="13" width="91" height="25"/>
                                     <subviews>
@@ -277,12 +286,16 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="FGx-Ye-hJf" firstAttribute="top" secondItem="h75-8D-si8" secondAttribute="top" id="5bK-T3-nDO"/>
                                 <constraint firstItem="qDE-Og-Mnz" firstAttribute="leading" secondItem="h75-8D-si8" secondAttribute="leadingMargin" id="EOU-VG-n3H"/>
                                 <constraint firstItem="qDE-Og-Mnz" firstAttribute="centerY" secondItem="h75-8D-si8" secondAttribute="centerY" id="dTO-Jt-gp4"/>
+                                <constraint firstItem="FGx-Ye-hJf" firstAttribute="leading" secondItem="h75-8D-si8" secondAttribute="leading" id="hAW-CC-exW"/>
                                 <constraint firstAttribute="trailing" secondItem="nL6-3q-GMr" secondAttribute="trailing" constant="8" id="hH6-EP-pgd"/>
                                 <constraint firstAttribute="height" constant="50" id="jdD-ia-Rt4"/>
+                                <constraint firstAttribute="bottom" secondItem="FGx-Ye-hJf" secondAttribute="bottom" id="pwl-gb-wlx"/>
+                                <constraint firstAttribute="trailing" secondItem="FGx-Ye-hJf" secondAttribute="trailing" id="smm-8T-52Z"/>
                                 <constraint firstItem="nL6-3q-GMr" firstAttribute="top" secondItem="h75-8D-si8" secondAttribute="top" constant="-10" id="wgU-AH-yRg"/>
                             </constraints>
                         </view>
@@ -295,6 +308,7 @@
                             </state>
                         </button>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="b9h-EL-mQr" firstAttribute="top" secondItem="t7r-hX-X00" secondAttribute="top" constant="3" id="C0X-yJ-NQ5"/>
                         <constraint firstItem="nWW-f4-BJZ" firstAttribute="top" secondItem="vov-Dh-v4k" secondAttribute="bottom" constant="8" id="E6U-v4-6Du"/>
