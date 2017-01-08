@@ -343,11 +343,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 tlVC.showJourneyOngoing(journey: JSON(""))
 //                self.navigationController?.navigationBar.isHidden = true
             }
-           
-
-            self.navigationController?.pushViewController(tlVC, animated: false)
-            
-            
+            self.navigationController?.pushViewController(tlVC, animated: false) 
         }
     }
     

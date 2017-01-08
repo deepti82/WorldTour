@@ -891,6 +891,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.layout = VerticalLayout(width: self.view.frame.width)
         mainScroll.addSubview(layout)
         var i  = PostImage();
@@ -953,7 +954,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         mainScroll.delegate = self
         
-        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: screenHeight))
     }
     
     
@@ -1753,6 +1753,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.locationLabel.returnKeyType = .done
         otgView.locationLabel.delegate = self
         otgView.optionsButton.addTarget(self, action: #selector(NewTLViewController.optionsAction(_:)), for: .touchUpInside)
+        otgView.optionsButton.isHidden = true
         otgView.nameJourneyTF.delegate = self
         otgView.clipsToBounds = true
         layout.addSubview(otgView)
@@ -2069,7 +2070,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let isUrl = verifyUrl(imageUrl)
             
             if isUrl && imageUrl != "" {
-                
                 let data = try? Data(contentsOf: URL(string: imageUrl)!)
                 
                 if data != nil  && imageUrl != "" {
@@ -2386,7 +2386,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             var coverImage: String!
             
             if !isJourneyOngoing {
-                request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
+                request.getLocation(locValue.latitude, long: locValue.longitude, completion: {
+                    (response) in
+                    
+                    DispatchQueue.main.async(execute: {
                     if (response.error != nil) {
                         print("error: \(response.error?.localizedDescription)")
                     }
@@ -2401,12 +2404,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.locationLat = String(locValue.latitude)
                         self.locationLong = String(locValue.longitude)
                         let dateFormatterTwo = DateFormatter()
-                        dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+                        dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                         self.currentTime = dateFormatterTwo.string(from: Date())
                         self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.0)
                         self.otgView.detectLocationView.isHidden = false
                         self.otgView.placeLabel.text = self.locationData
-                        self.otgView.timestampDate.text = self.currentTime
+                        let curDate = Date()
+                        let localDate = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: self.currentTime, isDate: true)
+                        let localTime = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: self.currentTime, isDate: false)
+                        self.otgView.timestampDate.text = "\(localDate) | \(localTime)" //self.currentTime
+                        
+                        
+//                        self.otgView.timestampDate.text = self.currentTime
                         
                         //                    self.otgView.timestampTime.text =
                         self.otgView.cityView.layer.opacity = 0.0
@@ -2424,7 +2433,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         print("response error!")
                     }
-                    
+                    })
                 })
             }
         }
