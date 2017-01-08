@@ -18,6 +18,10 @@ class PhotosOTG2: VerticalLayout {
     var newTl:NewTLViewController!
     func generatePost(_ post:Post) {
         
+        
+        
+        self.layer.cornerRadius = 5.0
+        self.clipsToBounds = true
         //header generation only
         header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 113 ))
         self.addSubview(header)
@@ -165,7 +169,7 @@ class PhotosOTG2: VerticalLayout {
                 photosButton.isUserInteractionEnabled = true
                 photosButton.addGestureRecognizer(tapGestureRecognizer)
             }
-            photosButton.layer.cornerRadius = 5.0
+            //photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
             centerView.horizontalScrollForPhotos.addSubview(photosButton)
