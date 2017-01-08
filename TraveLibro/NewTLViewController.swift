@@ -1715,7 +1715,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func newOtg(_ sender: UIButton) {
-        setTopNavigation(text: "");
+        setTopNavigation(text: "On The Go");
         addNewView.animation.makeOpacity(0.0).animate(0.5)
         addNewView.isHidden = true
         addNewView.removeFromSuperview()
@@ -1788,6 +1788,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if textField == otgView.nameJourneyTF {
             
+            setTopNavigation(text: "Kind of Journey");
             otgView.closeBuddies.isHidden = true
             otgView.cityView.isHidden = false
             otgView.cityImage.isHidden = false
@@ -1825,6 +1826,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func startOTGJourney(_ sender: UIButton) {
+        setTopNavigation(text: "Name Your Journey");
         otgView.frame.origin.y = 200
         otgView.nameJourneyTF.becomeFirstResponder()
         sender.animation.makeHeight(0.0).animate(0.3)
@@ -1988,6 +1990,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
         }
         if !isEdit {
+            
+            
+            setTopNavigation(text: "Add Buddies");
             
             otgView.selectCategoryButton.isHidden = true
             otgView.journeyDetails.isHidden = false
