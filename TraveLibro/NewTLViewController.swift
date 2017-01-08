@@ -1734,7 +1734,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         addNewView.removeFromSuperview()
         //        getScrollView(height, journey: JSON(""))
         
-        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: self.view.frame.height))
+        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 400))
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
