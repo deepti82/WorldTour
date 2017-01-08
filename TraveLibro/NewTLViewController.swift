@@ -857,16 +857,25 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         
-        let rightButton = UIButton()
-        rightButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        rightButton.setImage(UIImage(named: "options_icon"), for: UIControlState())
+        let rightButton = UIView()
+        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 25)
+        let rightButton1 = UIButton()
+        rightButton1.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        rightButton1.setImage(UIImage(named: "location_icon"), for: UIControlState())
+        let rightButton2 = UIButton()
+        rightButton2.frame = CGRect(x: 35, y: 0, width: 25, height: 25)
+        rightButton2.setImage(UIImage(named: "options_icon"), for: UIControlState())
+        
+        rightButton1.addTarget(self, action: #selector(self.gotoNearMe(_:)), for: .touchUpInside)
+        rightButton2.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
+        
+        rightButton.addSubview(rightButton1)
+        rightButton.addSubview(rightButton2)
+        
 //        rightButton.setTitle("i", for: UIControlState())
 //        rightButton.layer.borderWidth = 1.5
 //        rightButton.layer.borderColor = UIColor.white.cgColor
 //        rightButton.layer.cornerRadius = rightButton.frame.width / 2
-        rightButton.clipsToBounds = true
-        rightButton.titleLabel?.font = avenirBold
-        rightButton.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)
         self.title = text
         if (myJourney != nil) {
             self.customNavigationBar(left: leftButton, right: rightButton)
