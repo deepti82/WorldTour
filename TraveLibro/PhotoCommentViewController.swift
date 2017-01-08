@@ -18,6 +18,8 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     var mentions: [String] = []
     var mentionSuggestions: [JSON] = []
     
+    var commentText: UILabel!
+    
     var hashtagSuggestions: [JSON] = []
     var previousHashtags: [String] = []
     var addComment: JSON!
@@ -135,6 +137,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         case 1:
             return hashtagSuggestions.count
         default:
+            self.commentText.text = "\(comments.count) Comments"
             return comments.count
         }
     }

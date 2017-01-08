@@ -135,6 +135,7 @@ class SinglePhotoViewController: UIViewController {
     @IBAction func sendComment(_ sender: UIButton) {
         let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
         comment.postId = postId!
+        comment.commentText = self.commentText
         if singlePhotoJSON != nil {
             comment.otherId = singlePhotoJSON["name"].string!
             comment.photoId = singlePhotoJSON["_id"].string!
