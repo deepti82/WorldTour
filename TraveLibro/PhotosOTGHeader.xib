@@ -32,6 +32,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbt-AQ-xbl">
+                    <rect key="frame" x="0.0" y="50" width="375" height="63"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="M67-B9-ObM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="extraLight"/>
+                </visualEffectView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rt5-8f-vFp" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
                     <rect key="frame" x="182" y="7" width="10" height="42"/>
                     <constraints>
@@ -39,7 +47,7 @@
                         <constraint firstAttribute="height" constant="42" id="oET-MD-JN9"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBz-We-C2u">
+                <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBz-We-C2u">
                     <rect key="frame" x="0.0" y="50" width="375" height="63"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-oe-jCW">
@@ -109,7 +117,8 @@
                             <state key="normal" image="location_icon" backgroundImage="orangebox"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="3Ij-Yi-cXb" secondAttribute="bottom" constant="8" id="3mw-Dg-mSo"/>
                         <constraint firstItem="fid-yH-MEf" firstAttribute="leading" secondItem="3Ij-Yi-cXb" secondAttribute="trailing" id="51s-8t-ajT"/>
@@ -126,9 +135,14 @@
                     </constraints>
                 </view>
             </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="wBz-We-C2u" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Fpp-Pn-N5d"/>
+                <constraint firstAttribute="trailing" secondItem="rbt-AQ-xbl" secondAttribute="trailing" id="Gps-t2-ee0"/>
+                <constraint firstAttribute="bottom" secondItem="rbt-AQ-xbl" secondAttribute="bottom" id="Muk-01-gSQ"/>
+                <constraint firstItem="rbt-AQ-xbl" firstAttribute="top" secondItem="Rt5-8f-vFp" secondAttribute="bottom" constant="1" id="W12-bS-iTb"/>
                 <constraint firstItem="Rt5-8f-vFp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="182" id="hkt-3T-4hK"/>
+                <constraint firstItem="rbt-AQ-xbl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kHU-hY-cXe"/>
                 <constraint firstItem="Rt5-8f-vFp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="kuI-hw-ljY"/>
                 <constraint firstAttribute="trailing" secondItem="wBz-We-C2u" secondAttribute="trailing" id="nEj-q7-TIC"/>
                 <constraint firstItem="wBz-We-C2u" firstAttribute="top" secondItem="Rt5-8f-vFp" secondAttribute="bottom" constant="1" id="xdb-ya-oZh"/>
