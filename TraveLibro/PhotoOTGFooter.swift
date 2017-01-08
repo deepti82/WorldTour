@@ -54,7 +54,6 @@ class PhotoOTGFooter: UIView {
         commentIcon.tintColor = mainBlueColor
         likeButton.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
-        lineView.alpha = 0.5
 //        LineView1.alpha = 0.3
 //        footerView.alpha = 0.9
         shareButton.imageView?.contentMode = .scaleAspectFit
