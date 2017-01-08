@@ -433,9 +433,7 @@ extension NewTLViewController {
     }
     
     func showJourneyOngoing(journey: JSON) {
-        print(isJourneyOngoing);
         if !isJourneyOngoing {
-            hideHeaderAndFooter(true)
             height = self.view.frame.height/2
             addNewView = NewQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             addNewView.layer.zPosition = 1000
@@ -449,7 +447,6 @@ extension NewTLViewController {
             addNewView.closeButton.addTarget(self, action: #selector(NewTLViewController.closeView(_:)), for: .touchUpInside)
         }
         else {
-            print(isJourneyOngoing);
             height = 0
             getScrollView(height, journey: journey)
         }
