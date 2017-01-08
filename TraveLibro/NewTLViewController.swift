@@ -977,14 +977,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func hideHeaderAndFooter(_ isShow:Bool) {
-        self.navigationController?.view.alpha = 1
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             if(self.toolbarView != nil ){
                 self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
-                
-            } else {
-                self.navigationController?.view.alpha = 0
             }
             if(self.addPostsButton != nil) {
                 UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
