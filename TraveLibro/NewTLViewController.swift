@@ -1715,13 +1715,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func newOtg(_ sender: UIButton) {
-        setTopNavigation(text: "On The Go");
+        setTopNavigation(text: "");
         addNewView.animation.makeOpacity(0.0).animate(0.5)
         addNewView.isHidden = true
         addNewView.removeFromSuperview()
         //        getScrollView(height, journey: JSON(""))
         
-        otgView = startOTGView(frame: CGRect(x: 0, y: 0, width: mainScroll.frame.width, height: 400))
+        otgView = startOTGView(frame: CGRect(x: 0, y: 200, width: mainScroll.frame.width, height: mainScroll.frame.height))
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
@@ -1836,6 +1836,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.cityView.isHidden = true
         otgView.locationLabel.isHidden = true
         otgView.closeBuddies.isHidden = true
+        
         //        locationManager.requestAlwaysAuthorization()
         //        locationManager.delegate = self
         //        locationManager.desiredAccuracy = kCLLocationAccuracyBest
