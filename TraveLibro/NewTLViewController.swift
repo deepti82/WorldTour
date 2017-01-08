@@ -206,30 +206,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func editActivity(_ sender: UIButton) {
-        //        params:{
-        //            type: "editPost",
-        //            _id: "Post _id",
-        //            user: "User _id",
-        //            photosArr:[{ _id : "Photo _id ", caption : "Caption"},{ _id : "Photo _id ", caption : "Caption"}]   --- all photos after deletion & with caption edited
-        //            videosArr:[{ _id : "Video _id ", caption : "Caption"},{ _id : "Video _id ", caption : "Caption"}]   --- all videos after deletion & with caption edited
-        //            checkIn:{
-        //                location: "",
-        //                lat: "",
-        //                long: "",
-        //                city: "",
-        //                country : "",
-        //                category: ""
-        //            },
-        //            checkInChange: true/false                 ----- if checkin location change then true else false
-        //            buddiesArr: [{ _id: "", name:"",email:""},{_id: "", name:"",email:""}],
-        //            uniqueId: "Post uniqueid",
-        //            journeyUniqueId : "Journey uniqueId",
-        //            addHashtag: ["",""]               ---------- hashtags added
-        //            removeHashtag :["",""]        ---------- hashtags removed
-        //            username: "User name"
-        //        }
+
         
-        
+        hideAddActivity()
         var lat = ""
         if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
             lat = String(self.addView.currentLat!)
@@ -268,44 +247,48 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
         }
         
-        var params:JSON = ["type":"editPost"];
-        params["_id"] = JSON(self.addView.editPost.post_ids)
-        params["user"] = JSON(self.addView.editPost.post_userId)
-        params["uniqueId"] = JSON(self.addView.editPost.post_uniqueId)
-        params["journeyUniqueId"] = JSON(self.myJourney["uniqueId"].stringValue)
-        params["username"] = JSON(currentUser["name"].stringValue)
-        params["thoughts"] = JSON(thoughts)
-        let checkIn:JSON = [
-            "location": location,
-            "lat": lat,
-            "long": lng,
-            "city": self.addView.currentCity,
-            "country" : self.addView.currentCountry,
-            "category": category
-        ]
-        params["checkIn"] = checkIn
-        
-        
-        params["buddiesArr"] = JSON(self.addView.addedBuddies)
-        
-        var photosJson:[JSON] = []
-        
-        for img in self.addView.imageArr {
-            photosJson.append(img.parseJson())
+        if(self.addView.imageArr.count > 0 || thoughts.characters.count > 0 || location.characters.count > 0) {
+            var params:JSON = ["type":"editPost"];
+            params["_id"] = JSON(self.addView.editPost.post_ids)
+            params["user"] = JSON(self.addView.editPost.post_userId)
+            params["uniqueId"] = JSON(self.addView.editPost.post_uniqueId)
+            params["journeyUniqueId"] = JSON(self.myJourney["uniqueId"].stringValue)
+            params["username"] = JSON(currentUser["name"].stringValue)
+            params["thoughts"] = JSON(thoughts)
+            let checkIn:JSON = [
+                "location": location,
+                "lat": lat,
+                "long": lng,
+                "city": self.addView.currentCity,
+                "country" : self.addView.currentCountry,
+                "category": category
+            ]
+            params["checkIn"] = checkIn
+            
+            
+            params["buddiesArr"] = JSON(self.addView.addedBuddies)
+            
+            var photosJson:[JSON] = []
+            
+            for img in self.addView.imageArr {
+                photosJson.append(img.parseJson())
+            }
+            params["photosArr"] = JSON(photosJson)
+            if(self.addView.editPost.post_location != location) {
+                params["checkInChange"] = true
+            } else {
+                params["checkInChange"] = false
+            }
+            print(params)
+            
+            request.postAddPhotosVideos(param: params) { (json) in
+                print(json)
+                self.getJourney();
+            }
         }
-        params["photosArr"] = JSON(photosJson)
-        if(self.addView.editPost.post_location != location) {
-            params["checkInChange"] = true
-        } else {
-            params["checkInChange"] = false
-        }
-        print(params)
         
-        request.postAddPhotosVideos(param: params) { (json) in
-            print(json)
-            self.getJourney();
-        }
-        hideAddActivity()
+       
+       
     }
     
     func newPost(_ sender: UIButton) {
