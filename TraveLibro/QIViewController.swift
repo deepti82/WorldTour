@@ -17,7 +17,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         getDarkBackGround(self)
         self.delegate = self
         self.dataSource = self
@@ -56,6 +56,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
     
     
     func createNavigation() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         let leftButton = UIButton()
         if inx == 0 {
             leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
@@ -77,9 +78,8 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
             rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
         }
         
-        
         self.customNavigationBar(left: leftButton, right: rightButton)
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func prevPage(_ sender: UIButton) {

@@ -932,7 +932,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.view.bringSubview(toFront: addPostsButton)
         self.view.bringSubview(toFront: toolbarView)
         self.view.addSubview(TLLoader)
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         mainScroll.delegate = self
         
     }
@@ -1742,15 +1742,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func newItinerary(_ sender: UIButton) {
-        hideHeaderAndFooter(false)
-        let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
         self.navigationController?.pushViewController(itineraryVC, animated: true)
         
     }
     
     func closeView(_ sender: UIButton) {
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController!.popViewController(animated: true)
         
     }
