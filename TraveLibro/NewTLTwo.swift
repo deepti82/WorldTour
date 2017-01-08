@@ -466,7 +466,7 @@ extension NewTLViewController {
                         let otg = subview as! startOTGView
                         let localDate = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: date, isDate: true)
                         let localTime = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: date, isDate: false)
-                        otg.timestampDate.text = "\(localDate), \(localTime)"
+                        otg.timestampDate.text = "\(localDate) | \(localTime)"
                         flag = 1
                     }
                 }
@@ -477,7 +477,7 @@ extension NewTLViewController {
             
             let localDate = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: date, isDate: true)
             let localTime = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: date, isDate: false)
-            otgView.timestampDate.text = "\(localDate), \(localTime)" //self.currentTime
+            otgView.timestampDate.text = "\(localDate) | \(localTime)" //self.currentTime
         }
     }
     

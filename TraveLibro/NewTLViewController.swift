@@ -722,6 +722,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     isJourneyOngoing = true
                     self.myJourney = response["data"]
                     self.journeyID = self.myJourney["_id"].stringValue
+                    self.journeyName = self.myJourney["name"].stringValue
                     self.isInitialLoad = false
                     self.showJourneyOngoing(journey: response["data"])
                     self.setTopNavigation(text: "On The Go");
@@ -1870,7 +1871,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if !isJourneyOngoing {
             
-            let journeyName = otgView.nameJourneyTF.text!
+            self.journeyName = otgView.nameJourneyTF.text!
             height = 40.0
             mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
             
@@ -2023,8 +2024,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func buddyAdded(_ json:[JSON],inMiddle:Bool) {
         
         //         let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
-        
+        print( currentUser["_id"].stringValue)
+        print(currentUser["name"].stringValue)
+        print(self.journeyId)
+        print(self.journeyName)
         request.addBuddiesOTG(json, userId: currentUser["_id"].stringValue , userName: currentUser["name"].stringValue, journeyId: self.journeyId, inMiddle: inMiddle, journeyName: self.journeyName, completion: { (json) in
+            
         })
     }
     
