@@ -126,7 +126,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 doneButton.setTitle("SAVE", for: .normal)
                 doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
                 doneButton.setTitleColor(mainBlueColor, for: .normal)
-//                doneButton.setTitle(sender.title(for: .application)!, for: .application)
+                //                doneButton.setTitle(sender.title(for: .application)!, for: .application)
                 
                 let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
                 cancelButton.setTitle("CANCEL", for: .normal)
@@ -206,7 +206,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func editActivity(_ sender: UIButton) {
-
+        
         
         hideAddActivity()
         var lat = ""
@@ -287,8 +287,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
         }
         
-       
-       
+        
+        
     }
     
     func newPost(_ sender: UIButton) {
@@ -873,10 +873,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         rightButton.addSubview(rightButton1)
         rightButton.addSubview(rightButton2)
         
-//        rightButton.setTitle("i", for: UIControlState())
-//        rightButton.layer.borderWidth = 1.5
-//        rightButton.layer.borderColor = UIColor.white.cgColor
-//        rightButton.layer.cornerRadius = rightButton.frame.width / 2
+        //        rightButton.setTitle("i", for: UIControlState())
+        //        rightButton.layer.borderWidth = 1.5
+        //        rightButton.layer.borderColor = UIColor.white.cgColor
+        //        rightButton.layer.cornerRadius = rightButton.frame.width / 2
         self.title = text
         if (myJourney != nil) {
             self.customNavigationBar(left: leftButton, right: rightButton)
@@ -895,7 +895,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         mainScroll.addSubview(layout)
         var i  = PostImage();
         i.uploadPhotos()
-        
+        self.setTopNavigation(text: "On The Go")
         globalNewTLViewController = self;
         getDarkBackGroundBlue(self)
         getJourney()
@@ -948,9 +948,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         self.view.bringSubview(toFront: infoButton)
         self.view.bringSubview(toFront: addPostsButton)
-        
         self.view.bringSubview(toFront: toolbarView)
-        
         self.view.addSubview(TLLoader)
         
         mainScroll.delegate = self
@@ -979,16 +977,27 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func hideHeaderAndFooter(_ isShow:Bool) {
+        self.navigationController?.view.alpha = 1
         if(isShow) {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
-            self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
-            UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
-                self.addPostsButton.frame.origin.y = self.view.frame.height + 10
-                self.mainFooter.frame.origin.y = self.view.frame.height + 85
-            }, completion: nil)
+            if(self.toolbarView != nil ){
+                self.toolbarView.animation.makeOpacity(0.0).animate(0.5)
+                
+            } else {
+                self.navigationController?.view.alpha = 0
+            }
+            if(self.addPostsButton != nil) {
+                UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
+                    self.addPostsButton.frame.origin.y = self.view.frame.height + 10
+                    self.mainFooter.frame.origin.y = self.view.frame.height + 85
+                }, completion: nil)
+            }
+            
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-            self.toolbarView.animation.makeOpacity(1.0).animate(0.5)
+            if(self.toolbarView != nil ){
+                self.toolbarView.animation.makeOpacity(1.0).animate(0.5)
+            }
             UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                 self.addPostsButton.frame.origin.y = self.view.frame.height - 120
                 self.mainFooter.frame.origin.y = self.view.frame.height - 55
@@ -1727,6 +1736,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func newOtg(_ sender: UIButton) {
+        hideHeaderAndFooter(false)
         setTopNavigation(text: "On The Go");
         addNewView.animation.makeOpacity(0.0).animate(0.5)
         addNewView.isHidden = true
@@ -1750,7 +1760,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func newItinerary(_ sender: UIButton) {
-        
+        hideHeaderAndFooter(false)
         let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(itineraryVC, animated: true)
@@ -1822,7 +1832,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             otgView.nameJourneyTF.animation.moveY(-50)
             otgView.detectLocationView.animation.makeOpacity(1.0).thenAfter(0.3).animate(0.3)
             
-//            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
+            //            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
             
             otgView.bonVoyageLabel.isHidden = false
             
@@ -1970,12 +1980,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 //                otgView.journeyCategoryTwo.isHidden = false
                 //                otgView.journeyCategoryThree.isHidden = true
             } else {
-//                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-//                otgView.journeyCategoryOne.isHidden = false
-//                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-//                otgView.journeyCategoryTwo.isHidden = false
-//                otgView.journeyCategoryThree.isHidden = false
-//                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+                //                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+                //                otgView.journeyCategoryOne.isHidden = false
+                //                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+                //                otgView.journeyCategoryTwo.isHidden = false
+                //                otgView.journeyCategoryThree.isHidden = false
+                //                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
             }
             //            if journeyCategories.count == 2 {
             //
@@ -2377,47 +2387,44 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             if !isJourneyOngoing {
                 request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
-                    DispatchQueue.main.async(execute: {
-                        if (response.error != nil) {
-                            print("error: \(response.error?.localizedDescription)")
-                        }
-                        else if response["value"].bool! {
-                            print(response["data"]);
-                            self.locationData = response["data"]["name"].string!
-                            self.otgView.locationLabel.text = response["data"]["name"].string!
-                            self.locationPic = response["data"]["image"].string!
-                            self.makeCoverPic(self.locationPic)
-//                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
-                            self.locationName = self.locationData
-                            self.locationLat = String(locValue.latitude)
-                            self.locationLong = String(locValue.longitude)
-                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
-                            let dateFormatterTwo = DateFormatter()
-                            dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
-                            self.currentTime = dateFormatterTwo.string(from: Date())
-                            self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.0)
-                            self.otgView.detectLocationView.isHidden = false
-                            self.otgView.placeLabel.text = self.locationData
-                            self.otgView.timestampDate.text = self.currentTime
-                            
-                            //                    self.otgView.timestampTime.text =
-                            self.otgView.cityView.layer.opacity = 0.0
-                            self.otgView.cityView.isHidden = false
-                            self.otgView.cityView.animation.makeOpacity(1.0).animate(0.0)
-                            self.otgView.journeyDetails.isHidden = true
-                            self.otgView.selectCategoryButton.isHidden = false
-                            self.height = 250.0
-                            self.mainScroll.animation.makeY(60.0).animate(0.7)
-                            self.otgView.animation.makeY(0.0).animate(0.7)
-                            
-                            self.scrollToBottom()
-                        }
-                        else {
-                            
-                            print("response error!")
-                        }
+                    if (response.error != nil) {
+                        print("error: \(response.error?.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        print(response["data"]);
+                        self.locationData = response["data"]["name"].string!
+                        self.otgView.locationLabel.text = response["data"]["name"].string!
+                        self.locationPic = response["data"]["image"].string!
+                        self.makeCoverPic(self.locationPic)
+                        //                            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
+                        self.locationName = self.locationData
+                        self.locationLat = String(locValue.latitude)
+                        self.locationLong = String(locValue.longitude)
+                        let dateFormatterTwo = DateFormatter()
+                        dateFormatterTwo.dateFormat = "dd-MM-yyyy HH:mm"
+                        self.currentTime = dateFormatterTwo.string(from: Date())
+                        self.otgView.detectLocationView.animation.makeOpacity(0.0).animate(0.0)
+                        self.otgView.detectLocationView.isHidden = false
+                        self.otgView.placeLabel.text = self.locationData
+                        self.otgView.timestampDate.text = self.currentTime
                         
-                    })
+                        //                    self.otgView.timestampTime.text =
+                        self.otgView.cityView.layer.opacity = 0.0
+                        self.otgView.cityView.isHidden = false
+                        self.otgView.cityView.animation.makeOpacity(1.0).animate(0.0)
+                        self.otgView.journeyDetails.isHidden = true
+                        self.otgView.selectCategoryButton.isHidden = false
+                        self.height = 250.0
+                        self.mainScroll.animation.makeY(60.0).animate(0.7)
+                        self.otgView.animation.makeY(0.0).animate(0.7)
+                        
+                        self.scrollToBottom()
+                    }
+                    else {
+                        
+                        print("response error!")
+                    }
+                    
                 })
             }
         }
