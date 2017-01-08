@@ -859,11 +859,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let rightButton = UIButton()
         rightButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        
-        rightButton.setTitle("i", for: UIControlState())
-        rightButton.layer.borderWidth = 1.5
-        rightButton.layer.borderColor = UIColor.white.cgColor
-        rightButton.layer.cornerRadius = rightButton.frame.width / 2
+        rightButton.setImage(UIImage(named: "options_icon"), for: UIControlState())
+//        rightButton.setTitle("i", for: UIControlState())
+//        rightButton.layer.borderWidth = 1.5
+//        rightButton.layer.borderColor = UIColor.white.cgColor
+//        rightButton.layer.cornerRadius = rightButton.frame.width / 2
         rightButton.clipsToBounds = true
         rightButton.titleLabel?.font = avenirBold
         rightButton.addTarget(self, action: #selector(self.infoCircle(_:)), for: .touchUpInside)

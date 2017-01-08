@@ -162,7 +162,7 @@ extension UIViewController {
         }
     }
     
-    func customNavigationBar(left: UIButton?, right: UIButton?) {
+    func customNavigationBar(left: UIButton?, right: AnyObject?) {
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
@@ -172,15 +172,16 @@ extension UIViewController {
         
         let leftBarButton = UIBarButtonItem()
         leftBarButton.customView = left
+        self.navigationItem.leftBarButtonItem = leftBarButton
         
         if (right != nil) {
             let rightBarButton = UIBarButtonItem()
-            rightBarButton.customView = right
+            rightBarButton.customView = right as! UIView
             self.navigationItem.rightBarButtonItem = rightBarButton
-            
+
         }
         
-        self.navigationItem.leftBarButtonItem = leftBarButton
+        
         
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
