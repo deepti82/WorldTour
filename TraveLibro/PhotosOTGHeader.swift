@@ -11,6 +11,7 @@ import UIKit
 class PhotosOTGHeader: UIView {
 
     
+    @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var drawL: drawLine!
     @IBOutlet weak var postDp: UIImageView!
     @IBOutlet weak var whatPostIcon: UIButton!
@@ -33,8 +34,8 @@ class PhotosOTGHeader: UIView {
     
     func loadViewFromNib() {
         
-        
-        
+        self.blurView.layer.cornerRadius = 5
+        self.blurView.clipsToBounds = true
         
         self.layer.cornerRadius = 5
         self.layer.shadowColor = UIColor.white.cgColor
