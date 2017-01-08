@@ -658,15 +658,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             request.editPost(editPostId, location: location, categoryLocation: locationCategory, thoughts: thoughts, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
-                    
                     if response.error != nil {
-                        
                         //                        print("error: \(response.error!.localizedDescription)")
-                        
                     }
-                        
                     else if response["value"].bool! {
-                        
                         //                        print("edited response")
                         self.addView.categoryView.isHidden = true
                         self.addView.categoryLabel.isHidden = true
@@ -675,22 +670,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         self.newScroll.isHidden = true
                         self.backView.isHidden = true
                         self.getJourney()
-                        
                     }
-                        
-                    else {
-                        
-                        
-                        
-                        
-                    }
-                    
                 })
-                
             })
-            
         }
-        
     }
     
     func detectLocation(_ sender: AnyObject?) {
@@ -701,8 +684,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getJourney() {
-        
-        
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
@@ -712,7 +693,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     self.layout.removeAll()
                     self.prevPosts = []
                     self.isInitialLoad = true;
-                    
                     self.detectLocation(nil)
                     self.latestCity = response["data"]["startLocation"].string!
                     if self.isRefreshing {
