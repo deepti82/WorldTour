@@ -651,8 +651,6 @@ extension NewTLViewController {
     func showInfo(_ response: JSON) {
         
         
-        
-        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: screenHeight))
         // self.infoView.crollInoView.contentSize.height = 1000
         self.infoView.crollInoView.isScrollEnabled = true
         self.infoView.crollInoView.scrollsToTop = true
