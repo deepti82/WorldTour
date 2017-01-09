@@ -53,10 +53,10 @@
                     <rect key="frame" x="0.0" y="50" width="375" height="63"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-oe-jCW">
-                            <rect key="frame" x="8" y="6" width="40" height="40"/>
+                            <rect key="frame" x="8" y="6" width="48" height="49"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="jVi-5c-hIN"/>
-                                <constraint firstAttribute="height" constant="40" id="pdN-JA-6Td"/>
+                                <constraint firstAttribute="width" constant="48" id="jVi-5c-hIN"/>
+                                <constraint firstAttribute="height" constant="49" id="pdN-JA-6Td"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evening by the beach! :) with Sarvesh Brahme and 1 other at Girgaon" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="po4-VN-8dh" customClass="ActiveLabel" customModule="TraveLibro" customModuleProvider="target">
@@ -109,10 +109,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xvb-Pa-iMT">
-                            <rect key="frame" x="332" y="14" width="30" height="30"/>
+                            <rect key="frame" x="328" y="14" width="35" height="35"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="Bv1-yR-vFG"/>
-                                <constraint firstAttribute="width" constant="30" id="XUv-Vf-eCa"/>
+                                <constraint firstAttribute="height" constant="35" id="Bv1-yR-vFG"/>
+                                <constraint firstAttribute="width" constant="35" id="XUv-Vf-eCa"/>
                             </constraints>
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -125,12 +125,12 @@
                         <constraint firstItem="fid-yH-MEf" firstAttribute="leading" secondItem="3Ij-Yi-cXb" secondAttribute="trailing" id="51s-8t-ajT"/>
                         <constraint firstItem="bcT-oe-jCW" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="6" id="6pz-ij-5nU"/>
                         <constraint firstAttribute="bottom" secondItem="fid-yH-MEf" secondAttribute="bottom" constant="8" id="81C-Iu-oUV"/>
-                        <constraint firstAttribute="trailing" secondItem="Xvb-Pa-iMT" secondAttribute="trailing" constant="13" id="8X5-mF-Bu4"/>
+                        <constraint firstAttribute="trailing" secondItem="Xvb-Pa-iMT" secondAttribute="trailing" constant="12" id="8X5-mF-Bu4"/>
                         <constraint firstItem="3Ij-Yi-cXb" firstAttribute="leading" secondItem="wBz-We-C2u" secondAttribute="leading" constant="98" id="Bh8-2a-lbh"/>
                         <constraint firstItem="bcT-oe-jCW" firstAttribute="leading" secondItem="wBz-We-C2u" secondAttribute="leading" constant="8" id="W95-f8-o1O"/>
                         <constraint firstItem="Xvb-Pa-iMT" firstAttribute="top" secondItem="bcT-oe-jCW" secondAttribute="top" constant="8" id="bA5-UG-LNw"/>
                         <constraint firstItem="po4-VN-8dh" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="-2" id="jdW-GF-scm"/>
-                        <constraint firstItem="po4-VN-8dh" firstAttribute="leading" secondItem="bcT-oe-jCW" secondAttribute="trailing" constant="28" id="oE7-WV-but"/>
+                        <constraint firstItem="po4-VN-8dh" firstAttribute="leading" secondItem="bcT-oe-jCW" secondAttribute="trailing" constant="20" id="oE7-WV-but"/>
                         <constraint firstAttribute="width" constant="375" id="sYU-G7-HGg"/>
                         <constraint firstAttribute="height" constant="63" id="wkB-Ol-J5r"/>
                     </constraints>
