@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -46,10 +46,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ih-9w-LfC" customClass="SpringButton" customModule="Spring">
-                            <rect key="frame" x="22" y="8" width="20" height="20"/>
+                            <rect key="frame" x="22" y="8" width="23" height="23"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="Pnm-GH-oQQ"/>
-                                <constraint firstAttribute="height" constant="20" id="dFe-ju-aTO"/>
+                                <constraint firstAttribute="width" constant="23" id="Pnm-GH-oQQ"/>
+                                <constraint firstAttribute="height" constant="23" id="dFe-ju-aTO"/>
                             </constraints>
                             <state key="normal" title="Button" image="likeButton"/>
                             <connections>
@@ -57,12 +57,12 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Se-5g-ZtM">
-                            <rect key="frame" x="95" y="8" width="20" height="20"/>
+                            <rect key="frame" x="103" y="8" width="23" height="23"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button" image="shareButton"/>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4n-Bj-TR6" customClass="SpringButton" customModule="Spring">
-                            <rect key="frame" x="60" y="8" width="20" height="20"/>
+                            <rect key="frame" x="63" y="8" width="23" height="23"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button" image="speech_icon"/>
                             <connections>
@@ -70,7 +70,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZ2-Cx-gNB">
-                            <rect key="frame" x="342" y="6" width="25" height="25"/>
+                            <rect key="frame" x="333" y="6" width="25" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="25" id="6zy-Aj-wxr"/>
                                 <constraint firstAttribute="width" constant="25" id="dZh-dA-Gd9"/>
@@ -86,7 +86,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="cZ2-Cx-gNB" firstAttribute="top" secondItem="VF2-i7-4DA" secondAttribute="top" constant="6" id="9sI-Ia-wkq"/>
-                        <constraint firstAttribute="trailing" secondItem="cZ2-Cx-gNB" secondAttribute="trailing" constant="8" id="DOA-44-Msv"/>
+                        <constraint firstAttribute="trailing" secondItem="cZ2-Cx-gNB" secondAttribute="trailing" constant="17" id="DOA-44-Msv"/>
                         <constraint firstItem="7Ih-9w-LfC" firstAttribute="leading" secondItem="VF2-i7-4DA" secondAttribute="leading" constant="22" id="UC8-9N-t1S"/>
                         <constraint firstItem="7Ih-9w-LfC" firstAttribute="top" secondItem="VF2-i7-4DA" secondAttribute="top" constant="8" id="iIf-Wp-sEn"/>
                         <constraint firstAttribute="height" constant="37" id="uaC-fe-vAv"/>

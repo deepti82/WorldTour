@@ -26,6 +26,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var isDeletedImage = false
     var currentImageIndex = 0;
     
+    @IBOutlet weak var editView: UIView!
+    @IBOutlet weak var deleteImage: UIButton!
     @IBOutlet var completeImages: [UIImageView]!
     @IBOutlet weak var captionTextView: UITextView!
     @IBOutlet weak var imageForCaption: SpringImageView!
@@ -133,9 +135,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         rightButton.addTarget(self, action: #selector(self.doneCaptions(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
-        self.customNavigationBar(left: leftButton, right: rightButton)
+       deleteImage.setTitle(String(format: "%C", faicon["trash"]!), for: UIControlState())
+
+     
+
         
+        self.customNavigationBar(left: leftButton, right: rightButton)
        
+     
+        deleteImage.layer.zPosition = 10
         captionTextView.layer.cornerRadius = 5.0
         captionTextView.clipsToBounds = true
         captionTextView.layer.zPosition = 1000
