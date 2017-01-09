@@ -545,7 +545,7 @@ extension NewTLViewController {
             journeyDateChanged(date: journey["startTime"].string!)
             
             let jc = journey["kindOfJourney"].array!
-            
+            journeyCategories = []
             for each in jc {
                 
                 journeyCategories.append(each.string!)

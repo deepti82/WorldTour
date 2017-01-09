@@ -59,6 +59,41 @@ class EndJourneyViewController: UIViewController {
     }
     
     
+    func categoryImage(_ str: String) -> String {
+        var retStr = ""
+        switch str {
+            
+        case "adventure":
+            retStr =  "adventure"
+        case "backpacking":
+            retStr =  "backpacking"
+        case "business":
+             retStr = "business_new"
+        case "religious":
+            retStr = "religious"
+        case "romance":
+            retStr = "romance"
+        case "budget":
+            retStr = "luxury"
+        case "luxury":
+            retStr = "luxury_new"
+        case "family":
+            retStr = "family"
+        case "friends":
+            retStr = "friends"
+        case "solo":
+            retStr = "solo"
+        case "partner":
+            retStr = "partner"
+        case "colleague":
+            retStr = "colleague"
+        default:
+            retStr = ""
+        }
+        return retStr
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -105,9 +140,9 @@ class EndJourneyViewController: UIViewController {
         endJourney.changeConstraint(height: 90)
         
 //        endJourney.accesoriesVew.isHidden = true
-        endJourney.categoryOne.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
-        endJourney.categoryTwo.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
-        endJourney.categoryThree.tintColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 1)
+        endJourney.categoryOne.tintColor = mainOrangeColor
+        endJourney.categoryTwo.tintColor = mainOrangeColor
+        endJourney.categoryThree.tintColor = mainOrangeColor
         endJourney.changePhotoButton.addTarget(self, action: #selector(changePicture(_:)), for: .touchUpInside)
         endJourney.journeyCoverPic.backgroundColor = UIColor.white
         endJourney.journeyCoverPic.image = UIImage(named: "")
@@ -166,23 +201,25 @@ class EndJourneyViewController: UIViewController {
             
         }
         
+        
+        
         //  add categories
         if categories.count >= 3 {
-            endJourney.categoryImages[0].image = UIImage(named: "\(categories[0])")
-            endJourney.categoryImages[1].image = UIImage(named: "\(categories[1])")
-            endJourney.categoryImages[2].image = UIImage(named: "\(categories[2])")
+            endJourney.categoryImages[0].image = UIImage(named: categoryImage(categories[0].stringValue) )
+            endJourney.categoryImages[1].image = UIImage(named: categoryImage(categories[1].stringValue))
+            endJourney.categoryImages[2].image = UIImage(named: categoryImage(categories[2].stringValue))
             
         }
         else if journey["kindOfJourney"].array!.count == 2 {
             
-            endJourney.categoryImages[0].image = UIImage(named: "\(categories[0])")
-            endJourney.categoryImages[1].image = UIImage(named: "\(categories[1])")
+            endJourney.categoryImages[0].image = UIImage(named: categoryImage(categories[0].stringValue) )
+            endJourney.categoryImages[1].image = UIImage(named: categoryImage(categories[1].stringValue))
             endJourney.categoryImages[2].isHidden = true
             
         }
         else if journey["kindOfJourney"].array!.count == 1 {
             
-            endJourney.categoryImages[0].image = UIImage(named: "\(categories[0])")
+            endJourney.categoryImages[0].image = UIImage(named: categoryImage(categories[0].stringValue) )
             endJourney.categoryImages[1].isHidden = true
             endJourney.categoryImages[2].isHidden = true
             
