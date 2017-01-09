@@ -17,7 +17,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "Quick Itinerary"
         getDarkBackGround(self)
         self.delegate = self
         self.dataSource = self
@@ -57,6 +57,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
     
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         let leftButton = UIButton()
         if inx == 0 {
             leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
@@ -71,7 +72,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         if inx == 4 {
             rightButton.setTitle("Preview", for: .normal)
             rightButton.addTarget(self, action: #selector(self.donePage(_:)), for: .touchUpInside)
-            rightButton.frame = CGRect(x: 0, y: 8, width: 45, height: 30)
+            rightButton.frame = CGRect(x: 0, y: 8, width: 80, height: 30)
         }else{
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
             rightButton.addTarget(self, action: #selector(self.nextPage(_:)), for: .touchUpInside)
