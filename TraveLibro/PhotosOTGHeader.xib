@@ -40,7 +40,7 @@
                         <constraint firstAttribute="height" constant="42" id="oET-MD-JN9"/>
                     </constraints>
                 </view>
-                <visualEffectView opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbt-AQ-xbl">
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbt-AQ-xbl">
                     <rect key="frame" x="0.0" y="50" width="375" height="124"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="M67-B9-ObM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
