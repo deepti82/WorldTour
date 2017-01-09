@@ -19,6 +19,7 @@ public class Post {
     var imageArr:[PostImage] = []
     var buddiesStr:String = "[]"
     var buddies:[Buddy] = []
+    var buddyJson:[JSON] = []
     // id, userid, journeyuniqueid, posttype, photos[], videos[], thought, checkin[], buddies[], iscompleted
     
     let id = Expression<Int64>("id")
@@ -191,43 +192,43 @@ public class Post {
             retText = post.post_thoughts
             if(post.post_location != nil && post.post_location != "") {
                 retText = retText + " at " + post.post_location
-                if(post.buddies.count == 1) {
-                    retText = retText + " with " + post.buddies[0].buddyName
-                } else if (post.buddies.count == 2) {
-                    retText = retText + " with " + post.buddies[0].buddyName + " and " + post.buddies[1].buddyName
-                } else if (post.buddies.count > 2) {
-                    let n = post.buddies.count - 1
-                    retText = retText + " with " + post.buddies[0].buddyName + " and " + String(n) + " others"
+                if(post.buddyJson.count == 1) {
+                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue
+                } else if (post.buddyJson.count == 2) {
+                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
+                } else if (post.buddyJson.count > 2) {
+                    let n = post.buddyJson.count - 1
+                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
                 }
             } else {
-                if(post.buddies.count == 1) {
-                    retText = retText + " with " + post.buddies[0].buddyName
-                } else if (post.buddies.count == 2) {
-                    retText = retText + " with " + post.buddies[0].buddyName + " and " + post.buddies[1].buddyName
-                } else if (post.buddies.count > 2) {
-                    let n = post.buddies.count - 1
-                    retText = retText + " with " + post.buddies[0].buddyName + " and " + String(n) + " others"
+                if(post.buddyJson.count == 1) {
+                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue
+                } else if (post.buddyJson.count == 2) {
+                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
+                } else if (post.buddyJson.count > 2) {
+                    let n = post.buddyJson.count - 1
+                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
                 }
             }
         } else {
             if(post.post_location != nil && post.post_location != "") {
                 retText = "At " + post.post_location
-                if(post.buddies.count == 1) {
-                    retText = retText + " with " + post.buddies[0].buddyName
-                } else if (post.buddies.count == 2) {
-                    retText = retText + " with " + post.buddies[0].buddyName + " and " + post.buddies[1].buddyName
-                } else if (post.buddies.count > 2) {
-                    let n = post.buddies.count - 1
-                    retText = retText + " with " + post.buddies[0].buddyName + " and " + String(n) + " others"
+                if(post.buddyJson.count == 1) {
+                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue
+                } else if (post.buddyJson.count == 2) {
+                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
+                } else if (post.buddyJson.count > 2) {
+                    let n = post.buddyJson.count - 1
+                    retText = retText + " with " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
                 }
             } else {
-                if(post.buddies.count == 1) {
-                    retText = "With " + post.buddies[0].buddyName
-                } else if (post.buddies.count == 2) {
-                    retText = "With " + post.buddies[0].buddyName + " and " + post.buddies[1].buddyName
-                } else if (post.buddies.count > 2) {
-                    let n = post.buddies.count - 1
-                    retText = "With " + post.buddies[0].buddyName + " and " + String(n) + " others"
+                if(post.buddyJson.count == 1) {
+                    retText = "With " + post.buddyJson[0]["name"].stringValue
+                } else if (post.buddyJson.count == 2) {
+                    retText = "With " + post.buddyJson[0]["name"].stringValue + " and " + post.buddyJson[1]["name"].stringValue
+                } else if (post.buddyJson.count > 2) {
+                    let n = post.buddyJson.count - 1
+                    retText = "With " + post.buddyJson[0]["name"].stringValue + " and " + String(n) + " others"
                 }
             }
         }
@@ -264,7 +265,7 @@ public class Post {
         self.post_date = json["UTCModified"].stringValue
         self.post_likeCount = json["likeCount"].intValue
         self.post_commentCount = json["commentCount"].intValue
-        
+        self.buddyJson = json["buddies"].array!
         self.post_dateDay = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: self.post_date, isDate: true)
         self.post_dateTime = changeDate(givenFormat: "yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: self.post_date, isDate: false)
         
