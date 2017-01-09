@@ -1,6 +1,8 @@
 import UIKit
 import DKChainableAnimationKit
 
+var buddiesStatus = true
+
 class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var youCanOnly: UILabel!
@@ -22,7 +24,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     var frezzFriends: [JSON] = []
     var addedFriendsImages: [String] = []
     var flag = 0
-    var buddiesStatus = true
+    
     var allFriendsJson: [JSON] = []
     
     var uniqueId: String = ""
@@ -233,7 +235,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                 } else if response["value"].bool! {
                     
-                    if self.buddiesStatus {
+                    if buddiesStatus {
                         self.allFriendsJson = response["data"].array!
                     }else{
                         self.allFriendsJson = []

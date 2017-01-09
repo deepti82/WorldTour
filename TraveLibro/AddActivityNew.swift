@@ -1,4 +1,4 @@
-import UIKit
+    import UIKit
 import BSImagePicker
 import Photos
 import imglyKit
@@ -281,17 +281,16 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     
     func tagMoreBuddies(_ sender: UIButton) {
         self.resignThoughtsTexViewKeyboard()
+        if(self.typeOfAddActivtiy != "EditActivity") {
+            buddiesStatus = true
+        } else {
+            buddiesStatus = false
+        }
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         next.whichView = "AddActivity"
         print(addedBuddies);
         if addedBuddies != nil {
             next.addedFriends = addedBuddies
-            if(self.typeOfAddActivtiy == "EditActivity") {
-                next.buddiesStatus = true
-            } else {
-                next.buddiesStatus = false
-            }
-            
         }
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(next, animated: true)

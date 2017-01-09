@@ -58,10 +58,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var isInitialLoad = true
     
     @IBAction func addMoreBuddies(_ sender: AnyObject) {
+        buddiesStatus = false;
         let getBuddies = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         getBuddies.addedFriends = myJourney["buddies"].arrayValue
         getBuddies.whichView = "NewTLMiddle"
-        getBuddies.buddiesStatus = false;
         getBuddies.uniqueId = journeyId
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(getBuddies, animated: true)
@@ -2026,11 +2026,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func addBuddies(_ sender: UIButton) {
         print("ADD BUDDIES");
+        
+        if journeyId != nil {
+            buddiesStatus  = true;
+        }
+        else {
+            addBuddies(sender)
+        }
+        
         let addBuddiesVC = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         addBuddiesVC.whichView = "NewTLView"
         otgView.animation.makeY(25).animate(0.0)
+        
         if journeyId != nil {
-            addBuddiesVC.buddiesStatus  = true;
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController!.pushViewController(addBuddiesVC, animated: true)
         }
