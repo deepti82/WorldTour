@@ -180,6 +180,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        self.title = "Photos (\(imageArr.count))"
         return imageArr.count
         
     }

@@ -22,6 +22,7 @@ class NearMeViewController: UIViewController, UICollectionViewDelegateFlowLayout
         getBackGround(self)
         navigationController?.hidesBarsOnSwipe = false
         nearMeCollectionView.backgroundColor = UIColor.clear
+        self.setTopNavigation("Near Me")
     }
     
     private func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -62,7 +63,21 @@ class NearMeViewController: UIViewController, UICollectionViewDelegateFlowLayout
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
     
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+
 }
 
 class NearMeCell: UICollectionViewCell {

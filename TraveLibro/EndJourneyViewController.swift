@@ -236,6 +236,8 @@ class EndJourneyViewController: UIViewController {
         //  END VERTICAL LAYOUT
         
         
+        self.title = "End Journey"
+        
         
     }
     

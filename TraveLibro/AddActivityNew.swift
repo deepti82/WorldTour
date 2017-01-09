@@ -340,9 +340,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     func addLocationTapped() {
         
         if userLocation != nil {
-            
             print("locations = \(userLocation.latitude) \(userLocation.longitude)")
-            
             request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
@@ -577,7 +575,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         
         self.horizontalScrollForPhotos.layoutSubviews()
         self.photoScroll.contentSize = CGSize(width: self.horizontalScrollForPhotos.frame.width, height: self.horizontalScrollForPhotos.frame.height)
-        photosCount.text = "( " + String(imageArr.count) + " )";
+        photosCount.text = "" + String(imageArr.count) + "";
         if(imageArr.count == 0) {
             self.photosIntialView.isHidden = false
             self.photosFinalView.isHidden = true
