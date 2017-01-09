@@ -32,6 +32,7 @@ class KindOfJourneyOTGViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setTopNavigation(text: "Kind of Journey");
         getBackGround(self)
         
         let allControllers = self.navigationController?.viewControllers
@@ -109,7 +110,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 else if response["value"].bool! {
                     
                     print("is editing? \(self.isEdit)")
-                    self.goBack()
+                    self.goBack(UIView())
                     if(globalNewTLViewController != nil) {
                         globalNewTLViewController.getJourney()
                     }
@@ -128,16 +129,19 @@ class KindOfJourneyOTGViewController: UIViewController {
         }
         else {
             
-            self.goBack()
+            self.goBack(UIView())
         }
         
     }
     
-    func goBack() {
+    func goBack(_ sender:AnyObject) {
         
         self.backVC.showDetailsFn(isEdit: self.isEdit)
         self.navigationController!.popViewController(animated: true)
     }
+    
+    
+    
     
     func selectGroupOne(_ sender: UIButton) {
         
@@ -157,6 +161,18 @@ class KindOfJourneyOTGViewController: UIViewController {
         }
         
         
+    }
+    
+    
+    
+    func setTopNavigation(text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
     }
     
     func selectGroupTwo(_ sender: UIButton) {

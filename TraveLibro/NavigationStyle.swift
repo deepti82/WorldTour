@@ -162,6 +162,8 @@ extension UIViewController {
         }
     }
     
+    
+    
     func customNavigationBar(left: UIButton?, right: AnyObject?) {
         
         self.navigationController?.navigationBar.tintColor = UIColor.white

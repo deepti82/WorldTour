@@ -835,9 +835,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func setTopNavigation(text: String) {
         let leftButton = UIButton()
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
+//        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+//        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         
         let rightButton = UIView()
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 25)
@@ -1830,7 +1830,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func startOTGJourney(_ sender: UIButton) {
         setTopNavigation(text: "Name Your Journey");
-        otgView.frame.origin.y = 200
+        otgView.frame.origin.y = 300
         otgView.nameJourneyTF.becomeFirstResponder()
         sender.animation.makeHeight(0.0).animate(0.3)
         sender.isHidden = true
