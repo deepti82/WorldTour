@@ -149,27 +149,27 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         
         print(quickItinery)
         
-//        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
-//            DispatchQueue.main.async(execute: {
-//                print(response)
-//                if response.error != nil {
-//                    
-//                    print("error: \(response.error!.localizedDescription)")
-//                    
-//                }
-//                else if response["value"].bool! {
-//                    quickItinery = []
-//                    let tstr = Toast(text: "Itenary saved successfully.")
-//                    tstr.show()
-//                    self.callBackViewC()
-//                    print("nothing")
-//                }
-//                else {
-//                    print("nothing")
-//                    
-//                }
-//            })
-//        })
+        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                print(response)
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    quickItinery = []
+                    let tstr = Toast(text: "Itenary saved successfully.")
+                    tstr.show()
+                    self.callBackViewC()
+                    print("nothing")
+                }
+                else {
+                    print("nothing")
+                    
+                }
+            })
+        })
     }
     
     
