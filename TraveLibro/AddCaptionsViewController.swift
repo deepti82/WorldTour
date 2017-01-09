@@ -12,7 +12,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var addActivity:AddActivityNew!
     var currentImage = UIImage()
     var allImages: [UIButton] = []
-    
+    var quickIt:QuickIteneraryFive!
     var allIds: [Int] = []
     var imageIds: [Int] = []
     var allPhotos: [PhotoUpload] = []
@@ -43,6 +43,8 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         if self.addActivity != nil {
             self.addActivity.imageArr = imageArr;
             self.addActivity.addPhotoToLayout()
+        } else if self.quickIt != nil {
+            self.quickIt.photosCollection.reloadData()
         }
         if(imageArr.count == 0) {
             self.goBack(UIButton());
@@ -107,13 +109,18 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         if self.addActivity != nil {
             self.addActivity.imageArr = imageArr;
             self.addActivity.addPhotoToLayout()
+        } else if self.quickIt != nil {
+            self.quickIt.photosCollection.reloadData()
         }
         navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true) { 
+            
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        isEditedImage = false
         print("new controller")
         self.captionTextView.delegate = self
         let leftButton = UIButton()
@@ -274,12 +281,17 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     func goBack(_ sender: UIButton) {
-        for viewController in self.navigationController!.viewControllers {
-            if viewController.isKind(of: NewTLViewController.self) {
-                let newtlVC = viewController as! NewTLViewController
-                self.navigationController!.popToViewController(newtlVC, animated: true)
-            }
+        if self.addActivity != nil {
+            self.addActivity.imageArr = imageArr;
+            self.addActivity.addPhotoToLayout()
+        } else if self.quickIt != nil {
+            self.quickIt.photosCollection.reloadData()
         }
+        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true) {
+            
+        }
+        
     }
 //    var viewHeight1 = 0
     

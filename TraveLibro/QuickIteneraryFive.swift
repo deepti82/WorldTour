@@ -17,6 +17,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var photoGallerySecondView: UIView!
     @IBOutlet weak var photosCollection: UICollectionView!
     @IBOutlet weak var addTripPhotos: UIButton!
+    var imageArr:[PostImage] = []
+    
     var thumbnail1 = [UIImage]()
 //    var quickItinery: JSON = ["name": ""]
     let image1 = UIImage()
@@ -42,21 +44,30 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.thumbnail1.count
+        return self.imageArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosFromGallery", for: indexPath)
             as! photosSelection
         
-        cell.photosImage.image = self.thumbnail1[indexPath.row]
-       cell.photosImage.contentMode = .scaleAspectFill
+        cell.photosImage.image = self.imageArr[indexPath.row].image
+        cell.photosImage.contentMode = .scaleAspectFill
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let n = indexPath.row
+        self.addCaption(n);
     }
     
     
     
     func addTripPhotosGallery(_ sender: UIButton){
+        
+//        let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+//        captionVC.imageArr = thumbnail1
+        
         let multipleImage = BSImagePickerViewController()
         multipleImage.maxNumberOfSelections = 20
         
@@ -72,35 +83,51 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
                 
             },  cancel: { (assets: [PHAsset]) -> Void in
                 
+                
+                
+                
                 print("Cancel: \(assets)")
                 }, finish: { (assets: [PHAsset]) -> Void in
+                    
+                    var img11 = [UIImage]()
                 DispatchQueue.main.async {
-                    print("test imagepicker")
                     let manage1 = PHImageManager.default()
                     let option1 = PHImageRequestOptions()
                     var n = 0
                     option1.isSynchronous = true
-                    for n in 0...assets.count - 1{
-                        print(n)
-                        manage1.requestImage(for: assets[n], targetSize: CGSize(width: 400, height: 400), contentMode: .aspectFit, options: option1, resultHandler: {(result, info)->Void in
-                            
-                            print(result!)
-                            
-                            self.thumbnail1.append(result!)
-                            print("showcell0: \(self.thumbnail1)")
-                            
+                    for n in 0...assets.count-1{
+                        PHImageManager.default().requestImage(for: assets[n], targetSize: CGSize(width: assets[n].pixelWidth, height: assets[n].pixelHeight), contentMode: .aspectFit, options: option1, resultHandler: {(result, info) in
+                            img11.append(result!)
                         })
                     }
-                   
-                    self.photoGallerySecondView.isHidden = false
-                    self.photosGalleryFirstView.isHidden = true
-                    self.photosCollection.reloadData()
+                    self.photosAdded(assets: img11)
+                    
 
                 }
             }, completion: nil)
 
     }
     
+    func photosAdded(assets: [UIImage]) {
+        for asset in assets {
+            let postImg = PostImage();
+            postImg.image = asset.resizeWith(width:800);
+            imageArr.append(postImg);
+        }
+        self.photoGallerySecondView.isHidden = false
+        self.photosGalleryFirstView.isHidden = true
+        self.photosCollection.reloadData()
+    }
+    
+    
+    func addCaption(_ n: Int) {
+        let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        captionVC.imageArr = imageArr
+        captionVC.quickIt = self
+        captionVC.currentImageIndex = n
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.pushViewController(captionVC, animated: true)
+    }
     
     func addMoreTripPhotos(_ sender: UIButton){
         let multipleImage = BSImagePickerViewController()
