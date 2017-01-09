@@ -80,7 +80,7 @@ func getDarkBackGroundBlur(_ myVC: UIViewController) -> Void {
 func getDarkBackGroundBlue(_ myVC: UIViewController) {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
-    bgImage.image = UIImage(named: "blueopacitybg")
+    bgImage.image = UIImage(named: "darkBgNew")
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     
