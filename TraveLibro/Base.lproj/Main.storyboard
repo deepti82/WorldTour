@@ -5370,7 +5370,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pVW-sF-s4A">
-                                        <rect key="frame" x="49" y="50" width="245" height="304"/>
+                                        <rect key="frame" x="49" y="50" width="245" height="412"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Utx-4p-bqZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="245" height="88"/>
@@ -5607,6 +5607,90 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="fiV-lH-jjf">
+                                                <rect key="frame" x="0.0" y="324" width="245" height="88"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="slA-Q7-0zs">
+                                                        <rect key="frame" x="0.0" y="0.0" width="65" height="88"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPQ-DT-TUV">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="65" id="9Ui-tb-t9S"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="czJ-DN-2kQ"/>
+                                                                </constraints>
+                                                                <color key="tintColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                                <state key="normal" title="luxury" image="solo" backgroundImage="bluebox"/>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="czJ-DN-2kQ"/>
+                                                                    </mask>
+                                                                </variation>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Solo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ip-23-vKA">
+                                                                <rect key="frame" x="0.0" y="70" width="65" height="18"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="91r-qi-1ux">
+                                                        <rect key="frame" x="90" y="0.0" width="65" height="88"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZZ-ip-IS3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="65" id="IwB-8d-hKw"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="oYy-lW-7Z9"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                                                <color key="tintColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                                <state key="normal" title="religious" image="shopping" backgroundImage="bluebox"/>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="oYy-lW-7Z9"/>
+                                                                    </mask>
+                                                                </variation>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbM-3F-04U">
+                                                                <rect key="frame" x="0.0" y="70" width="65" height="18"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YpE-7y-Tio">
+                                                        <rect key="frame" x="180" y="0.0" width="65" height="88"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIa-zP-QQw">
+                                                                <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="65" id="VLy-qE-ea5"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="r8P-GY-Ia2"/>
+                                                                </constraints>
+                                                                <color key="tintColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                                <state key="normal" title="friends" image="festival" backgroundImage="bluebox"/>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="r8P-GY-Ia2"/>
+                                                                    </mask>
+                                                                </variation>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Festival" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSZ-Op-CuC">
+                                                                <rect key="frame" x="0.0" y="70" width="65" height="18"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -5627,8 +5711,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="adventureAnimation" destination="yYu-Nx-JwN" id="2WS-gW-tRp"/>
-                        <outlet property="businessAnimation" destination="FMw-f6-pO3" id="b5p-de-UwH"/>
                         <outletCollection property="typeButton" destination="yYu-Nx-JwN" collectionClass="NSMutableArray" id="I5t-AH-KEl"/>
                         <outletCollection property="typeButton" destination="FMw-f6-pO3" collectionClass="NSMutableArray" id="djR-2L-GgK"/>
                         <outletCollection property="typeButton" destination="y05-bn-8bW" collectionClass="NSMutableArray" id="bDj-fl-5CQ"/>
@@ -5638,6 +5720,9 @@
                         <outletCollection property="typeButton" destination="Sri-Z6-433" collectionClass="NSMutableArray" id="o9S-ts-gzQ"/>
                         <outletCollection property="typeButton" destination="FUZ-5C-1yQ" collectionClass="NSMutableArray" id="8kT-ns-who"/>
                         <outletCollection property="typeButton" destination="kLD-2P-SYE" collectionClass="NSMutableArray" id="YAz-VX-Kbu"/>
+                        <outletCollection property="typeButton" destination="bPQ-DT-TUV" collectionClass="NSMutableArray" id="Q2k-3q-1yz"/>
+                        <outletCollection property="typeButton" destination="lZZ-ip-IS3" collectionClass="NSMutableArray" id="GGf-7S-nVx"/>
+                        <outletCollection property="typeButton" destination="fIa-zP-QQw" collectionClass="NSMutableArray" id="DzS-tl-r33"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qDz-PP-JEb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5835,15 +5920,7 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YIH-Lk-oId">
                                                 <rect key="frame" x="8" y="51" width="307" height="300"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment>
-                                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                        <attributes>
-                                                            <font key="NSFont" size="14" name="Avenir-LightOblique"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                                <attributedString key="attributedText"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="Ih2-RP-RRa" id="EbN-In-dX7"/>
@@ -5917,7 +5994,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfJ-gV-vcH">
                                         <rect key="frame" x="150" y="390" width="50" height="40"/>
-                                        <color key="backgroundColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="4Jv-JY-1Fc"/>
                                             <constraint firstAttribute="width" constant="50" id="WAr-zk-uja"/>
@@ -5983,7 +6060,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGl-r2-DqM">
                                         <rect key="frame" x="139" y="108" width="50" height="40"/>
-                                        <color key="backgroundColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="AmE-09-8Hi"/>
                                             <constraint firstAttribute="height" constant="40" id="PmT-2F-RHt"/>
@@ -11119,6 +11196,7 @@
         <image name="data_upload_icon" width="60" height="60"/>
         <image name="disney-world" width="638" height="580"/>
         <image name="family" width="100" height="100"/>
+        <image name="festival" width="83" height="83"/>
         <image name="filter_icon" width="100" height="100"/>
         <image name="friends" width="100" height="100"/>
         <image name="graybox" width="117" height="117"/>
@@ -11153,6 +11231,7 @@
         <image name="scene_photo" width="892" height="500"/>
         <image name="settings_icon" width="42" height="42"/>
         <image name="share_icon" width="21" height="30"/>
+        <image name="shopping" width="70" height="89"/>
         <image name="solo" width="100" height="100"/>
         <image name="speech_icon" width="30" height="30"/>
         <image name="star_check" width="27" height="25"/>

@@ -21,7 +21,7 @@ class QuickIteneraryTwo: UIViewController {
         super.viewDidLoad()
 //        quickItinery["itineraryType"] = []
         
-        let array = ["adventure", "business", "family", "budget", "backpacking", "romance", "friends", "religious", "luxury"]
+        let array = ["adventure", "business", "family", "budget", "backpacking", "romance", "friends", "religious", "luxury", "solo", "shopping", "festival"]
         if quickItinery["itineraryType"] == nil {
             quickItinery["itineraryType"] = JSON(eachButton)
         }
@@ -53,10 +53,10 @@ class QuickIteneraryTwo: UIViewController {
         if sender.tag == 0 {
             sender.setBackgroundImage(UIImage(named: "orangebox"), for: .normal)
             eachButton.append(sender.title(for: .application)!)
-            businessAnimation.animation = "shake"
-            businessAnimation.animate()
-            adventureAnimation.animation = "wobble"
-            adventureAnimation.animate()
+//            businessAnimation.animation = "shake"
+//            businessAnimation.animate()
+//            adventureAnimation.animation = "wobble"
+//            adventureAnimation.animate()
 
             sender.tag = 1
         }

@@ -20,7 +20,6 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     var imageArr:[PostImage] = []
     
     var thumbnail1 = [UIImage]()
-//    var quickItinery: JSON = ["name": ""]
     let image1 = UIImage()
     let imagePicker = UIImagePickerController()
     var selectPhotosCount = 10
@@ -31,7 +30,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         photosCollection.delegate = self
         photoGallerySecondView.isHidden = true
             addTripPhotos.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
-            photosAddMore.addTarget(self, action: #selector(addMoreTripPhotos(_:)), for: .touchUpInside)
+            photosAddMore.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -114,6 +113,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
             postImg.image = asset.resizeWith(width:800);
             imageArr.append(postImg);
         }
+
+        
         self.photoGallerySecondView.isHidden = false
         self.photosGalleryFirstView.isHidden = true
         self.photosCollection.reloadData()

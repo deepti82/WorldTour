@@ -69,7 +69,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         
         let rightButton = UIButton()
         if inx == 4 {
-            rightButton.setTitle("Done", for: .normal)
+            rightButton.setTitle("Preview", for: .normal)
             rightButton.addTarget(self, action: #selector(self.donePage(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 8, width: 45, height: 30)
         }else{
@@ -147,27 +147,29 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
     
     func saveItinerary() {
         
-        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
-            DispatchQueue.main.async(execute: {
-                print(response)
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    quickItinery = []
-                    let tstr = Toast(text: "Itenary saved successfully.")
-                    tstr.show()
-                    self.callBackViewC()
-                    print("nothing")
-                }
-                else {
-                    print("nothing")
-                    
-                }
-            })
-        })
+        print(quickItinery)
+        
+//        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
+//            DispatchQueue.main.async(execute: {
+//                print(response)
+//                if response.error != nil {
+//                    
+//                    print("error: \(response.error!.localizedDescription)")
+//                    
+//                }
+//                else if response["value"].bool! {
+//                    quickItinery = []
+//                    let tstr = Toast(text: "Itenary saved successfully.")
+//                    tstr.show()
+//                    self.callBackViewC()
+//                    print("nothing")
+//                }
+//                else {
+//                    print("nothing")
+//                    
+//                }
+//            })
+//        })
     }
     
     
