@@ -105,9 +105,9 @@ class PhotoOTGFooter: UIView {
     
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0) {
-            self.frame.size.height = 40;
+            self.frame.size.height = 60;
         } else {
-            self.frame.size.height = 75;
+            self.frame.size.height = 90;
         }
         PhotoOtg.layoutSubviews()
         globalNewTLViewController.addHeightToLayout(height: 500)

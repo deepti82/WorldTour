@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardCheckBoxes" customModule="TraveLibro" customModuleProvider="target">
@@ -32,7 +36,7 @@
                                         <constraint firstAttribute="width" constant="60" id="6do-Az-PLc"/>
                                         <constraint firstAttribute="height" constant="60" id="SAN-7s-mVp"/>
                                     </constraints>
-                                    <color key="tintColor" red="0.13725490200000001" green="0.1764705882" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.13725490200000001" green="0.1764705882" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" backgroundImage="halfnhalfbgGray"/>
                                     <connections>
                                         <action selector="checkBoxTap:" destination="-1" eventType="touchUpInside" id="WZ8-6Z-AVW"/>
@@ -44,7 +48,7 @@
                                         <constraint firstAttribute="height" constant="40" id="LNx-Vp-XHK"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -58,7 +62,7 @@
                                         <constraint firstAttribute="height" constant="60" id="KJx-GL-d5k"/>
                                         <constraint firstAttribute="width" constant="60" id="dEt-z0-Et9"/>
                                     </constraints>
-                                    <color key="tintColor" red="0.13725490200000001" green="0.1764705882" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.13725490200000001" green="0.1764705882" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <state key="normal" backgroundImage="halfnhalfbgGray"/>
                                     <connections>
                                         <action selector="checkBoxTap:" destination="-1" eventType="touchUpInside" id="Vuz-H5-rcJ"/>
@@ -70,7 +74,7 @@
                                         <constraint firstAttribute="height" constant="40" id="evV-Vj-fCB"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -78,7 +82,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="gKQ-mb-OWW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2Xv-Vs-P5c"/>
                 <constraint firstItem="gKQ-mb-OWW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="uiZ-h4-QlF"/>

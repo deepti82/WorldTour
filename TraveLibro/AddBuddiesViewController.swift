@@ -153,7 +153,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        moveUp()
+//        moveUp()
         print("which view: \(buddiesStatus)")
         
         if !buddiesStatus {
@@ -380,8 +380,13 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let close = String(format: "%C", faicon["close"]!)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! addedBuddiesCollectionViewCell
+        
+       
         cell.removeBuddyButton.setTitle(close, for: UIControlState())
         cell.buddyName.text = addedFriends[(indexPath as NSIndexPath).row]["name"].string!
+        cell.buddyName.adjustsFontSizeToFitWidth = true
+//        cell.buddyName.sizeToFit()
+        cell.buddyName.numberOfLines = 2
         //        cell.acc
         
         let imageUrl = addedFriends[(indexPath as NSIndexPath).row]["profilePicture"].string!
@@ -402,6 +407,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
             
             cell.buddyDp.hnk_setImageFromURL(URL(string: getImageUrl)!)
+            makeTLProfilePicture(cell.buddyDp)
             
         }
         

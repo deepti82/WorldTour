@@ -843,7 +843,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 25)
         let rightButton1 = UIButton()
         rightButton1.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        rightButton1.setImage(UIImage(named: "location_icon"), for: UIControlState())
+        rightButton1.setImage(UIImage(named: "nearMe"), for: UIControlState())
+        rightButton1.imageView?.contentMode = .scaleAspectFit
         let rightButton2 = UIButton()
         rightButton2.frame = CGRect(x: 35, y: 0, width: 25, height: 25)
         rightButton2.setImage(UIImage(named: "options_icon"), for: UIControlState())
@@ -915,7 +916,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         mainScroll.clipsToBounds = true
         
         self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 60, height: 60))
-        self.addPostsButton.setImage(UIImage(named: "add_circle_opac"), for: .normal)
+        self.addPostsButton.setImage(UIImage(named: "add_circle"), for: .normal)
         self.addPostsButton.addTarget(self, action: #selector(NewTLViewController.addPosts(_:)), for: .touchUpInside)
         
         self.addPostsButton.layer.zPosition = 5
