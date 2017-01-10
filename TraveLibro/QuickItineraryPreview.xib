@@ -9,9 +9,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuickItineraryPreview" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="cityScroll" destination="ZbX-Cv-Ijc" id="q6O-cm-IJ3"/>
+                <outlet property="countryScroll" destination="VpJ-Pa-hoC" id="JI7-d9-6FI"/>
+                <outlet property="dateTime" destination="jlz-ag-Rzg" id="eN1-uP-GTb"/>
+                <outlet property="displayPiture" destination="uGM-ah-bNv" id="fwa-Hw-PVo"/>
+                <outlet property="duration" destination="AYS-hV-1FZ" id="JyU-J0-Gaj"/>
+                <outlet property="qiView" destination="pCX-Kl-can" id="65z-ax-0Mb"/>
+                <outlet property="quickDescription" destination="fAp-ce-CRi" id="O0V-3n-0mb"/>
+                <outlet property="quickTitle" destination="ItY-yF-83P" id="yrI-aE-yDi"/>
+                <outlet property="userName" destination="t7U-ZR-A4Z" id="7og-Vu-dEn"/>
+                <outlet property="userPhoto" destination="K3F-uF-5Tl" id="RtT-GV-pTw"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QuickItineraryPreview" customModule="TraveLibro" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="837"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -259,18 +272,6 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="cityScroll" destination="ZbX-Cv-Ijc" id="L8c-l0-gsY"/>
-                <outlet property="countryScroll" destination="VpJ-Pa-hoC" id="4IF-rY-JUZ"/>
-                <outlet property="dateTime" destination="jlz-ag-Rzg" id="LB9-Js-huD"/>
-                <outlet property="displayPiture" destination="uGM-ah-bNv" id="DYx-Hw-ViN"/>
-                <outlet property="duration" destination="AYS-hV-1FZ" id="EZU-AT-RMx"/>
-                <outlet property="qiView" destination="pCX-Kl-can" id="weZ-eM-8Cu"/>
-                <outlet property="quickDescription" destination="fAp-ce-CRi" id="Oc3-B6-paN"/>
-                <outlet property="quickTitle" destination="ItY-yF-83P" id="bKg-g4-AGz"/>
-                <outlet property="userName" destination="t7U-ZR-A4Z" id="cpV-sG-Whq"/>
-                <outlet property="userPhoto" destination="K3F-uF-5Tl" id="uRn-am-IoN"/>
-            </connections>
             <point key="canvasLocation" x="36.5" y="144.5"/>
         </view>
     </objects>

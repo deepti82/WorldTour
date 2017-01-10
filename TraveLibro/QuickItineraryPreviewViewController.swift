@@ -19,11 +19,11 @@ class QuickItineraryPreviewViewController: UIViewController {
         self.title = "Itinerary Preview"
         let prev = QuickItineraryPreview(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 837))
 //        self.view.addSubview(prev)
-        prev.userName.text = currentUser["firstName"].stringValue + " " + currentUser["lastName"].stringValue
-        prev.quickTitle.text = quickItinery["title"].stringValue
-        prev.duration.text = quickItinery["duration"].stringValue + " Days"
-        prev.dateTime.text = quickItinery["month"].stringValue + " " + quickItinery["year"].stringValue
-        prev.quickDescription.text = quickItinery["description"].stringValue
+        prev.userName.text? = currentUser["firstName"].stringValue + " " + currentUser["lastName"].stringValue
+        prev.quickTitle.text? = quickItinery["title"].stringValue
+        prev.duration.text? = quickItinery["duration"].stringValue + " Days"
+        prev.dateTime.text? = quickItinery["month"].stringValue + " " + quickItinery["year"].stringValue
+        prev.quickDescription.text? = quickItinery["description"].stringValue
         
         
         

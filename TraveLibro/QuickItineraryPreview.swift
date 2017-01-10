@@ -25,8 +25,8 @@ class QuickItineraryPreview: UIView {
         super.init(frame: frame)
         loadViewFromNib()
         
-//        self.qiView.layer.cornerRadius = 5
-//        self.qiView.clipsToBounds = true
+        self.qiView.layer.cornerRadius = 5
+        self.qiView.clipsToBounds = true
         
     }
     
