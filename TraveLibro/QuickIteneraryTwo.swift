@@ -13,6 +13,7 @@ class QuickIteneraryTwo: UIViewController {
     @IBOutlet var typeButton: [UIButton]!
     
     @IBOutlet weak var adventureAnimation: SpringButton!
+    @IBOutlet weak var blurBG: UIView!
     
     @IBOutlet weak var businessAnimation: SpringButton!
     var eachButton: [String] = []
@@ -37,7 +38,7 @@ class QuickIteneraryTwo: UIViewController {
             let index = typeButton.index(of: button)
             button.setTitle(array[index!], for: .application)
                    }
-        
+        darkBlur(blurBG)
     }
     
     override func viewDidAppear(_ animated: Bool) {
