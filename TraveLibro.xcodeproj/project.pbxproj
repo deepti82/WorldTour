@@ -880,7 +880,6 @@
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
-				C2A36D031DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
@@ -1663,6 +1662,7 @@
 				C2756C4C1D05884D0083CEBD /* VerifyEmailViewController.swift */,
 				C281FBED1D56170A00728BD9 /* VerifyIntermediateViewController.swift */,
 				FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */,
+				C2A36D031DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift */,
 				FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */,
 			);
 			name = Controllers;

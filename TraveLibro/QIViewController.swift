@@ -109,40 +109,40 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         print(quickItinery)
         var check = true
         
-        for (key, itm) in quickItinery {
-            if(check){
-            switch key {
-            case "title", "month", "year", "duration":
-                if itm == "" {
-                    self.changeView(changedIndex: 0, key: key)
-                    check = false
-                }
-                break
-            case "itineraryType":
-                if itm.count == 0 {
-                    self.changeView(changedIndex: 1, key: key)
-                    check = false
-                }
-                break
-            case "countryVisited":
-                if itm.count == 0 {
-                    self.changeView(changedIndex: 2, key: key)
-                    check = false
-                }
-                break
-            case "description":
-                if itm == "" {
-                    self.changeView(changedIndex: 3, key: key)
-                    check = false
-                }
-                break
-            default: break
-            }
-        }
-        }
-        if check {
+//        for (key, itm) in quickItinery {
+//            if(check){
+//            switch key {
+//            case "title", "month", "year", "duration":
+//                if itm == "" {
+//                    self.changeView(changedIndex: 0, key: key)
+//                    check = false
+//                }
+//                break
+//            case "itineraryType":
+//                if itm.count == 0 {
+//                    self.changeView(changedIndex: 1, key: key)
+//                    check = false
+//                }
+//                break
+//            case "countryVisited":
+//                if itm.count == 0 {
+//                    self.changeView(changedIndex: 2, key: key)
+//                    check = false
+//                }
+//                break
+//            case "description":
+//                if itm == "" {
+//                    self.changeView(changedIndex: 3, key: key)
+//                    check = false
+//                }
+//                break
+//            default: break
+//            }
+//        }
+//        }
+//        if check {
             saveItinerary()
-        }
+//        }
         
     }
     
@@ -150,27 +150,33 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         
         print(quickItinery)
         
-        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
-            DispatchQueue.main.async(execute: {
-                print(response)
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    quickItinery = []
-                    let tstr = Toast(text: "Itenary saved successfully.")
-                    tstr.show()
-                    self.callBackViewC()
-                    print("nothing")
-                }
-                else {
-                    print("nothing")
-                    
-                }
-            })
-        })
+//        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
+//            DispatchQueue.main.async(execute: {
+//                print(response)
+//                if response.error != nil {
+//                    
+//                    print("error: \(response.error!.localizedDescription)")
+//                    
+//                }
+//                else if response["value"].bool! {
+//                    quickItinery = []
+//                    let tstr = Toast(text: "Itenary saved successfully.")
+//                    tstr.show()
+//                    self.callBackViewC()
+        
+        let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
+        self.navigationController?.pushViewController(itineraryVC, animated: true)
+        
+//                    let next = self.storyboard?.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
+//                    self.present(next, animated: true, completion: nil)
+//                    print("nothing")
+//                }
+//                else {
+//                    print("nothing")
+//                    
+//                }
+//            })
+//        })
     }
     
     
