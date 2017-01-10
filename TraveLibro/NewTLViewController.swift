@@ -840,13 +840,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         
         let rightButton = UIView()
-        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 25)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 35)
         let rightButton1 = UIButton()
         rightButton1.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         rightButton1.setImage(UIImage(named: "nearMe"), for: UIControlState())
         rightButton1.imageView?.contentMode = .scaleAspectFit
+        rightButton1.imageView?.clipsToBounds = true
         let rightButton2 = UIButton()
-        rightButton2.frame = CGRect(x: 35, y: 0, width: 25, height: 25)
+        rightButton2.frame = CGRect(x: 25, y: 0, width: 25, height: 25)
         rightButton2.setImage(UIImage(named: "options_icon"), for: UIControlState())
         
         rightButton1.addTarget(self, action: #selector(self.gotoNearMe(_:)), for: .touchUpInside)

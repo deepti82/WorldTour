@@ -7357,7 +7357,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="TVc-14-jzD"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="x1M-Wg-Kx7">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="1" minimumInteritemSpacing="0.0" id="x1M-Wg-Kx7">
                                     <size key="itemSize" width="75" height="70"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
