@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BuddyOTG" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="drawLine" destination="ZzG-uJ-PBX" id="2Hf-3Q-AzF"/>
                 <outlet property="infoview" destination="1jI-ml-e7H" id="qn9-Dx-cXH"/>
                 <outlet property="joinJourneytext" destination="dOk-LL-bg7" id="P6v-1j-TyS"/>
                 <outlet property="profileImage" destination="TjV-g0-pnn" id="dg2-Sy-yFX"/>
@@ -22,16 +23,8 @@
             <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-uJ-PBX" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="145" y="0.0" width="10" height="29"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="10" id="8oF-Cu-uPs"/>
-                        <constraint firstAttribute="height" constant="29" id="uMw-3F-vUK"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jI-ml-e7H">
-                    <rect key="frame" x="21" y="160" width="258" height="80"/>
+                    <rect key="frame" x="21" y="180" width="258" height="80"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gayathri Padhye has joined this journey" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOk-LL-bg7">
                             <rect key="frame" x="8" y="8" width="242" height="50"/>
@@ -55,14 +48,14 @@
                     </constraints>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="TjV-g0-pnn">
-                    <rect key="frame" x="88" y="27" width="125" height="125"/>
+                    <rect key="frame" x="88" y="47" width="110" height="110"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="125" id="v02-TM-LgX"/>
-                        <constraint firstAttribute="width" constant="125" id="zfV-CK-Iez"/>
+                        <constraint firstAttribute="height" constant="110" id="v02-TM-LgX"/>
+                        <constraint firstAttribute="width" constant="110" id="zfV-CK-Iez"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poG-co-vae">
-                    <rect key="frame" x="56" y="9" width="45" height="45"/>
+                    <rect key="frame" x="55.5" y="29" width="45" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="F2z-O7-Tzl"/>
                         <constraint firstAttribute="width" constant="45" id="Sim-SP-4WS"/>
@@ -72,24 +65,32 @@
                     <state key="normal" image="add_people" backgroundImage="green_bg_new_small"/>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hi_image" translatesAutoresizingMaskIntoConstraints="NO" id="Baq-Jp-Ix4">
-                    <rect key="frame" x="189" y="27" width="90" height="30"/>
+                    <rect key="frame" x="180" y="47" width="90" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="7J7-nm-AOy"/>
                         <constraint firstAttribute="height" constant="30" id="WVn-M9-CcL"/>
                     </constraints>
                 </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-uJ-PBX" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
+                    <rect key="frame" x="138" y="0.0" width="10" height="39"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="10" id="8oF-Cu-uPs"/>
+                        <constraint firstAttribute="height" constant="39" id="uMw-3F-vUK"/>
+                    </constraints>
+                </view>
             </subviews>
             <constraints>
                 <constraint firstItem="TjV-g0-pnn" firstAttribute="leading" secondItem="poG-co-vae" secondAttribute="trailing" constant="-13" id="0mz-hl-ayn"/>
-                <constraint firstItem="TjV-g0-pnn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4za-uZ-89E"/>
+                <constraint firstItem="TjV-g0-pnn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-7" id="4za-uZ-89E"/>
                 <constraint firstItem="1jI-ml-e7H" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="58e-uf-9om"/>
                 <constraint firstItem="ZzG-uJ-PBX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FsH-kf-4SF"/>
-                <constraint firstItem="ZzG-uJ-PBX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Maw-37-5aV"/>
-                <constraint firstItem="TjV-g0-pnn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="UbS-hh-5si"/>
-                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="leading" secondItem="TjV-g0-pnn" secondAttribute="trailing" constant="-24" id="jqg-bU-baW"/>
-                <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="TjV-g0-pnn" secondAttribute="bottom" constant="8" id="ogT-eR-ps1"/>
-                <constraint firstItem="poG-co-vae" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="q7V-Ww-qhz"/>
-                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="tcv-Ew-Knc"/>
+                <constraint firstItem="ZzG-uJ-PBX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-7" id="Maw-37-5aV"/>
+                <constraint firstItem="TjV-g0-pnn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="47" id="UbS-hh-5si"/>
+                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="leading" secondItem="TjV-g0-pnn" secondAttribute="trailing" constant="-18" id="jqg-bU-baW"/>
+                <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="TjV-g0-pnn" secondAttribute="bottom" constant="23" id="ogT-eR-ps1"/>
+                <constraint firstItem="poG-co-vae" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="29" id="q7V-Ww-qhz"/>
+                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="47" id="tcv-Ew-Knc"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -26,7 +26,7 @@ class SayBye: UIView {
         line.backgroundColor = UIColor.clear
         
 //        timestamp.textColor = UIColor(red: 105/255, green: 147/255, blue: 171/255, alpha: 1)
-//        profileImageView.layer.cornerRadius = 20
+//       profileImageView.layer.cornerRadius = 35
 //        profileImageView.layer.zPosition = 2
 //        byeImage.layer.zPosition = 3
     }

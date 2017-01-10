@@ -152,7 +152,7 @@ open class LoadingOverlay{
 func makeTLProfilePicture(_ image: UIImageView) {
     
     image.layer.cornerRadius = (37/100) * image.frame.width
-    image.layer.borderWidth = 3.0
+    image.layer.borderWidth = 4.0
     image.layer.borderColor = UIColor.white.cgColor
     image.clipsToBounds = true
     
@@ -165,6 +165,8 @@ func makeTLProfilePicture(_ image: UIButton) {
     image.clipsToBounds = true
     
 }
+
+
 
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks
