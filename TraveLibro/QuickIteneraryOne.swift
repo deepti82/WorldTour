@@ -6,10 +6,41 @@
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
+extension UITextField {
+    func underlined(){
+        let borderBottom = CALayer()
+        let borderLeft = CALayer()
+        let borderRight = CALayer()
+        let width = CGFloat(1.0)
+        let some = CGFloat(20.0)
+        
+        borderBottom.borderColor = mainBlueColor.cgColor
+        borderLeft.borderColor = mainBlueColor.cgColor
+        borderRight.borderColor = mainBlueColor.cgColor
+        
+        borderBottom.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+        borderLeft.frame = CGRect(x: 0, y: some, width: width, height: self.frame.size.height - some)
+        borderRight.frame = CGRect(x: self.frame.size.width - width, y: some, width: width, height: self.frame.size.height - some)
+        
+        
+        borderBottom.borderWidth = width
+        borderLeft.borderWidth = width
+        borderRight.borderWidth = width
+        
+        self.layer.addSublayer(borderBottom)
+        self.layer.addSublayer(borderLeft)
+        self.layer.addSublayer(borderRight)
+        self.layer.masksToBounds = true
+
+    }
+}
+
+
 import UIKit
 import CoreGraphics
 class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var tripTitle: UITextField!
+    @IBOutlet weak var quickOneView: UIView!
     
     @IBOutlet weak var durationTextField: UITextField!
     @IBOutlet weak var yearPickerView: UITextField!
@@ -25,6 +56,8 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var currentYear: Int = 0
    
     var currentMonth: String = ""
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +88,14 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
 
         // Do any additional setup after loading the view.
+        darkBlur(quickOneView)
+        tripTitle.underlined()
+        durationTextField.underlined()
+        yearPickerView.underlined()
+        monthPickerView.underlined()
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
