@@ -173,6 +173,7 @@ func darkBlur(_ view: UIView) {
     blurView.frame.size.height = view.frame.height
     blurView.frame.size.width = view.frame.width
     blurView.layer.zPosition = -1
+    view.backgroundColor = UIColor.lightText
     blurView.isUserInteractionEnabled = false
     view.addSubview(blurView)
 

@@ -29,6 +29,7 @@ class EditCategoryViewController: UIViewController, UICollectionViewDelegate, UI
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! categoryCollectionViewCell
         cell.categoryButton.imageView?.contentMode = .scaleAspectFit
+        cell.categoryButton.clipsToBounds = true
         cell.categoryButton.setImage(UIImage(named:"\(categories[indexPath.row]["image"].string!)"), for: .normal)
         cell.categoryButton.tintColor = mainBlueColor
         cell.categoryLabel.text = categories[indexPath.row]["title"].string!
