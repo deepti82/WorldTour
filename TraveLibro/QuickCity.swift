@@ -19,6 +19,7 @@ class QuickCity: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        deleteOut.setTitle(String(format: "%C", faicon["trash"]!), for: UIControlState())
     }
     
     required init?(coder aDecoder: NSCoder) {

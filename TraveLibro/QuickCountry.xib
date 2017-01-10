@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="fontawesome-webfont.ttf">
+            <string>FontAwesome</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuickCountry" customModule="TraveLibro" customModuleProvider="target">
             <connections>
@@ -21,44 +26,49 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WN0-ZQ-TMG">
-                    <rect key="frame" x="8" y="8" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="8" y="5" width="39" height="25"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p04-mJ-4Sj">
-                    <rect key="frame" x="336" y="10" width="23" height="17"/>
+                    <rect key="frame" x="352" y="5" width="15" height="25"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="17" id="DLo-6Q-V4S"/>
-                        <constraint firstAttribute="width" constant="23" id="PFi-wb-dcC"/>
+                        <constraint firstAttribute="width" constant="15" id="PFi-wb-dcC"/>
                     </constraints>
-                    <state key="normal" title="X"/>
+                    <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="17"/>
+                    <state key="normal" title="x">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="deleteCountry:" destination="-1" eventType="touchUpInside" id="wLH-7k-R1U"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc2-w8-hlc">
-                    <rect key="frame" x="298" y="9" width="30" height="17"/>
+                    <rect key="frame" x="314" y="5" width="30" height="25"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <state key="normal" title="Edit">
-                        <color key="titleColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="editCountry:" destination="-1" eventType="touchUpInside" id="dO4-rP-O2t"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.3413611352" green="0.82557433840000005" blue="0.7822966576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="p04-mJ-4Sj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Hho-ki-wcH"/>
+                <constraint firstItem="p04-mJ-4Sj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Hho-ki-wcH"/>
                 <constraint firstItem="p04-mJ-4Sj" firstAttribute="leading" secondItem="Cc2-w8-hlc" secondAttribute="trailing" constant="8" id="KX2-Hg-wqx"/>
-                <constraint firstItem="WN0-ZQ-TMG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="UhB-f8-RHj"/>
+                <constraint firstItem="WN0-ZQ-TMG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="UhB-f8-RHj"/>
                 <constraint firstItem="WN0-ZQ-TMG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="cVG-Oz-9ta"/>
-                <constraint firstAttribute="bottom" secondItem="Cc2-w8-hlc" secondAttribute="bottom" constant="9" id="nji-gz-L4h"/>
-                <constraint firstItem="Cc2-w8-hlc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="pW1-ss-wqR"/>
-                <constraint firstAttribute="trailing" secondItem="p04-mJ-4Sj" secondAttribute="trailing" constant="16" id="xS7-Jh-a2R"/>
+                <constraint firstAttribute="bottom" secondItem="p04-mJ-4Sj" secondAttribute="bottom" constant="5" id="glA-bK-ITi"/>
+                <constraint firstAttribute="bottom" secondItem="Cc2-w8-hlc" secondAttribute="bottom" constant="5" id="nji-gz-L4h"/>
+                <constraint firstItem="Cc2-w8-hlc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="pW1-ss-wqR"/>
+                <constraint firstAttribute="bottom" secondItem="WN0-ZQ-TMG" secondAttribute="bottom" constant="5" id="tpG-hm-VoL"/>
+                <constraint firstAttribute="trailing" secondItem="p04-mJ-4Sj" secondAttribute="trailing" constant="8" id="xS7-Jh-a2R"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="63.5" y="-229.5"/>
+            <point key="canvasLocation" x="74.5" y="28.5"/>
         </view>
     </objects>
 </document>

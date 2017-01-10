@@ -49,6 +49,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         cityVisited.delegate = self
         countryVisited.delegate = self
         darkBlur(blurBG)
+        cityVisited.underlined()
+        countryVisited.underlined()
         
     }
     
