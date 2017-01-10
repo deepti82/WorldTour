@@ -5816,12 +5816,7 @@
                                 <rect key="frame" x="16" y="100" width="343" height="487"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination Visited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tok-ut-42V">
-<<<<<<< HEAD
-                                        <rect key="frame" x="96" y="20" width="152" height="24"/>
-=======
-                                        <rect key="frame" x="95.5" y="20" width="152" height="24"/>
->>>>>>> origin/level-3-
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                        <rect key="frame" x="96" y="20" width="152" height="24"/>                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                         <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -5906,11 +5901,7 @@
                                 <rect key="frame" x="20" y="83.5" width="335" height="500"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Little More About This Trip..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZC-QK-QEk">
-<<<<<<< HEAD
                                         <rect key="frame" x="58" y="16" width="247" height="24"/>
-=======
-                                        <rect key="frame" x="58.5" y="16" width="247" height="24"/>
->>>>>>> origin/level-3-
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
