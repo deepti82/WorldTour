@@ -8,12 +8,14 @@ class BuddyOTG: UIView {
     @IBOutlet weak var timestamp: UILabel!
     @IBOutlet weak var infoview: UIView!
     
+    @IBOutlet weak var drawLine: drawLine!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         
         infoview.layer.cornerRadius = 5
         infoview.clipsToBounds = true
+        drawLine.backgroundColor = UIColor.clear
         
     }
     

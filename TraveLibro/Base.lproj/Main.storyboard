@@ -5259,6 +5259,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="QPt-0m-WWY"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nyc-OM-zVO">
