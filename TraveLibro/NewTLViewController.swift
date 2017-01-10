@@ -916,7 +916,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         mainScroll.clipsToBounds = true
         
         self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 60, height: 60))
-        self.addPostsButton.setImage(UIImage(named: "add_circle_opac"), for: .normal)
+        self.addPostsButton.setImage(UIImage(named: "add_circle"), for: .normal)
         self.addPostsButton.addTarget(self, action: #selector(NewTLViewController.addPosts(_:)), for: .touchUpInside)
         
         self.addPostsButton.layer.zPosition = 5
