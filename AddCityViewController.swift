@@ -14,7 +14,6 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var mainTableView: UITableView!
     
     @IBAction func detectLocationButton(_ sender: AnyObject) {
-        print("DETECTING LOCATION");
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -49,7 +48,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                             if self.locationData != nil {
                                 
                                 self.cityTextField.text = self.locationData!
-                                
+                                self.selectGender(UIButton())
                             }
                             
                         }
@@ -94,6 +93,8 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.customNavigationBar(left: leftButton, right: rightButton)
         
         mainTableView.tableFooterView = UIView()
+        
+        detectLocationButton(UIView())
         
 //        if currentUser["homeCity"] != nil {
 //            
