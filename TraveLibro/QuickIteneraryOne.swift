@@ -6,34 +6,6 @@
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
-extension UITextField {
-    func underlined(){
-        let borderBottom = CALayer()
-        let borderLeft = CALayer()
-        let borderRight = CALayer()
-        let width = CGFloat(1.0)
-        let some = CGFloat(20.0)
-        
-        borderBottom.borderColor = mainBlueColor.cgColor
-        borderLeft.borderColor = mainBlueColor.cgColor
-        borderRight.borderColor = mainBlueColor.cgColor
-        
-        borderBottom.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-        borderLeft.frame = CGRect(x: 0, y: some, width: width, height: self.frame.size.height - some)
-        borderRight.frame = CGRect(x: self.frame.size.width - width, y: some, width: width, height: self.frame.size.height - some)
-        
-        
-        borderBottom.borderWidth = width
-        borderLeft.borderWidth = width
-        borderRight.borderWidth = width
-        
-        self.layer.addSublayer(borderBottom)
-        self.layer.addSublayer(borderLeft)
-        self.layer.addSublayer(borderRight)
-        self.layer.masksToBounds = true
-
-    }
-}
 
 
 import UIKit

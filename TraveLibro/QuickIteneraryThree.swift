@@ -26,8 +26,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        cityVisited.underlined()
+        countryVisited.underlined()
         self.view.bringSubview(toFront: cityVisited)
         self.verticalLayout = VerticalLayout(width:self.quickScroll.frame.width)
         
