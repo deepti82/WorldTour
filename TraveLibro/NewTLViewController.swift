@@ -886,7 +886,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         mainScroll.delegate = self
         
         
-        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 68, width: self.view.frame.width, height: 1000))
+        self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 1000))
         
         
         mainScroll.showsVerticalScrollIndicator = false
