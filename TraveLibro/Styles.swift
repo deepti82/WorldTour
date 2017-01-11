@@ -180,6 +180,7 @@ func makeTLProfilePicture(_ image: UIImageView) {
     image.layer.borderWidth = 4.0
     image.layer.borderColor = UIColor.white.cgColor
     image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFit
     
 }
 func makeTLProfilePicture(_ image: UIButton) {
@@ -188,6 +189,8 @@ func makeTLProfilePicture(_ image: UIButton) {
     image.layer.borderWidth = 3.0
     image.layer.borderColor = UIColor.white.cgColor
     image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFit
+    image.imageView?.contentMode = UIViewContentMode.scaleAspectFit
     
 }
 
