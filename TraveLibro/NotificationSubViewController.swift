@@ -86,7 +86,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         timeFormatter.dateFormat = "hh:mm a"
         
         let getImageUrl = adminUrl + "upload/readFile?file=\(self.notifications[indexPath.row]["userFrom"]["profilePicture"].string!)"
-        let data = try? Data(contentsOf: URL(string: getImageUrl)!)
+        
         
         if notifications[(indexPath as NSIndexPath).row]["type"].string! == "request" {
             
@@ -99,11 +99,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             cell.declineButton.addTarget(self, action: #selector(NotificationSubViewController.declineTag(_:)), for: .touchUpInside)
             
             cell.profile.image = nil
+            cell.profile.hnk_setImageFromURL(URL(string:getImageUrl)!)
+            makeTLProfilePicture(cell.profile)
             
-            if data != nil {
-                cell.profile.image = UIImage(data: data!)
-                makeTLProfilePicture(cell.profile)
-            }
             
             cell.calendarText.text = "\(dateFormatter.string(from: date!))"
             cell.clockText.text = "\(timeFormatter.string(from: date!))"
@@ -131,10 +129,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             let cell = tableView.dequeueReusableCell(withIdentifier: "simpleCell") as! simpleNotifyTableViewCell
             cell.profile.image = nil
             
-            if data != nil {
-                cell.profile.image = UIImage(data: data!)
-                makeTLProfilePicture(cell.profile)
-            }
+            cell.profile.hnk_setImageFromURL(URL(string:getImageUrl)!)
+            makeTLProfilePicture(cell.profile)
             
             cell.calendarText.text = "\(dateFormatter.string(from: date!))"
             cell.clockText.text = "\(timeFormatter.string(from: date!))"
@@ -151,10 +147,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as! messageNotifyTableViewCell
             cell.profile.image = nil
         
-            if data != nil {
-                cell.profile.image = UIImage(data: data!)
-                makeTLProfilePicture(cell.profile)
-            }
+            cell.profile.hnk_setImageFromURL(URL(string:getImageUrl)!)
+            makeTLProfilePicture(cell.profile)
         
             cell.calenderText.text = "\(dateFormatter.string(from: date!))"
             cell.clockText.text = "\(timeFormatter.string(from: date!))"

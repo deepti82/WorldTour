@@ -1275,7 +1275,7 @@ class Navigation {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "notification/getNotification", parameters: ["user": id])
+            let opt = try HTTP.POST(adminUrl + "notification/getNotification", parameters: ["user": id,"pagenumber":1])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
