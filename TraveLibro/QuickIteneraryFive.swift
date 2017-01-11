@@ -115,6 +115,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
             let postImg = PostImage();
             postImg.image = asset.resizeWith(width:800);
             imageArr.append(postImg);
+            globalPostImage.append(postImg)
         }
 
         

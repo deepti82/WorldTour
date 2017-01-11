@@ -389,6 +389,9 @@
 		FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6941DE4732A0008634B /* QuartzCore.framework */; };
 		FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6981DE4740B0008634B /* UIKit.framework */; };
 		FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D69A1DE474180008634B /* WebKit.framework */; };
+		FCDF49081E25586C00ED9A32 /* previewBase.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCDF49071E25586C00ED9A32 /* previewBase.xib */; };
+		FCDF490A1E255A1C00ED9A32 /* previewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF49091E255A1C00ED9A32 /* previewBase.swift */; };
+		FCDF490D1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -801,6 +804,9 @@
 		FCB2D6941DE4732A0008634B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FCB2D6981DE4740B0008634B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCB2D69A1DE474180008634B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FCDF49071E25586C00ED9A32 /* previewBase.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = previewBase.xib; sourceTree = "<group>"; };
+		FCDF49091E255A1C00ED9A32 /* previewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = previewBase.swift; sourceTree = "<group>"; };
+		FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPhotosCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1014,6 +1020,7 @@
 				FC0B9A981E1FB7F8005D9206 /* QuickCountry */,
 				FC0B9A9D1E20BD2A005D9206 /* QuickCity */,
 				FC0B9AA21E23BE6B005D9206 /* TextBoxContainer */,
+				FCDF490B1E255A3400ED9A32 /* previewBase */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -1664,6 +1671,7 @@
 				FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */,
 				C2A36D031DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift */,
 				FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */,
+				FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2190,6 +2198,15 @@
 			name = CountrySummary;
 			sourceTree = "<group>";
 		};
+		FCDF490B1E255A3400ED9A32 /* previewBase */ = {
+			isa = PBXGroup;
+			children = (
+				FCDF49071E25586C00ED9A32 /* previewBase.xib */,
+				FCDF49091E255A1C00ED9A32 /* previewBase.swift */,
+			);
+			name = previewBase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2366,6 +2383,7 @@
 				C23EB1DD1CFEED9B005B5CE8 /* EndLocalLife.xib in Resources */,
 				C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */,
 				C269077D1CF819BA00F827E6 /* GenderInfo.xib in Resources */,
+				FCDF49081E25586C00ED9A32 /* previewBase.xib in Resources */,
 				841E43AC1E1D1DD6000D2E6B /* EndJourneyView.xib in Resources */,
 				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
 				C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */,
@@ -2616,6 +2634,7 @@
 				C2A36D011DF92A090091AD56 /* QuickItineraryPreview.swift in Sources */,
 				C22138F31D547846008D9DEE /* QuickItineraryTwo.swift in Sources */,
 				C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */,
+				FCDF490A1E255A1C00ED9A32 /* previewBase.swift in Sources */,
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
 				841E43A91E1D1CA4000D2E6B /* UploadingToCloud.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,
@@ -2699,6 +2718,7 @@
 				C2B0B2C71D93BF23001243EF /* BuddyOTG.swift in Sources */,
 				C26B4DE71D13C88900213055 /* SlideMenuViewController.swift in Sources */,
 				C25443551CD75F2900C2C6CD /* drawLine.swift in Sources */,
+				FCDF490D1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift in Sources */,
 				C2BB1E2A1D9E339000D3C3B0 /* NewTLTwo.swift in Sources */,
 				C269077F1CF819EB00F827E6 /* GenderInfo.swift in Sources */,
 				C26B4DED1D14216700213055 /* ConnectWithAgent.swift in Sources */,

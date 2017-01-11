@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,11 +25,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="350" height="55"/>
+            <rect key="frame" x="0.0" y="0.0" width="350" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbj-3m-z2P">
-                    <rect key="frame" x="0.0" y="12" width="350" height="43"/>
+                    <rect key="frame" x="0.0" y="17" width="350" height="43"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gP7-LO-s7L">
                             <rect key="frame" x="265" y="0.0" width="85" height="43"/>
@@ -107,7 +107,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Tw-WNK">
-                    <rect key="frame" x="80" y="0.0" width="190" height="51"/>
+                    <rect key="frame" x="80" y="5" width="190" height="51"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKH-4u-web">
                             <rect key="frame" x="94" y="0.0" width="1" height="51"/>
@@ -167,7 +167,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.11372549019607843" green="0.15294117647058825" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.1137254902" green="0.1529411765" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="8ms-aO-Ww0" secondAttribute="trailing" id="8jE-t3-HGR"/>
                         <constraint firstItem="omO-vk-ce0" firstAttribute="leading" secondItem="8Sd-Tw-WNK" secondAttribute="leading" id="9pF-F7-a2u"/>
@@ -183,11 +183,11 @@
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="8Sd-Tw-WNK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1X5-uN-tYc"/>
+                <constraint firstItem="8Sd-Tw-WNK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="1X5-uN-tYc"/>
                 <constraint firstAttribute="trailing" secondItem="wbj-3m-z2P" secondAttribute="trailing" id="L0K-iT-kgC"/>
                 <constraint firstAttribute="bottom" secondItem="8Sd-Tw-WNK" secondAttribute="bottom" constant="4" id="V0P-N9-jnh"/>
                 <constraint firstItem="8Sd-Tw-WNK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aDt-pa-Fu1"/>
-                <constraint firstItem="wbj-3m-z2P" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="vMU-3R-Dia"/>
+                <constraint firstItem="wbj-3m-z2P" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="vMU-3R-Dia"/>
                 <constraint firstItem="wbj-3m-z2P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yfk-AP-csc"/>
                 <constraint firstAttribute="bottom" secondItem="wbj-3m-z2P" secondAttribute="bottom" id="yze-Ef-jOZ"/>
             </constraints>

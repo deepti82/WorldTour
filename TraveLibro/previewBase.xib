@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="previewBase" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="backGreen" destination="inB-1R-jbu" id="6ui-bo-lCm"/>
+                <outlet property="backView" destination="WOM-R6-ZDT" id="T9G-DG-MUH"/>
+                <outlet property="photoLabel" destination="4Gv-EE-uAm" id="82E-l6-Efd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="inB-1R-jbu">
+                    <rect key="frame" x="6" y="22" width="363" height="22"/>
+                    <color key="backgroundColor" red="0.066666666669999999" green="0.82745098039999998" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="Dec-aK-e4D"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WOM-R6-ZDT">
+                    <rect key="frame" x="20" y="0.0" width="335" height="51"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Itinerary Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gv-EE-uAm">
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
+                            <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="17"/>
+                            <color key="textColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="highlightedColor" red="0.3413611352" green="0.82557433840000005" blue="0.7822966576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1137254902" green="0.1529411765" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="4Gv-EE-uAm" secondAttribute="trailing" id="2tE-ae-hYr"/>
+                        <constraint firstItem="4Gv-EE-uAm" firstAttribute="leading" secondItem="WOM-R6-ZDT" secondAttribute="leading" id="KMF-mu-WMK"/>
+                        <constraint firstAttribute="bottom" secondItem="4Gv-EE-uAm" secondAttribute="bottom" constant="8" id="dtf-cI-5S4"/>
+                        <constraint firstItem="4Gv-EE-uAm" firstAttribute="top" secondItem="WOM-R6-ZDT" secondAttribute="top" id="upf-ML-PxF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="WOM-R6-ZDT" secondAttribute="bottom" constant="-10" id="F1R-Bj-Ll9"/>
+                <constraint firstItem="WOM-R6-ZDT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="H2L-8V-zuJ"/>
+                <constraint firstAttribute="trailing" secondItem="WOM-R6-ZDT" secondAttribute="trailing" constant="20" id="HT0-5s-lX1"/>
+                <constraint firstAttribute="trailing" secondItem="inB-1R-jbu" secondAttribute="trailing" constant="6" id="OjS-hq-IY6"/>
+                <constraint firstItem="inB-1R-jbu" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="6" id="PR9-y5-Fwj"/>
+                <constraint firstItem="inB-1R-jbu" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="Wqz-pL-UIk"/>
+                <constraint firstItem="WOM-R6-ZDT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="t5z-K1-KIy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="34.5" y="-251.5"/>
+        </view>
+    </objects>
+</document>

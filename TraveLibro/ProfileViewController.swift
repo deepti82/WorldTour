@@ -170,7 +170,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
         
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 55))
+        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
         self.view.addSubview(footer)
         
         let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
