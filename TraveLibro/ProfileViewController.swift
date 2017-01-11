@@ -209,12 +209,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 
             }
             
-            if currentUser["isBlogger"] != nil && currentUser["isBlogger"].bool! {
-                
-                self.isPhotographer.text = "Blogger"
-                
-            }
-            
             let isUrl = verifyUrl(imageName)
             
             if isUrl {
@@ -229,6 +223,28 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             }
             makeTLProfilePicture(self.profilePicture)
         }
+        
+        for prefer in currentUser["travelConfig"]["preferToTravel"].array! {
+            if(prefer.stringValue == "Photographer") {
+                self.isPhotographer.text = "Photographer"
+            }
+        }
+        
+        if(self.isPhotographer.text != "Photographer") {
+            for prefer in currentUser["travelConfig"]["preferToTravel"].array! {
+                if(prefer.stringValue == "Blogger") {
+                    self.isPhotographer.text = "Blogger"
+                }
+            }
+        }
+        if(self.isPhotographer.text != "Photographer" || self.isPhotographer.text != "Blogger") {
+            self.isPhotographer.text = ""
+        }
+
+        
+        
+        
+        
         
         let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 110, width: self.view.frame.size.width - 10, height: 55))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
