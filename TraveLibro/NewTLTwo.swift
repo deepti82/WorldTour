@@ -688,6 +688,7 @@ extension NewTLViewController {
         
         self.infoView.aboutLocationText.text = "About \(latestCity)"
         self.infoView.layer.opacity = 1.0
+        self.infoView.isHidden = false
         self.view.addSubview(self.infoView)
         self.view.bringSubview(toFront: self.infoView)
         

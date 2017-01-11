@@ -738,7 +738,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func closeInfo(_ sender: UITapGestureRecognizer) {
-        self.infoView.removeFromSuperview()
+        self.infoView.isHidden = true
     }
     
     func closeAdd(_ sender: UIButton) {
