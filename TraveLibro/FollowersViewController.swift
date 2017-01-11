@@ -291,17 +291,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         }
         
         else if isUrl {
-            
-            print("inside if statement")
-            let data = try? Data(contentsOf: URL(string: imageName)!)
-            
-            if data != nil {
-                
-                print("some problem in data \(data)")
-                //                uploadView.addButton.setImage(, forState: .Normal)
-                imageView.image = UIImage(data: data!)
-                makeTLProfilePicture(imageView)
-            }
+            imageView.hnk_setImageFromURL(URL(string: imageName)!)
+            makeTLProfilePicture(imageView)
         }
             
         else {
@@ -310,18 +301,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             
             print("getImageUrl: \(getImageUrl)")
             
-            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-//            print("data: \(data)")
-            
-            if data != nil {
-                
-                //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
-                print("inside if statement \(imageView.image)")
-                imageView.image = UIImage(data: data!)
-                //                print("sideMenu.profilePicture.image: \(profileImage.image)")
-                makeTLProfilePicture(imageView)
-            }
-            
+            imageView.hnk_setImageFromURL(URL(string: getImageUrl)!)
+            makeTLProfilePicture(imageView)
         }
     }
     

@@ -31,38 +31,6 @@
             endingLineNumber = "1607"
             landmarkName = "sendComments(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TraveLibro.NewTLViewController.sendComments (__ObjC.UIButton) -&gt; ()"
-                  moduleName = "TraveLibro"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/NewTLViewController.swift"
-                  timestampString = "505827026.435743"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1607"
-                  endingLineNumber = "1607"
-                  offsetFromSymbolStart = "178">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TraveLibro.NewTLViewController.sendComments (__ObjC.UIButton) -&gt; ()"
-                  moduleName = "TraveLibro"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/chintan/Documents/iOSApp/WorldTour/TraveLibro/NewTLViewController.swift"
-                  timestampString = "505827026.440095"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1607"
-                  endingLineNumber = "1607"
-                  offsetFromSymbolStart = "1789">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

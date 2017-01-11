@@ -616,6 +616,8 @@ extension NewTLViewController {
     
     func getInfoCount() {
         
+        self.showInfo(JSON("{}"))
+        
         if (myJourney != nil) {
             
             request.infoCount(myJourney["_id"].string!, city: latestCity, completion: {(response) in
@@ -665,13 +667,16 @@ extension NewTLViewController {
         self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), for: .touchUpInside)
         self.infoView.nearMeButton.addTarget(self, action: #selector(NewTLViewController.gotoNearMe(_:)), for: .touchUpInside)
         self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
-        self.infoView.videosCount.setTitle("\(response["videos"])", for: .normal)
-        self.infoView.photosCount.setTitle("\(response["photos"])", for: .normal)
-        self.infoView.ratingCount.setTitle("\(response["review"])", for: .normal)
-        self.infoView.mustDoCount.setTitle("\(response["mustDo"])", for: .normal)
-        self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: .normal)
-        self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: .normal)
-        self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: .normal)
+        if(response["videos"].number != nil) {
+            self.infoView.videosCount.setTitle("\(response["videos"])", for: .normal)
+            self.infoView.photosCount.setTitle("\(response["photos"])", for: .normal)
+            self.infoView.ratingCount.setTitle("\(response["review"])", for: .normal)
+            self.infoView.mustDoCount.setTitle("\(response["mustDo"])", for: .normal)
+            self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: .normal)
+            self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: .normal)
+            self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: .normal)
+        }
+        
         self.infoView.aboutLocationText.text = "About \(latestCity)"
         self.infoView.layer.opacity = 1.0
         self.view.addSubview(self.infoView)
