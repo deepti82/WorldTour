@@ -923,7 +923,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.addPostsButton.layer.zPosition = 5
         self.view.addSubview(self.addPostsButton)
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 55, width: self.view.frame.width, height: 55))
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         

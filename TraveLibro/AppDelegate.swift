@@ -16,6 +16,9 @@ let mainOrangeColor = UIColor(red: 252/255, green: 80/255, blue: 71/255, alpha: 
 let lightOrangeColor = UIColor(red: 255/255, green: 103/255, blue: 89/255, alpha: 1) // #FC5047
 let mainGreenColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1) // #4BCBBB
 let endJourneyColor = UIColor(red: 87/255, green: 211/255, blue: 199/255, alpha: 1) // #57D3C7
+let navGreen = UIColor(red: 17/255, green: 211/255, blue: 203/255, alpha: 1) // #11d3cb
+let navBlue = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1) // #2c3757
+let navOrange = UIColor(red: 255/255, green: 103/255, blue: 89/255, alpha: 1) // #ff6759
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
 let avenirBold = UIFont(name: "Avenir-Medium", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
@@ -58,6 +61,7 @@ var journeyImages: [String] = []
 var endJourneyState: Bool = true
 var storyboard: UIStoryboard!
 var addedBuddies: JSON = []
+var globalPostImage:[PostImage] = []
 
 var leftViewController: SideNavigationMenuViewController!
 
