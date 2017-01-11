@@ -13,10 +13,15 @@ import CoreGraphics
 class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var tripTitle: UITextField!
     @IBOutlet weak var quickOneView: UIView!
+    @IBOutlet weak var tripTitleView: UIView!
     
+    @IBOutlet weak var yearView: UIView!
+    @IBOutlet weak var monthView: UIView!
     @IBOutlet weak var durationTextField: UITextField!
     @IBOutlet weak var yearPickerView: UITextField!
     @IBOutlet weak var monthPickerView: UITextField!
+    @IBOutlet weak var daysView: UIView!
+   
     var months: [String]!
     var years: [Int] = []
     var yearsPicker: [Int] = []
@@ -26,7 +31,6 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var datePickerView: UIDatePicker = UIDatePicker()
     var date = NSDate()
     var currentYear: Int = 0
-   
     var currentMonth: String = ""
     
    
@@ -61,10 +65,18 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
 
         // Do any additional setup after loading the view.
         darkBlur(quickOneView)
-        tripTitle.underlined()
-        durationTextField.underlined()
-        yearPickerView.underlined()
-        monthPickerView.underlined()
+        monthView.underlined()
+        yearView.underlined()
+        tripTitleView.underlined()
+        daysView.underlined()
+//        tripTitle.underlined()
+//        durationTextField.underlined()
+//        yearPickerView.underlined()
+//        monthPickerView.underlined()
+        
+        tripTitle.beginFloatingCursor(at: CGPoint(x: 10, y: 0))
+        tripTitle.cursorPlace(tripTitle, position: 20)
+        
     }
 
     

@@ -19,11 +19,11 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.delegate = self
-        boldButton.setTitle(String(format: "%C", faicon["bold"]!), for: UIControlState())
-        italicButton.setTitle(String(format: "%C", faicon["italics"]!), for: UIControlState())
+//        boldButton.setTitle(String(format: "%C", faicon["bold"]!), for: UIControlState())
+//        italicButton.setTitle(String(format: "%C", faicon["italics"]!), for: UIControlState())
          descriptionTextView.font = UIFont(name: "Arial-Italic", size: 14)
-        boldButton.addTarget(self, action: #selector(boldText(_:)), for: .touchUpInside)
-        italicButton.addTarget(self, action: #selector(italicText(_:)), for: .touchUpInside)
+//        boldButton.addTarget(self, action: #selector(boldText(_:)), for: .touchUpInside)
+//        italicButton.addTarget(self, action: #selector(italicText(_:)), for: .touchUpInside)
         descriptionTextView.layer.borderWidth = 1
         descriptionTextView.layer.borderColor = mainBlueColor.cgColor
         // Do any additional setup after loading the view.
@@ -52,26 +52,26 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
 //        return super.canPerformAction(action, withSender: sender)
     }
     
-    func boldText(_ sender: UIButton) {
-        let range = descriptionTextView.selectedRange
-        let string = NSMutableAttributedString(attributedString: descriptionTextView.attributedText)
-//        let attributes = [NSForegroundColorAttributeName: UIColor.red]
-        let attributes = [NSFontAttributeName: UIFont(name: "Avenir-Heavy",size: 14)!]
-        string.addAttributes(attributes, range: descriptionTextView.selectedRange)
-        descriptionTextView.attributedText = string
-        descriptionTextView.selectedRange = range
-    }
-    
-    func italicText(_ sender: UIButton){
-        let range = descriptionTextView.selectedRange
-        let string = NSMutableAttributedString(attributedString: descriptionTextView.attributedText)
-        //        let attributes = [NSForegroundColorAttributeName: UIColor.red]
-        let attributes1 = [NSFontAttributeName: UIFont(name: "Avenir-MediumOblique",size: 14)!]
-        string.addAttributes(attributes1, range: descriptionTextView.selectedRange)
-        descriptionTextView.attributedText = string
-        descriptionTextView.selectedRange = range
-
-    }
+//    func boldText(_ sender: UIButton) {
+//        let range = descriptionTextView.selectedRange
+//        let string = NSMutableAttributedString(attributedString: descriptionTextView.attributedText)
+////        let attributes = [NSForegroundColorAttributeName: UIColor.red]
+//        let attributes = [NSFontAttributeName: UIFont(name: "Avenir-Heavy",size: 14)!]
+//        string.addAttributes(attributes, range: descriptionTextView.selectedRange)
+//        descriptionTextView.attributedText = string
+//        descriptionTextView.selectedRange = range
+//    }
+//    
+//    func italicText(_ sender: UIButton){
+//        let range = descriptionTextView.selectedRange
+//        let string = NSMutableAttributedString(attributedString: descriptionTextView.attributedText)
+//        //        let attributes = [NSForegroundColorAttributeName: UIColor.red]
+//        let attributes1 = [NSFontAttributeName: UIFont(name: "Avenir-MediumOblique",size: 14)!]
+//        string.addAttributes(attributes1, range: descriptionTextView.selectedRange)
+//        descriptionTextView.attributedText = string
+//        descriptionTextView.selectedRange = range
+//
+//    }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
          if(text == "\n")

@@ -62,7 +62,7 @@ extension UIImageView {
     }
 }
 
-extension UITextField {
+extension UIView {
     func underlined(){
         let borderBottom = CALayer()
         let borderLeft = CALayer()
@@ -76,7 +76,7 @@ extension UITextField {
         
         borderBottom.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
         borderLeft.frame = CGRect(x: 0, y: some, width: width, height: self.frame.size.height - some)
-        borderRight.frame = CGRect(x: self.frame.size.width - width, y: some, width: width, height: self.frame.size.height - some)
+        borderRight.frame = CGRect(x: self.frame.size.width - width , y: some, width: width , height: self.frame.size.height - some)
         
         
         borderBottom.borderWidth = width
@@ -89,6 +89,17 @@ extension UITextField {
         self.layer.masksToBounds = true
         
     }
+    
+    
+}
+
+
+extension UITextField {
+    func cursorPlace(_ textField: UITextField, position: Int){
+         textField.position(from: textField.beginningOfDocument, offset: position)
+        
+    }
+
 }
 
 
