@@ -36,7 +36,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.navigationController?.popViewController(animated: true)
         
-        print("Chintan Shaha");
         print(whichView);
         switch(whichView) {
             case "AddActivity":
