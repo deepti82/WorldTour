@@ -29,6 +29,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var uniqueId: String = ""
     var journeyName: String = ""
+    var oldBuddies:[JSON] = []
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         
@@ -38,111 +39,111 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         print(whichView);
         switch(whichView) {
-            case "AddActivity":
-                globalAddActivityNew.buddyAdded(addedFriends);
-            case "NewTLMiddle":
-                globalNewTLViewController.buddyAdded(addedFriends,inMiddle:true);
-            case "NewTLView":
-                globalNewTLViewController.buddyAdded(addedFriends,inMiddle:false);
-                globalNewTLViewController.getJourney()
-            default:
+        case "AddActivity":
+            globalAddActivityNew.buddyAdded(addedFriends);
+        case "NewTLMiddle":
+            globalNewTLViewController.buddyAdded(addedFriends,inMiddle:true);
+        case "NewTLView":
+            globalNewTLViewController.buddyAdded(addedFriends,inMiddle:false);
+            globalNewTLViewController.getJourney()
+        default:
             break;
         }
         
-    
-//        globalNewTLViewController.getJourney()
-//                        for vc in allControllers {
-//        
-//                            if vc.isKind(of: NewTLViewController.self) {
-//        
-//                                print("is kind of class new tl view controller")
-//                                let backVC = vc as! NewTLViewController
-//                                backVC.addedBuddies = self.addedFriends
-//                                self.navigationController!.popToViewController(backVC, animated: true)
-//        
-//                            }
-//                            
-//                        }
+        
+        //        globalNewTLViewController.getJourney()
+        //                        for vc in allControllers {
+        //
+        //                            if vc.isKind(of: NewTLViewController.self) {
+        //
+        //                                print("is kind of class new tl view controller")
+        //                                let backVC = vc as! NewTLViewController
+        //                                backVC.addedBuddies = self.addedFriends
+        //                                self.navigationController!.popToViewController(backVC, animated: true)
+        //
+        //                            }
+        //
+        //                        }
         
         
-//        if whichView == "TL" {
-//            if(addedFriends.count == 0) {
-//                let allControllers = self.navigationController!.viewControllers
-//                for vc in allControllers {
-//                    
-//                    if vc.isKind(of: NewTLViewController.self) {
-//                        
-//                        print("is kind of class new tl view controller")
-//                        let backVC = vc as! NewTLViewController
-//                        backVC.countLabel = self.addedFriends.count
-//                        backVC.addedBuddies = self.addedFriends
-//                        backVC.getJourney()
-//                        backVC.showBuddies()
-//                        self.navigationController!.popToViewController(backVC, animated: true)
-//                        
-//                    }
-//                    
-//                }
-//            } else {
-//                for friend in addedFriends {
-//                    addedFriendUsers.append(friend)
-//                }
-//                let finalFriends: JSON = JSON(addedFriendUsers)
-//                
-//                let allControllers = self.navigationController!.viewControllers
-//                for vc in allControllers {
-//                    
-//                    if vc.isKind(of: NewTLViewController.self) {
-//                        
-//                        print("is kind of class new tl view controller")
-//                        let backVC = vc as! NewTLViewController
-//                        backVC.countLabel = self.addedFriends.count
-//                        backVC.addedBuddies = self.addedFriends
-//                        //                                backVC.getCurrentOTG()
-//                        backVC.showBuddies()
-//                        self.navigationController!.popToViewController(backVC, animated: true)
-//                        
-//                    }
-//                    
-//                }
-//                
-//            }
-//        }
-//        else if whichView == "TLMiddle" {
-//            for friend in addedFriends {
-//                addedFriendUsers.append(friend)
-//            }
-//            
-//            let finalFriends: JSON = JSON(addedFriendUsers)
-//            //            saveButton.hidden = true
-//            
-//            
-//            let allControllers = self.navigationController!.viewControllers
-//            for vc in allControllers {
-//                
-//                if vc.isKind(of: NewTLViewController.self) {
-//                    
-//                    let backVC = vc as! NewTLViewController
-//                    backVC.getJourney()
-//                    self.navigationController!.popToViewController(backVC, animated: true)
-//                }
-//            }
-//        } else if whichView == "TLTags" {
-//            let allControllers = self.navigationController!.viewControllers
-//            
-//            for vc in allControllers {
-//                
-//                if vc.isKind(of: NewTLViewController.self) {
-//                    let backVC = vc as! NewTLViewController
-//                    backVC.addedBuddies = addedFriends
-//                    backVC.displayFriendsCount()
-//                    self.navigationController!.popToViewController(backVC, animated: true)
-//                    
-//                }
-//                
-//            }
-//            
-//        }
+        //        if whichView == "TL" {
+        //            if(addedFriends.count == 0) {
+        //                let allControllers = self.navigationController!.viewControllers
+        //                for vc in allControllers {
+        //
+        //                    if vc.isKind(of: NewTLViewController.self) {
+        //
+        //                        print("is kind of class new tl view controller")
+        //                        let backVC = vc as! NewTLViewController
+        //                        backVC.countLabel = self.addedFriends.count
+        //                        backVC.addedBuddies = self.addedFriends
+        //                        backVC.getJourney()
+        //                        backVC.showBuddies()
+        //                        self.navigationController!.popToViewController(backVC, animated: true)
+        //
+        //                    }
+        //
+        //                }
+        //            } else {
+        //                for friend in addedFriends {
+        //                    addedFriendUsers.append(friend)
+        //                }
+        //                let finalFriends: JSON = JSON(addedFriendUsers)
+        //
+        //                let allControllers = self.navigationController!.viewControllers
+        //                for vc in allControllers {
+        //
+        //                    if vc.isKind(of: NewTLViewController.self) {
+        //
+        //                        print("is kind of class new tl view controller")
+        //                        let backVC = vc as! NewTLViewController
+        //                        backVC.countLabel = self.addedFriends.count
+        //                        backVC.addedBuddies = self.addedFriends
+        //                        //                                backVC.getCurrentOTG()
+        //                        backVC.showBuddies()
+        //                        self.navigationController!.popToViewController(backVC, animated: true)
+        //
+        //                    }
+        //
+        //                }
+        //
+        //            }
+        //        }
+        //        else if whichView == "TLMiddle" {
+        //            for friend in addedFriends {
+        //                addedFriendUsers.append(friend)
+        //            }
+        //
+        //            let finalFriends: JSON = JSON(addedFriendUsers)
+        //            //            saveButton.hidden = true
+        //
+        //
+        //            let allControllers = self.navigationController!.viewControllers
+        //            for vc in allControllers {
+        //
+        //                if vc.isKind(of: NewTLViewController.self) {
+        //
+        //                    let backVC = vc as! NewTLViewController
+        //                    backVC.getJourney()
+        //                    self.navigationController!.popToViewController(backVC, animated: true)
+        //                }
+        //            }
+        //        } else if whichView == "TLTags" {
+        //            let allControllers = self.navigationController!.viewControllers
+        //
+        //            for vc in allControllers {
+        //
+        //                if vc.isKind(of: NewTLViewController.self) {
+        //                    let backVC = vc as! NewTLViewController
+        //                    backVC.addedBuddies = addedFriends
+        //                    backVC.displayFriendsCount()
+        //                    self.navigationController!.popToViewController(backVC, animated: true)
+        //
+        //                }
+        //
+        //            }
+        //
+        //        }
         
         
         
@@ -152,7 +153,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        moveUp()
+        //        moveUp()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         print("which view: \(buddiesStatus)")
         
@@ -162,22 +163,22 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             addedFriends = []
         }
         allFriends.textColor = mainOrangeColor
-            self.title = "Add Buddies"
-            addedBuddies.layer.zPosition = 100
-            print("addedFriends: \(addedFriends)")
-            print("friends json: \(allFriendsJson)")
-            
-            let leftButton = UIButton()
-            leftButton.setImage(UIImage(named: "arrow_prev"), for: .normal)
-            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-            
-            let rightButton = UIButton()
-            rightButton.setTitle("Done", for: .normal)
-            rightButton.addTarget(self, action: #selector(self.saveButtonTapped(_:)), for: .touchUpInside)
-            rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
-            
-            self.customNavigationBar(left: leftButton, right: rightButton)
+        self.title = "Add Buddies"
+        addedBuddies.layer.zPosition = 100
+        print("addedFriends: \(addedFriends)")
+        print("friends json: \(allFriendsJson)")
+        
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: .normal)
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        let rightButton = UIButton()
+        rightButton.setTitle("Done", for: .normal)
+        rightButton.addTarget(self, action: #selector(self.saveButtonTapped(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         setBuddies(searchText: "")
         
@@ -196,21 +197,21 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
         addedBuddies.tintColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
-
         
         
-            getBackGround(self)
-            search.searchField.addTarget(self, action: #selector(AddBuddiesViewController.getSearchResults(_:)), for: .editingChanged)
-            addedBuddies.textColor = mainOrangeColor
-            peopleImage.tintColor = mainOrangeColor
-            buddiesTableView.backgroundColor = UIColor.clear
-            buddiesCollectionView.backgroundColor = UIColor.clear
-            search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: [NSForegroundColorAttributeName: mainBlueColor])
-            search.leftLine.backgroundColor = mainOrangeColor
-            search.rightLine.backgroundColor = mainOrangeColor
-            search.bottomLine.backgroundColor = mainOrangeColor
-            search.searchButton.tintColor = mainOrangeColor
-            saveButton.setTitleColor(mainOrangeColor, for: UIControlState())
+        
+        getBackGround(self)
+        search.searchField.addTarget(self, action: #selector(AddBuddiesViewController.getSearchResults(_:)), for: .editingChanged)
+        addedBuddies.textColor = mainOrangeColor
+        peopleImage.tintColor = mainOrangeColor
+        buddiesTableView.backgroundColor = UIColor.clear
+        buddiesCollectionView.backgroundColor = UIColor.clear
+        search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+        search.leftLine.backgroundColor = mainOrangeColor
+        search.rightLine.backgroundColor = mainOrangeColor
+        search.bottomLine.backgroundColor = mainOrangeColor
+        search.searchButton.tintColor = mainOrangeColor
+        saveButton.setTitleColor(mainOrangeColor, for: UIControlState())
         
         
     }
@@ -225,41 +226,54 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func setBuddies(searchText: String) {
-        request.getBuddySearch(currentUser["_id"].string!, searchtext: searchText, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
+        if(self.oldBuddies.count > 0) {
+            if(searchText != "") {
+                self.allFriendsJson = []
+                for buddy in self.oldBuddies {
+                    var str = buddy["name"].stringValue;
+
+                    if str.localizedCaseInsensitiveContains(searchText) {
+                        self.allFriendsJson.append(buddy)
+                    }
+                }
+            } else {
+                self.allFriendsJson = self.oldBuddies
+            }
+            self.buddiesTableView.reloadData()
+        } else {
+            request.getBuddySearch(currentUser["_id"].string!, searchtext: searchText, completion: {(response) in
+                DispatchQueue.main.async(execute: {
                     
-                    print("error; \(response.error!.localizedDescription)")
                     
-                } else if response["value"].bool! {
                     
-                    if buddiesStatus {
-                        self.allFriendsJson = response["data"].array!
-                    }else{
-                        self.allFriendsJson = []
-                        for n in response["data"].array! {
-                            if !(self.frezzFriends.contains(where: {$0["_id"] == n["_id"]})) {
-                                self.allFriendsJson.append(n)
+                    if response.error != nil {
+                        print("error; \(response.error!.localizedDescription)")
+                    } else if response["value"].bool! {
+                        if buddiesStatus {
+                            self.allFriendsJson = response["data"].array!
+                        }else{
+                            self.allFriendsJson = []
+                            for n in response["data"].array! {
+                                if !(self.frezzFriends.contains(where: {$0["_id"] == n["_id"]})) {
+                                    self.allFriendsJson.append(n)
+                                }
                             }
                         }
+                        self.buddiesTableView.reloadData()
+                    }
+                    else {
+                        
                     }
                     
-                    self.buddiesTableView.reloadData()
                     
-                }
-                else {
-                    
-                }
+                })
+                
             })
-            
-        })
+        }
     }
     
     func getSearchResults(_ sender: UITextField) {
         
-        print("sender: \(search.searchField.text!)")
         
         
         setBuddies(searchText: search.searchField.text!)
@@ -289,7 +303,6 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         let imageUrl = allFriendsJson[(indexPath as NSIndexPath).row]["profilePicture"].string!
         
         let isUrl = verifyUrl(imageUrl)
-        print("isUrl: \(isUrl)")
         
         if isUrl {
             
@@ -321,7 +334,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if addedFriends.contains(where: {$0["_id"] == allFriendsJson[indexPath.row]["_id"]}) {
             
-                    cell.tintColor = mainOrangeColor
+            cell.tintColor = mainOrangeColor
             
         }
         
@@ -381,11 +394,11 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         let close = String(format: "%C", faicon["close"]!)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! addedBuddiesCollectionViewCell
         
-       
+        
         cell.removeBuddyButton.setTitle(close, for: UIControlState())
         cell.buddyName.text = addedFriends[(indexPath as NSIndexPath).row]["name"].string!
         cell.buddyName.adjustsFontSizeToFitWidth = true
-//        cell.buddyName.sizeToFit()
+        //        cell.buddyName.sizeToFit()
         cell.buddyName.numberOfLines = 2
         //        cell.acc
         
@@ -413,12 +426,12 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
         
-            cell.removeBuddyButton.setTitleColor(mainOrangeColor, for: UIControlState())
-            cell.buddyName.textColor = mainBlueColor
-            
+        cell.removeBuddyButton.setTitleColor(mainOrangeColor, for: UIControlState())
+        cell.buddyName.textColor = mainBlueColor
+        
         cell.removeBuddyButton.layer.zPosition = 10
         if  cell.removeBuddyButton.tag == 0 {
-//            moveDown()
+            //            moveDown()
         }
         return cell
         
@@ -428,23 +441,23 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! addBuddiesTableViewCell
-            if cell.tintColor == mainOrangeColor {
-                print(" in if mainoragecolor")
-                cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 0)
-                print(addedFriends.index(where: {$0["_id"] == allFriendsJson[indexPath.row]["_id"]}) ?? -1)
-                if let index = addedFriends.index(where: {$0["_id"] == allFriendsJson[indexPath.row]["_id"]}) {
-                    
-                    addedFriends.remove(at: index)
-                    
-                }
+        if cell.tintColor == mainOrangeColor {
+            print(" in if mainoragecolor")
+            cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 0)
+            print(addedFriends.index(where: {$0["_id"] == allFriendsJson[indexPath.row]["_id"]}) ?? -1)
+            if let index = addedFriends.index(where: {$0["_id"] == allFriendsJson[indexPath.row]["_id"]}) {
                 
-            } else {
-                
-                cell.tintColor = mainOrangeColor
-                addedFriends.append(allFriendsJson[indexPath.row])
+                addedFriends.remove(at: index)
                 
             }
             
+        } else {
+            
+            cell.tintColor = mainOrangeColor
+            addedFriends.append(allFriendsJson[indexPath.row])
+            
+        }
+        
         
         buddiesCollectionView.reloadData()
         
@@ -456,7 +469,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         addedFriends.remove(at: (indexPath as NSIndexPath).item)
         collectionView.reloadData()
         buddiesTableView.reloadData()
-//        moveUp()
+        //        moveUp()
     }
     
     
@@ -472,7 +485,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         allFriends.animation.moveY(50).animate(0.0)
         youCanOnly.animation.moveY(50).animate(0.0)
         buddiesTableView.animation.moveY(50).animate(0.0)
-  
+        
     }
     
 }

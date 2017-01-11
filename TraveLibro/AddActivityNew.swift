@@ -286,12 +286,19 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         } else {
             buddiesStatus = false
         }
+        
+        
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         next.whichView = "AddActivity"
         print(addedBuddies);
         if addedBuddies != nil {
             next.addedFriends = addedBuddies
         }
+        if(self.typeOfAddActivtiy == "AddPhotosVideos") {
+            next.oldBuddies = self.addedBuddies
+            next.allFriendsJson = self.addedBuddies
+        }
+
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(next, animated: true)
     }
