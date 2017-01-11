@@ -18,6 +18,8 @@ class QuickCountry: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        
+        deleteOut.setTitle(String(format: "%C", faicon["trash"]!), for: UIControlState())
     }
     
     @IBAction func deleteCountry(_ sender: Any) {

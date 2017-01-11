@@ -6,10 +6,13 @@
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
+
+
 import UIKit
 import CoreGraphics
 class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var tripTitle: UITextField!
+    @IBOutlet weak var quickOneView: UIView!
     
     @IBOutlet weak var durationTextField: UITextField!
     @IBOutlet weak var yearPickerView: UITextField!
@@ -25,6 +28,8 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     var currentYear: Int = 0
    
     var currentMonth: String = ""
+    
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +60,14 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
 
         // Do any additional setup after loading the view.
+        darkBlur(quickOneView)
+        tripTitle.underlined()
+        durationTextField.underlined()
+        yearPickerView.underlined()
+        monthPickerView.underlined()
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

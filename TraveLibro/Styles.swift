@@ -152,7 +152,7 @@ open class LoadingOverlay{
 func makeTLProfilePicture(_ image: UIImageView) {
     
     image.layer.cornerRadius = (37/100) * image.frame.width
-    image.layer.borderWidth = 3.0
+    image.layer.borderWidth = 4.0
     image.layer.borderColor = UIColor.white.cgColor
     image.clipsToBounds = true
     
@@ -165,6 +165,20 @@ func makeTLProfilePicture(_ image: UIButton) {
     image.clipsToBounds = true
     
 }
+
+
+func darkBlur(_ view: UIView) {
+    let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
+    let blurView = UIVisualEffectView(effect: darkBlur)
+    blurView.frame.size.height = view.frame.height
+    blurView.frame.size.width = view.frame.width
+    blurView.layer.zPosition = -1
+    view.backgroundColor = UIColor.lightText
+    blurView.isUserInteractionEnabled = false
+    view.addSubview(blurView)
+
+}
+
 
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks

@@ -15,6 +15,7 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var italicButton: UIButton!
     @IBOutlet weak var boldButton: UIButton!
+    @IBOutlet weak var blurBG: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.delegate = self
@@ -23,7 +24,10 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
          descriptionTextView.font = UIFont(name: "Arial-Italic", size: 14)
         boldButton.addTarget(self, action: #selector(boldText(_:)), for: .touchUpInside)
         italicButton.addTarget(self, action: #selector(italicText(_:)), for: .touchUpInside)
+        descriptionTextView.layer.borderWidth = 1
+        descriptionTextView.layer.borderColor = mainBlueColor.cgColor
         // Do any additional setup after loading the view.
+        darkBlur(blurBG)
     }
 
     override func didReceiveMemoryWarning() {

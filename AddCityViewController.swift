@@ -14,7 +14,6 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var mainTableView: UITableView!
     
     @IBAction func detectLocationButton(_ sender: AnyObject) {
-        
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -24,42 +23,48 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-        request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
-            
-            DispatchQueue.main.async(execute: {
+        let locValue:CLLocationCoordinate2D!
+        print(manager.location)
+        if(manager.location != nil) {
+            locValue = manager.location!.coordinate
+            request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
                 
-                if (response.error != nil) {
-                    
-                    print("error: \(response.error?.localizedDescription)")
-                    
-                }
-                    
-                else {
-                    
-                    if response["value"].string != nil {
-                     
-                        print("response: \(response)")
-                        self.locationData = response["data"]["name"].string
-                        print("location: \(self.locationData)")
+                DispatchQueue.main.async(execute: {
+                    print(response);
+                    if (response.error != nil) {
                         
-                        if self.locationData != nil {
-                         
-                            self.cityTextField.text = self.locationData
-                            
-                        }
+                        print("error: \(response.error?.localizedDescription)")
                         
                     }
+                        
                     else {
                         
-                        print("response error: \(response["data"])")
-                        
+                        if response["value"].boolValue {
+                            
+                            print("response: \(response)")
+                            self.locationData = response["data"]["name"].string
+                            print("location: \(self.locationData)")
+                            
+                            if self.locationData != nil {
+                                
+                                self.cityTextField.text = self.locationData!
+                                self.selectGender(UIButton())
+                            }
+                            
+                        }
+                        else {
+                            
+                            print("response error: \(response["data"])")
+                            
+                        }
                     }
-                }
+                })
             })
-        })
+        } else {
+            print("Not able to detect the location");
+        }
+        
+        
         
     }
     
@@ -88,6 +93,8 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.customNavigationBar(left: leftButton, right: rightButton)
         
         mainTableView.tableFooterView = UIView()
+        
+        detectLocationButton(UIView())
         
 //        if currentUser["homeCity"] != nil {
 //            

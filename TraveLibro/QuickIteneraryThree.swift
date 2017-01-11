@@ -17,6 +17,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cityVisited: UITextField!
     @IBOutlet weak var countryVisited: UITextField!
     @IBOutlet weak var quickScroll: UIScrollView!
+    @IBOutlet weak var blurBG: UIView!
 //    let verticalLayout = VerticalLayout(width: 300)
     var verticalLayout: VerticalLayout!
     var viewAdded = false
@@ -25,8 +26,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        cityVisited.underlined()
+        countryVisited.underlined()
         self.view.bringSubview(toFront: cityVisited)
         self.verticalLayout = VerticalLayout(width:self.quickScroll.frame.width)
         
@@ -47,6 +48,9 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
 //        showCountryCityVisited.addSubview(verticalLayout)
         cityVisited.delegate = self
         countryVisited.delegate = self
+        darkBlur(blurBG)
+        cityVisited.underlined()
+        countryVisited.underlined()
         
     }
     

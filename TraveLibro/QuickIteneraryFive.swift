@@ -31,6 +31,9 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         photoGallerySecondView.isHidden = true
             addTripPhotos.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
             photosAddMore.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
+            
+            darkBlur(photosGalleryFirstView)
+            darkBlur(photoGallerySecondView)
     }
 
     override func didReceiveMemoryWarning() {
