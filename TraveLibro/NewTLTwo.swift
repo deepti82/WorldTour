@@ -675,6 +675,14 @@ extension NewTLViewController {
             self.infoView.hotelsCount.setTitle("\(response["hotel"])", for: .normal)
             self.infoView.restaurantCount.setTitle("\(response["restaurant"])", for: .normal)
             self.infoView.itinerariesCount.setTitle("\(response["itinerary"])", for: .normal)
+            
+            self.infoView.videosCount.alpha = 1
+            self.infoView.photosCount.alpha = 1
+            self.infoView.ratingCount.alpha = 1
+        } else {
+            self.infoView.videosCount.alpha = 0
+            self.infoView.photosCount.alpha = 0
+            self.infoView.ratingCount.alpha = 0
         }
         
         self.infoView.aboutLocationText.text = "About \(latestCity)"
