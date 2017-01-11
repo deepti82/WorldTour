@@ -48,7 +48,7 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("in search bar ckicked")
+        
         print(searchTextGlob)
         searchCityFun(search: searchTextGlob)
     }
