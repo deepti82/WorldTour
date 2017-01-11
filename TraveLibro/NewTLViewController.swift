@@ -1838,7 +1838,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         sender.isHidden = true
         otgView.nameJourneyView.layer.opacity = 0.0
         otgView.nameJourneyView.isHidden = false
-        otgView.nameJourneyView.animation.makeOpacity(1.0).makeHeight(otgView.nameJourneyView.frame.height).animate(0.5).moveY(-25)
+        otgView.nameJourneyView.animation.makeOpacity(1.0).makeHeight(otgView.nameJourneyView.frame.height).animate(0.5)
         otgView.detectLocationView.isHidden = true
         otgView.detectHide.isHidden = true
         otgView.cityView.isHidden = true

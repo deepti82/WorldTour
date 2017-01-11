@@ -561,6 +561,8 @@ extension NewTLViewController {
             countLabel = journey["buddies"].array!.count
             showBuddies()
             
+            self.otgView.journeyName.animation.makeY(100).animate(0.1)
+            
             let allPosts = journey["post"].array!
             self.getAllPosts(allPosts)
             var p = Post()
