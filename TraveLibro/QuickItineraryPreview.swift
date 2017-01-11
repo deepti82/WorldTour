@@ -10,6 +10,9 @@ import UIKit
 
 class QuickItineraryPreview: UIView {
 
+    @IBOutlet weak var quickTypeThree: UIImageView!
+    @IBOutlet weak var quickTypeTwo: UIImageView!
+    @IBOutlet weak var quickTypeOne: UIImageView!
     @IBOutlet weak var qiView: UIView!
     @IBOutlet weak var countryScroll: UIScrollView!
     @IBOutlet weak var userName: UILabel!
@@ -33,8 +36,10 @@ class QuickItineraryPreview: UIView {
         
         self.userPhoto.layer.cornerRadius = 20
         self.userPhoto.clipsToBounds = true
-        
-        
+        quickTypeOne.tintColor = UIColor.white
+        quickTypeTwo.tintColor = UIColor.white
+        quickTypeThree.tintColor = UIColor.white
+        qiView.layer.zPosition = 100
         horizontal = HorizontalLayout(height: self.countryScroll.frame.height)
         
         if quickItinery["countryVisited"].count != 0 {

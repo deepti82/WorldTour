@@ -71,8 +71,10 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         let rightButton = UIButton()
         if inx == 4 {
             rightButton.setTitle("Preview", for: .normal)
+             rightButton.titleLabel?.font = avenirBold
             rightButton.addTarget(self, action: #selector(self.donePage(_:)), for: .touchUpInside)
-            rightButton.frame = CGRect(x: 0, y: 8, width: 80, height: 30)
+            rightButton.frame = CGRect(x: -5, y: 8, width: 80, height: 25)
+            
         }else{
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
             rightButton.addTarget(self, action: #selector(self.nextPage(_:)), for: .touchUpInside)
