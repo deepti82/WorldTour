@@ -18,6 +18,7 @@ class EditCategoryViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         getBackGround(self)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.setTopNavigation("Select Category")
     }
     

@@ -154,6 +154,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 //        moveUp()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         print("which view: \(buddiesStatus)")
         
         if !buddiesStatus {

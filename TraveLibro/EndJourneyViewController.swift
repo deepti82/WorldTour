@@ -96,7 +96,7 @@ class EndJourneyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         globalEndJourneyViewController = self
         journeyImages = []
         endJourneyState = true

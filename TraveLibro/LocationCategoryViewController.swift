@@ -16,7 +16,7 @@ class LocationCategoryViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         // Do any additional setup after loading the view.
         getDarkBackGround(self)
         collectionView.backgroundColor = UIColor.clear

@@ -172,8 +172,8 @@ extension NewTLViewController {
         self.addView.thoughtsInitalView.alpha = 0.1
         self.addView.thoughtsInitalView.isUserInteractionEnabled = false
         
-        self.addView.tagFriendsView.alpha = 0.1
-        self.addView.tagFriendsView.isUserInteractionEnabled = false
+        self.addView.tagFriendsView.alpha = 1
+        self.addView.tagFriendsView.isUserInteractionEnabled = true
         
         self.addView.typeOfAddActivtiy = "AddPhotosVideos"
         
