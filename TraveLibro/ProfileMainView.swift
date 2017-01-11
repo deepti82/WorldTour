@@ -12,6 +12,7 @@ class ProfileMainView: UIView {
     internal var flag = 0
     dynamic var myDate = Date()
     
+    @IBOutlet weak var typeOfTravellerImage: UIImageView!
     @IBOutlet weak var MAMView: UIView!
     @IBOutlet weak var flagText: UILabel!
     @IBOutlet weak var flagView: UIImageView!

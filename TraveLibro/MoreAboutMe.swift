@@ -15,59 +15,6 @@ class MoreAboutMe: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
-        let heavyFont = [NSFontAttributeName:  "Avenir-Heavy"]
-        let normalFont = [NSFontAttributeName: "Avenir-Roman"]
-        
-        let exploreIcon = NSTextAttachment()
-        let attributedString = NSMutableAttributedString(string: "Yash loves to travel and explore the ", attributes: normalFont)
-        exploreIcon.bounds = CGRect(origin: CGPoint(x: 5, y: -5) , size: CGSize(width: 25, height: 25))
-        exploreIcon.image = UIImage(named: "palm_trees_icon")
-        let attributedStringwithImage = NSAttributedString(attachment: exploreIcon)
-        attributedString.append(attributedStringwithImage)
-        attributedString.addAttribute(NSFontAttributeName, value: avenirFont!, range: NSRange(location:0,length: attributedString.length))
-        let string = NSMutableAttributedString(string: "Island & Beach.", attributes: heavyFont)
-        attributedString.append(string)
-        let myText = attributedString
-        
-        let exploreIconTwo = NSTextAttachment()
-        let attributedStringTwo = NSMutableAttributedString(string: "He usually goes ", attributes: normalFont)
-        exploreIconTwo.bounds = CGRect(origin: CGPoint(x: 5, y: -5) , size: CGSize(width: 25, height: 25))
-        exploreIconTwo.image = UIImage(named: "road")
-        let attributedStringwithImageTwo = NSAttributedString(attachment: exploreIconTwo)
-        attributedStringTwo.append(attributedStringwithImageTwo)
-        attributedStringTwo.addAttribute(NSFontAttributeName, value: avenirFont!, range: NSRange(location:0,length: attributedStringTwo.length))
-        let stringTwo = NSMutableAttributedString(string: " Where the road takes him, ", attributes: heavyFont)
-        attributedStringTwo.append(stringTwo)
-        myText.append(attributedStringTwo)
-        
-        let exploreIconThree = NSTextAttachment()
-        let attributedStringThree = NSMutableAttributedString(string: " tagging his ", attributes: normalFont)
-        exploreIconThree.bounds = CGRect(origin: CGPoint(x: 5, y: -5) , size: CGSize(width: 25, height: 25))
-        exploreIconThree.image = UIImage(named: "family")
-        let attributedStringwithImageThree = NSAttributedString(attachment: exploreIconThree)
-        attributedStringThree.append(attributedStringwithImageThree)
-        attributedStringThree.addAttribute(NSFontAttributeName, value: avenirFont!, range: NSRange(location:0,length: attributedStringThree.length))
-        let stringThree = NSMutableAttributedString(string: " Family ", attributes: heavyFont)
-        attributedStringThree.append(stringThree)
-        myText.append(attributedStringThree)
-        
-        let exploreIconFour = NSTextAttachment()
-        let attributedStringFour = NSMutableAttributedString(string: " along. His idea of a holiday is to go out of his way to see his favourite artist perform at a ", attributes: normalFont)
-        exploreIconFour.bounds = CGRect(origin: CGPoint(x: 5, y: -5), size: CGSize(width: 25, height: 25))
-        exploreIconFour.image = UIImage(named: "festival")
-        let attributedStringwithImageFour = NSAttributedString(attachment: exploreIconFour)
-        attributedStringFour.append(attributedStringwithImageFour)
-        attributedStringFour.addAttribute(NSFontAttributeName, value: avenirFont!, range: NSRange(location:0,length: attributedStringFour.length))
-        let stringFour = NSMutableAttributedString(string: " Music Festival.", attributes: heavyFont)
-        attributedStringFour.append(stringFour)
-        myText.append(attributedStringFour)
-        
-        myText.addAttribute(NSForegroundColorAttributeName, value: mainBlueColor, range: NSRange(location:0, length: myText.length))
-        myText.addAttribute(NSFontAttributeName, value: avenirFont!, range: NSRange(location:0,length: myText.length))
-        
-        mainTextView.attributedText = myText
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -81,6 +28,73 @@ class MoreAboutMe: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
+        print(currentUser);
+        
+        let name = currentUser["firstName"].stringValue
+        let kindOfHoliday = currentUser["travelConfig"]["kindOfHoliday"][0].stringValue
+        var kindOfHolidayFinal = ""
+        let gender = currentUser["gender"].stringValue
+        var pronoun = "She"
+        if(gender == "male") {
+            pronoun = "He"
+        }
+        var pronoun2 = "her"
+        if(gender == "male") {
+            pronoun2 = "him"
+        }
+        var usuallyGo = ""
+        switch(currentUser["travelConfig"]["usuallyGo"].stringValue) {
+            case "A little bit of both":
+            usuallyGo = "by the map or where the road takes \(pronoun2)"
+            
+            case "By the map":
+            usuallyGo = "by the map"
+            
+            case "By the road":
+            usuallyGo = "where the road takes \(pronoun2)"
+            
+            default:
+            usuallyGo = "by the map"
+        }
+        switch(kindOfHoliday) {
+            case "Island&Beach":
+            kindOfHolidayFinal = "islands and beaches"
+            case "City":
+            kindOfHolidayFinal = "cities"
+            case "Safari":
+            kindOfHolidayFinal = "safaries"
+            case "Mountains":
+            kindOfHolidayFinal = "mountains"
+            case "Cruise":
+            kindOfHolidayFinal = "cruises"
+            case "Countryside":
+            kindOfHolidayFinal = "countrysides"
+            default:
+            kindOfHolidayFinal = "islands and beaches"
+        }
+        
+        var preferStatement = ""
+        switch(currentUser["travelConfig"]["preferToTravel"][0].stringValue) {
+        case "Friends":
+            preferStatement  = "\(pronoun) prefers to travel with friends"
+        case "Family":
+            preferStatement  = "\(pronoun) prefers to travel with family"
+        case "Solo":
+            preferStatement  = "\(pronoun) prefers to travel solo"
+        case "Partner":
+            preferStatement  = "\(pronoun) prefers to travel with their partner"
+        case "Business":
+            preferStatement  = "\(pronoun) prefers to travel on business"
+        case "Blogger":
+            preferStatement  = "\(pronoun) is a Blogger"
+        case "Group Tour":
+            preferStatement  = "\(pronoun) prefers to travel on a Group Tour"
+        default:
+            preferStatement  = "\(pronoun) prefers to travel with friends"
+        }
+        let holidayType = currentUser["travelConfig"]["holidayType"][0].stringValue
+        
+        mainTextView.text = "\(name) loves to travel and explore \(kindOfHolidayFinal). \(pronoun) usually goes \(usuallyGo). \(preferStatement). \(name)'s ideal holiday type is \(holidayType)."
         
     }
 
