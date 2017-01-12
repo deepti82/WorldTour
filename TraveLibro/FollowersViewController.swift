@@ -185,25 +185,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         searchController.dimsBackgroundDuringPresentation = false
         searchText = searchController.searchBar.text!
         
-        // Filter the data array and get only those countries that match the search text.
-//        filter = followers.filter({(follower) -> Bool in
-//            
-//            //            print("country: \(country["name"])")
-//            
-//            let text: NSString = follower["name"].string!
-//            
-//            print("country: \(text.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location)")
-//            
-//            return (text.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location) != NSNotFound
-//        })
-//        
-//        //        filteredArray = countries.filter{$0["name"].string! == searchString}
-//        
-//        print("filtered array: \(filter)")
-        
         getFollowing()
-        
-        // Reload the tableview.
         followerTable.reloadData()
     }
     
@@ -351,16 +333,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             else if response["value"].bool! {
                 
                 print("response arrived!")
-                
-//                if self.whichView == "Following" && self.whichView != nil {
-//                    
-//                    self.getFollowing()
-//                    
-//                }
-//                else {
-//                    
-//                    self.getFollowers()
-//                }
+
                 
             }
             else {
@@ -369,31 +342,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 
             }
             })
-        
-        
-//        if !sender.selected {
-//            
-//            sender.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
-//            let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
-//            followTick.image = UIImage(named: "correct-signal")
-//            sender.titleLabel?.addSubview(followTick)
-//            sender.setTitle("Following", forState: .Normal)
-//            sender.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-//            sender.contentHorizontalAlignment = .Right
-//            sender.selected = true
-//            
-//        }
-//        
-//        else {
-//            
-//            sender.backgroundColor = UIColor.whiteColor()
-//            sender.titleLabel?.textColor = UIColor.whiteColor()
-//            sender.setTitle("+ Follow", forState: .Normal)
-//            sender.setTitleColor(UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1), forState: .Normal)
-//            sender.contentHorizontalAlignment = .Center
-//            sender.selected = false
-//            
-//        }
+
         
     }
     
@@ -423,16 +372,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             else if response["value"].bool! {
                 
                 print("response arrived!")
-                
-//                if self.whichView == "Following" && self.whichView != nil {
-//                    
-//                    self.getFollowing()
-//                    
-//                }
-//                else {
-//                    
-//                    self.getFollowers()
-//                }
                 
             }
             else {
