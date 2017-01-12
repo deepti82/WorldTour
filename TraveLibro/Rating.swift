@@ -17,6 +17,7 @@ class Rating: UIView {
     @IBOutlet var stars: [UIImageView]!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var upLine: drawLine!
     
     var lines = 0
     var textViewHeight: CGFloat!
@@ -24,6 +25,7 @@ class Rating: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
+        upLine.backgroundColor = UIColor.clear
         
         calendarIcon.text = String(format: "%C", faicon["calendar"]!)
         clockIcon.text = String(format: "%C", faicon["clock"]!)

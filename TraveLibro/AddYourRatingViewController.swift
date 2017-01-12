@@ -18,12 +18,13 @@ class AddYourRatingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getBackGround(self)
-        
+//        getBackGround(self)
+        getDarkBackGround(self)
+        createNavigation()
         layout = VerticalLayout(width: self.view.frame.width)
         
         scroll = UIScrollView(frame: self.view.frame)
-        scroll.frame.origin.y = 100
+        scroll.frame.origin.y = 0
         self.view.addSubview(scroll)
         scroll.showsVerticalScrollIndicator = false
         
@@ -37,17 +38,29 @@ class AddYourRatingViewController: UIViewController {
         
         print("layout height: \(layout.frame.height)")
         
-        orangeLine = drawLine(frame: CGRect(x: self.view.frame.width/2, y: 0, width: 20, height: 20))
-        orangeLine.backgroundColor = UIColor.clear
-        scroll.addSubview(orangeLine)
+//        orangeLine = drawLine(frame: CGRect(x: self.view.frame.width/2, y: 0, width: 20, height: 20))
+//        orangeLine.backgroundColor = UIColor.clear
+//        scroll.addSubview(orangeLine)
         scroll.addSubview(layout)
         
     }
-    
+    func createNavigation() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: nil)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+
     func addHeightToLayout(_ height: CGFloat) {
         
         layout.frame.size.height += height + 100
-        orangeLine.frame.size.height += height + 100
+//        orangeLine.frame.size.height += height + 100
         scroll.contentSize.height = layout.frame.height
         print("layout height: \(layout.frame.height)")
     }
@@ -65,14 +78,14 @@ class AddYourRatingViewController: UIViewController {
     func addRating(post: JSON) {
         print("One post ..............")
         print(post)
-        let rating = Rating(frame: CGRect(x: 0, y: 20, width: layout.frame.width, height: 225))
+        let rating = Rating(frame: CGRect(x: 0, y: 0, width: layout.frame.width, height: 225))
         if post["city"] != nil {
-            rating.checkInTitle.text = "Your Review Of \(post["city"].string!.capitalized)"
+            rating.checkInTitle.text = "\(post["city"].string!.capitalized)"
         }else{
             rating.checkInTitle.text = ""
         }
         
-        rating.reviewDescription.text = post["review"].string!
+//        rating.reviewDescription.text = post["review"].string!
         rating.date.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["createdAt"].string!, isDate: true)
         rating.time.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["createdAt"].string!, isDate: false)
         rating.lines = rating.reviewDescription.text!.characters.count/55

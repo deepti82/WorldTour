@@ -23,6 +23,7 @@ class PhotoList: UIView {
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    var mi: JSON = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +37,11 @@ class PhotoList: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    @IBAction func likeClicked(_ sender: UIButton) {
+        print(mi)
+    }
+    @IBAction func commentClicked(_ sender: UIButton) {
     }
     
     func loadViewFromNib() {

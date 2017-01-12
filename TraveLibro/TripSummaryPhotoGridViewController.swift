@@ -14,6 +14,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     
     var journeyId = ""
     var myPhotos: [String] = []
+    var fromView = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     func getJourneyPhotos() {
         
         
-        if !endJourneyState {
+//        if !endJourneyState {
             print("oooyyyy in journey images")
             request.journeyTypeData(journeyId, type: "photos", userId: currentUser["_id"].string!, completion: {(response) in
                 
@@ -55,10 +56,12 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
                 
             })
 
-        }else{
-            self.myPhotos = journeyImages
-            self.collectionView!.reloadData()
-        }
+//        }else{
+//            print("in else fron journey")
+//            print(journeyImages)
+//            self.myPhotos = journeyImages
+//            self.collectionView!.reloadData()
+//        }
         
         
         
@@ -85,7 +88,8 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("one image clicked")
-        if endJourneyState {
+        print(fromView)
+        if fromView == "endJourney" {
             let cell = collectionView.cellForItem(at: indexPath) as! gridCollectionViewCell
             let photoEditViewController = PhotoEditViewController(photo: cell.photo.image!)
             let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)

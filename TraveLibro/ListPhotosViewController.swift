@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Spring
 
 
 class ListPhotosViewController: UIViewController {
@@ -114,7 +115,7 @@ class ListPhotosViewController: UIViewController {
     func addPhoto(_ count: Int, photo: JSON) {
         print("in photo........")
         print(photo)
-        let photoList = PhotoList(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 410))
+        let photoList = PhotoList(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 410))
         photoList.videoIcon.isHidden = true
         photoList.commentCount.text = "\(photo["commentCount"]) Comments"
         photoList.likeCount.text = "\(photo["likeCount"]) Likes"
@@ -124,6 +125,7 @@ class ListPhotosViewController: UIViewController {
         let string = NSMutableAttributedString(string: " 0\(days + 1)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 24)!])
         attributedString.append(string)
         photoList.daysLabel.attributedText = attributedString
+        photoList.mi = photo
         photoList.timeLabel.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "HH:mm", date: photo["createdAt"].string!)
         if photo["isDoneLike"] != nil {
             if photo["isDoneLike"].bool! {

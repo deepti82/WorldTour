@@ -33,7 +33,7 @@ class TripSummaryPhotosViewController: UIViewController {
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: img), for: UIControlState())
         rightButton.addTarget(self, action: #selector(TripSummaryPhotosViewController.changeView(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
+        rightButton.frame = CGRect(x: 0, y: 8, width: 20, height: 20)
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -75,6 +75,7 @@ class TripSummaryPhotosViewController: UIViewController {
             
             let photoGrid = segue.destination as! TripSummaryPhotoGridViewController
             photoGrid.journeyId = journey
+            photoGrid.fromView = fromView
             
         }
         else if segue.identifier == "photoListEmbed" {
