@@ -142,19 +142,14 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "yearCells", for: indexPath) as! AddYearsTableViewCell
-        
         if shouldShowSearchResults && filteredArray != nil {
-            
             cell.yearLabel.text = filteredArray[(indexPath as NSIndexPath).row]
-            
         }
         else {
-            
             cell.yearLabel.text = years[(indexPath as NSIndexPath).row]
         }
         
-//        cell.addQty.addTarget(self, action: #selector(AddYearsCountriesVisitedTableViewController.addQuantity(_:)), forControlEvents: .TouchUpInside)
-//        cell.removeQty.addTarget(self, action: #selector(AddYearsCountriesVisitedTableViewController.removeQuantity(_:)), forControlEvents: .TouchUpInside)
+
         cell.selectionStyle = .none
         cell.accessoryType = .checkmark
         
@@ -171,25 +166,8 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         }
         
         if selectedYears.contains(years[(indexPath as NSIndexPath).row]) {
-            
             cell.tintColor = mainOrangeColor
             cell.cartView.isHidden = false
-            
-//            for i in 0 ..< years.count {
-//                
-//                for j in 0 ..< trialVariable.count {
-//                    
-//                    if years[i] == trialVariable[j]["country"].string! {
-//                        
-//                        cell.qtyField.text = trialVariable[j]["quantity"].string!
-//                        
-//                    }
-//                    
-//                    
-//                }
-//                
-//            }
-            
         }
         
         else {
@@ -197,36 +175,6 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
             cell.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
             cell.cartView.isHidden = true
         }
-        
-//        if filteredArray != nil && filteredArray.count > 0 && s electedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
-//            
-//            if indexPath.row == 0 {
-//                
-//                print("in here \(filteredArray[indexPath.row]["_id"].string!)")
-//                
-//            }
-//            
-//            cell.tintColor = mainOrangeColor
-//            
-//        }
-        
-//        if alreadySelected != nil && alreadySelected.contains(years[indexPath.row]) && filteredArray != nil && filteredArray.count == 0 {
-//            
-//            print("already selected contains \(years[indexPath.row])")
-//            cell.tintColor = mainOrangeColor
-//        }
-//            
-//        else if selectedYears.contains(years[indexPath.row]["_id"].string!) && filteredArray != nil && filteredArray.count == 0 {
-//            
-//            cell.tintColor = mainOrangeColor
-//            
-//        }
-        
-//        else {
-//            
-//            cell.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
-//            
-//        }
 
         return cell
     }
@@ -382,7 +330,7 @@ class AddYearsTableViewCell: UITableViewCell {
     @IBOutlet weak var removeQty: UIButton!
     @IBOutlet weak var qtyField: UITextField!
     
-    var quantity: Int!
+    var quantity = 1
     var currentYear: String!
     var flag = 0
     
@@ -390,8 +338,8 @@ class AddYearsTableViewCell: UITableViewCell {
         
         print("in add quantity")
         currentYear = yearLabel.text
-        quantity = Int(qtyField.text!)!
-        quantity = quantity+1
+        quantity = quantity + 1
+        
         qtyField.text = "\(quantity)"
         
         for i in 0 ..< trialVariable.count {

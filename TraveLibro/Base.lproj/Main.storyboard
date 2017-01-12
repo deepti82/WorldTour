@@ -7716,7 +7716,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhJ-MV-hzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4549" y="4100"/>
+            <point key="canvasLocation" x="4548" y="4099.7001499250382"/>
         </scene>
         <!--Search Location Table View Controller-->
         <scene sceneID="CUt-fe-fdT">
