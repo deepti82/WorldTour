@@ -29,7 +29,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet weak var collectionViewHidden: UIView!
    
     var labels: [JSON] = []
-    var images = ["restaurantsandbars", "leaftrans", "hotels-1", "shopping-1", "nature_checkin", "sightstrans", "museumstrans", "zootrans", "religious-1", "cinematrans", "planetrans", "othersdottrans"]
+    var images = ["restaurantsandbars", "leaftrans", "hotels-1", "shopping-1", "nature_checkin", "sightstrans", "museumstrans", "zootrans", "religious-1", "cinematrans", "planetrans", "othersdottrans", "city_icon"]
     var journeyId = ""
     var tripCountData: JSON = []
     var cellSubview: VerticalLayout!
@@ -66,6 +66,8 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TripStatsCollectionViewCell
         cell.statImage.setImage(UIImage(named: getImageName(categoryLabel: labels[indexPath.item]["name"].string!)), for: .normal)
+        cell.statImage.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        cell.statImage.imageView?.tintColor = mainBlueColor
         let title = NSMutableAttributedString(string: labels[indexPath.item]["name"].string!, attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 10)!])
         let count = NSMutableAttributedString(string: "\(labels[indexPath.item]["count"].int!) ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 10)!])
         count.append(title)
@@ -87,20 +89,22 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
             return images[2]
         case "Nature & Parks":
             return images[1]
-        case "Sights and Landmarks":
+        case "Sights & Landmarks":
             return images[5]
-        case "Museums and Galleries":
+        case "Museums & Galleries":
             return images[6]
-        case "Zoo and Aquariums":
+        case "Zoo & Aquariums":
             return images[7]
         case "Religious":
             return images[8]
-        case "Cinema and Theatres":
+        case "Cinema & Theatres":
             return images[9]
-        case "Hotels and Accomodations":
+        case "Hotels & Accomodations":
             return images[10]
         case "Transportation":
             return images[10]
+        case "City":
+            return images[12]
         default:
             return images[11]
         }
@@ -116,7 +120,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
             stackFlags[2].isHidden = true
             stackCountryNames[1].isHidden = true
             stackCountryNames[2].isHidden = true
-            remainingCountries.isHidden = true
+//            remainingCountries.isHidden = true
         
         case 2:
             stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
@@ -125,7 +129,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
             stackCountryNames[1].text = tripCountData["countryVisited"][1]["country"]["name"].string!
             stackFlags[2].isHidden = true
             stackCountryNames[2].isHidden = true
-            remainingCountries.isHidden = true
+//            remainingCountries.isHidden = true
         
         case 3:
             stackFlags[0].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][0]["country"]["flag"])")!))
@@ -134,7 +138,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
             stackCountryNames[1].text = tripCountData["countryVisited"][1]["country"]["name"].string!
             stackFlags[2].image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(tripCountData["countryVisited"][2]["country"]["flag"])")!))
             stackCountryNames[2].text = tripCountData["countryVisited"][2]["country"]["name"].string!
-            remainingCountries.isHidden = true
+//            remainingCountries.isHidden = true
             
         default:
             for flag in stackFlags {
@@ -145,7 +149,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
                 
                 flagName.text = tripCountData["countryVisited"][stackCountryNames.index(of: flagName)!]["country"]["name"].string!
             }
-            remainingCountries.text = "\(tripCountData["countryVisited"].array!.count - 3)"
+//            remainingCountries.text = "\(tripCountData["countryVisited"].array!.count - 3)"
             
         }
         
@@ -218,7 +222,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         checkInCollectionView.isHidden = true
         countryStackView.isHidden = true
         countriesVisitedLabel.isHidden = true
-        likesLabel.isHidden = true
+//        likesLabel.isHidden = true
     }
     
     
@@ -231,7 +235,7 @@ class SummarySubViewController: UIViewController, UICollectionViewDataSource, UI
         checkInCollectionView.isHidden = false
         countryStackView.isHidden = false
         countriesVisitedLabel.isHidden = false
-        likesLabel.isHidden = true
+//        likesLabel.isHidden = true
     }
     
     
