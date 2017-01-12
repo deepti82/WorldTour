@@ -19,7 +19,8 @@ class RatingCheckIn: UIView {
         loadViewFromNib ()
         
         rateCheckInLabel.shadowColor = UIColor.black
-        rateCheckInLabel.shadowOffset = CGSize(width: 1, height: 1)
+        rateCheckInLabel.shadowOffset = CGSize(width: 2, height: 0.5)
+//        rateCheckInLabel.layer.shadowOpacity = 0.8
         rateCheckInLabel.layer.masksToBounds = true
         line.backgroundColor = UIColor.clear
         
