@@ -34,42 +34,13 @@ class BucketListTableViewController: UITableViewController  {
         self.customNavigationBar(left: leftButton, right: rightButton)
         
         if whichView == "BucketList" {
-            
             self.title = "Bucket List"
             getBucketList()
-            
         }
         
         if whichView == "CountriesVisited" {
-            
             self.title = "Countries Visited"
             getCountriesVisited()
-            
-//            request.getCountriesVisited(currentUser["_id"].string!, completion: {(response) in
-//                
-//                dispatch_async(dispatch_get_main_queue(), {
-//                    
-//                    if response.error != nil {
-//                        
-//                        print("error - \(response.error!.code): \(response.error!.localizedDescription)")
-//                    }
-//                    else if response["value"].bool! {
-//                        
-////                        self.bucket = response["data"]["countriesVisited"].array!
-////                        self.tableView.reloadData()
-//                        
-//                    }
-//                    else {
-//                        
-//                        print("response error: \(response["data"])")
-//                        
-//                    }
-//                })
-//                
-//                
-//            })
-            
-            
         }
         
         tableView.separatorColor = UIColor.white
@@ -103,34 +74,6 @@ class BucketListTableViewController: UITableViewController  {
             
         }
         
-//        let profile = storyboard?.instantiateViewControllerWithIdentifier("ProfileVC") as! ProfileViewController
-//        self.navigationController?.pushViewController(profile, animated: false)
-//        (ProfileViewController(), animated: true)
-        
-//        if ((self.navigationController?.viewControllers.contains(profile)) != nil) {
-//            
-//            let arrayOfVCs = self.navigationController!.viewControllers as Array
-//            
-//            let index = arrayOfVCs.indexOf(profile)
-//            print("index: \(index)")
-//            print("inside contains")
-//            
-//        }
-
-//        for container in self.navigationController!.viewControllers {
-//            
-//            if container.isEqual(profile) {
-//                
-//                print("contains")
-//                
-//            }
-//            
-//        }
-        
-        
-//        self.navigationController?.popToRootViewControllerAnimated(true)
-//        self.navigationController?.popToViewController(, animated: true)
-        
     }
     
     func getBucketList() {
@@ -145,18 +88,13 @@ class BucketListTableViewController: UITableViewController  {
                     }
                     else if response["value"].bool! {
                         
-//                        let profile = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
-//                        profile.setCount()
-//                        profile.getCount()
-                        
                         self.bucket = response["data"]["bucketList"].array!
+                        print(self.bucket);
                         if self.bucket.count == 0 {
-                            
                             print("bucket list is empty")
                             let emptyBucket = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
                             emptyBucket.whichView = self.whichView
                             self.navigationController?.pushViewController(emptyBucket, animated: false)
-                            
                         }
                         self.tableView.reloadData()
                         
@@ -281,6 +219,8 @@ class BucketListTableViewController: UITableViewController  {
             
                 let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
                 cell.countryName.text = bucket[(indexPath as NSIndexPath).row]["name"].string!
+                cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: 500))
+                cell.countryPicture.alpha = 0.5
                 cell.yearOfVisit.isHidden = true
                 return cell
                 
@@ -299,6 +239,9 @@ class BucketListTableViewController: UITableViewController  {
 //            print("bucket: \(bucket[indexPath.row]["countries"][0])")
             cell.countryName.text = self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["name"].string!
             cell.yearOfVisit.text = "\(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"])"
+            print(self.result[indexPath.row])
+            cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.row]["countries"][0]["countryId"]["countryCoverPhoto"].stringValue,width: 500))
+            cell.countryPicture.alpha = 0.5
             return cell
             
             //            }

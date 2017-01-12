@@ -194,6 +194,18 @@ func makeTLProfilePicture(_ image: UIButton) {
     
 }
 
+func getImageURL(_ str: String,width:Int) -> URL {
+    
+    let isUrl = verifyUrl(str)
+    var returnURL:URL!
+    if isUrl {
+        returnURL = URL(string:str)
+    } else {
+        let getImageUrl = adminUrl + "upload/readFile?file=" + str + "&width="+String(width)
+        returnURL = URL(string:getImageUrl)
+    }
+    return returnURL
+}
 
 func darkBlur(_ view: UIView) {
     let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
