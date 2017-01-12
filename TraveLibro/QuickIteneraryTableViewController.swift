@@ -9,7 +9,7 @@
 import UIKit
 import Toaster
 
-class QuickIteneraryTableViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
+class QuickIteneraryTableViewController: UITableViewController, UISearchBarDelegate,UISearchDisplayDelegate {
     
     var countries: [JSON] = []
     var countriesSearchResults: [JSON] = []
@@ -17,6 +17,7 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     var isSearch = false
     var searchTextGlob: String = ""
     var countriesArr: [JSON] = []
+    var searchController:UISearchDisplayController!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,9 +36,18 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
             //            })
         }
         
-        
         UIApplication.shared.isStatusBarHidden = true
         
+    }
+    
+    func searchDisplayControllerWillBeginSearch(_ controller: UISearchDisplayController) {
+        controller.searchResultsTableView.delegate = self
+        controller.searchResultsTableView.dataSource = self
+        self.searchController = controller
+    }
+    func searchDisplayController(_ controller: UISearchDisplayController, didLoadSearchResultsTableView tableView: UITableView) {
+        print("LETS SEE");
+        tableView.isHidden = true
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -57,6 +67,11 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         self.dismiss(animated: true, completion: nil)
     }
     
+    func refreshUI() { DispatchQueue.main.async {
+        self.tableView.reloadData()
+        self.searchController.searchResultsTableView.reloadData()
+        }}
+    
     func searchCityFun(search: String) {
         print(selectedCountry)
         var contid = selectedCountry["_id"].stringValue
@@ -71,10 +86,9 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
             print(request["data"])
             for city in request["data"].array! {
                 self.countriesSearchResults.append(city)
+                
             }
-            DispatchQueue.main.async{
-                self.tableView.reloadData()
-            }
+            self.refreshUI()
         })
     }
     func searchCountryFun(search: String) {
@@ -108,13 +122,14 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         }
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         if isSearch {
-            cell.textLabel?.text = countriesSearchResults[indexPath.row]["name"].stringValue
+            print(indexPath.row);
+            print(self.countriesSearchResults[indexPath.row]);
+            cell.textLabel?.text = self.countriesSearchResults[indexPath.row]["name"].stringValue
         }else{
-            cell.textLabel?.text = countries[indexPath.row]["name"].stringValue
+            cell.textLabel?.text = self.countries[indexPath.row]["name"].stringValue
         }
         return cell
         
