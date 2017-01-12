@@ -88,7 +88,7 @@ class MoreAboutMe: UIView {
         case "Blogger":
             preferStatement  = "\(pronoun) is a Blogger"
         case "Group Tour":
-            preferStatement  = "\(pronoun) prefers to travel on a Group Tour"
+            preferStatement  = "\(pronoun) prefers to travel on a group tour"
         default:
             preferStatement  = "\(pronoun) prefers to travel with friends"
         }
