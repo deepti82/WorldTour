@@ -71,11 +71,7 @@ class startOTGView: UIView {
         rocketLabel.text = String(format: "%C", faicon["rocket"]!)
         rocketLabel.textColor = UIColor.white
         startJourneyButton.titleLabel?.addSubview(rocketLabel)
-        bonVoyageLabel.animation.thenAfter(0.5).animate(0.15).animate(1.0)
-        shoewImage.animation.thenAfter(0.20).animate(0.25).moveY(-25).animate(1.0)
-        lineOne.animation.thenAfter(0.30).animate(0.35).moveY(-25).animate(1.0)
-        startJourneyButton.animation.thenAfter(0.40).animate(0.45).makeAlpha(1.0).moveY(-25).animate(1.0)
-        lineTwo.animation.thenAfter(0.50).animate(0.55).moveY(-25).animate(1.0)
+        
         
         
         
@@ -99,7 +95,8 @@ class startOTGView: UIView {
         detectLocationView.layer.shadowOpacity = 0.5
         detectLocationView.layer.shadowRadius = 1.0
         
-//        cityDetails.layer.cornerRadius = 5
+        
+        //        cityDetails.layer.cornerRadius = 5
 //        cityImage.layer.cornerRadius = 5
 //        cityImage.layer.borderColor = UIColor.white.cgColor
 //        cityImage.layer.borderWidth = 3.0
@@ -115,6 +112,8 @@ class startOTGView: UIView {
             icon.tintColor = UIColor(red: 252/255, green: 80/255, blue: 71/255, alpha: 1)
             
         }
+        
+        
         
         
         closeBuddies.layer.cornerRadius = 12.5
