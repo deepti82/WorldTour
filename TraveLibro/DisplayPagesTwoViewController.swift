@@ -19,7 +19,7 @@ class DisplayPagesTwoViewController: UIViewController {
         super.viewDidLoad()
         
         getDarkBackGroundBlur(self)
-        
+        makeTLProfilePicture(profileImage)
 //        let indicatorTwo = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
 //        indicatorTwo.image = UIImage(named: "headerindicator2")
 //        self.navigationItem.titleView = indicatorTwo
@@ -71,34 +71,16 @@ class DisplayPagesTwoViewController: UIViewController {
         if isUrl {
             
             print("inside if statement")
-            let data = try? Data(contentsOf: URL(string: profilePic)!)
             
-            if data != nil {
-                
-                print("some problem in data \(data)")
-                //                uploadView.addButton.setImage(, forState: .Normal)
-                profileImage.image = UIImage(data: data!)
-                makeTLProfilePicture(profileImage)
-            }
+            profileImage.hnk_setImageFromURL(URL(string:profilePic)!)
+            makeTLProfilePicture(profileImage)
         }
             
         else {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + profilePic + "&width=100"
-            
-//            print("getImageUrl: \(getImageUrl)")
-            
-            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-//            print("data: \(data)")
-            
-            if data != nil {
-                
-                //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
-                print("inside if statement \(profileImage.image)")
-                profileImage.image = UIImage(data: data!)
-                //                print("sideMenu.profilePicture.image: \(profileImage.image)")
-                makeTLProfilePicture(profileImage)
-            }
+            profileImage.hnk_setImageFromURL(URL(string:getImageUrl)!)
+            makeTLProfilePicture(profileImage)
             
         }
     }

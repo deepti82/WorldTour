@@ -25,6 +25,8 @@ class DisplayPagesOneViewController: UIViewController {
         
         getDarkBackGroundBlur(self)
         
+        makeTLProfilePicture(profileImage)
+        
 //        let indicatorOne = UIImageView(frame: CGRect(x: 0, y: 0, width: 55, height: 40))
 //        indicatorOne.image = UIImage(named: "indicatorOne")
 //        self.navigationItem.titleView = indicatorOne
@@ -119,34 +121,15 @@ class DisplayPagesOneViewController: UIViewController {
         if isUrl {
             
             print("inside if statement")
-            let data = try? Data(contentsOf: URL(string: profilePic)!)
-            
-            if data != nil {
-                
-                print("some problem in data \(data)")
-                //                uploadView.addButton.setImage(, forState: .Normal)
-                profileImage.image = UIImage(data: data!)
-                makeTLProfilePicture(profileImage)
-            }
+            profileImage.hnk_setImageFromURL(URL(string:profilePic)!)
+            makeTLProfilePicture(profileImage)
         }
             
         else {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + profilePic + "&width=100"
-            
-//            print("getImageUrl: \(getImageUrl)")
-            
-            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-//            print("data: \(data)")
-            
-            if data != nil {
-                
-                //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
-                print("inside if statement \(profileImage.image)")
-                profileImage.image = UIImage(data: data!)
-//                print("sideMenu.profilePicture.image: \(profileImage.image)")
-                makeTLProfilePicture(profileImage)
-            }
+            profileImage.hnk_setImageFromURL(URL(string:getImageUrl)!)
+            makeTLProfilePicture(profileImage)
             
         }
     }

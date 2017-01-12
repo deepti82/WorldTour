@@ -16,7 +16,7 @@ class DisplayPagesThreeViewController: UIViewController {
         super.viewDidLoad()
         
         getDarkBackGroundBlur(self)
-        
+
 //        let indicatorThree = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 20))
 ////        indicatorThree.center.y = (self.navigationItem.titleView?.frame.height)!/2
 //        indicatorThree.image = UIImage(named: "headerindicator3")
@@ -76,34 +76,16 @@ class DisplayPagesThreeViewController: UIViewController {
         if isUrl {
             
             print("inside if statement")
-            let data = try? Data(contentsOf: URL(string: profilePic)!)
             
-            if data != nil {
-                
-                print("some problem in data \(data)")
-                //                uploadView.addButton.setImage(, forState: .Normal)
-                sender.profileImage.image = UIImage(data: data!)
-                makeTLProfilePicture(sender.profileImage)
-            }
+            sender.profileImage.hnk_setImageFromURL(URL(string:profilePic)!)
+            makeTLProfilePicture(sender.profileImage)
         }
             
         else {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + profilePic + "&width=100"
-            
-//            print("getImageUrl: \(getImageUrl)")
-            
-            let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-//            print("data: \(data)")
-            
-            if data != nil {
-                
-                //                uploadView.addButton.setImage(UIImage(data:data!), forState: .Normal)
-                print("inside if statement \(sender.profileImage.image)")
-                sender.profileImage.image = UIImage(data: data!)
-                //                print("sideMenu.profilePicture.image: \(profileImage.image)")
-                makeTLProfilePicture(sender.profileImage)
-            }
+            sender.profileImage.hnk_setImageFromURL(URL(string:getImageUrl)!)
+            makeTLProfilePicture(sender.profileImage)
             
         }
     }
