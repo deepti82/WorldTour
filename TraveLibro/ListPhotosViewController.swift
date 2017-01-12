@@ -129,7 +129,7 @@ class ListPhotosViewController: UIViewController {
         photoList.timeLabel.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "HH:mm", date: photo["createdAt"].string!)
         if photo["isDoneLike"] != nil {
             if photo["isDoneLike"].bool! {
-                photoList.likeButton = UIButton(type: .custom)
+                photoList.likeButton = SpringButton(type: .custom)
                 let image = UIImage(named: "favorite-heart-button")
                 photoList.likeButton.setImage(image?.withRenderingMode(UIImageRenderingMode.alwaysTemplate), for: .normal)
                 

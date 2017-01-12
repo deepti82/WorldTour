@@ -103,7 +103,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGR-Ri-y0T">
-                                <rect key="frame" x="8" y="68.5" width="33" height="15"/>
+                                <rect key="frame" x="8" y="69" width="33" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="33" id="OQj-UB-5JW"/>
                                     <constraint firstAttribute="height" constant="15" id="WUY-no-dux"/>

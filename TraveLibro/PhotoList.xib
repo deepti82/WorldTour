@@ -17,7 +17,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoList" customModule="TraveLibro" customModuleProvider="target">
             <connections>
                 <outlet property="clockIcon" destination="pQ3-DG-GR9" id="pkB-Di-oq4"/>
-                <outlet property="commentButton" destination="O4Q-63-dgR" id="a7y-tF-fhl"/>
+                <outlet property="commentButton" destination="O4Q-63-dgR" id="d2L-or-IOL"/>
                 <outlet property="commentCount" destination="SjM-xM-KAK" id="azz-KX-o4e"/>
                 <outlet property="commentIcon" destination="xV4-7t-kAm" id="bau-CZ-ldw"/>
                 <outlet property="daysLabel" destination="wuF-x0-upM" id="gDo-km-4Zp"/>
@@ -132,7 +132,7 @@
                                         <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <connections>
-                                        <action selector="likeClicked:" destination="-1" eventType="touchUpInside" id="b14-ss-Scd"/>
+                                        <action selector="likeClicked:" destination="-1" eventType="touchUpInside" id="feY-1w-K0n"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4Q-63-dgR">

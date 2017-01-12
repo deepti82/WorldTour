@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Spring
 
 class PhotoList: UIView {
 
     @IBOutlet weak var likesIcon: UILabel!
     @IBOutlet weak var clockIcon: UILabel!
     @IBOutlet weak var videoIcon: UIImageView!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var optionsButton: UIButton!
@@ -32,15 +33,18 @@ class PhotoList: UIView {
         likesIcon.text = String(format: "%C", faicon["likes"]!)
         clockIcon.text = String(format: "%C", faicon["clock"]!)
         commentIcon.text = String(format: "%C", faicon["comments"]!)
+        likeButton.tintColor = mainBlueColor
+        commentButton.tintColor = mainBlueColor
+        shareButton.tintColor = mainBlueColor
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    @IBAction func likeClicked(_ sender: UIButton) {
-        print(mi)
+    @IBAction func likeClicked(_ sender: SpringButton) {
     }
+    
     @IBAction func commentClicked(_ sender: UIButton) {
     }
     
