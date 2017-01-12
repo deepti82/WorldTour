@@ -224,27 +224,34 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             makeTLProfilePicture(self.profilePicture)
         }
         var isNotDone = true
-        if(isNotDone) {
-            for prefer in currentUser["travelConfig"]["preferToTravel"].array! {
-                if(prefer.stringValue == "Blogger") {
-                    isNotDone = false
-                    self.isPhotographer.text = "Blogger"
+        if(currentUser["travelConfig"]["preferToTravel"].array != nil) {
+            if(isNotDone) {
+                
+                for prefer in currentUser["travelConfig"]["preferToTravel"].array! {
+                    if(prefer.stringValue == "Blogger") {
+                        isNotDone = false
+                        self.isPhotographer.text = "Blogger"
+                    }
                 }
             }
-        }
-        if(isNotDone) {
-            for prefer in currentUser["travelConfig"]["preferToTravel"].array! {
-                if(prefer.stringValue == "Photographer") {
-                    isNotDone = false
-                    self.isPhotographer.text = "Photographer"
+            if(isNotDone) {
+                for prefer in currentUser["travelConfig"]["preferToTravel"].array! {
+                    if(prefer.stringValue == "Photographer") {
+                        isNotDone = false
+                        self.isPhotographer.text = "Photographer"
+                    }
                 }
             }
-        }
-        
-        if(isNotDone) {
+            
+            if(isNotDone) {
+                isNotDone = false
+                self.isPhotographer.text = ""
+            }
+        } else {
             isNotDone = false
             self.isPhotographer.text = ""
         }
+        
 
         
         profile_badge.image = UIImage(named:currentUser["userBadgeName"].stringValue.lowercased())

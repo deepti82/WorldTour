@@ -154,7 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["calendar"] = 0xf073
         faicon["rocket"] = 0xf135
         faicon["videoPlay"] = 0xf16a
-        faicon["likes"] = 0xf08a
+        faicon["likes"] = 0xf004
         faicon["reviews"] = 0xf234
         faicon["angle_up"] = 0xf106
         faicon["facebook"] = 0xf09a
