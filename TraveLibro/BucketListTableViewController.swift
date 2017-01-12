@@ -14,7 +14,7 @@ class BucketListTableViewController: UITableViewController  {
     var whichView: String!
     var bucket: [JSON] = []
     var result: [JSON] = []
-//    var countriesVisited: [JSON] = []
+    //    var countriesVisited: [JSON] = []
     
     var isComingFromEmptyPages = false
     
@@ -55,7 +55,7 @@ class BucketListTableViewController: UITableViewController  {
         }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -78,40 +78,41 @@ class BucketListTableViewController: UITableViewController  {
     
     func getBucketList() {
         
-            request.getBucketList(currentUser["_id"].string!, completion: {(response) in
+        request.getBucketList(currentUser["_id"].string!, completion: {(response) in
+            
+            DispatchQueue.main.async(execute: {
                 
-                DispatchQueue.main.async(execute: {
+                if response.error != nil {
                     
-                    if response.error != nil {
-                        
-                        print("error - \(response.error?.code): \(response.error?.localizedDescription)")
+                    print("error - \(response.error?.code): \(response.error?.localizedDescription)")
+                }
+                else if response["value"].bool! {
+                    
+                    self.bucket = response["data"]["bucketList"].array!
+                    print(self.bucket);
+                    if self.bucket.count == 0 {
+                        print("bucket list is empty")
+                        let emptyBucket = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
+                        emptyBucket.whichView = self.whichView
+                        self.navigationController?.pushViewController(emptyBucket, animated: false)
                     }
-                    else if response["value"].bool! {
-                        
-                        self.bucket = response["data"]["bucketList"].array!
-                        print(self.bucket);
-                        if self.bucket.count == 0 {
-                            print("bucket list is empty")
-                            let emptyBucket = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
-                            emptyBucket.whichView = self.whichView
-                            self.navigationController?.pushViewController(emptyBucket, animated: false)
-                        }
-                        self.tableView.reloadData()
-                        
-                    }
-                    else {
-                        
-                        print("response error: \(response["data"])")
-                        
-                    }
-                })
-                
+                    self.tableView.reloadData()
+                    
+                }
+                else {
+                    
+                    print("response error: \(response["data"])")
+                    
+                }
             })
             
-            
-//        }
+        })
+        
+        
+        //        }
         
     }
+    
     
     func getCountriesVisited() {
         
@@ -125,24 +126,8 @@ class BucketListTableViewController: UITableViewController  {
                 }
                 else if response["value"].bool! {
                     
-                    //                        let profile = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! ProfileViewController
-                    //                        profile.setCount()
-                    //                        profile.getCount()
-                    
                     self.result = response["data"]["countriesVisited"].array!
                     getCountries = self.result
-//                    for res in self.result {
-//                        
-//                        let temp = res["countries"].array!
-//                        for t in temp {
-//                            
-//                            self.bucket.append(t)
-//                            
-//                        }
-//                        
-//                    }
-                    
-//                    print("bucket: \(self.bucket)")
                     
                     if self.result.count == 0 {
                         
@@ -168,9 +153,9 @@ class BucketListTableViewController: UITableViewController  {
         //        }
         
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         if whichView == "BucketList" {
@@ -178,18 +163,18 @@ class BucketListTableViewController: UITableViewController  {
             return 1
             
         }
-        
+            
         else if whichView == "CountriesVisited" {
             
             return self.result.count
             
         }
-
+        
         
         return 1
         
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if whichView == "BucketList" {
@@ -200,7 +185,7 @@ class BucketListTableViewController: UITableViewController  {
             
         else if whichView == "CountriesVisited" {
             
-//            let countries = 
+            //            let countries =
             return self.result[section]["countries"].array!.count
             
         }
@@ -209,148 +194,56 @@ class BucketListTableViewController: UITableViewController  {
         return 0
         
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if whichView == "BucketList" {
             
-//            if indexPath.row % 2 == 0 {
             
-                let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
-                cell.countryName.text = bucket[(indexPath as NSIndexPath).row]["name"].string!
-                cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: 500))
-                cell.countryPicture.alpha = 0.5
-                cell.yearOfVisit.isHidden = true
-                return cell
-                
-//            }
-//            
-//            let cell = tableView.dequeueReusableCellWithIdentifier("SeperatorCell", forIndexPath: indexPath) as! NoViewTableViewCell
-//            return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
+            cell.countryName.text = bucket[(indexPath as NSIndexPath).row]["name"].string!
+            cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: 500))
+            cell.countryPicture.alpha = 1
+            cell.yearOfVisit.isHidden = true
+            return cell
+            
             
         }
-        
+            
         else if whichView == "CountriesVisited" {
             
-            //            if indexPath.row % 2 == 0 {
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
-//            print("bucket: \(bucket[indexPath.row]["countries"][0])")
+            
             cell.countryName.text = self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["name"].string!
             cell.yearOfVisit.text = "\(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"])"
-            print(self.result[indexPath.row])
-            cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.row]["countries"][0]["countryId"]["countryCoverPhoto"].stringValue,width: 500))
-            cell.countryPicture.alpha = 0.5
+            cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["countryCoverPhoto"].stringValue,width: 500))
+            cell.countryPicture.alpha = 1
             return cell
-            
-            //            }
-            //
-            //            let cell = tableView.dequeueReusableCellWithIdentifier("SeperatorCell", forIndexPath: indexPath) as! NoViewTableViewCell
-            //            return cell
-            
         }
         
-//        if indexPath.row % 2 == 0 {
         
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
-            return cell
-            
-//        }
-//        
-//        let cell = tableView.dequeueReusableCellWithIdentifier("SeperatorCell", forIndexPath: indexPath) as! NoViewTableViewCell
-//        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
+        return cell
+        
         
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-//        if indexPath.row % 2 == 0 {
-        
-            return 72
-//        }
-//        
-//        return 3
-        
+        return 72
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-//        if whichView == "BucketList" {
-//            let delete = UITableViewRowAction(style: UITableViewRowActionStyle(), title: "             ") { (action, indexPath) in
-//                
-////                print("bucket list removal: \(self.bucket[indexPath.row]["_id"])")
-//                
-//                request.removeBucketList(currentUser["_id"].string!, country: self.bucket[(indexPath as NSIndexPath).row]["_id"].string!, completion: {(response) in
-//                    
-//                    DispatchQueue.main.async(execute: {
-//                        
-//                        if response.error != nil {
-//                            
-//                            print("error- \(response.error?.code): \(response.error?.localizedDescription)")
-//                            
-//                        }
-//                        else if response["value"].bool! {
-//                            
-////                            tableView.reloadData()
-//                            self.getBucketList()
-//                            
-//                        }
-//                        else {
-//                            
-//                            print("response error: \(response["error"])")
-//                            
-//                        }
-//                    })
-//                })
-//                
-//            }
-//            delete.backgroundColor = UIColor(patternImage: UIImage(named: "trash")!)
-//            return [delete]
-//        }
-//        
-//        else if whichView == "CountriesVisited" {
-//            let delete = UITableViewRowAction(style: UITableViewRowActionStyle(), title: "             ") { (action, indexPath) in
-//                
-//                print("countries visited removal: \(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!)")
-//                
-//                request.removeCountriesVisited(currentUser["_id"].string!, countryId: self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!, year: self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"].int!, completion: {(response) in
-//                    
-//                    DispatchQueue.main.async(execute: {
-//                        
-//                        if response.error != nil {
-//                            
-//                            print("error- \(response.error?.code): \(response.error?.localizedDescription)")
-//                            
-//                        }
-//                        else if response["value"].bool! {
-//                            
-//                            //                            tableView.reloadData()
-//                            self.getCountriesVisited()
-//                            
-//                        }
-//                        else {
-//                            
-//                            print("response error: \(response["error"])")
-//                            
-//                        }
-//                    })
-//                })
-//                
-//            }
-//            delete.backgroundColor = UIColor(patternImage: UIImage(named: "trash")!)
-//            return [delete]
-//        }
         
-        let delete = UITableViewRowAction(style: .normal, title: "") { (action, indexPath) in
-            // delete item at indexPath
+        let delete = UITableViewRowAction(style: .destructive , title: "Delete") { (action, indexPath) in
+            if self.whichView == "BucketList" {
+                print("DELETE Bucket List");
+            } else if self.whichView == "CountriesVisited" {
+                print("DELETE Countries Visited");
+            }
         }
         
-//        let share = UITableViewRowAction(style: .Normal, title: "Disable") { (action, indexPath) in
-//            // share item at indexPath
-//        }
-//        
-//        share.backgroundColor = UIColor.blueColor()
         
         return [delete]
     }
@@ -393,7 +286,7 @@ class BucketListTableViewController: UITableViewController  {
         }
         
     }
-
+    
 }
 
 class BucketListTableViewCell: UITableViewCell {
