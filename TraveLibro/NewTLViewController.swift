@@ -1730,14 +1730,21 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         //        getScrollView(height, journey: JSON(""))
         
         otgView = startOTGView(frame: CGRect(x: 0, y: 50, width: mainScroll.frame.width, height: mainScroll.frame.height))
-
-        otgView.shoewImage.animation.delay(0.2).makeAlpha(1.0).moveY(-25).animate(1.0)
-        otgView.bonVoyageLabel.animation.delay(0.4).makeAlpha(1.0).animate(1.0)
         
-        otgView.lineOne.animation.delay(0.6).makeAlpha(1.0).moveY(-25).animate(1.0)
-        otgView.startJourneyButton.animation.delay(0.8).makeAlpha(1.0).moveY(-25).animate(1.0)
+        
+        otgView.shoewImage.alpha = 0
+        otgView.bonVoyageLabel.alpha = 0
+        otgView.lineOne.alpha = 0
+        otgView.startJourneyButton.alpha = 0
+        otgView.lineTwo.alpha = 0
+        
+        otgView.shoewImage.animation.delay(0.2).makeAlpha(1.0).moveY(-25).animate(0.5)
+        otgView.bonVoyageLabel.animation.delay(0.4).makeAlpha(1.0).animate(0.5)
+        
+        otgView.lineOne.animation.delay(0.6).makeAlpha(1.0).moveY(-25).animate(0.5)
+        otgView.startJourneyButton.animation.delay(0.8).makeAlpha(1.0).moveY(-25).animate(0.5)
 
-        otgView.lineTwo.animation.delay(0.10).makeAlpha(1.0).moveY(-25).animate(1.0)
+        otgView.lineTwo.animation.delay(0.10).makeAlpha(1.0).moveY(-25).animate(0.5)
 
 
 
