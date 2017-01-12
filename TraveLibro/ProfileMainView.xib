@@ -38,7 +38,7 @@
                                 <constraint firstAttribute="width" constant="100" id="etj-y7-UCj"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indian_flag" translatesAutoresizingMaskIntoConstraints="NO" id="9va-Lb-9p1">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indian_flag" translatesAutoresizingMaskIntoConstraints="NO" id="9va-Lb-9p1">
                             <rect key="frame" x="110" y="8" width="40" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="ip0-2c-Isi"/>
@@ -51,7 +51,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yk1-1m-oth">
-                            <rect key="frame" x="259.5" y="220" width="30" height="30"/>
+                            <rect key="frame" x="260" y="220" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="0AQ-Cb-rAG"/>
                                 <constraint firstAttribute="width" constant="30" id="ciq-oy-gF5"/>
@@ -69,7 +69,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ket-1g-EZr">
-                            <rect key="frame" x="132.5" y="220" width="119" height="30"/>
+                            <rect key="frame" x="133" y="220" width="119" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="Dfa-Uk-H8B"/>
                             </constraints>
