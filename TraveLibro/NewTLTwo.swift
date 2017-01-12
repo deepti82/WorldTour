@@ -102,10 +102,11 @@ extension NewTLViewController {
         leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
         
         let rightButton = UIButton()
-        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        rightButton.frame = CGRect(x: 0, y: 5, width: 50, height: 35)
         
         rightButton.setTitle("Post", for: UIControlState())
         rightButton.titleLabel?.font = avenirBold
+        rightButton.titleLabel!.font = UIFont (name: "avenirBold", size: 20)
         rightButton.addTarget(self, action: #selector(self.newPost(_:) ), for: .touchUpInside)
         globalNavigationController.topViewController?.title = "Add Activity"
         globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
