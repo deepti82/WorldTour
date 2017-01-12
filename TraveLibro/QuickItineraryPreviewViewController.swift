@@ -51,7 +51,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         
         prev.userName.text? = currentUser["firstName"].stringValue + " " + currentUser["lastName"].stringValue
         prev.quickTitle.text? = quickItinery["title"].stringValue
-        prev.duration.text? = quickItinery["duration"].stringValue + " Days"
+        prev.duration.text? = quickItinery["duration"].stringValue
         prev.dateTime.text? = quickItinery["month"].stringValue + " " + quickItinery["year"].stringValue
         prev.quickDescription.text? = quickItinery["description"].stringValue
         
