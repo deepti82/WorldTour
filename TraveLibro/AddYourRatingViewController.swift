@@ -37,7 +37,7 @@ class AddYourRatingViewController: UIViewController {
         
         print("layout height: \(layout.frame.height)")
         
-        orangeLine = drawLine(frame: CGRect(x: profileImage.center.x, y: profileImage.center.y, width: 20, height: layout.frame.height))
+        orangeLine = drawLine(frame: CGRect(x: self.view.frame.width/2, y: 0, width: 20, height: 20))
         orangeLine.backgroundColor = UIColor.clear
         scroll.addSubview(orangeLine)
         scroll.addSubview(layout)
@@ -63,9 +63,15 @@ class AddYourRatingViewController: UIViewController {
     }
     
     func addRating(post: JSON) {
-        
+        print("One post ..............")
+        print(post)
         let rating = Rating(frame: CGRect(x: 0, y: 20, width: layout.frame.width, height: 225))
-        rating.checkInTitle.text = "Your Review Of \(post["city"].string!.capitalized)"
+        if post["city"] != nil {
+            rating.checkInTitle.text = "Your Review Of \(post["city"].string!.capitalized)"
+        }else{
+            rating.checkInTitle.text = ""
+        }
+        
         rating.reviewDescription.text = post["review"].string!
         rating.date.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["createdAt"].string!, isDate: true)
         rating.time.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["createdAt"].string!, isDate: false)
