@@ -1730,9 +1730,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         //        getScrollView(height, journey: JSON(""))
         
         otgView = startOTGView(frame: CGRect(x: 0, y: 50, width: mainScroll.frame.width, height: mainScroll.frame.height))
-        
-<<<<<<< HEAD
-=======
+
         otgView.shoewImage.animation.delay(0.2).makeAlpha(1.0).moveY(-25).animate(1.0)
         otgView.bonVoyageLabel.animation.delay(0.4).makeAlpha(1.0).animate(1.0)
         
@@ -1742,15 +1740,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.lineTwo.animation.delay(0.10).makeAlpha(1.0).moveY(-25).animate(1.0)
 
 
-    
-//        otgView.bonVoyageLabel.animation.thenAfter(0.5).makeOpacity(1.0).animate(0.15).animate(1.0)
-//        otgView.shoewImage.animation.thenAfter(0.20).makeOpacity(1.0).animate(0.25).moveY(-25).animate(1.0)
-//        otgView.lineOne.animation.thenAfter(0.30).makeOpacity(1.0).animate(0.35).moveY(-25).animate(1.0)
-//        otgView.startJourneyButton.animation.thenAfter(0.40).makeOpacity(1.0).animate(0.45).makeAlpha(1.0).moveY(-25).animate(1.0)
-//        otgView.lineTwo.animation.thenAfter(0.50).makeOpacity(1.0).animate(0.55).moveY(-25).animate(1.0)
 
-        
->>>>>>> origin/level-3-
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
