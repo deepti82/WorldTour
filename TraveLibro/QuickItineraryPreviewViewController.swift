@@ -32,7 +32,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         footer.notifyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoNotifications(_:))))
         footer.LLView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoLocalLife(_:))))
         footer.TLView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoTravelLife(_:))))
-        footer.backgroundColor = navGreen
+        footer.backgroundColor = UIColor.white
         self.view.addSubview(footer)
         
         

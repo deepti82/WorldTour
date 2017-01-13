@@ -10,7 +10,7 @@ import UIKit
 
 class QuickIteneraryFour: UIViewController, UITextViewDelegate {
 
-    
+    var font = UIFontDescriptor()
     @IBOutlet weak var descriptionTextView: UITextView!
     
     @IBOutlet weak var italicButton: UIButton!
@@ -28,8 +28,12 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
         descriptionTextView.layer.borderColor = mainBlueColor.cgColor
         // Do any additional setup after loading the view.
         darkBlur(blurBG)
+        descriptionTextView.allowsEditingTextAttributes = true
     }
 
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,9 +52,13 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
         if action != #selector(UIResponderStandardEditActions.paste(_:)) {
             return false
         }
-        return false
+           return false
 //        return super.canPerformAction(action, withSender: sender)
     }
+    
+    
+
+    
     
 //    func boldText(_ sender: UIButton) {
 //        let range = descriptionTextView.selectedRange
@@ -73,6 +81,8 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
 //
 //    }
     
+    
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool{
          if(text == "\n")
         {
@@ -81,6 +91,8 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
         }
      return true
     }
+    
+    
     
     /*
     // MARK: - Navigation
