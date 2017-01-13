@@ -181,8 +181,8 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="M0x-Vg-Vxv">
                             <rect key="frame" x="50" y="0.0" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="9lG-Ct-c0x"/>
-                                <constraint firstAttribute="width" constant="40" id="slv-Xz-Q0G"/>
+                                <constraint firstAttribute="height" constant="40" id="Fmb-eJ-oam"/>
+                                <constraint firstAttribute="width" constant="40" id="dHD-6Z-V1h"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQO-En-R4n">
@@ -197,9 +197,7 @@
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="OQO-En-R4n" firstAttribute="leading" secondItem="M0x-Vg-Vxv" secondAttribute="trailing" constant="10" id="0xz-GS-lV9"/>
-                        <constraint firstItem="N5A-pH-Dhz" firstAttribute="height" secondItem="M0x-Vg-Vxv" secondAttribute="height" id="Bx2-BQ-dwl"/>
-                        <constraint firstItem="N5A-pH-Dhz" firstAttribute="width" secondItem="M0x-Vg-Vxv" secondAttribute="width" id="SuR-Z6-lcg"/>
+                        <constraint firstItem="OQO-En-R4n" firstAttribute="leading" secondItem="M0x-Vg-Vxv" secondAttribute="trailing" constant="10" id="2g2-W2-goh"/>
                         <constraint firstAttribute="trailing" secondItem="OQO-En-R4n" secondAttribute="trailing" id="nd1-9N-d8b"/>
                     </constraints>
                 </stackView>

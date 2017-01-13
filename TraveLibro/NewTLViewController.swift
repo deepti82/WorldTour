@@ -2100,7 +2100,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 if data != nil  && imageUrl != "" {
                     
                     otgView.buddyStackPictures[i].image = UIImage(data: data!)
-                    makeTLProfilePicture(otgView.buddyStackPictures[i])
+                    makeTLProfilePictureBorderOrange(otgView.buddyStackPictures[i])
                     
                 }
             }
@@ -2111,7 +2111,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 let data = try? Data(contentsOf: URL(string: getImageUrl)!)
                 if data != nil && i <= 2 {
                     otgView.buddyStackPictures[i].image = UIImage(data: data!)
-                    makeTLProfilePicture(otgView.buddyStackPictures[i])
+                    makeTLProfilePictureBorderOrange(otgView.buddyStackPictures[i])
                 }
             }
         }

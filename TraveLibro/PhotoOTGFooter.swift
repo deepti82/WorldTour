@@ -118,6 +118,7 @@ class PhotoOTGFooter: UIView {
             self.likeButton.tag = 1
             self.likeButton.setImage(UIImage(named: "favorite-heart-button"), for: .normal)
             self.likeButton.tintColor = mainOrangeColor
+            
         } else {
             self.likeButton.tag = 0
             self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
@@ -128,6 +129,10 @@ class PhotoOTGFooter: UIView {
     @IBAction func sendLikes(_ sender: UIButton) {
         
         likeButton.animation = "pop"
+        likeButton.velocity = 2
+        likeButton.force = 2
+        likeButton.damping = 10
+        likeButton.curve = "spring"
         likeButton.animateTo()
         
         print("like button tapped \(sender.titleLabel!.text)")
