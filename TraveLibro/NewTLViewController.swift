@@ -1738,13 +1738,23 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.startJourneyButton.alpha = 0
         otgView.lineTwo.alpha = 0
         
-        otgView.shoewImage.animation.delay(0.2).makeAlpha(1.0).moveY(-25).animate(0.5)
-        otgView.bonVoyageLabel.animation.delay(0.4).makeAlpha(1.0).animate(0.5)
+        otgView.shoewImage.animation.delay(0.2).makeAlpha(1.0).moveY(-25).animateWithCompletion(0.5, {
+            print("shoeImage")
+        })
+        otgView.bonVoyageLabel.animation.delay(0.4).makeAlpha(1.0).animateWithCompletion(0.5, {
+            print("bonVoyage")
+        })
         
-        otgView.lineOne.animation.delay(0.6).makeAlpha(1.0).moveY(-25).animate(0.5)
-        otgView.startJourneyButton.animation.delay(0.8).makeAlpha(1.0).moveY(-25).animate(0.5)
+        otgView.lineOne.animation.delay(0.6).makeAlpha(1.0).moveY(-25).animateWithCompletion(0.5,{
+            print("LineOne")
+        })
+        otgView.startJourneyButton.animation.delay(0.8).makeAlpha(1.0).moveY(-25).animateWithCompletion(0.5,{
+            print("StartJourney")
+        })
 
-        otgView.lineTwo.animation.delay(0.10).makeAlpha(1.0).moveY(-25).animate(0.5)
+        otgView.lineTwo.animation.delay(0.10).makeAlpha(1.0).moveY(-25).animateWithCompletion(1.5, {
+            print("lineTwo")
+        })
 
 
 

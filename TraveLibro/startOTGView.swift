@@ -132,8 +132,8 @@ class startOTGView: UIView {
         lineThree.backgroundColor = UIColor.clear
         
         journeyName.shadowColor = UIColor.black
-        journeyName.shadowOffset = CGSize(width: 2, height: 1)
-        journeyName.layer.shadowOpacity = 0.5
+        journeyName.shadowOffset = CGSize(width: 1, height: 1)
+//        journeyName.layer.shadowOpacity = 0.
         journeyName.layer.masksToBounds = true
         
         placeLabel.shadowOffset = CGSize(width: 2, height: 1)

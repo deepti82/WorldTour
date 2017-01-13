@@ -194,6 +194,28 @@ func makeTLProfilePicture(_ image: UIButton) {
     
 }
 
+func makeTLProfilePictureBorderOrange(_ image: UIImageView) {
+    
+    image.layer.cornerRadius = (20/100) * image.frame.width
+    image.layer.borderWidth = 2.0
+    image.layer.borderColor = UIColor(hex: "FF6759").cgColor
+    image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFill
+    
+}
+
+
+func makeTLProfilePictureBorderWhite(_ image: UIImageView) {
+    
+    image.layer.cornerRadius = (20/100) * image.frame.width
+    image.layer.borderWidth = 2.0
+    image.layer.borderColor = UIColor.white.cgColor
+    image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFill
+    
+}
+
+
 func getImageURL(_ str: String,width:Int) -> URL {
     
     let isUrl = verifyUrl(str)

@@ -146,8 +146,8 @@ class EndJourneyViewController: UIViewController {
         endJourney.changePhotoButton.addTarget(self, action: #selector(changePicture(_:)), for: .touchUpInside)
         endJourney.journeyCoverPic.backgroundColor = UIColor.white
         endJourney.journeyCoverPic.image = UIImage(named: "")
-        endJourney.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
-        endJourney.clockIcon.text = String(format: "%C", faicon["clock"]!)
+//        endJourney.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+//        endJourney.clockIcon.text = String(format: "%C", faicon["clock"]!)
         
         getAllImages()
         
@@ -164,25 +164,25 @@ class EndJourneyViewController: UIViewController {
             endJourney.userDp.image = UIImage(named: "darkBg")
         }
         
-        makeTLProfilePicture(endJourney.userDp)
-        endJourney.endJourneyTitle.text = "\(currentUser["name"]) has ended the \(journey["name"]) Journey"
+        makeTLProfilePictureBorderWhite(endJourney.userDp)
+        endJourney.endJourneyTitle.text = "\(currentUser["name"])"
         
         //  add buddies
         if buddies.count >= 3 {
             
             endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
-            makeTLProfilePicture(endJourney.buddiesImages[0])
+            makeTLProfilePictureBorderOrange(endJourney.buddiesImages[0])
             endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
-            makeTLProfilePicture(endJourney.buddiesImages[1])
+            makeTLProfilePictureBorderOrange(endJourney.buddiesImages[1])
             endJourney.buddyCount.text = "+\(buddies.count - 2)"
             
         }
         else if buddies.count == 2 {
             
                         endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
-                        makeTLProfilePicture(endJourney.buddiesImages[0])
+                        makeTLProfilePictureBorderOrange(endJourney.buddiesImages[0])
                        endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
-                        makeTLProfilePicture(endJourney.buddiesImages[1])
+                        makeTLProfilePictureBorderOrange(endJourney.buddiesImages[1])
                         endJourney.buddyCount.isHidden = true
             
         }
@@ -190,7 +190,7 @@ class EndJourneyViewController: UIViewController {
             
             endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
             print(endJourney.buddiesImages[0])
-            makeTLProfilePicture(endJourney.buddiesImages[0])
+            makeTLProfilePictureBorderOrange(endJourney.buddiesImages[0])
             endJourney.buddiesImages[1].isHidden = true
             endJourney.buddyCount.isHidden = true
             
@@ -280,7 +280,7 @@ class EndJourneyViewController: UIViewController {
         
         for (n,i) in newJson {
             var rateState = self.getRatingImage(rate: i["rating"].stringValue)
-            let rate = ShowRating(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150))
+            let rate = ShowRating(frame: CGRect(x: 0, y: 20, width: self.view.frame.width, height: 150))
             rate.rating.setImage(UIImage(named:rateState["image"].stringValue), for: .normal)
             rate.rating.setBackgroundImage(UIImage(named:rateState["back"].stringValue), for: .normal)
             rate.ratingLabel.text = i["country"]["name"].stringValue
@@ -419,7 +419,7 @@ class EndJourneyViewController: UIViewController {
                 self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:imageString)!)
             }
             else {
-                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=250")!)
+                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=500")!)
             }
         })
     }
