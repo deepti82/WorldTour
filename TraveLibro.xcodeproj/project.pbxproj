@@ -389,6 +389,14 @@
 		FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6941DE4732A0008634B /* QuartzCore.framework */; };
 		FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6981DE4740B0008634B /* UIKit.framework */; };
 		FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D69A1DE474180008634B /* WebKit.framework */; };
+		FCCA8F171E28AE7200775985 /* TripSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCA8F161E28AE7200775985 /* TripSummaryCell.xib */; };
+		FCCA8F191E28B5BC00775985 /* TripSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA8F181E28B5BC00775985 /* TripSummaryView.swift */; };
+		FCCA8F1B1E28B61C00775985 /* TripSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA8F1A1E28B61C00775985 /* TripSummaryCell.swift */; };
+		FCCA8F1E1E28B74F00775985 /* TripSummaryMiddle.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCA8F1D1E28B74F00775985 /* TripSummaryMiddle.xib */; };
+		FCCA8F201E28B96700775985 /* TripSummaryMiddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA8F1F1E28B96700775985 /* TripSummaryMiddle.swift */; };
+		FCCA8F231E28BA0E00775985 /* TripSummaryFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCA8F221E28BA0E00775985 /* TripSummaryFooter.xib */; };
+		FCCA8F251E28C38D00775985 /* TripSummaryFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA8F241E28C38D00775985 /* TripSummaryFooter.swift */; };
+		FCCA8F281E28DCE900775985 /* TripSummaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCA8F271E28DCE900775985 /* TripSummaryView.xib */; };
 		FCDF49081E25586C00ED9A32 /* previewBase.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCDF49071E25586C00ED9A32 /* previewBase.xib */; };
 		FCDF490A1E255A1C00ED9A32 /* previewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF49091E255A1C00ED9A32 /* previewBase.swift */; };
 		FCDF490D1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */; };
@@ -804,6 +812,14 @@
 		FCB2D6941DE4732A0008634B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FCB2D6981DE4740B0008634B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCB2D69A1DE474180008634B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FCCA8F161E28AE7200775985 /* TripSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryCell.xib; sourceTree = "<group>"; };
+		FCCA8F181E28B5BC00775985 /* TripSummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryView.swift; sourceTree = "<group>"; };
+		FCCA8F1A1E28B61C00775985 /* TripSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryCell.swift; sourceTree = "<group>"; };
+		FCCA8F1D1E28B74F00775985 /* TripSummaryMiddle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryMiddle.xib; sourceTree = "<group>"; };
+		FCCA8F1F1E28B96700775985 /* TripSummaryMiddle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryMiddle.swift; sourceTree = "<group>"; };
+		FCCA8F221E28BA0E00775985 /* TripSummaryFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryFooter.xib; sourceTree = "<group>"; };
+		FCCA8F241E28C38D00775985 /* TripSummaryFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryFooter.swift; sourceTree = "<group>"; };
+		FCCA8F271E28DCE900775985 /* TripSummaryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryView.xib; sourceTree = "<group>"; };
 		FCDF49071E25586C00ED9A32 /* previewBase.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = previewBase.xib; sourceTree = "<group>"; };
 		FCDF49091E255A1C00ED9A32 /* previewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = previewBase.swift; sourceTree = "<group>"; };
 		FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPhotosCollectionViewController.swift; sourceTree = "<group>"; };
@@ -1021,6 +1037,10 @@
 				FC0B9A9D1E20BD2A005D9206 /* QuickCity */,
 				FC0B9AA21E23BE6B005D9206 /* TextBoxContainer */,
 				FCDF490B1E255A3400ED9A32 /* previewBase */,
+				FCCA8F131E28AAD600775985 /* TripSummaryView */,
+				FCCA8F1C1E28B64100775985 /* TripSummaryCell */,
+				FCCA8F261E28C3AE00775985 /* TripSummaryFooter */,
+				FCCA8F211E28B98E00775985 /* TripSummaryMiddle */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2198,6 +2218,42 @@
 			name = CountrySummary;
 			sourceTree = "<group>";
 		};
+		FCCA8F131E28AAD600775985 /* TripSummaryView */ = {
+			isa = PBXGroup;
+			children = (
+				FCCA8F181E28B5BC00775985 /* TripSummaryView.swift */,
+				FCCA8F271E28DCE900775985 /* TripSummaryView.xib */,
+			);
+			name = TripSummaryView;
+			sourceTree = "<group>";
+		};
+		FCCA8F1C1E28B64100775985 /* TripSummaryCell */ = {
+			isa = PBXGroup;
+			children = (
+				FCCA8F161E28AE7200775985 /* TripSummaryCell.xib */,
+				FCCA8F1A1E28B61C00775985 /* TripSummaryCell.swift */,
+			);
+			name = TripSummaryCell;
+			sourceTree = "<group>";
+		};
+		FCCA8F211E28B98E00775985 /* TripSummaryMiddle */ = {
+			isa = PBXGroup;
+			children = (
+				FCCA8F1D1E28B74F00775985 /* TripSummaryMiddle.xib */,
+				FCCA8F1F1E28B96700775985 /* TripSummaryMiddle.swift */,
+			);
+			name = TripSummaryMiddle;
+			sourceTree = "<group>";
+		};
+		FCCA8F261E28C3AE00775985 /* TripSummaryFooter */ = {
+			isa = PBXGroup;
+			children = (
+				FCCA8F221E28BA0E00775985 /* TripSummaryFooter.xib */,
+				FCCA8F241E28C38D00775985 /* TripSummaryFooter.swift */,
+			);
+			name = TripSummaryFooter;
+			sourceTree = "<group>";
+		};
 		FCDF490B1E255A3400ED9A32 /* previewBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -2340,12 +2396,15 @@
 				C2ABDBAE1CEC4CB400D7542E /* OnlyPhoto.xib in Resources */,
 				C2A27A451CEDC1F100F74DD1 /* LogInView.xib in Resources */,
 				3AF187041D78556500A86BC1 /* forDPThree.xib in Resources */,
+				FCCA8F1E1E28B74F00775985 /* TripSummaryMiddle.xib in Resources */,
 				C24909BA1D4A3852007EB6B4 /* AddPostsOTG.xib in Resources */,
 				3ABFD8E31DA929D700A51034 /* RatingCheckIn.xib in Resources */,
+				FCCA8F231E28BA0E00775985 /* TripSummaryFooter.xib in Resources */,
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				C2803BC41CF41F99007A906E /* BlogView.xib in Resources */,
 				C268EBB01DF8491C002EDA30 /* QuickItineraryPreview.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
+				FCCA8F281E28DCE900775985 /* TripSummaryView.xib in Resources */,
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
 				C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */,
 				C24F85011D005FD2002EA203 /* TutorialCards.xib in Resources */,
@@ -2422,6 +2481,7 @@
 				842484F61E13A4C000083115 /* PhotoOTGFooter.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
 				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
+				FCCA8F171E28AE7200775985 /* TripSummaryCell.xib in Resources */,
 				FC0B9A9A1E20BCC4005D9206 /* QuickCity.xib in Resources */,
 				FC0B9A9F1E23BE13005D9206 /* TextBoxContainer.xib in Resources */,
 				C2873E8C1D9E8E510001431B /* BuddyLeaves.xib in Resources */,
@@ -2591,6 +2651,7 @@
 				C22138F81D547C42008D9DEE /* QuickItineraryFour.swift in Sources */,
 				C28A92551D0ECD4300CFEC7A /* FilterBlogs.swift in Sources */,
 				C2DCB3701CE73650006E5CBD /* LocationCategoryViewController.swift in Sources */,
+				FCCA8F191E28B5BC00775985 /* TripSummaryView.swift in Sources */,
 				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
 				C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */,
 				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
@@ -2654,6 +2715,7 @@
 				C276EDA81D06CB6A00906FEC /* EditEditProfileViewController.swift in Sources */,
 				C24F85031D0064D7002EA203 /* TutorialCards.swift in Sources */,
 				C2A6E25B1CE9C27000D3F845 /* TimelineScroll.swift in Sources */,
+				FCCA8F201E28B96700775985 /* TripSummaryMiddle.swift in Sources */,
 				1A944E0A1CCB4567007EB5BD /* OTGAddNewViewController.swift in Sources */,
 				C24909B81D4A09E6007EB6B4 /* TripSummaryPhotoListViewController.swift in Sources */,
 				C2EA3A161CDB3B9900122941 /* TextField.swift in Sources */,
@@ -2747,6 +2809,7 @@
 				843510DE1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift in Sources */,
 				C281FBEB1D55EF4A00728BD9 /* ItineraryThree.swift in Sources */,
 				367B90F71DC23ADF00D76F13 /* ActiveType.swift in Sources */,
+				FCCA8F251E28C38D00775985 /* TripSummaryFooter.swift in Sources */,
 				C25F488A1CF31B1300C6C28C /* MomentsEachViewController.swift in Sources */,
 				C23B34D91D7AF0AE00EBBF25 /* ProfilePicFancy.swift in Sources */,
 				C2AE193B1DF57078006FF114 /* ImageCropperViewController.swift in Sources */,
@@ -2829,6 +2892,7 @@
 				C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */,
 				C2FA1E171D5495870034DE97 /* QuickItinerariesViewController.swift in Sources */,
 				C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */,
+				FCCA8F1B1E28B61C00775985 /* TripSummaryCell.swift in Sources */,
 				C2E56EA51DA5390100D81B0A /* AddCaptionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

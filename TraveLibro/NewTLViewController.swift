@@ -747,10 +747,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func gotoSummaries(_ sender: UIButton) {
         
-        let summaryVC = storyboard?.instantiateViewController(withIdentifier: "summaryTLVC") as! CollectionViewController
+        let summaryVC = storyboard?.instantiateViewController(withIdentifier: "summarySub") as! SummarySubViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(summaryVC, animated: true)
-        summaryVC.journey = myJourney["_id"].string!
+        summaryVC.journeyId = myJourney["_id"].string!
         //        infoView.animation.makeOpacity(0.0).animate(0.5)
         infoView.isHidden = true
         
