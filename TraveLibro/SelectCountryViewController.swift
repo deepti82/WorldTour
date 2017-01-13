@@ -205,24 +205,13 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         searchController.dimsBackgroundDuringPresentation = false
         let searchString = searchController.searchBar.text
-        
-        // Filter the data array and get only those countries that match the search text.
-        filteredArray = countries.filter({(country) -> Bool in
-            
-//            print("country: \(country["name"])")
-            
+            filteredArray = countries.filter({(country) -> Bool in
             let countryText: NSString = country["name"].string! as NSString
-            
-//            print("country: \(countryText.rangeOfString(searchString!, options: .CaseInsensitiveSearch).location)")
-            
             return (countryText.range(of: searchString!, options: .caseInsensitive).location) != NSNotFound
         })
         
-//        filteredArray = countries.filter{$0["name"].string! == searchString}
-        
         print("filtered array: \(filteredArray)")
         
-        // Reload the tableview.
         mainTableView.reloadData()
     }
     
@@ -380,33 +369,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     func chooseCity(_ sender: UIButton) {
         
-        //Add did select functionality
-        
-//        request.editUser(currentUser["_id"].string!, editField: "homeCountry", editFieldValue: selectedNationality, completion: {(response) in
-//            
-//            dispatch_async(dispatch_get_main_queue(), {
-//                
-//                if response.error != nil {
-//                    
-//                    print("error: \(response.error?.localizedDescription)")
-//                }
-//                else if response["value"].bool! == false {
-//                    
-//                    ("error: \(response["data"])")
-//                    
-//                }
-//                else {
-//                    
-//                    self.signUpCityVC = self.storyboard?.instantiateViewControllerWithIdentifier("chooseCity") as! ChooseCityViewController
-//                    self.navigationController?.pushViewController(self.signUpCityVC, animated: true)
-//                }
-//                
-//            })
-//        })
-        
         self.signUpCityVC = self.storyboard?.instantiateViewController(withIdentifier: "chooseCity") as! ChooseCityViewController
         self.navigationController?.pushViewController(self.signUpCityVC, animated: true)
-        
         
     }
     
