@@ -38,7 +38,7 @@ class startOTGView: UIView {
     @IBOutlet weak var placeLabel: UILabel!
 //    @IBOutlet weak var calendarIcon: UILabel!
 //    @IBOutlet weak var clockIcon: UILabel!
-    @IBOutlet weak var bonVoyageLabel: UILabel!
+    @IBOutlet weak var bonVoyageLabel: SpringLabel!
     @IBOutlet weak var timestampDate: UILabel!
 //    @IBOutlet weak var timestampTime: UILabel!
     @IBOutlet weak var journeyCategoryOne: UIImageView!
@@ -161,8 +161,12 @@ class startOTGView: UIView {
     
     @IBAction func startOTGAnimation(_ sender: SpringButton) {
         shoewImage.animation = "squeeze"
+        shoewImage.duration = 1.0
         shoewImage.animate()
-       
+        bonVoyageLabel.animation = "wobble"
+        bonVoyageLabel.duration = 1.0
+        bonVoyageLabel.animate()
+        
     }
     @IBAction func onBuddyCancel(_ sender: Any) {
         globalNewTLViewController.getJourney()
