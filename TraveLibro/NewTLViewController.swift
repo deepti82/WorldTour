@@ -265,8 +265,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             ]
             params["checkIn"] = checkIn
             
-            
-            params["buddiesArr"] = JSON(self.addView.addedBuddies)
+            params["oldBuddies"] = JSON(self.addView.prevBuddies)
+            params["newBuddies"] = JSON(self.addView.addedBuddies)
             
             var photosJson:[JSON] = []
             
@@ -280,6 +280,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 params["checkInChange"] = false
             }
             print(params)
+            
             
             request.postAddPhotosVideos(param: params) { (json) in
                 print(json)
@@ -829,6 +830,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    //For videos Delegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: {})
+        let player = AVPlayer(url: info["UIImagePickerControllerMediaURL"] as! URL)
+        let playerController = AVPlayerViewController()
+        playerController.player = player
+        globalNavigationController.topViewController?.present(playerController, animated: true) {
+            player.play()
+        }
+    }
     
     
     
