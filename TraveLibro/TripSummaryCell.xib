@@ -41,9 +41,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kql-gg-geE">
-                    <rect key="frame" x="0.0" y="49" width="70" height="18"/>
+                    <rect key="frame" x="0.0" y="54" width="70" height="10"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="18" id="E4L-H7-0qH"/>
+                        <constraint firstAttribute="height" constant="10" id="E4L-H7-0qH"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                     <color key="textColor" red="0.92668849230000006" green="0.38490101700000001" blue="0.32428267599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -59,7 +59,7 @@
                 <constraint firstItem="Kql-gg-geE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Y5x-Bv-Uh3"/>
                 <constraint firstItem="Kql-gg-geE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZAr-2s-ZiO"/>
                 <constraint firstAttribute="trailing" secondItem="Kql-gg-geE" secondAttribute="trailing" id="alc-FM-AYR"/>
-                <constraint firstItem="iLF-US-ikr" firstAttribute="top" secondItem="Kql-gg-geE" secondAttribute="bottom" constant="1" id="v6p-5H-6yw"/>
+                <constraint firstItem="iLF-US-ikr" firstAttribute="top" secondItem="Kql-gg-geE" secondAttribute="bottom" constant="4" id="v6p-5H-6yw"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-99" y="-156"/>

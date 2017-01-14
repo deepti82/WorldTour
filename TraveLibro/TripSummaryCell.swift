@@ -29,6 +29,7 @@ class TripSummaryCell: UIButton {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        self.category.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
     }
 }

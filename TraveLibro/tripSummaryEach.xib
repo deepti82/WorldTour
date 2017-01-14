@@ -116,7 +116,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0zp-WY-Aam">
-                            <rect key="frame" x="93" y="0.0" width="299" height="38.5"/>
+                            <rect key="frame" x="93" y="8" width="299" height="38.5"/>
                             <attributedString key="attributedText">
                                 <fragment content="Evening by the beach! :) with Gayatri Sakalkar and Sarvesh Brahme at Girgaon">
                                     <attributes>
@@ -140,7 +140,7 @@
                     <constraints>
                         <constraint firstItem="e8p-cE-ZbH" firstAttribute="top" secondItem="X52-CG-XV3" secondAttribute="top" id="5Zf-AN-I1J"/>
                         <constraint firstItem="e8p-cE-ZbH" firstAttribute="leading" secondItem="X52-CG-XV3" secondAttribute="leading" constant="25" id="B9y-p6-QSM"/>
-                        <constraint firstItem="0zp-WY-Aam" firstAttribute="top" secondItem="X52-CG-XV3" secondAttribute="top" id="GTw-FG-rNe"/>
+                        <constraint firstItem="0zp-WY-Aam" firstAttribute="top" secondItem="X52-CG-XV3" secondAttribute="top" constant="8" id="GTw-FG-rNe"/>
                         <constraint firstItem="CXA-9b-Vgs" firstAttribute="leading" secondItem="e8p-cE-ZbH" secondAttribute="trailing" constant="8" id="MkQ-pf-KLo"/>
                         <constraint firstAttribute="trailing" secondItem="0zp-WY-Aam" secondAttribute="trailing" constant="8" id="Pqi-p0-Ywv"/>
                         <constraint firstAttribute="bottom" secondItem="e8p-cE-ZbH" secondAttribute="bottom" id="Se1-cd-DpZ"/>

@@ -19,12 +19,14 @@ class TripSummaryMiddle: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         countryLayout = HorizontalLayout(height: countryScroll.frame.height)
+        
         countryScroll.addSubview(countryLayout)
         
         
     }
     
     func refLayout() {
+//        countryLayout.center.equalTo(countryScroll)
         self.countryLayout.layoutSubviews()
         self.countryScroll.contentSize = CGSize(width: self.countryLayout.frame.width, height: self.countryLayout.frame.height)
     }
@@ -34,6 +36,7 @@ class TripSummaryMiddle: UIView {
     }
     
     func loadViewFromNib() {
+        
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "TripSummaryMiddle", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView

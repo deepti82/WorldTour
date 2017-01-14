@@ -21,8 +21,7 @@ class TripSummaryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        self.profilePic.layer.cornerRadius = 10
-        self.profilePic.clipsToBounds = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,6 +35,8 @@ class TripSummaryView: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        
+        makeTLProfilePicture(self.profilePic)
         
     }
    }
