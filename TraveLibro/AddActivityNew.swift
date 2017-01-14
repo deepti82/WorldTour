@@ -9,6 +9,7 @@ import AVFoundation
 var globalAddActivityNew:AddActivityNew!
 
 class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDelegate {
+    @IBOutlet weak var viewContainerView: UIView!
     
     @IBOutlet weak var finalImageTag: UIImageView!
     var typeOfAddActivtiy:String = ""

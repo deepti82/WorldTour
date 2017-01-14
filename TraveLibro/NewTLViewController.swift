@@ -832,13 +832,20 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     //For videos Delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true, completion: {})
-        let player = AVPlayer(url: info["UIImagePickerControllerMediaURL"] as! URL)
-        let playerController = AVPlayerViewController()
-        playerController.player = player
-        globalNavigationController.topViewController?.present(playerController, animated: true) {
-            player.play()
-        }
+        let captionVC = storyboard?.instantiateViewController(withIdentifier: "VideoCaption") as! AddCaptionsViewController
+        globalNavigationController!.pushViewController(captionVC, animated: true)
+        
+//        captionVC.currentImageIndex = sender.tag
+//        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+//        globalNavigationController!.pushViewController(captionVC, animated: true)
+        
+//        picker.dismiss(animated: true, completion: {})
+//        let player = AVPlayer(url: info["UIImagePickerControllerMediaURL"] as! URL)
+//        let playerController = AVPlayerViewController()
+//        playerController.player = player
+//        globalNavigationController.topViewController?.present(playerController, animated: true) {
+//            player.play()
+//        }
     }
     
     

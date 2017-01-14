@@ -32,6 +32,7 @@
 		360C1A8F1E02A6F0009780B3 /* ConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */; };
 		362FA0CA1E1E78E500267736 /* PostEditPhotosVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */; };
 		363A7C781E29ED94001CB126 /* PostVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A7C771E29ED94001CB126 /* PostVideo.swift */; };
+		363A7C7A1E2A5081001CB126 /* mainVideos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363A7C791E2A5081001CB126 /* mainVideos.storyboard */; };
 		367B90F51DC23ADF00D76F13 /* ActiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F01DC23ADF00D76F13 /* ActiveBuilder.swift */; };
 		367B90F61DC23ADF00D76F13 /* ActiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F11DC23ADF00D76F13 /* ActiveLabel.swift */; };
 		367B90F71DC23ADF00D76F13 /* ActiveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F21DC23ADF00D76F13 /* ActiveType.swift */; };
@@ -453,6 +454,7 @@
 		360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigModel.swift; sourceTree = "<group>"; };
 		362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEditPhotosVideos.swift; sourceTree = "<group>"; };
 		363A7C771E29ED94001CB126 /* PostVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostVideo.swift; sourceTree = "<group>"; };
+		363A7C791E2A5081001CB126 /* mainVideos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = mainVideos.storyboard; sourceTree = "<group>"; };
 		367B90F01DC23ADF00D76F13 /* ActiveBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveBuilder.swift; sourceTree = "<group>"; };
 		367B90F11DC23ADF00D76F13 /* ActiveLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveLabel.swift; sourceTree = "<group>"; };
 		367B90F21DC23ADF00D76F13 /* ActiveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveType.swift; sourceTree = "<group>"; };
@@ -903,6 +905,7 @@
 				C25443511CD7392000C2C6CD /* Controllers */,
 				1A944E351CCB5A0C007EB5BD /* UIViews */,
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
+				363A7C791E2A5081001CB126 /* mainVideos.storyboard */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
@@ -2474,6 +2477,7 @@
 				C2488AB31D51BC4600FD5306 /* PhotoList.xib in Resources */,
 				C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */,
 				C20A18F81D2294D900760BF9 /* AddCheckIn.xib in Resources */,
+				363A7C7A1E2A5081001CB126 /* mainVideos.storyboard in Resources */,
 				C2A6E2621CE9D12800D3F845 /* SpeechBubbleView.xib in Resources */,
 				C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */,
 				C25207321D094FAB008F0E51 /* SearchFieldView.xib in Resources */,
