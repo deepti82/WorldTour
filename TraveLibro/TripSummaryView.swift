@@ -21,7 +21,8 @@ class TripSummaryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        setAll()
+        self.profilePic.layer.cornerRadius = 10
+        self.profilePic.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,12 +38,4 @@ class TripSummaryView: UIView {
         self.addSubview(view)
         
     }
-    
-    func setAll() {
-        self.profilePic.layer.cornerRadius = 10
-        self.profilePic.clipsToBounds = true
-
-        self.profilePic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(allData["user"]["profilePicture"])")!)
-        self.profileName.text! = allData["user"]["name"].stringValue
-    }
-}
+   }

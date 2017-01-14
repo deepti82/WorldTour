@@ -8,8 +8,11 @@
 
 import UIKit
 
-class TripSummaryCell: UIView {
+class TripSummaryCell: UIButton {
 
+    @IBOutlet weak var category: UIButton!
+    @IBOutlet weak var count: UILabel!
+    @IBOutlet weak var name: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

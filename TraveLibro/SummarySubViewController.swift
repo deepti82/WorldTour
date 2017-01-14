@@ -152,14 +152,77 @@ class SummarySubViewController: UIViewController {
         self.cellSubview.layoutSubviews()
         self.tripScroll.contentSize = CGSize(width: self.cellSubview.frame.width, height: self.cellSubview.frame.height)
     }
+    
+    func createMiddleView() {
+        let tripMiddle = TripSummaryMiddle(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 138))
+
+        for (_, val) in tripCountData["checkInCount"] {
+            let tripfo = TripSummaryCell(frame: CGRect(x: 0, y: 0, width: 70, height: 106))
+            let img = UIImage(named: getImageName(categoryLabel: val["name"].stringValue))
+            tripfo.category.setImage(img, for: .normal)
+            
+            tripfo.name.text = val["name"].stringValue
+            tripfo.count.text = val["count"].stringValue
+            tripMiddle.countryLayout.addSubview(tripfo)
+        }
+        tripMiddle.refLayout()
+        
+        cellSubview.addSubview(tripMiddle)
+
+    }
+    
+    func createFooterView() {
+        let tripMiddle = TripSummaryFooter(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 138))
+        tripMiddle.countryCount.text = String(tripCountData["countryVisited"].count) + " Countries Visited"
+        
+        for (_, val) in tripCountData["countryVisited"] {
+            
+            var imageView : UIImageView
+            imageView  = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            imageView.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(val["country"]["flag"].stringValue)")!)
+            tripMiddle.countryLayout.addSubview(imageView)
+            
+            let countryText = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 30))
+            countryText.text = val["country"]["name"].stringValue
+            countryText.sizeToFit()
+            tripMiddle.countryLayout.addSubview(countryText)
+            
+        }
+        tripMiddle.refLayout()
+        
+        cellSubview.addSubview(tripMiddle)
+    }
+    
+    func createList() {
+        for (_, val) in tripCountData["checkIn"] {
+            var checkin = tripSummaryEach(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 119))
+            cellSubview.addSubview(checkin)
+        }
+    }
+    
     func createLayout() {
+        //  TOP VIEW
         let tripView = TripSummaryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 144))
         tripView.allData = tripCountData
-        let tripFooter = TripSummaryFooter(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 138))
-        let tripMiddle = TripSummaryMiddle(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 138))
+        
+        tripView.profilePic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(tripCountData["user"]["profilePicture"].stringValue)")!)
+        tripView.profileName.text! = tripCountData["user"]["name"].stringValue
         cellSubview.addSubview(tripView)
-        cellSubview.addSubview(tripMiddle)
-        cellSubview.addSubview(tripFooter)
+        //  MIDDLE VIEW
+        if tripCountData["checkInCount"] != nil && tripCountData["checkInCount"] != [] {
+            createMiddleView()
+        }
+        
+        //  FOOTER VIEW
+        if tripCountData["countryVisited"] != nil && tripCountData["countryVisited"] != [] {
+            createFooterView()
+        }
+        
+        //  LIST TRIP SUMMARY EACH
+        if tripCountData["checkIn"] != nil && tripCountData["checkIn"] != [] {
+            createList()
+        }
+        
 
         scrollChange()
     }
