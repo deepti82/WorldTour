@@ -1,13 +1,15 @@
-    import UIKit
+import UIKit
 import BSImagePicker
 import Photos
 import imglyKit
 import Spring
+import AVKit
+import AVFoundation
+
 var globalAddActivityNew:AddActivityNew!
 
-class AddActivityNew: SpringView, UITextViewDelegate {
-    
-    
+class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDelegate {
+    @IBOutlet weak var viewContainerView: UIView!
     
     @IBOutlet weak var finalImageTag: UIImageView!
     var typeOfAddActivtiy:String = ""
@@ -72,8 +74,10 @@ class AddActivityNew: SpringView, UITextViewDelegate {
     @IBOutlet weak var cancelLocationButton: UIButton!
     @IBOutlet weak var videoTag: UIImageView!
     
+    var cameraViewController:CameraViewController!
     
     var addedBuddies: [JSON] = []
+    var prevBuddies: [JSON] = []
     var tempAssets: [URL] = []
     var allImageIds: [Int] = []
     var localDbPhotoIds: [Int] = []
@@ -284,7 +288,7 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         if(self.typeOfAddActivtiy != "EditActivity") {
             buddiesStatus = true
         } else {
-            buddiesStatus = false
+            buddiesStatus = true
         }
         
         
@@ -302,12 +306,82 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(next, animated: true)
     }
+    
     func addVideos(_ sender: UIButton) {
-        let newTl = globalNavigationController.topViewController as! NewTLViewController;
-        newTl.addVideos(sender);
+        
+        self.videosInitialView.isHidden = false
+        self.videosFinalView.isHidden = true
+        //        addHeightToNewActivity(5.0)
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        
+        let takeVideo = UIAlertAction(title: "Record Video", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            let configuration = Configuration() { builder in
+                builder.backgroundColor = UIColor.clear
+                builder.configureCameraViewController(){ cameraConf in
+                    cameraConf.allowedRecordingModes = [.video]
+                    cameraConf.showCameraRoll = false
+                    cameraConf.maximumVideoLength = 60
+                }
+                
+                builder.configureToolStackController(){toolSck in
+                    toolSck.mainToolbarBackgroundColor = UIColor.white
+                    toolSck.secondaryToolbarBackgroundColor = UIColor.white
+                    toolSck.useNavigationControllerForNavigationButtons = true
+                    toolSck.useNavigationControllerForTitles = true
+                }
+                builder.separatorColor = UIColor.white
+            }
+            self.cameraViewController = CameraViewController(configuration:configuration)
+            self.cameraViewController.completionBlock = self.completionVideoBlock
+            globalNavigationController.topViewController?.present(self.cameraViewController, animated: true, completion: nil)
+        })
+        
+        func buttonColor (button:UIButton) {
+            button.tintColor = UIColor.white
+        }
+        
+        let takeVideoGallery = UIAlertAction(title: "Gallery", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            let imagePickerController = UIImagePickerController()
+            imagePickerController.sourceType = .photoLibrary
+            imagePickerController.allowsEditing = true
+            imagePickerController.videoMaximumDuration = 60.0
+            imagePickerController.mediaTypes = ["public.movie"]
+            imagePickerController.videoQuality = UIImagePickerControllerQualityType.typeIFrame1280x720
+            imagePickerController.delegate = globalNewTLViewController
+            globalNavigationController.topViewController?.present(imagePickerController, animated: true, completion: nil)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Cancelled")
+        })
+        
+        optionMenu.addAction(takeVideo)
+        optionMenu.addAction(takeVideoGallery)
+        optionMenu.addAction(cancelAction)
+        
+        globalNavigationController.topViewController?.present(optionMenu, animated: true, completion: nil)
+        
+        
     }
+    
 
 
+    func completionVideoBlock(result:UIImage?,video:URL?){
+        DispatchQueue.main.async(execute: {
+            self.cameraViewController.dismiss(animated: true, completion: nil)
+            let player = AVPlayer(url: video!)
+            let playerController = AVPlayerViewController()
+            playerController.player = player
+            globalNavigationController.topViewController?.present(playerController, animated: true) {
+                player.play()
+            }
+        })
+    }
     
     func newPost(_ sender: UIButton) {
         
@@ -451,16 +525,12 @@ class AddActivityNew: SpringView, UITextViewDelegate {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let takePhotos = UIAlertAction(title: "Take Photos", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            
-           
             let configuration = Configuration() { builder in
                 builder.configureCameraViewController( { cameraConf in
                         cameraConf.allowedRecordingModes = [.photo]
                 })
             }
-
             let cameraViewController = CameraViewController(configuration:configuration)
-//            let cameraViewController = CameraViewController()
             cameraViewController.cameraController?.recordingMode = .photo
             func abc(image:UIImage?,url:URL?) -> Void
             {
@@ -482,7 +552,6 @@ class AddActivityNew: SpringView, UITextViewDelegate {
             }
             cameraViewController.completionBlock = abc;
             globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
-            
         })
         let photoLibrary = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in

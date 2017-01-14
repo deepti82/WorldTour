@@ -21,7 +21,7 @@ class TripSummaryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        setAll()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,13 +36,7 @@ class TripSummaryView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
         
+        makeTLProfilePicture(self.profilePic)
+        
     }
-    
-    func setAll() {
-        self.profilePic.layer.cornerRadius = 10
-        self.profilePic.clipsToBounds = true
-
-        self.profilePic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(allData["user"]["profilePicture"])")!)
-        self.profileName.text! = allData["user"]["name"].stringValue
-    }
-}
+   }

@@ -44,6 +44,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>Player.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
 		<key>Pods-TraveLibro.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -87,6 +92,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>016620B32263091FC3E5B4036D148102</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>02C3E690B69C577FBCD865C431B2E3E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>0FF38C485BD8E73F614C919F834D6EAB</key>
 		<dict>
 			<key>primary</key>
@@ -177,7 +192,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4B04C81CB5A9F7981FA3E438EBBEC2E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4D0B9673C275AEEB46E49351DE797758</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4E307F847AC3BEDF2FA9B74017BB9908</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4F970B0F35701CBA94B52BDD72071013</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -227,6 +257,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>86C97BCDECE8D3665305556775DE2986</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>86FB697F437D0DACAEC4CC894D8DB01B</key>
 		<dict>
 			<key>primary</key>
@@ -257,6 +292,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9E34B75DA4B7D460BE0AE08F4DC8E5B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A99CCBCEF1E2207E0BEAFEB7DC9B2471</key>
 		<dict>
 			<key>primary</key>
@@ -268,6 +308,11 @@
 			<true/>
 		</dict>
 		<key>B0B904995BBD3419DC1CE26AB9453AC3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B995D4D0FCFEFA933BA854C9CD827E97</key>
 		<dict>
 			<key>primary</key>
 			<true/>

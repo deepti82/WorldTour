@@ -10,10 +10,21 @@ import UIKit
 
 class TripSummaryFooter: UIView {
 
+    @IBOutlet weak var countryScroll: UIScrollView!
+    @IBOutlet weak var countryCount: UILabel!
+    var countryLayout: HorizontalFitLayout!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        countryLayout = HorizontalFitLayout(height: countryScroll.frame.height)
+        countryScroll.addSubview(countryLayout)
     }
+    
+    func refLayout() {
+        self.countryLayout.layoutSubviews()
+        self.countryScroll.contentSize = CGSize(width: self.countryLayout.frame.width, height: self.countryLayout.frame.height)
+    }
+
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

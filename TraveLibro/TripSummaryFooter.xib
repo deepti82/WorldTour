@@ -9,39 +9,30 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripSummaryFooter" customModule="TraveLibro" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripSummaryFooter" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="countryCount" destination="7rE-fm-qNO" id="sc9-8H-xp2"/>
+                <outlet property="countryScroll" destination="mVE-ih-clg" id="OVL-Xg-9G9"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wy8-pa-px8">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="3"/>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <rect key="frame" x="20" y="0.0" width="335" height="1"/>
+                    <color key="backgroundColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="3" id="At8-vW-Wek"/>
+                        <constraint firstAttribute="height" constant="1" id="At8-vW-Wek"/>
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVE-ih-clg">
-                    <rect key="frame" x="50" y="11" width="275" height="42"/>
-                    <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Vg-pf-35g">
-                            <constraints>
-                                <constraint firstAttribute="height" id="hxe-Cf-0oM"/>
-                                <constraint firstAttribute="width" id="obF-w1-5yR"/>
-                            </constraints>
-                        </stackView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="4Vg-pf-35g" secondAttribute="trailing" constant="275" id="3el-7N-LxX"/>
-                        <constraint firstItem="4Vg-pf-35g" firstAttribute="top" secondItem="mVE-ih-clg" secondAttribute="top" id="M2c-5Y-obu"/>
-                        <constraint firstAttribute="bottom" secondItem="4Vg-pf-35g" secondAttribute="bottom" constant="42" id="vDJ-sV-uHn"/>
-                        <constraint firstItem="4Vg-pf-35g" firstAttribute="leading" secondItem="mVE-ih-clg" secondAttribute="leading" id="xBh-OB-jbQ"/>
-                    </constraints>
+                    <rect key="frame" x="50" y="9" width="275" height="44"/>
                 </scrollView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Countries Visited" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rE-fm-qNO">
-                    <rect key="frame" x="0.0" y="61" width="375" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="0.0" y="58.5" width="375" height="23.5"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -53,9 +44,9 @@
                 <constraint firstItem="wy8-pa-px8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Rky-IY-c7e"/>
                 <constraint firstItem="7rE-fm-qNO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="adj-Xb-xyJ"/>
                 <constraint firstItem="mVE-ih-clg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="hEM-8O-6jh"/>
-                <constraint firstItem="wy8-pa-px8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pVu-bb-q4u"/>
+                <constraint firstItem="wy8-pa-px8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="pVu-bb-q4u"/>
                 <constraint firstAttribute="trailing" secondItem="mVE-ih-clg" secondAttribute="trailing" constant="50" id="uUW-4k-H3U"/>
-                <constraint firstAttribute="trailing" secondItem="wy8-pa-px8" secondAttribute="trailing" id="uxh-ww-4v7"/>
+                <constraint firstAttribute="trailing" secondItem="wy8-pa-px8" secondAttribute="trailing" constant="20" id="uxh-ww-4v7"/>
                 <constraint firstAttribute="bottom" secondItem="mVE-ih-clg" secondAttribute="bottom" constant="41" id="wyX-T3-bhf"/>
                 <constraint firstItem="mVE-ih-clg" firstAttribute="top" secondItem="wy8-pa-px8" secondAttribute="bottom" constant="8" id="xog-pF-Ov5"/>
             </constraints>

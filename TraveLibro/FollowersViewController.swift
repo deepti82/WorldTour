@@ -35,8 +35,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         
         configureSearchController()
         
-//        self.setCheckInNavigationBarItem(self)
-        
         for button in shareButtons {
             
             button.layer.cornerRadius = 5
@@ -44,38 +42,23 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         }
         
         if whichView == "Following" {
-            
             self.title = "Following"
             mailShare.setTitle(String(format: "%C", faicon["email"]!), for: UIControlState())
             whatsappShare.setTitle(String(format: "%C", faicon["whatsapp"]!), for: UIControlState())
             facebookShare.setTitle(String(format: "%C", faicon["facebook"]!), for: UIControlState())
             getFollowing()
-//            searchController.searchBar
-//            shareView.removeFromSuperview()
-//            seperatorView.removeFromSuperview()
-//            tableHeightConstraint.constant = self.view.frame.height
-        }
-        
-        else if whichView == "No Followers" {
-            
+        } else if whichView == "No Followers" {
             shareView.removeFromSuperview()
             seperatorView.removeFromSuperview()
             followerTable.removeFromSuperview()
-            
             let nofollow = NoFollowers(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 250))
             self.view.addSubview(nofollow)
-            
-        }
-            
-        else {
-            
+        } else {
             mailShare.setTitle(String(format: "%C", faicon["email"]!), for: UIControlState())
             whatsappShare.setTitle(String(format: "%C", faicon["whatsapp"]!), for: UIControlState())
             facebookShare.setTitle(String(format: "%C", faicon["facebook"]!), for: UIControlState())
             getFollowers()
-            
         }
-        
     }
     
     func getFollowing() {

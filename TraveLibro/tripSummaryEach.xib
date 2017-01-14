@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,124 +25,150 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="75"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="119"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8p-cE-ZbH">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X52-CG-XV3">
+                    <rect key="frame" x="0.0" y="40" width="400" height="79"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oiu-oZ-tDd">
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="CXA-9b-Vgs">
+                            <rect key="frame" x="93" y="51" width="201" height="20"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzi-Z0-A83">
+                                    <rect key="frame" x="0.0" y="0.0" width="30.5" height="20"/>
+                                    <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="12"/>
+                                    <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="14 Jan, 2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kES-9h-P0e">
+                                    <rect key="frame" x="35.5" y="0.0" width="69" height="20"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lby-02-zwk">
+                                    <rect key="frame" x="109.5" y="0.0" width="1" height="20"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DTf-pl-nta">
+                                            <rect key="frame" x="0.0" y="4" width="1" height="12"/>
+                                            <color key="backgroundColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="DTf-pl-nta" secondAttribute="bottom" constant="4" id="I8i-4W-iVI"/>
+                                        <constraint firstAttribute="trailing" secondItem="DTf-pl-nta" secondAttribute="trailing" id="II5-2R-Q2y"/>
+                                        <constraint firstAttribute="width" constant="1" id="KM9-hh-Qvn"/>
+                                        <constraint firstItem="DTf-pl-nta" firstAttribute="leading" secondItem="lby-02-zwk" secondAttribute="leading" id="gMU-Vd-4t5"/>
+                                        <constraint firstAttribute="height" constant="20" id="qsv-u4-7WD"/>
+                                        <constraint firstItem="DTf-pl-nta" firstAttribute="top" secondItem="lby-02-zwk" secondAttribute="top" constant="4" id="v7Y-XR-m8b"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaQ-qX-je9">
+                                    <rect key="frame" x="115.5" y="0.0" width="29.5" height="20"/>
+                                    <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="12"/>
+                                    <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="01:20 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWg-JT-KsX">
+                                    <rect key="frame" x="150" y="0.0" width="51" height="20"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8p-cE-ZbH">
+                            <rect key="frame" x="25" y="0.0" width="60" height="79"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oiu-oZ-tDd">
+                                    <rect key="frame" x="8" y="8" width="44" height="59"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <attributedString key="attributedText">
+                                        <fragment content="DAY">
+                                            <attributes>
+                                                <color key="NSColor" red="0.98823529481887817" green="0.31372550129890442" blue="0.27843138575553894" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="14" name="Avenir-Roman"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <font key="NSFont" size="17" name="Avenir-Roman"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content="01">
+                                            <attributes>
+                                                <color key="NSColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="26" name="Avenir-Roman"/>
+                                                <font key="NSOriginalFont" size="24" name="Avenir-Roman"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.94509804248809814" green="0.94901961088180542" blue="0.94901961088180542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="rYa-G9-u72"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0zp-WY-Aam">
+                            <rect key="frame" x="93" y="8" width="299" height="38.5"/>
                             <attributedString key="attributedText">
-                                <fragment content="DAY">
+                                <fragment content="Evening by the beach! :) with Gayatri Sakalkar and Sarvesh Brahme at Girgaon">
                                     <attributes>
-                                        <color key="NSColor" red="0.98823529481887817" green="0.31372550129890442" blue="0.27843138575553894" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <font key="NSFont" size="14" name="Avenir-Roman"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content=" ">
-                                    <attributes>
-                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <font key="NSFont" size="17" name="Avenir-Roman"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                                <fragment content="01">
-                                    <attributes>
-                                        <color key="NSColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <font key="NSFont" size="26" name="Avenir-Roman"/>
-                                        <font key="NSOriginalFont" size="24" name="Avenir-Roman"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        <integer key="NSLigature" value="0"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" defaultTabInterval="26.449999999999999" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                            <tabStops>
+                                                <textTab alignment="left" location="26.450000762939453">
+                                                    <options/>
+                                                </textTab>
+                                            </tabStops>
+                                        </paragraphStyle>
                                     </attributes>
                                 </fragment>
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.94509804248809814" green="0.94901961088180542" blue="0.94901961088180542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Oiu-oZ-tDd" secondAttribute="trailing" constant="8" id="CP8-eD-eVj"/>
-                        <constraint firstAttribute="width" constant="60" id="IgA-Xp-ncX"/>
-                        <constraint firstItem="Oiu-oZ-tDd" firstAttribute="top" secondItem="e8p-cE-ZbH" secondAttribute="top" constant="8" id="RT4-FT-fKA"/>
-                        <constraint firstAttribute="bottom" secondItem="Oiu-oZ-tDd" secondAttribute="bottom" constant="8" id="cHZ-g3-GdX"/>
-                        <constraint firstItem="Oiu-oZ-tDd" firstAttribute="leading" secondItem="e8p-cE-ZbH" secondAttribute="leading" constant="8" id="xsP-Xw-Tjj"/>
+                        <constraint firstItem="e8p-cE-ZbH" firstAttribute="top" secondItem="X52-CG-XV3" secondAttribute="top" id="5Zf-AN-I1J"/>
+                        <constraint firstItem="e8p-cE-ZbH" firstAttribute="leading" secondItem="X52-CG-XV3" secondAttribute="leading" constant="25" id="B9y-p6-QSM"/>
+                        <constraint firstItem="0zp-WY-Aam" firstAttribute="top" secondItem="X52-CG-XV3" secondAttribute="top" constant="8" id="GTw-FG-rNe"/>
+                        <constraint firstItem="CXA-9b-Vgs" firstAttribute="leading" secondItem="e8p-cE-ZbH" secondAttribute="trailing" constant="8" id="MkQ-pf-KLo"/>
+                        <constraint firstAttribute="trailing" secondItem="0zp-WY-Aam" secondAttribute="trailing" constant="8" id="Pqi-p0-Ywv"/>
+                        <constraint firstAttribute="bottom" secondItem="e8p-cE-ZbH" secondAttribute="bottom" id="Se1-cd-DpZ"/>
+                        <constraint firstAttribute="bottom" secondItem="CXA-9b-Vgs" secondAttribute="bottom" constant="8" id="dmz-I6-LRL"/>
+                        <constraint firstAttribute="trailing" secondItem="CXA-9b-Vgs" secondAttribute="trailing" constant="106" id="u3J-Rl-eW9"/>
+                        <constraint firstItem="0zp-WY-Aam" firstAttribute="leading" secondItem="e8p-cE-ZbH" secondAttribute="trailing" constant="8" id="yZX-AM-xOJ"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0zp-WY-Aam">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qB-Mb-TMg" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
+                    <rect key="frame" x="191" y="0.0" width="19" height="32"/>
+                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="LBI-pb-mpt"/>
+                        <constraint firstAttribute="height" constant="32" id="osd-rB-tvz"/>
+                        <constraint firstAttribute="width" constant="19" id="tAQ-z7-hGy"/>
                     </constraints>
-                    <attributedString key="attributedText">
-                        <fragment content="Evening by the beach! :) with Gayatri Sakalkar and Sarvesh Brahme at Girgaon">
-                            <attributes>
-                                <color key="NSColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <font key="NSFont" size="14" name="Avenir-Roman"/>
-                                <integer key="NSLigature" value="0"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" defaultTabInterval="26.449999999999999" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
-                                    <tabStops>
-                                        <textTab alignment="left" location="26.450000762939453">
-                                            <options/>
-                                        </textTab>
-                                    </tabStops>
-                                </paragraphStyle>
-                            </attributes>
-                        </fragment>
-                    </attributedString>
-                    <nil key="highlightedColor"/>
-                </label>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="CXA-9b-Vgs">
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzi-Z0-A83">
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="12"/>
-                            <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan, 2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kES-9h-P0e">
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                            <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lby-02-zwk">
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTf-pl-nta">
-                                    <color key="backgroundColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </view>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="DTf-pl-nta" secondAttribute="bottom" constant="4" id="I8i-4W-iVI"/>
-                                <constraint firstAttribute="trailing" secondItem="DTf-pl-nta" secondAttribute="trailing" id="II5-2R-Q2y"/>
-                                <constraint firstAttribute="width" constant="1" id="KM9-hh-Qvn"/>
-                                <constraint firstItem="DTf-pl-nta" firstAttribute="leading" secondItem="lby-02-zwk" secondAttribute="leading" id="gMU-Vd-4t5"/>
-                                <constraint firstAttribute="height" constant="20" id="qsv-u4-7WD"/>
-                                <constraint firstItem="DTf-pl-nta" firstAttribute="top" secondItem="lby-02-zwk" secondAttribute="top" constant="4" id="v7Y-XR-m8b"/>
-                            </constraints>
-                        </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaQ-qX-je9">
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="12"/>
-                            <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:20 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWg-JT-KsX">
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                            <color key="textColor" red="0.34509804840000002" green="0.34509804840000002" blue="0.34509804840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                </stackView>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="0zp-WY-Aam" firstAttribute="leading" secondItem="e8p-cE-ZbH" secondAttribute="trailing" constant="8" id="CdN-wf-GHd"/>
-                <constraint firstItem="e8p-cE-ZbH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HzR-dD-J1q"/>
-                <constraint firstItem="e8p-cE-ZbH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="PtE-nN-Dxv"/>
-                <constraint firstAttribute="bottom" secondItem="e8p-cE-ZbH" secondAttribute="bottom" id="SKo-h2-hBy"/>
-                <constraint firstAttribute="trailing" secondItem="0zp-WY-Aam" secondAttribute="trailing" constant="8" id="gZR-gc-mRt"/>
-                <constraint firstItem="CXA-9b-Vgs" firstAttribute="leading" secondItem="0zp-WY-Aam" secondAttribute="leading" id="hML-mv-IQQ"/>
-                <constraint firstItem="CXA-9b-Vgs" firstAttribute="top" secondItem="0zp-WY-Aam" secondAttribute="bottom" id="iWA-ZM-iLy"/>
-                <constraint firstItem="0zp-WY-Aam" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="nxn-gh-QhF"/>
+                <constraint firstItem="X52-CG-XV3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="6hO-Oh-Udb"/>
+                <constraint firstAttribute="bottom" secondItem="X52-CG-XV3" secondAttribute="bottom" id="B1C-0E-j1d"/>
+                <constraint firstAttribute="trailing" secondItem="X52-CG-XV3" secondAttribute="trailing" id="Sd1-sc-en7"/>
+                <constraint firstItem="5qB-Mb-TMg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="boa-et-fVz"/>
+                <constraint firstItem="X52-CG-XV3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cj1-JP-15c"/>
+                <constraint firstItem="5qB-Mb-TMg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="k39-7T-Tbu"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="50" y="40"/>
+            <point key="canvasLocation" x="50" y="17.5"/>
         </view>
     </objects>
 </document>

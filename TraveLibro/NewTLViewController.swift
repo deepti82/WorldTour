@@ -265,8 +265,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             ]
             params["checkIn"] = checkIn
             
-            
-            params["buddiesArr"] = JSON(self.addView.addedBuddies)
+            params["oldBuddies"] = JSON(self.addView.prevBuddies)
+            params["newBuddies"] = JSON(self.addView.addedBuddies)
             
             var photosJson:[JSON] = []
             
@@ -280,6 +280,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 params["checkInChange"] = false
             }
             print(params)
+            
             
             request.postAddPhotosVideos(param: params) { (json) in
                 print(json)
@@ -829,15 +830,32 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    //For videos Delegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let captionVC = storyboard?.instantiateViewController(withIdentifier: "VideoCaption") as! AddCaptionsViewController
+        globalNavigationController!.pushViewController(captionVC, animated: true)
+        
+//        captionVC.currentImageIndex = sender.tag
+//        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+//        globalNavigationController!.pushViewController(captionVC, animated: true)
+        
+//        picker.dismiss(animated: true, completion: {})
+//        let player = AVPlayer(url: info["UIImagePickerControllerMediaURL"] as! URL)
+//        let playerController = AVPlayerViewController()
+//        playerController.player = player
+//        globalNavigationController.topViewController?.present(playerController, animated: true) {
+//            player.play()
+//        }
+    }
     
     
     
     
     func setTopNavigation(text: String) {
         let leftButton = UIButton()
-//        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-//        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-//        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
+        //        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        //        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        //        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
         
         let rightButton = UIView()
         rightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 35)
@@ -1721,7 +1739,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     func newOtg(_ sender: UIButton) {
         
-       
+        
         
         self.journeyStart = true
         hideHeaderAndFooter(false)
@@ -1753,13 +1771,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.startJourneyButton.animation.delay(0.8).makeAlpha(1.0).moveY(-25).animateWithCompletion(0.5,{
             print("StartJourney")
         })
-
+        
         otgView.lineTwo.animation.delay(0.10).makeAlpha(1.0).moveY(-25).animateWithCompletion(1.5, {
             print("lineTwo")
         })
-
-
-
+        
+        
+        
         otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
         otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
         otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)
@@ -1774,8 +1792,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.clipsToBounds = true
         layout.addSubview(otgView)
         self.addHeightToLayout(height: 500)
-       
-       
+        
+        
     }
     
     func newItinerary(_ sender: UIButton) {
@@ -1884,6 +1902,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         transparentCardWhite(otgView.nameJourneyView)
 //        transparentWhiteTextField(otgView.nameJourneyTF)
                 
+
         //        locationManager.requestAlwaysAuthorization()
         //        locationManager.delegate = self
         //        locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -1946,7 +1965,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var kindOfJourneyStack: [String] = []
         
         for i in 0..<journeyCategories.count {
-            switch journeyCategories[i] {
+            switch journeyCategories[i].lowercased() {
             case "adventure":
                 print("1")
                 kindOfJourneyStack.append("adventure")
@@ -1990,24 +2009,25 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         if journeyCategories.count != 0 {
             if journeyCategories.count == 1 {
-                                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-                                otgView.journeyCategoryOne.isHidden = false
-                                otgView.journeyCategoryTwo.isHidden = true
-                                otgView.journeyCategoryThree.isHidden = true
+                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+                otgView.journeyCategoryOne.isHidden = false
+                otgView.journeyCategoryTwo.isHidden = true
+                otgView.journeyCategoryThree.isHidden = true
                 
             } else if journeyCategories.count == 2 {
-                                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-                                otgView.journeyCategoryOne.isHidden = false
-                                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-                                otgView.journeyCategoryTwo.isHidden = false
-                                otgView.journeyCategoryThree.isHidden = true
-            } else {
-                                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-                                otgView.journeyCategoryOne.isHidden = false
-                                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-                                otgView.journeyCategoryTwo.isHidden = false
-                                otgView.journeyCategoryThree.isHidden = false
-                                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+                otgView.journeyCategoryOne.isHidden = false
+                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+                otgView.journeyCategoryTwo.isHidden = false
+                otgView.journeyCategoryThree.isHidden = true
+            } else if journeyCategories.count > 2 {
+                print(kindOfJourneyStack)
+                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
+                otgView.journeyCategoryOne.isHidden = false
+                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
+                otgView.journeyCategoryTwo.isHidden = false
+                otgView.journeyCategoryThree.isHidden = false
+                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
             }
             //            if journeyCategories.count == 2 {
             //

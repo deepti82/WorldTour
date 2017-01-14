@@ -8,8 +8,11 @@
 
 import UIKit
 
-class TripSummaryCell: UIView {
+class TripSummaryCell: UIButton {
 
+    @IBOutlet weak var category: UIButton!
+    @IBOutlet weak var count: UILabel!
+    @IBOutlet weak var name: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -26,6 +29,7 @@ class TripSummaryCell: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        self.category.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
     }
 }

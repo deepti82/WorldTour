@@ -251,8 +251,8 @@ extension NewTLViewController {
             self.addView.currentLat = Float(post.post_latitude)
             self.addView.currentLong = Float(post.post_longitude)
         }
-    self.addView.buddyAdded(post.jsonPost["buddies"].array!)
-        
+        self.addView.prevBuddies = post.jsonPost["buddies"].array!
+        self.addView.buddyAdded(post.jsonPost["buddies"].array!)
     }
     
     
