@@ -22,37 +22,47 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3O-3Q-Ds2" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="85" y="9" width="10" height="38"/>
+                    <rect key="frame" x="85" y="0.0" width="10" height="39"/>
                     <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="nkr-kl-xth"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Girgaon?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NV7-7j-LpW">
-                    <rect key="frame" x="0.0" y="120" width="180" height="22"/>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                    <rect key="frame" x="0.0" y="115" width="180" height="21"/>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6F-VR-UEL">
+                    <rect key="frame" x="57" y="47" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="zH2-EJ-szn"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="box1"/>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RE-OS-w26">
-                    <rect key="frame" x="57.5" y="55" width="60" height="60"/>
+                    <rect key="frame" x="58" y="45" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="BZm-y9-81f"/>
                         <constraint firstAttribute="height" constant="60" id="XSc-ZZ-g5c"/>
                     </constraints>
-                    <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                    <state key="normal" image="star_rate_icon" backgroundImage="box7"/>
+                    <inset key="imageEdgeInsets" minX="14" minY="14" maxX="14" maxY="14"/>
+                    <state key="normal" image="star_rate_icon" backgroundImage="box6"/>
                 </button>
             </subviews>
             <constraints>
                 <constraint firstItem="NV7-7j-LpW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2NV-22-30w"/>
-                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="8" id="BXC-ft-gvX"/>
+                <constraint firstItem="L6F-VR-UEL" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="8" id="BQp-g0-tXw"/>
+                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="6" id="BXC-ft-gvX"/>
                 <constraint firstItem="L3O-3Q-Ds2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FL2-E1-WOr"/>
-                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="8" id="Jk3-BI-3OP"/>
-                <constraint firstItem="NV7-7j-LpW" firstAttribute="top" secondItem="4RE-OS-w26" secondAttribute="bottom" constant="5" id="ZaG-yk-pJW"/>
+                <constraint firstItem="NV7-7j-LpW" firstAttribute="top" secondItem="L6F-VR-UEL" secondAttribute="bottom" constant="8" id="H9p-sP-BKN"/>
+                <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="6" id="Jk3-BI-3OP"/>
+                <constraint firstItem="4RE-OS-w26" firstAttribute="leading" secondItem="L6F-VR-UEL" secondAttribute="leading" constant="1" id="Krv-gg-leW"/>
+                <constraint firstItem="NV7-7j-LpW" firstAttribute="top" secondItem="4RE-OS-w26" secondAttribute="bottom" constant="10" id="ZaG-yk-pJW"/>
                 <constraint firstAttribute="trailing" secondItem="NV7-7j-LpW" secondAttribute="trailing" id="kpO-Y0-1rd"/>
-                <constraint firstAttribute="bottom" secondItem="NV7-7j-LpW" secondAttribute="bottom" constant="8" id="o1P-Id-Hd1"/>
-                <constraint firstItem="L3O-3Q-Ds2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="9" id="tgI-0Y-7Qy"/>
+                <constraint firstAttribute="bottom" secondItem="NV7-7j-LpW" secondAttribute="bottom" constant="14" id="o1P-Id-Hd1"/>
+                <constraint firstItem="L3O-3Q-Ds2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tgI-0Y-7Qy"/>
                 <constraint firstItem="4RE-OS-w26" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-2.5" id="vjT-w1-QlE"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -61,7 +71,8 @@
         </view>
     </objects>
     <resources>
-        <image name="box7" width="115" height="117"/>
+        <image name="box1" width="115" height="117"/>
+        <image name="box6" width="115" height="117"/>
         <image name="star_rate_icon" width="60" height="60"/>
     </resources>
 </document>

@@ -138,7 +138,8 @@ class EndJourneyViewController: UIViewController {
         endJourney = EndJourneyView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 366))
         endJourney.tag = 100
         endJourney.changeConstraint(height: 90)
-        
+        transparentCardWhite(endJourney.accesoriesVew)
+        transparentOrangeView(endJourney.UserEndJourneyView)
 //        endJourney.accesoriesVew.isHidden = true
         endJourney.categoryOne.tintColor = mainOrangeColor
         endJourney.categoryTwo.tintColor = mainOrangeColor

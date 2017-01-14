@@ -43,7 +43,7 @@ class PhotosOTGHeader: UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "PhotosOTGHeader", bundle: bundle)
 
-        
+       
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -58,8 +58,8 @@ class PhotosOTGHeader: UIView {
         postDp.layer.borderColor = UIColor(hex: "#FF6858").cgColor
         drawL.backgroundColor = UIColor.clear
         
-        self.blurView.layer.cornerRadius = 5
-        self.blurView.clipsToBounds = true
+//        self.blurView.layer.cornerRadius = 5
+//        self.blurView.clipsToBounds = true
     }
     
     func makeTLProfilePicture(_ image: UIImageView) {

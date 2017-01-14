@@ -917,7 +917,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         mainScroll.clipsToBounds = true
         
         self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 60, height: 60))
-        self.addPostsButton.setImage(UIImage(named: "add_circle"), for: .normal)
+//        self.addPostsButton.layer.cornerRadius = 30
+//        transparentOrangeButton(self.addPostsButton)
+        self.addPostsButton.setImage(UIImage(named: "add_circle_shadow"), for: .normal)
         self.addPostsButton.addTarget(self, action: #selector(NewTLViewController.addPosts(_:)), for: .touchUpInside)
         
         self.addPostsButton.layer.zPosition = 5
@@ -1871,6 +1873,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         sender.isHidden = true
         otgView.nameJourneyView.layer.opacity = 0.0
         otgView.nameJourneyView.isHidden = false
+        otgView.nameJourneyTF.isHidden = false
         otgView.nameJourneyView.animation.makeOpacity(1.0).makeHeight(otgView.nameJourneyView.frame.height).animate(0.5)
         otgView.detectLocationView.isHidden = true
         otgView.detectHide.isHidden = true
@@ -1878,7 +1881,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.locationLabel.isHidden = true
         otgView.closeBuddies.isHidden = true
         
-        
+        transparentCardWhite(otgView.nameJourneyView)
+//        transparentWhiteTextField(otgView.nameJourneyTF)
                 
         //        locationManager.requestAlwaysAuthorization()
         //        locationManager.delegate = self

@@ -12,7 +12,8 @@ import Spring
 class PhotoOTGFooter: UIView {
     
 //    @IBOutlet weak var LineView1: UIView!
-    @IBOutlet var footerView: UIView!
+    
+    @IBOutlet weak var footerColorView: UIView!
     var postTop:Post!
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: SpringButton!
@@ -46,7 +47,7 @@ class PhotoOTGFooter: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-        
+        transparentCardWhite(footerColorView)
         likeButton.tintColor = mainBlueColor
         commentButton.tintColor = mainBlueColor
         shareButton.tintColor = mainBlueColor
@@ -105,7 +106,7 @@ class PhotoOTGFooter: UIView {
     
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0) {
-            self.frame.size.height = 60;
+            self.frame.size.height = 50;
         } else {
             self.frame.size.height = 90;
         }

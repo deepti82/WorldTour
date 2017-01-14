@@ -33,7 +33,7 @@ class PhotosOTG2: VerticalLayout {
         header.whatPostIcon.layer.zPosition = 5
         header.timeLabel.layer.zPosition = 5
         header.photosTitle.layer.zPosition = 5
-
+        transparentCardWhite(header.footer)
         self.postTop = post;
         post.getThought()
         header.photosTitle.text = post.finalThought

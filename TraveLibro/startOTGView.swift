@@ -62,9 +62,17 @@ class startOTGView: UIView {
             print("taggedItIs")
         }
         startJourneyButton.layer.cornerRadius = 5
+        
+        transparentOrangeButton(startJourneyButton)
+        transparentOrangeView(cityDetails)
+        transparentWhiteButton(addBuddiesButton)
+        transparentWhiteButton(selectCategoryButton)
+        transparentCardWhite(journeyDetails)
+    
+        
         closeBuddies.isHidden = true
-        drawLine3.isHidden = true
-        drawLine3.isHidden = true
+//        drawLine3.isHidden = true
+//        drawLine3.isHidden = true
         
         let rocketLabel = UILabel(frame: CGRect(x: -22, y: -5, width: 22, height: 30))
         rocketLabel.font = UIFont(name: "FontAwesome", size: 15)
@@ -75,10 +83,10 @@ class startOTGView: UIView {
         
         
         
-        nameJourneyTF.attributedPlaceholder = NSAttributedString(string: "Name Your Journey", attributes: [NSForegroundColorAttributeName: UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)])
+//        nameJourneyTF.attributedPlaceholder = NSAttributedString(string: "Name Your Journey", attributes: [NSForegroundColorAttributeName: UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.8)])
         
         nameJourneyView.layer.cornerRadius = 3
-        nameJourneyView.layer.shadowColor = UIColor.lightGray.cgColor
+//        nameJourneyView.layer.shadowColor = UIColor.lightGray.cgColor
         nameJourneyView.layer.shadowOffset = CGSize(width: 2, height: 1)
         nameJourneyView.layer.shadowOpacity = 0.5
         nameJourneyView.layer.shadowRadius = 1.0
@@ -121,11 +129,11 @@ class startOTGView: UIView {
         closeBuddies.layer.borderColor = UIColor(colorLiteralRed: 35/255, green: 45/255, blue: 74/255, alpha: 1.0).cgColor
         
         
-        addBuddiesButton.layer.borderColor = UIColor.white.cgColor
-        addBuddiesButton.layer.borderWidth = 3.0
+//        addBuddiesButton.layer.borderColor = UIColor.white.cgColor
+//        addBuddiesButton.layer.borderWidth = 3.0
         
-        selectCategoryButton.layer.borderColor = UIColor.white.cgColor
-        selectCategoryButton.layer.borderWidth = 3.0
+//        selectCategoryButton.layer.borderColor = UIColor.white.cgColor
+//        selectCategoryButton.layer.borderWidth = 3.0
         
         lineOne.backgroundColor = UIColor.clear
         lineTwo.backgroundColor = UIColor.clear

@@ -16,7 +16,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotosOTGHeader" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="blurView" destination="rbt-AQ-xbl" id="CYk-7X-lXg"/>
                 <outlet property="calendarLabel" destination="3Ij-Yi-cXb" id="Faf-IG-H5p"/>
                 <outlet property="clockLabel" destination="wh2-Li-LqP" id="Bu7-1w-10J"/>
                 <outlet property="dateLabel" destination="fid-yH-MEf" id="zFj-tN-lgA"/>
@@ -34,23 +33,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rt5-8f-vFp" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="182" y="7" width="10" height="42"/>
+                    <rect key="frame" x="182" y="0.0" width="10" height="38"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="lVN-cd-5Xr"/>
-                        <constraint firstAttribute="height" constant="42" id="oET-MD-JN9"/>
+                        <constraint firstAttribute="height" constant="38" id="oET-MD-JN9"/>
                     </constraints>
                 </view>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbt-AQ-xbl">
-                    <rect key="frame" x="0.0" y="50" width="375" height="124"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="M67-B9-ObM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <blurEffect style="extraLight"/>
-                </visualEffectView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBz-We-C2u">
-                    <rect key="frame" x="0.0" y="50" width="375" height="63"/>
+                    <rect key="frame" x="0.0" y="45" width="375" height="63"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-oe-jCW">
                             <rect key="frame" x="8" y="6" width="48" height="49"/>
@@ -80,7 +70,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan 2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fid-yH-MEf">
-                            <rect key="frame" x="113" y="40" width="72" height="15"/>
+                            <rect key="frame" x="111" y="40" width="72" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="Juq-hL-9qr"/>
                                 <constraint firstAttribute="width" constant="72" id="PDI-JG-F2l"/>
@@ -122,7 +112,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="3Ij-Yi-cXb" secondAttribute="bottom" constant="8" id="3mw-Dg-mSo"/>
-                        <constraint firstItem="fid-yH-MEf" firstAttribute="leading" secondItem="3Ij-Yi-cXb" secondAttribute="trailing" id="51s-8t-ajT"/>
+                        <constraint firstItem="fid-yH-MEf" firstAttribute="leading" secondItem="3Ij-Yi-cXb" secondAttribute="trailing" constant="-2" id="51s-8t-ajT"/>
                         <constraint firstItem="bcT-oe-jCW" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="6" id="6pz-ij-5nU"/>
                         <constraint firstAttribute="bottom" secondItem="fid-yH-MEf" secondAttribute="bottom" constant="8" id="81C-Iu-oUV"/>
                         <constraint firstAttribute="trailing" secondItem="Xvb-Pa-iMT" secondAttribute="trailing" constant="12" id="8X5-mF-Bu4"/>
@@ -139,14 +129,10 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="wBz-We-C2u" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Fpp-Pn-N5d"/>
-                <constraint firstAttribute="trailing" secondItem="rbt-AQ-xbl" secondAttribute="trailing" id="Gps-t2-ee0"/>
-                <constraint firstAttribute="bottom" secondItem="rbt-AQ-xbl" secondAttribute="bottom" constant="-61" id="Muk-01-gSQ"/>
-                <constraint firstItem="rbt-AQ-xbl" firstAttribute="top" secondItem="Rt5-8f-vFp" secondAttribute="bottom" constant="1" id="W12-bS-iTb"/>
                 <constraint firstItem="Rt5-8f-vFp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="182" id="hkt-3T-4hK"/>
-                <constraint firstItem="rbt-AQ-xbl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kHU-hY-cXe"/>
-                <constraint firstItem="Rt5-8f-vFp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="kuI-hw-ljY"/>
+                <constraint firstItem="Rt5-8f-vFp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kuI-hw-ljY"/>
                 <constraint firstAttribute="trailing" secondItem="wBz-We-C2u" secondAttribute="trailing" id="nEj-q7-TIC"/>
-                <constraint firstItem="wBz-We-C2u" firstAttribute="top" secondItem="Rt5-8f-vFp" secondAttribute="bottom" constant="1" id="xdb-ya-oZh"/>
+                <constraint firstItem="wBz-We-C2u" firstAttribute="top" secondItem="Rt5-8f-vFp" secondAttribute="bottom" constant="7" id="xdb-ya-oZh"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

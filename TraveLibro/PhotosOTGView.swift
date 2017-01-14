@@ -10,11 +10,14 @@ import UIKit
 
 class PhotosOTGView: UIView {
 
+    @IBOutlet weak var centerWhiteView: UIView!
+    @IBOutlet weak var centerView: UIView!
     @IBOutlet weak var morePhotosView: UIScrollView!
     var horizontalScrollForPhotos:HorizontalLayout!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        transparentCardWhite(centerWhiteView)
     }
     
     required init?(coder aDecoder: NSCoder) {

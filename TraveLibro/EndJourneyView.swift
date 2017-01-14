@@ -10,6 +10,7 @@ import UIKit
 
 class EndJourneyView: UIView {
 
+    @IBOutlet weak var UserEndJourneyView: UIView!
     @IBOutlet weak var endJourneyTitle: UILabel!
     @IBOutlet weak var calendarIcon: UILabel!
     @IBOutlet weak var clockIcon: UILabel!

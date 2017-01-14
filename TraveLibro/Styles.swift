@@ -90,6 +90,14 @@ func getDarkBackGroundBlue(_ myVC: UIViewController) {
     
 }
 
+//func getBackGroundProfile(_ myVc: UIViewController) {
+//    
+//    //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg")!)
+//   let ProfileViewController = CGRect(x: 0, y: 0, width: myVc.view.frame.width, height: myVc.view.frame.height)
+//    myVc.addSubview(ProfileViewController)
+//}
+
+
 class LeftPaddedLabel:  UILabel {
     
     let padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 10)
@@ -240,6 +248,30 @@ func darkBlur(_ view: UIView) {
     view.addSubview(blurView)
 
 }
+
+
+func transparentCardWhite(_ view: UIView){
+    view.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
+}
+
+
+func transparentOrangeButton(_ button: UIButton) {
+    button.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 0.8)
+}
+
+func transparentOrangeView(_ view: UIView) {
+    view.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 103/255, blue: 89/255, alpha: 0.8)
+}
+
+func transparentWhiteTextField(_ textField: UITextField){
+    textField.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
+}
+
+func transparentWhiteButton(_ button: UIButton){
+    button.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
+}
+
+
 
 
 //LoadingOverlay.shared.showOverlay(self.view)

@@ -20,7 +20,7 @@ class PhotosOTGController: UIViewController {
                 
         photoCenter = PhotosOTGView(frame: CGRect(x: 0, y: 200, width: 400, height: 394))
         
-        photoFooter = PhotoOTGFooter(frame: CGRect(x: 0, y: 600, width: 400, height: 184))
+        photoFooter = PhotoOTGFooter(frame: CGRect(x: 0, y: 595, width: 400, height: 184))
 
         // Do any additional setup after loading the view.
     }

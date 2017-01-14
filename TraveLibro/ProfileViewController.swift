@@ -118,28 +118,29 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        let darkBlur1 = UIBlurEffect(style: UIBlurEffectStyle.prominent)
-        let blurView1 = UIVisualEffectView(effect: darkBlur1)
-        blurView1.frame.size.height = self.mainProfileView.frame.height
-        blurView1.frame.size.width = self.mainProfileView.frame.width
-        //        blurView.layer.zPosition = -1
-        //        blurView.alpha = 0.5
-        blurView1.isUserInteractionEnabled = false
-        MAMatterView.addSubview(blurView1)
-        
-        
+        transparentCardWhite(mainProfileView)
+//        let darkBlur1 = UIBlurEffect(style: UIBlurEffectStyle.prominent)
+//        let blurView1 = UIVisualEffectView(effect: darkBlur1)
+//        blurView1.frame.size.height = self.mainProfileView.frame.height
+//        blurView1.frame.size.width = self.mainProfileView.frame.width
+//        //        blurView.layer.zPosition = -1
+//        //        blurView.alpha = 0.5
+//        blurView1.isUserInteractionEnabled = false
+//        MAMatterView.addSubview(blurView1)
         
         
         
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.prominent)
-        let blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame.size.height = self.mainProfileView.frame.height
-        blurView.frame.size.width = self.mainProfileView.frame.width
-//        blurView.layer.zPosition = -1
-       blurView.alpha = 0.9
-        blurView.isUserInteractionEnabled = false
-        self.mainProfileView.addSubview(blurView)
+        profileUsername.adjustsFontSizeToFitWidth = true
+    
+        
+//        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.prominent)
+//        let blurView = UIVisualEffectView(effect: darkBlur)
+//        blurView.frame.size.height = self.mainProfileView.frame.height
+//        blurView.frame.size.width = self.mainProfileView.frame.width
+////        blurView.layer.zPosition = -1
+//       blurView.alpha = 0.9
+//        blurView.isUserInteractionEnabled = false
+//        self.mainProfileView.addSubview(blurView)
         
         
         MAMButton.layer.zPosition = 500000
@@ -270,7 +271,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         fontAwesomeLabel.textColor = UIColor.white
         orangeTab.orangeButtonTitle.titleLabel!.addSubview(fontAwesomeLabel)
         self.view.addSubview(orangeTab)
-        
+        footer.backgroundColor = UIColor.white
+        view.addSubview(footer)
         orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
         
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
@@ -411,6 +413,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProfileDetailCell
         cell.infoLabel.attributedText = fullText
         cell.infoLabel.layer.zPosition = 50000
+        cell.infoLabel.adjustsFontSizeToFitWidth = true
         if (indexPath as NSIndexPath).row == labels.count - 1 {
             cell.separatorView.isHidden = true
         }
