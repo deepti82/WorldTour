@@ -31,6 +31,8 @@
 		36006DB11DBB346600C7F44B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36006DB01DBB346600C7F44B /* SwiftyJSON.swift */; };
 		360C1A8F1E02A6F0009780B3 /* ConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */; };
 		362FA0CA1E1E78E500267736 /* PostEditPhotosVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */; };
+		3638F9E31E2C224800B2EA04 /* VideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3638F9E21E2C224800B2EA04 /* VideoView.xib */; };
+		3638F9E51E2C226200B2EA04 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3638F9E41E2C226200B2EA04 /* VideoView.swift */; };
 		363A7C781E29ED94001CB126 /* PostVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363A7C771E29ED94001CB126 /* PostVideo.swift */; };
 		367B90F51DC23ADF00D76F13 /* ActiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F01DC23ADF00D76F13 /* ActiveBuilder.swift */; };
 		367B90F61DC23ADF00D76F13 /* ActiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F11DC23ADF00D76F13 /* ActiveLabel.swift */; };
@@ -452,6 +454,8 @@
 		36006DB01DBB346600C7F44B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigModel.swift; sourceTree = "<group>"; };
 		362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEditPhotosVideos.swift; sourceTree = "<group>"; };
+		3638F9E21E2C224800B2EA04 /* VideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoView.xib; sourceTree = "<group>"; };
+		3638F9E41E2C226200B2EA04 /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		363A7C771E29ED94001CB126 /* PostVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostVideo.swift; sourceTree = "<group>"; };
 		367B90F01DC23ADF00D76F13 /* ActiveBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveBuilder.swift; sourceTree = "<group>"; };
 		367B90F11DC23ADF00D76F13 /* ActiveLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveLabel.swift; sourceTree = "<group>"; };
@@ -932,6 +936,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				3638F9E11E2C221700B2EA04 /* VideoView */,
 				842D7A531E1E6F2800FEDCD1 /* Buttons2 */,
 				842D7A4E1E1E598300FEDCD1 /* NearMeOptionButton */,
 				841E43AA1E1D1D93000D2E6B /* EndJourneyView */,
@@ -1097,6 +1102,15 @@
 				BAE3F40D9DEC49A23FC2BE7B /* Pods-TraveLibro.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		3638F9E11E2C221700B2EA04 /* VideoView */ = {
+			isa = PBXGroup;
+			children = (
+				3638F9E21E2C224800B2EA04 /* VideoView.xib */,
+				3638F9E41E2C226200B2EA04 /* VideoView.swift */,
+			);
+			name = VideoView;
 			sourceTree = "<group>";
 		};
 		3ABFD8DC1DA8C76D00A51034 /* ChangeCity */ = {
@@ -2415,6 +2429,7 @@
 				C2A6E2671CE9D48A00D3F845 /* PhotosOTG.xib in Resources */,
 				C2823B031D464AAD0065A76C /* startOTGView.xib in Resources */,
 				C269078F1CF86DDF00F827E6 /* ImageCheckbox.xib in Resources */,
+				3638F9E31E2C224800B2EA04 /* VideoView.xib in Resources */,
 				C2A27A581CEDE40200F74DD1 /* AddDisplayPic.xib in Resources */,
 				1A65E7A91CD72F1F009374DA /* Avenir-Heavy.ttf in Resources */,
 				C2FA1E111D5485F50034DE97 /* QuickItineraryFive.xib in Resources */,
@@ -2760,6 +2775,7 @@
 				C258A33B1D6C889700664CF7 /* ExistingAccountPopup.swift in Sources */,
 				36EB3F981E0D81A000EFF9EC /* PostBuddy.swift in Sources */,
 				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
+				3638F9E51E2C226200B2EA04 /* VideoView.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				3A7D360D1DE8733D00786A83 /* CreatePostViewController.swift in Sources */,
 				C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */,

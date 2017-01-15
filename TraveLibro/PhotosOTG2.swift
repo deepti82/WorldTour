@@ -15,7 +15,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var centerView:PhotosOTGView!
     var footerView:PhotoOTGFooter!
     var mainPhoto:UIImageView!
-    var videoContainer:UIImageView!
+    var videoContainer:VideoView!
     var uploadingView:UploadingToCloud!
     var newTl:NewTLViewController!
     var player:Player!
@@ -71,18 +71,14 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         //Image generation only
         if(post.videoArr.count > 0) {
-            self.videoContainer = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-            self.videoContainer.contentMode = UIViewContentMode.scaleAspectFill
-            self.videoContainer.clipsToBounds = true
-            self.videoContainer.image = UIImage(named: "logo-default")
-
+            self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.player = Player()
             self.player.delegate = self
             self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
             self.player.view.clipsToBounds = true
             self.player.playbackLoops = true
             self.player.muted = true
-            print(post.videoArr[0].serverUrl)
+            self.videoContainer.player = self.player
             var videoUrl:URL!
             if(!post.post_isOffline) {
                 videoUrl = URL(string: post.videoArr[0].serverUrl)
@@ -90,7 +86,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 videoUrl = post.videoArr[0].imageUrl
             }
             self.player.setUrl(videoUrl!)
-            self.videoContainer.addSubview(self.player.view)
+            self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
             
         } else if(post.imageArr.count > 0) {
