@@ -5,15 +5,18 @@ import imglyKit
 import Spring
 import AVKit
 import AVFoundation
+import Player
 
 var globalAddActivityNew:AddActivityNew!
 
-class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDelegate {
+class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDelegate, PlayerDelegate {
     @IBOutlet weak var viewContainerView: UIView!
     
     @IBOutlet weak var finalImageTag: UIImageView!
     var typeOfAddActivtiy:String = ""
     var editPost:Post!
+    
+    var player:Player!
     
     @IBOutlet weak var locationView: UIView!
     @IBOutlet weak var photosIntialView: UIView!
@@ -323,7 +326,7 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
                 builder.configureCameraViewController(){ cameraConf in
                     cameraConf.allowedRecordingModes = [.video]
                     cameraConf.showCameraRoll = false
-                    cameraConf.maximumVideoLength = 60
+                    cameraConf.maximumVideoLength = 3
                 }
                 
                 builder.configureToolStackController(){toolSck in
@@ -369,19 +372,22 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
         
     }
     
-
-
+    
     func completionVideoBlock(result:UIImage?,video:URL?){
-        DispatchQueue.main.async(execute: {
-            self.cameraViewController.dismiss(animated: true, completion: nil)
-            let player = AVPlayer(url: video!)
-            let playerController = AVPlayerViewController()
-            playerController.player = player
-            globalNavigationController.topViewController?.present(playerController, animated: true) {
-                player.play()
-            }
-        })
+        self.cameraViewController.dismiss(animated: true, completion: nil)
+        addVideoToBlock(video: video)
     }
+    
+    func addVideoToBlock(video:URL?) {
+        self.videosInitialView.isHidden = true
+        self.videosFinalView.isHidden = false
+        self.player = Player()
+        self.player.delegate = self
+        self.player.view.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+        self.player.setUrl(video!)
+        self.viewContainerView.addSubview(self.player.view)
+    }
+    
     
     func newPost(_ sender: UIButton) {
         
