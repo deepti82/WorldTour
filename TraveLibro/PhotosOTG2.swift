@@ -23,7 +23,7 @@ class PhotosOTG2: VerticalLayout {
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true
         //header generation only
-        header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 113 ))
+        header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 108 ))
         self.addSubview(header)
         
         header.postDp.layer.zPosition = 5

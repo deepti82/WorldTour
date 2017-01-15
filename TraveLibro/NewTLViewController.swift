@@ -315,7 +315,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         var category = ""
         if self.addView.categoryLabel.text! != nil {
             category = self.addView.categoryLabel.text!
-            if(category == "Label") {
+            if(category == "") {
                 category = ""
             }
         }

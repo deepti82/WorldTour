@@ -2,11 +2,14 @@ import UIKit
 import Photos
 import imglyKit
 import Spring
+import Player
+
 var editedImage = UIImage()
 var isEditedImage = false
 
-class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStackControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStackControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, PlayerDelegate {
     
+    @IBOutlet weak var videoContainer: UIView!
     @IBOutlet weak var collectionVi: UICollectionView!
     var imagesArray: [UIView] = []
     var addActivity:AddActivityNew!
@@ -25,11 +28,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var imageArr:[PostImage] = []
     var isDeletedImage = false
     var currentImageIndex = 0;
+    var type = ""
+    var player:Player!
+    var videoURL:URL!
+    
     
     @IBOutlet weak var editView: UIView!
     @IBOutlet weak var deleteImage: UIButton!
     @IBOutlet var completeImages: [UIImageView]!
-    @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var captionTextView: UITextField!
     @IBOutlet weak var imageForCaption: SpringImageView!
     @IBOutlet weak var bottomStack: UIStackView!
 //    @IBOutlet weak var doneButton: UIButton!
@@ -41,19 +48,25 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     var deletedIndex: Int!
     
     @IBAction func deletePhoto(_ sender: UIButton) {
-        imageArr.remove(at: currentImageIndex)
-        if self.addActivity != nil {
-            self.addActivity.imageArr = imageArr;
-            self.addActivity.addPhotoToLayout()
-        } else if self.quickIt != nil {
-            self.quickIt.photosCollection.reloadData()
-        }
-        if(imageArr.count == 0) {
+        if(type != "videoCaption") {
+            imageArr.remove(at: currentImageIndex)
+            if self.addActivity != nil {
+                self.addActivity.imageArr = imageArr;
+                self.addActivity.addPhotoToLayout()
+            } else if self.quickIt != nil {
+                self.quickIt.photosCollection.reloadData()
+            }
+            if(imageArr.count == 0) {
+                self.goBack(UIButton());
+            }
+            else {
+                collectionVi.reloadData()
+                self.previousImageCaption(UIButton())
+            }
+
+        } else {
+            self.addActivity.removeVideoBlock()
             self.goBack(UIButton());
-        }
-        else {
-            collectionVi.reloadData()
-            self.previousImageCaption(UIButton())
         }
     }
     
@@ -108,12 +121,15 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
     }
     
     @IBAction func doneCaptions(_ sender: AnyObject) {
-        if self.addActivity != nil {
-            self.addActivity.imageArr = imageArr;
-            self.addActivity.addPhotoToLayout()
-        } else if self.quickIt != nil {
-            self.quickIt.photosCollection.reloadData()
+        if(self.type != "videoCaption") {
+            if self.addActivity != nil {
+                self.addActivity.imageArr = imageArr;
+                self.addActivity.addPhotoToLayout()
+            } else if self.quickIt != nil {
+                self.quickIt.photosCollection.reloadData()
+            }
         }
+        
         navigationController?.popViewController(animated: true)
         self.dismiss(animated: true) { 
             
@@ -136,7 +152,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
         
        deleteImage.setTitle(String(format: "%C", faicon["trash"]!), for: UIControlState())
-
+        self.videoContainer.isHidden = true
      
 
         
@@ -148,44 +164,78 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         captionTextView.clipsToBounds = true
         captionTextView.layer.zPosition = 1000
 //        imageStackView.layer.zPosition = 1000
-        captionTextView.textContainerInset = UIEdgeInsetsMake(5, 10, 5, 10)
+        
 
         NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(AddCaptionsViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
-        self.view.addGestureRecognizer(swipeRight)
         
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.nextImageCaption(_:)))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.view.addGestureRecognizer(swipeLeft)
         
-        for eachImage in allImages {
+        if(type != "videoCaption") {
             
-            let i = allImages.index(of: eachImage)
-            editedImagesArray.append([i!: eachImage.currentImage!])
-        }
-        print(currentImageIndex);
-        imageForCaption.image = imageArr[currentImageIndex].image
-        
-        captionTextView.delegate = self
-        captionTextView.returnKeyType = .done
-        captionTextView.resignFirstResponder()
-        
-        if(imageArr[currentImageIndex].caption == "") {
-            captionTextView.text = "Add a caption..."
+            let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.previousImageCaption(_:)))
+            swipeRight.direction = UISwipeGestureRecognizerDirection.right
+            self.view.addGestureRecognizer(swipeRight)
+            
+            let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(AddCaptionsViewController.nextImageCaption(_:)))
+            swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+            self.view.addGestureRecognizer(swipeLeft)
+            
+            for eachImage in allImages {
+                
+                let i = allImages.index(of: eachImage)
+                editedImagesArray.append([i!: eachImage.currentImage!])
+            }
+
+            
+            print(currentImageIndex);
+            imageForCaption.image = imageArr[currentImageIndex].image
+            
+            captionTextView.delegate = self
+            captionTextView.returnKeyType = .done
+            captionTextView.resignFirstResponder()
+            
+            if(imageArr[currentImageIndex].caption == "") {
+                captionTextView.text = "Add a caption..."
+            } else {
+                captionTextView.text = imageArr[currentImageIndex].caption
+            }
+            
+            
+            let indexPath = IndexPath(row: currentImageIndex, section: 0)
+            collectionVi.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         } else {
-            captionTextView.text = imageArr[currentImageIndex].caption
+            if( self.addActivity.videoCaption != "") {
+                self.captionTextView.text = self.addActivity.videoCaption
+                
+            }
+            self.getVideo()
+            self.editImageButton.isHidden = true
         }
-        captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
-       
-        let indexPath = IndexPath(row: currentImageIndex, section: 0)
-        collectionVi.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        
+        
         
         
 //        collectionVi.scrollToItem(at: NSIndexPath(index: currentImageIndex) as IndexPath,at:UICollectionViewScrollPosition(rawValue: UInt(currentImageIndex)), animated: true)
     }
+    
+    func getVideo() {
+        self.videoContainer.isHidden = false
+        self.player = Player()
+        self.player.delegate = self
+        self.player.playbackLoops = true
+        self.player.muted = false
+        self.player.view.frame = self.videoContainer.bounds
+        self.player.setUrl(self.videoURL)
+        self.videoContainer.addSubview(self.player.view)
+        self.imageForCaption.isHidden = true
+        self.collectionVi.isHidden = true
+    }
+    
+    func playerReady(_ player: Player) {
+        player.playFromBeginning()
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.title = "Photos (\(imageArr.count))"
@@ -201,7 +251,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         cell.addImagesCollection.contentMode = UIViewContentMode.scaleAspectFill
         cell.addImagesCollection.layer.cornerRadius = 5
         cell.addImagesCollection.clipsToBounds = true;
-        captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+        
         
         if(currentImageIndex == indexPath.row) {
             cell.addImagesCollection.layer.borderWidth = 1
@@ -235,7 +285,7 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         } else {
             captionTextView.text = imageArr[currentImageIndex].caption
         }
-        captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+        
         collectionVi.reloadData()
         
         let indexPath = IndexPath(row: currentImageIndex, section: 0)
@@ -265,36 +315,39 @@ class AddCaptionsViewController: UIViewController, UITextViewDelegate, ToolStack
         }
     }
    
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string == "\n" {
             captionTextView.resignFirstResponder()
             if captionTextView.text == "" {
                 captionTextView.text = "Add a caption..."
-                 captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
             }
             return true
         }
         return true
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         if captionTextView.text == "Add a caption..." {
             captionTextView.text = ""
-             captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
         }
     }
-    func textViewDidChange(_ textView: UITextView) {
-        imageArr[currentImageIndex].caption = captionTextView.text
-         captionTextView.scrollRangeToVisible(NSRange(location:0, length:0))
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+        if(type != "videoCaption") {
+            imageArr[currentImageIndex].caption = captionTextView.text!
+        } else {
+            self.addActivity.videoCaption = captionTextView.text!
+        }
     }
     
     func goBack(_ sender: UIButton) {
-        if self.addActivity != nil {
-            self.addActivity.imageArr = imageArr;
-            self.addActivity.addPhotoToLayout()
-        } else if self.quickIt != nil {
-            self.quickIt.photosCollection.reloadData()
+        if(self.type != "videoCaption") {
+            if self.addActivity != nil {
+                self.addActivity.imageArr = imageArr;
+                self.addActivity.addPhotoToLayout()
+            } else if self.quickIt != nil {
+                self.quickIt.photosCollection.reloadData()
+            }
         }
         navigationController?.popViewController(animated: true)
         self.dismiss(animated: true) {

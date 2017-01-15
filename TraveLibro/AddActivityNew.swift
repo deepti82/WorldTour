@@ -17,6 +17,8 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
     var editPost:Post!
     
     var player:Player!
+    var videoURL:URL!
+    var videoCaption = ""
     
     @IBOutlet weak var locationView: UIView!
     @IBOutlet weak var photosIntialView: UIView!
@@ -284,6 +286,13 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
         self.postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
         //        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
         //        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
+        
+        
+        self.viewContainerView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(AddActivityNew.addCaptionVideo(_:)))
+        self.viewContainerView.addGestureRecognizer(tapGestureRecognizer)
+        
+        
     }
     
     func tagMoreBuddies(_ sender: UIButton) {
@@ -384,9 +393,28 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
         self.player = Player()
         self.player.delegate = self
         self.player.view.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+        self.player.view.layer.cornerRadius = 5.0
+        self.player.view.clipsToBounds = true
         self.player.setUrl(video!)
+        self.videoURL = video
         self.viewContainerView.addSubview(self.player.view)
+        
     }
+    func removeVideoBlock() {
+        self.videosInitialView.isHidden = false
+        self.videosFinalView.isHidden = true
+        self.videoURL = nil
+        self.videoCaption = ""
+    }
+    func addCaptionVideo(_ sender: UIButton) {
+        let captionVC = storyboard?.instantiateViewController(withIdentifier: "addCaptions") as! AddCaptionsViewController
+        captionVC.type = "videoCaption"
+        captionVC.addActivity  = self
+        captionVC.videoURL = videoURL
+        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController!.pushViewController(captionVC, animated: true)
+    }
+
     
     
     func newPost(_ sender: UIButton) {
