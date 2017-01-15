@@ -13,42 +13,37 @@ public class PostVideo {
     var imageUrl: URL!
     var image:UIImage!
     var videoUrl:URL!
+    
     var caption = ""
     var postId = 0
     var serverUrl = ""
+    var serverUrlThumbnail = ""
     var editId = ""
     
-    let photos = Table("Photos")
+    let videos = Table("Videos")
     
     let id = Expression<Int64>("id")
     let post = Expression<Int64>("post")
     let captions = Expression<String>("caption")
     let localUrl = Expression<String>("localUrl")
     let url = Expression<String>("url")
-    let videoUrl_db = Expression<String>("videoUrl")
+    let thumbnail = Expression<String>("thumbnail")
+    
     init() {
         do {
-            try db.run(photos.create(ifNotExists: true) { t in
+            try db.run(videos.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: true)
                 t.column(post)
                 t.column(captions)
                 t.column(localUrl)
                 t.column(url)
-                t.column(videoUrl_db)
+                t.column(thumbnail)
             })
         }
         catch {
             print("There was error in the system");
         }
         
-    }
-    
-    func urlToData(_ str:String) {
-        self.serverUrl = adminUrl + "upload/readFile?file=" + str
-        self.imageUrl = URL(string: self.serverUrl)
-        cache.fetch(URL: URL(string:self.serverUrl + "&width=200")!).onSuccess({ (data) in
-            self.image = UIImage(data: data as Data)
-        })
     }
     
     func getDocumentsDirectory() -> URL {
@@ -60,13 +55,15 @@ public class PostVideo {
     func save() {
         var filename:URL!
         var filenameOnly = "";
-        self.image = self.image.resizeWith(width: 800.0)
-        if let data = UIImageJPEGRepresentation(self.image, 0.5) {
-            filenameOnly = String(Date().ticks) + ".jpg"
+
+        print(self.caption);
+        let data = NSData(contentsOf: self.videoUrl)
+        do {
+            filenameOnly = String(Date().ticks) + "." + self.videoUrl.pathExtension
             filename = getDocumentsDirectory().appendingPathComponent( filenameOnly )
-            try? data.write(to: filename)
+            try? data?.write(to: filename)
         }
-        let insert = photos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- "")
+        let insert = videos.insert(post <- Int64(self.postId) , captions <- self.caption ,localUrl <- filenameOnly,url <- "",thumbnail <- "")
         do {
             try db.run(insert)
         }
@@ -74,8 +71,8 @@ public class PostVideo {
             print("ERROR FOUND");
         }
     }
-    func getAllImages(postNo:Int64) -> [PostImage] {
-        var allImages:[PostImage] = []
+    func getAll(postNo:Int64) -> [PostVideo] {
+        var all:[PostVideo] = []
         do {
             let id = Expression<Int64>("id")
             let post = Expression<Int64>("post")
@@ -83,27 +80,26 @@ public class PostVideo {
             let localUrl = Expression<String>("localUrl")
             let url = Expression<String>("url")
             
-            let query = photos.select(id,post,captions,localUrl,url)
+            let query = videos.select(id,post,captions,localUrl,url,thumbnail)
                 .filter(post == postNo)
-            for photo in try db.prepare(query) {
-                let p = PostImage();
-                p.caption = String(photo[captions])
-                p.serverUrl = String(photo[url])
-                p.imageUrl = getDocumentsDirectory().appendingPathComponent( photo[localUrl] )
-                let imageData = NSData(contentsOf: p.imageUrl)
-                p.image = UIImage(data: imageData as! Data)!
-                allImages.append(p)
+            for video in try db.prepare(query) {
+                let p = PostVideo();
+                p.caption = String(video[captions])
+                p.serverUrl = String(video[url])
+                p.serverUrlThumbnail = String(video[thumbnail])
+                p.imageUrl = getDocumentsDirectory().appendingPathComponent( video[localUrl] )
+                all.append(p)
             }
         }
         catch {
         }
-        return allImages
+        return all
     }
     
-    func uploadPhotos() {
+    func upload() {
         do {
             var check = false;
-            let query = photos.select(id,post,captions,localUrl,url)
+            let query = videos.select(id,post,captions,localUrl,url)
                 .filter(url == "")
                 .limit(1)
             for photo in try db.prepare(query) {
@@ -115,15 +111,17 @@ public class PostVideo {
                     }
                     else if response["value"].bool! {
                         do {
-                            let singlePhoto = self.photos.filter(self.id == photo[self.id])
-                            let urlString = response["data"][0].stringValue
-                            try db.run(singlePhoto.update(self.url <- urlString ))
+                            print(response)
+                            let singlePhoto = self.videos.filter(self.id == photo[self.id])
+                            let urlString = response["data"][0]["name"].stringValue
+                            let urlthumbString = response["data"][0]["thumbnail"].stringValue
+                            try db.run(singlePhoto.update(self.url <- urlString, self.thumbnail <- urlthumbString ))
                         }
                         catch {
                             
                         }
                         if(check) {
-                            self.uploadPhotos()
+                            self.upload()
                         }
                     }
                     else {
@@ -142,9 +140,9 @@ public class PostVideo {
         
     }
     
-    func deletePhotos(_ post:Int64) {
+    func delete(_ post:Int64) {
         do {
-            let query = self.photos.filter(self.post == post)
+            let query = self.videos.filter(self.post == post)
             try db.run(query.delete())
         }
         catch {
@@ -153,10 +151,14 @@ public class PostVideo {
     }
     
     func parseJson() -> JSON {
-        var photoJson:JSON = ["name":self.serverUrl,"caption":self.caption]
+        print(self.serverUrl)
+        print(self.caption)
+        print(self.serverUrlThumbnail)
+        var photoJson:JSON = ["name":self.serverUrl,"caption":self.caption,"thumbnail":self.serverUrlThumbnail]
         if(self.editId != "") {
             photoJson["_id"] = JSON(self.editId)
         }
+        print(photoJson);
         return photoJson
     }
 }

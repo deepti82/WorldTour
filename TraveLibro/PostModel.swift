@@ -17,6 +17,7 @@ public class Post {
     var jsonPost:JSON!
     var postCreator:JSON!
     var imageArr:[PostImage] = []
+    var videoArr:[PostVideo] = []
     var buddiesStr:String = "[]"
     var buddies:[Buddy] = []
     var buddyJson:[JSON] = []
@@ -80,7 +81,7 @@ public class Post {
         })
     }
     
-    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, thoughts: String,buddies:String,imageArr:[PostImage]) -> Post{
+    func setPost(_ UserId: String, JourneyId: String, Type: String, Date: String, Location: String, Category: String, Latitude: String, Longitude: String, Country: String, City: String, thoughts: String,buddies:String,imageArr:[PostImage], videoURL:URL!,videoCaption:String) -> Post{
         var retPost:Post!
         let photoinsert = self.post.insert(
             self.type <- Type,
@@ -105,11 +106,21 @@ public class Post {
                 image.save()
             }
             
+            if(videoURL != nil) {
+                let video = PostVideo()
+                video.videoUrl = videoURL
+                video.caption = videoCaption
+                video.postId = Int(postId)
+                video.save()
+            }
+            
             let query = self.getAllPost(postid: postId)
             for post in query {
                 retPost = post;
                 retPost.post_isOffline = true;
             }
+            
+            
         } catch _ {
             print("ERROR OCCURED");
         }
@@ -335,6 +346,16 @@ public class Post {
                     photosJson.append(img.parseJson())
                 }
                 
+                
+                let v = PostVideo();
+                p.videoArr = v.getAll(postNo: post[id])
+                
+                var vidoesJson:[JSON] = []
+                
+                for vid in p.videoArr {
+                    vidoesJson.append(vid.parseJson())
+                }
+                
                 let checkInJson:JSON = ["location":p.post_location,"category":p.post_category,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
                 
                 var params:JSON = ["type":"travel-life", "thoughts":p.post_thoughts,"user": p.post_userId,"journey":p.post_journeyId,"date":p.post_date]
@@ -343,9 +364,15 @@ public class Post {
                     params["buddies"] = JSON(data:data)
                 }
                 
-
+                print(params);
                 params["checkIn"] = checkInJson
+                print(params);
                 params["photos"] = JSON(photosJson)
+                print(params);
+                print(vidoesJson);
+                params["videos"] = JSON(vidoesJson)
+                print(params);
+                
                 
                 request.postTravelLifeJson(params, completion: {(response) in
                     if response.error != nil {
@@ -353,9 +380,11 @@ public class Post {
                     }
                     else if response["value"].bool! {
                         do {
+                            print(response);
                             let singlePhoto = self.post.filter(self.id == postID)
                             try db.run(singlePhoto.delete())
                             i.deletePhotos(postID);
+                            v.delete(postID)
                         }
                         catch {
                             

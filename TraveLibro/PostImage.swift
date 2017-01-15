@@ -130,8 +130,8 @@ public class PostImage {
                 })
             }
             if(!check) {
-                let po = Post();
-                po.uploadPost();
+                let video = PostVideo();
+                video.upload();
             }
         }
         catch {

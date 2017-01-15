@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Player
 
-class PhotosOTG2: VerticalLayout {
+class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var postTop:Post!
     var header:PhotosOTGHeader!
     var centerView:PhotosOTGView!
@@ -17,8 +18,6 @@ class PhotosOTG2: VerticalLayout {
     var uploadingView:UploadingToCloud!
     var newTl:NewTLViewController!
     func generatePost(_ post:Post) {
-        
-        
         
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true
