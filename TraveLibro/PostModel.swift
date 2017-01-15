@@ -151,6 +151,9 @@ public class Post {
                 
                 var i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
+                
+                var v = PostVideo();
+                p.videoArr = v.getAll(postNo: post[id])
                 allPosts.append(p)
             }
         }
@@ -189,7 +192,11 @@ public class Post {
                 
                 var i = PostImage();
                 p.imageArr = i.getAllImages(postNo: post[id])
+                
+                var v = PostVideo();
+                p.videoArr = v.getAll(postNo: post[id])
                 allPosts.append(p)
+                
             }
         }
         catch {}
@@ -250,6 +257,8 @@ public class Post {
         let post = self;
         if(post.post_location != nil  && post.post_location != "") {
             post.typeOfPost = "Location"
+        } else if(post.videoArr.count > 0) {
+            post.typeOfPost = "Videos"
         } else if(post.imageArr.count > 0) {
             post.typeOfPost = "Image"
         } else if(post.post_thoughts != nil && post.post_thoughts != "") {
@@ -258,7 +267,7 @@ public class Post {
     }
     
     func jsonToPost(_ json:JSON) {
-        
+        print(json);
         self.jsonPost = json
         self.postCreator = json["postCreator"]
         self.post_ids = json["_id"].stringValue
@@ -294,6 +303,14 @@ public class Post {
             img.urlToData(photo["name"].stringValue)
             img.caption = photo["caption"].stringValue
             self.imageArr.append(img);
+        }
+        for video in json["videos"].arrayValue {
+            let vid = PostVideo();
+            vid.editId = video["_id"].stringValue
+            vid.caption = video["caption"].stringValue
+            vid.serverUrl = video["name"].stringValue
+            vid.serverUrlThumbnail = video["thumbnail"].stringValue
+            self.videoArr.append(vid);
         }
         
     }
@@ -364,16 +381,10 @@ public class Post {
                     params["buddies"] = JSON(data:data)
                 }
                 
-                print(params);
                 params["checkIn"] = checkInJson
-                print(params);
                 params["photos"] = JSON(photosJson)
-                print(params);
-                print(vidoesJson);
                 params["videos"] = JSON(vidoesJson)
-                print(params);
-                
-                
+
                 request.postTravelLifeJson(params, completion: {(response) in
                     if response.error != nil {
                         print("response: \(response.error?.localizedDescription)")

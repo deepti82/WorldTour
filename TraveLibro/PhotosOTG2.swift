@@ -15,8 +15,11 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var centerView:PhotosOTGView!
     var footerView:PhotoOTGFooter!
     var mainPhoto:UIImageView!
+    var videoContainer:UIImageView!
     var uploadingView:UploadingToCloud!
     var newTl:NewTLViewController!
+    var player:Player!
+    var scrollView:UIScrollView!
     func generatePost(_ post:Post) {
         
         self.layer.cornerRadius = 5.0
@@ -67,12 +70,36 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         // End of Header
         
         //Image generation only
-        
-        if(post.imageArr.count > 0) {
-            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
+        if(post.videoArr.count > 0) {
+            self.videoContainer = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            self.videoContainer.contentMode = UIViewContentMode.scaleAspectFill
+            self.videoContainer.clipsToBounds = true
+            self.videoContainer.image = UIImage(named: "logo-default")
+
+            self.player = Player()
+            self.player.delegate = self
+            self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
+            self.player.view.clipsToBounds = true
+            self.player.playbackLoops = true
+            self.player.muted = true
+            print(post.videoArr[0].serverUrl)
+            var videoUrl:URL!
+            if(!post.post_isOffline) {
+                videoUrl = URL(string: post.videoArr[0].serverUrl)
+            } else {
+                videoUrl = post.videoArr[0].imageUrl
+            }
+            self.player.setUrl(videoUrl!)
+            self.videoContainer.addSubview(self.player.view)
+            self.addSubview(self.videoContainer)
+            
+        } else if(post.imageArr.count > 0) {
+            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.clipsToBounds = true
+            self.mainPhoto.image = UIImage(named: "logo-default")
+            self.addSubview(mainPhoto)
             let heightForBlur = 10;
             var thumbStr = "";
             if(!post.post_isOffline) {
@@ -121,11 +148,14 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
         
         //End of Image
-        
+        var showImageIndexStart = 1
+        if(post.videoArr.count > 0) {
+            showImageIndexStart = 0
+        }
         //Center Generation Only
-        if(post.imageArr.count > 1) {
+        if(post.imageArr.count > showImageIndexStart) {
             centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 87 ))
-            addPhotoToLayout(post)
+            addPhotoToLayout(post,startIndex:showImageIndexStart)
             self.addSubview(centerView)
         }
         //End of Center
@@ -151,9 +181,9 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         self.layoutSubviews()
     }
     
-    func addPhotoToLayout(_ post: Post) {
+    func addPhotoToLayout(_ post: Post, startIndex: Int) {
         centerView.horizontalScrollForPhotos.removeAll()
-        for i in 1 ..< post.imageArr.count {
+        for i in startIndex ..< post.imageArr.count {
             let photosButton = UIImageView(frame: CGRect(x: 10, y: 5, width: 87, height: 87))
             photosButton.image = UIImage(named: "logo-default")
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
@@ -184,4 +214,22 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         singlePhotoController.postId = postTop.post_ids
         globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
+    
+    func playerReady(_ player: Player) {
+        videoToPlay()
+    }
+    
+    func videoToPlay ()  {
+        let min = self.frame.origin.y + self.videoContainer.frame.origin.y
+        let max = min + self.videoContainer.frame.size.height
+        let scrollMin = scrollView.contentOffset.y
+        let scrollMax = scrollMin + scrollView.frame.height
+        if(scrollMin < min && scrollMax > max ) {
+            self.player.playFromCurrentTime()
+        }
+        else {
+            self.player.pause()
+        }
+    }
+
 }

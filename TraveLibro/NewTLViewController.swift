@@ -1006,6 +1006,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         else{
             hideHeaderAndFooter(false);
         }
+        for postView in layout.subviews {
+            if(postView is PhotosOTG2) {
+                let photosOtg = postView as! PhotosOTG2
+                if(photosOtg.videoContainer != nil) {
+                    photosOtg.videoToPlay()
+                    
+                }
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -1049,6 +1059,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let checkIn = PhotosOTG2(width: self.view.frame.width)
         checkIn.generatePost(post)
         checkIn.newTl = self
+        checkIn.scrollView = mainScroll
         layout.addSubview(checkIn)
         addHeightToLayout(height: checkIn.frame.height + 50.0)
     }
