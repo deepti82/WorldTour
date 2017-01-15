@@ -129,12 +129,12 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 
                 self.mainPhoto.frame.size.width = self.frame.width
                 self.mainPhoto.hnk_setImageFromURL(post.imageArr[0].imageUrl)
-                
-                self.mainPhoto.isUserInteractionEnabled = true
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
-                self.mainPhoto.addGestureRecognizer(tapGestureRecognizer)
-                self.mainPhoto.tag = 0
-                
+                if(!post.post_isOffline) {
+                    self.mainPhoto.isUserInteractionEnabled = true
+                    let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
+                    self.mainPhoto.addGestureRecognizer(tapGestureRecognizer)
+                    self.mainPhoto.tag = 0
+                }
                 
                 self.layoutSubviews()
                 globalNewTLViewController.addHeightToLayout(height: 50)
@@ -194,9 +194,11 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 photosButton.frame.size.width = 82
                 let urlStr = post.imageArr[i].imageUrl.absoluteString + "&width=100"
                 photosButton.hnk_setImageFromURL(URL(string:urlStr)!)
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))
-                photosButton.isUserInteractionEnabled = true
-                photosButton.addGestureRecognizer(tapGestureRecognizer)
+                if(!post.post_isOffline) {
+                    let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))
+                    photosButton.isUserInteractionEnabled = true
+                    photosButton.addGestureRecognizer(tapGestureRecognizer)
+                }
             }
             //photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
