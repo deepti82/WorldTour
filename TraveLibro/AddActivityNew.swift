@@ -76,6 +76,7 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
     @IBOutlet weak var photoTag: UIImageView!
     @IBOutlet weak var thoughtInitialTag: UIImageView!
     
+    @IBOutlet weak var videoTagFinal: UIImageView!
     @IBOutlet weak var cancelLocationButton: UIButton!
     @IBOutlet weak var videoTag: UIImageView!
     
@@ -152,6 +153,7 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
         self.friendsCount.isHidden = true;
         self.friendsTag.tintColor = mainBlueColor
         self.finalImageTag.tintColor = mainOrangeColor
+        self.videoTagFinal.tintColor = mainOrangeColor
     }
     
     func buddyAdded(_ json:[JSON]) {
@@ -388,6 +390,7 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
     }
     
     func addVideoToBlock(video:URL?) {
+        
         self.videosInitialView.isHidden = true
         self.videosFinalView.isHidden = false
         self.player = Player()

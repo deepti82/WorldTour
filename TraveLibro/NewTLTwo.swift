@@ -164,6 +164,11 @@ extension NewTLViewController {
         backView.layer.zPosition = 10
         newScroll.contentSize.height = self.view.frame.height
         
+        if(post.videoArr.count > 0) {
+            let videoUrl = URL(string:post.videoArr[0].serverUrl)
+            self.addView.addVideoToBlock(video: videoUrl)
+        }
+        
         self.addView.locationView.alpha = 0.1
         self.addView.locationView.isUserInteractionEnabled = false
         
@@ -197,9 +202,7 @@ extension NewTLViewController {
         let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         blurView.contentView.addSubview(vibrancyEffectView)
-        
-        
-        
+
         self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
         self.backView.addSubview(self.newScroll)
         self.addView = AddActivityNew()
@@ -233,6 +236,11 @@ extension NewTLViewController {
         if(post.imageArr.count > 0) {
             self.addView.imageArr = post.imageArr
             self.addView.addPhotoToLayout();
+        }
+        if(post.videoArr.count > 0) {
+            let videoUrl = URL(string:post.videoArr[0].serverUrl)
+            self.addView.addVideoToBlock(video: videoUrl)
+            self.addView.videoCaption = post.videoArr[0].caption
         }
         
         if(post.post_thoughts != "") {
