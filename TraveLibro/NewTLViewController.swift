@@ -247,7 +247,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
         }
         
-        if(self.addView.imageArr.count > 0 || thoughts.characters.count > 0 || location.characters.count > 0) {
+        if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil  || thoughts.characters.count > 0 || location.characters.count > 0) {
             var params:JSON = ["type":"editPost"];
             params["_id"] = JSON(self.addView.editPost.post_ids)
             params["user"] = JSON(self.addView.editPost.post_userId)
@@ -264,23 +264,20 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 "category": category
             ]
             params["checkIn"] = checkIn
-            
-            params["oldBuddies"] = JSON(self.addView.prevBuddies)
-            params["newBuddies"] = JSON(self.addView.addedBuddies)
-            
-            var photosJson:[JSON] = []
-            
-            for img in self.addView.imageArr {
-                photosJson.append(img.parseJson())
-            }
-            params["photosArr"] = JSON(photosJson)
             if(self.addView.editPost.post_location != location) {
                 params["checkInChange"] = true
             } else {
                 params["checkInChange"] = false
             }
-            print(params)
+
+            params["oldBuddies"] = JSON(self.addView.prevBuddies)
+            params["newBuddies"] = JSON(self.addView.addedBuddies)
             
+            var photosJson:[JSON] = []
+            for img in self.addView.imageArr {
+                photosJson.append(img.parseJson())
+            }
+            params["photosArr"] = JSON(photosJson)
             
             request.postAddPhotosVideos(param: params) { (json) in
                 print(json)
@@ -341,7 +338,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.currentTime = dateFormatterTwo.string(from: Date())
         
         
-        if(self.addView.imageArr.count > 0 || thoughts.characters.count > 0 || location.characters.count > 0) {
+        if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
             let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
             self.addPostLayout(po)
             

@@ -391,11 +391,21 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
     
     func addVideoToBlock(video:URL?) {
         
+        
         self.videosInitialView.isHidden = true
         self.videosFinalView.isHidden = false
+        let rect = CGRect(x: 3, y: -3, width: 65, height: 65)
+        
+        let imageView = UIImageView(frame:rect)
+        imageView.image = UIImage(named: "logo-default")
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.layer.cornerRadius = 5.0
+        imageView.clipsToBounds = true
+        self.viewContainerView.addSubview(imageView)
+        
         self.player = Player()
         self.player.delegate = self
-        self.player.view.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+        self.player.view.frame = rect
         self.player.view.layer.cornerRadius = 5.0
         self.player.view.clipsToBounds = true
         self.player.setUrl(video!)
