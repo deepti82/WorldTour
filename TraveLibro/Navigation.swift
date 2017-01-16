@@ -941,7 +941,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+//                    print(json)
                     completion(json)
                 }
             }
@@ -993,7 +993,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+//                    print(json)
                     completion(json)
                 }
             }
