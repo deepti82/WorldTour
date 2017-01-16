@@ -54,8 +54,8 @@ class PhotosOTGHeader: UIView {
 //        lineUp.backgroundColor = UIColor.clear
         
         postDp.layer.cornerRadius = 10
-//        postDp.layer.borderWidth = 0.5
-        postDp.layer.borderColor = UIColor(hex: "#FF6858").cgColor
+////        postDp.layer.borderWidth = 0.5
+//        postDp.layer.borderColor = UIColor(hex: "#FF6858").cgColor
         drawL.backgroundColor = UIColor.clear
         
 //        self.blurView.layer.cornerRadius = 5
@@ -65,8 +65,8 @@ class PhotosOTGHeader: UIView {
     func makeTLProfilePicture(_ image: UIImageView) {
         
         image.layer.cornerRadius = (37/100) * image.frame.width
-        image.layer.borderWidth = 1.0
-        image.layer.borderColor = mainOrangeColor.cgColor
+//        image.layer.borderWidth = 1.0
+//        image.layer.borderColor = mainOrangeColor.cgColor
         image.clipsToBounds = true
         
     }

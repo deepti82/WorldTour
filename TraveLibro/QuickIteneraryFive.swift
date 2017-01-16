@@ -32,8 +32,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
             addTripPhotos.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
             photosAddMore.addTarget(self, action: #selector(addTripPhotosGallery(_:)), for: .touchUpInside)
             
-            darkBlur(photosGalleryFirstView)
-            darkBlur(photoGallerySecondView)
+            transparentCardWhite(photosGalleryFirstView)
+            transparentCardWhite(photoGallerySecondView)
             photosAddMore.clipsToBounds = true
             photosAddMore.layer.cornerRadius = 15
             photosAddMore.layer.borderWidth = 1.0

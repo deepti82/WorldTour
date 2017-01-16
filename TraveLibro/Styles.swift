@@ -59,7 +59,7 @@ func getDarkBackGround(_ myVC: UIViewController) -> Void {
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     myVC.view.addSubview(bgImage)
-    
+     bgImage.tintColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.4)
 //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
     
 }
@@ -84,7 +84,18 @@ func getDarkBackGroundBlue(_ myVC: UIViewController) {
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     
+//    bgImage.image = bgImage.image?.withRenderingMode(.alwaysTemplate)
+//    bgImage.tintColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
+    
+    
     myVC.view.addSubview(bgImage)
+    
+    
+    let blackView = UIView(frame: myVC.view.frame)
+    blackView.backgroundColor = UIColor.black
+    blackView.alpha = 0.3
+    
+    myVC.view.addSubview(blackView)
     
     //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
     
@@ -243,6 +254,7 @@ func darkBlur(_ view: UIView) {
     blurView.frame.size.height = view.frame.height
     blurView.frame.size.width = view.frame.width
     blurView.layer.zPosition = -1
+    blurView.alpha = 0.8
     view.backgroundColor = UIColor.lightText
     blurView.isUserInteractionEnabled = false
     view.addSubview(blurView)

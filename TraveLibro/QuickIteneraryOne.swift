@@ -64,7 +64,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
 
         // Do any additional setup after loading the view.
-        darkBlur(quickOneView)
+        transparentCardWhite(quickOneView)
         monthView.underlined()
         yearView.underlined()
         tripTitleView.underlined()

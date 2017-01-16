@@ -929,7 +929,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.addPostsButton.layer.zPosition = 5
         self.view.addSubview(self.addPostsButton)
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         
@@ -975,7 +975,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 if(self.addPostsButton != nil) {
                     UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
                         self.addPostsButton.frame.origin.y = self.view.frame.height + 10
-                        self.mainFooter.frame.origin.y = self.view.frame.height + 85
+                        self.mainFooter.frame.origin.y = self.view.frame.height + 90
                     }, completion: nil)
                 }
             } else {
@@ -985,7 +985,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                     self.addPostsButton.frame.origin.y = self.view.frame.height - 120
-                    self.mainFooter.frame.origin.y = self.view.frame.height - 55
+                    self.mainFooter.frame.origin.y = self.view.frame.height - 60
                 }, completion: nil)
             }
         }
@@ -1758,7 +1758,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.shoewImage.animation.delay(0.2).makeAlpha(1.0).moveY(-25).animateWithCompletion(0.5, {
             print("shoeImage")
         })
-        otgView.bonVoyageLabel.animation.delay(0.4).makeAlpha(1.0).animateWithCompletion(0.5, {
+        otgView.bonVoyageLabel.animation.delay(0.4).makeAlpha(1.0).moveY(-25).animateWithCompletion(0.5, {
             print("bonVoyage")
         })
         
@@ -2091,7 +2091,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         else {
             addBuddies(sender)
         }
-        
+    
         let addBuddiesVC = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
         addBuddiesVC.whichView = "NewTLView"
         otgView.animation.makeY(25).animate(0.0)

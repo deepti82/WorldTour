@@ -27,7 +27,7 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
         descriptionTextView.layer.borderWidth = 1
         descriptionTextView.layer.borderColor = mainBlueColor.cgColor
         // Do any additional setup after loading the view.
-        darkBlur(blurBG)
+        transparentCardWhite(blurBG)
         descriptionTextView.allowsEditingTextAttributes = true
     }
 

@@ -53,7 +53,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
 //        showCountryCityVisited.addSubview(verticalLayout)
         cityVisited.delegate = self
         countryVisited.delegate = self
-        darkBlur(blurBG)
+        transparentCardWhite(blurBG)
         
         print("heightscroll\(quickScroll)")
         print("blurblurblur\(blurBG)")

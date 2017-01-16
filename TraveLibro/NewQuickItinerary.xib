@@ -70,7 +70,7 @@
                         <constraint firstAttribute="width" constant="200" id="r0d-r0-L8m"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
-                    <state key="normal" title="Start a New Journey">
+                    <state key="normal" title="Start A New Journey">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -92,8 +92,12 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sP4-Oh-JTR">
-                    <rect key="frame" x="185" y="447" width="31" height="29"/>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                    <rect key="frame" x="176" y="447" width="48" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="iER-bq-Sb7"/>
+                        <constraint firstAttribute="height" constant="32" id="oMp-89-kd9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                     <state key="normal" title="Close">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>

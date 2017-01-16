@@ -140,6 +140,7 @@ class EndJourneyViewController: UIViewController {
         endJourney.changeConstraint(height: 90)
         transparentCardWhite(endJourney.accesoriesVew)
         transparentOrangeView(endJourney.UserEndJourneyView)
+        
 //        endJourney.accesoriesVew.isHidden = true
         endJourney.categoryOne.tintColor = mainOrangeColor
         endJourney.categoryTwo.tintColor = mainOrangeColor
@@ -147,6 +148,7 @@ class EndJourneyViewController: UIViewController {
         endJourney.changePhotoButton.addTarget(self, action: #selector(changePicture(_:)), for: .touchUpInside)
         endJourney.journeyCoverPic.backgroundColor = UIColor.white
         endJourney.journeyCoverPic.image = UIImage(named: "")
+
 //        endJourney.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
 //        endJourney.clockIcon.text = String(format: "%C", faicon["clock"]!)
         

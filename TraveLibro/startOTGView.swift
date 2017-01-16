@@ -12,6 +12,7 @@ class startOTGView: UIView {
 
     
   
+    @IBOutlet weak var youAreIn: UIImageView!
     @IBOutlet weak var drawLine4: drawLine!
     @IBOutlet weak var drawLine3: drawLine!
     @IBOutlet weak var detectHide: UIButton!
@@ -80,7 +81,7 @@ class startOTGView: UIView {
         rocketLabel.textColor = UIColor.white
         startJourneyButton.titleLabel?.addSubview(rocketLabel)
         
-        
+//        youAreIn.layer.zPosition = 100
         
         
 //        nameJourneyTF.attributedPlaceholder = NSAttributedString(string: "Name Your Journey", attributes: [NSForegroundColorAttributeName: UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.8)])
@@ -125,6 +126,7 @@ class startOTGView: UIView {
         
         
         closeBuddies.layer.cornerRadius = 12.5
+        closeBuddies.titleLabel?.textAlignment = .center
         closeBuddies.layer.borderWidth = 1.0
         closeBuddies.layer.borderColor = UIColor(colorLiteralRed: 35/255, green: 45/255, blue: 74/255, alpha: 1.0).cgColor
         
@@ -140,7 +142,7 @@ class startOTGView: UIView {
         lineThree.backgroundColor = UIColor.clear
         
         journeyName.shadowColor = UIColor.black
-        journeyName.shadowOffset = CGSize(width: 1, height: 1)
+        journeyName.shadowOffset = CGSize(width: 2, height: 2)
 //        journeyName.layer.shadowOpacity = 0.
         journeyName.layer.masksToBounds = true
         

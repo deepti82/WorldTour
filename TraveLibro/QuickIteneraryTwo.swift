@@ -38,7 +38,7 @@ class QuickIteneraryTwo: UIViewController {
             let index = typeButton.index(of: button)
             button.setTitle(array[index!], for: .application)
                    }
-        darkBlur(blurBG)
+        transparentCardWhite(blurBG)
     }
     
     override func viewDidAppear(_ animated: Bool) {
