@@ -21,6 +21,9 @@ class AddRating: UIView, UITextViewDelegate {
     @IBOutlet var stars: [UIButton]!
     @IBOutlet weak var smiley: UIButton!
     
+    var post:Post!
+    var checkIn:RatingCheckIn!
+    
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
     var navController = UINavigationController()
@@ -28,7 +31,6 @@ class AddRating: UIView, UITextViewDelegate {
     @IBAction func postReviewTapped(_ sender: UIButton) {
         
         print("post id in review: \(sender.title(for: .application)!)")
-        let post = sender.title(for: .application)!
         reviewTextView.resignFirstResponder()
         var reviewBody = ""
         
@@ -37,41 +39,22 @@ class AddRating: UIView, UITextViewDelegate {
             reviewBody = reviewTextView.text
         }
         print(starCount);
-        request.rateCheckIn(currentUser["_id"].string!, postId: post, rating: "\(starCount)", review: reviewBody, completion: {(response) in
+        request.rateCheckIn(currentUser["_id"].string!, postId: post.post_ids, rating: "\(starCount)", review: reviewBody, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
-                    
                     print("error: \(response.error!.localizedDescription)")
-                    
                 }
                 else if response["value"].bool! {
-                    
-                    print("response arrived")
-                    self.removeFromSuperview()
-//                    self.parent.removeRatingButton(sender.title(for: .application)!)
-                    for subvc in self.navController.viewControllers {
-                        
-                        if subvc.isKind(of: NewTLViewController.self) {
-                            
-                            let parent = subvc as! NewTLViewController
-                            parent.removeRatingButton(sender.title(for: .application)!)
-                        }
-                        
-                    }
-                    
+                    self.checkIn.rateCheckInButton.setImage(UIImage(named:self.imageArr[self.starCount-1]), for: UIControlState())
+                    print(response);
                 }
                 else {
-                    
                     print("response error!")
-                    
                 }
-                
             })
-            
         })
-        
     }
     override init(frame: CGRect) {
         super.init(frame: frame)

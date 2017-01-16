@@ -15,6 +15,9 @@ class RatingCheckIn: UIView {
     @IBOutlet weak var rateCheckInButton: UIButton!
     var photosOtg:PhotosOTG2!
     var backgroundReview:UIView!
+    var review:JSON!
+    
+    let imageArr = ["disapointed", "sad", "good", "superface", "love"]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,18 +45,25 @@ class RatingCheckIn: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        
+        if( photosOtg.postTop.jsonPost["review"].arrayValue.count > 0 ) {
+            self.review = photosOtg.postTop.jsonPost["review"].arrayValue[0]
+            self.rateCheckInButton.setImage(UIImage(named:imageArr[0]), for: UIControlState())
+        }
+        
     }
     
     @IBAction func ratePost(_ sender: Any) {
         let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
-        
         backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
         backgroundReview.addGestureRecognizer(tapout)
         backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         globalNavigationController.topViewController?.view.addSubview(backgroundReview)
         globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
-        
+
         let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
+        rating.post = photosOtg.postTop
+        rating.checkIn = self
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.clipsToBounds = true
@@ -61,28 +71,8 @@ class RatingCheckIn: UIView {
         backgroundReview.addSubview(rating)
     }
     
-//    func addRatingPost(_ sender: UIButton) {
-//        let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
-//        
-//        backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
-//        backgroundReview.addGestureRecognizer(tapout)
-//        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-//        globalNavigationController.topViewController?.view.addSubview(backgroundReview)
-//        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
-//        
-//        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
-//        rating.center = backgroundReview.center
-//        rating.layer.cornerRadius = 5
-//        rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
-//        rating.clipsToBounds = true
-//        rating.navController = globalNavigationController
-//        backgroundReview.addSubview(rating)
-//    }
-    
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
-        
         backgroundReview.removeFromSuperview()
-        
     }
     
 }
