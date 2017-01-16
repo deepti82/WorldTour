@@ -181,8 +181,16 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                 rateButton.photosOtg = self;
                 rateButton.rateCheckInLabel.text = "Rate " + post.post_location
-//                rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
+                print(post.jsonPost)
+                if((post.jsonPost["review"].array?.count)! > 0) {
+                    let review = post.jsonPost["review"].array?[0]
+                    rateButton.review = review
+                    rateButton.modifyAsReview()
+                }
+                
                 self.addSubview(rateButton)
+                
+                
             }
             
             

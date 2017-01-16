@@ -23,6 +23,7 @@ class AddRating: UIView, UITextViewDelegate {
     
     var post:Post!
     var checkIn:RatingCheckIn!
+    var json:JSON!
     
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
@@ -35,20 +36,18 @@ class AddRating: UIView, UITextViewDelegate {
         var reviewBody = ""
         
         if reviewTextView.text != nil && reviewTextView.text != "Fill Me In..." {
-            
             reviewBody = reviewTextView.text
         }
-        print(starCount);
+        self.checkIn.modifyAsReview(num: (self.starCount - 1))
+        self.checkIn.reviewTapOut(UITapGestureRecognizer())
+        self.removeFromSuperview()
         request.rateCheckIn(currentUser["_id"].string!, postId: post.post_ids, rating: "\(starCount)", review: reviewBody, completion: {(response) in
-            
             DispatchQueue.main.async(execute: {
-                
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
-                    self.checkIn.rateCheckInButton.setImage(UIImage(named:self.imageArr[self.starCount-1]), for: UIControlState())
-                    print(response);
+                    print("Review Sent Successfully");
                 }
                 else {
                     print("response error!")
@@ -72,6 +71,7 @@ class AddRating: UIView, UITextViewDelegate {
             star.adjustsImageWhenHighlighted = false
             star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), for: .touchDown)
         }
+        
         
 //        self.clipsToBounds = true
     }
@@ -140,6 +140,10 @@ class AddRating: UIView, UITextViewDelegate {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        
+        if(json != nil) {
+            ratingDisplay(json)
+        }
     }
     
     func ratingButtonTapped(_ button: UIButton) {
