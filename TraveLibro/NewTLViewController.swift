@@ -337,7 +337,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         self.currentTime = dateFormatterTwo.string(from: Date())
         
-        
         if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
             let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
             self.addPostLayout(po)
@@ -1650,42 +1649,42 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         po.jsonToPost(post);
         self.addPostLayout(po)
         
-        if(post["checkIn"]["location"].stringValue != "") {
-            
-            if post["review"].array!.count > 0 {
-                
-                for subview in layout.subviews {
-                    
-                    if subview.isKind(of: RatingCheckIn.self) {
-                        
-                        let myView = subview as! RatingCheckIn
-                        if myView.rateCheckInButton.currentTitle! == post["_id"].string! {
-                            
-                            subview.removeFromSuperview()
-                            removeHeightFromLayout(subview.frame.height)
-                            
-                        }
-                        
-                    }
-                    
-                }
-                
-                showReviewButton(post: post, isIndex: false, index: nil)
-                
-            }
-                
-            else {
-                
-                let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
-                rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
-                rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
-                rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)
-                layout.addSubview(rateButton)
-                addHeightToLayout(height: rateButton.frame.height + 20.0)
-                rateButton.tag = 10
-                
-            }
-        }
+//        if(post["checkIn"]["location"].stringValue != "") {
+//            
+//            if post["review"].array!.count > 0 {
+//                print(post["review"])
+//                for subview in layout.subviews {
+//                    
+//                    if subview.isKind(of: RatingCheckIn.self) {
+//                        
+//                        let myView = subview as! RatingCheckIn
+//                        if myView.rateCheckInButton.currentTitle! == post["_id"].string! {
+//                            
+//                            subview.removeFromSuperview()
+//                            removeHeightFromLayout(subview.frame.height)
+//                            
+//                        }
+//                        
+//                    }
+//                    
+//                }
+//                
+//                showReviewButton(post: post, isIndex: false, index: nil)
+//                
+//            }
+//                
+//            else {
+//                
+//                let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+//                rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
+//                rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
+//                rateButton.rateCheckInButton.setTitle(post["_id"].string!, for: .normal)
+//                layout.addSubview(rateButton)
+//                addHeightToLayout(height: rateButton.frame.height + 20.0)
+//                rateButton.tag = 10
+//                
+//            }
+//        }
         
         
         //        if post["checkIn"]["location"] != nil &&  post["checkIn"].string != "" {

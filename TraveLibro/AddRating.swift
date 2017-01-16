@@ -36,7 +36,7 @@ class AddRating: UIView, UITextViewDelegate {
             
             reviewBody = reviewTextView.text
         }
-        
+        print(starCount);
         request.rateCheckIn(currentUser["_id"].string!, postId: post, rating: "\(starCount)", review: reviewBody, completion: {(response) in
             
             DispatchQueue.main.async(execute: {

@@ -346,26 +346,6 @@ extension NewTLViewController {
     
     
     func addRatingPost(_ sender: UIButton) {
-        
-        //        let backView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        //        let mainView = UIView(frame: CGRect(x: 0, y: 0, width: width - 40, height: 280))
-        //        mainView.center.x = self.view.center.x
-        //        let ratingView = RatingAlert(frame: CGRect(x: 0, y: 0, width: 20, height: 200))
-        //        ratingView.center = mainView.center
-        //
-        //        backView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        //        backView.center.y = self.view.frame.size.height / 2
-        //
-        //        mainView.backgroundColor = UIColor.whiteColor()
-        //        //mainView.center = CGPointMake(backView.frame.size.width / 2, backView.frame.size.height / 2)
-        //        mainView.layer.cornerRadius = 5
-        //
-        //        mainView.addSubview(ratingView)
-        //        backView.addSubview(mainView)
-        //        self.view.addSubview(backView)
-        //        self.view.bringSubviewToFront(backView)
-        
-        
         let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
         
         backgroundReview = UIView(frame: self.view.frame)
@@ -380,11 +360,7 @@ extension NewTLViewController {
         rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
         rating.clipsToBounds = true
         rating.navController = self.navigationController!
-        //        rating.addGestureRecognizer(UITapGestureRecognizer(target: self, action: nil))
-        //        rating.postReview.addTarget(self, action: #selector(NewTLViewController.postReview(_:)), forControlEvents: .TouchUpInside)
         backgroundReview.addSubview(rating)
-        
-        
     }
     
     func reviewTapOut(_ sender: UITapGestureRecognizer) {

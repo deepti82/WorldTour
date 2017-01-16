@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -34,13 +34,6 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6F-VR-UEL">
-                    <rect key="frame" x="57" y="47" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="zH2-EJ-szn"/>
-                    </constraints>
-                    <state key="normal" backgroundImage="box1"/>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4RE-OS-w26">
                     <rect key="frame" x="58" y="45" width="60" height="60"/>
                     <constraints>
@@ -49,16 +42,16 @@
                     </constraints>
                     <inset key="imageEdgeInsets" minX="14" minY="14" maxX="14" maxY="14"/>
                     <state key="normal" image="star_rate_icon" backgroundImage="box6"/>
+                    <connections>
+                        <action selector="ratePost:" destination="-1" eventType="touchUpInside" id="MD9-Mm-qaU"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>
                 <constraint firstItem="NV7-7j-LpW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2NV-22-30w"/>
-                <constraint firstItem="L6F-VR-UEL" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="8" id="BQp-g0-tXw"/>
                 <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="6" id="BXC-ft-gvX"/>
                 <constraint firstItem="L3O-3Q-Ds2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FL2-E1-WOr"/>
-                <constraint firstItem="NV7-7j-LpW" firstAttribute="top" secondItem="L6F-VR-UEL" secondAttribute="bottom" constant="8" id="H9p-sP-BKN"/>
                 <constraint firstItem="4RE-OS-w26" firstAttribute="top" secondItem="L3O-3Q-Ds2" secondAttribute="bottom" constant="6" id="Jk3-BI-3OP"/>
-                <constraint firstItem="4RE-OS-w26" firstAttribute="leading" secondItem="L6F-VR-UEL" secondAttribute="leading" constant="1" id="Krv-gg-leW"/>
                 <constraint firstItem="NV7-7j-LpW" firstAttribute="top" secondItem="4RE-OS-w26" secondAttribute="bottom" constant="10" id="ZaG-yk-pJW"/>
                 <constraint firstAttribute="trailing" secondItem="NV7-7j-LpW" secondAttribute="trailing" id="kpO-Y0-1rd"/>
                 <constraint firstAttribute="bottom" secondItem="NV7-7j-LpW" secondAttribute="bottom" constant="14" id="o1P-Id-Hd1"/>
@@ -71,7 +64,6 @@
         </view>
     </objects>
     <resources>
-        <image name="box1" width="115" height="117"/>
         <image name="box6" width="115" height="117"/>
         <image name="star_rate_icon" width="60" height="60"/>
     </resources>

@@ -408,6 +408,7 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
         self.player.view.frame = rect
         self.player.view.layer.cornerRadius = 5.0
         self.player.view.clipsToBounds = true
+        self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
         self.player.setUrl(video!)
         self.videoURL = video
         self.viewContainerView.addSubview(self.player.view)

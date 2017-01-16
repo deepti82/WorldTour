@@ -20,6 +20,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var newTl:NewTLViewController!
     var player:Player!
     var scrollView:UIScrollView!
+    var rateButton:RatingCheckIn!
+    
     func generatePost(_ post:Post) {
         
         self.layer.cornerRadius = 5.0
@@ -78,6 +80,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.player.view.clipsToBounds = true
             self.player.playbackLoops = true
             self.player.muted = true
+            self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
             self.videoContainer.player = self.player
             var videoUrl:URL!
             if(!post.post_isOffline) {
@@ -172,6 +175,17 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             footerView.setCommentCount(post.post_commentCount)
             footerView.setLikeSelected(post.post_likeDone)
             self.addSubview(footerView)
+            
+            
+            if(post.post_location != "") {
+                rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+                rateButton.photosOtg = self;
+                rateButton.rateCheckInLabel.text = "Rate " + post.post_location
+//                rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
+                self.addSubview(rateButton)
+            }
+            
+            
             //End of Footer
         }
         self.layoutSubviews()
