@@ -33,7 +33,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         
         self.setOnlyLeftNavigationButton(leftButton)
         
-        configureSearchController()
+        
         
         for button in shareButtons {
             
@@ -46,6 +46,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             mailShare.setTitle(String(format: "%C", faicon["email"]!), for: UIControlState())
             whatsappShare.setTitle(String(format: "%C", faicon["whatsapp"]!), for: UIControlState())
             facebookShare.setTitle(String(format: "%C", faicon["facebook"]!), for: UIControlState())
+            configureSearchController()
             getFollowing()
         } else if whichView == "No Followers" {
             shareView.removeFromSuperview()
@@ -167,8 +168,11 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         
         searchController.dimsBackgroundDuringPresentation = false
         searchText = searchController.searchBar.text!
-        
-        getFollowing()
+        if whichView == "Following" {
+            getFollowing()
+        }else{
+            getFollowers()
+        }
         followerTable.reloadData()
     }
     
@@ -179,13 +183,13 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         cell.followButton.isSelected = false
         
         if filter != nil && shouldShowSearchResults {
-            
+            print("in ONE")
             cell.profileName.text = filter[(indexPath as NSIndexPath).row]["name"].string!
             let image = filter[(indexPath as NSIndexPath).row]["profilePicture"].string!
             setImage(cell.profileImage, imageName: image)
             
-            if let abc = filter[(indexPath as NSIndexPath).row]["following"].string {
-                
+            
+            if filter[(indexPath as NSIndexPath).row]["following"].boolValue {
                 cell.followButton.tag = 1
                 cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
                 let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
@@ -195,18 +199,33 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 cell.followButton.setTitleColor(UIColor.white, for: UIControlState())
                 cell.followButton.contentHorizontalAlignment = .right
                 cell.followButton.isSelected = true
-                
+            }else{
+                cell.followButton.tag = 0
+                cell.followButton.backgroundColor = UIColor.white
+                let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
+                followTick.image = UIImage(named: "correct-signal")
+                cell.followButton.titleLabel?.addSubview(followTick)
+                cell.followButton.setTitle("+ Follow", for: UIControlState())
+                cell.followButton.setTitleColor(UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1), for: UIControlState())
+                cell.followButton.contentHorizontalAlignment = .center
+                cell.followButton.isSelected = true
             }
             
-        }
-        
-        else if followers.count != 0 {
+            
+            
+        } else if followers.count != 0 {
+            print("in TWO")
             
             cell.profileName.text = followers[(indexPath as NSIndexPath).row]["name"].string!
-            let image = followers[(indexPath as NSIndexPath).row]["profilePicture"].string!
-            setImage(cell.profileImage, imageName: image)
+            if followers[(indexPath as NSIndexPath).row]["profilePicture"] != nil {
+                print("yaaa hoooo")
+                print(followers[(indexPath as NSIndexPath).row]["profilePicture"].string!)
+                let image = followers[(indexPath as NSIndexPath).row]["profilePicture"].string!
+                setImage(cell.profileImage, imageName: image)
+            }
             
-            if let abc = followers[(indexPath as NSIndexPath).row]["following"].string {
+            
+            if followers[(indexPath as NSIndexPath).row]["following"].boolValue {
                 
                 cell.followButton.tag = 1
                 cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
@@ -217,27 +236,21 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 cell.followButton.setTitleColor(UIColor.white, for: UIControlState())
                 cell.followButton.contentHorizontalAlignment = .right
                 cell.followButton.isSelected = true
-                
+            }else{
+                cell.followButton.tag = 0
+                cell.followButton.backgroundColor = UIColor.white
+                let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
+                followTick.image = UIImage(named: "correct-signal")
+                cell.followButton.titleLabel?.addSubview(followTick)
+                cell.followButton.setTitle("+ Follow", for: UIControlState())
+                cell.followButton.setTitleColor(UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1), for: UIControlState())
+                cell.followButton.contentHorizontalAlignment = .center
+                cell.followButton.isSelected = true
             }
             
-        }
-        
-//        cell.followButton.addTarget(self, action: #selector(FollowersViewController.followUser(_:)), forControlEvents: .TouchUpInside)
-//        cell.followButton.selected = false
-        
-        if whichView == "Following" {
-            
-            cell.followButton.tag = 1
-            cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
-            let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
-            followTick.image = UIImage(named: "correct-signal")
-            cell.followButton.titleLabel?.addSubview(followTick)
-            cell.followButton.setTitle("Following", for: UIControlState())
-            cell.followButton.setTitleColor(UIColor.white, for: UIControlState())
-            cell.followButton.contentHorizontalAlignment = .right
-            cell.followButton.isSelected = true
             
         }
+
         
         return cell
         
@@ -276,9 +289,10 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         if shouldShowSearchResults && filter != nil {
             
             return filter.count
-        }
+        }else{
         
         return followers.count
+        }
         
     }
     
