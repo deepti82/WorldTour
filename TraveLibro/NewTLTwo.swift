@@ -644,8 +644,11 @@ extension NewTLViewController {
         self.infoView.crollInoView.scrollsToTop = true
         
         self.infoView.summaryButton.addTarget(self, action: #selector(NewTLViewController.gotoSummaries(_:)), for: .touchUpInside)
+        self.infoView.photosButton.tag = response["photos"].intValue
         self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
+        self.infoView.videosButton.tag = response["videos"].intValue
         self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
+        self.infoView.reviewsButton.tag = response["review"].intValue
         self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), for: .touchUpInside)
         self.infoView.mustDoButton.addTarget(self, action: #selector(NewTLViewController.gotoMustDo(_:)), for: .touchUpInside)
         self.infoView.hotelsButton.addTarget(self, action: #selector(NewTLViewController.gotoHotels(_:)), for: .touchUpInside)
@@ -653,7 +656,9 @@ extension NewTLViewController {
         self.infoView.itinerariesButton.addTarget(self, action: #selector(NewTLViewController.gotoItineraries(_:)), for: .touchUpInside)
         self.infoView.nearMeButton.addTarget(self, action: #selector(NewTLViewController.gotoNearMe(_:)), for: .touchUpInside)
         self.infoView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.closeInfo(_:))))
+        
         if(response["videos"].number != nil) {
+            
             self.infoView.videosCount.setTitle("\(response["videos"])", for: .normal)
             self.infoView.photosCount.setTitle("\(response["photos"])", for: .normal)
             self.infoView.ratingCount.setTitle("\(response["review"])", for: .normal)
@@ -665,6 +670,7 @@ extension NewTLViewController {
             self.infoView.videosCount.alpha = 1
             self.infoView.photosCount.alpha = 1
             self.infoView.ratingCount.alpha = 1
+            
         } else {
             self.infoView.videosCount.alpha = 0
             self.infoView.photosCount.alpha = 0

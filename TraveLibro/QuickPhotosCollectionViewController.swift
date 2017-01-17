@@ -9,7 +9,7 @@
 import UIKit
 
 
-class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var downButton: UIButton!
     @IBOutlet weak var quickCollectionView: UICollectionView!
@@ -40,6 +40,14 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        
+        return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
+    }
+
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

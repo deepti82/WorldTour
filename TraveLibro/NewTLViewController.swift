@@ -10,6 +10,7 @@ import imglyKit
 import AVKit
 import AVFoundation
 import Haneke
+import Toaster
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
@@ -755,25 +756,36 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func gotoPhotos(_ sender: UIButton) {
+        if sender.tag > 0 {
+            let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController?.pushViewController(photoVC, animated: true)
+            photoVC.whichView = "photo"
+            photoVC.journey = myJourney["_id"].string!
+            photoVC.creationDate = myJourney["startTime"].string!
+            //        infoView.animation.makeOpacity(0.0).animate(0.5)
+            infoView.isHidden = true
+        }else{
+            let tstr = Toast(text: "No Photos")
+            tstr.show()
+        }
         
-        let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(photoVC, animated: true)
-        photoVC.whichView = "photo"
-        photoVC.journey = myJourney["_id"].string!
-        photoVC.creationDate = myJourney["startTime"].string!
-        //        infoView.animation.makeOpacity(0.0).animate(0.5)
-        infoView.isHidden = true
         
     }
     
     func gotoReviews (_ sender: UIButton) {
-        
+        if sender.tag > 0 {
+
         let ratingVC = storyboard?.instantiateViewController(withIdentifier: "ratingTripSummary") as! AddYourRatingViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(ratingVC, animated: true)
         ratingVC.journeyId = myJourney["_id"].string!
         infoView.isHidden = true
+            
+        }else{
+            let tstr = Toast(text: "No Reviews")
+            tstr.show()
+        }
         
     }
     

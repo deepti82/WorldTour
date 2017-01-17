@@ -3369,7 +3369,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="95.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -5460,7 +5460,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pVW-sF-s4A">
-                                        <rect key="frame" x="49" y="52" width="245" height="412"/>
+                                        <rect key="frame" x="49" y="51.5" width="245" height="412"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Utx-4p-bqZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="245" height="88"/>
@@ -10428,7 +10428,7 @@
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="QCell" id="xoS-Df-aYq" customClass="quickCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="2" y="2" width="123" height="123"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -10444,6 +10444,7 @@
                                             <constraint firstAttribute="bottom" secondItem="rEM-vW-0Av" secondAttribute="bottom" id="hya-Ah-3Ba"/>
                                             <constraint firstItem="rEM-vW-0Av" firstAttribute="top" secondItem="xoS-Df-aYq" secondAttribute="top" id="ov1-tI-0U6"/>
                                         </constraints>
+                                        <size key="customSize" width="123" height="123"/>
                                         <connections>
                                             <outlet property="qPhoto" destination="rEM-vW-0Av" id="LrA-JI-laN"/>
                                         </connections>
