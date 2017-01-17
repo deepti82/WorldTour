@@ -69,7 +69,7 @@ extension UIView {
         let borderRight = CALayer()
         let width = CGFloat(1.0)
         let some = CGFloat(20.0)
-        let width1 = CGFloat(1.5)
+        let width1 = CGFloat(1.0)
         
         borderBottom.borderColor = mainBlueColor.cgColor
         borderLeft.borderColor = mainBlueColor.cgColor
