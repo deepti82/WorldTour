@@ -8,6 +8,7 @@
 
 import UIKit
 import Player
+import Spring
 
 class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var postTop:Post!

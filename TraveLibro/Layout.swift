@@ -1,6 +1,6 @@
 
 import UIKit
-
+import Spring
 
 class HorizontalLayout: UIView {
     
@@ -88,7 +88,7 @@ class HorizontalFitLayout: HorizontalLayout {
 
 
 
-class VerticalLayout: UIView {
+class VerticalLayout: SpringView {
     
     var yOffsets: [CGFloat] = []
     
