@@ -153,7 +153,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
         //Center Generation Only
         if(post.imageArr.count > showImageIndexStart) {
-            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 87 ))
+            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 91 ))
             addPhotoToLayout(post,startIndex:showImageIndexStart)
             self.addSubview(centerView)
         }
@@ -162,13 +162,13 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         if(post.post_isOffline) {
             //Offline Generation Only
-            uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: -4, width: self.frame.width, height: 23))
+            uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 23))
             self.addSubview(uploadingView)
             //End of Footer
         }
         else {
             //Footer Generation Only
-            footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 4, width: self.frame.width, height: 65))
+            footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 8, width: self.frame.width, height: 65))
             footerView.PhotoOtg = self;
             footerView.postTop = self.postTop;
             footerView.setLikeCount(post.post_likeCount)

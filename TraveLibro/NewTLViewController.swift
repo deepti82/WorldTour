@@ -891,7 +891,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.layout = VerticalLayout(width: 1000)
+        self.layout = VerticalLayout(width: view.frame.size.width)
         mainScroll.addSubview(layout)
         var i  = PostImage();
         i.uploadPhotos()
