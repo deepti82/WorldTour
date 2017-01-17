@@ -13,6 +13,7 @@ class PhotosOTGHeader: UIView {
     
     @IBOutlet weak var blurView: UIVisualEffectView!
     
+    @IBOutlet weak var drawLine2: UIView!
     @IBOutlet weak var drawL: drawLine!
     @IBOutlet weak var postDp: UIImageView!
     @IBOutlet weak var whatPostIcon: UIButton!
