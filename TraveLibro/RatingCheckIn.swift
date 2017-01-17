@@ -22,6 +22,7 @@ class RatingCheckIn: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        print("rating rev..")
         
         rateCheckInLabel.shadowColor = UIColor.black
         rateCheckInLabel.shadowOffset = CGSize(width: 0.8, height: 0.8)
@@ -67,7 +68,7 @@ class RatingCheckIn: UIView {
         rating.post = photosOtg.postTop
         rating.checkIn = self
         rating.json = self.review
-        rating.ratingDisplay(rating.json)
+        
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
         rating.clipsToBounds = true

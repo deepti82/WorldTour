@@ -188,6 +188,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                     rateButton.modifyAsReview()
                 }
                 
+                
+                
                 self.addSubview(rateButton)
                 
                 

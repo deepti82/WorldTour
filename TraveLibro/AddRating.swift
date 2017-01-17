@@ -80,6 +80,15 @@ class AddRating: UIView, UITextViewDelegate {
         super.init(coder: aDecoder)
     }
     
+    func updateSmiley(point:Int) {
+        
+        ratingIndex = point
+        reviewConclusion.text = moodArr[point - 1]
+        smiley.setImage(UIImage(named: imageArr[point - 1]), for: UIControlState())
+        updateButtonSelectionStates()
+        
+    }
+    
     func ratingDisplay(_ review: JSON) {
         
         reviewTextView.text = review["review"].string!
