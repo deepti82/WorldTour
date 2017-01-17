@@ -1300,7 +1300,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
                     
                 else {
-                    let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+                    let rateButton = RatingCheckIn(frame: CGRect(x: 0, y: -4, width: width, height: 150))
                     rateButton.rateCheckInLabel.text = "Rate \(post["checkIn"]["location"])?"
                     rateButton.rateCheckInButton.addTarget(self, action: #selector(NewTLViewController.addRatingPost(_:)), for: .touchUpInside)
                     
@@ -1341,7 +1341,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         let allReviews = post["review"].array!
         let lastReviewCount = post["review"].array!.count - 1
-        let rateButton = ShowRating(frame: CGRect(x: 0, y: 0, width: width, height: 150))
+        let rateButton = ShowRating(frame: CGRect(x: 0, y: -4, width: width, height: 150))
         //        myReview = post["review"].array!
         //        rateButton.showRating(ratingCount: Int(allReviews[0]["rating"].string!)! - 1)
         rateButton.rating.addTarget(self, action: #selector(NewTLViewController.showReviewPopup(_:)), for: .touchUpInside)
