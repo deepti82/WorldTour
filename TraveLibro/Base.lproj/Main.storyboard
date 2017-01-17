@@ -4364,7 +4364,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="aXv-f4-Bdo" firstAttribute="leading" secondItem="YE4-vJ-lfT" secondAttribute="leading" id="8u7-9M-oFe"/>
                             <constraint firstItem="AsL-Fb-qJX" firstAttribute="top" secondItem="aXv-f4-Bdo" secondAttribute="bottom" id="TPV-tz-dKV"/>
