@@ -94,6 +94,10 @@ class VerticalLayout: SpringView {
     
     init(width: CGFloat) {
         super.init(frame: CGRect(x: 0, y: 0, width: width, height: 0))
+        self.animation = "squeezeUp"
+        self.autostart = true
+        self.duration = 2.0
+        print("Verticle Scroll IS Initiallized");
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -121,6 +125,9 @@ class VerticalLayout: SpringView {
         yOffsets.append(view.frame.origin.y)
         super.addSubview(view)
         
+    }
+    override func willMove(toSuperview newSuperview: UIView?) {
+        print("Verticle Scroll is added to View");
     }
     
     func removeAll() {
