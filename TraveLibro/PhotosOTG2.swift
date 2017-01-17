@@ -8,6 +8,7 @@
 
 import UIKit
 import Player
+import Spring
 
 class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var postTop:Post!
@@ -27,7 +28,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true
         //header generation only
-        header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 108 ))
+        header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 102 ))
         self.addSubview(header)
         
         header.postDp.layer.zPosition = 5
@@ -153,7 +154,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
         //Center Generation Only
         if(post.imageArr.count > showImageIndexStart) {
-            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 87 ))
+            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 91 ))
             addPhotoToLayout(post,startIndex:showImageIndexStart)
             self.addSubview(centerView)
         }
@@ -176,6 +177,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             footerView.setLikeSelected(post.post_likeDone)
             self.addSubview(footerView)
             
+
             
             if(post.post_location != "") {
                 rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))

@@ -13,6 +13,7 @@ class PhotosOTGHeader: UIView {
     
     @IBOutlet weak var blurView: UIVisualEffectView!
     
+    @IBOutlet weak var drawLine2: UIView!
     @IBOutlet weak var drawL: drawLine!
     @IBOutlet weak var postDp: UIImageView!
     @IBOutlet weak var whatPostIcon: UIButton!
@@ -35,8 +36,6 @@ class PhotosOTGHeader: UIView {
     
     func loadViewFromNib() {
         
-        
-        self.layer.cornerRadius = 5
         self.layer.shadowColor = UIColor.white.cgColor
         self.layer.shadowOffset = CGSize(width: 2, height: 1)
         
@@ -56,10 +55,17 @@ class PhotosOTGHeader: UIView {
         postDp.layer.cornerRadius = 10
 ////        postDp.layer.borderWidth = 0.5
 //        postDp.layer.borderColor = UIColor(hex: "#FF6858").cgColor
+        
         drawL.backgroundColor = UIColor.clear
         
-//        self.blurView.layer.cornerRadius = 5
-//        self.blurView.clipsToBounds = true
+        let path = UIBezierPath(roundedRect:self.footer.bounds,
+                                byRoundingCorners:[.topLeft, .topRight],
+                                cornerRadii: CGSize(width: 5, height:  5))
+        
+        let maskLayer = CAShapeLayer()
+        
+        maskLayer.path = path.cgPath
+        footer.layer.mask = maskLayer
     }
     
     func makeTLProfilePicture(_ image: UIImageView) {

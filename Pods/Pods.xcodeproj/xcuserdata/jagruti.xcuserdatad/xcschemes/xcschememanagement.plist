@@ -53,6 +53,11 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
 		<key>HanekeSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -124,6 +129,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>00103D6C821BE85971C563025527BA5D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>016620B32263091FC3E5B4036D148102</key>
 		<dict>
 			<key>primary</key>
@@ -140,6 +150,11 @@
 			<true/>
 		</dict>
 		<key>1462A800C6623ADC2221545332D41D29</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1EC1CA8D0CFD933E7E9BE8E35CD7BE03</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -169,7 +184,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4FA11A660F325381D995DCE46EF1A0A5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>542E52261E2894949581B6A2CC849A56</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5E0B9892341E58348181CF166E23158A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -229,12 +254,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B12D08ED5893357FEBE20AF20E9747CB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B995D4D0FCFEFA933BA854C9CD827E97</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B9AECE443CF1589317B95D385BCE4D30</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>BBA5FFA169F400EB81A6FBE527AF4C3E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BD5BC2E72B54E091ABA8FBEAECBAB5ED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D1F78EF0210D08C941294D51DABC6A10</key>
 		<dict>
 			<key>primary</key>
 			<true/>

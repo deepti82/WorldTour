@@ -17,6 +17,8 @@ target 'TraveLibro' do
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
   pod 'Toaster', '~> 2.0'
   pod 'Player', '~> 0.2.0'
+  pod 'Google/Analytics'
+  pod 'OneSignal'
 end
 
 use_frameworks!

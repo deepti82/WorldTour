@@ -24,8 +24,8 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     let imagePicker = UIImagePickerController()
     var selectPhotosCount = 10
         override func viewDidLoad() {
-            
         super.viewDidLoad()
+        
         photosCollection.dataSource = self
         photosCollection.delegate = self
         photoGallerySecondView.isHidden = true

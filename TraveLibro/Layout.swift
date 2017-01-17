@@ -1,6 +1,6 @@
 
 import UIKit
-
+import Spring
 
 class HorizontalLayout: UIView {
     
@@ -88,12 +88,14 @@ class HorizontalFitLayout: HorizontalLayout {
 
 
 
-class VerticalLayout: UIView {
+class VerticalLayout: SpringView {
     
     var yOffsets: [CGFloat] = []
     
     init(width: CGFloat) {
         super.init(frame: CGRect(x: 0, y: 0, width: width, height: 0))
+        
+        print("Verticle Scroll IS Initiallized");
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -121,6 +123,13 @@ class VerticalLayout: UIView {
         yOffsets.append(view.frame.origin.y)
         super.addSubview(view)
         
+    }
+    override func willMove(toSuperview newSuperview: UIView?) {
+        print("Verticle Scroll is added to View");
+        self.animation = "squeezeUp"
+        self.autostart = true
+        self.duration = 2.0
+        self.animate()
     }
     
     func removeAll() {
