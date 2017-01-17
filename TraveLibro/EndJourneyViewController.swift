@@ -146,7 +146,7 @@ class EndJourneyViewController: UIViewController {
         endJourney.categoryTwo.tintColor = mainOrangeColor
         endJourney.categoryThree.tintColor = mainOrangeColor
         endJourney.changePhotoButton.addTarget(self, action: #selector(changePicture(_:)), for: .touchUpInside)
-        endJourney.journeyCoverPic.backgroundColor = UIColor.clear
+        transparentCardWhite(endJourney.journeyCoverPic)
         endJourney.journeyCoverPic.image = UIImage(named: "")
 
 //        endJourney.calendarIcon.text = String(format: "%C", faicon["calendar"]!)

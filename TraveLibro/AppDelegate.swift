@@ -159,6 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["angle_up"] = 0xf106
         faicon["facebook"] = 0xf09a
         faicon["email"] = 0xf0e0
+        faicon["envelop"] = 0xf003
         faicon["whatsapp"] = 0xf232
         faicon["check"] = 0xf00c
         faicon["trash"] = 0xf014

@@ -284,6 +284,15 @@ func transparentWhiteButton(_ button: UIButton){
 }
 
 
+func makeTLProfilePictureFollowers(_ image: UIImageView) {
+    
+    image.layer.cornerRadius = (37/100) * image.frame.width
+//    image.layer.borderWidth = 4.0
+    image.layer.borderColor = UIColor.white.cgColor
+    image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFill
+    
+}
 
 
 //LoadingOverlay.shared.showOverlay(self.view)

@@ -6,6 +6,7 @@ var followers: [JSON] = []
 
 class FollowersViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
 
+
     @IBOutlet var shareButtons: [UIButton]!
     @IBOutlet weak var mailShare: UIButton!
     @IBOutlet weak var whatsappShare: UIButton!
@@ -14,6 +15,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     @IBOutlet weak var seperatorView: UIView!
     @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var followerTable: UITableView!
+   
     
     var whichView: String!
     var searchController: UISearchController!
@@ -43,9 +45,9 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         
         if whichView == "Following" {
             self.title = "Following"
-            mailShare.setTitle(String(format: "%C", faicon["email"]!), for: UIControlState())
+            mailShare.setTitle(String(format: "%C", faicon["envelop"]!), for: UIControlState())
             whatsappShare.setTitle(String(format: "%C", faicon["whatsapp"]!), for: UIControlState())
-            facebookShare.setTitle(String(format: "%C", faicon["facebook"]!), for: UIControlState())
+//            facebookShare.setTitle(String(format: "%C", faicon["fbSquare"]!), for: UIControlState())
             configureSearchController()
             getFollowing()
         } else if whichView == "No Followers" {
@@ -57,7 +59,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         } else {
             mailShare.setTitle(String(format: "%C", faicon["email"]!), for: UIControlState())
             whatsappShare.setTitle(String(format: "%C", faicon["whatsapp"]!), for: UIControlState())
-            facebookShare.setTitle(String(format: "%C", faicon["facebook"]!), for: UIControlState())
+//            facebookShare.setTitle(String(format: "%C", faicon["facebook"]!), for: UIControlState())
             getFollowers()
         }
     }
@@ -185,6 +187,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         if filter != nil && shouldShowSearchResults {
             print("in ONE")
             cell.profileName.text = filter[(indexPath as NSIndexPath).row]["name"].string!
+            cell.urlSlurg.text =  filter[(indexPath as NSIndexPath).row]["urlSlug"].string!
             let image = filter[(indexPath as NSIndexPath).row]["profilePicture"].string!
             setImage(cell.profileImage, imageName: image)
             
@@ -217,6 +220,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             print("in TWO")
             
             cell.profileName.text = followers[(indexPath as NSIndexPath).row]["name"].string!
+            cell.urlSlurg.text = "@\(followers[(indexPath as NSIndexPath).row]["urlSlug"].string!)"
             if followers[(indexPath as NSIndexPath).row]["profilePicture"] != nil {
                 print("yaaa hoooo")
                 print(followers[(indexPath as NSIndexPath).row]["profilePicture"].string!)
@@ -264,13 +268,13 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         if imageName == "" {
             
             imageView.image = UIImage(named: "profile_icon")
-            makeTLProfilePicture(imageView)
+            makeTLProfilePictureFollowers(imageView)
             
         }
         
         else if isUrl {
             imageView.hnk_setImageFromURL(URL(string: imageName)!)
-            makeTLProfilePicture(imageView)
+            makeTLProfilePictureFollowers(imageView)
         }
             
         else {
@@ -280,7 +284,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             print("getImageUrl: \(getImageUrl)")
             
             imageView.hnk_setImageFromURL(URL(string: getImageUrl)!)
-            makeTLProfilePicture(imageView)
+            makeTLProfilePictureFollowers(imageView)
         }
     }
     
@@ -388,6 +392,7 @@ class FollowersCell: UITableViewCell {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var urlSlurg: UILabel!
     
     var parent = FollowersViewController()
     
