@@ -646,7 +646,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
             else {
                 
-                cell.backgroundColor = mainOrangeColor.withAlphaComponent(0.1)
+                cell.backgroundColor = UIColor.white.withAlphaComponent(0.4)
             }
             
         }
@@ -691,19 +691,19 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             return nil
         }
         
-        var indexOfLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"]
+//        var indexOfLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"]
         
         if countries != nil {
             for country in countries {
                 
-                indexOfLetters.append(String(country["name"].string!.characters.first!))
+//                indexOfLetters.append(String(country["name"].string!.characters.first!))
                 
             }
             
-            indexOfLetters = Array(Set(indexOfLetters))
-            indexOfLetters = indexOfLetters.sorted()
+//            indexOfLetters = Array(Set(indexOfLetters))
+//            indexOfLetters = indexOfLetters.sorted()
         }
-        return indexOfLetters
+        return nil
         
     }
 
