@@ -27,7 +27,7 @@ class FooterViewNew: UIView {
             icon.tintColor = UIColor.white
             
         }
-        
+//        feedView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(feedTap(_:))))
         upperMainView.layer.cornerRadius = 15
         upperMainView.layer.borderWidth = 2.5
         upperMainView.layer.borderColor = UIColor(red: 57/255, green: 66/255, blue: 106/255, alpha: 1).cgColor
@@ -37,7 +37,7 @@ class FooterViewNew: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+        
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "footerNew", bundle: bundle)

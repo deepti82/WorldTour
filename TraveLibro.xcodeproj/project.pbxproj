@@ -392,6 +392,7 @@
 		FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6941DE4732A0008634B /* QuartzCore.framework */; };
 		FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6981DE4740B0008634B /* UIKit.framework */; };
 		FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D69A1DE474180008634B /* WebKit.framework */; };
+		FCBF88CC1E2E343B0092CB9D /* ActivityFeedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */; };
 		FCCA8F171E28AE7200775985 /* TripSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCCA8F161E28AE7200775985 /* TripSummaryCell.xib */; };
 		FCCA8F191E28B5BC00775985 /* TripSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA8F181E28B5BC00775985 /* TripSummaryView.swift */; };
 		FCCA8F1B1E28B61C00775985 /* TripSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA8F1A1E28B61C00775985 /* TripSummaryCell.swift */; };
@@ -818,6 +819,7 @@
 		FCB2D6941DE4732A0008634B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FCB2D6981DE4740B0008634B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCB2D69A1DE474180008634B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedsController.swift; sourceTree = "<group>"; };
 		FCCA8F161E28AE7200775985 /* TripSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripSummaryCell.xib; sourceTree = "<group>"; };
 		FCCA8F181E28B5BC00775985 /* TripSummaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryView.swift; sourceTree = "<group>"; };
 		FCCA8F1A1E28B61C00775985 /* TripSummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripSummaryCell.swift; sourceTree = "<group>"; };
@@ -1709,6 +1711,7 @@
 				C2A36D031DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift */,
 				FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */,
 				FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */,
+				FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -2655,6 +2658,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCBF88CC1E2E343B0092CB9D /* ActivityFeedsController.swift in Sources */,
 				3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */,
 				3A7A7D901DE5A921005F409C /* SinglePhotoViewController.swift in Sources */,
 				842485011E13BF4600083115 /* PhotosOTGView.swift in Sources */,

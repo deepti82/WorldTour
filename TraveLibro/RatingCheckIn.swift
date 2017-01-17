@@ -68,6 +68,8 @@ class RatingCheckIn: UIView {
         rating.post = photosOtg.postTop
         rating.checkIn = self
         rating.json = self.review
+        rating.starCount = Int(review["rating"].stringValue)!
+        rating.ratingDisplay(rating.json)
         
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
@@ -86,6 +88,7 @@ class RatingCheckIn: UIView {
     }
     
     func modifyAsReview(num:Int) {
+        print(num)
         self.rateCheckInButton.setImage(UIImage(named:imageArr[num]), for: UIControlState() )
         self.rateCheckInLabel.text = moodArr[num]
     }

@@ -216,6 +216,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     }
     
     func ratingButtonTapped(_ button: UIButton) {
+        print("rating button tapped")
         ratingIndex = stars.index(of: button)! + 1
         reviewConclusion.text = moodArr[ratingIndex - 1]
         smiley.setImage(UIImage(named: imageArr[ratingIndex - 1]), for: UIControlState())

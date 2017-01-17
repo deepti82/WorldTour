@@ -9,7 +9,7 @@
 import UIKit
 
 
-class SummarySubViewController: UIViewController {
+class SummarySubViewController: UIViewController, UIScrollViewDelegate {
 
    
     var labels: [JSON] = []
@@ -26,7 +26,7 @@ class SummarySubViewController: UIViewController {
         getDarkBackGround(self)
 
         createNavigation()
-
+        tripScroll.delegate = self
         self.cellSubview = VerticalLayout(width: 300)
         tripScroll.addSubview(cellSubview)
         getCount()
@@ -293,5 +293,11 @@ class SummarySubViewController: UIViewController {
         
 
         scrollChange()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
+            print("in load more of data.")
+        }
     }
 }

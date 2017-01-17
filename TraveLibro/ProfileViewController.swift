@@ -176,6 +176,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
         footer.TLView.addGestureRecognizer(tlTap)
+        let fvTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoFeed(_:)))
+        footer.feedView.addGestureRecognizer(fvTap)
         let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
         footer.notifyView.addGestureRecognizer(tapFour)
         
@@ -377,6 +379,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             }
             self.navigationController?.pushViewController(tlVC, animated: false) 
         }
+    }
+    func gotoFeed(_ sender: UITapGestureRecognizer) {
+        
+        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+            self.navigationController?.pushViewController(tlVC, animated: false)
+    
     }
     
     func MAMStacKTap(_ sender: UITapGestureRecognizer) {
