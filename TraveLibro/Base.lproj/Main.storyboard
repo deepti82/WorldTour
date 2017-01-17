@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -2567,14 +2567,14 @@
                                         <rect key="frame" x="8" y="8" width="359" height="32"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DnB-SV-F4W">
-                                                <rect key="frame" x="0.0" y="0.0" width="119.5" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="32"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                 <state key="normal" title="All">
                                                     <color key="titleColor" red="0.11372549019607843" green="0.14901960784313725" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GM-Au-uxj">
-                                                <rect key="frame" x="119.5" y="0.0" width="120" height="32"/>
+                                                <rect key="frame" x="120" y="0.0" width="119" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="95" id="FYa-5C-vnf"/>
                                                 </constraints>
@@ -2590,7 +2590,7 @@
                                                 </variation>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H00-FP-nJa">
-                                                <rect key="frame" x="239.5" y="0.0" width="119.5" height="32"/>
+                                                <rect key="frame" x="239" y="0.0" width="120" height="32"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
                                                 <state key="normal" title="Local Life">
@@ -4312,20 +4312,23 @@
                                     <constraint firstAttribute="trailing" secondItem="B0D-HB-0ge" secondAttribute="trailing" id="sTU-Co-Ju5"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Wh-Vl-avT">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wh-Vl-avT">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="hJV-Ho-jdP" firstAttribute="bottom" secondItem="xy0-bo-IhM" secondAttribute="bottom" id="9DW-0n-FnL"/>
+                            <constraint firstItem="1Wh-Vl-avT" firstAttribute="top" secondItem="bjP-z3-LXh" secondAttribute="top" id="F2E-qm-nWK"/>
                             <constraint firstAttribute="bottom" secondItem="hJV-Ho-jdP" secondAttribute="bottom" constant="20" symbolic="YES" id="OP2-LA-meb"/>
                             <constraint firstItem="b73-2X-Yk2" firstAttribute="top" secondItem="Nuq-op-FtU" secondAttribute="bottom" id="UGt-QD-j6N"/>
+                            <constraint firstAttribute="trailing" secondItem="1Wh-Vl-avT" secondAttribute="trailing" id="Vt5-bZ-RxB"/>
                             <constraint firstItem="xy0-bo-IhM" firstAttribute="trailing" secondItem="bjP-z3-LXh" secondAttribute="trailingMargin" id="Xdq-qj-Rkn"/>
+                            <constraint firstItem="1Wh-Vl-avT" firstAttribute="leading" secondItem="bjP-z3-LXh" secondAttribute="leading" id="f59-Gp-E21"/>
                             <constraint firstItem="hJV-Ho-jdP" firstAttribute="leading" secondItem="bjP-z3-LXh" secondAttribute="leadingMargin" id="hGY-rp-o9Q"/>
                             <constraint firstItem="b73-2X-Yk2" firstAttribute="leading" secondItem="bjP-z3-LXh" secondAttribute="leading" id="qHN-Vq-QXJ"/>
                             <constraint firstAttribute="trailing" secondItem="b73-2X-Yk2" secondAttribute="trailing" id="r7I-j5-sMI"/>
+                            <constraint firstItem="1GV-fs-W5E" firstAttribute="top" secondItem="1Wh-Vl-avT" secondAttribute="bottom" id="wUp-ke-AjW"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -10360,7 +10363,7 @@
         <scene sceneID="IA2-So-XyF">
             <objects>
                 <collectionViewController storyboardIdentifier="photoGridContainer" id="yHG-Rd-GYo" customClass="TripSummaryPhotoGridViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
