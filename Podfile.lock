@@ -9,8 +9,31 @@ PODS:
   - DKChainableAnimationKit (2.0.0)
   - Dollar (6.1.0)
   - Fabric (1.6.11)
+  - FirebaseAnalytics (3.6.0):
+    - FirebaseCore (~> 3.4)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.4.6):
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.8)
+  - Google/Analytics (3.0.3):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (3.0.3):
+    - FirebaseAnalytics (~> 3.2)
+  - GoogleAnalytics (3.17.0)
+  - GoogleInterchangeUtilities (1.2.2):
+    - GoogleSymbolUtilities (~> 1.1)
+  - GoogleSymbolUtilities (1.1.2)
+  - GoogleToolboxForMac/Defines (2.1.0)
+  - GoogleToolboxForMac/NSData+zlib (2.1.0):
+    - GoogleToolboxForMac/Defines (= 2.1.0)
   - HanekeSwift (0.10.1)
   - imglyKit (5.0.6)
+  - OneSignal (2.3.4)
   - Player (0.2.2)
   - Simplicity (2.0.1)
   - Spring (1.0.3)
@@ -32,8 +55,10 @@ DEPENDENCIES:
   - Cent
   - DKChainableAnimationKit (from `https://github.com/Draveness/DKChainableAnimationKit.git`, branch `master`)
   - Dollar
+  - Google/Analytics
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
   - imglyKit (~> 5.0)
+  - OneSignal
   - Player (~> 0.2.0)
   - Simplicity
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
@@ -86,8 +111,17 @@ SPEC CHECKSUMS:
   DKChainableAnimationKit: 20401b3ad31b57d90548bfdb214077f2d2d79d49
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
+  FirebaseCore: 03da1cb32615569bbc2830a22f9ad753d9a02ef5
+  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
+  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
+  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
+  GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
   imglyKit: b78152c784cdcdf64297de33ad474bd7f13c7de9
+  OneSignal: c8f0d08ffa30fcf751c97a29639725877027e788
   Player: 5cff076cc9f13b51f56b6fb7bed24431569b8102
   Simplicity: 58ce0c6569baf45e48ccd25432274ae899097517
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
@@ -99,6 +133,6 @@ SPEC CHECKSUMS:
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 5f616c7aa4e548e22b583f0d0f66f0780533d81a
+PODFILE CHECKSUM: 99ab3f92b59ff018446694d4e651246285c20900
 
 COCOAPODS: 1.1.1

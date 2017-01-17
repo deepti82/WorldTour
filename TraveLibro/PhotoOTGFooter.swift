@@ -60,6 +60,8 @@ class PhotoOTGFooter: UIView {
         shareButton.imageView?.contentMode = .scaleAspectFit
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit
+        
+        
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
@@ -110,6 +112,14 @@ class PhotoOTGFooter: UIView {
         } else {
             self.frame.size.height = 90;
         }
+        let path = UIBezierPath(roundedRect:self.bounds,
+                                byRoundingCorners:[.bottomRight, .bottomLeft],
+                                cornerRadii: CGSize(width: 5, height:  5))
+        
+        let maskLayer = CAShapeLayer()
+        
+        maskLayer.path = path.cgPath
+        self.layer.mask = maskLayer
         PhotoOtg.layoutSubviews()
         globalNewTLViewController.addHeightToLayout(height: 500)
     }

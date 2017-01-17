@@ -177,6 +177,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             footerView.setLikeSelected(post.post_likeDone)
             self.addSubview(footerView)
             
+
             
             if(post.post_location != "") {
                 rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
