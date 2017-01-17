@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -3369,7 +3369,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -4435,6 +4435,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="NEB-XP-wm5" customClass="SpringImageView" customModule="Spring">
                                 <rect key="frame" x="0.0" y="20" width="375" height="556"/>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuv-wQ-qXR">
+                                <rect key="frame" x="0.0" y="20" width="375" height="556"/>
+                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LCy-tX-WXI">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -4530,18 +4533,22 @@
                             <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="LCy-tX-WXI" secondAttribute="bottom" id="6Pc-9f-aQf"/>
                             <constraint firstItem="NEB-XP-wm5" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="8wC-Cy-pIa"/>
                             <constraint firstItem="Iow-Mq-Q69" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="9FX-b2-h5m"/>
+                            <constraint firstAttribute="trailing" secondItem="nuv-wQ-qXR" secondAttribute="trailing" id="9ga-Ch-EbL"/>
                             <constraint firstAttribute="trailing" secondItem="fta-Vb-kIo" secondAttribute="trailing" id="AoW-Em-RmX"/>
                             <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="NEB-XP-wm5" secondAttribute="bottom" constant="91" id="BNc-2S-sL3"/>
                             <constraint firstItem="fta-Vb-kIo" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="HTb-YY-8v2"/>
                             <constraint firstAttribute="trailing" secondItem="PzD-u4-CXn" secondAttribute="trailing" id="Hna-1X-auz"/>
+                            <constraint firstItem="nuv-wQ-qXR" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="J7u-9K-PdX"/>
                             <constraint firstItem="j8S-iC-Vrv" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="16" id="Reb-Dw-emO"/>
                             <constraint firstAttribute="trailing" secondItem="LCy-tX-WXI" secondAttribute="trailing" id="W3c-Cy-cff"/>
                             <constraint firstItem="Iow-Mq-Q69" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="XgP-5b-vdT"/>
                             <constraint firstItem="LCy-tX-WXI" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="aIA-NM-Z6E"/>
+                            <constraint firstItem="PzD-u4-CXn" firstAttribute="top" secondItem="nuv-wQ-qXR" secondAttribute="bottom" constant="8" id="cKN-nZ-dzz"/>
                             <constraint firstItem="PzD-u4-CXn" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="gRW-rk-59p"/>
                             <constraint firstAttribute="trailing" secondItem="j8S-iC-Vrv" secondAttribute="trailing" constant="14" id="m2M-4x-SoX"/>
                             <constraint firstItem="LCy-tX-WXI" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="mdY-lG-IsZ"/>
                             <constraint firstAttribute="trailing" secondItem="Iow-Mq-Q69" secondAttribute="trailing" id="nPs-4l-f1B"/>
+                            <constraint firstItem="nuv-wQ-qXR" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="nTJ-IU-AwT"/>
                             <constraint firstAttribute="trailing" secondItem="NEB-XP-wm5" secondAttribute="trailing" id="qvX-cV-cRQ"/>
                             <constraint firstItem="fta-Vb-kIo" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="rFm-Yg-zwQ"/>
                             <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="PzD-u4-CXn" secondAttribute="bottom" constant="3" id="vt3-a8-oxF"/>
