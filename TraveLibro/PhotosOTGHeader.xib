@@ -40,7 +40,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBz-We-C2u">
-                    <rect key="frame" x="0.0" y="45" width="375" height="63"/>
+                    <rect key="frame" x="0.0" y="40" width="375" height="63"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-oe-jCW">
                             <rect key="frame" x="8" y="6" width="48" height="49"/>
@@ -137,7 +137,7 @@
                 <constraint firstItem="Rt5-8f-vFp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="182" id="hkt-3T-4hK"/>
                 <constraint firstItem="Rt5-8f-vFp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kuI-hw-ljY"/>
                 <constraint firstAttribute="trailing" secondItem="wBz-We-C2u" secondAttribute="trailing" id="nEj-q7-TIC"/>
-                <constraint firstItem="wBz-We-C2u" firstAttribute="top" secondItem="Rt5-8f-vFp" secondAttribute="bottom" constant="7" id="xdb-ya-oZh"/>
+                <constraint firstItem="wBz-We-C2u" firstAttribute="top" secondItem="Rt5-8f-vFp" secondAttribute="bottom" constant="2" id="xdb-ya-oZh"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

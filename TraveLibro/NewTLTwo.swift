@@ -492,7 +492,7 @@ extension NewTLViewController {
             isInitialPost = false
         }
         if isJourneyOngoing {
-            otgView = startOTGView(frame: CGRect(x: 0, y: 100, width: mainScroll.frame.width, height: 556))
+            otgView = startOTGView(frame: CGRect(x: 0, y: 112, width: mainScroll.frame.width, height: 550))
             otgView.startJourneyButton.addTarget(self, action: #selector(NewTLViewController.startOTGJourney(_:)), for: .touchUpInside)
             otgView.selectCategoryButton.addTarget(self, action: #selector(NewTLViewController.journeyCategory(_:)), for: .touchUpInside)
             otgView.addBuddiesButton.addTarget(self, action: #selector(NewTLViewController.addBuddies(_:)), for: .touchUpInside)

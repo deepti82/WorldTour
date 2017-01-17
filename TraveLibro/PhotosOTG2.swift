@@ -27,7 +27,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true
         //header generation only
-        header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 108 ))
+        header = PhotosOTGHeader(frame: CGRect(x: 0, y: -4, width: self.frame.width, height: 108 ))
         self.addSubview(header)
         
         header.postDp.layer.zPosition = 5
@@ -73,10 +73,10 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         //Image generation only
         if(post.videoArr.count > 0) {
-            self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            self.videoContainer = VideoView(frame: CGRect(x: 0, y: -6, width: self.frame.width, height: self.frame.width))
             self.player = Player()
             self.player.delegate = self
-            self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
+            self.player.view.frame = CGRect(x: 0, y: -4, width: self.frame.width, height: self.frame.width)
             self.player.view.clipsToBounds = true
             self.player.playbackLoops = true
             self.player.muted = true
@@ -93,7 +93,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.addSubview(self.videoContainer)
             
         } else if(post.imageArr.count > 0) {
-            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: -6, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.clipsToBounds = true
@@ -139,7 +139,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 globalNewTLViewController.addHeightToLayout(height: 50)
             })
         } else if(post.post_locationImage != nil && post.post_locationImage != "") {
-            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: -4, width: self.frame.width, height: self.frame.width))
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.image = UIImage(named: "logo-default")
             self.mainPhoto.hnk_setImageFromURL(URL(string:post.post_locationImage)!)
@@ -162,13 +162,13 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         if(post.post_isOffline) {
             //Offline Generation Only
-            uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 23))
+            uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: -4, width: self.frame.width, height: 23))
             self.addSubview(uploadingView)
             //End of Footer
         }
         else {
             //Footer Generation Only
-            footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 4, width: self.frame.width, height: 65))
             footerView.PhotoOtg = self;
             footerView.postTop = self.postTop;
             footerView.setLikeCount(post.post_likeCount)

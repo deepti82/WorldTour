@@ -16,9 +16,9 @@ class PhotosOTGController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        photoHeader = PhotosOTGHeader(frame: CGRect(x: 0, y: -2, width: 400, height: 184))
+        photoHeader = PhotosOTGHeader(frame: CGRect(x: 0, y: -7, width: 400, height: 184))
                 
-        photoCenter = PhotosOTGView(frame: CGRect(x: 0, y: 198, width: 400, height: 394))
+        photoCenter = PhotosOTGView(frame: CGRect(x: 0, y: 193, width: 400, height: 394))
         
         photoFooter = PhotoOTGFooter(frame: CGRect(x: 0, y: 593, width: 400, height: 184))
 

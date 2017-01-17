@@ -891,7 +891,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.layout = VerticalLayout(width: self.view.frame.width)
+        self.layout = VerticalLayout(width: 1000)
         mainScroll.addSubview(layout)
         var i  = PostImage();
         i.uploadPhotos()
@@ -987,7 +987,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 if(self.addPostsButton != nil) {
                     UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
                         self.addPostsButton.frame.origin.y = self.view.frame.height + 10
-                        self.mainFooter.frame.origin.y = self.view.frame.height + 90
+                        self.mainFooter.frame.origin.y = self.view.frame.height + 95
                     }, completion: nil)
                 }
             } else {
@@ -997,7 +997,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                     self.addPostsButton.frame.origin.y = self.view.frame.height - 120
-                    self.mainFooter.frame.origin.y = self.view.frame.height - 60
+                    self.mainFooter.frame.origin.y = self.view.frame.height - 65
                 }, completion: nil)
             }
         }
