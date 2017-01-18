@@ -10,55 +10,49 @@ import UIKit
 
 class LocalLifeRecommendationViewController: UIViewController {
 
+    @IBOutlet weak var thisScroll: UIScrollView!
+    var layout:VerticalLayout!
+    
+    @IBOutlet weak var plusButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGround(self)
-        
+        self.layout = VerticalLayout(width:screenWidth)
         self.setNavigationBarItemText("Local Life")
+   
+        self.thisScroll.addSubview(layout)
         
-        let thisScroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        thisScroll.contentSize.height = 2100
-        self.view.addSubview(thisScroll)
-        
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
         titleLabel.center = CGPoint(x: self.view.frame.width/2, y: 20)
         titleLabel.text = "Experience Mumbai like a local"
         titleLabel.font = UIFont(name: "Avenir-Roman", size: 16)
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.white
-        thisScroll.addSubview(titleLabel)
+        layout.addSubview(titleLabel)
         
-        let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 400))
-        thisScroll.addSubview(myView)
+        let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        layout.addSubview(myView)
         
-        let myView2 = LocalLifeRecommends(frame: CGRect(x: 0, y: 435, width: self.view.frame.width, height: 400))
-        thisScroll.addSubview(myView2)
+        let myView2 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        layout.addSubview(myView2)
         
-        let myView3 = LocalLifeRecommends(frame: CGRect(x: 0, y: 835, width: self.view.frame.width, height: 400))
-        thisScroll.addSubview(myView3)
+        let myView3 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        layout.addSubview(myView3)
         
-        let myView4 = LocalLifeRecommends(frame: CGRect(x: 0, y: 1235, width: self.view.frame.width, height: 400))
-        thisScroll.addSubview(myView4)
+        let myView4 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        layout.addSubview(myView4)
         
-        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: 1635, width: self.view.frame.width, height: 400))
-        thisScroll.addSubview(myView5)
+        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        layout.addSubview(myView5)
         
-//        let darkView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-//        darkView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.4)
-//        self.view.addSubview(darkView)
         
-        let plusView = EndLocalLife(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        plusView.checkInButton.addTarget(self, action: #selector(LocalLifeRecommendationViewController.checkInTap(_:)), for: .touchUpInside)
-        self.view.addSubview(plusView)
 
-//        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 20, height: 310))
-//        rating.center = CGPointMake(self.view.frame.width/2, self.view.frame.height/2)
-////        rating.layer.cornerRadius = 5
-////        rating.clipsToBounds = true
-//        self.view.addSubview(rating)
-
-//        let addPosts = AddPostsLocalLife(frame: CGRect(x: self.view.frame.width - 150, y: self.view.frame.height - 300, width: 150, height: 300))
-//        self.view.addSubview(addPosts)
+        self.addHeightToLayout();
+    }
+    
+    func addHeightToLayout() {
+        self.layout.layoutSubviews()
+        self.thisScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
         
     }
 
@@ -75,6 +69,9 @@ class LocalLifeRecommendationViewController: UIViewController {
         
     }
     
+    @IBAction func addAction(_ sender: Any) {
+        
+    }
     
     /*
     // MARK: - Navigation
