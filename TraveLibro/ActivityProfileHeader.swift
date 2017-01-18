@@ -10,10 +10,22 @@ import UIKit
 
 class ActivityProfileHeader: UIView {
 
+    @IBOutlet weak var profilePic: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var category: UIButton!
+    @IBOutlet weak var clockLabel: UILabel!
+    @IBOutlet weak var localDate: UILabel!
+    @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var localTime: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        makeTLProfilePicture(profilePic)
         
+        clockLabel.text = String(format: "%C", faicon["clock"]!)
+        calendarLabel.text = String(format: "%C", faicon["calendar"]!)
+        
+                
     }
         required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -29,6 +41,8 @@ class ActivityProfileHeader: UIView {
         self.addSubview(view)
         
     }
+    
+
 
 
 }

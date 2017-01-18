@@ -406,6 +406,7 @@
 		FCDF49081E25586C00ED9A32 /* previewBase.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCDF49071E25586C00ED9A32 /* previewBase.xib */; };
 		FCDF490A1E255A1C00ED9A32 /* previewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF49091E255A1C00ED9A32 /* previewBase.swift */; };
 		FCDF490D1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */; };
+		FCE877F31E2F56AC005EE913 /* feedsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877F21E2F56AC005EE913 /* feedsLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -836,6 +837,7 @@
 		FCDF49071E25586C00ED9A32 /* previewBase.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = previewBase.xib; sourceTree = "<group>"; };
 		FCDF49091E255A1C00ED9A32 /* previewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = previewBase.swift; sourceTree = "<group>"; };
 		FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPhotosCollectionViewController.swift; sourceTree = "<group>"; };
+		FCE877F21E2F56AC005EE913 /* feedsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedsLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2008,6 +2010,7 @@
 				C2A6E2661CE9D48A00D3F845 /* PhotosOTG.xib */,
 				C2A6E2681CE9DA8B00D3F845 /* PhotosOTG.swift */,
 				3690AB721E1CFA8500642A6A /* PhotosOTG2.swift */,
+				FCE877F21E2F56AC005EE913 /* feedsLayout.swift */,
 			);
 			name = PhotosOTG;
 			sourceTree = "<group>";
@@ -2751,6 +2754,7 @@
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
 				FC0B9A971E1FB7C8005D9206 /* QuickCountry.swift in Sources */,
 				FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */,
+				FCE877F31E2F56AC005EE913 /* feedsLayout.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
 				3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
