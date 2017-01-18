@@ -60,20 +60,22 @@ class BucketListTableViewController: UITableViewController  {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func goBack(_ sender:AnyObject) {
+        
+    }
     func gotoProfile(_ sender: UIButton) {
         
-        for vc in self.navigationController!.viewControllers {
-            
-            if vc.isKind(of: ProfileViewController.self) {
-                
-                print("inside if statement bucket list")
-                self.navigationController!.popToViewController(vc, animated: true)
-                
-            }
-            
-        }
-        
+//        for vc in self.navigationController!.viewControllers {
+//            
+//            if vc.isKind(of: ProfileViewController.self) {
+//                
+//                print("inside if statement bucket list")
+//                self.navigationController!.popToViewController(vc, animated: true)
+//                
+//            }
+//            
+//        }
+        self.navigationController!.popViewController(animated: true)
     }
     
     func getBucketList() {

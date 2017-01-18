@@ -162,8 +162,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
+       
+        
+        
+        
+    }
+    
+    
+    
+    func onLoaded() {
+        
         self.allCount = currentUser
-        self.getUser()
         
         locationIcon.text = String(format: "%C", faicon["location"]!)
         
@@ -178,8 +187,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         footer.TLView.addGestureRecognizer(tlTap)
         let fvTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoFeed(_:)))
         footer.feedView.addGestureRecognizer(fvTap)
+        
         let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
         footer.notifyView.addGestureRecognizer(tapFour)
+        
+        let tapLocalLife = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToLocalLife(_:)))
+        footer.notifyView.addGestureRecognizer(tapLocalLife)
+        
         
         
         
@@ -255,7 +269,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             self.isPhotographer.text = ""
         }
         
-
+        
         
         profile_badge.image = UIImage(named:currentUser["userBadgeName"].stringValue.lowercased())
         
@@ -278,14 +292,17 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
         
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
+    }
+    
+    
+    func goToLocalLife(_ sender : AnyObject) {
         
     }
     
     
-    
-    
     override func viewDidAppear(_ animated: Bool) {
-       super.viewDidLoad()
+       
+        self.getUser()
     }
     
     func getUser() {
@@ -315,6 +332,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             request.getUser(user.getExistingUser(), completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
+                    self.onLoaded()
                     self.setCount()
                 }
             });
@@ -327,6 +345,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             request.getUser(user.getExistingUser(), completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
+                    self.onLoaded()
                     self.setCount()
                 }
             });
