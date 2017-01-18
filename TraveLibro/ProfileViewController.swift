@@ -165,7 +165,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         makeTLProfilePicture(self.profilePicture)
         
         
-        
+        onLoaded()
     }
     
     
@@ -182,20 +182,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
         self.view.addSubview(footer)
-        
-        let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
-        footer.TLView.addGestureRecognizer(tlTap)
-        let fvTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoFeed(_:)))
-        footer.feedView.addGestureRecognizer(fvTap)
-        
-        let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
-        footer.notifyView.addGestureRecognizer(tapFour)
-        
-        let tapLocalLife = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToLocalLife(_:)))
-        footer.LLView.addGestureRecognizer(tapLocalLife)
-        
-        footer.backgroundColor = UIColor.clear
-        view.addSubview(footer)
+
         
         
         profilePicture.isHidden = true

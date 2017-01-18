@@ -365,7 +365,12 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
             imagePickerController.videoMaximumDuration = 60.0
             imagePickerController.mediaTypes = ["public.movie"]
             imagePickerController.videoQuality = UIImagePickerControllerQualityType.typeIFrame1280x720
-            imagePickerController.delegate = globalNewTLViewController
+            
+            if(self.typeOfAddActivtiy == "CreateLocalLife") {
+                imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
+            } else {
+                imagePickerController.delegate = globalNewTLViewController
+            }
             globalNavigationController.topViewController?.present(imagePickerController, animated: true, completion: nil)
         })
         

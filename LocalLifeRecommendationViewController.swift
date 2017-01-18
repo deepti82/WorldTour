@@ -6,16 +6,27 @@
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
+var globalLocalLife:LocalLifeRecommendationViewController!
+
 import UIKit
+import CoreLocation
 
-class LocalLifeRecommendationViewController: UIViewController {
+class LocalLifeRecommendationViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CLLocationManagerDelegate {
 
+    var addView:AddActivityNew!
+    var backView:UIView!
+    var newScroll:UIScrollView!
+    
+    var locationData = ""
+    let locationManager = CLLocationManager()
+    
     @IBOutlet weak var thisScroll: UIScrollView!
     var layout:VerticalLayout!
     
     @IBOutlet weak var plusButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalLocalLife = self
         getDarkBackGround(self)
         self.layout = VerticalLayout(width:screenWidth)
         self.setNavigationBarItemText("Local Life")
@@ -70,6 +81,8 @@ class LocalLifeRecommendationViewController: UIViewController {
         let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
         self.view.addSubview(footer)
         
+        self.detectLocation(UIButton())
+        
 //        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
 //        layout.addSubview(myView5)
         
@@ -103,9 +116,97 @@ class LocalLifeRecommendationViewController: UIViewController {
     }
     
     @IBAction func addAction(_ sender: Any) {
+        //Add Dard Blur Background
+        var darkBlur: UIBlurEffect!
+        var blurView: UIVisualEffectView!
+        self.backView = UIView();
+        self.backView.frame = self.view.frame
+        self.view.addSubview(self.backView)
+        self.backView.frame = self.view.frame
+        darkBlur = UIBlurEffect(style: .dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = self.backView.frame.height
+        blurView.frame.size.width = self.backView.frame.width
+        blurView.layer.zPosition = -1
+        blurView.isUserInteractionEnabled = false
+        self.backView.addSubview(blurView)
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        blurView.contentView.addSubview(vibrancyEffectView)
+        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        self.backView.addSubview(self.newScroll)
+        self.addView = AddActivityNew()
+//        self.addView.buddyAdded(myJourney["buddies"].arrayValue)
+        self.addView.typeOfAddActivtiy = "CreateLocalLife"
+        self.addView.frame = self.view.frame
+        self.addView.newScroll = self.newScroll;
+        self.newScroll.addSubview(self.addView)
+        self.newScroll.contentSize.height = self.view.frame.height
+        backView.addSubview(newScroll)
+        
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
+        
+        let rightButton = UIButton()
+        rightButton.frame = CGRect(x: 0, y: 5, width: 50, height: 35)
+        
+        rightButton.setTitle("Post", for: UIControlState())
+        rightButton.titleLabel?.font = avenirBold
+        rightButton.titleLabel!.font = UIFont (name: "avenirBold", size: 20)
+        rightButton.addTarget(self, action: #selector(self.newPost(_:) ), for: .touchUpInside)
+        globalNavigationController.topViewController?.title = "Add Activity"
+        globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
+        addView.layer.zPosition = 10
+        backView.layer.zPosition = 10
+        newScroll.contentSize.height = self.view.frame.height
+    }
+    
+    
+    func closeAdd(_ sender: UIButton) {
+        hideAddActivity()
+    }
+    
+    func newPost(_ sender: UIButton) {
+        hideAddActivity()
+    }
+    
+    func hideAddActivity() {
+        addView.removeFromSuperview()
+        backView.removeFromSuperview()
+        self.setNavigationBarItemText("Local Life")
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: {})
+        self.addView.addVideoToBlock(video: info["UIImagePickerControllerMediaURL"] as! URL)
+    }
+    
+    func detectLocation(_ sender: AnyObject?) {
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startMonitoringSignificantLocationChanges()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+        print("Error while updating location " + error.localizedDescription)
         
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if manager.location?.coordinate != nil {
+            let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+            userLocation = locValue
+            var coverImage: String!
+            print(locValue);
+            
+        }
+    }
+
     /*
     // MARK: - Navigation
 
