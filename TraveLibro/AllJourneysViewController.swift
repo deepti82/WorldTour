@@ -25,7 +25,7 @@ class AllJourneysViewController: UIViewController {
         postOne.iconButtonView.removeFromSuperview()
         addHeightToLayout(postOne.frame.height)
         layout.addSubview(postOne)
-        
+        setTopNavigation("Journeys")
         let postTwo = NewProfilePosts(frame: CGRect(x: 4, y: 0, width: layout.frame.width, height: 700))
         postTwo.profileImageView.removeFromSuperview()
         postTwo.profileName.removeFromSuperview()
@@ -63,6 +63,22 @@ class AllJourneysViewController: UIViewController {
         mainScroll.contentSize.height += height + 100
         
     }
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

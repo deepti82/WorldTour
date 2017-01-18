@@ -12,14 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocalLifeRecommends" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="bottomIcon1" destination="sPn-Sn-7jT" id="f3P-Kb-BxV"/>
-                <outlet property="bottomIcon2" destination="TVU-kW-q95" id="jf7-sy-lsN"/>
                 <outlet property="bottomLabel1" destination="Bl1-rB-EZ8" id="z6O-Ym-aom"/>
                 <outlet property="bottomLabel2" destination="o8K-0E-HRc" id="9QP-6P-Zkz"/>
                 <outlet property="photoBottom1" destination="LlX-0B-Jrw" id="EET-m3-pD7"/>
                 <outlet property="photoBottom2" destination="S2r-8m-C9I" id="j6C-kb-89D"/>
                 <outlet property="photoTop" destination="qcY-U9-ghf" id="Bov-TP-IbL"/>
-                <outlet property="topIcon" destination="ACT-HT-Tha" id="vg3-1I-DjP"/>
                 <outlet property="topLabel" destination="12w-Vs-cNc" id="Dcl-P1-tk5"/>
             </connections>
         </placeholder>
@@ -45,17 +42,10 @@
                     <rect key="frame" x="8" y="220" width="188" height="172"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="3oL-Ve-gz3">
-                            <rect key="frame" x="8" y="144" width="148" height="20"/>
+                            <rect key="frame" x="8" y="144.5" width="120.5" height="19.5"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cinema_local_life" translatesAutoresizingMaskIntoConstraints="NO" id="sPn-Sn-7jT">
-                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="41S-eI-Wus"/>
-                                        <constraint firstAttribute="height" constant="20" id="ca9-Xm-uko"/>
-                                    </constraints>
-                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cinemas &amp; Theatre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bl1-rB-EZ8">
-                                    <rect key="frame" x="27" y="0.0" width="121" height="20"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="120.5" height="19.5"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -73,17 +63,10 @@
                     <rect key="frame" x="204" y="220" width="188" height="172"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="A3Z-bB-3tT">
-                            <rect key="frame" x="8" y="144" width="74" height="20"/>
+                            <rect key="frame" x="8" y="144.5" width="46.5" height="19.5"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TVU-kW-q95">
-                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="McR-f9-Ole"/>
-                                        <constraint firstAttribute="width" constant="20" id="llv-GP-kP3"/>
-                                    </constraints>
-                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resorts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8K-0E-HRc">
-                                    <rect key="frame" x="27" y="0.0" width="47" height="20"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="46.5" height="19.5"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -101,17 +84,10 @@
                     <rect key="frame" x="8" y="8" width="384" height="204"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="hsX-pA-9HV">
-                            <rect key="frame" x="8" y="176" width="80" height="20"/>
+                            <rect key="frame" x="8" y="176.5" width="52.5" height="19.5"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="beach_local_life" translatesAutoresizingMaskIntoConstraints="NO" id="ACT-HT-Tha">
-                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="aX2-ga-ZIb"/>
-                                        <constraint firstAttribute="height" constant="20" id="aYe-9W-wnx"/>
-                                    </constraints>
-                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beaches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12w-Vs-cNc">
-                                    <rect key="frame" x="27" y="0.0" width="53" height="20"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="52.5" height="19.5"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -155,9 +131,7 @@
         </view>
     </objects>
     <resources>
-        <image name="beach_local_life" width="120" height="120"/>
         <image name="beach_scene" width="792" height="485"/>
-        <image name="cinema_local_life" width="120" height="120"/>
         <image name="cinema_scene" width="531" height="352"/>
         <image name="resort_scene" width="487" height="325"/>
     </resources>

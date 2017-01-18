@@ -12,10 +12,10 @@ import UIKit
 var trialVariable: [JSON] = []
 var getCountries: [JSON]!
 
-class AddYearsCountriesVisitedTableViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
+class AddYearsCountriesVisitedTableViewController: UITableViewController {
     
-    var years = ["2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940"]
-    
+    var years: [String] = []
+    var date = NSDate()
     var selectedCountry: String!
     
     var searchController: UISearchController!
@@ -25,12 +25,18 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
     var shouldShowSearchResults = false
     
     var selectedYears: [String] = []
-    
+    var currentYear: Int = 0
+    var previousYear: Int = 1960
     override func viewDidLoad() {
         super.viewDidLoad()
         
         trialVariable = []
-        
+        let calendar = NSCalendar.current
+        let dateFormatterMonth = DateFormatter()
+        let dateFormatter = DateFormatter()
+        let components = calendar.dateComponents([.month , .year], from: date as Date)
+        dateFormatter.dateFormat = "yyyy"
+        currentYear = Int(dateFormatter.string(from: date as Date))!
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
@@ -48,73 +54,78 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        configureSearchController()
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-        searchController.dimsBackgroundDuringPresentation = true
-        shouldShowSearchResults = true
-        tableView.reloadData()
-        
-    }
-    
-    func configureSearchController() {
-        
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = true
-        searchController.searchBar.delegate = self
-        searchController.searchBar.sizeToFit()
-        tableView.tableHeaderView = searchController.searchBar
-        
-    }
-    
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
-        shouldShowSearchResults = false
-        tableView.reloadData()
-        
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        if !shouldShowSearchResults {
-            
-            shouldShowSearchResults = true
-            tableView.reloadData()
-            
+//        configureSearchController()
+        for i in previousYear...currentYear{
+            years.append("\(currentYear)")
+            currentYear -= 1
         }
-        
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.resignFirstResponder()
+
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        searchController.dimsBackgroundDuringPresentation = false
-        let searchString = searchController.searchBar.text
-        
-        // Filter the data array and get only those countries that match the search text.
-        filteredArray = years.filter({(year) -> Bool in
-            
-            //            print("country: \(country["name"])")
-            
-            let yearText: NSString = year as NSString
-            
-            print("country: \(yearText.range(of: searchString!, options: .caseInsensitive).location)")
-            
-            return (yearText.range(of: searchString!, options: .caseInsensitive).location) != NSNotFound
-        })
-        
-        //        filteredArray = countries.filter{$0["name"].string! == searchString}
-        
-        print("filtered array: \(filteredArray)")
-        
-        // Reload the tableview.
-        tableView.reloadData()
-    }
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        
+//        searchController.dimsBackgroundDuringPresentation = true
+//        shouldShowSearchResults = true
+//        tableView.reloadData()
+//        
+//    }
+    
+//    func configureSearchController() {
+//        
+//        searchController = UISearchController(searchResultsController: nil)
+//        searchController.searchResultsUpdater = self
+//        searchController.dimsBackgroundDuringPresentation = true
+//        searchController.searchBar.delegate = self
+//        searchController.searchBar.sizeToFit()
+//        tableView.tableHeaderView = searchController.searchBar
+//        
+//    }
+    
+    
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        
+//        shouldShowSearchResults = false
+//        tableView.reloadData()
+//        
+//    }
+    
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        
+//        if !shouldShowSearchResults {
+//            
+//            shouldShowSearchResults = true
+//            tableView.reloadData()
+//            
+//        }
+//        
+//        searchController.dimsBackgroundDuringPresentation = false
+//        searchController.searchBar.resignFirstResponder()
+//    }
+    
+//    func updateSearchResults(for searchController: UISearchController) {
+//        
+//        searchController.dimsBackgroundDuringPresentation = false
+//        let searchString = searchController.searchBar.text
+//        
+//        // Filter the data array and get only those countries that match the search text.
+//        filteredArray = years.filter({(year) -> Bool in
+//            
+//            //            print("country: \(country["name"])")
+//            
+//            let yearText: NSString = year as NSString
+//            
+//            print("country: \(yearText.range(of: searchString!, options: .caseInsensitive).location)")
+//            
+//            return (yearText.range(of: searchString!, options: .caseInsensitive).location) != NSNotFound
+//        })
+//        
+//        //        filteredArray = countries.filter{$0["name"].string! == searchString}
+//        
+//        print("filtered array: \(filteredArray)")
+//        
+//        // Reload the tableview.
+//        tableView.reloadData()
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -155,7 +166,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
         
         if (indexPath as NSIndexPath).row % 2 == 0 {
             
-            cell.backgroundColor = mainOrangeColor.withAlphaComponent(0.1)
+//            cell.backgroundColor = mainOrangeColor.withAlphaComponent(0.1)
             
         }
             
@@ -184,7 +195,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController, UISear
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedCountry = tableView.cellForRow(at: indexPath) as! AddYearsTableViewCell
-        searchBarSearchButtonClicked(searchController.searchBar)
+//        searchBarSearchButtonClicked(searchController.searchBar)
         
         if selectedCountry.tag == 0 {
             
