@@ -1,15 +1,16 @@
 platform :ios, '10.0'
+use_frameworks!
 
 target 'TraveLibro' do
   pod 'HanekeSwift', :git=> 'https://github.com/Haneke/HanekeSwift.git', :branch => 'feature/swift-3'
   pod 'BSImagePicker', '~> 2.4'
-  pod 'DKChainableAnimationKit', :git=> 'https://github.com/Draveness/DKChainableAnimationKit.git', :branch => 'master'
+  pod "DKChainableAnimationKit", "~> 2.0.0"
   pod 'TabPageViewController', :git=> 'https://github.com/EndouMari/TabPageViewController.git', :branch => 'swift_3'
   pod 'SwiftHTTP', '~> 2.0.0'
   pod 'Simplicity'
   pod 'TwitterKit'
   pod 'TwitterCore'
-  pod 'SQLite.swift', :git=> 'https://github.com/stephencelis/SQLite.swift.git', :branch => 'prepare-0.11.1'
+  pod 'SQLite.swift', '~> 0.11.2'
   pod 'imglyKit', '~> 5.0'
   pod 'Dollar'
   pod 'Cent'
@@ -21,7 +22,7 @@ target 'TraveLibro' do
   pod 'OneSignal'
 end
 
-use_frameworks!
+
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
