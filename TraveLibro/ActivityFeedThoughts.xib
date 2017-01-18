@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivityFeedThoughts" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="activityFeedThoughtsView" destination="iN0-l3-epB" id="skd-4f-5Yf"/>
+                <outlet property="activityFeedThougts" destination="7PF-5U-OPz" id="FAa-UC-aWn"/>
+                <outlet property="activityLineView" destination="kkc-GL-t3n" id="KRe-L8-4Sr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="434" height="224"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkc-GL-t3n">
+                    <rect key="frame" x="0.0" y="10" width="434" height="1"/>
+                    <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="0.90219609109999999" colorSpace="calibratedRGB"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PF-5U-OPz">
+                    <rect key="frame" x="0.0" y="36" width="434" height="188"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="188" id="AYy-Z2-KW0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="kkc-GL-t3n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="2Tf-Qn-nfj"/>
+                <constraint firstItem="7PF-5U-OPz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7LQ-l4-rmp"/>
+                <constraint firstItem="7PF-5U-OPz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DQR-FN-20q"/>
+                <constraint firstAttribute="bottom" secondItem="7PF-5U-OPz" secondAttribute="bottom" id="F0i-aY-ie4"/>
+                <constraint firstItem="kkc-GL-t3n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eiN-VQ-38F"/>
+                <constraint firstItem="7PF-5U-OPz" firstAttribute="top" secondItem="kkc-GL-t3n" secondAttribute="bottom" constant="25" id="iLo-56-Tl4"/>
+                <constraint firstAttribute="trailing" secondItem="kkc-GL-t3n" secondAttribute="trailing" id="wcK-Ww-G69"/>
+                <constraint firstAttribute="trailing" secondItem="7PF-5U-OPz" secondAttribute="trailing" id="yjB-c7-jlc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-3" y="-170"/>
+        </view>
+    </objects>
+</document>
