@@ -37,9 +37,9 @@ PODS:
   - Player (0.2.2)
   - Simplicity (2.0.1)
   - Spring (1.0.3)
-  - SQLite.swift (0.11.1):
-    - SQLite.swift/standard (= 0.11.1)
-  - SQLite.swift/standard (0.11.1)
+  - SQLite.swift (0.11.2):
+    - SQLite.swift/standard (= 0.11.2)
+  - SQLite.swift/standard (0.11.2)
   - SwiftHTTP (2.0.2)
   - TabPageViewController (0.2.1)
   - Toaster (2.0.1)
@@ -53,7 +53,7 @@ DEPENDENCIES:
   - AsyncSwift
   - BSImagePicker (~> 2.4)
   - Cent
-  - DKChainableAnimationKit (from `https://github.com/Draveness/DKChainableAnimationKit.git`, branch `master`)
+  - DKChainableAnimationKit (~> 2.0.0)
   - Dollar
   - Google/Analytics
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
@@ -62,7 +62,7 @@ DEPENDENCIES:
   - Player (~> 0.2.0)
   - Simplicity
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
-  - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `prepare-0.11.1`)
+  - SQLite.swift (~> 0.11.2)
   - SwiftHTTP (~> 2.0.0)
   - TabPageViewController (from `https://github.com/EndouMari/TabPageViewController.git`, branch `swift_3`)
   - Toaster (~> 2.0)
@@ -70,35 +70,23 @@ DEPENDENCIES:
   - TwitterKit
 
 EXTERNAL SOURCES:
-  DKChainableAnimationKit:
-    :branch: master
-    :git: https://github.com/Draveness/DKChainableAnimationKit.git
   HanekeSwift:
     :branch: feature/swift-3
     :git: https://github.com/Haneke/HanekeSwift.git
   Spring:
     :branch: swift3
     :git: https://github.com/MengTo/Spring.git
-  SQLite.swift:
-    :branch: prepare-0.11.1
-    :git: https://github.com/stephencelis/SQLite.swift.git
   TabPageViewController:
     :branch: swift_3
     :git: https://github.com/EndouMari/TabPageViewController.git
 
 CHECKOUT OPTIONS:
-  DKChainableAnimationKit:
-    :commit: 82b9d7ce1f12d8c44a6c9d8582c086d6ca400c8f
-    :git: https://github.com/Draveness/DKChainableAnimationKit.git
   HanekeSwift:
     :commit: 1157a124ec699f4ad926cb054f1d0bfce88ae7a9
     :git: https://github.com/Haneke/HanekeSwift.git
   Spring:
     :commit: 3a9227c6e9157e7b47f5ac1ee5abab2a56b50002
     :git: https://github.com/MengTo/Spring.git
-  SQLite.swift:
-    :commit: d95a518178570c805bb18b971d264b8a48edbcf5
-    :git: https://github.com/stephencelis/SQLite.swift.git
   TabPageViewController:
     :commit: 7e43c9ffae8b4cf4d3b81fc4a4e5317d334b6b3f
     :git: https://github.com/EndouMari/TabPageViewController.git
@@ -108,7 +96,7 @@ SPEC CHECKSUMS:
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
   BSImagePicker: 9ad3385318ca0db7e792b51ea8929cfc39284c56
   Cent: 2e2deb7ced0fc6c4c320075ddd4f63ed8defd8db
-  DKChainableAnimationKit: 20401b3ad31b57d90548bfdb214077f2d2d79d49
+  DKChainableAnimationKit: b9e079381d6e059f8a1f969223d16e3970ec3545
   Dollar: 0a9883680f2c1104adf0d19b827c3be71d3e3121
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
@@ -125,7 +113,7 @@ SPEC CHECKSUMS:
   Player: 5cff076cc9f13b51f56b6fb7bed24431569b8102
   Simplicity: 58ce0c6569baf45e48ccd25432274ae899097517
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
-  SQLite.swift: 1af00c95130fba962653aa136e3ecb0b8890796b
+  SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
   SwiftHTTP: faa1a5f7670568ffc9361898229dbe84a6088468
   TabPageViewController: a4b46480e21251000962abad071b538679dbc2ad
   Toaster: be65cd48e93a525b2a9cc4bd25a2bfc900e02d9f
@@ -133,6 +121,6 @@ SPEC CHECKSUMS:
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: 99ab3f92b59ff018446694d4e651246285c20900
+PODFILE CHECKSUM: e903f88736769e28ed09a22cef16f4ec556b68dd
 
 COCOAPODS: 1.1.1

@@ -306,6 +306,18 @@ extension QueryType {
         return query
     }
 
+    /// Adds a condition to the query’s `WHERE` clause.
+    /// This is an alias for `filter(predicate)`
+    public func `where`(_ predicate: Expression<Bool>) -> Self {
+        return `where`(Expression<Bool?>(predicate))
+    }
+
+    /// Adds a condition to the query’s `WHERE` clause.
+    /// This is an alias for `filter(predicate)`
+    public func `where`(_ predicate: Expression<Bool?>) -> Self {
+        return filter(predicate)
+    }
+
     // MARK: GROUP BY
 
     /// Sets a `GROUP BY` clause on the query.
@@ -972,7 +984,7 @@ extension Connection {
         let expression = query.expression
         return try sync {
             try self.run(expression.template, expression.bindings)
-            return self.lastInsertRowid!
+            return self.lastInsertRowid
         }
     }
 
