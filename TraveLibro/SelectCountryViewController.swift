@@ -568,7 +568,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 if countries != nil {
             
              if filteredArray != nil {
-                
+                print(filteredArray[(indexPath as NSIndexPath).row])
                 cell.countryName.text = filteredArray[(indexPath as NSIndexPath).row]["name"].string!
 //                let image = filteredArray[(indexPath as NSIndexPath).row]["flag"].string!
 //                setImage(cell.flagImage, imageName: image)
@@ -576,48 +576,14 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             }
             
             else {
-                
+                print(countries[(indexPath as NSIndexPath).row])
                 cell.countryName.text = countries[(indexPath as NSIndexPath).row]["name"].string!
+                cell.flagImage.hnk_setImageFromURL(getImageURL(countries[indexPath.row]["flag"].stringValue,width:100))
 //                let image = filteredArray[(indexPath as NSIndexPath).row]["flag"].string!
 //                setImage(cell.flagImage, imageName: image)
 
             }
             
-//            print("filtered array: \(filteredArray)")
-            
-//            if shouldShowSearchResults && filteredArray != nil {
-//                
-//                if selectedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
-//                    
-//                    cell.tintColor = mainOrangeColor
-//                    
-//                }
-//                
-//                else if alreadySelected.contains(filteredArray[indexPath.row]) {
-//                    
-//                    cell.tintColor = mainOrangeColor
-//                    
-//                }
-//                
-//            }
-            
-//            else if alreadySelected.contains(filteredArray[indexPath.row]["_id"].string!) && (shouldShowSearchResults && filteredArray != nil) {
-//                
-//                cell.tintColor = mainOrangeColor
-//                
-//            }
-            
-//            else if selectedCountries.contains(filteredArray[indexPath.row]["_id"].string!) {
-//                
-//                if indexPath.row == 0 {
-//                    
-//                    print("in here \(filteredArray[indexPath.row]["_id"].string!)")
-//                    
-//                }
-//                
-//                cell.tintColor = mainOrangeColor
-//                
-//            }
             
             if alreadySelected != nil && alreadySelected.contains(countries[(indexPath as NSIndexPath).row]) {
                 
