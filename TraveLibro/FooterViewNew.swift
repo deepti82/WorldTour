@@ -9,7 +9,7 @@
 import UIKit
 
 class FooterViewNew: UIView {
-
+    
     @IBOutlet var footerIconImages: [UIImageView]!
     @IBOutlet weak var feedView: UIView!
     @IBOutlet weak var notifyView: UIView!
@@ -38,7 +38,7 @@ class FooterViewNew: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-        
+    
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "footerNew", bundle: bundle)
@@ -46,7 +46,7 @@ class FooterViewNew: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
-
+        
         
         let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
         self.TLView.addGestureRecognizer(tlTap)
@@ -62,26 +62,14 @@ class FooterViewNew: UIView {
     
     
     func gotoOTG(_ sender: UITapGestureRecognizer) {
-        var isThere = 0
-        let vcs = globalNavigationController!.viewControllers
-        
-        for vc in vcs {
-            if vc.isKind(of: NewTLViewController.self) {
-                globalNavigationController!.popToViewController(vc, animated: false)
-                isThere = 1
-            }
+        let tlVC = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+        tlVC.isJourney = false
+        if(currentUser["journeyId"].stringValue == "-1") {
+            isJourneyOngoing = false
+            tlVC.showJourneyOngoing(journey: JSON(""))
+            //                self.navigationController?.navigationBar.isHidden = true
         }
-        
-        if isThere == 0 {
-            let tlVC = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-            tlVC.isJourney = false
-            if(currentUser["journeyId"].stringValue == "-1") {
-                isJourneyOngoing = false
-                tlVC.showJourneyOngoing(journey: JSON(""))
-                //                self.navigationController?.navigationBar.isHidden = true
-            }
-            globalNavigationController?.pushViewController(tlVC, animated: false)
-        }
+        globalNavigationController?.pushViewController(tlVC, animated: false)
     }
     
     func gotoFeed(_ sender: UITapGestureRecognizer) {
@@ -90,6 +78,21 @@ class FooterViewNew: UIView {
         globalNavigationController?.pushViewController(tlVC, animated: false)
         
     }
-
-
+    
+    func openNotifications(_ sender: UITapGestureRecognizer) {
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
+        vc.whichView = "Notify"
+        globalNavigationController?.pushViewController(vc, animated: false)
+        
+        
+    }
+    
+    func goToLocalLife(_ sender : AnyObject) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
+        globalNavigationController?.pushViewController(vc, animated: false)
+    }
+    
+    
+    
 }

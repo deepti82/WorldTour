@@ -67,7 +67,8 @@ class LocalLifeRecommendationViewController: UIViewController {
         myView4.bottomLabel2.text = "Hotels and accommodations"
         layout.addSubview(myView4)
 
-       
+        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
+        self.view.addSubview(footer)
         
 //        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
 //        layout.addSubview(myView5)

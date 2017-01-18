@@ -879,11 +879,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.title = text
         if (myJourney != nil) {
             self.customNavigationBar(left: leftButton, right: rightButton)
-            globalNavigationController  = self.navigationController
-            
         }else{
             self.customNavigationBar(left: leftButton, right: nil)
-            globalNavigationController  = self.navigationController
         }
         
     }
