@@ -162,7 +162,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
-       
+        makeTLProfilePicture(self.profilePicture)
         
         
         
@@ -192,7 +192,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         footer.notifyView.addGestureRecognizer(tapFour)
         
         let tapLocalLife = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToLocalLife(_:)))
-        footer.notifyView.addGestureRecognizer(tapLocalLife)
+        footer.LLView.addGestureRecognizer(tapLocalLife)
         
         
         
@@ -296,7 +296,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     
     func goToLocalLife(_ sender : AnyObject) {
-        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
+        self.navigationController?.pushViewController(vc, animated: false)
     }
     
     
