@@ -888,6 +888,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        globalNavigationController = self.navigationController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

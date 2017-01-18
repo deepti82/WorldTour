@@ -194,7 +194,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let tapLocalLife = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToLocalLife(_:)))
         footer.LLView.addGestureRecognizer(tapLocalLife)
         
-        
+        footer.backgroundColor = UIColor.clear
+        view.addSubview(footer)
         
         
         profilePicture.isHidden = true
@@ -287,8 +288,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         fontAwesomeLabel.textColor = UIColor.white
         orangeTab.orangeButtonTitle.titleLabel!.addSubview(fontAwesomeLabel)
         self.view.addSubview(orangeTab)
-        footer.backgroundColor = UIColor.white
-        view.addSubview(footer)
+        
         orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
         
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
@@ -302,7 +302,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     
     override func viewDidAppear(_ animated: Bool) {
-       
+        globalNavigationController = self.navigationController
         self.getUser()
     }
     

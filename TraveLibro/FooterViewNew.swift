@@ -46,6 +46,50 @@ class FooterViewNew: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
+
+        
+        let tlTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoOTG(_:)))
+        self.TLView.addGestureRecognizer(tlTap)
+        let fvTap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.gotoFeed(_:)))
+        self.feedView.addGestureRecognizer(fvTap)
+        
+        let tapFour = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.openNotifications(_:)))
+        self.notifyView.addGestureRecognizer(tapFour)
+        
+        let tapLocalLife = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.goToLocalLife(_:)))
+        self.LLView.addGestureRecognizer(tapLocalLife)
     }
+    
+    
+    func gotoOTG(_ sender: UITapGestureRecognizer) {
+        var isThere = 0
+        let vcs = globalNavigationController!.viewControllers
+        
+        for vc in vcs {
+            if vc.isKind(of: NewTLViewController.self) {
+                globalNavigationController!.popToViewController(vc, animated: false)
+                isThere = 1
+            }
+        }
+        
+        if isThere == 0 {
+            let tlVC = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+            tlVC.isJourney = false
+            if(currentUser["journeyId"].stringValue == "-1") {
+                isJourneyOngoing = false
+                tlVC.showJourneyOngoing(journey: JSON(""))
+                //                self.navigationController?.navigationBar.isHidden = true
+            }
+            globalNavigationController?.pushViewController(tlVC, animated: false)
+        }
+    }
+    
+    func gotoFeed(_ sender: UITapGestureRecognizer) {
+        
+        let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        globalNavigationController?.pushViewController(tlVC, animated: false)
+        
+    }
+
 
 }

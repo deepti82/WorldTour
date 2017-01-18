@@ -31,50 +31,55 @@ class LocalLifeRecommendationViewController: UIViewController {
         layout.addSubview(titleLabel)
         
 
-        let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 400))
+        let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
         myView.photoTop.image = UIImage(named: "restaurantsLocalLife")
         myView.topLabel.text = "Restaurants and Bars"
         myView.photoBottom1.image = UIImage(named: "naturesLocalLife")
         myView.bottomLabel1.text = "Nature and Parks"
         myView.photoBottom2.image = UIImage(named: "sightsLocalLife")
         myView.bottomLabel2.text = "Sights and Landmarks"
-        thisScroll.addSubview(myView)
+        layout.addSubview(myView)
         
-        let myView2 = LocalLifeRecommends(frame: CGRect(x: 0, y: 435, width: self.view.frame.width, height: 400))
+        let myView2 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
         myView2.photoTop.image = UIImage(named: "museumsLocalLife")
         myView2.topLabel.text = "Museums and Galleries"
         myView2.photoBottom1.image = UIImage(named: "adventureLocalLife")
         myView2.bottomLabel1.text = "Adventure and Excursions"
         myView2.photoBottom2.image = UIImage(named: "bgzoosandaqua")
         myView2.bottomLabel2.text = "Zoos and Aquariums"
-        thisScroll.addSubview(myView2)
+        layout.addSubview(myView2)
         
-        let myView3 = LocalLifeRecommends(frame: CGRect(x: 0, y: 835, width: self.view.frame.width, height: 400))
+        let myView3 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
         myView3.photoTop.image = UIImage(named: "bgeventsandfestival")
         myView3.topLabel.text = "Events and Festival"
         myView3.photoBottom1.image = UIImage(named: "bgshopping")
         myView3.bottomLabel1.text = "Shopping"
         myView3.photoBottom2.image = UIImage(named: "image1")
         myView3.bottomLabel2.text = "Beaches"
-        thisScroll.addSubview(myView3)
+        layout.addSubview(myView3)
         
-        let myView4 = LocalLifeRecommends(frame: CGRect(x: 0, y: 1235, width: self.view.frame.width, height: 400))
+        let myView4 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
         myView4.photoTop.image = UIImage(named: "bgreligious")
         myView4.topLabel.text = "Religious"
         myView4.photoBottom1.image = UIImage(named: "bgcinemasandtheatre")
         myView4.bottomLabel1.text = "Cinemas and Theatres"
         myView4.photoBottom2.image = UIImage(named: "bghotelsandaccom")
         myView4.bottomLabel2.text = "Hotels and accommodations"
-        thisScroll.addSubview(myView4)
+        layout.addSubview(myView4)
 
        
         
-        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
-        layout.addSubview(myView5)
+//        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+//        layout.addSubview(myView5)
+        
         
         
 
         self.addHeightToLayout();
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        globalNavigationController = self.navigationController
     }
     
     func addHeightToLayout() {
