@@ -1,9 +1,9 @@
 import UIKit
 
 
-class SelectCountryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class SelectCountryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UISearchResultsUpdating, UISearchBarDelegate {
     
-//    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var searchView: UIView!
 //    var countries = ["India", "Kuwait", "Mumbai", "Australia", "Switzerland", "Hong Kong", "Malaysia", "Singapore", "Mauritius"]
     
     var countries: [JSON]!
@@ -15,7 +15,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     var selectedIndex: IndexPath = IndexPath()
     var isSelected: Bool = false
     var signUpCityVC: UIViewController!
-//    var searchFieldView: SearchFieldView!
+   var searchFieldView: SearchFieldView!
     var selectedYear: String!
     var alreadySelected: [JSON]!
     
@@ -25,11 +25,11 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     var selectedNationality: String!
     
-//    var searchController: UISearchController!
+    var searchController: UISearchController!
     
     var filteredArray: [JSON]!
     
-//    var shouldShowSearchResults = false
+    var shouldShowSearchResults = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,17 +96,17 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
         }
         
-//        searchFieldView = SearchFieldView(frame: CGRect(x: 10, y: 0, width: searchView.frame.width + 25, height: searchView.frame.height))
-//        searchFieldView.leftLine.backgroundColor = mainOrangeColor
-//        searchFieldView.rightLine.backgroundColor = mainOrangeColor
-//        searchFieldView.bottomLine.backgroundColor = mainOrangeColor
-//        searchFieldView.searchButton.tintColor = mainOrangeColor
-//        searchView.addSubview(searchFieldView)
-//        searchView.clipsToBounds = true
-//        searchView.backgroundColor = UIColor.clear
-//        searchFieldView.searchField.returnKeyType = .done
-//        searchFieldView.searchButton.addTarget(self, action: #selector(SelectCountryViewController.searchPlace(_:)), for: .touchUpInside)
-//        searchFieldView.searchField.delegate = self
+        searchFieldView = SearchFieldView(frame: CGRect(x: 10, y: 0, width: searchView.frame.width + 25, height: searchView.frame.height))
+        searchFieldView.leftLine.backgroundColor = mainOrangeColor
+        searchFieldView.rightLine.backgroundColor = mainOrangeColor
+        searchFieldView.bottomLine.backgroundColor = mainOrangeColor
+        searchFieldView.searchButton.tintColor = mainOrangeColor
+        searchView.addSubview(searchFieldView)
+        searchView.clipsToBounds = true
+        searchView.backgroundColor = UIColor.clear
+        searchFieldView.searchField.returnKeyType = .done
+        searchFieldView.searchButton.addTarget(self, action: #selector(SelectCountryViewController.searchPlace(_:)), for: .touchUpInside)
+        searchFieldView.searchField.delegate = self
         
         
         if whichView == "BucketList" {
@@ -159,19 +159,19 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             
         else {
             
-//            searchFieldView.searchField.placeholder = "Search"
+            searchFieldView.searchField.placeholder = "Search"
             
         }
         
-//        configureSearchController()
+        configureSearchController()
         
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         
         print("search begin editing")
-//        searchController.dimsBackgroundDuringPresentation = true
-//        shouldShowSearchResults = true
+        searchController.dimsBackgroundDuringPresentation = true
+        shouldShowSearchResults = true
         mainTableView.reloadData()
         
     }
@@ -179,10 +179,10 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
-//        print("search cancelled")
-//        shouldShowSearchResults = false
-//        print("\(shouldShowSearchResults)")
-//        mainTableView.reloadData()
+        print("search cancelled")
+        shouldShowSearchResults = false
+        print("\(shouldShowSearchResults)")
+        mainTableView.reloadData()
         
     }
     
@@ -190,15 +190,15 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         print("search button clicked")
         
-//        if !shouldShowSearchResults {
-//            
-//            shouldShowSearchResults = true
-//            mainTableView.reloadData()
-//            
-//        }
+        if !shouldShowSearchResults {
+            
+            shouldShowSearchResults = true
+            mainTableView.reloadData()
+            
+        }
         
-//        searchController.dimsBackgroundDuringPresentation = true
-//        searchController.searchBar.resignFirstResponder()
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.searchBar.resignFirstResponder()
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -249,16 +249,16 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
     }
     
-//    func configureSearchController() {
-//        
-//        searchController = UISearchController(searchResultsController: nil)
-//        searchController.searchResultsUpdater = self
-//        searchController.dimsBackgroundDuringPresentation = true
-//        searchController.searchBar.delegate = self
-//        searchController.searchBar.sizeToFit()
-//        mainTableView.tableHeaderView = searchController.searchBar
-//        
-//    }
+    func configureSearchController() {
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        mainTableView.tableHeaderView = searchController.searchBar
+        
+    }
     
     func saveCountriesVisited(_ sender: UIButton) {
         
@@ -363,7 +363,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     func searchPlace(_ sender: UIButton) {
         
         print("in search button target")
-//        searchFieldView.searchField.resignFirstResponder()
+        searchFieldView.searchField.resignFirstResponder()
         
     }
     
@@ -389,7 +389,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let selectedCountry = tableView.cellForRow(at: indexPath) as! CountriesTableViewCell
-        //searchBarSearchButtonClicked(searchController.searchBar)
+        searchBarSearchButtonClicked(searchController.searchBar)
         
         if whichView == "addYear" {
             
@@ -439,7 +439,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 
                 selectedCountry.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
                 
-                if  filteredArray != nil {
+                if  shouldShowSearchResults && filteredArray != nil {
                     
                     selectedCountries = selectedCountries.filter{$0 != filteredArray[(indexPath as NSIndexPath).row]["_id"].string!}
                 }
@@ -457,9 +457,9 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
                 
                 selectedCountry.tintColor = mainOrangeColor
                 
-//                print("search: \(shouldShowSearchResults), \(filteredArray)")
+                print("search: \(shouldShowSearchResults), \(filteredArray)")
                 
-                if  filteredArray != nil {
+                if  shouldShowSearchResults && filteredArray != nil {
                     
                     print("in the filter array")
                     selectedCountries.append(filteredArray[(indexPath as NSIndexPath).row]["_id"].string!)
@@ -567,7 +567,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
                 if countries != nil {
             
-             if filteredArray != nil {
+             if shouldShowSearchResults && filteredArray != nil {
                 
                 cell.countryName.text = filteredArray[(indexPath as NSIndexPath).row]["name"].string!
 //                let image = filteredArray[(indexPath as NSIndexPath).row]["flag"].string!
@@ -666,9 +666,9 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if countries != nil  {
+        if  countries != nil  {
             
-            if  filteredArray != nil {
+            if shouldShowSearchResults && filteredArray != nil {
                 
                 return filteredArray.count
             }

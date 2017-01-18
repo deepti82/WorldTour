@@ -32,7 +32,7 @@ class AllReviewsViewController: UIViewController, UITableViewDelegate, UITableVi
         addShadowsToViews(view1)
         addShadowsToViews(view2)
         addShadowsToViews(view3)
-        
+        setTopNavigation("Review")
         print("bounds view 3: \(view3.frame.origin.x), \(view3.frame.origin.y)")
         
         let titleTab1 = UIButton(frame: CGRect(x: view3.frame.origin.x + 8, y: view3.frame.origin.y - 30, width: 122, height: 35))
@@ -135,6 +135,22 @@ class AllReviewsViewController: UIViewController, UITableViewDelegate, UITableVi
         myButton.layer.shadowRadius = 4
         
     }
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+
 
 }
 
