@@ -27,6 +27,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true
+        
         //header generation only
         header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 102 ))
         self.addSubview(header)
@@ -193,8 +194,6 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 
                 
                 self.addSubview(rateButton)
-                
-                
             }
             
             

@@ -46,17 +46,6 @@ extension UIViewController {
         self.slideMenuController()?.removeRightGestures()
         self.slideMenuController()?.addLeftGestures()
         self.slideMenuController()?.addRightGestures()
-        
-        
-        //        let logo = UIImage(named: "ic_action_panther.png")
-        //        let imageView = UIImageView(image:logo)
-        
-        //        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        //        imageView.frame = CGRectMake(0,14,50,50);
-        //
-        //        imageView.contentMode = UIViewContentMode.ScaleAspectFit;
-        //        imageView.center.x  = screenSize.width/2
-        //        self.navigationController?.view.addSubview(imageView)
     }
     
     func setNavigationBarItemText(_ text:String) {

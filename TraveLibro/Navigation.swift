@@ -2149,11 +2149,11 @@ class Navigation {
         
     }
     
-    func checkLocalLife(_ search: String, id: String, completion: @escaping ((JSON) -> Void)) {
+    func checkLocalLife(lat:String,lng:String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "user/getLocation", parameters: ["user": id])
+            let opt = try HTTP.POST(adminUrl + "user/getLocation", parameters: ["user": currentUser["_id"].stringValue,"lat":lat,"long":lng])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
