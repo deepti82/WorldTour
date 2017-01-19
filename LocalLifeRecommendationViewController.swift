@@ -213,9 +213,9 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.isSameCity = bol
 //        self.plusButton.isUserInteractionEnabled = bol
         if(bol) {
-            self.plusButton.alpha = 1
+            self.plusButton.imageView?.image = UIImage(named:"add_circleGreen")
         } else {
-            self.plusButton.alpha = 0.4
+            self.plusButton.imageView?.image = UIImage(named:"add_circleGrey")
         }
     }
     
