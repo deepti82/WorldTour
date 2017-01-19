@@ -21,7 +21,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    setTopNavigation("Reviews")
 //        if isEmptyProfile {
 //            
 //            let myLifeVC = self.parentViewController as! MyLifeViewController
@@ -38,6 +38,22 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

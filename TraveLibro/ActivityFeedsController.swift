@@ -36,6 +36,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             for post in request["data"].array! {
                 self.feeds.arrayObject?.append(post)
                 let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                checkIn.scrollView = self.activityScroll
                 checkIn.createProfileHeader(feed: post)
                 checkIn.activityFeed = self
                 self.layout.addSubview(checkIn)
@@ -64,7 +65,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             if(postView is ActivityFeedsLayout) {
                 let feeds = postView as! ActivityFeedsLayout
                 if(feeds.videoContainer != nil) {
-//                    feeds.videoToPlay()
+                    feeds.videoToPlay()
                 }
             }
         }
