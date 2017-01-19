@@ -13,6 +13,8 @@ class PhotoOTGFooter: UIView {
     
 //    @IBOutlet weak var LineView1: UIView!
     
+    
+    @IBOutlet weak var localLifeTravelImage: UIImageView!
     @IBOutlet weak var footerColorView: UIView!
     var postTop:Post!
     @IBOutlet weak var likeButton: SpringButton!

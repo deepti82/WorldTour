@@ -25,6 +25,7 @@
                 <outlet property="likeHeart" destination="bfn-CR-GZz" id="wdC-MJ-R8m"/>
                 <outlet property="likeViewLabel" destination="Xo7-24-z8R" id="IP9-Jg-YyA"/>
                 <outlet property="lineView" destination="qgD-cp-RTD" id="NKX-PC-1M7"/>
+                <outlet property="localLifeTravelImage" destination="J15-HS-0ab" id="yOa-6h-hJM"/>
                 <outlet property="optionButton" destination="ASX-oG-GBT" id="uEF-uR-bJj"/>
                 <outlet property="shareButton" destination="2DN-gJ-eGv" id="0aK-pp-5rB"/>
             </connections>
@@ -51,7 +52,7 @@
                                         <constraint firstAttribute="width" constant="23" id="Tjd-4k-myJ"/>
                                         <constraint firstAttribute="height" constant="23" id="jNN-uF-nfr"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="FB9FD553-A7BB-4F19-9161-EE340F6156B8"/>
+                                    <state key="normal" title="Button" image="A18FFF21-F052-4C5C-9B2C-74B1E09B760B"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                             <real key="value" value="2"/>
@@ -145,6 +146,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J15-HS-0ab">
+                            <rect key="frame" x="352" y="69" width="15" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="OGS-bv-8jn" firstAttribute="leading" secondItem="koM-1g-CgJ" secondAttribute="leading" id="22W-3Q-LLU"/>
@@ -174,7 +179,7 @@
         </view>
     </objects>
     <resources>
-        <image name="FB9FD553-A7BB-4F19-9161-EE340F6156B8" width="128" height="128">
+        <image name="A18FFF21-F052-4C5C-9B2C-74B1E09B760B" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

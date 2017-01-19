@@ -85,6 +85,8 @@
 		843510E21DF7F86400C3D8EE /* QuickIteneraryThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510E11DF7F86400C3D8EE /* QuickIteneraryThree.swift */; };
 		843510E41DF7F88100C3D8EE /* QuickIteneraryFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510E31DF7F88100C3D8EE /* QuickIteneraryFour.swift */; };
 		843510E61DF7F8A300C3D8EE /* QuickIteneraryFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843510E51DF7F8A300C3D8EE /* QuickIteneraryFive.swift */; };
+		8453CF3D1E30A12400C41F82 /* ActivityDetailItinerary.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8453CF3C1E30A12400C41F82 /* ActivityDetailItinerary.xib */; };
+		8453CF3F1E30A32300C41F82 /* ActivityDetailItinerary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453CF3E1E30A32300C41F82 /* ActivityDetailItinerary.swift */; };
 		845C43221E2F857A00800F51 /* ActivityFeedThoughts.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C43211E2F857A00800F51 /* ActivityFeedThoughts.xib */; };
 		845C43241E2F85CE00800F51 /* ActivityFeedThoughts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C43231E2F85CE00800F51 /* ActivityFeedThoughts.swift */; };
 		845C43271E2F8A4100800F51 /* ActivityFeedImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 845C43261E2F8A4100800F51 /* ActivityFeedImageView.xib */; };
@@ -526,6 +528,8 @@
 		843510E11DF7F86400C3D8EE /* QuickIteneraryThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryThree.swift; sourceTree = "<group>"; };
 		843510E31DF7F88100C3D8EE /* QuickIteneraryFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryFour.swift; sourceTree = "<group>"; };
 		843510E51DF7F8A300C3D8EE /* QuickIteneraryFive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickIteneraryFive.swift; sourceTree = "<group>"; };
+		8453CF3C1E30A12400C41F82 /* ActivityDetailItinerary.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityDetailItinerary.xib; sourceTree = "<group>"; };
+		8453CF3E1E30A32300C41F82 /* ActivityDetailItinerary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDetailItinerary.swift; sourceTree = "<group>"; };
 		845C43211E2F857A00800F51 /* ActivityFeedThoughts.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedThoughts.xib; sourceTree = "<group>"; };
 		845C43231E2F85CE00800F51 /* ActivityFeedThoughts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedThoughts.swift; sourceTree = "<group>"; };
 		845C43261E2F8A4100800F51 /* ActivityFeedImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedImageView.xib; sourceTree = "<group>"; };
@@ -966,6 +970,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				8453CF3B1E30A0BF00C41F82 /* ActivityDetailItinerary */,
 				845C432A1E2FB11100800F51 /* ActivityFeedFooter */,
 				845C43251E2F8A1600800F51 /* ActivityFeedImageView */,
 				845C43201E2F84D000800F51 /* ActivityFeedThoughts */,
@@ -1276,6 +1281,15 @@
 				842D7A561E1E6FBC00FEDCD1 /* Buttons2.swift */,
 			);
 			name = Buttons2;
+			sourceTree = "<group>";
+		};
+		8453CF3B1E30A0BF00C41F82 /* ActivityDetailItinerary */ = {
+			isa = PBXGroup;
+			children = (
+				8453CF3C1E30A12400C41F82 /* ActivityDetailItinerary.xib */,
+				8453CF3E1E30A32300C41F82 /* ActivityDetailItinerary.swift */,
+			);
+			name = ActivityDetailItinerary;
 			sourceTree = "<group>";
 		};
 		845C431F1E2F839700800F51 /* New Group */ = {
@@ -2605,6 +2619,7 @@
 				C24F84F01D004E59002EA203 /* NoFollowers.xib in Resources */,
 				C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */,
 				842484F61E13A4C000083115 /* PhotoOTGFooter.xib in Resources */,
+				8453CF3D1E30A12400C41F82 /* ActivityDetailItinerary.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
 				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
 				FCCA8F171E28AE7200775985 /* TripSummaryCell.xib in Resources */,
@@ -2820,6 +2835,7 @@
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
 				C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */,
 				3AF187021D78539D00A86BC1 /* DisplayPagesTwoViewController.swift in Sources */,
+				8453CF3F1E30A32300C41F82 /* ActivityDetailItinerary.swift in Sources */,
 				C263E3A91D1EAA4600D274FE /* FooterNavigation.swift in Sources */,
 				C26907841CF8275500F827E6 /* LocationTextField.swift in Sources */,
 				C28A92511D0EBF5900CFEC7A /* FilterCheckboxesViewController.swift in Sources */,
