@@ -42,7 +42,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         layout.addSubview(titleLabel)
         
 
-        let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
         myView.photoTop.image = UIImage(named: "restaurantsLocalLife")
         myView.topLabel.text = "Restaurants and Bars"
         myView.photoBottom1.image = UIImage(named: "naturesLocalLife")
@@ -51,7 +51,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView.bottomLabel2.text = "Sights and Landmarks"
         layout.addSubview(myView)
         
-        let myView2 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        let myView2 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
         myView2.photoTop.image = UIImage(named: "museumsLocalLife")
         myView2.topLabel.text = "Museums and Galleries"
         myView2.photoBottom1.image = UIImage(named: "adventureLocalLife")
@@ -60,7 +60,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView2.bottomLabel2.text = "Zoos and Aquariums"
         layout.addSubview(myView2)
         
-        let myView3 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        let myView3 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
         myView3.photoTop.image = UIImage(named: "bgeventsandfestival")
         myView3.topLabel.text = "Events and Festival"
         myView3.photoBottom1.image = UIImage(named: "bgshopping")
@@ -69,7 +69,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView3.bottomLabel2.text = "Beaches"
         layout.addSubview(myView3)
         
-        let myView4 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        let myView4 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
         myView4.photoTop.image = UIImage(named: "bgreligious")
         myView4.topLabel.text = "Religious"
         myView4.photoBottom1.image = UIImage(named: "bgcinemasandtheatre")
