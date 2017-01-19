@@ -90,8 +90,10 @@ public class PostVideo {
                 p.imageUrl = getDocumentsDirectory().appendingPathComponent( video[localUrl] )
                 all.append(p)
             }
+            
         }
         catch {
+            
         }
         return all
     }

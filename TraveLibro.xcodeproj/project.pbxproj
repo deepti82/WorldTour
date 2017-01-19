@@ -416,11 +416,11 @@
 		FCDF49081E25586C00ED9A32 /* previewBase.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCDF49071E25586C00ED9A32 /* previewBase.xib */; };
 		FCDF490A1E255A1C00ED9A32 /* previewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF49091E255A1C00ED9A32 /* previewBase.swift */; };
 		FCDF490D1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */; };
-		FCE877F31E2F56AC005EE913 /* feedsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877F21E2F56AC005EE913 /* feedsLayout.swift */; };
 		FCE877F51E308F70005EE913 /* ActivityTextHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE877F41E308F70005EE913 /* ActivityTextHeader.xib */; };
 		FCE877F71E308F8C005EE913 /* ActivityTextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877F61E308F8C005EE913 /* ActivityTextHeader.swift */; };
 		FCE877FA1E309386005EE913 /* ActivityHeaderTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE877F91E309386005EE913 /* ActivityHeaderTag.xib */; };
 		FCE877FC1E3093A4005EE913 /* ActivityHeaderTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */; };
+		FCE877FF1E30CA6A005EE913 /* ActivityFeedsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877FE1E30CA6A005EE913 /* ActivityFeedsLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -861,11 +861,11 @@
 		FCDF49071E25586C00ED9A32 /* previewBase.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = previewBase.xib; sourceTree = "<group>"; };
 		FCDF49091E255A1C00ED9A32 /* previewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = previewBase.swift; sourceTree = "<group>"; };
 		FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPhotosCollectionViewController.swift; sourceTree = "<group>"; };
-		FCE877F21E2F56AC005EE913 /* feedsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedsLayout.swift; sourceTree = "<group>"; };
 		FCE877F41E308F70005EE913 /* ActivityTextHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityTextHeader.xib; sourceTree = "<group>"; };
 		FCE877F61E308F8C005EE913 /* ActivityTextHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTextHeader.swift; sourceTree = "<group>"; };
 		FCE877F91E309386005EE913 /* ActivityHeaderTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityHeaderTag.xib; sourceTree = "<group>"; };
 		FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHeaderTag.swift; sourceTree = "<group>"; };
+		FCE877FE1E30CA6A005EE913 /* ActivityFeedsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedsLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1050,6 +1050,7 @@
 				1A944E3B1CCB5D79007EB5BD /* OrangeButton */,
 				C23EB1D21CFECF72005B5CE8 /* PhotoBar */,
 				C2488AB41D51BF0700FD5306 /* PhotoList */,
+				FCE878001E30CB59005EE913 /* ActivityFeedsLayout */,
 				C2A6E26E1CE9E5DE00D3F845 /* PhotosOTG */,
 				C24B45661D0AF3D2002EA009 /* PopularAgents */,
 				C2504E801CF33A0200A84D78 /* PopularJourneyView */,
@@ -2098,7 +2099,6 @@
 				C2A6E2661CE9D48A00D3F845 /* PhotosOTG.xib */,
 				C2A6E2681CE9DA8B00D3F845 /* PhotosOTG.swift */,
 				3690AB721E1CFA8500642A6A /* PhotosOTG2.swift */,
-				FCE877F21E2F56AC005EE913 /* feedsLayout.swift */,
 			);
 			name = PhotosOTG;
 			sourceTree = "<group>";
@@ -2406,6 +2406,14 @@
 				FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */,
 			);
 			name = ActivityHeaderTag;
+			sourceTree = "<group>";
+		};
+		FCE878001E30CB59005EE913 /* ActivityFeedsLayout */ = {
+			isa = PBXGroup;
+			children = (
+				FCE877FE1E30CA6A005EE913 /* ActivityFeedsLayout.swift */,
+			);
+			name = ActivityFeedsLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2872,7 +2880,6 @@
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
 				FC0B9A971E1FB7C8005D9206 /* QuickCountry.swift in Sources */,
 				FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */,
-				FCE877F31E2F56AC005EE913 /* feedsLayout.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
 				3ACB7A681D7841FD008247B6 /* DisplayPagesOneViewController.swift in Sources */,
 				1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */,
@@ -3058,6 +3065,7 @@
 				C25297261DF00E92007A8571 /* Extensions.swift in Sources */,
 				C24909BC1D4A3E41007EB6B4 /* AddPostsOTGView.swift in Sources */,
 				842484F91E13A9E600083115 /* PhotosOTGHeader.swift in Sources */,
+				FCE877FF1E30CA6A005EE913 /* ActivityFeedsLayout.swift in Sources */,
 				C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */,
 				C2FA1E171D5495870034DE97 /* QuickItinerariesViewController.swift in Sources */,
 				C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */,

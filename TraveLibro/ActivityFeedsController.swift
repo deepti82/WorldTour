@@ -8,15 +8,20 @@
 
 import UIKit
 
+var globalActivityFeedsController:ActivityFeedsController!
+
+
 class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var activityScroll: UIScrollView!
     var layout: VerticalLayout!
     var feeds: JSON! = []
     var pageno = 1
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalActivityFeedsController = self
         activityScroll.delegate = self
         getDarkBackGround(self)
         layout = VerticalLayout(width: screenWidth )
@@ -30,7 +35,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
 
             for post in request["data"].array! {
                 self.feeds.arrayObject?.append(post)
-                let checkIn = feedsLayout(width: self.view.frame.width)
+                let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
                 checkIn.createProfileHeader(feed: post)
                 checkIn.activityFeed = self
                 self.layout.addSubview(checkIn)
@@ -52,7 +57,16 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
             print("in load more of data.")
-            getActivity(pageNumber: pageno + 1)
+//            getActivity(pageNumber: pageno + 1)
+        }
+        
+        for postView in layout.subviews {
+            if(postView is ActivityFeedsLayout) {
+                let feeds = postView as! ActivityFeedsLayout
+                if(feeds.videoContainer != nil) {
+//                    feeds.videoToPlay()
+                }
+            }
         }
     }
     
