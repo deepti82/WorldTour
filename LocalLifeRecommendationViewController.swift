@@ -77,14 +77,18 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView4.photoBottom2.image = UIImage(named: "bghotelsandaccom")
         myView4.bottomLabel2.text = "Hotels and accommodations"
         layout.addSubview(myView4)
+        
+        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: -16, width: self.view.frame.width, height: 188))
+        myView5.photoTop.isHidden = true
+        myView5.clipsToBounds = true
+        layout.addSubview(myView5)
 
         let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
         self.view.addSubview(footer)
         
         self.detectLocation(UIButton())
         
-//        let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
-//        layout.addSubview(myView5)
+       
         
         
         
