@@ -244,8 +244,8 @@
                                         </imageView>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nL6-3q-GMr">
-                                    <rect key="frame" x="230" y="-17" width="186" height="45"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nL6-3q-GMr">
+                                    <rect key="frame" x="235" y="-17" width="161" height="45"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="PPf-fe-VPq">
                                             <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
@@ -258,15 +258,19 @@
                                             <rect key="frame" x="47" y="0.0" width="45" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="45" id="0rG-hH-Hbk"/>
-                                                <constraint firstAttribute="width" constant="45" id="5lF-9q-0f8"/>
+                                                <constraint firstAttribute="width" constant="45" id="sBT-tZ-0bX"/>
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="WjW-hp-cGM">
                                             <rect key="frame" x="94" y="0.0" width="45" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="45" id="ptd-pp-zfJ"/>
+                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdm-8p-FYV">
-                                            <rect key="frame" x="141" y="0.0" width="45" height="45"/>
+                                            <rect key="frame" x="141" y="0.0" width="20" height="45"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="qxK-e2-Jgu"/>
                                                 <constraint firstAttribute="height" constant="45" id="rQ0-sE-6Kx"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
@@ -274,9 +278,6 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Fdm-8p-FYV" secondAttribute="trailing" id="cH6-E1-XOg"/>
-                                    </constraints>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -377,7 +378,7 @@
                 <constraint firstItem="W5b-nR-cLh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="1" id="AcH-gt-IXo"/>
                 <constraint firstItem="Aqf-8y-8EK" firstAttribute="top" secondItem="aZc-x0-efS" secondAttribute="bottom" constant="35" id="CNS-dl-bGa"/>
                 <constraint firstItem="W5e-5K-0xm" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-4" id="Cmc-dk-wtV"/>
-                <constraint firstAttribute="trailing" secondItem="nL6-3q-GMr" secondAttribute="trailing" constant="-16" id="Eu0-Sj-Aq0"/>
+                <constraint firstAttribute="trailing" secondItem="nL6-3q-GMr" secondAttribute="trailing" constant="4" id="Eu0-Sj-Aq0"/>
                 <constraint firstItem="IfS-Jb-lY3" firstAttribute="top" secondItem="aZc-x0-efS" secondAttribute="bottom" constant="35" id="FWS-Cd-qYb"/>
                 <constraint firstAttribute="trailing" secondItem="lhn-pK-LF4" secondAttribute="trailing" constant="50" id="HEN-dc-m9S"/>
                 <constraint firstItem="aZc-x0-efS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="IrR-Vi-FLl"/>
