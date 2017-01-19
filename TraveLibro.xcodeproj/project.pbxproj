@@ -413,6 +413,10 @@
 		FCDF490A1E255A1C00ED9A32 /* previewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF49091E255A1C00ED9A32 /* previewBase.swift */; };
 		FCDF490D1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */; };
 		FCE877F31E2F56AC005EE913 /* feedsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877F21E2F56AC005EE913 /* feedsLayout.swift */; };
+		FCE877F51E308F70005EE913 /* ActivityTextHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE877F41E308F70005EE913 /* ActivityTextHeader.xib */; };
+		FCE877F71E308F8C005EE913 /* ActivityTextHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877F61E308F8C005EE913 /* ActivityTextHeader.swift */; };
+		FCE877FA1E309386005EE913 /* ActivityHeaderTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE877F91E309386005EE913 /* ActivityHeaderTag.xib */; };
+		FCE877FC1E3093A4005EE913 /* ActivityHeaderTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -850,6 +854,10 @@
 		FCDF49091E255A1C00ED9A32 /* previewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = previewBase.swift; sourceTree = "<group>"; };
 		FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickPhotosCollectionViewController.swift; sourceTree = "<group>"; };
 		FCE877F21E2F56AC005EE913 /* feedsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedsLayout.swift; sourceTree = "<group>"; };
+		FCE877F41E308F70005EE913 /* ActivityTextHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityTextHeader.xib; sourceTree = "<group>"; };
+		FCE877F61E308F8C005EE913 /* ActivityTextHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTextHeader.swift; sourceTree = "<group>"; };
+		FCE877F91E309386005EE913 /* ActivityHeaderTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityHeaderTag.xib; sourceTree = "<group>"; };
+		FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHeaderTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1073,7 +1081,9 @@
 				FCCA8F1C1E28B64100775985 /* TripSummaryCell */,
 				FCCA8F261E28C3AE00775985 /* TripSummaryFooter */,
 				FCCA8F211E28B98E00775985 /* TripSummaryMiddle */,
+				FCE877FD1E3093B0005EE913 /* ActivityHeaderTag */,
 				FCBF88D11E2E58C30092CB9D /* ActivityProfileHeader */,
+				FCE877F81E308FC2005EE913 /* ActivityTextHeader */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2352,6 +2362,24 @@
 			name = previewBase;
 			sourceTree = "<group>";
 		};
+		FCE877F81E308FC2005EE913 /* ActivityTextHeader */ = {
+			isa = PBXGroup;
+			children = (
+				FCE877F41E308F70005EE913 /* ActivityTextHeader.xib */,
+				FCE877F61E308F8C005EE913 /* ActivityTextHeader.swift */,
+			);
+			name = ActivityTextHeader;
+			sourceTree = "<group>";
+		};
+		FCE877FD1E3093B0005EE913 /* ActivityHeaderTag */ = {
+			isa = PBXGroup;
+			children = (
+				FCE877F91E309386005EE913 /* ActivityHeaderTag.xib */,
+				FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */,
+			);
+			name = ActivityHeaderTag;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2554,6 +2582,7 @@
 				1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */,
 				C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */,
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
+				FCE877F51E308F70005EE913 /* ActivityTextHeader.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,
 				C2E8F2D51D897D890034CEC6 /* AddActivityNew.xib in Resources */,
 				C23EB1CF1CFEC731005B5CE8 /* PhotoBar.xib in Resources */,
@@ -2593,6 +2622,7 @@
 				842484F41E139FBB00083115 /* PhotosOTGHeader.xib in Resources */,
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
 				3AF187081D785C9D00A86BC1 /* forDpFour.xib in Resources */,
+				FCE877FA1E309386005EE913 /* ActivityHeaderTag.xib in Resources */,
 				C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */,
 				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
@@ -2777,6 +2807,7 @@
 				845C432E1E2FCE4200800F51 /* ActivityFeedFooter.swift in Sources */,
 				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
+				FCE877FC1E3093A4005EE913 /* ActivityHeaderTag.swift in Sources */,
 				843510E41DF7F88100C3D8EE /* QuickIteneraryFour.swift in Sources */,
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
 				C26B4DEF1D14288900213055 /* ConnectWithAgentViewController.swift in Sources */,
@@ -2860,6 +2891,7 @@
 				36EB3F981E0D81A000EFF9EC /* PostBuddy.swift in Sources */,
 				C23EB1D71CFED335005B5CE8 /* LocalLifeRecommends.swift in Sources */,
 				3638F9E51E2C226200B2EA04 /* VideoView.swift in Sources */,
+				FCE877F71E308F8C005EE913 /* ActivityTextHeader.swift in Sources */,
 				1A4CA1201CCE189200EE9A90 /* AddCircle.swift in Sources */,
 				3A7D360D1DE8733D00786A83 /* CreatePostViewController.swift in Sources */,
 				C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */,

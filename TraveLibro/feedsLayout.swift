@@ -12,19 +12,42 @@ class feedsLayout: VerticalLayout  {
 
 //    var feed: JSON!
     var profileHeader: ActivityProfileHeader!
+    var textHeader: ActivityTextHeader!
     var activityFeed: ActivityFeedsController!
+    var textTag: ActivityHeaderTag!
+    
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
     func createProfileHeader(feed:JSON) {
+        
+        //  START ACTIVITY PROFIILE HEADER
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 85))
         profileHeader.userName.text = feed["user"]["name"].stringValue
         profileHeader.profilePic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["user"]["profilePicture"])", width: 100))
         profileHeader.localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["createdAt"].stringValue, isDate: true)
         profileHeader.localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
         
-        profileHeader.category.setImage(UIImage(named:getCategoryImage(name: feed["checkIn"]["category"].stringValue)), for: .normal)
+        if getCategoryImage(name: feed["checkIn"]["category"].stringValue) != "" {
+            profileHeader.category.setImage(UIImage(named:getCategoryImage(name: feed["checkIn"]["category"].stringValue)), for: .normal)
+        }
 
         self.addSubview(profileHeader)
+        
+        if feed["thoughts"].stringValue != "" {
+            
+            //  START ACTIVITY TEXT HEADER
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+            textHeader.headerText.text = "yahooooooo demo.yahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demo"
+            textHeader.sizeToFit()
+            self.addSubview(textHeader)
+            
+            //  START ACTIVITY TEXT TAG
+            textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 20))
+            self.addSubview(textTag)
+
+        }
+        
+        
         self.layoutSubviews()
     }
     
@@ -48,7 +71,7 @@ class feedsLayout: VerticalLayout  {
     }
     
     func getCategoryImage(name: String) -> String {
-        var str:String!
+        var str:String! = ""
         for img in imageArr {
             print(img)
             print(String(name.characters.suffix(4)))
