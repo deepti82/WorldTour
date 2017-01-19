@@ -1206,6 +1206,39 @@ class Navigation {
         }
         
     }
+    //Local Life JSON
+    func postLocalLifeJson(_ params: JSON, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let jsonData = try params.rawData()
+            let url = URL(string: adminUrl + "post/saveLocal")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                do {
+                    print(data);
+                    print(response);
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            task.resume()
+        } catch
+        {
+            print("error getting xml string: \(error)")
+        }
+        
+    }
     
     //  quick itinerery
     func postQuickitenary(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON, completion: @escaping ((JSON) -> Void)) {

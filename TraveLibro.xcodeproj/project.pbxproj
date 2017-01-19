@@ -30,6 +30,7 @@
 		1A944E491CCB8C9F007EB5BD /* JourneyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */; };
 		36006DB11DBB346600C7F44B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36006DB01DBB346600C7F44B /* SwiftyJSON.swift */; };
 		360C1A8F1E02A6F0009780B3 /* ConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */; };
+		36200B9F1E30E0B700BFA227 /* LocalLifePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36200B9E1E30E0B700BFA227 /* LocalLifePostModel.swift */; };
 		362FA0CA1E1E78E500267736 /* PostEditPhotosVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */; };
 		3638F9E31E2C224800B2EA04 /* VideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3638F9E21E2C224800B2EA04 /* VideoView.xib */; };
 		3638F9E51E2C226200B2EA04 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3638F9E41E2C226200B2EA04 /* VideoView.swift */; };
@@ -471,6 +472,7 @@
 		1A944E481CCB8C9F007EB5BD /* JourneyTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JourneyTitleView.swift; sourceTree = "<group>"; };
 		36006DB01DBB346600C7F44B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigModel.swift; sourceTree = "<group>"; };
+		36200B9E1E30E0B700BFA227 /* LocalLifePostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLifePostModel.swift; sourceTree = "<group>"; };
 		362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEditPhotosVideos.swift; sourceTree = "<group>"; };
 		3638F9E21E2C224800B2EA04 /* VideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoView.xib; sourceTree = "<group>"; };
 		3638F9E41E2C226200B2EA04 /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
@@ -1358,6 +1360,7 @@
 				363A7C771E29ED94001CB126 /* PostVideo.swift */,
 				36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */,
 				C27C48081DB5ECDF00330ABF /* PostModel.swift */,
+				36200B9E1E30E0B700BFA227 /* LocalLifePostModel.swift */,
 				362FA0C91E1E78E500267736 /* PostEditPhotosVideos.swift */,
 				C2488AB51D51D0E100FD5306 /* Navigation.swift */,
 				360C1A8E1E02A6F0009780B3 /* ConfigModel.swift */,
@@ -3007,6 +3010,7 @@
 				845C43291E2F8A6700800F51 /* ActivityFeedImageView.swift in Sources */,
 				C24909B61D4A061C007EB6B4 /* TripSummaryPhotoGridViewController.swift in Sources */,
 				C2A27A5A1CEDE4FA00F74DD1 /* AddDisplayPic.swift in Sources */,
+				36200B9F1E30E0B700BFA227 /* LocalLifePostModel.swift in Sources */,
 				C25C27EF1D4735BE00C21F23 /* KindOfJourneyOTGViewController.swift in Sources */,
 				3AF187101D786B2300A86BC1 /* DisplayPagesThreeViewController.swift in Sources */,
 				C2E159BB1D740A8300A5B721 /* EmptyScreenView.swift in Sources */,

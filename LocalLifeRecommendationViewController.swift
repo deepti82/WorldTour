@@ -12,7 +12,7 @@ import UIKit
 import CoreLocation
 
 class LocalLifeRecommendationViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CLLocationManagerDelegate {
-
+    var currentTime =  ""
     var addView:AddActivityNew!
     var backView:UIView!
     var newScroll:UIScrollView!
@@ -31,7 +31,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         getDarkBackGround(self)
         self.layout = VerticalLayout(width:screenWidth)
         self.setNavigationBarItemText("Local Life")
-   
+        
         self.thisScroll.addSubview(layout)
         
         titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
@@ -42,7 +42,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         titleLabel.textColor = UIColor.white
         layout.addSubview(titleLabel)
         
-
+        
         let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
         myView.photoTop.image = UIImage(named: "restaurantsLocalLife")
         myView.topLabel.text = "Restaurants and Bars"
@@ -86,19 +86,13 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView5.bottomLabel1.text = "Airport"
         myView5.photoBottom2.image = UIImage(named: "bgother")
         myView5.bottomLabel2.text = "Others"
-
+        
         layout.addSubview(myView5)
-
+        
         let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
         self.view.addSubview(footer)
-        
         self.detectLocation(UIButton())
-        
-       
-        
         self.changeAddButton(false)
-        
-
         self.addHeightToLayout();
     }
     
@@ -110,7 +104,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.layout.layoutSubviews()
         self.thisScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -183,7 +177,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             backView.layer.zPosition = 10
             newScroll.contentSize.height = self.view.frame.height
         }
-
+        
     }
     
     
@@ -193,12 +187,67 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     func newPost(_ sender: UIButton) {
         hideAddActivity()
+        
+        
+        let post  = LocalLifePostModel();
+        
+        let buddies = JSON(self.addView.addedBuddies).rawString()
+        
+        var lat = ""
+        if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
+            lat = String(self.addView.currentLat!)
+            if(lat == "0.0") {
+                lat = ""
+            }
+        }
+        var lng = ""
+        if self.addView.currentLong != nil && self.addView.currentLong != 0.0 {
+            lng = String(self.addView.currentLong!)
+            if(lng == "0.0") {
+                lng = ""
+            }
+        }
+        var category = ""
+        if self.addView.categoryLabel.text! != nil {
+            category = self.addView.categoryLabel.text!
+            if(category == "") {
+                category = ""
+            }
+        }
+        
+        var location = ""
+        if self.addView.addLocationButton.titleLabel?.text! != nil {
+            location = (self.addView.addLocationButton.titleLabel?.text)!
+            if(location == "Add Location") {
+                location = ""
+            }
+        }
+        
+        var thoughts = ""
+        if self.addView.thoughtsTextView.text! != nil {
+            thoughts = self.addView.thoughtsTextView.text!
+            if(thoughts == "Fill Me In...") {
+                thoughts = ""
+            }
+        }
+        
+        let dateFormatterTwo = DateFormatter()
+        dateFormatterTwo.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        self.currentTime = dateFormatterTwo.string(from: Date())
+        
+        if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
+            let po = post.setPost(currentUser["_id"].string!, JourneyId: "", Type: "local-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
+            
+            let i = PostImage()
+            i.uploadPhotos()
+            self.addView.postButton.isHidden = true
+        }
     }
     
     func hideAddActivity() {
         addView.removeFromSuperview()
         backView.removeFromSuperview()
-
+        
         self.setNavigationBarItemText("Local Life")
         let rightBarButton = UIBarButtonItem()
         self.navigationItem.rightBarButtonItem = rightBarButton
@@ -211,11 +260,11 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     func changeAddButton(_ bol:Bool) {
         self.isSameCity = bol
-//        self.plusButton.isUserInteractionEnabled = bol
+        //        self.plusButton.isUserInteractionEnabled = bol
         if(bol) {
-            self.plusButton.imageView?.image = UIImage(named:"add_circleGreen")
+            self.plusButton.setImage(UIImage(named:"add_circleGreen"), for: UIControlState())
         } else {
-            self.plusButton.imageView?.image = UIImage(named:"add_circleGrey")
+            self.plusButton.setImage(UIImage(named:"add_circleGrey"), for: UIControlState())
         }
     }
     
@@ -254,15 +303,15 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             
         }
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

@@ -94,9 +94,8 @@ public class PostEditPhotosVideos {
                 })
             }
             if(!check) {
-                if globalNewTLViewController != nil {
-                    globalNewTLViewController.getJourney()
-                }
+                let po = LocalLifePostModel();
+                po.uploadPost()
             }
         }
         catch {
