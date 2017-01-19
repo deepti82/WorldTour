@@ -14,9 +14,14 @@ class VideoView: UIView {
     var player:Player!
     var defaultMute = true
     @IBOutlet weak var toggleSound: UIButton!
+    @IBOutlet weak var tagText: UILabel!
+    @IBOutlet weak var tagView: UIView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        tagView.clipsToBounds = true
+        tagView.layer.cornerRadius = 5
+
     }
     
     required init?(coder aDecoder: NSCoder) {

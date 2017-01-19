@@ -23,7 +23,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var player:Player!
     var centerView:PhotosOTGView!
 
-
+    var scrollView:UIScrollView!
     
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
@@ -167,19 +167,22 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         centerView.morePhotosView.contentSize = CGSize(width: centerView.horizontalScrollForPhotos.frame.width, height: centerView.horizontalScrollForPhotos.frame.height)
     }
     
-//    func videoToPlay ()  {
-//        let min = self.frame.origin.y + self.videoContainer.frame.origin.y
-//        let max = min + self.videoContainer.frame.size.height
-//        let scrollMin = scrollView.contentOffset.y
-//        let scrollMax = scrollMin + scrollView.frame.height
-//        if(scrollMin < min && scrollMax > max ) {
-//            self.player.playFromCurrentTime()
-//        }
-//        else {
-//            self.player.pause()
-//        }
-//    }
+    func videoToPlay ()  {
+        let min = self.frame.origin.y + self.videoContainer.frame.origin.y
+        let max = min + self.videoContainer.frame.size.height
+        let scrollMin = self.scrollView.contentOffset.y
+        let scrollMax = scrollMin + self.scrollView.frame.height
+        if(scrollMin < min && scrollMax > max ) {
+            self.player.playFromCurrentTime()
+        }
+        else {
+            self.player.pause()
+        }
+    }
 
+    func playerReady(_ player: Player) {
+        videoToPlay()
+    }
     
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
