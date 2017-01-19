@@ -36,25 +36,33 @@
                         <constraint firstAttribute="height" constant="528" id="Cos-QS-ayB"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="bim-uQ-UMc">
-                    <rect key="frame" x="14" y="72" width="40" height="40"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="I6o-eJ-kUq">
+                    <rect key="frame" x="14" y="72" width="90" height="40"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="bim-uQ-UMc">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="atB-GX-rpg"/>
+                                <constraint firstAttribute="width" constant="40" id="qZD-LC-DL7"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="XxP-9h-DWR">
+                            <rect key="frame" x="25" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="RlG-lP-Adg"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="UV2-ro-G1h">
+                            <rect key="frame" x="50" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="Bqd-vZ-f9C"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="atB-GX-rpg"/>
-                        <constraint firstAttribute="width" constant="40" id="qZD-LC-DL7"/>
+                        <constraint firstAttribute="height" constant="40" id="dso-It-Kbl"/>
                     </constraints>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="XxP-9h-DWR">
-                    <rect key="frame" x="44" y="72" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="RlG-lP-Adg"/>
-                    </constraints>
-                </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="UV2-ro-G1h">
-                    <rect key="frame" x="76" y="72" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="Bqd-vZ-f9C"/>
-                    </constraints>
-                </imageView>
+                </stackView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bluebox" translatesAutoresizingMaskIntoConstraints="NO" id="1LT-LG-HMP">
                     <rect key="frame" x="304" y="34" width="55" height="55"/>
                     <constraints>
@@ -84,7 +92,7 @@
                     <rect key="frame" x="4" y="520" width="367" height="70"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Love In Paris" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mam-23-aNV">
-                            <rect key="frame" x="12" y="8" width="179" height="31"/>
+                            <rect key="frame" x="12" y="8" width="179" height="30.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="179" id="UMe-WR-rlV"/>
                             </constraints>
@@ -108,7 +116,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oha-bg-uWe">
-                            <rect key="frame" x="188" y="35" width="83" height="20"/>
+                            <rect key="frame" x="188" y="35.5" width="83" height="19.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="83" id="cNc-EZ-ow8"/>
                             </constraints>
@@ -148,28 +156,22 @@
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="UV2-ro-G1h" firstAttribute="leading" secondItem="bim-uQ-UMc" secondAttribute="trailing" constant="22" id="AXd-ql-WgE"/>
                 <constraint firstAttribute="trailing" secondItem="z24-8B-nCF" secondAttribute="trailing" constant="4" id="BfR-BU-4vW"/>
+                <constraint firstItem="I6o-eJ-kUq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="72" id="CeL-Pa-l28"/>
                 <constraint firstAttribute="trailing" secondItem="A0e-Q5-EUW" secondAttribute="trailing" constant="23" id="DKO-SA-rOm"/>
                 <constraint firstItem="A0e-Q5-EUW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="EPC-DC-Kqy"/>
                 <constraint firstItem="A0e-Q5-EUW" firstAttribute="trailing" secondItem="hTK-AH-Yaz" secondAttribute="trailing" id="HYs-V3-HvR"/>
-                <constraint firstItem="bim-uQ-UMc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="HdX-Vc-FTc"/>
-                <constraint firstItem="XxP-9h-DWR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="72" id="JYN-2b-GQN"/>
-                <constraint firstItem="XxP-9h-DWR" firstAttribute="bottom" secondItem="UV2-ro-G1h" secondAttribute="bottom" id="Jck-Dv-N1o"/>
+                <constraint firstItem="I6o-eJ-kUq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="HxU-Op-ZeV"/>
                 <constraint firstItem="z24-8B-nCF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="4" id="KXe-QY-aun"/>
                 <constraint firstItem="A0e-Q5-EUW" firstAttribute="leading" secondItem="hTK-AH-Yaz" secondAttribute="leading" id="LBV-am-9yx"/>
                 <constraint firstItem="A0e-Q5-EUW" firstAttribute="centerX" secondItem="1LT-LG-HMP" secondAttribute="centerX" id="O72-u8-Ujd"/>
-                <constraint firstItem="XxP-9h-DWR" firstAttribute="centerY" secondItem="bim-uQ-UMc" secondAttribute="centerY" id="V4b-Bn-iIj"/>
                 <constraint firstItem="1LT-LG-HMP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="34" id="X5U-SV-ggc"/>
                 <constraint firstAttribute="bottom" secondItem="eLF-mr-ZG6" secondAttribute="bottom" id="cqo-a2-u0t"/>
                 <constraint firstItem="z24-8B-nCF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dRB-Ww-b2d"/>
                 <constraint firstAttribute="trailing" secondItem="1LT-LG-HMP" secondAttribute="trailing" constant="16" id="hff-17-sAx"/>
                 <constraint firstAttribute="bottom" secondItem="z24-8B-nCF" secondAttribute="bottom" id="l9B-Js-iFU"/>
                 <constraint firstItem="hTK-AH-Yaz" firstAttribute="top" secondItem="A0e-Q5-EUW" secondAttribute="bottom" constant="1" id="q6h-yr-orX"/>
-                <constraint firstItem="XxP-9h-DWR" firstAttribute="top" secondItem="UV2-ro-G1h" secondAttribute="top" id="rVk-BM-aVN"/>
-                <constraint firstItem="XxP-9h-DWR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="44" id="s02-h2-21a"/>
                 <constraint firstItem="eLF-mr-ZG6" firstAttribute="leading" secondItem="z24-8B-nCF" secondAttribute="leading" id="urU-wZ-tLS"/>
-                <constraint firstItem="XxP-9h-DWR" firstAttribute="top" secondItem="bim-uQ-UMc" secondAttribute="top" id="vIg-nX-Huw"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="871.5" y="-394"/>
