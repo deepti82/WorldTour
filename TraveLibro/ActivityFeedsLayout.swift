@@ -22,6 +22,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var videoContainer:VideoView!
     var player:Player!
     var centerView:PhotosOTGView!
+    var footerView: PhotoOTGFooter!
+    var activityFeedImage: ActivityFeedImageView!
 
     var scrollView:UIScrollView!
     
@@ -46,13 +48,14 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             //  START ACTIVITY TEXT HEADER
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            textHeader.headerText.text = "yahooooooo demo.yahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demoyahooooooo demo"
+            textHeader.headerText.text = feed["thoughts"].stringValue
             textHeader.sizeToFit()
+//            textHeader.getw
             self.addSubview(textHeader)
             
             //  START ACTIVITY TEXT TAG
-            if feed["videos"].count == 0 && feed["photos"].count == 0 {
-                textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 20))
+            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
+                textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
                 self.addSubview(textTag)
             }
             
@@ -86,7 +89,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(mainPhoto)
             let heightForBlur = 10;
             var thumbStr = "";
-            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 100)
+            let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 300)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in
                 self.mainPhoto.image = UIImage(data: data as Data)
@@ -118,13 +121,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             })
         }
         
-//        else if(post.post_locationImage != nil && post.post_locationImage != "") {
-//            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-//            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-//            self.mainPhoto.image = UIImage(named: "logo-default")
-//            self.mainPhoto.hnk_setImageFromURL(URL(string:post.post_locationImage)!)
-//            self.addSubview(mainPhoto)
-//        }
         
         //End of Image
         var showImageIndexStart = 1
@@ -138,6 +134,21 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(centerView)
         }
         //End of Center
+        
+        switch feed["type"].stringValue {
+        case "on-the-go-journey":
+            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
+            activityFeedImage.clipsToBounds = true
+            self.addSubview(activityFeedImage)
+        default:
+            print("default")
+        }
+        
+        //Footer Generation Only
+        footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+        self.addSubview(footerView)
+        
+        //End of Footer
         
         
         
@@ -153,7 +164,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
                 photosButton.frame.size.height = 82
                 photosButton.frame.size.width = 82
-                let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 100)
+                let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
                 photosButton.hnk_setImageFromURL(urlStr)
                     let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))
                     photosButton.isUserInteractionEnabled = true

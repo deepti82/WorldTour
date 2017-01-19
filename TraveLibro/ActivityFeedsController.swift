@@ -40,6 +40,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 checkIn.createProfileHeader(feed: post)
                 checkIn.activityFeed = self
                 self.layout.addSubview(checkIn)
+                 self.addHeightToLayout()
                 
             }
                 

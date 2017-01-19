@@ -68,7 +68,14 @@ class RatingCheckIn: UIView {
         rating.post = photosOtg.postTop
         rating.checkIn = self
         rating.json = self.review
-        rating.starCount = Int(review["rating"].stringValue)!
+        print(review)
+        if review["rating"] != nil  {
+            rating.starCount = Int(review["rating"].stringValue)!
+
+        }else{
+            rating.starCount = 0
+
+        }
         rating.ratingDisplay(rating.json)
         
         rating.center = backgroundReview.center
