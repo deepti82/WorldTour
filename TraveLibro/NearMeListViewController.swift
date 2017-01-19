@@ -29,7 +29,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         getDarkBackGround(self)
         navigationController?.hidesBarsOnSwipe = false
         //nearMeListTableView.isHidden = true
-        
+        setTopNavigation(nearMeType)
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -145,6 +145,23 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         invisibleView.backgroundColor = UIColor.clear
         return invisibleView
     }
+    
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+
 
 }
 

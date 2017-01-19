@@ -89,7 +89,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bon Voyage!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0m-qZ-68a" customClass="SpringLabel" customModule="Spring">
-                    <rect key="frame" x="238" y="8" width="70" height="50"/>
+                    <rect key="frame" x="238" y="33" width="70" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="jjM-bC-cuR"/>
                         <constraint firstAttribute="height" constant="50" id="rcw-wD-Sie"/>
@@ -406,7 +406,7 @@
                 <constraint firstItem="W5e-5K-0xm" firstAttribute="top" secondItem="aZc-x0-efS" secondAttribute="bottom" constant="35" id="pPO-p2-siQ"/>
                 <constraint firstItem="6mK-u8-TND" firstAttribute="bottom" secondItem="Aqf-8y-8EK" secondAttribute="top" constant="-3" id="rXt-fT-Xyd"/>
                 <constraint firstItem="W5b-nR-cLh" firstAttribute="top" secondItem="t7r-hX-X00" secondAttribute="bottom" constant="30" id="sp6-U5-qEZ"/>
-                <constraint firstItem="l0m-qZ-68a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="wHn-cm-DuF"/>
+                <constraint firstItem="l0m-qZ-68a" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="33" id="wHn-cm-DuF"/>
                 <constraint firstItem="6mK-u8-TND" firstAttribute="top" secondItem="aZc-x0-efS" secondAttribute="bottom" constant="-3" id="wjm-QV-YRV"/>
                 <constraint firstItem="aZc-x0-efS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yHL-Yb-eXm"/>
             </constraints>
