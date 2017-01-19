@@ -32,7 +32,7 @@ class AllReviewsViewController: UIViewController, UITableViewDelegate, UITableVi
         addShadowsToViews(view1)
         addShadowsToViews(view2)
         addShadowsToViews(view3)
-        setTopNavigation("Review")
+        
         print("bounds view 3: \(view3.frame.origin.x), \(view3.frame.origin.y)")
         
         let titleTab1 = UIButton(frame: CGRect(x: view3.frame.origin.x + 8, y: view3.frame.origin.y - 30, width: 122, height: 35))
