@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -33,40 +33,54 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="172" id="b3j-ng-Kqm"/>
                         <constraint firstAttribute="width" constant="188" id="mGq-SZ-0eQ"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="172" id="wJT-Pm-OvY"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="188" id="xv2-3h-FVj"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="resort_scene" translatesAutoresizingMaskIntoConstraints="NO" id="S2r-8m-C9I">
                     <rect key="frame" x="204" y="220" width="188" height="172"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="172" id="pkf-rB-Uh8"/>
+                        <constraint firstAttribute="width" constant="188" id="wTE-eR-SNA"/>
+                    </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zx-3e-7LH">
                     <rect key="frame" x="8" y="220" width="188" height="172"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="3oL-Ve-gz3">
-                            <rect key="frame" x="8" y="144.5" width="120.5" height="19.5"/>
+                            <rect key="frame" x="8" y="144.5" width="150" height="19.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cinemas &amp; Theatre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bl1-rB-EZ8">
-                                    <rect key="frame" x="0.0" y="0.0" width="120.5" height="19.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="19.5"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="Y8K-Xl-aWV"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="3oL-Ve-gz3" firstAttribute="bottom" secondItem="8Zx-3e-7LH" secondAttribute="bottomMargin" id="38F-P5-Ee2"/>
                         <constraint firstItem="3oL-Ve-gz3" firstAttribute="leading" secondItem="8Zx-3e-7LH" secondAttribute="leadingMargin" id="KTr-W8-m7Q"/>
+                        <constraint firstAttribute="width" constant="188" id="WIW-Lo-8yJ"/>
+                        <constraint firstAttribute="height" constant="172" id="n25-Z7-nX6"/>
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ksi-Aa-PZn">
                     <rect key="frame" x="204" y="220" width="188" height="172"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="A3Z-bB-3tT">
-                            <rect key="frame" x="8" y="144.5" width="46.5" height="19.5"/>
+                            <rect key="frame" x="8" y="144.5" width="150" height="19.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resorts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8K-0E-HRc">
-                                    <rect key="frame" x="0.0" y="0.0" width="46.5" height="19.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="19.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="150" id="aTh-AO-sVa"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -77,6 +91,8 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="A3Z-bB-3tT" secondAttribute="bottom" constant="8" id="IgX-YH-9lf"/>
+                        <constraint firstAttribute="width" constant="188" id="NS0-XM-8E9"/>
+                        <constraint firstAttribute="height" constant="172" id="mn8-bV-KhK"/>
                         <constraint firstItem="A3Z-bB-3tT" firstAttribute="leading" secondItem="Ksi-Aa-PZn" secondAttribute="leading" constant="8" id="su2-1s-GE3"/>
                     </constraints>
                 </view>
@@ -84,10 +100,13 @@
                     <rect key="frame" x="8" y="8" width="384" height="204"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="hsX-pA-9HV">
-                            <rect key="frame" x="8" y="176.5" width="52.5" height="19.5"/>
+                            <rect key="frame" x="8" y="176.5" width="150" height="19.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beaches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12w-Vs-cNc">
-                                    <rect key="frame" x="0.0" y="0.0" width="52.5" height="19.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="19.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="150" id="rZG-1X-wtD"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -103,26 +122,27 @@
                 </view>
             </subviews>
             <constraints>
+                <constraint firstItem="S2r-8m-C9I" firstAttribute="leading" secondItem="LlX-0B-Jrw" secondAttribute="trailing" constant="8" id="112-0r-mqH"/>
                 <constraint firstAttribute="trailing" secondItem="SEc-wq-zad" secondAttribute="trailing" constant="8" id="1Rl-Li-NWV"/>
                 <constraint firstAttribute="bottom" secondItem="8Zx-3e-7LH" secondAttribute="bottom" constant="8" id="4NI-jQ-q9x"/>
+                <constraint firstItem="Ksi-Aa-PZn" firstAttribute="leading" secondItem="8Zx-3e-7LH" secondAttribute="trailing" constant="8" id="4bg-az-aeP"/>
                 <constraint firstItem="8Zx-3e-7LH" firstAttribute="top" secondItem="LlX-0B-Jrw" secondAttribute="top" id="Dcp-nL-WwK"/>
                 <constraint firstAttribute="bottom" secondItem="S2r-8m-C9I" secondAttribute="bottom" constant="8" id="Ff5-US-1hi"/>
                 <constraint firstItem="Ksi-Aa-PZn" firstAttribute="top" secondItem="SEc-wq-zad" secondAttribute="bottom" constant="8" id="MIX-6D-paF"/>
+                <constraint firstItem="Ksi-Aa-PZn" firstAttribute="width" secondItem="8Zx-3e-7LH" secondAttribute="width" id="Q8d-O4-W04"/>
                 <constraint firstItem="LlX-0B-Jrw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="SjS-uR-ZtP"/>
                 <constraint firstAttribute="trailing" secondItem="Ksi-Aa-PZn" secondAttribute="trailing" constant="8" id="VZt-Ly-Vo5"/>
                 <constraint firstItem="LlX-0B-Jrw" firstAttribute="top" secondItem="qcY-U9-ghf" secondAttribute="bottom" constant="8" id="WWY-T8-ete"/>
                 <constraint firstAttribute="trailing" secondItem="qcY-U9-ghf" secondAttribute="trailing" constant="8" id="b1Y-QW-tVU"/>
+                <constraint firstItem="8Zx-3e-7LH" firstAttribute="leading" secondItem="LlX-0B-Jrw" secondAttribute="leading" id="bb2-ID-SIK"/>
                 <constraint firstItem="SEc-wq-zad" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="bd0-tl-VUi"/>
-                <constraint firstItem="8Zx-3e-7LH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="bl2-da-N13"/>
                 <constraint firstItem="Ksi-Aa-PZn" firstAttribute="leading" secondItem="S2r-8m-C9I" secondAttribute="leading" id="ctg-jU-zKn"/>
                 <constraint firstItem="qcY-U9-ghf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="dUH-ig-efQ"/>
                 <constraint firstItem="qcY-U9-ghf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="fAd-AJ-iNL"/>
                 <constraint firstItem="8Zx-3e-7LH" firstAttribute="top" secondItem="SEc-wq-zad" secondAttribute="bottom" constant="8" id="iGk-dK-kM8"/>
                 <constraint firstAttribute="trailing" secondItem="S2r-8m-C9I" secondAttribute="trailing" constant="8" id="kDZ-ij-wCp"/>
-                <constraint firstItem="Ksi-Aa-PZn" firstAttribute="leading" secondItem="8Zx-3e-7LH" secondAttribute="trailing" constant="8" id="lZh-qs-iYq"/>
                 <constraint firstItem="S2r-8m-C9I" firstAttribute="top" secondItem="qcY-U9-ghf" secondAttribute="bottom" constant="8" id="mMH-Fn-Xok"/>
                 <constraint firstItem="SEc-wq-zad" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="qSH-3O-MT4"/>
-                <constraint firstItem="S2r-8m-C9I" firstAttribute="leading" secondItem="LlX-0B-Jrw" secondAttribute="trailing" constant="8" id="vyk-Cp-Rzi"/>
                 <constraint firstAttribute="bottom" secondItem="Ksi-Aa-PZn" secondAttribute="bottom" constant="8" id="yf3-ha-enr"/>
                 <constraint firstAttribute="bottom" secondItem="LlX-0B-Jrw" secondAttribute="bottom" constant="8" id="zYo-N5-oFP"/>
             </constraints>

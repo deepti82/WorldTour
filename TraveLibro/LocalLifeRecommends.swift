@@ -24,7 +24,9 @@ class LocalLifeRecommends: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        
+        topLabel.adjustsFontSizeToFitWidth = true
+        bottomLabel1.adjustsFontSizeToFitWidth = true
+        bottomLabel2.adjustsFontSizeToFitWidth = true
         
         
     }

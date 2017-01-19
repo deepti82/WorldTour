@@ -81,6 +81,11 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: -16, width: self.view.frame.width, height: 188))
         myView5.photoTop.isHidden = true
         myView5.clipsToBounds = true
+        myView5.photoBottom1.image = UIImage(named: "bgairport")
+        myView5.bottomLabel1.text = "Airport"
+        myView5.photoBottom2.image = UIImage(named: "bgother")
+        myView5.bottomLabel2.text = "Others"
+
         layout.addSubview(myView5)
 
         let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
