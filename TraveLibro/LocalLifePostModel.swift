@@ -327,7 +327,7 @@ public class LocalLifePostModel {
                 
                 let checkInJson:JSON = ["location":p.post_location,"category":p.post_category,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
                 
-                var params:JSON = ["type":"local-life", "thoughts":p.post_thoughts,"user": p.post_userId,"journey":p.post_journeyId,"date":p.post_date]
+                var params:JSON = ["type":"local-life", "thoughts":p.post_thoughts,"user": p.post_userId,"date":p.post_date]
                 
                 if let data = p.buddiesStr.data(using: String.Encoding.utf8) {
                     params["buddies"] = JSON(data:data)
