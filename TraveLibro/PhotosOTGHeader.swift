@@ -10,8 +10,10 @@ import UIKit
 
 class PhotosOTGHeader: UIView {
 
+    @IBOutlet var headerTransparent: UIView!
     
     @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet weak var headerTransparent1: UIView!
     
     @IBOutlet weak var drawLine2: UIView!
     @IBOutlet weak var drawL: drawLine!
@@ -27,16 +29,15 @@ class PhotosOTGHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
     
     func loadViewFromNib() {
-        
-        self.layer.shadowColor = UIColor.white.cgColor
+                self.layer.shadowColor = UIColor.white.cgColor
         self.layer.shadowOffset = CGSize(width: 2, height: 1)
         
         let bundle = Bundle(for: type(of: self))
@@ -58,7 +59,7 @@ class PhotosOTGHeader: UIView {
         
         drawL.backgroundColor = UIColor.clear
         
-        let path = UIBezierPath(roundedRect:self.footer.bounds,
+        let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.topLeft, .topRight],
                                 cornerRadii: CGSize(width: 5, height:  5))
         

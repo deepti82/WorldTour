@@ -29,7 +29,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         self.clipsToBounds = true
         
         //header generation only
-        header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 102 ))
+        header = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 102 ))
+        
         self.addSubview(header)
         
         header.postDp.layer.zPosition = 5
@@ -39,7 +40,6 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         header.whatPostIcon.layer.zPosition = 5
         header.timeLabel.layer.zPosition = 5
         header.photosTitle.layer.zPosition = 5
-        transparentCardWhite(header.footer)
         self.postTop = post;
         post.getThought()
         header.photosTitle.text = post.finalThought
@@ -238,6 +238,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
     
+        
     func playerReady(_ player: Player) {
         videoToPlay()
     }

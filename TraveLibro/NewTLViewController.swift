@@ -1065,7 +1065,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     func addPostLayout(_ post:Post) {
-        let checkIn = PhotosOTG2(width: self.view.frame.width)
+        let checkIn = PhotosOTG2(width: layout.frame.width)
         checkIn.generatePost(post)
         checkIn.newTl = self
         checkIn.scrollView = mainScroll

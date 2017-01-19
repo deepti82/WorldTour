@@ -247,7 +247,7 @@ class PhotosOTG: UIView {
             self.UploadingToCloudLabel.alpha = 0
         }
         
-        headerView.frame.size = CGSize(width: screenWidth, height: 75)
+        headerView.frame.size = CGSize(width: self.frame.width, height: 75)
         if(post.post_likeCount != nil) {
             if(post.post_likeCount == 0) {
                 self.likeViewLabel.text = "Be first to Like"
