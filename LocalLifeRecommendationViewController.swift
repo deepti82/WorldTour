@@ -374,8 +374,10 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     func getCategoryLocalLife(_ sender:AnyObject ) {
         var category = ""
-        print(view.tag);
-        switch (view.tag) {
+        let tapG = sender as! UITapGestureRecognizer
+        print(tapG.view);
+        print(tapG.view?.tag);
+        switch (sender.view.tag) {
         case  1:
             category =  "Restaurants & Bars"
             
