@@ -20,7 +20,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var locationData = ""
     let locationManager = CLLocationManager()
     var isSameCity = false
-    
+    var whichView = "noView"
     var locValue:CLLocationCoordinate2D!
     
     @IBOutlet weak var thisScroll: UIScrollView!
@@ -47,19 +47,28 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         
         let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
         myView.photoTop.image = UIImage(named: "restaurantsLocalLife")
-        myView.photoTop.tag = 1
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
-        myView.photoTop.isUserInteractionEnabled = true
-        myView.photoTop.addGestureRecognizer(tapGestureRecognizer)
+        myView.photoTopView.tag = 1
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife))
+        myView.photoTopView.isUserInteractionEnabled = true
+        myView.photoTopView.addGestureRecognizer(tapGestureRecognizer)
         
         
         myView.topLabel.text = "Restaurants and Bars"
         myView.photoBottom1.image = UIImage(named: "naturesLocalLife")
         myView.bottomLabel1.text = "Nature and Parks"
         
+        let tapGestureRecognizer1 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView.photoBottomView1.isUserInteractionEnabled = true
+        myView.photoBottomView1.addGestureRecognizer(tapGestureRecognizer1)
+        myView.photoBottomView1.tag = 2
+//myView.photoBottomView1.ta
         
         myView.photoBottom2.image = UIImage(named: "sightsLocalLife")
         myView.bottomLabel2.text = "Sights and Landmarks"
+        let tapGestureRecognizer2 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView.photoBottomView2.isUserInteractionEnabled = true
+        myView.photoBottomView2.addGestureRecognizer(tapGestureRecognizer2)
+        myView.photoBottomView2.tag = 3
         layout.addSubview(myView)
         
         let myView2 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
@@ -69,6 +78,21 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView2.bottomLabel1.text = "Adventure and Excursions"
         myView2.photoBottom2.image = UIImage(named: "bgzoosandaqua")
         myView2.bottomLabel2.text = "Zoos and Aquariums"
+        let tapGestureRecognizer3 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView2.photoTopView.isUserInteractionEnabled = true
+        myView2.photoTopView.addGestureRecognizer(tapGestureRecognizer3)
+        myView2.photoTopView.tag = 4
+        let tapGestureRecognizer4 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView2.photoBottomView1.isUserInteractionEnabled = true
+        myView2.photoBottomView1.addGestureRecognizer(tapGestureRecognizer4)
+        myView2.photoBottomView1.tag = 5
+        let tapGestureRecognizer5 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView2.photoBottomView2.isUserInteractionEnabled = true
+        myView2.photoBottomView2.addGestureRecognizer(tapGestureRecognizer5)
+        myView2.photoBottom2.tag = 6
+
+//        tapGesture(myView2.photoBottomView1)
+//        tapGesture(myView2.photoBottom2)
         layout.addSubview(myView2)
         
         let myView3 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
@@ -78,8 +102,20 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView3.bottomLabel1.text = "Shopping"
         myView3.photoBottom2.image = UIImage(named: "image1")
         myView3.bottomLabel2.text = "Beaches"
+//        tapGesture(myView3.photoTopView)
+        let tapGestureRecognizer6 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView3.photoTopView.isUserInteractionEnabled = true
+        myView3.photoTopView.addGestureRecognizer(tapGestureRecognizer6)
+        myView3.photoTopView.tag = 7
+        let tapGestureRecognizer7 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView3.photoBottomView1.isUserInteractionEnabled = true
+        myView3.photoBottomView1.addGestureRecognizer(tapGestureRecognizer7)
+        myView3.photoBottomView1.tag = 8
+        let tapGestureRecognizer8 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView3.photoBottomView2.isUserInteractionEnabled = true
+        myView3.photoBottomView2.addGestureRecognizer(tapGestureRecognizer8)
         layout.addSubview(myView3)
-        
+        myView3.photoBottom2.tag = 9
         let myView4 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
         myView4.photoTop.image = UIImage(named: "bgreligious")
         myView4.topLabel.text = "Religious"
@@ -87,6 +123,18 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView4.bottomLabel1.text = "Cinemas and Theatres"
         myView4.photoBottom2.image = UIImage(named: "bghotelsandaccom")
         myView4.bottomLabel2.text = "Hotels and accommodations"
+        let tapGestureRecognizer9 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView4.photoTopView.isUserInteractionEnabled = true
+        myView4.photoTopView.addGestureRecognizer(tapGestureRecognizer9)
+        myView4.photoTopView.tag = 10
+        let tapGestureRecognizer10 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView4.photoBottomView1.isUserInteractionEnabled = true
+        myView4.photoBottomView1.addGestureRecognizer(tapGestureRecognizer10)
+        myView4.photoBottomView1.tag = 11
+        let tapGestureRecognizer11 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView4.photoBottomView2.isUserInteractionEnabled = true
+        myView4.photoBottomView2.addGestureRecognizer(tapGestureRecognizer11)
+        myView4.photoBottom2.tag = 12
         layout.addSubview(myView4)
         
         let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: -16, width: self.view.frame.width, height: 188))
@@ -97,6 +145,14 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView5.photoBottom2.image = UIImage(named: "bgother")
         myView5.bottomLabel2.text = "Others"
         
+        let tapGestureRecognizer12 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView5.photoBottomView1.isUserInteractionEnabled = true
+        myView5.photoBottomView1.addGestureRecognizer(tapGestureRecognizer12)
+        myView5.photoBottomView1.tag = 13
+        let tapGestureRecognizer13 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView5.photoBottomView2.isUserInteractionEnabled = true
+        myView5.photoBottomView2.addGestureRecognizer(tapGestureRecognizer13)
+        myView5.photoBottomView2.tag = 14
         layout.addSubview(myView5)
         
         let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
@@ -104,6 +160,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         self.detectLocation(UIButton())
         self.changeAddButton(false)
         self.addHeightToLayout();
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -314,17 +371,56 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         }
     }
     
+    
     func getCategoryLocalLife(_ sender:AnyObject ) {
-        print("1");
-        var category = "";
-        switch(sender.tag) {
-            case 1:
-            category =  "Religions"
+        var category = ""
+        print(view.tag);
+        switch (view.tag) {
+        case  1:
+            category =  "Restaurants & Bars"
+            
+        case 2:
+            category =  "Nature & Parks"
+
+        case 3:
+            category =  "Sights & Landmarks"
+
+        case 4:
+            category =  "Museums & Galleries"
+
+        case 5:
+            category =  "Adventure & Excursions"
+
+        case 6:
+            category =  "Zoos & Aquariums"
+
+        case 7:
+            category =  "Events & Festival"
+
+        case 8:
+            category =  "Shopping"
+
+        case 9:
+            category =  "Beaches"
+
+        case 10:
+            category =  "Religious"
+
+        case 11:
+            category =  "Cinemas & Theatres"
+            
+        case 12:
+            category =  "Hotels & accommodations"
+            
+        case 13:
+            category =  "Airport"
+            
+        case 14:
+            category =  "Others"
         default:
             category = "Chintan"
         }
-        
-        request.getLocalPost(lat: String(locValue.latitude), lng: String(locValue.longitude),pageNo:1 ,category:category , completion: { (response) in
+        request.getLocalPost(lat: String(locValue.latitude), lng: String(locValue.longitude),pageNo:2 ,category:category , completion: { (response) in
             DispatchQueue.main.async(execute: {
                 if (response.error != nil) {
                     print("error: \(response.error?.localizedDescription)")
@@ -336,6 +432,12 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             })
         })
     }
+    
+//    func tapGesture(_ view: UIView){
+//        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+//        view.isUserInteractionEnabled = true
+//        view.addGestureRecognizer(tapGestureRecognizer)
+//    }
     
     /*
      // MARK: - Navigation

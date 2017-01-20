@@ -2240,8 +2240,12 @@ class Navigation {
     func getLocalPost(lat:String,lng:String,pageNo:Int,category:String, completion: @escaping ((JSON) -> Void)) {
         
         do {
-            
-            let opt = try HTTP.POST(adminUrl + "user/getLocalPost", parameters: ["user": currentUser["_id"].stringValue,"lat":lat,"long":lng,"pagenumber":pageNo,"category":category])
+            print("category")
+            print(category)
+            print("My user")
+            print(currentUser["_id"])
+            print(category)
+            let opt = try HTTP.POST(adminUrl + "post/getLocalPost", parameters: ["user": currentUser["_id"].stringValue,"lat":lat,"long":lng,"pagenumber":pageNo,"category":category])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

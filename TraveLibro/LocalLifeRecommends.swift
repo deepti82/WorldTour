@@ -10,6 +10,9 @@ import UIKit
 
 class LocalLifeRecommends: UIView {
 
+    @IBOutlet weak var photoBottomView2: UIView!
+    @IBOutlet weak var photoBottomView1: UIView!
+    @IBOutlet weak var photoTopView: UIView!
     @IBOutlet weak var bottomLabel2: UILabel!
     @IBOutlet weak var bottomIcon2: UIImageView!
     @IBOutlet weak var bottomLabel1: UILabel!
