@@ -2210,7 +2210,6 @@ class Navigation {
             let jsonData = try param.rawData()
             // create post request
             let url = URL(string: adminUrl + "post/editData")!
-            print(adminUrl + "post/editData");
             let request = NSMutableURLRequest(url: url)
             request.httpMethod = "POST"
             // insert json data to the request
@@ -2235,6 +2234,29 @@ class Navigation {
         } catch {
             print("got an error creating the request: \(error)")
         }
+    }
+    
+    
+    func getLocalPost(lat:String,lng:String,pageNo:Int,category:String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "user/getLocalPost", parameters: ["user": currentUser["_id"].stringValue,"lat":lat,"long":lng,"pagenumber":pageNo,"category":category])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
     }
     
 }

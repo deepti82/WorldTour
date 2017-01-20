@@ -21,6 +21,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     let locationManager = CLLocationManager()
     var isSameCity = false
     
+    var locValue:CLLocationCoordinate2D!
+    
     @IBOutlet weak var thisScroll: UIScrollView!
     var layout:VerticalLayout!
     
@@ -45,9 +47,17 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         
         let myView = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
         myView.photoTop.image = UIImage(named: "restaurantsLocalLife")
+        myView.photoTop.tag = 1
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
+        myView.photoTop.isUserInteractionEnabled = true
+        myView.photoTop.addGestureRecognizer(tapGestureRecognizer)
+        
+        
         myView.topLabel.text = "Restaurants and Bars"
         myView.photoBottom1.image = UIImage(named: "naturesLocalLife")
         myView.bottomLabel1.text = "Nature and Parks"
+        
+        
         myView.photoBottom2.image = UIImage(named: "sightsLocalLife")
         myView.bottomLabel2.text = "Sights and Landmarks"
         layout.addSubview(myView)
@@ -283,7 +293,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if manager.location?.coordinate != nil {
-            let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+            locValue = manager.location!.coordinate
             print(locValue);
             userLocation = locValue
             request.checkLocalLife(lat: String(locValue.latitude), lng: String(locValue.longitude), completion: { (response) in
@@ -302,6 +312,29 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             
             
         }
+    }
+    
+    func getCategoryLocalLife(_ sender:AnyObject ) {
+        print("1");
+        var category = "";
+        switch(sender.tag) {
+            case 1:
+            category =  "Religions"
+        default:
+            category = "Chintan"
+        }
+        
+        request.getLocalPost(lat: String(locValue.latitude), lng: String(locValue.longitude),pageNo:1 ,category:category , completion: { (response) in
+            DispatchQueue.main.async(execute: {
+                if (response.error != nil) {
+                    print("error: \(response.error?.localizedDescription)")
+                    self.titleLabel.text = "Location Not Found"
+                }
+                else if response["value"].bool! {
+                    print(response);
+                }
+            })
+        })
     }
     
     /*
