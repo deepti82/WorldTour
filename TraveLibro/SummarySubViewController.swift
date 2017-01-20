@@ -30,6 +30,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
         self.cellSubview = VerticalLayout(width: 300)
         tripScroll.addSubview(cellSubview)
         getCount()
+        setTopNavigation("Summary")
         
     }
     
@@ -64,6 +65,23 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
             return images[11]
         }
     }
+    
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+
     
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
