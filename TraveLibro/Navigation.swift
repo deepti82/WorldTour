@@ -2237,4 +2237,23 @@ class Navigation {
         }
     }
     
+    func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = givenFormat
+        let date = dateFormatter.date(from: date)
+        
+        dateFormatter.dateFormat = getFormat
+        
+        if isDate {
+            
+            dateFormatter.dateStyle = .medium
+            
+        }
+        
+        let goodDate = dateFormatter.string(from: date!)
+        return goodDate
+        
+    }
+    
 }

@@ -11,7 +11,7 @@ import Player
 import Spring
 
 class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
-
+    
     
     //    var feed: JSON!
     var profileHeader: ActivityProfileHeader!
@@ -24,44 +24,27 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var centerView:PhotosOTGView!
     var footerView: PhotoOTGFooter!
     var activityFeedImage: ActivityFeedImageView!
-
+    var activityDetailItinerary: ActivityDetailItinerary!
+    var activityQuickItinerary: ActivityFeedQuickItinerary!
+    
     var scrollView:UIScrollView!
     
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
     func createProfileHeader(feed:JSON) {
         
-        //  START ACTIVITY PROFIILE HEADER
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 85))
-        profileHeader.userName.text = feed["user"]["name"].stringValue
-        profileHeader.profilePic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["user"]["profilePicture"])", width: 100))
-        profileHeader.localDate.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["createdAt"].stringValue, isDate: true)
-        profileHeader.localTime.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
+        headerLayout(feed: feed)
         
-        if getCategoryImage(name: feed["checkIn"]["category"].stringValue) != "" {
-            profileHeader.category.setImage(UIImage(named:getCategoryImage(name: feed["checkIn"]["category"].stringValue)), for: .normal)
-        }
+//        videosAndPhotosLayout(feed: feed)
         
-        self.addSubview(profileHeader)
+        middleLayoout(feed:feed)
         
-        if feed["thoughts"].stringValue != "" {
-            
-            //  START ACTIVITY TEXT HEADER
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            textHeader.headerText.text = feed["thoughts"].stringValue
-            textHeader.sizeToFit()
-//            textHeader.getw
-            self.addSubview(textHeader)
-            
-            //  START ACTIVITY TEXT TAG
-            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
-                textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
-                self.addSubview(textTag)
-            }
-            
-            
-        }
+        footerLayout(feed:feed)
         
+        self.layoutSubviews()
+    }
+    
+    func videosAndPhotosLayout(feed:JSON) {
         //Image generation only
         if(feed["videos"].count > 0) {
             self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
@@ -113,11 +96,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 
                 self.mainPhoto.frame.size.width = self.frame.width
                 self.mainPhoto.hnk_setImageFromURL(imgStr)
-                    self.mainPhoto.isUserInteractionEnabled = true
-                    let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
-                    self.mainPhoto.addGestureRecognizer(tapGestureRecognizer)
-                    self.mainPhoto.tag = 0
-
+                self.mainPhoto.isUserInteractionEnabled = true
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
+                self.mainPhoto.addGestureRecognizer(tapGestureRecognizer)
+                self.mainPhoto.tag = 0
+                
             })
         }
         
@@ -134,25 +117,83 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(centerView)
         }
         //End of Center
+    }
+    
+    func footerLayout(feed:JSON) {
         
-        switch feed["type"].stringValue {
-        case "on-the-go-journey":
-            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
-            activityFeedImage.clipsToBounds = true
-            self.addSubview(activityFeedImage)
-        default:
-            print("default")
-        }
-        
-        //Footer Generation Only
         footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
         self.addSubview(footerView)
+
+    }
+    
+    func middleLayoout(feed:JSON) {
+        switch feed["type"].stringValue {
+        case "on-the-go-journey","ended-journey":
+            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
+            activityFeedImage.fillData(feed: feed)
+            activityFeedImage.clipsToBounds = true
+            
+            self.addSubview(activityFeedImage)
+        case "quick-itinerary":
+            activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
+            activityQuickItinerary.fillData(feed: feed)
+            self.addSubview(activityQuickItinerary)
+        case "detail-itinerary":
+            activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
+            activityDetailItinerary.fillData(feed: feed)
+            self.addSubview(activityDetailItinerary)
+        default:
+            print("default")
+            videosAndPhotosLayout(feed:feed)
+        }
+    }
+    
+    func headerLayout(feed:JSON) {
         
-        //End of Footer
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 85))
+        
+        profileHeader.fillProfileHeader(feed:feed)
         
         
         
-        self.layoutSubviews()
+        self.addSubview(profileHeader)
+        if feed["type"].stringValue == "on-the-go-journey" || feed["type"].stringValue == "ended-journey" {
+            
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+            
+            if feed["type"].stringValue == "on-the-go-journey" {
+                textHeader.headerText.text = "Has started his " + feed["startLocation"].stringValue + " journey."
+            }else{
+                textHeader.headerText.text = "Has ended his " + feed["startLocation"].stringValue + " journey."
+            }
+            
+            
+            textHeader.sizeToFit()
+            self.addSubview(textHeader)
+            
+        } else if feed["thoughts"].stringValue != "" {
+            
+            //  START ACTIVITY TEXT HEADER
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+            textHeader.headerText.text = feed["thoughts"].stringValue
+            textHeader.sizeToFit()
+            self.addSubview(textHeader)
+            
+            //  START ACTIVITY TEXT TAG
+            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
+                textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
+                if feed["type"].stringValue == "travel-life" {
+                    textTag.tagText.text = "On The Go"
+                    textTag.tagView.backgroundColor = mainOrangeColor
+                }else{
+                    textTag.tagText.text = "Local Life"
+                    textTag.tagView.backgroundColor = endJourneyColor
+                }
+                self.addSubview(textTag)
+            }
+
+        }
+        
     }
     
     func addPhotoToLayout(_ post: JSON, startIndex: Int) {
@@ -162,13 +203,13 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             photosButton.image = UIImage(named: "logo-default")
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
             
-                photosButton.frame.size.height = 82
-                photosButton.frame.size.width = 82
-                let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
-                photosButton.hnk_setImageFromURL(urlStr)
-                    let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))
-                    photosButton.isUserInteractionEnabled = true
-                    photosButton.addGestureRecognizer(tapGestureRecognizer)
+            photosButton.frame.size.height = 82
+            photosButton.frame.size.width = 82
+            let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
+            photosButton.hnk_setImageFromURL(urlStr)
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))
+            photosButton.isUserInteractionEnabled = true
+            photosButton.addGestureRecognizer(tapGestureRecognizer)
             //photosButton.layer.cornerRadius = 5.0
             photosButton.tag = i
             photosButton.clipsToBounds = true
@@ -190,7 +231,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.player.pause()
         }
     }
-
+    
     func playerReady(_ player: Player) {
         videoToPlay()
     }
@@ -226,6 +267,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         return str
         
     }
-
-
+    
+    
 }

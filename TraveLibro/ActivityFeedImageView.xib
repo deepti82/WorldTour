@@ -18,6 +18,7 @@
                 <outlet property="ImageChange" destination="yph-5G-qkn" id="1ch-bW-Clu"/>
                 <outlet property="OnTheGOText" destination="aEc-6X-sOM" id="18S-BD-1md"/>
                 <outlet property="checkInCount" destination="PLe-aY-gbR" id="lnz-SY-tn1"/>
+                <outlet property="countryStackView" destination="i6z-aN-LDP" id="KKV-RB-5QV"/>
                 <outlet property="daysLabel" destination="ENw-6j-79C" id="BLQ-8C-o9K"/>
                 <outlet property="flagOne" destination="Nau-Oz-9MP" id="jjf-YD-xxf"/>
                 <outlet property="flagThree" destination="xOa-B0-JQf" id="OZz-bU-4DH"/>

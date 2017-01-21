@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,6 +21,7 @@
                 <outlet property="activityQuickCoverPic" destination="z24-8B-nCF" id="KFc-mb-jnW"/>
                 <outlet property="activityQuickFlagOne" destination="bim-uQ-UMc" id="GgV-nB-Fv2"/>
                 <outlet property="activityQuickFlagTwo" destination="XxP-9h-DWR" id="EFH-Lg-Jht"/>
+                <outlet property="countryStackView" destination="I6o-eJ-kUq" id="75V-CB-Jik"/>
                 <outletCollection property="ActivityQuickFlagCollection" destination="bim-uQ-UMc" collectionClass="NSMutableArray" id="XMn-1p-PZY"/>
                 <outletCollection property="ActivityQuickFlagCollection" destination="XxP-9h-DWR" collectionClass="NSMutableArray" id="boe-fn-BVz"/>
             </connections>
