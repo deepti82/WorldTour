@@ -16,7 +16,10 @@
                 <outlet property="bottomLabel2" destination="o8K-0E-HRc" id="9QP-6P-Zkz"/>
                 <outlet property="photoBottom1" destination="LlX-0B-Jrw" id="EET-m3-pD7"/>
                 <outlet property="photoBottom2" destination="S2r-8m-C9I" id="j6C-kb-89D"/>
+                <outlet property="photoBottomView1" destination="8Zx-3e-7LH" id="9Gc-F9-Rkp"/>
+                <outlet property="photoBottomView2" destination="Ksi-Aa-PZn" id="MFd-Yn-XPm"/>
                 <outlet property="photoTop" destination="qcY-U9-ghf" id="Bov-TP-IbL"/>
+                <outlet property="photoTopView" destination="SEc-wq-zad" id="37V-pY-R2d"/>
                 <outlet property="topLabel" destination="12w-Vs-cNc" id="Dcl-P1-tk5"/>
             </connections>
         </placeholder>
@@ -115,10 +118,14 @@
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="hsX-pA-9HV" firstAttribute="leading" secondItem="SEc-wq-zad" secondAttribute="leading" constant="8" id="1PA-LB-fJd"/>
                         <constraint firstAttribute="bottom" secondItem="hsX-pA-9HV" secondAttribute="bottom" constant="8" id="2Se-Rd-pPB"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="kS0-76-tQ7" appends="YES" id="FiJ-a9-Jat"/>
+                    </connections>
                 </view>
             </subviews>
             <constraints>
@@ -149,6 +156,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
+        <tapGestureRecognizer id="kS0-76-tQ7"/>
     </objects>
     <resources>
         <image name="beach_scene" width="792" height="485"/>

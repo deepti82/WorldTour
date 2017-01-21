@@ -36,10 +36,6 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
             transparentCardWhite(photoGallerySecondView)
             photosAddMore.clipsToBounds = true
             photosAddMore.layer.cornerRadius = 15
-            photosAddMore.layer.borderWidth = 1.0
-            photosAddMore.layer.borderColor = UIColor(hex: "#2C3757").cgColor
-            addTripPhotos.layer.borderWidth = 1.0
-            addTripPhotos.layer.borderColor = UIColor(hex: "#2C3757").cgColor
             addTripPhotos.layer.cornerRadius = 15
             addTripPhotos.clipsToBounds = true
     }
