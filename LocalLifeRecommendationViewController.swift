@@ -427,8 +427,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
         nearMeListController.nearMeType = category
         
-        let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! LocalLifePostsViewController
-        nearMeListController.nearMeType = category
+        let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
+        localLifeListController.nearMeType = category
         
         request.getLocalPost(lat: String(locValue.latitude), lng: String(locValue.longitude),pageNo:1 ,category:category , completion: { (response) in
             DispatchQueue.main.async(execute: {
@@ -447,21 +447,5 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             })
         })
     }
-    
-//    func tapGesture(_ view: UIView){
-//        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
-//        view.isUserInteractionEnabled = true
-//        view.addGestureRecognizer(tapGestureRecognizer)
-//    }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+
 }

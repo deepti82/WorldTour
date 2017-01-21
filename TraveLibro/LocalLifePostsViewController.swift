@@ -186,6 +186,38 @@ class LocalLifePostsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func setTopNavigation(text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.gotoLocalLife(_:)), for: .touchUpInside)
+        
+        let rightButton = UIButton()
+        rightButton.frame = CGRect(x: 10, y: 10, width: 30, height: 20)
+        rightButton.setImage(UIImage(named: "nearMe"), for: UIControlState())
+        rightButton.imageView?.contentMode = .scaleAspectFit
+        rightButton.imageView?.clipsToBounds = true
+        rightButton.addTarget(self, action: #selector(self.gotoNearMe(_:)), for: .touchUpInside)
+
+        
+        //        rightButton.setTitle("i", for: UIControlState())
+        //        rightButton.layer.borderWidth = 1.5
+        //        rightButton.layer.borderColor = UIColor.white.cgColor
+        //        rightButton.layer.cornerRadius = rightButton.frame.width / 2
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+
+        
+    }
+    
+    func gotoProfile(_ sender:AnyObject) {
+        
+    }
+    func gotoNearMe(_ sender:AnyObject) {
+        
+    }
+    
 
     /*
     // MARK: - Navigation
