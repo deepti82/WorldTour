@@ -12,13 +12,19 @@ class ActivityHeaderTag: UIView {
 
     @IBOutlet weak var tagView: UIView!
     @IBOutlet weak var tagText: UILabel!
+    @IBOutlet weak var tagLine: UIView!
+    @IBOutlet var tagParent: UIView!
     override init(frame: CGRect) {
+        
         super.init(frame: frame)
         loadViewFromNib ()
         tagView.clipsToBounds = true
         tagView.layer.cornerRadius = 5
-        transparentCardWhite(self)
+        transparentBack()
         
+    }
+    func transparentBack() {
+        transparentCardWhite(tagParent)
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

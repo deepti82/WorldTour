@@ -52,7 +52,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     func addHeightToLayout() {
         self.layout.layoutSubviews()
-        self.activityScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height)
+        self.activityScroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
         
     }
     

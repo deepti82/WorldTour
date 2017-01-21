@@ -76,6 +76,14 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.clipsToBounds = true
             self.mainPhoto.image = UIImage(named: "logo-default")
+            
+            let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
+            headerTag.tagParent.backgroundColor = UIColor.clear
+            headerTag.tagLine.isHidden = true
+            
+            self.mainPhoto.addSubview(headerTag)
+            
+            
             self.addSubview(mainPhoto)
             let heightForBlur = 10;
             var thumbStr = "";
@@ -108,14 +116,28 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 self.mainPhoto.addGestureRecognizer(tapGestureRecognizer)
                 self.mainPhoto.tag = 0
                 
+                self.layoutSubviews()
+                self.activityFeed.addHeightToLayout()
+                
             })
         }else{
+            if feed["imageUrl"] != nil {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.clipsToBounds = true
+           
+            
+                
+            let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
+            headerTag.tagParent.backgroundColor = UIColor.clear
+            headerTag.tagLine.isHidden = true
+            self.mainPhoto.addSubview(headerTag)
+            
+            
+                mainPhoto.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
 
-            mainPhoto.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
+            }
         }
         
         
@@ -183,6 +205,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             //  START ACTIVITY TEXT TAG
             if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
                 textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
+                textTag.transparentBack()
                 if feed["type"].stringValue == "travel-life" {
                     textTag.tagText.text = "On The Go"
                     textTag.tagView.backgroundColor = mainOrangeColor
