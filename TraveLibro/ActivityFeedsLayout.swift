@@ -57,6 +57,13 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
             self.videoContainer.player = self.player
             var videoUrl:URL!
+            if feed["type"].stringValue == "travel-life" {
+                videoContainer.tagText.text = "On The Go"
+                videoContainer.tagView.backgroundColor = mainOrangeColor
+            }else{
+                videoContainer.tagText.text = "Local Life"
+                videoContainer.tagView.backgroundColor = endJourneyColor
+            }
             
             videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
             self.player.setUrl(videoUrl!)
@@ -102,6 +109,13 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 self.mainPhoto.tag = 0
                 
             })
+        }else{
+            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            self.addSubview(self.mainPhoto)
+            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
+            self.mainPhoto.clipsToBounds = true
+
+            mainPhoto.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
         }
         
         
@@ -135,11 +149,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             self.addSubview(activityFeedImage)
         case "quick-itinerary":
-            activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
+            activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 590))
             activityQuickItinerary.fillData(feed: feed)
             self.addSubview(activityQuickItinerary)
         case "detail-itinerary":
-            activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
+            activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 528))
             activityDetailItinerary.fillData(feed: feed)
             self.addSubview(activityDetailItinerary)
         default:
@@ -150,28 +164,15 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func headerLayout(feed:JSON) {
         
-        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 85))
+        profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 76))
         
         profileHeader.fillProfileHeader(feed:feed)
         
         
         
         self.addSubview(profileHeader)
-        if feed["type"].stringValue == "on-the-go-journey" || feed["type"].stringValue == "ended-journey" {
-            
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            
-            if feed["type"].stringValue == "on-the-go-journey" {
-                textHeader.headerText.text = "Has started his " + feed["startLocation"].stringValue + " journey."
-            }else{
-                textHeader.headerText.text = "Has ended his " + feed["startLocation"].stringValue + " journey."
-            }
-            
-            
-            textHeader.sizeToFit()
-            self.addSubview(textHeader)
-            
-        } else if feed["thoughts"].stringValue != "" {
+        
+        if feed["thoughts"].stringValue != "" {
             
             //  START ACTIVITY TEXT HEADER
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
@@ -192,8 +193,34 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 self.addSubview(textTag)
             }
 
+        }else{
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+            
+            switch feed["type"].stringValue {
+            case "on-the-go-journey":
+                setText(text: "Has started his " + feed["startLocation"].stringValue + " journey.")
+                
+            case "ended-journey":
+                setText(text: "Has ended his " + feed["startLocation"].stringValue + " journey.")
+
+            case "quick-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+
+            case "detail-itinerary":
+                setText(text: "Has uploaded a new Itinerary.")
+
+            default:
+                textHeader.headerText.text = ""
+            }
+            textHeader.headerText.sizeToFit()
+            textHeader.sizeToFit()
+        
         }
         
+    }
+    func setText(text: String) {
+        textHeader.headerText.text = text
+        self.addSubview(textHeader)
     }
     
     func addPhotoToLayout(_ post: JSON, startIndex: Int) {

@@ -17,6 +17,7 @@ class ActivityHeaderTag: UIView {
         loadViewFromNib ()
         tagView.clipsToBounds = true
         tagView.layer.cornerRadius = 5
+        transparentCardWhite(self)
         
     }
     required init?(coder aDecoder: NSCoder) {

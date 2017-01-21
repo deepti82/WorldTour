@@ -13,7 +13,12 @@
             <connections>
                 <outlet property="activityDetailItineraryView" destination="iN0-l3-epB" id="YHf-HW-NSD"/>
                 <outlet property="blueBoxImage" destination="4ky-o0-1hC" id="1QM-Ii-ddf"/>
+                <outlet property="categoryOne" destination="txq-yV-xMl" id="Uer-R9-fkH"/>
+                <outlet property="categoryStackView" destination="G70-2I-laM" id="aIG-Je-V72"/>
+                <outlet property="categoryThree" destination="RYz-mf-4VK" id="aAR-3Q-2uP"/>
+                <outlet property="categoryTwo" destination="0pm-pa-ImW" id="OiW-tY-jAR"/>
                 <outlet property="countryStackView" destination="yPO-5y-U9c" id="tVn-yI-ZqF"/>
+                <outlet property="dayText" destination="fV6-g5-TSN" id="gvp-Yo-hL4"/>
                 <outlet property="detailFlagOne" destination="iaU-PW-Ymd" id="yVh-4L-QZ8"/>
                 <outlet property="detailFlagThree" destination="fvP-J2-2Fp" id="uiJ-Az-PeT"/>
                 <outlet property="detailFlagTwo" destination="SIR-uN-S1W" id="ds6-z2-NdY"/>
@@ -75,11 +80,36 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnD-sl-yLk">
-                            <rect key="frame" x="266" y="25" width="95" height="18"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="G70-2I-laM">
+                            <rect key="frame" x="12" y="37" width="85" height="25"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backpacking" translatesAutoresizingMaskIntoConstraints="NO" id="txq-yV-xMl">
+                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="SFd-D3-7Mm"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solo" translatesAutoresizingMaskIntoConstraints="NO" id="0pm-pa-ImW">
+                                    <rect key="frame" x="30" y="0.0" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="O6f-lz-yrO"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adventure" translatesAutoresizingMaskIntoConstraints="NO" id="RYz-mf-4VK">
+                                    <rect key="frame" x="60" y="0.0" width="25" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="xOa-ur-YSk"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
                             <constraints>
-                                <constraint firstAttribute="width" constant="95" id="03U-5x-msV"/>
-                                <constraint firstAttribute="height" constant="18" id="j3s-ee-8lg"/>
+                                <constraint firstAttribute="height" constant="25" id="CJD-wJ-B4Q"/>
+                            </constraints>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnD-sl-yLk">
+                            <rect key="frame" x="339" y="42" width="18" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="MRr-mR-GlX"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -90,18 +120,20 @@
                     <constraints>
                         <constraint firstItem="ZHm-en-Au0" firstAttribute="top" secondItem="g4E-px-Jp4" secondAttribute="top" constant="8" id="BYD-6U-fhz"/>
                         <constraint firstAttribute="trailing" secondItem="PVZ-Fv-OOQ" secondAttribute="trailing" constant="12" id="EQ1-me-89D"/>
+                        <constraint firstItem="G70-2I-laM" firstAttribute="leading" secondItem="g4E-px-Jp4" secondAttribute="leading" constant="12" id="Fbk-EQ-b5C"/>
                         <constraint firstItem="ZHm-en-Au0" firstAttribute="leading" secondItem="g4E-px-Jp4" secondAttribute="leading" constant="12" id="Pss-7H-l08"/>
                         <constraint firstAttribute="trailing" secondItem="fV6-g5-TSN" secondAttribute="trailing" constant="12" id="RjY-nt-kWh"/>
                         <constraint firstItem="fV6-g5-TSN" firstAttribute="leading" secondItem="PVZ-Fv-OOQ" secondAttribute="leading" id="Vbn-JY-TbS"/>
-                        <constraint firstItem="nnD-sl-yLk" firstAttribute="trailing" secondItem="4ky-o0-1hC" secondAttribute="trailing" id="ZKh-Ab-RbZ"/>
                         <constraint firstItem="PVZ-Fv-OOQ" firstAttribute="centerX" secondItem="4ky-o0-1hC" secondAttribute="centerX" id="bjl-FN-Ed0"/>
                         <constraint firstAttribute="width" constant="367" id="cyg-YV-yQc"/>
+                        <constraint firstAttribute="bottom" secondItem="G70-2I-laM" secondAttribute="bottom" constant="8" id="hII-eh-lfx"/>
                         <constraint firstItem="4ky-o0-1hC" firstAttribute="top" secondItem="g4E-px-Jp4" secondAttribute="top" constant="-30" id="nKl-BJ-KaV"/>
                         <constraint firstAttribute="height" constant="70" id="nMc-PG-Jdn"/>
-                        <constraint firstItem="nnD-sl-yLk" firstAttribute="top" secondItem="4ky-o0-1hC" secondAttribute="bottom" id="nuj-9d-0Rm"/>
                         <constraint firstItem="PVZ-Fv-OOQ" firstAttribute="top" secondItem="g4E-px-Jp4" secondAttribute="top" constant="-20" id="oQV-E2-Xmg"/>
                         <constraint firstItem="fV6-g5-TSN" firstAttribute="top" secondItem="g4E-px-Jp4" secondAttribute="top" id="pN4-mH-kcB"/>
                         <constraint firstAttribute="trailing" secondItem="4ky-o0-1hC" secondAttribute="trailing" constant="6" id="tPf-cO-gp9"/>
+                        <constraint firstAttribute="trailing" secondItem="nnD-sl-yLk" secondAttribute="trailing" constant="10" id="xyG-VM-CSC"/>
+                        <constraint firstAttribute="bottom" secondItem="nnD-sl-yLk" secondAttribute="bottom" constant="10" id="zvL-bv-cuh"/>
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="yPO-5y-U9c">
@@ -146,8 +178,11 @@
         </view>
     </objects>
     <resources>
+        <image name="adventure" width="100" height="100"/>
+        <image name="backpacking" width="100" height="100"/>
         <image name="bluebox" width="130" height="130"/>
         <image name="logo-default" width="180" height="180"/>
         <image name="paris" width="811" height="563"/>
+        <image name="solo" width="100" height="100"/>
     </resources>
 </document>

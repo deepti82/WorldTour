@@ -10,6 +10,7 @@ import UIKit
 
 class ActivityProfileHeader: UIView {
 
+    @IBOutlet var activityProView: UIView!
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var category: UIButton!
@@ -22,6 +23,7 @@ class ActivityProfileHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        transparentCardWhite(activityProView)
         makeTLProfilePicture(profilePic)
         
         clockLabel.text = String(format: "%C", faicon["clock"]!)

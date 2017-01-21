@@ -10,10 +10,12 @@ import UIKit
 
 class ActivityTextHeader: UIView {
 
+    @IBOutlet var textView: UIView!
     @IBOutlet weak var headerText: UITextView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        transparentCardWhite(textView)
         
     }
     required init?(coder aDecoder: NSCoder) {

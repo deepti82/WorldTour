@@ -20,9 +20,18 @@ class ActivityFeedQuickItinerary: UIView {
     @IBOutlet weak var activityFeedItineraryName: UILabel!
     @IBOutlet weak var activityFeedYear: UILabel!
     @IBOutlet weak var activityFeedDaysCount: UILabel!
+    @IBOutlet weak var categoryStackView: UIStackView!
+    @IBOutlet weak var categoryOne: UIImageView!
+    @IBOutlet weak var categoryTwo: UIImageView!
+    @IBOutlet weak var categoryThree: UIImageView!
+    @IBOutlet weak var quickBack: UILabel!
+    @IBOutlet weak var dayText: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        quickBack.clipsToBounds = true
+        quickBack.layer.cornerRadius = 10
         transparentCardWhite(activityFeedQuickView)
         makeTLProfilePicture(activityQuickFlagOne)
         makeTLProfilePicture(activityQuickFlagTwo)
@@ -34,6 +43,16 @@ class ActivityFeedQuickItinerary: UIView {
     }
     
     func fillData(feed:JSON) {
+        
+        activityFeedYear.text = feed["month"].stringValue + " " + feed["year"].stringValue
+        activityFeedYear.sizeToFit()
+        activityFeedDaysCount.text = feed["duration"].stringValue
+        
+        if feed["duration"] > 1 {
+            dayText.text = "Days"
+        } else {
+            dayText.text = "Day"
+        }
         
         for country in countryStackView.subviews {
             country.isHidden = true
@@ -51,16 +70,34 @@ class ActivityFeedQuickItinerary: UIView {
             activityFeedQuickThree.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["countryVisited"][2]["country"]["flag"])", width: 100))
         }
         
+        //  CATEGOTY
+        for category in categoryStackView.subviews {
+            category.isHidden = true
+        }
+        if feed["itineraryType"][0] != nil {
+            categoryOne.isHidden = false
+            categoryOne.image = UIImage(named: feed["itineraryType"][0].stringValue)
+        }
+        if feed["itineraryType"][1] != nil {
+            categoryTwo.isHidden = false
+            categoryTwo.image = UIImage(named: feed["itineraryType"][1].stringValue)
+        }
+        if feed["itineraryType"][2] != nil {
+            categoryThree.isHidden = false
+            categoryThree.image = UIImage(named: feed["itineraryType"][2].stringValue)
+        }
+
         
-        activityFeedItineraryName.text = feed["name"].stringValue
-//        CameraCount.text = feed["photoCount"].stringValue
-//        videoCount.text = feed["videoCount"].stringValue
-//        checkInCount.text = feed["checkInCount"].stringValue
+        activityFeedItineraryName.text = feed["title"].stringValue
         
         if feed["coverPhoto"] != nil && feed["coverPhoto"] != "" {
-            activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["coverPhoto"])", width: 100))
+            activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["coverPhoto"])", width: 300))
         }else{
-            activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["startLocationPic"])", width: 100))
+            if feed["photos"] != nil && feed["photos"] != "" {
+                activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["photos"][0]["name"])", width: 300))
+            }else{
+            activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["startLocationPic"])", width: 300))
+            }
         }
         
     }
