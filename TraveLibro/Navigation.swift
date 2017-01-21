@@ -2236,7 +2236,6 @@ class Navigation {
         }
     }
     
-<<<<<<< HEAD
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
         let dateFormatter = DateFormatter()
@@ -2253,8 +2252,8 @@ class Navigation {
         
         let goodDate = dateFormatter.string(from: date!)
         return goodDate
-        
-=======
+    }
+    
     
     func getLocalPost(lat:String,lng:String,pageNo:Int,category:String, completion: @escaping ((JSON) -> Void)) {
         
@@ -2269,9 +2268,7 @@ class Navigation {
             opt.start {response in
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
-                }
-                else
-                {
+                } else {
                     json  = JSON(data: response.data)
                     completion(json)
                 }
@@ -2280,7 +2277,6 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
         
->>>>>>> origin/level-3-
     }
     
 }
