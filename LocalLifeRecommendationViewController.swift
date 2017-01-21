@@ -423,14 +423,26 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         default:
             category = "Chintan"
         }
-        request.getLocalPost(lat: String(locValue.latitude), lng: String(locValue.longitude),pageNo:2 ,category:category , completion: { (response) in
+        
+        let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
+        nearMeListController.nearMeType = category
+        
+        let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! LocalLifePostsViewController
+        nearMeListController.nearMeType = category
+        
+        request.getLocalPost(lat: String(locValue.latitude), lng: String(locValue.longitude),pageNo:1 ,category:category , completion: { (response) in
             DispatchQueue.main.async(execute: {
                 if (response.error != nil) {
                     print("error: \(response.error?.localizedDescription)")
                     self.titleLabel.text = "Location Not Found"
                 }
                 else if response["value"].bool! {
-                    print(response);
+                    if((response["data"].array?.count)! > 0) {
+                        self.navigationController?.pushViewController(localLifeListController, animated: true)
+                    } else {
+                        self.navigationController?.pushViewController(nearMeListController, animated: true)
+                    }
+                    
                 }
             })
         })
