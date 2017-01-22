@@ -29,6 +29,15 @@ class ActivityProfileHeader: UIView {
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         
+        
+        let path = UIBezierPath(roundedRect:self.bounds,
+                                byRoundingCorners:[.topLeft, .topRight],
+                                cornerRadii: CGSize(width: 5, height:  5))
+        
+        let maskLayer = CAShapeLayer()
+        
+        maskLayer.path = path.cgPath
+        self.layer.mask = maskLayer
                 
     }
         required init?(coder aDecoder: NSCoder) {

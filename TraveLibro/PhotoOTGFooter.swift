@@ -61,7 +61,7 @@ class PhotoOTGFooter: UIView {
         shareButton.imageView?.contentMode = .scaleAspectFit
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit
-        
+        self.likeHeart.text = String(format: "%C", faicon["likes"]!)
         
     }
     

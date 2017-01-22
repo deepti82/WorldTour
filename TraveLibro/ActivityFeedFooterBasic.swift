@@ -27,7 +27,8 @@ class ActivityFeedFooterBasic: UIView {
     @IBOutlet weak var likeViewLabel: UILabel!
     @IBOutlet weak var commentIcon: UIImageView!
     @IBOutlet weak var commentCount: UILabel!
-    var PhotoOtg:PhotosOTG2!
+    var topLayout:VerticalLayout!
+    var type="ActivityFeeds"
     
     var likeCount:Int = 0
     var commentCounts:Int = 0
@@ -61,6 +62,8 @@ class ActivityFeedFooterBasic: UIView {
         shareButton.imageView?.contentMode = .scaleAspectFit
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit
+        self.likeHeart.text = String(format: "%C", faicon["likes"]!)
+        
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
@@ -119,8 +122,10 @@ class ActivityFeedFooterBasic: UIView {
         
         maskLayer.path = path.cgPath
         self.layer.mask = maskLayer
-        PhotoOtg.layoutSubviews()
-        globalNewTLViewController.addHeightToLayout(height: 500)
+        topLayout.layoutSubviews()
+        if(self.type == "LocalLife") {
+            globalLocalLifeInside.addHeightToLayout()
+        }
     }
     
     func setLikeSelected (_ isSelected:Bool) {

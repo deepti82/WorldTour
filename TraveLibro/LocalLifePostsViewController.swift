@@ -10,8 +10,9 @@ import UIKit
 import CoreLocation
 import Toaster
 
+var globalLocalLifeInside:LocalLifePostsViewController!
+
 class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate {
-    
     var blackBg: UIView!
     var checkInPost: CheckInLocalLife!
     var datePickerView:UIDatePicker = UIDatePicker()
@@ -33,6 +34,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
  
         setTopNavigation(text: nearMeType);
         self.detectLocation(UIButton())
+        globalLocalLifeInside = self
     }
     
     

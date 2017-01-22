@@ -159,6 +159,10 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         
         footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
         footerView.postTop = feed
+        footerView.topLayout = self
+        footerView.type = "LocalLife"
+        footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
+        footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
         self.addSubview(footerView)
         
     }
