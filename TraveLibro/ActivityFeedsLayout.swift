@@ -26,6 +26,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var activityFeedImage: ActivityFeedImageView!
     var activityDetailItinerary: ActivityDetailItinerary!
     var activityQuickItinerary: ActivityFeedQuickItinerary!
+    var feeds: JSON = []
     
     var scrollView:UIScrollView!
     
@@ -45,6 +46,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     }
     
     func videosAndPhotosLayout(feed:JSON) {
+        self.feeds = feed
         //Image generation only
         if(feed["videos"].count > 0) {
             self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
@@ -79,6 +81,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
             headerTag.tagParent.backgroundColor = UIColor.clear
+            headerTag.colorTag(feed: feed)
             headerTag.tagLine.isHidden = true
             
             self.mainPhoto.addSubview(headerTag)
@@ -124,16 +127,21 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             if feed["imageUrl"] != nil {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
+                
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.clipsToBounds = true
            
             
+                if feed["thoughts"] == nil && feed["thoughts"].stringValue == "" {
+                    let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
+                    headerTag.tagParent.backgroundColor = UIColor.clear
+                    headerTag.tagLine.isHidden = true
+                    headerTag.colorTag(feed: feed)
+                    
+                    self.mainPhoto.addSubview(headerTag)
+
+                }
                 
-            let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
-            headerTag.tagParent.backgroundColor = UIColor.clear
-            headerTag.tagLine.isHidden = true
-            self.mainPhoto.addSubview(headerTag)
-            
             
                 mainPhoto.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
 
@@ -206,13 +214,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
                 textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
                 textTag.transparentBack()
-                if feed["type"].stringValue == "travel-life" {
-                    textTag.tagText.text = "On The Go"
-                    textTag.tagView.backgroundColor = mainOrangeColor
-                }else{
-                    textTag.tagText.text = "Local Life"
-                    textTag.tagView.backgroundColor = endJourneyColor
-                }
+                textTag.colorTag(feed: feed)
+                
                 self.addSubview(textTag)
             }
 
@@ -257,7 +260,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             photosButton.frame.size.width = 82
             let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
             photosButton.hnk_setImageFromURL(urlStr)
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(ActivityFeedsLayout.openSinglePhoto(_:)))
             photosButton.isUserInteractionEnabled = true
             photosButton.addGestureRecognizer(tapGestureRecognizer)
             //photosButton.layer.cornerRadius = 5.0
@@ -267,6 +270,14 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         }
         centerView.horizontalScrollForPhotos.layoutSubviews()
         centerView.morePhotosView.contentSize = CGSize(width: centerView.horizontalScrollForPhotos.frame.width, height: centerView.horizontalScrollForPhotos.frame.height)
+    }
+    
+    func openSinglePhoto(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.postId = feeds["_id"].stringValue
+        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
     
     func videoToPlay ()  {
@@ -308,8 +319,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     func getCategoryImage(name: String) -> String {
         var str:String! = ""
         for img in imageArr {
-            print(img)
-            print(String(name.characters.suffix(4)))
             if img.contains(String(name.characters.suffix(4))) {
                 str = img
             }

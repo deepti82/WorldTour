@@ -23,6 +23,15 @@ class ActivityHeaderTag: UIView {
         transparentBack()
         
     }
+    func colorTag(feed:JSON) {
+        if feed["type"].stringValue == "travel-life" {
+            self.tagText.text = "On The Go"
+            self.tagView.backgroundColor = mainOrangeColor
+        }else{
+            self.tagText.text = "Local Life"
+            self.tagView.backgroundColor = endJourneyColor
+        }
+    }
     func transparentBack() {
         transparentCardWhite(tagParent)
     }
