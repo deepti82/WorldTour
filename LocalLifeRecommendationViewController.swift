@@ -10,6 +10,7 @@ var globalLocalLife:LocalLifeRecommendationViewController!
 
 import UIKit
 import CoreLocation
+import Toaster
 
 class LocalLifeRecommendationViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CLLocationManagerDelegate {
     var currentTime =  ""
@@ -22,6 +23,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var isSameCity = false
     var whichView = "noView"
     var locValue:CLLocationCoordinate2D!
+    var json:JSON!
     
     @IBOutlet weak var thisScroll: UIScrollView!
     var layout:VerticalLayout!
@@ -360,6 +362,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
                         self.titleLabel.text = "Location Not Found"
                     }
                     else if response["value"].bool! {
+                        self.json = response["data"]
                         let city = response["data"]["city"].stringValue
                         self.titleLabel.text = "Experience \(city) Like A Local"
                         self.changeAddButton(response["data"]["status"].boolValue)
@@ -416,12 +419,12 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             category =  "Hotels & accommodations"
             
         case 13:
-            category =  "Airport"
+            category =  "Transportation"
             
         case 14:
             category =  "Others"
         default:
-            category = "Chintan"
+            category = "Others"
         }
         
         let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
@@ -429,23 +432,19 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         
         let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
         localLifeListController.nearMeType = category
+        let numCat = self.json[category].intValue
+        switch(numCat) {
+        case 1:
+            self.navigationController?.pushViewController(localLifeListController, animated: true)
+        case 2:
+            self.navigationController?.pushViewController(nearMeListController, animated: true)
+        case 3:
+            let tstr = Toast(text: "No \(category) Available Near You")
+            tstr.show()
+        default:
+            break;
+        }
         
-        request.getLocalPost(lat: String(locValue.latitude), lng: String(locValue.longitude),pageNo:1 ,category:category , completion: { (response) in
-            DispatchQueue.main.async(execute: {
-                if (response.error != nil) {
-                    print("error: \(response.error?.localizedDescription)")
-                    self.titleLabel.text = "Location Not Found"
-                }
-                else if response["value"].bool! {
-                    if((response["data"].array?.count)! > 0) {
-                        self.navigationController?.pushViewController(localLifeListController, animated: true)
-                    } else {
-                        self.navigationController?.pushViewController(nearMeListController, animated: true)
-                    }
-                    
-                }
-            })
-        })
     }
 
 }

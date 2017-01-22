@@ -7,31 +7,58 @@
 //
 
 import UIKit
+import CoreLocation
+import Toaster
 
-class LocalLifePostsViewController: UIViewController {
+class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLocationManagerDelegate {
     
     var blackBg: UIView!
     var checkInPost: CheckInLocalLife!
     var datePickerView:UIDatePicker = UIDatePicker()
     var changeDateTimeActionSheet: UIAlertController!
+    var nearMeType = ""
+    var allLocalLife:[JSON] = []
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    var locationData = ""
+    let locationManager = CLLocationManager()
+    var locValue:CLLocationCoordinate2D!
+    var layout:VerticalLayout!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGround(self)
-        
-        let selfScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        selfScrollView.contentSize.height = 1000
-        self.view.addSubview(selfScrollView)
+        layout = VerticalLayout(width:screenWidth)
+        scrollView.addSubview(layout)
         
         checkInPost = CheckInLocalLife(frame: CGRect(x: 0, y: 100, width: self.view.frame.width, height: 800))
         checkInPost.layer.cornerRadius = 5.0
         checkInPost.clipsToBounds = true
-        selfScrollView.addSubview(checkInPost)
+        scrollView.addSubview(checkInPost)
         
         checkInPost.rateButton.addTarget(self, action: #selector(LocalLifePostsViewController.rateButtonTapped(_:)), for: .touchUpInside)
         
         
         checkInPost.optionsButton.addTarget(self, action: #selector(LocalLifePostsViewController.addOption(_:)), for: .touchUpInside)
+        
+        setTopNavigation(text: nearMeType);
+        self.detectLocation(UIButton())
+        
+        
+    }
+    
+    
+    func addPostLayout(_ post:JSON) {
+        let checkIn = LocalLifePost(width: layout.frame.width)
+        checkIn.generatePost(post)
+        checkIn.scrollView = self.scrollView
+        layout.addSubview(checkIn)
+        addHeightToLayout()
+    }
+    
+    func addHeightToLayout() {
+        self.layout.layoutSubviews()
+        self.scrollView.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height)
         
     }
     
@@ -167,11 +194,8 @@ class LocalLifePostsViewController: UIViewController {
     }
     
     func cancelDateChange(_ sender: AnyObject) {
-        
         print("In Cancel Date function")
         self.changeDateTimeActionSheet.dismiss(animated: true, completion: nil)
-        
-        
     }
     
     func saveDateChange(_ sender: AnyObject) {
@@ -191,42 +215,84 @@ class LocalLifePostsViewController: UIViewController {
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.gotoLocalLife(_:)), for: .touchUpInside)
+        leftButton.addTarget(self, action: #selector(self.goToLocalLife(_:)), for: .touchUpInside)
         
         let rightButton = UIButton()
-        rightButton.frame = CGRect(x: 10, y: 10, width: 30, height: 20)
+        rightButton.frame = CGRect(x: 0, y: 10, width: 15, height: 20)
         rightButton.setImage(UIImage(named: "nearMe"), for: UIControlState())
         rightButton.imageView?.contentMode = .scaleAspectFit
         rightButton.imageView?.clipsToBounds = true
         rightButton.addTarget(self, action: #selector(self.gotoNearMe(_:)), for: .touchUpInside)
-
         
-        //        rightButton.setTitle("i", for: UIControlState())
-        //        rightButton.layer.borderWidth = 1.5
-        //        rightButton.layer.borderColor = UIColor.white.cgColor
-        //        rightButton.layer.cornerRadius = rightButton.frame.width / 2
         self.title = text
         self.customNavigationBar(left: leftButton, right: rightButton)
-
-        
     }
     
-    func gotoProfile(_ sender:AnyObject) {
-        
+    func goToLocalLife(_ sender:AnyObject) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
+        globalNavigationController?.pushViewController(vc, animated: false)
     }
     func gotoNearMe(_ sender:AnyObject) {
-        
+        let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
+        nearMeListController.nearMeType = self.nearMeType
+        self.navigationController?.pushViewController(nearMeListController, animated: true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func hideHeaderAndFooter(_ isShow:Bool) {
+        if(isShow) {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        } else {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
-    */
-
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            hideHeaderAndFooter(true);
+        }
+        else{
+            hideHeaderAndFooter(false);
+        }
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("Chinatn Shah");
+    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        print("JAgruti Patil");
+    }
+    
+    func detectLocation(_ sender: AnyObject?) {
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startMonitoringSignificantLocationChanges()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error while updating location " + error.localizedDescription)
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        if manager.location?.coordinate != nil {
+            locValue = manager.location!.coordinate
+            print(locValue);
+            userLocation = locValue
+            request.getLocalLife(lat: String(locValue.latitude), lng: String(locValue.longitude),page:1,category:nearMeType, completion: { (response) in
+                DispatchQueue.main.async(execute: {
+                    if (response.error != nil) {
+                        print("error: \(response.error?.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        self.allLocalLife = response["data"].arrayValue
+                        for local in self.allLocalLife {
+                            self.addToPost(local);
+                        }
+                    }
+                })
+            })
+        }
+    }
 }

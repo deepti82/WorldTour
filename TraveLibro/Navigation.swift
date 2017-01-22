@@ -2204,6 +2204,28 @@ class Navigation {
         
     }
     
+    func getLocalLife(lat:String,lng:String,page:Int,category:String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "post/getLocalPost", parameters: ["user": currentUser["_id"].stringValue,"lat":lat,"long":lng,"pagenumber":page,"category":category])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
     
     func postAddPhotosVideos (param:JSON, completion: @escaping ((JSON) -> Void) ) {
         do {
