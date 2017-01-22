@@ -30,27 +30,16 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
         getDarkBackGround(self)
         layout = VerticalLayout(width:screenWidth)
         scrollView.addSubview(layout)
-        
-        checkInPost = CheckInLocalLife(frame: CGRect(x: 0, y: 100, width: self.view.frame.width, height: 800))
-        checkInPost.layer.cornerRadius = 5.0
-        checkInPost.clipsToBounds = true
-        scrollView.addSubview(checkInPost)
-        
-        checkInPost.rateButton.addTarget(self, action: #selector(LocalLifePostsViewController.rateButtonTapped(_:)), for: .touchUpInside)
-        
-        
-        checkInPost.optionsButton.addTarget(self, action: #selector(LocalLifePostsViewController.addOption(_:)), for: .touchUpInside)
-        
+ 
         setTopNavigation(text: nearMeType);
         self.detectLocation(UIButton())
-        
-        
     }
     
     
     func addPostLayout(_ post:JSON) {
         let checkIn = LocalLifePost(width: layout.frame.width)
-        checkIn.generatePost(post)
+        checkIn.createProfileHeader(feed: post)
+        checkIn.activityFeed = self
         checkIn.scrollView = self.scrollView
         layout.addSubview(checkIn)
         addHeightToLayout()
@@ -288,7 +277,9 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
                     else if response["value"].bool! {
                         self.allLocalLife = response["data"].arrayValue
                         for local in self.allLocalLife {
-                            self.addToPost(local);
+                            print(local);
+                            
+                            self.addPostLayout(local);
                         }
                     }
                 })

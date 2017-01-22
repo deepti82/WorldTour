@@ -362,10 +362,11 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
                         self.titleLabel.text = "Location Not Found"
                     }
                     else if response["value"].bool! {
+                        print(response);
                         self.json = response["data"]
-                        let city = response["data"]["city"].stringValue
+                        let city = response["data"]["user"]["city"].stringValue
                         self.titleLabel.text = "Experience \(city) Like A Local"
-                        self.changeAddButton(response["data"]["status"].boolValue)
+                        self.changeAddButton(response["data"]["user"]["status"].boolValue)
                     }
                 })
             })
