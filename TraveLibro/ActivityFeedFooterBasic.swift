@@ -16,7 +16,8 @@ class ActivityFeedFooterBasic: UIView {
     
     @IBOutlet weak var localLifeTravelImage: UIImageView!
     @IBOutlet weak var footerColorView: UIView!
-    var postTop:Post!
+    var postTop:JSON!
+    
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: SpringButton!
     @IBOutlet weak var lineView: UIView!
@@ -60,14 +61,12 @@ class ActivityFeedFooterBasic: UIView {
         shareButton.imageView?.contentMode = .scaleAspectFit
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit
-        
-        
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
-        comment.postId = postTop.post_uniqueId
-        comment.otherId = postTop.post_ids
+        comment.postId = postTop["uniqueId"].stringValue
+        comment.otherId = postTop["_id"].stringValue
         
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(comment, animated: true)
@@ -132,7 +131,6 @@ class ActivityFeedFooterBasic: UIView {
             
         } else {
             self.likeButton.tag = 0
-            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
             self.likeButton.tintColor = mainBlueColor
         }
     }
@@ -157,7 +155,7 @@ class ActivityFeedFooterBasic: UIView {
             sender.tag = 1
         }
         
-        request.likePost(postTop.post_uniqueId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+        request.likePost(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
@@ -192,9 +190,7 @@ class ActivityFeedFooterBasic: UIView {
         actionSheetControllerIOS8.addAction(cancelActionButton)
         let EditCheckIn: UIAlertAction = UIAlertAction(title: "Report", style: .default)
         {action -> Void in
-            //            self.isEdit = true
-            globalNewTLViewController.showEditActivity(self.postTop)
-            //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
+
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
         

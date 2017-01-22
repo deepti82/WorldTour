@@ -17,7 +17,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivityFeedFooterBasic" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="commentButton" destination="QnO-YE-q12" id="KIM-vn-I0P"/>
+                <outlet property="commentCount" destination="iPD-zs-z05" id="UvG-3o-MYt"/>
+                <outlet property="commentIcon" destination="gdo-V6-Bi9" id="No9-iU-B9e"/>
+                <outlet property="footerColorView" destination="HWH-5K-hPB" id="LWf-Ax-LCP"/>
                 <outlet property="likeButton" destination="czX-nC-TiV" id="IXM-Qs-W3L"/>
+                <outlet property="likeHeart" destination="0oe-4v-fLt" id="z1k-n2-BrS"/>
+                <outlet property="likeViewLabel" destination="qQ1-vh-dXj" id="sIx-Mq-p20"/>
+                <outlet property="lineView" destination="dAS-7j-w10" id="5ip-05-ke7"/>
+                <outlet property="localLifeTravelImage" destination="4kG-Xj-KQE" id="nmL-IE-1at"/>
+                <outlet property="optionButton" destination="RBf-nG-Ire" id="fjb-Lo-0SP"/>
+                <outlet property="shareButton" destination="Rrq-Lg-qNv" id="nRm-sX-YAd"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -54,6 +64,9 @@
                                             <real key="value" value="6"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="sendLikes:" destination="-1" eventType="touchUpInside" id="Kpv-dT-qSj"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rrq-Lg-qNv">
                                     <rect key="frame" x="100" y="2" width="23" height="23"/>
@@ -64,6 +77,9 @@
                                     <rect key="frame" x="60" y="2" width="23" height="23"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Button" image="speech_icon"/>
+                                    <connections>
+                                        <action selector="sendComments:" destination="-1" eventType="touchUpInside" id="pXb-Qq-XQL"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBf-nG-Ire">
                                     <rect key="frame" x="330" y="0.0" width="25" height="25"/>
@@ -74,6 +90,9 @@
                                     <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <inset key="imageEdgeInsets" minX="2" minY="2" maxX="2" maxY="2"/>
                                     <state key="normal" title="Button" image="options_icon"/>
+                                    <connections>
+                                        <action selector="optionClick:" destination="-1" eventType="touchUpInside" id="VnJ-Ad-reJ"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

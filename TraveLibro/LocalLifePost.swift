@@ -22,7 +22,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
     var videoContainer:VideoView!
     var player:Player!
     var centerView:PhotosOTGView!
-    var footerView: PhotoOTGFooter!
+    var footerView: ActivityFeedFooterBasic!
     var activityFeedImage: ActivityFeedImageView!
     var activityDetailItinerary: ActivityDetailItinerary!
     var activityQuickItinerary: ActivityFeedQuickItinerary!
@@ -157,7 +157,8 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
     
     func footerLayout(feed:JSON) {
         
-        footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+        footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+        footerView.postTop = feed
         self.addSubview(footerView)
         
     }
@@ -195,8 +196,9 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         if feed["thoughts"].stringValue != "" {
             
             //  START ACTIVITY TEXT HEADER
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
             textHeader.headerText.text = feed["thoughts"].stringValue
+            textHeader.headerText.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             self.addSubview(textHeader)
             
