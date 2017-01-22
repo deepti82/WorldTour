@@ -46,6 +46,8 @@
 		36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */; };
 		36E3B81F1E349D0C00C597BA /* PostTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E3B81E1E349D0C00C597BA /* PostTextView.xib */; };
 		36E3B8211E349D1900C597BA /* PostTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E3B8201E349D1900C597BA /* PostTextView.swift */; };
+		36E3B8241E34B54C00C597BA /* ActivityFeedFooterBasic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E3B8231E34B54C00C597BA /* ActivityFeedFooterBasic.xib */; };
+		36E3B8261E34B56200C597BA /* ActivityFeedFooterBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E3B8251E34B56200C597BA /* ActivityFeedFooterBasic.swift */; };
 		36EB3F981E0D81A000EFF9EC /* PostBuddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */; };
 		3A38275E1DDEE4BB007F181D /* NearMeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */; };
 		3A7A7D901DE5A921005F409C /* SinglePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A7D8F1DE5A921005F409C /* SinglePhotoViewController.swift */; };
@@ -492,6 +494,8 @@
 		36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		36E3B81E1E349D0C00C597BA /* PostTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTextView.xib; sourceTree = "<group>"; };
 		36E3B8201E349D1900C597BA /* PostTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTextView.swift; sourceTree = "<group>"; };
+		36E3B8231E34B54C00C597BA /* ActivityFeedFooterBasic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedFooterBasic.xib; sourceTree = "<group>"; };
+		36E3B8251E34B56200C597BA /* ActivityFeedFooterBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedFooterBasic.swift; sourceTree = "<group>"; };
 		36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostBuddy.swift; sourceTree = "<group>"; };
 		3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeListViewController.swift; sourceTree = "<group>"; };
 		3A7A7D8F1DE5A921005F409C /* SinglePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoViewController.swift; sourceTree = "<group>"; };
@@ -982,6 +986,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				36E3B8221E34B52B00C597BA /* ActivityFeedFooterBasic */,
 				36E3B81D1E349CD900C597BA /* PostTextView */,
 				8453CF401E30AF2800C41F82 /* ActivityFeedQuickItinerary */,
 				8453CF3B1E30A0BF00C41F82 /* ActivityDetailItinerary */,
@@ -1177,6 +1182,15 @@
 				36E3B8201E349D1900C597BA /* PostTextView.swift */,
 			);
 			name = PostTextView;
+			sourceTree = "<group>";
+		};
+		36E3B8221E34B52B00C597BA /* ActivityFeedFooterBasic */ = {
+			isa = PBXGroup;
+			children = (
+				36E3B8231E34B54C00C597BA /* ActivityFeedFooterBasic.xib */,
+				36E3B8251E34B56200C597BA /* ActivityFeedFooterBasic.swift */,
+			);
+			name = ActivityFeedFooterBasic;
 			sourceTree = "<group>";
 		};
 		3ABFD8DC1DA8C76D00A51034 /* ChangeCity */ = {
@@ -2596,6 +2610,7 @@
 				C2FA1E111D5485F50034DE97 /* QuickItineraryFive.xib in Resources */,
 				C28A92431D0E839B00CFEC7A /* FilterRestaurants.xib in Resources */,
 				C2EA3A1B1CDB790000122941 /* TypeOfJourney.xib in Resources */,
+				36E3B8241E34B54C00C597BA /* ActivityFeedFooterBasic.xib in Resources */,
 				C258A3391D6C83D600664CF7 /* ExistingAccountPopup.xib in Resources */,
 				36E3B81F1E349D0C00C597BA /* PostTextView.xib in Resources */,
 				C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */,
@@ -2957,6 +2972,7 @@
 				3A7D360D1DE8733D00786A83 /* CreatePostViewController.swift in Sources */,
 				C25BE1FB1CFC5DAF00C98DD3 /* AllReviewsViewController.swift in Sources */,
 				C20939051D11655200CBA70F /* NavigationMainViewController.swift in Sources */,
+				36E3B8261E34B56200C597BA /* ActivityFeedFooterBasic.swift in Sources */,
 				C267302A1D27D30300F2C822 /* ChooseCityViewController.swift in Sources */,
 				C266AA171D4B75B300174612 /* AllJourneysViewController.swift in Sources */,
 				C2C41B891DE9951A0018D72B /* Structures.swift in Sources */,

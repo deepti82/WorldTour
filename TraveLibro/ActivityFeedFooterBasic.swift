@@ -9,9 +9,9 @@
 import UIKit
 import Spring
 
-class PhotoOTGFooter: UIView {
+class ActivityFeedFooterBasic: UIView {
     
-//    @IBOutlet weak var LineView1: UIView!
+    //    @IBOutlet weak var LineView1: UIView!
     
     
     @IBOutlet weak var localLifeTravelImage: UIImageView!
@@ -44,7 +44,7 @@ class PhotoOTGFooter: UIView {
     
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: "PhotoOTGFooter", bundle: bundle)
+        let nib = UINib(nibName: "ActivityFeedFooterBasic", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -56,8 +56,7 @@ class PhotoOTGFooter: UIView {
         optionButton.tintColor = mainBlueColor
         commentIcon.tintColor = mainBlueColor
         likeButton.contentMode = .scaleAspectFit
-//        LineView1.alpha = 0.3
-//        footerView.alpha = 0.9
+        likeButton.setImage(UIImage(named:"likeButton"), for: UIControlState())
         shareButton.imageView?.contentMode = .scaleAspectFit
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit
@@ -69,7 +68,7 @@ class PhotoOTGFooter: UIView {
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = postTop.post_uniqueId
         comment.otherId = postTop.post_ids
-        comment.footerView = self;
+        
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(comment, animated: true)
     }
@@ -191,7 +190,7 @@ class PhotoOTGFooter: UIView {
         let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
         }
         actionSheetControllerIOS8.addAction(cancelActionButton)
-        let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
+        let EditCheckIn: UIAlertAction = UIAlertAction(title: "Report", style: .default)
         {action -> Void in
             //            self.isEdit = true
             globalNewTLViewController.showEditActivity(self.postTop)
@@ -199,24 +198,7 @@ class PhotoOTGFooter: UIView {
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
         
-        let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
-        { action -> Void in
-            globalNewTLViewController.changeDateAndTime(self)
-        }
-        actionSheetControllerIOS8.addAction(EditDnt)
-        let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
-        { action -> Void in
-            globalNewTLViewController.deletePost(self)
-            
-            //  request.deletePost(self.currentPost["_id"].string!, uniqueId: self.myJourney["uniqueId"].string!, user: self.currentPost["user"]["_id"].string!, completion: {(response) in
-            //  })
-        }
-        actionSheetControllerIOS8.addAction(DeletePost)
-        let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
-        { action -> Void in
-            globalNewTLViewController.showEditAddActivity(self.postTop)
-        }
-        actionSheetControllerIOS8.addAction(share)
+        
         globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
 }

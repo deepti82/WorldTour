@@ -17,7 +17,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qpj-n0-sgO">
@@ -27,25 +27,23 @@
                         <constraint firstAttribute="height" constant="1" id="sll-U6-eYX"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-mg-oUi">
-                    <rect key="frame" x="20" y="1" width="335" height="67"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="..." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-mg-oUi">
+                    <rect key="frame" x="20" y="1" width="335" height="36.5"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="pHq-mg-oUi" secondAttribute="trailing" constant="20" id="6sq-Zz-zG5"/>
+                <constraint firstItem="pHq-mg-oUi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Tzu-lH-yNb"/>
                 <constraint firstAttribute="trailing" secondItem="Qpj-n0-sgO" secondAttribute="trailing" constant="8" id="b8v-rV-6Uy"/>
-                <constraint firstItem="pHq-mg-oUi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="cNH-We-hNw"/>
-                <constraint firstAttribute="trailing" secondItem="pHq-mg-oUi" secondAttribute="trailing" constant="20" id="mR3-d0-X7f"/>
+                <constraint firstItem="pHq-mg-oUi" firstAttribute="top" secondItem="Qpj-n0-sgO" secondAttribute="bottom" id="oXt-n3-BFz"/>
                 <constraint firstItem="Qpj-n0-sgO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rZ8-1J-2PL"/>
                 <constraint firstItem="Qpj-n0-sgO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="t8i-89-waQ"/>
-                <constraint firstAttribute="bottom" secondItem="pHq-mg-oUi" secondAttribute="bottom" constant="8" id="tdX-yP-d2l"/>
-                <constraint firstItem="pHq-mg-oUi" firstAttribute="top" secondItem="Qpj-n0-sgO" secondAttribute="bottom" id="uR4-zS-XZL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="33.5" y="-179"/>
+            <point key="canvasLocation" x="33.5" y="-198"/>
         </view>
     </objects>
 </document>
