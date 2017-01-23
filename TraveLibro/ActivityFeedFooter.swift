@@ -162,32 +162,62 @@ class ActivityFeedFooter: UIView {
             sender.tag = 1
         }
         
-        request.likePost(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
-            DispatchQueue.main.async(execute: {
-                if response.error != nil {
-                    print("error: \(response.error!.localizedDescription)")
-                }
-                else if response["value"].bool! {
-                    if sender.tag == 1 {
-                        self.setLikeSelected(true)
-                        self.likeCount = self.likeCount + 1
-                        self.setLikeCount(self.likeCount)
+        if (postTop["type"].stringValue == "quick-itinerary" || postTop["type"].stringValue == "detail-itinerary") {
+            request.likeItinerary(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, itinerary: postTop["_id"].stringValue, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        if sender.tag == 1 {
+                            self.setLikeSelected(true)
+                            self.likeCount = self.likeCount + 1
+                            self.setLikeCount(self.likeCount)
+                        }
+                        else {
+                            self.setLikeSelected(false)
+                            if self.likeCount <= 0 {
+                                self.likeCount = 0
+                            } else {
+                                self.likeCount = self.likeCount - 1
+                            }
+                            self.setLikeCount(self.likeCount)
+                        }
                     }
                     else {
-                        self.setLikeSelected(false)
-                        if self.likeCount <= 0 {
-                            self.likeCount = 0
-                        } else {
-                            self.likeCount = self.likeCount - 1
-                        }
-                        self.setLikeCount(self.likeCount)
+                        
                     }
-                }
-                else {
-                    
-                }
+                })
             })
-        })
+        }else if (postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
+            request.likeStartEnd(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, journey: postTop["_id"].stringValue, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        if sender.tag == 1 {
+                            self.setLikeSelected(true)
+                            self.likeCount = self.likeCount + 1
+                            self.setLikeCount(self.likeCount)
+                        }
+                        else {
+                            self.setLikeSelected(false)
+                            if self.likeCount <= 0 {
+                                self.likeCount = 0
+                            } else {
+                                self.likeCount = self.likeCount - 1
+                            }
+                            self.setLikeCount(self.likeCount)
+                        }
+                    }
+                    else {
+                        
+                    }
+                })
+            })
+        }
+        
     }
     
     @IBAction func optionClick(_ sender: UIButton) {

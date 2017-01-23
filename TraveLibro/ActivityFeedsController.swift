@@ -12,13 +12,14 @@ var globalActivityFeedsController:ActivityFeedsController!
 
 
 class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
-
+    
     @IBOutlet weak var activityScroll: UIScrollView!
     var layout: VerticalLayout!
     var feeds: JSON! = []
     var pageno = 1
+    var loadStatus: Bool = true
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         globalActivityFeedsController = self
@@ -30,22 +31,27 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     }
     
     func getActivity(pageNumber: Int) {
+        print("yaaaho")
+        print(pageNumber)
         request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request) in
             DispatchQueue.main.async(execute: {
-
-            for post in request["data"].array! {
-                self.feeds.arrayObject?.append(post)
-                let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
-                checkIn.scrollView = self.activityScroll
-                checkIn.createProfileHeader(feed: post)
-                checkIn.activityFeed = self
-                self.layout.addSubview(checkIn)
-                 self.addHeightToLayout()
-                
-            }
-                
-            self.addHeightToLayout()
-                
+                if request["data"] != "" {
+                    self.loadStatus = true
+                    for post in request["data"].array! {
+                        self.feeds.arrayObject?.append(post)
+                        let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                        checkIn.scrollView = self.activityScroll
+                        checkIn.createProfileHeader(feed: post)
+                        checkIn.activityFeed = self
+                        self.layout.addSubview(checkIn)
+                        self.addHeightToLayout()
+                        
+                    }
+                    
+                    self.addHeightToLayout()
+                }else{
+                    self.loadStatus = false
+                }
             })
         })
     }
@@ -58,8 +64,11 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
-            print("in load more of data.")
-//            getActivity(pageNumber: pageno + 1)
+            if loadStatus {
+                print("in load more of data.")
+                getActivity(pageNumber: pageno + 1)
+            }
+            
         }
         
         for postView in layout.subviews {
@@ -72,7 +81,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
