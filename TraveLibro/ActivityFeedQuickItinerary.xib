@@ -37,6 +37,12 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="590"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paris" translatesAutoresizingMaskIntoConstraints="NO" id="z24-8B-nCF">
+                    <rect key="frame" x="4" y="65" width="367" height="525"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="525" id="Cos-QS-ayB"/>
+                    </constraints>
+                </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="I6o-eJ-kUq">
                     <rect key="frame" x="14" y="72" width="90" height="40"/>
                     <subviews>
@@ -93,7 +99,7 @@
                     <rect key="frame" x="4" y="520" width="367" height="70"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Love In Paris" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mam-23-aNV">
-                            <rect key="frame" x="12" y="8" width="179" height="31"/>
+                            <rect key="frame" x="12" y="8" width="179" height="30.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="179" id="UMe-WR-rlV"/>
                             </constraints>
@@ -102,7 +108,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 2016" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oha-bg-uWe">
-                            <rect key="frame" x="211" y="35" width="60" height="20"/>
+                            <rect key="frame" x="211" y="35.5" width="60" height="19.5"/>
                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -132,13 +138,13 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uUC-yv-09R">
                             <rect key="frame" x="12" y="40" width="85" height="25"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backpacking" translatesAutoresizingMaskIntoConstraints="NO" id="7hY-2g-NlB">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backpacking" translatesAutoresizingMaskIntoConstraints="NO" id="7hY-2g-NlB">
                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="wNN-DZ-yHX"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solo" translatesAutoresizingMaskIntoConstraints="NO" id="nz6-vw-CFN">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solo" translatesAutoresizingMaskIntoConstraints="NO" id="nz6-vw-CFN">
                                     <rect key="frame" x="30" y="0.0" width="25" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="Hdw-qU-VGN"/>
@@ -180,12 +186,6 @@
                         <constraint firstItem="Mam-23-aNV" firstAttribute="top" secondItem="eLF-mr-ZG6" secondAttribute="top" constant="8" id="xrf-XX-wxB"/>
                     </constraints>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paris" translatesAutoresizingMaskIntoConstraints="NO" id="z24-8B-nCF">
-                    <rect key="frame" x="4" y="65" width="367" height="525"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="525" id="Cos-QS-ayB"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="z24-8B-nCF" secondAttribute="trailing" constant="4" id="BfR-BU-4vW"/>
