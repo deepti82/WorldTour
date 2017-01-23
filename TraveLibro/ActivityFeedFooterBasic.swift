@@ -125,6 +125,8 @@ class ActivityFeedFooterBasic: UIView {
         topLayout.layoutSubviews()
         if(self.type == "LocalLife") {
             globalLocalLifeInside.addHeightToLayout()
+        } else if(self.type == "ActivityFeeds") {
+            globalActivityFeedsController.addHeightToLayout()
         }
     }
     

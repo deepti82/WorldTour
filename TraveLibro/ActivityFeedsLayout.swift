@@ -22,7 +22,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var videoContainer:VideoView!
     var player:Player!
     var centerView:PhotosOTGView!
-    var footerView: PhotoOTGFooter!
+    var footerView: ActivityFeedFooterBasic!
     var activityFeedImage: ActivityFeedImageView!
     var activityDetailItinerary: ActivityDetailItinerary!
     var activityQuickItinerary: ActivityFeedQuickItinerary!
@@ -164,8 +164,13 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     }
     
     func footerLayout(feed:JSON) {
-        
-        footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+
+        footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+        footerView.postTop = feed
+        footerView.topLayout = self
+        footerView.type = "ActivityFeeds"
+        footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
+        footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
         self.addSubview(footerView)
 
     }
@@ -205,9 +210,10 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         if feed["thoughts"].stringValue != "" {
             
             //  START ACTIVITY TEXT HEADER
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
             textHeader.headerText.text = feed["thoughts"].stringValue
-            textHeader.sizeToFit()
+            textHeader.headerText.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             self.addSubview(textHeader)
             
             //  START ACTIVITY TEXT TAG

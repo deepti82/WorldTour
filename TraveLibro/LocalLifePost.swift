@@ -156,7 +156,6 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
     }
     
     func footerLayout(feed:JSON) {
-        
         footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
         footerView.postTop = feed
         footerView.topLayout = self
@@ -164,7 +163,6 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
         footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
         self.addSubview(footerView)
-        
     }
     
     func middleLayoout(feed:JSON) {
