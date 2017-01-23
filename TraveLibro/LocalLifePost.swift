@@ -48,6 +48,12 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         //Image generation only
         if(feed["videos"].count > 0) {
             self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            self.videoContainer.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(LocalLifePost.openSingleVideo(_:)))
+            self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
+            self.videoContainer.tag = 0
+            
+            
             self.player = Player()
             self.player.delegate = self
             self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
@@ -160,6 +166,15 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
         singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
+        singlePhotoController.postId = feed["_id"].stringValue
+        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+    }
+    
+    func openSingleVideo(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.type = "Video"
         singlePhotoController.postId = feed["_id"].stringValue
         globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }

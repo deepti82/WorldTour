@@ -24,11 +24,12 @@ class SinglePhotoViewController: UIViewController {
     
     @IBOutlet weak var likeText: UILabel!
     @IBOutlet weak var commentText: UILabel!
-    
+    var type = "Image"
     var index: Int!
     var currentIndex: Int!
     var postId: String!
     var photos: [JSON]!
+    var videos:[JSON]!
     var singlePost: JSON!
     
     var likeCount: Int!
@@ -184,9 +185,12 @@ class SinglePhotoViewController: UIViewController {
                     
                     self.singlePost = response["data"]
                     self.photos = response["data"]["photos"].array!
-                    print("photos: \(self.photos)")
-                    
-                    self.getSinglePhoto(self.photos[self.index!]["_id"].string!)
+                    self.videos = response["data"]["videos"].array!
+                    if(self.type == "Video") {
+                        self.getSingleVideo(self.videos[0]["_id"].string!)
+                    } else {
+                        self.getSinglePhoto(self.photos[self.index!]["_id"].string!)
+                    }
                 }
                     
                 else {
@@ -200,8 +204,6 @@ class SinglePhotoViewController: UIViewController {
     var singlePhotoJSON: JSON!
     
     func getSinglePhoto(_ photoId: String) {
-        print(photoId)
-        print(singlePost["user"]["_id"].string)
         request.getOnePostPhotos(photoId, singlePost["user"]["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
@@ -218,6 +220,70 @@ class SinglePhotoViewController: UIViewController {
                     let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
                     self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
 
+                    if data["caption"].string != nil && data["caption"].string != "" {
+                        
+                        self.imageCaption.text = data["caption"].string!
+                    }
+                    
+                    if data["like"].array!.contains(JSON(user.getExistingUser())) {
+                        
+                        self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
+                        self.likeButton.tintColor = UIColor.white
+                        self.hasLiked = true
+                    }
+                    else {
+                        
+                        self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+                        self.hasLiked = false
+                    }
+                    
+                    self.likeCount = data["likeCount"].int!
+                    self.commentCount = data["commentCount"].int!
+                    
+                    self.likeText.text = "\(self.likeCount!) Like"
+                    self.commentText.text = "\(self.commentCount!) Comment"
+                    
+                    self.bottomView.isHidden = false
+                    self.mainImage.isHidden = false
+                    
+                    let imageLeftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.leftSwipe(_:)))
+                    let imageRightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.rightSwipe(_:)))
+                    
+                    imageLeftSwipe.direction = .left
+                    imageRightSwipe.direction = .right
+                    
+                    self.mainImage.addGestureRecognizer(imageLeftSwipe)
+                    self.mainImage.addGestureRecognizer(imageRightSwipe)
+                    
+                }
+                    
+                    
+                else {
+                    print("response error!")
+                }
+            })
+            
+        })
+    }
+    
+    
+    func getSingleVideo(_ photoId: String) {
+        request.getOnePostVideos(photoId, singlePost["user"]["_id"].string!, completion: {(response) in
+            
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    print("response: \(response.error?.localizedDescription)")
+                }
+                    
+                else if response["value"].bool! {
+                    
+                    let data: JSON = response["data"]
+                    self.singlePhotoJSON = response["data"]
+                    
+                    let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
+                    self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
+                    
                     if data["caption"].string != nil && data["caption"].string != "" {
                         
                         self.imageCaption.text = data["caption"].string!
