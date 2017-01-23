@@ -32,9 +32,9 @@ class ActivityDetailItinerary: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         transparentCardWhite(activityDetailItineraryView)
-        makeTLProfilePictureBorderWhite(detailFlagOne)
-        makeTLProfilePictureBorderWhite(detailFlagTwo)
-        makeTLProfilePictureBorderWhite(detailFlagThree)
+        makeTLProfilePictureBorderWhiteCorner(detailFlagOne)
+        makeTLProfilePictureBorderWhiteCorner(detailFlagTwo)
+        makeTLProfilePictureBorderWhiteCorner(detailFlagThree)
         
     }
     

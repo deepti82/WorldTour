@@ -33,9 +33,9 @@ class ActivityFeedQuickItinerary: UIView {
         quickBack.clipsToBounds = true
         quickBack.layer.cornerRadius = 10
         transparentCardWhite(activityFeedQuickView)
-        makeTLProfilePictureBorderWhite(activityQuickFlagOne)
-        makeTLProfilePictureBorderWhite(activityQuickFlagTwo)
-        makeTLProfilePictureBorderWhite(activityFeedQuickThree)
+        makeTLProfilePictureBorderWhiteCorner(activityQuickFlagOne)
+        makeTLProfilePictureBorderWhiteCorner(activityQuickFlagTwo)
+        makeTLProfilePictureBorderWhiteCorner(activityFeedQuickThree)
     }
     
     required init?(coder aDecoder: NSCoder) {

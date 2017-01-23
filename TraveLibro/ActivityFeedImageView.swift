@@ -36,9 +36,9 @@ class ActivityFeedImageView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
        transparentCardWhite(ActivityImageView)
-        makeTLProfilePictureBorderWhite(flagOne)
-        makeTLProfilePictureBorderWhite(flageTwo)
-        makeTLProfilePictureBorderWhite(flagThree)
+        makeTLProfilePictureBorderWhiteCorner(flagOne)
+        makeTLProfilePictureBorderWhiteCorner(flageTwo)
+        makeTLProfilePictureBorderWhiteCorner(flagThree)
     }
     
     required init?(coder aDecoder: NSCoder) {
