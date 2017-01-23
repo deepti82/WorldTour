@@ -879,7 +879,7 @@ class Navigation {
             let params = ["_id": id]
             print("params: \(params)")
             
-            let opt = try HTTP.POST(adminUrl + "user/getOneData", parameters: params)
+            let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
             var json = JSON(1);
             opt.start { response in
                 //                print("started response: \(response)")
