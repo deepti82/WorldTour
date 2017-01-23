@@ -12,7 +12,7 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setTopNavigation("Add Activity")
         tableView.tableFooterView = UIView()
         configureSearchController()
         searchController.searchBar.placeholder = "Search Places"
@@ -49,6 +49,22 @@ class SearchLocationTableViewController: UITableViewController, UISearchBarDeleg
 //        }
         
     }
+    
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+
     
     func configureSearchController() {
         

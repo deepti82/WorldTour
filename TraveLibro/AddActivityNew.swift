@@ -192,7 +192,7 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
         button.backgroundColor = UIColor.clear
         button.titleLabel!.font = avenirFont
         button.setTitle(buttonTitle, for: UIControlState())
-        button.setTitleColor(mainBlueColor, for: UIControlState())
+        button.titleLabel?.textColor = UIColor.darkGray
         button.layer.cornerRadius = 5
         button.layer.borderColor = UIColor.darkGray.cgColor
         button.layer.borderWidth = 1.0

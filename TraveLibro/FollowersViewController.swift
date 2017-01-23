@@ -7,6 +7,7 @@ var followers: [JSON] = []
 class FollowersViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
 
 
+    @IBOutlet weak var followersDefaultText: UILabel!
     @IBOutlet var shareButtons: [UIButton]!
     @IBOutlet weak var mailShare: UIButton!
     @IBOutlet weak var whatsappShare: UIButton!
@@ -200,6 +201,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 cell.followButton.titleLabel?.addSubview(followTick)
                 cell.followButton.setTitle("Following", for: UIControlState())
                 cell.followButton.setTitleColor(UIColor.white, for: UIControlState())
+                cell.followButton.titleLabel?.textAlignment = .center
                 cell.followButton.contentHorizontalAlignment = .right
                 cell.followButton.isSelected = true
             }else{
@@ -239,6 +241,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                 cell.followButton.setTitle("Following", for: UIControlState())
                 cell.followButton.setTitleColor(UIColor.white, for: UIControlState())
                 cell.followButton.contentHorizontalAlignment = .right
+                cell.followButton.titleLabel?.textAlignment = .center
                 cell.followButton.isSelected = true
             }else{
                 cell.followButton.tag = 0
@@ -408,8 +411,10 @@ class FollowersCell: UITableViewCell {
             followTick.image = UIImage(named: "correct-signal")
             sender.titleLabel?.addSubview(followTick)
             sender.setTitle("Following", for: UIControlState())
+            followButton.titleLabel?.textAlignment = .center
             sender.setTitleColor(UIColor.white, for: UIControlState())
             sender.contentHorizontalAlignment = .right
+            followButton.titleLabel?.textAlignment = .center
             sender.isSelected = true
             
         }

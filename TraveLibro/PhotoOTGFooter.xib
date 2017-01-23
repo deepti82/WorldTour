@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,6 +25,7 @@
                 <outlet property="likeHeart" destination="bfn-CR-GZz" id="wdC-MJ-R8m"/>
                 <outlet property="likeViewLabel" destination="Xo7-24-z8R" id="IP9-Jg-YyA"/>
                 <outlet property="lineView" destination="qgD-cp-RTD" id="NKX-PC-1M7"/>
+                <outlet property="lineViewTop" destination="ldh-UJ-7Oz" id="XcB-WA-las"/>
                 <outlet property="localLifeTravelImage" destination="J15-HS-0ab" id="yOa-6h-hJM"/>
                 <outlet property="optionButton" destination="ASX-oG-GBT" id="uEF-uR-bJj"/>
                 <outlet property="shareButton" destination="2DN-gJ-eGv" id="0aK-pp-5rB"/>
@@ -38,11 +39,6 @@
                 <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="koM-1g-CgJ">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nOd-L8-ftO">
-                            <rect key="frame" x="8" y="5" width="359" height="1"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OGS-bv-8jn">
                             <rect key="frame" x="0.0" y="17" width="375" height="31"/>
                             <subviews>
@@ -52,7 +48,7 @@
                                         <constraint firstAttribute="width" constant="23" id="Tjd-4k-myJ"/>
                                         <constraint firstAttribute="height" constant="23" id="jNN-uF-nfr"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="FD38F626-E91B-48FB-8C14-E6E0D2C0E19C"/>
+                                    <state key="normal" title="Button" image="36632266-34BA-4F23-887F-18C82E567872"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                             <real key="value" value="2"/>
@@ -142,14 +138,19 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qgD-cp-RTD">
-                            <rect key="frame" x="8" y="52" width="359" height="1"/>
+                            <rect key="frame" x="8" y="52" width="359" height="0.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="0.90219609109999999" colorSpace="calibratedRGB"/>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J15-HS-0ab">
                             <rect key="frame" x="352" y="69" width="15" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldh-UJ-7Oz">
+                            <rect key="frame" x="0.0" y="5" width="375" height="0.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="0.90219609109999999" colorSpace="calibratedRGB"/>
+                        </view>
                     </subviews>
                     <constraints>
                         <constraint firstItem="OGS-bv-8jn" firstAttribute="leading" secondItem="koM-1g-CgJ" secondAttribute="leading" id="22W-3Q-LLU"/>
@@ -179,7 +180,7 @@
         </view>
     </objects>
     <resources>
-        <image name="FD38F626-E91B-48FB-8C14-E6E0D2C0E19C" width="128" height="128">
+        <image name="36632266-34BA-4F23-887F-18C82E567872" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
