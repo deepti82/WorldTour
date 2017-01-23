@@ -23,6 +23,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var player:Player!
     var centerView:PhotosOTGView!
     var footerView: ActivityFeedFooterBasic!
+    var footerViewReview: ActivityFeedFooter!
     var activityFeedImage: ActivityFeedImageView!
     var activityDetailItinerary: ActivityDetailItinerary!
     var activityQuickItinerary: ActivityFeedQuickItinerary!
@@ -164,14 +165,26 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     }
     
     func footerLayout(feed:JSON) {
-
-        footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-        footerView.postTop = feed
-        footerView.topLayout = self
-        footerView.type = "ActivityFeeds"
-        footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
-        footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
-        self.addSubview(footerView)
+        if(feed["type"].stringValue == "ended-journey" || feed["type"].stringValue == "quick-itinerary" || feed["type"].stringValue == "detail-itinerary") {
+            print("in review")
+            footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            footerViewReview.postTop = feed
+            footerViewReview.topLayout = self
+            footerViewReview.type = "ActivityFeeds"
+            footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
+            footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
+            self.addSubview(footerViewReview)
+        } else {
+            print("in footer")
+            footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            footerView.postTop = feed
+            footerView.topLayout = self
+            footerView.type = "ActivityFeeds"
+            footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
+            footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
+            self.addSubview(footerView)
+        }
+        
 
     }
     

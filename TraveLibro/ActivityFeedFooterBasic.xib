@@ -146,8 +146,8 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4kG-Xj-KQE">
-                            <rect key="frame" x="352" y="69" width="15" height="15"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="travel_life" translatesAutoresizingMaskIntoConstraints="NO" id="4kG-Xj-KQE">
+                            <rect key="frame" x="352" y="69" width="23" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                     </subviews>
@@ -175,7 +175,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="64" y="96"/>
+            <point key="canvasLocation" x="63.5" y="95.5"/>
         </view>
     </objects>
     <resources>
@@ -183,5 +183,6 @@
         <image name="options_icon" width="30" height="30"/>
         <image name="shareButton" width="46" height="70"/>
         <image name="speech_icon" width="30" height="30"/>
+        <image name="travel_life" width="80" height="80"/>
     </resources>
 </document>

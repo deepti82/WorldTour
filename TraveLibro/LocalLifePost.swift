@@ -13,7 +13,7 @@ import Spring
 class LocalLifePost: VerticalLayout, PlayerDelegate {
     
     
-    //    var feed: JSON!
+        var feed: JSON!
     var profileHeader: ActivityProfileHeader!
     var textHeader: ActivityTextHeader!
     var activityFeed: LocalLifePostsViewController!
@@ -32,7 +32,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
     func createProfileHeader(feed:JSON) {
-        
+        self.feed = feed
         headerLayout(feed: feed)
         
         //        videosAndPhotosLayout(feed: feed)
@@ -112,7 +112,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
                 self.mainPhoto.frame.size.width = self.frame.width
                 self.mainPhoto.hnk_setImageFromURL(imgStr)
                 self.mainPhoto.isUserInteractionEnabled = true
-                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(LocalLifePost.openSinglePhoto(_:)))
                 self.mainPhoto.addGestureRecognizer(tapGestureRecognizer)
                 self.mainPhoto.tag = 0
                 
@@ -154,6 +154,15 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         }
         //End of Center
     }
+    
+    func openSinglePhoto(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.postId = feed["_id"].stringValue
+        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+    }
+
     
     func footerLayout(feed:JSON) {
         footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
@@ -259,7 +268,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             photosButton.frame.size.width = 82
             let urlStr = getImageURL(post["photos"][i]["name"].stringValue, width: 300)
             photosButton.hnk_setImageFromURL(urlStr)
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(PhotosOTG2.openSinglePhoto(_:)))
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(LocalLifePost.openSinglePhoto(_:)))
             photosButton.isUserInteractionEnabled = true
             photosButton.addGestureRecognizer(tapGestureRecognizer)
             //photosButton.layer.cornerRadius = 5.0
