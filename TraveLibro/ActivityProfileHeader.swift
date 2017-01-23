@@ -64,6 +64,8 @@ class ActivityProfileHeader: UIView {
             
             category.setImage(UIImage(named:getCategoryImage(name: feed["checkIn"]["category"].stringValue)), for: .normal)
             
+        }else{
+            category.isHidden = true
         }
         
     }

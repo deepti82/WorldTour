@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class QuickItineraryPreviewViewController: UIViewController {
     
@@ -78,14 +79,14 @@ class QuickItineraryPreviewViewController: UIViewController {
             prev.quickType[2].image = UIImage(named: quickItinery["itineraryType"][2].stringValue)
             
         }
-        else if quickItinery["itineraryType"].array!.count == 2 {
+        else if quickItinery["itineraryType"].count == 2 {
             
             prev.quickType[0].image = UIImage(named: quickItinery["itineraryType"][0].stringValue)
             prev.quickType[1].image = UIImage(named: quickItinery["itineraryType"][1].stringValue)
             prev.quickType[2].isHidden = true
             
         }
-        else if quickItinery["itineraryType"].array!.count == 1 {
+        else if quickItinery["itineraryType"].count == 1 {
             
             prev.quickType[0].image = UIImage(named: quickItinery["itineraryType"][0].stringValue)
             prev.quickType[1].isHidden = true
@@ -161,6 +162,32 @@ class QuickItineraryPreviewViewController: UIViewController {
         
         let cancelActionButton: UIAlertAction = UIAlertAction(title: "Save", style: .default) { action -> Void in
             print("Cancel")
+            
+                    request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
+                        DispatchQueue.main.async(execute: {
+                            print(response)
+                            if response.error != nil {
+            
+                                print("error: \(response.error!.localizedDescription)")
+            
+                            }
+                            else if response["value"].bool! {
+                                quickItinery = []
+                                let tstr = Toast(text: "Itenary saved successfully.")
+                                tstr.show()
+//                                self.callBackViewC()
+            
+            
+                                let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+                                self.navigationController?.pushViewController(next, animated: true)
+                                print("nothing")
+                            }
+                            else {
+                                print("nothing")
+                                
+                            }
+                        })
+                    })
             
         }
         
