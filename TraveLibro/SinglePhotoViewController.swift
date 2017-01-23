@@ -8,9 +8,11 @@
 
 import UIKit
 import Spring
+import Player
 
-class SinglePhotoViewController: UIViewController {
+class SinglePhotoViewController: UIViewController,PlayerDelegate {
 
+    var player:Player!
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var imageCaption: UILabel!
@@ -266,6 +268,9 @@ class SinglePhotoViewController: UIViewController {
         })
     }
     
+    func playerReady(_ player: Player) {
+        self.player.playFromBeginning()
+    }
     
     func getSingleVideo(_ photoId: String) {
         request.getOnePostVideos(photoId, singlePost["user"]["_id"].string!, completion: {(response) in
@@ -277,48 +282,49 @@ class SinglePhotoViewController: UIViewController {
                 }
                     
                 else if response["value"].bool! {
-                    
                     let data: JSON = response["data"]
                     self.singlePhotoJSON = response["data"]
-                    
+                    print(data);
                     let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
                     self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
                     
                     if data["caption"].string != nil && data["caption"].string != "" {
-                        
                         self.imageCaption.text = data["caption"].string!
                     }
                     
                     if data["like"].array!.contains(JSON(user.getExistingUser())) {
-                        
                         self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
                         self.likeButton.tintColor = UIColor.white
                         self.hasLiked = true
                     }
                     else {
-                        
                         self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
                         self.hasLiked = false
                     }
                     
-                    self.likeCount = data["likeCount"].int!
-                    self.commentCount = data["commentCount"].int!
-                    
-                    self.likeText.text = "\(self.likeCount!) Like"
-                    self.commentText.text = "\(self.commentCount!) Comment"
+                    if(data["likeCount"].int != nil) {
+                        self.likeCount = data["likeCount"].int!
+                        self.likeText.text = "\(self.likeCount!) Like"
+                    }
+                    if(data["commentCount"].int != nil) {
+                        self.commentCount = data["commentCount"].int!
+                        self.commentText.text = "\(self.commentCount!) Comment"
+                    }
                     
                     self.bottomView.isHidden = false
                     self.mainImage.isHidden = false
                     
-                    let imageLeftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.leftSwipe(_:)))
-                    let imageRightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.rightSwipe(_:)))
                     
-                    imageLeftSwipe.direction = .left
-                    imageRightSwipe.direction = .right
-                    
-                    self.mainImage.addGestureRecognizer(imageLeftSwipe)
-                    self.mainImage.addGestureRecognizer(imageRightSwipe)
-                    
+                    self.player = Player()
+                    self.player.delegate = self
+                    self.player.view.frame = self.mainImage.bounds
+                    self.player.view.clipsToBounds = true
+                    self.player.playbackLoops = true
+                    self.player.muted = true
+                    var videoUrl:URL!
+                    videoUrl = URL(string:data["name"].stringValue)
+                    self.player.setUrl(videoUrl!)
+                    self.mainImage.addSubview(self.player.view)
                 }
                     
                     

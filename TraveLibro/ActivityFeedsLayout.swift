@@ -67,12 +67,10 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 videoContainer.tagText.text = "Local Life"
                 videoContainer.tagView.backgroundColor = endJourneyColor
             }
-            
             videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
             self.player.setUrl(videoUrl!)
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
-            
         } else if(feed["photos"].count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)

@@ -51,7 +51,5 @@ class VideoView: UIView {
             toggleSound.setTitle(String(format: "%C",0xf026), for: UIControlState())
         }
     }
-    
-    
 }
 
