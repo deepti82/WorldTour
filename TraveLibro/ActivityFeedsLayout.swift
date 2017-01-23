@@ -132,7 +132,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.mainPhoto.clipsToBounds = true
            
             
-                if feed["thoughts"] == nil && feed["thoughts"].stringValue == "" {
+                if feed["thoughts"] == nil || feed["thoughts"].stringValue == "" {
                     let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
                     headerTag.tagParent.backgroundColor = UIColor.clear
                     headerTag.tagLine.isHidden = true
