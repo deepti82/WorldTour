@@ -57,6 +57,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
             self.videoContainer.player = self.player
             var videoUrl:URL!
+            self.videoContainer.tagText.isHidden = true
             if feed["type"].stringValue == "travel-life" {
                 videoContainer.tagText.text = "On The Go"
                 videoContainer.tagView.backgroundColor = mainOrangeColor

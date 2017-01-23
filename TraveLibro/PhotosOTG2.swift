@@ -85,6 +85,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
             self.videoContainer.player = self.player
             var videoUrl:URL!
+            self.videoContainer.tagText.isHidden = true
             if(!post.post_isOffline) {
                 videoUrl = URL(string: post.videoArr[0].serverUrl)
             } else {
