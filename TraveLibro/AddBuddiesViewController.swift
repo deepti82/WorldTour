@@ -411,7 +411,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         if isUrl && imageUrl != "" {
             
             cell.buddyDp.hnk_setImageFromURL(URL(string: imageUrl)!)
-            makeTLProfilePicture(cell.buddyDp)
+            makeTLProfilePictureBorderWhite(cell.buddyDp)
             
         }
             
@@ -420,7 +420,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
             
             cell.buddyDp.hnk_setImageFromURL(URL(string: getImageUrl)!)
-            makeTLProfilePicture(cell.buddyDp)
+            makeTLProfilePictureBorderWhite(cell.buddyDp)
             
         }
         

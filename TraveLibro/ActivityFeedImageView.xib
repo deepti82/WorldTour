@@ -186,7 +186,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.29805627147766323" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.39944426546391754" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="jxU-Wm-SMf" firstAttribute="leading" secondItem="hHu-jo-Pzw" secondAttribute="leadingMargin" id="0yg-8K-IcB"/>
                         <constraint firstItem="FdU-2B-wz7" firstAttribute="top" secondItem="hHu-jo-Pzw" secondAttribute="top" constant="8" id="6oz-OA-ICk"/>

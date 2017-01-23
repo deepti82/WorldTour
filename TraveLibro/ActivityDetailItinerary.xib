@@ -116,7 +116,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.29805627150000003" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.40177996136254296" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="ZHm-en-Au0" firstAttribute="top" secondItem="g4E-px-Jp4" secondAttribute="top" constant="8" id="BYD-6U-fhz"/>
                         <constraint firstAttribute="trailing" secondItem="PVZ-Fv-OOQ" secondAttribute="trailing" constant="12" id="EQ1-me-89D"/>
