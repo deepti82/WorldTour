@@ -77,14 +77,17 @@ class ActivityFeedQuickItinerary: UIView {
         if feed["itineraryType"][0] != nil {
             categoryOne.isHidden = false
             categoryOne.image = UIImage(named: feed["itineraryType"][0].stringValue)
+            categoryOne.tintColor = UIColor.white
         }
         if feed["itineraryType"][1] != nil {
             categoryTwo.isHidden = false
             categoryTwo.image = UIImage(named: feed["itineraryType"][1].stringValue)
+            categoryTwo.tintColor = UIColor.white
         }
         if feed["itineraryType"][2] != nil {
             categoryThree.isHidden = false
             categoryThree.image = UIImage(named: feed["itineraryType"][2].stringValue)
+            categoryThree.tintColor = UIColor.white
         }
 
         
