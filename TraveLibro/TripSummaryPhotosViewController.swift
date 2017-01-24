@@ -22,19 +22,19 @@ class TripSummaryPhotosViewController: UIViewController {
         super.viewDidLoad()
         
         
-        showNavigationIn(img:"grid")
+        showNavigationIn(img:"grid",text: "Photos")
         
         gridContainer.alpha = 1
         listContainer.alpha = 0
         
     }
     
-    func showNavigationIn(img: String) {
+    func showNavigationIn(img: String, text: String) {
         let rightButton = UIButton()
         rightButton.setImage(UIImage(named: img), for: UIControlState())
         rightButton.addTarget(self, action: #selector(TripSummaryPhotosViewController.changeView(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 20, height: 20)
-        
+        self.title = text
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
@@ -51,18 +51,34 @@ class TripSummaryPhotosViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+
     
     
     func changeView(_ sender: UIButton) {
         
         if gridContainer.alpha == 1 {
-            showNavigationIn(img:"list")
+            showNavigationIn(img:"list", text: "Photos")
             gridContainer.alpha = 0
             listContainer.alpha = 1
             
         }
         else {
-            showNavigationIn(img:"grid")
+            showNavigationIn(img:"grid", text: "Photos")
+//            setTopNavigation("Photos")
             gridContainer.alpha = 1
             listContainer.alpha = 0
         }
