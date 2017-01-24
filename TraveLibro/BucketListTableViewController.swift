@@ -204,6 +204,8 @@ class BucketListTableViewController: UITableViewController  {
             
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
+            cell.countryName.layer.zPosition = 100
+            cell.yearOfVisit.layer.zPosition = 100
             cell.countryName.text = bucket[(indexPath as NSIndexPath).row]["name"].string!
             cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: 500))
             cell.countryPicture.alpha = 1
@@ -216,7 +218,8 @@ class BucketListTableViewController: UITableViewController  {
         else if whichView == "CountriesVisited" {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
-            
+            cell.countryName.layer.zPosition = 100
+            cell.yearOfVisit.layer.zPosition = 100
             cell.countryName.text = self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["name"].string!
             cell.yearOfVisit.text = "\(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"])"
             cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["countryCoverPhoto"].stringValue,width: 500))
