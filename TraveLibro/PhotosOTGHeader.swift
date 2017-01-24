@@ -29,7 +29,9 @@ class PhotosOTGHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
+        self.layer.shadowOffset = CGSize(width: 5, height: 5)
+        self.layer.shadowColor = UIColor.black.cgColor
+
     }
     
     required init?(coder aDecoder: NSCoder) {

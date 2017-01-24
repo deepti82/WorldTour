@@ -61,10 +61,10 @@
                                 <constraint firstAttribute="height" constant="49" id="pdN-JA-6Td"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evening by the beach! :) with Sarvesh Brahme and 1 other at Girgaon" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="po4-VN-8dh" customClass="ActiveLabel" customModule="TraveLibro" customModuleProvider="target">
-                            <rect key="frame" x="76" y="-2" width="260" height="40"/>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evening by the beach! :) with Sarvesh Brahme and 1 other at Girgaon" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="po4-VN-8dh" customClass="ActiveLabel" customModule="TraveLibro" customModuleProvider="target">
+                            <rect key="frame" x="76" y="-2" width="232" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="260" id="S8a-Nr-ERB"/>
+                                <constraint firstAttribute="width" constant="232" id="S8a-Nr-ERB"/>
                                 <constraint firstAttribute="height" constant="40" id="sMj-j6-YDs"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
@@ -130,6 +130,7 @@
                         <constraint firstItem="Oys-D0-d9b" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="39" id="TER-bB-64B"/>
                         <constraint firstItem="bcT-oe-jCW" firstAttribute="leading" secondItem="wBz-We-C2u" secondAttribute="leading" constant="8" id="W95-f8-o1O"/>
                         <constraint firstItem="Xvb-Pa-iMT" firstAttribute="top" secondItem="bcT-oe-jCW" secondAttribute="top" constant="8" id="bA5-UG-LNw"/>
+                        <constraint firstItem="Xvb-Pa-iMT" firstAttribute="leading" secondItem="po4-VN-8dh" secondAttribute="trailing" constant="20" id="diO-gh-Geb"/>
                         <constraint firstItem="dUH-xH-sbU" firstAttribute="leading" secondItem="wh2-Li-LqP" secondAttribute="trailing" constant="2" id="fBf-xv-nvh"/>
                         <constraint firstItem="Oys-D0-d9b" firstAttribute="bottom" secondItem="wh2-Li-LqP" secondAttribute="bottom" id="gCY-CA-8cy"/>
                         <constraint firstItem="po4-VN-8dh" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="-2" id="jdW-GF-scm"/>

@@ -101,7 +101,7 @@ class EndJourneyViewController: UIViewController {
         journeyImages = []
         endJourneyState = true
         ToastView.appearance().backgroundColor = endJourneyColor
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBgNew")!)
         
         setRating()
 
