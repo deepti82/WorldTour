@@ -4497,11 +4497,11 @@
                                     <outlet property="delegate" destination="Atl-4x-b1t" id="gsv-td-lwi"/>
                                 </connections>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="NEB-XP-wm5" customClass="SpringImageView" customModule="Spring">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="NEB-XP-wm5" customClass="SpringImageView" customModule="Spring">
                                 <rect key="frame" x="0.0" y="20" width="375" height="556"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuv-wQ-qXR">
-                                <rect key="frame" x="0.0" y="20" width="375" height="556"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="544"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LCy-tX-WXI">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
@@ -4608,12 +4608,12 @@
                             <constraint firstAttribute="trailing" secondItem="LCy-tX-WXI" secondAttribute="trailing" id="W3c-Cy-cff"/>
                             <constraint firstItem="Iow-Mq-Q69" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="XgP-5b-vdT"/>
                             <constraint firstItem="LCy-tX-WXI" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="aIA-NM-Z6E"/>
-                            <constraint firstItem="PzD-u4-CXn" firstAttribute="top" secondItem="nuv-wQ-qXR" secondAttribute="bottom" constant="8" id="cKN-nZ-dzz"/>
                             <constraint firstItem="PzD-u4-CXn" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="gRW-rk-59p"/>
                             <constraint firstAttribute="trailing" secondItem="j8S-iC-Vrv" secondAttribute="trailing" constant="14" id="m2M-4x-SoX"/>
                             <constraint firstItem="LCy-tX-WXI" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="mdY-lG-IsZ"/>
                             <constraint firstAttribute="trailing" secondItem="Iow-Mq-Q69" secondAttribute="trailing" id="nPs-4l-f1B"/>
                             <constraint firstItem="nuv-wQ-qXR" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="nTJ-IU-AwT"/>
+                            <constraint firstItem="PzD-u4-CXn" firstAttribute="top" secondItem="nuv-wQ-qXR" secondAttribute="bottom" constant="20" id="oVe-gV-CDW"/>
                             <constraint firstAttribute="trailing" secondItem="NEB-XP-wm5" secondAttribute="trailing" id="qvX-cV-cRQ"/>
                             <constraint firstItem="fta-Vb-kIo" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="rFm-Yg-zwQ"/>
                             <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="PzD-u4-CXn" secondAttribute="bottom" constant="3" id="vt3-a8-oxF"/>
@@ -10483,7 +10483,7 @@
         <scene sceneID="IA2-So-XyF">
             <objects>
                 <collectionViewController storyboardIdentifier="photoGridContainer" id="yHG-Rd-GYo" customClass="TripSummaryPhotoGridViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="bPG-dg-2Bs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

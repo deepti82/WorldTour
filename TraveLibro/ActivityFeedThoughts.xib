@@ -25,10 +25,10 @@
                     <rect key="frame" x="0.0" y="10" width="434" height="1"/>
                     <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="0.90219609109999999" colorSpace="calibratedRGB"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LABEL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PF-5U-OPz">
-                    <rect key="frame" x="0.0" y="36" width="434" height="93"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PF-5U-OPz">
+                    <rect key="frame" x="0.0" y="27" width="1" height="1"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="93" id="bmG-6H-Awq"/>
+                        <constraint firstAttribute="height" constant="1" id="bmG-6H-Awq"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -38,16 +38,16 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="kkc-GL-t3n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="2Tf-Qn-nfj"/>
-                <constraint firstAttribute="bottom" secondItem="7PF-5U-OPz" secondAttribute="bottom" id="6aJ-6I-J8b"/>
+                <constraint firstAttribute="bottom" secondItem="7PF-5U-OPz" secondAttribute="bottom" constant="101" id="6aJ-6I-J8b"/>
                 <constraint firstItem="7PF-5U-OPz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7LQ-l4-rmp"/>
-                <constraint firstItem="7PF-5U-OPz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DQR-FN-20q"/>
+                <constraint firstItem="7PF-5U-OPz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-216.5" id="DQR-FN-20q"/>
                 <constraint firstItem="kkc-GL-t3n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eiN-VQ-38F"/>
-                <constraint firstItem="7PF-5U-OPz" firstAttribute="top" secondItem="kkc-GL-t3n" secondAttribute="bottom" constant="25" id="iLo-56-Tl4"/>
+                <constraint firstItem="7PF-5U-OPz" firstAttribute="top" secondItem="kkc-GL-t3n" secondAttribute="bottom" constant="16" id="iLo-56-Tl4"/>
                 <constraint firstAttribute="trailing" secondItem="kkc-GL-t3n" secondAttribute="trailing" id="wcK-Ww-G69"/>
-                <constraint firstAttribute="trailing" secondItem="7PF-5U-OPz" secondAttribute="trailing" id="yjB-c7-jlc"/>
+                <constraint firstAttribute="trailing" secondItem="7PF-5U-OPz" secondAttribute="trailing" constant="433" id="yjB-c7-jlc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-3" y="-217.5"/>
+            <point key="canvasLocation" x="18" y="-154"/>
         </view>
     </objects>
 </document>

@@ -20,23 +20,38 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eqh-AU-2QQ">
+                <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="eqh-AU-2QQ">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dja-Ex-H97">
+                            <rect key="frame" x="8" y="93" width="359" height="0.5"/>
+                            <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="0.90219609109999999" colorSpace="calibratedRGB"/>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Dja-Ex-H97" firstAttribute="top" secondItem="eqh-AU-2QQ" secondAttribute="top" constant="93" id="3EU-nk-WiV"/>
+                        <constraint firstItem="Dja-Ex-H97" firstAttribute="leading" secondItem="eqh-AU-2QQ" secondAttribute="leading" constant="8" id="9Ti-0d-KX4"/>
+                        <constraint firstAttribute="bottom" secondItem="Dja-Ex-H97" secondAttribute="bottom" constant="2" id="Q19-LM-24t"/>
+                        <constraint firstAttribute="trailing" secondItem="Dja-Ex-H97" secondAttribute="trailing" constant="8" id="jHz-9p-gbf"/>
+                    </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYL-sn-6xk">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="87"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="87" id="kuD-jK-Obw"/>
+                        <constraint firstAttribute="height" constant="88" id="kuD-jK-Obw"/>
                     </constraints>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="eqh-AU-2QQ" firstAttribute="leading" secondItem="aYL-sn-6xk" secondAttribute="leading" id="CZY-ex-h3W"/>
+                <constraint firstItem="eqh-AU-2QQ" firstAttribute="top" secondItem="aYL-sn-6xk" secondAttribute="top" id="Ixx-yP-r8L"/>
                 <constraint firstAttribute="trailing" secondItem="aYL-sn-6xk" secondAttribute="trailing" id="K2I-Tl-HeS"/>
+                <constraint firstAttribute="bottom" secondItem="eqh-AU-2QQ" secondAttribute="bottom" id="WXa-mf-oWN"/>
                 <constraint firstItem="aYL-sn-6xk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cwn-jh-k4Y"/>
                 <constraint firstItem="aYL-sn-6xk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="p6p-Au-Aym"/>
+                <constraint firstItem="eqh-AU-2QQ" firstAttribute="trailing" secondItem="aYL-sn-6xk" secondAttribute="trailing" id="sMk-md-byY"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

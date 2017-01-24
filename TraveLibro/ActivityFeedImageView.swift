@@ -39,6 +39,9 @@ class ActivityFeedImageView: UIView {
         makeTLProfilePictureBorderWhiteCorner(flagOne)
         makeTLProfilePictureBorderWhiteCorner(flageTwo)
         makeTLProfilePictureBorderWhiteCorner(flagThree)
+        kindOfJourneyOne.tintColor = UIColor.white
+        kindOfJourneyTwo.tintColor = UIColor.white
+        kindOfJourneyThree.tintColor = UIColor.white
     }
     
     required init?(coder aDecoder: NSCoder) {

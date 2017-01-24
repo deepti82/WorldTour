@@ -297,8 +297,8 @@ func makeTLProfilePictureFollowers(_ image: UIImageView) {
 func makeTLProfilePictureBorderWhiteCorner(_ image: UIImageView) {
     
     image.layer.cornerRadius = (50/100) * image.frame.width
-    image.layer.borderWidth = 2.0
-    image.layer.borderColor = UIColor.white.cgColor
+    //image.layer.borderWidth = 2.0
+    //image.layer.borderColor = UIColor.white.cgColor
     image.clipsToBounds = true
     image.contentMode = UIViewContentMode.scaleAspectFill
     

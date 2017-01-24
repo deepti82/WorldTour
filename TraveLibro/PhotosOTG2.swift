@@ -156,7 +156,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
         //Center Generation Only
         if(post.imageArr.count > showImageIndexStart) {
-            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 91 ))
+            centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 96 ))
             addPhotoToLayout(post,startIndex:showImageIndexStart)
             self.addSubview(centerView)
         }

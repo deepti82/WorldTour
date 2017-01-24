@@ -25,7 +25,6 @@
                 <outlet property="likeHeart" destination="bfn-CR-GZz" id="wdC-MJ-R8m"/>
                 <outlet property="likeViewLabel" destination="Xo7-24-z8R" id="IP9-Jg-YyA"/>
                 <outlet property="lineView" destination="qgD-cp-RTD" id="NKX-PC-1M7"/>
-                <outlet property="lineViewTop" destination="ldh-UJ-7Oz" id="XcB-WA-las"/>
                 <outlet property="localLifeTravelImage" destination="J15-HS-0ab" id="yOa-6h-hJM"/>
                 <outlet property="optionButton" destination="ASX-oG-GBT" id="uEF-uR-bJj"/>
                 <outlet property="shareButton" destination="2DN-gJ-eGv" id="0aK-pp-5rB"/>
@@ -48,7 +47,7 @@
                                         <constraint firstAttribute="width" constant="23" id="Tjd-4k-myJ"/>
                                         <constraint firstAttribute="height" constant="23" id="jNN-uF-nfr"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="36632266-34BA-4F23-887F-18C82E567872"/>
+                                    <state key="normal" title="Button" image="D1D55815-7867-4673-9670-34D80D65B377"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                             <real key="value" value="2"/>
@@ -137,20 +136,15 @@
                             <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qgD-cp-RTD">
+                        <view contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qgD-cp-RTD">
                             <rect key="frame" x="8" y="52" width="359" height="0.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="0.90219609109999999" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="0.90255852666701031" colorSpace="calibratedRGB"/>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J15-HS-0ab">
                             <rect key="frame" x="352" y="69" width="15" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ldh-UJ-7Oz">
-                            <rect key="frame" x="0.0" y="5" width="375" height="0.5"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="0.90219609109999999" colorSpace="calibratedRGB"/>
-                        </view>
                     </subviews>
                     <constraints>
                         <constraint firstItem="OGS-bv-8jn" firstAttribute="leading" secondItem="koM-1g-CgJ" secondAttribute="leading" id="22W-3Q-LLU"/>
@@ -180,7 +174,7 @@
         </view>
     </objects>
     <resources>
-        <image name="36632266-34BA-4F23-887F-18C82E567872" width="128" height="128">
+        <image name="D1D55815-7867-4673-9670-34D80D65B377" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
