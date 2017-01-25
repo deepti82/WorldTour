@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,6 +27,8 @@
                 <outlet property="lineView" destination="dAS-7j-w10" id="5ip-05-ke7"/>
                 <outlet property="localLifeTravelImage" destination="4kG-Xj-KQE" id="nmL-IE-1at"/>
                 <outlet property="optionButton" destination="RBf-nG-Ire" id="fjb-Lo-0SP"/>
+                <outlet property="rateThisButton" destination="r7S-sC-DRi" id="hv2-s6-O1s"/>
+                <outlet property="ratingStack" destination="y7T-l1-bKs" id="1kc-7j-usr"/>
                 <outlet property="shareButton" destination="Rrq-Lg-qNv" id="nRm-sX-YAd"/>
             </connections>
         </placeholder>
@@ -94,13 +96,65 @@
                                         <action selector="optionClick:" destination="-1" eventType="touchUpInside" id="VnJ-Ad-reJ"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7S-sC-DRi">
+                                    <rect key="frame" x="265" y="0.0" width="65" height="31"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="31" id="mHf-Qb-0cZ"/>
+                                    </constraints>
+                                    <state key="normal" title="Rate This">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="rateThisClicked:" destination="-1" eventType="touchUpInside" id="5Ta-xH-HmE"/>
+                                    </connections>
+                                </button>
+                                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="y7T-l1-bKs">
+                                    <rect key="frame" x="238" y="5" width="87" height="15"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_check" translatesAutoresizingMaskIntoConstraints="NO" id="yt3-x9-L3t">
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="15" id="0Vk-98-Sak"/>
+                                                <constraint firstAttribute="height" constant="15" id="h6V-78-e48"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_check" translatesAutoresizingMaskIntoConstraints="NO" id="lfI-VI-S0I">
+                                            <rect key="frame" x="18" y="0.0" width="15" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="15" id="eY6-Qs-elg"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_check" translatesAutoresizingMaskIntoConstraints="NO" id="QRK-h3-jjq">
+                                            <rect key="frame" x="36" y="0.0" width="15" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="15" id="KAy-RG-7ik"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_check" translatesAutoresizingMaskIntoConstraints="NO" id="4lN-kA-UIz">
+                                            <rect key="frame" x="54" y="0.0" width="15" height="15"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_check" translatesAutoresizingMaskIntoConstraints="NO" id="IvY-kF-bXY">
+                                            <rect key="frame" x="72" y="0.0" width="15" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="15" id="vOP-Pm-h96"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="15" id="5Yi-xY-gL8"/>
+                                    </constraints>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="RBf-nG-Ire" secondAttribute="trailing" constant="20" id="7ZJ-uy-Mnj"/>
+                                <constraint firstItem="r7S-sC-DRi" firstAttribute="top" secondItem="qvl-ew-O1r" secondAttribute="top" id="Fdx-1e-vuX"/>
+                                <constraint firstItem="RBf-nG-Ire" firstAttribute="leading" secondItem="r7S-sC-DRi" secondAttribute="trailing" id="WFf-TJ-9fe"/>
+                                <constraint firstItem="y7T-l1-bKs" firstAttribute="top" secondItem="qvl-ew-O1r" secondAttribute="top" constant="5" id="XNC-2d-GZB"/>
                                 <constraint firstItem="czX-nC-TiV" firstAttribute="leading" secondItem="qvl-ew-O1r" secondAttribute="leading" constant="19" id="c2c-Hx-F48"/>
                                 <constraint firstItem="RBf-nG-Ire" firstAttribute="top" secondItem="qvl-ew-O1r" secondAttribute="top" id="n6q-El-kTk"/>
                                 <constraint firstAttribute="height" constant="31" id="qvH-JW-iby"/>
+                                <constraint firstItem="RBf-nG-Ire" firstAttribute="leading" secondItem="y7T-l1-bKs" secondAttribute="trailing" constant="5" id="u4C-x8-FD4"/>
                                 <constraint firstItem="czX-nC-TiV" firstAttribute="top" secondItem="qvl-ew-O1r" secondAttribute="top" constant="2" id="wey-if-x5N"/>
                             </constraints>
                         </view>
@@ -112,7 +166,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-4v-fLt">
-                            <rect key="frame" x="8" y="68.5" width="33" height="15"/>
+                            <rect key="frame" x="8" y="69" width="33" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="jcQ-SV-DjZ"/>
                                 <constraint firstAttribute="width" constant="33" id="vV9-yb-eWG"/>
@@ -183,6 +237,7 @@
         <image name="options_icon" width="30" height="30"/>
         <image name="shareButton" width="46" height="70"/>
         <image name="speech_icon" width="30" height="30"/>
+        <image name="star_check" width="27" height="25"/>
         <image name="travel_life" width="80" height="80"/>
     </resources>
 </document>

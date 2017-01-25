@@ -25,7 +25,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         globalActivityFeedsController = self
         activityScroll.delegate = self
         getDarkBackGround(self)
-        layout = VerticalLayout(width: screenWidth )
+        layout = VerticalLayout(width: screenWidth)
         activityScroll.addSubview(layout)
         getActivity(pageNumber: pageno)
     }
@@ -79,6 +79,48 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
+    }
+    var blackBg: UIView!
+    func feedLayoutRate(feed:JSON) {
+        print("review clickedd")
+        
+        blackBg = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        blackBg.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ActivityFeedsController.closeDialog(_:)))
+        blackBg.addGestureRecognizer(tapGestureRecognizer)
+        self.view.addSubview(blackBg)
+        
+        let closeButton = UIButton(frame: CGRect(x: 8, y: 20, width: 20, height: 20))
+        let close = String(format: "%C", faicon["close"]!)
+        
+        closeButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
+        closeButton.setTitle(close, for: UIControlState())
+        closeButton.addTarget(self, action: #selector(ActivityFeedsController.exitDialog(_:)), for: .touchUpInside)
+        blackBg.addSubview(closeButton)
+        
+        let ratingDialog = AddRating(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 400))
+        ratingDialog.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+        
+        ratingDialog.postReview.addTarget(self, action: #selector(ActivityFeedsController.closeDialog(_:)), for: .touchUpInside)
+        blackBg.addSubview(ratingDialog)
+    }
+    
+    func closeDialog(_ sender: AnyObject) {
+        
+        blackBg.isHidden = true
+        //        checkInPost.rateButton.isHidden = true
+        //        checkInPost.ratingLabel.isHidden = false
+        //        checkInPost.ratingStack.isHidden = false
+        
+    }
+    
+    func exitDialog(_ sender: AnyObject) {
+        
+        blackBg.isHidden = true
+        //        checkInPost.rateButton.isHidden = true
+        //        checkInPost.ratingLabel.isHidden = false
+        //        checkInPost.ratingStack.isHidden = false
+        
     }
     
     

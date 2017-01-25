@@ -26,6 +26,7 @@ class ActivityFeedFooter: UIView {
     @IBOutlet weak var likeHeart: UILabel!
     @IBOutlet weak var likeViewLabel: UILabel!
     @IBOutlet weak var commentIcon: UIImageView!
+    @IBOutlet weak var reviewButton: UIButton!
     @IBOutlet weak var commentCount: UILabel!
     var topLayout:VerticalLayout!
     var type="ActivityFeeds"
@@ -200,8 +201,7 @@ class ActivityFeedFooter: UIView {
                             self.setLikeSelected(true)
                             self.likeCount = self.likeCount + 1
                             self.setLikeCount(self.likeCount)
-                        }
-                        else {
+                        } else {
                             self.setLikeSelected(false)
                             if self.likeCount <= 0 {
                                 self.likeCount = 0
@@ -217,7 +217,6 @@ class ActivityFeedFooter: UIView {
                 })
             })
         }
-        
     }
     
     @IBAction func optionClick(_ sender: UIButton) {
@@ -230,7 +229,6 @@ class ActivityFeedFooter: UIView {
             
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
-        
         
         globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }

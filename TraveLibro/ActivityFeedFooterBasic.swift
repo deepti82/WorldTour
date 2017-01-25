@@ -18,6 +18,8 @@ class ActivityFeedFooterBasic: UIView {
     @IBOutlet weak var footerColorView: UIView!
     var postTop:JSON!
     
+    @IBOutlet weak var ratingStack: UIStackView!
+    @IBOutlet weak var rateThisButton: UIButton!
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: SpringButton!
     @IBOutlet weak var lineView: UIView!
@@ -52,6 +54,7 @@ class ActivityFeedFooterBasic: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
         transparentCardWhite(footerColorView)
+        
         likeButton.tintColor = mainBlueColor
         commentButton.tintColor = mainBlueColor
         shareButton.tintColor = mainBlueColor
@@ -64,8 +67,38 @@ class ActivityFeedFooterBasic: UIView {
         likeButton.imageView?.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
         
+        
+        
     }
     
+    func setView(feed:JSON) {
+        //  RATING
+        if feed["type"].stringValue == "travel-life" {
+            localLifeTravelImage.image = UIImage(named: "travel_life")
+        }else{
+            localLifeTravelImage.image = UIImage(named: "local_life")
+            localLifeTravelImage.tintColor = endJourneyColor
+        }
+
+        if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
+            
+            if feed["review"] != nil && feed["review"].count != 0 {
+                ratingStack.isHidden = false
+                rateThisButton.isHidden = true
+            }else{
+                ratingStack.isHidden = true
+                rateThisButton.isHidden = false
+            }
+        }else{
+            ratingStack.isHidden = true
+            rateThisButton.isHidden = true
+        }
+        
+    }
+    
+    @IBAction func rateThisClicked(_ sender: UIButton) {
+        
+    }
     @IBAction func sendComments(_ sender: UIButton) {
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = postTop["uniqueId"].stringValue

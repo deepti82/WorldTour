@@ -14,6 +14,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     
     //    var feed: JSON!
+    var blackBg: UIView!
     var profileHeader: ActivityProfileHeader!
     var textHeader: ActivityTextHeader!
     var activityFeed: ActivityFeedsController!
@@ -163,7 +164,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     }
     
     func footerLayout(feed:JSON) {
-        if(feed["type"].stringValue == "ended-journey" || feed["type"].stringValue == "quick-itinerary" || feed["type"].stringValue == "detail-itinerary") {
+        if(feed["type"].stringValue == "ended-journey" || feed["type"].stringValue == "quick-itinerary" || feed["type"].stringValue == "detail-itinerary" || feed["type"].stringValue == "on-the-go-journey") {
             print("in review")
             footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
             footerViewReview.postTop = feed
@@ -171,6 +172,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerViewReview.type = "ActivityFeeds"
             footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
             footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
+            footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
             self.addSubview(footerViewReview)
         } else {
             print("in footer")
@@ -180,6 +182,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView.type = "ActivityFeeds"
             footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
             footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
+            
+            footerView.setView(feed:feed)
             self.addSubview(footerView)
         }
         
@@ -313,6 +317,48 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     func playerReady(_ player: Player) {
         videoToPlay()
     }
+    
+    func rateButtonTapped(_ sender: AnyObject) {
+        
+        print("review clickedd")
+        
+        blackBg = UIView(frame: CGRect(x: 0, y: 0, width: activityFeed.view.frame.width, height: activityFeed.view.frame.height))
+        blackBg.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        activityFeed.view.addSubview(blackBg)
+        
+        let closeButton = UIButton(frame: CGRect(x: 8, y: 20, width: 20, height: 20))
+        let close = String(format: "%C", faicon["close"]!)
+        
+        closeButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
+        closeButton.setTitle(close, for: UIControlState())
+        closeButton.addTarget(self, action: #selector(ActivityFeedsLayout.exitDialog(_:)), for: .touchUpInside)
+        blackBg.addSubview(closeButton)
+        
+        let ratingDialog = AddRating(frame: CGRect(x: 0, y: 0, width: activityFeed.view.frame.width - 40, height: 400))
+        ratingDialog.center = CGPoint(x: activityFeed.view.frame.width/2, y: activityFeed.view.frame.height/2)
+        
+        ratingDialog.postReview.addTarget(self, action: #selector(ActivityFeedsLayout.closeDialog(_:)), for: .touchUpInside)
+        blackBg.addSubview(ratingDialog)
+        
+    }
+    func closeDialog(_ sender: AnyObject) {
+        
+        blackBg.isHidden = true
+//        checkInPost.rateButton.isHidden = true
+//        checkInPost.ratingLabel.isHidden = false
+//        checkInPost.ratingStack.isHidden = false
+        
+    }
+    
+    func exitDialog(_ sender: AnyObject) {
+        
+        blackBg.isHidden = true
+//        checkInPost.rateButton.isHidden = true
+//        checkInPost.ratingLabel.isHidden = false
+//        checkInPost.ratingStack.isHidden = false
+        
+    }
+
     
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         
