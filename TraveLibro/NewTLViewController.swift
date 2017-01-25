@@ -319,11 +319,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         
         var location = ""
-        if self.addView.addLocationButton.titleLabel?.text! != nil {
+        if self.addView.addLocationButton.titleLabel?.text != nil {
             location = (self.addView.addLocationButton.titleLabel?.text)!
             if(location == "Add Location") {
                 location = ""
             }
+        }
+        if(location == "") {
+            location = self.addView.addLocationText.text!
         }
         
         var thoughts = ""

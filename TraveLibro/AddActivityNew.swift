@@ -12,6 +12,7 @@ var globalAddActivityNew:AddActivityNew!
 class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDelegate, PlayerDelegate {
     @IBOutlet weak var viewContainerView: UIView!
     
+    @IBOutlet weak var addLocationText: UITextField!
     @IBOutlet weak var finalImageTag: UIImageView!
     var typeOfAddActivtiy:String = ""
     var editPost:Post!
@@ -476,6 +477,9 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
     
     func addLocationTapped() {
         
+        self.putLocationName("", placeId: "")
+        self.addLocationText.isHidden = false
+        
         if userLocation != nil {
             print("locations = \(userLocation.latitude) \(userLocation.longitude)")
             request.getLocationOTG(userLocation.latitude, long: userLocation.longitude, completion: {(response) in
@@ -488,6 +492,8 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
                         print(response["data"]);
                         self.locationArray = response["data"].array!;
                         self.getAllLocations();
+                        self.clearLocation(UIButton())
+                        self.addLocationText.isHidden = true
                     }
                 })
             })
