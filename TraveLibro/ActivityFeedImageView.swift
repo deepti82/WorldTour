@@ -42,6 +42,7 @@ class ActivityFeedImageView: UIView {
         kindOfJourneyOne.tintColor = UIColor.white
         kindOfJourneyTwo.tintColor = UIColor.white
         kindOfJourneyThree.tintColor = UIColor.white
+        OnTheGOText.layer.cornerRadius = 5
     }
     
     required init?(coder aDecoder: NSCoder) {

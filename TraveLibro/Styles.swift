@@ -283,6 +283,10 @@ func transparentWhiteButton(_ button: UIButton){
     button.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
 }
 
+func transparentCardWhiteImage(_ image: UIImageView){
+    image.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
+}
+
 
 func makeTLProfilePictureFollowers(_ image: UIImageView) {
     

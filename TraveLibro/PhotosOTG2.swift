@@ -104,6 +104,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.addSubview(mainPhoto)
             let heightForBlur = 10;
             var thumbStr = "";
+            transparentCardWhiteImage(mainPhoto)
             if(!post.post_isOffline) {
                 thumbStr = "&width=\(heightForBlur)"
             }
@@ -185,6 +186,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
                 rateButton.photosOtg = self;
                 rateButton.rateCheckInLabel.text = "Rate " + post.post_location
+                print("helloshowmejsonpost")
                 print(post.jsonPost)
                 if((post.jsonPost["review"].array?.count)! > 0) {
                     let review = post.jsonPost["review"].array?[0]
