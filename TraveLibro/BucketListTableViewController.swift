@@ -16,6 +16,7 @@ class BucketListTableViewController: UITableViewController  {
     var result: [JSON] = []
     //    var countriesVisited: [JSON] = []
     
+   
     var isComingFromEmptyPages = false
     
     override func viewDidLoad() {
@@ -210,6 +211,7 @@ class BucketListTableViewController: UITableViewController  {
             cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: 500))
             cell.countryPicture.alpha = 1
             cell.yearOfVisit.isHidden = true
+            cell.tintView.isUserInteractionEnabled = false
             return cell
             
             
@@ -224,6 +226,8 @@ class BucketListTableViewController: UITableViewController  {
             cell.yearOfVisit.text = "\(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"])"
             cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["countryCoverPhoto"].stringValue,width: 500))
             cell.countryPicture.alpha = 1
+            cell.tintView.isUserInteractionEnabled = false
+
             return cell
         }
         
@@ -299,6 +303,7 @@ class BucketListTableViewCell: UITableViewCell {
     @IBOutlet weak var countryPicture: UIImageView!
     @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var yearOfVisit: UILabel!
+    @IBOutlet weak var tintView: UIView!
     
 }
 

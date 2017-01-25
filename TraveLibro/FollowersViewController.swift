@@ -195,24 +195,15 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             
             if filter[(indexPath as NSIndexPath).row]["following"].boolValue {
                 cell.followButton.tag = 1
-                cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
-                let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
-                followTick.image = UIImage(named: "correct-signal")
-                cell.followButton.titleLabel?.addSubview(followTick)
-                cell.followButton.setTitle("Following", for: UIControlState())
-                cell.followButton.setTitleColor(UIColor.white, for: UIControlState())
-                cell.followButton.titleLabel?.textAlignment = .center
-                cell.followButton.contentHorizontalAlignment = .right
+                cell.followButton.setImage(UIImage(named:"following"), for: .normal)
+                cell.followButton.contentMode = .scaleAspectFit
+                cell.followButton.clipsToBounds = true
                 cell.followButton.isSelected = true
             }else{
                 cell.followButton.tag = 0
-                cell.followButton.backgroundColor = UIColor.white
-                let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
-                followTick.image = UIImage(named: "correct-signal")
-                cell.followButton.titleLabel?.addSubview(followTick)
-                cell.followButton.setTitle("+ Follow", for: UIControlState())
-                cell.followButton.setTitleColor(UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1), for: UIControlState())
-                cell.followButton.contentHorizontalAlignment = .center
+                cell.followButton.setImage(UIImage(named:"follow"), for: .normal)
+                cell.followButton.contentMode = .scaleAspectFit
+                cell.followButton.clipsToBounds = true
                 cell.followButton.isSelected = true
             }
             
@@ -234,24 +225,25 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             if followers[(indexPath as NSIndexPath).row]["following"].boolValue {
                 
                 cell.followButton.tag = 1
-                cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
-                let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
-                followTick.image = UIImage(named: "correct-signal")
-                cell.followButton.titleLabel?.addSubview(followTick)
-                cell.followButton.setTitle("Following", for: UIControlState())
-                cell.followButton.setTitleColor(UIColor.white, for: UIControlState())
-                cell.followButton.contentHorizontalAlignment = .right
-                cell.followButton.titleLabel?.textAlignment = .center
+//                cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
+//                let followTick = UIImageView(frame: CGRect(x: -18, y: 4, width: 12, height: 12))
+//                followTick.image = UIImage(named: "correct-signal")
+//                cell.followButton.titleLabel?.addSubview(followTick)
+//                cell.followButton.setTitle("Following", for: UIControlState())
+//                cell.followButton.setTitleColor(UIColor.white, for: UIControlState())
+//                cell.followButton.contentHorizontalAlignment = .right
+//                cell.followButton.titleLabel?.textAlignment = .center
+                cell.followButton.setImage(UIImage(named:"following"), for: .normal)
+                cell.followButton.contentMode = .scaleAspectFit
+                cell.followButton.clipsToBounds = true
                 cell.followButton.isSelected = true
             }else{
                 cell.followButton.tag = 0
-                cell.followButton.backgroundColor = UIColor.white
-                let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
-                followTick.image = UIImage(named: "correct-signal")
-                cell.followButton.titleLabel?.addSubview(followTick)
-                cell.followButton.setTitle("+ Follow", for: UIControlState())
-                cell.followButton.setTitleColor(UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1), for: UIControlState())
-                cell.followButton.contentHorizontalAlignment = .center
+                cell.followButton.setImage(UIImage(named:"follow"), for: .normal)
+                cell.followButton.contentMode = .scaleAspectFit
+                cell.followButton.clipsToBounds = true
+                cell.followButton.isSelected = true
+
                 cell.followButton.isSelected = true
             }
             
@@ -305,9 +297,9 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     
     func addStylingToButton(_ sender: UIButton) {
         
-        sender.layer.borderColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1).cgColor
-        sender.layer.borderWidth = 1.0
-        sender.layer.cornerRadius = 5
+//        sender.layer.borderColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1).cgColor
+////        sender.layer.borderWidth = 1.0
+//          sender.layer.cornerRadius = 5
         
     }
     
@@ -406,15 +398,9 @@ class FollowersCell: UITableViewCell {
             print("profile name follow: \(profileName.text)")
             parent.followUser(profileName.text!)
             sender.tag = 1
-            sender.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
-            let followTick = UIImageView(frame: CGRect(x: -15, y: 2, width: 12, height: 12))
-            followTick.image = UIImage(named: "correct-signal")
-            sender.titleLabel?.addSubview(followTick)
-            sender.setTitle("Following", for: UIControlState())
-            followButton.titleLabel?.textAlignment = .center
-            sender.setTitleColor(UIColor.white, for: UIControlState())
-            sender.contentHorizontalAlignment = .right
-            followButton.titleLabel?.textAlignment = .center
+            sender.setImage(UIImage(named:"following"), for: .normal)
+            sender.contentMode = .scaleAspectFit
+            sender.clipsToBounds = true
             sender.isSelected = true
             
         }
@@ -423,11 +409,9 @@ class FollowersCell: UITableViewCell {
             print("profile name unfollow: \(profileName.text)")
             parent.unFollowUser(profileName.text!)
             sender.tag = 0
-            sender.backgroundColor = UIColor.white
-            sender.titleLabel?.textColor = UIColor.white
-            sender.setTitle("+ Follow", for: UIControlState())
-            sender.setTitleColor(UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1), for: UIControlState())
-            sender.contentHorizontalAlignment = .center
+            sender.setImage(UIImage(named:"follow"), for: .normal)
+            sender.contentMode = .scaleAspectFit
+            sender.clipsToBounds = true
             sender.isSelected = false
             
         }

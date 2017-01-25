@@ -429,6 +429,10 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="jn2-oC-83T">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
                                         </imageView>
+                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pig-YY-to9">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
+                                            <color key="backgroundColor" white="1" alpha="0.19511114690721648" colorSpace="calibratedWhite"/>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INDIA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bn-ZA-1EA">
                                             <rect key="frame" x="162" y="23" width="51" height="25"/>
                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
@@ -441,10 +445,6 @@
                                             <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pig-YY-to9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="71"/>
-                                            <color key="backgroundColor" white="1" alpha="0.19511114690721648" colorSpace="calibratedWhite"/>
-                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="F3q-6F-dSu" firstAttribute="top" secondItem="3bn-ZA-1EA" secondAttribute="bottom" id="FYd-gF-kbz"/>
@@ -464,6 +464,7 @@
                                 <connections>
                                     <outlet property="countryName" destination="3bn-ZA-1EA" id="mLx-y1-sKF"/>
                                     <outlet property="countryPicture" destination="jn2-oC-83T" id="gF1-Tt-epB"/>
+                                    <outlet property="tintView" destination="Pig-YY-to9" id="t32-8j-GdS"/>
                                     <outlet property="yearOfVisit" destination="F3q-6F-dSu" id="bTc-bK-C4Y"/>
                                 </connections>
                             </tableViewCell>
@@ -2333,10 +2334,10 @@
                                                     <color key="textColor" red="0.65490196078431373" green="0.65490196078431373" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" clipsSubviews="YES" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L62-1R-eqP">
-                                                    <rect key="frame" x="254" y="4" width="103" height="35"/>
+                                                <button clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L62-1R-eqP">
+                                                    <rect key="frame" x="276" y="11" width="85" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="103" id="bHN-6r-heF"/>
+                                                        <constraint firstAttribute="width" constant="85" id="bHN-6r-heF"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
                                                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
@@ -2350,15 +2351,15 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="L62-1R-eqP" firstAttribute="centerY" secondItem="eGU-2E-euS" secondAttribute="centerY" constant="-5.75" id="07A-vB-4gS"/>
-                                                <constraint firstItem="L62-1R-eqP" firstAttribute="leading" secondItem="i5x-fd-msI" secondAttribute="trailing" constant="8" id="7id-cT-4LN"/>
+                                                <constraint firstItem="L62-1R-eqP" firstAttribute="centerY" secondItem="eGU-2E-euS" secondAttribute="centerY" constant="-1.25" id="07A-vB-4gS"/>
+                                                <constraint firstItem="L62-1R-eqP" firstAttribute="leading" secondItem="i5x-fd-msI" secondAttribute="trailing" constant="30" id="7id-cT-4LN"/>
                                                 <constraint firstItem="i5x-fd-msI" firstAttribute="top" secondItem="eGU-2E-euS" secondAttribute="topMargin" constant="19" id="Blp-Fy-1uB"/>
-                                                <constraint firstItem="ZeP-NR-7ax" firstAttribute="top" secondItem="L62-1R-eqP" secondAttribute="top" constant="4" id="Enb-t4-k4V"/>
+                                                <constraint firstItem="ZeP-NR-7ax" firstAttribute="top" secondItem="L62-1R-eqP" secondAttribute="top" constant="-3" id="Enb-t4-k4V"/>
                                                 <constraint firstItem="ZeP-NR-7ax" firstAttribute="top" secondItem="eGU-2E-euS" secondAttribute="topMargin" id="JMm-kk-YEb"/>
                                                 <constraint firstItem="ZeP-NR-7ax" firstAttribute="leading" secondItem="eGU-2E-euS" secondAttribute="leadingMargin" constant="13" id="Jvn-Rv-QCd"/>
                                                 <constraint firstItem="nsH-DB-WWM" firstAttribute="centerY" secondItem="eGU-2E-euS" secondAttribute="centerY" constant="-6" id="M7P-PK-N0O"/>
-                                                <constraint firstItem="ZeP-NR-7ax" firstAttribute="bottom" secondItem="L62-1R-eqP" secondAttribute="bottom" constant="6.5" id="maw-QY-fZm"/>
-                                                <constraint firstItem="L62-1R-eqP" firstAttribute="trailing" secondItem="eGU-2E-euS" secondAttribute="trailingMargin" constant="-10" id="tpg-tR-Pie"/>
+                                                <constraint firstItem="ZeP-NR-7ax" firstAttribute="bottom" secondItem="L62-1R-eqP" secondAttribute="bottom" constant="4.5" id="maw-QY-fZm"/>
+                                                <constraint firstItem="L62-1R-eqP" firstAttribute="trailing" secondItem="eGU-2E-euS" secondAttribute="trailingMargin" constant="-6" id="tpg-tR-Pie"/>
                                                 <constraint firstItem="i5x-fd-msI" firstAttribute="leading" secondItem="nsH-DB-WWM" secondAttribute="leading" id="xtv-rn-ObH"/>
                                                 <constraint firstItem="nsH-DB-WWM" firstAttribute="leading" secondItem="ZeP-NR-7ax" secondAttribute="trailing" constant="8" id="ylY-9j-f1M"/>
                                             </constraints>
@@ -3442,7 +3443,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="95.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
