@@ -95,6 +95,11 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
             
+            self.videoContainer.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
+            self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
+            self.videoContainer.tag = 0
+            
         } else if(post.imageArr.count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
@@ -204,6 +209,16 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         }
         self.layoutSubviews()
     }
+    
+    func openSingleVideo(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.type = "Video"
+        singlePhotoController.postId = self.postTop.post_ids
+        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+    }
+
     
     func addPhotoToLayout(_ post: Post, startIndex: Int) {
         centerView.horizontalScrollForPhotos.removeAll()

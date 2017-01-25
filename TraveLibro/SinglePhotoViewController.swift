@@ -34,8 +34,8 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     var videos:[JSON]!
     var singlePost: JSON!
     
-    var likeCount: Int!
-    var commentCount: Int!
+    var likeCount:Int = 0
+    var commentCount:Int = 0
     var hasLiked: Bool!
     
     override func viewDidLoad() {
@@ -111,16 +111,16 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                     if !self.hasLiked! {
                         
                         sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-                        self.likeCount = Int(self.likeCount!) + 1
-                        self.likeText.text = "\(self.likeCount!) Likes"
+                        self.likeCount = Int(self.likeCount) + 1
+                        self.likeText.text = "\(self.likeCount) Likes"
                         self.hasLiked = !self.hasLiked
                         
                     }
                     else {
                         
                         sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
-                        self.likeCount = Int(self.likeCount!) - 1
-                        self.likeText.text = "\(self.likeCount!) Likes"
+                        self.likeCount = Int(self.likeCount) - 1
+                        self.likeText.text = "\(self.likeCount) Likes"
                         self.hasLiked = !self.hasLiked
                         
                     }
@@ -238,12 +238,15 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                         self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
                         self.hasLiked = false
                     }
+                    if(data["likeCount"].int != nil) {
+                        self.likeCount = data["likeCount"].int!
+                        self.likeText.text = "\(self.likeCount) Like"
+                    }
+                    if(data["commentCount"].int != nil) {
+                        self.commentCount = data["commentCount"].int!
+                        self.commentText.text = "\(self.commentCount) Comment"
+                    }
                     
-                    self.likeCount = data["likeCount"].int!
-                    self.commentCount = data["commentCount"].int!
-                    
-                    self.likeText.text = "\(self.likeCount!) Like"
-                    self.commentText.text = "\(self.commentCount!) Comment"
                     
                     self.bottomView.isHidden = false
                     self.mainImage.isHidden = false
@@ -304,11 +307,11 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                     
                     if(data["likeCount"].int != nil) {
                         self.likeCount = data["likeCount"].int!
-                        self.likeText.text = "\(self.likeCount!) Like"
+                        self.likeText.text = "\(self.likeCount) Like"
                     }
                     if(data["commentCount"].int != nil) {
                         self.commentCount = data["commentCount"].int!
-                        self.commentText.text = "\(self.commentCount!) Comment"
+                        self.commentText.text = "\(self.commentCount) Comment"
                     }
                     
                     self.bottomView.isHidden = false
