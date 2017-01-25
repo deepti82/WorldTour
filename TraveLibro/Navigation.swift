@@ -1772,6 +1772,42 @@ class Navigation {
         }
     }
     
+    
+    func postVideoLike(_ photoId: String, postId: String, userId: String, userName: String, unlike: Bool, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            var params = ["videoId": photoId, "postId": postId, "user": userId, "name": userName] as [String : Any]
+            
+            if unlike {
+                params = ["videoId": photoId, "postId": postId, "user": userId, "name": userName, "unlike": unlike] as [String : Any]
+            }
+            
+            print("get one post photos params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "postvideos/updateLikePost", parameters: params)
+            var json = JSON(1)
+            
+            opt.start{(response) in
+                
+                if let err = response.error {
+                    
+                    print("error: \(err.localizedDescription)")
+                }
+                    
+                else
+                {
+                    print("making json")
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     func deletePost(_ id: String, uniqueId: String, user: String, completion: @escaping ((JSON) -> Void)) {
         
         do {

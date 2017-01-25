@@ -97,42 +97,83 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
         print(currentUser["_id"].string!)
         print(currentUser["name"].string!)
         print(hasLiked)
-        request.postPhotosLike(photos[currentIndex!]["_id"].string!, postId: postId!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
+        if(self.type == "Video") {
+            request.postVideoLike(videos[currentIndex!]["_id"].string!, postId: postId!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
                 
-                if response.error != nil {
+                DispatchQueue.main.async(execute: {
                     
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    if !self.hasLiked! {
+                    if response.error != nil {
                         
-                        sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
-                        self.likeCount = Int(self.likeCount) + 1
-                        self.likeText.text = "\(self.likeCount) Likes"
-                        self.hasLiked = !self.hasLiked
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        
+                        if !self.hasLiked! {
+                            
+                            sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+                            self.likeCount = Int(self.likeCount) + 1
+                            self.likeText.text = "\(self.likeCount) Likes"
+                            self.hasLiked = !self.hasLiked
+                            
+                        }
+                        else {
+                            
+                            sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
+                            self.likeCount = Int(self.likeCount) - 1
+                            self.likeText.text = "\(self.likeCount) Likes"
+                            self.hasLiked = !self.hasLiked
+                            
+                        }
                         
                     }
                     else {
                         
-                        sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
-                        self.likeCount = Int(self.likeCount) - 1
-                        self.likeText.text = "\(self.likeCount) Likes"
-                        self.hasLiked = !self.hasLiked
+                    }
+                    
+                })
+                
+            })
+        }
+        else {
+            request.postPhotosLike(photos[currentIndex!]["_id"].string!, postId: postId!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        
+                        if !self.hasLiked! {
+                            
+                            sender.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
+                            self.likeCount = Int(self.likeCount) + 1
+                            self.likeText.text = "\(self.likeCount) Likes"
+                            self.hasLiked = !self.hasLiked
+                            
+                        }
+                        else {
+                            
+                            sender.setImage(UIImage(named: "likeButton"), for: UIControlState())
+                            self.likeCount = Int(self.likeCount) - 1
+                            self.likeText.text = "\(self.likeCount) Likes"
+                            self.hasLiked = !self.hasLiked
+                            
+                        }
+                        
+                    }
+                    else {
                         
                     }
                     
-                }
-                else {
-                    
-                }
+                })
                 
             })
-            
-        })
+        }
+        
     }
     
     @IBAction func sendComment(_ sender: UIButton) {
@@ -295,7 +336,8 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                         self.imageCaption.text = data["caption"].string!
                     }
                     
-                    if data["like"].array!.contains(JSON(user.getExistingUser())) {
+                    
+                    if (data["like"].array != nil && data["like"].array!.contains(JSON(user.getExistingUser()))) {
                         self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
                         self.likeButton.tintColor = UIColor.white
                         self.hasLiked = true
