@@ -188,11 +188,11 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
                 rateButton.rateCheckInLabel.text = "Rate " + post.post_location
                 print("helloshowmejsonpost")
                 print(post.jsonPost)
-                if((post.jsonPost["review"].array?.count)! > 0) {
-                    let review = post.jsonPost["review"].array?[0]
-                    rateButton.review = review
-                    rateButton.modifyAsReview()
-                }
+//                if((post.jsonPost["review"].array?.count)! > 0) {
+//                    let review = post.jsonPost["review"].array?[0]
+//                    rateButton.review = review
+//                    rateButton.modifyAsReview()
+//                }
                 
                 
                 

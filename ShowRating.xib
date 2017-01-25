@@ -34,7 +34,7 @@
                         <constraint firstAttribute="height" constant="60" id="P7a-x0-ppd"/>
                         <constraint firstAttribute="width" constant="60" id="c99-7K-MSA"/>
                     </constraints>
-                    <inset key="imageEdgeInsets" minX="7" minY="7" maxX="7" maxY="7"/>
+                    <inset key="imageEdgeInsets" minX="14" minY="14" maxX="15" maxY="14"/>
                     <state key="normal" image="disapointed" backgroundImage="green_bg_new_small"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviewed In Love" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Woc-fk-i5n">
