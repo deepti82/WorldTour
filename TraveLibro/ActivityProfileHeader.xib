@@ -20,6 +20,7 @@
                 <outlet property="calendarLabel" destination="vNn-mn-fAW" id="SKu-b5-kMp"/>
                 <outlet property="category" destination="lXN-gl-LUN" id="JkW-iP-xW8"/>
                 <outlet property="clockLabel" destination="iId-xP-0Ol" id="BWc-YF-yMD"/>
+                <outlet property="followButton" destination="EHs-Xp-oI2" id="UUv-gJ-WSf"/>
                 <outlet property="localDate" destination="seS-EQ-TAP" id="2nb-q1-Axg"/>
                 <outlet property="localTime" destination="Pp8-iV-xts" id="2EN-0a-8Kp"/>
                 <outlet property="profilePic" destination="kNQ-Yo-NhR" id="r9W-6H-jdo"/>
@@ -142,6 +143,9 @@
                             <state key="normal" title="Following">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                             </state>
+                            <connections>
+                                <action selector="followClick:" destination="-1" eventType="touchUpInside" id="mNy-sk-4PI"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>

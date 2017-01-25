@@ -70,6 +70,8 @@ class ActivityFeedFooterBasic: UIView {
         
         
     }
+    var photoCount = 0
+    var videoCount = 0
     
     func setView(feed:JSON) {
         //  RATING
@@ -79,14 +81,19 @@ class ActivityFeedFooterBasic: UIView {
             localLifeTravelImage.image = UIImage(named: "local_life")
             localLifeTravelImage.tintColor = endJourneyColor
         }
-        //let cnt = Int(feed["photoCount"].int!) + Int(feed["videoCount"].int!)
-        //print("count count")
-        //print(cnt)
-        //if cnt > 1 {
-        //   lineView.isHidden = false
-        //}else{
-        //    lineView.isHidden = true
-        //}
+        
+        if feed["photos"] != nil {
+            photoCount = feed["photos"].count
+        }
+        if feed["videos"] != nil {
+            videoCount = feed["videos"].count
+        }
+        let cnt = photoCount + videoCount
+        if cnt > 1 {
+           lineView.isHidden = false
+        }else{
+            lineView.isHidden = true
+        }
 
         if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
             

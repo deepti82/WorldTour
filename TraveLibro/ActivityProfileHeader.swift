@@ -17,6 +17,7 @@ class ActivityProfileHeader: UIView {
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var localDate: UILabel!
     @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var localTime: UILabel!
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
@@ -55,6 +56,12 @@ class ActivityProfileHeader: UIView {
             category.isHidden = true
         }
         
+        if feed["following"].boolValue {
+            followButton.setTitle("Following", for: .normal)
+        }else{
+            followButton.setTitle("Follow", for: .normal)
+        }
+        
         self.category.imageView?.contentMode = UIViewContentMode.scaleAspectFit
         
         userName.text = feed["user"]["name"].stringValue
@@ -72,6 +79,9 @@ class ActivityProfileHeader: UIView {
         
     }
     
+    @IBAction func followClick(_ sender: UIButton) {
+        
+    }
     func getCategoryImage(name: String) -> String {
         var str:String! = ""
         for img in imageArr {

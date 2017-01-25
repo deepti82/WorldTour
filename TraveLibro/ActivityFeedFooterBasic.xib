@@ -166,7 +166,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-4v-fLt">
-                            <rect key="frame" x="8" y="68.5" width="33" height="15"/>
+                            <rect key="frame" x="8" y="69" width="33" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="jcQ-SV-DjZ"/>
                                 <constraint firstAttribute="width" constant="33" id="vV9-yb-eWG"/>
@@ -200,13 +200,18 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="travel_life" translatesAutoresizingMaskIntoConstraints="NO" id="4kG-Xj-KQE">
-                            <rect key="frame" x="352" y="69" width="23" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="travel_life" translatesAutoresizingMaskIntoConstraints="NO" id="4kG-Xj-KQE">
+                            <rect key="frame" x="330" y="69" width="23" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="1Wf-jE-hZS"/>
+                                <constraint firstAttribute="width" constant="23" id="s6j-ZS-1Wc"/>
+                            </constraints>
                         </imageView>
                     </subviews>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="4kG-Xj-KQE" secondAttribute="trailing" constant="22" id="1et-s1-Yuh"/>
                         <constraint firstItem="qQ1-vh-dXj" firstAttribute="top" secondItem="HWH-5K-hPB" secondAttribute="top" constant="69" id="AH1-ui-pdr"/>
+                        <constraint firstItem="4kG-Xj-KQE" firstAttribute="top" secondItem="HWH-5K-hPB" secondAttribute="top" constant="69" id="CmO-sI-O2M"/>
                         <constraint firstItem="qQ1-vh-dXj" firstAttribute="top" secondItem="gdo-V6-Bi9" secondAttribute="top" id="ID2-pJ-0d3"/>
                         <constraint firstItem="iPD-zs-z05" firstAttribute="leading" secondItem="gdo-V6-Bi9" secondAttribute="trailing" constant="4" id="JmB-sE-rm0"/>
                         <constraint firstItem="qQ1-vh-dXj" firstAttribute="baseline" secondItem="iPD-zs-z05" secondAttribute="baseline" id="bXz-1E-MFy"/>
