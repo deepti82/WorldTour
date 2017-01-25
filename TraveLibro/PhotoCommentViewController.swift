@@ -18,6 +18,8 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     var mentions: [String] = []
     var mentionSuggestions: [JSON] = []
     
+    var type = "Photo"
+    
     var commentText: UILabel!
     
     var hashtagSuggestions: [JSON] = []
@@ -478,27 +480,53 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     
     func setAllComments(_ comment: String) {
         
-        request.commentOnPhotos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
+        if(self.type == "Video" ) {
+            request.commentOnVideos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, completion: {(response) in
                 
-                if response.error != nil {
+                DispatchQueue.main.async(execute: {
                     
-                    print("error: \(response.error!.localizedDescription)")
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        
+                        self.getAllComments()
+                    }
+                    else {
+                        
+                        
+                    }
                     
-                }
-                else if response["value"].bool! {
-                    
-                    self.getAllComments()
-                }
-                else {
-                    
-                    
-                }
+                })
                 
             })
-            
-        })
+        } else {
+            request.commentOnPhotos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        
+                        self.getAllComments()
+                    }
+                    else {
+                        
+                        
+                    }
+                    
+                })
+                
+            })
+        }
+        
+        
         
     }
     

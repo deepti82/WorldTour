@@ -1565,6 +1565,32 @@ class Navigation {
         }
     }
     
+    func commentOnVideos(id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "video", "hashtag" : hashtags] as [String : Any]
+            
+            print("set photo comment params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "comment/addComment", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     func getComments(_ id: String, userId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {

@@ -184,6 +184,9 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             comment.otherId = singlePhotoJSON["name"].string!
             comment.photoId = singlePhotoJSON["_id"].string!
         }
+        if(self.type == "Video") {
+            comment.type = "Video"
+        }
         //self.navigationController?.pushViewController(comment, animated: true)
         self.present(comment, animated: true, completion: nil)
     }
@@ -337,7 +340,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                     }
                     
                     
-                    if (data["like"].array != nil && data["like"].array!.contains(JSON(user.getExistingUser()))) {
+                    if (data["likeDone"].bool != nil && data["likeDone"].bool! ) {
                         self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
                         self.likeButton.tintColor = UIColor.white
                         self.hasLiked = true
