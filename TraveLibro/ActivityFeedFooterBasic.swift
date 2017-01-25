@@ -79,6 +79,14 @@ class ActivityFeedFooterBasic: UIView {
             localLifeTravelImage.image = UIImage(named: "local_life")
             localLifeTravelImage.tintColor = endJourneyColor
         }
+        //let cnt = Int(feed["photoCount"].int!) + Int(feed["videoCount"].int!)
+        //print("count count")
+        //print(cnt)
+        //if cnt > 1 {
+        //   lineView.isHidden = false
+        //}else{
+        //    lineView.isHidden = true
+        //}
 
         if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
             

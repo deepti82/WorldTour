@@ -97,11 +97,11 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7S-sC-DRi">
-                                    <rect key="frame" x="265" y="0.0" width="65" height="31"/>
+                                    <rect key="frame" x="231" y="0.0" width="99" height="31"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="31" id="mHf-Qb-0cZ"/>
                                     </constraints>
-                                    <state key="normal" title="Rate This">
+                                    <state key="normal" title="Rate This Now">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
@@ -166,7 +166,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-4v-fLt">
-                            <rect key="frame" x="8" y="69" width="33" height="15"/>
+                            <rect key="frame" x="8" y="68.5" width="33" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="jcQ-SV-DjZ"/>
                                 <constraint firstAttribute="width" constant="33" id="vV9-yb-eWG"/>

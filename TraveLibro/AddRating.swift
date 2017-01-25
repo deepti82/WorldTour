@@ -23,7 +23,10 @@ class AddRating: UIView, UITextViewDelegate {
     
     var post:Post!
     var checkIn:RatingCheckIn!
+    var activity: ActivityFeedFooter!
     var json:JSON!
+    var activityJson: JSON!
+    var checkView: String = ""
     
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
@@ -38,9 +41,47 @@ class AddRating: UIView, UITextViewDelegate {
         if reviewTextView.text != nil && reviewTextView.text != "Fill Me In..." {
             reviewBody = reviewTextView.text
         }
+        // only for checkin
+        if checkView == "activity" {
+            self.activity.reviewTapOut(UITapGestureRecognizer())
+
+        }else{
         self.checkIn.modifyAsReview(num: (self.starCount - 1))
         self.checkIn.reviewTapOut(UITapGestureRecognizer())
+        }
         self.removeFromSuperview()
+        
+        if checkView == "activity" {
+            if activityJson["type"].stringValue == "on-the-go-journey" || activityJson["type"].stringValue == "ended-journey"{
+            request.rateActivity(currentUser["_id"].string!, itinerary: "", journey: activityJson["_id"].stringValue,  rating: "\(starCount)", review: reviewBody, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        print("Review Sent Successfully");
+                    }
+                    else {
+                        print("response error!")
+                    }
+                })
+            })
+            }else if activityJson["type"].stringValue == "quick-itinerary" || activityJson["type"].stringValue == "detail-itinerary"{
+                request.rateActivity(currentUser["_id"].string!, itinerary: activityJson["_id"].stringValue, journey: "",  rating: "\(starCount)", review: reviewBody, completion: {(response) in
+                    DispatchQueue.main.async(execute: {
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            print("Review Sent Successfully");
+                        }
+                        else {
+                            print("response error!")
+                        }
+                    })
+                })
+            }
+        }else{
         request.rateCheckIn(currentUser["_id"].string!, postId: post.post_ids, rating: "\(starCount)", review: reviewBody, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
@@ -54,6 +95,7 @@ class AddRating: UIView, UITextViewDelegate {
                 }
             })
         })
+        }
     }
     override init(frame: CGRect) {
         super.init(frame: frame)

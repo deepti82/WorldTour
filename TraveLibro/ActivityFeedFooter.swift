@@ -15,6 +15,7 @@ class ActivityFeedFooter: UIView {
     
     
     @IBOutlet weak var localLifeTravelImage: UIImageView!
+    var backgroundReview: UIView!
     @IBOutlet weak var footerColorView: UIView!
     var postTop:JSON!
     
@@ -33,6 +34,7 @@ class ActivityFeedFooter: UIView {
     
     var likeCount:Int = 0
     var commentCounts:Int = 0
+    var reviewCount:Int = 0
     
     
     override init(frame: CGRect) {
@@ -93,6 +95,13 @@ class ActivityFeedFooter: UIView {
         
     }
     
+    func setReviewCount(count:Int!) {
+        if count != nil {
+            self.reviewCount = count
+        }
+        self.checkHideView()
+    }
+    
     func setCommentCount(_ post_commentCount:Int!) {
         
         if(post_commentCount != nil) {
@@ -110,7 +119,7 @@ class ActivityFeedFooter: UIView {
     }
     
     func checkHideView() {
-        if(self.commentCounts == 0  && self.likeCount == 0) {
+        if(self.commentCounts == 0  && self.likeCount == 0 && self.reviewCount == 0) {
             self.frame.size.height = 50;
         } else {
             self.frame.size.height = 90;
@@ -231,5 +240,35 @@ class ActivityFeedFooter: UIView {
         actionSheetControllerIOS8.addAction(EditCheckIn)
         
         globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
+    }
+    @IBAction func reviewClicked(_ sender: UIButton) {
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooter.reviewTapOut(_:)))
+        
+        backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
+        backgroundReview.addGestureRecognizer(tapout)
+        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        globalNavigationController.topViewController?.view.addSubview(backgroundReview)
+        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
+        
+        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
+        rating.activityJson = postTop
+        rating.activity = self
+        rating.checkView = "activity"
+        
+            rating.starCount = 0
+            
+        //rating.ratingDisplay(rating.json)
+        
+        rating.center = backgroundReview.center
+        rating.layer.cornerRadius = 5
+        rating.clipsToBounds = true
+        rating.navController = globalNavigationController
+        backgroundReview.addSubview(rating)
+
+    }
+    func reviewTapOut(_ sender: UITapGestureRecognizer) {
+        print("in footer tap out")
+        backgroundReview.removeFromSuperview()
+        
     }
 }

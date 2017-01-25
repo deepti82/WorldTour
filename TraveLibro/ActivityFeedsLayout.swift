@@ -172,7 +172,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerViewReview.type = "ActivityFeeds"
             footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
             footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
-            footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
+            //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
             self.addSubview(footerViewReview)
         } else {
             print("in footer")
@@ -180,6 +180,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView.postTop = feed
             footerView.topLayout = self
             footerView.type = "ActivityFeeds"
+            
             footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
             footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
             
@@ -260,6 +261,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 textHeader.headerText.text = ""
             }
             textHeader.headerText.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             textHeader.sizeToFit()
         
         }

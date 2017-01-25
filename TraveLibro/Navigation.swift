@@ -2012,6 +2012,40 @@ class Navigation {
         
     }
     
+    func rateActivity(_ userId: String, itinerary: String, journey: String, rating: String, review: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            var params = ["user" : userId, "rating" : rating, "review" : review]
+            if itinerary == "" {
+                
+                params = ["journey" : journey, "user" : userId, "rating" : rating, "review" : review]
+
+            }else{
+                
+                params = ["itinerary" : itinerary, "user" : userId, "rating" : rating, "review" : review]
+
+            }
+            print(params)
+            let opt = try HTTP.POST(adminUrl + "review/userReview", parameters: params)
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
     func rateCountry(_ userId: String, journeyId: String, countryId: String, rating: String, review: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
