@@ -122,9 +122,9 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView4.photoTop.image = UIImage(named: "bgreligious")
         myView4.topLabel.text = "Religious"
         myView4.photoBottom1.image = UIImage(named: "bgcinemasandtheatre")
-        myView4.bottomLabel1.text = "Cinemas and Theatres"
+        myView4.bottomLabel1.text = "Cinema and Theatres"
         myView4.photoBottom2.image = UIImage(named: "bghotelsandaccom")
-        myView4.bottomLabel2.text = "Hotels and accommodations"
+        myView4.bottomLabel2.text = "Hotels and Accommodations"
         let tapGestureRecognizer9 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
         myView4.photoTopView.isUserInteractionEnabled = true
         myView4.photoTopView.addGestureRecognizer(tapGestureRecognizer9)
@@ -143,7 +143,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView5.photoTop.isHidden = true
         myView5.clipsToBounds = true
         myView5.photoBottom1.image = UIImage(named: "bgairport")
-        myView5.bottomLabel1.text = "Airport"
+        myView5.bottomLabel1.text = "Transportation"
         myView5.photoBottom2.image = UIImage(named: "bgother")
         myView5.bottomLabel2.text = "Others"
         
@@ -399,7 +399,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             category =  "Adventure & Excursions"
 
         case 6:
-            category =  "Zoos & Aquariums"
+            category =  "Zoo & Aquariums"
 
         case 7:
             category =  "Events & Festival"
@@ -414,10 +414,10 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             category =  "Religious"
 
         case 11:
-            category =  "Cinemas & Theatres"
+            category =  "Cinema & Theatres"
             
         case 12:
-            category =  "Hotels & accommodations"
+            category =  "Hotels & Accomodations"
             
         case 13:
             category =  "Transportation"
