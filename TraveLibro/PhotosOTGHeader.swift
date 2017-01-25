@@ -69,6 +69,24 @@ class PhotosOTGHeader: UIView {
         
         maskLayer.path = path.cgPath
         footer.layer.mask = maskLayer
+        
+        
+        
+        self.photosTitle.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openText(_:)))
+        self.photosTitle.addGestureRecognizer(tapGestureRecognizer)
+        self.photosTitle.tag = 0
+    }
+    
+    func openText(_ sender:AnyObject) {
+        let size = self.photosTitle.text?.size(attributes: [NSFontAttributeName: self.photosTitle.font])
+        if ((size?.width)! > self.photosTitle.bounds.size.width) {
+            let alertController = UIAlertController(title: "", message:
+                self.photosTitle.text!, preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            globalNavigationController.present(alertController, animated: true, completion: nil)
+        }
+        
     }
     
     func makeTLProfilePicture(_ image: UIImageView) {
