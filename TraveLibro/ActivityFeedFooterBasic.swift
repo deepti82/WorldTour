@@ -30,6 +30,8 @@ class ActivityFeedFooterBasic: UIView {
     @IBOutlet weak var commentIcon: UIImageView!
     @IBOutlet weak var commentCount: UILabel!
     var topLayout:VerticalLayout!
+    var backgroundReview: UIView!
+
     var type="ActivityFeeds"
     
     var likeCount:Int = 0
@@ -97,13 +99,8 @@ class ActivityFeedFooterBasic: UIView {
 
         if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
             
-            if feed["review"] != nil && feed["review"].count != 0 {
-                ratingStack.isHidden = false
-                rateThisButton.isHidden = true
-            }else{
-                ratingStack.isHidden = true
-                rateThisButton.isHidden = false
-            }
+            afterRating(starCnt: feed["review"].count)
+            
         }else{
             ratingStack.isHidden = true
             rateThisButton.isHidden = true
@@ -112,8 +109,52 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     @IBAction func rateThisClicked(_ sender: UIButton) {
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.reviewTapOut(_:)))
+        
+        backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
+        backgroundReview.addGestureRecognizer(tapout)
+        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        globalNavigationController.topViewController?.view.addSubview(backgroundReview)
+        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
+        
+        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
+        rating.activityJson = postTop
+        rating.activityBasic = self
+        rating.checkView = "activityFeed"
+        
+        rating.starCount = 0
+        
+        //rating.ratingDisplay(rating.json)
+        
+        rating.center = backgroundReview.center
+        rating.layer.cornerRadius = 5
+        rating.clipsToBounds = true
+        rating.navController = globalNavigationController
+        backgroundReview.addSubview(rating)
+    }
+    func reviewTapOut(_ sender: UITapGestureRecognizer) {
+        print("in footer tap out")
+        backgroundReview.removeFromSuperview()
         
     }
+    
+    func afterRating(starCnt:Int) {
+        if starCnt != 0 {
+            print("start rating")
+            for rat in ratingStack.subviews {
+                rat.
+                if rat.tag > starCnt + 1 {
+                    
+                }
+            }
+            ratingStack.isHidden = false
+            rateThisButton.isHidden = true
+        }else{
+            ratingStack.isHidden = true
+            rateThisButton.isHidden = false
+        }
+    }
+    
     @IBAction func sendComments(_ sender: UIButton) {
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = postTop["uniqueId"].stringValue

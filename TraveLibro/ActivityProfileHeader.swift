@@ -19,6 +19,7 @@ class ActivityProfileHeader: UIView {
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var localTime: UILabel!
+    var currentFeed:JSON = []
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
     override init(frame: CGRect) {
@@ -46,6 +47,7 @@ class ActivityProfileHeader: UIView {
     }
     
     func fillProfileHeader(feed:JSON) {
+        currentFeed = feed
         
         switch feed["type"].stringValue {
         case "local-life":
@@ -81,7 +83,54 @@ class ActivityProfileHeader: UIView {
     
     @IBAction func followClick(_ sender: UIButton) {
         
+        if followButton.titleLabel?.text == "Follow" {
+            request.followUser(currentUser["_id"].string!, followUserId: currentFeed["postCreator"]["_id"].stringValue, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    print("response arrived!")
+                    self.followButton.setTitle("Following", for: .normal)
+                    
+                    
+                }
+                else {
+                    
+                    print("error: \(response["error"])")
+                    
+                }
+                })
+            })
+        }else{
+            request.unfollow(currentUser["_id"].string!, unFollowId: currentFeed["postCreator"]["_id"].stringValue, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    print("response arrived!")
+                    self.followButton.setTitle("Follow", for: .normal)
+                    
+                }
+                else {
+                    
+                    print("error: \(response["error"])")
+                    
+                }
+                })
+            })
+        }
     }
+    
     func getCategoryImage(name: String) -> String {
         var str:String! = ""
         for img in imageArr {

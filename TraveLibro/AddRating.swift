@@ -24,9 +24,11 @@ class AddRating: UIView, UITextViewDelegate {
     var post:Post!
     var checkIn:RatingCheckIn!
     var activity: ActivityFeedFooter!
+    var activityBasic: ActivityFeedFooterBasic!
     var json:JSON!
     var activityJson: JSON!
     var checkView: String = ""
+    var postId = ""
     
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
@@ -45,6 +47,8 @@ class AddRating: UIView, UITextViewDelegate {
         if checkView == "activity" {
             self.activity.reviewTapOut(UITapGestureRecognizer())
 
+        }else if checkView == "activityFeed" {
+            self.activityBasic.reviewTapOut(UITapGestureRecognizer())
         }else{
         self.checkIn.modifyAsReview(num: (self.starCount - 1))
         self.checkIn.reviewTapOut(UITapGestureRecognizer())
@@ -82,13 +86,21 @@ class AddRating: UIView, UITextViewDelegate {
                 })
             }
         }else{
-        request.rateCheckIn(currentUser["_id"].string!, postId: post.post_ids, rating: "\(starCount)", review: reviewBody, completion: {(response) in
+            if self.checkView == "activityFeed" {
+                postId = activityJson["_id"].stringValue
+            }else{
+                postId = post.post_ids
+            }
+        request.rateCheckIn(currentUser["_id"].string!, postId: postId, rating: "\(starCount)", review: reviewBody, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
-                    print("Review Sent Successfully");
+                    print("Review Sent Successfully")
+                    if self.checkView == "activityFeed" {
+                        self.activityBasic.afterRating(starCnt: self.starCount)
+                    }
                 }
                 else {
                     print("response error!")
