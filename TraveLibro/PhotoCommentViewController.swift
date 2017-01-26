@@ -531,31 +531,55 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func getAllComments() {
-        
-        request.getPhotoComments(photoId, userId: currentUser["_id"].string!, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
+        if(self.type == "Video" ) {
+            request.getVideoComments(photoId, userId: currentUser["_id"].string!, completion: {(response) in
                 
-                if response.error != nil {
+                DispatchQueue.main.async(execute: {
                     
-                    print("error: \(response.error!.localizedDescription)")
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        
+                        self.comments = response["data"]["comment"].array!
+                        self.commentTableView.reloadData()
+                        
+                    }
+                    else {
+                        
+                        
+                    }
                     
-                }
-                else if response["value"].bool! {
-                    
-                    self.comments = response["data"]["comment"].array!
-                    self.commentTableView.reloadData()
-                    
-                }
-                else {
-                    
-                    
-                }
+                })
                 
             })
-            
-        })
-        
+        } else {
+            request.getPhotoComments(photoId, userId: currentUser["_id"].string!, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        
+                        self.comments = response["data"]["comment"].array!
+                        self.commentTableView.reloadData()
+                        
+                    }
+                    else {
+                        
+                        
+                    }
+                    
+                })
+                
+            })
+        }
     }
     
     func getHashtags() {
