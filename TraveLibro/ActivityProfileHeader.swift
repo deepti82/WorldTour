@@ -49,6 +49,24 @@ class ActivityProfileHeader: UIView {
     func fillProfileHeader(feed:JSON) {
         currentFeed = feed
         
+        
+        //header icon
+        var typeOfPost = getTypeOfPost(feed)
+        if(typeOfPost != nil) {
+            switch(typeOfPost) {
+            case "Location":
+                self.category.setImage(UIImage(named: "location_icon"), for: .normal)
+            case "Image":
+                self.category.setImage(UIImage(named: "camera_icon"), for: .normal)
+            case "Videos":
+                self.category.setImage(UIImage(named: "video"), for: .normal)
+            case "Thoughts":
+                self.category.setImage(UIImage(named: "pen_icon"), for: .normal)
+            default:
+                break
+            }
+        }
+        
         switch feed["type"].stringValue {
         case "local-life":
             category.setBackgroundImage(UIImage(named:"box8"), for: .normal)
@@ -70,14 +88,6 @@ class ActivityProfileHeader: UIView {
         profilePic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["user"]["profilePicture"])", width: 100))
         localDate.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: feed["createdAt"].stringValue, isDate: true)
         localTime.text = request.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: feed["createdAt"].stringValue, isDate: false)
-        
-        if getCategoryImage(name: feed["checkIn"]["category"].stringValue) != "" {
-            
-            category.setImage(UIImage(named:getCategoryImage(name: feed["checkIn"]["category"].stringValue)), for: .normal)
-            
-        }else{
-            category.isHidden = true
-        }
         
     }
     

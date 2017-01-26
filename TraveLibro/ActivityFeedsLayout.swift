@@ -175,7 +175,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
-        singlePhotoController.postId = feed["_id"].stringValue
+        singlePhotoController.postId = feeds["_id"].stringValue
         globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
 
