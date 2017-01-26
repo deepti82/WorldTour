@@ -22,18 +22,13 @@ class RatingCheckIn: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        print("rating rev..")
-        
         rateCheckInLabel.shadowColor = UIColor.black
         rateCheckInLabel.shadowOffset = CGSize(width: 0.8, height: 0.8)
 //        rateCheckInLabel.layer.shadowOpacity = 0.8
         rateCheckInLabel.layer.masksToBounds = true
         line.backgroundColor = UIColor.clear
-        
         rateCheckInButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)
         rateCheckInButton.setTitle("", for: .normal)
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
