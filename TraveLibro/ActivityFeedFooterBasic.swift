@@ -142,7 +142,7 @@ class ActivityFeedFooterBasic: UIView {
         if starCnt != 0 {
             print("start rating")
             for rat in ratingStack.subviews {
-                rat.
+//                rat.
                 if rat.tag > starCnt + 1 {
                     
                 }
