@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftHTTP
-
+import Player
 import TwitterKit
 
 var currentUser: JSON!
@@ -23,6 +23,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var videoScrollView: UIScrollView!
     @IBOutlet weak var ipTextField: UITextField!
+    var player:Player!
     
     var videoHeight:CGFloat!
     var horizontal:HorizontalLayout!
@@ -36,6 +37,25 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight))
         imageView.image = UIImage(named:"logo-default")
+        
+        self.player = Player()
+        self.player.delegate = self
+        self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
+        self.player.view.clipsToBounds = true
+        self.player.playbackLoops = true
+        self.player.muted = true
+        self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
+        self.videoContainer.player = self.player
+        var videoUrl:URL!
+        self.videoContainer.tagText.isHidden = true
+        if(!post.post_isOffline) {
+            videoUrl = URL(string: post.videoArr[0].serverUrl)
+        } else {
+            videoUrl = post.videoArr[0].imageUrl
+        }
+        self.player.setUrl(videoUrl!)
+        self.videoContainer.videoHolder.addSubview(self.player.view)
+        self.addSubview(self.videoContainer)
         
         self.horizontal.addSubview(imageView)
         
