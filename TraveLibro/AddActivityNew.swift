@@ -341,7 +341,7 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
                 builder.configureCameraViewController(){ cameraConf in
                     cameraConf.allowedRecordingModes = [.video]
                     cameraConf.showCameraRoll = false
-                    cameraConf.maximumVideoLength = 3
+                    cameraConf.maximumVideoLength = 60
                 }
                 
                 builder.configureToolStackController(){toolSck in
