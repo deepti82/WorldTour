@@ -21,11 +21,36 @@ var signInVC: SignInViewController!
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var videoScrollView: UIScrollView!
     @IBOutlet weak var ipTextField: UITextField!
+    
+    var videoHeight:CGFloat!
+    var horizontal:HorizontalLayout!
 //    var request = HTTPTask()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        videoHeight = videoScrollView.frame.height
+        self.horizontal = HorizontalLayout(height: videoHeight)
+        self.videoScrollView.addSubview(horizontal)
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight))
+        imageView.image = UIImage(named:"logo-default")
+        
+        self.horizontal.addSubview(imageView)
+        
+        
+        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight))
+        imageView1.image = UIImage(named:"logo-default")
+        
+        self.horizontal.addSubview(imageView1)
+        
+        
+        let imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight))
+        imageView2.image = UIImage(named:"logo-default")
+        
+        self.horizontal.addSubview(imageView2)
+        addToLayout();
         
         getDarkBackGroundBlur(self)
         
@@ -50,6 +75,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         navigation = self.navigationController
         
     }
+    
+    func addToLayout() {
+        self.horizontal.layoutSubviews()
+        self.videoScrollView.contentSize = CGSize(width: self.horizontal.frame.width, height: self.horizontal.frame.height)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.viewDidLoad()
