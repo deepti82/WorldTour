@@ -291,7 +291,7 @@ class BucketListTableViewController: UITableViewController  {
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
         else {
-            self.title = "Countries Visited"
+           
             let nextVC = storyboard?.instantiateViewController(withIdentifier: "SelectCountryVC") as! SelectCountryViewController
             nextVC.whichView = "CountriesVisited"
             self.navigationController?.pushViewController(nextVC, animated: true)

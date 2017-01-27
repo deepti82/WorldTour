@@ -45,7 +45,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         mainTableView.sectionIndexTrackingBackgroundColor = UIColor.clear
         
         if whichView == "CountriesVisited" {
-            
+             self.title = "Countries Visited"
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.addYear(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
@@ -73,7 +73,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         else if whichView == "selectNationality" {
-            
+             self.title = "Countries Visited"
             getDarkBackGroundBlur(self)
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.chooseCity(_:)), for: .touchUpInside)
