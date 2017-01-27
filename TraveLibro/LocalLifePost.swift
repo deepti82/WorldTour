@@ -52,7 +52,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(LocalLifePost.openSingleVideo(_:)))
             self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
             self.videoContainer.tag = 0
-            
+            videoContainer.tagView.isHidden = true
             
             self.player = Player()
             self.player.delegate = self
