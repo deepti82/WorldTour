@@ -419,50 +419,46 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="mJz-mh-wxq" customClass="BucketListTableViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="64" id="mJz-mh-wxq" customClass="BucketListTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mJz-mh-wxq" id="do8-Xd-MLk">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="jn2-oC-83T">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
                                         </imageView>
-                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pig-YY-to9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INDIA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bn-ZA-1EA">
-                                                    <rect key="frame" x="162" y="15" width="51" height="25"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
-                                                    <color key="textColor" red="0.15294117647058825" green="0.16862745098039217" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3q-6F-dSu">
-                                                    <rect key="frame" x="171.5" y="35" width="33.5" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
-                                                    <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="0.49829521048109965" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="3bn-ZA-1EA" firstAttribute="centerX" secondItem="Pig-YY-to9" secondAttribute="centerX" id="Hfx-ag-xC8"/>
-                                                <constraint firstItem="3bn-ZA-1EA" firstAttribute="centerY" secondItem="Pig-YY-to9" secondAttribute="centerY" constant="-2.5" id="W68-9y-VAC"/>
-                                                <constraint firstItem="F3q-6F-dSu" firstAttribute="top" secondItem="3bn-ZA-1EA" secondAttribute="bottom" constant="-5" id="aqD-Do-bLl"/>
-                                                <constraint firstItem="F3q-6F-dSu" firstAttribute="centerX" secondItem="Pig-YY-to9" secondAttribute="centerX" id="wrM-8n-fnv"/>
-                                            </constraints>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pig-YY-to9">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
+                                            <color key="backgroundColor" white="1" alpha="0.50265786082474229" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INDIA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bn-ZA-1EA">
+                                            <rect key="frame" x="162" y="17" width="51" height="25"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
+                                            <color key="textColor" red="0.15294117647058825" green="0.16862745098039217" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3q-6F-dSu">
+                                            <rect key="frame" x="171.5" y="40" width="33.5" height="20"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                            <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="F3q-6F-dSu" firstAttribute="top" secondItem="3bn-ZA-1EA" secondAttribute="bottom" constant="-2" id="FYd-gF-kbz"/>
+                                        <constraint firstItem="3bn-ZA-1EA" firstAttribute="centerX" secondItem="do8-Xd-MLk" secondAttribute="centerX" id="GXx-W5-lGV"/>
                                         <constraint firstAttribute="bottom" secondItem="jn2-oC-83T" secondAttribute="bottom" id="Mvb-s0-ND4"/>
                                         <constraint firstItem="Pig-YY-to9" firstAttribute="leading" secondItem="jn2-oC-83T" secondAttribute="leading" id="Olx-1P-S1A"/>
                                         <constraint firstItem="jn2-oC-83T" firstAttribute="leading" secondItem="do8-Xd-MLk" secondAttribute="leading" id="XNf-Zp-8Iw"/>
                                         <constraint firstItem="Pig-YY-to9" firstAttribute="bottom" secondItem="jn2-oC-83T" secondAttribute="bottom" id="bH0-Yi-Ndw"/>
+                                        <constraint firstItem="F3q-6F-dSu" firstAttribute="centerX" secondItem="do8-Xd-MLk" secondAttribute="centerX" id="cda-4S-I3Q"/>
                                         <constraint firstItem="jn2-oC-83T" firstAttribute="top" secondItem="do8-Xd-MLk" secondAttribute="top" id="kIG-zj-Yyx"/>
                                         <constraint firstAttribute="trailing" secondItem="jn2-oC-83T" secondAttribute="trailing" id="n5Z-sl-yWU"/>
                                         <constraint firstItem="Pig-YY-to9" firstAttribute="trailing" secondItem="jn2-oC-83T" secondAttribute="trailing" id="wIs-IM-gKI"/>
                                         <constraint firstItem="Pig-YY-to9" firstAttribute="top" secondItem="jn2-oC-83T" secondAttribute="top" id="xLS-pt-Ao7"/>
+                                        <constraint firstItem="3bn-ZA-1EA" firstAttribute="centerY" secondItem="do8-Xd-MLk" secondAttribute="centerY" constant="-2" id="zhq-SG-Agv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -473,7 +469,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SeperatorCell" rowHeight="3" id="rWA-08-XWH" customClass="NoViewTableViewCell" customModule="TraveLibro" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="375" height="3"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="3"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rWA-08-XWH" id="M08-v9-QgF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>

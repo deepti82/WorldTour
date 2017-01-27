@@ -62,9 +62,12 @@ class PhotoOTGFooter: UIView {
         shareButton.imageView?.contentMode = .scaleAspectFit
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit
-        self.likeHeart.text = String(format: "%C", faicon["likes"]!)
-        self.layer.shadowOffset = CGSize(width: 10, height:10)
+        
+        self.layer.shadowOffset = CGSize(width: 2.0, height:2.0)
         self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowRadius = 1
+        self.layer.shadowOpacity = 0.8
+        self.layer.masksToBounds = true
         
     }
     

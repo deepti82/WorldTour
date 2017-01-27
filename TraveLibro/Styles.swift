@@ -15,6 +15,7 @@ func addShadow(_ myView: UIView, offset: CGSize, opacity: CGFloat, shadowRadius:
     myView.layer.shadowOpacity = 0.2
     myView.layer.shadowRadius = 1
     myView.layer.cornerRadius = 3
+    myView.layer.shadowColor = UIColor.blue.cgColor
     
 }
 
