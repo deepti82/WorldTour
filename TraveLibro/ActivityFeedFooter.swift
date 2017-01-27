@@ -19,6 +19,7 @@ class ActivityFeedFooter: UIView {
     @IBOutlet weak var footerColorView: UIView!
     var postTop:JSON!
     
+    @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var likeButton: SpringButton!
     @IBOutlet weak var commentButton: SpringButton!
     @IBOutlet weak var lineView: UIView!
@@ -98,6 +99,15 @@ class ActivityFeedFooter: UIView {
     func setReviewCount(count:Int!) {
         if count != nil {
             self.reviewCount = count
+            if(count == 0) {
+                self.reviewLabel.text = "0 Review"
+            } else if(count == 1) {
+                self.reviewLabel.text = "1 Review"
+            } else if(count > 1) {
+                let counts = String(count)
+                self.reviewLabel.text = "\(counts) Reviews"
+            }
+
         }
         self.checkHideView()
     }
@@ -241,6 +251,8 @@ class ActivityFeedFooter: UIView {
         
         globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
+    
+    
     @IBAction func reviewClicked(_ sender: UIButton) {
         let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooter.reviewTapOut(_:)))
         
@@ -255,9 +267,12 @@ class ActivityFeedFooter: UIView {
         rating.activity = self
         rating.checkView = "activity"
         
-            rating.starCount = 0
-            
-        //rating.ratingDisplay(rating.json)
+        if postTop["userReview"][0]["rating"] != nil  && postTop["userReview"].count != 0 {
+            rating.starCount = postTop["userReview"][0]["rating"].intValue
+            rating.ratingDisplay(postTop["userReview"][0])
+        }else{
+            rating.starCount = 1
+        }
         
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
@@ -266,6 +281,8 @@ class ActivityFeedFooter: UIView {
         backgroundReview.addSubview(rating)
 
     }
+    
+    
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
         print("in footer tap out")
         backgroundReview.removeFromSuperview()

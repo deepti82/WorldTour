@@ -178,6 +178,12 @@ class ActivityFeedFooterBasic: UIView {
                     rat.image = UIImage(named: "star_uncheck")
                 }else{
                     rat.image = UIImage(named: "star_check")
+                    if postTop["type"].stringValue == "travel-life" {
+                        rat.tintColor = mainOrangeColor
+                    }else{
+                        rat.tintColor = endJourneyColor
+                    }
+                    
                 }
             }
             ratingStack.isHidden = false

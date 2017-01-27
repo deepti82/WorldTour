@@ -189,6 +189,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerViewReview.type = "ActivityFeeds"
             footerViewReview.setCommentCount(footerViewReview.postTop["commentCount"].intValue)
             footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
+            footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
             //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
             self.addSubview(footerViewReview)
         } else {

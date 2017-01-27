@@ -35,6 +35,11 @@ class AddRating: UIView, UITextViewDelegate {
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
     var navController = UINavigationController()
     
+    func popToaster(text:String) {
+        let msg = Toast(text: text)
+        msg.show()
+    }
+    
     @IBAction func postReviewTapped(_ sender: UIButton) {
         
         print("post id in review: \(sender.title(for: .application)!)")
@@ -62,12 +67,19 @@ class AddRating: UIView, UITextViewDelegate {
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
+                            self.popToaster(text: "Something went wroung.")
+
                         }
                         else if response["value"].bool! {
                             print("Review Sent Successfully");
+                            self.popToaster(text: "Your review is  \(self.reviewConclusion.text!).")
+//                            activity.setReviewCount(count: acti)
+
                         }
                         else {
                             print("response error!")
+                            self.popToaster(text: "Something went wroung.")
+
                         }
                     })
                 })
@@ -76,12 +88,18 @@ class AddRating: UIView, UITextViewDelegate {
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
+                            self.popToaster(text: "Something went wroung.")
+
                         }
                         else if response["value"].bool! {
                             print("Review Sent Successfully");
+                            self.popToaster(text: "Your review is  \(self.reviewConclusion.text!).")
+
                         }
                         else {
                             print("response error!")
+                            self.popToaster(text: "Something went wroung.")
+
                         }
                     })
                 })
@@ -101,17 +119,18 @@ class AddRating: UIView, UITextViewDelegate {
                 DispatchQueue.main.async(execute: {
                     if response.error != nil {
                         print("error: \(response.error!.localizedDescription)")
-                        let msg = Toast(text: "Something went wroung.")
-                        msg.show()
+                        
+                        self.popToaster(text: "Something went wroung.")
                     }
                     else if response["value"].bool! {
                         print("Review Sent Successfully")
-                        let msg = Toast(text: "You rated \(self.reviewConclusion.text!).")
-                        msg.show()
+                        
+                        self.popToaster(text: "You rated \(self.reviewConclusion.text!).")
+
                     }
                     else {
-                        let msg = Toast(text: "Something went wroung.")
-                        msg.show()
+                        self.popToaster(text: "Something went wroung.")
+
                         print("response error!")
                     }
                 })
@@ -154,7 +173,12 @@ class AddRating: UIView, UITextViewDelegate {
     
     func ratingDisplay(_ review: JSON) {
         
-        reviewTextView.text = review["review"].string!
+        if review["review"].string == "" {
+            reviewTextView.text = "Fill Me In..."
+        }else{
+            reviewTextView.text = review["review"].string!
+        }
+        
         for i in 0 ..< Int(review["rating"].string!)! {
             
             stars[i].setImage(UIImage(named: "star_check"), for: UIControlState())
