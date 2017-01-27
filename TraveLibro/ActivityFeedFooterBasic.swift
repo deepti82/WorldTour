@@ -18,6 +18,8 @@ class ActivityFeedFooterBasic: UIView {
     @IBOutlet weak var footerColorView: UIView!
     var postTop:JSON!
     
+    
+    @IBOutlet var starImageArray: [UIImageView]!
     @IBOutlet weak var ratingStack: UIStackView!
     @IBOutlet weak var rateThisButton: UIButton!
     @IBOutlet weak var likeButton: SpringButton!
@@ -57,6 +59,8 @@ class ActivityFeedFooterBasic: UIView {
         self.addSubview(view)
         transparentCardWhite(footerColorView)
         
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.checkMyRating(_:)))
+        ratingStack.addGestureRecognizer(tapout)
         likeButton.tintColor = mainBlueColor
         commentButton.tintColor = mainBlueColor
         shareButton.tintColor = mainBlueColor
@@ -99,16 +103,27 @@ class ActivityFeedFooterBasic: UIView {
 
         if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
             
-            afterRating(starCnt: feed["review"].count)
+            afterRating(starCnt: feed["review"][0]["rating"].intValue)
             
         }else{
-            ratingStack.isHidden = true
-            rateThisButton.isHidden = true
+            
+            if currentUser["_id"].stringValue == postTop["postCreator"]["_id"].stringValue {
+                ratingStack.isHidden = true
+                rateThisButton.isHidden = false
+            }else{
+                ratingStack.isHidden = true
+                rateThisButton.isHidden = true
+            }
+            
         }
         
     }
     
     @IBAction func rateThisClicked(_ sender: UIButton) {
+        openRating()
+    }
+    
+    func openRating() {
         let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.reviewTapOut(_:)))
         
         backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
@@ -122,9 +137,14 @@ class ActivityFeedFooterBasic: UIView {
         rating.activityBasic = self
         rating.checkView = "activityFeed"
         
-        rating.starCount = 0
+        if postTop["review"][0]["rating"] != nil  && postTop["review"].count != 0 {
+            rating.starCount = postTop["review"][0]["rating"].intValue
+            rating.ratingDisplay(postTop["review"][0])
+        }else{
+            rating.starCount = 1
+        }
         
-        //rating.ratingDisplay(rating.json)
+        
         
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
@@ -132,26 +152,38 @@ class ActivityFeedFooterBasic: UIView {
         rating.navController = globalNavigationController
         backgroundReview.addSubview(rating)
     }
+    
     func reviewTapOut(_ sender: UITapGestureRecognizer) {
         print("in footer tap out")
         backgroundReview.removeFromSuperview()
         
     }
+    func checkMyRating(_ sender: UITapGestureRecognizer) {
+        print("check i im the creator")
+        
+        if currentUser["_id"].stringValue == postTop["postCreator"]["_id"].stringValue {
+            openRating()
+        }
+    }
     
     func afterRating(starCnt:Int) {
         if starCnt != 0 {
             print("start rating")
-            for rat in ratingStack.subviews {
-                rat.
-                if rat.tag > starCnt + 1 {
-                    
+            for rat in starImageArray {
+                if rat.tag > starCnt {
+                    rat.image = UIImage(named: "star_uncheck")
+                }else{
+                    rat.image = UIImage(named: "star_check")
                 }
             }
             ratingStack.isHidden = false
             rateThisButton.isHidden = true
         }else{
-            ratingStack.isHidden = true
-            rateThisButton.isHidden = false
+            if currentUser["_id"].stringValue == postTop["postCreator"]["_id"].stringValue {
+                ratingStack.isHidden = true
+                rateThisButton.isHidden = false
+            }
+            
         }
     }
     

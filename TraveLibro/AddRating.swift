@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 
 class AddRating: UIView, UITextViewDelegate {
@@ -46,30 +47,30 @@ class AddRating: UIView, UITextViewDelegate {
         // only for checkin
         if checkView == "activity" {
             self.activity.reviewTapOut(UITapGestureRecognizer())
-
+            
         }else if checkView == "activityFeed" {
             self.activityBasic.reviewTapOut(UITapGestureRecognizer())
         }else{
-        self.checkIn.modifyAsReview(num: (self.starCount - 1))
-        self.checkIn.reviewTapOut(UITapGestureRecognizer())
+            self.checkIn.modifyAsReview(num: (self.starCount - 1))
+            self.checkIn.reviewTapOut(UITapGestureRecognizer())
         }
         self.removeFromSuperview()
         
         if checkView == "activity" {
             if activityJson["type"].stringValue == "on-the-go-journey" || activityJson["type"].stringValue == "ended-journey"{
-            request.rateActivity(currentUser["_id"].string!, itinerary: "", journey: activityJson["_id"].stringValue,  rating: "\(starCount)", review: reviewBody, completion: {(response) in
-                DispatchQueue.main.async(execute: {
-                    if response.error != nil {
-                        print("error: \(response.error!.localizedDescription)")
-                    }
-                    else if response["value"].bool! {
-                        print("Review Sent Successfully");
-                    }
-                    else {
-                        print("response error!")
-                    }
+                request.rateActivity(currentUser["_id"].string!, itinerary: "", journey: activityJson["_id"].stringValue,  rating: "\(starCount)", review: reviewBody, completion: {(response) in
+                    DispatchQueue.main.async(execute: {
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            print("Review Sent Successfully");
+                        }
+                        else {
+                            print("response error!")
+                        }
+                    })
                 })
-            })
             }else if activityJson["type"].stringValue == "quick-itinerary" || activityJson["type"].stringValue == "detail-itinerary"{
                 request.rateActivity(currentUser["_id"].string!, itinerary: activityJson["_id"].stringValue, journey: "",  rating: "\(starCount)", review: reviewBody, completion: {(response) in
                     DispatchQueue.main.async(execute: {
@@ -91,22 +92,30 @@ class AddRating: UIView, UITextViewDelegate {
             }else{
                 postId = post.post_ids
             }
-        request.rateCheckIn(currentUser["_id"].string!, postId: postId, rating: "\(starCount)", review: reviewBody, completion: {(response) in
-            DispatchQueue.main.async(execute: {
-                if response.error != nil {
-                    print("error: \(response.error!.localizedDescription)")
-                }
-                else if response["value"].bool! {
-                    print("Review Sent Successfully")
-                    if self.checkView == "activityFeed" {
-                        self.activityBasic.afterRating(starCnt: self.starCount)
+            
+            if self.checkView == "activityFeed" {
+                self.activityBasic.afterRating(starCnt: self.starCount)
+            }
+            
+            request.rateCheckIn(currentUser["_id"].string!, postId: postId, rating: "\(starCount)", review: reviewBody, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                        let msg = Toast(text: "Something went wroung.")
+                        msg.show()
                     }
-                }
-                else {
-                    print("response error!")
-                }
+                    else if response["value"].bool! {
+                        print("Review Sent Successfully")
+                        let msg = Toast(text: "You rated \(self.reviewConclusion.text!).")
+                        msg.show()
+                    }
+                    else {
+                        let msg = Toast(text: "Something went wroung.")
+                        msg.show()
+                        print("response error!")
+                    }
+                })
             })
-        })
         }
     }
     override init(frame: CGRect) {
@@ -125,9 +134,9 @@ class AddRating: UIView, UITextViewDelegate {
             star.adjustsImageWhenHighlighted = false
             star.addTarget(self, action: #selector(AddRating.ratingButtonTapped), for: .touchDown)
         }
+        stars[0].isSelected = true
         
-        
-//        self.clipsToBounds = true
+        //        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -217,18 +226,24 @@ class AddRating: UIView, UITextViewDelegate {
         reviewConclusion.text = moodArr[ratingIndex - 1]
         smiley.setImage(UIImage(named: imageArr[ratingIndex - 1]), for: UIControlState())
         updateButtonSelectionStates()
+
     }
     
     func updateButtonSelectionStates() {
+        print("in update states")
+
         starCount = 0
+        print(ratingIndex)
         for (index, button) in stars.enumerated() {
             button.isSelected = index < ratingIndex
             if button.isSelected {
                 
                 starCount += 1
                 
+            }else{
+                button.isSelected = false
             }
         }
     }
-
+    
 }

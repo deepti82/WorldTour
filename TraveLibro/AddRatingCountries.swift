@@ -224,6 +224,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     }
     
     func updateButtonSelectionStates() {
+        print("in update states")
         starCount = 0
         for (index, button) in stars.enumerated() {
             button.isSelected = index < ratingIndex

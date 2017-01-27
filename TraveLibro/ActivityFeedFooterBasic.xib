@@ -30,6 +30,11 @@
                 <outlet property="rateThisButton" destination="r7S-sC-DRi" id="hv2-s6-O1s"/>
                 <outlet property="ratingStack" destination="y7T-l1-bKs" id="1kc-7j-usr"/>
                 <outlet property="shareButton" destination="Rrq-Lg-qNv" id="nRm-sX-YAd"/>
+                <outletCollection property="starImageArray" destination="yt3-x9-L3t" collectionClass="NSMutableArray" id="ubR-NH-XXS"/>
+                <outletCollection property="starImageArray" destination="lfI-VI-S0I" collectionClass="NSMutableArray" id="LTR-SS-9sQ"/>
+                <outletCollection property="starImageArray" destination="QRK-h3-jjq" collectionClass="NSMutableArray" id="igK-jh-x3D"/>
+                <outletCollection property="starImageArray" destination="4lN-kA-UIz" collectionClass="NSMutableArray" id="655-el-9iu"/>
+                <outletCollection property="starImageArray" destination="IvY-kF-bXY" collectionClass="NSMutableArray" id="JuG-DY-WXo"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -113,6 +118,7 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_check" translatesAutoresizingMaskIntoConstraints="NO" id="yt3-x9-L3t">
                                             <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                                            <color key="tintColor" red="0.92668849230000006" green="0.38490101700000001" blue="0.32428267599999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="15" id="0Vk-98-Sak"/>
                                                 <constraint firstAttribute="height" constant="15" id="h6V-78-e48"/>
@@ -166,7 +172,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oe-4v-fLt">
-                            <rect key="frame" x="8" y="68" width="33" height="15"/>
+                            <rect key="frame" x="8" y="69" width="33" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="jcQ-SV-DjZ"/>
                                 <constraint firstAttribute="width" constant="33" id="vV9-yb-eWG"/>
