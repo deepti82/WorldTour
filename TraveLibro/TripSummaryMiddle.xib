@@ -21,13 +21,14 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7A-lm-ajb">
                     <rect key="frame" x="50" y="4" width="275" height="88"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80239207469999996" colorSpace="custom" customColorSpace="sRGB"/>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jLk-Xi-3hK">
                     <rect key="frame" x="20" y="0.0" width="335" height="1"/>
                     <color key="backgroundColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80239207469999996" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="jLk-Xi-3hK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1YV-Jk-hsf"/>
                 <constraint firstAttribute="trailing" secondItem="jLk-Xi-3hK" secondAttribute="trailing" constant="20" id="8Sm-Fe-zly"/>
