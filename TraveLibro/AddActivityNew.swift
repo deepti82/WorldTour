@@ -449,6 +449,9 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
             case "EditActivity":
                 let newTl = globalNavigationController.topViewController as! NewTLViewController;
                 newTl.editActivity(sender);
+            case "CreateLocalLife":
+                let newTl = globalLocalLife;
+                newTl?.newPost(sender)
             default:
                 let newTl = globalNavigationController.topViewController as! NewTLViewController;
                 newTl.newPost(sender);   

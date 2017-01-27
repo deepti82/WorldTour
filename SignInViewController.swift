@@ -82,8 +82,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         imageView3.addSubview(self.player3.view)
         self.horizontal.addSubview(imageView3)
         
-        
-        
         addToLayout();
         
         getDarkBackGroundBlur(self)
