@@ -19,7 +19,7 @@ var navigation: UINavigationController!
 var signInVC: SignInViewController!
 
 
-class SignInViewController: UIViewController, UITextFieldDelegate {
+class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate {
     
     @IBOutlet weak var videoScrollView: UIScrollView!
     @IBOutlet weak var ipTextField: UITextField!
@@ -40,22 +40,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         
         self.player = Player()
         self.player.delegate = self
-        self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
+        self.player.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight)
         self.player.view.clipsToBounds = true
         self.player.playbackLoops = true
         self.player.muted = true
         self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
-        self.videoContainer.player = self.player
-        var videoUrl:URL!
-        self.videoContainer.tagText.isHidden = true
-        if(!post.post_isOffline) {
-            videoUrl = URL(string: post.videoArr[0].serverUrl)
-        } else {
-            videoUrl = post.videoArr[0].imageUrl
-        }
-        self.player.setUrl(videoUrl!)
-        self.videoContainer.videoHolder.addSubview(self.player.view)
-        self.addSubview(self.videoContainer)
+        self.player.setUrl()
+        imageView.addSubview(self.player.view)
         
         self.horizontal.addSubview(imageView)
         
@@ -172,4 +163,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func playerReady(_ player: Player) {
+       self.player.playFromCurrentTime()
+    }
+
 }
