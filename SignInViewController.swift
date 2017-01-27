@@ -38,15 +38,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         self.videoScrollView.addSubview(horizontal)
         
         let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight))
-        imageView1.image = UIImage(named:"travel_life")
-        
+        imageView1.image = UIImage(named:"logo-default")
+        imageView1.contentMode = UIViewContentMode.center
         self.player1 = Player()
         self.player1.delegate = self
         self.player1.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight)
         self.player1.view.clipsToBounds = true
         self.player1.playbackLoops = true
-        self.player1.muted = false
-        self.player1.fillMode = "AVLayerVideoGravityResizeAspectFill"
+        self.player1.muted = true
+        self.player1.fillMode = "AVLayerVideoGravityResizeAspect"
         self.player1.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/travellife.mp4")!)
         imageView1.addSubview(self.player1.view)
         
@@ -54,31 +54,32 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         
         
         let imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight))
-        imageView2.image = UIImage(named:"local_life")
+        imageView2.image = UIImage(named:"logo-default")
+        imageView2.contentMode = UIViewContentMode.center
         self.player2 = Player()
         self.player2.delegate = self
         self.player2.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight)
         self.player2.view.clipsToBounds = true
         self.player2.playbackLoops = true
         self.player2.muted = true
-        self.player2.fillMode = "AVLayerVideoGravityResizeAspectFill"
+        self.player2.fillMode = "AVLayerVideoGravityResizeAspect"
         self.player2.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/locallife.mp4")!)
         imageView2.addSubview(self.player2.view)
         self.horizontal.addSubview(imageView2)
         
         
         let imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight))
+        imageView3.image = UIImage(named:"logo-default")
+        imageView3.contentMode = UIViewContentMode.center
         self.player3 = Player()
         self.player3.delegate = self
         self.player3.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight)
         self.player3.view.clipsToBounds = true
         self.player3.playbackLoops = true
         self.player3.muted = true
-        self.player3.fillMode = "AVLayerVideoGravityResizeAspectFill"
+        self.player3.fillMode = "AVLayerVideoGravityResizeAspect"
         self.player3.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/mylife.mp4")!)
         imageView3.addSubview(self.player3.view)
-        imageView3.image = UIImage(named:"logo-default")
-        
         self.horizontal.addSubview(imageView3)
         
         
