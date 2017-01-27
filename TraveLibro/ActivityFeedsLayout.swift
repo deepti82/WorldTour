@@ -52,6 +52,12 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         //Image generation only
         if(feed["videos"].count > 0) {
             self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            
+            self.videoContainer.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
+            self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
+            self.videoContainer.tag = 0
+            
             self.player = Player()
             self.player.delegate = self
             self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
@@ -72,6 +78,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.player.setUrl(videoUrl!)
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
+            
         } else if(feed["photos"].count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
@@ -162,6 +169,16 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         }
         //End of Center
     }
+    
+    func openSingleVideo(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.type = "Video"
+        singlePhotoController.postId = feeds["_id"].stringValue
+        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+    }
+
     
     func footerLayout(feed:JSON) {
         if(feed["type"].stringValue == "ended-journey" || feed["type"].stringValue == "quick-itinerary" || feed["type"].stringValue == "detail-itinerary" || feed["type"].stringValue == "on-the-go-journey") {

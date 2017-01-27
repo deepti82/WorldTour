@@ -18,6 +18,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var feeds: JSON! = []
     var pageno = 1
     var loadStatus: Bool = true
+    var mainFooter: FooterViewNew!
     
     
     override func viewDidLoad() {
@@ -29,6 +30,11 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         layout = VerticalLayout(width: screenWidth)
         activityScroll.addSubview(layout)
         getActivity(pageNumber: pageno)
+        
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        self.mainFooter.layer.zPosition = 5
+        self.view.addSubview(self.mainFooter)
+
     }
     
     func createNavigation() {
@@ -94,10 +100,33 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
+        
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            hideHeaderAndFooter(true);
+        }
+        else{
+            hideHeaderAndFooter(false);
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    func hideHeaderAndFooter(_ isShow:Bool) {
+        if(isShow) {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+
+            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+        } else {
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65
+
+        }
+    }
+    
     
 }

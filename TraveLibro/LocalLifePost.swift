@@ -13,7 +13,7 @@ import Spring
 class LocalLifePost: VerticalLayout, PlayerDelegate {
     
     
-        var feed: JSON!
+    var feed: JSON!
     var profileHeader: ActivityProfileHeader!
     var textHeader: ActivityTextHeader!
     var activityFeed: LocalLifePostsViewController!
@@ -178,7 +178,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         singlePhotoController.postId = feed["_id"].stringValue
         globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
-
+    
     
     func footerLayout(feed:JSON) {
         footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
@@ -218,59 +218,55 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         
         profileHeader.fillProfileHeader(feed:feed)
         
+        
+        
+        
         self.addSubview(profileHeader)
         
-        if feed["thoughts"].stringValue != "" {
-            
-            //  START ACTIVITY TEXT HEADER
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
-            textHeader.headerText.text = feed["thoughts"].stringValue
-            textHeader.headerText.sizeToFit()
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
-            self.addSubview(textHeader)
-            
-            //  START ACTIVITY TEXT TAG
-            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
-                textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
-                textTag.transparentBack()
-                if feed["type"].stringValue == "travel-life" {
-                    textTag.tagText.text = "On The Go"
-                    textTag.tagView.backgroundColor = mainOrangeColor
-                }else{
-                    textTag.tagText.text = "Local Life"
-                    textTag.tagView.backgroundColor = endJourneyColor
-                }
-                self.addSubview(textTag)
+        
+        //  START ACTIVITY TEXT TAG
+        if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
+            textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
+            textTag.transparentBack()
+            if feed["type"].stringValue == "travel-life" {
+                textTag.tagText.text = "On The Go"
+                textTag.tagView.backgroundColor = mainOrangeColor
+            }else{
+                textTag.tagText.text = "Local Life"
+                textTag.tagView.backgroundColor = endJourneyColor
             }
-            
-        }else{
-            textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            
-            switch feed["type"].stringValue {
-            case "on-the-go-journey":
-                setText(text: "Has started his " + feed["startLocation"].stringValue + " journey.")
-                
-            case "ended-journey":
-                setText(text: "Has ended his " + feed["startLocation"].stringValue + " journey.")
-                
-            case "quick-itinerary":
-                setText(text: "Has uploaded a new Itinerary.")
-                
-            case "detail-itinerary":
-                setText(text: "Has uploaded a new Itinerary.")
-                
-            default:
-                textHeader.headerText.text = ""
-            }
-            textHeader.headerText.sizeToFit()
-            textHeader.sizeToFit()
-            
+            self.addSubview(textTag)
         }
+        
+        // For header text
+        textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
+        
+        switch feed["type"].stringValue {
+        case "on-the-go-journey":
+            setText(text: "Has started his " + feed["startLocation"].stringValue + " journey.")
+            
+        case "ended-journey":
+            setText(text: "Has ended his " + feed["startLocation"].stringValue + " journey.")
+            
+        case "quick-itinerary":
+            setText(text: "Has uploaded a new Itinerary.")
+            
+        case "detail-itinerary":
+            setText(text: "Has uploaded a new Itinerary.")
+            
+        default:
+            textHeader.headerText.text = feed["thoughts"].stringValue
+        }
+        textHeader.headerText.sizeToFit()
+        textHeader.sizeToFit()
+        textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+        self.addSubview(textHeader)
+        
+       
         
     }
     func setText(text: String) {
         textHeader.headerText.text = text
-        self.addSubview(textHeader)
     }
     
     func addPhotoToLayout(_ post: JSON, startIndex: Int) {

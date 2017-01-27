@@ -235,6 +235,72 @@ func makeTLProfilePictureBorderWhite(_ image: UIImageView) {
 }
 
 
+func getThought (_ post:JSON) -> String {
+    var retText = ""
+    let buddy = post["buddies"].arrayValue;
+    if(post["thoughts"].stringValue != nil && post["thoughts"].stringValue != "") {
+        retText = post["thoughts"].stringValue
+        if(post["location"].stringValue != nil && post["location"].stringValue != "") {
+            retText = retText + " at " + post["location"].stringValue
+            if(buddy.count == 1) {
+                retText = retText + " with " + buddy[0]["name"].stringValue
+            } else if (buddy.count == 2) {
+                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+            } else if (buddy.count > 2) {
+                let n = buddy.count - 1
+                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+            }
+        } else {
+            if(buddy.count == 1) {
+                retText = retText + " with " + buddy[0]["name"].stringValue
+            } else if (buddy.count == 2) {
+                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+            } else if (buddy.count > 2) {
+                let n = buddy.count - 1
+                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+            }
+        }
+    } else {
+        if(post["location"].stringValue != nil && post["location"].stringValue != "") {
+            retText = "At " + post["location"].stringValue
+            if(buddy.count == 1) {
+                retText = retText + " with " + buddy[0]["name"].stringValue
+            } else if (buddy.count == 2) {
+                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+            } else if (buddy.count > 2) {
+                let n = buddy.count - 1
+                retText = retText + " with " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+            }
+        } else {
+            if(buddy.count == 1) {
+                retText = "With " + buddy[0]["name"].stringValue
+            } else if (buddy.count == 2) {
+                retText = "With " + buddy[0]["name"].stringValue + " and " + buddy[1]["name"].stringValue
+            } else if (buddy.count > 2) {
+                let n = buddy.count - 1
+                retText = "With " + buddy[0]["name"].stringValue + " and " + String(n) + " others"
+            }
+        }
+    }
+    return retText
+}
+
+
+func getTypeOfPost(_ post:JSON) -> String {
+    var str = ""
+    if( post["location"].stringValue != nil && post["location"].stringValue != "" ) {
+        str = "Location"
+    } else if ( post["videos"].arrayValue.count > 0 ) {
+        str = "Videos"
+    } else if ( post["photos"].arrayValue.count > 0 ) {
+        str = "Image"
+    } else if ( post["thoughts"].string != nil && post["thoughts"].stringValue != "" ) {
+        str = "Thoughts"
+    }
+    return str
+}
+
+
 func getImageURL(_ str: String,width:Int) -> URL {
     
     let isUrl = verifyUrl(str)

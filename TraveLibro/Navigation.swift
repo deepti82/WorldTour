@@ -1643,6 +1643,32 @@ class Navigation {
         }
     }
     
+    func getVideoComments(_ id: String, userId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id, "user": userId]
+            
+            print("comment params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "postvideos/getPostComment", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     func editPost(_ id: String, location:String, categoryLocation: String, thoughts: String, completion: @escaping ((JSON) -> Void)) {
         
         do {

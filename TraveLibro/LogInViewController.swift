@@ -10,8 +10,15 @@ import UIKit
 
 class LogInViewController: UIViewController {
 
+    @IBOutlet weak var videoScrollView: UIScrollView!
+    var layout:HorizontalLayout!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        layout = HorizontalLayout(height: videoScrollView.frame.height)
+        
+        videoScrollView.addSubview(layout)
         
         getDarkBackGroundBlur(self)
         self.navigationController?.isNavigationBarHidden = false
@@ -27,6 +34,7 @@ class LogInViewController: UIViewController {
 //        rightButton.frame = CGRectMake(0, 8, 30, 30)
         
         self.customNavigationBar(left: leftButton, right: nil)
+    
         
         let logIn = LogInView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 400))
         logIn.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)

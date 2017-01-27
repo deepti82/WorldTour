@@ -2346,7 +2346,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 builder.backgroundColor = UIColor.clear
                 builder.configureCameraViewController(){ cameraConf in
                     cameraConf.allowedRecordingModes = [.video]
-                    cameraConf.maximumVideoLength = 6
+                    cameraConf.maximumVideoLength = 60
                 }
                 
                 builder.configureToolStackController(){toolSck in

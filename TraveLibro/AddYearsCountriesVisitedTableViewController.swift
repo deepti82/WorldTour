@@ -47,7 +47,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
         rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
         rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveCountriesVisited(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 10, y: 0, width: 70, height: 30)
-        self.customNavigationBar(left: leftButton, right: rightButton)
+        self.customNavigationTextBar(left: leftButton, right: rightButton, text: "Countries Visited")
         
         self.clearsSelectionOnViewWillAppear = true
 
@@ -403,6 +403,6 @@ class AddYearsTableViewCell: UITableViewCell {
         }
         
     }
-
     
+       
 }

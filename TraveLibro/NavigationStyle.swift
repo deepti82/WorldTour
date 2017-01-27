@@ -179,6 +179,33 @@ extension UIViewController {
         
     }
     
+    func customNavigationTextBar(left: UIButton?, right: AnyObject?, text: String) {
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
+        self.navigationController?.navigationBar.barStyle = .black
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
+        self.title = text
+        let leftBarButton = UIBarButtonItem()
+        leftBarButton.customView = left
+        self.navigationItem.leftBarButtonItem = leftBarButton
+        
+        if (right != nil) {
+            let rightBarButton = UIBarButtonItem()
+            rightBarButton.customView = right as! UIView
+            self.navigationItem.rightBarButtonItem = rightBarButton
+            
+        }
+        
+        
+        
+        self.slideMenuController()?.removeLeftGestures()
+        self.slideMenuController()?.removeRightGestures()
+        
+    }
+
+    
     func setOnlyRightNavigationButton(_ button: UIButton) {
         
         self.navigationController?.navigationBar.tintColor = UIColor.white
