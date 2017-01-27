@@ -211,8 +211,10 @@ class BucketListTableViewController: UITableViewController  {
             cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: 500))
             cell.countryPicture.alpha = 1
             cell.yearOfVisit.isHidden = true
-            cell.tintView.isUserInteractionEnabled = false
+            cell.tintView.isUserInteractionEnabled = true
+            cell.countryPicture.isUserInteractionEnabled = false
             return cell
+            
             
             
         }
@@ -226,7 +228,8 @@ class BucketListTableViewController: UITableViewController  {
             cell.yearOfVisit.text = "\(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"])"
             cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["countryCoverPhoto"].stringValue,width: 500))
             cell.countryPicture.alpha = 1
-            cell.tintView.isUserInteractionEnabled = false
+            cell.tintView.isUserInteractionEnabled = true
+            cell.countryPicture.isUserInteractionEnabled = false
 
             return cell
         }
@@ -288,7 +291,7 @@ class BucketListTableViewController: UITableViewController  {
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
         else {
-            
+            self.title = "Countries Visited"
             let nextVC = storyboard?.instantiateViewController(withIdentifier: "SelectCountryVC") as! SelectCountryViewController
             nextVC.whichView = "CountriesVisited"
             self.navigationController?.pushViewController(nextVC, animated: true)
