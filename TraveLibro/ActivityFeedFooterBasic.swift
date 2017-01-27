@@ -100,22 +100,26 @@ class ActivityFeedFooterBasic: UIView {
         }else{
             lineView.isHidden = true
         }
-
-        if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
-            
+        
+        if feed["review"][0] != nil && feed["review"].count > 0 {
+            ratingStack.isHidden = false
+            rateThisButton.isHidden = true
             afterRating(starCnt: feed["review"][0]["rating"].intValue)
-            
         }else{
-            
-            if currentUser["_id"].stringValue == postTop["postCreator"]["_id"].stringValue {
-                ratingStack.isHidden = true
-                rateThisButton.isHidden = false
+            if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
+                if currentUser["_id"].stringValue == postTop["postCreator"]["_id"].stringValue {
+                    ratingStack.isHidden = true
+                    rateThisButton.isHidden = false
+                }else{
+                    ratingStack.isHidden = true
+                    rateThisButton.isHidden = true
+                }
             }else{
                 ratingStack.isHidden = true
                 rateThisButton.isHidden = true
-            }
-            
+                }
         }
+
         
     }
     
@@ -178,12 +182,6 @@ class ActivityFeedFooterBasic: UIView {
             }
             ratingStack.isHidden = false
             rateThisButton.isHidden = true
-        }else{
-            if currentUser["_id"].stringValue == postTop["postCreator"]["_id"].stringValue {
-                ratingStack.isHidden = true
-                rateThisButton.isHidden = false
-            }
-            
         }
     }
     
