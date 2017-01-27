@@ -27,8 +27,8 @@ class PhotoOTGFooter: UIView {
     @IBOutlet weak var likeViewLabel: UILabel!
     @IBOutlet weak var commentIcon: UIImageView!
     @IBOutlet weak var commentCount: UILabel!
+    @IBOutlet weak var dropShadow: UIView!
     var PhotoOtg:PhotosOTG2!
-    
     var likeCount:Int = 0
     var commentCounts:Int = 0
     
@@ -63,13 +63,8 @@ class PhotoOTGFooter: UIView {
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit
         
-        self.layer.shadowOffset = CGSize(width: 2.0, height:2.0)
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowRadius = 1
-        self.layer.shadowOpacity = 0.8
-        self.layer.masksToBounds = true
-        
-    }
+        self.likeHeart.text = String(format: "%C", faicon["likes"]!)
+            }
     
     @IBAction func sendComments(_ sender: UIButton) {
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
@@ -116,8 +111,12 @@ class PhotoOTGFooter: UIView {
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0) {
             self.frame.size.height = 50;
+            dropShadow.isHidden = false
+            lineView.isHidden = true
         } else {
-            self.frame.size.height = 90;
+            self.frame.size.height = 85;
+            dropShadow.isHidden = true
+            lineView.isHidden = false
         }
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],
@@ -129,6 +128,7 @@ class PhotoOTGFooter: UIView {
         self.layer.mask = maskLayer
         PhotoOtg.layoutSubviews()
         globalNewTLViewController.addHeightToLayout(height: 500)
+        
     }
     
     func setLikeSelected (_ isSelected:Bool) {

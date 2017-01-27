@@ -183,7 +183,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2V-7e-khq">
-                                    <rect key="frame" x="188" y="8" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="183" y="8" width="0.0" height="0.0"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="11"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -203,7 +203,7 @@
                                 <constraint firstItem="zV2-Ih-s2k" firstAttribute="centerX" secondItem="dfr-Js-I8N" secondAttribute="centerX" id="BR8-3b-8nE"/>
                                 <constraint firstAttribute="height" constant="50" id="M2d-fd-960"/>
                                 <constraint firstItem="uDU-BI-qyt" firstAttribute="top" secondItem="dfr-Js-I8N" secondAttribute="top" constant="13" id="eHx-N8-XBy"/>
-                                <constraint firstItem="z2V-7e-khq" firstAttribute="centerX" secondItem="dfr-Js-I8N" secondAttribute="centerX" constant="-12" id="ikv-Gu-vT5"/>
+                                <constraint firstItem="z2V-7e-khq" firstAttribute="centerX" secondItem="dfr-Js-I8N" secondAttribute="centerX" constant="-17" id="ikv-Gu-vT5"/>
                                 <constraint firstItem="z2V-7e-khq" firstAttribute="top" secondItem="zV2-Ih-s2k" secondAttribute="bottom" constant="4" id="lHU-mX-Hhs"/>
                                 <constraint firstItem="zV2-Ih-s2k" firstAttribute="top" secondItem="dfr-Js-I8N" secondAttribute="top" constant="4" id="rE4-kh-eBE"/>
                                 <constraint firstAttribute="bottom" secondItem="uDU-BI-qyt" secondAttribute="bottom" constant="12" id="t7Z-SZ-K1Y"/>
