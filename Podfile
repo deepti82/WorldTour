@@ -21,6 +21,7 @@ target 'TraveLibro' do
   pod 'Google/Analytics'
   pod 'OneSignal'
   pod 'SwiftGifOrigin', '~> 1.6.1'
+  pod 'PullToMakeFlight', '~> 2.0'
 end
 
 

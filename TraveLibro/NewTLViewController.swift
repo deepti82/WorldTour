@@ -11,6 +11,7 @@ import AVKit
 import AVFoundation
 import Haneke
 import Toaster
+import PullToMakeFlight
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()

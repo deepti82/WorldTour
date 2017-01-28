@@ -3,12 +3,14 @@ import Photos
 import imglyKit
 import Spring
 import Player
+import DKChainableAnimationKit
 
 var editedImage = UIImage()
 var isEditedImage = false
 
 class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStackControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, PlayerDelegate {
     
+    @IBOutlet weak var blurBehindCaption: UIVisualEffectView!
     @IBOutlet weak var videoContainer: UIView!
     @IBOutlet weak var collectionVi: UICollectionView!
     var imagesArray: [UIView] = []
@@ -162,7 +164,11 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
         deleteImage.layer.zPosition = 10
         captionTextView.layer.cornerRadius = 5.0
         captionTextView.clipsToBounds = true
-        captionTextView.layer.zPosition = 1000
+        
+        
+        blurBehindCaption.layer.cornerRadius = 5.0
+        blurBehindCaption.clipsToBounds = true
+        
 //        imageStackView.layer.zPosition = 1000
         
 
@@ -201,7 +207,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
                 captionTextView.text = imageArr[currentImageIndex].caption
             }
             
-            
+        
             let indexPath = IndexPath(row: currentImageIndex, section: 0)
             collectionVi.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         } else {
@@ -246,6 +252,8 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addImages", for: indexPath) as! addImages
 
+        cell.frame.origin.y = -64
+        
 //        cell.backgroundColor = UIColor.brown
         cell.addImagesCollection.image = imageArr[indexPath.row].image
         cell.addImagesCollection.contentMode = UIViewContentMode.scaleAspectFill
@@ -271,12 +279,12 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     func changeImage(number:Int) {
         currentImageIndex = number
         captionTextView.resignFirstResponder()
-        
-        self.imageForCaption.animation = "fall";
+        self.imageForCaption.duration = 0.25
+        self.imageForCaption.animation = "fadeOut";
         
         imageForCaption.animateToNext {
             self.imageForCaption.image = self.imageArr[self.currentImageIndex].image
-            self.imageForCaption.animation = "pop";
+            self.imageForCaption.animation = "fadeIn";
             self.imageForCaption.animate();
         }
 

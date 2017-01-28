@@ -3465,7 +3465,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -4499,17 +4499,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="TeA-HT-XPj">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="TeA-HT-XPj">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="TeA-HT-XPj" secondAttribute="bottom" id="56w-bK-L6Q"/>
-                                            <constraint firstAttribute="trailing" secondItem="TeA-HT-XPj" secondAttribute="trailing" id="Afh-lX-pwE"/>
-                                            <constraint firstItem="TeA-HT-XPj" firstAttribute="leading" secondItem="WBL-hw-uN9" secondAttribute="leading" id="c2o-Ax-Z3F"/>
-                                            <constraint firstItem="TeA-HT-XPj" firstAttribute="top" secondItem="WBL-hw-uN9" secondAttribute="top" id="lZt-FX-aTl"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="addImagesCollection" destination="TeA-HT-XPj" id="WDy-KC-VUr"/>
                                         </connections>
@@ -4645,6 +4640,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="blurBehindCaption" destination="j8S-iC-Vrv" id="gva-Bz-5Nq"/>
                         <outlet property="captionTextView" destination="rdf-cr-jJ8" id="uTx-T8-UVQ"/>
                         <outlet property="collectionVi" destination="PzD-u4-CXn" id="xlf-Ir-EYD"/>
                         <outlet property="deleteImage" destination="uFj-a5-xTa" id="O23-OI-LIU"/>
