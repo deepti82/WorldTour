@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -61,7 +61,7 @@
                                                         <constraint firstAttribute="width" constant="23" id="TTe-Jq-t5q"/>
                                                         <constraint firstAttribute="height" constant="23" id="t1i-90-0GP"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="C05D2D36-D9D0-410D-BB14-65A3DC372D57"/>
+                                                    <state key="normal" title="Button" image="9439DF79-2231-44F8-A8EC-A16E0EFDB2AC"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                                             <real key="value" value="2"/>
@@ -304,7 +304,7 @@
         </view>
     </objects>
     <resources>
-        <image name="C05D2D36-D9D0-410D-BB14-65A3DC372D57" width="128" height="128">
+        <image name="9439DF79-2231-44F8-A8EC-A16E0EFDB2AC" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

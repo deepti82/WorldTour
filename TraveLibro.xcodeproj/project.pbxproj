@@ -71,6 +71,10 @@
 		3AF187121D786BF200A86BC1 /* DisplayPagesFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF187111D786BF200A86BC1 /* DisplayPagesFourViewController.swift */; };
 		3AFB01C61DDC30DA00BCD523 /* AddRatingCountries.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AFB01C51DDC30DA00BCD523 /* AddRatingCountries.xib */; };
 		3AFB01C81DDC310500BCD523 /* AddRatingCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFB01C71DDC310500BCD523 /* AddRatingCountries.swift */; };
+		840599831E3CDA60004E0696 /* DropShadow1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599821E3CDA60004E0696 /* DropShadow1.xib */; };
+		840599851E3CDB2B004E0696 /* DropShadow1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840599841E3CDB2B004E0696 /* DropShadow1.swift */; };
+		840599881E3CDBA6004E0696 /* DropShadow2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599871E3CDBA6004E0696 /* DropShadow2.xib */; };
+		8405998A1E3CDC4C004E0696 /* DropShadow2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840599891E3CDC4C004E0696 /* DropShadow2.swift */; };
 		841C9C461E14FAA6004E4CDD /* PhotosOTGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */; };
 		841E43A71E1D1C7B000D2E6B /* UploadingToCloud.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841E43A61E1D1C7B000D2E6B /* UploadingToCloud.xib */; };
 		841E43A91E1D1CA4000D2E6B /* UploadingToCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E43A81E1D1CA4000D2E6B /* UploadingToCloud.swift */; };
@@ -524,6 +528,10 @@
 		3E0F8C5FF356E7D6D75E9AE5 /* Pods_TraveLibro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		840599821E3CDA60004E0696 /* DropShadow1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropShadow1.xib; sourceTree = "<group>"; };
+		840599841E3CDB2B004E0696 /* DropShadow1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadow1.swift; sourceTree = "<group>"; };
+		840599871E3CDBA6004E0696 /* DropShadow2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropShadow2.xib; sourceTree = "<group>"; };
+		840599891E3CDC4C004E0696 /* DropShadow2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadow2.swift; sourceTree = "<group>"; };
 		841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGController.swift; sourceTree = "<group>"; };
 		841E43A61E1D1C7B000D2E6B /* UploadingToCloud.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadingToCloud.xib; sourceTree = "<group>"; };
 		841E43A81E1D1CA4000D2E6B /* UploadingToCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadingToCloud.swift; sourceTree = "<group>"; };
@@ -990,6 +998,8 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				840599861E3CDB65004E0696 /* DropShadow2 */,
+				840599811E3CDA14004E0696 /* DropShadow1 */,
 				84E61E431E377324009A740F /* OtgCardUITextView */,
 				36E3B8221E34B52B00C597BA /* ActivityFeedFooterBasic */,
 				36E3B81D1E349CD900C597BA /* PostTextView */,
@@ -1270,6 +1280,24 @@
 				163740CDC9EF5C9EEBCE21FF /* Pods_TraveLibroUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		840599811E3CDA14004E0696 /* DropShadow1 */ = {
+			isa = PBXGroup;
+			children = (
+				840599821E3CDA60004E0696 /* DropShadow1.xib */,
+				840599841E3CDB2B004E0696 /* DropShadow1.swift */,
+			);
+			name = DropShadow1;
+			sourceTree = "<group>";
+		};
+		840599861E3CDB65004E0696 /* DropShadow2 */ = {
+			isa = PBXGroup;
+			children = (
+				840599871E3CDBA6004E0696 /* DropShadow2.xib */,
+				840599891E3CDC4C004E0696 /* DropShadow2.swift */,
+			);
+			name = DropShadow2;
 			sourceTree = "<group>";
 		};
 		841E43A51E1D1C46000D2E6B /* UploadingCloud */ = {
@@ -2644,6 +2672,7 @@
 				C25BE1F51CFC23EC00C98DD3 /* InProfileOTGPost.xib in Resources */,
 				C25649951D48C6F60046E36D /* TripInfoOTG.xib in Resources */,
 				C24B45691D0AF5C4002EA009 /* EachMustDo.xib in Resources */,
+				840599881E3CDBA6004E0696 /* DropShadow2.xib in Resources */,
 				C2A27A4C1CEDC99E00F74DD1 /* SignUpFullView.xib in Resources */,
 				845C432C1E2FB14800800F51 /* ActivityFeedFooter.xib in Resources */,
 				1A65E7AA1CD72F1F009374DA /* Avenir-Light.ttf in Resources */,
@@ -2712,6 +2741,7 @@
 				1A65E7A81CD72F1F009374DA /* Avenir-Black.ttf in Resources */,
 				3AF187081D785C9D00A86BC1 /* forDpFour.xib in Resources */,
 				FCE877FA1E309386005EE913 /* ActivityHeaderTag.xib in Resources */,
+				840599831E3CDA60004E0696 /* DropShadow1.xib in Resources */,
 				C26695581D3CA2CD0068D9C7 /* TimestampTagViewOnScroll.xib in Resources */,
 				C20938FC1D11298A00CBA70F /* MoreAboutMeScrollForProfile.xib in Resources */,
 				C2A6E26B1CE9DF8D00D3F845 /* AddFriendOTG.xib in Resources */,
@@ -2930,6 +2960,7 @@
 				C276EDAC1D06CCBC00906FEC /* EditDOB.swift in Sources */,
 				C2DCB3721CE7454F006E5CBD /* AddYourRatingViewController.swift in Sources */,
 				C2FA1E131D54875D0034DE97 /* QuickItineraryFive.swift in Sources */,
+				8405998A1E3CDC4C004E0696 /* DropShadow2.swift in Sources */,
 				FC0B9A971E1FB7C8005D9206 /* QuickCountry.swift in Sources */,
 				FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */,
 				C2E45CEB1CE5A22B0096BDD1 /* IconButton.swift in Sources */,
@@ -3091,6 +3122,7 @@
 				C26B4DE91D13E48200213055 /* Layout.swift in Sources */,
 				C2A27A501CEDD5F300F74DD1 /* SignInPageViewController.swift in Sources */,
 				C20938FE1D112B5D00CBA70F /* MoreAboutMeScrollForProfile.swift in Sources */,
+				840599851E3CDB2B004E0696 /* DropShadow1.swift in Sources */,
 				C28A92451D0E83FD00CFEC7A /* FilterRestaurants.swift in Sources */,
 				C23EB1D11CFEC865005B5CE8 /* PhotoBar.swift in Sources */,
 				3A38275E1DDEE4BB007F181D /* NearMeListViewController.swift in Sources */,

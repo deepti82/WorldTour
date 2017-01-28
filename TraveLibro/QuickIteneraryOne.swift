@@ -48,7 +48,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         durationTextField.delegate = self
         pickerView.dataSource = self
         pickerView.delegate = self
-        pickerView.frame = CGRect(x: 0, y: 240, width: view.frame.width, height: 200)
+        pickerView.frame = CGRect(x: 0, y: 260, width: view.frame.width, height: 200)
         yearPickerView.inputView = pickerView
         monthPickerView.inputView = pickerView
         let calendar = NSCalendar.current
@@ -83,6 +83,33 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         tripTitle.beginFloatingCursor(at: CGPoint(x: 10, y: 0))
         tripTitle.cursorPlace(tripTitle, position: 20)
         
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .blackOpaque
+        toolBar.backgroundColor = UIColor(hex: "#2c3757")
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor.white
+        toolBar.sizeToFit()
+        
+        // Adding Button ToolBar
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(QuickIteneraryOne.doneClick))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(QuickIteneraryOne.cancel))
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        monthPickerView.inputAccessoryView = toolBar
+        yearPickerView.inputAccessoryView = toolBar
+        
+        
+    }
+    
+ 
+    
+    func doneClick(){
+        self.view.endEditing(true)
+    }
+    
+    func cancel() {
+        self.view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -195,8 +222,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         self.view.endEditing(true);
         return false;
     }
-
-    /*
+        /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

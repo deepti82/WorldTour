@@ -85,6 +85,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var newScroll: UIScrollView!
     var backView:UIView!
+    var backView1: UIView!
     
     func addPosts(_ sender: UIButton) {
         showAddActivity()
@@ -115,27 +116,27 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             { action -> Void in
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-                self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
+                self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 200, width: self.view.frame.size.width, height: 240))
                 self.inputview.backgroundColor = UIColor.white
                 self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
                 self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
                 self.datePickerView.maximumDate = Date()
-                addTopBorder(mainBlueColor, view: self.datePickerView, borderWidth: 1)
-                addTopBorder(mainBlueColor, view: self.inputview, borderWidth: 1)
+                self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
+                self.backView.backgroundColor = UIColor(hex: "#272b49")
                 self.inputview.addSubview(self.datePickerView) // add date picker to UIView
                 let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
                 doneButton.setTitle("SAVE", for: .normal)
                 doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-                doneButton.setTitleColor(mainBlueColor, for: .normal)
+                doneButton.setTitleColor(UIColor.white, for: .normal)
                 //                doneButton.setTitle(sender.title(for: .application)!, for: .application)
                 
                 let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
                 cancelButton.setTitle("CANCEL", for: .normal)
                 cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-                cancelButton.setTitleColor(mainBlueColor, for: UIControlState())
-                
-                self.inputview.addSubview(doneButton) // add Button to UIView
-                self.inputview.addSubview(cancelButton) // add Cancel to UIView
+                cancelButton.setTitleColor(UIColor.white, for: UIControlState())
+                self.inputview.addSubview(self.backView)
+                self.backView.addSubview(doneButton) // add Button to UIView
+                self.backView.addSubview(cancelButton) // add Cancel to UIView
                 
                 doneButton.addTarget(self, action: #selector(NewTLViewController.doneButtonJourney(_:)), for: .touchUpInside) // set button click event
                 cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
@@ -144,6 +145,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
                 
                 self.handleDatePicker(self.datePickerView) // Set the date on start.
+                self.view.addSubview(self.backView)
                 self.view.addSubview(self.inputview)
                 
         }))
@@ -1490,33 +1492,27 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-            let minDate = dateFormatter.date(from: "\(self.myJourney["startTime"])")!.toLocalTime()
-            
-            //Create the view
-            self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
+            self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 10, width: self.view.frame.size.width, height: 240))
             self.inputview.backgroundColor = UIColor.white
             self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
             self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
-            self.datePickerView.minimumDate = minDate
             self.datePickerView.maximumDate = Date()
-            
-            addTopBorder(mainBlueColor, view: self.datePickerView, borderWidth: 1)
-            addTopBorder(mainBlueColor, view: self.inputview, borderWidth: 1)
+            self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
+            self.backView.backgroundColor = UIColor(hex: "#272b49")
             self.inputview.addSubview(self.datePickerView) // add date picker to UIView
-            
             let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
             doneButton.setTitle("SAVE", for: .normal)
             doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-            doneButton.setTitleColor(mainBlueColor, for: .normal)
-            doneButton.setTitle(sender.title(for: .application), for: .application)
+            doneButton.setTitleColor(UIColor.white, for: .normal)
+            //                doneButton.setTitle(sender.title(for: .application)!, for: .application)
             
             let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
             cancelButton.setTitle("CANCEL", for: .normal)
             cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-            cancelButton.setTitleColor(mainBlueColor, for: .normal)
-            
-            self.inputview.addSubview(doneButton) // add Button to UIView
-            self.inputview.addSubview(cancelButton) // add Cancel to UIView
+            cancelButton.setTitleColor(UIColor.white, for: UIControlState())
+            self.inputview.addSubview(self.backView)
+            self.backView.addSubview(doneButton) // add Button to UIView
+            self.backView.addSubview(cancelButton) // add Cancel to UIView
             
             doneButton.addTarget(self, action: #selector(NewTLViewController.doneButton(_:)), for: .touchUpInside) // set button click event
             cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
@@ -1525,8 +1521,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
             
             self.handleDatePicker(self.datePickerView) // Set the date on start.
+            self.view.addSubview(self.backView)
             self.view.addSubview(self.inputview)
-            
         }
         actionSheetControllerIOS8.addAction(EditDnt)
         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Post", style: .default)
@@ -1569,40 +1565,36 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         currentPhotoFooter = footer
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
-        let minDate = dateFormatter.date(from: "\(self.myJourney["startTime"])")!.toLocalTime()
-        
-        //Create the view
-        self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 240))
+        self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 200, width: self.view.frame.size.width, height: 240))
         self.inputview.backgroundColor = UIColor.white
         self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
         self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
-        self.datePickerView.minimumDate = minDate
         self.datePickerView.maximumDate = Date()
-        
-        addTopBorder(mainBlueColor, view: self.datePickerView, borderWidth: 1)
-        addTopBorder(mainBlueColor, view: self.inputview, borderWidth: 1)
+        self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
+        self.backView.backgroundColor = UIColor(hex: "#272b49")
         self.inputview.addSubview(self.datePickerView) // add date picker to UIView
-        
         let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
         doneButton.setTitle("SAVE", for: .normal)
         doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-        doneButton.setTitleColor(mainBlueColor, for: .normal)
+        doneButton.setTitleColor(UIColor.white, for: .normal)
+        //                doneButton.setTitle(sender.title(for: .application)!, for: .application)
         
         let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
         cancelButton.setTitle("CANCEL", for: .normal)
         cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
-        cancelButton.setTitleColor(mainBlueColor, for: .normal)
+        cancelButton.setTitleColor(UIColor.white, for: UIControlState())
+        self.inputview.addSubview(self.backView)
+        self.backView.addSubview(doneButton) // add Button to UIView
+        self.backView.addSubview(cancelButton) // add Cancel to UIView
         
-        self.inputview.addSubview(doneButton) // add Button to UIView
-        self.inputview.addSubview(cancelButton) // add Cancel to UIView
-        
-        doneButton.addTarget(self, action: #selector(NewTLViewController.doneButton(_:)), for: .touchUpInside)
-        cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside)
+        doneButton.addTarget(self, action: #selector(NewTLViewController.doneButton(_:)), for: .touchUpInside) // set button click event
+        cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
         
         //sender.inputView = inputView
-        
         self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
+        
         self.handleDatePicker(self.datePickerView) // Set the date on start.
+        self.view.addSubview(self.backView)
         self.view.addSubview(self.inputview)
     }
     
@@ -1612,6 +1604,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.getJourney()
         })
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
+        self.backView.removeFromSuperview()
     }
     
     func doneButtonJourney(_ sender: UIButton){
@@ -1630,10 +1623,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             })
         })
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
+        self.backView.removeFromSuperview()
     }
     
     func cancelButton(_ sender: UIButton){
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
+        self.backView.removeFromSuperview()
     }
     
     func sendComments(_ sender: UIButton) {

@@ -24,6 +24,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var player:Player!
     var centerView:PhotosOTGView!
     var footerView: ActivityFeedFooterBasic!
+    var dropView: DropShadow1!
     var footerViewReview: ActivityFeedFooter!
     var activityFeedImage: ActivityFeedImageView!
     var activityDetailItinerary: ActivityDetailItinerary!
@@ -192,19 +193,24 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
             footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
             //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
+          
             self.addSubview(footerViewReview)
+           
         } else {
             print("in footer")
             footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            
             footerView.postTop = feed
             footerView.topLayout = self
             footerView.type = "ActivityFeeds"
             
             footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
             footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
-            
             footerView.setView(feed:feed)
             self.addSubview(footerView)
+            dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+            self.addSubview(dropView)
+             
         }
         
 

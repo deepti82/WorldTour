@@ -36,7 +36,7 @@ class ActivityFeedFooterBasic: UIView {
     var backgroundReview: UIView!
 
     var type="ActivityFeeds"
-    
+    var dropView: DropShadow1!
     var likeCount:Int = 0
     var commentCounts:Int = 0
     
@@ -237,10 +237,10 @@ class ActivityFeedFooterBasic: UIView {
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0) {
             self.frame.size.height = 50;
-            dropShadowActivity.isHidden = false
-        } else {
+            
+                   } else {
             self.frame.size.height = 90;
-            dropShadowActivity.isHidden = true
+            
         }
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],
