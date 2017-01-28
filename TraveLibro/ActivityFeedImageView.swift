@@ -43,6 +43,7 @@ class ActivityFeedImageView: UIView {
         kindOfJourneyTwo.tintColor = UIColor.white
         kindOfJourneyThree.tintColor = UIColor.white
         OnTheGOText.layer.cornerRadius = 5
+        locationIcon.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -166,6 +166,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 91 ))
             addPhotoToLayout(feed,startIndex:showImageIndexStart)
             self.addSubview(centerView)
+//            centerView.centerLineView.isHidden = true
         }
         //End of Center
     }

@@ -19,6 +19,7 @@ class ActivityFeedFooterBasic: UIView {
     var postTop:JSON!
     
     
+    @IBOutlet weak var dropShadowActivity: UIView!
     @IBOutlet var starImageArray: [UIImageView]!
     @IBOutlet weak var ratingStack: UIStackView!
     @IBOutlet weak var rateThisButton: UIButton!
@@ -236,8 +237,10 @@ class ActivityFeedFooterBasic: UIView {
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0) {
             self.frame.size.height = 50;
+            dropShadowActivity.isHidden = false
         } else {
             self.frame.size.height = 90;
+            dropShadowActivity.isHidden = true
         }
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],

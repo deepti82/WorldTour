@@ -10,6 +10,7 @@ import UIKit
 
 class PhotosOTGView: UIView {
 
+    @IBOutlet weak var centerLineView: UIView!
     @IBOutlet weak var centerWhiteView: UIView!
     @IBOutlet weak var centerView: UIView!
     @IBOutlet weak var morePhotosView: UIScrollView!
