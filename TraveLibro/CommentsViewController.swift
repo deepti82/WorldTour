@@ -348,7 +348,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func getAllComments() {
         
-        request.getComments(otherId, userId: currentUser["_id"].string!, completion: {(response) in
+        request.getComments(otherId, userId: currentUser["_id"].string!, pageno: 1, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 

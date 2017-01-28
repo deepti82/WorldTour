@@ -1591,15 +1591,15 @@ class Navigation {
         }
     }
     
-    func getComments(_ id: String, userId: String, completion: @escaping ((JSON) -> Void)) {
+    func getComments(_ id: String, userId: String, pageno: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "user": userId]
+//            let params =
             
-            print("comment params: \(params)")
+//            print("comment params: \(params)")
             
-            let opt = try HTTP.POST(adminUrl + "post/getPostComment", parameters: [params])
+            let opt = try HTTP.POST(adminUrl + "post/getPostComment", parameters: ["_id": id, "user": userId, "pagenumber": pageno])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

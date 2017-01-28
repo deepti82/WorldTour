@@ -34,7 +34,7 @@ class ActivityFeedFooterBasic: UIView {
     @IBOutlet weak var commentCount: UILabel!
     var topLayout:VerticalLayout!
     var backgroundReview: UIView!
-
+    
     var type="ActivityFeeds"
     
     var likeCount:Int = 0
@@ -99,7 +99,7 @@ class ActivityFeedFooterBasic: UIView {
         }
         let cnt = photoCount + videoCount
         if cnt > 1 {
-           lineView.isHidden = false
+            lineView.isHidden = false
         }else{
             lineView.isHidden = true
         }
@@ -120,9 +120,9 @@ class ActivityFeedFooterBasic: UIView {
             }else{
                 ratingStack.isHidden = true
                 rateThisButton.isHidden = true
-                }
+            }
         }
-
+        
         
     }
     
@@ -198,23 +198,23 @@ class ActivityFeedFooterBasic: UIView {
         if type == "TripPhotos" {
             let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
             comment.postId = photoPostId
-//            comment.commentText = self.commentText
-//            if singlePhotoJSON != nil {
-                comment.otherId = photoId
-                comment.photoId = photoId
-//            }
+            //            comment.commentText = self.commentText
+            //            if singlePhotoJSON != nil {
+            comment.otherId = photoId
+            comment.photoId = photoId
+            //            }
             if(self.type == "Video") {
                 comment.type = "Video"
             }
             globalNavigationController?.setNavigationBarHidden(false, animated: true)
             globalNavigationController?.pushViewController(comment, animated: true)
         }else{
-        let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
-        comment.postId = postTop["uniqueId"].stringValue
-        comment.otherId = postTop["_id"].stringValue
-        
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
-        globalNavigationController?.pushViewController(comment, animated: true)
+            let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
+            comment.postId = postTop["uniqueId"].stringValue
+            comment.otherId = postTop["_id"].stringValue
+            
+            globalNavigationController?.setNavigationBarHidden(false, animated: true)
+            globalNavigationController?.pushViewController(comment, animated: true)
         }
         
         
@@ -276,7 +276,7 @@ class ActivityFeedFooterBasic: UIView {
             globalActivityFeedsController.addHeightToLayout()
         } else if(self.type == "TripPhotos") {
             globalListPhotosViewController.addHeightToLayout()
-
+            
         }
     }
     
@@ -343,33 +343,33 @@ class ActivityFeedFooterBasic: UIView {
                 
             })
         }else{
-        
-        request.likePost(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
-            DispatchQueue.main.async(execute: {
-                if response.error != nil {
-                    print("error: \(response.error!.localizedDescription)")
-                }
-                else if response["value"].bool! {
-                    if sender.tag == 1 {
-                        self.setLikeSelected(true)
-                        self.likeCount = self.likeCount + 1
-                        self.setLikeCount(self.likeCount)
+            
+            request.likePost(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        if sender.tag == 1 {
+                            self.setLikeSelected(true)
+                            self.likeCount = self.likeCount + 1
+                            self.setLikeCount(self.likeCount)
+                        }
+                        else {
+                            self.setLikeSelected(false)
+                            if self.likeCount <= 0 {
+                                self.likeCount = 0
+                            } else {
+                                self.likeCount = self.likeCount - 1
+                            }
+                            self.setLikeCount(self.likeCount)
+                        }
                     }
                     else {
-                        self.setLikeSelected(false)
-                        if self.likeCount <= 0 {
-                            self.likeCount = 0
-                        } else {
-                            self.likeCount = self.likeCount - 1
-                        }
-                        self.setLikeCount(self.likeCount)
+                        
                     }
-                }
-                else {
-                    
-                }
+                })
             })
-        })
         }
     }
     
@@ -380,7 +380,7 @@ class ActivityFeedFooterBasic: UIView {
         actionSheetControllerIOS8.addAction(cancelActionButton)
         let EditCheckIn: UIAlertAction = UIAlertAction(title: "Report", style: .default)
         {action -> Void in
-
+            
         }
         actionSheetControllerIOS8.addAction(EditCheckIn)
         
