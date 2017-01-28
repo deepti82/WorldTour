@@ -52,6 +52,8 @@ class ActivityProfileHeader: UIView {
         
         //header icon
         var typeOfPost = getTypeOfPost(feed)
+        print(typeOfPost);
+        print(feed);
         if(typeOfPost != nil) {
             switch(typeOfPost) {
             case "Location":

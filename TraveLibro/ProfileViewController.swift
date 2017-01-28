@@ -21,6 +21,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var isPhotographer: UILabel!
     @IBOutlet weak var moreAboutMe: UILabel!
     
+    
+    var profile: ProfilePicFancy!
+    var orangeTab:OrangeButton!
+    var footer:FooterViewNew!
+    var MAM: MoreAboutMe!
+    
     var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
     
@@ -176,11 +182,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         locationIcon.text = String(format: "%C", faicon["location"]!)
         
-        let profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
+        profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
         profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
         
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 62, width: self.view.frame.width, height: 62))
+        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 62, width: self.view.frame.width, height: 62))
         self.view.addSubview(footer)
 
         
@@ -191,7 +197,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
         
-        let MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
+        MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
         MAM.backgroundColor = UIColor.clear
         MAMatterView!.addSubview(MAM)
         
@@ -203,15 +209,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             imageName = currentUser["profilePicture"].string!
             
             if currentUser["homeCountry"] != nil {
-                
                 profile.country.text = currentUser["homeCountry"]["name"].string!
-                
             }
             
             if currentUser["homeCity"] != nil {
                 let place = currentUser["homeCity"].string!.components(separatedBy: ",")
                 placeLabel.text = " \(place[0])"
-                
             }
             
             let isUrl = verifyUrl(imageName)

@@ -84,11 +84,6 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             self.mainPhoto.clipsToBounds = true
             self.mainPhoto.image = UIImage(named: "logo-default")
             
-            let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
-            headerTag.tagParent.backgroundColor = UIColor.clear
-            headerTag.tagLine.isHidden = true
-            
-            self.mainPhoto.addSubview(headerTag)
             
             
             self.addSubview(mainPhoto)
@@ -124,7 +119,10 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
                 self.mainPhoto.tag = 0
                 
                 self.layoutSubviews()
-                self.activityFeed.addHeightToLayout()
+                if((self.activityFeed) != nil) {
+                    self.activityFeed.addHeightToLayout()
+                }
+                
                 
             })
         }else{
@@ -133,13 +131,6 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
                 self.addSubview(self.mainPhoto)
                 self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
                 self.mainPhoto.clipsToBounds = true
-                
-                
-                
-                let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
-                headerTag.tagParent.backgroundColor = UIColor.clear
-                headerTag.tagLine.isHidden = true
-                self.mainPhoto.addSubview(headerTag)
                 
                 
                 mainPhoto.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
@@ -224,20 +215,6 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         self.addSubview(profileHeader)
         
         
-        //  START ACTIVITY TEXT TAG
-        if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
-            textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
-            textTag.transparentBack()
-            if feed["type"].stringValue == "travel-life" {
-                textTag.tagText.text = "On The Go"
-                textTag.tagView.backgroundColor = mainOrangeColor
-            }else{
-                textTag.tagText.text = "Local Life"
-                textTag.tagView.backgroundColor = endJourneyColor
-            }
-            self.addSubview(textTag)
-        }
-        
         // For header text
         textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
         
@@ -253,9 +230,8 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             
         case "detail-itinerary":
             setText(text: "Has uploaded a new Itinerary.")
-            
         default:
-            textHeader.headerText.text = feed["thoughts"].stringValue
+            textHeader.headerText.text = getThought(feed)
         }
         textHeader.headerText.sizeToFit()
         textHeader.sizeToFit()

@@ -33,33 +33,34 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let videoWidth = videoScrollView.frame.width
         videoHeight = videoScrollView.frame.height
         videoScrollView.delegate = self
         self.horizontal = HorizontalLayout(height: videoHeight)
         self.videoScrollView.addSubview(horizontal)
         
-        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight))
+        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView1.image = UIImage(named:"logo-default")
         imageView1.contentMode = UIViewContentMode.center
         self.player1 = Player()
         self.player1.delegate = self
-        self.player1.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight)
+        self.player1.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player1.view.clipsToBounds = true
         self.player1.playbackLoops = true
         self.player1.muted = true
-        self.player1.fillMode = "AVLayerVideoGravityResizeAspect"
+        self.player1.fillMode = "AVLayerVideoGravityResizeAspectFit"
         self.player1.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/travellife.mp4")!)
         imageView1.addSubview(self.player1.view)
         
         self.horizontal.addSubview(imageView1)
         
         
-        let imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight))
+        let imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView2.image = UIImage(named:"logo-default")
         imageView2.contentMode = UIViewContentMode.center
         self.player2 = Player()
         self.player2.delegate = self
-        self.player2.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight)
+        self.player2.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player2.view.clipsToBounds = true
         self.player2.playbackLoops = true
         self.player2.muted = true
@@ -69,12 +70,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         self.horizontal.addSubview(imageView2)
         
         
-        let imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight))
+        let imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView3.image = UIImage(named:"logo-default")
         imageView3.contentMode = UIViewContentMode.center
         self.player3 = Player()
         self.player3.delegate = self
-        self.player3.view.frame = CGRect(x: 0, y: 0, width: screenWidth, height: videoHeight)
+        self.player3.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player3.view.clipsToBounds = true
         self.player3.playbackLoops = true
         self.player3.muted = true
@@ -195,9 +196,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         player1.stop()
         player2.stop()
         player3.stop()
-        print(pageNumber);
+        
         let i = Int(pageNumber)
-        switch(pageNumber) {
+        print(i);
+        switch(i) {
         case 0:
             player1.playFromBeginning()
         case 1:
@@ -205,7 +207,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         case 2:
             player3.playFromBeginning()
         default: break
-
         }
     }
 
