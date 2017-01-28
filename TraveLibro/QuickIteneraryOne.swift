@@ -37,9 +37,15 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapRecognizer = UITapGestureRecognizer()
+        tapRecognizer.addTarget(self, action: #selector(self.didTapView))
+        self.view.addGestureRecognizer(tapRecognizer)
+
+        
         quickItinery = ["title": "", "year": "", "month": "", "duration": ""]
         
-        
+        durationTextField.delegate = self
         pickerView.dataSource = self
         pickerView.delegate = self
         pickerView.frame = CGRect(x: 0, y: 240, width: view.frame.width, height: 200)
@@ -79,7 +85,6 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
     }
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -139,6 +144,8 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+  
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch  component {
         case 0:
@@ -163,6 +170,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         durationTextField.resignFirstResponder()
         tripTitle.resignFirstResponder()
+        self.view.endEditing(true)
         return true
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -175,7 +183,17 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
             quickItinery["duration"] = JSON(Int(durationTextField.text!)!)
 
         }
+            }
+   
     
+    func didTapView(){
+        self.view.endEditing(true)
+    }
+
+    
+       func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        self.view.endEditing(true);
+        return false;
     }
 
     /*
