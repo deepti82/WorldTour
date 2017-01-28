@@ -89,7 +89,6 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 print("in load more of data.")
                 getActivity(pageNumber: pageno + 1)
             }
-            
         }
         
         for postView in layout.subviews {

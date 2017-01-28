@@ -126,6 +126,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nearMeDetailController = storyboard?.instantiateViewController(withIdentifier: "nearMeDetail") as! NearMeDetailViewController
+        nearMeDetailController.nearMeType = nearMeType
         //nearMeDetailController.nearMeDetailJSON = nearMeListJSON[indexPath.section]
         nearMeDetailController.nearMePlaceId = nearMeListJSON[indexPath.section]["place_id"].string!
         nearMeDetailController.currentLat = lat
