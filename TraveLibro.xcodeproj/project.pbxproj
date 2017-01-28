@@ -41,6 +41,8 @@
 		367B90F71DC23ADF00D76F13 /* ActiveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F21DC23ADF00D76F13 /* ActiveType.swift */; };
 		367B90F81DC23ADF00D76F13 /* RegexParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F31DC23ADF00D76F13 /* RegexParser.swift */; };
 		367B90F91DC23ADF00D76F13 /* StringTrimExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367B90F41DC23ADF00D76F13 /* StringTrimExtension.swift */; };
+		368A56901E3CD6E600DC8A19 /* loader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 368A568F1E3CD6E600DC8A19 /* loader.gif */; };
+		368A56921E3CDB5C00DC8A19 /* loader2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 368A56911E3CDB5C00DC8A19 /* loader2.gif */; };
 		369042C31E090E6700D266A7 /* PostImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369042C21E090E6700D266A7 /* PostImage.swift */; };
 		3690AB731E1CFA8500642A6A /* PhotosOTG2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3690AB721E1CFA8500642A6A /* PhotosOTG2.swift */; };
 		36E08BFB1DBB957E0032EF09 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E08BFA1DBB957E0032EF09 /* CAPSPageMenu.swift */; };
@@ -493,6 +495,8 @@
 		367B90F21DC23ADF00D76F13 /* ActiveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveType.swift; sourceTree = "<group>"; };
 		367B90F31DC23ADF00D76F13 /* RegexParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexParser.swift; sourceTree = "<group>"; };
 		367B90F41DC23ADF00D76F13 /* StringTrimExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTrimExtension.swift; sourceTree = "<group>"; };
+		368A568F1E3CD6E600DC8A19 /* loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loader.gif; sourceTree = "<group>"; };
+		368A56911E3CDB5C00DC8A19 /* loader2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loader2.gif; sourceTree = "<group>"; };
 		369042C21E090E6700D266A7 /* PostImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostImage.swift; sourceTree = "<group>"; };
 		3690AB721E1CFA8500642A6A /* PhotosOTG2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTG2.swift; sourceTree = "<group>"; };
 		36CAA7F31E2E41F00019B380 /* TraveLibro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TraveLibro.entitlements; sourceTree = "<group>"; };
@@ -969,6 +973,8 @@
 				1A944E071CCB4567007EB5BD /* AppDelegate.swift */,
 				1A944E0B1CCB4567007EB5BD /* Main.storyboard */,
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
+				368A568F1E3CD6E600DC8A19 /* loader.gif */,
+				368A56911E3CDB5C00DC8A19 /* loader2.gif */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
 			);
@@ -2637,6 +2643,7 @@
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
 				FCCA8F281E28DCE900775985 /* TripSummaryView.xib in Resources */,
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
+				368A56921E3CDB5C00DC8A19 /* loader2.gif in Resources */,
 				C2E45CE91CE5A1340096BDD1 /* IconButton.xib in Resources */,
 				C24F85011D005FD2002EA203 /* TutorialCards.xib in Resources */,
 				842484FF1E13BEE700083115 /* PhotosOTGView.xib in Resources */,
@@ -2720,6 +2727,7 @@
 				8453CF3D1E30A12400C41F82 /* ActivityDetailItinerary.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
 				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
+				368A56901E3CD6E600DC8A19 /* loader.gif in Resources */,
 				FCCA8F171E28AE7200775985 /* TripSummaryCell.xib in Resources */,
 				FC0B9A9A1E20BCC4005D9206 /* QuickCity.xib in Resources */,
 				84E61E451E377665009A740F /* OtgCardUITextView.xib in Resources */,

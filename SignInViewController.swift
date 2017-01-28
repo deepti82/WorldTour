@@ -10,6 +10,7 @@ import UIKit
 import SwiftHTTP
 import Player
 import TwitterKit
+import SwiftGifOrigin
 
 var currentUser: JSON!
 let social = SocialLoginClass()
@@ -40,7 +41,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         self.videoScrollView.addSubview(horizontal)
         
         let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
-        imageView1.image = UIImage(named:"logo-default")
+        imageView1.backgroundColor = UIColor.white
+        imageView1.image = UIImage.gif(name: "loader")
         imageView1.contentMode = UIViewContentMode.center
         self.player1 = Player()
         self.player1.delegate = self
@@ -48,7 +50,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         self.player1.view.clipsToBounds = true
         self.player1.playbackLoops = true
         self.player1.muted = true
-        self.player1.fillMode = "AVLayerVideoGravityResizeAspectFit"
+        self.player1.fillMode = "AVLayerVideoGravityResizeAspect"
         self.player1.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/travellife.mp4")!)
         imageView1.addSubview(self.player1.view)
         
@@ -56,7 +58,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         
         
         let imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
-        imageView2.image = UIImage(named:"logo-default")
+        imageView2.image = UIImage.gif(name: "loader")
+        imageView2.backgroundColor = UIColor.white
         imageView2.contentMode = UIViewContentMode.center
         self.player2 = Player()
         self.player2.delegate = self
@@ -71,7 +74,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         
         
         let imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
-        imageView3.image = UIImage(named:"logo-default")
+        imageView3.backgroundColor = UIColor.white
+        imageView3.image = UIImage.gif(name: "loader")
         imageView3.contentMode = UIViewContentMode.center
         self.player3 = Player()
         self.player3.delegate = self
@@ -201,11 +205,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         print(i);
         switch(i) {
         case 0:
-            player1.playFromBeginning()
+            player1.playFromCurrentTime()
         case 1:
-            player2.playFromBeginning()
+            player2.playFromCurrentTime()
         case 2:
-            player3.playFromBeginning()
+            player3.playFromCurrentTime()
         default: break
         }
     }

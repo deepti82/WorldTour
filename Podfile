@@ -20,6 +20,7 @@ target 'TraveLibro' do
   pod 'Player', '~> 0.2.0'
   pod 'Google/Analytics'
   pod 'OneSignal'
+  pod 'SwiftGifOrigin', '~> 1.6.1'
 end
 
 
