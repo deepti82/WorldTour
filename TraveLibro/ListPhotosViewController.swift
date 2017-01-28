@@ -25,7 +25,7 @@ class ListPhotosViewController: UIViewController {
         getBackGround(self)
         getJourneyPhotos()
         
-        layout = VerticalLayout(width: self.view.frame.width - 40)
+        layout = VerticalLayout(width: self.view.frame.width)
         
         let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
         profileImage.center.x = self.view.frame.width/2
@@ -35,46 +35,10 @@ class ListPhotosViewController: UIViewController {
         
         scroll = UIScrollView(frame: self.view.frame)
         self.view.addSubview(scroll)
-        scroll.showsVerticalScrollIndicator = false
-        
-//        let ratingOne = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingOne.frame.height)
-//        layout.addSubview(ratingOne)
-//        
-//        let ratingTwo = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingTwo.frame.height)
-//        layout.addSubview(ratingTwo)
-//        
-//        let ratingThree = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingThree.frame.height)
-//        layout.addSubview(ratingThree)
-//        
-//        let ratingFour = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingFour.frame.height)
-//        layout.addSubview(ratingFour)
-//        
-//        let ratingFive = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingFive.frame.height)
-//        layout.addSubview(ratingFive)
-//        
-//        let ratingSix = Rating(frame: CGRect(x: 20, y: 20, width: layout.frame.width, height: 225))
-//        addHeightToLayout(ratingSix.frame.height)
-//        layout.addSubview(ratingSix)
+//        scroll.showsVerticalScrollIndicator = false
         
     }
     
-    func makeLayout() {
-        
-        for i in 0 ..< photos.count {
-            
-            addPhoto(i, photo: photos[i])
-            
-        }
-        
-        scroll.contentSize.height = layout.frame.height
-        scroll.addSubview(layout)
-        
-    }
     
     func getJourneyPhotos() {
         
@@ -88,9 +52,11 @@ class ListPhotosViewController: UIViewController {
                     
                 }
                 else if response["value"].bool! {
+                    
                     if response["data"]["photos"] != nil {
                     self.photos = response["data"]["photos"].array!
-                    self.makeLayout()
+//                    self.makeLayout()
+                        
                     }
                     
                 }
@@ -103,6 +69,12 @@ class ListPhotosViewController: UIViewController {
             })
             
         })
+        
+    }
+    
+    func addHeightToLayout() {
+        self.layout.layoutSubviews()
+        self.scroll.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
         
     }
     

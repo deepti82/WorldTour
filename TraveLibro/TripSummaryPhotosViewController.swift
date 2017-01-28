@@ -22,7 +22,7 @@ class TripSummaryPhotosViewController: UIViewController {
         super.viewDidLoad()
         
         print("on photo view controller")
-        showNavigationIn(img:"grid",text: "Photos")
+        showNavigationIn(img:"list",text: "Photos")
         
         gridContainer.alpha = 1
         listContainer.alpha = 0
@@ -71,13 +71,13 @@ class TripSummaryPhotosViewController: UIViewController {
     func changeView(_ sender: UIButton) {
         
         if gridContainer.alpha == 1 {
-            showNavigationIn(img:"list", text: "Photos")
+            showNavigationIn(img:"grid", text: "Photos")
             gridContainer.alpha = 0
             listContainer.alpha = 1
             
         }
         else {
-            showNavigationIn(img:"grid", text: "Photos")
+            showNavigationIn(img:"list", text: "Photos")
 //            setTopNavigation("Photos")
             gridContainer.alpha = 1
             listContainer.alpha = 0
