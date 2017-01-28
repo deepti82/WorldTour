@@ -17,12 +17,7 @@ class OrangeButton: UIView {
         loadViewFromNib ()
         orangeButtonTitle.layer.cornerRadius = 5
         orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Roman", size: 14)
-//        let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: self.frame.size.height))
-//        fontAwesomeLabel.center = CGPointMake(0, self.frame.size.height/4)
-//        fontAwesomeLabel.font = FontAwesomeFont
-//        fontAwesomeLabel.text = String(format: "%C", faicon["rocket"]!)
-//        fontAwesomeLabel.textColor = UIColor.whiteColor()
-//        orangeButtonTitle.titleLabel?.addSubview(fontAwesomeLabel)
+
     }
     
     required init?(coder aDecoder: NSCoder) {

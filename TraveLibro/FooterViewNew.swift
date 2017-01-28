@@ -11,6 +11,8 @@ import UIKit
 class FooterViewNew: UIView {
     
     @IBOutlet var footerIconImages: [UIImageView]!
+    @IBOutlet weak var localLifeIcon: UIImageView!
+    @IBOutlet weak var travelLifeIcon: UIImageView!
     @IBOutlet weak var feedView: UIView!
     @IBOutlet weak var notifyView: UIView!
     @IBOutlet weak var LLView: UIView!

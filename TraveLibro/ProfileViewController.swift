@@ -123,31 +123,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = ""
 
         transparentCardWhite(mainProfileView)
-//        let darkBlur1 = UIBlurEffect(style: UIBlurEffectStyle.prominent)
-//        let blurView1 = UIVisualEffectView(effect: darkBlur1)
-//        blurView1.frame.size.height = self.mainProfileView.frame.height
-//        blurView1.frame.size.width = self.mainProfileView.frame.width
-//        //        blurView.layer.zPosition = -1
-//        //        blurView.alpha = 0.5
-//        blurView1.isUserInteractionEnabled = false
-//        MAMatterView.addSubview(blurView1)
-        
-        
+
         
         profileUsername.adjustsFontSizeToFitWidth = true
     
-        
-//        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.prominent)
-//        let blurView = UIVisualEffectView(effect: darkBlur)
-//        blurView.frame.size.height = self.mainProfileView.frame.height
-//        blurView.frame.size.width = self.mainProfileView.frame.width
-////        blurView.layer.zPosition = -1
-//       blurView.alpha = 0.9
-//        blurView.isUserInteractionEnabled = false
-//        self.mainProfileView.addSubview(blurView)
-        
+
         
         MAMButton.layer.zPosition = 500000
         moreAboutMe.layer.zPosition = 500000
@@ -168,8 +151,24 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
-        makeTLProfilePicture(self.profilePicture)
-        self.title = "..."
+        
+        
+        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 110, width: self.view.frame.size.width - 10, height: 55))
+        orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+        orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
+        let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
+        fontAwesomeLabel.center = CGPoint(x: 90, y: orangeTab.orangeButtonTitle.titleLabel!.frame.size.height/2 + 10)
+        fontAwesomeLabel.font = FontAwesomeFont
+        fontAwesomeLabel.text = String(format: "%C", faicon["angle_up"]!)
+        fontAwesomeLabel.textColor = UIColor.white
+        orangeTab.orangeButtonTitle.titleLabel!.addSubview(fontAwesomeLabel)
+        self.view.addSubview(orangeTab)
+        
+        orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
+        
+        MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
+        locationIcon.text = String(format: "%C", faicon["location"]!)
+        MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
     }
     
     
@@ -178,7 +177,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         self.allCount = currentUser
         
-        locationIcon.text = String(format: "%C", faicon["location"]!)
+        
         
         profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
         profile.backgroundColor = UIColor.clear
@@ -193,7 +192,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         MAMatterView.layer.opacity = 0.0
         
-        MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
+        
         
         MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
         MAM.backgroundColor = UIColor.clear
@@ -266,20 +265,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         
         
-        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 110, width: self.view.frame.size.width - 10, height: 55))
-        orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
-        orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
-        let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
-        fontAwesomeLabel.center = CGPoint(x: 90, y: orangeTab.orangeButtonTitle.titleLabel!.frame.size.height/2 + 10)
-        fontAwesomeLabel.font = FontAwesomeFont
-        fontAwesomeLabel.text = String(format: "%C", faicon["angle_up"]!)
-        fontAwesomeLabel.textColor = UIColor.white
-        orangeTab.orangeButtonTitle.titleLabel!.addSubview(fontAwesomeLabel)
-        self.view.addSubview(orangeTab)
         
-        orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
-        
-        MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
     }
     
     
@@ -367,10 +353,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
         
         let myValues = labels[(indexPath as NSIndexPath).item]
-        
-        print(myValues);
         let valueArray = myValues.characters.split{$0 == " "}.map(String.init)
         
         let textOne = NSAttributedString(string: valueArray[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
