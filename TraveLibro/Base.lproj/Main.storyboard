@@ -3837,7 +3837,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indian_flag_new" translatesAutoresizingMaskIntoConstraints="NO" id="K7u-mz-P1W">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="K7u-mz-P1W">
                                                     <rect key="frame" x="18" y="15" width="40" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="bWC-kb-7XY"/>
@@ -4481,9 +4481,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PzD-u4-CXn">
-                                <rect key="frame" x="0.0" y="584" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="515" width="375" height="152"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="joi-oZ-2OB"/>
+                                    <constraint firstAttribute="height" constant="152" id="WmZ-ei-ooL"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="15" minimumInteritemSpacing="15" id="tON-JG-wXb">
                                     <size key="itemSize" width="80" height="80"/>
@@ -4493,7 +4493,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="addImages" id="WBL-hw-uN9" customClass="addImages" customModule="TraveLibro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <rect key="frame" x="0.0" y="36" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -4505,10 +4505,10 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="TeA-HT-XPj" secondAttribute="bottom" id="56w-bK-L6Q"/>
-                                            <constraint firstAttribute="trailing" secondItem="TeA-HT-XPj" secondAttribute="trailing" id="Afh-lX-pwE"/>
-                                            <constraint firstItem="TeA-HT-XPj" firstAttribute="leading" secondItem="WBL-hw-uN9" secondAttribute="leading" id="c2o-Ax-Z3F"/>
-                                            <constraint firstItem="TeA-HT-XPj" firstAttribute="top" secondItem="WBL-hw-uN9" secondAttribute="top" id="lZt-FX-aTl"/>
+                                            <constraint firstItem="TeA-HT-XPj" firstAttribute="leading" secondItem="WBL-hw-uN9" secondAttribute="leading" id="9Rk-5m-4eO"/>
+                                            <constraint firstAttribute="bottom" secondItem="TeA-HT-XPj" secondAttribute="bottom" id="Fw1-b5-03r"/>
+                                            <constraint firstAttribute="trailing" secondItem="TeA-HT-XPj" secondAttribute="trailing" id="bju-fi-TNw"/>
+                                            <constraint firstItem="TeA-HT-XPj" firstAttribute="top" secondItem="WBL-hw-uN9" secondAttribute="top" id="o97-UR-ial"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="addImagesCollection" destination="TeA-HT-XPj" id="WDy-KC-VUr"/>
@@ -4602,44 +4602,43 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="rdf-cr-jJ8" firstAttribute="top" secondItem="OVl-FI-92W" secondAttribute="top" constant="2" id="7iV-gb-tqT"/>
-                                        <constraint firstAttribute="trailing" secondItem="rdf-cr-jJ8" secondAttribute="trailing" id="83x-Ax-MD2"/>
-                                        <constraint firstItem="rdf-cr-jJ8" firstAttribute="leading" secondItem="OVl-FI-92W" secondAttribute="leading" id="WWT-IS-4vF"/>
-                                        <constraint firstAttribute="bottom" secondItem="rdf-cr-jJ8" secondAttribute="bottom" constant="3" id="xdf-sa-Jyq"/>
+                                        <constraint firstItem="rdf-cr-jJ8" firstAttribute="centerY" secondItem="OVl-FI-92W" secondAttribute="centerY" id="Ljo-xY-EIB"/>
+                                        <constraint firstItem="rdf-cr-jJ8" firstAttribute="leading" secondItem="OVl-FI-92W" secondAttribute="leading" id="RPO-cp-aKS"/>
+                                        <constraint firstAttribute="trailing" secondItem="rdf-cr-jJ8" secondAttribute="trailing" id="gcl-xu-VlR"/>
                                     </constraints>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="EWT-zo-wRF"/>
+                                    <constraint firstAttribute="height" constant="35" id="Zlz-la-lxN"/>
                                 </constraints>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="nuv-wQ-qXR" secondAttribute="bottom" constant="103" id="0L5-Qw-Hsf"/>
                             <constraint firstItem="NEB-XP-wm5" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="2Xu-AW-l3R"/>
-                            <constraint firstItem="PzD-u4-CXn" firstAttribute="top" secondItem="j8S-iC-Vrv" secondAttribute="bottom" constant="23" id="6J8-Rg-bjT"/>
+                            <constraint firstItem="PzD-u4-CXn" firstAttribute="trailing" secondItem="nuv-wQ-qXR" secondAttribute="trailing" id="3Wg-Rh-u2C"/>
                             <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="LCy-tX-WXI" secondAttribute="bottom" id="6Pc-9f-aQf"/>
                             <constraint firstItem="NEB-XP-wm5" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="8wC-Cy-pIa"/>
                             <constraint firstItem="Iow-Mq-Q69" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="9FX-b2-h5m"/>
-                            <constraint firstAttribute="trailing" secondItem="nuv-wQ-qXR" secondAttribute="trailing" id="9ga-Ch-EbL"/>
+                            <constraint firstItem="PzD-u4-CXn" firstAttribute="leading" secondItem="fta-Vb-kIo" secondAttribute="leading" id="AG7-Iv-g3m"/>
                             <constraint firstAttribute="trailing" secondItem="fta-Vb-kIo" secondAttribute="trailing" id="AoW-Em-RmX"/>
                             <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="NEB-XP-wm5" secondAttribute="bottom" constant="91" id="BNc-2S-sL3"/>
+                            <constraint firstItem="PzD-u4-CXn" firstAttribute="leading" secondItem="nuv-wQ-qXR" secondAttribute="leading" id="EoA-zU-Cjl"/>
                             <constraint firstItem="fta-Vb-kIo" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="HTb-YY-8v2"/>
-                            <constraint firstAttribute="trailing" secondItem="PzD-u4-CXn" secondAttribute="trailing" id="Hna-1X-auz"/>
-                            <constraint firstItem="nuv-wQ-qXR" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="J7u-9K-PdX"/>
-                            <constraint firstItem="j8S-iC-Vrv" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="16" id="Reb-Dw-emO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="j8S-iC-Vrv" secondAttribute="trailing" constant="-2" id="LBf-hw-L0V"/>
+                            <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="j8S-iC-Vrv" secondAttribute="bottom" constant="106" id="U6y-ef-vxZ"/>
+                            <constraint firstItem="nuv-wQ-qXR" firstAttribute="top" secondItem="Iow-Mq-Q69" secondAttribute="top" id="UsP-8S-EeH"/>
                             <constraint firstAttribute="trailing" secondItem="LCy-tX-WXI" secondAttribute="trailing" id="W3c-Cy-cff"/>
                             <constraint firstItem="Iow-Mq-Q69" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="XgP-5b-vdT"/>
                             <constraint firstItem="LCy-tX-WXI" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="aIA-NM-Z6E"/>
-                            <constraint firstItem="PzD-u4-CXn" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="gRW-rk-59p"/>
-                            <constraint firstAttribute="trailing" secondItem="j8S-iC-Vrv" secondAttribute="trailing" constant="14" id="m2M-4x-SoX"/>
+                            <constraint firstItem="j8S-iC-Vrv" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leadingMargin" id="eg8-LN-t0R"/>
+                            <constraint firstItem="PzD-u4-CXn" firstAttribute="bottom" secondItem="9dW-MF-wYe" secondAttribute="top" id="j3j-y1-LZA"/>
                             <constraint firstItem="LCy-tX-WXI" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="mdY-lG-IsZ"/>
                             <constraint firstAttribute="trailing" secondItem="Iow-Mq-Q69" secondAttribute="trailing" id="nPs-4l-f1B"/>
-                            <constraint firstItem="nuv-wQ-qXR" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="nTJ-IU-AwT"/>
-                            <constraint firstItem="PzD-u4-CXn" firstAttribute="top" secondItem="nuv-wQ-qXR" secondAttribute="bottom" constant="20" id="oVe-gV-CDW"/>
+                            <constraint firstItem="PzD-u4-CXn" firstAttribute="trailing" secondItem="NEB-XP-wm5" secondAttribute="trailing" id="qa6-XR-6hs"/>
                             <constraint firstAttribute="trailing" secondItem="NEB-XP-wm5" secondAttribute="trailing" id="qvX-cV-cRQ"/>
                             <constraint firstItem="fta-Vb-kIo" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="rFm-Yg-zwQ"/>
-                            <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="PzD-u4-CXn" secondAttribute="bottom" constant="3" id="vt3-a8-oxF"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
