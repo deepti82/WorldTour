@@ -227,7 +227,7 @@
                                 <constraint firstAttribute="height" constant="2" id="qFu-21-8br"/>
                             </constraints>
                         </view>
->>>>>>> origin/level-3-
+
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="travel_life" translatesAutoresizingMaskIntoConstraints="NO" id="4kG-Xj-KQE">
                             <rect key="frame" x="333" y="63" width="23" height="21"/>
                             <constraints>
