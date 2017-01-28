@@ -19,7 +19,7 @@ var navigation: UINavigationController!
 var signInVC: SignInViewController!
 
 
-class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate {
+class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var videoScrollView: UIScrollView!
     @IBOutlet weak var ipTextField: UITextField!
@@ -34,6 +34,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         videoHeight = videoScrollView.frame.height
+        videoScrollView.delegate = self
         self.horizontal = HorizontalLayout(height: videoHeight)
         self.videoScrollView.addSubview(horizontal)
         
@@ -186,7 +187,29 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
     }
     
     func playerReady(_ player: Player) {
-       player.playFromBeginning()
+        videoToPlay()
+    }
+    
+    func videoToPlay ()  {
+        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
+        player1.stop()
+        player2.stop()
+        player3.stop()
+        print(pageNumber);
+        let i = Int(pageNumber)
+        switch(pageNumber) {
+        case 0:
+            player1.playFromBeginning()
+        case 1:
+            player2.playFromBeginning()
+        case 2:
+            player3.playFromBeginning()
+        default: break
+
+        }
     }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        videoToPlay()
+    }
 }

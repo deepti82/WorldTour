@@ -437,11 +437,8 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController!.pushViewController(captionVC, animated: true)
     }
-
-    
     
     func newPost(_ sender: UIButton) {
-        
         switch(self.typeOfAddActivtiy) {
             case "AddPhotosVideos":
                 let newTl = globalNavigationController.topViewController as! NewTLViewController;
