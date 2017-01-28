@@ -269,6 +269,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             }
 
         }else{
+            // For header text
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
             
             switch feed["type"].stringValue {
@@ -277,19 +278,22 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 
             case "ended-journey":
                 setText(text: "Has ended his " + feed["startLocation"].stringValue + " journey.")
-
+                
             case "quick-itinerary":
                 setText(text: "Has uploaded a new Itinerary.")
-
+                
             case "detail-itinerary":
                 setText(text: "Has uploaded a new Itinerary.")
-
             default:
-                textHeader.headerText.text = ""
+                textHeader.headerText.text = getThought(feed)
             }
             textHeader.headerText.sizeToFit()
-            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             textHeader.sizeToFit()
+            textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
+            if(textHeader.headerText.text != "") {
+                self.addSubview(textHeader)
+            }
+            
         
         }
         

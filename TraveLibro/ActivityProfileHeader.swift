@@ -52,8 +52,6 @@ class ActivityProfileHeader: UIView {
         
         //header icon
         var typeOfPost = getTypeOfPost(feed)
-        print(typeOfPost);
-        print(feed);
         if(typeOfPost != nil) {
             switch(typeOfPost) {
             case "Location":
@@ -82,6 +80,9 @@ class ActivityProfileHeader: UIView {
             followButton.setTitle("Following", for: .normal)
         }else{
             followButton.setTitle("Follow", for: .normal)
+        }
+        if(feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
+            followButton.isHidden = true
         }
         
         self.category.imageView?.contentMode = UIViewContentMode.scaleAspectFit
