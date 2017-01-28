@@ -169,9 +169,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
         makeTLProfilePicture(self.profilePicture)
-        
-        
-        onLoaded()
+        self.title = "..."
     }
     
     
@@ -204,8 +202,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         var imageName = ""
         
         if currentUser != nil {
-            self.title = "\(currentUser["firstName"])'s Profile"
-            profileUsername.text = "\(currentUser["firstName"].string!) \(currentUser["lastName"].string!)"
+            self.title = "\(currentUser["name"])'s Profile"
+            profileUsername.text = "\(currentUser["name"].string!)"
             imageName = currentUser["profilePicture"].string!
             
             if currentUser["homeCountry"] != nil {
@@ -297,53 +295,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func getUser() {
-        
-        if user.getExistingUser() == "" {
-            
-            var socialType = ""
-            var socialId = ""
-            
-            if currentUser["googleID"].string! != "" {
-                socialType = "google"
-                socialId = currentUser["googleID"].string!
+        request.getUser(user.getExistingUser(), completion: {(request) in
+            DispatchQueue.main.async {
+                currentUser = request["data"]
+                self.onLoaded()
+                self.setCount()
             }
-            else if currentUser["instagramID"].string! != "" {
-                socialType = "instagram"
-                socialId = currentUser["instagramID"].string!
-            }
-            else if currentUser["twitterID"].string! != "" {
-                socialType = "twitter"
-                socialId = currentUser["twitterID"].string!
-            }
-            else if currentUser["facebookID"].string! != "" {
-                socialType = "facebook"
-                socialId = currentUser["facebookID"].string!
-            }
-            user.setUser(currentUser["_id"].stringValue, name: currentUser["name"].stringValue, useremail: currentUser["email"].stringValue, profilepicture: currentUser["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: currentUser["userBadgeImage"].stringValue, homecountry: currentUser["homeCountry"]["name"].stringValue, homecity: currentUser["homeCity"].stringValue, isloggedin: currentUser["alreadyLoggedIn"].bool!)
-            request.getUser(user.getExistingUser(), completion: {(request) in
-                DispatchQueue.main.async {
-                    currentUser = request["data"]
-                    self.onLoaded()
-                    self.setCount()
-                }
-            });
-           
-        }
-        else {
-            let currentUserId = user.getExistingUser()
-            let myUser = user.getUser(currentUserId)
-            let nameTemp = myUser.0.components(separatedBy: " ")
-            request.getUser(user.getExistingUser(), completion: {(request) in
-                DispatchQueue.main.async {
-                    currentUser = request["data"]
-                    self.onLoaded()
-                    self.setCount()
-                }
-            });
-            
-            
-        }
-        
+        });
     }
     
     func openNotifications(_ sender: UITapGestureRecognizer) {

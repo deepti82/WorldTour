@@ -94,7 +94,6 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("Editing Completed");
         request.editUser(currentUser["_id"].string!, editField: "name", editFieldValue: textField.text!, completion: { _ in
-            makeTLProfilePicture(self.uploadView.addButtonPic)
             print("response arrived!")
             
         })

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Spring
 
-class LocalLifeRecommends: UIView {
+class LocalLifeRecommends: SpringView {
 
     @IBOutlet weak var photoBottomView2: UIView!
     @IBOutlet weak var photoBottomView1: UIView!
@@ -26,10 +27,10 @@ class LocalLifeRecommends: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
-        topLabel.adjustsFontSizeToFitWidth = true
-        bottomLabel1.adjustsFontSizeToFitWidth = true
-        bottomLabel2.adjustsFontSizeToFitWidth = true
+//        
+//        topLabel.adjustsFontSizeToFitWidth = true
+//        bottomLabel1.adjustsFontSizeToFitWidth = true
+//        bottomLabel2.adjustsFontSizeToFitWidth = true
         
         
     }
@@ -45,6 +46,7 @@ class LocalLifeRecommends: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
+        
         
     }
 

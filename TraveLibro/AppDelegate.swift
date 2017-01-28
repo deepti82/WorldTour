@@ -129,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
                         
                         self.window?.rootViewController = slideMenuController
-                    }else{
+                    } else{
                         
                         nvc = UINavigationController(rootViewController: mainViewController)
                         
