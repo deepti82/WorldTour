@@ -507,7 +507,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
                 
             })
         } else {
-            request.commentOnPhotos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, completion: {(response) in
+            request.commentOnPhotos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, photoId: photoId, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     

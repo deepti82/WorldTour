@@ -177,7 +177,7 @@
     </objects>
     <resources>
         <image name="location_icon" width="200" height="200"/>
-        <image name="logo-default" width="180" height="180"/>
+        <image name="logo-default" width="600" height="600"/>
         <image name="orangebox" width="117" height="117"/>
     </resources>
 </document>

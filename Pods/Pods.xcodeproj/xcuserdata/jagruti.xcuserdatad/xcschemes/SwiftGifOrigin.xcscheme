@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '4D0B9673C275AEEB46E49351DE797758'
-               BlueprintName = 'Player'
+               BlueprintIdentifier = '84CF9B9BE358F1B2C29992A3F707E0C5'
+               BlueprintName = 'SwiftGifOrigin'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Player.framework'>
+               BuildableName = 'SwiftGifOrigin.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

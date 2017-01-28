@@ -1539,11 +1539,11 @@ class Navigation {
         }
     }
     
-    func commentOnPhotos(id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
+    func commentOnPhotos(id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: [String], mentions: [String], photoId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "photo", "hashtag" : hashtags] as [String : Any]
+            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "photo", "hashtag" : hashtags, "photo": photoId] as [String : Any]
             
             print("set photo comment params: \(params)")
             

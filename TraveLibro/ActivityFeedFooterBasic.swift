@@ -200,7 +200,7 @@ class ActivityFeedFooterBasic: UIView {
             comment.postId = photoPostId
             //            comment.commentText = self.commentText
             //            if singlePhotoJSON != nil {
-            comment.otherId = photoId
+            comment.otherId = postTop["name"].stringValue
             comment.photoId = photoId
             //            }
             if(self.type == "Video") {
