@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'A015E3C1A082F92E8D7E3A12263803DF'
-               BlueprintName = 'TabPageViewController'
+               BlueprintIdentifier = '84CF9B9BE358F1B2C29992A3F707E0C5'
+               BlueprintName = 'SwiftGifOrigin'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'TabPageViewController.framework'>
+               BuildableName = 'SwiftGifOrigin.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

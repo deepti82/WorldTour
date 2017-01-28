@@ -21,6 +21,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var isPhotographer: UILabel!
     @IBOutlet weak var moreAboutMe: UILabel!
     
+    
+    var profile: ProfilePicFancy!
+    var orangeTab:OrangeButton!
+    var footer:FooterViewNew!
+    var MAM: MoreAboutMe!
+    
     var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
     
@@ -163,9 +169,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
         makeTLProfilePicture(self.profilePicture)
-        
-        
-        onLoaded()
+        self.title = "..."
     }
     
     
@@ -176,11 +180,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         locationIcon.text = String(format: "%C", faicon["location"]!)
         
-        let profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
+        profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
         profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
         
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 62, width: self.view.frame.width, height: 62))
+        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 62, width: self.view.frame.width, height: 62))
         self.view.addSubview(footer)
 
         
@@ -191,27 +195,24 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))
         
-        let MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
+        MAM = MoreAboutMe(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - 20, height: 150))
         MAM.backgroundColor = UIColor.clear
         MAMatterView!.addSubview(MAM)
         
         var imageName = ""
         
         if currentUser != nil {
-            self.title = "\(currentUser["firstName"])'s Profile"
-            profileUsername.text = "\(currentUser["firstName"].string!) \(currentUser["lastName"].string!)"
+            self.title = "\(currentUser["name"])'s Profile"
+            profileUsername.text = "\(currentUser["name"].string!)"
             imageName = currentUser["profilePicture"].string!
             
             if currentUser["homeCountry"] != nil {
-                
                 profile.country.text = currentUser["homeCountry"]["name"].string!
-                
             }
             
             if currentUser["homeCity"] != nil {
                 let place = currentUser["homeCity"].string!.components(separatedBy: ",")
                 placeLabel.text = " \(place[0])"
-                
             }
             
             let isUrl = verifyUrl(imageName)
@@ -294,53 +295,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func getUser() {
-        
-        if user.getExistingUser() == "" {
-            
-            var socialType = ""
-            var socialId = ""
-            
-            if currentUser["googleID"].string! != "" {
-                socialType = "google"
-                socialId = currentUser["googleID"].string!
+        request.getUser(user.getExistingUser(), completion: {(request) in
+            DispatchQueue.main.async {
+                currentUser = request["data"]
+                self.onLoaded()
+                self.setCount()
             }
-            else if currentUser["instagramID"].string! != "" {
-                socialType = "instagram"
-                socialId = currentUser["instagramID"].string!
-            }
-            else if currentUser["twitterID"].string! != "" {
-                socialType = "twitter"
-                socialId = currentUser["twitterID"].string!
-            }
-            else if currentUser["facebookID"].string! != "" {
-                socialType = "facebook"
-                socialId = currentUser["facebookID"].string!
-            }
-            user.setUser(currentUser["_id"].stringValue, name: currentUser["name"].stringValue, useremail: currentUser["email"].stringValue, profilepicture: currentUser["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: currentUser["userBadgeImage"].stringValue, homecountry: currentUser["homeCountry"]["name"].stringValue, homecity: currentUser["homeCity"].stringValue, isloggedin: currentUser["alreadyLoggedIn"].bool!)
-            request.getUser(user.getExistingUser(), completion: {(request) in
-                DispatchQueue.main.async {
-                    currentUser = request["data"]
-                    self.onLoaded()
-                    self.setCount()
-                }
-            });
-           
-        }
-        else {
-            let currentUserId = user.getExistingUser()
-            let myUser = user.getUser(currentUserId)
-            let nameTemp = myUser.0.components(separatedBy: " ")
-            request.getUser(user.getExistingUser(), completion: {(request) in
-                DispatchQueue.main.async {
-                    currentUser = request["data"]
-                    self.onLoaded()
-                    self.setCount()
-                }
-            });
-            
-            
-        }
-        
+        });
     }
     
     func openNotifications(_ sender: UITapGestureRecognizer) {

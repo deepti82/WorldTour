@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -50,78 +49,57 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zx-3e-7LH">
                     <rect key="frame" x="8" y="220" width="188" height="172"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="3oL-Ve-gz3">
-                            <rect key="frame" x="8" y="144.5" width="150" height="19.5"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cinemas &amp; Theatre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bl1-rB-EZ8">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="19.5"/>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="150" id="Y8K-Xl-aWV"/>
-                            </constraints>
-                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hotel and Accomodations" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bl1-rB-EZ8">
+                            <rect key="frame" x="8" y="120" width="172" height="44"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="3oL-Ve-gz3" firstAttribute="bottom" secondItem="8Zx-3e-7LH" secondAttribute="bottomMargin" id="38F-P5-Ee2"/>
-                        <constraint firstItem="3oL-Ve-gz3" firstAttribute="leading" secondItem="8Zx-3e-7LH" secondAttribute="leadingMargin" id="KTr-W8-m7Q"/>
+                        <constraint firstAttribute="bottom" secondItem="Bl1-rB-EZ8" secondAttribute="bottom" constant="8" id="9KY-IN-2g8"/>
+                        <constraint firstItem="Bl1-rB-EZ8" firstAttribute="leading" secondItem="8Zx-3e-7LH" secondAttribute="leading" constant="8" id="NQ1-0b-Pmh"/>
                         <constraint firstAttribute="width" constant="188" id="WIW-Lo-8yJ"/>
                         <constraint firstAttribute="height" constant="172" id="n25-Z7-nX6"/>
+                        <constraint firstAttribute="trailing" secondItem="Bl1-rB-EZ8" secondAttribute="trailing" constant="8" id="sMv-ty-nbT"/>
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ksi-Aa-PZn">
                     <rect key="frame" x="204" y="220" width="188" height="172"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="A3Z-bB-3tT">
-                            <rect key="frame" x="8" y="144.5" width="150" height="19.5"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resorts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8K-0E-HRc">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="19.5"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="150" id="aTh-AO-sVa"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hotel and Accomodations" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8K-0E-HRc">
+                            <rect key="frame" x="8" y="120" width="172" height="44"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="A3Z-bB-3tT" secondAttribute="bottom" constant="8" id="IgX-YH-9lf"/>
+                        <constraint firstAttribute="bottom" secondItem="o8K-0E-HRc" secondAttribute="bottom" constant="8" id="2QV-xW-nUJ"/>
                         <constraint firstAttribute="width" constant="188" id="NS0-XM-8E9"/>
+                        <constraint firstItem="o8K-0E-HRc" firstAttribute="leading" secondItem="Ksi-Aa-PZn" secondAttribute="leading" constant="8" id="OZ6-sa-G8t"/>
+                        <constraint firstAttribute="trailing" secondItem="o8K-0E-HRc" secondAttribute="trailing" constant="8" id="UuK-oA-zZg"/>
                         <constraint firstAttribute="height" constant="172" id="mn8-bV-KhK"/>
-                        <constraint firstItem="A3Z-bB-3tT" firstAttribute="leading" secondItem="Ksi-Aa-PZn" secondAttribute="leading" constant="8" id="su2-1s-GE3"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SEc-wq-zad">
                     <rect key="frame" x="8" y="8" width="384" height="204"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="hsX-pA-9HV">
-                            <rect key="frame" x="8" y="176.5" width="150" height="19.5"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beaches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12w-Vs-cNc">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="19.5"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="150" id="rZG-1X-wtD"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beaches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12w-Vs-cNc">
+                            <rect key="frame" x="8" y="174" width="368" height="22"/>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                     <gestureRecognizers/>
                     <constraints>
-                        <constraint firstItem="hsX-pA-9HV" firstAttribute="leading" secondItem="SEc-wq-zad" secondAttribute="leading" constant="8" id="1PA-LB-fJd"/>
-                        <constraint firstAttribute="bottom" secondItem="hsX-pA-9HV" secondAttribute="bottom" constant="8" id="2Se-Rd-pPB"/>
+                        <constraint firstItem="12w-Vs-cNc" firstAttribute="leading" secondItem="SEc-wq-zad" secondAttribute="leading" constant="8" id="S1U-2v-PnX"/>
+                        <constraint firstAttribute="trailing" secondItem="12w-Vs-cNc" secondAttribute="trailing" constant="8" id="clX-mY-Yi6"/>
+                        <constraint firstAttribute="bottom" secondItem="12w-Vs-cNc" secondAttribute="bottom" constant="8" id="kSU-I2-hkn"/>
                     </constraints>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="kS0-76-tQ7" appends="YES" id="FiJ-a9-Jat"/>

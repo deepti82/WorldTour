@@ -238,11 +238,12 @@ func makeTLProfilePictureBorderWhite(_ image: UIImageView) {
 
 func getThought (_ post:JSON) -> String {
     var retText = ""
+    let location = post["checkIn"]["location"].string;
     let buddy = post["buddies"].arrayValue;
     if(post["thoughts"].stringValue != nil && post["thoughts"].stringValue != "") {
         retText = post["thoughts"].stringValue
-        if(post["location"].stringValue != nil && post["location"].stringValue != "") {
-            retText = retText + " at " + post["location"].stringValue
+        if(location != nil && location != "") {
+            retText = retText + " at " + location!
             if(buddy.count == 1) {
                 retText = retText + " with " + buddy[0]["name"].stringValue
             } else if (buddy.count == 2) {
@@ -262,8 +263,8 @@ func getThought (_ post:JSON) -> String {
             }
         }
     } else {
-        if(post["location"].stringValue != nil && post["location"].stringValue != "") {
-            retText = "At " + post["location"].stringValue
+        if(location != nil && location != "") {
+            retText = "At " + location!
             if(buddy.count == 1) {
                 retText = retText + " with " + buddy[0]["name"].stringValue
             } else if (buddy.count == 2) {
@@ -289,7 +290,7 @@ func getThought (_ post:JSON) -> String {
 
 func getTypeOfPost(_ post:JSON) -> String {
     var str = ""
-    if( post["location"].stringValue != nil && post["location"].stringValue != "" ) {
+    if( post["checkIn"]["location"].stringValue != nil && post["checkIn"]["location"].stringValue != "" ) {
         str = "Location"
     } else if ( post["videos"].arrayValue.count > 0 ) {
         str = "Videos"

@@ -128,7 +128,9 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 self.mainPhoto.tag = 0
                 
                 self.layoutSubviews()
-                self.activityFeed.addHeightToLayout()
+                if(self.activityFeed != nil) {
+                    self.activityFeed.addHeightToLayout()
+                }
                 
             })
         }else{

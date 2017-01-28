@@ -122,11 +122,7 @@ class DisplayPagesFourViewController: UIViewController {
             DispatchQueue.main.async(execute: {
                 if responce["value"] != true{
                     self.alert(message: "Enable to save", title: "Holiday Type")
-                    
                 }
-                request.getUser(currentUser["_id"].stringValue, completion: {(responce) in
-                    
-                })
                 let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
                 self.navigationController?.pushViewController(next, animated: true)
                 

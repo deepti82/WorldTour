@@ -345,8 +345,8 @@ public class LocalLifePostModel {
                             print(response);
                             let singlePhoto = self.post.filter(self.id == postID)
                             try db.run(singlePhoto.delete())
-                            i.deletePhotos(postID);
-                            v.delete(postID)
+                            i.deletePhotos(Int64(actualId));
+                            v.delete(Int64(actualId))
                         }
                         catch {
                             

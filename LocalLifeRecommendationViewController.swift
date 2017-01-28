@@ -31,6 +31,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     @IBOutlet weak var plusButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         globalLocalLife = self
         getDarkBackGround(self)
         self.layout = VerticalLayout(width:screenWidth)
@@ -378,73 +379,78 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     
     func getCategoryLocalLife(_ sender:AnyObject ) {
-        var category = ""
-        let tapG = sender as! UITapGestureRecognizer
-        print(tapG.view);
-        print(tapG.view?.tag);
-        let num:Int = (tapG.view?.tag)!
-        switch (num) {
-        case  1:
-            category =  "Restaurants & Bars"
+        if(self.json != nil) {
+            var category = ""
+            let tapG = sender as! UITapGestureRecognizer
+            print(tapG.view);
+            print(tapG.view?.tag);
+            let num:Int = (tapG.view?.tag)!
+            switch (num) {
+            case  1:
+                category =  "Restaurants & Bars"
+                
+            case 2:
+                category =  "Nature & Parks"
+                
+            case 3:
+                category =  "Sights & Landmarks"
+                
+            case 4:
+                category =  "Museums & Galleries"
+                
+            case 5:
+                category =  "Adventure & Excursions"
+                
+            case 6:
+                category =  "Zoo & Aquariums"
+                
+            case 7:
+                category =  "Events & Festival"
+                
+            case 8:
+                category =  "Shopping"
+                
+            case 9:
+                category =  "Beaches"
+                
+            case 10:
+                category =  "Religious"
+                
+            case 11:
+                category =  "Cinema & Theatres"
+                
+            case 12:
+                category =  "Hotels & Accomodations"
+                
+            case 13:
+                category =  "Transportation"
+                
+            case 14:
+                category =  "Others"
+            default:
+                category = "Others"
+            }
             
-        case 2:
-            category =  "Nature & Parks"
-
-        case 3:
-            category =  "Sights & Landmarks"
-
-        case 4:
-            category =  "Museums & Galleries"
-
-        case 5:
-            category =  "Adventure & Excursions"
-
-        case 6:
-            category =  "Zoo & Aquariums"
-
-        case 7:
-            category =  "Events & Festival"
-
-        case 8:
-            category =  "Shopping"
-
-        case 9:
-            category =  "Beaches"
-
-        case 10:
-            category =  "Religious"
-
-        case 11:
-            category =  "Cinema & Theatres"
+            let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
+            nearMeListController.nearMeType = category
             
-        case 12:
-            category =  "Hotels & Accomodations"
-            
-        case 13:
-            category =  "Transportation"
-            
-        case 14:
-            category =  "Others"
-        default:
-            category = "Others"
-        }
-        
-        let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
-        nearMeListController.nearMeType = category
-        
-        let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
-        localLifeListController.nearMeType = category
-        let numCat = self.json[category].intValue
-        switch(numCat) {
-        case 1:
-            self.navigationController?.pushViewController(localLifeListController, animated: true)
-        case 2:
-            self.navigationController?.pushViewController(nearMeListController, animated: true)
-        case 3:
-            let tstr = Toast(text: "No \(category) Available Near You")
+            let localLifeListController = storyboard?.instantiateViewController(withIdentifier: "localLifePosts") as! LocalLifePostsViewController
+            localLifeListController.nearMeType = category
+            let numCat = self.json[category].intValue
+            switch(numCat) {
+            case 1:
+                self.navigationController?.pushViewController(localLifeListController, animated: true)
+            case 2:
+                self.navigationController?.pushViewController(nearMeListController, animated: true)
+            case 3:
+                let tstr = Toast(text: "No \(category) Available Near You")
+                tstr.show()
+            default:
+                break;
+            }
+        } else {
+            let tstr = Toast(text: "Finding Your Location")
             tstr.show()
-        default:
-            break;
         }
         
     }

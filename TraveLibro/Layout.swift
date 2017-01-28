@@ -126,7 +126,7 @@ class VerticalLayout: SpringView {
     }
     override func willMove(toSuperview newSuperview: UIView?) {
         print("Verticle Scroll is added to View");
-        self.animation = "squeezeUp"
+        self.animation = "fadeIn"
         self.autostart = true
         self.duration = 2.0
         self.animate()
