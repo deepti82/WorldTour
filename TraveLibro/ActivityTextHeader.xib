@@ -28,7 +28,7 @@
                     </constraints>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="..." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-mg-oUi">
-                    <rect key="frame" x="20" y="1" width="335" height="36.5"/>
+                    <rect key="frame" x="20" y="1" width="335" height="37"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>

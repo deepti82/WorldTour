@@ -39,6 +39,8 @@ class ActivityFeedFooterBasic: UIView {
     
     var likeCount:Int = 0
     var commentCounts:Int = 0
+    var photoId = ""
+    var photoPostId = ""
     
     
     override init(frame: CGRect) {
@@ -193,12 +195,29 @@ class ActivityFeedFooterBasic: UIView {
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
+        if type == "TripPhotos" {
+            let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
+            comment.postId = photoPostId
+//            comment.commentText = self.commentText
+//            if singlePhotoJSON != nil {
+                comment.otherId = photoId
+                comment.photoId = photoId
+//            }
+            if(self.type == "Video") {
+                comment.type = "Video"
+            }
+            globalNavigationController?.setNavigationBarHidden(false, animated: true)
+            globalNavigationController?.pushViewController(comment, animated: true)
+        }else{
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = postTop["uniqueId"].stringValue
         comment.otherId = postTop["_id"].stringValue
         
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(comment, animated: true)
+        }
+        
+        
     }
     
     
@@ -255,6 +274,9 @@ class ActivityFeedFooterBasic: UIView {
             globalLocalLifeInside.addHeightToLayout()
         } else if(self.type == "ActivityFeeds") {
             globalActivityFeedsController.addHeightToLayout()
+        } else if(self.type == "TripPhotos") {
+            globalListPhotosViewController.addHeightToLayout()
+
         }
     }
     
@@ -289,6 +311,38 @@ class ActivityFeedFooterBasic: UIView {
         else {
             sender.tag = 1
         }
+        if type == "TripPhotos" {
+            request.postPhotosLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        if sender.tag == 1 {
+                            self.setLikeSelected(true)
+                            self.likeCount = self.likeCount + 1
+                            self.setLikeCount(self.likeCount)
+                        }
+                        else {
+                            self.setLikeSelected(false)
+                            if self.likeCount <= 0 {
+                                self.likeCount = 0
+                            } else {
+                                self.likeCount = self.likeCount - 1
+                            }
+                            self.setLikeCount(self.likeCount)
+                        }
+                    }
+                    else {
+                        
+                    }
+                    
+                })
+                
+            })
+        }else{
         
         request.likePost(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
             DispatchQueue.main.async(execute: {
@@ -316,6 +370,7 @@ class ActivityFeedFooterBasic: UIView {
                 }
             })
         })
+        }
     }
     
     @IBAction func optionClick(_ sender: UIButton) {

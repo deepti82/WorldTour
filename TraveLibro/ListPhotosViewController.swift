@@ -9,6 +9,8 @@
 import UIKit
 import Spring
 
+var globalListPhotosViewController:ListPhotosViewController!
+
 
 class ListPhotosViewController: UIViewController {
     
@@ -24,6 +26,7 @@ class ListPhotosViewController: UIViewController {
         print(self.parent)
         getBackGround(self)
         getJourneyPhotos()
+        globalListPhotosViewController = self
         
         layout = VerticalLayout(width: self.view.frame.width)
         
@@ -35,6 +38,7 @@ class ListPhotosViewController: UIViewController {
         
         scroll = UIScrollView(frame: self.view.frame)
         self.view.addSubview(scroll)
+        scroll.addSubview(layout)
 //        scroll.showsVerticalScrollIndicator = false
         
     }
@@ -56,7 +60,18 @@ class ListPhotosViewController: UIViewController {
                     if response["data"]["photos"] != nil {
                     self.photos = response["data"]["photos"].array!
 //                    self.makeLayout()
+                        for post in response["data"]["photos"].array! {
+//                            self.feeds.arrayObject?.append(post)
+                            let checkIn = TripPhotoLayout(width: self.view.frame.width)
+                            checkIn.scrollView = self.scroll
+                            checkIn.createProfileHeader(feed: post)
+                            checkIn.tripListView = self
+                            self.layout.addSubview(checkIn)
+                            self.addHeightToLayout()
+                            
+                        }
                         
+                        self.addHeightToLayout()
                     }
                     
                 }
