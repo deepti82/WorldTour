@@ -648,7 +648,7 @@ extension NewTLViewController {
         self.infoView.photosButton.tag = response["photos"].intValue
         self.infoView.photosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
         self.infoView.videosButton.tag = response["videos"].intValue
-        self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoPhotos(_:)), for: .touchUpInside)
+        self.infoView.videosButton.addTarget(self, action: #selector(NewTLViewController.gotoVideos(_:)), for: .touchUpInside)
         self.infoView.reviewsButton.tag = response["review"].intValue
         self.infoView.reviewsButton.addTarget(self, action: #selector(NewTLViewController.gotoReviews(_:)), for: .touchUpInside)
         self.infoView.mustDoButton.addTarget(self, action: #selector(NewTLViewController.gotoMustDo(_:)), for: .touchUpInside)

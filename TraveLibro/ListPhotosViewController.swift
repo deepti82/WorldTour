@@ -46,7 +46,7 @@ class ListPhotosViewController: UIViewController {
     
     func getJourneyPhotos() {
         
-        request.journeyTypeData(journeyId, type: "photos", userId: currentUser["_id"].string!, completion: {(response) in
+        request.journeyTypeData(journeyId, type: "videos", userId: currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 

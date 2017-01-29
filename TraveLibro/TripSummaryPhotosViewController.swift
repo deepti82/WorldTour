@@ -13,6 +13,7 @@ class TripSummaryPhotosViewController: UIViewController {
     @IBOutlet weak var listContainer: UIView!
     @IBOutlet weak var gridContainer: UIView!
     var fromView = ""
+    var noPhoto = 0
     
     var whichView : String!
     var journey = ""
@@ -22,7 +23,13 @@ class TripSummaryPhotosViewController: UIViewController {
         super.viewDidLoad()
         
         print("on photo view controller")
-        showNavigationIn(img:"list",text: "Photos")
+        if whichView == "videos" {
+            showNavigationIn(img:"list",text: "Videos (\(noPhoto))")
+
+        }else{
+            showNavigationIn(img:"list",text: "Photos (\(noPhoto))")
+
+        }
         
         gridContainer.alpha = 1
         listContainer.alpha = 0
@@ -71,14 +78,26 @@ class TripSummaryPhotosViewController: UIViewController {
     func changeView(_ sender: UIButton) {
         
         if gridContainer.alpha == 1 {
-            showNavigationIn(img:"grid", text: "Photos")
+            if whichView == "videos" {
+                showNavigationIn(img:"list",text: "Videos (\(noPhoto))")
+                
+            }else{
+                showNavigationIn(img:"list",text: "Photos (\(noPhoto))")
+                
+            }
             gridContainer.alpha = 0
             listContainer.alpha = 1
             
         }
         else {
-            showNavigationIn(img:"list", text: "Photos")
-//            setTopNavigation("Photos")
+            if whichView == "videos" {
+                showNavigationIn(img:"list",text: "Videos (\(noPhoto))")
+                
+            }else{
+                showNavigationIn(img:"list",text: "Photos (\(noPhoto))")
+                
+            }
+            //            setTopNavigation("Photos")
             gridContainer.alpha = 1
             listContainer.alpha = 0
         }

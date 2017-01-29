@@ -766,6 +766,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(photoVC, animated: true)
+            photoVC.noPhoto = sender.tag
             photoVC.whichView = "photo"
             photoVC.journey = myJourney["_id"].string!
             photoVC.creationDate = myJourney["startTime"].string!
@@ -773,6 +774,24 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             infoView.isHidden = true
         }else{
             let tstr = Toast(text: "No Photos")
+            tstr.show()
+        }
+        
+        
+    }
+    func gotoVideos(_ sender: UIButton) {
+        if sender.tag > 0 {
+            let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.navigationController?.pushViewController(photoVC, animated: true)
+            photoVC.noPhoto = sender.tag
+            photoVC.whichView = "video"
+            photoVC.journey = myJourney["_id"].string!
+            photoVC.creationDate = myJourney["startTime"].string!
+            //        infoView.animation.makeOpacity(0.0).animate(0.5)
+            infoView.isHidden = true
+        }else{
+            let tstr = Toast(text: "No Videos")
             tstr.show()
         }
         

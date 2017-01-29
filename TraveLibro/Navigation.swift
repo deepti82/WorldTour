@@ -1617,11 +1617,11 @@ class Navigation {
         }
     }
     
-    func getPhotoComments(_ id: String, userId: String, completion: @escaping ((JSON) -> Void)) {
+    func getPhotoComments(_ id: String, userId: String, pageno:Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "user": userId]
+            let params = ["_id": id, "user": userId, "pagenumber": pageno] as [String : Any]
             
             print("comment params: \(params)")
             

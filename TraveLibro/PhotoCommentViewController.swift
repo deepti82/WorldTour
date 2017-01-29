@@ -560,7 +560,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
                 
             })
         } else {
-            request.getPhotoComments(photoId, userId: currentUser["_id"].string!, completion: {(response) in
+            request.getPhotoComments(photoId, userId: currentUser["_id"].string!, pageno:1, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     

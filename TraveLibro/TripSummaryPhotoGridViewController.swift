@@ -19,6 +19,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         getJourneyPhotos()
         
     }
