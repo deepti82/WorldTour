@@ -767,7 +767,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(photoVC, animated: true)
             photoVC.noPhoto = sender.tag
-            photoVC.whichView = "photo"
+            photoVC.whichView = "photos"
             photoVC.journey = myJourney["_id"].string!
             photoVC.creationDate = myJourney["startTime"].string!
             //        infoView.animation.makeOpacity(0.0).animate(0.5)
@@ -785,7 +785,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(photoVC, animated: true)
             photoVC.noPhoto = sender.tag
-            photoVC.whichView = "video"
+            photoVC.whichView = "videos"
             photoVC.journey = myJourney["_id"].string!
             photoVC.creationDate = myJourney["startTime"].string!
             //        infoView.animation.makeOpacity(0.0).animate(0.5)

@@ -112,11 +112,13 @@ class TripSummaryPhotosViewController: UIViewController {
             photoGrid.journeyId = journey
             photoGrid.fromView = fromView
             
+            
         }
         else if segue.identifier == "photoListEmbed" {
             
             let photoList = segue.destination as! ListPhotosViewController
             photoList.journeyId = journey
+            photoList.type = whichView
             photoList.journeyCreationDate = creationDate
         }
         

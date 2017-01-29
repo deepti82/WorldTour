@@ -19,6 +19,7 @@ class ListPhotosViewController: UIViewController {
     var scroll: UIScrollView!
     var photos: [JSON] = []
     var journeyCreationDate = ""
+    var type = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +40,14 @@ class ListPhotosViewController: UIViewController {
         scroll = UIScrollView(frame: self.view.frame)
         self.view.addSubview(scroll)
         scroll.addSubview(layout)
-//        scroll.showsVerticalScrollIndicator = false
+        //        scroll.showsVerticalScrollIndicator = false
         
     }
     
     
     func getJourneyPhotos() {
-        
-        request.journeyTypeData(journeyId, type: "videos", userId: currentUser["_id"].string!, completion: {(response) in
+        print("in list view \(type)")
+        request.journeyTypeData(journeyId, type: type, userId: currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
@@ -57,21 +58,41 @@ class ListPhotosViewController: UIViewController {
                 }
                 else if response["value"].bool! {
                     
-                    if response["data"]["photos"] != nil {
-                    self.photos = response["data"]["photos"].array!
-//                    self.makeLayout()
-                        for post in response["data"]["photos"].array! {
-//                            self.feeds.arrayObject?.append(post)
-                            let checkIn = TripPhotoLayout(width: self.view.frame.width)
-                            checkIn.scrollView = self.scroll
-                            checkIn.createProfileHeader(feed: post)
-                            checkIn.tripListView = self
-                            self.layout.addSubview(checkIn)
-                            self.addHeightToLayout()
+                    if self.type == "photos" {
+                        if response["data"]["photos"] != nil {
+                            self.photos = response["data"]["photos"].array!
+                            //                    self.makeLayout()
+                            for post in response["data"]["photos"].array! {
+                                //                            self.feeds.arrayObject?.append(post)
+                                let checkIn = TripPhotoLayout(width: self.view.frame.width)
+                                checkIn.scrollView = self.scroll
+                                checkIn.createProfileHeader(feed: post, type: self.type)
+                                checkIn.tripListView = self
+                                self.layout.addSubview(checkIn)
+                                self.addHeightToLayout()
+                                
+                            }
                             
+                            self.addHeightToLayout()
                         }
-                        
-                        self.addHeightToLayout()
+                    }else{
+                        if response["data"]["videos"] != nil {
+                            self.photos = response["data"]["videos"].array!
+                            //                    self.makeLayout()
+                            for post in response["data"]["videos"].array! {
+                                //                            self.feeds.arrayObject?.append(post)
+                                let checkIn = TripPhotoLayout(width: self.view.frame.width)
+                                checkIn.scrollView = self.scroll
+                                checkIn.createProfileHeader(feed: post, type: self.type)
+                                checkIn.tripListView = self
+                                checkIn.type = self.type
+                                self.layout.addSubview(checkIn)
+                                self.addHeightToLayout()
+                                
+                            }
+                            
+                            self.addHeightToLayout()
+                        }
                     }
                     
                 }
@@ -161,10 +182,10 @@ class ListPhotosViewController: UIViewController {
         return components.day!
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }

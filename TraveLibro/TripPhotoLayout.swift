@@ -32,18 +32,17 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
     var activityDetailItinerary: ActivityDetailItinerary!
     var activityQuickItinerary: ActivityFeedQuickItinerary!
     var feeds: JSON = []
+    var type: String = "videos"
     
     var scrollView:UIScrollView!
     
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
     
-    func createProfileHeader(feed:JSON) {
-        
+    func createProfileHeader(feed:JSON, type:String) {
+        self.type = type
         headerLayout(feed: feed)
         
-                videosAndPhotosLayout(feed: feed)
-        
-//        middleLayoout(feed:feed)
+        videosAndPhotosLayout(feed: feed)
         
         footerLayout(feed:feed)
         
@@ -51,35 +50,35 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
     }
     
     func videosAndPhotosLayout(feed:JSON) {
+        print(type)
+        print("in video photo view")
         self.feeds = feed
-        //Image generation only
-//            self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-//            
-//            self.videoContainer.isUserInteractionEnabled = true
-//            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
-//            self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
-//            self.videoContainer.tag = 0
-//            
-//            self.player = Player()
-//            self.player.delegate = self
-//            self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
-//            self.player.view.clipsToBounds = true
-//            self.player.playbackLoops = true
-//            self.player.muted = true
-//            self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
-//            self.videoContainer.player = self.player
-//            var videoUrl:URL!
-//            if feed["type"].stringValue == "travel-life" {
-//                videoContainer.tagText.text = "On The Go"
-//                videoContainer.tagView.backgroundColor = mainOrangeColor
-//            }else{
-//                videoContainer.tagText.text = "Local Life"
-//                videoContainer.tagView.backgroundColor = endJourneyColor
-//            }
-//            videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
-//            self.player.setUrl(videoUrl!)
-//            self.videoContainer.videoHolder.addSubview(self.player.view)
-//            self.addSubview(self.videoContainer)
+        if type == "videos" {
+            print("in video view")
+            self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+            
+            self.videoContainer.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
+            self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
+            self.videoContainer.tag = 0
+            
+            self.player = Player()
+            self.player.delegate = self
+            self.player.view.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width)
+            self.player.view.clipsToBounds = true
+            self.player.playbackLoops = true
+            self.player.muted = true
+            self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
+            self.videoContainer.player = self.player
+            var videoUrl:URL!
+            self.videoContainer.tagView.isHidden = true
+            
+            videoUrl = URL(string:feed["name"].stringValue)
+            self.player.setUrl(videoUrl!)
+            self.videoContainer.videoHolder.addSubview(self.player.view)
+            self.addSubview(self.videoContainer)
+
+        }else{
         
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
             self.addSubview(self.mainPhoto)
@@ -129,6 +128,7 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
         if(feed["videos"].count > 0) {
             showImageIndexStart = 0
         }
+        }
     }
     
     func openSingleVideo(_ sender: AnyObject) {
@@ -165,6 +165,7 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
         
         profileHeader = TripPhotoHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 68))
         profileHeader.timeLabel.text = String(format: "%C", faicon["clock"]!)
+//        profileHeader.noOfDay.text = getDays(currentJourney["createdAt"].stringValue, postDate: feed["createdAt"].stringValue)
 
         profileHeader.fillProfileHeader(feed:feed)
         profileHeader.layer.zPosition = 100

@@ -63,6 +63,7 @@ var endJourneyState: Bool = true
 var storyboard: UIStoryboard!
 var addedBuddies: JSON = []
 var globalPostImage:[PostImage] = []
+var currentJourney:JSON = []
 
 var leftViewController: SideNavigationMenuViewController!
 
