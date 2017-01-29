@@ -215,7 +215,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         
         
         
-        
+        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
         self.addSubview(profileHeader)
         
         

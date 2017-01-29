@@ -21,7 +21,7 @@ class QuickIteneraryFour: UIViewController, UITextViewDelegate {
         descriptionTextView.delegate = self
 //        boldButton.setTitle(String(format: "%C", faicon["bold"]!), for: UIControlState())
 //        italicButton.setTitle(String(format: "%C", faicon["italics"]!), for: UIControlState())
-         descriptionTextView.font = UIFont(name: "Arial-Italic", size: 14)
+//         descriptionTextView.font = UIFont(name: "Arial-Italic", size: 14)
 //        boldButton.addTarget(self, action: #selector(boldText(_:)), for: .touchUpInside)
 //        italicButton.addTarget(self, action: #selector(italicText(_:)), for: .touchUpInside)
         descriptionTextView.layer.borderWidth = 1
