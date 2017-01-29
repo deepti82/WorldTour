@@ -14,6 +14,7 @@ class ActivityFeedFooterBasic: UIView {
     //    @IBOutlet weak var LineView1: UIView!
     
     
+    @IBOutlet weak var lineView1: UIView!
     @IBOutlet weak var localLifeTravelImage: UIImageView!
     @IBOutlet weak var footerColorView: UIView!
     var postTop:JSON!
@@ -76,7 +77,7 @@ class ActivityFeedFooterBasic: UIView {
         likeButton.imageView?.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
         
-        
+       
         
     }
     var photoCount = 0
