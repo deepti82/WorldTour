@@ -387,95 +387,30 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func gotoBucketList() {
-        
-        request.getBucketListCount(currentUser["_id"].string!, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if let error = response.error {
-                }
-                    
-                else if response["value"].bool! {
-                    
-                    if response["data"]["bucketList_count"].int == 0 {
-                        
-                        let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
-                        bucketVC.whichView = "BucketList"
-                        self.navigationController?.pushViewController(bucketVC, animated: true)
-                        
-                    }
-                        
-                    else if response["data"]["bucketList_count"] != nil {
-                        
-                        let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
-                        bucketVC.whichView = "BucketList"
-                        self.navigationController?.pushViewController(bucketVC, animated: true)
-                        
-                    }
-                        
-                    else {
-                        
-                        print("some problem idk")
-                    }
-                    
-                }
-                    
-                else {
-                    
-                    print("response error: \(response["error"])")
-                }
-                
-            })
-            
-        })
-        
+        let num = Int(allCount["bucketList_count"].stringValue)
+        if(num == 0) {
+            let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
+            bucketVC.whichView = "BucketList"
+            self.navigationController?.pushViewController(bucketVC, animated: true)
+        } else {
+            let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
+            bucketVC.whichView = "BucketList"
+            self.navigationController?.pushViewController(bucketVC, animated: true)
+        }
+       
     }
     
     func gotoCountriesVisited() {
-        
-        request.getBucketListCount(currentUser["_id"].string!, completion: {(response) in
-            
-            DispatchQueue.main.async(execute: {
-                
-                if let error = response.error {
-                    
-                    print("error- \(error.code): \(error.localizedDescription)")
-                    
-                }
-                    
-                else if response["value"].bool! {
-                    
-                    if response["data"]["countriesVisited_count"].int == 0 {
-                        
-                        let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
-                        bucketVC.whichView = "CountriesVisited"
-                        self.navigationController?.pushViewController(bucketVC, animated: true)
-                        
-                    }
-                        
-                    else if response["data"]["countriesVisited_count"] != nil {
-                        
-                        let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
-                        bucketVC.whichView = "CountriesVisited"
-                        self.navigationController?.pushViewController(bucketVC, animated: true)
-                        
-                    }
-                        
-                    else {
-                        
-                        print("some problem idk")
-                    }
-                    
-                }
-                    
-                else {
-                    
-                    print("response error: \(response["error"])")
-                }
-                
-            })
-            
-        })
+        let num = Int(allCount["countriesVisited_count"].stringValue)
+        if(num == 0) {
+            let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
+            bucketVC.whichView = "CountriesVisited"
+            self.navigationController?.pushViewController(bucketVC, animated: true)
+        } else {
+            let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
+            bucketVC.whichView = "CountriesVisited"
+            self.navigationController?.pushViewController(bucketVC, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
