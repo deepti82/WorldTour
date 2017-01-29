@@ -124,10 +124,11 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
         if isSearch {
-            print(indexPath.row);
-            print(self.countriesSearchResults[indexPath.row]);
-            cell.textLabel?.text = self.countriesSearchResults[indexPath.row]["name"].stringValue
+            if(indexPath.row < self.countriesSearchResults.count) {
+                cell.textLabel?.text = self.countriesSearchResults[indexPath.row]["name"].stringValue
+            }
         }else{
             cell.textLabel?.text = self.countries[indexPath.row]["name"].stringValue
         }
@@ -170,7 +171,6 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("Search");
         isSearch = true
         searchTextGlob = searchText
         if selectedStatus == "country" {

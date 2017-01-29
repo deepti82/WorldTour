@@ -214,7 +214,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = self.postTop.post_ids
-        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
+//        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
 
     
@@ -251,7 +252,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.postId = postTop.post_ids
-        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
+    
     }
     
         

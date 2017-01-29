@@ -74,9 +74,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         }
         
         if selectedCity.count != 0 {
-            
             cityVisited.text = createCity(cities: selectedCity)
-            
         } else {
             cityVisited.text = ""
         }

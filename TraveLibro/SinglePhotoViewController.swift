@@ -1,11 +1,3 @@
-//
-//  SinglePhotoViewController.swift
-//  TraveLibro
-//
-//  Created by Harsh Thakkar on 23/11/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 import Spring
 import Player
@@ -48,7 +40,14 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.layer.zPosition = 100
         self.view.addSubview(leftButton)
-        //self.customNavigationBar(left: leftButton, right: nil)
+        self.customNavigationBar(left: leftButton, right: UIButton())
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        if(self.type == "Video") {
+            self.title = "Video";
+        } else {
+            self.title = "Photo";
+        }
         
         bottomView.isHidden = true
         mainImage.isHidden = true
@@ -186,8 +185,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     }
     
     override func popVC(_ sender: UIButton) {
-        //self.navigationController!.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController!.popViewController(animated: true)
     }
     
     func leftSwipe(_ sender: AnyObject) {
@@ -222,7 +220,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                 }
                     
                 else if response["value"].bool! {
-                    
+                    self.navigationController?.setNavigationBarHidden(false, animated: true)
                     self.singlePost = response["data"]
                     self.photos = response["data"]["photos"].array!
                     self.videos = response["data"]["videos"].array!
@@ -230,6 +228,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                         self.getSingleVideo(self.videos[0]["_id"].string!)
                     } else {
                         self.getSinglePhoto(self.photos[self.index!]["_id"].string!)
+                        self.title = "Photos \(self.photos.count)"
                     }
                 }
                     
@@ -253,7 +252,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                 }
                     
                 else if response["value"].bool! {
-                    
                     let data: JSON = response["data"]
                     self.singlePhotoJSON = response["data"]
 
