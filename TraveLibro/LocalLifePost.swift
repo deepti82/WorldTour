@@ -66,7 +66,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             self.videoContainer.tagText.isHidden = true
             if feed["type"].stringValue == "travel-life" {
                 videoContainer.tagText.text = "On The Go"
-                videoContainer.tagView.backgroundColor = mainOrangeColor
+//                videoContainer.tagView.backgroundColor = mainOrangeColor
             }else{
                 videoContainer.tagText.text = "Local Life"
                 videoContainer.tagText.textColor = UIColor(hex: "303557")
