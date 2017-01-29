@@ -56,7 +56,7 @@ class AddRating: UIView, UITextViewDelegate {
         }else if checkView == "activityFeed" {
             self.activityBasic.reviewTapOut(UITapGestureRecognizer())
         }else{
-            self.checkIn.modifyAsReview(num: (self.starCount - 1))
+            self.checkIn.modifyAsReview(num: (self.starCount - 1), reviewR: reviewBody)
             self.checkIn.reviewTapOut(UITapGestureRecognizer())
         }
         self.removeFromSuperview()
@@ -172,7 +172,7 @@ class AddRating: UIView, UITextViewDelegate {
     }
     
     func ratingDisplay(_ review: JSON) {
-        
+        print(review)
         if review["review"].string == "" {
             reviewTextView.text = "Fill Me In..."
         }else{

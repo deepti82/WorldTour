@@ -63,15 +63,14 @@ class RatingCheckIn: UIView {
         rating.post = photosOtg.postTop
         rating.checkIn = self
         rating.json = self.review
-        print(review)
-        if review["rating"] != nil  {
+        if review != nil  {
             rating.starCount = Int(review["rating"].stringValue)!
+            rating.ratingDisplay(rating.json)
 
         }else{
             rating.starCount = 0
 
         }
-        rating.ratingDisplay(rating.json)
         
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
@@ -89,9 +88,10 @@ class RatingCheckIn: UIView {
         self.rateCheckInLabel.text = moodArr[num]
     }
     
-    func modifyAsReview(num:Int) {
+    func modifyAsReview(num:Int, reviewR:String) {
         print(num)
         self.rateCheckInButton.setImage(UIImage(named:imageArr[num]), for: UIControlState() )
+        self.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
         self.rateCheckInLabel.text = moodArr[num]
     }
     

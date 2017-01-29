@@ -346,6 +346,7 @@ extension NewTLViewController {
     
     
     func addRatingPost(_ sender: UIButton) {
+        print("two")
         let tapout = UITapGestureRecognizer(target: self, action: #selector(NewTLViewController.reviewTapOut(_:)))
         
         backgroundReview = UIView(frame: self.view.frame)

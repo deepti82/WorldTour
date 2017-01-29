@@ -1378,7 +1378,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func showReviewButton(post: JSON, isIndex: Bool, index: Int?) {
-        
+        print("one")
         let allReviews = post["review"].array!
         let lastReviewCount = post["review"].array!.count - 1
         let rateButton = ShowRating(frame: CGRect(x: 0, y: -4, width: width, height: 150))
