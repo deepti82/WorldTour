@@ -10,7 +10,7 @@ import UIKit
 import DKChainableAnimationKit
 
 var doRemove: Bool = true
-
+var globalProfileController:ProfileViewController!
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
 
     @IBOutlet weak var livesInStack: UIStackView!
@@ -124,7 +124,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""
-
+        globalProfileController = self
         transparentCardWhite(mainProfileView)
 
         
