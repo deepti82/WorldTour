@@ -1,13 +1,7 @@
-//
-//  BucketListTableViewController.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 31/05/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
+
 
 import UIKit
-
+import Toaster
 
 class BucketListTableViewController: UITableViewController  {
     
@@ -197,21 +191,15 @@ class BucketListTableViewController: UITableViewController  {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if whichView == "BucketList" {
-            
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
             cell.countryName.layer.zPosition = 100
             cell.yearOfVisit.layer.zPosition = 100
+            cell.countryId =  bucket[(indexPath as NSIndexPath).row]["_id"].string!
             cell.countryName.text = bucket[(indexPath as NSIndexPath).row]["name"].string!
             cell.countryPicture.hnk_setImageFromURL(getImageURL(bucket[indexPath.row]["countryCoverPhoto"].stringValue,width: 500))
             cell.countryPicture.alpha = 1
             cell.yearOfVisit.isHidden = true
-            cell.tintView.isUserInteractionEnabled = true
-            cell.countryPicture.isUserInteractionEnabled = false
             return cell
-            
-            
-            
         }
             
         else if whichView == "CountriesVisited" {
@@ -220,11 +208,10 @@ class BucketListTableViewController: UITableViewController  {
             cell.countryName.layer.zPosition = 100
             cell.yearOfVisit.layer.zPosition = 100
             cell.countryName.text = self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["name"].string!
+            cell.countryId =  self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["countryId"]["_id"].string!
             cell.yearOfVisit.text = "\(self.result[(indexPath as NSIndexPath).section]["countries"][(indexPath as NSIndexPath).row]["year"])"
             cell.countryPicture.hnk_setImageFromURL(getImageURL(self.result[indexPath.section]["countries"][indexPath.row]["countryId"]["countryCoverPhoto"].stringValue,width: 500))
             cell.countryPicture.alpha = 1
-            cell.tintView.isUserInteractionEnabled = true
-            cell.countryPicture.isUserInteractionEnabled = false
 
             return cell
         }
@@ -240,14 +227,45 @@ class BucketListTableViewController: UITableViewController  {
         return 72
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! BucketListTableViewCell
+        self.view.bringSubview(toFront: cell.tintView)
+        self.view.sendSubview(toBack: cell.countryPicture)
+    }
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        
+        let cell = tableView.cellForRow(at: indexPath) as! BucketListTableViewCell
+        print(self.whichView);
         let delete = UITableViewRowAction(style: .destructive , title: "Delete") { (action, indexPath) in
             if self.whichView == "BucketList" {
-                print("DELETE Bucket List");
+                let alert = UIAlertController(title: "", message: "Are you sure you want to delete \(cell.countryName.text!) from BucketList", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                    request.removeBucketList(cell.countryId,completion: { (response) in
+                        if(response["value"].boolValue) {
+                            self.getBucketList();
+                        } else {
+                            let tstr = Toast(text: "Error Deleting the \(cell.countryName.text!) from Bucketlist")
+                            tstr.show()
+                        }
+                    });
+                }))
+                self.present(alert, animated: true, completion: nil)
             } else if self.whichView == "CountriesVisited" {
-                print("DELETE Countries Visited");
+                let alert = UIAlertController(title: "", message: "Are you sure you want to delete \(cell.countryName.text!) from Countries Visited", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                    request.removeCountriesVisited(cell.countryId,year:Int(cell.yearOfVisit.text!)!,completion: { (response) in
+                        if(response["value"].boolValue) {
+                            self.getCountriesVisited();
+                        } else {
+                            let tstr = Toast(text: "Error Deleting the \(cell.countryName.text!) from Countries Visited")
+                            tstr.show()
+                        }
+                    });
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
         }
         
@@ -302,6 +320,7 @@ class BucketListTableViewCell: UITableViewCell {
     @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var yearOfVisit: UILabel!
     @IBOutlet weak var tintView: UIView!
+    var countryId:String = ""
     
 }
 

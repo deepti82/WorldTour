@@ -694,11 +694,11 @@ class Navigation {
         
     }
     
-    func removeBucketList(_ id: String, country: String, completion: @escaping ((JSON) -> Void)) {
+    func removeBucketList(_ country: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "bucketList": country, "delete": true] as [String : Any]
+            let params = ["_id": currentUser["_id"].stringValue, "bucketList": country, "delete": true] as [String : Any]
             print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/updateBucketList", parameters: [params])
@@ -846,11 +846,11 @@ class Navigation {
         }
     }
     
-    func removeCountriesVisited(_ id: String, countryId: String, year: Int, completion: @escaping ((JSON) -> Void)) {
+    func removeCountriesVisited(_ countryId: String, year: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "countryId": countryId, "year": year] as [String : Any]
+            let params = ["_id": currentUser["_id"].stringValue, "countryId": countryId, "year": year] as [String : Any]
             print("params remove countries visited: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/removeCountriesVisited", parameters: [params])
