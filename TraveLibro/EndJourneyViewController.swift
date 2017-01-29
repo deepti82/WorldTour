@@ -72,7 +72,7 @@ class EndJourneyViewController: UIViewController {
         case "religious":
             retStr = "religious"
         case "romance":
-            retStr = "romance"
+            retStr = "romance_new"
         case "budget":
             retStr = "luxury"
         case "luxury":

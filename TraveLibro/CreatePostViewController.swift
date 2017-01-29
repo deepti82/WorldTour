@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreatePostViewController: UIViewController {
+class CreatePostViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     var newScroll: UIScrollView!
@@ -19,9 +19,10 @@ class CreatePostViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addView.addLocationText.delegate = self
         // Do any additional setup after loading the view.
-        
+       
+
         getDarkBackGround(self)
         
         let leftButton = UIButton()
@@ -47,6 +48,8 @@ class CreatePostViewController: UIViewController {
                 scrollView.isHidden = false
             }
         }
+        
+        
         
         if flag == 0 {
             self.view.addSubview(backView)
@@ -74,6 +77,23 @@ class CreatePostViewController: UIViewController {
 //        addView.postButton.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
 //        addView.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
 //        addView.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        addView.addLocationText = textField
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        addView.addLocationText = nil
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addView.addLocationText.resignFirstResponder()
+        
+        if textField == addView.addLocationText {
+            
+           
+        }
+        return true
     }
 
     override func didReceiveMemoryWarning() {

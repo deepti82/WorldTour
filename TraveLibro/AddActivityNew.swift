@@ -9,7 +9,7 @@ import Player
 
 var globalAddActivityNew:AddActivityNew!
 
-class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate {
+class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFieldDelegate {
     @IBOutlet weak var viewContainerView: UIView!
     @IBOutlet weak var addLocationText: UITextField!
     @IBOutlet weak var finalImageTag: UIImageView!
@@ -153,6 +153,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate {
         self.friendsTag.tintColor = mainBlueColor
         self.finalImageTag.tintColor = mainOrangeColor
         self.videoTagFinal.tintColor = mainOrangeColor
+        self.addLocationText.delegate = self
     }
     
     func buddyAdded(_ json:[JSON]) {
@@ -173,6 +174,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate {
         }
     }
     
+    
     @IBAction func clearLocation(_ sender: Any) {
         self.locationHorizontalScroll.isHidden = false
         self.categoryView.isHidden = true
@@ -185,6 +187,11 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate {
         self.currentLong = 0
         self.currentCity = ""
         self.currentCountry = ""
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addLocationText.resignFirstResponder()
+        return true
     }
     
     func styleHorizontalButton(_ button: UIButton, buttonTitle: String) {
@@ -210,6 +217,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if thoughtsTextView.text == "Fill Me In..." {
             thoughtsTextView.text = ""
+            
         }
     }
     

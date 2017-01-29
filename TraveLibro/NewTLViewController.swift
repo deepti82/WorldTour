@@ -2021,7 +2021,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 kindOfJourneyStack.append("religious")
             case "romance":
                 print("5")
-                kindOfJourneyStack.append("romance")
+                kindOfJourneyStack.append("romance_new")
             case "budget":
                 print("6")
                 kindOfJourneyStack.append("luxury")

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -77,7 +77,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ij-Yi-cXb">
-                            <rect key="frame" x="98" y="40" width="15" height="12"/>
+                            <rect key="frame" x="98" y="42" width="15" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="15" id="db3-u1-IYS"/>
                             </constraints>
@@ -92,7 +92,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wh2-Li-LqP">
-                            <rect key="frame" x="195" y="39" width="35" height="15"/>
+                            <rect key="frame" x="195" y="41" width="35" height="15"/>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="14"/>
                             <color key="textColor" red="0.1764705882" green="0.1333333333" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -124,21 +124,21 @@
                         <constraint firstItem="Oys-D0-d9b" firstAttribute="leading" secondItem="fid-yH-MEf" secondAttribute="trailing" constant="2" id="8Qz-jW-LwH"/>
                         <constraint firstAttribute="trailing" secondItem="Xvb-Pa-iMT" secondAttribute="trailing" constant="12" id="8X5-mF-Bu4"/>
                         <constraint firstItem="fid-yH-MEf" firstAttribute="baseline" secondItem="dUH-xH-sbU" secondAttribute="baseline" id="A5D-vR-zDQ"/>
-                        <constraint firstItem="dUH-xH-sbU" firstAttribute="firstBaseline" secondItem="wh2-Li-LqP" secondAttribute="baseline" id="M0a-v7-xcR"/>
-                        <constraint firstItem="3Ij-Yi-cXb" firstAttribute="top" secondItem="fid-yH-MEf" secondAttribute="top" id="NqJ-AA-Agd"/>
+                        <constraint firstItem="dUH-xH-sbU" firstAttribute="firstBaseline" secondItem="wh2-Li-LqP" secondAttribute="baseline" constant="-2" id="M0a-v7-xcR"/>
+                        <constraint firstItem="3Ij-Yi-cXb" firstAttribute="top" secondItem="fid-yH-MEf" secondAttribute="top" constant="2" id="NqJ-AA-Agd"/>
                         <constraint firstItem="fid-yH-MEf" firstAttribute="leading" secondItem="3Ij-Yi-cXb" secondAttribute="trailing" constant="5" id="PPq-7d-ZWb"/>
                         <constraint firstItem="Oys-D0-d9b" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="39" id="TER-bB-64B"/>
                         <constraint firstItem="bcT-oe-jCW" firstAttribute="leading" secondItem="wBz-We-C2u" secondAttribute="leading" constant="8" id="W95-f8-o1O"/>
                         <constraint firstItem="Xvb-Pa-iMT" firstAttribute="top" secondItem="bcT-oe-jCW" secondAttribute="top" constant="8" id="bA5-UG-LNw"/>
                         <constraint firstItem="Xvb-Pa-iMT" firstAttribute="leading" secondItem="po4-VN-8dh" secondAttribute="trailing" constant="20" id="diO-gh-Geb"/>
                         <constraint firstItem="dUH-xH-sbU" firstAttribute="leading" secondItem="wh2-Li-LqP" secondAttribute="trailing" constant="2" id="fBf-xv-nvh"/>
-                        <constraint firstItem="Oys-D0-d9b" firstAttribute="bottom" secondItem="wh2-Li-LqP" secondAttribute="bottom" id="gCY-CA-8cy"/>
+                        <constraint firstItem="Oys-D0-d9b" firstAttribute="bottom" secondItem="wh2-Li-LqP" secondAttribute="bottom" constant="-2" id="gCY-CA-8cy"/>
                         <constraint firstItem="po4-VN-8dh" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="-2" id="jdW-GF-scm"/>
                         <constraint firstItem="po4-VN-8dh" firstAttribute="leading" secondItem="bcT-oe-jCW" secondAttribute="trailing" constant="20" id="oE7-WV-but"/>
                         <constraint firstItem="wh2-Li-LqP" firstAttribute="leading" secondItem="Oys-D0-d9b" secondAttribute="trailing" constant="9" id="qSg-FQ-qDQ"/>
                         <constraint firstAttribute="width" constant="375" id="sYU-G7-HGg"/>
-                        <constraint firstItem="fid-yH-MEf" firstAttribute="firstBaseline" secondItem="wh2-Li-LqP" secondAttribute="baseline" id="uPg-z8-fHO"/>
-                        <constraint firstItem="Oys-D0-d9b" firstAttribute="top" secondItem="wh2-Li-LqP" secondAttribute="top" id="wcF-kb-nSZ"/>
+                        <constraint firstItem="fid-yH-MEf" firstAttribute="firstBaseline" secondItem="wh2-Li-LqP" secondAttribute="baseline" constant="-2" id="uPg-z8-fHO"/>
+                        <constraint firstItem="Oys-D0-d9b" firstAttribute="top" secondItem="wh2-Li-LqP" secondAttribute="top" constant="-2" id="wcF-kb-nSZ"/>
                         <constraint firstAttribute="height" constant="63" id="wkB-Ol-J5r"/>
                     </constraints>
                 </view>
@@ -158,7 +158,7 @@
     </objects>
     <resources>
         <image name="location_icon" width="200" height="200"/>
-        <image name="logo-default" width="180" height="180"/>
+        <image name="logo-default" width="600" height="600"/>
         <image name="orangebox" width="117" height="117"/>
     </resources>
 </document>
