@@ -77,8 +77,11 @@ class QuickItineraryPreview: UIView {
                     self.cityScroll.text = self.cityScroll.text! + m["name"].stringValue + " | "
                 }
             }
-            
-            
+            var name = self.cityScroll.text
+            name = name?.substring(to: (name?.index(before: (name?.endIndex)!))!)
+            name = name?.substring(to: (name?.index(before: (name?.endIndex)!))!)
+            name = name?.substring(to: (name?.index(before: (name?.endIndex)!))!)
+            self.cityScroll.text = name
             self.cityScroll.sizeToFit()
             self.cityScroller.addSubview(self.cityScroll)
             //            self.cityScroll.frame.size.width = 1000
