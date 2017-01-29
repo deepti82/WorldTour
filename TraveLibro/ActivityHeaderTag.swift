@@ -28,8 +28,8 @@ class ActivityHeaderTag: UIView {
             self.tagText.text = "On The Go"
             self.tagView.backgroundColor = mainOrangeColor
         }else{
-            self.tagText.text = "Local Life"
-            self.tagText.backgroundColor = UIColor(hex: "303557")
+            self.tagText.text = "#Local Life"
+            self.tagText.backgroundColor = UIColor(hex: "#303557")
             self.tagView.backgroundColor = endJourneyColor
         }
     }

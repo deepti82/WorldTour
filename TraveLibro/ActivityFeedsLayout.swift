@@ -73,6 +73,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 videoContainer.tagView.backgroundColor = mainOrangeColor
             }else{
                 videoContainer.tagText.text = "Local Life"
+                videoContainer.tagText.backgroundColor = UIColor(hex: "#303557")
                 videoContainer.tagView.backgroundColor = endJourneyColor
             }
             videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
