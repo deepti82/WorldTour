@@ -111,12 +111,10 @@ class PhotoOTGFooter: UIView {
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0) {
             self.frame.size.height = 50;
-            dropShadow.isHidden = false
-            lineView.isHidden = true
+           
         } else {
             self.frame.size.height = 85;
-            dropShadow.isHidden = true
-            lineView.isHidden = false
+            
         }
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],
