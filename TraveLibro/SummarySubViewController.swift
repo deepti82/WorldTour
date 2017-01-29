@@ -296,7 +296,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
         let timeFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         let date = dateFormatter.date(from: tripCountData["startTime"].string!)
-        dateFormatter.dateFormat = "dd MMM, yyyy"
+        dateFormatter.dateFormat = "dd MMM yyyy"
         timeFormatter.dateFormat = "hh:mm a"
         tripView.tripDate.text = "\(dateFormatter.string(from: date!))"
         
