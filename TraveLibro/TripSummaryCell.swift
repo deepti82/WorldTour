@@ -13,9 +13,13 @@ class TripSummaryCell: UIButton {
     @IBOutlet weak var category: UIButton!
     @IBOutlet weak var count: UILabel!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet var tintColorCard: UIView!
+   
+  
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        transparentCardWhite(tintColorCard)
     }
     
     required init?(coder aDecoder: NSCoder) {

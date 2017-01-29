@@ -225,6 +225,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
             imageView.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(val["country"]["flag"].stringValue)")!)
             imageView.contentMode = UIViewContentMode.scaleAspectFit
             imageView.clipsToBounds = true
+            imageView.clipsToBounds = true
 
 
             tripMiddle.countryLayout.addSubview(imageView)

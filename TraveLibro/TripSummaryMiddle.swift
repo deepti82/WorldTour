@@ -10,6 +10,7 @@ import UIKit
 
 class TripSummaryMiddle: UIView {
 
+    @IBOutlet var tintView: UIView!
     @IBOutlet weak var countryStack: UIStackView!
     @IBOutlet weak var countryScroll: UIScrollView!
     var countryLayout: HorizontalLayout!
@@ -19,7 +20,7 @@ class TripSummaryMiddle: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         countryLayout = HorizontalLayout(height: countryScroll.frame.height)
-        
+        transparentCardWhite(tintView)
         countryScroll.addSubview(countryLayout)
         
         
