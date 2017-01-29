@@ -1,11 +1,3 @@
-//
-//  OnlyPhoto.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 18/05/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 import Player
 import Spring

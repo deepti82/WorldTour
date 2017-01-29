@@ -210,7 +210,12 @@ class PhotoOTGFooter: UIView {
         actionSheetControllerIOS8.addAction(EditDnt)
         let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
         { action -> Void in
-            globalNewTLViewController.deletePost(self)
+            let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+                globalNewTLViewController.deletePost(self)
+            }))
+            globalNewTLViewController.present(alert, animated: true, completion: nil)
             
             //  request.deletePost(self.currentPost["_id"].string!, uniqueId: self.myJourney["uniqueId"].string!, user: self.currentPost["user"]["_id"].string!, completion: {(response) in
             //  })
