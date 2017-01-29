@@ -179,7 +179,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
-        singlePhotoController.postId = videos[sender.tag]["post"].stringValue
+        singlePhotoController.postId = videos[sender.view.tag]["post"].stringValue
         globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
     
