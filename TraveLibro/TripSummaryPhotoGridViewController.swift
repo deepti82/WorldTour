@@ -81,7 +81,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! gridCollectionViewCell
-        cell.photo.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?width=500&file=\(myPhotos[(indexPath as NSIndexPath).row])")!)
+        cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[(indexPath as NSIndexPath).row], width: 100))
         return cell
         
     }

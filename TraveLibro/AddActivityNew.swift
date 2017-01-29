@@ -340,6 +340,14 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate {
                     cameraConf.allowedRecordingModes = [.video]
                     cameraConf.showCameraRoll = false
                     cameraConf.maximumVideoLength = 60
+                    
+                    
+                    
+                    cameraConf.videoOutputSettings = [
+                        "AVVideoCodecKey": AVVideoCodecH264 as AnyObject,
+                        "AVVideoWidthKey": 640 as AnyObject,
+                        "AVVideoHeightKey": 480  as AnyObject,
+                    ];
                 }
                 
                 builder.configureToolStackController(){toolSck in
@@ -366,7 +374,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate {
             imagePickerController.allowsEditing = true
             imagePickerController.videoMaximumDuration = 60.0
             imagePickerController.mediaTypes = ["public.movie"]
-            imagePickerController.videoQuality = UIImagePickerControllerQualityType.typeIFrame960x540
+            imagePickerController.videoQuality = UIImagePickerControllerQualityType.type640x480
             
             if(self.typeOfAddActivtiy == "CreateLocalLife") {
                 imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
@@ -680,8 +688,8 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate {
             imageArr.append(postImg);
         }
         let captionButton = UIButton()
-        captionButton.setImage(imageArr[0].image, for: .normal)
-        captionButton.tag = 0
+        captionButton.setImage(imageArr[imageArr.count - 1].image, for: .normal)
+        captionButton.tag = imageArr.count - 1
         self.addCaption(captionButton)
         addPhotoToLayout();
     }

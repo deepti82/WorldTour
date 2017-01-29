@@ -32,7 +32,7 @@ class ListPhotosViewController: UIViewController {
         
         let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
         profileImage.center.x = self.view.frame.width/2
-        profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
+        profileImage.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: 100))
         makeTLProfilePicture(profileImage)
         layout.addSubview(profileImage)
         
@@ -106,7 +106,8 @@ class ListPhotosViewController: UIViewController {
         photoList.videoIcon.isHidden = true
         photoList.commentCount.text = "\(photo["commentCount"]) Comments"
         photoList.likeCount.text = "\(photo["likeCount"]) Likes"
-        photoList.mainImage.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(photo["name"])&width=100")!)
+        
+        photoList.mainImage.hnk_setImageFromURL( getImageURL(photo["name"].stringValue, width: 500))
         let days = getDate(journeyCreationDate, postDate: photo["createdAt"].string!)
         let attributedString = NSMutableAttributedString(string: "Day ", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
         let string = NSMutableAttributedString(string: " 0\(days + 1)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 24)!])
