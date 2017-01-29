@@ -90,13 +90,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     @IBAction func sendLike(_ sender: UIButton) {
        likeButton.animation = "pop"
         likeButton.animateTo()
-        print("send likes: \(hasLiked!)")
-        print(currentIndex)
-        print(photos[currentIndex!])
-        print(postId)
-        print(currentUser["_id"].string!)
-        print(currentUser["name"].string!)
-        print(hasLiked)
+        
         if(self.type == "Video") {
             request.postVideoLike(videos[currentIndex!]["_id"].string!, postId: postId!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
                 

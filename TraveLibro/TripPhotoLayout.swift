@@ -136,7 +136,7 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
         singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
-        singlePhotoController.postId = feeds["_id"].stringValue
+        singlePhotoController.postId = feeds["post"].stringValue
         globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
     
@@ -165,7 +165,10 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
         
         profileHeader = TripPhotoHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 68))
         profileHeader.timeLabel.text = String(format: "%C", faicon["clock"]!)
-//        profileHeader.noOfDay.text = getDays(currentJourney["createdAt"].stringValue, postDate: feed["createdAt"].stringValue)
+        print("header header")
+        print(currentJourney["createdAt"])
+//        let a:Int = getDays(currentJourney["createdAt"].stringValue, postDate: feed["createdAt"].stringValue)
+//        profileHeader.noOfDay.text = String(a)
 
         profileHeader.fillProfileHeader(feed:feed)
         profileHeader.layer.zPosition = 100
@@ -226,7 +229,9 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
     }
     
     func getDays(_ startDate: String, postDate: String) -> Int {
-        
+        print("day..")
+        print(startDate)
+        print(postDate)
         let DFOne = DateFormatter()
         DFOne.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
         let DFTwo = DateFormatter()
@@ -245,7 +250,6 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
         let flags = NSCalendar.Unit.day
         let components = (calendar as NSCalendar).components(flags, from: date1, to: date2, options: [])
         return components.day!
-        
     }
     
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {

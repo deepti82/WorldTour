@@ -111,6 +111,7 @@ class TripSummaryPhotosViewController: UIViewController {
             let photoGrid = segue.destination as! TripSummaryPhotoGridViewController
             photoGrid.journeyId = journey
             photoGrid.fromView = fromView
+            photoGrid.type = whichView
             
             
         }

@@ -6,15 +6,23 @@
 //  Copyright © 2016 Wohlig Technology. All rights reserved.
 //
 
-import UIKit
 import imglyKit
+import UIKit
+import Player
+import Spring
 
 
-class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackControllerDelegate {
+class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackControllerDelegate, PlayerDelegate {
     
     var journeyId = ""
     var myPhotos: [String] = []
+    var videos: JSON = []
     var fromView = ""
+    var type = ""
+    var videoContainer:VideoView!
+    var player:Player!
+
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +37,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         
 //        if !endJourneyState {
             print("oooyyyy in journey images")
-            request.journeyTypeData(journeyId, type: "photos", userId: currentUser["_id"].string!, completion: {(response) in
+            request.journeyTypeData(journeyId, type: type, userId: currentUser["_id"].string!, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -39,10 +47,14 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
                         
                     }
                     else if response["value"].bool! {
+                        if self.type == "photos" {
                         if response["data"]["photos"] != nil {
                             for n in response["data"]["photos"].array! {
                                 self.myPhotos.append(n["name"].string!)
                             }
+                        }
+                        }else{
+                            self.videos = response["data"]["videos"]
                         }
                         self.collectionView!.reloadData()
                         
@@ -75,14 +87,50 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return myPhotos.count
+        if type == "photos" {
+            return myPhotos.count
+
+        }else{
+            return videos.count
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! gridCollectionViewCell
-        cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[(indexPath as NSIndexPath).row], width: 100))
+        
+        if type == "photos" {
+            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[(indexPath as NSIndexPath).row], width: 100))
+
+        }else{
+            self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.width))
+            
+            self.videoContainer.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
+            self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
+            self.videoContainer.tag = indexPath.row
+            
+            self.player = Player()
+            self.player.delegate = self
+            self.player.view.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.width)
+            self.player.view.clipsToBounds = true
+            self.player.playbackLoops = true
+            self.player.muted = true
+            self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
+            self.videoContainer.player = self.player
+            var videoUrl:URL!
+            self.videoContainer.tagView.isHidden = true
+            
+            videoUrl = URL(string:videos[indexPath.row]["name"].stringValue)
+            self.player.setUrl(videoUrl!)
+            self.videoContainer.videoHolder.addSubview(self.player.view)
+            cell.addSubview(self.videoContainer)
+
+        }
+        
+        
+        
+        
         return cell
         
     }
@@ -90,6 +138,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("one image clicked")
         print(fromView)
+        
         if fromView == "endJourney" {
             let cell = collectionView.cellForItem(at: indexPath) as! gridCollectionViewCell
             let photoEditViewController = PhotoEditViewController(photo: cell.photo.image!)
@@ -124,6 +173,14 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
                 
             }
         })
+    }
+    func openSingleVideo(_ sender: AnyObject) {
+        let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+        singlePhotoController.mainImage?.image = sender.image
+        singlePhotoController.index = sender.view.tag
+        singlePhotoController.type = "Video"
+        singlePhotoController.postId = videos[sender.tag]["post"].stringValue
+        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
     }
     
     func toolStackControllerDidCancel(_ toolStackController: ToolStackController){
