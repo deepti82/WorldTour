@@ -172,6 +172,7 @@ class AddRating: UIView, UITextViewDelegate {
     }
     
     func ratingDisplay(_ review: JSON) {
+        print("display rating")
         print(review)
         if review["review"].string == "" {
             reviewTextView.text = "Fill Me In..."
@@ -179,7 +180,7 @@ class AddRating: UIView, UITextViewDelegate {
             reviewTextView.text = review["review"].string!
         }
         
-        for i in 0 ..< Int(review["rating"].string!)! {
+        for i in 0 ..< Int(review["rating"].stringValue)! {
             
             stars[i].setImage(UIImage(named: "star_check"), for: UIControlState())
             

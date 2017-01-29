@@ -929,7 +929,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ToastView.appearance().backgroundColor = endJourneyColor
+
         self.layout = VerticalLayout(width: view.frame.size.width)
         mainScroll.addSubview(layout)
         var i  = PostImage();

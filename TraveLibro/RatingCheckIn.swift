@@ -90,9 +90,12 @@ class RatingCheckIn: UIView {
     
     func modifyAsReview(num:Int, reviewR:String) {
         print(num)
+        print("reviewwww")
+        print(reviewR)
         self.rateCheckInButton.setImage(UIImage(named:imageArr[num]), for: UIControlState() )
         self.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
         self.rateCheckInLabel.text = moodArr[num]
+        review = ["rating":"\(num + 1)", "review":reviewR]
     }
     
     
