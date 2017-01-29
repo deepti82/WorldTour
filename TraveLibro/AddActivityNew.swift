@@ -287,6 +287,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate {
         self.videosButton.addTarget(self, action: #selector(self.addVideos(_:)), for: .touchUpInside)
         self.thoughtsButton.addTarget(self, action: #selector(self.addThoughts(_:)), for: .touchUpInside)
         self.tagFriendButton.addTarget(self, action: #selector(self.tagMoreBuddies(_:)), for: .touchUpInside)
+        self.friendsCount.addTarget(self, action: #selector(self.tagMoreBuddies(_:)), for: .touchUpInside)
         self.postButton.addTarget(self, action: #selector(self.newPost(_:)), for: .touchUpInside)
         //        self.postButtonUp.addTarget(self, action: #selector(NewTLViewController.newPost(_:)), for: .touchUpInside)
         //        self.postCancelButton.addTarget(self, action: #selector(NewTLViewController.closeAdd(_:)), for: .touchUpInside)

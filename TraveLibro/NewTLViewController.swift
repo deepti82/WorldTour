@@ -912,6 +912,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.title = text
         if (myJourney != nil) {
             self.customNavigationBar(left: leftButton, right: rightButton)
+            self.navigationController?.setNavigationBarItem()
         }else{
             self.customNavigationBar(left: leftButton, right: nil)
         }
@@ -1832,6 +1833,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.addHeightToLayout(height: 500)
         
         
+        
     }
     
     func newItinerary(_ sender: UIButton) {
@@ -1938,6 +1940,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.closeBuddies.isHidden = true
         
         transparentCardWhite(otgView.nameJourneyView)
+        self.view.bringSubview(toFront: mainFooter)
 //        transparentWhiteTextField(otgView.nameJourneyTF)
                 
 
