@@ -36,17 +36,30 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(self.mainFooter)
 
     }
-    
+    func openSideMenu(_ sender: AnyObject) {
+        self.slideMenuController()?.addLeftGestures()
+        self.slideMenuController()?.toggleLeft()
+    }
+    func searchTop(_ sender: AnyObject) {
+        
+    }
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.title = "Activity Feed"
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
+        leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
+        leftButton.imageView?.tintColor = UIColor.white
+        leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
         
-        self.customNavigationBar(left: leftButton, right: nil)
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 

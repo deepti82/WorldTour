@@ -74,6 +74,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView.photoBottomView2.tag = 3
         layout.addSubview(myView)
         
+        
         let myView2 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
         myView2.photoTop.image = UIImage(named: "museumsLocalLife")
         myView2.topLabel.text = "Museums and Galleries"
@@ -81,6 +82,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView2.bottomLabel1.text = "Adventure and Excursions"
         myView2.photoBottom2.image = UIImage(named: "bgzoosandaqua")
         myView2.bottomLabel2.text = "Zoos and Aquariums"
+        
         let tapGestureRecognizer3 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
         myView2.photoTopView.isUserInteractionEnabled = true
         myView2.photoTopView.addGestureRecognizer(tapGestureRecognizer3)
@@ -92,7 +94,9 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         let tapGestureRecognizer5 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
         myView2.photoBottomView2.isUserInteractionEnabled = true
         myView2.photoBottomView2.addGestureRecognizer(tapGestureRecognizer5)
-        myView2.photoBottom2.tag = 6
+        myView2.photoBottomView2.tag = 6
+
+        
 
 //        tapGesture(myView2.photoBottomView1)
 //        tapGesture(myView2.photoBottom2)
@@ -118,7 +122,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView3.photoBottomView2.isUserInteractionEnabled = true
         myView3.photoBottomView2.addGestureRecognizer(tapGestureRecognizer8)
         layout.addSubview(myView3)
-        myView3.photoBottom2.tag = 9
+        myView3.photoBottomView2.tag = 9
         let myView4 = LocalLifeRecommends(frame: CGRect(x: 0, y: -8, width: self.view.frame.width, height: 400))
         myView4.photoTop.image = UIImage(named: "bgreligious")
         myView4.topLabel.text = "Religious"
@@ -137,7 +141,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         let tapGestureRecognizer11 = UITapGestureRecognizer(target:self, action: #selector(self.getCategoryLocalLife(_:)))
         myView4.photoBottomView2.isUserInteractionEnabled = true
         myView4.photoBottomView2.addGestureRecognizer(tapGestureRecognizer11)
-        myView4.photoBottom2.tag = 12
+        myView4.photoBottomView2.tag = 12
         layout.addSubview(myView4)
         
         let myView5 = LocalLifeRecommends(frame: CGRect(x: 0, y: -16, width: self.view.frame.width, height: 188))

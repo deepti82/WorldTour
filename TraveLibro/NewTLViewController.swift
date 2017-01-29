@@ -880,13 +880,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     
-    
+    func openSideMenu(_ sender: AnyObject) {
+        self.slideMenuController()?.addLeftGestures()
+        self.slideMenuController()?.toggleLeft()
+    }
     
     func setTopNavigation(text: String) {
         let leftButton = UIButton()
-        //        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        //        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        //        leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
+        leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
+        leftButton.imageView?.tintColor = UIColor.white
+        leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
         
         let rightButton = UIView()
         rightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 35)
@@ -912,7 +917,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.title = text
         if (myJourney != nil) {
             self.customNavigationBar(left: leftButton, right: rightButton)
-            self.navigationController?.setNavigationBarItem()
         }else{
             self.customNavigationBar(left: leftButton, right: nil)
         }

@@ -179,6 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         faicon["googleSquare"] = 0xf0d4
         faicon["comments"] = 0xf075
         faicon["upload"] = 0xf093
+        faicon["bars"] = 0xf0c9
         
         emailIcon = String(format: "%C", faicon["email"]!)
         facebookIcon = String(format: "%C", faicon["facebook"]!)
