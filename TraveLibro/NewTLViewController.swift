@@ -11,7 +11,7 @@ import AVKit
 import AVFoundation
 import Haneke
 import Toaster
-import PullToMakeFlight
+
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
@@ -847,9 +847,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     //For videos Delegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        
-        picker.dismiss(animated: true, completion: {})
-        self.addView.addVideoToBlock(video: info["UIImagePickerControllerMediaURL"] as! URL)
+        let mediaType = info["UIImagePickerControllerMediaType"] as? String
+        if(mediaType == "public.image") {
+            picker.dismiss(animated: true, completion: {})
+            let tempImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            
+            let imgA:[UIImage] = [tempImage!]
+            self.addView.photosAdded(assets: imgA)
+        } else {
+            picker.dismiss(animated: true, completion: {})
+            self.addView.addVideoToBlock(video: info["UIImagePickerControllerMediaURL"] as! URL)
+        }
     }
     
     

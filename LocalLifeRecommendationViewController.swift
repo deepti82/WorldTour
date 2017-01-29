@@ -326,8 +326,21 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true, completion: {})
-        self.addView.addVideoToBlock(video: info["UIImagePickerControllerMediaURL"] as! URL)
+        
+        
+        print(info["UIImagePickerControllerMediaType"]);
+        let mediaType = info["UIImagePickerControllerMediaType"] as? String
+        if(mediaType == "public.image") {
+            picker.dismiss(animated: true, completion: {})
+            let tempImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            
+            let imgA:[UIImage] = [tempImage!]
+            self.addView.photosAdded(assets: imgA)
+        } else {
+            picker.dismiss(animated: true, completion: {})
+            self.addView.addVideoToBlock(video: info["UIImagePickerControllerMediaURL"] as! URL)
+        }
+
     }
     
     func changeAddButton(_ bol:Bool) {

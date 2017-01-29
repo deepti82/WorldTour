@@ -9,9 +9,8 @@ import Player
 
 var globalAddActivityNew:AddActivityNew!
 
-class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDelegate, PlayerDelegate {
+class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate {
     @IBOutlet weak var viewContainerView: UIView!
-    
     @IBOutlet weak var addLocationText: UITextField!
     @IBOutlet weak var finalImageTag: UIImageView!
     var typeOfAddActivtiy:String = ""
@@ -20,7 +19,7 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
     var player:Player!
     var videoURL:URL!
     var videoCaption = ""
-    
+
     @IBOutlet weak var locationView: UIView!
     @IBOutlet weak var photosIntialView: UIView!
     @IBOutlet weak var photosFinalView: UIView!
@@ -97,8 +96,7 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
     var photosGroupId = 0
     var photosToBeUploaded: [PhotoUpload] = []
     
-    
-    let imagePicker = UIImagePickerController()
+
     var photosAddedMore = false
     var selectPhotosCount = 0
     
@@ -393,6 +391,8 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
     }
     
     
+    
+    
     func completionVideoBlock(result:UIImage?,video:URL?){
         self.cameraViewController.dismiss(animated: true, completion: nil)
         addVideoToBlock(video: video)
@@ -587,33 +587,48 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let takePhotos = UIAlertAction(title: "Take Photos", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-            let configuration = Configuration() { builder in
-                builder.configureCameraViewController( { cameraConf in
-                        cameraConf.allowedRecordingModes = [.photo]
-                })
+//            let configuration = Configuration() { builder in
+//                builder.configureCameraViewController( { cameraConf in
+//                        cameraConf.allowedRecordingModes = [.photo]
+//                })
+//            }
+//            let cameraViewController = CameraViewController(configuration:configuration)
+//            cameraViewController.cameraController?.recordingMode = .photo
+//            
+//            
+//            
+//            func abc(image:UIImage?,url:URL?) -> Void
+//            {
+//                let photoEffect = PhotoEffectThumbnailRenderer(inputImage: image!);
+//                if(cameraViewController.cameraController?.photoEffect != nil) {
+//                    photoEffect.generateThumbnails(for: [(cameraViewController.cameraController?.photoEffect)!], of: (image?.size)!, singleCompletion: { (image:UIImage, num:Int) in
+//                        DispatchQueue.main.async(execute: {
+//                            let imgA:[UIImage] = [image]
+//                            cameraViewController.dismiss(animated: true, completion: nil)
+//                            globalAddActivityNew.photosAdded(assets: imgA)
+//                        })
+//                    })
+//                } else {
+//                    let imgA:[UIImage] = [image!]
+//                    cameraViewController.dismiss(animated: true, completion: nil)
+//                    globalAddActivityNew.photosAdded(assets: imgA)
+//                }
+//                
+//            }
+//            cameraViewController.completionBlock = abc;
+//            
+//            globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
+            
+            let imagePickerController = UIImagePickerController()
+            if(self.typeOfAddActivtiy == "CreateLocalLife") {
+                imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
+            } else {
+                imagePickerController.delegate = globalNewTLViewController
             }
-            let cameraViewController = CameraViewController(configuration:configuration)
-            cameraViewController.cameraController?.recordingMode = .photo
-            func abc(image:UIImage?,url:URL?) -> Void
-            {
-                let photoEffect = PhotoEffectThumbnailRenderer(inputImage: image!);
-                if(cameraViewController.cameraController?.photoEffect != nil) {
-                    photoEffect.generateThumbnails(for: [(cameraViewController.cameraController?.photoEffect)!], of: (image?.size)!, singleCompletion: { (image:UIImage, num:Int) in
-                        DispatchQueue.main.async(execute: {
-                            let imgA:[UIImage] = [image]
-                            cameraViewController.dismiss(animated: true, completion: nil)
-                            globalAddActivityNew.photosAdded(assets: imgA)
-                        })
-                    })
-                } else {
-                    let imgA:[UIImage] = [image!]
-                    cameraViewController.dismiss(animated: true, completion: nil)
-                    globalAddActivityNew.photosAdded(assets: imgA)
-                }
-                
-            }
-            cameraViewController.completionBlock = abc;
-            globalNavigationController?.topViewController?.present(cameraViewController, animated: true, completion: nil)
+            
+            imagePickerController.sourceType = .camera
+            globalNavigationController?.topViewController?.present(imagePickerController, animated: true, completion: nil)
+            
         })
         let photoLibrary = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
