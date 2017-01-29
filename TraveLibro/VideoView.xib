@@ -31,10 +31,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIL-0Y-3Rl">
-                    <rect key="frame" x="334" y="615" width="25" height="32"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIL-0Y-3Rl">
+                    <rect key="frame" x="319" y="615" width="40" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="25" id="0OF-7H-TJ3"/>
+                        <constraint firstAttribute="width" constant="40" id="0OF-7H-TJ3"/>
                         <constraint firstAttribute="height" constant="32" id="whW-zd-Nd3"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="22"/>
@@ -78,6 +78,6 @@
         </view>
     </objects>
     <resources>
-        <image name="logo-default" width="180" height="180"/>
+        <image name="logo-default" width="600" height="600"/>
     </resources>
 </document>
