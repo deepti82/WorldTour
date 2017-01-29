@@ -96,10 +96,14 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.videoContainer.videoHolder.addSubview(self.player.view)
             self.addSubview(self.videoContainer)
             
-            self.videoContainer.isUserInteractionEnabled = true
-            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
-            self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
-            self.videoContainer.tag = 0
+            if(!post.post_isOffline) {
+                self.videoContainer.isUserInteractionEnabled = true
+                let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
+                self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
+                self.videoContainer.tag = 0
+            }
+            
+            
             
         } else if(post.imageArr.count > 0) {
             self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))

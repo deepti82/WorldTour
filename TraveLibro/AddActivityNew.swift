@@ -368,7 +368,7 @@ class AddActivityNew: SpringView, UITextViewDelegate,UIImagePickerControllerDele
             imagePickerController.allowsEditing = true
             imagePickerController.videoMaximumDuration = 60.0
             imagePickerController.mediaTypes = ["public.movie"]
-            imagePickerController.videoQuality = UIImagePickerControllerQualityType.typeIFrame1280x720
+            imagePickerController.videoQuality = UIImagePickerControllerQualityType.typeIFrame960x540
             
             if(self.typeOfAddActivtiy == "CreateLocalLife") {
                 imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?

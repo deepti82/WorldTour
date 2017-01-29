@@ -244,7 +244,12 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.title = "Photos (\(imageArr.count))"
+        if(type != "videoCaption") {
+            self.title = "Photos (\(imageArr.count))"
+        } else {
+            self.title = "Video"
+        }
+        
         return imageArr.count
         
     }
