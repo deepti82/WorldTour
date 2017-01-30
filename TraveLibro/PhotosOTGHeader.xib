@@ -36,7 +36,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rt5-8f-vFp" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="182" y="0.0" width="10" height="38"/>
+                    <rect key="frame" x="183" y="0.0" width="10" height="38"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="C1w-Ib-Exe"/>
                         <constraint firstAttribute="height" constant="38" id="we7-1b-xlI"/>
@@ -77,7 +77,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ij-Yi-cXb">
-                            <rect key="frame" x="98" y="42" width="15" height="12"/>
+                            <rect key="frame" x="91" y="42" width="15" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="15" id="db3-u1-IYS"/>
                             </constraints>
@@ -86,7 +86,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan 2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fid-yH-MEf">
-                            <rect key="frame" x="118" y="40" width="65" height="17"/>
+                            <rect key="frame" x="111" y="40" width="65" height="17"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                             <color key="textColor" red="0.1764705882" green="0.1333333333" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -121,10 +121,10 @@
                     <constraints>
                         <constraint firstItem="bcT-oe-jCW" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="6" id="6pz-ij-5nU"/>
                         <constraint firstItem="Oys-D0-d9b" firstAttribute="centerX" secondItem="wBz-We-C2u" secondAttribute="centerX" constant="-2" id="7Xt-qB-mCn"/>
-                        <constraint firstItem="Oys-D0-d9b" firstAttribute="leading" secondItem="fid-yH-MEf" secondAttribute="trailing" constant="2" id="8Qz-jW-LwH"/>
                         <constraint firstAttribute="trailing" secondItem="Xvb-Pa-iMT" secondAttribute="trailing" constant="12" id="8X5-mF-Bu4"/>
                         <constraint firstItem="fid-yH-MEf" firstAttribute="baseline" secondItem="dUH-xH-sbU" secondAttribute="baseline" id="A5D-vR-zDQ"/>
                         <constraint firstItem="dUH-xH-sbU" firstAttribute="firstBaseline" secondItem="wh2-Li-LqP" secondAttribute="baseline" constant="-2" id="M0a-v7-xcR"/>
+                        <constraint firstItem="Oys-D0-d9b" firstAttribute="leading" secondItem="fid-yH-MEf" secondAttribute="trailing" constant="9" id="Mf7-mb-dof"/>
                         <constraint firstItem="3Ij-Yi-cXb" firstAttribute="top" secondItem="fid-yH-MEf" secondAttribute="top" constant="2" id="NqJ-AA-Agd"/>
                         <constraint firstItem="fid-yH-MEf" firstAttribute="leading" secondItem="3Ij-Yi-cXb" secondAttribute="trailing" constant="5" id="PPq-7d-ZWb"/>
                         <constraint firstItem="Oys-D0-d9b" firstAttribute="top" secondItem="wBz-We-C2u" secondAttribute="top" constant="39" id="TER-bB-64B"/>

@@ -10,6 +10,7 @@ import UIKit
 
 class DropShadow1: UIView {
 
+    @IBOutlet weak var dropShadow: UIView!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -27,5 +28,6 @@ class DropShadow1: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        dropShadow.layer.cornerRadius = 5
     }
 }

@@ -69,7 +69,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.videoContainer.player = self.player
             var videoUrl:URL!
             if feed["type"].stringValue == "travel-life" {
-                videoContainer.tagText.text = "On The Go"
+                videoContainer.tagText.text = "Travel Life"
                 videoContainer.tagView.backgroundColor = mainOrangeColor
             }else{
                 videoContainer.tagText.text = "  Local Life"
@@ -95,7 +95,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             headerTag.tagLine.isHidden = true
             
             self.mainPhoto.addSubview(headerTag)
-            if headerTag.tagText.text == "On The Go"{
+            if headerTag.tagText.text == "Travel Life"{
                 profileHeader.category.imageView?.tintColor = UIColor.white
             } else {
                 profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
@@ -157,7 +157,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                     headerTag.colorTag(feed: feed)
                     
                     self.mainPhoto.addSubview(headerTag)
-                    if headerTag.tagText.text == "On The Go"{
+                    if headerTag.tagText.text == "Travel Life"{
                         profileHeader.category.imageView?.tintColor = UIColor.white
                     } else {
                         profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
@@ -212,6 +212,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
           
             self.addSubview(footerViewReview)
+            dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+            self.addSubview(dropView)
            
         } else {
             print("in footer")
@@ -226,6 +228,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView.setView(feed:feed)
             self.addSubview(footerView)
             dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+            dropView.dropShadow.layer.cornerRadius = 1
             self.addSubview(dropView)
              
         }

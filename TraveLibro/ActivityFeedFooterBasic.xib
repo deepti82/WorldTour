@@ -52,7 +52,7 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dAS-7j-w10">
                                     <rect key="frame" x="8" y="-13" width="359" height="1"/>
-                                    <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.52549019607843139" green="0.52549019607843139" blue="0.52549019607843139" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="0nC-VH-0CM"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0.5" id="hQG-6b-ks7"/>
@@ -60,7 +60,7 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXI-7X-F2B">
                                     <rect key="frame" x="8" y="35" width="359" height="1"/>
-                                    <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.52549019607843139" green="0.52549019607843139" blue="0.52549019607843139" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="Jwm-4N-Mf7"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0.5" id="bfh-u4-V8g"/>
@@ -102,7 +102,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBf-nG-Ire">
-                                    <rect key="frame" x="330" y="0.0" width="25" height="25"/>
+                                    <rect key="frame" x="331" y="0.0" width="25" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="fzX-FH-Tqr"/>
                                         <constraint firstAttribute="height" constant="25" id="nzl-WD-5d9"/>
@@ -115,7 +115,7 @@
                                     </connections>
                                 </button>
                                 <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="y7T-l1-bKs">
-                                    <rect key="frame" x="238" y="5" width="87" height="15"/>
+                                    <rect key="frame" x="239" y="5" width="87" height="15"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_check" translatesAutoresizingMaskIntoConstraints="NO" id="yt3-x9-L3t">
                                             <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
@@ -152,7 +152,7 @@
                                     </constraints>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r7S-sC-DRi">
-                                    <rect key="frame" x="238" y="-2" width="93" height="27"/>
+                                    <rect key="frame" x="239" y="-2" width="93" height="27"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="27" id="mHf-Qb-0cZ"/>
                                     </constraints>
@@ -167,7 +167,7 @@
                             </subviews>
                             <constraints>
                                 <constraint firstItem="r7S-sC-DRi" firstAttribute="top" secondItem="dAS-7j-w10" secondAttribute="bottom" constant="10" id="4SF-dU-mwb"/>
-                                <constraint firstAttribute="trailing" secondItem="RBf-nG-Ire" secondAttribute="trailing" constant="20" id="7ZJ-uy-Mnj"/>
+                                <constraint firstAttribute="trailing" secondItem="RBf-nG-Ire" secondAttribute="trailing" constant="19" id="7ZJ-uy-Mnj"/>
                                 <constraint firstItem="OXI-7X-F2B" firstAttribute="top" secondItem="r7S-sC-DRi" secondAttribute="bottom" constant="10" id="BUy-bn-MWf"/>
                                 <constraint firstItem="r7S-sC-DRi" firstAttribute="top" secondItem="qvl-ew-O1r" secondAttribute="top" constant="-2" id="Fdx-1e-vuX"/>
                                 <constraint firstItem="RBf-nG-Ire" firstAttribute="leading" secondItem="r7S-sC-DRi" secondAttribute="trailing" constant="-1" id="WFf-TJ-9fe"/>
