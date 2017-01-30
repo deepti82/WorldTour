@@ -68,7 +68,8 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
                 videoContainer.tagText.text = "On The Go"
 //                videoContainer.tagView.backgroundColor = mainOrangeColor
             }else{
-                videoContainer.tagText.text = "Local Life"
+                videoContainer.tagText.text = "  Local Life"
+                videoContainer.tagText.textAlignment = .center
                 videoContainer.tagText.textColor = UIColor(hex: "303557")
                 videoContainer.tagView.backgroundColor = endJourneyColor
             }

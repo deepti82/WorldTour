@@ -41,6 +41,7 @@ class VideoView: UIView {
         toggleSound.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         toggleSound.clipsToBounds = true
         toggleSound.layer.cornerRadius = 5
+        
     }
     
     @IBAction func toggleSoundTap(_ sender: Any) {
