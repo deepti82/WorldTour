@@ -183,7 +183,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
         
-        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 62, width: self.view.frame.width, height: 62))
+        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 60, width: self.view.frame.width, height: 60))
         self.view.addSubview(footer)
 
         

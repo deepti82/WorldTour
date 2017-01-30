@@ -23,9 +23,9 @@
                 <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="eqh-AU-2QQ">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                     <subviews>
-                        <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dja-Ex-H97">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dja-Ex-H97">
                             <rect key="frame" x="8" y="93" width="359" height="0.5"/>
-                            <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="0.90219609109999999" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                     </subviews>
                     <constraints>

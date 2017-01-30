@@ -95,8 +95,14 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             headerTag.tagLine.isHidden = true
             
             self.mainPhoto.addSubview(headerTag)
+            if headerTag.tagText.text == "On The Go"{
+                profileHeader.category.imageView?.tintColor = UIColor.white
+            } else {
+                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+            }
             
-            
+
+        
             self.addSubview(mainPhoto)
             let heightForBlur = 10;
             var thumbStr = "";
@@ -151,6 +157,13 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                     headerTag.colorTag(feed: feed)
                     
                     self.mainPhoto.addSubview(headerTag)
+                    if headerTag.tagText.text == "On The Go"{
+                        profileHeader.category.imageView?.tintColor = UIColor.white
+                    } else {
+                        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+                    }
+                    
+
 
                 }
                 
@@ -248,7 +261,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
         profileHeader.fillProfileHeader(feed:feed)
         
-        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+      
         
         self.addSubview(profileHeader)
         
@@ -268,6 +281,12 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 textTag.colorTag(feed: feed)
                 
                 self.addSubview(textTag)
+                if textTag.tagText.text == "On The Go"{
+                    profileHeader.category.imageView?.tintColor = UIColor.white
+                } else {
+                    profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+                }
+
             }
 
         }else{
@@ -299,7 +318,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
         }
         
-    }
+           }
     func setText(text: String) {
         textHeader.headerText.text = text
         self.addSubview(textHeader)
