@@ -78,14 +78,14 @@ class AddYourRatingViewController: UIViewController {
     func addRating(post: JSON) {
         print("One post ..............")
         print(post)
-        let rating = Rating(frame: CGRect(x: 0, y: 0, width: layout.frame.width, height: 225))
+        let rating = Rating(frame: CGRect(x: 0, y: 0, width: layout.frame.width, height: 167))
         if post["city"] != nil {
             rating.checkInTitle.text = "\(post["city"].string!.capitalized)"
         }else{
             rating.checkInTitle.text = ""
         }
         
-//        rating.reviewDescription.text = post["review"].string!
+        rating.reviewDescription.text = post["review"].string!
         rating.date.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "dd-MM-yyyy", date: post["createdAt"].string!, isDate: true)
         rating.time.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSZ", getFormat: "h:mm a", date: post["createdAt"].string!, isDate: false)
         rating.lines = rating.reviewDescription.text!.characters.count/55
