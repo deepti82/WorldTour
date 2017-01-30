@@ -1,11 +1,3 @@
-//
-//  SignInViewController.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 19/05/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 import SwiftHTTP
 import Player
@@ -30,12 +22,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
     
     var videoHeight:CGFloat!
     var horizontal:HorizontalLayout!
-//    var request = HTTPTask()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let videoWidth = videoScrollView.frame.width
-        videoHeight = videoScrollView.frame.height
+        videoHeight = screenHeight
         videoScrollView.delegate = self
         self.horizontal = HorizontalLayout(height: videoHeight)
         self.videoScrollView.addSubview(horizontal)
@@ -50,7 +41,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         self.player1.view.clipsToBounds = true
         self.player1.playbackLoops = true
         self.player1.muted = true
-        self.player1.fillMode = "AVLayerVideoGravityResizeAspect"
+        self.player1.fillMode = "AVLayerVideoGravityResizeAspectFill"
         self.player1.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/travellife.mp4")!)
         imageView1.addSubview(self.player1.view)
         
@@ -67,7 +58,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         self.player2.view.clipsToBounds = true
         self.player2.playbackLoops = true
         self.player2.muted = true
-        self.player2.fillMode = "AVLayerVideoGravityResizeAspect"
+        self.player2.fillMode = "AVLayerVideoGravityResizeAspectFill"
         self.player2.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/locallife.mp4")!)
         imageView2.addSubview(self.player2.view)
         self.horizontal.addSubview(imageView2)
@@ -83,7 +74,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         self.player3.view.clipsToBounds = true
         self.player3.playbackLoops = true
         self.player3.muted = true
-        self.player3.fillMode = "AVLayerVideoGravityResizeAspect"
+        self.player3.fillMode = "AVLayerVideoGravityResizeAspectFill"
         self.player3.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/mylife.mp4")!)
         imageView3.addSubview(self.player3.view)
         self.horizontal.addSubview(imageView3)
@@ -125,65 +116,42 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        
         ipTextField.resignFirstResponder()
-        
         if ipTextField.text != nil && ipTextField.text != "" {
-            
             adminUrl = "http://" + ipTextField.text! + "/api/"
-            
         }
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         ipTextField.resignFirstResponder()
-        
         if ipTextField.text != nil && ipTextField.text != "" {
-            
             adminUrl = "http://" + ipTextField.text! + "/api/"
-            
         }
         return true
-        
     }
    
     func googleSignIn(_ sender: UIButton) {
-        
-        print("google sign in")
         social.googleLogin()
-        
     }
     
     func facebookSignIn(_ sender: UIButton) {
-        
-        print("facebook sign in")
-        
-//        Facebook.init()
-        print("storyboard: \(self.storyboard)")
         social.facebookLogin()
     }
     
     func twitterSignIn(_ sender: UIButton) {
-        
-        print("storyboard: \(self.storyboard)")
         social.twitterLogin()
-        
     }
     
     func goToSignUp(_ sender: AnyObject) {
         print("storyboard: \(self.navigationController)")
         let signUpFullVC = storyboard?.instantiateViewController(withIdentifier: "signUpTwo") as! SignInPageViewController
         self.navigationController?.pushViewController(signUpFullVC, animated: true)
-        
     }
     
     func loginButtonTapped(_ sender: AnyObject) {
-        
         let logInVC = storyboard?.instantiateViewController(withIdentifier: "logIn") as! LogInViewController
         self.navigationController?.pushViewController(logInVC, animated: true)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -200,16 +168,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         player1.stop()
         player2.stop()
         player3.stop()
-        
         let i = Int(pageNumber)
         print(i);
         switch(i) {
         case 0:
-            player1.playFromCurrentTime()
+            player1.playFromBeginning()
         case 1:
-            player2.playFromCurrentTime()
+            player2.playFromBeginning()
         case 2:
-            player3.playFromCurrentTime()
+            player3.playFromBeginning()
         default: break
         }
     }

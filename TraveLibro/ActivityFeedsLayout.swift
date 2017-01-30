@@ -268,7 +268,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             //  START ACTIVITY TEXT HEADER
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 0))
-            textHeader.headerText.text = feed["thoughts"].stringValue
+            textHeader.headerText.text = getThought(feed)
             textHeader.headerText.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             self.addSubview(textHeader)
