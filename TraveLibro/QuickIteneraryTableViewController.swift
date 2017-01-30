@@ -131,7 +131,7 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
                     cell.textLabel?.text = self.countriesSearchResults[indexPath.row]["name"].stringValue
                 }
             }
-        }else{
+        } else{
             cell.textLabel?.text = self.countries[indexPath.row]["name"].stringValue
         }
         return cell
