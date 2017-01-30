@@ -233,7 +233,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             self.newScroll.addSubview(self.addView)
             self.newScroll.contentSize.height = self.view.frame.height
             backView.addSubview(newScroll)
-            
+        
             let leftButton = UIButton()
             leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -251,7 +251,13 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             addView.layer.zPosition = 10
             backView.layer.zPosition = 10
             newScroll.contentSize.height = self.view.frame.height
-            
+            addView.locationTag.tintColor = UIColor(hex: "#11d3cb")
+            addView.photoTag.tintColor = UIColor(hex: "#11d3cb")
+            addView.friendsTag.tintColor = UIColor(hex: "#11d3cb")
+            addView.friendsTag.tintColor = UIColor(hex: "#11d3cb")
+            addView.videoTag.tintColor = UIColor(hex: "#11d3cb")
+            addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
+            addView.thoughtInitialTag.tintColor = UIColor(hex: "#11d3cb")
         }
         
     }
