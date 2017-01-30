@@ -35,8 +35,10 @@ class ActivityFeedFooterBasic: UIView {
     @IBOutlet weak var commentCount: UILabel!
     var topLayout:VerticalLayout!
     var backgroundReview: UIView!
+    var newRating:JSON!
     
     var type="ActivityFeeds"
+    var footerType = ""
     var dropView: DropShadow1!
     var likeCount:Int = 0
     var commentCounts:Int = 0
@@ -47,6 +49,9 @@ class ActivityFeedFooterBasic: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOffset = CGSize.zero
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,6 +89,7 @@ class ActivityFeedFooterBasic: UIView {
     var videoCount = 0
     
     func setView(feed:JSON) {
+        postTop = feed
         //  RATING
         if feed["type"].stringValue == "travel-life" {
             localLifeTravelImage.image = UIImage(named: "travel_life")
@@ -109,7 +115,7 @@ class ActivityFeedFooterBasic: UIView {
         if feed["review"][0] != nil && feed["review"].count > 0 {
             ratingStack.isHidden = false
             rateThisButton.isHidden = true
-            afterRating(starCnt: feed["review"][0]["rating"].intValue)
+            afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue)
         }else{
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
                 if currentUser["_id"].stringValue == postTop["postCreator"]["_id"].stringValue {
@@ -145,12 +151,24 @@ class ActivityFeedFooterBasic: UIView {
         rating.activityJson = postTop
         rating.activityBasic = self
         rating.checkView = "activityFeed"
+       
         
         if postTop["review"][0]["rating"] != nil  && postTop["review"].count != 0 {
+            if newRating != nil {
+                rating.starCount = newRating["rating"].intValue
+                rating.ratingDisplay(newRating)
+            }else{
             rating.starCount = postTop["review"][0]["rating"].intValue
             rating.ratingDisplay(postTop["review"][0])
+            }
         }else{
+            if newRating != nil {
+                rating.starCount = newRating["rating"].intValue
+                rating.ratingDisplay(newRating)
+
+            }else{
             rating.starCount = 1
+            }
         }
         
         
@@ -175,7 +193,8 @@ class ActivityFeedFooterBasic: UIView {
         }
     }
     
-    func afterRating(starCnt:Int) {
+    func afterRating(starCnt:Int, review:String) {
+        print(starCnt)
         if starCnt != 0 {
             print("start rating")
             for rat in starImageArray {
@@ -191,12 +210,16 @@ class ActivityFeedFooterBasic: UIView {
                     
                 }
             }
+            print("check riview changed")
+            newRating = ["rating":"\(starCnt)","review":review]
+            print(newRating)
             ratingStack.isHidden = false
             rateThisButton.isHidden = true
         }
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
+        print("in activity feed layout \(type)")
         if type == "TripPhotos" {
             let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
             comment.postId = photoPostId
@@ -204,9 +227,12 @@ class ActivityFeedFooterBasic: UIView {
             //            if singlePhotoJSON != nil {
             comment.otherId = postTop["name"].stringValue
             comment.photoId = photoId
+            
             //            }
-            if(self.type == "Video") {
+            if(self.footerType == "videos") {
                 comment.type = "Video"
+            }else{
+                comment.type = "Photo"
             }
             globalNavigationController?.setNavigationBarHidden(false, animated: true)
             globalNavigationController?.pushViewController(comment, animated: true)
@@ -314,7 +340,39 @@ class ActivityFeedFooterBasic: UIView {
             sender.tag = 1
         }
         if type == "TripPhotos" {
-            request.postPhotosLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+            if footerType == "photos" {
+                request.postPhotosLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+                    
+                    DispatchQueue.main.async(execute: {
+                        
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            if sender.tag == 1 {
+                                self.setLikeSelected(true)
+                                self.likeCount = self.likeCount + 1
+                                self.setLikeCount(self.likeCount)
+                            }
+                            else {
+                                self.setLikeSelected(false)
+                                if self.likeCount <= 0 {
+                                    self.likeCount = 0
+                                } else {
+                                    self.likeCount = self.likeCount - 1
+                                }
+                                self.setLikeCount(self.likeCount)
+                            }
+                        }
+                        else {
+                            
+                        }
+                        
+                    })
+                    
+                })
+            }else if footerType == "videos"{
+            request.postVideoLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -344,6 +402,7 @@ class ActivityFeedFooterBasic: UIView {
                 })
                 
             })
+            }
         }else{
             
             request.likePost(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in

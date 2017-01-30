@@ -147,6 +147,7 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
             footerView.postTop = feed
             footerView.topLayout = self
             footerView.type = "TripPhotos"
+            footerView.footerType = type
             footerView.photoId = feed["_id"].stringValue
             footerView.photoPostId = feed["post"].stringValue
             

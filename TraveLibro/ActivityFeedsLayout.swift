@@ -219,12 +219,12 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             print("in footer")
             footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
             
-            footerView.postTop = feed
+//            footerView.postTop = feed
             footerView.topLayout = self
             footerView.type = "ActivityFeeds"
             
-            footerView.setCommentCount(footerView.postTop["commentCount"].intValue)
-            footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
+            footerView.setCommentCount(feed["commentCount"].intValue)
+            footerView.setLikeCount(feed["likeCount"].intValue)
             footerView.setView(feed:feed)
             self.addSubview(footerView)
             dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))

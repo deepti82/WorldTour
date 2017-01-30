@@ -54,6 +54,9 @@ class AddRating: UIView, UITextViewDelegate {
             self.activity.reviewTapOut(UITapGestureRecognizer())
             
         }else if checkView == "activityFeed" {
+            self.activityBasic.afterRating(starCnt: starCount, review: reviewBody)
+//            self.activityBasic.postTop["review"][0]["rating"] = JSON(starCount)
+
             self.activityBasic.reviewTapOut(UITapGestureRecognizer())
         }else{
             self.checkIn.modifyAsReview(num: (self.starCount - 1), reviewR: reviewBody)
@@ -112,7 +115,7 @@ class AddRating: UIView, UITextViewDelegate {
             }
             
             if self.checkView == "activityFeed" {
-                self.activityBasic.afterRating(starCnt: self.starCount)
+                self.activityBasic.afterRating(starCnt: self.starCount, review: reviewBody)
             }
             
             request.rateCheckIn(currentUser["_id"].string!, postId: postId, rating: "\(starCount)", review: reviewBody, completion: {(response) in
@@ -174,7 +177,7 @@ class AddRating: UIView, UITextViewDelegate {
     func ratingDisplay(_ review: JSON) {
         print("display rating")
         print(review)
-        if review["review"].string == "" {
+        if review["review"].string == "" || review["review"] == nil {
             reviewTextView.text = "Fill Me In..."
         }else{
             reviewTextView.text = review["review"].string!

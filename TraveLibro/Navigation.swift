@@ -1568,11 +1568,11 @@ class Navigation {
         }
     }
     
-    func commentOnVideos(id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
+    func commentOnVideos(id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: [String], mentions: [String], videoId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "video", "hashtag" : hashtags] as [String : Any]
+            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "video", "hashtag" : hashtags, "video":videoId] as [String : Any]
             
             print("set photo comment params: \(params)")
             
@@ -1646,11 +1646,11 @@ class Navigation {
         }
     }
     
-    func getVideoComments(_ id: String, userId: String, completion: @escaping ((JSON) -> Void)) {
+    func getVideoComments(_ id: String, userId: String, pageno: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": id, "user": userId]
+            let params = ["_id": id, "user": userId, "pagenumber": pageno] as [String : Any]
             
             print("comment params: \(params)")
             
@@ -2331,10 +2331,17 @@ class Navigation {
         
     }
     
-    func editComment(type: String, commentId: String, commentText: String, userId:  String, userName: String, hashtag: [String], addedHashtags: [String], removedHashtags: [String], completion: @escaping ((JSON) -> Void)) {
+    func editComment(type: String, commentId: String, commentText: String, userId:  String, userName: String, hashtag: [String], addedHashtags: [String], removedHashtags: [String], photoId:String, completion: @escaping ((JSON) -> Void)) {
+        print("my type")
+        print(type)
         
         do {
-            let params = ["type":type, "_id": commentId, "text": commentText, "user": userId, "name": userName, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
+            var params = ["type":type, "_id": commentId, "text": commentText, "user": userId, "name": userName, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
+            if type == "Photo" {
+                params = ["type":"photo", "_id": commentId, "text": commentText, "user": userId, "name": userName, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "photo": photoId] as [String: Any]
+            } else {
+                params = ["type":"video", "_id": commentId, "text": commentText, "user": userId, "name": userName, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "video": photoId] as [String: Any]
+            }
             
             let opt = try HTTP.POST(adminUrl + "comment/editComment", parameters: params)
             var json = JSON(1);

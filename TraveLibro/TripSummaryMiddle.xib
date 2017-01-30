@@ -22,6 +22,7 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q7A-lm-ajb">
                     <rect key="frame" x="50" y="4" width="275" height="88"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jLk-Xi-3hK">
                     <rect key="frame" x="20" y="0.0" width="335" height="1"/>

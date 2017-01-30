@@ -37,6 +37,8 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("type type typ\(type)")
+        
         navigationBar.backgroundColor = mainBlueColor
         navigationBar.tintColor = UIColor.white
         navigationBar.barStyle = .black
@@ -99,7 +101,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             addedHashtags = Array(set2.subtracting(intersection))
             removedHashtags = Array(set1.subtracting(intersection))
             
-            request.editComment(type: "photo", commentId: addComment["_id"].string!, commentText: editComment.text, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, completion: {(response) in
+            request.editComment(type: type, commentId: addComment["_id"].string!, commentText: editComment.text, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: photoId, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -485,7 +487,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     func setAllComments(_ comment: String) {
         
         if(self.type == "Video" ) {
-            request.commentOnVideos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, completion: {(response) in
+            request.commentOnVideos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, videoId: photoId, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -536,7 +538,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     
     func getAllComments() {
         if(self.type == "Video" ) {
-            request.getVideoComments(photoId, userId: currentUser["_id"].string!, completion: {(response) in
+            request.getVideoComments(photoId, userId: currentUser["_id"].string!, pageno:1, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
