@@ -17,6 +17,10 @@ class BuddyOTG: UIView {
         infoview.clipsToBounds = true
         drawLine.backgroundColor = UIColor.clear
         
+        timestamp.shadowColor = UIColor.black
+        timestamp.shadowOffset = CGSize(width: 0.8, height: 0.8)
+
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

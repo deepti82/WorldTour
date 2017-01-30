@@ -251,13 +251,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             addView.layer.zPosition = 10
             backView.layer.zPosition = 10
             newScroll.contentSize.height = self.view.frame.height
-            addView.locationTag.tintColor = UIColor(hex: "#11d3cb")
-            addView.photoTag.tintColor = UIColor(hex: "#11d3cb")
-            addView.friendsTag.tintColor = UIColor(hex: "#11d3cb")
-            addView.friendsTag.tintColor = UIColor(hex: "#11d3cb")
-            addView.videoTag.tintColor = UIColor(hex: "#11d3cb")
-            addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
-            addView.thoughtInitialTag.tintColor = UIColor(hex: "#11d3cb")
+            
         }
         
     }
@@ -280,6 +274,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             lat = String(self.addView.currentLat!)
             if(lat == "0.0") {
                 lat = ""
+               
             }
         }
         var lng = ""
@@ -287,6 +282,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             lng = String(self.addView.currentLong!)
             if(lng == "0.0") {
                 lng = ""
+                addView.locationTag.tintColor = UIColor(hex: "#11d3cb")
             }
         }
         var category = ""
@@ -302,6 +298,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             location = (self.addView.addLocationButton.titleLabel?.text)!
             if(location == "Add Location") {
                 location = ""
+                
             }
         }
         

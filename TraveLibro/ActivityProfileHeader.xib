@@ -62,9 +62,9 @@
                                 <constraint firstAttribute="width" constant="35" id="POu-Uf-7ty"/>
                                 <constraint firstAttribute="height" constant="35" id="cdO-np-CFR"/>
                             </constraints>
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                            <state key="normal" image="location_icon" backgroundImage="orangebox"/>
+                            <state key="normal" image="location_icon"/>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IjA-We-BE0">
                             <rect key="frame" x="71" y="38" width="204" height="17"/>
@@ -178,6 +178,5 @@
     <resources>
         <image name="location_icon" width="200" height="200"/>
         <image name="logo-default" width="600" height="600"/>
-        <image name="orangebox" width="117" height="117"/>
     </resources>
 </document>

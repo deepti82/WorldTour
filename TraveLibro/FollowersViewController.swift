@@ -51,17 +51,20 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
 //            facebookShare.setTitle(String(format: "%C", faicon["fbSquare"]!), for: UIControlState())
             configureSearchController()
             getFollowing()
+            
         } else if whichView == "No Followers" {
             shareView.removeFromSuperview()
             seperatorView.removeFromSuperview()
             followerTable.removeFromSuperview()
             let nofollow = NoFollowers(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 250))
             self.view.addSubview(nofollow)
+            followersDefaultText.isHidden = true
         } else {
             mailShare.setTitle(String(format: "%C", faicon["email"]!), for: UIControlState())
             whatsappShare.setTitle(String(format: "%C", faicon["whatsapp"]!), for: UIControlState())
 //            facebookShare.setTitle(String(format: "%C", faicon["facebook"]!), for: UIControlState())
             getFollowers()
+            followersDefaultText.isHidden = true
         }
     }
     
@@ -172,9 +175,11 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         searchController.dimsBackgroundDuringPresentation = false
         searchText = searchController.searchBar.text!
         if whichView == "Following" {
+            
             getFollowing()
         }else{
             getFollowers()
+            followersDefaultText.isHidden = true
         }
         followerTable.reloadData()
     }

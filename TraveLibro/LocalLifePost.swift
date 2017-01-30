@@ -65,7 +65,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             var videoUrl:URL!
             self.videoContainer.tagText.isHidden = true
             if feed["type"].stringValue == "travel-life" {
-                videoContainer.tagText.text = "On The Go"
+                videoContainer.tagText.text = "Travel Life"
 //                videoContainer.tagView.backgroundColor = mainOrangeColor
             }else{
                 videoContainer.tagText.text = "  Local Life"
