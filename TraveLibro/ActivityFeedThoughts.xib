@@ -22,8 +22,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkc-GL-t3n">
-                    <rect key="frame" x="0.0" y="10" width="434" height="1"/>
-                    <color key="backgroundColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="8" y="10" width="418" height="1"/>
+                    <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7PF-5U-OPz">
                     <rect key="frame" x="0.0" y="27" width="1" height="1"/>
@@ -41,9 +41,9 @@
                 <constraint firstAttribute="bottom" secondItem="7PF-5U-OPz" secondAttribute="bottom" constant="101" id="6aJ-6I-J8b"/>
                 <constraint firstItem="7PF-5U-OPz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7LQ-l4-rmp"/>
                 <constraint firstItem="7PF-5U-OPz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-216.5" id="DQR-FN-20q"/>
-                <constraint firstItem="kkc-GL-t3n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eiN-VQ-38F"/>
+                <constraint firstItem="kkc-GL-t3n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="eiN-VQ-38F"/>
                 <constraint firstItem="7PF-5U-OPz" firstAttribute="top" secondItem="kkc-GL-t3n" secondAttribute="bottom" constant="16" id="iLo-56-Tl4"/>
-                <constraint firstAttribute="trailing" secondItem="kkc-GL-t3n" secondAttribute="trailing" id="wcK-Ww-G69"/>
+                <constraint firstAttribute="trailing" secondItem="kkc-GL-t3n" secondAttribute="trailing" constant="8" id="wcK-Ww-G69"/>
                 <constraint firstAttribute="trailing" secondItem="7PF-5U-OPz" secondAttribute="trailing" constant="433" id="yjB-c7-jlc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
