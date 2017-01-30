@@ -1591,6 +1591,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var currentPhotoFooter:PhotoOTGFooter!
     func changeDateAndTime(_ footer:PhotoOTGFooter) {
+        print(footer.postTop.jsonPost);
         currentPhotoFooter = footer
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
@@ -1598,6 +1599,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.inputview.backgroundColor = UIColor.white
         self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
         self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+        self.datePickerView.minimumDate = dateFormatter.date(from: myJourney["startTime"].string!)
+        self.datePickerView.date = dateFormatter.date(from: footer.postTop.jsonPost["UTCModified"].stringValue)!
         self.datePickerView.maximumDate = Date()
         self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
         self.backView.backgroundColor = UIColor(hex: "#272b49")

@@ -21,7 +21,6 @@ public class Post {
     var buddiesStr:String = "[]"
     var buddies:[Buddy] = []
     var buddyJson:[JSON] = []
-    // id, userid, journeyuniqueid, posttype, photos[], videos[], thought, checkin[], buddies[], iscompleted
     
     let id = Expression<Int64>("id")
     let type = Expression<String>("postType")
