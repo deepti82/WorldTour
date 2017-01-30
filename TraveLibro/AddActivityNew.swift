@@ -288,6 +288,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
+        
         addLocationTapped();
         
         self.addLocationButton.addTarget(self, action: #selector(self.gotoSearchLocation(_:)), for: .touchUpInside)
@@ -506,10 +507,15 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
                         print("error: \(response.error?.localizedDescription)")
                     }
                     else if response["value"].bool! {
-                        print(response["data"]);
+                        if(self.typeOfAddActivtiy != "EditActivity" && self.typeOfAddActivtiy != "AddPhotosVideos") {
+                            self.clearLocation(UIButton())
+                        } else {
+                            if(self.editPost.post_location == "") {
+                                self.clearLocation(UIButton())
+                            }
+                        }
                         self.locationArray = response["data"].array!;
                         self.getAllLocations();
-                        self.clearLocation(UIButton())
                         self.addLocationText.isHidden = true
                     }
                 })

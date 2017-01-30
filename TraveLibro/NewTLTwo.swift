@@ -142,7 +142,7 @@ extension NewTLViewController {
         self.addView.frame = self.view.frame
         self.addView.editPost = post
         self.addView.newScroll = self.newScroll;
-        self.newScroll.addSubview(self.addView)
+        
         self.newScroll.contentSize.height = self.view.frame.height
         backView.addSubview(newScroll)
         
@@ -181,7 +181,7 @@ extension NewTLViewController {
         self.addView.tagFriendsView.alpha = 1
         self.addView.tagFriendsView.isUserInteractionEnabled = true
         self.addView.typeOfAddActivtiy = "AddPhotosVideos"
-        
+        self.newScroll.addSubview(self.addView)
     }
     
     func showEditActivity(_ post:Post) {
@@ -210,7 +210,7 @@ extension NewTLViewController {
         self.addView.frame = self.view.frame
         self.addView.editPost = post
         self.addView.newScroll = self.newScroll;
-        self.newScroll.addSubview(self.addView)
+        
         self.newScroll.contentSize.height = self.view.frame.height
         backView.addSubview(newScroll)
         
@@ -261,6 +261,8 @@ extension NewTLViewController {
         }
         self.addView.prevBuddies = post.jsonPost["buddies"].array!
         self.addView.buddyAdded(post.jsonPost["buddies"].array!)
+        
+        self.newScroll.addSubview(self.addView)
     }
     
     

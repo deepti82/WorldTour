@@ -1216,12 +1216,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             }
         }
         
-        //        for image in checkIn.otherPhotosStack {
-        //
-        //            image.isHidden = true
-        //
-        //        }
-        
         if post["photos"] != nil && post["photos"].array!.count > 0 {
             
             photos = post["photos"].array!
