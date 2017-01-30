@@ -124,7 +124,6 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
         if isSearch {
             if(self.countriesSearchResults.count > indexPath.row) {
                 if(indexPath.row < self.countriesSearchResults.count) {
@@ -135,8 +134,8 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
             cell.textLabel?.text = self.countries[indexPath.row]["name"].stringValue
         }
         return cell
-        
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isSearch {
             if selectedStatus == "country" {
@@ -151,14 +150,12 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
                 let c:JSON = countriesSearchResults[indexPath.row]
                 print(c)
                 if !selectedCity.contains(where: {$0.1["placeId"] == c["placeId"]}) {
-                    
                     selectedCity.arrayObject?.append(c.object)
                 }else{
                     let tstr = Toast(text: "City already exist")
                     tstr.show()
                 }
             }
-            
         } else {
             if selectedStatus == "country" {
                 selectedCountry = countries[indexPath.row]
