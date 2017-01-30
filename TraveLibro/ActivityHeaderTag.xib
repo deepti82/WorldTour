@@ -44,7 +44,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bB4-zI-Ydl">
                     <rect key="frame" x="8" y="29" width="359" height="1"/>
-                    <color key="backgroundColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.78823529411764703" green="0.79607843137254897" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="Qbb-BC-29c"/>
                     </constraints>
