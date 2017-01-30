@@ -126,8 +126,10 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
         var cell = self.tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         if isSearch {
-            if(indexPath.row < self.countriesSearchResults.count) {
-                cell.textLabel?.text = self.countriesSearchResults[indexPath.row]["name"].stringValue
+            if(self.countriesSearchResults.count > indexPath.row) {
+                if(indexPath.row < self.countriesSearchResults.count) {
+                    cell.textLabel?.text = self.countriesSearchResults[indexPath.row]["name"].stringValue
+                }
             }
         }else{
             cell.textLabel?.text = self.countries[indexPath.row]["name"].stringValue

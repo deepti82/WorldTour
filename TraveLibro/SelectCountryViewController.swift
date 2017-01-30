@@ -560,22 +560,15 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
 
              if shouldShowSearchResults && filteredArray != nil {
                 
-
-                print(filteredArray[(indexPath as NSIndexPath).row])
-
-                cell.countryName.text = filteredArray[(indexPath as NSIndexPath).row]["name"].string!
-                cell.flagImage.hnk_setImageFromURL(getImageURL(filteredArray[indexPath.row]["flag"].stringValue,width:100))
-//                let image = filteredArray[(indexPath as NSIndexPath).row]["flag"].string!
-//                setImage(cell.flagImage, imageName: image)
-
+                if(filteredArray.count > indexPath.row) {
+                    cell.countryName.text = filteredArray[(indexPath as NSIndexPath).row]["name"].string!
+                    cell.flagImage.hnk_setImageFromURL(getImageURL(filteredArray[indexPath.row]["flag"].stringValue,width:100))
+                }
             }
-            
             else {
                 print(countries[(indexPath as NSIndexPath).row])
                 cell.countryName.text = countries[(indexPath as NSIndexPath).row]["name"].string!
                 cell.flagImage.hnk_setImageFromURL(getImageURL(countries[indexPath.row]["flag"].stringValue,width:100))
-//                let image = filteredArray[(indexPath as NSIndexPath).row]["flag"].string!
-//                setImage(cell.flagImage, imageName: image)
 
             }
             
