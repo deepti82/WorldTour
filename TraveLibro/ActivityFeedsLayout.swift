@@ -75,7 +75,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 videoContainer.tagText.text = "Local Life"
                 videoContainer.tagText.textColor = UIColor(hex: "#303557")
                 videoContainer.tagView.backgroundColor = endJourneyColor
-                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+//                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
             }
             videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
             self.player.setUrl(videoUrl!)
@@ -248,7 +248,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
         profileHeader.fillProfileHeader(feed:feed)
         
-        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+//        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
         
         self.addSubview(profileHeader)
         
