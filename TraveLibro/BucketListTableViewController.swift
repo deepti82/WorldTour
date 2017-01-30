@@ -9,8 +9,6 @@ class BucketListTableViewController: UITableViewController  {
     var bucket: [JSON] = []
     var result: [JSON] = []
     //    var countriesVisited: [JSON] = []
-    
-   
     var isComingFromEmptyPages = false
     
     override func viewDidLoad() {

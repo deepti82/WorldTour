@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuickItineraryPreview" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="cityScroll" destination="2LA-Y5-xTf" id="sF1-yY-CWY"/>
+                <outlet property="cityScroller" destination="xNV-0B-qls" id="wIR-L6-ikV"/>
                 <outlet property="countryScroll" destination="VpJ-Pa-hoC" id="JI7-d9-6FI"/>
                 <outlet property="dateTime" destination="jlz-ag-Rzg" id="eN1-uP-GTb"/>
                 <outlet property="displayPiture" destination="uGM-ah-bNv" id="fwa-Hw-PVo"/>
@@ -70,8 +70,8 @@
                                         <constraint firstAttribute="width" constant="45" id="kE1-pH-6zd"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SaiGanesh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7U-ZR-A4Z">
-                                    <rect key="frame" x="61" y="16.5" width="82.5" height="23.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7U-ZR-A4Z">
+                                    <rect key="frame" x="61" y="16" width="16" height="24"/>
                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -158,14 +158,14 @@
                                         <constraint firstAttribute="height" constant="65" id="zz2-Ku-ADD"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Love In Paris" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItY-yF-83P">
-                                    <rect key="frame" x="8" y="10" width="130" height="30.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItY-yF-83P">
+                                    <rect key="frame" x="8" y="10" width="20" height="31"/>
                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9uV-0Q-Inc">
-                                    <rect key="frame" x="8" y="45" width="95" height="25"/>
+                                    <rect key="frame" x="8" y="46" width="95" height="25"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adventure" translatesAutoresizingMaskIntoConstraints="NO" id="Gqz-ch-f7y">
                                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -193,8 +193,8 @@
                                         </imageView>
                                     </subviews>
                                 </stackView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 2001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlz-ag-Rzg">
-                                    <rect key="frame" x="228" y="48.5" width="57" height="19.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlz-ag-Rzg">
+                                    <rect key="frame" x="228" y="49" width="12" height="20"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -232,36 +232,18 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnH-NC-0Vi">
                     <rect key="frame" x="0.0" y="373" width="375" height="431"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bO4-Et-97P">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
-                            <subviews>
-                                <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LA-Y5-xTf">
-                                    <rect key="frame" x="8" y="0.0" width="359" height="35"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="35" id="auZ-8T-TPG"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="2LA-Y5-xTf" firstAttribute="leading" secondItem="bO4-Et-97P" secondAttribute="leading" constant="8" id="2fh-fO-7CL"/>
-                                <constraint firstItem="2LA-Y5-xTf" firstAttribute="top" secondItem="bO4-Et-97P" secondAttribute="top" id="6CX-A9-etG"/>
-                                <constraint firstAttribute="trailing" secondItem="2LA-Y5-xTf" secondAttribute="trailing" constant="8" id="Lmn-5L-R9E"/>
-                                <constraint firstAttribute="bottom" secondItem="2LA-Y5-xTf" secondAttribute="bottom" id="jz2-eV-SiO"/>
-                            </constraints>
-                        </view>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNV-0B-qls">
+                            <rect key="frame" x="8" y="0.0" width="359" height="22"/>
+                        </scrollView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I14-7y-tps">
-                            <rect key="frame" x="-19" y="35" width="374" height="1"/>
+                            <rect key="frame" x="-19" y="21" width="374" height="1"/>
                             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="tQL-JZ-I9t"/>
                             </constraints>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fAp-ce-CRi">
-                            <rect key="frame" x="8" y="38" width="359" height="393"/>
+                            <rect key="frame" x="8" y="24" width="359" height="407"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                             <color key="textColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
@@ -272,18 +254,17 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="I14-7y-tps" secondAttribute="trailing" constant="20" id="04z-yp-duD"/>
+                        <constraint firstItem="I14-7y-tps" firstAttribute="top" secondItem="jnH-NC-0Vi" secondAttribute="top" constant="21" id="50h-Mj-fKU"/>
+                        <constraint firstItem="xNV-0B-qls" firstAttribute="leading" secondItem="jnH-NC-0Vi" secondAttribute="leading" constant="8" id="5k7-59-la5"/>
                         <constraint firstAttribute="bottom" secondItem="fAp-ce-CRi" secondAttribute="bottom" id="9fK-W6-Ffq"/>
-                        <constraint firstAttribute="trailing" secondItem="bO4-Et-97P" secondAttribute="trailing" id="AAr-kb-bqa"/>
-                        <constraint firstItem="I14-7y-tps" firstAttribute="top" secondItem="bO4-Et-97P" secondAttribute="bottom" id="ISK-jr-Iq4"/>
-                        <constraint firstItem="I14-7y-tps" firstAttribute="top" secondItem="bO4-Et-97P" secondAttribute="bottom" id="TNk-GQ-DaO"/>
-                        <constraint firstItem="I14-7y-tps" firstAttribute="top" secondItem="bO4-Et-97P" secondAttribute="bottom" id="bVz-NE-e9q"/>
-                        <constraint firstItem="bO4-Et-97P" firstAttribute="top" secondItem="jnH-NC-0Vi" secondAttribute="top" id="cVb-5c-2c2"/>
+                        <constraint firstItem="xNV-0B-qls" firstAttribute="top" secondItem="jnH-NC-0Vi" secondAttribute="top" id="FvZ-tC-IdK"/>
+                        <constraint firstItem="fAp-ce-CRi" firstAttribute="trailing" secondItem="xNV-0B-qls" secondAttribute="trailing" id="czq-2z-3bf"/>
                         <constraint firstItem="fAp-ce-CRi" firstAttribute="top" secondItem="I14-7y-tps" secondAttribute="bottom" constant="2" id="f7x-76-F31"/>
                         <constraint firstAttribute="trailing" secondItem="fAp-ce-CRi" secondAttribute="trailing" constant="8" id="gMO-oS-UlR"/>
+                        <constraint firstItem="I14-7y-tps" firstAttribute="bottom" secondItem="xNV-0B-qls" secondAttribute="bottom" id="lTx-7e-9iV"/>
                         <constraint firstItem="I14-7y-tps" firstAttribute="leading" secondItem="jnH-NC-0Vi" secondAttribute="leading" constant="-19" id="sLE-0p-GPG"/>
                         <constraint firstItem="fAp-ce-CRi" firstAttribute="top" secondItem="I14-7y-tps" secondAttribute="bottom" constant="2" id="tnR-WY-0DJ"/>
                         <constraint firstItem="fAp-ce-CRi" firstAttribute="leading" secondItem="jnH-NC-0Vi" secondAttribute="leading" constant="8" id="up3-tG-zyU"/>
-                        <constraint firstItem="bO4-Et-97P" firstAttribute="leading" secondItem="jnH-NC-0Vi" secondAttribute="leading" id="wHl-0u-3XA"/>
                     </constraints>
                 </view>
             </subviews>
@@ -313,7 +294,7 @@
         <image name="backpacking" width="100" height="100"/>
         <image name="bluebox" width="130" height="130"/>
         <image name="india_gate" width="1097" height="734"/>
-        <image name="logo-default" width="180" height="180"/>
+        <image name="logo-default" width="600" height="600"/>
         <image name="luxury" width="100" height="100"/>
     </resources>
 </document>

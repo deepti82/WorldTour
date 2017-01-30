@@ -100,7 +100,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
             if loadStatus {
                 print("in load more of data.")
-                getActivity(pageNumber: pageno + 1)
+                pageno = pageno + 1
+                getActivity(pageNumber: pageno)
             }
         }
         

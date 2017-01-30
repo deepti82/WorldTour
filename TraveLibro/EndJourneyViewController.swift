@@ -45,7 +45,7 @@ class EndJourneyViewController: UIViewController {
             photoVC.fromView = "endJourney"
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.navigationController?.pushViewController(photoVC, animated: true)
-            photoVC.whichView = "photo"
+            photoVC.whichView = "photos"
             photoVC.journey = journey["_id"].string!
             photoVC.creationDate = journey["startTime"].string!
             
@@ -382,7 +382,7 @@ class EndJourneyViewController: UIViewController {
 //                   self.changePhotoViewHeight.constant = 47.0
                     
                 }
-                if response["data"]["photos"].array!.count > 0 {
+                if response["data"]["photos"].count > 0 {
                     
                     self.randomImage()
                 }
@@ -415,15 +415,15 @@ class EndJourneyViewController: UIViewController {
     
     func makeCoverPicture (image: String) {
         DispatchQueue.main.async(execute: {
-            //self.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
-            let imageString = self.journey["startLocationPic"].string!
-            print(imageString);
-            if imageString.contains("http") {
-                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:imageString)!)
-            }
-            else {
-                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=500")!)
-            }
+            self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(image)&width=500")!)
+//            let imageString = self.journey["startLocationPic"].string!
+//            print(imageString);
+//            if imageString.contains("http") {
+//                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:imageString)!)
+//            }
+//            else {
+//                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=500")!)
+//            }
         })
     }
     

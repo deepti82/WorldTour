@@ -55,23 +55,8 @@ class QuickItineraryPreviewViewController: UIViewController {
         prev.duration.text? = quickItinery["duration"].stringValue
         prev.dateTime.text? = quickItinery["month"].stringValue + " " + quickItinery["year"].stringValue
         prev.quickDescription.text? = quickItinery["description"].stringValue
-        
-        if quickItinery["countryVisited"].count != 0 {
-            for n in quickItinery["countryVisited"].array! {
-                
-                for (i,m) in n["cityVisited"] {
-                    if i == "0" {
-                        prev.cityScroll.text = prev.cityScroll.text! + "" + m["name"].stringValue
-                    }else{
-                        prev.cityScroll.text = prev.cityScroll.text! + " | " + m["name"].stringValue
-                    }
-                }
-            }
-            
-        }
-        
-        
-        
+        prev.json = quickItinery;
+        prev.generateCity()
         
         if quickItinery["itineraryType"].count >= 3 {
             prev.quickType[0].image = UIImage(named: quickItinery["itineraryType"][0].stringValue)
