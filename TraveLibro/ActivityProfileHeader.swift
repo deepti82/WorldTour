@@ -70,6 +70,7 @@ class ActivityProfileHeader: UIView {
         switch feed["type"].stringValue {
         case "local-life":
             category.setBackgroundImage(UIImage(named:"box8"), for: .normal)
+            category.imageView?.tintColor = UIColor(hex: "#303557")
         case "travel-life":
             category.setBackgroundImage(UIImage(named:"box7"), for: .normal)
         default:
