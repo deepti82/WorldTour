@@ -32,7 +32,8 @@ class AddYourRatingViewController: UIViewController {
         
         let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
         profileImage.center.x = self.view.frame.width/2
-        profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])")!))
+        profileImage.image = UIImage(named: "logo-default")
+        profileImage.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: 100))
         makeTLProfilePicture(profileImage)
         layout.addSubview(profileImage)
         

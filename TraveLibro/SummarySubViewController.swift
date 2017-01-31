@@ -203,13 +203,12 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
     
     func createFooterView() {
         let tripMiddle = TripSummaryFooter(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 94))
-        if String(tripCountData["countryVisited"].count) == "1" {
+        if tripCountData["countryVisited"].count == 1 {
             tripMiddle.countryCount.text = String(tripCountData["countryVisited"].count) + " Country Visited"
-        }else{
+        } else{
             tripMiddle.countryCount.text = String(tripCountData["countryVisited"].count) + " Countries Visited"
         }
-        tripMiddle.countryCount.text = String(tripCountData["countryVisited"].count) + " Countries Visited"
-        
+        tripMiddle.countryCount.font = avenirFont
         var wid = tripMiddle.countryScroll.frame.width
         let cnt = CGFloat(tripCountData["countryVisited"].count)
         wid = wid - cnt * 70
@@ -221,12 +220,10 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
             }
             
             var imageView : UIImageView
-            imageView  = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-            imageView.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(val["country"]["flag"].stringValue)")!)
+            imageView  = UIImageView(frame: CGRect(x: 0, y: 5, width: 30, height: 20))
+            imageView.hnk_setImageFromURL(getImageURL(val["country"]["flag"].stringValue, width: 30))
             imageView.contentMode = UIViewContentMode.scaleAspectFit
             imageView.clipsToBounds = true
-            imageView.clipsToBounds = true
-
 
             tripMiddle.countryLayout.addSubview(imageView)
             
@@ -271,6 +268,8 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
             summaryTitle.append(NSAttributedString(string: " at", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!]))
             summaryTitle.append(NSAttributedString(string: " \(val["location"].string!)", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!]))
             cell.summaryTitle.attributedText = summaryTitle
+//            cell.summaryTitle.sizeToFit()
+//            cell.frame.size.height = 80.5 + cell.summaryTitle.frame.height
             
             let dateFormatter = DateFormatter()
             let timeFormatter = DateFormatter()

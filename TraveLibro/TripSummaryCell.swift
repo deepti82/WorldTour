@@ -19,7 +19,6 @@ class TripSummaryCell: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        transparentCardWhite(tintColorCard)
     }
     
     required init?(coder aDecoder: NSCoder) {
