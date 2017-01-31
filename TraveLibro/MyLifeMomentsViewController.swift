@@ -15,7 +15,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     let reviewsLL = ["Mumbai", "London"]
     let reviewsTL = ["India", "France"]
     
-    var images =  [""]
+    var images =  ["5888812cac0b510d59f3c855.jpg"]
     
     var whichView = "All"
     

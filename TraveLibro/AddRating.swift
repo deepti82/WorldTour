@@ -59,7 +59,7 @@ class AddRating: UIView, UITextViewDelegate {
 
             self.activityBasic.reviewTapOut(UITapGestureRecognizer())
         }else{
-            self.checkIn.modifyAsReview(num: (self.starCount - 1), reviewR: reviewBody)
+            self.checkIn.modifyAsReview(num: (self.starCount), reviewR: reviewBody)
             self.checkIn.reviewTapOut(UITapGestureRecognizer())
         }
         self.removeFromSuperview()

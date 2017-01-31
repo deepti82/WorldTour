@@ -6213,7 +6213,7 @@
                                 <rect key="frame" x="16" y="97" width="343" height="496"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Y0i-8a-r87">
-                                        <rect key="frame" x="20" y="54.5" width="303" height="342"/>
+                                        <rect key="frame" x="20" y="55" width="303" height="342"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="303" id="jkz-5X-5A7"/>
@@ -10812,7 +10812,7 @@
                     <view key="view" contentMode="scaleToFill" id="l5L-AK-8Fl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yTp-6z-Szw" userLabel="First Responder" sceneMemberID="firstResponder"/>

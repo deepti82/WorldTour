@@ -53,8 +53,10 @@ class RatingCheckIn: UIView {
     }
     
     @IBAction func ratePost(_ sender: Any) {
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(RatingCheckIn.reviewTapOut(_:)))
+        
         backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
-
+        backgroundReview.addGestureRecognizer(tapout)
         backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
         globalNavigationController.topViewController?.view.addSubview(backgroundReview)
         globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
@@ -83,7 +85,7 @@ class RatingCheckIn: UIView {
         backgroundReview.removeFromSuperview()
     }
     func modifyAsReview() {
-        let num = Int(review["rating"].stringValue)! - 1
+        let num = Int(review["rating"].stringValue)!
         self.rateCheckInButton.setImage(UIImage(named:imageArr[num]), for: UIControlState() )
         self.rateCheckInLabel.text = moodArr[num]
     }
@@ -95,7 +97,7 @@ class RatingCheckIn: UIView {
         self.rateCheckInButton.setImage(UIImage(named:imageArr[num]), for: UIControlState() )
         self.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
         self.rateCheckInLabel.text = moodArr[num]
-        review = ["rating":"\(num + 1)", "review":reviewR]
+        review = ["rating":"\(num)", "review":reviewR]
     }
     
     
