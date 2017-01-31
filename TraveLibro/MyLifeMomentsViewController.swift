@@ -17,15 +17,53 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     var images =  ["5888812cac0b510d59f3c855.jpg"]
     
-    var whichView = "All"
+    var whichView = "Travel Life"
+    var page = 1
+    var momentType = "travel-life"
+    var allData:JSON = []
+    var loadStatus = true
+    
     
     @IBOutlet weak var mainView: UICollectionView!
     
     override func viewDidLoad() {
+        print("in play....")
         super.viewDidLoad()
         setTopNavigation("Photos")
+        loadTravelLife(pageno: page, type: momentType)
         navigationItem.leftBarButtonItem?.title = ""
         
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+            if loadStatus {
+                print("in load more of data.")
+                page = page + 1
+                loadTravelLife(pageno: page, type: momentType)
+            }
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print("in will Appear")
+        self.mainView.reloadData()
+    }
+
+    
+    func loadTravelLife(pageno:Int, type:String) {
+        request.getMomentTravelife(currentUser["_id"].stringValue, pageNumber: pageno, completion: {(request) in
+            DispatchQueue.main.async {
+                if request["data"] != "" {
+                    self.loadStatus = true
+                    for post in request["data"].array! {
+                        self.allData.arrayObject?.append(post)
+                    }
+                    
+                    self.mainView.reloadData()
+                }else{
+                    self.loadStatus = false
+                }
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,12 +90,12 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         case "Local Life":
             return 4
         case "Travel Life":
-            return 4
+            return allData.count
         default:
+            return 0
             break
         }
         
-        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -103,8 +141,17 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             return cell
         case "Travel Life":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "travelLifeMomentsCell", for: indexPath) as! TravelLifeMomentsCollectionViewCell
+            let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + allData[indexPath.row]["coverPhoto"].stringValue + "&width=500")
+
+            cell.coverImage.hnk_setImageFromURL(getImageUrl!)
             cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
             cell.coverImage.clipsToBounds = true
+            
+            cell.albumTitle.text = allData[indexPath.row]["name"].stringValue + " (\(allData[indexPath.row]["mediaCount"].stringValue))"
+            
+//            cell.albumDated.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: allData[indexPath.row]["startTime"].stringValue, isDate: false)
+            
+            cell.bgImage.hnk_setImageFromURL(getImageUrl!)
             cell.bgImage.layer.borderColor = UIColor.white.cgColor
             cell.bgImage.layer.borderWidth = 5.0
             cell.bgImage.layer.cornerRadius = 5
@@ -115,24 +162,25 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             cell.bgImage.clipsToBounds = true
             return cell
         default:
-            break
-        }
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
-        if whichView == "Reviews LL" {
-            cell.bgImage.image = UIImage(named: "reviewsLocalLifeAlbum")
-            cell.placeName.text = reviewsTL[(indexPath as NSIndexPath).row]
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
+            if whichView == "Reviews LL" {
+                cell.bgImage.image = UIImage(named: "reviewsLocalLifeAlbum")
+                cell.placeName.text = reviewsTL[(indexPath as NSIndexPath).row]
+                
+            }
+            else {
+                cell.bgImage.image = UIImage(named: "reviewsTLAlbum")
+                cell.placeName.text = reviewsLL[(indexPath as NSIndexPath).row]
+            }
+            cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
+            cell.foregroundImage.clipsToBounds = true
+            cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).cgColor
+            cell.foregroundImage.layer.borderWidth = 3.0
+            return cell
             
         }
-        else {
-            cell.bgImage.image = UIImage(named: "reviewsTLAlbum")
-            cell.placeName.text = reviewsLL[(indexPath as NSIndexPath).row]
-        }
-        cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
-        cell.foregroundImage.clipsToBounds = true
-        cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).cgColor
-        cell.foregroundImage.layer.borderWidth = 3.0
-        return cell
+        
+        
         
     }
     
@@ -234,6 +282,25 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func goBack(_ sender:AnyObject) {
         self.navigationController!.popViewController(animated: true)
     }
+    func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = givenFormat
+        let date = dateFormatter.date(from: date)
+        
+        dateFormatter.dateFormat = getFormat
+        
+        if isDate {
+            
+            dateFormatter.dateStyle = .medium
+            
+        }
+        
+        let goodDate = dateFormatter.string(from: date!)
+        return goodDate
+        
+    }
+
 
 
 }

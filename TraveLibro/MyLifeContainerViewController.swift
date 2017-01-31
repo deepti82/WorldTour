@@ -21,7 +21,7 @@ class MyLifeContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        isEmptyProfile = true
+        isEmptyProfile = false
         
 //        print("profile empty status: \(isEmptyProfile)")
         
