@@ -160,7 +160,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.postId = feed["_id"].stringValue
-        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
     
     func openSingleVideo(_ sender: AnyObject) {
@@ -169,7 +169,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = feed["_id"].stringValue
-        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
     
     

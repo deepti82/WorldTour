@@ -195,7 +195,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = feeds["_id"].stringValue
-        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
 
     
@@ -348,7 +348,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.postId = feeds["_id"].stringValue
-        globalNavigationController.present(singlePhotoController, animated: true, completion: nil)
+        globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
     
     func videoToPlay ()  {
