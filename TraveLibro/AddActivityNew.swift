@@ -180,7 +180,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         self.categoryView.isHidden = true
         self.editCategory.addTarget(self, action: #selector(self.selectAnotherCategory(_:)), for: .touchUpInside)
         self.addLocationButton.setTitle("Add Location", for: UIControlState())
-        self.categoryLabel.text = "Label"
+        self.categoryLabel.text = ""
         self.locationTag.tintColor = mainBlueColor
         self.cancelLocationButton.isHidden = true
         self.currentLat = 0
