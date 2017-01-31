@@ -220,7 +220,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
             }
             
             var imageView : UIImageView
-            imageView  = UIImageView(frame: CGRect(x: 0, y: 5, width: 30, height: 20))
+            imageView  = UIImageView(frame: CGRect(x: 10, y: 5, width: 30, height: 20))
             imageView.hnk_setImageFromURL(getImageURL(val["country"]["flag"].stringValue, width: 30))
             imageView.contentMode = UIViewContentMode.scaleAspectFit
             imageView.clipsToBounds = true
