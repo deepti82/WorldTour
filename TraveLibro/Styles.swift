@@ -207,7 +207,7 @@ func makeTLProfilePicture(_ image: UIButton) {
     
     image.layer.cornerRadius = (37/100) * image.frame.width
     image.layer.borderWidth = 3.0
-    image.layer.borderColor = UIColor.white.cgColor
+    image.layer.borderColor = endJourneyColor.cgColor
     image.clipsToBounds = true
     image.contentMode = UIViewContentMode.scaleAspectFit
     image.imageView?.contentMode = UIViewContentMode.scaleAspectFill

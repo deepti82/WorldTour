@@ -32,27 +32,13 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
 
     @IBOutlet weak var editComment: UITextView!
     @IBOutlet weak var navigationBar: UINavigationBar!
-//    @IBOutlet weak var navigationItem: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("type type typ\(type)")
         
-        navigationBar.backgroundColor = mainBlueColor
-        navigationBar.tintColor = UIColor.white
-        navigationBar.barStyle = .black
-        navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
-        
-        let leftButton = UIButton()
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        
-        let leftBarButton = UIBarButtonItem()
-        leftBarButton.customView = leftButton
-        
-        //navItem.leftBarButtonItem = leftBarButton
+        setTopNavigation("Comment")
         
         getAllComments()
         commentTableView.tableFooterView = UIView()
@@ -67,6 +53,15 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
         // Do any additional setup after loading the view.
     }
     
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
     
     @IBAction func back(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
