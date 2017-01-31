@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/AddBuddiesViewController.swift"
-            timestampString = "505832535.510017"
+            timestampString = "507550700.887116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "509"
-            endingLineNumber = "509">
+            startingLineNumber = "408"
+            endingLineNumber = "408">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/AddBuddiesViewController.swift"
-            timestampString = "505832558.970702"
+            timestampString = "507550700.887116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "setBuddies(searchText:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -40,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/AddBuddiesViewController.swift"
-            timestampString = "505832907.957674"
+            timestampString = "507550700.887116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "setBuddies(searchText:)"
             landmarkType = "7">
          </BreakpointContent>

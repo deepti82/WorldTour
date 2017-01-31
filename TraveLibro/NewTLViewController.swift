@@ -1982,6 +1982,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         self.journeyId = response["data"]["uniqueId"].string!
                         isJourneyOngoing = true
+                        
+                        if !isEdit {
+                            
+                            
+                            self.setTopNavigation(text: "Add Buddies");
+                            
+                            self.otgView.selectCategoryButton.isHidden = true
+                            self.otgView.journeyDetails.isHidden = false
+                            self.otgView.buddyStack.isHidden = true
+                            self.otgView.addBuddiesButton.isHidden = false
+                        }
+
+                        
                         //                        self.getJourney()
                     }
                         
@@ -2072,39 +2085,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 otgView.journeyCategoryThree.isHidden = false
                 otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
             }
-            //            if journeyCategories.count == 2 {
-            //
-            //                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-            //                otgView.journeyCategoryOne.isHidden = false
-            //                otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-            //                otgView.journeyCategoryTwo.isHidden = false
-            //                otgView.journeyCategoryThree.isHidden = true
-            //
-            //            }
-            //
-            //          for _ in 0...12 {
-            //
-            //                otgView.journeyCategoryOne.image = UIImage(named: kindOfJourneyStack[0])
-            //                otgView.journeyCategoryOne.isHidden = false
-            //            otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
-            //                otgView.journeyCategoryTwo.isHidden = false
-            //                otgView.journeyCategoryThree.isHidden = false
-            //                print("indexprob\(kindOfJourneyStack.count)")
-            //              otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
-            //
-            //                print("indexprob\(kindOfJourneyStack.count)")
             
-            
-        }
-        if !isEdit {
-            
-            
-            setTopNavigation(text: "Add Buddies");
-            
-            otgView.selectCategoryButton.isHidden = true
-            otgView.journeyDetails.isHidden = false
-            otgView.buddyStack.isHidden = true
-            otgView.addBuddiesButton.isHidden = false
         }
         
     }
@@ -2125,6 +2106,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print(self.journeyName)
         request.addBuddiesOTG(json, userId: currentUser["_id"].stringValue , userName: currentUser["name"].stringValue, journeyId: self.journeyId, inMiddle: inMiddle, journeyName: self.journeyName, completion: { (json) in
             
+            
+        })
+    }
+    
+    func buddyAdded(_ json:[JSON],inMiddle:Bool,completionDone: @escaping ((JSON) -> Void)) {
+        
+        //         let po = post.setPost(currentUser["_id"].string!, JourneyId: self.journeyId, Type: "travel-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies, imageArr: self.addView.imageArr)
+        print( currentUser["_id"].stringValue)
+        print(currentUser["name"].stringValue)
+        print(self.journeyId)
+        print(self.journeyName)
+        request.addBuddiesOTG(json, userId: currentUser["_id"].stringValue , userName: currentUser["name"].stringValue, journeyId: self.journeyId, inMiddle: inMiddle, journeyName: self.journeyName, completion: { (json) in
+            completionDone(json);
         })
     }
     
@@ -2156,31 +2150,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func showBuddies() {
         
         for i in 0 ..< addedBuddies.count {
-            
             let imageUrl = addedBuddies[i]["profilePicture"].string!
-            
+            otgView.buddyStackPictures[i].hnk_setImageFromURL(getImageURL(imageUrl, width: 100))
+            makeTLProfilePictureBorderOrange(otgView.buddyStackPictures[i])
             let isUrl = verifyUrl(imageUrl)
-            
-            if isUrl && imageUrl != "" {
-                let data = try? Data(contentsOf: URL(string: imageUrl)!)
-                
-                if data != nil  && imageUrl != "" {
-                    
-                    otgView.buddyStackPictures[i].image = UIImage(data: data!)
-                    makeTLProfilePictureBorderOrange(otgView.buddyStackPictures[i])
-                    
-                }
-            }
-                
-            else if imageUrl != "" {
-                
-                let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=250"
-                let data = try? Data(contentsOf: URL(string: getImageUrl)!)
-                if data != nil && i <= 2 {
-                    otgView.buddyStackPictures[i].image = UIImage(data: data!)
-                    makeTLProfilePictureBorderOrange(otgView.buddyStackPictures[i])
-                }
-            }
         }
         
         switch countLabel {

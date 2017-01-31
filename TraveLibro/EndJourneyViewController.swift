@@ -135,7 +135,7 @@ class EndJourneyViewController: UIViewController {
         
         
         
-        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 366))
+        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 380))
         endJourney.tag = 100
         endJourney.changeConstraint(height: 90)
         transparentCardWhite(endJourney.accesoriesVew)
@@ -147,7 +147,7 @@ class EndJourneyViewController: UIViewController {
         endJourney.categoryThree.tintColor = mainOrangeColor
         endJourney.changePhotoButton.addTarget(self, action: #selector(changePicture(_:)), for: .touchUpInside)
         transparentCardWhite(endJourney.journeyCoverPic)
-        endJourney.journeyCoverPic.image = UIImage(named: "")
+        endJourney.journeyCoverPic.image = UIImage(named: "logo-default")
 
 //        endJourney.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
 //        endJourney.clockIcon.text = String(format: "%C", faicon["clock"]!)
@@ -429,8 +429,7 @@ class EndJourneyViewController: UIViewController {
     
     func makeCoverPictureImage(image: String) {
         DispatchQueue.main.async(execute: {
-            
-            self.endJourney.journeyCoverPic.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(image)")!))
+            self.endJourney.journeyCoverPic.hnk_setImageFromURL(getImageURL(image, width: 600))
         })
     }
     

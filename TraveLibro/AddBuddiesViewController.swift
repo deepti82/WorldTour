@@ -32,121 +32,20 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     var oldBuddies:[JSON] = []
     
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        
         sender.isEnabled = false
-        
         self.navigationController?.popViewController(animated: true)
-        
-        print(whichView);
         switch(whichView) {
         case "AddActivity":
             globalAddActivityNew.buddyAdded(addedFriends);
         case "NewTLMiddle":
             globalNewTLViewController.buddyAdded(addedFriends,inMiddle:true);
         case "NewTLView":
-            globalNewTLViewController.buddyAdded(addedFriends,inMiddle:false);
-            globalNewTLViewController.getJourney()
+            globalNewTLViewController.buddyAdded(addedFriends,inMiddle:false,completionDone: { (json) in
+                 globalNewTLViewController.getJourney()
+            });
         default:
             break;
         }
-        
-        
-        //        globalNewTLViewController.getJourney()
-        //                        for vc in allControllers {
-        //
-        //                            if vc.isKind(of: NewTLViewController.self) {
-        //
-        //                                print("is kind of class new tl view controller")
-        //                                let backVC = vc as! NewTLViewController
-        //                                backVC.addedBuddies = self.addedFriends
-        //                                self.navigationController!.popToViewController(backVC, animated: true)
-        //
-        //                            }
-        //
-        //                        }
-        
-        
-        //        if whichView == "TL" {
-        //            if(addedFriends.count == 0) {
-        //                let allControllers = self.navigationController!.viewControllers
-        //                for vc in allControllers {
-        //
-        //                    if vc.isKind(of: NewTLViewController.self) {
-        //
-        //                        print("is kind of class new tl view controller")
-        //                        let backVC = vc as! NewTLViewController
-        //                        backVC.countLabel = self.addedFriends.count
-        //                        backVC.addedBuddies = self.addedFriends
-        //                        backVC.getJourney()
-        //                        backVC.showBuddies()
-        //                        self.navigationController!.popToViewController(backVC, animated: true)
-        //
-        //                    }
-        //
-        //                }
-        //            } else {
-        //                for friend in addedFriends {
-        //                    addedFriendUsers.append(friend)
-        //                }
-        //                let finalFriends: JSON = JSON(addedFriendUsers)
-        //
-        //                let allControllers = self.navigationController!.viewControllers
-        //                for vc in allControllers {
-        //
-        //                    if vc.isKind(of: NewTLViewController.self) {
-        //
-        //                        print("is kind of class new tl view controller")
-        //                        let backVC = vc as! NewTLViewController
-        //                        backVC.countLabel = self.addedFriends.count
-        //                        backVC.addedBuddies = self.addedFriends
-        //                        //                                backVC.getCurrentOTG()
-        //                        backVC.showBuddies()
-        //                        self.navigationController!.popToViewController(backVC, animated: true)
-        //
-        //                    }
-        //
-        //                }
-        //
-        //            }
-        //        }
-        //        else if whichView == "TLMiddle" {
-        //            for friend in addedFriends {
-        //                addedFriendUsers.append(friend)
-        //            }
-        //
-        //            let finalFriends: JSON = JSON(addedFriendUsers)
-        //            //            saveButton.hidden = true
-        //
-        //
-        //            let allControllers = self.navigationController!.viewControllers
-        //            for vc in allControllers {
-        //
-        //                if vc.isKind(of: NewTLViewController.self) {
-        //
-        //                    let backVC = vc as! NewTLViewController
-        //                    backVC.getJourney()
-        //                    self.navigationController!.popToViewController(backVC, animated: true)
-        //                }
-        //            }
-        //        } else if whichView == "TLTags" {
-        //            let allControllers = self.navigationController!.viewControllers
-        //
-        //            for vc in allControllers {
-        //
-        //                if vc.isKind(of: NewTLViewController.self) {
-        //                    let backVC = vc as! NewTLViewController
-        //                    backVC.addedBuddies = addedFriends
-        //                    backVC.displayFriendsCount()
-        //                    self.navigationController!.popToViewController(backVC, animated: true)
-        //
-        //                }
-        //
-        //            }
-        //
-        //        }
-        
-        
-        
     }
     
     var search: SearchFieldView!

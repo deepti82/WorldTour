@@ -70,9 +70,25 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             addComment.text = ""
         }
     }
+    
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllComments()
+        setTopNavigation("Comment")
         commentsTable.tableFooterView = UIView()
         commentsTable.estimatedRowHeight = 80.0
         commentsTable.rowHeight = UITableViewAutomaticDimension
@@ -132,17 +148,17 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if self.comments[indexPath.row]["user"]["_id"].string! == currentUser["_id"].string! {
             
-            let more = UITableViewRowAction(style: .normal, title: "            ") { action, index in
+            let more = UITableViewRowAction(style: .normal, title: " ") { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
                 self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
                 self.editComment = self.comments[indexPath.row]
                 self.isEdit = true
             }
             let moreImage = UIImageView(image: UIImage(named: "edit.png"))
-            moreImage.contentMode = .scaleAspectFit
+            moreImage.contentMode = .center
             more.backgroundColor = UIColor(patternImage: moreImage.image!)
             
-            let favorite = UITableViewRowAction(style: .normal, title: "            ") { action, index in
+            let favorite = UITableViewRowAction(style: .normal, title: " ") { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
                     
@@ -170,7 +186,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 80))
             favoriteImage.image = UIImage(named: "delete.png")
-            favoriteImage.contentMode = .scaleAspectFit
+            favoriteImage.contentMode = .center
             favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
             
             return [more, favorite]

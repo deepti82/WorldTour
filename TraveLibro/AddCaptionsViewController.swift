@@ -50,26 +50,32 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     var deletedIndex: Int!
     
     @IBAction func deletePhoto(_ sender: UIButton) {
-        if(type != "videoCaption") {
-            imageArr.remove(at: currentImageIndex)
-            if self.addActivity != nil {
-                self.addActivity.imageArr = imageArr;
-                self.addActivity.addPhotoToLayout()
-            } else if self.quickIt != nil {
-                self.quickIt.photosCollection.reloadData()
-            }
-            if(imageArr.count == 0) {
+        
+        let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+            if(self.type != "videoCaption") {
+                self.imageArr.remove(at: self.currentImageIndex)
+                if self.addActivity != nil {
+                    self.addActivity.imageArr = self.imageArr;
+                    self.addActivity.addPhotoToLayout()
+                } else if self.quickIt != nil {
+                    self.quickIt.photosCollection.reloadData()
+                }
+                if(self.imageArr.count == 0) {
+                    self.goBack(UIButton());
+                }
+                else {
+                    self.collectionVi.reloadData()
+                    self.previousImageCaption(UIButton())
+                }
+                
+            } else {
+                self.addActivity.removeVideoBlock()
                 self.goBack(UIButton());
             }
-            else {
-                collectionVi.reloadData()
-                self.previousImageCaption(UIButton())
-            }
-
-        } else {
-            self.addActivity.removeVideoBlock()
-            self.goBack(UIButton());
-        }
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func editPhoto(_ sender: UIButton) {

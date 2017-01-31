@@ -95,11 +95,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             headerTag.tagLine.isHidden = true
             
             self.mainPhoto.addSubview(headerTag)
-            if headerTag.tagText.text == "Travel Life"{
-                profileHeader.category.imageView?.tintColor = UIColor.white
-            } else {
-                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
-            }
+//            if headerTag.tagText.text == "Travel Life"{
+//                profileHeader.category.imageView?.tintColor = UIColor.white
+//            } else {
+//                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+//            }
             
 
         
@@ -157,11 +157,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                     headerTag.colorTag(feed: feed)
                     
                     self.mainPhoto.addSubview(headerTag)
-                    if headerTag.tagText.text == "Travel Life"{
-                        profileHeader.category.imageView?.tintColor = UIColor.white
-                    } else {
-                        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
-                    }
+//                    if headerTag.tagText.text == "Travel Life"{
+//                        profileHeader.category.imageView?.tintColor = UIColor.white
+//                    } else {
+//                        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+//                    }
                     
 
 

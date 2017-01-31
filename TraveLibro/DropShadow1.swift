@@ -29,5 +29,7 @@ class DropShadow1: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
         dropShadow.layer.cornerRadius = 5
+        dropShadow.clipsToBounds = true
+        dropShadow.alpha = 0.7
     }
 }

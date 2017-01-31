@@ -228,7 +228,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                         self.getSingleVideo(self.videos[0]["_id"].string!)
                     } else {
                         self.getSinglePhoto(self.photos[self.index!]["_id"].string!)
-                        self.title = "Photos \(self.photos.count)"
+                        self.title = "Photos (\(self.photos.count))"
                     }
                 }
                     

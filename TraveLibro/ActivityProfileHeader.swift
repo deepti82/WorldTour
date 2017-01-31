@@ -27,7 +27,7 @@ class ActivityProfileHeader: UIView {
         loadViewFromNib ()
         transparentCardWhite(activityProView)
         makeTLProfilePicture(profilePic)
-        category.imageView?.tintColor = UIColor(hex: "#ff759")
+        category.imageView?.tintColor = mainGreenColor
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         
@@ -58,12 +58,9 @@ class ActivityProfileHeader: UIView {
                 self.category.setImage(UIImage(named: "location_icon"), for: .normal)
             case "Image":
                 self.category.setImage(UIImage(named: "camera_icon"), for: .normal)
-                
-                
+
             case "Videos":
                 self.category.setImage(UIImage(named: "video"), for: .normal)
-                category.imageView?.tintColor = UIColor(hex: "#FF6759")
-               
             case "Thoughts":
                 self.category.setImage(UIImage(named: "pen_icon"), for: .normal)
                
@@ -72,17 +69,11 @@ class ActivityProfileHeader: UIView {
             }
         }
         
-        
-        print("tintHello")
-        print(feed["type"].stringValue)
         switch feed["type"].stringValue {
-            
         case "local-life":
-            category.imageView?.tintColor = UIColor(hex: "#303557")
+            category.imageView?.tintColor = mainGreenColor
         case "travel-life":
             category.imageView?.tintColor = mainOrangeColor
-            
-            
         default:
             category.isHidden = true
         }
