@@ -93,7 +93,6 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             return allData.count
         default:
             return 0
-            break
         }
         
     }
