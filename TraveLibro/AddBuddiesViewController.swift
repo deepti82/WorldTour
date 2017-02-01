@@ -61,6 +61,11 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             frezzFriends = addedFriends
             addedFriends = []
         }
+        
+        if whichView == "NewTLMiddle" {
+            addedBuddies.text = "Trip Buddies"
+        }
+        
         allFriends.textColor = mainOrangeColor
         self.title = "Add Buddies"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
@@ -115,6 +120,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
     }
+    
     
     
     

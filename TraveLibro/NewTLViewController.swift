@@ -32,7 +32,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var addPosts: AddPostsOTGView!
     var addNewView = NewQuickItinerary()
     var buttons1 = Buttons2()
-    
+    var changeText = AddBuddiesViewController()
     
     @IBOutlet weak var hideVisual: UIVisualEffectView!
     @IBOutlet weak var hideToolBar: UIStackView!
@@ -68,6 +68,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.pushViewController(getBuddies, animated: true)
     }
+    
     
     @IBAction func endJourneyTapped(_ sender: UIButton) {
         self.getJourney()
