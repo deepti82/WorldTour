@@ -845,6 +845,7 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+
     
     func removeCountriesVisited(_ countryId: String, year: Int, completion: @escaping ((JSON) -> Void)) {
         
@@ -1394,6 +1395,39 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+    
+    
+    //    url:   journey/myLifeJourney
+    //
+    //    params:{
+    //    user: "User _id",
+    //    type: "",   (all / travel-life / local-life)
+    //    pagenumber : 1/2/3/4....,
+    //    }
+    
+    
+    func getMomentJourney(pageNumber: Int,type:String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "journey/myLifeMoment", parameters: ["user": currentUser["_id"], "type": type, "pagenumber": pageNumber])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+
     
     func getMomentTravelife(_ user: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
         
