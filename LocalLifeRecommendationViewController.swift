@@ -162,7 +162,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView5.photoBottomView2.tag = 14
         layout.addSubview(myView5)
         
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 64, width: self.view.frame.width, height: 64))
         footer.localLifeIcon.tintColor = mainGreenColor
         self.view.addSubview(footer)
         self.detectLocation(UIButton())

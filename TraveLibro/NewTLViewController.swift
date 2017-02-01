@@ -988,7 +988,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.addPostsButton.layer.zPosition = 5
         self.view.addSubview(self.addPostsButton)
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 64, width: self.view.frame.width, height: 64))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         self.mainFooter.travelLifeIcon.tintColor = mainOrangeColor
