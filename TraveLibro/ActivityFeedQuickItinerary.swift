@@ -116,3 +116,4 @@ class ActivityFeedQuickItinerary: UIView {
     }
 
 }
+

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -20,7 +21,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     var whichView = "Travel Life"
     var page = 1
     var momentType = "travel-life"
-    var allData:JSON = []
+    var allData:[JSON] = []
     var loadStatus = true
     
     
@@ -30,34 +31,42 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         print("in play....")
         super.viewDidLoad()
         setTopNavigation("Photos")
-        loadTravelLife(pageno: page, type: momentType)
+        mainView.delegate = self
+        mainView.dataSource = self
+//        loadTravelLife(pageno: page, type: momentType)
         navigationItem.leftBarButtonItem?.title = ""
         
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(loadStatus)
+        if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
+
             if loadStatus {
                 print("in load more of data.")
                 page = page + 1
                 loadTravelLife(pageno: page, type: momentType)
             }
+        }
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        print("in will Appear")
-        self.mainView.reloadData()
-    }
+    
 
     
     func loadTravelLife(pageno:Int, type:String) {
         request.getMomentTravelife(currentUser["_id"].stringValue, pageNumber: pageno, completion: {(request) in
             DispatchQueue.main.async {
-                if request["data"] != "" {
+                if request["data"].count > 0 {
                     self.loadStatus = true
+                    if pageno == 1 {
+                        self.allData = request["data"].array!
+                    }else{
                     for post in request["data"].array! {
-                        self.allData.arrayObject?.append(post)
+                        self.allData.append(post)
                     }
-                    
+                    }
+                    print("after load ")
+                    print(request["data"])
                     self.mainView.reloadData()
                 }else{
                     self.loadStatus = false
@@ -137,20 +146,24 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             cell.bgImage.layer.cornerRadius = 5
             cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
             cell.coverImage.clipsToBounds = true
+            let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + allData[indexPath.row]["coverPhoto"].stringValue + "&width=500")
+            
+            cell.coverImage.hnk_setImageFromURL(getImageUrl!)
+            cell.bgImage.hnk_setImageFromURL(getImageUrl!)
+
             return cell
         case "Travel Life":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "travelLifeMomentsCell", for: indexPath) as! TravelLifeMomentsCollectionViewCell
-            let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + allData[indexPath.row]["coverPhoto"].stringValue + "&width=500")
-
-            cell.coverImage.hnk_setImageFromURL(getImageUrl!)
+            
+            
             cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
             cell.coverImage.clipsToBounds = true
             
-            cell.albumTitle.text = allData[indexPath.row]["name"].stringValue + " (\(allData[indexPath.row]["mediaCount"].stringValue))"
+            print(allData[indexPath.row]["name"].stringValue)
+            print(indexPath.row)
             
 //            cell.albumDated.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: allData[indexPath.row]["startTime"].stringValue, isDate: false)
             
-            cell.bgImage.hnk_setImageFromURL(getImageUrl!)
             cell.bgImage.layer.borderColor = UIColor.white.cgColor
             cell.bgImage.layer.borderWidth = 5.0
             cell.bgImage.layer.cornerRadius = 5
@@ -159,6 +172,11 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             cell.bgImage.layer.shadowRadius = 10
             cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
             cell.bgImage.clipsToBounds = true
+            cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 200))
+            cell.albumTitle.text = allData[indexPath.row]["name"].stringValue + " (\(allData[indexPath.row]["mediaCount"].stringValue))"
+            cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 200))
+
+
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
@@ -216,8 +234,12 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if whichView == "Local Life" || whichView == "Travel Life" || whichView == "All" {
+            if allData[indexPath.row]["mediaCount"].stringValue == "0" {
+                showToast(msg: "No Photos in \(allData[indexPath.row]["name"].stringValue)")
+            }else{
             whichView = "Monthly"
             collectionView.reloadData()
+            }
         }
             
         else if whichView == "SelectCover" {
@@ -300,6 +322,11 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         let goodDate = dateFormatter.string(from: date!)
         return goodDate
         
+    }
+    
+    func showToast(msg:String) {
+        let show = Toast(text: msg)
+        show.show()
     }
 
 

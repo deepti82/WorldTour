@@ -1432,8 +1432,10 @@ class Navigation {
     func getMomentTravelife(_ user: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
+            let params = ["user": user, "type": "travel-life", "pagenumber": pageNumber] as [String : Any]
+print(params)
             
-            let opt = try HTTP.POST(adminUrl + "journey/myLifeMoment", parameters: ["user": user, "type": "travel-life", "pagenumber": pageNumber])
+            let opt = try HTTP.POST(adminUrl + "journey/myLifeMoment", parameters: [params])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

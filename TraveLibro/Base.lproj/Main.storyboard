@@ -9708,7 +9708,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disney-world" translatesAutoresizingMaskIntoConstraints="NO" id="jS7-6S-gG0">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="jS7-6S-gG0">
                                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                                 </imageView>
                                             </subviews>
@@ -9730,7 +9730,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photobar1" translatesAutoresizingMaskIntoConstraints="NO" id="Jq6-4F-TOg">
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="Jq6-4F-TOg">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                 </imageView>
                                             </subviews>
@@ -9791,13 +9791,13 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rvb-jX-BDm">
                                                     <rect key="frame" x="0.0" y="0.0" width="165" height="150"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photobar1" translatesAutoresizingMaskIntoConstraints="NO" id="427-zp-sze">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="427-zp-sze">
                                                             <rect key="frame" x="0.0" y="8" width="165" height="142"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album_style1" translatesAutoresizingMaskIntoConstraints="NO" id="QPC-Oj-Lb5">
                                                             <rect key="frame" x="0.0" y="0.0" width="157" height="146"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paris" translatesAutoresizingMaskIntoConstraints="NO" id="K0k-FT-aJo">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="K0k-FT-aJo">
                                                             <rect key="frame" x="26" y="18" width="110" height="110"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="110" id="Xcy-Rv-FaH"/>
@@ -9889,7 +9889,7 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="album_style2" translatesAutoresizingMaskIntoConstraints="NO" id="V5L-K9-FqW">
                                                             <rect key="frame" x="0.0" y="0.0" width="157" height="161"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paris" translatesAutoresizingMaskIntoConstraints="NO" id="9fH-6Y-DlO">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="9fH-6Y-DlO">
                                                             <rect key="frame" x="23" y="38" width="110" height="110"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="110" id="Rue-8y-112"/>
@@ -9962,7 +9962,7 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reviewsTLAlbum" translatesAutoresizingMaskIntoConstraints="NO" id="Mkb-yh-ugV">
                                                             <rect key="frame" x="0.0" y="0.0" width="160" height="75"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paris" translatesAutoresizingMaskIntoConstraints="NO" id="DmF-N6-eIe">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="DmF-N6-eIe">
                                                             <rect key="frame" x="83" y="6" width="65" height="65"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="65" id="5WY-wS-f1p"/>
@@ -11309,6 +11309,20 @@
             </objects>
             <point key="canvasLocation" x="7653" y="1893"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Jyg-7B-aZK">
+            <objects>
+                <viewController id="Mav-Y6-biP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UWf-l6-14A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yig-fx-CJG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8417" y="2373"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Globe-trotter" width="180" height="140"/>
@@ -11339,7 +11353,6 @@
         <image name="countryside_icon" width="80" height="80"/>
         <image name="cruise_icon" width="80" height="80"/>
         <image name="data_upload_icon" width="60" height="60"/>
-        <image name="disney-world" width="638" height="580"/>
         <image name="facebook_icon" width="60" height="60"/>
         <image name="family" width="100" height="100"/>
         <image name="festival" width="83" height="83"/>

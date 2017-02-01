@@ -463,6 +463,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func MyLifeDetailsShow(_ sender: AnyObject) {
+        print("my life clcked.......")
         
         let myLifeVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
         self.navigationController?.present(myLifeVC, animated: true, completion: nil)

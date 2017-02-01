@@ -443,10 +443,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
             
         else if whatTab == "Moments" {
+            print("in mment///////")
             
             let simpleVC = self.childViewControllers[1] as! MyLifeMomentsViewController
             simpleVC.whichView = "Travel Life"
-            simpleVC.mainView.reloadData()
+//            simpleVC.mainView.reloadData()
+            simpleVC.loadTravelLife(pageno: 1, type: "travel-life")
             
         }
             
