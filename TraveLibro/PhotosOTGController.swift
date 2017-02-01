@@ -13,16 +13,12 @@ class PhotosOTGController: UIViewController {
     var photoHeader = PhotosOTGHeader()
     var photoCenter = PhotosOTGView()
     var photoFooter = PhotoOTGFooter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         photoHeader = PhotosOTGHeader(frame: CGRect(x: 0, y: 0, width: 400, height: 184))
-                
         photoCenter = PhotosOTGView(frame: CGRect(x: 0, y: 197, width: 400, height: 394))
-        
         photoFooter = PhotoOTGFooter(frame: CGRect(x: 0, y: 593, width: 400, height: 184))
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
