@@ -153,7 +153,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.setOnlyRightNavigationButton(rightButton)
         
         
-        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 110, width: self.view.frame.size.width - 10, height: 55))
+        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 112, width: self.view.frame.size.width - 10, height: 55))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
