@@ -3523,7 +3523,7 @@
                                                                 <fragment content="...">
                                                                     <attributes>
                                                                         <color key="NSColor" red="0.15294117647058825" green="0.16862745098039217" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <font key="NSFont" size="13" name="Avenir-Heavy"/>
+                                                                        <font key="NSFont" size="12" name="Avenir-Heavy"/>
                                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                     </attributes>
                                                                 </fragment>
