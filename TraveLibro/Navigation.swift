@@ -1397,19 +1397,8 @@ class Navigation {
     }
     
     
-    //    url:   journey/myLifeJourney
-    //
-    //    params:{
-    //    user: "User _id",
-    //    type: "",   (all / travel-life / local-life)
-    //    pagenumber : 1/2/3/4....,
-    //    }
-    
-    
     func getMomentJourney(pageNumber: Int,type:String, completion: @escaping ((JSON) -> Void)) {
-        
         do {
-            
             let opt = try HTTP.POST(adminUrl + "journey/myLifeMoment", parameters: ["user": currentUser["_id"], "type": type, "pagenumber": pageNumber])
             var json = JSON(1);
             opt.start {response in
