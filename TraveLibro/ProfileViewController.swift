@@ -359,10 +359,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         let valueArray = myValues.characters.split{$0 == " "}.map(String.init)
         
         let textOne = NSAttributedString(string: valueArray[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
-        let textTwo = NSMutableAttributedString(string: valueArray[1], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 12)!])
+        let textTwo = NSMutableAttributedString(string: valueArray[1], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
         
         if valueArray.count > 2 {
-            let textThree = NSAttributedString(string: valueArray[2], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 12)!])
+            let textThree = NSAttributedString(string: valueArray[2], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
             textTwo.append(NSAttributedString(string: " "))
             textTwo.append(textThree)
         }
