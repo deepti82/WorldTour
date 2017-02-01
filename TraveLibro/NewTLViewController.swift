@@ -894,14 +894,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         
+        self.navigationController?.navigationBar.tintColor.withAlphaComponent(0.9)
         leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
-        
+        UINavigationBar.appearance().backgroundColor = UIColor(hex: "#11d3cb")
+        UINavigationBar.appearance().backgroundColor?.withAlphaComponent(0.9)
         let rightButton = UIView()
         rightButton.frame = CGRect(x: 0, y: 0, width: 60, height: 35)
         let rightButton1 = UIButton()
         rightButton1.frame = CGRect(x: 10, y: 10, width: 30, height: 20)
         rightButton1.setImage(UIImage(named: "nearMe"), for: UIControlState())
-        rightButton1.imageView?.tintColor = UIColor(hex: "#11d3cb")
+//        rightButton1.imageView?.tintColor = UIColor(hex: "#11d3cb")
         rightButton1.imageView?.contentMode = .scaleAspectFit
         rightButton1.imageView?.clipsToBounds = true
         let rightButton2 = UIButton()

@@ -156,8 +156,8 @@ extension UIViewController {
     
     func customNavigationBar(left: UIButton?, right: AnyObject?) {
         
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.toolbar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.5)
+       navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 47/255, green: 56/255, blue: 88/255, alpha: 0.9)
+        self.navigationController?.toolbar.barTintColor = UIColor(colorLiteralRed: 47/255, green: 56/255, blue: 88/255, alpha: 0.9)
         self.navigationController?.navigationBar.barStyle = .black
         
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]

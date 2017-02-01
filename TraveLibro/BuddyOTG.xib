@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="TjV-g0-pnn">
-                    <rect key="frame" x="93" y="47" width="110" height="110"/>
+                    <rect key="frame" x="96" y="47" width="110" height="110"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="110" id="v02-TM-LgX"/>
                         <constraint firstAttribute="width" constant="110" id="zfV-CK-Iez"/>
@@ -38,7 +38,7 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzG-uJ-PBX" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="143" y="0.0" width="10" height="39"/>
+                    <rect key="frame" x="146" y="0.0" width="10" height="39"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="8oF-Cu-uPs"/>
@@ -46,7 +46,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1jI-ml-e7H">
-                    <rect key="frame" x="26" y="165" width="258" height="58"/>
+                    <rect key="frame" x="23" y="165" width="258" height="58"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gayathri has joined this journey." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOk-LL-bg7">
                             <rect key="frame" x="8" y="8" width="242" height="50"/>
@@ -63,7 +63,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan 2014, 01:20 pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nke-vo-uOh">
-                    <rect key="frame" x="34" y="231" width="242" height="20"/>
+                    <rect key="frame" x="31" y="231" width="242" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="242" id="dcB-vR-RFr"/>
                         <constraint firstAttribute="height" constant="20" id="p9I-sk-KGD"/>
@@ -74,15 +74,15 @@
                 </label>
             </subviews>
             <constraints>
-                <constraint firstItem="TjV-g0-pnn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-2" id="4za-uZ-89E"/>
-                <constraint firstItem="1jI-ml-e7H" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="5" id="58e-uf-9om"/>
+                <constraint firstItem="TjV-g0-pnn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="1" id="4za-uZ-89E"/>
+                <constraint firstItem="1jI-ml-e7H" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="2" id="58e-uf-9om"/>
                 <constraint firstItem="ZzG-uJ-PBX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FsH-kf-4SF"/>
-                <constraint firstItem="ZzG-uJ-PBX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-2" id="Maw-37-5aV"/>
+                <constraint firstItem="ZzG-uJ-PBX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="1" id="Maw-37-5aV"/>
                 <constraint firstItem="TjV-g0-pnn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="47" id="UbS-hh-5si"/>
-                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="leading" secondItem="TjV-g0-pnn" secondAttribute="trailing" constant="-18" id="jqg-bU-baW"/>
+                <constraint firstItem="Baq-Jp-Ix4" firstAttribute="leading" secondItem="TjV-g0-pnn" secondAttribute="trailing" constant="-21" id="jqg-bU-baW"/>
                 <constraint firstItem="1jI-ml-e7H" firstAttribute="top" secondItem="TjV-g0-pnn" secondAttribute="bottom" constant="8" id="ogT-eR-ps1"/>
                 <constraint firstItem="Baq-Jp-Ix4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="47" id="tcv-Ew-Knc"/>
-                <constraint firstItem="Nke-vo-uOh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="5" id="wUv-8g-6Zz"/>
+                <constraint firstItem="Nke-vo-uOh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="2" id="wUv-8g-6Zz"/>
                 <constraint firstItem="Nke-vo-uOh" firstAttribute="top" secondItem="1jI-ml-e7H" secondAttribute="bottom" constant="8" id="xZM-mt-O4Z"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
