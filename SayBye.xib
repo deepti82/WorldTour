@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0V4-er-rdj" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="120" y="13" width="10" height="42"/>
+                    <rect key="frame" x="120" y="13" width="10" height="39"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="zMw-81-xEo"/>
@@ -70,7 +70,7 @@
             <constraints>
                 <constraint firstItem="VgT-I2-L4A" firstAttribute="top" secondItem="ryW-zW-KEg" secondAttribute="top" id="5Y6-F4-p9e"/>
                 <constraint firstItem="8ow-7W-IST" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="7Zd-lY-IzP"/>
-                <constraint firstItem="ryW-zW-KEg" firstAttribute="top" secondItem="0V4-er-rdj" secondAttribute="bottom" constant="20" id="ACD-6P-zHa"/>
+                <constraint firstItem="ryW-zW-KEg" firstAttribute="top" secondItem="0V4-er-rdj" secondAttribute="bottom" constant="23" id="ACD-6P-zHa"/>
                 <constraint firstItem="8ow-7W-IST" firstAttribute="top" secondItem="ryW-zW-KEg" secondAttribute="bottom" constant="2" id="CiA-oU-SBW"/>
                 <constraint firstItem="ryW-zW-KEg" firstAttribute="centerX" secondItem="8ow-7W-IST" secondAttribute="centerX" constant="-5" id="XG6-kX-IdP"/>
                 <constraint firstItem="0V4-er-rdj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="amx-Oy-pxd"/>

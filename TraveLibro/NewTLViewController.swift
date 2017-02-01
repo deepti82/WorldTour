@@ -898,6 +898,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         let rightButton1 = UIButton()
         rightButton1.frame = CGRect(x: 10, y: 10, width: 30, height: 20)
         rightButton1.setImage(UIImage(named: "nearMe"), for: UIControlState())
+        rightButton1.imageView?.tintColor = UIColor(hex: "#11d3cb")
         rightButton1.imageView?.contentMode = .scaleAspectFit
         rightButton1.imageView?.clipsToBounds = true
         let rightButton2 = UIButton()
