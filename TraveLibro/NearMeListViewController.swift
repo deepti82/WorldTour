@@ -154,6 +154,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
         let rightButton = UIView()
         self.title = text
+        
         self.customNavigationBar(left: leftButton, right: rightButton)
     }
     

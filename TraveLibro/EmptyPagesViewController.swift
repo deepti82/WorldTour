@@ -20,11 +20,15 @@ class EmptyPagesViewController: UIViewController {
         
         if whichView == "BucketList" {
             self.title = "Bucket List"
+            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+
             nocountries.countriesVisitedLabel.text = "Add Countries To Your Bucket List Here"
         }
             
         else if whichView == "CountriesVisited" {
             self.title = "Countries Visited"
+            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+
             nocountries.countriesVisitedLabel.text = "Add Countries To Your Countries Visited Here"
         }
     }

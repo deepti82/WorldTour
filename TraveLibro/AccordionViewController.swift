@@ -46,6 +46,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
         let rightButton = UIView()
         self.title = text
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+
         self.customNavigationBar(left: leftButton, right: rightButton)
     }
     

@@ -891,6 +891,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
         leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
         leftButton.imageView?.tintColor = UIColor.white
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+        
         leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
         
         let rightButton = UIView()

@@ -63,6 +63,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         allFriends.textColor = mainOrangeColor
         self.title = "Add Buddies"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         addedBuddies.layer.zPosition = 100
         print("addedFriends: \(addedFriends)")
         print("friends json: \(allFriendsJson)")

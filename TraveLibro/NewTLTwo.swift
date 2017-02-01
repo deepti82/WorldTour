@@ -272,7 +272,7 @@ extension NewTLViewController {
         
         prevPosts.append(post)
         
-        let buddyView = SayBye(frame: CGRect(x: 0, y: 10, width: 300, height: 250))
+        let buddyView = SayBye(frame: CGRect(x: 0, y: 10, width: 300, height: 229))
         buddyView.center.x = self.view.center.x
         buddyView.profileName.text = post["user"]["name"].string!
         DispatchQueue.main.async(execute: {

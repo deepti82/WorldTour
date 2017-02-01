@@ -240,7 +240,7 @@ class EndJourneyViewController: UIViewController {
         
         
         self.title = "End Journey"
-        
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         
     }
     

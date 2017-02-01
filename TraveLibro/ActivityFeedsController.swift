@@ -46,6 +46,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.title = "Activity Feed"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())

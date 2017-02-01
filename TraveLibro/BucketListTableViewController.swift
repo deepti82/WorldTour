@@ -28,11 +28,15 @@ class BucketListTableViewController: UITableViewController  {
         
         if whichView == "BucketList" {
             self.title = "Bucket List"
+            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+
             getBucketList()
         }
         
         if whichView == "CountriesVisited" {
             self.title = "Countries Visited"
+            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+
             getCountriesVisited()
         }
         

@@ -44,6 +44,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         if whichView == "CountriesVisited" {
              self.title = "Countries Visited"
+            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.addYear(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
@@ -55,7 +57,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         else if whichView == "BucketList" {
             
             self.title = "Bucket List"
-            
+            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+
 //            rightButton.setImage(UIImage(named: "arrow_next_fa"), forState: .Normal)
             rightButton.setTitle("Save", for: UIControlState())
             rightButton.titleLabel?.font = avenirFont
@@ -72,6 +75,8 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         
         else if whichView == "selectNationality" {
              self.title = "Countries Visited"
+            self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+
             getDarkBackGroundBlur(self)
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
             rightButton.addTarget(self, action: #selector(SelectCountryViewController.chooseCity(_:)), for: .touchUpInside)
