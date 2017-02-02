@@ -90,7 +90,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="0.90156785102739723" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="62" id="7cD-Uk-no6"/>
                         <constraint firstItem="mj2-Bu-mVu" firstAttribute="leading" secondItem="Gh6-KK-pom" secondAttribute="trailing" constant="5" id="GAB-Ur-pAm"/>
@@ -196,6 +196,7 @@
                                 <constraint firstAttribute="height" constant="40" id="vbt-xX-BOK"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
