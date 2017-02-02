@@ -142,17 +142,17 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         
         postButton.layer.cornerRadius = 5.0
         postButton.layer.borderColor = UIColor.white.cgColor
-        postButton.layer.borderWidth = 1.0
-        self.locationTag.tintColor = mainBlueColor
-        self.photoTag.tintColor = mainBlueColor
-        self.thoughtInitialTag.tintColor = mainBlueColor
-        self.videoTag.tintColor = mainBlueColor
-        self.finalThoughtTag.tintColor = mainBlueColor
+        postButton.layer.borderWidth = 3.0
+        self.locationTag.tintColor = mainGreyColor
+        self.photoTag.tintColor = mainGreyColor
+        self.thoughtInitialTag.tintColor = mainGreyColor
+        self.videoTag.tintColor = mainGreyColor
+        self.finalThoughtTag.tintColor = mainGreyColor
         self.cancelLocationButton.isHidden = true
         self.friendsCount.isHidden = true;
-        self.friendsTag.tintColor = mainBlueColor
-        self.finalImageTag.tintColor = mainOrangeColor
-        self.videoTagFinal.tintColor = mainOrangeColor
+        self.friendsTag.tintColor = mainGreyColor
+        self.finalImageTag.tintColor = mainGreyColor
+        self.videoTagFinal.tintColor = mainGreyColor
         self.addLocationText.delegate = self
     }
     

@@ -1892,7 +1892,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
-        
+        otgView.drawLineView3.isHidden = false
         if textField == otgView.nameJourneyTF {
             
             setTopNavigation(text: "Kind of Journey");
@@ -1965,6 +1965,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.navigationController?.pushViewController(categoryVC, animated: true)
         otgView.closeBuddies.isHidden = false
         //        showDetailsFn()
+        otgView.drawLineView3.isHidden = true
+        otgView.drawLineView4.isHidden = false
         
     }
     
@@ -2112,7 +2114,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print(self.journeyId)
         print(self.journeyName)
         request.addBuddiesOTG(json, userId: currentUser["_id"].stringValue , userName: currentUser["name"].stringValue, journeyId: self.journeyId, inMiddle: inMiddle, journeyName: self.journeyName, completion: { (json) in
-            
+            self.otgView.drawLineView4.isHidden = true
             
         })
     }
@@ -2484,7 +2486,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             let curDate = Date()
                             let localDate = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: self.currentTime, isDate: true)
                             let localTime = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: self.currentTime, isDate: false)
-                            self.otgView.timestampDate.text = "\(localDate) | \(localTime)" //self.currentTime
+                            self.otgView.timestampDate.text = "\(localDate)   |   \(localTime)" //self.currentTime
                             
                             
                             //                        self.otgView.timestampDate.text = self.currentTime

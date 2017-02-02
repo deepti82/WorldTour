@@ -73,7 +73,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYv-ZD-NnK">
-                    <rect key="frame" x="163" y="868" width="75" height="35"/>
+                    <rect key="frame" x="163" y="873" width="75" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="75" id="a6A-db-lXj"/>
                         <constraint firstAttribute="height" constant="35" id="gxH-lY-YRX"/>
@@ -97,7 +97,7 @@
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_icon" translatesAutoresizingMaskIntoConstraints="NO" id="XUO-Me-yGq">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
-                                    <color key="tintColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="6uo-R6-Swi"/>
                                         <constraint firstAttribute="width" constant="25" id="Ccz-jC-2Rw"/>
@@ -201,7 +201,7 @@
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_icon" translatesAutoresizingMaskIntoConstraints="NO" id="tWP-Xu-eyz">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
-                                    <color key="tintColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="DJC-hE-iAm"/>
                                         <constraint firstAttribute="height" constant="25" id="xft-qy-ByO"/>
@@ -239,7 +239,7 @@
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_icon" translatesAutoresizingMaskIntoConstraints="NO" id="kbT-nS-SQt">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
-                                    <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="Elh-om-cTr"/>
                                         <constraint firstAttribute="width" constant="25" id="wVv-jt-xxu"/>
@@ -292,7 +292,7 @@
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="QT8-lh-TbD">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
-                                    <color key="tintColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="0hx-Ml-vXu"/>
                                         <constraint firstAttribute="width" constant="25" id="sxW-XV-nWr"/>
@@ -359,7 +359,7 @@
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pen_icon" translatesAutoresizingMaskIntoConstraints="NO" id="oUM-Jh-Qah">
                                     <rect key="frame" x="8" y="8" width="25" height="25"/>
-                                    <color key="tintColor" red="0.13725490868091583" green="0.17647059261798859" blue="0.29019609093666077" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" red="0.16470588235294117" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="5zW-te-lAX"/>
                                         <constraint firstAttribute="width" constant="25" id="ZtY-Lw-w4h"/>
@@ -500,43 +500,43 @@
                         <constraint firstAttribute="trailing" secondItem="kfx-FD-UNk" secondAttribute="trailing" constant="8" id="zOG-6I-U5j"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="txv-38-x7m">
-                    <rect key="frame" x="68" y="807" width="265" height="45"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="txv-38-x7m">
+                    <rect key="frame" x="65" y="807" width="270" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9x-np-zvE">
-                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9x-np-zvE">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ro-cc-PTU">
-                            <rect key="frame" x="55" y="0.0" width="45" height="45"/>
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
-                            <state key="normal" title="Button">
-                                <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMo-fu-Icw">
-                            <rect key="frame" x="110" y="0.0" width="45" height="45"/>
+                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ro-cc-PTU">
+                            <rect key="frame" x="55" y="0.0" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="45" id="LI1-au-h5i"/>
-                                <constraint firstAttribute="height" constant="45" id="XhE-Ut-U4b"/>
+                                <constraint firstAttribute="height" constant="50" id="J1Z-gE-tOb"/>
+                                <constraint firstAttribute="width" constant="50" id="Ym8-ZB-TeB"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDb-hl-Qfq">
-                            <rect key="frame" x="165" y="0.0" width="45" height="45"/>
+                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMo-fu-Icw">
+                            <rect key="frame" x="110" y="0.0" width="50" height="50"/>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiR-Zp-fad">
-                            <rect key="frame" x="220" y="0.0" width="45" height="45"/>
+                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDb-hl-Qfq">
+                            <rect key="frame" x="165" y="0.0" width="50" height="50"/>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiR-Zp-fad">
+                            <rect key="frame" x="220" y="0.0" width="50" height="50"/>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

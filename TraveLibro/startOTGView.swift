@@ -11,10 +11,12 @@ import Spring
 class startOTGView: UIView {
 
     
+    @IBOutlet weak var drawLineView4: drawLine!
   
+    @IBOutlet weak var drawLineView3: drawLine!
+    @IBOutlet weak var drawLine3: drawLine!
     @IBOutlet weak var youAreIn: UIImageView!
     @IBOutlet weak var drawLine4: drawLine!
-    @IBOutlet weak var drawLine3: drawLine!
     @IBOutlet weak var detectHide: UIButton!
     @IBOutlet weak var lineOne: drawLine!
     @IBOutlet weak var lineTwo: drawLine!
@@ -69,7 +71,8 @@ class startOTGView: UIView {
         transparentWhiteButton(addBuddiesButton)
         transparentWhiteButton(selectCategoryButton)
         transparentCardWhite(journeyDetails)
-    
+        drawLineView3.isHidden = true
+        drawLineView4.isHidden = true
         
         closeBuddies.isHidden = true
 //        drawLine3.isHidden = true
@@ -125,7 +128,7 @@ class startOTGView: UIView {
         
         
         
-        closeBuddies.layer.cornerRadius = 12.5
+        closeBuddies.layer.cornerRadius = 15
         closeBuddies.titleLabel?.textAlignment = .center
         closeBuddies.layer.borderWidth = 1.0
         closeBuddies.layer.borderColor = UIColor(colorLiteralRed: 35/255, green: 45/255, blue: 74/255, alpha: 1.0).cgColor

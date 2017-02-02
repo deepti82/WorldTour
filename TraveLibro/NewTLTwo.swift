@@ -75,14 +75,14 @@ extension NewTLViewController {
         self.backView.frame = self.view.frame
         self.view.addSubview(self.backView)
         self.backView.frame = self.view.frame
-        darkBlur = UIBlurEffect(style: .dark)
+        darkBlur = UIBlurEffect(style: .regular)
         blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.backView.frame.height
         blurView.frame.size.width = self.backView.frame.width
         blurView.layer.zPosition = -1
         blurView.isUserInteractionEnabled = false
         self.backView.addSubview(blurView)
-        blurView.layer.opacity = 0.9
+//        blurView.layer.opacity = 0.9
         let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         blurView.contentView.addSubview(vibrancyEffectView)
@@ -454,7 +454,7 @@ extension NewTLViewController {
                         let otg = subview as! startOTGView
                         let localDate = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: date, isDate: true)
                         let localTime = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: date, isDate: false)
-                        otg.timestampDate.text = "\(localDate) | \(localTime)"
+                        otg.timestampDate.text = "\(localDate)   |   \(localTime)"
                         flag = 1
                     }
                 }
@@ -465,7 +465,7 @@ extension NewTLViewController {
             
             let localDate = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: date, isDate: true)
             let localTime = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: date, isDate: false)
-            otgView.timestampDate.text = "\(localDate) | \(localTime)" //self.currentTime
+            otgView.timestampDate.text = "\(localDate)   |   \(localTime)" //self.currentTime
         }
     }
     
