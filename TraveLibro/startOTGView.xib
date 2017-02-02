@@ -289,8 +289,8 @@
                             </constraints>
                         </view>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWW-f4-BJZ">
-                            <rect key="frame" x="31" y="321" width="340" height="50"/>
-                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                            <rect key="frame" x="31" y="321" width="340" height="58"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                             <state key="normal" title="Select Kind Of Journey">
                                 <color key="titleColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
@@ -301,7 +301,7 @@
                         <constraint firstItem="b9h-EL-mQr" firstAttribute="top" secondItem="t7r-hX-X00" secondAttribute="top" id="C0X-yJ-NQ5"/>
                         <constraint firstItem="nWW-f4-BJZ" firstAttribute="top" secondItem="vov-Dh-v4k" secondAttribute="bottom" constant="8" id="E6U-v4-6Du"/>
                         <constraint firstItem="dfr-Js-I8N" firstAttribute="top" secondItem="b9h-EL-mQr" secondAttribute="bottom" constant="-7" id="FhK-YD-h8b"/>
-                        <constraint firstAttribute="bottom" secondItem="nWW-f4-BJZ" secondAttribute="bottom" constant="-11" id="GQj-vT-XUD"/>
+                        <constraint firstAttribute="bottom" secondItem="nWW-f4-BJZ" secondAttribute="bottom" constant="-19" id="GQj-vT-XUD"/>
                         <constraint firstAttribute="trailing" secondItem="vov-Dh-v4k" secondAttribute="trailing" id="Gne-FG-u5x"/>
                         <constraint firstAttribute="trailing" secondItem="dfr-Js-I8N" secondAttribute="trailing" id="H3M-Yn-qg2"/>
                         <constraint firstItem="h75-8D-si8" firstAttribute="top" secondItem="vov-Dh-v4k" secondAttribute="bottom" constant="-1" id="KoQ-19-jYH"/>
@@ -341,7 +341,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="OVO-QV-P7v"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                     <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Add Buddies">
                         <color key="titleColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -425,7 +425,7 @@
         <image name="family" width="100" height="100"/>
         <image name="journey_shoes" width="90" height="107"/>
         <image name="locationNew" width="384" height="384"/>
-        <image name="logo-default" width="180" height="180"/>
+        <image name="logo-default" width="600" height="600"/>
         <image name="options_icon" width="30" height="30"/>
         <image name="you_are_in" width="245" height="105"/>
     </resources>
