@@ -89,12 +89,12 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.mainPhoto.clipsToBounds = true
             self.mainPhoto.image = UIImage(named: "logo-default")
             
-            let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
-            headerTag.tagParent.backgroundColor = UIColor.clear
-            headerTag.colorTag(feed: feed)
-            headerTag.tagLine.isHidden = true
-            
-            self.mainPhoto.addSubview(headerTag)
+//            let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
+//            headerTag.tagParent.backgroundColor = UIColor.clear
+//            headerTag.colorTag(feed: feed)
+//            headerTag.tagLine.isHidden = true
+//            
+//            self.mainPhoto.addSubview(headerTag)
             //            if headerTag.tagText.text == "Travel Life"{
             //                profileHeader.category.imageView?.tintColor = UIColor.white
             //            } else {
@@ -151,17 +151,12 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 
                 
                 if feed["thoughts"] == nil || feed["thoughts"].stringValue == "" {
-                    let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
-                    headerTag.tagParent.backgroundColor = UIColor.clear
-                    headerTag.tagLine.isHidden = true
-                    headerTag.colorTag(feed: feed)
-                    
-                    self.mainPhoto.addSubview(headerTag)
-                    //                    if headerTag.tagText.text == "Travel Life"{
-                    //                        profileHeader.category.imageView?.tintColor = UIColor.white
-                    //                    } else {
-                    //                        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
-                    //                    }
+//                    let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
+//                    headerTag.tagParent.backgroundColor = UIColor.clear
+//                    headerTag.tagLine.isHidden = true
+//                    headerTag.colorTag(feed: feed)
+//                    
+//                    self.mainPhoto.addSubview(headerTag)
                     
                     
                     
@@ -273,13 +268,13 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(textHeader)
             
             //  START ACTIVITY TEXT TAG
-            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
-                textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
-                textTag.transparentBack()
-                textTag.colorTag(feed: feed)
-                
-                self.addSubview(textTag)
-            }
+//            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
+//                textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
+//                textTag.transparentBack()
+//                textTag.colorTag(feed: feed)
+//                
+//                self.addSubview(textTag)
+//            }
             
         }else{
             // For header text
