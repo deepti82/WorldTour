@@ -135,16 +135,16 @@ class EndJourneyViewController: UIViewController {
         
         
         
-        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 380))
+        endJourney = EndJourneyView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 408))
         endJourney.tag = 100
         endJourney.changeConstraint(height: 90)
         transparentCardWhite(endJourney.accesoriesVew)
         transparentOrangeView(endJourney.UserEndJourneyView)
         
 //        endJourney.accesoriesVew.isHidden = true
-        endJourney.categoryOne.tintColor = mainOrangeColor
-        endJourney.categoryTwo.tintColor = mainOrangeColor
-        endJourney.categoryThree.tintColor = mainOrangeColor
+        endJourney.categoryOne.tintColor = UIColor.white
+        endJourney.categoryTwo.tintColor = UIColor.white
+        endJourney.categoryThree.tintColor = UIColor.white
         endJourney.changePhotoButton.addTarget(self, action: #selector(changePicture(_:)), for: .touchUpInside)
         transparentCardWhite(endJourney.journeyCoverPic)
         endJourney.journeyCoverPic.image = UIImage(named: "logo-default")
@@ -283,7 +283,7 @@ class EndJourneyViewController: UIViewController {
         
         for (n,i) in newJson {
             var rateState = self.getRatingImage(rate: i["rating"].stringValue)
-            let rate = ShowRating(frame: CGRect(x: 0, y: 20, width: self.view.frame.width, height: 150))
+            let rate = ShowRating(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150))
             rate.rating.setImage(UIImage(named:rateState["image"].stringValue), for: .normal)
             rate.rating.setBackgroundImage(UIImage(named:rateState["back"].stringValue), for: .normal)
             rate.ratingLabel.text = i["country"]["name"].stringValue
@@ -318,6 +318,7 @@ class EndJourneyViewController: UIViewController {
         rating.tag = sender.tag
         
         if newJson[sender.tag]["rating"] != nil {
+            print("rrrrrrrrr \(newJson[sender.tag]["rating"])")
             var rateState = self.getRatingImage(rate: newJson[sender.tag]["rating"].stringValue)
             rating.updateSmiley(point: newJson[sender.tag]["rating"].intValue)
             if newJson[sender.tag]["review"] != nil && newJson[sender.tag]["review"] != "" {

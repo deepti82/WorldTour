@@ -12,7 +12,7 @@ import Toaster
 class AddRatingCountries: UIView, UITextViewDelegate {
     
     var ratingIndex = 0
-    var starCount = 0
+    var starCount = 1
     
     @IBOutlet weak var starsStack: UIStackView!
     @IBOutlet weak var postReview: UIButton!
@@ -87,11 +87,14 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     }
     
     func updateSmiley(point:Int) {
-
-        ratingIndex = point
-        reviewConclusion.text = moodArr[point - 1]
-        smiley.setImage(UIImage(named: imageArr[point - 1]), for: UIControlState())
-        updateButtonSelectionStates()
+print(point)
+        if point != nil && point != 0 {
+            ratingIndex = point
+            reviewConclusion.text = moodArr[point - 1]
+            smiley.setImage(UIImage(named: imageArr[point - 1]), for: UIControlState())
+            updateButtonSelectionStates()
+        }
+        
         
     }
     

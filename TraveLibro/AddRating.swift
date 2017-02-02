@@ -59,6 +59,7 @@ class AddRating: UIView, UITextViewDelegate {
 
             self.activityBasic.reviewTapOut(UITapGestureRecognizer())
         }else{
+            print("after rating \(starCount)")
             self.checkIn.modifyAsReview(num: (self.starCount), reviewR: reviewBody)
             self.checkIn.reviewTapOut(UITapGestureRecognizer())
         }
@@ -188,8 +189,14 @@ class AddRating: UIView, UITextViewDelegate {
             stars[i].setImage(UIImage(named: "star_check"), for: UIControlState())
             
         }
-        smiley.setImage(UIImage(named: imageArr[Int(review["rating"].string!)!]), for: UIControlState())
-        reviewConclusion.text = moodArr[Int(review["rating"].string!)!]
+        var cnt = 0
+        if Int(review["rating"].string!) == 0 {
+            cnt = 1
+        }else{
+            cnt = Int(review["rating"].string!)!
+        }
+        smiley.setImage(UIImage(named: imageArr[cnt - 1]), for: UIControlState())
+        reviewConclusion.text = moodArr[cnt - 1]
         
     }
     

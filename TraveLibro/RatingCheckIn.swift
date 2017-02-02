@@ -65,12 +65,13 @@ class RatingCheckIn: UIView {
         rating.post = photosOtg.postTop
         rating.checkIn = self
         rating.json = self.review
+        print("get Review \(rating.json)")
         if review != nil  {
             rating.starCount = Int(review["rating"].stringValue)!
             rating.ratingDisplay(rating.json)
 
         }else{
-            rating.starCount = 0
+            rating.starCount = 1
 
         }
         
@@ -86,17 +87,17 @@ class RatingCheckIn: UIView {
     }
     func modifyAsReview() {
         let num = Int(review["rating"].stringValue)!
-        self.rateCheckInButton.setImage(UIImage(named:imageArr[num]), for: UIControlState() )
-        self.rateCheckInLabel.text = moodArr[num]
+        self.rateCheckInButton.setImage(UIImage(named:imageArr[num - 1]), for: UIControlState() )
+        self.rateCheckInLabel.text = moodArr[num - 1]
     }
     
     func modifyAsReview(num:Int, reviewR:String) {
         print(num)
         print("reviewwww")
         print(reviewR)
-        self.rateCheckInButton.setImage(UIImage(named:imageArr[num]), for: UIControlState() )
+        self.rateCheckInButton.setImage(UIImage(named:imageArr[num - 1]), for: UIControlState())
         self.rateCheckInButton.setBackgroundImage(UIImage(named:"box8"), for: UIControlState())
-        self.rateCheckInLabel.text = moodArr[num]
+        self.rateCheckInLabel.text = moodArr[num - 1]
         review = ["rating":"\(num)", "review":reviewR]
     }
     
