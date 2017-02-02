@@ -304,7 +304,8 @@ class ActivityFeedFooterBasic: UIView {
             globalActivityFeedsController.addHeightToLayout()
         } else if(self.type == "TripPhotos") {
             globalListPhotosViewController.addHeightToLayout()
-            
+        } else if(self.type == "MyLifeFeeds") {
+            globalMyLifeContainerViewController.addHeightToLayout()
         }
     }
     

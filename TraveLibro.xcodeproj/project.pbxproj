@@ -51,6 +51,7 @@
 		36E3B8241E34B54C00C597BA /* ActivityFeedFooterBasic.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E3B8231E34B54C00C597BA /* ActivityFeedFooterBasic.xib */; };
 		36E3B8261E34B56200C597BA /* ActivityFeedFooterBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E3B8251E34B56200C597BA /* ActivityFeedFooterBasic.swift */; };
 		36EB3F981E0D81A000EFF9EC /* PostBuddy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */; };
+		36F3D7DF1E43738300D79A24 /* MyLifeActivityFeedsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F3D7DE1E43738300D79A24 /* MyLifeActivityFeedsLayout.swift */; };
 		3A38275E1DDEE4BB007F181D /* NearMeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */; };
 		3A7A7D901DE5A921005F409C /* SinglePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A7D8F1DE5A921005F409C /* SinglePhotoViewController.swift */; };
 		3A7D360B1DE8441700786A83 /* PhotoCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D360A1DE8441700786A83 /* PhotoCommentViewController.swift */; };
@@ -510,6 +511,7 @@
 		36E3B8231E34B54C00C597BA /* ActivityFeedFooterBasic.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedFooterBasic.xib; sourceTree = "<group>"; };
 		36E3B8251E34B56200C597BA /* ActivityFeedFooterBasic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedFooterBasic.swift; sourceTree = "<group>"; };
 		36EB3F971E0D81A000EFF9EC /* PostBuddy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostBuddy.swift; sourceTree = "<group>"; };
+		36F3D7DE1E43738300D79A24 /* MyLifeActivityFeedsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLifeActivityFeedsLayout.swift; sourceTree = "<group>"; };
 		3A38275D1DDEE4BB007F181D /* NearMeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearMeListViewController.swift; sourceTree = "<group>"; };
 		3A7A7D8F1DE5A921005F409C /* SinglePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoViewController.swift; sourceTree = "<group>"; };
 		3A7D360A1DE8441700786A83 /* PhotoCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCommentViewController.swift; sourceTree = "<group>"; };
@@ -2519,6 +2521,7 @@
 			isa = PBXGroup;
 			children = (
 				FCE877FE1E30CA6A005EE913 /* ActivityFeedsLayout.swift */,
+				36F3D7DE1E43738300D79A24 /* MyLifeActivityFeedsLayout.swift */,
 			);
 			name = ActivityFeedsLayout;
 			sourceTree = "<group>";
@@ -3032,6 +3035,7 @@
 				C2C30D661CE1CD9F001189FC /* AddFriendsViewCell.swift in Sources */,
 				367B90F61DC23ADF00D76F13 /* ActiveLabel.swift in Sources */,
 				C24B455C1D0ACAFA002EA009 /* Itineraries.swift in Sources */,
+				36F3D7DF1E43738300D79A24 /* MyLifeActivityFeedsLayout.swift in Sources */,
 				C26907911CF86F8200F827E6 /* ImageCheckbox.swift in Sources */,
 				C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */,
 				C28521B81D364680001EF251 /* FilterIntinerariesType.swift in Sources */,

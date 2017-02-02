@@ -1,18 +1,10 @@
-//
-//  MyLifeContainerViewController.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 07/07/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
-
+var globalMyLifeContainerViewController:MyLifeContainerViewController!
 class MyLifeContainerViewController: UIViewController {
     
     @IBOutlet weak var TheScrollView: UIScrollView!
     
-    var verticalLayout: VerticalLayout!
+    var layout: VerticalLayout!
     var whichView = "All"
     var whichEmptyView = "Journeys-All"
     var isInitalLoad = true
@@ -20,20 +12,17 @@ class MyLifeContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        globalMyLifeContainerViewController = self;
         isEmptyProfile = false
         
-//        print("profile empty status: \(isEmptyProfile)")
-        
-//        print("which view simple container: \(whichView)")
-        
-        verticalLayout = VerticalLayout(width: self.view.frame.width+4);
+        layout = VerticalLayout(width: self.view.frame.width);
+        TheScrollView.addSubview(layout)
         
         if isEmptyProfile {
             if isInitalLoad {
-                empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: verticalLayout.frame.width, height: 250))
-                self.addHeightToLayout(empty.frame.height)
-                verticalLayout.addSubview(empty)
+                empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: layout.frame.width, height: 250))
+                self.addHeightToLayout()
+                layout.addSubview(empty)
                 isInitalLoad = false
             }
             switch whichEmptyView {
@@ -100,72 +89,36 @@ class MyLifeContainerViewController: UIViewController {
         
         else {
             
-            let tag = TimestampTagViewOnScroll(frame: CGRect(x: self.view.frame.width - 130, y: 20, width: 135, height: 75))
-            tag.layer.zPosition = 1000
-            self.view.addSubview(tag)
-         
-            let postOne = InProfileOTGPost(frame: CGRect(x: 0, y: 0, width: verticalLayout.frame.width, height: 450))
-            postOne.clipsToBounds = true
-            postOne.statusLabel.text = "Manan Vora ended his London Journey"
-            postOne.iconButtonView.removeFromSuperview()
-            
-            let postTwo = NewProfilePosts(frame: CGRect(x: 0, y: -4, width: verticalLayout.frame.width, height: 700))
-            postTwo.profileImageView.removeFromSuperview()
-            postTwo.profileName.removeFromSuperview()
-            postTwo.timestamp.removeFromSuperview()
-            postTwo.followButton.removeFromSuperview()
-            postTwo.iconButton.removeFromSuperview()
-            postTwo.seperatorViewUp.removeFromSuperview()
-            postTwo.OTGLabelView.removeFromSuperview()
-            postTwo.titleConstraint.constant = 8.0
-            postTwo.iconButtonUpConstraint.constant = 8.0
-            postTwo.clipsToBounds = true
-            
-            let postThree = NewThoughtsView(frame: CGRect(x: 0, y: -16, width: verticalLayout.frame.width, height: 280))
-            postThree.profileImage.removeFromSuperview()
-            postThree.profileName.removeFromSuperview()
-            postThree.timestamp.removeFromSuperview()
-            postThree.followButton.removeFromSuperview()
-            postThree.iconButton.removeFromSuperview()
-            postThree.seperatorOne.removeFromSuperview()
-            postThree.OTGLabelView.isHidden = true
-            postThree.titleDistanceConstraint.constant = 8.0
-            postThree.buttonDistanceConstraint.constant = 8.0
-            postThree.clipsToBounds = true
             switch whichView {
             case "All":
-                print("All journeys")
-                self.addHeightToLayout(postOne.frame.height)
-                verticalLayout.addSubview(postOne)
-                self.addHeightToLayout(postTwo.frame.height)
-                verticalLayout.addSubview(postTwo)
-                self.addHeightToLayout(postThree.frame.height)
-                verticalLayout.addSubview(postThree)
+                request.getMomentJourney(pageNumber: 1, type: "all",completion: {(request) in
+                    DispatchQueue.main.async(execute: {
+                        if request["data"] != "" {
+                            for post in request["data"].array! {
+                                let checkIn = MyLifeActivityFeedsLayout(width: self.view.frame.width)
+                                checkIn.scrollView = self.TheScrollView
+                                checkIn.createProfileHeader(feed: post)
+                                checkIn.activityFeed = self
+                                self.layout.addSubview(checkIn)
+                            }
+                            self.addHeightToLayout()
+                        }
+                    })
+                })
             case "TL":
-                print("TL journeys")
-                self.addHeightToLayout(postOne.frame.height)
-                verticalLayout.addSubview(postOne)
+                break
             case "LL":
-                print("LL journeys")
-                self.addHeightToLayout(postTwo.frame.height)
-                verticalLayout.addSubview(postTwo)
-                self.addHeightToLayout(postThree.frame.height)
-                verticalLayout.addSubview(postThree)
+                break
             default:
                 break
             }
         }
-        TheScrollView.contentSize.height = verticalLayout.frame.height + 100
-        TheScrollView.addSubview(verticalLayout)
-        
-//        verticalLayout.userInteractionEnabled = false
         
     }
     
-    func addHeightToLayout(_ height: CGFloat) {
-        
-        verticalLayout.frame.size.height += height
-        
+    func addHeightToLayout() {
+        self.layout.layoutSubviews()
+        self.TheScrollView.contentSize = CGSize(width: self.layout.frame.width, height: self.layout.frame.height + 60)
     }
 
     override func didReceiveMemoryWarning() {

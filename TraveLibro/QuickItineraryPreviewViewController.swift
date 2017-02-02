@@ -129,6 +129,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    
     func donePage(_ sender: UIButton) {
         let actionSheet: UIAlertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         
@@ -160,9 +161,6 @@ class QuickItineraryPreviewViewController: UIViewController {
                                 quickItinery = []
                                 let tstr = Toast(text: "Itenary saved successfully.")
                                 tstr.show()
-//                                self.callBackViewC()
-            
-            
                                 let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
                                 self.navigationController?.pushViewController(next, animated: true)
                                 print("nothing")

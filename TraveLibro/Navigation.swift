@@ -1399,7 +1399,7 @@ class Navigation {
     
     func getMomentJourney(pageNumber: Int,type:String, completion: @escaping ((JSON) -> Void)) {
         do {
-            let opt = try HTTP.POST(adminUrl + "journey/myLifeMoment", parameters: ["user": currentUser["_id"], "type": type, "pagenumber": pageNumber])
+            let opt = try HTTP.POST(adminUrl + "journey/myLifeJourney", parameters: ["user": currentUser["_id"].stringValue, "type": type, "pagenumber": pageNumber])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -1408,7 +1408,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }

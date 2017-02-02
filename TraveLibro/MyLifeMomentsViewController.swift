@@ -202,9 +202,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         if whichView == "All" {
-            
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
             let array = titleLabels[(indexPath as NSIndexPath).section].components(separatedBy: ", ")
             print(array)
@@ -215,20 +213,15 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             headerLabel.append(count)
             header.titleLabel.attributedText = headerLabel
             return header
-            
         }
-        else if whichView == "Monthly"{
-            
+        else if whichView == "Monthly" {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
             header.titleLabel.text = Month
             return header
-            
         }
-        
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
         header.titleLabel.text = ""
         return header
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -121,8 +121,6 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
             imageArr.append(postImg);
             globalPostImage.append(postImg)
         }
-
-        
         self.photoGallerySecondView.isHidden = false
         self.photosGalleryFirstView.isHidden = true
         self.photosCollection.reloadData()
@@ -144,53 +142,30 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         
         self.bs_presentImagePickerController(multipleImage, animated: true,
                                              select: { (asset: PHAsset) -> Void in
-                                                
                                                 print("Selected: \(asset)")
-                                                
-                                                
         }, deselect: { (assets: PHAsset) -> Void in
-            
             print("deselected: \(assets)")
-            
         },  cancel: { (assets: [PHAsset]) -> Void in
-            
             print("Cancel: \(assets)")
         }, finish: { (assets: [PHAsset]) -> Void in
             DispatchQueue.main.async {
                 print("test imagepicker")
                 let manage1 = PHImageManager.default()
                 let option1 = PHImageRequestOptions()
-                
                 option1.isSynchronous = true
-                for n in 0...assets.count - 1{
-                    print(n)
+                for n in 0...assets.count - 1 {
                     manage1.requestImage(for: assets[n], targetSize: CGSize(width: 100, height: 100), contentMode: .aspectFit, options: option1, resultHandler: {(result, info)->Void in
-                        
-                        print(result!)
-                        
                         self.thumbnail1.append(result!)
-                        
                     })
                 }
-                
                 self.photoGallerySecondView.isHidden = false
                 self.photosGalleryFirstView.isHidden = true
                 self.photosCollection.reloadData()
-                
             }
         }, completion: nil)
-
-        
     }
-    
 }
 
 class photosSelection: UICollectionViewCell {
- 
-    
-  
     @IBOutlet weak var photosImage: UIImageView!
-    
-    
-    
 }
