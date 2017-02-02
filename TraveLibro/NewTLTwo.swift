@@ -82,7 +82,7 @@ extension NewTLViewController {
         blurView.layer.zPosition = -1
         blurView.isUserInteractionEnabled = false
         self.backView.addSubview(blurView)
-        blurView.layer.opacity = 0.8
+        blurView.layer.opacity = 0.9
         let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         blurView.contentView.addSubview(vibrancyEffectView)
@@ -107,7 +107,7 @@ extension NewTLViewController {
         
         rightButton.setTitle("Post", for: UIControlState())
         rightButton.titleLabel?.font = avenirBold
-        rightButton.titleLabel!.font = UIFont (name: "avenirBold", size: 20)
+        rightButton.titleLabel!.font = UIFont (name: "Avenir-Roman", size: 17)
         rightButton.addTarget(self, action: #selector(self.newPost(_:) ), for: .touchUpInside)
         globalNavigationController.topViewController?.title = "Add Activity"
         globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
