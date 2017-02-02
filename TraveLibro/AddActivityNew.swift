@@ -151,8 +151,8 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         self.cancelLocationButton.isHidden = true
         self.friendsCount.isHidden = true;
         self.friendsTag.tintColor = mainGreyColor
-        self.finalImageTag.tintColor = mainGreyColor
-        self.videoTagFinal.tintColor = mainGreyColor
+        self.finalImageTag.tintColor = mainOrangeColor
+        self.videoTagFinal.tintColor = mainOrangeColor
         self.addLocationText.delegate = self
     }
     

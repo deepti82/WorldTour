@@ -263,7 +263,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addImages", for: indexPath) as! addImages
 
-        cell.frame.origin.y = -64
+//        cell.frame.origin.y = -64
         
 //        cell.backgroundColor = UIColor.brown
         cell.addImagesCollection.image = imageArr[indexPath.row].image

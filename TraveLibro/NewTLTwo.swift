@@ -75,14 +75,14 @@ extension NewTLViewController {
         self.backView.frame = self.view.frame
         self.view.addSubview(self.backView)
         self.backView.frame = self.view.frame
-        darkBlur = UIBlurEffect(style: .regular)
+        darkBlur = UIBlurEffect(style: .dark)
         blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.backView.frame.height
         blurView.frame.size.width = self.backView.frame.width
         blurView.layer.zPosition = -1
         blurView.isUserInteractionEnabled = false
         self.backView.addSubview(blurView)
-//        blurView.layer.opacity = 0.9
+        blurView.layer.opacity = 0.9
         let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
         let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
         blurView.contentView.addSubview(vibrancyEffectView)
