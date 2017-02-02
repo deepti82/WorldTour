@@ -13,6 +13,7 @@ var doRemove: Bool = true
 var globalProfileController:ProfileViewController!
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
 
+    @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var livesInStack: UIStackView!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profile_badge: UIImageView!
@@ -206,7 +207,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             imageName = currentUser["profilePicture"].string!
             
             if currentUser["homeCountry"] != nil {
-                profile.country.text = currentUser["homeCountry"]["name"].string!
+                countryName.text = currentUser["homeCountry"]["name"].string!
             }
             
             if currentUser["homeCity"] != nil {
