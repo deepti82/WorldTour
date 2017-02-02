@@ -22,10 +22,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5h-WO-RxU" customClass="drawLineWhite" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="85" y="0.0" width="10" height="44"/>
+                    <rect key="frame" x="86" y="0.0" width="8" height="44"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="10" id="Br5-sf-oCw"/>
+                        <constraint firstAttribute="width" constant="8" id="Br5-sf-oCw"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mp4-Hl-TX3">
