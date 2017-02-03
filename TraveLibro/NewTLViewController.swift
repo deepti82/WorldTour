@@ -980,9 +980,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         mainScroll.clipsToBounds = true
         
         self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 60, height: 60))
-//        self.addPostsButton.layer.cornerRadius = 30
+        self.addPostsButton.layer.cornerRadius = 32.5
+        self.addPostsButton.backgroundColor = mainOrangeTransparentColor
+        self.addPostsButton.backgroundColor?.withAlphaComponent(0.8)
 //        transparentOrangeButton(self.addPostsButton)
-        self.addPostsButton.setImage(UIImage(named: "add_circle_shadow"), for: .normal)
+        self.addPostsButton.setImage(UIImage(named: "plus"), for: .normal)
+        self.addPostsButton.imageView?.contentMode = .scaleAspectFit
+        self.addPostsButton.imageEdgeInsets = UIEdgeInsetsMake(23, 23, 23, 23)
         self.addPostsButton.addTarget(self, action: #selector(NewTLViewController.addPosts(_:)), for: .touchUpInside)
         
         self.addPostsButton.layer.zPosition = 5
