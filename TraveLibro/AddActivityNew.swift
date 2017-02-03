@@ -151,10 +151,14 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         self.cancelLocationButton.isHidden = true
         self.friendsCount.isHidden = true;
         self.friendsTag.tintColor = mainGreyColor
+        
+       
         self.finalImageTag.tintColor = mainOrangeColor
         self.videoTagFinal.tintColor = mainOrangeColor
-        self.addLocationText.delegate = self
+            self.addLocationText.delegate = self
     }
+    
+    
     
     func buddyAdded(_ json:[JSON]) {
         addedBuddies = json;
@@ -333,6 +337,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         globalNavigationController?.pushViewController(next, animated: true)
     }
     
+    
     func addVideos(_ sender: UIButton) {
         
         self.videosInitialView.isHidden = false
@@ -388,6 +393,9 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
             
             if(self.typeOfAddActivtiy == "CreateLocalLife") {
                 imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
+                self.finalImageTag.tintColor = UIColor(hex: "#11d3cb")
+                self.videoTagFinal.tintColor = UIColor(hex: "#11d3cb")
+                
             } else {
                 imagePickerController.delegate = globalNewTLViewController
             }
@@ -760,4 +768,6 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
             self.photosFinalView.isHidden = false
         }
     }
+    
+
 }

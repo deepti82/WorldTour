@@ -127,13 +127,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 self.backView.backgroundColor = UIColor(hex: "#272b49")
                 self.inputview.addSubview(self.datePickerView) // add date picker to UIView
                 let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
-                doneButton.setTitle("SAVE", for: .normal)
+                doneButton.setTitle("Save", for: .normal)
                 doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
                 doneButton.setTitleColor(UIColor.white, for: .normal)
                 //                doneButton.setTitle(sender.title(for: .application)!, for: .application)
                 
                 let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-                cancelButton.setTitle("CANCEL", for: .normal)
+                cancelButton.setTitle("Cancel", for: .normal)
                 cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
                 cancelButton.setTitleColor(UIColor.white, for: UIControlState())
                 self.inputview.addSubview(self.backView)
@@ -1541,13 +1541,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             self.backView.backgroundColor = UIColor(hex: "#272b49")
             self.inputview.addSubview(self.datePickerView) // add date picker to UIView
             let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
-            doneButton.setTitle("SAVE", for: .normal)
+            doneButton.setTitle("Save", for: .normal)
             doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
             doneButton.setTitleColor(UIColor.white, for: .normal)
             //                doneButton.setTitle(sender.title(for: .application)!, for: .application)
             
             let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-            cancelButton.setTitle("CANCEL", for: .normal)
+            cancelButton.setTitle("Cancel", for: .normal)
             cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
             cancelButton.setTitleColor(UIColor.white, for: UIControlState())
             self.inputview.addSubview(self.backView)
@@ -1617,13 +1617,13 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.backView.backgroundColor = UIColor(hex: "#272b49")
         self.inputview.addSubview(self.datePickerView) // add date picker to UIView
         let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
-        doneButton.setTitle("SAVE", for: .normal)
+        doneButton.setTitle("Save", for: .normal)
         doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         doneButton.setTitleColor(UIColor.white, for: .normal)
         //                doneButton.setTitle(sender.title(for: .application)!, for: .application)
         
         let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-        cancelButton.setTitle("CANCEL", for: .normal)
+        cancelButton.setTitle("Cancel", for: .normal)
         cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         cancelButton.setTitleColor(UIColor.white, for: UIControlState())
         self.inputview.addSubview(self.backView)
