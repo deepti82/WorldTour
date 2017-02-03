@@ -45,9 +45,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var arrowDownButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         getDarkBackGround(self)
-        
         let leftButton = UIButton()
         leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
         let arrow = String(format: "%C", faicon["arrow-down"]!)
@@ -161,7 +159,19 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
 
     func showJourneys(_ sender: UIButton) {
-       
+        whatEmptyTab = "Journeys"
+        var start = 0;
+        
+        
+        whatEmptyTab = "Journeys"
+        reviewsButton.layer.zPosition = -1
+        momentsButton.layer.zPosition = 1
+        journeysButton.layer.zPosition = 3
+        
+        journeysContainerView.alpha = 1
+        collectionContainer.alpha = 0
+        tableContainer.alpha = 0
+        allRadioChecked(sender);
     }
     
     func showMoments(_ sender: UIButton) {
@@ -174,7 +184,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         journeysContainerView.alpha = 0
         collectionContainer.alpha = 1
         tableContainer.alpha = 0
-        
+        allRadioChecked(sender);
     }
     
     func showReviews(_ sender: UIButton) {
@@ -187,8 +197,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         journeysContainerView.alpha = 0
         collectionContainer.alpha = 0
         tableContainer.alpha = 1
-        
-        
+        allRadioChecked(sender);
     }
     
 //    var flag = false
