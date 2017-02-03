@@ -154,7 +154,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         self.setOnlyRightNavigationButton(rightButton)
         
         
-        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 116, width: self.view.frame.size.width - 10, height: 55))
+       let customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 66, width: self.view.frame.width, height: 20)))
+        
+        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 120, width: self.view.frame.size.width - 10, height: 55))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
@@ -164,7 +166,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         fontAwesomeLabel.textColor = UIColor.white
         orangeTab.orangeButtonTitle.titleLabel!.addSubview(fontAwesomeLabel)
         self.view.addSubview(orangeTab)
-        
+        customView.backgroundColor = UIColor.white
+        self.view.addSubview(customView)
         orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
         
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))

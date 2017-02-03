@@ -25,7 +25,7 @@ class NewQuickItinerary: UIView {
             
             button.layer.cornerRadius = 5
             button.layer.borderColor = mainOrangeColor.cgColor
-            button.layer.borderWidth = 1
+            button.layer.borderWidth = 2
             
         }
         

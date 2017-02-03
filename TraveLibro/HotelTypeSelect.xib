@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelTypeSelect" customModule="TraveLibro" customModuleProvider="target">
@@ -33,7 +37,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accomodation Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eir-Wx-KRi">
                     <rect key="frame" x="128" y="60" width="144" height="22"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dLe-T6-w7u">
@@ -44,22 +48,22 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jGK-a2-rPJ">
                                     <rect key="frame" x="0.0" y="0.0" width="140" height="45"/>
-                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="140" id="YZi-DM-X83"/>
                                         <constraint firstAttribute="height" constant="45" id="vAp-9f-kc4"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                     <state key="normal" title="Hotel">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EA0-5r-PRR">
                                     <rect key="frame" x="150" y="0.0" width="140" height="45"/>
-                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                     <state key="normal" title="Apartment">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                             </subviews>
@@ -69,22 +73,22 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AI9-9P-K2L">
                                     <rect key="frame" x="0.0" y="0.0" width="140" height="45"/>
-                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="7KR-CF-XPW"/>
                                         <constraint firstAttribute="width" constant="140" id="Ijp-zi-9DY"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                     <state key="normal" title="Guest House">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRo-BM-ZuG">
                                     <rect key="frame" x="150" y="0.0" width="140" height="45"/>
-                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                     <state key="normal" title="B&amp;B">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                             </subviews>
@@ -94,22 +98,22 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcF-Qk-rzq">
                                     <rect key="frame" x="0.0" y="0.0" width="140" height="45"/>
-                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="140" id="RN6-oQ-Qjk"/>
                                         <constraint firstAttribute="height" constant="45" id="ucU-Li-hX1"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                     <state key="normal" title="Inn">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cb-uh-7m4">
                                     <rect key="frame" x="150" y="0.0" width="140" height="45"/>
-                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                     <state key="normal" title="Hostel">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                             </subviews>
@@ -119,14 +123,14 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIG-Qf-5dl">
                                     <rect key="frame" x="0.0" y="0.0" width="140" height="45"/>
-                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="h1h-2r-RN2"/>
                                         <constraint firstAttribute="width" constant="120" id="wba-YW-47D"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                     <state key="normal" title="Homestay">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -136,10 +140,10 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOm-6q-AXD">
                                     <rect key="frame" x="150" y="0.0" width="140" height="45"/>
-                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                     <state key="normal" title="Resort">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                             </subviews>
@@ -149,14 +153,14 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNo-eY-fOM">
                                     <rect key="frame" x="0.0" y="0.0" width="140" height="45"/>
-                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="Kq5-Mj-bH7"/>
                                         <constraint firstAttribute="width" constant="120" id="MUE-WP-1JK"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                     <state key="normal" title="Lodge">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -166,10 +170,10 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psI-p7-stz">
                                     <rect key="frame" x="150" y="0.0" width="140" height="45"/>
-                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="0.08235294371843338" green="0.098039217293262482" blue="0.21176470816135406" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                     <state key="normal" title="Hostel">
-                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                 </button>
                             </subviews>
@@ -179,18 +183,18 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAB-5e-f1l">
                     <rect key="frame" x="186" y="387" width="29" height="22"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWr-fm-fOL">
                     <rect key="frame" x="140" y="477" width="120" height="33"/>
-                    <color key="backgroundColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="PGc-Bt-YS1"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                     <state key="normal" title="Done">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fSJ-Nl-mCv">
@@ -228,7 +232,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="tintColor" red="0.98823529481887817" green="0.31372550129890442" blue="0.27843138575553894" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="tintColor" red="0.98823529481887817" green="0.31372550129890442" blue="0.27843138575553894" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="cAB-5e-f1l" firstAttribute="top" secondItem="dLe-T6-w7u" secondAttribute="bottom" constant="30" id="1Iq-QZ-5hX"/>
                 <constraint firstItem="fSJ-Nl-mCv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="8QS-81-eEE"/>
