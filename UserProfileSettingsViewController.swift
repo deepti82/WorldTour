@@ -55,7 +55,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
             
            let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell") as! SettingsTableViewCell
            cell.settingsLabel.text = labels[(indexPath as NSIndexPath).item]
-           cell.LabelIcon.image = UIImage(named: sideImages[(indexPath as NSIndexPath).item])
+//           cell.LabelIcon.image = UIImage(named: sideImages[(indexPath as NSIndexPath).item])
            return cell
         }
         

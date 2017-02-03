@@ -240,6 +240,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
             activityFeedImage.fillData(feed: feed)
             activityFeedImage.clipsToBounds = true
+            activityFeedImage.OnTheGOText.isHidden = true
             
             self.addSubview(activityFeedImage)
         case "quick-itinerary":

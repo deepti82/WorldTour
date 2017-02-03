@@ -139,12 +139,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func setDefaults() {
         whatEmptyTab = "Journeys"
-        showJourneys(UIButton())
+        var start = 0;
         
-    }
-    
-
-    func showJourneys(_ sender: UIButton) {
         
         whatEmptyTab = "Journeys"
         reviewsButton.layer.zPosition = -1
@@ -155,7 +151,17 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         collectionContainer.alpha = 0
         tableContainer.alpha = 0
         
-        allRadioChecked(UIView());
+        
+        radio.image = UIImage(named: "radio_checked_all")
+        radioTwo.image = UIImage(named: "radio_for_button")
+        radioThree.image = UIImage(named: "radio_for_button")
+        
+        
+    }
+    
+
+    func showJourneys(_ sender: UIButton) {
+       
     }
     
     func showMoments(_ sender: UIButton) {

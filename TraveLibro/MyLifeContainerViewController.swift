@@ -5,8 +5,6 @@ class MyLifeContainerViewController: UIViewController {
     @IBOutlet weak var TheScrollView: UIScrollView!
     
     var layout: VerticalLayout!
-    var whichView = "All"
-    var whichEmptyView = "Journeys-All"
     var isInitalLoad = true
     var empty: EmptyScreenView!
     
@@ -17,19 +15,7 @@ class MyLifeContainerViewController: UIViewController {
         
         layout = VerticalLayout(width: self.view.frame.width);
         TheScrollView.addSubview(layout)
-        
-            switch whichView {
-            case "All": 
-                self.loadData("all", pageNumber: 1)
-            case "TL":
-                self.loadData("travel-life", pageNumber: 1)
-            case "LL":
-                self.loadData("local-life", pageNumber: 1)
-            default:
-                break
-            }
-        
-        
+        self.loadData("all", pageNumber: 1)
     }
     
     func loadData(_ type:String,pageNumber:Int) {
