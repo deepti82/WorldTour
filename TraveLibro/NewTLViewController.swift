@@ -1481,12 +1481,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func BuddyJoinInLayout(_ post: JSON) {
         prevPosts.append(post)
         
-        let buddy = BuddyOTG(frame: CGRect(x: 0, y: 0, width: 245, height: 260))
+        let buddy = BuddyOTG(frame: CGRect(x: 0, y: 0, width: 241, height: 260))
         buddy.center.x = self.view.center.x
         let profileImage = adminUrl + "upload/readFile?width=250&file=" + post["user"]["profilePicture"].stringValue
         buddy.profileImage.hnk_setImageFromURL(URL(string:profileImage)!)
         buddy.joinJourneytext.text = "\(post["user"]["name"]) has joined this journey"
-        makeTLProfilePicture(buddy.profileImage)
+        makeBuddiesTLProfilePicture(buddy.profileImage)
         layout.addSubview(buddy)
         addHeightToLayout(height: buddy.frame.height + 20.0)
         
