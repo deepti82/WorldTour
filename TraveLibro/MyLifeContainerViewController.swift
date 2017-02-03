@@ -25,13 +25,13 @@ class MyLifeContainerViewController: UIViewController {
         request.getMomentJourney(pageNumber: pageNumber, type: type,completion: {(request) in
             DispatchQueue.main.async(execute: {
                 if request["data"] != "" {
-                    for post in request["data"].array! {
-                        let checkIn = MyLifeActivityFeedsLayout(width: self.view.frame.width)
-                        checkIn.scrollView = self.TheScrollView
-                        checkIn.createProfileHeader(feed: post)
-                        checkIn.activityFeed = self
-                        self.layout.addSubview(checkIn)
-                    }
+//                    for post in request["data"].array! {
+//                        let checkIn = MyLifeActivityFeedsLayout(width: self.view.frame.width)
+//                        checkIn.scrollView = self.TheScrollView
+//                        checkIn.createProfileHeader(feed: post)
+//                        checkIn.activityFeed = self
+//                        self.layout.addSubview(checkIn)
+//                    }
                     self.addHeightToLayout()
                 }
             })

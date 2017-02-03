@@ -1417,25 +1417,49 @@ class Navigation {
     }
 
     
-    func getMomentTravelife(_ user: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+    func getMomentLife(_ user: String, pageNumber: Int, type: String, token: String, completion: @escaping ((JSON) -> Void)) {
+        
         
         do {
-            let params = ["user": user, "type": "travel-life", "pagenumber": pageNumber] as [String : Any]
-print(params)
+            var params: JSON!
+            if type == "travel-life" {
+                params = ["user": user, "type": type, "pagenumber": pageNumber]
+            } else if type == "local-life" {
+                params = ["user": user, "token": token, "type": type, "limit": 1, "times": 4]
+            } else {
+                params = ["user": user, "token": token, "type": type, "limit": 20, "times": 4]
+            }
+            print(params)
+            let jsonData = try params.rawData()
             
-            let opt = try HTTP.POST(adminUrl + "journey/myLifeMoment", parameters: [params])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+            // create post request
+            let url = URL(string: adminUrl + "journey/myLifeMoment")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
                 }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
                 }
             }
+            
+            task.resume()
+            
         } catch let error {
             print("got an error creating the request: \(error)")
         }

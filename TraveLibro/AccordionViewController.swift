@@ -7,12 +7,14 @@
 //
 
 import UIKit
+var globalAccordionViewController:AccordionViewController!
+
 
 class AccordionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableMainView: UITableView!
     @IBOutlet weak var accordionTableView: UITableView!
-    var labels = ["header", "Mumbai", "Delhi", "Chennai", "Kolkata", "Bengaluru", "Hyderabad"]
+    var labels = ["header", "Mumbai", "Delhi", "Chennai", "Kolkata", "Bengaluru", "Hyderabad","header"]
     var isExpanded = false
     var childCells = 0
     var selectedIndex: Int!
@@ -21,6 +23,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        globalAccordionViewController = self
     setTopNavigation("Reviews")
 //        if isEmptyProfile {
 //            
