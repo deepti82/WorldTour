@@ -16,7 +16,6 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     var ratingIndex: Int!
     var nearMeListJSON: [JSON] = []
     var nearMeAddress = NSMutableAttributedString()
-    
     var lat: Double!
     var long: Double!
     let locationManager = CLLocationManager()
@@ -101,7 +100,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         cell.backgroundColor = UIColor.clear
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         
-        for star in cell.stars {
+               for star in cell.stars {
             star.setImage(UIImage(named: "star_uncheck")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: .selected)
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: [.highlighted, .selected])

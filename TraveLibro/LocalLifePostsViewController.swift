@@ -18,6 +18,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     var datePickerView:UIDatePicker = UIDatePicker()
     var changeDateTimeActionSheet: UIAlertController!
     var nearMeType = ""
+  
     var allLocalLife:[JSON] = []
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -223,11 +224,15 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
         let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
         globalNavigationController?.pushViewController(vc, animated: false)
     }
+    
+   
     func gotoNearMe(_ sender:AnyObject) {
-        let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
-        nearMeListController.nearMeType = self.nearMeType
-        self.navigationController?.pushViewController(nearMeListController, animated: true)
+            let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
+    nearMeListController.nearMeType = self.nearMeType
+    self.navigationController?.pushViewController(nearMeListController, animated: true)
+       
     }
+    
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
