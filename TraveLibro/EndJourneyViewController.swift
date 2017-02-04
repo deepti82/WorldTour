@@ -168,7 +168,7 @@ class EndJourneyViewController: UIViewController {
         }
         
         makeTLProfilePictureBorderWhite(endJourney.userDp)
-        endJourney.endJourneyTitle.text = "\(currentUser["name"])"
+        endJourney.endJourneyTitle.text = "\(currentUser["name"]) has ended this Journey."
         
         //  add buddies
         if buddies.count >= 3 {

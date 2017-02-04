@@ -31,11 +31,11 @@ class ListPhotosViewController: UIViewController {
         
         layout = VerticalLayout(width: self.view.frame.width)
         
-        let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
-        profileImage.center.x = self.view.frame.width/2
-        profileImage.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: 100))
-        makeTLProfilePicture(profileImage)
-        layout.addSubview(profileImage)
+//        let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
+//        profileImage.center.x = self.view.frame.width/2
+//        profileImage.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: 100))
+//        makeTLProfilePicture(profileImage)
+//        layout.addSubview(profileImage)
         
         scroll = UIScrollView(frame: self.view.frame)
         self.view.addSubview(scroll)
