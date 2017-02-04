@@ -439,6 +439,15 @@ class ActivityFeedFooterBasic: UIView {
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
         }
+        
+        let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
+        {action -> Void in
+            
+        }
+        actionSheetControllerIOS8.addAction(UnFollow)
+        
+
+        
         actionSheetControllerIOS8.addAction(cancelActionButton)
         let EditCheckIn: UIAlertAction = UIAlertAction(title: "Report", style: .default)
         {action -> Void in

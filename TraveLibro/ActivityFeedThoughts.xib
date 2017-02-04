@@ -18,7 +18,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="434" height="129"/>
+            <rect key="frame" x="0.0" y="0.0" width="434" height="48"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkc-GL-t3n">
@@ -38,8 +38,8 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="kkc-GL-t3n" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="2Tf-Qn-nfj"/>
-                <constraint firstAttribute="bottom" secondItem="7PF-5U-OPz" secondAttribute="bottom" constant="101" id="6aJ-6I-J8b"/>
                 <constraint firstItem="7PF-5U-OPz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7LQ-l4-rmp"/>
+                <constraint firstItem="7PF-5U-OPz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="27" id="Cah-Yg-2MN"/>
                 <constraint firstItem="7PF-5U-OPz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-216.5" id="DQR-FN-20q"/>
                 <constraint firstItem="kkc-GL-t3n" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="eiN-VQ-38F"/>
                 <constraint firstItem="7PF-5U-OPz" firstAttribute="top" secondItem="kkc-GL-t3n" secondAttribute="bottom" constant="16" id="iLo-56-Tl4"/>
@@ -47,7 +47,7 @@
                 <constraint firstAttribute="trailing" secondItem="7PF-5U-OPz" secondAttribute="trailing" constant="433" id="yjB-c7-jlc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="12" y="-144"/>
+            <point key="canvasLocation" x="12" y="-185"/>
         </view>
     </objects>
 </document>

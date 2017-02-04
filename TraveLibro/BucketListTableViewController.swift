@@ -270,7 +270,7 @@ class BucketListTableViewController: UITableViewController  {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-        
+        delete.backgroundColor = UIColor(hex: "#ff6759")
         
         return [delete]
     }
