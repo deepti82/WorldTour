@@ -29,7 +29,6 @@
                 <outlet property="lineView" destination="wgK-vL-e1O" id="HvO-ed-oPw"/>
                 <outlet property="localLifeTravelImage" destination="qfe-vl-0Od" id="dTi-dn-cet"/>
                 <outlet property="optionButton" destination="nFk-rI-DC3" id="gSR-2B-eRf"/>
-                <outlet property="reviewButton" destination="mA0-4w-rcV" id="mok-Lo-QDn"/>
                 <outlet property="reviewLabel" destination="N1L-2R-Nj3" id="1ZO-88-5gN"/>
                 <outlet property="shareButton" destination="lFc-eg-kBq" id="DFX-WR-xFW"/>
             </connections>
@@ -117,7 +116,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Cab-Cb-PJq">
-                                            <rect key="frame" x="19" y="10" width="137" height="23"/>
+                                            <rect key="frame" x="19" y="10" width="99" height="23"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xd-vA-ZIM" customClass="SpringButton" customModule="Spring">
                                                     <rect key="frame" x="0.0" y="0.0" width="23" height="23"/>
@@ -125,7 +124,7 @@
                                                         <constraint firstAttribute="width" constant="23" id="TTe-Jq-t5q"/>
                                                         <constraint firstAttribute="height" constant="23" id="t1i-90-0GP"/>
                                                     </constraints>
-                                                    <state key="normal" title="Button" image="737DC2DC-54F3-41DF-8F7B-C57ED5B7F784"/>
+                                                    <state key="normal" title="Button" image="7A868808-0FBA-4C04-8F2F-B4CDFB602E05"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                                             <real key="value" value="2"/>
@@ -151,15 +150,8 @@
                                                         <action selector="sendComments:" destination="-1" eventType="touchUpInside" id="q5p-xo-uhT"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mA0-4w-rcV">
-                                                    <rect key="frame" x="76" y="0.0" width="23" height="23"/>
-                                                    <state key="normal" title="Button" image="reviews"/>
-                                                    <connections>
-                                                        <action selector="reviewClicked:" destination="-1" eventType="touchUpInside" id="NVJ-Ws-QTz"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lFc-eg-kBq">
-                                                    <rect key="frame" x="114" y="0.0" width="23" height="23"/>
+                                                    <rect key="frame" x="76" y="0.0" width="23" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="23" id="XFW-Sw-p5g"/>
                                                     </constraints>
@@ -305,7 +297,7 @@
         </view>
     </objects>
     <resources>
-        <image name="737DC2DC-54F3-41DF-8F7B-C57ED5B7F784" width="128" height="128">
+        <image name="7A868808-0FBA-4C04-8F2F-B4CDFB602E05" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

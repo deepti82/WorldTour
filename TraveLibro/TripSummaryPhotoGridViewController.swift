@@ -12,7 +12,7 @@ import Player
 import Spring
 
 
-class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackControllerDelegate, PlayerDelegate {
+class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackControllerDelegate, PlayerDelegate, UICollectionViewDelegateFlowLayout {
     
     var journeyId = ""
     var myPhotos: [String] = []
@@ -22,14 +22,20 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     var videoContainer:VideoView!
     var player:Player!
 
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         getJourneyPhotos()
         
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        // Set up desired width
+
+        var cell = collectionView.cellForItem(at: indexPath as IndexPath) as! gridCollectionViewCell
+        var size = CGSize(width: 10, height: 10)
+        return size
     }
     
     func getJourneyPhotos() {
@@ -85,12 +91,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
-    }
-    
+        
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if type == "photos" {
@@ -101,12 +102,14 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         }
     }
     
+    
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! gridCollectionViewCell
         
         if type == "photos" {
-            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[(indexPath as NSIndexPath).row], width: 100))
+            cell.photo.hnk_setImageFromURL(getImageURL(myPhotos[(indexPath as NSIndexPath).row], width: 300))
 
         }else{
             self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.width))

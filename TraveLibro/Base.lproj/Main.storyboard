@@ -3432,10 +3432,10 @@
             </objects>
             <point key="canvasLocation" x="6218" y="1143"/>
         </scene>
-        <!--Yash's Profile-->
+        <!--My Life-->
         <scene sceneID="UW0-xu-VVa">
             <objects>
-                <viewController storyboardIdentifier="ProfileVC" title="Yash's Profile" id="73T-Id-WOj" customClass="ProfileViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" title="My Life" id="73T-Id-WOj" customClass="ProfileViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xty-CO-MIL"/>
                         <viewControllerLayoutGuide type="bottom" id="jup-0Y-JP4"/>
@@ -8781,6 +8781,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="l1u-mZ-agj">
+
+                                        <rect key="frame" x="5" y="46" width="111" height="17"/>
+
                                         <rect key="frame" x="5" y="46" width="111" height="17"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3I-OX-ZP1">
@@ -8801,7 +8804,11 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7vM-r6-STJ">
+
                                         <rect key="frame" x="126" y="46" width="129" height="25"/>
+
+                                        <rect key="frame" x="126" y="46" width="129" height="25"/>
+
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speech_icon" translatesAutoresizingMaskIntoConstraints="NO" id="1K2-O4-qf6">
                                                 <rect key="frame" x="0.0" y="0.0" width="15" height="25"/>

@@ -49,6 +49,8 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
         self.layoutSubviews()
     }
     
+    
+    
     func videosAndPhotosLayout(feed:JSON) {
         print(type)
         print("in video photo view")
