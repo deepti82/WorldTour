@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,10 +23,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ip8-nJ-Irz">
-                    <rect key="frame" x="15" y="2" width="40" height="40"/>
+                    <rect key="frame" x="13" y="2" width="45" height="45"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="nUj-8l-MvO"/>
-                        <constraint firstAttribute="width" constant="40" id="yYD-kI-sVW"/>
+                        <constraint firstAttribute="height" constant="45" id="nUj-8l-MvO"/>
+                        <constraint firstAttribute="width" constant="45" id="yYD-kI-sVW"/>
                     </constraints>
                     <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                     <state key="normal" title="Button" image="museumstrans" backgroundImage="green"/>
@@ -54,12 +54,12 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="iLF-US-ikr" secondAttribute="bottom" constant="8" id="5N2-ik-Yu1"/>
-                <constraint firstItem="ip8-nJ-Irz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5Uh-8U-I3l"/>
                 <constraint firstItem="iLF-US-ikr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="CJa-FZ-Emk"/>
                 <constraint firstItem="ip8-nJ-Irz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="2" id="XrN-l9-qJ0"/>
                 <constraint firstItem="Kql-gg-geE" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Y5x-Bv-Uh3"/>
                 <constraint firstItem="Kql-gg-geE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZAr-2s-ZiO"/>
                 <constraint firstAttribute="trailing" secondItem="Kql-gg-geE" secondAttribute="trailing" id="alc-FM-AYR"/>
+                <constraint firstItem="ip8-nJ-Irz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rHf-1R-JNh"/>
                 <constraint firstItem="iLF-US-ikr" firstAttribute="top" secondItem="Kql-gg-geE" secondAttribute="bottom" constant="4" id="v6p-5H-6yw"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

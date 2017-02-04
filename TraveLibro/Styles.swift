@@ -239,7 +239,7 @@ func makeBuddiesTLProfilePicture(_ image: UIImageView) {
     
     image.layer.cornerRadius = (30/100) * image.frame.width
     image.layer.borderWidth = 2.0
-    image.layer.borderColor = UIColor(colorLiteralRed: 86/255, green: 86/255, blue: 86/255, alpha: 1.0).cgColor
+    image.layer.borderColor = UIColor(colorLiteralRed: 86/255, green: 86/255, blue: 86/255, alpha: 0.8).cgColor
     image.clipsToBounds = true
     image.contentMode = UIViewContentMode.scaleAspectFill
     

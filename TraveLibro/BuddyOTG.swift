@@ -3,6 +3,7 @@ import UIKit
 
 class BuddyOTG: UIView {
 
+    @IBOutlet weak var lineSeparator: UIView!
     @IBOutlet weak var clockTime: UILabel!
     @IBOutlet weak var clockLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
@@ -22,17 +23,18 @@ class BuddyOTG: UIView {
         
         timestamp.shadowColor = UIColor.black
         timestamp.shadowOffset = CGSize(width: 0.5, height: 0.5)
-        timestamp.layer.shadowOpacity = 1.0
+        timestamp.layer.shadowOpacity = 0.6
         timestamp.layer.shadowRadius = 1.0
         
         clockTime.shadowColor = UIColor.black
         clockTime.shadowOffset = CGSize(width: 0.5, height: 0.5)
-        clockTime.layer.shadowOpacity = 1.0
+        clockTime.layer.shadowOpacity = 0.6
         clockTime.layer.shadowRadius = 1.0
-
+        lineSeparator.layer.zPosition = 10
         calendarLabel.text = String(format: "%C", faicon["clock"]!)
         clockLabel.text = String(format: "%C", faicon["calendar"]!)
-        
+        timestamp.layer.zPosition = 10
+        clockTime.layer.zPosition = 10
     }
     
     required init?(coder aDecoder: NSCoder) {

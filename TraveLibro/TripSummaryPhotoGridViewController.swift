@@ -91,6 +91,12 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         return 1
     }
     
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if type == "photos" {
