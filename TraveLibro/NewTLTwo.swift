@@ -278,7 +278,7 @@ extension NewTLViewController {
         buddyView.profileName.text = post["user"]["name"].string!
         DispatchQueue.main.async(execute: {
             buddyView.profileImageView.image = UIImage(data: try! Data(contentsOf: URL(string: "\(adminUrl)upload/readFile?file=\(post["user"]["profilePicture"])")!))
-            makeTLProfilePicture(buddyView.profileImageView)
+            makeBuddiesTLProfilePicture(buddyView.profileImageView)
         })
         layout.addSubview(buddyView)
         addHeightToLayout(height: buddyView.frame.height)

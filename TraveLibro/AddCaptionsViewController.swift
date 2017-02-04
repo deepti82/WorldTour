@@ -10,6 +10,8 @@ var isEditedImage = false
 
 class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStackControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, PlayerDelegate {
     
+    @IBOutlet weak var editVisual: UIVisualEffectView!
+    @IBOutlet weak var deleteVisual: UIVisualEffectView!
     @IBOutlet weak var blurBehindCaption: UIVisualEffectView!
     @IBOutlet weak var videoContainer: UIView!
     @IBOutlet weak var collectionVi: UICollectionView!
@@ -162,7 +164,6 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
        deleteImage.setTitle(String(format: "%C", faicon["trash"]!), for: UIControlState())
         self.videoContainer.isHidden = true
      
-
         
         self.customNavigationBar(left: leftButton, right: rightButton)
        
@@ -171,6 +172,10 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
         captionTextView.layer.cornerRadius = 5.0
         captionTextView.clipsToBounds = true
         
+        editVisual.layer.cornerRadius = 5.0
+        deleteVisual.layer.cornerRadius = 5.0
+        editVisual.clipsToBounds = true
+        deleteVisual.clipsToBounds = true
         
         blurBehindCaption.layer.cornerRadius = 5.0
         blurBehindCaption.clipsToBounds = true
