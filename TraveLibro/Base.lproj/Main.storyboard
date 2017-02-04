@@ -8780,11 +8780,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="l1u-mZ-agj">
-<<<<<<< HEAD
+
                                         <rect key="frame" x="20" y="46" width="111" height="17"/>
-=======
-                                        <rect key="frame" x="5" y="46" width="110" height="17"/>
->>>>>>> origin/level-3-
+
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3I-OX-ZP1">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="17"/>
@@ -8804,11 +8802,8 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7vM-r6-STJ">
-<<<<<<< HEAD
                                         <rect key="frame" x="141" y="46" width="129" height="25"/>
-=======
-                                        <rect key="frame" x="125" y="46" width="129" height="25"/>
->>>>>>> origin/level-3-
+
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speech_icon" translatesAutoresizingMaskIntoConstraints="NO" id="1K2-O4-qf6">
                                                 <rect key="frame" x="0.0" y="0.0" width="15" height="25"/>
