@@ -707,6 +707,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     isJourneyOngoing = true
                     self.journeyStart = true
                     self.myJourney = response["data"]
+                    print(self.myJourney);
                     self.journeyID = self.myJourney["_id"].stringValue
                     self.journeyName = self.myJourney["name"].stringValue
                     self.isInitialLoad = false

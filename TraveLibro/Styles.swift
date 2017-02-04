@@ -377,6 +377,20 @@ func makeTLProfilePictureBorderWhiteCorner(_ image: UIImageView) {
 }
 
 
+func getDateFormat(_ date: String, format: String) -> String {
+    
+    let globalDateFormatter = DateFormatter()
+    globalDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+    let date = globalDateFormatter.date(from: date)
+    
+    let dayTimePeriodFormatter = DateFormatter()
+    dayTimePeriodFormatter.dateFormat = format
+    let goodDate = dayTimePeriodFormatter.string(from: date!)
+    return goodDate
+    
+}
+
+
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks
 //LoadingOverlay.shared.hideOverlayView()

@@ -10,12 +10,11 @@ import UIKit
 
 class TimestampTagViewOnScroll: UIView {
 
+    @IBOutlet weak var dateText: UILabel!
+    @IBOutlet weak var timeText: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,6 +28,17 @@ class TimestampTagViewOnScroll: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
+    }
+    func changeTime(feed:JSON) {
+        switch(feed["type"].stringValue) {
+            case "local-life":
+                self.dateText.text = getDateFormat(feed["UTCModified"].stringValue,format:"d MMM, yyyy")
+                self.timeText.text = getDateFormat(feed["UTCModified"].stringValue,format:"h:mm a")
+        default:
+            self.dateText.text = getDateFormat(feed["startTime"].stringValue,format:"d MMM, yyyy")
+            self.timeText.text = getDateFormat(feed["startTime"].stringValue,format:"h:mm a")
+        }
+        
     }
 
 }

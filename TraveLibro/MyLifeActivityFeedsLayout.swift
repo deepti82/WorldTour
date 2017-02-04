@@ -18,7 +18,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var profileHeader: ActivityProfileHeader!
     var textHeader: ActivityTextHeader!
     var activityFeed: MyLifeContainerViewController!
-    var textTag: ActivityHeaderTag!
+    var textTag: TimestampTagViewOnScroll!
     var mainPhoto:UIImageView!
     var videoContainer:VideoView!
     var player:Player!
@@ -37,6 +37,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func createProfileHeader(feed:JSON) {
         
+        self.feeds = feed;
         headerLayout(feed: feed)
         
         //        videosAndPhotosLayout(feed: feed)
@@ -68,15 +69,8 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
             self.videoContainer.player = self.player
             var videoUrl:URL!
-            if feed["type"].stringValue == "travel-life" {
-                videoContainer.tagText.text = "Travel Life"
-                videoContainer.tagView.backgroundColor = mainOrangeColor
-            }else{
-                videoContainer.tagText.text = "  Local Life"
-                videoContainer.tagText.textColor = UIColor(hex: "#303557")
-                videoContainer.tagView.backgroundColor = endJourneyColor
-                //                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
-            }
+            videoContainer.tagView.isHidden = true;
+
             videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
             self.player.setUrl(videoUrl!)
             self.videoContainer.videoHolder.addSubview(self.player.view)
@@ -88,20 +82,6 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.clipsToBounds = true
             self.mainPhoto.image = UIImage(named: "logo-default")
-            
-//            let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 30))
-//            headerTag.tagParent.backgroundColor = UIColor.clear
-//            headerTag.colorTag(feed: feed)
-//            headerTag.tagLine.isHidden = true
-//            
-//            self.mainPhoto.addSubview(headerTag)
-            //            if headerTag.tagText.text == "Travel Life"{
-            //                profileHeader.category.imageView?.tintColor = UIColor.white
-            //            } else {
-            //                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
-            //            }
-            
-            
             
             self.addSubview(mainPhoto)
             let heightForBlur = 10;
@@ -150,17 +130,6 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 self.mainPhoto.clipsToBounds = true
                 
                 
-                if feed["thoughts"] == nil || feed["thoughts"].stringValue == "" {
-//                    let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
-//                    headerTag.tagParent.backgroundColor = UIColor.clear
-//                    headerTag.tagLine.isHidden = true
-//                    headerTag.colorTag(feed: feed)
-//                    
-//                    self.mainPhoto.addSubview(headerTag)
-                    
-                    
-                    
-                }
                 
                 
                 mainPhoto.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
@@ -242,14 +211,19 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityFeedImage.clipsToBounds = true
             activityFeedImage.OnTheGOText.isHidden = true
             
+            
             self.addSubview(activityFeedImage)
         case "quick-itinerary":
             activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 590))
             activityQuickItinerary.fillData(feed: feed)
+            
+        
+            
             self.addSubview(activityQuickItinerary)
         case "detail-itinerary":
             activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 528))
             activityDetailItinerary.fillData(feed: feed)
+            self.activityDetailItinerary.addSubview(textTag)
             self.addSubview(activityDetailItinerary)
         default:
             print("default")
@@ -268,15 +242,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             self.addSubview(textHeader)
             
-            //  START ACTIVITY TEXT TAG
-//            if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
-//                textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
-//                textTag.transparentBack()
-//                textTag.colorTag(feed: feed)
-//                
-//                self.addSubview(textTag)
-//            }
-            
+                        
         }else{
             // For header text
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))

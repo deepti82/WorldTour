@@ -5,6 +5,7 @@ import Simplicity
 
 import TwitterKit
 import SQLite
+import EventKitUI
 
 import Haneke
 let cache = Shared.dataCache
@@ -68,6 +69,7 @@ var addedBuddies: JSON = []
 var globalPostImage:[PostImage] = []
 var currentJourney:JSON = []
 
+
 var leftViewController: SideNavigationMenuViewController!
 
 
@@ -81,6 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     static func getDatabase () -> Connection {
+        
+       
         
         let path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
