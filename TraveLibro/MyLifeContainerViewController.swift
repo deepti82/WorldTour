@@ -31,6 +31,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         }
         request.getMomentJourney(pageNumber: pageNumber, type: type,completion: {(request) in
             DispatchQueue.main.async(execute: {
+<<<<<<< HEAD
                 if request["data"] != nil && request["value"].boolValue {
                     
                     for post in request["data"].array! {
@@ -44,6 +45,16 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
                         checkIn.activityFeed = self
                         self.layout.addSubview(checkIn)
                     }
+=======
+                if request["data"] != "" {
+//                    for post in request["data"].array! {
+//                        let checkIn = MyLifeActivityFeedsLayout(width: self.view.frame.width)
+//                        checkIn.scrollView = self.TheScrollView
+//                        checkIn.createProfileHeader(feed: post)
+//                        checkIn.activityFeed = self
+//                        self.layout.addSubview(checkIn)
+//                    }
+>>>>>>> origin/level-3-
                     self.addHeightToLayout()
                 }
             })

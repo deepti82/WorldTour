@@ -9,6 +9,9 @@
 import UIKit
 import Toaster
 
+var globalMyLifeMomentsViewController:MyLifeMomentsViewController!
+
+
 class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let titleLabels = ["November 2015, (25)", "October 2015, (25)", "September 2015, (25)", "August 2015, (25)", "July 2015, (25)"]
@@ -20,9 +23,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     var whichView = "Travel Life"
     var page = 1
-    var momentType = "travel-life"
+    var momentType = "all"
     var allData:[JSON] = []
     var loadStatus = true
+    var lastToken = ""
     
     
     @IBOutlet weak var mainView: UICollectionView!
@@ -30,10 +34,11 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         print("in play....")
         super.viewDidLoad()
+        globalMyLifeMomentsViewController = self
         setTopNavigation("Photos")
         mainView.delegate = self
         mainView.dataSource = self
-//        loadTravelLife(pageno: page, type: momentType)
+        //        loadTravelLife(pageno: page, type: momentType)
         navigationItem.leftBarButtonItem?.title = ""
         
     }
@@ -41,40 +46,72 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print(loadStatus)
         if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
-
-            if loadStatus {
-                print("in load more of data.")
-                page = page + 1
-                loadTravelLife(pageno: page, type: momentType)
+            if lastToken != "-1" {
+                if loadStatus {
+                    loadMomentLife(pageno: page, type: momentType, token: lastToken)
+                }
+            }else{
+                self.loadStatus = false
             }
+            
         }
         
     }
     
-
     
-    func loadTravelLife(pageno:Int, type:String) {
-        request.getMomentTravelife(currentUser["_id"].stringValue, pageNumber: pageno, completion: {(request) in
+    
+    func loadMomentLife(pageno:Int, type:String, token:String) {
+        momentType = type
+        request.getMomentLife(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
+            
             DispatchQueue.main.async {
-                if request["data"].count > 0 {
-                    self.loadStatus = true
-                    if pageno == 1 {
-                        self.allData = request["data"].array!
+                if type == "travel-life"{
+                    
+                    if request["data"].count > 0 {
+                        self.loadStatus = true
+                        if pageno == 1 {
+                            self.allData = request["data"].array!
+                        }else{
+                            for post in request["data"].array! {
+                                self.allData.append(post)
+                            }
+                        }
+                        self.mainView.reloadData()
                     }else{
-                    for post in request["data"].array! {
-                        self.allData.append(post)
+                        self.loadStatus = false
                     }
-                    }
-                    print("after load ")
-                    print(request["data"])
-                    self.mainView.reloadData()
+                    
                 }else{
-                    self.loadStatus = false
+                    
+//                    if self.lastToken != "-1" {
+                        self.loadStatus = true
+                        if token == "" {
+                            self.allData = []
+                            for post in request["data"].array! {
+                                if post["token"] != -1 {
+                                    self.allData.append(post)
+                                }
+                            }
+                        }else{
+                            for post in request["data"].array! {
+                                if post["token"] != -1 {
+                                    self.allData.append(post)
+                                }
+                            }
+                        }
+                        self.lastToken = request["data"][request["data"].count - 1]["token"].stringValue
+                        self.mainView.reloadData()
+//                    }else{
+//                        self.loadStatus = false
+//                    }
+                    
                 }
+                
             }
+            
         })
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -82,8 +119,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        if whichView == "All" {
-            return titleLabels.count
+        if momentType != "travel-life" {
+            return allData.count
         }
         
         return 1
@@ -91,32 +128,32 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        switch whichView {
-        case "All":
-            return 3*11
+        switch momentType {
+        case "all":
+            return allData[section]["data"].count
         case "Monthly", "SelectCover":
             return images.count
-        case "Local Life":
-            return 4
-        case "Travel Life":
+        case "local-life":
+            return allData[section]["data"].count
+        case "travel-life":
             return allData.count
         default:
-            return 0
+            return 2
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                               sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+                        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
         
-        switch whichView {
-        case "All":
+        switch momentType {
+        case "all":
             return CGSize(width: 30, height: 30)
         case "Monthly", "SelectCover":
             return CGSize(width: 110, height: 110)
-        case "Local Life", "Travel Life":
+        case "local-life", "travel-life":
             return CGSize(width: 165, height: 204)
         default:
             break
@@ -128,41 +165,38 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch whichView {
-        case "All":
+        switch momentType {
+        case "all":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell
+            cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
             return cell
         case "Monthly", "SelectCover":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
             cell.photoBig.image = nil
             cell.photoBig.backgroundColor = UIColor.white
-//            DispatchQueue.main.async(execute: {
-                cell.photoBig.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=200")!)
-//            })
+            //            DispatchQueue.main.async(execute: {
+            cell.photoBig.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=200")!)
+            //            })
             return cell
-        case "Local Life":
+        case "local-life":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localLifeMomentsCell", for: indexPath) as! LocalLifeMomentsCollectionViewCell
             cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
             cell.bgImage.layer.cornerRadius = 5
             cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
             cell.coverImage.clipsToBounds = true
-            let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + allData[indexPath.row]["coverPhoto"].stringValue + "&width=500")
             
-            cell.coverImage.hnk_setImageFromURL(getImageUrl!)
-            cell.bgImage.hnk_setImageFromURL(getImageUrl!)
-
+            cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
+            cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
+            
             return cell
-        case "Travel Life":
+        case "travel-life":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "travelLifeMomentsCell", for: indexPath) as! TravelLifeMomentsCollectionViewCell
             
             
             cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
             cell.coverImage.clipsToBounds = true
             
-            print(allData[indexPath.row]["name"].stringValue)
-            print(indexPath.row)
-            
-//            cell.albumDated.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: allData[indexPath.row]["startTime"].stringValue, isDate: false)
+            //            cell.albumDated.text = changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: allData[indexPath.row]["startTime"].stringValue, isDate: false)
             
             cell.bgImage.layer.borderColor = UIColor.white.cgColor
             cell.bgImage.layer.borderWidth = 5.0
@@ -172,13 +206,24 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             cell.bgImage.layer.shadowRadius = 10
             cell.bgImage.transform = CGAffineTransform(rotationAngle: 0.0349066)
             cell.bgImage.clipsToBounds = true
-            cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 200))
+            if allData[indexPath.row]["coverPhoto"] != nil {
+                print("in cover photo")
+                cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 200))
+                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 200))
+            }else{
+                print("in start location pic")
+                cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 200))
+                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["startLocationPic"].stringValue, width: 200))
+            }
+            
             cell.albumTitle.text = allData[indexPath.row]["name"].stringValue + " (\(allData[indexPath.row]["mediaCount"].stringValue))"
-            cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["coverPhoto"].stringValue, width: 200))
-
-
+            
+            
+            
             return cell
         default:
+            print("in default")
+            print(whichView)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
             if whichView == "Reviews LL" {
                 cell.bgImage.image = UIImage(named: "reviewsLocalLifeAlbum")
@@ -202,15 +247,15 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if whichView == "All" {
+        if momentType == "all" {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
-            let array = titleLabels[(indexPath as NSIndexPath).section].components(separatedBy: ", ")
+            let array = allData[(indexPath as NSIndexPath).section]["token"].stringValue.components(separatedBy: ", ")
             print(array)
             let headerLabel = NSMutableAttributedString(string: "")
             let month = NSAttributedString(string: array[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-            let count = NSAttributedString(string: " \(array[1])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])
+//            let count = NSAttributedString(string: " \(array[1])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])
             headerLabel.append(month)
-            headerLabel.append(count)
+//            headerLabel.append(count)
             header.titleLabel.attributedText = headerLabel
             return header
         }
@@ -230,8 +275,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             if allData[indexPath.row]["mediaCount"].stringValue == "0" {
                 showToast(msg: "No Photos in \(allData[indexPath.row]["name"].stringValue)")
             }else{
-            whichView = "Monthly"
-            collectionView.reloadData()
+                whichView = "Monthly"
+                collectionView.reloadData()
             }
         }
             
@@ -241,7 +286,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             selectImage(indexPath.item)
             
         }
-        
+            
         else if whichView == "Reviews TL" || whichView == "Reviews LL" {
             
             let myLifeVC = self.parent as! MyLifeViewController
@@ -262,10 +307,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         print("inside select image")
         
-//        let imageCropperVC = self.storyboard!.instantiateViewController(withIdentifier: "imageCropperVC") as! ImageCropperViewController
-//        print("selected image: \(images[index])")
-//        imageCropperVC.sentImage = images[index]
-//        self.navigationController?.pushViewController(imageCropperVC, animated: true)
+        //        let imageCropperVC = self.storyboard!.instantiateViewController(withIdentifier: "imageCropperVC") as! ImageCropperViewController
+        //        print("selected image: \(images[index])")
+        //        imageCropperVC.sentImage = images[index]
+        //        self.navigationController?.pushViewController(imageCropperVC, animated: true)
         
         let allvcs = self.navigationController!.viewControllers
         for vc in allvcs {
@@ -273,7 +318,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             if vc.isKind(of: EndJourneyViewController.self) {
                 
                 let endvc = vc as! EndJourneyViewController
-                endvc.coverImage = images[index] 
+                endvc.coverImage = images[index]
                 endvc.makeCoverPictureImage(image: images[index])
                 self.navigationController!.popToViewController(endvc, animated: true)
                 
@@ -289,7 +334,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         let rightButton = UIView()
         self.title = text
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-
+        
         self.customNavigationBar(left: leftButton, right: rightButton)
     }
     
@@ -321,9 +366,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         let show = Toast(text: msg)
         show.show()
     }
-
-
-
+    
+    
+    
 }
 
 

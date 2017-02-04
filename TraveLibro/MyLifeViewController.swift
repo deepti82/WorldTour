@@ -210,6 +210,13 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         switch whatEmptyTab {
         case "Journeys": 
             globalMyLifeContainerViewController.loadData("all", pageNumber: 1);
+        case "Moments":
+            globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "all", token: "")
+        case "Reviews":
+            globalAccordionViewController.whichView = "Reviews TL"
+            globalAccordionViewController.tableMainView.reloadData()
+
         default: break
             
         }
@@ -223,6 +230,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         switch whatEmptyTab {
         case "Journeys":
             globalMyLifeContainerViewController.loadData("travel-life", pageNumber: 1);
+        case "Moments":
+            globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "travel-life", token: "")
+        case "Reviews":
+            globalAccordionViewController.whichView = "Reviews TL"
+            globalAccordionViewController.tableMainView.reloadData()
         default: break
             
         }
@@ -236,6 +249,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         switch whatEmptyTab {
         case "Journeys":
             globalMyLifeContainerViewController.loadData("local-life", pageNumber: 1);
+        case "Moments":
+            globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "local-life", token: "")
+        case "Reviews":
+            globalAccordionViewController.whichView = "Reviews TL"
+            globalAccordionViewController.tableMainView.reloadData()
         default: break
             
         }
