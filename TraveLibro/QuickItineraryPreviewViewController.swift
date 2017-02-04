@@ -146,42 +146,43 @@ class QuickItineraryPreviewViewController: UIViewController {
         actionSheet.setValue(MessageString, forKey: "attributedMessage")
         
         
-        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Save", style: .default) { action -> Void in
-            print("Cancel")
+        let saveActionButton: UIAlertAction = UIAlertAction(title: "Save", style: .default) { action -> Void in
             
-                    request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],  completion: {(response) in
-                        DispatchQueue.main.async(execute: {
-                            print(response)
-                            if response.error != nil {
+            //        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],status:false,  completion: {(response) in
+            //            DispatchQueue.main.async(execute: {
+            //                print(response)
+            //                if response.error != nil {
+            //
+            //                    print("error: \(response.error!.localizedDescription)")
+            //
+            //                }
+            //                else if response["value"].bool! {
+            //                    quickItinery = []
+            //                    let tstr = Toast(text: "Itenary saved successfully.")
+            //                    tstr.show()
+            //                    let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            //                    self.navigationController?.pushViewController(next, animated: true)
+            //                    print("nothing")
+            //                }
+            //                else {
+            //                    print("nothing")
+            //                    
+            //                }
+            //            })
+            //        })
             
-                                print("error: \(response.error!.localizedDescription)")
-            
-                            }
-                            else if response["value"].bool! {
-                                quickItinery = []
-                                let tstr = Toast(text: "Itenary saved successfully.")
-                                tstr.show()
-                                let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-                                self.navigationController?.pushViewController(next, animated: true)
-                                print("nothing")
-                            }
-                            else {
-                                print("nothing")
-                                
-                            }
-                        })
-                    })
-            
+            let qi = QuickItinerary()
+            qi.save(quickItinery, imageArr: globalPostImage, statusVal: false)
         }
         
-        actionSheet.addAction(cancelActionButton)
+        actionSheet.addAction(saveActionButton)
         
-        let spamActionButton: UIAlertAction = UIAlertAction(title: "Publish", style: .destructive) { action -> Void in
-            print("Spam or Scam")
+        let publishActionButton: UIAlertAction = UIAlertAction(title: "Publish", style: .destructive) { action -> Void in
+            var qi = QuickItinerary()
+            qi.save(quickItinery, imageArr: globalPostImage, statusVal: true)
         }
         
-        actionSheet.addAction(spamActionButton)
-        
+        actionSheet.addAction(publishActionButton)
         self.present(actionSheet, animated: true, completion: nil)
     }
     

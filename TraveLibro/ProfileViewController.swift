@@ -1,11 +1,3 @@
-//
-//  ProfileViewController.swift
-//  TraveLibro
-//
-//  Created by Midhet Sulemani on 21/05/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 import DKChainableAnimationKit
 
@@ -115,7 +107,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     break
                 }
             }
-            
             profileCollectionView.reloadData()
         }
         
@@ -125,14 +116,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""
+        
         globalProfileController = self
         transparentCardWhite(mainProfileView)
-
-        
         profileUsername.adjustsFontSizeToFitWidth = true
-    
-
-        
         MAMButton.layer.zPosition = 500000
         moreAboutMe.layer.zPosition = 500000
         collectionView.layer.zPosition = 500000
@@ -152,10 +139,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
-        
-        
-       let customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 66, width: self.view.frame.width, height: 20)))
-        
+        let customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 66, width: self.view.frame.width, height: 20)))
         let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 120, width: self.view.frame.size.width - 10, height: 55))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
@@ -169,7 +153,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         customView.backgroundColor = UIColor.white
         self.view.addSubview(customView)
         orangeTab.orangeButtonTitle.addTarget(self, action: #selector(ProfileViewController.MyLifeDetailsShow(_:)), for: .touchUpInside)
-        
         MAMStack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.MAMStacKTap(_:))))
         locationIcon.text = String(format: "%C", faicon["location"]!)
         MAMButton.transform = MAMButton.transform.rotated(by: CGFloat(M_PI))

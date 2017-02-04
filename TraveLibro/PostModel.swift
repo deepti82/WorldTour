@@ -266,7 +266,6 @@ public class Post {
     }
     
     func jsonToPost(_ json:JSON) {
-        print(json);
         self.jsonPost = json
         self.postCreator = json["postCreator"]
         self.post_ids = json["_id"].stringValue

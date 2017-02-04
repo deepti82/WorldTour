@@ -79,6 +79,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
                 
                 if((min < 100) && (max > 140))
                 {
+                    print(photosOtg.feeds);
                     self.timeTag.changeTime(feed: photosOtg.feeds)
                 }
             }

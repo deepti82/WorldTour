@@ -1,13 +1,13 @@
-//
-//  ImageModel.swift
-//  TraveLibro
-//
-//  Created by Chintan Shah on 20/12/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
 import Foundation
 import SQLite
 import Haneke
+
+// Post Image PostID Prefix Sum
+// OTG NewPost - "0"
+// EditOtgPost - NO OFFLINE
+// AddPhotosAndVideos - "10000"
+// LocalLife - "20000"
+// QuickItinerary - "30000"
 
 public class PostImage {
     var imageUrl: URL!
