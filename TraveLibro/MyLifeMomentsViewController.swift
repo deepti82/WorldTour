@@ -27,6 +27,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     var allData:[JSON] = []
     var loadStatus = true
     var lastToken = ""
+    var insideView = ""
     
     
     @IBOutlet weak var mainView: UICollectionView!
@@ -58,6 +59,48 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
     }
     
+    
+    func loadInsideMedia(pageno:Int, type:String, token:String, id:String) {
+        print("view type \(insideView)")
+        if momentType == "all" || momentType == "local-life"{
+            request.getTokenMoment(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
+                DispatchQueue.main.async {
+
+                if request["data"].count > 0 {
+                    self.loadStatus = true
+                    if pageno == 1 {
+                        self.allData = request["data"].array!
+                    }else{
+                        for post in request["data"].array! {
+                            self.allData.append(post)
+                        }
+                    }
+                    self.mainView.reloadData()
+                }else{
+                    self.loadStatus = false
+                }
+                }
+            })
+        }else{
+            request.getMedia(id: id, pageNumber: pageno, completion: {(request) in
+                DispatchQueue.main.async {
+                    if request["data"].count > 0 {
+                        self.loadStatus = true
+                        if pageno == 1 {
+                            self.allData = request["data"].array!
+                        }else{
+                            for post in request["data"].array! {
+                                self.allData.append(post)
+                            }
+                        }
+                        self.mainView.reloadData()
+                    }else{
+                        self.loadStatus = false
+                    }
+                }
+            })
+        }
+    }
     
     
     func loadMomentLife(pageno:Int, type:String, token:String) {
@@ -119,8 +162,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        if momentType != "travel-life" {
-            return allData.count
+        if insideView != "Monthly" {
+            if momentType != "travel-life" {
+                return allData.count
+            }
         }
         
         return 1
@@ -130,11 +175,17 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         switch momentType {
         case "all":
-            return allData[section]["data"].count
-        case "Monthly", "SelectCover":
-            return images.count
+            if insideView == "Monthly" {
+                return allData.count
+            }else{
+                return allData[section]["data"].count
+            }
         case "local-life":
-            return allData[section]["data"].count
+            if insideView == "Monthly" {
+                return allData.count
+            }else{
+                return allData[section]["data"].count
+            }
         case "travel-life":
             return allData.count
         default:
@@ -147,7 +198,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
-        
+        if insideView == "Monthly" {
+            return CGSize(width: 110, height: 110)
+        }else{
         switch momentType {
         case "all":
             return CGSize(width: 30, height: 30)
@@ -158,12 +211,20 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         default:
             break
         }
+        }
         
         return CGSize(width: 150, height: 75)
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if insideView == "Monthly" {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
+            cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
+            return cell
+
+        }else{
         
         switch momentType {
         case "all":
@@ -242,6 +303,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             return cell
             
         }
+        }
         
         
         
@@ -272,61 +334,26 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if whichView == "Local Life" || whichView == "Travel Life" || whichView == "All" {
+        if momentType == "local-life" || momentType == "all" {
+            if allData[indexPath.section]["count"].stringValue == "0" {
+                showToast(msg: "No Photos in \(allData[indexPath.section]["token"].stringValue)")
+            }else{
+                insideView = "Monthly"
+                self.loadInsideMedia(pageno: 1, type: momentType, token: allData[indexPath.section]["token"].stringValue, id: "")
+            }
+        }else if momentType == "travel-life" {
             if allData[indexPath.row]["mediaCount"].stringValue == "0" {
                 showToast(msg: "No Photos in \(allData[indexPath.row]["name"].stringValue)")
             }else{
-                whichView = "Monthly"
-                collectionView.reloadData()
+                insideView = "Monthly"
+                self.loadInsideMedia(pageno: 1, type: momentType, token: allData[indexPath.section]["token"].stringValue, id: allData[indexPath.row]["_id"].stringValue)
             }
-        }
-            
-        else if whichView == "SelectCover" {
-            
             print("inside select cover")
-            selectImage(indexPath.item)
             
         }
-            
-        else if whichView == "Reviews TL" || whichView == "Reviews LL" {
-            
-            let myLifeVC = self.parent as! MyLifeViewController
-            myLifeVC.whatTab = "Reviews"
-            myLifeVC.collectionContainer.alpha = 0
-            myLifeVC.tableContainer.alpha = 1
-            myLifeVC.view.setNeedsDisplay()
-            
-            let tableVC = myLifeVC.childViewControllers.last as! AccordionViewController
-            tableVC.whichView = self.whichView
-            tableVC.accordionTableView.reloadData()
-        }
-        
         
     }
     
-    func selectImage(_ index: Int) {
-        
-        print("inside select image")
-        
-        //        let imageCropperVC = self.storyboard!.instantiateViewController(withIdentifier: "imageCropperVC") as! ImageCropperViewController
-        //        print("selected image: \(images[index])")
-        //        imageCropperVC.sentImage = images[index]
-        //        self.navigationController?.pushViewController(imageCropperVC, animated: true)
-        
-        let allvcs = self.navigationController!.viewControllers
-        for vc in allvcs {
-            
-            if vc.isKind(of: EndJourneyViewController.self) {
-                
-                let endvc = vc as! EndJourneyViewController
-                endvc.coverImage = images[index]
-                endvc.makeCoverPictureImage(image: images[index])
-                self.navigationController!.popToViewController(endvc, animated: true)
-                
-            }
-            
-        }
-    }
     func setTopNavigation(_ text: String) {
         let leftButton = UIButton()
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

@@ -212,6 +212,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             globalMyLifeContainerViewController.loadData("all", pageNumber: 1);
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.insideView = ""
+
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "all", token: "")
         case "Reviews":
             globalAccordionViewController.whichView = "Reviews TL"
@@ -232,6 +234,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             globalMyLifeContainerViewController.loadData("travel-life", pageNumber: 1);
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.insideView = ""
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "travel-life", token: "")
         case "Reviews":
             globalAccordionViewController.whichView = "Reviews TL"
@@ -251,6 +254,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             globalMyLifeContainerViewController.loadData("local-life", pageNumber: 1);
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.insideView = ""
+
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "local-life", token: "")
         case "Reviews":
             globalAccordionViewController.whichView = "Reviews TL"
