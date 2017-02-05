@@ -187,6 +187,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             
             cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
             cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
+            cell.albumTitle .text = "\(allData[indexPath.section]["token"].stringValue) (\(allData[indexPath.section]["count"].stringValue))"
             
             return cell
         case "travel-life":
