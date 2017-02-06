@@ -48,7 +48,7 @@
                                         <constraint firstAttribute="width" constant="23" id="Tjd-4k-myJ"/>
                                         <constraint firstAttribute="height" constant="23" id="jNN-uF-nfr"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="7F0314AF-9510-46D7-A3DC-91B66EB9A680"/>
+                                    <state key="normal" title="Button" image="CBE49EE5-B15A-4209-82AD-A997AB6A1A2A"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                             <real key="value" value="2"/>
@@ -148,6 +148,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="OGS-bv-8jn" firstAttribute="leading" secondItem="koM-1g-CgJ" secondAttribute="leading" id="22W-3Q-LLU"/>
                         <constraint firstItem="bfn-CR-GZz" firstAttribute="leading" secondItem="koM-1g-CgJ" secondAttribute="leading" constant="8" id="24A-k5-eo2"/>
@@ -183,7 +184,7 @@
         </view>
     </objects>
     <resources>
-        <image name="7F0314AF-9510-46D7-A3DC-91B66EB9A680" width="128" height="128">
+        <image name="CBE49EE5-B15A-4209-82AD-A997AB6A1A2A" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
