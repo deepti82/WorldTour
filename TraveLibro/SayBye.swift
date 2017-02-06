@@ -30,13 +30,13 @@ class SayBye: UIView {
     
         textView.clipsToBounds = true
         line.backgroundColor = UIColor.clear
-//        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
-        clockIcon.text = String(format: "%C", faicon["clock"]!)
-//        
-//          clockTime.shadowColor = UIColor.black
-//        clockTime.shadowOffset = CGSize(width: 0.5, height: 0.5)
-//        clockTime.layer.shadowOpacity = 0.6
-//        clockTime.layer.shadowRadius = 1.0
+        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+       clockIcon.text = String(format: "%C", faicon["clock"]!)
+//
+          clockTime.shadowColor = UIColor.black
+        clockTime.shadowOffset = CGSize(width: 0.5, height: 0.5)
+        clockTime.layer.shadowOpacity = 0.6
+        clockTime.layer.shadowRadius = 1.0
         
         timestamp.shadowColor = UIColor.black
         timestamp.shadowOffset = CGSize(width: 0.1, height: 0.5)
