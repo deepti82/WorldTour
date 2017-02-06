@@ -36,8 +36,6 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("type type typ\(type)")
-        
         setTopNavigation("Comment")
         
         getAllComments()
@@ -317,7 +315,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     }
     
      override func popVC(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     var textVar = ""
