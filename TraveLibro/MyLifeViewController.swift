@@ -129,7 +129,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func exitMyLife(_ sender: AnyObject ) {
         
-        self.navigationController?.popViewController(animated: true)
+        UIView.animate(withDuration: 0.75, animations: { () -> Void in
+            UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
+            self.navigationController?.popViewController(animated: true)
+            UIView.setAnimationTransition(.curlDown, for: self.navigationController!.view!, cache: false)
+        })
+        
         
     }
     

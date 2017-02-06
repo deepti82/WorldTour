@@ -3,7 +3,7 @@ import DKChainableAnimationKit
 
 var doRemove: Bool = true
 var globalProfileController:ProfileViewController!
-class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
+class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UIViewControllerPreviewingDelegate {
 
     @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var livesInStack: UIStackView!
@@ -13,7 +13,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var profileUsername: UILabel!
     @IBOutlet weak var isPhotographer: UILabel!
     @IBOutlet weak var moreAboutMe: UILabel!
-    
+    var myLifeVC:MyLifeViewController!
     
     var profile: ProfilePicFancy!
     var orangeTab:OrangeButton!
@@ -116,6 +116,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""
+        
+        myLifeVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+        
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: view)
+        }
         
         globalProfileController = self
         transparentCardWhite(mainProfileView)
@@ -450,21 +456,21 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func MyLifeDetailsShow(_ sender: AnyObject) {
-        print("my life clcked.......")
-        
-        let myLifeVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-
-//        self.presentViewController(myLifeVC, animated:true, completion: nil)
-//        self.navigationController?.pushViewController(myLifeVC, animated: true)
-        
         UIView.animate(withDuration: 0.75, animations: { () -> Void in
             UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
-            self.navigationController!.pushViewController(myLifeVC, animated: false)
+            self.navigationController!.pushViewController(self.myLifeVC, animated: false)
             UIView.setAnimationTransition(UIViewAnimationTransition.curlUp, for: self.navigationController!.view!, cache: false)
         })
-        
     }
     
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        return self.myLifeVC
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        show(viewControllerToCommit, sender: self)
+    }
     
 }
 
