@@ -35,6 +35,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     override func viewDidLoad() {
         print("in play....")
+        getDarkBackGround(self)
         super.viewDidLoad()
         globalMyLifeMomentsViewController = self
         setTopNavigation("Photos")

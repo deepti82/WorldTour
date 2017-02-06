@@ -49,7 +49,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getDarkBackGround(self)
         navigationController?.isNavigationBarHidden = false
         
         getDarkBackGroundBlur(self)

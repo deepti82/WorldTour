@@ -29,7 +29,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
     var previousYear: Int = 1960
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getDarkBackGround(self)
         trialVariable = []
         let calendar = NSCalendar.current
         let dateFormatterMonth = DateFormatter()

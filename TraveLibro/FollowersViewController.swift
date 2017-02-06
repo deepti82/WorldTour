@@ -26,7 +26,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getDarkBackGround(self)
         followers = []
         
         let leftButton = UIButton()
