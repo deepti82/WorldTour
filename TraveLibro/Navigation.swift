@@ -1509,10 +1509,13 @@ class Navigation {
     
     func getTokenMoment(_ user: String, pageNumber: Int, type: String, token: String, completion: @escaping ((JSON) -> Void)) {
         
-        
+        var type2 = type
         do {
             var params: JSON!
-            params = ["user": user, "token": token, "type": type, "limit": 18, "pagenumber": pageNumber]
+            if type2 == "all" {
+                type2 = ""
+            }
+            params = ["user": user, "token": token, "type": type2, "limit": 18, "pagenumber": pageNumber]
             print(params)
             let jsonData = try params.rawData()
             
