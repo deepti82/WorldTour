@@ -1465,17 +1465,25 @@ class Navigation {
         }
     }
     
-    func getMedia(id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+    func getMedia(mediaType:String, user:String, id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
         
         
         do {
             var params: JSON!
-            params = ["_id": id, "pagenumber": pageNumber, "limit": 20]
+            var api: String
+            if mediaType == "" {
+                params = ["user":user, "_id": id, "pagenumber": pageNumber, "limit": 20]
+                api = "journey/getMedia"
+            }else{
+                params = ["_id": id, "pagenumber": pageNumber, "limit": 20]
+                api = "itinerary/getMedia"
+            }
             print(params)
+            print(api)
             let jsonData = try params.rawData()
             
             // create post request
-            let url = URL(string: adminUrl + "journey/getMedia")!
+            let url = URL(string: adminUrl + api)!
             let request = NSMutableURLRequest(url: url)
             request.httpMethod = "POST"
             

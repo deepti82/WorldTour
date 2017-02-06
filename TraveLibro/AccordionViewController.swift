@@ -24,17 +24,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         globalAccordionViewController = self
-    setTopNavigation("Reviews")
-//        if isEmptyProfile {
-//            
-//            let myLifeVC = self.parentViewController as! MyLifeViewController
-//            myLifeVC.whatTab = "Reviews"
-//            myLifeVC.collectionContainer.alpha = 0
-//            myLifeVC.tableContainer.alpha = 0
-//            myLifeVC.journeysContainerView.alpha = 1
-//            myLifeVC.view.setNeedsDisplay()
-//            
-//        }
+        setTopNavigation("Reviews")
     }
 
     override func didReceiveMemoryWarning() {
