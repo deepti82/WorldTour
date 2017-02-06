@@ -181,7 +181,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             comment.type = "Video"
         }
         //self.navigationController?.pushViewController(comment, animated: true)
-        self.present(comment, animated: true, completion: nil)
+        self.navigationController?.pushViewController(comment, animated: true)
     }
     
     override func popVC(_ sender: UIButton) {
