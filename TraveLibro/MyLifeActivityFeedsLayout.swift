@@ -167,6 +167,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         if(feed["type"].stringValue == "ended-journey" || feed["type"].stringValue == "quick-itinerary" || feed["type"].stringValue == "detail-itinerary" || feed["type"].stringValue == "on-the-go-journey") {
             print("in review")
             footerViewReview = ActivityFeedFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            
             footerViewReview.postTop = feed
             footerViewReview.topLayout = self
             footerViewReview.type = "MyLifeFeeds"

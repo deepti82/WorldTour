@@ -223,7 +223,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     func goToLocalLife(_ sender:AnyObject) {
 //        let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
 //        globalNavigationController?.pushViewController(vc, animated: false)
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)    
     }
     
    

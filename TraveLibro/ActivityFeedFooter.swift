@@ -240,17 +240,85 @@ class ActivityFeedFooter: UIView {
     
     @IBAction func optionClick(_ sender: UIButton) {
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+        
+        if(self.type == "MyLifeFeeds") {
+            
+            if(postTop["type"].stringValue == "detail-itinerary") {
+                let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
+                {action -> Void in
+                    
+                }
+                actionSheetControllerIOS8.addAction(editActionButton)
+                
+                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(changeCoverActionButton)
+                
+                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(deleteActionButton)
+            }
+            
+            if(postTop["type"].stringValue == "quick-itinerary") {
+                let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(editActionButton)
+                
+                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(changeCoverActionButton)
+                
+                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(deleteActionButton)
+            }
+            if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
+                
+                let changeNameActionButton: UIAlertAction = UIAlertAction(title: "Change Journey Name", style: .default)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(changeNameActionButton)
+                
+                let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Change End Journey Date", style: .default)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(changeDateActionButton)
+                
+                let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countriess", style: .default)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(crateCountriesActionButton)
+                
+                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                
+                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .destructive)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                
+            }
         }
-        let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
-        {action -> Void in
+        else {
+            let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            }
+            let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
+            {action -> Void in
+            }
+            actionSheetControllerIOS8.addAction(UnFollow)
+            actionSheetControllerIOS8.addAction(cancelActionButton)
+            let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+            {action -> Void in
+            }
+            actionSheetControllerIOS8.addAction(reportActionButton)
         }
-        actionSheetControllerIOS8.addAction(UnFollow)
-        actionSheetControllerIOS8.addAction(cancelActionButton)
-        let EditCheckIn: UIAlertAction = UIAlertAction(title: "Report", style: .default)
-        {action -> Void in
-        }
-        actionSheetControllerIOS8.addAction(EditCheckIn)
         globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
     
