@@ -128,7 +128,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     
                 }else{
                     
-                    if self.lastToken != "-1" {
+//                    if self.lastToken != "-1" {
                         self.loadStatus = true
                         if token == "" {
                             self.allData = []
@@ -146,9 +146,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                         }
                         self.lastToken = request["data"][request["data"].count - 1]["token"].stringValue
                         self.mainView.reloadData()
-                    }else{
-                        self.loadStatus = false
-                    }
+//                    }else{
+//                        self.loadStatus = false
+//                    }
                     
                 }
                 // if no data
