@@ -60,7 +60,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             
             profileName.text = currentUser["name"].string!
         }
-        
+        self.title = currentUser["name"].string!
         isEmptyProfile = true
         
         arrowDownButton.setTitle(arrow, for: UIControlState())
@@ -129,7 +129,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func exitMyLife(_ sender: AnyObject ) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
         
     }
     

@@ -180,13 +180,9 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(dropView)
             
         } else {
-            print("in footer")
             footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
-            
-            //            footerView.postTop = feed
             footerView.topLayout = self
             footerView.type = "MyLifeFeeds"
-            
             footerView.setCommentCount(feed["commentCount"].intValue)
             footerView.setLikeCount(feed["likeCount"].intValue)
             footerView.setView(feed:feed)
@@ -194,9 +190,6 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
             dropView.dropShadow.layer.cornerRadius = 1
             self.addSubview(dropView)
-            
-            
-            
         }
         var temp = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 20))
         self.addSubview(temp)
@@ -210,15 +203,10 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityFeedImage.fillData(feed: feed)
             activityFeedImage.clipsToBounds = true
             activityFeedImage.OnTheGOText.isHidden = true
-            
-            
             self.addSubview(activityFeedImage)
         case "quick-itinerary":
             activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 590))
             activityQuickItinerary.fillData(feed: feed)
-            
-        
-            
             self.addSubview(activityQuickItinerary)
         case "detail-itinerary":
             activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 528))
@@ -243,7 +231,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(textHeader)
             
                         
-        }else{
+        } else {
             // For header text
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
             
@@ -268,10 +256,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             if(textHeader.headerText.text != "") {
                 self.addSubview(textHeader)
             }
-            
-            
         }
-        
     }
     func setText(text: String) {
         textHeader.headerText.text = text

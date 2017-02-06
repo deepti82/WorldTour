@@ -453,7 +453,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         print("my life clcked.......")
         
         let myLifeVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-        self.navigationController?.present(myLifeVC, animated: true, completion: nil)
+
+//        self.presentViewController(myLifeVC, animated:true, completion: nil)
+//        self.navigationController?.pushViewController(myLifeVC, animated: true)
+        
+        UIView.animate(withDuration: 0.75, animations: { () -> Void in
+            UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
+            self.navigationController!.pushViewController(myLifeVC, animated: false)
+            UIView.setAnimationTransition(UIViewAnimationTransition.curlUp, for: self.navigationController!.view!, cache: false)
+        })
         
     }
     

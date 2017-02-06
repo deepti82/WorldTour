@@ -6510,11 +6510,11 @@
                         <viewControllerLayoutGuide type="bottom" id="gk4-fH-qYt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hmJ-Je-mta">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="544"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-oQ-QiI">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="544"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
@@ -9447,10 +9447,10 @@
             </objects>
             <point key="canvasLocation" x="6109" y="2585"/>
         </scene>
-        <!--Yash Chudasama-->
+        <!--MyLife Inside-->
         <scene sceneID="c7Y-Wt-w33">
             <objects>
-                <viewController storyboardIdentifier="myLife" title="Yash Chudasama" id="T8D-JM-ans" customClass="MyLifeViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myLife" title="MyLife Inside" id="T8D-JM-ans" customClass="MyLifeViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7gM-Ih-1ko"/>
                         <viewControllerLayoutGuide type="bottom" id="yqv-cJ-Ozj"/>
@@ -9460,7 +9460,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XF0-fV-XyI">
-                                <rect key="frame" x="-4" y="60" width="383" height="95"/>
+                                <rect key="frame" x="-4" y="20" width="383" height="95"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEv-04-afU">
                                         <rect key="frame" x="263" y="16" width="96" height="47"/>
@@ -9591,24 +9591,24 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hff-Fr-p84">
-                                <rect key="frame" x="-4" y="155" width="383" height="512"/>
+                                <rect key="frame" x="0.0" y="115" width="375" height="552"/>
                                 <connections>
                                     <segue destination="jde-yI-fIH" kind="embed" identifier="journeySegue" id="qTG-bI-LWH"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOo-vz-be6">
-                                <rect key="frame" x="-4" y="155" width="383" height="512"/>
+                                <rect key="frame" x="-4" y="115" width="383" height="544"/>
                                 <connections>
                                     <segue destination="luz-Hb-S9y" kind="embed" identifier="collectionSegue" id="gT6-bn-knH"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WoU-NL-nMH">
-                                <rect key="frame" x="0.0" y="155" width="375" height="512"/>
+                                <rect key="frame" x="0.0" y="115" width="375" height="544"/>
                                 <connections>
                                     <segue destination="P8x-wZ-Sd6" kind="embed" identifier="tableSegue" id="t4c-dZ-Y5x"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qnj-In-pkU">
+                            <view hidden="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qnj-In-pkU">
                                 <rect key="frame" x="0.0" y="20" width="375" height="42"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Px-Eu-e4W">
@@ -9648,7 +9648,7 @@
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="WoU-NL-nMH" firstAttribute="bottom" secondItem="yqv-cJ-Ozj" secondAttribute="top" id="1Z5-e3-XfZ"/>
+                            <constraint firstItem="WoU-NL-nMH" firstAttribute="bottom" secondItem="yqv-cJ-Ozj" secondAttribute="top" constant="-8" id="1Z5-e3-XfZ"/>
                             <constraint firstAttribute="trailing" secondItem="Qnj-In-pkU" secondAttribute="trailing" id="Azz-9M-yU4"/>
                             <constraint firstItem="hff-Fr-p84" firstAttribute="top" secondItem="XF0-fV-XyI" secondAttribute="bottom" id="JeT-dh-rzV"/>
                             <constraint firstItem="WoU-NL-nMH" firstAttribute="centerX" secondItem="hff-Fr-p84" secondAttribute="centerX" id="Koj-bb-BCC"/>
@@ -9658,15 +9658,15 @@
                             <constraint firstItem="XF0-fV-XyI" firstAttribute="trailing" secondItem="XOo-vz-be6" secondAttribute="trailing" id="TzD-xe-fOy"/>
                             <constraint firstItem="yqv-cJ-Ozj" firstAttribute="top" secondItem="hff-Fr-p84" secondAttribute="bottom" id="Vhq-lz-nh6"/>
                             <constraint firstItem="Qnj-In-pkU" firstAttribute="leading" secondItem="xkj-Yq-geI" secondAttribute="leading" id="W6g-08-Vah"/>
-                            <constraint firstItem="XF0-fV-XyI" firstAttribute="top" secondItem="7gM-Ih-1ko" secondAttribute="bottom" constant="40" id="ZsG-xU-Mqc"/>
-                            <constraint firstItem="hff-Fr-p84" firstAttribute="leading" secondItem="XOo-vz-be6" secondAttribute="leading" id="aY0-UF-ONZ"/>
+                            <constraint firstItem="XF0-fV-XyI" firstAttribute="top" secondItem="7gM-Ih-1ko" secondAttribute="bottom" id="ZsG-xU-Mqc"/>
+                            <constraint firstItem="hff-Fr-p84" firstAttribute="leading" secondItem="XOo-vz-be6" secondAttribute="leading" constant="4" id="aY0-UF-ONZ"/>
                             <constraint firstItem="XOo-vz-be6" firstAttribute="top" secondItem="hff-Fr-p84" secondAttribute="top" id="f52-td-94c"/>
-                            <constraint firstItem="hff-Fr-p84" firstAttribute="trailing" secondItem="XOo-vz-be6" secondAttribute="trailing" id="fE3-l6-tPQ"/>
+                            <constraint firstItem="hff-Fr-p84" firstAttribute="trailing" secondItem="XOo-vz-be6" secondAttribute="trailing" constant="-4" id="fE3-l6-tPQ"/>
                             <constraint firstItem="WoU-NL-nMH" firstAttribute="top" secondItem="hff-Fr-p84" secondAttribute="top" id="jLS-OH-sbm"/>
                             <constraint firstItem="Qnj-In-pkU" firstAttribute="top" secondItem="7gM-Ih-1ko" secondAttribute="bottom" id="lrZ-T5-6Yl"/>
                             <constraint firstItem="XF0-fV-XyI" firstAttribute="leading" secondItem="xkj-Yq-geI" secondAttribute="leadingMargin" constant="-20" id="qYb-wt-Cmd"/>
-                            <constraint firstItem="yqv-cJ-Ozj" firstAttribute="top" secondItem="XOo-vz-be6" secondAttribute="bottom" id="sXq-mt-FPI"/>
-                            <constraint firstItem="XF0-fV-XyI" firstAttribute="top" secondItem="Qnj-In-pkU" secondAttribute="bottom" constant="-2" id="wzx-l2-7nW"/>
+                            <constraint firstItem="yqv-cJ-Ozj" firstAttribute="top" secondItem="XOo-vz-be6" secondAttribute="bottom" constant="8" id="sXq-mt-FPI"/>
+                            <constraint firstItem="XF0-fV-XyI" firstAttribute="top" secondItem="Qnj-In-pkU" secondAttribute="bottom" constant="-42" id="wzx-l2-7nW"/>
                         </constraints>
                     </view>
                     <connections>
@@ -9693,7 +9693,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3MC-ji-loA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7658" y="1143"/>
+            <point key="canvasLocation" x="7656.8000000000002" y="1142.8785607196403"/>
         </scene>
         <!--My Life Moments View Controller-->
         <scene sceneID="7LA-oI-gea">
@@ -9704,11 +9704,11 @@
                         <viewControllerLayoutGuide type="bottom" id="uwG-LY-3Hd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WAc-dF-q4x">
-                        <rect key="frame" x="0.0" y="0.0" width="383" height="512"/>
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="544"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cZr-FT-KDz">
-                                <rect key="frame" x="0.0" y="8" width="383" height="504"/>
+                                <rect key="frame" x="0.0" y="8" width="383" height="536"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="c6Q-DQ-74Y">
                                     <size key="itemSize" width="30" height="30"/>
@@ -11303,11 +11303,11 @@
                         <viewControllerLayoutGuide type="bottom" id="iJE-xJ-VjQ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Kib-N7-Nib">
-                        <rect key="frame" x="0.0" y="0.0" width="383" height="512"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="552"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRI-sB-rd0">
-                                <rect key="frame" x="0.0" y="0.0" width="383" height="512"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="552"/>
                             </scrollView>
                         </subviews>
                         <constraints>
