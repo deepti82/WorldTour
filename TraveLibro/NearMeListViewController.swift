@@ -101,12 +101,15 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         
                for star in cell.stars {
+               
             star.setImage(UIImage(named: "star_uncheck")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: .selected)
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: [.highlighted, .selected])
             //star.imageView?.tintColor = UIColor.darkGray
             star.adjustsImageWhenHighlighted = false
         }
+        
+    
         
         cell.listName.text = nearMeListJSON[indexPath.section]["name"].string!
         nearMeAddress = NSMutableAttributedString(string: "Address:", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
