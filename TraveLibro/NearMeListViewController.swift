@@ -33,7 +33,6 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
-        
         nearMeListTableView.delegate = self
         nearMeListTableView.dataSource = self
     }
@@ -101,7 +100,6 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
         
                for star in cell.stars {
-               
             star.setImage(UIImage(named: "star_uncheck")?.withRenderingMode(.alwaysTemplate), for: UIControlState())
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: .selected)
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: [.highlighted, .selected])
