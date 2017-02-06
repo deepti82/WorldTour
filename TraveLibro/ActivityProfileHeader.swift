@@ -34,7 +34,7 @@ class ActivityProfileHeader: UIView {
         
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.topLeft, .topRight],
-                                cornerRadii: CGSize(width: 5, height:  5))
+                                cornerRadii: CGSize(width: 10, height:  10))
         
         let maskLayer = CAShapeLayer()
         

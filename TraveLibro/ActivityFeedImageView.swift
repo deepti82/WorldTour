@@ -42,6 +42,10 @@ class ActivityFeedImageView: UIView {
         kindOfJourneyOne.tintColor = UIColor.white
         kindOfJourneyTwo.tintColor = UIColor.white
         kindOfJourneyThree.tintColor = UIColor.white
+        locationIcon.tintColor = UIColor.white
+        videoIcon.tintColor = UIColor.white
+        CameraIcon.tintColor = UIColor.white
+        
         OnTheGOText.layer.cornerRadius = 5
         locationIcon.clipsToBounds = true
     }

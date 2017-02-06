@@ -32,7 +32,7 @@ class DropShadow1: UIView {
         dropShadow.clipsToBounds = true
         dropShadow.alpha = 0.7
         
-        let path = UIBezierPath(roundedRect:self.bounds,
+        let path = UIBezierPath(roundedRect:dropShadow.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],
                                 cornerRadii: CGSize(width: 1, height:  1))
         

@@ -214,6 +214,15 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(footerViewReview)
             dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
             self.addSubview(dropView)
+            
+            let path = UIBezierPath(roundedRect:dropView.dropShadow.bounds,
+                                    byRoundingCorners:[.bottomRight, .bottomLeft],
+                                    cornerRadii: CGSize(width: 1, height:  1))
+            
+            let maskLayer = CAShapeLayer()
+            
+            maskLayer.path = path.cgPath
+            self.layer.mask = maskLayer
            
         } else {
             print("in footer")
@@ -230,6 +239,14 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
             dropView.dropShadow.layer.cornerRadius = 1
             self.addSubview(dropView)
+            let path = UIBezierPath(roundedRect:dropView.dropShadow.bounds,
+                                    byRoundingCorners:[.bottomRight, .bottomLeft],
+                                    cornerRadii: CGSize(width: 1, height:  1))
+            
+            let maskLayer = CAShapeLayer()
+            
+            maskLayer.path = path.cgPath
+            self.layer.mask = maskLayer
              
         }
         
