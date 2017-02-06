@@ -146,7 +146,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
         let customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 66, width: self.view.frame.width, height: 20)))
-        let orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 120, width: self.view.frame.size.width - 10, height: 55))
+        self.orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 120, width: self.view.frame.size.width - 10, height: 55))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
@@ -464,8 +464,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        
-        return self.myLifeVC
+        var peep:UIViewController!
+        print(self.orangeTab)
+        print(location);
+        let myLife = self.orangeTab.frame.contains(location)
+        if(myLife) {
+            peep = self.myLifeVC
+        }
+        return peep
     }
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
