@@ -183,14 +183,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             self.addSubview(footerView)
             dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
             self.addSubview(dropView)
-            let path = UIBezierPath(roundedRect:dropView.dropShadow.bounds,
-                                    byRoundingCorners:[.bottomRight, .bottomLeft],
-                                    cornerRadii: CGSize(width: 1, height:  1))
             
-            let maskLayer = CAShapeLayer()
-            
-            maskLayer.path = path.cgPath
-            self.layer.mask = maskLayer
             
             if(post.post_location != "") {
                 rateButton = RatingCheckIn(frame: CGRect(x: 0, y: 0, width: width, height: 150))
