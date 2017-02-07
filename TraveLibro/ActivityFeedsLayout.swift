@@ -212,18 +212,10 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
           
             self.addSubview(footerViewReview)
-            dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+            dropView = DropShadow1(frame: CGRect(x: 0, y: -8, width: self.frame.width, height: 2))
             self.addSubview(dropView)
             
-            let path = UIBezierPath(roundedRect:dropView.dropShadow.bounds,
-                                    byRoundingCorners:[.bottomRight, .bottomLeft],
-                                    cornerRadii: CGSize(width: 1, height:  1))
             
-            let maskLayer = CAShapeLayer()
-            
-            maskLayer.path = path.cgPath
-            self.layer.mask = maskLayer
-           
         } else {
             print("in footer")
             footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
@@ -236,19 +228,10 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView.setLikeCount(feed["likeCount"].intValue)
             footerView.setView(feed:feed)
             self.addSubview(footerView)
-            dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+            dropView = DropShadow1(frame: CGRect(x: 0, y: -8, width: self.frame.width, height: 2))
             dropView.dropShadow.layer.cornerRadius = 1
             self.addSubview(dropView)
-            let path = UIBezierPath(roundedRect:dropView.dropShadow.bounds,
-                                    byRoundingCorners:[.bottomRight, .bottomLeft],
-                                    cornerRadii: CGSize(width: 1, height:  1))
-            
-            let maskLayer = CAShapeLayer()
-            
-            maskLayer.path = path.cgPath
-            self.layer.mask = maskLayer
-             
-        }
+                }
         
 
     }

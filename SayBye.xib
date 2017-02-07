@@ -86,13 +86,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="135" height="15"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan, 2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvQ-GD-TIY">
-                                            <rect key="frame" x="69" y="0.0" width="61" height="15"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="10"/>
+                                            <rect key="frame" x="57" y="0.0" width="73" height="15"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjY-Yb-sde">
-                                            <rect key="frame" x="40.5" y="0.0" width="24.5" height="15"/>
+                                            <rect key="frame" x="27.5" y="0.0" width="24.5" height="15"/>
                                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="10"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -101,13 +101,13 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="fjY-Yb-sde" firstAttribute="top" secondItem="1Ks-SB-yMg" secondAttribute="top" id="0Au-ry-Q12"/>
-                                        <constraint firstItem="MvQ-GD-TIY" firstAttribute="leading" secondItem="fjY-Yb-sde" secondAttribute="trailing" constant="4" id="D1f-m4-8ai"/>
                                         <constraint firstItem="fjY-Yb-sde" firstAttribute="bottom" secondItem="MvQ-GD-TIY" secondAttribute="bottom" id="QAD-zw-CdD"/>
                                         <constraint firstAttribute="height" constant="15" id="T1c-L9-saQ"/>
                                         <constraint firstAttribute="width" constant="135" id="Xq7-Lm-bGa"/>
                                         <constraint firstItem="fjY-Yb-sde" firstAttribute="top" secondItem="MvQ-GD-TIY" secondAttribute="top" id="agt-HR-hmt"/>
                                         <constraint firstAttribute="trailing" secondItem="MvQ-GD-TIY" secondAttribute="trailing" constant="5" id="qU8-eh-vd0"/>
                                         <constraint firstAttribute="bottom" secondItem="fjY-Yb-sde" secondAttribute="bottom" id="rMu-2B-wO2"/>
+                                        <constraint firstItem="MvQ-GD-TIY" firstAttribute="leading" secondItem="fjY-Yb-sde" secondAttribute="trailing" constant="5" id="zyy-vJ-bMj"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3r-S3-v8z">
@@ -128,11 +128,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:20 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teJ-2h-sas">
-                                            <rect key="frame" x="39.5" y="0.5" width="45" height="17"/>
+                                            <rect key="frame" x="39.5" y="-1.5" width="55" height="19.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="45" id="3V7-z8-2Gm"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="mKi-QI-9UH"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="10"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>

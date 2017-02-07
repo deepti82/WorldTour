@@ -502,44 +502,44 @@
                         <constraint firstAttribute="trailing" secondItem="kfx-FD-UNk" secondAttribute="trailing" constant="8" id="zOG-6I-U5j"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="txv-38-x7m">
-                    <rect key="frame" x="65" y="807" width="270" height="50"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="txv-38-x7m">
+                    <rect key="frame" x="59" y="807" width="282" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9x-np-zvE">
                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="45"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ro-cc-PTU">
-                            <rect key="frame" x="55" y="0.0" width="50" height="50"/>
+                            <rect key="frame" x="58" y="0.0" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="J1Z-gE-tOb"/>
                                 <constraint firstAttribute="width" constant="50" id="Ym8-ZB-TeB"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="45"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMo-fu-Icw">
-                            <rect key="frame" x="110" y="0.0" width="50" height="50"/>
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
+                            <rect key="frame" x="116" y="0.0" width="50" height="50"/>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="45"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDb-hl-Qfq">
-                            <rect key="frame" x="165" y="0.0" width="50" height="50"/>
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
+                            <rect key="frame" x="174" y="0.0" width="50" height="50"/>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="45"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiR-Zp-fad">
-                            <rect key="frame" x="220" y="0.0" width="50" height="50"/>
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="35"/>
+                            <rect key="frame" x="232" y="0.0" width="50" height="50"/>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="45"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>

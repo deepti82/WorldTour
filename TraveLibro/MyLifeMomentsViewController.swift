@@ -35,6 +35,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     override func viewDidLoad() {
         print("in play....")
+        getDarkBackGround(self)
         super.viewDidLoad()
         globalMyLifeMomentsViewController = self
         setTopNavigation("Photos")
@@ -46,23 +47,23 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(loadStatus)
-        if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
-            
-            if lastToken != "-1" {
-                if loadStatus {
-                    loadMomentLife(pageno: page, type: momentType, token: lastToken)
-                }
-            }else{
-                self.loadStatus = false
-            }
-            
-        }
+//        print(loadStatus)
+//        if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
+//            
+//            if lastToken != "-1" {
+//                if loadStatus {
+//                    loadMomentLife(pageno: page, type: momentType, token: lastToken)
+//                }
+//            }else{
+//                self.loadStatus = false
+//            }
+//            
+//        }
         
     }
     
     
-    func loadInsideMedia(pageno:Int, type:String, token:String, id:String) {
+    func loadInsideMedia(mediaType:String, pageno:Int, type:String, token:String, id:String) {
         print("view type \(insideView)")
         if momentType == "all" || momentType == "local-life"{
             request.getTokenMoment(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
@@ -84,7 +85,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 }
             })
         }else{
-            request.getMedia(id: id, pageNumber: pageno, completion: {(request) in
+            request.getMedia(mediaType: mediaType, user: currentUser["_id"].stringValue, id: id, pageNumber: pageno, completion: {(request) in
                 DispatchQueue.main.async {
                     if request["data"].count > 0 {
                         self.loadStatus = true
@@ -265,7 +266,12 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         
         if insideView == "Monthly" {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
-            cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
+            if allData[indexPath.row]["name"].stringValue != "" {
+                cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
+
+            }else{
+                cell.photoBig.image = UIImage(named: "logo-default")
+            }
             return cell
 
         }else{
@@ -273,15 +279,19 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         switch momentType {
         case "all":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! photosCollectionViewCell
-            cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
+            if allData[indexPath.section]["data"][indexPath.row]["name"].stringValue != "" {
+                cell.photo.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
+
+            }else{
+                cell.photo.image = UIImage(named: "logo-default")
+            }
             return cell
         case "Monthly", "SelectCover":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
             cell.photoBig.image = nil
             cell.photoBig.backgroundColor = UIColor.white
-            //            DispatchQueue.main.async(execute: {
+            
             cell.photoBig.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.images[(indexPath as NSIndexPath).item])&width=200")!)
-            //            })
             return cell
         case "local-life":
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "localLifeMomentsCell", for: indexPath) as! LocalLifeMomentsCollectionViewCell
@@ -383,14 +393,20 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 showToast(msg: "No Photos in \(allData[indexPath.section]["token"].stringValue)")
             }else{
                 insideView = "Monthly"
-                self.loadInsideMedia(pageno: 1, type: momentType, token: allData[indexPath.section]["token"].stringValue, id: "")
+                self.loadInsideMedia(mediaType: "", pageno: 1, type: momentType, token: allData[indexPath.section]["token"].stringValue, id: "")
             }
         }else if momentType == "travel-life" {
             if allData[indexPath.row]["mediaCount"].stringValue == "0" {
                 showToast(msg: "No Photos in \(allData[indexPath.row]["name"].stringValue)")
             }else{
                 insideView = "Monthly"
-                self.loadInsideMedia(pageno: 1, type: momentType, token: allData[indexPath.section]["token"].stringValue, id: allData[indexPath.row]["_id"].stringValue)
+                var type2 = ""
+                if allData[indexPath.row]["type"] != nil {
+                    type2 = allData[indexPath.row]["type"].stringValue
+                }else{
+                    type2 = ""
+                }
+                self.loadInsideMedia(mediaType:type2, pageno: 1, type: momentType, token: "", id: allData[indexPath.row]["_id"].stringValue)
             }
             print("inside select cover")
             

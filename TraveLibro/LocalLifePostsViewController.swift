@@ -18,10 +18,10 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     var datePickerView:UIDatePicker = UIDatePicker()
     var changeDateTimeActionSheet: UIAlertController!
     var nearMeType = ""
-  
+    var nearMeTable: NearMeListCell!
     var allLocalLife:[JSON] = []
     @IBOutlet weak var scrollView: UIScrollView!
-    
+    var localLife: JSON!
     var locationData = ""
     let locationManager = CLLocationManager()
     var locValue:CLLocationCoordinate2D!
@@ -231,8 +231,8 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
             let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
     nearMeListController.nearMeType = self.nearMeType
     self.navigationController?.pushViewController(nearMeListController, animated: true)
-       
-    }
+        
+       }
     
     
     func hideHeaderAndFooter(_ isShow:Bool) {
@@ -285,8 +285,11 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
                     else if response["value"].bool! {
                         self.allLocalLife = response["data"].arrayValue
                         for local in self.allLocalLife {
+                            print("forLocal")
                             print(local);
-                            
+                            print("fromWhere")
+                            print(self.allLocalLife)
+                            print("ISitFromHere?")
                             self.addPostLayout(local);
                         }
                     }

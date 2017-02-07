@@ -18,23 +18,18 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var isExpanded = false
     var childCells = 0
     var selectedIndex: Int!
+    var allData:[JSON] = []
+    var pagenumber:Int = 1
+    var empty: EmptyScreenView!
     
     var whichView = "All"
+    var reviewType = "all"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDarkBackGround(self)
         globalAccordionViewController = self
-    setTopNavigation("Reviews")
-//        if isEmptyProfile {
-//            
-//            let myLifeVC = self.parentViewController as! MyLifeViewController
-//            myLifeVC.whatTab = "Reviews"
-//            myLifeVC.collectionContainer.alpha = 0
-//            myLifeVC.tableContainer.alpha = 0
-//            myLifeVC.journeysContainerView.alpha = 1
-//            myLifeVC.view.setNeedsDisplay()
-//            
-//        }
+        setTopNavigation("Reviews")
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,9 +49,65 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         self.customNavigationBar(left: leftButton, right: rightButton)
     }
     
+    func showNoData(show:Bool) {
+        if empty != nil {
+            self.empty.removeFromSuperview()
+        }
+        if show {
+            empty = EmptyScreenView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 250))
+            switch reviewType {
+            case "all":
+                print("in moments all")
+                empty.frame.size.height = 250.0
+                empty.viewHeading.text = "Unwind​ B​y Rewinding"
+                empty.viewBody.text = "Revisit and reminisce the days gone by through brilliant pictures and videos of your travel and local life."
+                break
+            case "travel-life":
+                print("in moments tl")
+                empty.frame.size.height = 350.0
+                empty.viewHeading.text = "Travel Becomes A Reason To Take Pictures And Store Them"
+                empty.viewBody.text = "Some memories are worth sharing, travel surely tops the list. Your travels will not only inspire you to explore more of the world, you may just move another soul or two!"
+                break
+            case "local-life":
+                print("in moments ll")
+                empty.frame.size.height = 275.0
+                empty.viewHeading.text = "Suspended In Time"
+                empty.viewBody.text = "Beautiful memories created through fabulous pictures and videos of those precious moments shared with family, friends and yourself."
+                break
+            default:
+                break
+            }
+            self.view.addSubview(empty)
+            accordionTableView.isHidden = true
+        }
+    }
+    
     
     func goBack(_ sender:AnyObject) {
         self.navigationController!.popViewController(animated: true)
+    }
+    
+    func loadReview(pageno:Int, type:String) {
+        reviewType = type
+        request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
+            DispatchQueue.main.async {
+                if pageno == 1 {
+                    self.allData = request["data"].array!
+                }else{
+                    for post in request["data"].array! {
+                            self.allData.append(post)
+                    }
+                }
+                
+                self.accordionTableView.reloadData()
+                if self.allData.count == 0 {
+                    self.accordionTableView.isHidden = true
+                    self.showNoData(show: true)
+                }else{
+                    self.showNoData(show: false)
+                }
+            }
+            })
     }
 
     
@@ -65,8 +116,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
 //        print("labels: \(labels[indexPath.item])")
 //        print("label index: \(labels.endIndex)")
         
-        switch whichView {
-        case "All":
+        switch reviewType {
+        case "all":
             let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
@@ -185,12 +236,12 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
         
-        else if whichView == "All" {
+        else if reviewType == "all" {
             
             return 125
         }
         
-        else if (whichView == "Reviews TL" || whichView == "Reviews LL") && labels[(indexPath as NSIndexPath).row] == "header" {
+        else if (reviewType == "Reviews TL" || reviewType == "Reviews LL") && labels[(indexPath as NSIndexPath).row] == "header" {
             
             return 50
         }
@@ -202,7 +253,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return labels.count
+        return allData.count
         
     }
     

@@ -33,7 +33,6 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
-        
         nearMeListTableView.delegate = self
         nearMeListTableView.dataSource = self
     }
@@ -107,6 +106,8 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
             //star.imageView?.tintColor = UIColor.darkGray
             star.adjustsImageWhenHighlighted = false
         }
+        
+    
         
         cell.listName.text = nearMeListJSON[indexPath.section]["name"].string!
         nearMeAddress = NSMutableAttributedString(string: "Address:", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])

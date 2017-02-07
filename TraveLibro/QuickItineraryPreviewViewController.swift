@@ -124,7 +124,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         rightButton.setTitleColor(navGreen, for: .normal)
         rightButton.titleLabel?.font = avenirBold
         rightButton.addTarget(self, action: #selector(QuickItineraryPreviewViewController.donePage(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 8, width: 45, height: 30)
+        rightButton.frame = CGRect(x: 20, y: 8, width: 45, height: 30)
         self.customNavigationBar(left: leftButton, right: rightButton)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }

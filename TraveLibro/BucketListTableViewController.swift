@@ -14,6 +14,8 @@ class BucketListTableViewController: UITableViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getDarkBackGround(self)
+        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.gotoProfile(_:)), for: .touchUpInside)

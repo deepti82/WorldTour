@@ -34,7 +34,7 @@ class DropShadow1: UIView {
         
         let path = UIBezierPath(roundedRect:dropShadow.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],
-                                cornerRadii: CGSize(width: 1, height:  1))
+                                cornerRadii: CGSize(width: 5, height:  5))
         
         let maskLayer = CAShapeLayer()
         

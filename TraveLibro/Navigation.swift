@@ -1465,17 +1465,25 @@ class Navigation {
         }
     }
     
-    func getMedia(id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+    func getMedia(mediaType:String, user:String, id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
         
         
         do {
             var params: JSON!
-            params = ["_id": id, "pagenumber": pageNumber, "limit": 20]
+            var api: String
+            if mediaType == "" {
+                params = ["user":user, "_id": id, "pagenumber": pageNumber, "limit": 20]
+                api = "journey/getMedia"
+            }else{
+                params = ["_id": id, "pagenumber": pageNumber, "limit": 20]
+                api = "itinerary/getMedia"
+            }
             print(params)
+            print(api)
             let jsonData = try params.rawData()
             
             // create post request
-            let url = URL(string: adminUrl + "journey/getMedia")!
+            let url = URL(string: adminUrl + api)!
             let request = NSMutableURLRequest(url: url)
             request.httpMethod = "POST"
             
@@ -1549,6 +1557,91 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+
+    func getMyLifeReview(_ user: String, pageNumber: Int, type: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON!
+            params = ["user": user, "type": type, "pagenumber": pageNumber]
+            
+            print(params)
+            let jsonData = try params.rawData()
+            
+            let url = URL(string: adminUrl + "journey/myLifeReview")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+
+    func getReviewByLoc(_ user: String, country: String, city: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON!
+            if country == "" {
+                params = ["user": user, "city": city]
+            }else{
+                params = ["user": user, "country": country]
+            }
+            print(params)
+            let jsonData = try params.rawData()
+            
+            let url = URL(string: adminUrl + "journey/getReviewByLoc")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+
     
     func getGoogleSearchNearby(_ lat: Double, long: Double, searchText: String, completion: @escaping ((JSON) -> Void)) {
         
