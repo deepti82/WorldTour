@@ -242,13 +242,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             if(location == "Add Location") {
                 location = ""
                 
-                func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-                if textField == addView.addLocationText {
-                NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
                 }
-                    return true
-                }
-            }
         }
         
         var thoughts = ""
