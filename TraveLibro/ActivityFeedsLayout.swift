@@ -212,7 +212,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
           
             self.addSubview(footerViewReview)
-            dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+            dropView = DropShadow1(frame: CGRect(x: 0, y: -8, width: self.frame.width, height: 2))
             self.addSubview(dropView)
             
             
@@ -228,7 +228,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView.setLikeCount(feed["likeCount"].intValue)
             footerView.setView(feed:feed)
             self.addSubview(footerView)
-            dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+            dropView = DropShadow1(frame: CGRect(x: 0, y: -8, width: self.frame.width, height: 2))
             dropView.dropShadow.layer.cornerRadius = 1
             self.addSubview(dropView)
                 }
