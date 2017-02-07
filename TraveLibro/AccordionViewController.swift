@@ -164,6 +164,11 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 cell.ratingButton.isHidden = false
                 cell.ratingStack.isHidden = true
                 cell.reviewText.isHidden = true
+                if allData[indexPath.row]["type"].stringValue == "travel-life" {
+                    cell.ratingButton.tintColor = mainOrangeColor
+                }else{
+                    cell.ratingButton.tintColor = endJourneyColor
+                }
             }else{
                 cell.setView(feed: allData[indexPath.row])
             }

@@ -6796,6 +6796,7 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="ZLh-er-3Q3"/>
                                                     </constraints>
@@ -9738,7 +9739,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cZr-FT-KDz">
                                 <rect key="frame" x="0.0" y="0.0" width="383" height="544"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="c6Q-DQ-74Y">
                                     <size key="itemSize" width="30" height="30"/>
                                     <size key="headerReferenceSize" width="50" height="35"/>
@@ -9867,6 +9868,7 @@
                                                 </view>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="J4h-lN-kET" firstAttribute="top" secondItem="Rvb-jX-BDm" secondAttribute="bottom" constant="4" id="DUg-eL-hZD"/>
                                             <constraint firstItem="Rvb-jX-BDm" firstAttribute="top" secondItem="43x-JB-4r9" secondAttribute="top" id="HW6-ox-TeW"/>
@@ -9979,6 +9981,7 @@
                                                 </view>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="98o-sd-2pD" secondAttribute="trailing" id="6UL-6P-Kb0"/>
                                             <constraint firstItem="98o-sd-2pD" firstAttribute="top" secondItem="teO-jh-8Gl" secondAttribute="top" id="99a-LW-5jm"/>

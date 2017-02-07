@@ -231,7 +231,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
             let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
     nearMeListController.nearMeType = self.nearMeType
     self.navigationController?.pushViewController(nearMeListController, animated: true)
-//        if allLocalLife["type"].arrayValue == "local-life" {
+//        if allLocalLife["type"].string == "local-life" {
 //            nearMeTable.starStackView.tintColor = mainOrangeColor
 //        }
     }

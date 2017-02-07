@@ -8,11 +8,13 @@
 
 import UIKit
 import Toaster
+import Player
+
 
 var globalMyLifeMomentsViewController:MyLifeMomentsViewController!
 
 
-class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate,PlayerDelegate , UICollectionViewDataSource {
     
     let titleLabels = ["November 2015, (25)", "October 2015, (25)", "September 2015, (25)", "August 2015, (25)", "July 2015, (25)"]
     let Month = "November 2015"
@@ -29,6 +31,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     var lastToken = ""
     var insideView = ""
     var empty: EmptyScreenView!
+    var videoContainer:VideoView!
+    var player:Player!
+    var headerText:String = ""
     
     
     @IBOutlet weak var mainView: UICollectionView!
@@ -265,12 +270,41 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if insideView == "Monthly" {
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MomentsLargeImageCell", for: indexPath) as! photosTwoCollectionViewCell
             if allData[indexPath.row]["name"].stringValue != "" {
-                cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
-
+                
+                if allData[indexPath.row]["thumbnail"] != nil {
+                    print("in thumbnail")
+                    self.videoContainer = VideoView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.width))
+                    
+                    self.videoContainer.isUserInteractionEnabled = true
+                    //                    let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openSingleVideo(_:)))
+                    //                    self.videoContainer.addGestureRecognizer(tapGestureRecognizer)
+                    self.videoContainer.tag = indexPath.row
+                    
+                    self.player = Player()
+                    self.player.delegate = self
+                    self.player.view.frame = CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.width)
+                    self.player.view.clipsToBounds = true
+                    self.player.playbackLoops = true
+                    self.player.muted = true
+                    self.player.fillMode = "AVLayerVideoGravityResizeAspectFill"
+                    self.videoContainer.player = self.player
+                    var videoUrl:URL!
+                    self.videoContainer.tagView.isHidden = true
+                    
+                    videoUrl = URL(string:allData[indexPath.row]["name"].stringValue)
+                    self.player.setUrl(videoUrl!)
+                    self.videoContainer.videoHolder.addSubview(self.player.view)
+                    cell.addSubview(self.videoContainer)
+                }else{
+                    cell.photoBig.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
+                }
             }else{
+                    print("in image")
                 cell.photoBig.image = UIImage(named: "logo-default")
+                
             }
             return cell
 
@@ -365,6 +399,19 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if momentType == "all" {
+            if insideView == "Monthly" {
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
+                let array = allData[(indexPath as NSIndexPath).section]["token"].stringValue.components(separatedBy: ", ")
+                print(array)
+                let headerLabel = NSMutableAttributedString(string: "")
+                let month = NSAttributedString(string: array[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+                //            let count = NSAttributedString(string: " \(array[1])", attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 11)!])
+                headerLabel.append(month)
+                //            headerLabel.append(count)
+                header.titleLabel.text = headerText
+                return header
+            }else{
+                
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
             let array = allData[(indexPath as NSIndexPath).section]["token"].stringValue.components(separatedBy: ", ")
             print(array)
@@ -375,6 +422,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
 //            headerLabel.append(count)
             header.titleLabel.attributedText = headerLabel
             return header
+                
+            }
         }
         else if whichView == "Monthly" {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerCell", for: indexPath) as! TitleHeaderView
@@ -393,6 +442,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 showToast(msg: "No Photos in \(allData[indexPath.section]["token"].stringValue)")
             }else{
                 insideView = "Monthly"
+                headerText = allData[indexPath.section]["token"].stringValue
                 self.loadInsideMedia(mediaType: "", pageno: 1, type: momentType, token: allData[indexPath.section]["token"].stringValue, id: "")
             }
         }else if momentType == "travel-life" {
@@ -406,6 +456,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 }else{
                     type2 = ""
                 }
+                headerText = allData[indexPath.row]["token"].stringValue
+
                 self.loadInsideMedia(mediaType:type2, pageno: 1, type: momentType, token: "", id: allData[indexPath.row]["_id"].stringValue)
             }
             print("inside select cover")
