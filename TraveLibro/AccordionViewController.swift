@@ -21,6 +21,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var allData:[JSON] = []
     var pagenumber:Int = 1
     var empty: EmptyScreenView!
+    let categories: [JSON] = [["title": "Transportation", "image": "planetrans"], ["title": "Hotels & Accomodations", "image": "hotels-1"], ["title": "Restaurants & Bars", "image": "restaurantsandbars"], ["title": "Nature & Parks", "image": "leaftrans"], ["title": "Sights & Landmarks", "image": "sightstrans"], ["title": "Museums & Galleries", "image": "museumstrans"], ["title": "Religious", "image": "regli"], ["title": "Shopping", "image": "shopping"], ["title": "Zoo & Aquariums", "image": "zootrans"], ["title": "Cinema & Theatres", "image": "cinematrans"], ["title": "City", "image": "city_icon"], ["title": "Health & Beauty", "image": "health_beauty"], ["title": "Rentals", "image": "rentals"], ["title": "Entertainment", "image": "entertainment"], ["title": "Essentials", "image": "essential"], ["title": "Emergency", "image": "emergency"], ["title": "Others", "image": "othersdottrans"]]
     
     var whichView = "All"
     var reviewType = "all"
@@ -35,6 +36,16 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func getCategory(category:String) -> String {
+        var storedCategory = ""
+        for cat in categories {
+            if cat["title"].stringValue == category {
+                storedCategory = cat["image"].stringValue
+            }
+        }
+        return storedCategory
     }
     
     func setTopNavigation(_ text: String) {
@@ -87,6 +98,32 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         self.navigationController!.popViewController(animated: true)
     }
     
+//    func afterRating(starCnt:Int, review:String) {
+//        print(starCnt)
+//        if starCnt != 0 {
+//            print("start rating")
+//            for rat in starImageArray {
+//                if rat.tag > starCnt {
+//                    rat.image = UIImage(named: "star_uncheck")
+//                }else{
+//                    rat.image = UIImage(named: "star_check")
+//                    if postTop["type"].stringValue == "travel-life" {
+//                        rat.tintColor = mainOrangeColor
+//                    }else{
+//                        rat.tintColor = endJourneyColor
+//                    }
+//                    
+//                }
+//            }
+//            print("check riview changed")
+//            newRating = ["rating":"\(starCnt)","review":review]
+//            print(newRating)
+//            ratingStack.isHidden = false
+//            rateThisButton.isHidden = true
+//        }
+//    }
+
+    
     func loadReview(pageno:Int, type:String) {
         reviewType = type
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
@@ -121,6 +158,17 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
+            cell.placeTitle.text = allData[indexPath.row]["checkIn"]["location"].stringValue
+            cell.locationLabel.text = allData[indexPath.row]["checkIn"]["city"].stringValue + ", " + allData[indexPath.row]["checkIn"]["country"].stringValue
+            if allData[indexPath.row]["review"].count == 0 {
+                cell.ratingButton.isHidden = false
+                cell.ratingStack.isHidden = true
+                cell.reviewText.isHidden = true
+            }else{
+                cell.setView(feed: allData[indexPath.row])
+            }
+            cell.category.image = UIImage(named: getCategory(category: allData[indexPath.row]["checkIn"]["category"].stringValue))
+            
             return cell
         default:
             break
@@ -231,14 +279,14 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 
             else {
                 
-                return 125
+                return 143
                 
             }
         }
         
         else if reviewType == "all" {
             
-            return 125
+            return 143
         }
         
         else if (reviewType == "Reviews TL" || reviewType == "Reviews LL") && labels[(indexPath as NSIndexPath).row] == "header" {
@@ -354,6 +402,62 @@ class allReviewsMLTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var clockLabel: UILabel!
+    @IBOutlet weak var ratingStack: UIStackView!
+    @IBOutlet weak var reviewText: UILabel!
+    @IBOutlet weak var category: UIImageView!
+    @IBOutlet var starImageArray: [UIImageView]!
+    var postTop:JSON = []
+    
+    func setView(feed:JSON) {
+        postTop = feed
+        
+        if feed["review"][0] != nil && feed["review"].count > 0 {
+            if feed["review"][0]["review"].stringValue != "" {
+                reviewText.text = feed["review"][0]["review"].stringValue
+                reviewText.isHidden = false
+            }else{
+                reviewText.isHidden = true
+            }
+            ratingStack.isHidden = false
+            ratingButton.isHidden = true
+            afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue)
+        }else{
+            if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
+                    ratingStack.isHidden = true
+                    ratingButton.isHidden = false
+               
+            }else{
+                ratingStack.isHidden = true
+                ratingButton.isHidden = true
+            }
+        }
+    }
+    
+    func afterRating(starCnt:Int, review:String) {
+        print(starCnt)
+        if starCnt != 0 {
+            print("start rating")
+            for rat in self.starImageArray {
+                print(rat)
+                if rat.tag > starCnt {
+                    rat.image = UIImage(named: "star_uncheck")
+                }else{
+                    rat.image = UIImage(named: "star_check")
+                    if postTop["type"].stringValue == "travel-life" {
+                        rat.tintColor = mainOrangeColor
+                    }else{
+                        rat.tintColor = endJourneyColor
+                    }
+                    
+                }
+            }
+            print("check riview changed")
+//            newRating = ["rating":"\(starCnt)","review":review]
+//            print(newRating)
+            ratingStack.isHidden = false
+            ratingButton.isHidden = true
+        }
+    }
     
     
 }

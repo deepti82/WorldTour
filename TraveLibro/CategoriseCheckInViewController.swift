@@ -20,8 +20,6 @@ class CategoriseCheckInViewController: UIViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
 //       setCheckInNavigationBarItem(addCheckIn)
         
         let leftButton = UIButton()
