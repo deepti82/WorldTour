@@ -10,7 +10,7 @@ import UIKit
 import Toaster
 
 class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate  {
-    
+    var quick: QuickIteneraryOne!
     var selectedView = false
     var inx = 0
     var viewControllers1 = [UIViewController]()
@@ -145,8 +145,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
 //        if check {
             saveItinerary()
 //        }
-        
-    }
+            }
     
     func saveItinerary() {
         
