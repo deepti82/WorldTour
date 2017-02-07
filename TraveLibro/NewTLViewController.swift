@@ -781,6 +781,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         
     }
+    
+    
     func gotoVideos(_ sender: UIButton) {
         if sender.tag > 0 {
             let photoVC = storyboard?.instantiateViewController(withIdentifier: "photoGrid") as! TripSummaryPhotosViewController

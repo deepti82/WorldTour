@@ -8,12 +8,13 @@
 
 import UIKit
 import CoreLocation
-
+var globalNearMe:NearMeListViewController!
 class NearMeListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     var city: String!
     var nearMeType: String!
     var ratingIndex: Int!
+    var localLife: LocalLifePostsViewController!
     var nearMeListJSON: [JSON] = []
     var nearMeAddress = NSMutableAttributedString()
     var lat: Double!
@@ -53,11 +54,11 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func getNearMeValues() {
-        
+        print("nearMeType")
         print(nearMeType)
         
         if lat != nil && long != nil {
-        
+    
             request.getNearMeList(lat: "\(lat!)", long: "\(long!)", type: nearMeType, completion: {(response) in
                 DispatchQueue.main.async(execute: {
                     
@@ -80,6 +81,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         } else {
             print("no lat long found")
         }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,6 +97,13 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         tableView.estimatedRowHeight = 100
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "nearMeList", for: indexPath) as! NearMeListCell
+        if nearMeListJSON[indexPath.row]["type"].string == "local-life"{
+        cell.starStackView.tintColor = mainGreenColor
+            cell.listAddress.backgroundColor = mainGreenColor
+        }else {
+            //
+        }
+        
         
         cell.backgroundColor = UIColor.clear
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
@@ -105,6 +114,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
             star.setImage(UIImage(named: "star_check")?.withRenderingMode(.alwaysTemplate), for: [.highlighted, .selected])
             //star.imageView?.tintColor = UIColor.darkGray
             star.adjustsImageWhenHighlighted = false
+            
         }
         
     
@@ -134,6 +144,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         if nearMeListJSON[indexPath.section]["rating"] != nil {
             nearMeDetailController.nearMeRating = Int(roundf(nearMeListJSON[indexPath.section]["rating"].float!))
         }
+
         navigationController?.pushViewController(nearMeDetailController, animated: true)
     }
     

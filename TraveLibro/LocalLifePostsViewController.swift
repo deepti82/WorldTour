@@ -39,6 +39,8 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     }
     
     
+    
+    
     func addPostLayout(_ post:JSON) {
         let checkIn = LocalLifePost(width: layout.frame.width)
         checkIn.createProfileHeader(feed: post)
@@ -231,8 +233,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
             let nearMeListController = storyboard?.instantiateViewController(withIdentifier: "nearMeListVC") as! NearMeListViewController
     nearMeListController.nearMeType = self.nearMeType
     self.navigationController?.pushViewController(nearMeListController, animated: true)
-        
-       }
+    }
     
     
     func hideHeaderAndFooter(_ isShow:Bool) {

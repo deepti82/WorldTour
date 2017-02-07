@@ -26,7 +26,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
     var activityFeedImage: ActivityFeedImageView!
     var activityDetailItinerary: ActivityDetailItinerary!
     var activityQuickItinerary: ActivityFeedQuickItinerary!
-    var dropView: DropShadow1!
+    var dropView: DropShadow2!
     var scrollView:UIScrollView!
     
     let imageArr: [String] = ["restaurantsandbars", "leaftrans", "sightstrans", "museumstrans", "zootrans", "shopping", "religious", "cinematrans", "hotels", "planetrans", "health_beauty", "rentals", "entertainment", "essential", "emergency", "othersdottrans"]
@@ -182,7 +182,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
         footerView.setView(feed:feed)
         self.addSubview(footerView)
-        dropView = DropShadow1(frame: CGRect(x: 0, y: -8, width: self.frame.width, height: 2))
+        dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
         self.addSubview(dropView)
     }
     

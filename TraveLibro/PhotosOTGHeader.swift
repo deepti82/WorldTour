@@ -63,7 +63,7 @@ class PhotosOTGHeader: UIView {
         
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.topLeft, .topRight],
-                                cornerRadii: CGSize(width: 10, height:  10))
+                                cornerRadii: CGSize(width: 5, height:  5))
         
         let maskLayer = CAShapeLayer()
         

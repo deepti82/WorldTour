@@ -28,13 +28,12 @@ class DropShadow1: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-        dropShadow.layer.cornerRadius = 5
-        dropShadow.clipsToBounds = true
+        dropShadow.layer.cornerRadius = 1
         dropShadow.alpha = 0.7
         
         let path = UIBezierPath(roundedRect:dropShadow.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],
-                                cornerRadii: CGSize(width: 5, height:  5))
+                                cornerRadii: CGSize(width: 10, height:  10))
         
         let maskLayer = CAShapeLayer()
         
