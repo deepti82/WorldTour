@@ -6155,10 +6155,10 @@
                                 <rect key="frame" x="20" y="92" width="335" height="526"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z4k-ta-6Hl">
-                                        <rect key="frame" x="8" y="49" width="323" height="477"/>
+                                        <rect key="frame" x="8" y="42" width="323" height="476"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YIH-Lk-oId">
-                                                <rect key="frame" x="8" y="-8" width="307" height="485"/>
+                                                <rect key="frame" x="8" y="0.0" width="307" height="476"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <color key="tintColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <accessibility key="accessibilityConfiguration">
@@ -6178,7 +6178,8 @@
                                             <constraint firstItem="YIH-Lk-oId" firstAttribute="leading" secondItem="Z4k-ta-6Hl" secondAttribute="leading" constant="8" id="FNG-32-aKJ"/>
                                             <constraint firstAttribute="trailing" secondItem="YIH-Lk-oId" secondAttribute="trailing" constant="8" id="drk-ZB-HbF"/>
                                             <constraint firstAttribute="bottom" secondItem="YIH-Lk-oId" secondAttribute="bottom" id="ffU-hp-lhm"/>
-                                            <constraint firstItem="YIH-Lk-oId" firstAttribute="centerY" secondItem="Z4k-ta-6Hl" secondAttribute="centerY" constant="-4" id="sjE-bw-igc"/>
+                                            <constraint firstAttribute="trailing" secondItem="YIH-Lk-oId" secondAttribute="trailing" constant="8" id="sGK-fk-Fsp"/>
+                                            <constraint firstItem="YIH-Lk-oId" firstAttribute="centerY" secondItem="Z4k-ta-6Hl" secondAttribute="centerY" id="sjE-bw-igc"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Little More About This Trip..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZC-QK-QEk">
@@ -6192,10 +6193,10 @@
                                 <constraints>
                                     <constraint firstItem="YZC-QK-QEk" firstAttribute="centerX" secondItem="aRO-Cq-eHL" secondAttribute="centerX" id="3ai-3i-EVG"/>
                                     <constraint firstItem="YZC-QK-QEk" firstAttribute="top" secondItem="aRO-Cq-eHL" secondAttribute="top" constant="10" id="Bh7-LR-CcU"/>
+                                    <constraint firstItem="Z4k-ta-6Hl" firstAttribute="top" secondItem="YZC-QK-QEk" secondAttribute="bottom" constant="8" id="CGZ-xb-LfS"/>
                                     <constraint firstItem="Z4k-ta-6Hl" firstAttribute="leading" secondItem="aRO-Cq-eHL" secondAttribute="leading" constant="8" id="Gb6-V5-a4L"/>
                                     <constraint firstAttribute="trailing" secondItem="Z4k-ta-6Hl" secondAttribute="trailing" constant="4" id="KZh-yX-l5D"/>
-                                    <constraint firstAttribute="bottom" secondItem="Z4k-ta-6Hl" secondAttribute="bottom" id="m7D-dD-wi2"/>
-                                    <constraint firstItem="Z4k-ta-6Hl" firstAttribute="top" secondItem="YZC-QK-QEk" secondAttribute="bottom" constant="15" id="uHR-jw-Trt"/>
+                                    <constraint firstAttribute="bottom" secondItem="Z4k-ta-6Hl" secondAttribute="bottom" constant="8" id="RsJ-et-A3Q"/>
                                 </constraints>
                             </view>
                         </subviews>
