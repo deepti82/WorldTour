@@ -221,8 +221,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "all", token: "")
         case "Reviews":
-            globalAccordionViewController.whichView = "Reviews TL"
-            globalAccordionViewController.tableMainView.reloadData()
+            globalAccordionViewController.whichView = ""
+            globalAccordionViewController.loadReview(pageno: 1, type: "all")
 
         default: break
             
