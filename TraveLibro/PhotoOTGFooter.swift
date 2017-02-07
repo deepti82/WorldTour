@@ -59,6 +59,13 @@ class PhotoOTGFooter: UIView {
         likeButton.contentMode = .scaleAspectFit
 //        LineView1.alpha = 0.3
 //        footerView.alpha = 0.9
+        
+//        self.layer.shadowColor = UIColor.black.cgColor
+//        self.layer.shadowOffset = CGSize(width: -20, height: -20)
+//        self.layer.shadowOpacity = 1;
+//        self.layer.shadowRadius = 1.0;
+
+        
         shareButton.imageView?.contentMode = .scaleAspectFit
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit

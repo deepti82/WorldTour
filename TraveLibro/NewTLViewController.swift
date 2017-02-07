@@ -909,7 +909,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         rightButton1.imageView?.contentMode = .scaleAspectFit
         rightButton1.imageView?.clipsToBounds = true
         let rightButton2 = UIButton()
-        rightButton2.frame = CGRect(x: 40, y: 5, width: 25, height: 25)
+        rightButton2.frame = CGRect(x: 40, y: 8, width: 25, height: 25)
         rightButton2.setImage(UIImage(named: "options_icon"), for: UIControlState())
         
         rightButton1.addTarget(self, action: #selector(self.gotoNearMe(_:)), for: .touchUpInside)
