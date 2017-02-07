@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xl6-WV-FUN">
-                    <rect key="frame" x="2" y="0.0" width="371" height="2"/>
+                    <rect key="frame" x="1" y="0.0" width="374" height="2"/>
                     <color key="backgroundColor" white="0.0" alpha="0.59524001288659789" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="Xxl-Qh-bBg"/>
@@ -29,8 +29,8 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="xl6-WV-FUN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="CNd-6r-a3W"/>
-                <constraint firstAttribute="trailing" secondItem="xl6-WV-FUN" secondAttribute="trailing" constant="2" id="Ocm-pT-KIA"/>
+                <constraint firstItem="xl6-WV-FUN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="1" id="CNd-6r-a3W"/>
+                <constraint firstAttribute="trailing" secondItem="xl6-WV-FUN" secondAttribute="trailing" id="Ocm-pT-KIA"/>
                 <constraint firstItem="xl6-WV-FUN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xqe-9Y-pBR"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

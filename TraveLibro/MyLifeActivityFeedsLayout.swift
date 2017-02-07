@@ -24,7 +24,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     var player:Player!
     var centerView:PhotosOTGView!
     var footerView: ActivityFeedFooterBasic!
-    var dropView: DropShadow1!
+    var dropView: DropShadow2!
     var footerViewReview: ActivityFeedFooter!
     var activityFeedImage: ActivityFeedImageView!
     var activityDetailItinerary: ActivityDetailItinerary!
@@ -177,7 +177,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
             
             self.addSubview(footerViewReview)
-            dropView = DropShadow1(frame: CGRect(x: 0, y: -8, width: self.frame.width, height: 2))
+            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
             self.addSubview(dropView)
             
         } else {
@@ -188,8 +188,8 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView.setLikeCount(feed["likeCount"].intValue)
             footerView.setView(feed:feed)
             self.addSubview(footerView)
-            dropView = DropShadow1(frame: CGRect(x: 0, y: -8, width: self.frame.width, height: 2))
-            dropView.dropShadow.layer.cornerRadius = 1
+            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+//            dropView.dropShadow.layer.cornerRadius = 1
             self.addSubview(dropView)
         }
         var temp = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 20))

@@ -39,7 +39,7 @@ class ActivityFeedFooterBasic: UIView {
     
     var type="ActivityFeeds"
     var footerType = ""
-    var dropView: DropShadow1!
+    var dropView: DropShadow2!
     var likeCount:Int = 0
     var commentCounts:Int = 0
     var photoId = ""
@@ -291,7 +291,7 @@ class ActivityFeedFooterBasic: UIView {
         }
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],
-                                cornerRadii: CGSize(width: 5, height:  5))
+                                cornerRadii: CGSize(width: 10, height:  10))
         
         let maskLayer = CAShapeLayer()
         
