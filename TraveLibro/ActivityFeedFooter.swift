@@ -299,10 +299,10 @@ class ActivityFeedFooter: UIView {
                 }
                 actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
                 
-                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .destructive)
+                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .destructive)
                 {action -> Void in
                 }
-                actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                actionSheetControllerIOS8.addAction(deleteActionButton)
                 
             }
         }
