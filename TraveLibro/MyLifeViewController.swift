@@ -167,7 +167,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         whatEmptyTab = "Journeys"
         var start = 0;
         
-        
+        // where to check review
         whatEmptyTab = "Journeys"
         reviewsButton.layer.zPosition = -1
         momentsButton.layer.zPosition = 1
@@ -242,8 +242,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             globalMyLifeMomentsViewController.insideView = ""
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "travel-life", token: "")
         case "Reviews":
-            globalAccordionViewController.whichView = "Reviews TL"
-            globalAccordionViewController.tableMainView.reloadData()
+            globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.loadReview(pageno: 1, type: "review", review: "travel-life")
         default: break
             
         }
@@ -263,8 +263,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "local-life", token: "")
         case "Reviews":
-            globalAccordionViewController.whichView = "Reviews TL"
-            globalAccordionViewController.tableMainView.reloadData()
+            globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.loadReview(pageno: 1, type: "review", review: "local-life")
+
         default: break
             
         }

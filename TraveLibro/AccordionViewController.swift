@@ -98,32 +98,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         self.navigationController!.popViewController(animated: true)
     }
     
-//    func afterRating(starCnt:Int, review:String) {
-//        print(starCnt)
-//        if starCnt != 0 {
-//            print("start rating")
-//            for rat in starImageArray {
-//                if rat.tag > starCnt {
-//                    rat.image = UIImage(named: "star_uncheck")
-//                }else{
-//                    rat.image = UIImage(named: "star_check")
-//                    if postTop["type"].stringValue == "travel-life" {
-//                        rat.tintColor = mainOrangeColor
-//                    }else{
-//                        rat.tintColor = endJourneyColor
-//                    }
-//                    
-//                }
-//            }
-//            print("check riview changed")
-//            newRating = ["rating":"\(starCnt)","review":review]
-//            print(newRating)
-//            ratingStack.isHidden = false
-//            rateThisButton.isHidden = true
-//        }
-//    }
-
-    
     func loadReview(pageno:Int, type:String) {
         reviewType = type
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
@@ -175,6 +149,9 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             cell.category.image = UIImage(named: getCategory(category: allData[indexPath.row]["checkIn"]["category"].stringValue))
             
             return cell
+//        case "travel-life":
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "reviewsCell") as! reviewsCollectionViewCell
+//            return cell
         default:
             break
         }

@@ -110,6 +110,39 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate,Pl
         }
     }
     
+    func loadReview(pageno:Int, type:String, review:String) {
+        momentType = type
+        request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: review, completion: {(request) in
+            DispatchQueue.main.async {
+                if request["data"].count > 0 {
+                    self.loadStatus = true
+
+                    if pageno == 1 {
+                        self.allData = request["data"].array!
+                    }else{
+                        for post in request["data"].array! {
+                            self.allData.append(post)
+                        }
+                    }
+                }else{
+                    self.loadStatus = false
+
+                }
+                
+                self.mainView.reloadData()
+
+                if self.allData.count == 0 {
+                    print("in all data gayab")
+                    self.showNoData(show: true)
+                }else{
+                    self.mainView.isHidden = false
+                    self.showNoData(show: false)
+                }
+
+            }
+        })
+    }
+    
     
     func loadMomentLife(pageno:Int, type:String, token:String) {
         momentType = type
@@ -239,7 +272,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate,Pl
         case "travel-life":
             return allData.count
         default:
-            return 2
+            return allData.count
         }
         
     }
