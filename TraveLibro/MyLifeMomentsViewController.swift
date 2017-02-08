@@ -446,6 +446,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             }
             print("inside select cover")
             
+        }else{
+            print("in other clicked")
+            if reviewType == "travel-life" {
+                globalMyLifeController.showReviewsExtention(type: "review", inside: false, params: "country", id: allData[indexPath.row]["_id"].stringValue)
+
+            }else{
+                globalMyLifeController.showReviewsExtention(type: "review", inside: false, params: "city", id: allData[indexPath.row]["_id"].stringValue)
+            }
         }
         
     }

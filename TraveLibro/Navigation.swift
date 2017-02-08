@@ -1594,19 +1594,63 @@ class Navigation {
         }
     }
 
-    func getReviewByLoc(_ user: String, country: String, city: String, completion: @escaping ((JSON) -> Void)) {
+    func getReviewByLoc(_ user: String, location: String, id: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             var params: JSON!
-            if country == "" {
-                params = ["user": user, "city": city]
+            if location == "city" {
+                params = ["user": user, "city": id]
             }else{
-                params = ["user": user, "country": country]
+                params = ["user": user, "country": id]
             }
             print(params)
             let jsonData = try params.rawData()
             
-            let url = URL(string: adminUrl + "journey/getReviewByLoc")!
+            let url = URL(string: adminUrl + "post/getReviewByLoc")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func getReview(_ user: String, country: String, city: String, category: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON!
+            if category != "" {
+                params = ["user": user, "city": city, "category": category, "pagenumber": pageNumber]
+            }else{
+                params = ["user": user, "country": country, "city": city, "pagenumber":pageNumber]
+            }
+            print(params)
+            let jsonData = try params.rawData()
+            
+            let url = URL(string: adminUrl + "post/getReviews")!
             let request = NSMutableURLRequest(url: url)
             request.httpMethod = "POST"
             

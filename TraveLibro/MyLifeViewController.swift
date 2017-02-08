@@ -2,9 +2,10 @@
 import UIKit
 
 var isEmptyProfile = false
+var globalMyLifeController: MyLifeViewController!
 
 class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
-
+    
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var viewTwo: UIView!
@@ -32,10 +33,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     var verticalLayout: VerticalLayout!
     let titleLabels = ["November 2015 (25)", "October 2015 (25)", "September 2015 (25)", "August 2015 (25)"]
     var whatTab = "Journeys"
-
+    
     var whatEmptyTab = "Journeys"
     
-
+    
     
     var radio:UIImageView!
     var radioTwo:UIImageView!
@@ -46,13 +47,14 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGround(self)
+        globalMyLifeController = self
         let leftButton = UIButton()
         leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
         let arrow = String(format: "%C", faicon["arrow-down"]!)
         leftButton.setTitle(arrow, for: UIControlState())
         leftButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-      
+        
         
         self.customNavigationBar(left: leftButton, right: rightButton)
         
@@ -138,7 +140,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-
+    
     
     func setDefaults() {
         whatEmptyTab = "Journeys"
@@ -162,7 +164,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-
+    
     func showJourneys(_ sender: UIButton) {
         whatEmptyTab = "Journeys"
         var start = 0;
@@ -206,24 +208,35 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    func showReviewsExtention(type:String) {
+    func showReviewsExtention(type:String, inside:Bool, params:String, id:String) {
         
-        if type == "travel-life" || type == "local-life" {
-            
-            journeysContainerView.alpha = 0
-            collectionContainer.alpha = 1
-            tableContainer.alpha = 0
-            
-        }else{
-            
+        if inside {
             journeysContainerView.alpha = 0
             collectionContainer.alpha = 0
             tableContainer.alpha = 1
+        }else{
+            switch type {
+            case "travel-life", "local-life":
+                journeysContainerView.alpha = 0
+                collectionContainer.alpha = 1
+                tableContainer.alpha = 0
+            case "all":
+                journeysContainerView.alpha = 0
+                collectionContainer.alpha = 0
+                tableContainer.alpha = 1
+            default:
+                journeysContainerView.alpha = 0
+                collectionContainer.alpha = 0
+                tableContainer.alpha = 1
+                    globalAccordionViewController.loadByLocation(location: params, id: id)
+                
+            }
+            
         }
         
     }
     
-//    var flag = false
+    //    var flag = false
     
     func allRadioChecked(_ sender: AnyObject?) {
         radio.image = UIImage(named: "radio_checked_all")
@@ -231,18 +244,18 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         radioThree.image = UIImage(named: "radio_for_button")
         
         switch whatEmptyTab {
-        case "Journeys": 
+        case "Journeys":
             globalMyLifeContainerViewController.loadData("all", pageNumber: 1);
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
-
+            
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "all", token: "")
         case "Reviews":
             globalAccordionViewController.whichView = ""
             globalAccordionViewController.loadReview(pageno: 1, type: "all")
-            showReviewsExtention(type:"all")
-
+            showReviewsExtention(type:"all",inside: false, params: "", id: "")
+            
         default: break
             
         }
@@ -262,9 +275,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "travel-life", token: "")
         case "Reviews":
             globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.insideView = ""
             globalMyLifeMomentsViewController.loadReview(pageno: 1, type: "review", review: "travel-life")
-            showReviewsExtention(type:"travel-life")
-
+            showReviewsExtention(type:"travel-life", inside: false, params: "", id: "")
+            
         default: break
             
         }
@@ -281,18 +295,19 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
-
+            
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "local-life", token: "")
         case "Reviews":
             globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.insideView = ""
             globalMyLifeMomentsViewController.loadReview(pageno: 1, type: "review", review: "local-life")
-            showReviewsExtention(type:"local-life")
-
+            showReviewsExtention(type:"local-life", inside: false, params: "", id: "")
+            
         default: break
             
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -304,7 +319,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         sender.layer.shadowOpacity = 0.6
         sender.layer.shadowOffset = CGSize(width: 0, height: -1)
         sender.layer.shadowRadius = 5.0
-//        sender.clipsToBounds = true
+        //        sender.clipsToBounds = true
         
     }
     
