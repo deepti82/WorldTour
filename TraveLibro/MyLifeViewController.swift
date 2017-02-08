@@ -205,6 +205,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         allRadioChecked(sender);
     }
     
+    func showReviewsExtention(type:String) {
+        journeysContainerView.alpha = 0
+        collectionContainer.alpha = 1
+        tableContainer.alpha = 0
+    }
+    
 //    var flag = false
     
     func allRadioChecked(_ sender: AnyObject?) {
@@ -244,6 +250,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         case "Reviews":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.loadReview(pageno: 1, type: "review", review: "travel-life")
+            showReviewsExtention(type:"travel-life")
+
         default: break
             
         }

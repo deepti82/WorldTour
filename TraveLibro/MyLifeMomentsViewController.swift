@@ -29,6 +29,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     var lastToken = ""
     var insideView = ""
     var empty: EmptyScreenView!
+    var reviewType = ""
     
     
     @IBOutlet weak var mainView: UICollectionView!
@@ -107,6 +108,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func loadReview(pageno:Int, type:String, review:String) {
         momentType = type
+        reviewType = review
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: review, completion: {(request) in
             DispatchQueue.main.async {
                 if request["data"].count > 0 {
@@ -374,15 +376,16 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             print("in default")
             print(whichView)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reviewsCell", for: indexPath) as! reviewsCollectionViewCell
-            if whichView == "Reviews LL" {
+            if reviewType == "local-life" {
                 cell.bgImage.image = UIImage(named: "reviewsLocalLifeAlbum")
-                cell.placeName.text = reviewsTL[(indexPath as NSIndexPath).row]
+                cell.placeName.text = allData[indexPath.row]["name"].stringValue
                 
             }
             else {
                 cell.bgImage.image = UIImage(named: "reviewsTLAlbum")
-                cell.placeName.text = reviewsLL[(indexPath as NSIndexPath).row]
+                cell.placeName.text = allData[indexPath.row]["name"].stringValue
             }
+            cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["flag"].stringValue, width: 200))
             cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
             cell.foregroundImage.clipsToBounds = true
             cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).cgColor
