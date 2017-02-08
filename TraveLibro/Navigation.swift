@@ -11,8 +11,6 @@ class Navigation {
     
     func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: @escaping ((JSON) -> Void)) {
         
-        print("name: \(firstName), \(lastName)")
-        
         var json1 = JSON(1);
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
         
@@ -63,16 +61,10 @@ class Navigation {
     func editUser(_ id: String, editField: String, editFieldValue: String, completion: @escaping ((JSON) -> Void)) {
         
         var json = JSON(1);
-//        let deviceId = UIDevice.currentDevice().identifierForVendor!.UUIDString
-//        print("device id: \(deviceId)")
         let params = ["_id":id, editField:editFieldValue]
-        print(params)
-        print(adminUrl + "user/editUser");
-
         do {
             let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: params)
             //            print("request: \(opt)")
-            print(adminUrl + "user/editUser");
             opt.start { response in
                 print("started response: \(response)")
                 if let err = response.error {
