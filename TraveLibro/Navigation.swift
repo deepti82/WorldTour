@@ -4,7 +4,6 @@ import SwiftHTTP
 //import Alamofire
 
 var adminUrl = "http://travelibro.wohlig.com/api/"
-let tempUrl = "http://10.0.0.6:1337/api/demo/demo"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {
