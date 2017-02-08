@@ -1,7 +1,6 @@
 import UIKit
 
 import SwiftHTTP
-//import Alamofire
 
 var adminUrl = "http://travelibro.wohlig.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
@@ -18,16 +17,11 @@ class Navigation {
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
         
         let deviceParams = ["_id": deviceId, "os": "iOS"]
-        
-        print("device id: \(deviceId)")
         let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceParams, "dob": dob] as [String : Any]
-//        print(params)
-        
+       
         do {
             let opt = try HTTP.POST(adminUrl + "user/save", parameters: [params])
-//            print("request: \(opt)")
             opt.start { response in
-//                print("started response: \(response)")
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }
