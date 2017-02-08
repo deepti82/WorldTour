@@ -48,7 +48,7 @@
                                         <constraint firstAttribute="width" constant="23" id="Tjd-4k-myJ"/>
                                         <constraint firstAttribute="height" constant="23" id="jNN-uF-nfr"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="585E8845-81B2-4A42-9366-3002AF337185"/>
+                                    <state key="normal" title="Button" image="F8B0247A-EF81-46A9-9E47-3A806476DF66"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="velocity">
                                             <real key="value" value="2"/>
@@ -184,7 +184,7 @@
         </view>
     </objects>
     <resources>
-        <image name="585E8845-81B2-4A42-9366-3002AF337185" width="128" height="128">
+        <image name="F8B0247A-EF81-46A9-9E47-3A806476DF66" width="128" height="128">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPT5YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQrLjE3OlUkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

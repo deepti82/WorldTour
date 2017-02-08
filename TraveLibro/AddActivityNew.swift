@@ -156,6 +156,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         self.finalImageTag.tintColor = mainOrangeColor
         self.videoTagFinal.tintColor = mainOrangeColor
             self.addLocationText.delegate = self
+    
     }
     
     
@@ -330,7 +331,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         
         
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
-        if next.whichView == "AddActivity" {
+         next.whichView == "AddActivity"
         print(addedBuddies);
         if addedBuddies != nil {
             next.addedFriends = addedBuddies
@@ -339,18 +340,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
             next.oldBuddies = self.addedBuddies
             next.allFriendsJson = self.addedBuddies
         }
-        }
-        if next.whichView == "local-Life" {
-            print(addedBuddies);
-            if addedBuddies != nil {
-                next.addedFriends = addedBuddies
-            }
-            if(self.typeOfAddActivtiy == "AddPhotosVideos") {
-                next.oldBuddies = self.addedBuddies
-                next.allFriendsJson = self.addedBuddies
-            }
-
-        }
+        
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(next, animated: true)
     }
@@ -413,7 +403,6 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
                 imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
                 self.finalImageTag.tintColor = UIColor(hex: "#11d3cb")
                 self.videoTagFinal.tintColor = UIColor(hex: "#11d3cb")
-                
             } else {
                 imagePickerController.delegate = globalNewTLViewController
             }
@@ -671,6 +660,8 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
             let imagePickerController = UIImagePickerController()
             if(self.typeOfAddActivtiy == "CreateLocalLife") {
                 imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
+                self.finalImageTag.tintColor = UIColor(hex: "#11d3cb")
+                self.videoTagFinal.tintColor = UIColor(hex: "#11d3cb")
             } else {
                 imagePickerController.delegate = globalNewTLViewController
             }

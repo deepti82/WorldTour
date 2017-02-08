@@ -37,7 +37,7 @@ class TripPhotoHeader: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-        
+        timeLabel.text = String(format: "%C", faicon["clock"]!)
     }
     
     func getDays(_ startDate: String, postDate: String) -> Int {
