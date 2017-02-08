@@ -56,7 +56,7 @@ class ActivityFeedFooter: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-        transparentCardWhite(footerColorView)
+//        transparentCardWhite(footerColorView)
         likeButton.tintColor = mainBlueColor
         commentButton.tintColor = mainBlueColor
         shareButton.tintColor = mainBlueColor
@@ -139,7 +139,7 @@ class ActivityFeedFooter: UIView {
             
             
             border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.6).cgColor
+            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
             border.borderWidth = width
             self.layer.addSublayer(border)
             self.layer.masksToBounds = true
@@ -152,7 +152,7 @@ class ActivityFeedFooter: UIView {
             border1.isHidden = false
             let width = CGFloat(3.0)
             border1.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-            border1.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.6).cgColor
+            border1.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
             border1.borderWidth = width
             self.layer.addSublayer(border1)
             

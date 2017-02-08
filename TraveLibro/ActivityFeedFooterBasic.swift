@@ -50,9 +50,9 @@ class ActivityFeedFooterBasic: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowOffset = CGSize.zero
+//        self.layer.shadowColor = UIColor.black.cgColor
+//        self.layer.shadowOpacity = 0.5
+//        self.layer.shadowOffset = CGSize.zero
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,7 +67,7 @@ class ActivityFeedFooterBasic: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-        transparentCardWhite(footerColorView)
+//        transparentCardWhite(footerColorView)
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.checkMyRating(_:)))
         ratingStack.addGestureRecognizer(tapout)
@@ -292,7 +292,7 @@ class ActivityFeedFooterBasic: UIView {
             
             
             border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.6).cgColor
+            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
             border.borderWidth = width
             self.layer.addSublayer(border)
             self.layer.masksToBounds = true
@@ -304,7 +304,7 @@ class ActivityFeedFooterBasic: UIView {
             border1.isHidden = false
             let width = CGFloat(3.0)
             border1.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-            border1.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.6).cgColor
+            border1.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.5).cgColor
             border1.borderWidth = width
             self.layer.addSublayer(border1)
             

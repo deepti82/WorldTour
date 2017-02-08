@@ -386,6 +386,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
                     }
                     else if response["value"].bool! {
                         print(response);
+                        print("showeJson")
                         self.json = response["data"]
                         let city = response["data"]["user"]["city"].stringValue
                         self.titleLabel.text = "Experience \(city) Like A Local"
