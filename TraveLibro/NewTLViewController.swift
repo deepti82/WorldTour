@@ -1605,8 +1605,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     var currentPhotoFooter:PhotoOTGFooter!
+    
     func changeDateAndTime(_ footer:PhotoOTGFooter) {
-        print(footer.postTop.jsonPost);
         currentPhotoFooter = footer
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
@@ -1624,7 +1624,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         doneButton.setTitle("Save", for: .normal)
         doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
         doneButton.setTitleColor(UIColor.white, for: .normal)
-        //                doneButton.setTitle(sender.title(for: .application)!, for: .application)
         
         let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
         cancelButton.setTitle("Cancel", for: .normal)
@@ -1637,7 +1636,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         doneButton.addTarget(self, action: #selector(NewTLViewController.doneButton(_:)), for: .touchUpInside) // set button click event
         cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
         
-        //sender.inputView = inputView
         self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
         
         self.handleDatePicker(self.datePickerView) // Set the date on start.
@@ -1880,6 +1878,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 self.view.frame.origin.y -= keyboardSize.height
                 //                keyboardHidden = true
                 //            }
+                print("keyboardchange karde")
+                print(keyboardSize.height)
             }
         }
         
@@ -1887,7 +1887,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
+                self.view.frame.origin.y += 216
+                print(keyboardSize.height)
             }
         }
     }

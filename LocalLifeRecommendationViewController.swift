@@ -31,7 +31,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     @IBOutlet weak var plusButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         globalLocalLife = self
         getDarkBackGround(self)
         self.layout = VerticalLayout(width:screenWidth)
@@ -268,7 +267,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         let post  = LocalLifePostModel();
         
         let buddies = JSON(self.addView.addedBuddies).rawString()
-        
         var lat = ""
         if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
             lat = String(self.addView.currentLat!)
@@ -386,6 +384,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
                     }
                     else if response["value"].bool! {
                         print(response);
+                        print("showeJson")
                         self.json = response["data"]
                         let city = response["data"]["user"]["city"].stringValue
                         self.titleLabel.text = "Experience \(city) Like A Local"

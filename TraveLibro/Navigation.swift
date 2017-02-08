@@ -1,7 +1,6 @@
 import UIKit
 
 import SwiftHTTP
-//import Alamofire
 
 var adminUrl = "http://travelibro.wohlig.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
@@ -12,22 +11,15 @@ class Navigation {
     
     func saveUser(_ firstName: String, lastName: String, email: String, mobile: String, fbId: String, googleId: String, twitterId: String, instaId: String, nationality: String, profilePicture: String, gender: String, dob: String, completion: @escaping ((JSON) -> Void)) {
         
-        print("name: \(firstName), \(lastName)")
-        
         var json1 = JSON(1);
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
         
         let deviceParams = ["_id": deviceId, "os": "iOS"]
-        
-        print("device id: \(deviceId)")
         let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceParams, "dob": dob] as [String : Any]
-//        print(params)
-        
+       
         do {
             let opt = try HTTP.POST(adminUrl + "user/save", parameters: [params])
-//            print("request: \(opt)")
             opt.start { response in
-//                print("started response: \(response)")
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }
@@ -69,16 +61,10 @@ class Navigation {
     func editUser(_ id: String, editField: String, editFieldValue: String, completion: @escaping ((JSON) -> Void)) {
         
         var json = JSON(1);
-//        let deviceId = UIDevice.currentDevice().identifierForVendor!.UUIDString
-//        print("device id: \(deviceId)")
         let params = ["_id":id, editField:editFieldValue]
-        print(params)
-        print(adminUrl + "user/editUser");
-
         do {
             let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: params)
             //            print("request: \(opt)")
-            print(adminUrl + "user/editUser");
             opt.start { response in
                 print("started response: \(response)")
                 if let err = response.error {
@@ -2155,7 +2141,7 @@ class Navigation {
         
         do {
             
-            let params = ["_id": id, "type": "deletePost", "user": user, "uniqueId": uniqueId]
+            let params = ["_id": id, "type": "deletePost", "user": currentUser["_id"].stringValue, "uniqueId": uniqueId]
             let opt = try HTTP.POST(adminUrl + "post/editData", parameters: params)
             var json = JSON(1);
             opt.start {response in
@@ -2182,6 +2168,32 @@ class Navigation {
             print("change date time params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "post/editData", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                print(response);
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    func changeDateTimeLocal(_ id: String, date: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id, "date": date, "type": "changeDateTime", "user": currentUser["_id"].stringValue]
+            
+            print("change date time params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "post/editLocal", parameters: [params])
             var json = JSON(1);
             opt.start {response in
                 print(response);
