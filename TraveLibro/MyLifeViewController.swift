@@ -2,12 +2,7 @@
 import UIKit
 
 var isEmptyProfile = false
-<<<<<<< HEAD
 var globalMyLifeController: MyLifeViewController!
-
-=======
-var globalMyLifeViewController:MyLifeViewController!;
->>>>>>> origin/level-3-
 class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var profileName: UILabel!
