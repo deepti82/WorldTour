@@ -268,7 +268,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         let post  = LocalLifePostModel();
         
         let buddies = JSON(self.addView.addedBuddies).rawString()
-        
         var lat = ""
         if self.addView.currentLat != nil && self.addView.currentLat != 0.0 {
             lat = String(self.addView.currentLat!)

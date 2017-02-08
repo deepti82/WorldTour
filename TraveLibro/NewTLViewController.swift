@@ -1878,6 +1878,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 self.view.frame.origin.y -= keyboardSize.height
                 //                keyboardHidden = true
                 //            }
+                print("keyboardchange karde")
+                print(keyboardSize.height)
             }
         }
         
@@ -1885,7 +1887,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
+                self.view.frame.origin.y += 216
+                print(keyboardSize.height)
             }
         }
     }

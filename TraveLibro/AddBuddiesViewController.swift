@@ -39,6 +39,9 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             globalAddActivityNew.buddyAdded(addedFriends);
         case "NewTLMiddle":
             globalNewTLViewController.buddyAdded(addedFriends,inMiddle:true);
+//        case "local-Life" :
+//        globalLocalLife.buddyAdded(addedFriends);
+            
         case "NewTLView":
             globalNewTLViewController.buddyAdded(addedFriends,inMiddle:false,completionDone: { (json) in
                  globalNewTLViewController.getJourney()

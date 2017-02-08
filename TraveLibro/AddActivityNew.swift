@@ -176,7 +176,10 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
             self.friendsCount.isHidden = true;
             self.friendsTag.tintColor = mainBlueColor
         }
+        
     }
+    
+    
     
     
     @IBAction func clearLocation(_ sender: Any) {
@@ -312,7 +315,11 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         
         
     }
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == addLocationText{
+        self.frame.origin.y = self.frame.origin.y
+        }
+    }
     func tagMoreBuddies(_ sender: UIButton) {
         self.resignThoughtsTexViewKeyboard()
         if(self.typeOfAddActivtiy != "EditActivity") {
@@ -323,7 +330,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         
         
         let next = storyboard?.instantiateViewController(withIdentifier: "addBuddies") as! AddBuddiesViewController
-        next.whichView = "AddActivity"
+        if next.whichView == "AddActivity" {
         print(addedBuddies);
         if addedBuddies != nil {
             next.addedFriends = addedBuddies
@@ -332,7 +339,18 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
             next.oldBuddies = self.addedBuddies
             next.allFriendsJson = self.addedBuddies
         }
+        }
+        if next.whichView == "local-Life" {
+            print(addedBuddies);
+            if addedBuddies != nil {
+                next.addedFriends = addedBuddies
+            }
+            if(self.typeOfAddActivtiy == "AddPhotosVideos") {
+                next.oldBuddies = self.addedBuddies
+                next.allFriendsJson = self.addedBuddies
+            }
 
+        }
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(next, animated: true)
     }
