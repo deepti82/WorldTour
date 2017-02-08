@@ -284,6 +284,12 @@ class ActivityFeedFooter: UIView {
                 {action -> Void in
                 }
                 actionSheetControllerIOS8.addAction(deleteActionButton)
+                
+                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                { action -> Void in
+                    
+                }
+                actionSheetControllerIOS8.addAction(cancel)
             }
             
             if(postTop["type"].stringValue == "quick-itinerary") {
@@ -301,6 +307,12 @@ class ActivityFeedFooter: UIView {
                 {action -> Void in
                 }
                 actionSheetControllerIOS8.addAction(deleteActionButton)
+                
+                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                { action -> Void in
+                    
+                }
+                actionSheetControllerIOS8.addAction(cancel)
             }
             if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
                 
@@ -311,6 +323,7 @@ class ActivityFeedFooter: UIView {
                 
                 let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Change End Journey Date", style: .default)
                 {action -> Void in
+                    globalMyLifeViewController.changeDateAndTimeEndJourney(self)
                 }
                 actionSheetControllerIOS8.addAction(changeDateActionButton)
                 
@@ -323,6 +336,12 @@ class ActivityFeedFooter: UIView {
                 {action -> Void in
                 }
                 actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                
+                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                { action -> Void in
+                    
+                }
+                actionSheetControllerIOS8.addAction(cancel)
                 
 //                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .destructive)
 //                {action -> Void in
