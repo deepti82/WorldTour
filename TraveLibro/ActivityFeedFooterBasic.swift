@@ -44,7 +44,8 @@ class ActivityFeedFooterBasic: UIView {
     var commentCounts:Int = 0
     var photoId = ""
     var photoPostId = ""
-    
+    let border = CALayer()
+    let border1 = CALayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -285,9 +286,30 @@ class ActivityFeedFooterBasic: UIView {
         if(self.commentCounts == 0  && self.likeCount == 0) {
             self.frame.size.height = 50;
             
+            border1.removeFromSuperlayer()
+            border.isHidden = false
+            let width = CGFloat(3.0)
+            
+            
+            border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.6).cgColor
+            border.borderWidth = width
+            self.layer.addSublayer(border)
+            self.layer.masksToBounds = true
+
                    } else {
             self.frame.size.height = 90;
             
+            border.removeFromSuperlayer()
+            border1.isHidden = false
+            let width = CGFloat(3.0)
+            border1.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+            border1.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.6).cgColor
+            border1.borderWidth = width
+            self.layer.addSublayer(border1)
+            
+            self.layer.masksToBounds = true
+
         }
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],

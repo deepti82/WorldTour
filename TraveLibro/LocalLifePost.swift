@@ -182,8 +182,8 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         footerView.setLikeCount(footerView.postTop["likeCount"].intValue)
         footerView.setView(feed:feed)
         self.addSubview(footerView)
-        dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
-        self.addSubview(dropView)
+//        dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+//        self.addSubview(dropView)
     }
     
     func middleLayoout(feed:JSON) {

@@ -36,7 +36,8 @@ class ActivityFeedFooter: UIView {
     var likeCount:Int = 0
     var commentCounts:Int = 0
     var reviewCount:Int = 0
-    
+    let border = CALayer()
+    let border1 = CALayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -131,12 +132,36 @@ class ActivityFeedFooter: UIView {
     func checkHideView() {
         if(self.commentCounts == 0  && self.likeCount == 0 && self.reviewCount == 0) {
             self.frame.size.height = 50;
+            
+            border1.removeFromSuperlayer()
+            border.isHidden = false
+            let width = CGFloat(3.0)
+            
+            
+            border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+            border.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.6).cgColor
+            border.borderWidth = width
+            self.layer.addSublayer(border)
+            self.layer.masksToBounds = true
+
+            
         } else {
             self.frame.size.height = 90;
+            
+            border.removeFromSuperlayer()
+            border1.isHidden = false
+            let width = CGFloat(3.0)
+            border1.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
+            border1.borderColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.6).cgColor
+            border1.borderWidth = width
+            self.layer.addSublayer(border1)
+            
+            self.layer.masksToBounds = true
+            
         }
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],
-                                cornerRadii: CGSize(width: 5, height:  5))
+                                cornerRadii: CGSize(width: 10, height:  10))
         
         let maskLayer = CAShapeLayer()
         

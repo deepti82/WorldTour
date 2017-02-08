@@ -181,8 +181,8 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             footerView.setCommentCount(post.post_commentCount)
             footerView.setLikeSelected(post.post_likeDone)
             self.addSubview(footerView)
-            dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
-            self.addSubview(dropView)
+//            dropView = DropShadow1(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+//            self.addSubview(dropView)
             
             
             if(post.post_location != "") {
