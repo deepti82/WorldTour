@@ -27,7 +27,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDarkBackGround(self)
+//        getDarkBackGround(self)
         globalAccordionViewController = self
         setTopNavigation("Reviews")
     }

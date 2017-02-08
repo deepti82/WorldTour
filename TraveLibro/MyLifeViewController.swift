@@ -203,12 +203,24 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         collectionContainer.alpha = 0
         tableContainer.alpha = 1
         allRadioChecked(sender);
+        
     }
     
     func showReviewsExtention(type:String) {
-        journeysContainerView.alpha = 0
-        collectionContainer.alpha = 1
-        tableContainer.alpha = 0
+        
+        if type == "travel-life" || type == "local-life" {
+            
+            journeysContainerView.alpha = 0
+            collectionContainer.alpha = 1
+            tableContainer.alpha = 0
+            
+        }else{
+            
+            journeysContainerView.alpha = 0
+            collectionContainer.alpha = 0
+            tableContainer.alpha = 1
+        }
+        
     }
     
 //    var flag = false
@@ -229,6 +241,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         case "Reviews":
             globalAccordionViewController.whichView = ""
             globalAccordionViewController.loadReview(pageno: 1, type: "all")
+            showReviewsExtention(type:"all")
 
         default: break
             
@@ -273,6 +286,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         case "Reviews":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.loadReview(pageno: 1, type: "review", review: "local-life")
+            showReviewsExtention(type:"local-life")
 
         default: break
             
