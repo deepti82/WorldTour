@@ -8,6 +8,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     var isInitalLoad = true
     var empty: EmptyScreenView!
     var timeTag:TimestampTagViewOnScroll!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,8 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+       
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         for postView in layout.subviews {
             if(postView is MyLifeActivityFeedsLayout) {
@@ -79,7 +82,6 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
                 
                 if((min < 100) && (max > 140))
                 {
-                    print(photosOtg.feeds);
                     self.timeTag.changeTime(feed: photosOtg.feeds)
                 }
             }

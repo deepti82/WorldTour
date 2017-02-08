@@ -2097,7 +2097,7 @@ class Navigation {
         
         do {
             
-            let params = ["_id": id, "type": "deletePost", "user": user, "uniqueId": uniqueId]
+            let params = ["_id": id, "type": "deletePost", "user": currentUser["_id"].stringValue, "uniqueId": uniqueId]
             let opt = try HTTP.POST(adminUrl + "post/editData", parameters: params)
             var json = JSON(1);
             opt.start {response in
@@ -2124,6 +2124,32 @@ class Navigation {
             print("change date time params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "post/editData", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                print(response);
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    func changeDateTimeLocal(_ id: String, date: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let params = ["_id": id, "date": date, "type": "changeDateTime", "user": currentUser["_id"].stringValue]
+            
+            print("change date time params: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "post/editLocal", parameters: [params])
             var json = JSON(1);
             opt.start {response in
                 print(response);

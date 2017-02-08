@@ -1,18 +1,7 @@
-//
-//  PhotoOTGFooter.swift
-//  TraveLibro
-//
-//  Created by Pranay Joshi on 28/12/16.
-//  Copyright © 2016 Wohlig Technology. All rights reserved.
-//
-
 import UIKit
 import Spring
 
 class ActivityFeedFooterBasic: UIView {
-    
-    //    @IBOutlet weak var LineView1: UIView!
-    
     
     @IBOutlet weak var lineView1: UIView!
     @IBOutlet weak var localLifeTravelImage: UIImageView!
@@ -50,9 +39,6 @@ class ActivityFeedFooterBasic: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-//        self.layer.shadowColor = UIColor.black.cgColor
-//        self.layer.shadowOpacity = 0.5
-//        self.layer.shadowOffset = CGSize.zero
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,7 +53,7 @@ class ActivityFeedFooterBasic: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
-//        transparentCardWhite(footerColorView)
+        //        transparentCardWhite(footerColorView)
         
         let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.checkMyRating(_:)))
         ratingStack.addGestureRecognizer(tapout)
@@ -83,7 +69,7 @@ class ActivityFeedFooterBasic: UIView {
         likeButton.imageView?.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
         
-       
+        
         
     }
     var photoCount = 0
@@ -94,7 +80,7 @@ class ActivityFeedFooterBasic: UIView {
         //  RATING
         if feed["type"].stringValue == "travel-life" {
             localLifeTravelImage.image = UIImage(named: "travel_life")
-        
+            
         }else{
             localLifeTravelImage.image = UIImage(named: "local_life")
             localLifeTravelImage.tintColor = endJourneyColor
@@ -152,23 +138,23 @@ class ActivityFeedFooterBasic: UIView {
         rating.activityJson = postTop
         rating.activityBasic = self
         rating.checkView = "activityFeed"
-       
+        
         
         if postTop["review"][0]["rating"] != nil  && postTop["review"].count != 0 {
             if newRating != nil {
                 rating.starCount = newRating["rating"].intValue
                 rating.ratingDisplay(newRating)
             }else{
-            rating.starCount = postTop["review"][0]["rating"].intValue
-            rating.ratingDisplay(postTop["review"][0])
+                rating.starCount = postTop["review"][0]["rating"].intValue
+                rating.ratingDisplay(postTop["review"][0])
             }
         }else{
             if newRating != nil {
                 rating.starCount = newRating["rating"].intValue
                 rating.ratingDisplay(newRating)
-
+                
             }else{
-            rating.starCount = 1
+                rating.starCount = 1
             }
         }
         
@@ -211,9 +197,7 @@ class ActivityFeedFooterBasic: UIView {
                     
                 }
             }
-            print("check riview changed")
             newRating = ["rating":"\(starCnt)","review":review]
-            print(newRating)
             ratingStack.isHidden = false
             rateThisButton.isHidden = true
         }
@@ -224,12 +208,8 @@ class ActivityFeedFooterBasic: UIView {
         if type == "TripPhotos" {
             let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
             comment.postId = photoPostId
-            //            comment.commentText = self.commentText
-            //            if singlePhotoJSON != nil {
             comment.otherId = postTop["name"].stringValue
             comment.photoId = photoId
-            
-            //            }
             if(self.footerType == "videos") {
                 comment.type = "Video"
             }else{
@@ -296,8 +276,8 @@ class ActivityFeedFooterBasic: UIView {
             border.borderWidth = width
             self.layer.addSublayer(border)
             self.layer.masksToBounds = true
-
-                   } else {
+            
+        } else {
             self.frame.size.height = 90;
             
             border.removeFromSuperlayer()
@@ -309,7 +289,7 @@ class ActivityFeedFooterBasic: UIView {
             self.layer.addSublayer(border1)
             
             self.layer.masksToBounds = true
-
+            
         }
         let path = UIBezierPath(roundedRect:self.bounds,
                                 byRoundingCorners:[.bottomRight, .bottomLeft],
@@ -395,36 +375,36 @@ class ActivityFeedFooterBasic: UIView {
                     
                 })
             }else if footerType == "videos"{
-            request.postVideoLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
+                request.postVideoLike(photoId, postId: photoPostId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
                     
-                    if response.error != nil {
-                        print("error: \(response.error!.localizedDescription)")
-                    }
-                    else if response["value"].bool! {
-                        if sender.tag == 1 {
-                            self.setLikeSelected(true)
-                            self.likeCount = self.likeCount + 1
-                            self.setLikeCount(self.likeCount)
+                    DispatchQueue.main.async(execute: {
+                        
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            if sender.tag == 1 {
+                                self.setLikeSelected(true)
+                                self.likeCount = self.likeCount + 1
+                                self.setLikeCount(self.likeCount)
+                            }
+                            else {
+                                self.setLikeSelected(false)
+                                if self.likeCount <= 0 {
+                                    self.likeCount = 0
+                                } else {
+                                    self.likeCount = self.likeCount - 1
+                                }
+                                self.setLikeCount(self.likeCount)
+                            }
                         }
                         else {
-                            self.setLikeSelected(false)
-                            if self.likeCount <= 0 {
-                                self.likeCount = 0
-                            } else {
-                                self.likeCount = self.likeCount - 1
-                            }
-                            self.setLikeCount(self.likeCount)
+                            
                         }
-                    }
-                    else {
                         
-                    }
+                    })
                     
                 })
-                
-            })
             }
         }else{
             
@@ -467,14 +447,15 @@ class ActivityFeedFooterBasic: UIView {
             let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
             {action -> Void in
                 //            self.isEdit = true
-//                globalNewTLViewController.showEditActivity(self.postTop)
+                //                globalNewTLViewController.showEditActivity(Post())
+                globalMyLifeViewController.showEditActivity(self.postTop)
                 //print("inside edit check in \(self.addView), \(self.newScroll.isHidden)")
             }
             actionSheetControllerIOS8.addAction(EditCheckIn)
             
             let EditDnt: UIAlertAction = UIAlertAction(title: "Change Date & Time", style: .default)
             { action -> Void in
-//                globalNewTLViewController.changeDateAndTime(self)
+                globalMyLifeViewController.changeDateAndTime(self)
             }
             actionSheetControllerIOS8.addAction(EditDnt)
             let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
@@ -482,17 +463,18 @@ class ActivityFeedFooterBasic: UIView {
                 let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                 alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
-//                    globalNewTLViewController.deletePost(self)
+                    request.deletePost(self.postTop["_id"].string!, uniqueId: self.postTop["uniqueId"].string!, user:currentUser["_id"].stringValue, completion: {(response) in
+                    })
+
+                    
                 }))
-                globalNewTLViewController.present(alert, animated: true, completion: nil)
+                globalMyLifeViewController.present(alert, animated: true, completion: nil)
                 
-                //  request.deletePost(self.currentPost["_id"].string!, uniqueId: self.myJourney["uniqueId"].string!, user: self.currentPost["user"]["_id"].string!, completion: {(response) in
-                //  })
-            }
+                           }
             actionSheetControllerIOS8.addAction(DeletePost)
             let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
             { action -> Void in
-//                globalNewTLViewController.showEditAddActivity(self.postTop)
+                //                globalNewTLViewController.showEditAddActivity(self.postTop)
             }
             actionSheetControllerIOS8.addAction(share)
             
