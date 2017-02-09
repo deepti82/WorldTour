@@ -128,6 +128,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                     self.allData.append(post)
                 }
                 print("in the api load \(self.allData)")
+                self.accordionTableView.delegate = self
+                self.accordionTableView.dataSource = self
                 self.accordionTableView.reloadData()
                 if self.allData.count == 0 {
                     self.accordionTableView.isHidden = true
@@ -213,7 +215,9 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
-//            cell.locationLabel.text =
+            cell.locationLabel.text = "\(allData[indexPath.row]["checkIn"]["city"].stringValue), \(allData[indexPath.row]["checkIn"]["country"].stringValue)"
+            cell.placeTitle.text = allData[indexPath.row]["checkIn"]["location"].stringValue
+            
             return cell
             
         case "reviewby":
@@ -226,6 +230,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
                 cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
                 cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
+                cell.locationLabel.text = "\(allData[indexPath.row]["checkIn"]["city"].stringValue), \(allData[indexPath.row]["checkIn"]["country"].stringValue)"
+                cell.placeTitle.text = allData[indexPath.row]["checkIn"]["location"].stringValue
                 return cell
 
             }
@@ -270,7 +276,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         
         if reviewType == "all" {
             
-            return 125
+            return 143
 
         }
             
@@ -278,7 +284,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             if indexPath.row == 0 {
                 return 45
             }else{
-                return 125
+                return 143
             }
         }
         
@@ -321,7 +327,53 @@ class allReviewsMLTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var calendarLabel: UILabel!
     @IBOutlet weak var clockLabel: UILabel!
+    @IBOutlet weak var review: UILabel!
+    @IBOutlet weak var calendarDate: UILabel!
+    @IBOutlet weak var clockTime: UILabel!
+    @IBOutlet weak var ratingStack: UIStackView!
+    @IBOutlet var starImageArray: [UIImageView]!
     
+    func setView(feed:JSON) {
+        if feed["review"][0] != nil && feed["review"].count > 0 {
+            ratingStack.isHidden = false
+            ratingButton.isHidden = true
+            afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue, type:feed["type"].stringValue)
+        }else{
+            if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
+                    ratingStack.isHidden = true
+                    ratingButton.isHidden = false
+                
+            }else{
+                ratingStack.isHidden = true
+                ratingButton.isHidden = true
+            }
+        }
+
+    }
+    
+    func afterRating(starCnt:Int, review:String, type:String) {
+        print(starCnt)
+        if starCnt != 0 {
+            print("start rating")
+            for rat in starImageArray {
+                if rat.tag > starCnt {
+                    rat.image = UIImage(named: "star_uncheck")
+                }else{
+                    rat.image = UIImage(named: "star_check")
+                    if type == "travel-life" {
+                        rat.tintColor = mainOrangeColor
+                    }else{
+                        rat.tintColor = endJourneyColor
+                    }
+                    
+                }
+            }
+//            newRating = ["rating":"\(starCnt)","review":review]
+            ratingStack.isHidden = false
+            ratingButton.isHidden = true
+        }
+    }
+
     
 }
 
