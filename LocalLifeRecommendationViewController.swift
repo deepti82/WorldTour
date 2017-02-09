@@ -12,7 +12,7 @@ import UIKit
 import CoreLocation
 import Toaster
 
-class LocalLifeRecommendationViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CLLocationManagerDelegate {
+class LocalLifeRecommendationViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, CLLocationManagerDelegate, UITextViewDelegate {
     var currentTime =  ""
     var addView:AddActivityNew!
     var backView:UIView!
@@ -232,7 +232,61 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             self.newScroll.addSubview(self.addView)
             self.newScroll.contentSize.height = self.view.frame.height
             backView.addSubview(newScroll)
-        
+            addView.finalImageTag.tintColor = UIColor(hex: "#11d3cb")
+            addView.videoTagFinal.tintColor = UIColor(hex: "#11d3cb")
+            addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
+//            addView.thoughtsTextView.delegate = self
+//            
+//            
+//            
+//            func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//                
+//                if text == "\n" {
+//                    
+//                    addView.thoughtsTextView.resignFirstResponder()
+//                    
+//                    if addView.thoughtsTextView.text == "" {
+//                        
+//                        addView.thoughtsTextView.text = "Fill Me In..."
+//                        
+//                    }
+//                    return true
+//                    
+//                }
+//                
+//                let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+//                let number = newText.characters.count
+//                addView.countCharacters(number)
+//                return number <= 180
+//                
+//            }
+//            
+//            
+//            
+//            func countCharacters(_ number:Int) {
+//                addView.thoughtsCharacterCount.text = String(180 - number)
+//                
+//                if(number != 0) {
+//                    addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
+//                } else {
+//                    addView.finalThoughtTag.tintColor = mainBlueColor
+//                }
+//                
+//                if addView.thoughtsCharacterCount.text == "-1" {
+//                    addView.thoughtsCharacterCount.text = "0"
+//                }
+//            }
+//
+//            
+//            func textViewDidBeginEditing(_ textView: UITextView) {
+//                if addView.thoughtsTextView.text == "Fill Me In..." {
+//                    addView.thoughtsTextView.text = ""
+//                    addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
+//                }
+//            }
+
+
+            
             let leftButton = UIButton()
             leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -256,12 +310,19 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     }
     
     
+//    func resignThoughtsTexViewKeyboard() {
+//        addView.thoughtsTextView.resignFirstResponder()
+//    }
+
+    
+    
     func closeAdd(_ sender: UIButton) {
         hideAddActivity()
     }
     
     func newPost(_ sender: UIButton) {
         hideAddActivity()
+        
         
         
         let post  = LocalLifePostModel();
@@ -280,7 +341,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             lng = String(self.addView.currentLong!)
             if(lng == "0.0") {
                 lng = ""
-                addView.locationTag.tintColor = UIColor(hex: "#11d3cb")
+                
             }
         }
         var category = ""
@@ -294,6 +355,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         var location = ""
         if self.addView.addLocationButton.titleLabel?.text! != nil {
             location = (self.addView.addLocationButton.titleLabel?.text)!
+            addView.locationTag.tintColor = UIColor(hex: "#11d3cb")
             if(location == "Add Location") {
                 location = ""
                 
@@ -303,6 +365,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         var thoughts = ""
         if self.addView.thoughtsTextView.text! != nil {
             thoughts = self.addView.thoughtsTextView.text!
+             addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
             if(thoughts == "Fill Me In...") {
                 thoughts = ""
             }
