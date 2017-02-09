@@ -447,12 +447,12 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             print("inside select cover")
             
         }else{
-            print("in other clicked")
+            print("in other clicked \(allData[indexPath.row])")
             if reviewType == "travel-life" {
-                globalMyLifeController.showReviewsExtention(type: "review", inside: false, params: "country", id: allData[indexPath.row]["_id"].stringValue)
+                globalMyLifeController.showReviewsExtention(type: "review", inside: false, params: "country", id: allData[indexPath.row]["_id"].stringValue, name: allData[indexPath.row]["name"].stringValue)
 
             }else{
-                globalMyLifeController.showReviewsExtention(type: "review", inside: false, params: "city", id: allData[indexPath.row]["_id"].stringValue)
+                globalMyLifeController.showReviewsExtention(type: "review", inside: false, params: "city", id: allData[indexPath.row]["_id"].stringValue, name: allData[indexPath.row]["name"].stringValue)
             }
         }
         

@@ -214,7 +214,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    func showReviewsExtention(type:String, inside:Bool, params:String, id:String) {
+    func showReviewsExtention(type:String, inside:Bool, params:String, id:String, name:String) {
         
         if inside {
             journeysContainerView.alpha = 0
@@ -234,7 +234,14 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
                 journeysContainerView.alpha = 0
                 collectionContainer.alpha = 0
                 tableContainer.alpha = 1
-                    globalAccordionViewController.loadByLocation(location: params, id: id)
+                if params == "country" {
+                    globalAccordionViewController.country = id
+                    globalAccordionViewController.countryName = name
+                }else if params == "city" {
+                    globalAccordionViewController.city = id
+                    globalAccordionViewController.cityName = name
+                }
+                globalAccordionViewController.loadByLocation(location: params, id: id)
                 
             }
             
@@ -260,7 +267,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         case "Reviews":
             globalAccordionViewController.whichView = ""
             globalAccordionViewController.loadReview(pageno: 1, type: "all")
-            showReviewsExtention(type:"all",inside: false, params: "", id: "")
+            showReviewsExtention(type:"all",inside: false, params: "", id: "", name: "")
             
         default: break
             
@@ -283,7 +290,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
             globalMyLifeMomentsViewController.loadReview(pageno: 1, type: "review", review: "travel-life")
-            showReviewsExtention(type:"travel-life", inside: false, params: "", id: "")
+            showReviewsExtention(type:"travel-life", inside: false, params: "", id: "", name: "")
             
         default: break
             
@@ -307,7 +314,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
             globalMyLifeMomentsViewController.loadReview(pageno: 1, type: "review", review: "local-life")
-            showReviewsExtention(type:"local-life", inside: false, params: "", id: "")
+            showReviewsExtention(type:"local-life", inside: false, params: "", id: "", name: "")
             
         default: break
             

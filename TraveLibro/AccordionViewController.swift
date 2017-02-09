@@ -24,17 +24,47 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     var whichView = "All"
     var reviewType = "all"
+    var country = ""
+    var city = ""
+    var category = ""
+    var countryName = ""
+    var cityName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getDarkBackGround(self)
+        //        getDarkBackGround(self)
         globalAccordionViewController = self
         setTopNavigation("Reviews")
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func getHeaderJSON() -> JSON {
+        var returnJson:JSON = []
+        if reviewType == "country" {
+            
+            returnJson = ["name":countryName, "_id":country]
+            return returnJson
+            
+        }else if reviewType == "city" {
+            
+            returnJson = ["name":cityName, "_id":city]
+            return returnJson
+            
+        }else{
+            if country != "" {
+                returnJson = ["name":self.cityName, "_id":city]
+                return returnJson
+            }else{
+                returnJson = ["name":self.category, "_id":category]
+                return returnJson
+            }
+            
+            
+        }
+        
     }
     
     func setTopNavigation(_ text: String) {
@@ -45,7 +75,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         let rightButton = UIView()
         self.title = text
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
-
+        
         self.customNavigationBar(left: leftButton, right: rightButton)
     }
     
@@ -91,8 +121,13 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         reviewType = location
         request.getReviewByLoc(currentUser["_id"].stringValue, location: location, id: id, completion: {(request) in
             DispatchQueue.main.async {
-                    self.allData = request["data"].array!
+                self.allData = []
+                self.allData.append(self.getHeaderJSON())
                 
+                for post in request["data"].array! {
+                    self.allData.append(post)
+                }
+                print("in the api load \(self.allData)")
                 self.accordionTableView.reloadData()
                 if self.allData.count == 0 {
                     self.accordionTableView.isHidden = true
@@ -105,18 +140,51 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadCountryCityReview(pageno:Int, type:String, json:JSON) {
-        reviewType = "all"
-        var country = ""
-        var city = ""
-        var category = ""
+        print(".....\(json)")
+        reviewType = "reviewby"
+        self.country = ""
+        self.city = ""
+        self.category = ""
         if type == "country" {
-            country = json["country"].stringValue
-            city = json["_id"].stringValue
+            self.country = json["country"].stringValue
+            self.city = json["_id"].stringValue
+            self.cityName = json["name"].stringValue
         }else if type == "city" {
-            city = json["city"].stringValue
-            category = json["_id"].stringValue
+            self.city = json["city"].stringValue
+            self.category = json["_id"].stringValue
         }
         request.getReview(currentUser["_id"].stringValue, country: country, city: city, category: category, pageNumber: pageno, completion: {(request) in
+            DispatchQueue.main.async {
+                if request["data"].count > 0 {
+                    if pageno == 1 {
+                        self.allData = []
+                        self.allData.append(self.getHeaderJSON())
+                        for post in request["data"].array! {
+                            self.allData.append(post)
+                        }
+                        print("in get review city country \(self.allData)")
+                    }else{
+                        for post in request["data"].array! {
+                            self.allData.append(post)
+                        }
+                    }
+                }
+                
+                self.accordionTableView.reloadData()
+                if self.allData.count == 0 {
+                    self.accordionTableView.isHidden = true
+                    self.showNoData(show: true)
+                }else{
+                    self.showNoData(show: false)
+                }
+            }
+            
+        })
+    }
+    
+    func loadReview(pageno:Int, type:String) {
+        reviewType = type
+        request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
             DispatchQueue.main.async {
                 if pageno == 1 {
                     self.allData = request["data"].array!
@@ -134,33 +202,9 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                     self.showNoData(show: false)
                 }
             }
-        
         })
     }
     
-    func loadReview(pageno:Int, type:String) {
-        reviewType = type
-        request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
-            DispatchQueue.main.async {
-                if pageno == 1 {
-                    self.allData = request["data"].array!
-                }else{
-                    for post in request["data"].array! {
-                            self.allData.append(post)
-                    }
-                }
-                
-                self.accordionTableView.reloadData()
-                if self.allData.count == 0 {
-                    self.accordionTableView.isHidden = true
-                    self.showNoData(show: true)
-                }else{
-                    self.showNoData(show: false)
-                }
-            }
-            })
-    }
-
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -170,18 +214,39 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
             return cell
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! cityLabelTableViewCell
             
-            print("............>>>>>>>>>>>>>>>>>> \(reviewType)")
-            if reviewType == "city" {
-                cell.nameLabel.text = allData[indexPath.row]["_id"].stringValue
-                cell.seperatorView.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+        case "reviewby":
+            
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! reviewsHeaderCell
+                cell.countryTitle.text = allData[indexPath.row]["name"].stringValue
+                return cell
             }else{
-                cell.nameLabel.text = allData[indexPath.row]["name"].stringValue
-                cell.seperatorView.backgroundColor = mainOrangeColor
+                let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
+                cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
+                cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
+                return cell
+
             }
-            return cell
+        default:
+            print(reviewType)
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! reviewsHeaderCell
+                cell.countryTitle.text = allData[indexPath.row]["name"].stringValue
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! cityLabelTableViewCell
+                
+                print("............>>>>>>>>>>>>>>>>>> \(reviewType)")
+                if reviewType == "city" {
+                    cell.nameLabel.text = allData[indexPath.row]["_id"].stringValue
+                    cell.seperatorView.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+                }else{
+                    cell.nameLabel.text = allData[indexPath.row]["name"].stringValue
+                    cell.seperatorView.backgroundColor = mainOrangeColor
+                }
+                return cell
+            }
             
         }
         
@@ -193,36 +258,27 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             self.loadCountryCityReview(pageno:1, type: "city", json: allData[indexPath.row])
         } else if reviewType == "country" {
             self.loadCountryCityReview(pageno:1, type: "country", json: allData[indexPath.row])
-
+            
         }
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if(labels[(indexPath as NSIndexPath).item] == "childCells") {
-
-            if (indexPath as NSIndexPath).row % 2 == 0 {
-                
-                return 175
-                
-            }
-                
-            else {
-                
-                return 125
-                
-            }
-        }
         
-        else if reviewType == "all" {
+        
+        if reviewType == "all" {
             
             return 125
+
         }
-        
-        else if (reviewType == "Reviews TL" || reviewType == "Reviews LL") && labels[(indexPath as NSIndexPath).row] == "header" {
             
-            return 50
+        else if reviewType == "reviewby" {
+            if indexPath.row == 0 {
+                return 45
+            }else{
+                return 125
+            }
         }
         
         return 45
