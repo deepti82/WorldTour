@@ -213,6 +213,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
+            cell.locationLabel.text =
             return cell
             
         case "reviewby":

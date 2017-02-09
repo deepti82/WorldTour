@@ -111,6 +111,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         reviewType = review
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: review, completion: {(request) in
             DispatchQueue.main.async {
+                print("in load review")
                 if request["data"].count > 0 {
                     self.loadStatus = true
 
@@ -252,23 +253,27 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+        print("number of items in selction")
         switch momentType {
         case "all":
+            print("all")
             if insideView == "Monthly" {
                 return allData.count
             }else{
                 return allData[section]["data"].count
             }
         case "local-life":
+            print("local-life")
             if insideView == "Monthly" {
                 return allData.count
             }else{
                 return allData[section]["data"].count
             }
         case "travel-life":
+            print("travel-life \(allData.count)")
             return allData.count
         default:
+            print("in default \(allData.count)")
             return allData.count
         }
         
@@ -379,13 +384,15 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             if reviewType == "local-life" {
                 cell.bgImage.image = UIImage(named: "reviewsLocalLifeAlbum")
                 cell.placeName.text = allData[indexPath.row]["name"].stringValue
+                cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["cityCoverPhoto"].stringValue, width: 200))
                 
             }
             else {
                 cell.bgImage.image = UIImage(named: "reviewsTLAlbum")
                 cell.placeName.text = allData[indexPath.row]["name"].stringValue
+                cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["flag"].stringValue, width: 200))
             }
-            cell.foregroundImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["flag"].stringValue, width: 200))
+            
             cell.foregroundImage.layer.cornerRadius = cell.foregroundImage.frame.width/2
             cell.foregroundImage.clipsToBounds = true
             cell.foregroundImage.layer.borderColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1).cgColor
