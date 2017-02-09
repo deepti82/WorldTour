@@ -87,6 +87,57 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         self.navigationController!.popViewController(animated: true)
     }
     
+    func loadByLocation(location:String, id:String) {
+        reviewType = location
+        request.getReviewByLoc(currentUser["_id"].stringValue, location: location, id: id, completion: {(request) in
+            DispatchQueue.main.async {
+                    self.allData = request["data"].array!
+                
+                self.accordionTableView.reloadData()
+                if self.allData.count == 0 {
+                    self.accordionTableView.isHidden = true
+                    self.showNoData(show: true)
+                }else{
+                    self.showNoData(show: false)
+                }
+            }
+        })
+    }
+    
+    func loadCountryCityReview(pageno:Int, type:String, json:JSON) {
+        reviewType = "all"
+        var country = ""
+        var city = ""
+        var category = ""
+        if type == "country" {
+            country = json["country"].stringValue
+            city = json["_id"].stringValue
+        }else if type == "city" {
+            city = json["city"].stringValue
+            category = json["_id"].stringValue
+        }
+        request.getReview(currentUser["_id"].stringValue, country: country, city: city, category: category, pageNumber: pageno, completion: {(request) in
+            DispatchQueue.main.async {
+                if pageno == 1 {
+                    self.allData = request["data"].array!
+                }else{
+                    for post in request["data"].array! {
+                        self.allData.append(post)
+                    }
+                }
+                
+                self.accordionTableView.reloadData()
+                if self.allData.count == 0 {
+                    self.accordionTableView.isHidden = true
+                    self.showNoData(show: true)
+                }else{
+                    self.showNoData(show: false)
+                }
+            }
+        
+        })
+    }
+    
     func loadReview(pageno:Int, type:String) {
         reviewType = type
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
@@ -113,113 +164,38 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        print("labels: \(labels[indexPath.item])")
-//        print("label index: \(labels.endIndex)")
-        
         switch reviewType {
         case "all":
             let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
             cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
             return cell
-//        case "travel-life":
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "reviewsCell") as! reviewsCollectionViewCell
-//            return cell
         default:
-            break
-        }
-        
-        if whichView == "Reviews LL" || whichView == "Reviews TL" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! cityLabelTableViewCell
             
-            print("into if level 1")
-            
-            if labels[(indexPath as NSIndexPath).row] == "header" {
-                
-                print("into if level 2")
-                let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! reviewsHeaderCell
-                return cell
-                
+            print("............>>>>>>>>>>>>>>>>>> \(reviewType)")
+            if reviewType == "city" {
+                cell.nameLabel.text = allData[indexPath.row]["_id"].stringValue
+                cell.seperatorView.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
+            }else{
+                cell.nameLabel.text = allData[indexPath.row]["name"].stringValue
+                cell.seperatorView.backgroundColor = mainOrangeColor
             }
-        }
-        
-        if(labels[(indexPath as NSIndexPath).item] == "childCells") {
+            return cell
             
-            if (indexPath as NSIndexPath).row % 2 == 0 {
-                
-                print("into if level 3")
-                let cell = tableView.dequeueReusableCell(withIdentifier: "childCell") as! cityExploreTableViewCell
-                cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
-                cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
-                return cell
-                
-            }
-            
-            else {
-                
-                let cell = tableView.dequeueReusableCell(withIdentifier: "allReviewsCell") as! allReviewsMLTableViewCell
-                cell.calendarLabel.text = String(format: "%C", faicon["calendar"]!)
-                cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
-                return cell
-                
-            }
         }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! cityLabelTableViewCell
-        cell.nameLabel.text = labels[(indexPath as NSIndexPath).item]
-        if (isExpanded == true && selectedIndex == (indexPath as NSIndexPath).item) {
-            cell.buttonLabel.setTitle("-", for: UIControlState())
-        }
-        else {
-            cell.buttonLabel.setTitle("+", for: UIControlState())
-        }
-        if whichView == "Reviews LL" {
-            cell.seperatorView.backgroundColor = UIColor(red: 75/255, green: 203/255, blue: 187/255, alpha: 1)
-        }
-        return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if (isExpanded == true) {
-            if(selectedIndex == (indexPath as NSIndexPath).item) {
-                
-                isExpanded = false
-                print("in if statement 1")
-                expandParent(isExpanded, index: selectedIndex)
-                
-            }
-            
-            else {
-                let prevIndex = selectedIndex
-                expandParent(false, index: selectedIndex)
-                isExpanded = true
-                if(prevIndex! < (indexPath as NSIndexPath).item) {
-                    selectedIndex = (indexPath as NSIndexPath).item - childCells
-                    print("in if statement 2")
-                } else {
-                    selectedIndex = (indexPath as NSIndexPath).item
-                    print("in if statement 4")
-                }
-                
-                expandParent(isExpanded, index: selectedIndex)
-                
-            }
-            
-            
-        }
-            
-        else if whichView == "All" {
-            
-            
+        print(allData[indexPath.row])
+        if reviewType == "city" {
+            self.loadCountryCityReview(pageno:1, type: "city", json: allData[indexPath.row])
+        } else if reviewType == "country" {
+            self.loadCountryCityReview(pageno:1, type: "country", json: allData[indexPath.row])
+
         }
         
-        else {
-                isExpanded = true
-                selectedIndex = (indexPath as NSIndexPath).item
-                print("in if statement 3")
-                expandParent(isExpanded, index: (indexPath as NSIndexPath).item)
-        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -260,75 +236,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    func expandParent(_ isExpanded: Bool, index: Int) -> Void {
-        
-        if(isExpanded == true) {
-            
-            switch index {
-            case 0:
-                childCells = 1
-                for j in 0 ..< childCells {
-                    labels.insert("childCells", at: index + 1 + j)
-                }
-                accordionTableView.reloadData()
-                break
-            
-            case 1:
-                childCells = 2
-                for j in 0 ..< childCells {
-                    labels.insert("childCells", at: index + 1 + j)
-                }
-                accordionTableView.reloadData()
-                break
-                
-            case 2:
-                childCells = 3
-                for j in 0 ..< childCells {
-                    labels.insert("childCells", at: index + 1 + j)
-                }
-                accordionTableView.reloadData()
-                break
-                
-            case 3:
-                childCells = 4
-                for j in 0 ..< childCells {
-                    labels.insert("childCells", at: index + 1 + j)
-                }
-                accordionTableView.reloadData()
-                break
-            
-            case 4:
-                childCells = 5
-                for j in 0 ..< childCells {
-                    labels.insert("childCells", at: index + 1 + j)
-                }
-                accordionTableView.reloadData()
-                break
-            
-            case 5:
-                childCells = 6
-                for _ in 0 ..< childCells {
-                    labels.append("childCells")
-                }
-                accordionTableView.reloadData()
-                break
-                
-            default:
-                break
-            }
-            
-            
-        }
-        
-        else if(isExpanded == false) {
-            
-            for _ in 0 ..< childCells {
-                labels.remove(at: index+1)
-            }
-            accordionTableView.reloadData()
-            
-        }
-    }
 }
 
 class cityLabelTableViewCell: UITableViewCell {

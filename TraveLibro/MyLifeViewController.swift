@@ -2,9 +2,10 @@
 import UIKit
 
 var isEmptyProfile = false
+var globalMyLifeController: MyLifeViewController!
 var globalMyLifeViewController:MyLifeViewController!;
 class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
-
+    
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var viewTwo: UIView!
@@ -37,10 +38,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     var verticalLayout: VerticalLayout!
     let titleLabels = ["November 2015 (25)", "October 2015 (25)", "September 2015 (25)", "August 2015 (25)"]
     var whatTab = "Journeys"
-
+    
     var whatEmptyTab = "Journeys"
     
-
+    
     
     var radio:UIImageView!
     var radioTwo:UIImageView!
@@ -52,13 +53,14 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         globalMyLifeViewController = self;
         getDarkBackGround(self)
+        globalMyLifeController = self
         let leftButton = UIButton()
         leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
         let arrow = String(format: "%C", faicon["arrow-down"]!)
         leftButton.setTitle(arrow, for: UIControlState())
         leftButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-      
+        
         
         self.customNavigationBar(left: leftButton, right: rightButton)
         
@@ -144,7 +146,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-
+    
     
     func setDefaults() {
         whatEmptyTab = "Journeys"
@@ -168,7 +170,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-
+    
     func showJourneys(_ sender: UIButton) {
         whatEmptyTab = "Journeys"
         var start = 0;
@@ -212,24 +214,35 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    func showReviewsExtention(type:String) {
+    func showReviewsExtention(type:String, inside:Bool, params:String, id:String) {
         
-        if type == "travel-life" || type == "local-life" {
-            
-            journeysContainerView.alpha = 0
-            collectionContainer.alpha = 1
-            tableContainer.alpha = 0
-            
-        }else{
-            
+        if inside {
             journeysContainerView.alpha = 0
             collectionContainer.alpha = 0
             tableContainer.alpha = 1
+        }else{
+            switch type {
+            case "travel-life", "local-life":
+                journeysContainerView.alpha = 0
+                collectionContainer.alpha = 1
+                tableContainer.alpha = 0
+            case "all":
+                journeysContainerView.alpha = 0
+                collectionContainer.alpha = 0
+                tableContainer.alpha = 1
+            default:
+                journeysContainerView.alpha = 0
+                collectionContainer.alpha = 0
+                tableContainer.alpha = 1
+                    globalAccordionViewController.loadByLocation(location: params, id: id)
+                
+            }
+            
         }
         
     }
     
-//    var flag = false
+    //    var flag = false
     
     func allRadioChecked(_ sender: AnyObject?) {
         radio.image = UIImage(named: "radio_checked_all")
@@ -237,18 +250,18 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         radioThree.image = UIImage(named: "radio_for_button")
         
         switch whatEmptyTab {
-        case "Journeys": 
+        case "Journeys":
             globalMyLifeContainerViewController.loadData("all", pageNumber: 1);
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
-
+            
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "all", token: "")
         case "Reviews":
             globalAccordionViewController.whichView = ""
             globalAccordionViewController.loadReview(pageno: 1, type: "all")
-            showReviewsExtention(type:"all")
-
+            showReviewsExtention(type:"all",inside: false, params: "", id: "")
+            
         default: break
             
         }
@@ -268,9 +281,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "travel-life", token: "")
         case "Reviews":
             globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.insideView = ""
             globalMyLifeMomentsViewController.loadReview(pageno: 1, type: "review", review: "travel-life")
-            showReviewsExtention(type:"travel-life")
-
+            showReviewsExtention(type:"travel-life", inside: false, params: "", id: "")
+            
         default: break
             
         }
@@ -287,18 +301,19 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
             globalMyLifeMomentsViewController.insideView = ""
-
+            
             globalMyLifeMomentsViewController.loadMomentLife(pageno: 1, type: "local-life", token: "")
         case "Reviews":
             globalMyLifeMomentsViewController.page = 1
+            globalMyLifeMomentsViewController.insideView = ""
             globalMyLifeMomentsViewController.loadReview(pageno: 1, type: "review", review: "local-life")
-            showReviewsExtention(type:"local-life")
-
+            showReviewsExtention(type:"local-life", inside: false, params: "", id: "")
+            
         default: break
             
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -310,7 +325,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         sender.layer.shadowOpacity = 0.6
         sender.layer.shadowOffset = CGSize(width: 0, height: -1)
         sender.layer.shadowRadius = 5.0
-//        sender.clipsToBounds = true
+        //        sender.clipsToBounds = true
         
     }
     
@@ -462,8 +477,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.backView.addSubview(doneButton) // add Button to UIView
         self.backView.addSubview(cancelButton) // add Cancel to UIView
         
-        doneButton.addTarget(self, action: #selector(NewTLViewController.doneButton(_:)), for: .touchUpInside) // set button click event
-        cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
+        doneButton.addTarget(self, action: #selector(self.doneButton(_:)), for: .touchUpInside) // set button click event
+        cancelButton.addTarget(self, action: #selector(self.cancelButton(_:)), for: .touchUpInside) // set button click event
         
         self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
         
@@ -472,7 +487,48 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addSubview(self.inputview)
     }
     
+    func changeDateAndTimeEndJourney(_ footer:ActivityFeedFooter) {
+//        currentPhotoFooter = footer
+        let dateFormatter = DateFormatter()
+        print(footer.postTop);
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+        self.inputview = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 200, width: self.view.frame.size.width, height: 240))
+        self.inputview.backgroundColor = UIColor.white
+        self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
+        self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
+        self.datePickerView.date = dateFormatter.date(from: footer.postTop["startTime"].stringValue)!
+        self.datePickerView.maximumDate = Date()
+        self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
+        self.backView.backgroundColor = UIColor(hex: "#272b49")
+        self.inputview.addSubview(self.datePickerView) // add date picker to UIView
+        let doneButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.size.width - 100, y: 0, width: 100, height: 40))
+        doneButton.setTitle("Save", for: .normal)
+        doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+        doneButton.setTitleColor(UIColor.white, for: .normal)
+        
+        let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+        cancelButton.setTitle("Cancel", for: .normal)
+        cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+        cancelButton.setTitleColor(UIColor.white, for: UIControlState())
+        self.inputview.addSubview(self.backView)
+        self.backView.addSubview(doneButton) // add Button to UIView
+        self.backView.addSubview(cancelButton) // add Cancel to UIView
+        
+        doneButton.addTarget(self, action: #selector(self.doneButton(_:)), for: .touchUpInside) // set button click event
+        cancelButton.addTarget(self, action: #selector(self.cancelButton(_:)), for: .touchUpInside) // set button click event
+        
+        self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
+        
+        self.handleDatePicker(self.datePickerView) // Set the date on start.
+        self.view.addSubview(self.backView)
+        self.view.addSubview(self.inputview)
+    }
     
+    func cancelButton(_ sender: UIButton){
+        self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
+        self.backView.removeFromSuperview()
+    }
+
     func handleDatePicker(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -482,13 +538,85 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         timeSelected = timeFormatter.string(from: sender.date.toGlobalTime())
     }
 
-    
     func doneButton(_ sender: UIButton){
         request.changeDateTimeLocal(currentPhotoFooter.postTop["_id"].stringValue, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
 //            self.getJourney()
         })
         self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
         self.backView.removeFromSuperview()
+    }
+
+    
+    // Add PhotosVideo
+    
+    func showEditAddActivity(_ postJson:JSON) {
+        var post = Post();
+        post.jsonToPost(postJson)
+        print(postJson);
+        var darkBlur: UIBlurEffect!
+        var blurView: UIVisualEffectView!
+        self.backView = UIView();
+        self.backView.frame = self.view.frame
+        self.view.addSubview(self.backView)
+        self.backView.frame = self.view.frame
+        darkBlur = UIBlurEffect(style: .dark)
+        blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame.size.height = self.backView.frame.height
+        blurView.frame.size.width = self.backView.frame.width
+        blurView.layer.zPosition = -1
+        blurView.isUserInteractionEnabled = false
+        self.backView.addSubview(blurView)
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: darkBlur)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        blurView.contentView.addSubview(vibrancyEffectView)
+        self.newScroll = UIScrollView(frame: CGRect(x: 0, y: 60, width: self.view.frame.width, height: self.view.frame.height - 60))
+        self.backView.addSubview(self.newScroll)
+        self.addView = AddActivityNew()
+        self.addView.buddyAdded(postJson["buddies"].arrayValue)
+        
+        self.addView.frame = self.view.frame
+        self.addView.editPost = post
+        self.addView.newScroll = self.newScroll;
+        
+        self.newScroll.contentSize.height = self.view.frame.height
+        backView.addSubview(newScroll)
+        
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.closeAdd(_:)), for: .touchUpInside)
+        
+        let rightButton = UIButton()
+        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        
+        rightButton.setTitle("Post", for: UIControlState())
+        rightButton.titleLabel?.font = avenirBold
+//        rightButton.addTarget(self, action: #selector(self.savePhotoVideo(_:) ), for: .touchUpInside)
+        globalNavigationController.topViewController?.title = "Add Photos/Videos"
+        globalNavigationController.topViewController?.customNavigationBar(left: leftButton, right: rightButton)
+        self.addView.layer.zPosition = 10
+        
+        backView.layer.zPosition = 10
+        newScroll.contentSize.height = self.view.frame.height
+        
+        if(post.videoArr.count > 0) {
+            let videoUrl = URL(string:post.videoArr[0].serverUrl)
+            self.addView.addVideoToBlock(video: videoUrl)
+        }
+        
+        self.addView.locationView.alpha = 0.1
+        self.addView.locationView.isUserInteractionEnabled = false
+        
+        self.addView.locationView.alpha = 0.1
+        self.addView.locationView.isUserInteractionEnabled = false
+        
+        self.addView.thoughtsInitalView.alpha = 0.1
+        self.addView.thoughtsInitalView.isUserInteractionEnabled = false
+        
+        self.addView.tagFriendsView.alpha = 1
+        self.addView.tagFriendsView.isUserInteractionEnabled = true
+        self.addView.typeOfAddActivtiy = "AddPhotosVideos"
+        self.newScroll.addSubview(self.addView)
     }
 
     

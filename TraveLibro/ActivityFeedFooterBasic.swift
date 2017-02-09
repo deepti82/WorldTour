@@ -441,9 +441,6 @@ class ActivityFeedFooterBasic: UIView {
         let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         if(self.type == "MyLifeFeeds") {
-            let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-            }
-            actionSheetControllerIOS8.addAction(cancelActionButton)
             let EditCheckIn: UIAlertAction = UIAlertAction(title: "Edit Activity", style: .default)
             {action -> Void in
                 //            self.isEdit = true
@@ -460,6 +457,7 @@ class ActivityFeedFooterBasic: UIView {
             actionSheetControllerIOS8.addAction(EditDnt)
             let DeletePost: UIAlertAction = UIAlertAction(title: "Delete Activity", style: .default)
             { action -> Void in
+                
                 let alert = UIAlertController(title: "", message: "Are you sure you want to delete this Activtiy", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
                 alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
@@ -470,17 +468,21 @@ class ActivityFeedFooterBasic: UIView {
                 }))
                 globalMyLifeViewController.present(alert, animated: true, completion: nil)
                 
-                           }
+            }
             actionSheetControllerIOS8.addAction(DeletePost)
             let share: UIAlertAction = UIAlertAction(title: "Add Photos/Videos", style: .default)
             { action -> Void in
-                //                globalNewTLViewController.showEditAddActivity(self.postTop)
+                globalMyLifeViewController.showEditAddActivity(self.postTop)
             }
             actionSheetControllerIOS8.addAction(share)
             
-        } else {
-            let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+            { action -> Void in
+                
             }
+            actionSheetControllerIOS8.addAction(cancel)
+            
+        } else {
             
             let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
             {action -> Void in
@@ -488,14 +490,17 @@ class ActivityFeedFooterBasic: UIView {
             }
             actionSheetControllerIOS8.addAction(UnFollow)
             
-            
-            
-            actionSheetControllerIOS8.addAction(cancelActionButton)
             let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
             {action -> Void in
                 
             }
             actionSheetControllerIOS8.addAction(reportActionButton)
+            
+            let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+            { action -> Void in
+                
+            }
+            actionSheetControllerIOS8.addAction(cancel)
         }
         globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
