@@ -98,7 +98,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         toolBar.isUserInteractionEnabled = true
         monthPickerView.inputAccessoryView = toolBar
         yearPickerView.inputAccessoryView = toolBar
-        
+        durationTextField.inputAccessoryView = toolBar
         
     }
     
