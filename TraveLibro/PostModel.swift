@@ -269,7 +269,7 @@ public class Post {
         self.jsonPost = json
         self.postCreator = json["postCreator"]
         self.post_ids = json["_id"].stringValue
-        self.post_uniqueId = json["showEditAddActivity"].stringValue
+        self.post_uniqueId = json["uniqueId"].stringValue
         self.post_type = json["type"].stringValue
         self.post_userId = json["user"]["_id"].stringValue
         self.post_journeyId = json["journey"].stringValue

@@ -2926,6 +2926,26 @@ class Navigation {
         }
         
     }
+//    itinerary/getOneApp
+    func getItinerary (_ id: String, completion: @escaping ((JSON) -> Void)) {
+        var json = JSON(1);
+        let params = ["user":currentUser["_id"].stringValue, "_id":id]
+        do {
+            let opt = try HTTP.POST(adminUrl + "itinerary/getOneApp", parameters: params)
+            opt.start { response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
 
     
 }

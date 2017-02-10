@@ -271,19 +271,21 @@ class ActivityFeedFooter: UIView {
             if(postTop["type"].stringValue == "detail-itinerary") {
                 let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
                 {action -> Void in
-                    
+                    let alert = UIAlertController(title: "Edit Itinerary", message: "You can only edit your Itinerary on Web.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
                 }
                 actionSheetControllerIOS8.addAction(editActionButton)
                 
-                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-                {action -> Void in
-                }
-                actionSheetControllerIOS8.addAction(changeCoverActionButton)
+//                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+//                {action -> Void in
+//                }
+//                actionSheetControllerIOS8.addAction(changeCoverActionButton)
                 
-                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
-                {action -> Void in
-                }
-                actionSheetControllerIOS8.addAction(deleteActionButton)
+//                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
+//                {action -> Void in
+//                }
+//                actionSheetControllerIOS8.addAction(deleteActionButton)
                 
                 let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                 { action -> Void in
