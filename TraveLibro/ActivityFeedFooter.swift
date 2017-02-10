@@ -318,6 +318,33 @@ class ActivityFeedFooter: UIView {
                 
                 let changeNameActionButton: UIAlertAction = UIAlertAction(title: "Change Journey Name", style: .default)
                 {action -> Void in
+                    
+                    
+                    //1. Create the alert controller.
+                    let alert = UIAlertController(title: "", message: "Change Journey Name", preferredStyle: .alert)
+                    //2. Add the text field. You can configure it however you need.
+                    alert.addTextField { (textField) in
+                        textField.text = self.postTop["name"].stringValue
+                    }
+                    
+                    // 3. Grab the value from the text field, and print it when the user clicks OK.
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                        let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+                        print("Text field: \(textField?.text)")
+                        request.journeyChangeName((textField?.text)!, journeyId: self.postTop["_id"].stringValue, completion: { response  in
+                            print(response);
+                        })
+                    }))
+                    
+                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    { action -> Void in
+                        
+                    }
+                    alert.addAction(cancel)
+                    
+                    // 4. Present the alert.
+                    globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
+                    
                 }
                 actionSheetControllerIOS8.addAction(changeNameActionButton)
                 
@@ -325,15 +352,26 @@ class ActivityFeedFooter: UIView {
                 {action -> Void in
                     globalMyLifeViewController.changeDateAndTimeEndJourney(self)
                 }
-                actionSheetControllerIOS8.addAction(changeDateActionButton)
+                
+                if(self.postTop["endTime"].string != nil) {
+                    actionSheetControllerIOS8.addAction(changeDateActionButton)
+                }
                 
                 let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countriess", style: .default)
                 {action -> Void in
+                    let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+                    end.journeyId = self.postTop["_id"].stringValue
+                    end.type = "MyLife"
+                    globalMyLifeContainerViewController.navigationController?.pushViewController(end, animated: true)
                 }
                 actionSheetControllerIOS8.addAction(crateCountriesActionButton)
                 
                 let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
                 {action -> Void in
+                    let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+                    end.journeyId = self.postTop["_id"].stringValue
+                    end.type = "MyLife"
+                    globalMyLifeContainerViewController.navigationController?.pushViewController(end, animated: true)
                 }
                 actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
                 

@@ -71,9 +71,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     
     @IBAction func endJourneyTapped(_ sender: UIButton) {
-        self.getJourney()
         let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
-        end.journey = myJourney
+        end.journeyId = myJourney["_id"].stringValue
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController!.pushViewController(end, animated: true)
     }

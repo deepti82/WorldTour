@@ -1106,6 +1106,29 @@ class Navigation {
         }
     }
     
+    func getJourneyById(_ id: String, completion: @escaping ((JSON) -> Void)) {
+        do {
+            let opt = try HTTP.POST(adminUrl + "journey/getoneApp", parameters: ["user": currentUser["_id"],"_id":id])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    print("journeydata")
+                    json  = JSON(data: response.data)
+                    currentJourney = json["data"]
+                    
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     func postTravelLife(_ thoughts: String, location: String, locationCategory: String, latitude: String, longitude: String, photosArray: [JSON], videosArray: [JSON], buddies: [JSON], userId: String, journeyId: String, userName: String, city: String, country: String, hashtags: [String], date: String, completion: @escaping ((JSON) -> Void)) {
         
         
@@ -2829,5 +2852,80 @@ class Navigation {
         }
         
     }
+    
+    
+    
+    func journeyChangeName(_ name: String,journeyId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        var json = JSON(1);
+        let params = ["user":currentUser["_id"].stringValue, "_id":journeyId,"name":name]
+        do {
+            let opt = try HTTP.POST(adminUrl + "journey/editData", parameters: params)
+            
+            opt.start { response in
+                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func journeyChangeEndTime(_ date: String,journeyId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        var json = JSON(1);
+        let params = ["user":currentUser["_id"].stringValue, "_id":journeyId,"endTime":date]
+        do {
+            let opt = try HTTP.POST(adminUrl + "journey/editData", parameters: params)
+            
+            opt.start { response in
+                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    
+    
+    func journeyChangeCoverImage(_ photo: String,journeyId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        var json = JSON(1);
+        let params = ["user":currentUser["_id"].stringValue, "_id":journeyId,"coverPhotos":photo]
+        do {
+            let opt = try HTTP.POST(adminUrl + "journey/editData", parameters: params)
+            opt.start { response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+
     
 }

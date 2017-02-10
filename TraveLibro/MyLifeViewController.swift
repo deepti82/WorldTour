@@ -453,6 +453,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
     // Change date and Time
     var currentPhotoFooter:ActivityFeedFooterBasic!
+    var currentPhotoFooter2:ActivityFeedFooter!
     var inputview:UIView!
     var datePickerView:UIDatePicker!
     var dateSelected = ""
@@ -495,7 +496,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func changeDateAndTimeEndJourney(_ footer:ActivityFeedFooter) {
-//        currentPhotoFooter = footer
+        currentPhotoFooter2 = footer
         let dateFormatter = DateFormatter()
         print(footer.postTop);
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
@@ -503,7 +504,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.inputview.backgroundColor = UIColor.white
         self.datePickerView = UIDatePicker(frame: CGRect(x: 0, y: 40, width: self.inputview.frame.size.width, height: 200))
         self.datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
-        self.datePickerView.date = dateFormatter.date(from: footer.postTop["startTime"].stringValue)!
+        self.datePickerView.minimumDate = dateFormatter.date(from: footer.postTop["postLastTime"].stringValue)!
+        self.datePickerView.date = dateFormatter.date(from: footer.postTop["endTime"].stringValue)!
         self.datePickerView.maximumDate = Date()
         self.backView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height - 240, width: self.view.frame.size.width, height: 40))
         self.backView.backgroundColor = UIColor(hex: "#272b49")
@@ -521,7 +523,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.backView.addSubview(doneButton) // add Button to UIView
         self.backView.addSubview(cancelButton) // add Cancel to UIView
         
-        doneButton.addTarget(self, action: #selector(self.doneButton(_:)), for: .touchUpInside) // set button click event
+        doneButton.addTarget(self, action: #selector(self.doneButtonJourney(_:)), for: .touchUpInside) // set button click event
         cancelButton.addTarget(self, action: #selector(self.cancelButton(_:)), for: .touchUpInside) // set button click event
         
         self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
@@ -544,6 +546,15 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         dateSelected = dateFormatter.string(from: sender.date)
         timeSelected = timeFormatter.string(from: sender.date.toGlobalTime())
     }
+    
+    func doneButtonJourney(_ sender: UIButton){
+        request.journeyChangeEndTime("\(dateSelected) \(timeSelected)", journeyId: currentPhotoFooter2.postTop["_id"].stringValue) { (response) in
+            
+        }
+        self.inputview.removeFromSuperview() // To resign the inputView on clicking done.
+        self.backView.removeFromSuperview()
+    }
+
 
     func doneButton(_ sender: UIButton){
         request.changeDateTimeLocal(currentPhotoFooter.postTop["_id"].stringValue, date: "\(dateSelected) \(timeSelected)", completion: {(response) in

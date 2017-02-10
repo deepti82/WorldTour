@@ -35,8 +35,9 @@ class EndJourneyViewController: UIViewController {
     var endJourney:EndJourneyView!
     var countriesVisited: [JSON] = []
     
-
+    var journeyId:String = ""
     var journey: JSON!
+    var type = ""
     
     @IBAction func changePicture(_ sender: AnyObject) {
         if journeyImages.count > 0 {
@@ -68,7 +69,7 @@ class EndJourneyViewController: UIViewController {
         case "backpacking":
             retStr =  "backpacking"
         case "business":
-             retStr = "business_new"
+            retStr = "business_new"
         case "religious":
             retStr = "religious"
         case "romance":
@@ -92,19 +93,26 @@ class EndJourneyViewController: UIViewController {
         }
         return retStr
     }
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        globalEndJourneyViewController = self
-        journeyImages = []
-        endJourneyState = true
-        ToastView.appearance().backgroundColor = endJourneyColor
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBgNew")!)
+    
+    func getJourney() {
+        request.getJourneyById(journeyId, completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                print(response);
+                if response.error != nil {
+                    print("error: \(response.error!.localizedDescription)")
+                }
+                else if response["value"].bool! {
+                    self.journey = response["data"]
+                    self.afterJourney()
+                }
+            })
+            
+        })
+    }
+    
+    func afterJourney () {
         
         setRating()
-
         
         //  START OF NAVIGATION BAR
         
@@ -115,16 +123,22 @@ class EndJourneyViewController: UIViewController {
         
         let rightButton = UIButton()
         
-        rightButton.setTitle("Done", for: .normal)
-        rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
-        rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 10, y: 0, width: 40, height: 30)
-        self.customNavigationBar(left: leftButton, right: rightButton)
+        if(type == "" ) {
+            rightButton.setTitle("Done", for: .normal)
+            rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
+            rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneEndJourney(_:)), for: .touchUpInside)
+            rightButton.frame = CGRect(x: 10, y: 0, width: 40, height: 30)
+            self.customNavigationBar(left: leftButton, right: rightButton)
+        } else if(type == "MyLife") {
+            rightButton.setTitle("Done", for: .normal)
+            rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
+            rightButton.addTarget(self, action: #selector(EndJourneyViewController.doneMyLifeJourney(_:)), for: .touchUpInside)
+            rightButton.frame = CGRect(x: 10, y: 0, width: 40, height: 30)
+            self.customNavigationBar(left: leftButton, right: rightButton)
+        }
         
         //  END OF NAVIGATION BER
         
-        print("...........JOURNEY DATA................")
-        print(journey)
         let buddies = journey["buddies"].array!
         let categories = journey["kindOfJourney"].array!
         
@@ -139,18 +153,18 @@ class EndJourneyViewController: UIViewController {
         endJourney.tag = 100
         endJourney.changeConstraint(height: 90)
         transparentCardWhite(endJourney.accesoriesVew)
-//        transparentOrangeView(endJourney.UserEndJourneyView)
+        //        transparentOrangeView(endJourney.UserEndJourneyView)
         
-//        endJourney.accesoriesVew.isHidden = true
+        //        endJourney.accesoriesVew.isHidden = true
         endJourney.categoryOne.tintColor = UIColor.white
         endJourney.categoryTwo.tintColor = UIColor.white
         endJourney.categoryThree.tintColor = UIColor.white
         endJourney.changePhotoButton.addTarget(self, action: #selector(changePicture(_:)), for: .touchUpInside)
         transparentCardWhite(endJourney.journeyCoverPic)
         endJourney.journeyCoverPic.image = UIImage(named: "logo-default")
-
-//        endJourney.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
-//        endJourney.clockIcon.text = String(format: "%C", faicon["clock"]!)
+        
+        //        endJourney.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
+        //        endJourney.clockIcon.text = String(format: "%C", faicon["clock"]!)
         
         getAllImages()
         
@@ -182,11 +196,11 @@ class EndJourneyViewController: UIViewController {
         }
         else if buddies.count == 2 {
             
-                        endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
-                        makeTLProfilePictureBorderOrange(endJourney.buddiesImages[0])
-                       endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
-                        makeTLProfilePictureBorderOrange(endJourney.buddiesImages[1])
-                        endJourney.buddyCount.isHidden = true
+            endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
+            makeTLProfilePictureBorderOrange(endJourney.buddiesImages[0])
+            endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
+            makeTLProfilePictureBorderOrange(endJourney.buddiesImages[1])
+            endJourney.buddyCount.isHidden = true
             
         }
         else if buddies.count == 1 {
@@ -236,9 +250,20 @@ class EndJourneyViewController: UIViewController {
         createReview()
         scrollChange()
         
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        globalEndJourneyViewController = self
+        journeyImages = []
+        endJourneyState = true
+        ToastView.appearance().backgroundColor = endJourneyColor
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBgNew")!)
+        
         //  END VERTICAL LAYOUT
         
-        
+        getJourney();
         self.title = "End Journey"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         
@@ -258,7 +283,7 @@ class EndJourneyViewController: UIViewController {
                 newJson.arrayObject?.append(journey["review"][Int(c)!].object)
             }else{
                 newJson.arrayObject?.append(n.object)
-
+                
             }
         }
         
@@ -289,7 +314,7 @@ class EndJourneyViewController: UIViewController {
             rate.ratingLabel.text = i["country"]["name"].stringValue
             rate.rating.tag = Int(n)!
             rate.rating.addTarget(self, action: #selector(EndJourneyViewController.postReview(_:)), for: .touchUpInside)
-
+            
             rateCountriesLayout.addSubview(rate)
             
             scrollChange()
@@ -314,7 +339,7 @@ class EndJourneyViewController: UIViewController {
         rating.endJourney = self;
         rating.center = backgroundReview.center
         rating.layer.cornerRadius = 5
-//        rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
+        //        rating.postReview.setTitle(sender.titleLabel!.text!, for: .application)
         rating.tag = sender.tag
         
         if newJson[sender.tag]["rating"] != nil {
@@ -368,19 +393,19 @@ class EndJourneyViewController: UIViewController {
                 let photosArr = response["data"]["photos"].array!
                 
                 if photosArr != [] {
-                
+                    
                     for image in response["data"]["photos"].array! {
                         
                         journeyImages.append(image["name"].string!)
                         
                     }
-//                    self.endJourney.accesoriesVew.isHidden = false
+                    //                    self.endJourney.accesoriesVew.isHidden = false
                     
                 } else {
                     
                     print("no images")
-//                    self.endJourney.accesoriesVew.isHidden = true
-//                   self.changePhotoViewHeight.constant = 47.0
+                    //                    self.endJourney.accesoriesVew.isHidden = true
+                    //                   self.changePhotoViewHeight.constant = 47.0
                     
                 }
                 if response["data"]["photos"].count > 0 {
@@ -417,14 +442,14 @@ class EndJourneyViewController: UIViewController {
     func makeCoverPicture (image: String) {
         DispatchQueue.main.async(execute: {
             self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(image)&width=500")!)
-//            let imageString = self.journey["startLocationPic"].string!
-//            print(imageString);
-//            if imageString.contains("http") {
-//                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:imageString)!)
-//            }
-//            else {
-//                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=500")!)
-//            }
+            //            let imageString = self.journey["startLocationPic"].string!
+            //            print(imageString);
+            //            if imageString.contains("http") {
+            //                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:imageString)!)
+            //            }
+            //            else {
+            //                self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(imageString)&width=500")!)
+            //            }
         })
     }
     
@@ -454,7 +479,7 @@ class EndJourneyViewController: UIViewController {
                         request.uploadPhotos(URL(string: exportFileUrl)!, localDbId: 0, completion: {(responce) in
                             if responce["value"] == true {
                                 
-                            self.coverImage = responce["data"][0].stringValue
+                                self.coverImage = responce["data"][0].stringValue
                                 
                                 request.endJourney(self.journey["_id"].string!, uniqueId: self.journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: self.journey["buddies"].array!, photo: self.coverImage, journeyName: self.journey["name"].stringValue, completion: {(response) in
                                     
@@ -467,7 +492,7 @@ class EndJourneyViewController: UIViewController {
                                         DispatchQueue.main.async(execute: {
                                             currentUser = response["data"]
                                             
-//                                            self.goBack()
+                                            //                                            self.goBack()
                                         })
                                     })
                                 })
@@ -479,9 +504,9 @@ class EndJourneyViewController: UIViewController {
                     print("error creating file: \(error.localizedDescription)")
                     
                 }
-                                
+                
             })
-
+            
             
         }else{
             var tstr = Toast(text: "Wait a while.....")
@@ -496,12 +521,66 @@ class EndJourneyViewController: UIViewController {
                         globalNewTLViewController.removeFromParentViewController()
                         tstr = Toast(text: "Journey ended successfully. Have a good life.")
                         tstr.show()
-//                        self.goBack()
+                        //                        self.goBack()
                     })
                 })
             })
         }
     }
+    
+    
+    
+    func doneMyLifeJourney(_ sender: UIButton) {
+        if coverImage.contains("UIImage") {
+            let exportFileUrl = "file://" + NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/coverimage.jpg"
+            DispatchQueue.main.async(execute: {
+                
+                do {
+                    
+                    if let data = UIImageJPEGRepresentation(self.coverImageImg, 0.35) {
+                        try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
+                        
+                        request.uploadPhotos(URL(string: exportFileUrl)!, localDbId: 0, completion: {(responce) in
+                            if responce["value"] == true {
+                                
+                                self.coverImage = responce["data"][0].stringValue
+                                
+                                request.journeyChangeCoverImage(self.coverImage, journeyId: self.journey["_id"].stringValue, completion: { (json) in
+                                    self.navigationController?.popViewController(animated: true)
+                                })
+                            }
+                        })
+                    }
+                } catch let error as NSError {
+                    
+                    print("error creating file: \(error.localizedDescription)")
+                    
+                }
+                
+            })
+            
+            
+        }else{
+            var tstr = Toast(text: "Wait a while.....")
+            tstr.show()
+            self.goBack()
+            request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, journeyName: journey["name"].stringValue, completion: {(response) in
+                
+                request.getUser(user.getExistingUser(), completion: {(response) in
+                    
+                    DispatchQueue.main.async(execute: {
+                        currentUser = response["data"]
+                        globalNewTLViewController.removeFromParentViewController()
+                        tstr = Toast(text: "Journey ended successfully. Have a good life.")
+                        tstr.show()
+                        //                        self.goBack()
+                    })
+                })
+            })
+        }
+    }
+
+    
     
     var loader = LoadingOverlay()
     
