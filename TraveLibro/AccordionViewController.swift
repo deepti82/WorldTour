@@ -30,6 +30,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var countryName = ""
     var cityName = ""
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //        getDarkBackGround(self)
