@@ -34,6 +34,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
+        
+        let i = PostImage()
+        i.uploadPhotos()
 
     }
     func openSideMenu(_ sender: AnyObject) {

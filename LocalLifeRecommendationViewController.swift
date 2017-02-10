@@ -31,6 +31,10 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     @IBOutlet weak var plusButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let i = PostImage()
+        i.uploadPhotos()
+        
         globalLocalLife = self
         getDarkBackGround(self)
         self.layout = VerticalLayout(width:screenWidth)

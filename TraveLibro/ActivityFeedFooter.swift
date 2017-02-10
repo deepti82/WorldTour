@@ -297,6 +297,8 @@ class ActivityFeedFooter: UIView {
             if(postTop["type"].stringValue == "quick-itinerary") {
                 let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
                 {action -> Void in
+                    let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+                    globalMyLifeContainerViewController.navigationController?.pushViewController(itineraryVC, animated: true)
                 }
                 actionSheetControllerIOS8.addAction(editActionButton)
                 

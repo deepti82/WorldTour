@@ -102,33 +102,15 @@ public class QuickItinerary {
                     }
                 })
             }
+            if(!check) {
+                if globalNewTLViewController != nil {
+                    globalNewTLViewController.getJourney()
+                }
+            }
         }
         catch {
             print("There is an error");
         }
         
-        
-//        request.postQuickitenary(title: quickItinery["title"].stringValue, year: quickItinery["year"].int!, month: quickItinery["month"].stringValue, duration:quickItinery["duration"].int!, description:quickItinery["description"].stringValue, itineraryType:quickItinery["itineraryType"], countryVisited:quickItinery["countryVisited"],status:false,  completion: {(response) in
-//            DispatchQueue.main.async(execute: {
-//                print(response)
-//                if response.error != nil {
-//                    
-//                    print("error: \(response.error!.localizedDescription)")
-//                    
-//                }
-//                else if response["value"].bool! {
-//                    quickItinery = []
-//                    let tstr = Toast(text: "Itenary saved successfully.")
-//                    tstr.show()
-//                    let next = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-//                    self.navigationController?.pushViewController(next, animated: true)
-//                    print("nothing")
-//                }
-//                else {
-//                    print("nothing")
-//                    
-//                }
-//            })
-//        })
     }
 }

@@ -212,7 +212,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         case "detail-itinerary":
             activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 528))
             activityDetailItinerary.fillData(feed: feed)
-            self.activityDetailItinerary.addSubview(textTag)
+//            self.activityDetailItinerary.addSubview(textTag)
             self.addSubview(activityDetailItinerary)
         default:
             print("default")

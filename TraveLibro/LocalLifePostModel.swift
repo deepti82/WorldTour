@@ -360,11 +360,12 @@ public class LocalLifePostModel {
                     }
                 })
             }
+            
             if(!check) {
-                if globalNewTLViewController != nil {
-                    globalNewTLViewController.getJourney()
-                }
+                let qi = QuickItinerary();
+                qi.upload();
             }
+           
         }
         catch {
             print("There is an error");
