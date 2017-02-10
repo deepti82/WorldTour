@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "408"
             endingLineNumber = "408"
-            landmarkName = "addBuddiesTableViewCell"
+            landmarkName = "addedBuddiesCollectionViewCell"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>

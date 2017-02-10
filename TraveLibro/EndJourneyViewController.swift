@@ -541,14 +541,16 @@ class EndJourneyViewController: UIViewController {
                         try data.write(to: URL(string: exportFileUrl)!, options: .atomic)
                         
                         request.uploadPhotos(URL(string: exportFileUrl)!, localDbId: 0, completion: {(responce) in
-                            if responce["value"] == true {
-                                
-                                self.coverImage = responce["data"][0].stringValue
-                                
-                                request.journeyChangeCoverImage(self.coverImage, journeyId: self.journey["_id"].stringValue, completion: { (json) in
-                                    self.navigationController?.popViewController(animated: true)
-                                })
-                            }
+                            DispatchQueue.main.async(execute: {
+                                if responce["value"] == true {
+                                    self.coverImage = responce["data"][0].stringValue
+                                    request.journeyChangeCoverImage(self.coverImage, journeyId: self.journey["_id"].stringValue, completion: { (json) in
+                                        DispatchQueue.main.async(execute: {
+                                            self.navigationController?.popViewController(animated: true)
+                                        })
+                                    })
+                                }
+                            })
                         })
                     }
                 } catch let error as NSError {
@@ -560,26 +562,12 @@ class EndJourneyViewController: UIViewController {
             })
             
             
-        }else{
-            var tstr = Toast(text: "Wait a while.....")
-            tstr.show()
-            self.goBack()
-            request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, journeyName: journey["name"].stringValue, completion: {(response) in
-                
-                request.getUser(user.getExistingUser(), completion: {(response) in
-                    
-                    DispatchQueue.main.async(execute: {
-                        currentUser = response["data"]
-                        globalNewTLViewController.removeFromParentViewController()
-                        tstr = Toast(text: "Journey ended successfully. Have a good life.")
-                        tstr.show()
-                        //                        self.goBack()
-                    })
-                })
-            })
+        }
+        else {
+            self.navigationController?.popViewController(animated: true)
         }
     }
-
+    
     
     
     var loader = LoadingOverlay()

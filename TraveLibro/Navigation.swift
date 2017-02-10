@@ -2908,7 +2908,7 @@ class Navigation {
     func journeyChangeCoverImage(_ photo: String,journeyId: String, completion: @escaping ((JSON) -> Void)) {
         
         var json = JSON(1);
-        let params = ["user":currentUser["_id"].stringValue, "_id":journeyId,"coverPhotos":photo]
+        let params = ["user":currentUser["_id"].stringValue, "_id":journeyId,"coverPhoto":photo]
         do {
             let opt = try HTTP.POST(adminUrl + "journey/editData", parameters: params)
             opt.start { response in
