@@ -6697,7 +6697,7 @@
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="allReviewsCell" rowHeight="143" id="cxD-F6-DRj" customClass="allReviewsMLTableViewCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="220" width="375" height="143"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxD-F6-DRj" id="ejy-q3-W2P">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="cxD-F6-DRj" id="ejy-q3-W2P">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -6720,8 +6720,8 @@
                                                         <constraint firstAttribute="height" constant="25" id="gYv-bu-myE"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYJ-AF-WmI">
-                                                    <rect key="frame" x="16" y="38" width="85" height="32"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iYJ-AF-WmI">
+                                                    <rect key="frame" x="16" y="38" width="110" height="32"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="14"/>
                                                     <state key="normal" title="Rate this now">
                                                         <color key="titleColor" red="0.2941176593" green="0.79607844350000001" blue="0.73333334920000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -6825,6 +6825,7 @@
                                         <connections>
                                             <outlet property="calendarDate" destination="y9G-xH-1bf" id="cb3-Rq-qKG"/>
                                             <outlet property="calendarLabel" destination="QBp-f3-ek3" id="0z0-ob-03X"/>
+                                            <outlet property="categoryImage" destination="FOV-U3-tWy" id="NEd-7A-wp5"/>
                                             <outlet property="clockLabel" destination="4li-S7-Dba" id="e4l-ip-czw"/>
                                             <outlet property="clockTime" destination="QNl-BV-HS9" id="xJf-8z-dBz"/>
                                             <outlet property="locationLabel" destination="SnH-gH-doc" id="llg-tp-lfj"/>
@@ -11361,7 +11362,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D2z-Yq-olS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7653" y="1893"/>
+            <point key="canvasLocation" x="7657" y="1893"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Jyg-7B-aZK">

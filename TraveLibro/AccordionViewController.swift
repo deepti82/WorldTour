@@ -219,6 +219,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
             cell.locationLabel.text = "\(allData[indexPath.row]["checkIn"]["city"].stringValue), \(allData[indexPath.row]["checkIn"]["country"].stringValue)"
             cell.placeTitle.text = allData[indexPath.row]["checkIn"]["location"].stringValue
+                        cell.setView(feed: allData[indexPath.row])
             
             return cell
             
@@ -234,6 +235,8 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
                 cell.locationLabel.text = "\(allData[indexPath.row]["checkIn"]["city"].stringValue), \(allData[indexPath.row]["checkIn"]["country"].stringValue)"
                 cell.placeTitle.text = allData[indexPath.row]["checkIn"]["location"].stringValue
+                cell.setView(feed: allData[indexPath.row])
+
                 return cell
 
             }
@@ -277,7 +280,9 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         
         
         if reviewType == "all" {
-            
+            if allData[indexPath.row]["review"][0]["review"] == nil || allData[indexPath.row]["review"][0]["review"].stringValue == ""  {
+                return 115
+            }
             return 143
 
         }
@@ -286,6 +291,9 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             if indexPath.row == 0 {
                 return 45
             }else{
+                if allData[indexPath.row]["review"][0]["review"] == nil || allData[indexPath.row]["review"][0]["review"].stringValue == ""  {
+                    return 115
+                }
                 return 143
             }
         }
@@ -334,11 +342,89 @@ class allReviewsMLTableViewCell: UITableViewCell {
     @IBOutlet weak var clockTime: UILabel!
     @IBOutlet weak var ratingStack: UIStackView!
     @IBOutlet var starImageArray: [UIImageView]!
+    var backgroundReview: UIView!
+    var postTop:JSON = []
+    var newRating:JSON = []
+    let categories: [JSON] = [["title": "Transportation", "image": "planetrans"], ["title": "Hotels & Accomodations", "image": "hotels-1"], ["title": "Restaurants & Bars", "image": "restaurantsandbars"], ["title": "Nature & Parks", "image": "leaftrans"], ["title": "Sights & Landmarks", "image": "sightstrans"], ["title": "Museums & Galleries", "image": "museumstrans"], ["title": "Religious", "image": "regli"], ["title": "Shopping", "image": "shopping"], ["title": "Zoo & Aquariums", "image": "zootrans"], ["title": "Cinema & Theatres", "image": "cinematrans"], ["title": "City", "image": "city_icon"], ["title": "Health & Beauty", "image": "health_beauty"], ["title": "Rentals", "image": "rentals"], ["title": "Entertainment", "image": "entertainment"], ["title": "Essentials", "image": "essential"], ["title": "Emergency", "image": "emergency"], ["title": "Others", "image": "othersdottrans"]]
+
+    @IBOutlet weak var categoryImage: UIImageView!
+    
+//    @IBAction func ratingButtonClicked(_ sender: UIButton) {
+//        print("in clicked")
+//        openRating()
+//    }
+    func checkMyRating(_ sender: UITapGestureRecognizer) {
+        print("check i im the creator")
+        
+            openRating()
+    }
+    
+    func getCategory(type:String) -> String {
+        var returnValue = ""
+        for item in categories {
+            if item["title"].stringValue == type {
+                returnValue = item["image"].stringValue
+            }
+        }
+        return returnValue
+    }
+    
+    func openRating() {
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.reviewTapOut(_:)))
+        
+        backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
+        backgroundReview.addGestureRecognizer(tapout)
+        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        globalNavigationController.topViewController?.view.addSubview(backgroundReview)
+        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
+        
+        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
+        rating.activityJson = postTop
+//        rating.activityBasic = self
+        rating.checkView = "activityFeed"
+        
+        
+        if postTop["review"][0]["rating"] != nil  && postTop["review"].count != 0 {
+            if newRating != nil {
+                rating.starCount = newRating["rating"].intValue
+                rating.ratingDisplay(newRating)
+            }else{
+                rating.starCount = postTop["review"][0]["rating"].intValue
+                rating.ratingDisplay(postTop["review"][0])
+            }
+        }else{
+            if newRating != nil {
+                rating.starCount = newRating["rating"].intValue
+                rating.ratingDisplay(newRating)
+                
+            }else{
+                rating.starCount = 1
+            }
+        }
+        
+        
+        
+        rating.center = backgroundReview.center
+        rating.layer.cornerRadius = 5
+        rating.clipsToBounds = true
+        rating.navController = globalNavigationController
+        backgroundReview.addSubview(rating)
+    }
     
     func setView(feed:JSON) {
+        self.review.isHidden = true
+        postTop = feed
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(self.checkMyRating(_:)))
+        ratingButton.addGestureRecognizer(tapout)
+        ratingStack.addGestureRecognizer(tapout)
+        categoryImage.image = UIImage(named: getCategory(type: feed["checkIn"]["category"].stringValue))
+
         if feed["review"][0] != nil && feed["review"].count > 0 {
             ratingStack.isHidden = false
             ratingButton.isHidden = true
+            if feed["review"][0]["review"].stringValue != "" {
+                self.review.text = feed["review"][0]["review"].stringValue
+            }
             afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue, type:feed["type"].stringValue)
         }else{
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
@@ -370,7 +456,11 @@ class allReviewsMLTableViewCell: UITableViewCell {
                     
                 }
             }
-//            newRating = ["rating":"\(starCnt)","review":review]
+            if review != "" {
+                self.review.isHidden = false
+            }
+            
+            newRating = ["rating":"\(starCnt)","review":review]
             ratingStack.isHidden = false
             ratingButton.isHidden = true
         }
