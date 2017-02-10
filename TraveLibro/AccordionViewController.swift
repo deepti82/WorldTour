@@ -416,7 +416,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
         postTop = feed
         let tapout = UITapGestureRecognizer(target: self, action: #selector(self.checkMyRating(_:)))
         ratingButton.addGestureRecognizer(tapout)
-        ratingStack.addGestureRecognizer(tapout)
+//        ratingStack.addGestureRecognizer(tapout)
         categoryImage.image = UIImage(named: getCategory(type: feed["checkIn"]["category"].stringValue))
 
         if feed["review"][0] != nil && feed["review"].count > 0 {
