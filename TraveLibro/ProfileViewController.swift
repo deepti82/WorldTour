@@ -145,8 +145,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         rightButton.addTarget(self, action: #selector(ProfileViewController.search(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: -10, y: 8, width: 30, height: 30)
         self.setOnlyRightNavigationButton(rightButton)
-        let customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 70, width: self.view.frame.width, height: 70)))
-        self.orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 120, width: self.view.frame.size.width - 10, height: 50))
+        let customView = UIView(frame:(CGRect(x: 0, y: self.view.frame.size.height - 75, width: self.view.frame.width, height: 75)))
+        self.orangeTab = OrangeButton(frame: CGRect(x: 5, y: self.view.frame.size.height - 125, width: self.view.frame.size.width - 10, height: 50))
         orangeTab.orangeButtonTitle.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
         orangeTab.orangeButtonTitle.setTitle("My Life", for: UIControlState())
         let fontAwesomeLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: orangeTab.frame.size.height))
@@ -176,7 +176,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
         
-        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 64, width: self.view.frame.width, height: 64))
+        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
         self.view.addSubview(footer)
 
         

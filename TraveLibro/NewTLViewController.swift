@@ -1052,7 +1052,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                     self.addPostsButton.frame.origin.y = self.view.frame.height - 120
-                    self.mainFooter.frame.origin.y = self.view.frame.height - 65
+                    self.mainFooter.frame.origin.y = self.view.frame.height - 70
                 }, completion: nil)
             }
         }

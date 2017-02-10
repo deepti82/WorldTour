@@ -169,13 +169,25 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         addedBuddies = json;
         let count = json.count
         if(count ==  1) {
+            if typeOfAddActivtiy == "CreateLocalLife"{
             self.friendsCount.setTitle("1 Friend", for: UIControlState())
             self.friendsCount.isHidden = false;
-            self.friendsTag.tintColor = mainOrangeColor
+            self.friendsTag.tintColor = mainGreenColor
+            }else {
+                self.friendsCount.setTitle("1 Friend", for: UIControlState())
+                self.friendsCount.isHidden = false;
+                self.friendsTag.tintColor = mainOrangeColor
+            }
         } else if(count > 1)  {
+            if typeOfAddActivtiy == "CreateLocalLife"{
+                self.friendsCount.setTitle("\(count) Friends", for: UIControlState())
+                self.friendsCount.isHidden = false;
+                self.friendsTag.tintColor = mainGreenColor
+            }else {
             self.friendsCount.setTitle("\(count) Friends", for: UIControlState())
             self.friendsCount.isHidden = false;
             self.friendsTag.tintColor = mainOrangeColor
+            }
         } else if (count == 0) {
             self.friendsCount.setTitle("0 Friend", for: UIControlState())
             self.friendsCount.isHidden = true;
