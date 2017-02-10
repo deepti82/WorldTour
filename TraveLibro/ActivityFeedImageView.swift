@@ -48,6 +48,7 @@ class ActivityFeedImageView: UIView {
         
         OnTheGOText.layer.cornerRadius = 5
         locationIcon.clipsToBounds = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

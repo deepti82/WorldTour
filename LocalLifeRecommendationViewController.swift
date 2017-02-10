@@ -278,12 +278,12 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
 //            }
 //
 //            
-//            func textViewDidBeginEditing(_ textView: UITextView) {
-//                if addView.thoughtsTextView.text == "Fill Me In..." {
-//                    addView.thoughtsTextView.text = ""
-//                    addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
-//                }
-//            }
+            func textViewDidBeginEditing(_ textView: UITextView) {
+                if addView.thoughtsTextView.text == "Fill Me In..." {
+                    addView.thoughtsTextView.text = ""
+                    addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
+                }
+            }
 
 
             
