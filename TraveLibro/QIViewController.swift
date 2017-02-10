@@ -13,6 +13,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
     var quick: QuickIteneraryOne!
     var selectedView = false
     var inx = 0
+    var type = ""
     var viewControllers1 = [UIViewController]()
     
     override func viewDidLoad() {
@@ -41,7 +42,6 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
             inx = 0
         }
         createNavigation()
-        
     }
     
     func changeView(changedIndex:Int, key:String) {
