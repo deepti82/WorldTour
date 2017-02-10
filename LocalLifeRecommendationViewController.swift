@@ -161,7 +161,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         myView5.photoBottomView2.tag = 14
         layout.addSubview(myView5)
         
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 64, width: self.view.frame.width, height: 64))
+        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
         footer.localLifeIcon.tintColor = mainGreenColor
         self.view.addSubview(footer)
         self.detectLocation(UIButton())
@@ -234,59 +234,12 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             backView.addSubview(newScroll)
             addView.finalImageTag.tintColor = UIColor(hex: "#11d3cb")
             addView.videoTagFinal.tintColor = UIColor(hex: "#11d3cb")
-            addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
-//            addView.thoughtsTextView.delegate = self
-//            
-//            
-//            
-//            func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//                
-//                if text == "\n" {
-//                    
-//                    addView.thoughtsTextView.resignFirstResponder()
-//                    
-//                    if addView.thoughtsTextView.text == "" {
-//                        
-//                        addView.thoughtsTextView.text = "Fill Me In..."
-//                        
-//                    }
-//                    return true
-//                    
-//                }
-//                
-//                let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-//                let number = newText.characters.count
-//                addView.countCharacters(number)
-//                return number <= 180
-//                
-//            }
-//            
-//            
-//            
-//            func countCharacters(_ number:Int) {
-//                addView.thoughtsCharacterCount.text = String(180 - number)
-//                
-//                if(number != 0) {
-//                    addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
-//                } else {
-//                    addView.finalThoughtTag.tintColor = mainBlueColor
-//                }
-//                
-//                if addView.thoughtsCharacterCount.text == "-1" {
-//                    addView.thoughtsCharacterCount.text = "0"
-//                }
-//            }
-//
-//            
-            func textViewDidBeginEditing(_ textView: UITextView) {
-                if addView.thoughtsTextView.text == "Fill Me In..." {
-                    addView.thoughtsTextView.text = ""
-                    addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
-                }
-            }
-
-
+//            addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
+//            addView.locationGreen.isHidden = true
+//            addView.locationTag.isHidden = true
+//            addView.locationGreen.tintColor = UIColor(hex: "#11d3cb")
             
+//            addView.penGreen.tintColor = UIColor(hex: "#11d3cb")
             let leftButton = UIButton()
             leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -304,7 +257,9 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
             addView.layer.zPosition = 10
             backView.layer.zPosition = 10
             newScroll.contentSize.height = self.view.frame.height
-            
+//            addView.finalThoughtTag.isHidden = true
+//           addView.penGreen.isHidden = true
+        
         }
         
     }
@@ -365,7 +320,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         var thoughts = ""
         if self.addView.thoughtsTextView.text! != nil {
             thoughts = self.addView.thoughtsTextView.text!
-             addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
+//             addView.finalThoughtTag.tintColor = UIColor(hex: "#11d3cb")
+//            addView.finalThoughtTag.isHidden = true
             if(thoughts == "Fill Me In...") {
                 thoughts = ""
             }

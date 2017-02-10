@@ -21,7 +21,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         self.title = "Itinerary Preview"
         
         
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 64, width: self.view.frame.width, height: 64))
+        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
         footer.layer.zPosition = 1000
         
         footer.layer.shadowColor = UIColor.black.cgColor

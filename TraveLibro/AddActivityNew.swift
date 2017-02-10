@@ -20,6 +20,8 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
     var videoURL:URL!
     var videoCaption = ""
 
+    @IBOutlet weak var penGreen: UIImageView!
+    @IBOutlet weak var locationGreen: UIImageView!
     @IBOutlet weak var locationView: UIView!
     @IBOutlet weak var photosIntialView: UIView!
     @IBOutlet weak var photosFinalView: UIView!
@@ -156,7 +158,9 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         self.finalImageTag.tintColor = mainOrangeColor
         self.videoTagFinal.tintColor = mainOrangeColor
             self.addLocationText.delegate = self
-    
+//        locationGreen.isHidden = true
+//        locationTag.isHidden = false
+//         penGreen.isHidden = true
     }
     
     
@@ -257,7 +261,11 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         thoughtsCharacterCount.text = String(180 - number)
         
         if(number != 0) {
-            self.finalThoughtTag.tintColor = lightOrangeColor
+            if typeOfAddActivtiy == "CreateLocalLife"{
+            self.finalThoughtTag.tintColor = mainGreenColor
+            }else {
+                self.finalThoughtTag.tintColor = lightOrangeColor
+            }
         } else {
             self.finalThoughtTag.tintColor = mainBlueColor
         }
@@ -590,7 +598,11 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
     
     func putLocationName(_ selectedLocation: String, placeId: String!) {
         self.addLocationButton.setTitle(selectedLocation, for: UIControlState())
+        if typeOfAddActivtiy == "CreateLocalLife"{
+            self.locationTag.tintColor = mainGreenColor
+        } else {
         self.locationTag.tintColor = lightOrangeColor
+        }
         self.cancelLocationButton.isHidden = false
         if(placeId != nil) {
             request.getPlaceId(placeId, completion: { response in
