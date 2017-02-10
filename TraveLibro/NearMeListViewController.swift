@@ -97,13 +97,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         tableView.estimatedRowHeight = 100
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "nearMeList", for: indexPath) as! NearMeListCell
-        if nearMeListJSON[indexPath.row]["type"].string == "local-life"{
-        cell.starStackView.tintColor = mainGreenColor
-            cell.listAddress.backgroundColor = mainGreenColor
-        }else {
-            //
-        }
-        
+               
         
         cell.backgroundColor = UIColor.clear
         cell.contentView.backgroundColor = UIColor.white.withAlphaComponent(0.8)
