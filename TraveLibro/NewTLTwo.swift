@@ -518,7 +518,7 @@ extension NewTLViewController {
             otgView.detectLocationView.isHidden = true
             otgView.addBuddiesButton.isHidden = true
             otgView.selectCategoryButton.isHidden = true
-            otgView.bonVoyageLabel.isHidden = true
+            otgView.bonVoyageLabel.isHidden = false
             otgView.cityView.isHidden = false
             otgView.cityDetails.isHidden = false
             otgView.placeLabel.text = journey["startLocation"].string!

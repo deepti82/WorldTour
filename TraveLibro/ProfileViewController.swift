@@ -5,6 +5,7 @@ var doRemove: Bool = true
 var globalProfileController:ProfileViewController!
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UIViewControllerPreviewingDelegate {
 
+    @IBOutlet weak var scrollImage: UIScrollView!
     @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var livesInStack: UIStackView!
     @IBOutlet weak var profileView: UIView!
@@ -116,7 +117,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""
-        
+//        scrollImage.isScrollEnabled =  true
+//        scrollImage.contentSize.width = 10000
+//        scrollViewWillBeginDragging(collectionView)
         myLifeVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
         
         if traitCollection.forceTouchCapability == .available {
@@ -378,6 +381,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return labels.count
     }
+
     
     func gotoBucketList() {
         let num = Int(allCount["bucketList_count"].stringValue)

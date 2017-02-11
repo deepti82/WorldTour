@@ -31,7 +31,7 @@ class PhotosOTGHeader: UIView {
         loadViewFromNib ()
         self.layer.shadowOffset = CGSize(width: 5, height: 5)
         self.layer.shadowColor = UIColor.black.cgColor
-
+        whatPostIcon.tintColor = mainOrangeColor
     }
     
     required init?(coder aDecoder: NSCoder) {

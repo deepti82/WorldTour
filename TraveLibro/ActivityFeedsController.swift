@@ -140,7 +140,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         } else {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
 
-            self.mainFooter.frame.origin.y = self.view.frame.height - 65
+            self.mainFooter.frame.origin.y = self.view.frame.height - 70
 
         }
     }
