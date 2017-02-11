@@ -14,6 +14,8 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
     var selectedView = false
     var inx = 0
     var type = ""
+    var editID:String!
+    var editJson:JSON!
     var viewControllers1 = [UIViewController]()
     
     override func viewDidLoad() {
@@ -24,11 +26,12 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         self.dataSource = self
         ToastView.appearance().backgroundColor = mainOrangeColor
         
-        let quickOne: UIViewController = (storyboard?.instantiateViewController(withIdentifier: "quickOne"))!
-        let quickTwo: UIViewController! = (storyboard?.instantiateViewController(withIdentifier: "quickTwo"))!
-        let quickThree: UIViewController = (storyboard?.instantiateViewController(withIdentifier: "quickThree"))!
-        let quickFour: UIViewController! = (storyboard?.instantiateViewController(withIdentifier: "quickFour"))!
-        let quickFive: UIViewController! = (storyboard?.instantiateViewController(withIdentifier: "quickFive"))!
+        let quickOne: QuickIteneraryOne = (storyboard?.instantiateViewController(withIdentifier: "quickOne")) as! QuickIteneraryOne
+        let quickTwo: QuickIteneraryTwo = (storyboard?.instantiateViewController(withIdentifier: "quickTwo")) as! QuickIteneraryTwo
+        let quickThree: QuickIteneraryThree = (storyboard?.instantiateViewController(withIdentifier: "quickThree")) as! QuickIteneraryThree
+        let quickFour: QuickIteneraryFour = (storyboard?.instantiateViewController(withIdentifier: "quickFour")) as! QuickIteneraryFour
+        let quickFive: QuickIteneraryFive = (storyboard?.instantiateViewController(withIdentifier: "quickFive")) as! QuickIteneraryFive
+        
         viewControllers1.append(quickOne)
         viewControllers1.append(quickTwo)
         viewControllers1.append(quickThree)
@@ -42,6 +45,17 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
             inx = 0
         }
         createNavigation()
+        if(editID != nil) {
+            request.getItinerary(editID, completion: { (json) in
+                DispatchQueue.main.async(execute: {
+                    self.editJson = json;
+                    print(json);
+                    quickOne.durationTextField.text = self.editJson["duration"].numberValue.stringValue
+                    quickOne.monthPickerView.text = self.editJson["month"].stringValue
+                })
+            })
+        }
+        
     }
     
     func changeView(changedIndex:Int, key:String) {

@@ -298,14 +298,15 @@ class ActivityFeedFooter: UIView {
                 let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
                 {action -> Void in
                     let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+                    itineraryVC.editID = self.postTop["_id"].stringValue
                     globalMyLifeContainerViewController.navigationController?.pushViewController(itineraryVC, animated: true)
                 }
                 actionSheetControllerIOS8.addAction(editActionButton)
                 
-                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-                {action -> Void in
-                }
-                actionSheetControllerIOS8.addAction(changeCoverActionButton)
+//                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+//                {action -> Void in
+//                }
+//                actionSheetControllerIOS8.addAction(changeCoverActionButton)
                 
                 let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
                 {action -> Void in
@@ -361,7 +362,7 @@ class ActivityFeedFooter: UIView {
                     actionSheetControllerIOS8.addAction(changeDateActionButton)
                 }
                 
-                let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countriess", style: .default)
+                let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countries", style: .default)
                 {action -> Void in
                     let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
                     end.journeyId = self.postTop["_id"].stringValue

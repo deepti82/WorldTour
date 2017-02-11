@@ -85,7 +85,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         dateFormatter.dateFormat = "dd MMM, yyyy"
         timeFormatter.dateFormat = "hh:mm a"
         
-        let getImageUrl = adminUrl + "upload/readFile?file=\(self.notifications[indexPath.row]["userFrom"]["profilePicture"].string!)"
+        let getImageUrl = adminUrl + "upload/readFile?file=123"
         
         
         if notifications[(indexPath as NSIndexPath).row]["type"].string! == "request" {
@@ -157,7 +157,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             cell.calenderIcon.text = String(format: "%C", faicon["calendar"]!)
             cell.imageForMessage.isHidden = true
             cell.timeAgo.isHidden = true
-            cell.messageText.text = notifications[indexPath.row]["message"].string!
+//            cell.messageText.text = notifications[indexPath.row]["message"].string!
             return cell
         //}
         
