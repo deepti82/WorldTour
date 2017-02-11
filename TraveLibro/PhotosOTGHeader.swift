@@ -70,7 +70,7 @@ class PhotosOTGHeader: UIView {
         maskLayer.path = path.cgPath
         footer.layer.mask = maskLayer
         
-        
+        makeBuddiesTLProfilePicture(postDp)
         
         self.photosTitle.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.openText(_:)))
