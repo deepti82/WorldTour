@@ -139,6 +139,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 self.backView.addSubview(doneButton) // add Button to UIView
                 self.backView.addSubview(cancelButton) // add Cancel to UIView
                 
+               if self.addPostsButton.tag == 1 {
+                    self.addPostsButton.backgroundColor  = UIColor.black
+                }
+                
                 doneButton.addTarget(self, action: #selector(NewTLViewController.doneButtonJourney(_:)), for: .touchUpInside) // set button click event
                 cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
                 
@@ -983,13 +987,19 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         mainScroll.clipsToBounds = true
         
         self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 60, height: 60))
-        self.addPostsButton.layer.cornerRadius = 30
-        self.addPostsButton.backgroundColor = mainOrangeTransparentColor
-        self.addPostsButton.backgroundColor?.withAlphaComponent(0.8)
+//        self.addPostsButton.layer.cornerRadius = 30
+        let origImage = UIImage(named: "darkgreycircle");
+        let tintedImage = origImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        addPostsButton.setImage(tintedImage, for: .normal)
+        addPostsButton.tintColor = mainOrangeTransparentColor
+        self.addPostsButton.setBackgroundImage(UIImage(named:"darkgreycircle"), for: .normal)
+        addPostsButton.imageView?.contentMode = .scaleAspectFit
+            
+            self.addPostsButton.backgroundColor?.withAlphaComponent(0.8)
 //        transparentOrangeButton(self.addPostsButton)
         self.addPostsButton.setImage(UIImage(named: "plus"), for: .normal)
         self.addPostsButton.imageView?.contentMode = .scaleAspectFit
-        self.addPostsButton.imageEdgeInsets = UIEdgeInsetsMake(23, 23, 23, 23)
+        self.addPostsButton.imageEdgeInsets = UIEdgeInsetsMake(22, 22, 22, 22)
         self.addPostsButton.addTarget(self, action: #selector(NewTLViewController.addPosts(_:)), for: .touchUpInside)
         
         self.addPostsButton.layer.zPosition = 5
