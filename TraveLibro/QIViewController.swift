@@ -9,6 +9,7 @@
 import UIKit
 import Toaster
 
+
 class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate  {
     var quick: QuickIteneraryOne!
     var selectedView = false

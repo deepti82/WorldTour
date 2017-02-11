@@ -101,6 +101,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/TabPageViewController/TabPageViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Toaster/Toaster.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/iCarousel/iCarousel.framework"
   install_framework "${PODS_ROOT}/imglyKit/imglyKit.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -121,5 +122,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/TabPageViewController/TabPageViewController.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Toaster/Toaster.framework"
   install_framework "$BUILT_PRODUCTS_DIR/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/iCarousel/iCarousel.framework"
   install_framework "${PODS_ROOT}/imglyKit/imglyKit.framework"
 fi

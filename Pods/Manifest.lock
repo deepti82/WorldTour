@@ -32,6 +32,7 @@ PODS:
   - GoogleToolboxForMac/NSData+zlib (2.1.0):
     - GoogleToolboxForMac/Defines (= 2.1.0)
   - HanekeSwift (0.10.1)
+  - iCarousel (1.8.3)
   - imglyKit (5.0.6)
   - OneSignal (2.3.4)
   - Player (0.2.2)
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - Dollar
   - Google/Analytics
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
+  - iCarousel (~> 1.8)
   - imglyKit (~> 5.0)
   - OneSignal
   - Player (~> 0.2.0)
@@ -110,6 +112,7 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   HanekeSwift: 4113367892828e7700d24a384027de6ebc79aad1
+  iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
   imglyKit: b78152c784cdcdf64297de33ad474bd7f13c7de9
   OneSignal: c8f0d08ffa30fcf751c97a29639725877027e788
   Player: 5cff076cc9f13b51f56b6fb7bed24431569b8102
@@ -124,6 +127,6 @@ SPEC CHECKSUMS:
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: da569c7ef33d546c52c66834213c7e62b7b8f3df
+PODFILE CHECKSUM: bf03f51fbba5640bfd630fa09da86f317117a19b
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.0.1
