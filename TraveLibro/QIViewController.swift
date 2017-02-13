@@ -8,7 +8,7 @@
 
 import UIKit
 import Toaster
-
+import iCarousel
 
 class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate  {
     var quick: QuickIteneraryOne!
@@ -26,7 +26,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         self.delegate = self
         self.dataSource = self
         ToastView.appearance().backgroundColor = mainOrangeColor
-        
+
         let quickOne: QuickIteneraryOne = (storyboard?.instantiateViewController(withIdentifier: "quickOne")) as! QuickIteneraryOne
         let quickTwo: QuickIteneraryTwo = (storyboard?.instantiateViewController(withIdentifier: "quickTwo")) as! QuickIteneraryTwo
         let quickThree: QuickIteneraryThree = (storyboard?.instantiateViewController(withIdentifier: "quickThree")) as! QuickIteneraryThree

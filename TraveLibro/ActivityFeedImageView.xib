@@ -118,31 +118,6 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="0ww-yb-rxi">
-                            <rect key="frame" x="289" y="29" width="77" height="15"/>
-                            <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backpacking" translatesAutoresizingMaskIntoConstraints="NO" id="l8S-v1-Fv4">
-                                    <rect key="frame" x="0.0" y="0.0" width="25" height="15"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="25" id="gEQ-la-iwR"/>
-                                    </constraints>
-                                </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solo" translatesAutoresizingMaskIntoConstraints="NO" id="iRT-WD-wtk">
-                                    <rect key="frame" x="26" y="0.0" width="25" height="15"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="25" id="pRz-rQ-WHu"/>
-                                    </constraints>
-                                </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adventure" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-jr-bMo">
-                                    <rect key="frame" x="52" y="0.0" width="25" height="15"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="15" id="2Qx-sg-8GP"/>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="ZVn-yB-LZy"/>
-                                        <constraint firstAttribute="width" constant="25" id="rrF-Il-gUw"/>
-                                    </constraints>
-                                </imageView>
-                            </subviews>
-                        </stackView>
                         <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="jxU-Wm-SMf">
                             <rect key="frame" x="8" y="32.5" width="136" height="20"/>
                             <subviews>
@@ -235,6 +210,31 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="0ww-yb-rxi">
+                            <rect key="frame" x="295" y="35" width="77" height="15"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backpacking" translatesAutoresizingMaskIntoConstraints="NO" id="l8S-v1-Fv4">
+                                    <rect key="frame" x="0.0" y="0.0" width="25" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="gEQ-la-iwR"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solo" translatesAutoresizingMaskIntoConstraints="NO" id="iRT-WD-wtk">
+                                    <rect key="frame" x="26" y="0.0" width="25" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="pRz-rQ-WHu"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adventure" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-jr-bMo">
+                                    <rect key="frame" x="52" y="0.0" width="25" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="15" id="2Qx-sg-8GP"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="ZVn-yB-LZy"/>
+                                        <constraint firstAttribute="width" constant="25" id="rrF-Il-gUw"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                        </stackView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.39944426546391754" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -243,12 +243,12 @@
                         <constraint firstAttribute="trailing" secondItem="ENw-6j-79C" secondAttribute="trailing" constant="18" id="7Fg-Om-gjg"/>
                         <constraint firstItem="Vgq-mF-rYD" firstAttribute="top" secondItem="hHu-jo-Pzw" secondAttribute="top" constant="-30" id="Ebq-Zd-cWB"/>
                         <constraint firstAttribute="trailing" secondItem="Vgq-mF-rYD" secondAttribute="trailing" constant="14" id="PQt-ki-Xax"/>
-                        <constraint firstItem="0ww-yb-rxi" firstAttribute="top" secondItem="Vgq-mF-rYD" secondAttribute="bottom" constant="4" id="QnC-cx-726"/>
+                        <constraint firstItem="0ww-yb-rxi" firstAttribute="top" secondItem="Vgq-mF-rYD" secondAttribute="bottom" constant="10" id="QnC-cx-726"/>
                         <constraint firstAttribute="trailing" secondItem="CTr-Fv-Wgb" secondAttribute="trailing" constant="21" id="YK6-Pb-NUc"/>
                         <constraint firstItem="ENw-6j-79C" firstAttribute="top" secondItem="hHu-jo-Pzw" secondAttribute="top" constant="-20" id="YNv-ap-hs7"/>
                         <constraint firstAttribute="height" constant="72" id="Yek-d6-Vuz"/>
                         <constraint firstItem="jxU-Wm-SMf" firstAttribute="top" secondItem="FdU-2B-wz7" secondAttribute="bottom" constant="1" id="dLx-Bu-3CV"/>
-                        <constraint firstItem="0ww-yb-rxi" firstAttribute="leading" secondItem="jxU-Wm-SMf" secondAttribute="trailing" constant="145" id="efI-LZ-xE1"/>
+                        <constraint firstItem="0ww-yb-rxi" firstAttribute="leading" secondItem="jxU-Wm-SMf" secondAttribute="trailing" constant="151" id="efI-LZ-xE1"/>
                         <constraint firstItem="FdU-2B-wz7" firstAttribute="leading" secondItem="hHu-jo-Pzw" secondAttribute="leading" constant="8" id="gpJ-VC-AvP"/>
                         <constraint firstItem="CTr-Fv-Wgb" firstAttribute="top" secondItem="hHu-jo-Pzw" secondAttribute="top" id="k75-F5-hnI"/>
                         <constraint firstAttribute="width" constant="375" id="ypf-Y5-SBn"/>

@@ -13,6 +13,8 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate , iC
     var whichView: String!
     var pageIndex = 0
     var onDateSelected: ((_ month: Int, _ year: Int) -> Void)?
+    let quickOne = QuickIteneraryOne()
+    let quickTwo = QuickIteneraryTwo()
     var one = QuickItineraryOne()
     var two = QuickItineraryTwo()
     var three = QuickIteneraryThree()
@@ -20,6 +22,15 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate , iC
     @IBOutlet var carouselView: iCarousel!
     func searchCountry(search:String) {
         
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        viewControllers1.append(quickOne)
+        viewControllers1.append(quickTwo)
+//        viewControllers1.append(quickThree)
+//        viewControllers1.append(quickFour)
+//        viewControllers1.append(quickFive)
     }
     
     override func viewDidLoad() {
@@ -42,49 +53,49 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate , iC
         
         
         
-        switch whichView {
-        case "One":
-            one = QuickItineraryOne(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 300))
-            one.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-                      // one.nextButton.addTarget(self, action:#selector(QuickItinerariesViewController.nextButtonPressed(_:)), for: .touchUpInside)
-            
-            
-           //            textField(textField: one.durationTextField, shouldChangeCharactersInRange: one.durationTextField.text?.startIndex ..< 3, replacementString: "999")
-            //currentMonth = (dateFormatter.string(from: date as Date))
-            
-            //var strDate = dateFormatter.string(from: datePickerView.date)
-           //let str = "\(components.month)"
-            //one.monthPickerView.text = str
-            //datePickerView.datePickerMode = UIDatePickerMode.date
-            //one.monthPickerView.inputView = datePickerView
-           // datePickerView.addTarget(self, action: #selector(QuickItinerariesViewController.monthChanged(_:)), for: UIControlEvents.valueChanged)
-                   case "Two":
-            let two = QuickItineraryTwo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 450))
-            two.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-            self.view.addSubview(two)
-           
-            
-        case "Three":
-            let three = ItineraryThree(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 350))
-            three.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-            self.view.addSubview(three)
-            
-            
-        case "Four":
-            let four = QuickItineraryFour(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 400))
-            four.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-            self.view.addSubview(four)
-        case "Five":
-            let five = QuickItineraryFive(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 200))
-            five.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-            self.view.addSubview(five)
-//            five.saveButton.addTarget(self, action: #selector(QuickItinerariesViewController.saveButtonPressed(_:)), for: .touchUpInside)
-//
-        default:
-            break
-            
-        }
-        
+//        switch whichView {
+//        case "One":
+//            one = QuickItineraryOne(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 300))
+//            one.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+//                      // one.nextButton.addTarget(self, action:#selector(QuickItinerariesViewController.nextButtonPressed(_:)), for: .touchUpInside)
+//            
+//            
+//           //            textField(textField: one.durationTextField, shouldChangeCharactersInRange: one.durationTextField.text?.startIndex ..< 3, replacementString: "999")
+//            //currentMonth = (dateFormatter.string(from: date as Date))
+//            
+//            //var strDate = dateFormatter.string(from: datePickerView.date)
+//           //let str = "\(components.month)"
+//            //one.monthPickerView.text = str
+//            //datePickerView.datePickerMode = UIDatePickerMode.date
+//            //one.monthPickerView.inputView = datePickerView
+//           // datePickerView.addTarget(self, action: #selector(QuickItinerariesViewController.monthChanged(_:)), for: UIControlEvents.valueChanged)
+//                   case "Two":
+//            let two = QuickItineraryTwo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 450))
+//            two.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+//            self.view.addSubview(two)
+//           
+//            
+//        case "Three":
+//            let three = ItineraryThree(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 350))
+//            three.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+//            self.view.addSubview(three)
+//            
+//            
+//        case "Four":
+//            let four = QuickItineraryFour(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 400))
+//            four.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+//            self.view.addSubview(four)
+//        case "Five":
+//            let five = QuickItineraryFive(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 200))
+//            five.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+//            self.view.addSubview(five)
+////            five.saveButton.addTarget(self, action: #selector(QuickItinerariesViewController.saveButtonPressed(_:)), for: .touchUpInside)
+////
+//        default:
+//            break
+//            
+//        }
+//        
        
    
    
@@ -158,7 +169,10 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate , iC
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         let one = QuickItineraryOne(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 300))
+      let   two = QuickItineraryTwo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 450))
+
         return one
+        
     }
     
     
