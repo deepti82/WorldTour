@@ -10,6 +10,7 @@ import UIKit
 
 class ActivityTextHeader: UIView {
 
+    @IBOutlet var kindOfJourneyMyLife: UIImageView!
     @IBOutlet var textView: UIView!
     @IBOutlet weak var headerText: UITextView!
     override init(frame: CGRect) {

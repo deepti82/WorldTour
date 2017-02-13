@@ -10885,11 +10885,26 @@
                     <view key="view" contentMode="scaleToFill" id="9Xw-cd-xTG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kXA-ou-0uw" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="uo1-g3-IqZ" firstAttribute="top" secondItem="kXA-ou-0uw" secondAttribute="bottom" id="1j8-se-ibd"/>
+                            <constraint firstItem="kXA-ou-0uw" firstAttribute="top" secondItem="9Xw-cd-xTG" secondAttribute="top" id="8iA-Lb-Xc8"/>
+                            <constraint firstAttribute="trailing" secondItem="kXA-ou-0uw" secondAttribute="trailing" id="HS0-I3-EzK"/>
+                            <constraint firstItem="kXA-ou-0uw" firstAttribute="leading" secondItem="9Xw-cd-xTG" secondAttribute="leading" id="aD5-kP-kZ5"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="carouselView" destination="kXA-ou-0uw" id="joz-nW-Hqb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bll-yb-qdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9491" y="2704"/>
+            <point key="canvasLocation" x="9490.3999999999996" y="2703.5982008995506"/>
         </scene>
         <!--Popular Bloggers-->
         <scene sceneID="rmz-aG-4q2">

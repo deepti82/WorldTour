@@ -24,18 +24,21 @@ class ActivityFeedQuickItinerary: UIView {
     @IBOutlet weak var categoryOne: UIImageView!
     @IBOutlet weak var categoryTwo: UIImageView!
     @IBOutlet weak var categoryThree: UIImageView!
-    @IBOutlet weak var quickBack: UILabel!
+    
+    @IBOutlet var quickBadge: UILabel!
     @IBOutlet weak var dayText: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        quickBack.clipsToBounds = true
-        quickBack.layer.cornerRadius = 10
+        quickBadge.clipsToBounds = true
+        quickBadge.layer.cornerRadius = 10
         transparentCardWhite(activityFeedQuickView)
         makeTLProfilePictureBorderWhiteCorner(activityQuickFlagOne)
         makeTLProfilePictureBorderWhiteCorner(activityQuickFlagTwo)
         makeTLProfilePictureBorderWhiteCorner(activityFeedQuickThree)
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

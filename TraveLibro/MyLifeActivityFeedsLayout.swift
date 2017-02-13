@@ -209,6 +209,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 590))
             activityQuickItinerary.fillData(feed: feed)
             self.addSubview(activityQuickItinerary)
+            
         case "detail-itinerary":
             activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 528))
             activityDetailItinerary.fillData(feed: feed)

@@ -7,21 +7,36 @@
 //
 
 import UIKit
+import iCarousel
 
-class QuickItinerariesViewController: UIViewController, UITextFieldDelegate {
+class QuickItinerariesViewController: UIViewController, UITextFieldDelegate , iCarouselDelegate, iCarouselDataSource{
     var whichView: String!
     var pageIndex = 0
     var onDateSelected: ((_ month: Int, _ year: Int) -> Void)?
     var one = QuickItineraryOne()
     var two = QuickItineraryTwo()
     var three = QuickIteneraryThree()
-    
+     var viewControllers1 = [UIViewController]()
+    @IBOutlet var carouselView: iCarousel!
     func searchCountry(search:String) {
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        carouselView.type = .coverFlow
+        let quickOne: QuickIteneraryOne = (storyboard?.instantiateViewController(withIdentifier: "quickOne")) as! QuickIteneraryOne
+        let quickTwo: QuickIteneraryTwo = (storyboard?.instantiateViewController(withIdentifier: "quickTwo")) as! QuickIteneraryTwo
+        let quickThree: QuickIteneraryThree = (storyboard?.instantiateViewController(withIdentifier: "quickThree")) as! QuickIteneraryThree
+        let quickFour: QuickIteneraryFour = (storyboard?.instantiateViewController(withIdentifier: "quickFour")) as! QuickIteneraryFour
+        let quickFive: QuickIteneraryFive = (storyboard?.instantiateViewController(withIdentifier: "quickFive")) as! QuickIteneraryFive
+
+        viewControllers1.append(quickOne)
+        viewControllers1.append(quickTwo)
+        viewControllers1.append(quickThree)
+        viewControllers1.append(quickFour)
+        viewControllers1.append(quickFive)
         
         print("view: \(whichView)")
         
@@ -71,7 +86,7 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate {
         }
         
        
-    
+   
    
     //func nextButtonPressed(_ sender: UIButton){
        //let storyboard = UIStoryboard(name: "QuickItineraryTwo", bundle: Bundle(for: TabPageViewController.self))
@@ -137,4 +152,21 @@ class QuickItinerariesViewController: UIViewController, UITextFieldDelegate {
 //    }
 //
 
+    func numberOfItems(in carousel: iCarousel) -> Int {
+       return viewControllers1.count
+    }
+    
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        let one = QuickItineraryOne(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 40, height: 300))
+        return one
+    }
+    
+    
+    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
+        if option == iCarouselOption.spacing {
+            return 1.1
+        }
+            return value
+        
+    }
 }

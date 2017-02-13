@@ -198,6 +198,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
             activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 590))
             activityQuickItinerary.fillData(feed: feed)
             self.addSubview(activityQuickItinerary)
+            
         case "detail-itinerary":
             activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 528))
             activityDetailItinerary.fillData(feed: feed)
@@ -222,7 +223,7 @@ class LocalLifePost: VerticalLayout, PlayerDelegate {
         
         // For header text
         textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-        
+        textHeader.kindOfJourneyMyLife.isHidden = true
         switch feed["type"].stringValue {
         case "on-the-go-journey":
             setText(text: "Has started his " + feed["startLocation"].stringValue + " journey.")

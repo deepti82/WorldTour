@@ -247,6 +247,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 590))
             activityQuickItinerary.fillData(feed: feed)
             self.addSubview(activityQuickItinerary)
+            
         case "detail-itinerary":
             activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 528))
             activityDetailItinerary.fillData(feed: feed)
@@ -274,7 +275,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             textHeader.headerText.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
             self.addSubview(textHeader)
-            
+            textHeader.kindOfJourneyMyLife.isHidden = true
             //  START ACTIVITY TEXT TAG
             if feed["videos"].count == 0 && feed["photos"].count == 0 && feed["type"].stringValue != "on-the-go-journey" {
                 textTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 30))
@@ -287,7 +288,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         }else{
             // For header text
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
-            
+            textHeader.kindOfJourneyMyLife.isHidden = true
             switch feed["type"].stringValue {
             case "on-the-go-journey":
                 setText(text: "Has started his " + feed["startLocation"].stringValue + " journey.")
