@@ -26,8 +26,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK:- Lifecycle
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        print("currentuser: \(currentUser)")
+        super.viewDidLoad()        
         genderValue = ""
         imagePicker.delegate = self       
         NotificationCenter.default.addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -418,15 +417,18 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         
         print("Edited Values dict : \(editedValues)")
 
-        request.bulkEditUser(params: editedValues) { (response) in            
-            currentUser = response["data"]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
-            DispatchQueue.main.async {
-                self.editTableViewCell.reloadData()
-                ToastCenter.default.cancelAll()
-                Toast(text: "Profile updated").show()
+        DispatchQueue.global().async {
+            request.bulkEditUser(params: self.editedValues) { (response) in            
+                currentUser = response["data"]                
+                DispatchQueue.main.async {
+                    self.editTableViewCell.reloadData()
+                    ToastCenter.default.cancelAll()
+                    Toast(text: "Profile updated").show()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
+                }
             }
         }
+        
     }
     
 }    
