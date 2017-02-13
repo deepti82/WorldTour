@@ -137,7 +137,6 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     self.mainView.isHidden = false
                     self.showNoData(show: false)
                 }
-
             }
         })
     }
