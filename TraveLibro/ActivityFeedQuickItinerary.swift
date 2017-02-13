@@ -31,14 +31,21 @@ class ActivityFeedQuickItinerary: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        quickBadge.clipsToBounds = true
-        quickBadge.layer.cornerRadius = 10
+//        quickBadge.clipsToBounds = true
+//        quickBadge.layer.cornerRadius = 10
         transparentCardWhite(activityFeedQuickView)
         makeTLProfilePictureBorderWhiteCorner(activityQuickFlagOne)
         makeTLProfilePictureBorderWhiteCorner(activityQuickFlagTwo)
         makeTLProfilePictureBorderWhiteCorner(activityFeedQuickThree)
         
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = self.quickBadge.frame
+        rectShape.position = self.quickBadge.center
+        rectShape.path = UIBezierPath(roundedRect: self.quickBadge.bounds, byRoundingCorners: [.topRight , .topLeft], cornerRadii: CGSize(width: 5, height: 5)).cgPath
         
+        self.quickBadge.layer.backgroundColor = UIColor.green.cgColor
+        //Here I'm masking the textView's layer with rectShape layer
+        self.quickBadge.layer.mask = rectShape
     }
     
     required init?(coder aDecoder: NSCoder) {
