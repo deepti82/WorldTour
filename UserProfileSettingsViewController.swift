@@ -59,13 +59,6 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         
         else if (indexPath as NSIndexPath).section == 1 {
             
-//            if (indexPath as NSIndexPath).row == 2 {
-//                
-//                let cell = tableView.dequeueReusableCell(withIdentifier: "dataUploadCell") as! SettingsTableViewCell
-//                return cell
-//                
-//            }
-            
            let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell") as! SettingsTableViewCell
            cell.settingsLabel.text = labels[(indexPath as NSIndexPath).item]            
            cell.LabelIcon.image = UIImage(named: sideImages[indexPath.row])
@@ -76,13 +69,18 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         cell.profileImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])", width: 100))
         cell.profileName.text = currentUser["name"].stringValue
         
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"                
         let date = dateFormatter.date(from: currentUser["dob"].stringValue)
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        cell.DoB.text = dateFormatter.string(from: date! as Date);
+        if date != nil {
+            
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            cell.DoB.text = dateFormatter.string(from: date! as Date);            
+        }
         
         if cell.DoB.text == "" {
+            
             let dateFormatter = DateFormatter()
             let dateObj = NSDate()
             dateFormatter.dateFormat = "dd MMM yyyy"

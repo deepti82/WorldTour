@@ -27,6 +27,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("currentuser: \(currentUser)")
         genderValue = ""
         imagePicker.delegate = self       
         NotificationCenter.default.addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -78,20 +79,23 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
         else if (indexPath as NSIndexPath).section == 1 {   //DOB
             let cell = tableView.dequeueReusableCell(withIdentifier: "dateTypeTextFieldCell") as! DateTypeTextFieldTableViewCell
             cell.datetypeTextField.delegate = self
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"                
+            let date = dateFormatter.date(from: currentUser["dob"].stringValue)
+            if date != nil {
+                dateFormatter.dateFormat = "dd MMM yyyy"
+                cell.datetypeTextField.text = dateFormatter.string(from: date! as Date);                
+            }
+            
+            
             if cell.datetypeTextField.text == "" {
                 let dateFormatter = DateFormatter()
                 let dateObj = NSDate()
                 dateFormatter.dateFormat = "dd MMM yyyy"
                 cell.datetypeTextField.text = dateFormatter.string(from: dateObj as Date);
             }
-            else{
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"                
-                let date = dateFormatter.date(from: currentUser["dob"].stringValue)
-                
-                dateFormatter.dateFormat = "dd MMM yyyy"
-                cell.datetypeTextField.text = dateFormatter.string(from: date! as Date);
-            }
+            
             cell.datetypeTextField.contentVerticalAlignment = .center
             cell.accessoryType = .disclosureIndicator
             return cell

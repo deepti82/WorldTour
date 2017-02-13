@@ -68,7 +68,6 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
             rightButton.addTarget(self, action: #selector(AddNationalityNewViewController.saveCountry(_:)), for: .touchUpInside)
             rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
-            
             self.customNavigationBar(left: nil, right: rightButton)
         }
         
