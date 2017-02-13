@@ -11,24 +11,22 @@ import UIKit
 class QuickIteneraryFour: UIViewController, UITextViewDelegate {
 
     var font = UIFontDescriptor()
+    var iniText = ""
     @IBOutlet weak var descriptionTextView: UITextView!
-    
     @IBOutlet weak var italicButton: UIButton!
     @IBOutlet weak var boldButton: UIButton!
     @IBOutlet weak var blurBG: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.delegate = self
-//        boldButton.setTitle(String(format: "%C", faicon["bold"]!), for: UIControlState())
-//        italicButton.setTitle(String(format: "%C", faicon["italics"]!), for: UIControlState())
-//         descriptionTextView.font = UIFont(name: "Arial-Italic", size: 14)
-//        boldButton.addTarget(self, action: #selector(boldText(_:)), for: .touchUpInside)
-//        italicButton.addTarget(self, action: #selector(italicText(_:)), for: .touchUpInside)
         descriptionTextView.layer.borderWidth = 1
         descriptionTextView.layer.borderColor = mainBlueColor.cgColor
         // Do any additional setup after loading the view.
         transparentCardWhite(blurBG)
         descriptionTextView.allowsEditingTextAttributes = true
+        if(iniText != "") {
+            self.descriptionTextView.text = iniText
+        }
     }
 
     

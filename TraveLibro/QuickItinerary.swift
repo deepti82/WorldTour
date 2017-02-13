@@ -58,17 +58,17 @@ public class QuickItinerary {
             var check = false;
             let query = post.select(id,quickJson,status)
                 .limit(1)
-            for post in try db.prepare(query) {
+            for post1 in try db.prepare(query) {
                 check = true
                 let p = LocalLifePostModel();
                 
-                var postID = post[id]
+                var postID = post1[id]
                 
-                let id_temp = Int(post[id])
-                let quickItinery:JSON = JSON(data: (String(post[quickJson])?.data(using: .utf8))! )
-                let status_temp = Bool(post[status])
+                let id_temp = Int(post1[id])
+                let quickItinery:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
+                let status_temp = Bool(post1[status])
                 
-                let actualId = Int(post[id]) + 30000
+                let actualId = Int(post1[id]) + 30000
                 
                 let i = PostImage();
                 p.imageArr = i.getAllImages(postNo: Int64(actualId))

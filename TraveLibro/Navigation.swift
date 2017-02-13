@@ -1252,7 +1252,7 @@ class Navigation {
     //  quick itinerery
     func postQuickitenary(title:String, year:Int, month:String, duration:Int, description:String, itineraryType:JSON, countryVisited:JSON,photos:[JSON],status:Bool,completion: @escaping ((JSON) -> Void)) {
         
-        var params: JSON = ["title":title, "year":year, "month":month, "description":description, "duration":duration, "user":currentUser["_id"], "status":status]
+        var params: JSON = ["name":title, "year":year, "month":month, "description":description, "duration":duration, "user":currentUser["_id"], "status":status]
         params["photos"] = JSON(photos)
         params["itineraryType"] = itineraryType
         params["countryVisited"] = countryVisited
