@@ -25,6 +25,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     var photos: [JSON]!
     var videos:[JSON]!
     var singlePost: JSON!
+    var allDataFromMyLife: [JSON] = []
     
     var likeCount:Int = 0
     var commentCount:Int = 0
@@ -190,17 +191,33 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     
     func leftSwipe(_ sender: AnyObject) {
         currentIndex = Int(currentIndex) + 1
-        print(currentIndex)
+        print("in swipe left postid : \(postId) \(currentIndex)")
+        if postId == "" {
+            if currentIndex >= allDataFromMyLife.count {
+                currentIndex = Int(currentIndex) - 1
+            } else {
+                self.getSinglePhoto("")
+            }
+        }else{
         if currentIndex >= photos.count {
             currentIndex = Int(currentIndex) - 1
         } else {		
             self.getSinglePhoto(photos[currentIndex!]["_id"].string!)
         }
+        }
     }
     
     func rightSwipe(_ sender: AnyObject) {
         currentIndex = Int(currentIndex) - 1
-        print(currentIndex)
+        print("in swipe right postid : \(postId) \(currentIndex)")
+        if postId == "" {
+            if currentIndex < 0 {
+                currentIndex = Int(currentIndex) + 1
+            } else {
+                
+                self.getSinglePhoto("")
+            }
+        }else{
         if currentIndex < 0 {
             currentIndex = Int(currentIndex) + 1
         } else {
@@ -208,22 +225,57 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             print(photos[currentIndex])
             self.getSinglePhoto(photos[currentIndex!]["_id"].string!)
         }
+        }
+    }
+    
+    func setPhotos(indexNumber:Int) {
+        print("in indexed....  \(allDataFromMyLife[indexNumber])")
+        self.mainImage.hnk_setImageFromURL(getImageURL(allDataFromMyLife[indexNumber]["name"].stringValue, width: 200))
+        
+        self.bottomView.isHidden = false
+        self.mainImage.isHidden = false
+        
+        let imageLeftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.leftSwipe(_:)))
+        let imageRightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.rightSwipe(_:)))
+        
+        imageLeftSwipe.direction = .left
+        imageRightSwipe.direction = .right
+        
+        self.mainImage.addGestureRecognizer(imageLeftSwipe)
+        self.mainImage.addGestureRecognizer(imageRightSwipe)
     }
     
     func getPost(_ postId: String) {
+        
+        print("in print print....... \(postId) index \(self.currentIndex)")
+        if postId == "" {
+            
+            if allDataFromMyLife[self.currentIndex]["type"].stringValue == "video" {
+                self.getSingleVideo("")
+            } else {
+                self.getSinglePhoto("")
+            }
+            
+        } else {
+            
         request.getOneJourneyPost(id: postId, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
+                    
                     print("response: \(response.error?.localizedDescription)")
+                    
                 } else if response["value"].bool! {
                     self.navigationController?.setNavigationBarHidden(false, animated: true)
                     self.singlePost = response["data"]
                     self.photos = response["data"]["photos"].array!
                     self.videos = response["data"]["videos"].array!
+                    
                     if(self.type == "Video") {
+                        
                         self.getSingleVideo(self.videos[0]["_id"].string!)
+                        
                     } else {
                         
                         self.getSinglePhoto(self.photos[self.index!]["_id"].string!)
@@ -236,11 +288,103 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             })
             
         })
+            
+        }
     }
     
     var singlePhotoJSON: JSON!
     
+    func fromPhotoFunction(data:JSON) {
+        let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
+        self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
+        
+        if data["caption"].string != nil && data["caption"].string != "" {
+            
+            self.imageCaption.text = data["caption"].string!
+        }
+        
+//        if data["like"].array!.contains(JSON(user.getExistingUser())) {
+//            
+//            self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
+//            self.likeButton.tintColor = UIColor.white
+//            self.hasLiked = true
+//        } else {
+//            
+//            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+//            self.hasLiked = false
+//        }
+        
+        if(data["likeCount"].int != nil) {
+            self.likeCount = data["likeCount"].int!
+            self.likeText.text = "\(self.likeCount) Like"
+        }
+        if(data["commentCount"].int != nil) {
+            self.commentCount = data["commentCount"].int!
+            self.commentText.text = "\(self.commentCount) Comment"
+        }
+        
+        
+        self.bottomView.isHidden = false
+        self.mainImage.isHidden = false
+        
+        let imageLeftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.leftSwipe(_:)))
+        let imageRightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.rightSwipe(_:)))
+        
+        imageLeftSwipe.direction = .left
+        imageRightSwipe.direction = .right
+        
+        self.mainImage.addGestureRecognizer(imageLeftSwipe)
+        self.mainImage.addGestureRecognizer(imageRightSwipe)
+    }
+    
+    func fromVideoFunction(data:JSON) {
+        let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
+        self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
+        
+        if data["caption"].string != nil && data["caption"].string != "" {
+            self.imageCaption.text = data["caption"].string!
+        }
+        
+        
+//        if (data["likeDone"].bool != nil && data["likeDone"].bool! ) {
+//            self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
+//            self.likeButton.tintColor = UIColor.white
+//            self.hasLiked = true
+//        }
+//        else {
+//            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+//            self.hasLiked = false
+//        }
+        
+        if(data["likeCount"].int != nil) {
+            self.likeCount = data["likeCount"].int!
+            self.likeText.text = "\(self.likeCount) Like"
+        }
+        if(data["commentCount"].int != nil) {
+            self.commentCount = data["commentCount"].int!
+            self.commentText.text = "\(self.commentCount) Comment"
+        }
+        
+        self.bottomView.isHidden = false
+        self.mainImage.isHidden = false
+        
+        
+        self.player = Player()
+        self.player.delegate = self
+        self.player.view.frame = self.mainImage.bounds
+        self.player.view.clipsToBounds = true
+        self.player.playbackLoops = true
+        self.player.muted = true
+        var videoUrl:URL!
+        videoUrl = URL(string:data["name"].stringValue)
+        self.player.setUrl(videoUrl!)
+        self.mainImage.addSubview(self.player.view)
+    }
+    
     func getSinglePhoto(_ photoId: String) {
+        if photoId == "" {
+            self.fromPhotoFunction(data: allDataFromMyLife[self.currentIndex])
+        }else{
         request.getOnePostPhotos(photoId, singlePost["user"]["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
@@ -253,46 +397,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                     let data: JSON = response["data"]
                     self.singlePhotoJSON = response["data"]
 
-                    let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
-                    self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
-
-                    if data["caption"].string != nil && data["caption"].string != "" {
-                        
-                        self.imageCaption.text = data["caption"].string!
-                    }
-                    
-                    if data["like"].array!.contains(JSON(user.getExistingUser())) {
-                        
-                        self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
-                        self.likeButton.tintColor = UIColor.white
-                        self.hasLiked = true
-                    }
-                    else {
-                        
-                        self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
-                        self.hasLiked = false
-                    }
-                    if(data["likeCount"].int != nil) {
-                        self.likeCount = data["likeCount"].int!
-                        self.likeText.text = "\(self.likeCount) Like"
-                    }
-                    if(data["commentCount"].int != nil) {
-                        self.commentCount = data["commentCount"].int!
-                        self.commentText.text = "\(self.commentCount) Comment"
-                    }
-                    
-                    
-                    self.bottomView.isHidden = false
-                    self.mainImage.isHidden = false
-                    
-                    let imageLeftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.leftSwipe(_:)))
-                    let imageRightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(self.rightSwipe(_:)))
-                    
-                    imageLeftSwipe.direction = .left
-                    imageRightSwipe.direction = .right
-                    
-                    self.mainImage.addGestureRecognizer(imageLeftSwipe)
-                    self.mainImage.addGestureRecognizer(imageRightSwipe)
+                    self.fromPhotoFunction(data: data)
                     
                 }
                     
@@ -303,6 +408,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             })
             
         })
+        }
     }
     
     func playerReady(_ player: Player) {
@@ -310,6 +416,10 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     }
     
     func getSingleVideo(_ photoId: String) {
+        if photoId == "" {
+            self.fromVideoFunction(data: allDataFromMyLife[self.currentIndex])
+        }else{
+
         request.getOnePostVideos(photoId, singlePost["user"]["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
@@ -322,47 +432,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                     let data: JSON = response["data"]
                     self.singlePhotoJSON = response["data"]
                     print(data);
-                    let mainImageString = "\(adminUrl)upload/readFile?file=\(data["name"].string!)"
-                    self.mainImage.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
-                    
-                    if data["caption"].string != nil && data["caption"].string != "" {
-                        self.imageCaption.text = data["caption"].string!
-                    }
-                    
-                    
-                    if (data["likeDone"].bool != nil && data["likeDone"].bool! ) {
-                        self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
-                        self.likeButton.tintColor = UIColor.white
-                        self.hasLiked = true
-                    }
-                    else {
-                        self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
-                        self.hasLiked = false
-                    }
-                    
-                    if(data["likeCount"].int != nil) {
-                        self.likeCount = data["likeCount"].int!
-                        self.likeText.text = "\(self.likeCount) Like"
-                    }
-                    if(data["commentCount"].int != nil) {
-                        self.commentCount = data["commentCount"].int!
-                        self.commentText.text = "\(self.commentCount) Comment"
-                    }
-                    
-                    self.bottomView.isHidden = false
-                    self.mainImage.isHidden = false
-                    
-                    
-                    self.player = Player()
-                    self.player.delegate = self
-                    self.player.view.frame = self.mainImage.bounds
-                    self.player.view.clipsToBounds = true
-                    self.player.playbackLoops = true
-                    self.player.muted = true
-                    var videoUrl:URL!
-                    videoUrl = URL(string:data["name"].stringValue)
-                    self.player.setUrl(videoUrl!)
-                    self.mainImage.addSubview(self.player.view)
+                    self.fromVideoFunction(data: data)
                 }
                     
                     
@@ -372,6 +442,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             })
             
         })
+        }
     }
 
     /*

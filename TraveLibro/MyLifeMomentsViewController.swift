@@ -48,6 +48,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
 //        print(loadStatus)
 //        if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
 //            
@@ -438,7 +439,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             singlePhotoController.mainImage?.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
             singlePhotoController.index = indexPath.row
             singlePhotoController.type = allData[indexPath.row]["type"].stringValue
-            singlePhotoController.postId = allData[indexPath.row]["post"].stringValue
+            singlePhotoController.postId = ""
+            singlePhotoController.allDataFromMyLife = allData
             globalNavigationController.pushViewController(singlePhotoController, animated: true)
 
         }else{
