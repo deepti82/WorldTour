@@ -11,13 +11,14 @@ import UIKit
 class EditEditProfileViewController: UIViewController {
     
     internal var whichView: Int?
+    var genderView: GenderInfo!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("which view: \(whichView)")
         
-        if whichView == 6 {
+        if whichView == 5 {
          
             let locationView = SearchLocation(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200))
             locationView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
@@ -34,12 +35,18 @@ class EditEditProfileViewController: UIViewController {
             self.view.addSubview(DOBView)
         }
         
-        else if whichView == 7 {
+        else if whichView == 6 {
             
-            let genderView = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 280))
+            genderView = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 280))
             genderView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             genderView.heButton.tintColor = UIColor.lightGray
             genderView.sheButton.tintColor = UIColor.lightGray
+            if currentUser["gender"] == "female" {
+                genderView.sheButtonTap(nil)
+            }
+            else {
+                genderView.heButtonTap(nil)               
+            }
             self.view.addSubview(genderView)
         }
     }
@@ -51,20 +58,8 @@ class EditEditProfileViewController: UIViewController {
     
     func editDate(_ sender: UIButton) {
         
-        self.navigationController!.popViewController(animated: true)
-        
+        self.navigationController!.popViewController(animated: true)        
         
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

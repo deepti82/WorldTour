@@ -9,16 +9,22 @@
 import UIKit
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+    internal var dataSourceOption: String = ""
     internal var labels = ["Cellular and WiFi", "WiFi", "Cellular"]
     
     @IBOutlet weak var heightConstraintTable: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         let count: CGFloat = CGFloat(labels.count)
-        heightConstraintTable.constant = count * 75
+        heightConstraintTable?.constant = count * 75
         print("NSLayoutConstraint: \(heightConstraintTable)")
         
+        if dataSourceOption == "dataUploadOptions" {
+            labels = ["Cellular and WiFi", "WiFi", "Cellular"]
+        }
+        else {
+            labels = ["Public - Everyone", "Private - My Followers"]
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,6 +75,25 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if dataSourceOption == "privacyOptions" {
+            let footerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 100))
+            footerLabel.text = "When you select your account to be private only, your followers can view your My Life - Journeys, Moments abd Reviews."
+            footerLabel.textAlignment = .center
+            footerLabel.numberOfLines = 0
+            footerLabel.lineBreakMode = .byWordWrapping
+            return footerLabel
+        }
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        return UIView()
+    }    
+
+    
     
     /*
     // MARK: - Navigation

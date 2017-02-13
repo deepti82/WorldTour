@@ -18,14 +18,29 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        settingsTableView.tableFooterView = UIView()
         self.setNavigationBarItem()
         print("navigation controller: \(self.navigationController)")
+        
+        settingsTableView.tableFooterView = UIView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(currentUserUpdated), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func currentUserUpdated() {
+        settingsTableView.reloadData()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,8 +49,6 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        print("current section: \((indexPath as NSIndexPath).section)")
         
         if (indexPath as NSIndexPath).section == 2 {
             
@@ -46,20 +59,35 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         
         else if (indexPath as NSIndexPath).section == 1 {
             
-            if (indexPath as NSIndexPath).row == 2 {
-                
-                let cell = tableView.dequeueReusableCell(withIdentifier: "dataUploadCell") as! SettingsTableViewCell
-                return cell
-                
-            }
+//            if (indexPath as NSIndexPath).row == 2 {
+//                
+//                let cell = tableView.dequeueReusableCell(withIdentifier: "dataUploadCell") as! SettingsTableViewCell
+//                return cell
+//                
+//            }
             
            let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell") as! SettingsTableViewCell
-           cell.settingsLabel.text = labels[(indexPath as NSIndexPath).item]
-//           cell.LabelIcon.image = UIImage(named: sideImages[(indexPath as NSIndexPath).item])
+           cell.settingsLabel.text = labels[(indexPath as NSIndexPath).item]            
+           cell.LabelIcon.image = UIImage(named: sideImages[indexPath.row])
            return cell
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell") as! MainProfileTableViewCell
+        cell.profileImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])", width: 100))
+        cell.profileName.text = currentUser["name"].stringValue
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"                
+        let date = dateFormatter.date(from: currentUser["dob"].stringValue)
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        cell.DoB.text = dateFormatter.string(from: date! as Date);
+        
+        if cell.DoB.text == "" {
+            let dateFormatter = DateFormatter()
+            let dateObj = NSDate()
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            cell.DoB.text = dateFormatter.string(from: dateObj as Date);
+        } 
         return cell
         
     }
@@ -116,13 +144,13 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
             case 2:
                 print("selecting section 1 row 2")
                 let dataUsageVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
-                dataUsageVC.labels = ["Cellular and WiFi", "WiFi", "Cellular"]
+                dataUsageVC.dataSourceOption = "dataUploadOptions"
                 self.navigationController?.pushViewController(dataUsageVC, animated: true)
                 break
             case 3:
                 print("selecting section 1 row 3")
                 let privacyVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
-                privacyVC.labels = ["Public - Everyone", "Private - My Followers"]
+                privacyVC.dataSourceOption = "privacyOptions"
                 self.navigationController?.pushViewController(privacyVC, animated: true)
                 break
             case 4:
@@ -143,6 +171,8 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         default:
             break
         }
+        
+        settingsTableView.deselectRow(at: indexPath, animated: true)
         
     }
     

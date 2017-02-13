@@ -4,6 +4,10 @@ var initialLogin = true
 
 class SideNavigationMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var imageName = ""
+    
+    var profile:ProfilePicFancy! = ProfilePicFancy() 
+    
     var mainViewController: UIViewController!
     var homeController:UIViewController!
     var popJourneysController:UIViewController!
@@ -32,27 +36,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var imageName = ""
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
         
-        let profile = ProfilePicFancy(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
+        profile = ProfilePicFancy(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
         profileNew.addSubview(profile)
         
-        if currentUser != nil {
-            
-            profileName.text = "\(currentUser["firstName"]) \(currentUser["lastName"])"
-                imageName = currentUser["profilePicture"].stringValue
-            let isUrl = verifyUrl(imageName)
-            if (isUrl) {
-                profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
-                profile.image.hnk_setImageFromURL(URL(string:imageName)!)
-            } else {
-                let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
-                profilePicture.hnk_setImageFromURL(getImageUrl!)
-                profile.image.hnk_setImageFromURL(getImageUrl!)
-            }
-            makeTLProfilePicture(profilePicture)
-        }
-
+        updateProfilePicture()
         
         let settingsVC = storyboard!.instantiateViewController(withIdentifier: "UserProfileSettings") as! UserProfileSettingsViewController
         self.settingsViewController = UINavigationController(rootViewController: settingsVC)
@@ -95,6 +84,27 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         self.mainViewController = UINavigationController(rootViewController: homeController)
    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)                
+    }   
+    
+    func updateProfilePicture() {
+        if currentUser != nil {            
+            profileName.text = currentUser["name"].stringValue
+            imageName = currentUser["profilePicture"].stringValue
+            let isUrl = verifyUrl(imageName)
+            if (isUrl) {
+                profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
+                profile.image.hnk_setImageFromURL(URL(string:imageName)!)
+            } else {
+                let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
+                profilePicture.hnk_setImageFromURL(getImageUrl!)
+                profile.image.hnk_setImageFromURL(getImageUrl!)
+            }
+            makeTLProfilePicture(profilePicture)
+        }
+    }
     
     @IBAction func profileTap(_ sender: AnyObject) {
         

@@ -13,6 +13,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
     var allCountries: [JSON] = [["name":"India"],["name":"USA"]]
     var nationalityID = ""
+    internal var isFromSettings: Bool!
     
     @IBAction func AddNationality(_ sender: AnyObject) {
         
@@ -23,7 +24,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     @IBAction func donePickerView(_ sender: AnyObject) {
         
         pickNationalityMainView.isHidden = true
-        chooseCity(sender as! UIButton)
+        saveCountry(sender as! UIButton)
         
     }
     
@@ -54,23 +55,26 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         
         getDarkBackGroundBlur(self)
         
-        let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: ""), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
-        let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
-        rightButton.addTarget(self, action: #selector(AddNationalityNewViewController.chooseCity(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
-        
-        self.customNavigationBar(left: leftButton, right: rightButton)
+        if isFromSettings != nil && isFromSettings == true {
+            let leftButton = UIButton()
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            
+            self.customNavigationBar(left: leftButton, right: nil)
+        }
+        else {
+            let rightButton = UIButton()
+            rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+            rightButton.addTarget(self, action: #selector(AddNationalityNewViewController.saveCountry(_:)), for: .touchUpInside)
+            rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
+            
+            self.customNavigationBar(left: nil, right: rightButton)
+        }
         
         nationalityPickerView.delegate = self
         
-        self.title = "Country of Origin"
-        
-        
+        self.title = "Country of Origin"        
         
         if currentUser["homeCountry"] != nil {
             
@@ -126,11 +130,13 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                 
             })
             
-            
-            
         })
         
     }
+    
+    
+    //MARK: - Picker Delegates
+    
     func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int {
         
         return 1
@@ -168,8 +174,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         addNationality.isHidden = true
         addNationalityButton.isHidden = true
         userNationatilty.setTitle(allCountries[row]["name"].string, for: UIControlState())
-        nationalityID = allCountries[row]["_id"].string!
-        
+        nationalityID = allCountries[row]["_id"].string!        
     }
 
     override func didReceiveMemoryWarning() {
@@ -177,10 +182,10 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func chooseCity(_ sender: UIButton) {
+    func saveCountry(_ sender: UIButton) {
         
         var countrySelected: String = ""
-
+        
         if userNationatilty.titleLabel!.text == "Button" {
             
             countrySelected = ""
@@ -200,24 +205,30 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                         
                     } else {
                         if response["value"] == true {
-                            
-                            let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
-                            self.navigationController?.pushViewController(cityVC, animated: true)
-                            
+                            currentUser = response["data"]
+                            if self.isFromSettings != true {
+                                self.chooseCity(sender)
+                            }                            
                         } else {
                             
                             print("response error: \(response["data"])")
                             
                         }
-
+                        
                     }
                     
                 })
                 
             })
-
+            
         }
         
+    }
+    
+    
+    func chooseCity(_ sender: UIButton) {
+        let cityVC = self.storyboard!.instantiateViewController(withIdentifier: "addCity") as! AddCityViewController
+        self.navigationController?.pushViewController(cityVC, animated: true)
     }
 
 }

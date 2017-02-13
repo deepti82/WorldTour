@@ -79,7 +79,28 @@ class Navigation {
         } catch let error {
             print("got an error creating the request: \(error)")
         }
+    }
+    
+    func bulkEditUser(params: [String : Any], completion: @escaping ((JSON) -> Void)) {
         
+        var json = JSON(1);
+        do {
+            let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: params)
+            //            print("request: \(opt)")
+            opt.start { response in
+                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
     }
     
     func getUser(_ id: String, completion: @escaping ((JSON) -> Void)) {

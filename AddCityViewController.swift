@@ -9,6 +9,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
     let locationManager = CLLocationManager()
     var locValue:CLLocationCoordinate2D!
     var locationData: String!
+    internal var isFromSettings: Bool!
     
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var mainTableView: UITableView!
@@ -18,13 +19,10 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
-        
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D!
-        print(manager.location)
         if(manager.location != nil) {
             locValue = manager.location!.coordinate
             request.getLocation(locValue.latitude, long: locValue.longitude, completion: { (response) in
@@ -46,9 +44,9 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                             print("location: \(self.locationData)")
                             
                             if self.locationData != nil {
-                                
+                                //TODO:Check this if autoSave should be supported
                                 self.cityTextField.text = self.locationData!
-                                self.selectGender(UIButton())
+                                self.saveCity(UIButton())
                             }
                             
                         }
@@ -85,28 +83,35 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: -8, y: 0, width: 30, height: 30)
         
-        let rightButton = UIButton()
-        rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
-        rightButton.addTarget(self, action: #selector(AddCityViewController.selectGender(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 8, y: 8, width: 30, height: 30)
+        if isFromSettings != nil && isFromSettings == true {
+            
+            self.customNavigationBar(left: leftButton, right: nil)           
+        }
+        else {
+            
+            let rightButton = UIButton()
+            rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
+            rightButton.addTarget(self, action: #selector(AddCityViewController.saveCity(_:)), for: .touchUpInside)
+            rightButton.frame = CGRect(x: 8, y: 8, width: 30, height: 30)
+            self.customNavigationBar(left: leftButton, right: rightButton)
+        }
         
-        self.customNavigationBar(left: leftButton, right: rightButton)
         
         mainTableView.tableFooterView = UIView()
         
         detectLocationButton(UIView())
         
-//        if currentUser["homeCity"] != nil {
-//            
-//            cityTextField.text = currentUser["homeCity"].string!
-////            addNationalityButton.hidden = true
-////            userNationatilty.setTitle(currentUser["homeCountry"].string!, forState: .Normal)
-//            
-//        }
-        
+        if currentUser["homeCity"] != nil {
+            cityTextField.text = currentUser["homeCity"].string!            
+        }        
     }
     
-    func selectGender(_ sender: UIButton?) {
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func saveCity(_ sender: UIButton?) {
         
         var cityName = ""
         
@@ -125,15 +130,12 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                         print("error: \(response.error?.localizedDescription)")
                         
                     } else if response["value"] == true {
-                        
-                        print("response arrived!")
-                        let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
-                        self.navigationController?.pushViewController(selectGenderVC, animated: true)
-                        
+                        currentUser = response["data"]
+                        if self.isFromSettings != true {
+                            self.selectGender(sender)
+                        }
                     } else {
-                        
                         print("response error: \(response["data"])")
-                        
                     }
                 })
                 
@@ -145,6 +147,14 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         
     }
+    
+    func selectGender(_ sender: UIButton?) {
+        let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "selectGender") as! SelectGenderViewController
+        self.navigationController?.pushViewController(selectGenderVC, animated: true)
+    }
+    
+    
+    //MARK: - Text Field Delegate
     
     func textFieldDidChange(_ textfield: UITextField) {
         
@@ -215,13 +225,10 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         cityTextField.resignFirstResponder()
         mainTableView.isHidden = true
         
-    }
+    }    
     
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    //MARK: - Table view DataSource and Delegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -246,9 +253,11 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         cityTextField.text = places[(indexPath as NSIndexPath).row]["description"].string!
         cityTextField.resignFirstResponder()
         mainTableView.isHidden = true
-        selectGender(nil)
+        saveCity(nil)
         
     }
+    
+    
 
 }
 

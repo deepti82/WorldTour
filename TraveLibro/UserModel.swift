@@ -66,7 +66,7 @@ public class User {
                     self.travelConfig <- travelconfig
                 )
                 do {
-                    try! self.db.run(userinsert)
+                    try self.db.run(userinsert)
                 } catch _ {
                     
                 }
