@@ -39,7 +39,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
         headerLayout(feed: feed)
         
-//        videosAndPhotosLayout(feed: feed)
+        //        videosAndPhotosLayout(feed: feed)
         
         middleLayoout(feed:feed)
         
@@ -75,7 +75,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 videoContainer.tagText.text = "  Local Life"
                 videoContainer.tagText.textColor = UIColor(hex: "#303557")
                 videoContainer.tagView.backgroundColor = endJourneyColor
-//                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+                //                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
             }
             videoUrl = URL(string:feed["videos"][0]["name"].stringValue)
             self.player.setUrl(videoUrl!)
@@ -95,14 +95,14 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             headerTag.tagLine.isHidden = true
             
             self.mainPhoto.addSubview(headerTag)
-//            if headerTag.tagText.text == "Travel Life"{
-//                profileHeader.category.imageView?.tintColor = UIColor.white
-//            } else {
-//                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
-//            }
+            //            if headerTag.tagText.text == "Travel Life"{
+            //                profileHeader.category.imageView?.tintColor = UIColor.white
+            //            } else {
+            //                profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+            //            }
             
-
-        
+            
+            
             self.addSubview(mainPhoto)
             let heightForBlur = 10;
             var thumbStr = "";
@@ -143,13 +143,13 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             })
         }else{
             if feed["imageUrl"] != nil {
-            self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
-            self.addSubview(self.mainPhoto)
+                self.mainPhoto = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.width))
+                self.addSubview(self.mainPhoto)
                 
-            self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
-            self.mainPhoto.clipsToBounds = true
-           
-            
+                self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
+                self.mainPhoto.clipsToBounds = true
+                
+                
                 if feed["thoughts"] == nil || feed["thoughts"].stringValue == "" {
                     let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 30, width: screenWidth, height: 28))
                     headerTag.tagParent.backgroundColor = UIColor.clear
@@ -157,19 +157,19 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                     headerTag.colorTag(feed: feed)
                     
                     self.mainPhoto.addSubview(headerTag)
-//                    if headerTag.tagText.text == "Travel Life"{
-//                        profileHeader.category.imageView?.tintColor = UIColor.white
-//                    } else {
-//                        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
-//                    }
+                    //                    if headerTag.tagText.text == "Travel Life"{
+                    //                        profileHeader.category.imageView?.tintColor = UIColor.white
+                    //                    } else {
+                    //                        profileHeader.category.imageView?.tintColor = UIColor(hex: "#303557")
+                    //                    }
                     
-
-
+                    
+                    
                 }
                 
-            
+                
                 mainPhoto.hnk_setImageFromURL(URL(string: feed["imageUrl"].stringValue)!)
-
+                
             }
         }
         
@@ -184,7 +184,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             centerView = PhotosOTGView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 91 ))
             addPhotoToLayout(feed,startIndex:showImageIndexStart)
             self.addSubview(centerView)
-//            centerView.centerLineView.isHidden = true
+            //            centerView.centerLineView.isHidden = true
         }
         //End of Center
     }
@@ -197,7 +197,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         singlePhotoController.postId = feeds["_id"].stringValue
         globalNavigationController.pushViewController(singlePhotoController, animated: true)
     }
-
+    
     
     func footerLayout(feed:JSON) {
         if(feed["type"].stringValue == "ended-journey" || feed["type"].stringValue == "quick-itinerary" || feed["type"].stringValue == "detail-itinerary" || feed["type"].stringValue == "on-the-go-journey") {
@@ -210,17 +210,17 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerViewReview.setLikeCount(footerViewReview.postTop["likeCount"].intValue)
             footerViewReview.setReviewCount(count: footerViewReview.postTop["userReviewCount"].intValue)
             //footerViewReview.reviewButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ActivityFeedsLayout.rateButtonTapped(_:))))
-          
+            
             self.addSubview(footerViewReview)
-//            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
-//            self.addSubview(dropView)
+            //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+            //            self.addSubview(dropView)
             
             
         } else {
             print("in footer")
             footerView = ActivityFeedFooterBasic(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
             
-//            footerView.postTop = feed
+            //            footerView.postTop = feed
             footerView.topLayout = self
             footerView.type = "ActivityFeeds"
             
@@ -228,11 +228,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             footerView.setLikeCount(feed["likeCount"].intValue)
             footerView.setView(feed:feed)
             self.addSubview(footerView)
-//            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
-//            self.addSubview(dropView)
-                }
+            //            dropView = DropShadow2(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 2))
+            //            self.addSubview(dropView)
+        }
         
-
+        
     }
     
     func middleLayoout(feed:JSON) {
@@ -263,10 +263,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         profileHeader = ActivityProfileHeader(frame: CGRect(x: 0, y: 20, width: self.frame.width, height: 76))
         
         profileHeader.fillProfileHeader(feed:feed)
-        
-        
         self.addSubview(profileHeader)
-        
         if feed["thoughts"].stringValue != "" {
             
             //  START ACTIVITY TEXT HEADER
@@ -284,8 +281,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 
                 self.addSubview(textTag)
             }
-
-        }else{
+            
+        } else {
             // For header text
             textHeader = ActivityTextHeader(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 70))
             textHeader.kindOfJourneyMyLife.isHidden = true
@@ -311,13 +308,13 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 self.addSubview(textHeader)
             }
             
-        
+            
         }
         
-           }
+    }
     func setText(text: String) {
         textHeader.headerText.text = text
-        self.addSubview(textHeader)
+//        self.addSubview(textHeader)
     }
     
     func addPhotoToLayout(_ post: JSON, startIndex: Int) {
@@ -394,21 +391,21 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     func closeDialog(_ sender: AnyObject) {
         
         blackBg.isHidden = true
-//        checkInPost.rateButton.isHidden = true
-//        checkInPost.ratingLabel.isHidden = false
-//        checkInPost.ratingStack.isHidden = false
+        //        checkInPost.rateButton.isHidden = true
+        //        checkInPost.ratingLabel.isHidden = false
+        //        checkInPost.ratingStack.isHidden = false
         
     }
     
     func exitDialog(_ sender: AnyObject) {
         
         blackBg.isHidden = true
-//        checkInPost.rateButton.isHidden = true
-//        checkInPost.ratingLabel.isHidden = false
-//        checkInPost.ratingStack.isHidden = false
+        //        checkInPost.rateButton.isHidden = true
+        //        checkInPost.ratingLabel.isHidden = false
+        //        checkInPost.ratingStack.isHidden = false
         
     }
-
+    
     
     func changeDateFormat(_ givenFormat: String, getFormat: String, date: String, isDate: Bool) -> String {
         

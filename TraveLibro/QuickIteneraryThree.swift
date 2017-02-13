@@ -57,6 +57,9 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         
         print("heightscroll\(quickScroll)")
         print("blurblurblur\(blurBG)")
+        
+        
+        createLayout();
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -160,8 +163,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         if !viewAdded {
             viewAdded = true
             var a: JSON = ["country":selectedCountry["_id"], "_id":selectedCountry["_id"], "name":selectedCountry["name"], "cityVisited":selectedCity]
-            if quickItinery["countryVisited"].contains(where: {$0.1["country"] == selectedCountry["_id"]}) {
-                let b = quickItinery["countryVisited"].index(where: {$0.1["country"] == selectedCountry["_id"]})
+            if quickItinery["countryVisited"].contains(where: {$0.1["_id"] == selectedCountry["_id"]}) {
+                let b = quickItinery["countryVisited"].index(where: {$0.1["_id"] == selectedCountry["_id"]})
                 let c = quickItinery["countryVisited"][b!].0
                 
                 quickItinery["countryVisited"][Int(c)!] = a

@@ -49,10 +49,25 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         if(editID != nil) {
             request.getItinerary(editID, completion: { (json) in
                 DispatchQueue.main.async(execute: {
-                    self.editJson = json;
-                    print(json);
-                    quickOne.durationTextField.text = self.editJson["duration"].numberValue.stringValue
-                    quickOne.monthPickerView.text = self.editJson["month"].stringValue
+                    if(json["value"].boolValue) {
+                        self.editJson = json["data"];
+                        quickOne.tripTitle.text = self.editJson["title"].stringValue
+                        quickOne.yearPickerView.text = self.editJson["year"].numberValue.stringValue
+                        quickOne.durationTextField.text = self.editJson["duration"].numberValue.stringValue
+                        quickOne.monthPickerView.text = self.editJson["month"].stringValue
+                        quickTwo.itineraryTypes = self.editJson["itineraryType"]
+                        print(self.editJson["countryVisited"]);
+                        quickItinery["countryVisited"] = self.editJson["countryVisited"]
+                        
+                        for (n,country) in quickItinery["countryVisited"] {
+                            print(n);
+                            print(country["country"]);
+                            quickItinery["countryVisited"][Int(n)!]["name"] = country["country"]["name"]
+                            print(quickItinery["countryVisited"][Int(n)!]);
+                            quickItinery["countryVisited"][Int(n)!]["cityVisited"][0]["name"] = country["cityVisited"][0]["city"]["name"]
+                        }
+                        
+                    }
                 })
             })
         }

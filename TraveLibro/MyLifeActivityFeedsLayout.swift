@@ -255,14 +255,15 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             textHeader.headerText.sizeToFit()
             textHeader.sizeToFit()
             textHeader.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: textHeader.headerText.frame.height + 1.5)
-            if(textHeader.headerText.text != "") {
-                self.addSubview(textHeader)
+            if(textHeader.headerText.text == "") {
+                textHeader.headerText.text = " "
             }
+            self.addSubview(textHeader)
+//
         }
     }
     func setText(text: String) {
         textHeader.headerText.text = text
-        self.addSubview(textHeader)
     }
     
     func addPhotoToLayout(_ post: JSON, startIndex: Int) {
