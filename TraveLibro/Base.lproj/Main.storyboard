@@ -6694,7 +6694,7 @@
                                             <outlet property="placeTitle" destination="Rq8-fD-Bbv" id="mZM-xI-b43"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="allReviewsCell" rowHeight="143" id="cxD-F6-DRj" customClass="allReviewsMLTableViewCell" customModule="TraveLibro" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="allReviewsCell" rowHeight="143" id="cxD-F6-DRj" customClass="allReviewsMLTableViewCell" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="220" width="375" height="143"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxD-F6-DRj" id="ejy-q3-W2P">

@@ -26,6 +26,7 @@ class AddRating: UIView, UITextViewDelegate {
     var checkIn:RatingCheckIn!
     var activity: ActivityFeedFooter!
     var activityBasic: ActivityFeedFooterBasic!
+    var accordianCell: allReviewsMLTableViewCell!
     var json:JSON!
     var activityJson: JSON!
     var checkView: String = ""
@@ -53,8 +54,13 @@ class AddRating: UIView, UITextViewDelegate {
         if checkView == "activity" {
             self.activity.reviewTapOut(UITapGestureRecognizer())
             
+        }else if checkView == "accordian" {
+            self.accordianCell.afterRating(starCnt: starCount, review: reviewBody, type: activityJson["type"].stringValue)
+            //            self.activityBasic.postTop["review"][0]["rating"] = JSON(starCount)
+            
+            self.accordianCell.reviewTapOut(UITapGestureRecognizer())
         }else if checkView == "activityFeed" {
-            self.activityBasic.afterRating(starCnt: starCount, review: reviewBody)
+            self.accordianCell.afterRating(starCnt: starCount, review: reviewBody, type: activityJson["type"].stringValue)
 //            self.activityBasic.postTop["review"][0]["rating"] = JSON(starCount)
 
             self.activityBasic.reviewTapOut(UITapGestureRecognizer())
@@ -110,6 +116,8 @@ class AddRating: UIView, UITextViewDelegate {
             }
         }else{
             if self.checkView == "activityFeed" {
+                postId = activityJson["_id"].stringValue
+            }else if self.checkView == "accordian" {
                 postId = activityJson["_id"].stringValue
             }else{
                 postId = post.post_ids

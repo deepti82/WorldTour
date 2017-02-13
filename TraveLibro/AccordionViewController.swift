@@ -29,6 +29,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var category = ""
     var countryName = ""
     var cityName = ""
+    var selectedView = 1
     
     
     
@@ -144,6 +145,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadCountryCityReview(pageno:Int, type:String, json:JSON) {
+        selectedView = 2
         print(".....\(json)")
         reviewType = "reviewby"
         self.country = ""
@@ -187,6 +189,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadReview(pageno:Int, type:String) {
+        selectedView = 1
         reviewType = type
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
             DispatchQueue.main.async {
@@ -353,10 +356,15 @@ class allReviewsMLTableViewCell: UITableViewCell {
 //        print("in clicked")
 //        openRating()
 //    }
-    func checkMyRating(_ sender: UITapGestureRecognizer) {
-        print("check i im the creator")
+    func checkMyRating(_ sender: UIButton) {
         
-            openRating()
+        print("check i im the creator")
+        openRating()
+    }
+    func checkMyRatingStar(_ sender: UITapGestureRecognizer) {
+        print("in footer tap out")
+        openRating()
+        
     }
     
     func getCategory(type:String) -> String {
@@ -369,8 +377,14 @@ class allReviewsMLTableViewCell: UITableViewCell {
         return returnValue
     }
     
+    func reviewTapOut(_ sender: UITapGestureRecognizer) {
+        print("in footer tap out")
+        backgroundReview.removeFromSuperview()
+        
+    }
+    
     func openRating() {
-        let tapout = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.reviewTapOut(_:)))
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(self.reviewTapOut(_:)))
         
         backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
         backgroundReview.addGestureRecognizer(tapout)
@@ -380,24 +394,30 @@ class allReviewsMLTableViewCell: UITableViewCell {
         
         let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
         rating.activityJson = postTop
-//        rating.activityBasic = self
-        rating.checkView = "activityFeed"
+        rating.accordianCell = self
+        rating.checkView = "accordian"
         
         
         if postTop["review"][0]["rating"] != nil  && postTop["review"].count != 0 {
+            print("step one")
             if newRating != nil {
+                print("in two if")
                 rating.starCount = newRating["rating"].intValue
                 rating.ratingDisplay(newRating)
             }else{
+                print("in two else")
                 rating.starCount = postTop["review"][0]["rating"].intValue
                 rating.ratingDisplay(postTop["review"][0])
             }
         }else{
-            if newRating != nil {
+            
+            if newRating != nil && newRating["rating"] != nil {
+                print("in three if")
                 rating.starCount = newRating["rating"].intValue
                 rating.ratingDisplay(newRating)
                 
             }else{
+                print("in three else")
                 rating.starCount = 1
             }
         }
@@ -414,9 +434,9 @@ class allReviewsMLTableViewCell: UITableViewCell {
     func setView(feed:JSON) {
         self.review.isHidden = true
         postTop = feed
-        let tapout = UITapGestureRecognizer(target: self, action: #selector(self.checkMyRating(_:)))
-        ratingButton.addGestureRecognizer(tapout)
-//        ratingStack.addGestureRecognizer(tapout)
+        ratingButton.addTarget(self, action: #selector(self.checkMyRating(_:)), for: .touchUpInside)
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(self.checkMyRatingStar(_:)))
+        ratingStack.addGestureRecognizer(tapout)
         categoryImage.image = UIImage(named: getCategory(type: feed["checkIn"]["category"].stringValue))
 
         if feed["review"][0] != nil && feed["review"].count > 0 {
@@ -453,11 +473,12 @@ class allReviewsMLTableViewCell: UITableViewCell {
                     }else{
                         rat.tintColor = endJourneyColor
                     }
-                    
                 }
             }
+            
             if review != "" {
                 self.review.isHidden = false
+                self.review.text = review
             }
             
             newRating = ["rating":"\(starCnt)","review":review]

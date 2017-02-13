@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/ActivityFeedFooter.swift"
-            timestampString = "508441723.439895"
+            timestampString = "508488286.886449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "optionClick(_:)"
             landmarkType = "7">
          </BreakpointContent>

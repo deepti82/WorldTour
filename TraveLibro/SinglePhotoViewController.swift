@@ -217,9 +217,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                 
                 if response.error != nil {
                     print("response: \(response.error?.localizedDescription)")
-                }
-                    
-                else if response["value"].bool! {
+                } else if response["value"].bool! {
                     self.navigationController?.setNavigationBarHidden(false, animated: true)
                     self.singlePost = response["data"]
                     self.photos = response["data"]["photos"].array!
@@ -227,12 +225,12 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                     if(self.type == "Video") {
                         self.getSingleVideo(self.videos[0]["_id"].string!)
                     } else {
+                        
                         self.getSinglePhoto(self.photos[self.index!]["_id"].string!)
                         self.title = "Photos (\(self.photos.count))"
+                        
                     }
-                }
-                    
-                else {
+                } else {
                     print("response error!")
                 }
             })

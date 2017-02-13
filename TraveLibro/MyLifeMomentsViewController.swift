@@ -85,7 +85,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 }
                 }
             })
-        }else{
+        } else{
             request.getMedia(mediaType: mediaType, user: currentUser["_id"].stringValue, id: id, pageNumber: pageno, completion: {(request) in
                 DispatchQueue.main.async {
                     if request["data"].count > 0 {
@@ -431,6 +431,18 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        if insideView == "Monthly" {
+            print("monthly in side")
+            let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+            print(allData[indexPath.row])
+            singlePhotoController.mainImage?.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
+            singlePhotoController.index = indexPath.row
+            singlePhotoController.type = allData[indexPath.row]["type"].stringValue
+            singlePhotoController.postId = allData[indexPath.row]["post"].stringValue
+            globalNavigationController.pushViewController(singlePhotoController, animated: true)
+
+        }else{
+        
         if momentType == "local-life" || momentType == "all" {
             if allData[indexPath.section]["count"].stringValue == "0" {
                 showToast(msg: "No Photos in \(allData[indexPath.section]["token"].stringValue)")
@@ -461,6 +473,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             }else{
                 globalMyLifeController.showReviewsExtention(type: "review", inside: false, params: "city", id: allData[indexPath.row]["_id"].stringValue, name: allData[indexPath.row]["name"].stringValue)
             }
+        }
         }
         
     }

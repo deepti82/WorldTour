@@ -218,8 +218,7 @@ class ActivityFeedFooter: UIView {
                             self.setLikeSelected(true)
                             self.likeCount = self.likeCount + 1
                             self.setLikeCount(self.likeCount)
-                        }
-                        else {
+                        } else {
                             self.setLikeSelected(false)
                             if self.likeCount <= 0 {
                                 self.likeCount = 0
@@ -228,8 +227,7 @@ class ActivityFeedFooter: UIView {
                             }
                             self.setLikeCount(self.likeCount)
                         }
-                    }
-                    else {
+                    } else {
                         
                     }
                 })
