@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftHTTP
+import Toaster
 
 class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
     
@@ -58,7 +59,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         if isFromSettings != nil && isFromSettings == true {
             let leftButton = UIButton()
             leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            leftButton.addTarget(self, action: #selector(self.saveCountry(_:)), for: .touchUpInside)
             leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             
             self.customNavigationBar(left: leftButton, right: nil)
@@ -193,32 +194,41 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
         } else if userNationatilty.titleLabel!.text != nil {
             
             countrySelected = nationalityID
-            request.editUser(currentUser["_id"].string!, editField: "homeCountry", editFieldValue: countrySelected, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
+            if userNationatilty.titleLabel?.text != currentUser["homeCountry"]["name"].stringValue {
+                request.editUser(currentUser["_id"].string!, editField: "homeCountry", editFieldValue: countrySelected, completion: {(response) in
                     
-                    if response.error != nil {
+                    DispatchQueue.main.async(execute: {
                         
-                        self.alert(message: "Select Country", title: "Please try agin later...")
-                        print("error: \(response.error?.localizedDescription)")
-                        
-                    } else {
-                        if response["value"] == true {
-                            currentUser = response["data"]
-                            if self.isFromSettings != true {
-                                self.chooseCity(sender)
-                            }                            
-                        } else {
+                        if response.error != nil {
                             
-                            print("response error: \(response["data"])")
+                            self.alert(message: "Select Country", title: "Please try agin later...")
+                            print("error: \(response.error?.localizedDescription)")
+                            
+                        } else {
+                            if response["value"] == true {
+                                currentUser = response["data"]
+                                if self.isFromSettings != true {
+                                    self.chooseCity(sender)
+                                }
+                                else {
+                                    Toast(text: "User's nation updated").show()
+                                    self.popVC(UIButton())
+                                }
+                            } else {
+                                
+                                print("response error: \(response["data"])")
+                                
+                            }
                             
                         }
                         
-                    }
+                    })
                     
                 })
-                
-            })
+            }
+            else {
+                self.popVC(UIButton())
+            }
             
         }
         

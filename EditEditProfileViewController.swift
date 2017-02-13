@@ -41,7 +41,7 @@ class EditEditProfileViewController: UIViewController {
             genderView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
             genderView.heButton.tintColor = UIColor.lightGray
             genderView.sheButton.tintColor = UIColor.lightGray
-            if currentUser["gender"] == "female" {
+            if genderValue == "female" {
                 genderView.sheButtonTap(nil)
             }
             else {

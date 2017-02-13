@@ -105,11 +105,10 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             let cell = tableView.dequeueReusableCell(withIdentifier: "EditLabelCell") as! EditProfileTableViewCell
             cell.editLabel.text = labels[(indexPath as NSIndexPath).section]
             if genderValue == "" {
-                cell.editLabel.text = currentUser["gender"].stringValue.capitalized
+                genderValue = currentUser["gender"].stringValue                
             }
-            else {
-                cell.editLabel.text = genderValue.capitalized
-            }
+            
+            cell.editLabel.text = genderValue.capitalized
             
             cell.accessoryType = .disclosureIndicator
             return cell
@@ -194,7 +193,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             self.navigationController?.pushViewController(nationality, animated: true)
             break
             
-        case 6:
+        case 6: //Gender
             shouldSave = false
             let otherSettingsVC = storyboard?.instantiateViewController(withIdentifier: "EditEdit") as! EditEditProfileViewController
             otherSettingsVC.whichView = (indexPath as NSIndexPath).section
@@ -255,27 +254,9 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
             if textField.text != "" {
                 
                 let userName = textField.text!
-                editedValues["name"] = userName
-                
-//                request.editUser(currentUser["_id"].string!, editField: "name", editFieldValue: userName, completion: {(response) in
-//                    
-//                    DispatchQueue.main.async(execute: {
-//                        print(response["value"])
-//                        
-//                        if response.error != nil {
-//                            
-//                            print("error: \(response.error?.localizedDescription)")
-//                            
-//                        } else if response["value"] == true {
-//                            currentUser = response["data"]
-//                            print("\n\n CurrentUSer: \(currentUser)")
-//                            
-//                        } else {
-//                            print("response error: \(response["data"])")
-//                        }
-//                    })
-//                    
-//                })
+                if userName != currentUser["name"].stringValue {
+                    editedValues["name"] = userName                    
+                }                
             } else {
                 alert(message: "Please Select City.", title: "Select City")
             }
@@ -410,25 +391,28 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     func saveAll() {
         
-        editedValues["_id"] = currentUser["_id"].stringValue
-        if genderValue != "" {
+        
+        if genderValue != currentUser["gender"].stringValue {
             editedValues["gender"] = genderValue            
         }
         
-        print("Edited Values dict : \(editedValues)")
-
-        DispatchQueue.global().async {
-            request.bulkEditUser(params: self.editedValues) { (response) in            
-                currentUser = response["data"]                
-                DispatchQueue.main.async {
-                    self.editTableViewCell.reloadData()
-                    ToastCenter.default.cancelAll()
-                    Toast(text: "Profile updated").show()
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
+        if !(editedValues.isEmpty) {
+            
+            editedValues["_id"] = currentUser["_id"].stringValue
+            print("Edited Values dict : \(editedValues)")
+            
+            DispatchQueue.global().async {
+                request.bulkEditUser(params: self.editedValues) { (response) in            
+                    currentUser = response["data"]                
+                    DispatchQueue.main.async {
+                        self.editTableViewCell.reloadData()
+                        ToastCenter.default.cancelAll()
+                        Toast(text: "Profile updated").show()
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
+                    }
                 }
             }
         }
-        
     }
     
 }    

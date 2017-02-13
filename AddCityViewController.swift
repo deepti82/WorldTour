@@ -2,6 +2,7 @@ import UIKit
 
 import SwiftHTTP
 import CoreLocation
+import Toaster
 
 class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UITextFieldDelegate {
     
@@ -60,10 +61,7 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
             })
         } else {
             print("Not able to detect the location");
-        }
-        
-        
-        
+        }        
     }
     
     override func viewDidLoad() {
@@ -79,15 +77,15 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         cityTextField.addTarget(self, action: #selector(AddCityViewController.textFieldDidChange(_:)), for: .editingChanged)
         
         let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())        
         leftButton.frame = CGRect(x: -8, y: 0, width: 30, height: 30)
         
         if isFromSettings != nil && isFromSettings == true {
-            
+            leftButton.addTarget(self, action: #selector(self.saveCity(_:)), for: .touchUpInside)
             self.customNavigationBar(left: leftButton, right: nil)           
         }
         else {
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
             
             let rightButton = UIButton()
             rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
@@ -120,26 +118,37 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         if cityTextField.text != "" {
             
             cityName = cityTextField.text!
-            request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
-                    print(response["value"])
+            
+            if cityTextField.text != currentUser["homeCity"].string!{
+                request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
                     
-                    if response.error != nil {
+                    DispatchQueue.main.async(execute: {
+                        print(response["value"])
                         
-                        print("error: \(response.error?.localizedDescription)")
-                        
-                    } else if response["value"] == true {
-                        currentUser = response["data"]
-                        if self.isFromSettings != true {
-                            self.selectGender(sender)
+                        if response.error != nil {
+                            
+                            print("error: \(response.error?.localizedDescription)")
+                            
+                        } else if response["value"] == true {
+                            currentUser = response["data"]
+                            if self.isFromSettings != true {
+                                self.selectGender(sender)
+                            }
+                            else {
+                                Toast(text: "User's city updated").show()
+                                self.popVC(UIButton())
+                            }
+                        } else {
+                            print("response error: \(response["data"])")
                         }
-                    } else {
-                        print("response error: \(response["data"])")
-                    }
+                    })
+                    
                 })
-                
-            })
+            }
+            else{
+                self.popVC(UIButton())
+            }
+            
         } else {
             alert(message: "Please Select City.", title: "Select City")
         }
