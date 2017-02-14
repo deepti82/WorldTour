@@ -394,7 +394,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
         
         let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
         rating.activityJson = postTop
-        rating.accordianCell = self
+//        rating.accordianCell = self
         rating.checkView = "accordian"
         
         

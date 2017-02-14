@@ -60,7 +60,10 @@ class AddRating: UIView, UITextViewDelegate {
             
             self.accordianCell.reviewTapOut(UITapGestureRecognizer())
         }else if checkView == "activityFeed" {
-            self.accordianCell.afterRating(starCnt: starCount, review: reviewBody, type: activityJson["type"].stringValue)
+            print(starCount)
+            print(reviewBody)
+            print(activityJson["type"].stringValue)
+            self.activityBasic.afterRating(starCnt: starCount, review: reviewBody)
 //            self.activityBasic.postTop["review"][0]["rating"] = JSON(starCount)
 
             self.activityBasic.reviewTapOut(UITapGestureRecognizer())
