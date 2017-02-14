@@ -56,14 +56,22 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
                         quickOne.durationTextField.text = self.editJson["duration"].numberValue.stringValue
                         quickOne.monthPickerView.text = self.editJson["month"].stringValue
                         quickTwo.itineraryTypes = self.editJson["itineraryType"]
-                        print(self.editJson);
                         quickItinery["countryVisited"] = self.editJson["countryVisited"]
                         for (n,country) in quickItinery["countryVisited"] {
                             quickItinery["countryVisited"][Int(n)!]["name"] = country["country"]["name"]
-                            quickItinery["countryVisited"][Int(n)!]["cityVisited"][0]["name"] = country["cityVisited"][0]["city"]["name"]
+                            for (i,city) in country["cityVisited"] {
+                                quickItinery["countryVisited"][Int(n)!]["cityVisited"][Int(i)!]["name"] = country["cityVisited"][Int(i)!]["city"]["name"]
+                            }
                         }
-                        print(self.editJson["description"].stringValue);
                         quickFour.iniText = self.editJson["description"].stringValue
+                        globalPostImage = []
+                        print(self.editJson)
+                        for (n,photo) in self.editJson["photos"] {
+                            var po = PostImage();
+                            po.urlToData(photo["name"].stringValue)
+                            quickFive.imageArr.append(po)
+                            globalPostImage.append(po)
+                        }
                     }
                 })
             })

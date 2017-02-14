@@ -50,14 +50,28 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if(self.imageArr.count > 0) {
+            self.photoGallerySecondView.isHidden = false
+            self.photosGalleryFirstView.isHidden = true
+        } else {
+            self.photoGallerySecondView.isHidden = true
+            self.photosGalleryFirstView.isHidden = false
+        }
+        
         return self.imageArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosFromGallery", for: indexPath)
             as! photosSelection
+        if(self.imageArr[indexPath.row].imageUrl != nil) {
+            cell.photosImage.hnk_setImageFromURL(self.imageArr[indexPath.row].imageUrl)
+        } else {
+            cell.photosImage.image = self.imageArr[indexPath.row].image
+        }
         
-        cell.photosImage.image = self.imageArr[indexPath.row].image
+        
         cell.photosImage.contentMode = .scaleAspectFill
         return cell
     }
