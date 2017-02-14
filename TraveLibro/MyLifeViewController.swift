@@ -61,7 +61,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         leftButton.addTarget(self, action: #selector(MyLifeViewController.exitMyLife(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
-        
         self.customNavigationBar(left: leftButton, right: rightButton)
         
         if currentUser != nil {
@@ -381,6 +380,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.addView.newScroll = self.newScroll;
         
         self.newScroll.contentSize.height = self.view.frame.height
+        self.newScroll.contentSize.width = 0
         backView.addSubview(newScroll)
         
         let leftButton = UIButton()
@@ -400,6 +400,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         backView.layer.zPosition = 10
         newScroll.contentSize.height = self.view.frame.height
+        newScroll.contentSize.width = 0
         
         self.addView.typeOfAddActivtiy = "EditActivity"
         if(post.imageArr.count > 0) {
@@ -597,6 +598,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.addView.newScroll = self.newScroll;
         
         self.newScroll.contentSize.height = self.view.frame.height
+        newScroll.contentSize.width = 0
         backView.addSubview(newScroll)
         
         let leftButton = UIButton()
@@ -616,6 +618,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         backView.layer.zPosition = 10
         newScroll.contentSize.height = self.view.frame.height
+        newScroll.contentSize.width = 0
         
         if(post.videoArr.count > 0) {
             let videoUrl = URL(string:post.videoArr[0].serverUrl)

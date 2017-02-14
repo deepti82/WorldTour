@@ -111,6 +111,8 @@
 		845C432E1E2FCE4200800F51 /* ActivityFeedFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C432D1E2FCE4200800F51 /* ActivityFeedFooter.swift */; };
 		84E61E451E377665009A740F /* OtgCardUITextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E61E441E377665009A740F /* OtgCardUITextView.xib */; };
 		84E61E471E377828009A740F /* OtgCardUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E61E461E377828009A740F /* OtgCardUITextView.swift */; };
+		84FF89431E52E0A300FDE8F0 /* Search.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF89421E52E0A300FDE8F0 /* Search.xib */; };
+		84FF89491E52EAA800FDE8F0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */; };
 		C20163E01D26911C00A2F70B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163DF1D26911C00A2F70B /* UserModel.swift */; };
 		C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */; };
 		C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */; };
@@ -575,6 +577,8 @@
 		845C432D1E2FCE4200800F51 /* ActivityFeedFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedFooter.swift; sourceTree = "<group>"; };
 		84E61E441E377665009A740F /* OtgCardUITextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtgCardUITextView.xib; sourceTree = "<group>"; };
 		84E61E461E377828009A740F /* OtgCardUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtgCardUITextView.swift; sourceTree = "<group>"; };
+		84FF89421E52E0A300FDE8F0 /* Search.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Search.xib; sourceTree = "<group>"; };
+		84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BAE3F40D9DEC49A23FC2BE7B /* Pods-TraveLibro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.release.xcconfig"; sourceTree = "<group>"; };
 		C20163DF1D26911C00A2F70B /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCardsViewController.swift; sourceTree = "<group>"; };
@@ -1014,6 +1018,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				84FF89411E52DFF600FDE8F0 /* Search */,
 				840599861E3CDB65004E0696 /* DropShadow2 */,
 				840599811E3CDA14004E0696 /* DropShadow1 */,
 				84E61E431E377324009A740F /* OtgCardUITextView */,
@@ -1442,6 +1447,14 @@
 			name = OtgCardUITextView;
 			sourceTree = "<group>";
 		};
+		84FF89411E52DFF600FDE8F0 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				84FF89421E52E0A300FDE8F0 /* Search.xib */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		C20163DE1D26910D00A2F70B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1787,6 +1800,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */,
 				841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */,
 				843510DD1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift */,
 				843510DF1DF7F84600C3D8EE /* QuickIteneraryTwo.swift */,
@@ -2673,6 +2687,7 @@
 				1A944E121CCB4567007EB5BD /* LaunchScreen.storyboard in Resources */,
 				C2803BC41CF41F99007A906E /* BlogView.xib in Resources */,
 				C268EBB01DF8491C002EDA30 /* QuickItineraryPreview.xib in Resources */,
+				84FF89431E52E0A300FDE8F0 /* Search.xib in Resources */,
 				845C43271E2F8A4100800F51 /* ActivityFeedImageView.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
 				FCCA8F281E28DCE900775985 /* TripSummaryView.xib in Resources */,
@@ -3043,6 +3058,7 @@
 				C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */,
 				C28521B81D364680001EF251 /* FilterIntinerariesType.swift in Sources */,
 				C2E697B31D3E500600E76F1E /* FeaturedCitiesNewTwoViewController.swift in Sources */,
+				84FF89491E52EAA800FDE8F0 /* SearchViewController.swift in Sources */,
 				362FA0CA1E1E78E500267736 /* PostEditPhotosVideos.swift in Sources */,
 				C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */,
 				C24B45651D0AE79A002EA009 /* PopularAgents.swift in Sources */,
