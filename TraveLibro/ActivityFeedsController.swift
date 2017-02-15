@@ -44,7 +44,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.slideMenuController()?.toggleLeft()
     }
     func searchTop(_ sender: AnyObject) {
-        
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! SearchViewController
+        globalNavigationController.pushViewController(searchVC, animated: true)
     }
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)

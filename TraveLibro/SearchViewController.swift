@@ -32,6 +32,7 @@ class SearchViewController: UIViewController {
         
         let searchView = Search(frame: CGRect(x: 0, y: 105, width: self.view.frame.width, height: self.view.frame.height))
         self.view.addSubview(searchView)
+        setTopNavigation("Search")
         // Do any additional setup after loading the view.
     }
     
@@ -47,6 +48,25 @@ class SearchViewController: UIViewController {
         search.searchField.placeholder = ""
     }
 
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+
+    
     /*
     // MARK: - Navigation
 

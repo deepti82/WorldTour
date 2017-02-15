@@ -38,7 +38,8 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         globalLocalLife = self
         getDarkBackGround(self)
         self.layout = VerticalLayout(width:screenWidth)
-        self.setNavigationBarItemText("Local Life")
+//        self.setNavigationBarItemText("Local Life")
+        createNavigation("Local Life")
         
         self.thisScroll.addSubview(layout)
         
@@ -370,6 +371,45 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         }
 
     }
+    
+    func createNavigation(_ text: String) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.title = "Activity Feed"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "menu_left_icon"), for: UIControlState())
+        leftButton.imageView?.image = leftButton.imageView?.image!.withRenderingMode(.alwaysTemplate)
+        leftButton.imageView?.tintColor = UIColor.white
+        leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
+        
+        
+        let rightButton = UIButton()
+        rightButton.setImage(UIImage(named: "search_toolbar"), for: UIControlState())
+        rightButton.addTarget(self, action: #selector(self.searchTop(_:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.title = text
+    }
+
+    
+    func openSideMenu(_ sender: UIButton){
+        
+        self.slideMenuController()?.addLeftGestures()
+        self.slideMenuController()?.toggleLeft()
+    }
+    
+    
+    func searchTop(_ sender: UIButton){
+        
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! SearchViewController
+        globalNavigationController.pushViewController(searchVC, animated: true)
+        
+    }
+    
+    
     
     func changeAddButton(_ bol:Bool) {
         self.isSameCity = bol
