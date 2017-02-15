@@ -124,9 +124,9 @@ class searchPeople: UITableViewCell{
     
 }
 
-class searchHashtags: UITableViewCell{
-    @IBOutlet weak var hashtagsLabel: UILabel!
-    @IBOutlet weak var hashtagsTimesLabel: UILabel!
-    
-    @IBOutlet weak var hashtagImage: UIImageView!
-}
+//class searchHashtags: UITableViewCell{
+//    @IBOutlet weak var hashtagsLabel: UILabel!
+//    @IBOutlet weak var hashtagsTimesLabel: UILabel!
+//    
+//    @IBOutlet weak var hashtagImage: UIImageView!
+//}
