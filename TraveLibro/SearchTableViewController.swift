@@ -9,9 +9,9 @@
 import UIKit
 import DKChainableAnimationKit
 
-class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate {
 
-    
+     var searchController: UISearchController!
     @IBOutlet weak var searchTable: UITableView!
     @IBOutlet weak var hashTagSlide: UIView!
     @IBOutlet weak var hashtagsSearch: UIButton!
@@ -22,10 +22,11 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         transparentCardWhite(selectStrip)
-        sliderView.isHidden = true
+        sliderView.isHidden = false
         hashTagSlide.isHidden = true
         getDarkBackGround(self)
         noTravellersStrip.isHidden = true
+        configureSearchController()
         // Do any additional setup after loading the view.
     }
 
@@ -69,6 +70,17 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
 //            sliderView.animation.animate(1.0).moveX(0).easeOut.animate(1.0)
 //        }
 
+        
+    }
+    
+    func configureSearchController() {
+        
+        searchController = UISearchController(searchResultsController: nil)
+//        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = true
+//        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        searchTable.tableHeaderView = searchController.searchBar
         
     }
 
