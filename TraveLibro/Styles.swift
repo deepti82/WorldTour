@@ -245,6 +245,13 @@ func makeBuddiesTLProfilePicture(_ image: UIImageView) {
     
 }
 
+func noColor(_ image: UIImageView) {
+    
+    image.layer.cornerRadius = (37/100) * image.frame.width
+    image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFill
+    
+}
 
 
 func getThought (_ post:JSON) -> String {
