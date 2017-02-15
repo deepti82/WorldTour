@@ -15,7 +15,7 @@ class ReportProblem: UIView, UITextViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        theTextView.text = "Placeholder"
+        theTextView.text = "Write your problem here..."
         theTextView.textColor = UIColor.lightGray
         theTextView.layer.borderWidth = 1.0
         theTextView.layer.borderColor = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1).cgColor
@@ -47,9 +47,17 @@ class ReportProblem: UIView, UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if theTextView.text.isEmpty {
-            theTextView.text = "Comment"
+            theTextView.text = "Write your problem here..."
             theTextView.textColor = UIColor.lightGray
         }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 
 }

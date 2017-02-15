@@ -10,10 +10,12 @@ import UIKit
 
 class UserProfileSettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    let labels = ["Edit Profile - a little more about me", "Change Password", "Data Upload", "Privacy", "Report a Problem"]
-    let sideImages = ["edit_profile_icon", "change_pswd_icon", "data_upload_icon", "privacy_icon", "report_icon"]
+    let labels = ["Edit Profile - a little more about me", "Data Upload", "Privacy", "Report a Problem"]
+    let sideImages = ["edit_profile_icon", "data_upload_icon", "privacy_icon", "report_icon"]
     
     @IBOutlet weak var settingsTableView: UITableView!
+    
+    //MARK:- Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,6 +45,9 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     func currentUserUpdated() {
         settingsTableView.reloadData()
     }
+    
+    
+    //MARK:- TableView Datasource and Delegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -119,40 +125,35 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        print("selecting section \(indexPath.section) row \(indexPath.row)")
         switch (indexPath as NSIndexPath).section {
-        case 0:
-            print("selecting section 0 row 0")
+        case 0:            
             let profileEditVC = storyboard?.instantiateViewController(withIdentifier: "EditProfile") as! EditProfileViewController
             self.navigationController?.pushViewController(profileEditVC, animated: true)
             break
         case 1:
             switch (indexPath as NSIndexPath).row {
-            case 0:
-                print("selecting section 1 row 0")
+            case 0:                
                 let editMAMVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
                 editMAMVC.whichView = "MAMView"
                 self.navigationController?.pushViewController(editMAMVC, animated: true)
                 break
+//            case 1:
+//                let editNewPswdVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
+//                editNewPswdVC.whichView = "NewPswdView"
+//                self.navigationController?.pushViewController(editNewPswdVC, animated: true)
+//                break
             case 1:
-                print("selecting section 1 row 1")
-                let editNewPswdVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
-                editNewPswdVC.whichView = "NewPswdView"
-                self.navigationController?.pushViewController(editNewPswdVC, animated: true)
-                break
-            case 2:
-                print("selecting section 1 row 2")
                 let dataUsageVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
                 dataUsageVC.dataSourceOption = "dataUploadOptions"
                 self.navigationController?.pushViewController(dataUsageVC, animated: true)
                 break
-            case 3:
-                print("selecting section 1 row 3")
+            case 2:
                 let privacyVC = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") as! SettingsViewController
                 privacyVC.dataSourceOption = "privacyOptions"
                 self.navigationController?.pushViewController(privacyVC, animated: true)
                 break
-            case 4:
-                print("selecting section 1 row 4")
+            case 3:
                 let reportVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
                 reportVC.whichView = "ReportView"
                 self.navigationController?.pushViewController(reportVC, animated: true)
@@ -161,9 +162,8 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
                 break
             }
         case 2:
-            print("selecting section 2 row 0")
             let aboutUsVC = storyboard?.instantiateViewController(withIdentifier: "EditSettings") as! EditSettingsViewController
-            aboutUsVC.whichView = "NoView"
+            aboutUsVC.whichView = "AboutUsView"
             self.navigationController?.pushViewController(aboutUsVC, animated: true)
             break
         default:
