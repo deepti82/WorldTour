@@ -408,6 +408,19 @@ func getDateFormat(_ date: String, format: String) -> String {
     
 }
 
+func getMonthFormat(_ date: String) -> String {
+    
+    let globalDateFormatter = DateFormatter()
+    globalDateFormatter.dateFormat = "MM-yyyy"
+    let date = globalDateFormatter.date(from: date)
+    
+    let dayTimePeriodFormatter = DateFormatter()
+    dayTimePeriodFormatter.dateFormat = "MMMM yyyy"
+    let goodDate = dayTimePeriodFormatter.string(from: date!)
+    return goodDate
+    
+}
+
 
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks
