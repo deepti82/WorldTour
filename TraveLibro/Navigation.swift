@@ -1,6 +1,7 @@
 import UIKit
 
 import SwiftHTTP
+import OneSignal
 
 var adminUrl = "http://travelibro.wohlig.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
@@ -13,48 +14,50 @@ class Navigation {
         
         var json1 = JSON(1);
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
-        
-        let deviceParams = ["_id": deviceId, "os": "iOS"]
-        let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceParams, "dob": dob] as [String : Any]
-       
-        do {
-            let opt = try HTTP.POST(adminUrl + "user/save", parameters: [params])
-            opt.start { response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+        OneSignal.idsAvailable({(_ userId, _ pushToken) in
+            let deviceParams = userId
+            let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceParams, "dob": dob] as [String : Any]
+            
+            do {
+                let opt = try HTTP.POST(adminUrl + "user/save", parameters: [params])
+                opt.start { response in
+                    if let err = response.error {
+                        print("error: \(err.localizedDescription)")
+                    }
+                    else
+                    {
+                        json1  = JSON(data: response.data)
+                        var json = json1["data"]
+                        print("\(#line)\(json)")
+                        print(json["googleID"])
+                        var socialType = ""
+                        var socialId = ""
+                        
+                        if json["googleID"].string! != "" {
+                            socialType = "google"
+                            socialId = json["googleID"].string!
+                        }
+                        else if json["instagramID"].string! != "" {
+                            socialType = "instagram"
+                            socialId = json["instagramID"].string!
+                        }
+                        else if json["twitterID"].string! != "" {
+                            socialType = "twitter"
+                            socialId = json["twitterID"].string!
+                        }
+                        else if json["facebookID"].string! != "" {
+                            socialType = "facebook"
+                            socialId = json["facebookID"].string!
+                        }
+                        user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!)
+                        completion(json1)
+                    }
                 }
-                else
-                {
-                    json1  = JSON(data: response.data)
-                    var json = json1["data"]
-                    print("\(#line)\(json)")
-                    print(json["googleID"])
-                    var socialType = ""
-                    var socialId = ""
-                    
-                    if json["googleID"].string! != "" {
-                        socialType = "google"
-                        socialId = json["googleID"].string!
-                    }
-                    else if json["instagramID"].string! != "" {
-                        socialType = "instagram"
-                        socialId = json["instagramID"].string!
-                    }
-                    else if json["twitterID"].string! != "" {
-                        socialType = "twitter"
-                        socialId = json["twitterID"].string!
-                    }
-                    else if json["facebookID"].string! != "" {
-                        socialType = "facebook"
-                        socialId = json["facebookID"].string!
-                    }
-                    user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!)
-                    completion(json1)
-                }
+            } catch let error {
+                print("got an error creating the request: \(error)")
             }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
+
+        })
         
     }
     

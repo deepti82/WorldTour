@@ -7,6 +7,8 @@ import TwitterKit
 import SQLite
 import EventKitUI
 
+import OneSignal
+
 import Haneke
 let cache = Shared.dataCache
 
@@ -85,8 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     static func getDatabase () -> Connection {
         
-       
-        
         let path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
             ).first!
@@ -157,6 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         createMenuView()
         AppDelegate.getDatabase()
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1")
         
         faicon["clock"] = 0xf017
         faicon["calendar"] = 0xf073
