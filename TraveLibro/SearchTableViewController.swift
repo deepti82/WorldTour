@@ -12,6 +12,7 @@ import DKChainableAnimationKit
 class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate {
 
      var searchController: UISearchController!
+    @IBOutlet weak var hashtagsTable: UITableView!
     @IBOutlet weak var searchTable: UITableView!
     @IBOutlet weak var hashTagSlide: UIView!
     @IBOutlet weak var hashtagsSearch: UIButton!
@@ -42,12 +43,11 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "search", for: indexPath) as! searchHashtags
+        let cell = tableView.dequeueReusableCell(withIdentifier: "search", for: indexPath) as! searchPeople
         cell.peopleHashtagsImage.image = UIImage(named: "logo-default")
         noColor(cell.peopleHashtagsImage)
         cell.nameHashtagsLabel.text = "Pranay"
         cell.slurgHashtimesLabel.text = "pranay@gmail.com"
-        cell.hashLabel.isHidden = true
         return cell
     }
     
@@ -116,11 +116,17 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     
 }
 
-class searchHashtags: UITableViewCell{
+class searchPeople: UITableViewCell{
     
     @IBOutlet weak var peopleHashtagsImage: UIImageView!
     @IBOutlet weak var nameHashtagsLabel: UILabel!
     @IBOutlet weak var slurgHashtimesLabel: UILabel!
-    @IBOutlet weak var hashLabel: UILabel!
     
+}
+
+class searchHashtags: UITableViewCell{
+    @IBOutlet weak var hashtagsLabel: UILabel!
+    @IBOutlet weak var hashtagsTimesLabel: UILabel!
+    
+    @IBOutlet weak var hashtagImage: UIImageView!
 }

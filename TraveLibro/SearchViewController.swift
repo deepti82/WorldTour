@@ -45,7 +45,7 @@ class SearchViewController: UIViewController {
         let searchTable = storyboard?.instantiateViewController(withIdentifier: "searchTable") as! SearchTableViewController
         globalNavigationController.pushViewController(searchTable, animated: true)
         print("hello")
-        search.searchField.placeholder = ""
+//        search.searchField.placeholder = ""
     }
 
     func setTopNavigation(_ text: String) {
