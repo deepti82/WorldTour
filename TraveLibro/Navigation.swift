@@ -50,27 +50,16 @@ class Navigation {
                             socialType = "facebook"
                             socialId = json["facebookID"].string!
                         }
-                        user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!)
+                        user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!, dataUpload:"", privacy:"" )
                         completion(json1)
                     }
-<<<<<<< HEAD
-=======
-                    user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!, dataUpload:"", privacy:"" )
-                    completion(json1)
->>>>>>> origin/level-3-
                 }
             } catch let error {
                 print("got an error creating the request: \(error)")
             }
-<<<<<<< HEAD
 
         })
         
-=======
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }        
->>>>>>> origin/level-3-
     }
     
     func editUser(_ id: String, editField: String, editFieldValue: String, completion: @escaping ((JSON) -> Void)) {
