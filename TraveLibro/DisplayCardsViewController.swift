@@ -6,13 +6,17 @@ var cardTitle: String!
 var selectedOptions: [String] = []
 let rightButton = UIButton()
 
-class DisplayCardsViewController: UIPageViewController, UIPageViewControllerDataSource {
+class DisplayCardsViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
+    internal var isFromSettings:Bool? = false
+    
     let titles = ["Your kind of a holiday", "You usually go", "Prefer to travel", "Your ideal holiday type"]
     let checkBoxNumber = [6, 3, 8, 11]
     
     
     var dataIndex = 0
+    
+    //MARK:- Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +31,9 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
-//        rightButton.setTitle("Next", forState: .Normal)
         rightButton.setImage(UIImage(named: "arrow_next_fa"), for: UIControlState())
         rightButton.addTarget(self, action: #selector(DisplayCardsViewController.nextPage(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
-//        rightButton.hidden = true
         
         self.customNavigationBar(left: leftButton, right: rightButton)
         
@@ -48,13 +50,25 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //MARK:- Next Page
+    
     func nextPage(_ sender: AnyObject) {
         
         print("index: \(dataIndex)")
+        
         dataIndex = dataIndex + 1
+        
 //        viewControllerAtIndex(dataIndex)
-        let myVC = viewControllerAtIndex(dataIndex) as! SignupCardsViewController
-        setViewControllers([myVC], direction: .forward, animated: true, completion: nil)
+        
+        travelConfig[cardTitle] = selectedOptions
+        
+        selectedOptions = []
+        
+        if dataIndex < 4 || (isFromSettings == nil || isFromSettings == false){
+            let myVC = viewControllerAtIndex(dataIndex) as! SignupCardsViewController
+            setViewControllers([myVC], direction: .forward, animated: true, completion: nil)
+        }
         
         if dataIndex == 3 {
             
@@ -75,8 +89,10 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     func finishQuestions(_ sender: AnyObject) {
         
         dataIndex = 3
-        viewControllerAtIndex(dataIndex)
-        travelConfig[cardTitle] = selectedOptions
+        
+        if !(isFromSettings != nil && isFromSettings == true) {
+            _ = viewControllerAtIndex(dataIndex)
+        }        
         
 //        travelConfig["holidayType"]!.filter{
 //            !contains(travelConfig["preferToTravel"]!, $0)
@@ -113,12 +129,20 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                     
                     if response["value"].bool! {
                         
-                        print("response arrived!")
+                        print("response arrived! \(response)")
                         
-                        let home = self.storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
-//                        self.slideMenuController()?.changeMainViewController(home, close: true)
-//                        home.initialEntrance = true
-                        self.navigationController!.pushViewController(home, animated: true)
+                        currentUser = response["data"]
+                        
+                        if (self.isFromSettings != nil && self.isFromSettings == true) {
+                            print("\n pop vc")
+                            _ = self.navigationController?.popViewController(animated: true)
+                        }                       
+                        else {
+                            let home = self.storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
+    //                        self.slideMenuController()?.changeMainViewController(home, close: true)
+    //                        home.initialEntrance = true
+                            self.navigationController!.pushViewController(home, animated: true)
+                        }
                         
                     }
                     else {
@@ -130,6 +154,9 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         })
         
     }
+    
+    
+    //MARK:- PageController Delgates
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
@@ -171,7 +198,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         
         return viewControllerAtIndex(index)
         
-    }
+    }    
     
     func viewControllerAtIndex(_ index: Int) -> UIViewController {
         
@@ -193,8 +220,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
         }
         
         if((self.titles.count == 0) || (index >= self.titles.count)) {
-            
-                return SignupCardsViewController()
+            return SignupCardsViewController()
         }
         
         let myVC = storyboard?.instantiateViewController(withIdentifier: "SignupCardsViewController") as! SignupCardsViewController
@@ -211,7 +237,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         
-        return 0
+        return dataIndex
     }
 
 }

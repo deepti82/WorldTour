@@ -4,6 +4,7 @@ import SwiftHTTP
 import OneSignal
 
 var adminUrl = "http://travelibro.wohlig.com/api/"
+var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
 var mapKey = "AIzaSyDPH6EYKMW97XMTJzqYqA0CR4fk5l2gzE4"
 
 class Navigation {
@@ -52,13 +53,24 @@ class Navigation {
                         user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!)
                         completion(json1)
                     }
+<<<<<<< HEAD
+=======
+                    user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!, dataUpload:"", privacy:"" )
+                    completion(json1)
+>>>>>>> origin/level-3-
                 }
             } catch let error {
                 print("got an error creating the request: \(error)")
             }
+<<<<<<< HEAD
 
         })
         
+=======
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }        
+>>>>>>> origin/level-3-
     }
     
     func editUser(_ id: String, editField: String, editFieldValue: String, completion: @escaping ((JSON) -> Void)) {
@@ -68,6 +80,27 @@ class Navigation {
         do {
             let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: params)
             //            print("request: \(opt)")
+            opt.start { response in
+                print("started response: \(response)")
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func reportProblem(_ id: String, problemMessage: String, completion: @escaping ((JSON) -> Void)) {
+        var json = JSON(1);
+        let params = ["user":id, "problem":problemMessage]
+        do {
+            let opt = try HTTP.POST(adminBackendUrl + "reportProblems/save", parameters: params)
             opt.start { response in
                 print("started response: \(response)")
                 if let err = response.error {

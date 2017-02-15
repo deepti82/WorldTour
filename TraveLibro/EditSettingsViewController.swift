@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Toaster
 
 class EditSettingsViewController: UIViewController {
     
     internal var whichView = "noView"
+    var report:ReportProblem = ReportProblem()
+    var MAMtextView = MoreAboutMe()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         
         print("view: \(whichView)")
         
@@ -29,9 +33,9 @@ class EditSettingsViewController: UIViewController {
             titleView.addTarget(self, action: #selector(EditSettingsViewController.editPreferences(_:)), for: .touchUpInside)
             self.view.addSubview(titleView)
             
-            let textView = MoreAboutMe(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 150))
-            textView.backgroundColor = UIColor.white
-            self.view.addSubview(textView)
+            MAMtextView = MoreAboutMe(frame: CGRect(x: 0, y: 140, width: self.view.frame.width, height: 150))
+            MAMtextView.backgroundColor = UIColor.white
+            self.view.addSubview(MAMtextView)
             break
             
         case "NewPswdView":
@@ -43,9 +47,21 @@ class EditSettingsViewController: UIViewController {
         
         case "ReportView":
             self.title = "Report a problem"
-            let report = ReportProblem(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 300))
+            report = ReportProblem(frame: CGRect(x: 0, y: 80, width: self.view.frame.width, height: 300))
             report.submitButton.addTarget(self, action: #selector(EditSettingsViewController.submitComplaint(_:)), for: .touchUpInside)
             self.view.addSubview(report)
+            break
+            
+        case "AboutUsView":
+            self.view.backgroundColor = UIColor.groupTableViewBackground
+            self.title = "About us"
+            let aboutUsTextView = UITextView(frame: CGRect(x: 10, y: 80, width: screenWidth-20, height: screenHeight-90))
+            aboutUsTextView.textAlignment = .left
+            aboutUsTextView.isEditable = false
+            aboutUsTextView.backgroundColor = UIColor.white
+            aboutUsTextView.font = UIFont(name: "Avenir-Medium", size: 14)
+            aboutUsTextView.text = getAboutUsData()
+            self.view.addSubview(aboutUsTextView)
             break
             
         default:
@@ -54,6 +70,14 @@ class EditSettingsViewController: UIViewController {
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if whichView == "MAMView" {
+            MAMtextView.reloadTravelPrefeces()
+        }
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,32 +86,47 @@ class EditSettingsViewController: UIViewController {
     func editPreferences(_ sender: UIButton) {
         
         let displayCardsVC = storyboard?.instantiateViewController(withIdentifier: "DisplayCards") as! DisplayCardsViewController
+        displayCardsVC.isFromSettings = true
         self.navigationController?.pushViewController(displayCardsVC, animated: true)
-        
-        
     }
     
     func submitComplaint(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: nil, message:
-            "Successfully Reported!", preferredStyle: .alert)
+        Toast(text: "Please wait...").show()
+        report.theTextView.resignFirstResponder()
         
-        self.present(alert, animated: false, completion: nil)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler:
-            {action in      
-                alert.dismiss(animated: true, completion: nil)
-        }))
-        
+        DispatchQueue.global().async {
+            
+            request.reportProblem(currentUser["_id"].stringValue, problemMessage: self.report.theTextView.text) { (response) in
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    if response.error != nil {
+                        print("error: \(response.error?.localizedDescription)")
+                    } else {
+                        if response["value"] == true {
+                            ToastCenter.default.cancelAll()
+                            
+                            let alert = UIAlertController(title: nil, message: "Successfully Reported!", preferredStyle: .alert)
+                            self.present(alert, animated: false, completion: nil)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler:{action in
+                                self.report.theTextView.text = nil
+                                self.report.textViewDidEndEditing(self.report.theTextView)
+                                alert.dismiss(animated: true, completion: nil)
+                            }))
+                        } 
+                        else {
+                            ToastCenter.default.cancelAll()
+                            Toast(text: "Problem reporting failed").show()
+                        }
+                    }                
+                })
+            }
+        }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func getAboutUsData() -> String {
+        return "\n TraveLibro is a portal and app, conceptualized and developed for the ones who love to travel. Stemming from the sole love for travel, TraveLibro aspires to be the space where one can plan, save, share and cherish their travel memories. \n\n Sorting through the truckload of information on travel can be a tedious task. Keeping that in mind, we have well researched information customized to the kind of traveller you are. \n\n A romantic getaway or backpacking with friends, a luxurious extravaganza or a pocket friendly trip, we have all the information you need exactly the way you’d want it. \n\n TraveLibro's On-The-Go App auto-creates a beautiful travel timeline of your journey, as you simply check-in to places, leave a quick note or update your status & pictures. That’s not all; you can add your travel buddies and create shared memories of your journey, to etch your precious memories for a lifetime! \n\n TraveLibro is a portal and app, conceptualized and developed for the ones who love to travel. Stemming from the sole love for travel, TraveLibro aspires to be the space where one can plan, save, share and cherish their travel memories. \n\n Sorting through the truckload of information on travel can be a tedious task. Keeping that in mind, we have well researched information customized to the kind of traveller you are. \n\n A romantic getaway or backpacking with friends, a luxurious extravaganza or a pocket friendly trip, we have all the information you need exactly the way you’d want it. \n\n TraveLibro's On-The-Go App auto-creates a beautiful travel timeline of your journey, as you simply check-in to places, leave a quick note or update your status & pictures. That’s not all; you can add your travel buddies and create shared memories of your journey, to etch your precious memories for a lifetime! \n\n TraveLibro is a portal and app, conceptualized and developed for the ones who love to travel. Stemming from the sole love for travel, TraveLibro aspires to be the space where one can plan, save, share and cherish their travel memories. \n\n Sorting through the truckload of information on travel can be a tedious task. Keeping that in mind, we have well researched information customized to the kind of traveller you are. \n\n A romantic getaway or backpacking with friends, a luxurious extravaganza or a pocket friendly trip, we have all the information you need exactly the way you’d want it. \n\n TraveLibro's On-The-Go App auto-creates a beautiful travel timeline of your journey, as you simply check-in to places, leave a quick note or update your status & pictures. That’s not all; you can add your travel buddies and create shared memories of your journey, to etch your precious memories for a lifetime! \n\n TraveLibro is a portal and app, conceptualized and developed for the ones who love to travel. Stemming from the sole love for travel, TraveLibro aspires to be the space where one can plan, save, share and cherish their travel memories. \n\n Sorting through the truckload of information on travel can be a tedious task. Keeping that in mind, we have well researched information customized to the kind of traveller you are. \n\n A romantic getaway or backpacking with friends, a luxurious extravaganza or a pocket friendly trip, we have all the information you need exactly the way you’d want it. \n\n TraveLibro's On-The-Go App auto-creates a beautiful travel timeline of your journey, as you simply check-in to places, leave a quick note or update your status & pictures. That’s not all; you can add your travel buddies and create shared memories of your journey, to etch your precious memories for a lifetime!"
     }
-    */
 
 }

@@ -162,15 +162,16 @@ extension UIViewController {
         
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
         
-        let leftBarButton = UIBarButtonItem()
-        leftBarButton.customView = left
-        self.navigationItem.leftBarButtonItem = leftBarButton
+        if left != nil {
+            let leftBarButton = UIBarButtonItem()
+            leftBarButton.customView = left
+            self.navigationItem.leftBarButtonItem = leftBarButton
+        }
         
         if (right != nil) {
             let rightBarButton = UIBarButtonItem()
             rightBarButton.customView = right as? UIView
             self.navigationItem.rightBarButtonItem = rightBarButton
-
         }
         
         

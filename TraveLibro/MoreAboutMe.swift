@@ -28,7 +28,12 @@ class MoreAboutMe: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
-        print(currentUser);
+        
+        reloadTravelPrefeces()
+    }
+    
+    func reloadTravelPrefeces() {
+        print("\n\n Currentuser: \n \(currentUser)")
         
         let name = currentUser["firstName"].stringValue
         let kindOfHoliday = currentUser["travelConfig"]["kindOfHoliday"][0].stringValue
@@ -44,32 +49,32 @@ class MoreAboutMe: UIView {
         }
         var usuallyGo = ""
         switch(currentUser["travelConfig"]["usuallyGo"].stringValue) {
-            case "A little bit of both":
+        case "A little bit of both":
             usuallyGo = "by the map or where the road takes \(pronoun2)"
             
-            case "By the map":
+        case "By the map":
             usuallyGo = "by the map"
             
-            case "By the road":
+        case "By the road":
             usuallyGo = "where the road takes \(pronoun2)"
             
-            default:
+        default:
             usuallyGo = "by the map"
         }
         switch(kindOfHoliday) {
-            case "Island&Beach":
+        case "Island&Beach":
             kindOfHolidayFinal = "islands and beaches"
-            case "City":
+        case "City":
             kindOfHolidayFinal = "cities"
-            case "Safari":
+        case "Safari":
             kindOfHolidayFinal = "safaries"
-            case "Mountains":
+        case "Mountains":
             kindOfHolidayFinal = "mountains"
-            case "Cruise":
+        case "Cruise":
             kindOfHolidayFinal = "cruises"
-            case "Countryside":
+        case "Countryside":
             kindOfHolidayFinal = "countrysides"
-            default:
+        default:
             kindOfHolidayFinal = "islands and beaches"
         }
         
@@ -95,7 +100,6 @@ class MoreAboutMe: UIView {
         let holidayType = currentUser["travelConfig"]["holidayType"][0].stringValue
         
         mainTextView.text = "\(name) loves to travel and explore \(kindOfHolidayFinal). \(pronoun) usually goes \(usuallyGo). \(preferStatement). \(name)'s ideal holiday type is \(holidayType)."
-        
     }
 
 }

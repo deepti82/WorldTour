@@ -245,6 +245,13 @@ func makeBuddiesTLProfilePicture(_ image: UIImageView) {
     
 }
 
+func noColor(_ image: UIImageView) {
+    
+    image.layer.cornerRadius = (37/100) * image.frame.width
+    image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFill
+    
+}
 
 
 func getThought (_ post:JSON) -> String {
@@ -396,6 +403,19 @@ func getDateFormat(_ date: String, format: String) -> String {
     
     let dayTimePeriodFormatter = DateFormatter()
     dayTimePeriodFormatter.dateFormat = format
+    let goodDate = dayTimePeriodFormatter.string(from: date!)
+    return goodDate
+    
+}
+
+func getMonthFormat(_ date: String) -> String {
+    
+    let globalDateFormatter = DateFormatter()
+    globalDateFormatter.dateFormat = "MM-yyyy"
+    let date = globalDateFormatter.date(from: date)
+    
+    let dayTimePeriodFormatter = DateFormatter()
+    dayTimePeriodFormatter.dateFormat = "MMMM yyyy"
     let goodDate = dayTimePeriodFormatter.string(from: date!)
     return goodDate
     

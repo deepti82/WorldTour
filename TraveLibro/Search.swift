@@ -8,28 +8,30 @@
 
 import UIKit
 
-class Search: UIViewController {
+class Search: UIView {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBOutlet var popularBloggersScroll: UIScrollView!
+    @IBOutlet var PopularItinerariesScroll: UIScrollView!
+    @IBOutlet var HolidayDestinationImage: UIImageView!
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadViewFromNib ()
+           }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func loadViewFromNib() {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: "Search", bundle: bundle)
+        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+        view.frame = bounds
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(view)
+        
+       
+        
     }
-    */
 
 }

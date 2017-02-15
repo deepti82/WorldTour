@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import Toaster
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     internal var dataSourceOption: String = ""
     internal var labels = ["Cellular and WiFi", "WiFi", "Cellular"]
+    let localLoggedInUser = user.getUser(currentUser["_id"].stringValue)
     
+    var selectedOption = ""
+    
+    @IBOutlet weak var settingsTableView: UITableView!
     @IBOutlet weak var heightConstraintTable: NSLayoutConstraint!
+            
+    //MARK: Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let count: CGFloat = CGFloat(labels.count)
@@ -26,12 +34,50 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             labels = ["Public - Everyone", "Private - My Followers"]
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if dataSourceOption == "privacyOptions" {
+            self.title = "Privacy"
+        }
+        else {
+            self.title = "Data Upload"
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        var index:Int? = 1
+        
+        if dataSourceOption == "dataUploadOptions" {
+            index = labels.indexOf(value: localLoggedInUser.dataupload)
+            if index == nil {
+                index = 1   //Default: WiFi
+            }
+            self.tableView(settingsTableView, didSelectRowAt: IndexPath(row: index!, section: 0))
+        }
+        else {
+            index = labels.indexOf(value: localLoggedInUser.Privacy)
+            if index == nil {
+                index = 1   //Default: Private - My Followers
+            }
+            self.tableView(settingsTableView, didSelectRowAt: IndexPath(row: index!, section: 0))
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveOption()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
    
+    
+    //MARK:- TableView datasource and delegates
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -43,11 +89,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell") as! EditSettingsTableViewCell
         cell.checkLabel.text = labels[(indexPath as NSIndexPath).item]
-        //cell.checkButton.setTitle(String(format: "%C", (faicon["check"])!), forState: .Normal)
-        //ell.bringSubviewToFront(cell.checkButton)
         return cell
-    }
-    
+    }    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -56,11 +99,26 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         if selectedCell?.accessoryType == .checkmark {
             
             selectedCell?.accessoryType = .none
+            selectedOption = ""
         }
         
         else {
-            
+            if selectedOption != "" {
+                if dataSourceOption == "dataUploadOptions" {
+                    let index = labels.indexOf(value: localLoggedInUser.dataupload)
+                    if index != nil {
+                        self.tableView(settingsTableView, didDeselectRowAt: IndexPath(row: index!, section: 0))
+                    }
+                }
+                else {
+                    let index = labels.indexOf(value: localLoggedInUser.Privacy)
+                    if index != nil {
+                        self.tableView(settingsTableView, didDeselectRowAt: IndexPath(row: index!, section: 0))
+                    }
+                }
+            }
             selectedCell?.accessoryType = .checkmark
+            selectedOption = labels[indexPath.row]
         }
         
     }
@@ -72,40 +130,67 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         if selectedCell?.accessoryType == .checkmark {
             
             selectedCell?.accessoryType = .none
+            selectedOption = ""
         }
         
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 70        
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if dataSourceOption == "privacyOptions" {
-            let footerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 100))
-            footerLabel.text = "When you select your account to be private only, your followers can view your My Life - Journeys, Moments abd Reviews."
-            footerLabel.textAlignment = .center
-            footerLabel.numberOfLines = 0
-            footerLabel.lineBreakMode = .byWordWrapping
-            return footerLabel
-        }
         return UIView()
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if dataSourceOption == "privacyOptions" {
+            let footerLabel = UILabel(frame: CGRect(x: 0, y: 0, 
+                                                    width: tableView.frame.size.width, 
+                                                    height: self.tableView(tableView, heightForFooterInSection: section)))
+            footerLabel.font = UIFont(name: "Avenir-Medium", size: 14)
+            footerLabel.text = "When you select your account to be private only, your followers can view your My Life - Journeys, Moments abd Reviews."            
+            footerLabel.textAlignment = .center
+            footerLabel.numberOfLines = 0
+            footerLabel.lineBreakMode = .byWordWrapping
+            footerLabel.backgroundColor = UIColor.clear
+            footerLabel.sizeToFit()
+            return footerLabel
+        }
         
         return UIView()
-    }    
-
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
     
+    
+    //MARK:- Save function
+    
+    func saveOption() {
+        
+        //TODO: check if any option must be selected or not
+        
+        if selectedOption != "" {
+            
+            if dataSourceOption == "dataUploadOptions" {
+                if localLoggedInUser.dataupload != selectedOption {
+                    user.updateUserDataUploadMethod(currentUser["_id"].stringValue, dataUpload: selectedOption)
+                    Toast(text:"Profile updated").show()
+                }
+            }
+            else {
+                if localLoggedInUser.Privacy != selectedOption {
+                    user.updateUserPrivacy(currentUser["_id"].stringValue, privacy: selectedOption)
+                    Toast(text:"Profile updated").show()
+                }
+            }           
+        }
+    }
 }
+
+
 
 class EditSettingsTableViewCell: UITableViewCell {
     

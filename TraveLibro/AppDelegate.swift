@@ -151,7 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     nvc.navigationBar.isTranslucent = true
                 }
             })
-        }
+        }        
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

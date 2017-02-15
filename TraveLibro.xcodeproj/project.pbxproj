@@ -113,6 +113,8 @@
 		84E61E471E377828009A740F /* OtgCardUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E61E461E377828009A740F /* OtgCardUITextView.swift */; };
 		84FF89431E52E0A300FDE8F0 /* Search.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF89421E52E0A300FDE8F0 /* Search.xib */; };
 		84FF89491E52EAA800FDE8F0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */; };
+		84FF894B1E531B1100FDE8F0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF894A1E531B1100FDE8F0 /* Search.swift */; };
+		84FF894D1E53476A00FDE8F0 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF894C1E53476A00FDE8F0 /* SearchTableViewController.swift */; };
 		C20163E01D26911C00A2F70B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20163DF1D26911C00A2F70B /* UserModel.swift */; };
 		C20352311CEEE1FD00A20BB2 /* SignupCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */; };
 		C20352331CEEF25900A20BB2 /* DisplayCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20352321CEEF25900A20BB2 /* DisplayCardsViewController.swift */; };
@@ -579,6 +581,8 @@
 		84E61E461E377828009A740F /* OtgCardUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtgCardUITextView.swift; sourceTree = "<group>"; };
 		84FF89421E52E0A300FDE8F0 /* Search.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Search.xib; sourceTree = "<group>"; };
 		84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		84FF894A1E531B1100FDE8F0 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		84FF894C1E53476A00FDE8F0 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		BAE3F40D9DEC49A23FC2BE7B /* Pods-TraveLibro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.release.xcconfig"; sourceTree = "<group>"; };
 		C20163DF1D26911C00A2F70B /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C20352301CEEE1FD00A20BB2 /* SignupCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCardsViewController.swift; sourceTree = "<group>"; };
@@ -1451,6 +1455,7 @@
 			isa = PBXGroup;
 			children = (
 				84FF89421E52E0A300FDE8F0 /* Search.xib */,
+				84FF894A1E531B1100FDE8F0 /* Search.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -1800,6 +1805,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				84FF894C1E53476A00FDE8F0 /* SearchTableViewController.swift */,
 				84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */,
 				841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */,
 				843510DD1DF7F7EC00C3D8EE /* QuickIteneraryOne.swift */,
@@ -2998,6 +3004,7 @@
 				C20A18FF1D22A67700760BF9 /* AddBuddiesViewController.swift in Sources */,
 				C27F6C051CF06AB10049F012 /* MomentsTab.swift in Sources */,
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,
+				84FF894B1E531B1100FDE8F0 /* Search.swift in Sources */,
 				C2504E7F1CF3376100A84D78 /* PopularJourneyView.swift in Sources */,
 				3AF187021D78539D00A86BC1 /* DisplayPagesTwoViewController.swift in Sources */,
 				8453CF3F1E30A32300C41F82 /* ActivityDetailItinerary.swift in Sources */,
@@ -3124,6 +3131,7 @@
 				C25F488C1CF3226100C6C28C /* TravelLifeMomentsViewController.swift in Sources */,
 				1A944E441CCB668C007EB5BD /* OrangeButton.swift in Sources */,
 				C298717E1D6EBE8100F65429 /* AddCityViewController.swift in Sources */,
+				84FF894D1E53476A00FDE8F0 /* SearchTableViewController.swift in Sources */,
 				C2ABDBB21CEC53B000D7542E /* StatusView.swift in Sources */,
 				C24870481D0BEAF7003CB0DD /* EachItineraryViewController.swift in Sources */,
 				843510E01DF7F84600C3D8EE /* QuickIteneraryTwo.swift in Sources */,
