@@ -78,6 +78,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func loadInsideMedia(mediaType:String, pageno:Int, type:String, token:String, id:String) {
         print("loadInsideMedia")
         print(momentType)
+        print("insideView \(insideView)")
+
+        loadStatus = false
         if momentType == "all" || momentType == "local-life"{
             request.getTokenMoment(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
                 DispatchQueue.main.async {
@@ -122,6 +125,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         momentType = type
         reviewType = review
         print("loadReview")
+        print("insideView \(insideView)")
+
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: review, completion: {(request) in
             DispatchQueue.main.async {
                 
@@ -156,6 +161,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     func loadMomentLife(pageno:Int, type:String, token:String) {
         momentType = type
         print("loadMomentLife")
+        print("insideView \(insideView)")
         self.loadStatus = false
         request.getMomentLife(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
             
