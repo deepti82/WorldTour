@@ -6452,12 +6452,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="htT-12-Cvm">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htT-12-Cvm">
                                 <rect key="frame" x="0.0" y="65" width="375" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="cST-OB-dkm"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="n8a-1f-VAf" firstAttribute="top" secondItem="htT-12-Cvm" secondAttribute="bottom" constant="562" id="Def-uZ-mG5"/>
+                            <constraint firstItem="htT-12-Cvm" firstAttribute="leading" secondItem="XFd-Wm-ATx" secondAttribute="leading" id="G8m-Em-CRq"/>
+                            <constraint firstItem="htT-12-Cvm" firstAttribute="centerX" secondItem="XFd-Wm-ATx" secondAttribute="centerX" id="L3A-Zb-Ogy"/>
+                            <constraint firstAttribute="trailing" secondItem="htT-12-Cvm" secondAttribute="trailing" id="ebK-h8-hwN"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="SearchView" destination="htT-12-Cvm" id="sa5-TI-VJA"/>
