@@ -20,6 +20,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getDarkBackGroundBlur(self)
+        notifyTableView.backgroundColor = UIColor.clear
+        
         getNotification()
         
         notifyTableView.tableFooterView = UIView()
@@ -73,6 +76,71 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cellNotificationData = notifications[indexPath.row]
+        
+        let notificationType = cellNotificationData["type"].stringValue
+        
+        print("notificationType: \(notificationType)")
+        switch notificationType {
+        
+        case "postTag":
+            break
+            
+        case "journeyRequest":
+            
+            var cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? NotificationActionCell
+            if cell == nil {
+                cell = NotificationActionCell.init(style: .default, reuseIdentifier: "actionCell", notificationData: cellNotificationData, helper: self) 
+            }
+            cell?.setData(notificationData: cellNotificationData, helper: self)
+            
+            cell?.NFPermission.NFLeftButton.tag = indexPath.row
+            cell?.NFPermission.NFRightButton.tag = indexPath.row
+            
+            cell?.backgroundColor = UIColor.clear
+            return cell!
+            
+        case "postLike":
+            fallthrough
+            
+        case "journeyComment":
+            
+            var cell = tableView.dequeueReusableCell(withIdentifier: "acknolwdgeCell", for: indexPath) as? NotificationActionCell
+            if cell == nil {
+                cell = NotificationActionCell.init(style: .default, reuseIdentifier: "acknolwdgeCell", notificationData: cellNotificationData, helper: self) 
+            }
+            cell?.setData(notificationData: cellNotificationData, helper: self)
+            
+            cell?.backgroundColor = UIColor.clear
+            return cell!
+            
+        case "userFollowing":
+//            var cell = tableView.dequeueReusableCell(withIdentifier: cellNotificationData["type"].stringValue, for: indexPath) as? NotificationTableViewCell
+//            if cell == nil {
+//                cell = NotificationTableViewCell.init(style: .default, reuseIdentifier: cellNotificationData["type"].stringValue, notificationData: cellNotificationData) 
+//            }
+//            cell?.backgroundColor = UIColor.clear
+//            return cell!
+            break
+        
+        case "postTag":
+            break
+            
+        default:
+            break
+        }
+        
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        if cell == nil {
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: "cell") 
+        }
+        cell.backgroundColor = UIColor.clear
+        return cell
+        
+    }
+    
+    /*func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         tableView.estimatedRowHeight = 145
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -161,7 +229,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             return cell
         //}
         
-    }
+    }*/
     
 //    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        
@@ -189,14 +257,17 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if notifications[(indexPath as NSIndexPath).row]["type"].string! == "request" {
+//        if notifications[(indexPath as NSIndexPath).row]["type"].string! == "request" {
                 
-            return 145
-        }
+            return 300
+//        }
             
         return 65
     
     }
+    
+    
+    //MARK:- Button Action
     
     func acceptTag(_ sender: UIButton) {
         
@@ -231,8 +302,11 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
+    
+    
 }
 
+/*
 class simpleNotifyTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profile: UIImageView!
@@ -273,3 +347,4 @@ class messageNotifyTableViewCell: UITableViewCell {
     @IBOutlet weak var clockText: UILabel!
     
 }
+*/

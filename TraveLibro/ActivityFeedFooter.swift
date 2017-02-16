@@ -66,7 +66,7 @@ class ActivityFeedFooter: UIView {
         likeButton.setImage(UIImage(named:"likeButton"), for: UIControlState())
         shareButton.imageView?.contentMode = .scaleAspectFit
         commentButton.imageView?.contentMode = .scaleAspectFit
-        likeButton.imageView?.contentMode = .scaleAspectFit
+        likeButton.imageView?.contentMode = .scaleAspectFit        
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
         
     }

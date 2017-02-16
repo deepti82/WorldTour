@@ -33,7 +33,6 @@ class MoreAboutMe: UIView {
     }
     
     func reloadTravelPrefeces() {
-        print("\n\n Currentuser: \n \(currentUser)")
         
         let name = currentUser["firstName"].stringValue
         let kindOfHoliday = currentUser["travelConfig"]["kindOfHoliday"][0].stringValue

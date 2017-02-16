@@ -77,6 +77,7 @@ let screenSize = UIScreen.main.bounds
 let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 
+let HEADER_HEIGHT = (screenWidth * 0.2) - 20
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

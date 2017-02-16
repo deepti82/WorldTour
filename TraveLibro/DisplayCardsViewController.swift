@@ -129,7 +129,7 @@ class DisplayCardsViewController: UIPageViewController, UIPageViewControllerData
                     
                     if response["value"].bool! {
                         
-                        print("response arrived! \(response)")
+                        print("response arrived!")
                         
                         currentUser = response["data"]
                         

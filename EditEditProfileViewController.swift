@@ -18,6 +18,7 @@ class EditEditProfileViewController: UIViewController {
         
         print("which view: \(whichView)")
         
+        
         if whichView == 5 {
          
             let locationView = SearchLocation(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200))
@@ -36,6 +37,8 @@ class EditEditProfileViewController: UIViewController {
         }
         
         else if whichView == 6 {
+            
+            getDarkBackGroundBlur(self)
             
             genderView = GenderInfo(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 280))
             genderView.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)

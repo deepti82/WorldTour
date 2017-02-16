@@ -401,6 +401,21 @@ func getDateFormat(_ date: String, format: String) -> String {
     
 }
 
+func attributedString(from string: String, nonBoldRange: NSRange?) -> NSAttributedString {
+    let fontSize = UIFont.systemFontSize
+    let attrs = [
+        NSFontAttributeName: UIFont.boldSystemFont(ofSize: fontSize),
+        NSForegroundColorAttributeName: UIColor.black
+    ]
+    let nonBoldAttribute = [
+        NSFontAttributeName: UIFont.systemFont(ofSize: fontSize),
+        ]
+    let attrStr = NSMutableAttributedString(string: string, attributes: attrs)
+    if let range = nonBoldRange {
+        attrStr.setAttributes(nonBoldAttribute, range: range)
+    }
+    return attrStr
+}
 
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks
