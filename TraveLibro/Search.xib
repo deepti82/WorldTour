@@ -80,9 +80,7 @@
                 <constraint firstItem="Ace-fp-pTO" firstAttribute="leading" secondItem="XpZ-TS-wqR" secondAttribute="leading" id="LsB-YD-ZYU"/>
                 <constraint firstAttribute="trailing" secondItem="utz-75-kH5" secondAttribute="trailing" id="TQS-EZ-gpn"/>
                 <constraint firstItem="ceM-Bl-4v8" firstAttribute="centerY" secondItem="utz-75-kH5" secondAttribute="centerY" id="VPD-Or-nWE"/>
-                <constraint firstItem="Ace-fp-pTO" firstAttribute="top" secondItem="ftL-JM-846" secondAttribute="bottom" constant="8" id="hhZ-Tm-jMg"/>
                 <constraint firstItem="Ace-fp-pTO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="385" id="iPX-cb-Olg"/>
-                <constraint firstItem="Ace-fp-pTO" firstAttribute="top" secondItem="ftL-JM-846" secondAttribute="bottom" constant="8" id="kNJ-Od-oM5"/>
                 <constraint firstItem="ceM-Bl-4v8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="62" id="qRD-Lx-r1V"/>
                 <constraint firstItem="XpZ-TS-wqR" firstAttribute="top" secondItem="A2x-Je-ZgF" secondAttribute="bottom" constant="8" id="tIF-1I-wAw"/>
             </constraints>

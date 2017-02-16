@@ -198,6 +198,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         if currentUser != nil {
             self.title = "My Life"
+        
             profileUsername.text = "\(currentUser["name"].string!)"
             imageName = currentUser["profilePicture"].string!
             

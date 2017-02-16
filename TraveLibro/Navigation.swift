@@ -2993,5 +2993,12 @@ class Navigation {
         }
     }
 
+//    func searchPeople(_ id: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
+//        var json = JSON(1);
+//        let params = ["_id": id, "search": searchText, "limit":10] as [String : Any]
+//        do {
+//            let opt = try HTTP.POST(adminUrl + )
+//        }
+//    }
     
 }
