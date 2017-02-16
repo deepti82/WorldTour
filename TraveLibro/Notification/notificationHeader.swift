@@ -38,9 +38,8 @@ class notificationHeader: UIView {
     }
     
     func setHeaderData(data: JSON) {
-        let getImageUrl = adminUrl + "upload/readFile?file=" + data["userFrom"]["profilePicture"] + "&width=100"
-        profileImage.hnk_setImageFromURL(URL(string:getImageUrl)!)
-        makeTLProfilePicture(profileImage)
+        NFProfilePicture.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(data["userFrom"]["profilePicture"])", width: 100))
+        makeTLProfilePicture(NFProfilePicture)
         
         NFDateLabel.text = getDateFormat(data["updatedAt"].stringValue, format: "dd MMM, yyyy")
         NFTimeLabel.text = getDateFormat(data["updatedAt"].stringValue, format: "hh.mm a")
