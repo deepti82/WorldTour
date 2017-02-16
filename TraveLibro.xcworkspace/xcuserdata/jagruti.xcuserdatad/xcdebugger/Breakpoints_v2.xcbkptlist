@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TraveLibro/ActivityFeedFooter.swift"
-            timestampString = "508488286.886449"
+            filePath = "TraveLibro/MyLifeContainerViewController.swift"
+            timestampString = "508941025.669377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
-            landmarkName = "optionClick(_:)"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "loadData(_:pageNumber:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

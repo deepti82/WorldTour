@@ -9,13 +9,13 @@
 import UIKit
 
 class SearchViewController: UIViewController {
-    @IBOutlet var searchScroll: UIScrollView!
+    
     var search: SearchFieldView!
     @IBOutlet var SearchView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGround(self)
-        search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: SearchView.frame.width - 10 , height: 30))
+        search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: SearchView.frame.width - 20 , height: 30))
         search.searchField.returnKeyType = .done
         SearchView.addSubview(search)
   
@@ -26,17 +26,50 @@ class SearchViewController: UIViewController {
         search.bottomLine.backgroundColor = mainOrangeColor
         search.searchButton.tintColor = mainOrangeColor
         
-        searchScroll.contentSize.height = self.view.frame.height
-        searchScroll.contentSize.width = 0
+        let tapout = UITapGestureRecognizer(target: self, action: #selector(self.searchTable(_:)))
+        search.SearchView.addGestureRecognizer(tapout)
+
+        
+        let searchView = Search(frame: CGRect(x: 0, y: 105, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(searchView)
+        setTopNavigation("Search")
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func searchTable(_ sender: UITapGestureRecognizer) {
+        let searchTable = storyboard?.instantiateViewController(withIdentifier: "searchTable") as! SearchTableViewController
+        print(search.searchField)
+        searchTable.newSearch = search.searchField.text!
+//        searchTable.searchController.searchBar.text = search.searchField.text
+        globalNavigationController.pushViewController(searchTable, animated: true)
+        print("hello")
+//        search.searchField.placeholder = ""
+    }
 
+    func setTopNavigation(_ text: String) {
+        let leftButton = UIButton()
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.goBack(_:)), for: .touchUpInside)
+        let rightButton = UIView()
+        self.title = text
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
+    }
+    
+    
+    
+    func goBack(_ sender:AnyObject) {
+        self.navigationController!.popViewController(animated: true)
+    }
+
+    
     /*
     // MARK: - Navigation
 

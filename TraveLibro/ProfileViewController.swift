@@ -198,6 +198,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         if currentUser != nil {
             self.title = "My Life"
+        
             profileUsername.text = "\(currentUser["name"].string!)"
             imageName = currentUser["profilePicture"].string!
             
@@ -333,6 +334,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func gotoFeed(_ sender: UITapGestureRecognizer) {
         
         let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        tlVC.displayData = "activity"
+
             self.navigationController?.pushViewController(tlVC, animated: false)
     
     }

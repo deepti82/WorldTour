@@ -1,6 +1,7 @@
 import UIKit
 
 import SwiftHTTP
+import OneSignal
 
 var adminUrl = "http://travelibro.wohlig.com/api/"
 var adminBackendUrl = "http://travelibrobackend.wohlig.com/api/"
@@ -14,48 +15,51 @@ class Navigation {
         
         var json1 = JSON(1);
         let deviceId = UIDevice.current.identifierForVendor!.uuidString
-        
-        let deviceParams = ["_id": deviceId, "os": "iOS"]
-        let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceParams, "dob": dob] as [String : Any]
-       
-        do {
-            let opt = try HTTP.POST(adminUrl + "user/save", parameters: [params])
-            opt.start { response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+        OneSignal.idsAvailable({(_ userId, _ pushToken) in
+            let deviceParams = userId
+            let params = ["firstName":firstName, "lastName":lastName, "email": email, "mobile": mobile, "facebookID": fbId, "googleID": googleId, "twitterID": twitterId, "instagramID": instaId, "nationality": nationality, "profilePicture": profilePicture, "gender": gender, "deviceId": deviceParams, "dob": dob] as [String : Any]
+            
+            do {
+                let opt = try HTTP.POST(adminUrl + "user/save", parameters: [params])
+                opt.start { response in
+                    if let err = response.error {
+                        print("error: \(err.localizedDescription)")
+                    }
+                    else
+                    {
+                        json1  = JSON(data: response.data)
+                        var json = json1["data"]
+                        print("\(#line)\(json)")
+                        print(json["googleID"])
+                        var socialType = ""
+                        var socialId = ""
+                        
+                        if json["googleID"].string! != "" {
+                            socialType = "google"
+                            socialId = json["googleID"].string!
+                        }
+                        else if json["instagramID"].string! != "" {
+                            socialType = "instagram"
+                            socialId = json["instagramID"].string!
+                        }
+                        else if json["twitterID"].string! != "" {
+                            socialType = "twitter"
+                            socialId = json["twitterID"].string!
+                        }
+                        else if json["facebookID"].string! != "" {
+                            socialType = "facebook"
+                            socialId = json["facebookID"].string!
+                        }
+                        user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!, dataUpload:"", privacy:"" )
+                        completion(json1)
+                    }
                 }
-                else
-                {
-                    json1  = JSON(data: response.data)
-                    var json = json1["data"]
-                    print("\(#line)\(json)")
-                    print(json["googleID"])
-                    var socialType = ""
-                    var socialId = ""
-                    
-                    if json["googleID"].string! != "" {
-                        socialType = "google"
-                        socialId = json["googleID"].string!
-                    }
-                    else if json["instagramID"].string! != "" {
-                        socialType = "instagram"
-                        socialId = json["instagramID"].string!
-                    }
-                    else if json["twitterID"].string! != "" {
-                        socialType = "twitter"
-                        socialId = json["twitterID"].string!
-                    }
-                    else if json["facebookID"].string! != "" {
-                        socialType = "facebook"
-                        socialId = json["facebookID"].string!
-                    }
-                    user.setUser(json["_id"].stringValue, name: json["name"].stringValue, useremail: json["email"].stringValue, profilepicture: json["profilePicture"].stringValue, travelconfig: "", loginType: socialType, socialId: socialId, userBadge: json["userBadgeImage"].stringValue, homecountry: json["homeCountry"]["name"].stringValue, homecity: json["homeCity"].stringValue, isloggedin: json["alreadyLoggedIn"].bool!, dataUpload:"", privacy:"" )
-                    completion(json1)
-                }
+            } catch let error {
+                print("got an error creating the request: \(error)")
             }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }        
+
+        })
+        
     }
     
     func editUser(_ id: String, editField: String, editFieldValue: String, completion: @escaping ((JSON) -> Void)) {
@@ -1443,6 +1447,30 @@ class Navigation {
         }
     }
     
+    func getHashData(_ user: String, pageNumber: Int, search: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            print(user)
+            print(pageNumber)
+            print(search)
+            let opt = try HTTP.POST(adminUrl + "post/getHashData", parameters: ["user": user, "pagenumber": pageNumber, "search": search, "limit": 10])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     
     func getMomentJourney(pageNumber: Int,type:String, completion: @escaping ((JSON) -> Void)) {
         do {
@@ -1732,6 +1760,92 @@ class Navigation {
             print("got an error creating the request: \(error)")
         }
     }
+
+    
+    func getPeopleSearch(_ user: String, search: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON!
+            
+            params = ["_id": user, "search": search, "pagenumber": pageNumber, "limit": 10]
+           
+            print(params)
+            let jsonData = try params.rawData()
+            
+            let url = URL(string: adminUrl + "user/getUser")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    
+    func getHashtagSearch(_ search: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON!
+            params = ["search": search, "pagenumber": pageNumber, "limit": 10]
+            
+            print(params)
+            let jsonData = try params.rawData()
+            
+            let url = URL(string: adminUrl + "hashtag/getHash")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+
 
     
     func getGoogleSearchNearby(_ lat: Double, long: Double, searchText: String, completion: @escaping ((JSON) -> Void)) {
@@ -2989,5 +3103,12 @@ class Navigation {
         }
     }
 
+//    func searchPeople(_ id: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
+//        var json = JSON(1);
+//        let params = ["_id": id, "search": searchText, "limit":10] as [String : Any]
+//        do {
+//            let opt = try HTTP.POST(adminUrl + )
+//        }
+//    }
     
 }

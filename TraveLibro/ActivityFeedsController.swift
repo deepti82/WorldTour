@@ -19,6 +19,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var pageno = 1
     var loadStatus: Bool = true
     var mainFooter: FooterViewNew!
+    var displayData: String = ""
     
     
     override func viewDidLoad() {
@@ -44,7 +45,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         self.slideMenuController()?.toggleLeft()
     }
     func searchTop(_ sender: AnyObject) {
-        
+        let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! SearchViewController
+        globalNavigationController.pushViewController(searchVC, animated: true)
     }
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -71,27 +73,55 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     func getActivity(pageNumber: Int) {
         print("yaaaho")
         print(pageNumber)
-        request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request) in
-            DispatchQueue.main.async(execute: {
-                if request["data"] != "" {
-                    self.loadStatus = true
-                    for post in request["data"].array! {
-                        self.feeds.arrayObject?.append(post)
-                        let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
-                        checkIn.scrollView = self.activityScroll
-                        checkIn.createProfileHeader(feed: post)
-                        checkIn.activityFeed = self
-                        self.layout.addSubview(checkIn)
-                        self.addHeightToLayout()
+        if displayData == "activity" {
+            print("in activity")
+            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request) in
+                DispatchQueue.main.async(execute: {
+                    if request["data"] != "" {
+                        self.loadStatus = true
+                        for post in request["data"].array! {
+                            self.feeds.arrayObject?.append(post)
+                            let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                            checkIn.scrollView = self.activityScroll
+                            checkIn.createProfileHeader(feed: post)
+                            checkIn.activityFeed = self
+                            self.layout.addSubview(checkIn)
+                            self.addHeightToLayout()
+                            
+                        }
                         
+                        self.addHeightToLayout()
+                    }else{
+                        self.loadStatus = false
                     }
-                    
-                    self.addHeightToLayout()
-                }else{
-                    self.loadStatus = false
-                }
+                })
             })
-        })
+        }else{
+            print("in hash clicked")
+            request.getHashData(currentUser["_id"].stringValue, pageNumber: pageNumber, search: selectedHash, completion: {(request) in
+                DispatchQueue.main.async(execute: {
+                    if request["data"] != "" {
+                        self.loadStatus = true
+                        for post in request["data"].array! {
+                            self.feeds.arrayObject?.append(post)
+                            let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                            checkIn.scrollView = self.activityScroll
+                            checkIn.createProfileHeader(feed: post)
+                            checkIn.activityFeed = self
+                            self.layout.addSubview(checkIn)
+                            self.addHeightToLayout()
+                            
+                        }
+                        
+                        self.addHeightToLayout()
+                    }else{
+                        self.loadStatus = false
+                    }
+                })
+            })
+        }
+        
+        
     }
     
     func addHeightToLayout() {

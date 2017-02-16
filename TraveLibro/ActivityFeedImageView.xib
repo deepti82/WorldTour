@@ -46,9 +46,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paris" translatesAutoresizingMaskIntoConstraints="NO" id="yph-5G-qkn">
-                    <rect key="frame" x="2" y="-10" width="371" height="572"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="562"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="572" id="SLR-DB-0UG"/>
+                        <constraint firstAttribute="height" constant="562" id="SLR-DB-0UG"/>
                     </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="i6z-aN-LDP">
@@ -259,16 +259,19 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="yph-5G-qkn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="5f8-hT-KLc"/>
                 <constraint firstAttribute="trailing" secondItem="aEc-6X-sOM" secondAttribute="trailing" constant="-55" id="8b1-wl-FF9"/>
                 <constraint firstAttribute="bottom" secondItem="hHu-jo-Pzw" secondAttribute="bottom" id="97m-xW-dwU"/>
                 <constraint firstAttribute="trailing" secondItem="hHu-jo-Pzw" secondAttribute="trailing" constant="-1" id="Cjg-4M-DyD"/>
                 <constraint firstItem="aEc-6X-sOM" firstAttribute="top" secondItem="i6z-aN-LDP" secondAttribute="top" id="NF5-uB-3jP"/>
                 <constraint firstAttribute="bottom" secondItem="yph-5G-qkn" secondAttribute="bottom" id="RuJ-hV-ty0"/>
+                <constraint firstItem="yph-5G-qkn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Vjk-eC-pCV"/>
                 <constraint firstItem="yph-5G-qkn" firstAttribute="centerX" secondItem="hHu-jo-Pzw" secondAttribute="centerX" constant="-1" id="Z6d-M0-6db"/>
                 <constraint firstItem="hHu-jo-Pzw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="1" id="h7t-EJ-34i"/>
+                <constraint firstAttribute="trailing" secondItem="yph-5G-qkn" secondAttribute="trailing" id="lMC-jd-CGo"/>
                 <constraint firstItem="i6z-aN-LDP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="lSL-O4-UGZ"/>
+                <constraint firstItem="yph-5G-qkn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mj3-mX-aRc"/>
                 <constraint firstItem="hHu-jo-Pzw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="1" id="nR0-l7-K9g"/>
+                <constraint firstAttribute="bottom" secondItem="yph-5G-qkn" secondAttribute="bottom" id="x2R-aV-EpC"/>
                 <constraint firstItem="aEc-6X-sOM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="x4c-Z5-HvF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -33,7 +33,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bwI-Wu-NGv">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="kNQ-Yo-NhR">
                             <rect key="frame" x="8" y="10" width="55" height="55"/>
@@ -165,10 +165,10 @@
                 </view>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="bwI-Wu-NGv" secondAttribute="bottom" constant="-18" id="IBB-JS-Jjg"/>
                 <constraint firstItem="bwI-Wu-NGv" firstAttribute="leading" secondItem="Ott-pw-wP9" secondAttribute="leading" id="RgP-Po-Rgz"/>
                 <constraint firstAttribute="trailing" secondItem="bwI-Wu-NGv" secondAttribute="trailing" id="fff-w2-5ts"/>
                 <constraint firstItem="bwI-Wu-NGv" firstAttribute="top" secondItem="Ott-pw-wP9" secondAttribute="top" id="lyj-bs-BBW"/>
+                <constraint firstAttribute="bottom" secondItem="bwI-Wu-NGv" secondAttribute="bottom" id="rFp-dj-Bys"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -245,6 +245,13 @@ func makeBuddiesTLProfilePicture(_ image: UIImageView) {
     
 }
 
+func noColor(_ image: UIImageView) {
+    
+    image.layer.cornerRadius = (37/100) * image.frame.width
+    image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFill
+    
+}
 
 
 func getThought (_ post:JSON) -> String {
@@ -401,20 +408,17 @@ func getDateFormat(_ date: String, format: String) -> String {
     
 }
 
-func attributedString(from string: String, nonBoldRange: NSRange?) -> NSAttributedString {
-    let fontSize = UIFont.systemFontSize
-    let attrs = [
-        NSFontAttributeName: UIFont.boldSystemFont(ofSize: fontSize),
-        NSForegroundColorAttributeName: UIColor.black
-    ]
-    let nonBoldAttribute = [
-        NSFontAttributeName: UIFont.systemFont(ofSize: fontSize),
-        ]
-    let attrStr = NSMutableAttributedString(string: string, attributes: attrs)
-    if let range = nonBoldRange {
-        attrStr.setAttributes(nonBoldAttribute, range: range)
-    }
-    return attrStr
+func getMonthFormat(_ date: String) -> String {
+    
+    let globalDateFormatter = DateFormatter()
+    globalDateFormatter.dateFormat = "MM-yyyy"
+    let date = globalDateFormatter.date(from: date)
+    
+    let dayTimePeriodFormatter = DateFormatter()
+    dayTimePeriodFormatter.dateFormat = "MMMM yyyy"
+    let goodDate = dayTimePeriodFormatter.string(from: date!)
+    return goodDate
+    
 }
 
 //LoadingOverlay.shared.showOverlay(self.view)
