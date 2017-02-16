@@ -77,6 +77,7 @@ class FooterViewNew: UIView {
     func gotoFeed(_ sender: UITapGestureRecognizer) {
         
         let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        tlVC.displayData = "activity"
         globalNavigationController?.pushViewController(tlVC, animated: false)
         
     }

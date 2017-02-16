@@ -70,6 +70,7 @@ var storyboard: UIStoryboard!
 var addedBuddies: JSON = []
 var globalPostImage:[PostImage] = []
 var currentJourney:JSON = []
+var selectedHash:String = ""
 
 
 var leftViewController: SideNavigationMenuViewController!

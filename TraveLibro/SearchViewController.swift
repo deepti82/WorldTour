@@ -43,6 +43,9 @@ class SearchViewController: UIViewController {
     
     func searchTable(_ sender: UITapGestureRecognizer) {
         let searchTable = storyboard?.instantiateViewController(withIdentifier: "searchTable") as! SearchTableViewController
+        print(search.searchField)
+        searchTable.newSearch = search.searchField.text!
+//        searchTable.searchController.searchBar.text = search.searchField.text
         globalNavigationController.pushViewController(searchTable, animated: true)
         print("hello")
 //        search.searchField.placeholder = ""

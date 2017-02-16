@@ -334,6 +334,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func gotoFeed(_ sender: UITapGestureRecognizer) {
         
         let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        tlVC.displayData = "activity"
+
             self.navigationController?.pushViewController(tlVC, animated: false)
     
     }
