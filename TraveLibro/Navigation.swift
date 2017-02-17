@@ -1381,11 +1381,11 @@ class Navigation {
         }
     }
     
-    func acceptJourney(_ journeyId: String, id: String, isInMiddle: String, completion: @escaping ((JSON) -> Void)) {
+    func acceptJourney(_ journeyId: String, id: String, inMiddle: Bool, notificationId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "journey/buddyAccept", parameters: ["user": id, "uniqueId": journeyId, "inMiddle": isInMiddle])
+            let opt = try HTTP.POST(adminUrl + "journey/buddyAccept", parameters: ["uniqueId": journeyId, "user": id, "inMiddle": inMiddle, "_id": notificationId])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

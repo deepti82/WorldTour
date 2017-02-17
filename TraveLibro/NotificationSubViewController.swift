@@ -10,7 +10,7 @@ import UIKit
 
 
 class NotificationSubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    var inMiddle: Bool! = true
     var whichView: String!
     var notifications: [JSON] = []
     let refreshControl = UIRefreshControl()
@@ -45,10 +45,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     
                 }
                 else if response["value"].bool! {
-                    
+                    print("hellobuddy")
                     self.notifications = response["data"].array!
                     self.notifyTableView.reloadData()
-                    
+                    print(self.notifications)
                 }
                 else {
                     
@@ -270,10 +270,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     //MARK:- Button Action
     
     func acceptTag(_ sender: UIButton) {
-        
+        print(sender.tag)
         print("in the accept tag button, \(notifications[sender.tag]["journeyUnique"]), \(currentUser["_id"]), \(notifications[sender.tag]["inMiddle"])")
-        
-        request.acceptJourney(notifications[sender.tag]["journeyUnique"].string!, id: currentUser["_id"].string!, isInMiddle: "\(notifications[sender.tag]["inMiddle"])", completion: {(response) in
+        request.acceptJourney(notifications[sender.tag]["journeyUnique"].stringValue, id: currentUser["_id"].stringValue, inMiddle: inMiddle ,notificationId: notifications[sender.tag]["_id"].stringValue, completion: {(response) in
             
             if response.error != nil {
                 
