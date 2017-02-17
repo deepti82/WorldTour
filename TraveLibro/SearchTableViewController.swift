@@ -58,6 +58,11 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
             let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
             tlVC.displayData = "hashtags"
             globalNavigationController?.pushViewController(tlVC, animated: false)
+        }else{
+            selectedPeople = allData[indexPath.row]["_id"].stringValue
+            let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            profile.displayData = "search"
+            self.navigationController!.pushViewController(profile, animated: true)
         }
     }
     
@@ -77,7 +82,6 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
             cell.nameHashtagsLabel.text = allData[indexPath.row]["title"].stringValue
             cell.slurgHashtimesLabel.text = "\(allData[indexPath.row]["count"].stringValue) Times"
         }
-        
         return cell
     }
     

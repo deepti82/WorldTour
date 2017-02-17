@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var orangeTab:OrangeButton!
     var footer:FooterViewNew!
     var MAM: MoreAboutMe!
+    var displayData: String = ""
     
     var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
@@ -278,7 +279,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func getUser() {
-        request.getUser(user.getExistingUser(), completion: {(request) in
+        var usr = user.getExistingUser()
+        if displayData == "search" {
+            usr = selectedPeople
+        }
+        request.getUser(usr, completion: {(request) in
             DispatchQueue.main.async {
                 currentUser = request["data"]
                 self.onLoaded()

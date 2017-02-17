@@ -71,6 +71,7 @@ var addedBuddies: JSON = []
 var globalPostImage:[PostImage] = []
 var currentJourney:JSON = []
 var selectedHash:String = ""
+var selectedPeople:String = ""
 
 
 var leftViewController: SideNavigationMenuViewController!
