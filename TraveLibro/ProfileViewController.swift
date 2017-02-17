@@ -259,11 +259,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         profile_badge.image = UIImage(named:currentUser["userBadgeName"].stringValue.lowercased())
         
-        
-        
-        
-        
-        
     }
     
     
@@ -285,7 +280,9 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         }
         request.getUser(usr, completion: {(request) in
             DispatchQueue.main.async {
-                currentUser = request["data"]
+//                if self.displayData == "" {
+                    currentUser = request["data"]
+//                }
                 self.onLoaded()
                 self.setCount()
             }
@@ -312,9 +309,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func gotoOTG(_ sender: UITapGestureRecognizer) {
         
-        
-        
-        
+                
         var isThere = 0
         let vcs = self.navigationController!.viewControllers
         
