@@ -10,6 +10,7 @@ class BucketListTableViewController: UITableViewController  {
     var result: [JSON] = []
     //    var countriesVisited: [JSON] = []
     var isComingFromEmptyPages = false
+    var otherUser: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,12 @@ class BucketListTableViewController: UITableViewController  {
         rightButton.setImage(UIImage(named: "add_fa_icon"), for: UIControlState())
         rightButton.addTarget(self, action: #selector(BucketListTableViewController.addCountriesVisited(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 0, y: 8, width: 30, height: 30)
+        if otherUser == "search" {
+            self.customNavigationBar(left: leftButton, right: nil)
+        }else{
+            self.customNavigationBar(left: leftButton, right: rightButton)
+        }
         
-        self.customNavigationBar(left: leftButton, right: rightButton)
         
         if whichView == "BucketList" {
             self.title = "Bucket List"
@@ -224,7 +229,6 @@ class BucketListTableViewController: UITableViewController  {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BucketListTableViewCell
         return cell
         
-        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -235,6 +239,14 @@ class BucketListTableViewController: UITableViewController  {
         let cell = tableView.cellForRow(at: indexPath) as! BucketListTableViewCell
         self.view.bringSubview(toFront: cell.tintView)
         self.view.sendSubview(toBack: cell.countryPicture)
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if otherUser == "search" {
+            return false
+        }else{
+            return true
+        }
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

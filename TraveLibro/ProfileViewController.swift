@@ -413,7 +413,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             bucketVC.whichView = "CountriesVisited"
             self.navigationController?.pushViewController(bucketVC, animated: true)
         } else {
+            
             let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
+            if displayData == "search" {
+                bucketVC.otherUser = "search"
+            }
             bucketVC.whichView = "CountriesVisited"
             self.navigationController?.pushViewController(bucketVC, animated: true)
         }
