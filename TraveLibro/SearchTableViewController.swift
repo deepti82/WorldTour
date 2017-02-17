@@ -149,6 +149,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchTextGlob = searchText
+        self.page = 1
         print(searchText)
         if selectedStatus == "people" {
             self.searchPeople(search: searchText)
