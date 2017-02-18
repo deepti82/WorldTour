@@ -454,6 +454,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
             singlePhotoController.mainImage?.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
             singlePhotoController.index = indexPath.row
+            print("in console \(allData[indexPath.row]["type"].stringValue)")
             singlePhotoController.type = allData[indexPath.row]["type"].stringValue
             singlePhotoController.postId = ""
             singlePhotoController.allDataFromMyLife = allData
