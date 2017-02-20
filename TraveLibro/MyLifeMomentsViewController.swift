@@ -31,6 +31,10 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     var tokenToShow:NSAttributedString!
     var empty: EmptyScreenView!
     var reviewType = ""
+    var savedMediaType = ""
+    var savedToken = ""
+    var savedId = ""
+
     
     
     @IBOutlet weak var mainView: UICollectionView!
@@ -48,29 +52,19 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("in loading")
-        print(page)
         print(loadStatus)
+        print(insideView)
         if loadStatus {
-            if momentType == "travel-life" {
-                self.loadMomentLife(pageno: page, type: "travel-life", token: "")
+            
+            if insideView == "Monthly" {
+                loadInsideMedia(mediaType: savedMediaType, pageno: page, type: momentType, token: savedToken, id: savedId)
+            }else{
+                if momentType == "travel-life" {
+                    self.loadMomentLife(pageno: page, type: momentType, token: "")
+                }
             }
+            
         }
-        
-        
-        
-        //        print(loadStatus)
-        //        if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
-        //
-        //            if lastToken != "-1" {
-        //                if loadStatus {
-        //                    loadMomentLife(pageno: page, type: momentType, token: lastToken)
-        //                }
-        //            }else{
-        //                self.loadStatus = false
-        //            }
-        //
-        //        }
         
     }
     
@@ -79,9 +73,13 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         print("loadInsideMedia")
         print(momentType)
         print("insideView \(insideView)")
-
-        loadStatus = false
-        if momentType == "all" || momentType == "local-life"{
+        
+        savedMediaType = mediaType
+        savedToken = token
+        savedId = id
+        
+        self.loadStatus = false
+        if momentType == "all" || momentType == "local-life" {
             request.getTokenMoment(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
                 DispatchQueue.main.async {
                     
@@ -95,12 +93,14 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                             }
                         }
                         self.mainView.reloadData()
+                        self.page = self.page + 1
                     }else{
                         self.loadStatus = false
                     }
                 }
             })
-        } else{
+        } else {
+            print("in else, pagenumber \(pageno)")
             request.getMedia(mediaType: mediaType, user: currentUser["_id"].stringValue, id: id, pageNumber: pageno, completion: {(request) in
                 DispatchQueue.main.async {
                     if request["data"].count > 0 {
@@ -113,6 +113,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                             }
                         }
                         self.mainView.reloadData()
+                        self.page = self.page + 1
                     }else{
                         self.loadStatus = false
                     }
@@ -449,7 +450,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        page = 1
         if insideView == "Monthly" {
             let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
             singlePhotoController.mainImage?.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))

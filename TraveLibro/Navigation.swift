@@ -1500,9 +1500,9 @@ class Navigation {
             if type == "travel-life" {
                 params = ["user": user, "type": type, "pagenumber": pageNumber]
             } else if type == "local-life" {
-                params = ["user": user, "token": token, "type": type, "limit": 1, "times": 4]
+                params = ["user": user, "token": token, "type": type, "limit": 1, "times": 6]
             } else {
-                params = ["user": user, "token": token, "type": type, "limit": 20, "times": 4]
+                params = ["user": user, "token": token, "type": type, "limit": 20, "times": 6]
             }
             print(params)
             let jsonData = try params.rawData()
