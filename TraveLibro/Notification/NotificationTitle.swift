@@ -55,34 +55,22 @@ class NotificationTitle: UIView {
             str2 = " has commented on a photo in your "
             
         case "photoLike":
-            str2 = " has liked photo in your "
+            str2 = " has liked photo "
+            
+        case "userFollowing":
+            str2 = " has accepted your follow request"
+            
+        case "journeyLeft":
+            let gen = data["userFrom"]["gender"].stringValue
+            str2 = " has ended " + (gen == "male" ? "his" : "her")
             
         case "userFollowing":
             str2 = " has started following you."
             
-        case "userFollowingResponse":
-            str2 = " has accepted your follow request. "
-            
-        case "userFollowingRequest":
-            str2 = " has requested to follow your travel and local activities. "
-            
-        case "journeyAccept":
-            str2 = " has accepted your journey request. "
-            
-        case "journeyLeft":
-            let gen = data["userFrom"]["gender"].stringValue
-            str2 = " has ended " + (gen == "male" ? "his" : "her") + " On The Go Journey - "
-            
-        case "journeyRequest":
-            let gen = data["userFrom"]["gender"].stringValue
-            str2 = " wants to tag you in " + (gen == "male" ? "his" : "her") + " On The Go Journey - "
-            
         case "journeyMentionComment":
             str2 = " has mentioned you in a comment On The Go Journey -  "
             
-        case "journeyComment": 
-            fallthrough
-        case "itineraryComment":
+        case "journeyComment":            
             str2 = " has commented on the "
         
         case "journeyLike":
@@ -90,16 +78,6 @@ class NotificationTitle: UIView {
             
         case "journeyReject":
             str2 = " has rejected your request to join the "
-            
-        case "itineraryRequest":
-            let gen = data["userFrom"]["gender"].stringValue
-            str2 = " wants to tag you in " + (gen == "male" ? "his" : "her") + " On The Go Journey - "
-            
-        case "itineraryMentionComment":
-            str2 = " has mentioned you in a comment On "
-            
-        case "itineraryLike":
-            str2 = " has liked "
             
         default:
             str2 = " wants to tag you in her On The Go Journey"
@@ -111,29 +89,19 @@ class NotificationTitle: UIView {
         
         var str3 = ""
         if notificationType != "userFollowing" && 
-            notificationType != "userFollowingRequest" &&
-            notificationType != "userFollowingResponse" &&
             notificationType != "journeyMentionComment" && 
             notificationType != "journeyComment" &&
             notificationType != "journeyLike" &&
             notificationType != "journeyReject" &&
-            notificationType != "journeyAccept" &&
-            notificationType != "photoLike" &&
-            notificationType != "journeyRequest" &&
-            notificationType != "itineraryMentionComment" &&
-            notificationType != "itineraryLike" &&
-            notificationType != "itineraryComment"{ 
+            notificationType != "photoLike" { 
             //Travel type
             let travelType = data["data"]["type"].string
             if travelType != nil {
                 if travelType == "local-life" {
-                    str3 = "Local Life Activity. "
+                    str3 = "Local Life Activity"
                 }
                 else if travelType == "on_the_go" {
-                    str3 = "On The Go Activity. "
-                }
-                else if travelType == "travel-life" {
-                    str3 = "Travel Life Activity. "
+                    str3 = "On The Go Activity"
                 }
             }
             
@@ -145,31 +113,17 @@ class NotificationTitle: UIView {
         if notificationType == "journeyComment" {
             str4 = "On Go Journey "
         }
-        else if notificationType == "journeyReject" {
+        if notificationType == "journeyReject" {
             str4 = "On Go Activity - "
-        }
-        else if notificationType == "journeyComment" {
-            str4 = "Local Life Activity. "
-        }
-        else if notificationType == "itineraryMentionComment" ||
-            notificationType == "itineraryLike" ||
-            notificationType == "itineraryComment" {
-            str4 = data["data"]["type"].stringValue.capitalized + " - "
-        }
-    
+        }        
         message.append(getBoldString(string: str4))
         
         
         var str5 = ""
         if notificationType == "journeyMentionComment" ||
-            notificationType == "journeyComment" ||
-            notificationType == "journeyLike" ||
-            notificationType == "journeyReject" ||
-            notificationType == "journeyRequest" ||
-            notificationType != "journeyAccept" ||
-            notificationType == "itineraryMentionComment" ||
-            notificationType == "itineraryLike" ||
-            notificationType == "itineraryComment" {
+           notificationType == "journeyComment" ||
+           notificationType == "journeyLike" ||
+           notificationType == "journeyReject" {
             str5 = data["data"]["name"].stringValue
             
             message.append(getRedString(string: str5))

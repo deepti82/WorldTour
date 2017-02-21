@@ -85,11 +85,7 @@ class NotificationPhotoCell: UITableViewCell {
         
         if notificationData["type"] == "journeyMentionComment" ||
             notificationData["type"] == "journeyComment" ||
-            notificationData["type"] == "journeyLike" ||
-            notificationData["type"] == "journeyAccept" ||
-            notificationData["type"] == "itineraryMentionComment" ||
-            notificationData["type"] == "itineraryLike" ||
-            notificationData["type"] == "itineraryComment" {
+            notificationData["type"] == "journeyLike"{
             var imageURL = notificationData["data"]["coverPhoto"].string
             if imageURL == nil || imageURL == "" {
                 imageURL = notificationData["data"]["startLocationPic"].stringValue

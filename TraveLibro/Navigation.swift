@@ -1359,11 +1359,11 @@ class Navigation {
     }
     
     
-    func getNotify(_ id: String, pageNumber: Int, completion: @escaping ((JSON) -> Void)) {
+    func getNotify(_ id: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "notification/getNotification", parameters: ["user": id,"pagenumber":pageNumber])
+            let opt = try HTTP.POST(adminUrl + "notification/getNotification", parameters: ["user": id,"pagenumber":1])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
