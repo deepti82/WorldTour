@@ -30,6 +30,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var countryName = ""
     var cityName = ""
     var selectedView = 1
+    var loadStatus:Bool = true
     
     
     
@@ -44,6 +45,15 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(loadStatus)
+        if loadStatus {
+            loadReview(pageno: self.pagenumber, type: reviewType)
+        }
+    }
+    
+    
     func getHeaderJSON() -> JSON {
         var returnJson:JSON = []
         if reviewType == "country" {
@@ -122,6 +132,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     
     func loadByLocation(location:String, id:String) {
         reviewType = location
+        print("GetReviewByLoc")
         request.getReviewByLoc(currentUser["_id"].stringValue, location: location, id: id, completion: {(request) in
             DispatchQueue.main.async {
                 self.allData = []
@@ -159,6 +170,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             self.city = json["city"].stringValue
             self.category = json["_id"].stringValue
         }
+        print("getReview")
         request.getReview(currentUser["_id"].stringValue, country: country, city: city, category: category, pageNumber: pageno, completion: {(request) in
             DispatchQueue.main.async {
                 if request["data"].count > 0 {
@@ -191,14 +203,22 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     func loadReview(pageno:Int, type:String) {
         selectedView = 1
         reviewType = type
+        loadStatus = false
+        print("getmylifereview")
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
             DispatchQueue.main.async {
-                if pageno == 1 {
-                    self.allData = request["data"].array!
-                }else{
-                    for post in request["data"].array! {
-                        self.allData.append(post)
+                if request["data"].count > 0 {
+                    if pageno == 1 {
+                        self.allData = request["data"].array!
+                    }else{
+                        for post in request["data"].array! {
+                            self.allData.append(post)
+                        }
                     }
+                    self.loadStatus = true
+                    self.pagenumber = self.pagenumber + 1
+                }else{
+                    self.loadStatus = false
                 }
                 
                 self.accordionTableView.reloadData()
@@ -222,7 +242,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
             cell.clockLabel.text = String(format: "%C", faicon["clock"]!)
             cell.locationLabel.text = "\(allData[indexPath.row]["checkIn"]["city"].stringValue), \(allData[indexPath.row]["checkIn"]["country"].stringValue)"
             cell.placeTitle.text = allData[indexPath.row]["checkIn"]["location"].stringValue
-                        cell.setView(feed: allData[indexPath.row])
+            cell.setView(feed: allData[indexPath.row])
             
             return cell
             
@@ -239,9 +259,9 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 cell.locationLabel.text = "\(allData[indexPath.row]["checkIn"]["city"].stringValue), \(allData[indexPath.row]["checkIn"]["country"].stringValue)"
                 cell.placeTitle.text = allData[indexPath.row]["checkIn"]["location"].stringValue
                 cell.setView(feed: allData[indexPath.row])
-
+                
                 return cell
-
+                
             }
         default:
             print(reviewType)
@@ -287,7 +307,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
                 return 115
             }
             return 143
-
+            
         }
             
         else if reviewType == "reviewby" {
@@ -349,13 +369,13 @@ class allReviewsMLTableViewCell: UITableViewCell {
     var postTop:JSON = []
     var newRating:JSON = []
     let categories: [JSON] = [["title": "Transportation", "image": "planetrans"], ["title": "Hotels & Accomodations", "image": "hotels-1"], ["title": "Restaurants & Bars", "image": "restaurantsandbars"], ["title": "Nature & Parks", "image": "leaftrans"], ["title": "Sights & Landmarks", "image": "sightstrans"], ["title": "Museums & Galleries", "image": "museumstrans"], ["title": "Religious", "image": "regli"], ["title": "Shopping", "image": "shopping"], ["title": "Zoo & Aquariums", "image": "zootrans"], ["title": "Cinema & Theatres", "image": "cinematrans"], ["title": "City", "image": "city_icon"], ["title": "Health & Beauty", "image": "health_beauty"], ["title": "Rentals", "image": "rentals"], ["title": "Entertainment", "image": "entertainment"], ["title": "Essentials", "image": "essential"], ["title": "Emergency", "image": "emergency"], ["title": "Others", "image": "othersdottrans"]]
-
+    
     @IBOutlet weak var categoryImage: UIImageView!
     
-//    @IBAction func ratingButtonClicked(_ sender: UIButton) {
-//        print("in clicked")
-//        openRating()
-//    }
+    //    @IBAction func ratingButtonClicked(_ sender: UIButton) {
+    //        print("in clicked")
+    //        openRating()
+    //    }
     func checkMyRating(_ sender: UIButton) {
         
         print("check i im the creator")
@@ -438,7 +458,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
         let tapout = UITapGestureRecognizer(target: self, action: #selector(self.checkMyRatingStar(_:)))
         ratingStack.addGestureRecognizer(tapout)
         categoryImage.image = UIImage(named: getCategory(type: feed["checkIn"]["category"].stringValue))
-
+        
         if feed["review"][0] != nil && feed["review"].count > 0 {
             ratingStack.isHidden = false
             ratingButton.isHidden = true
@@ -448,15 +468,15 @@ class allReviewsMLTableViewCell: UITableViewCell {
             afterRating(starCnt: feed["review"][0]["rating"].intValue, review: feed["review"][0]["review"].stringValue, type:feed["type"].stringValue)
         }else{
             if feed["checkIn"] != nil && feed["checkIn"]["category"].stringValue != "" {
-                    ratingStack.isHidden = true
-                    ratingButton.isHidden = false
+                ratingStack.isHidden = true
+                ratingButton.isHidden = false
                 
             }else{
                 ratingStack.isHidden = true
                 ratingButton.isHidden = true
             }
         }
-
+        
     }
     
     func afterRating(starCnt:Int, review:String, type:String) {
@@ -486,7 +506,7 @@ class allReviewsMLTableViewCell: UITableViewCell {
             ratingButton.isHidden = true
         }
     }
-
+    
     
 }
 
