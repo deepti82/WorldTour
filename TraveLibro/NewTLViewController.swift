@@ -2271,7 +2271,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.addBuddiesButton.isHidden = true
         infoButton.isHidden = true
         addPostsButton.isHidden = false
-        otgView.lineThree.isHidden = false
+//        otgView.lineThree.isHidden = false
         toolbarView.isHidden = false
         
     }

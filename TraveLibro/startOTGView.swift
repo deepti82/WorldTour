@@ -142,8 +142,6 @@ class startOTGView: UIView {
         
         lineOne.backgroundColor = UIColor.clear
         lineTwo.backgroundColor = UIColor.clear
-        lineThree.backgroundColor = UIColor.clear
-        
         journeyName.shadowColor = UIColor.black
         journeyName.shadowOffset = CGSize(width: 2, height: 2)
 //        journeyName.layer.shadowOpacity = 0.

@@ -54,7 +54,15 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         getDarkBackGround(self)
         globalMyLifeController = self
         
+<<<<<<< HEAD
                 
+=======
+//        let tapRecognizer = UITapGestureRecognizer()
+//        tapRecognizer.numberOfTapsRequired = 1
+//        tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
+//        view.addGestureRecognizer(tapRecognizer)
+        
+>>>>>>> origin/level-3-
         let leftButton = UIButton()
         leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
         let arrow = String(format: "%C", faicon["arrow-down"]!)
@@ -135,7 +143,24 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         setDefaults()
     }
     
+<<<<<<< HEAD
         
+=======
+//    func toggleFullscreen(_ sender: UIButton){
+//if type == "on-the-go-journey"{
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let controller = storyboard.instantiateViewController(withIdentifier: "newTL")
+//        self.present(controller, animated: true, completion: nil)
+//        globalNewTLViewController.toolbarView.isHidden = true
+//        globalNewTLViewController.hideVisual.isHidden = true
+//        globalNewTLViewController.hideToolBar.isHidden = true
+//    
+//}else {
+//    
+//        }
+//    }
+    
+>>>>>>> origin/level-3-
     func exitMyLife(_ sender: AnyObject ) {
         
         UIView.animate(withDuration: 0.75, animations: { () -> Void in
