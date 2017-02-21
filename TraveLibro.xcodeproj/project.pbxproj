@@ -97,6 +97,7 @@
 		4435D2FB1E548D02003BD1D9 /* notificationBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2FA1E548D02003BD1D9 /* notificationBackgroundView.xib */; };
 		4435D2FD1E548D3D003BD1D9 /* NotificationUserFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2FC1E548D3D003BD1D9 /* NotificationUserFollowing.swift */; };
 		4435D2FF1E548DF3003BD1D9 /* NotificationBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2FE1E548DF3003BD1D9 /* NotificationBackground.swift */; };
+		443819511E5C516E00159215 /* NotificationFollowRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443819501E5C516E00159215 /* NotificationFollowRequestCell.swift */; };
 		44725D2D1E5ADBB70074D925 /* NotificationCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */; };
 		44725D2F1E5B06580074D925 /* NotificationDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */; };
 		840599831E3CDA60004E0696 /* DropShadow1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599821E3CDA60004E0696 /* DropShadow1.xib */; };
@@ -587,6 +588,7 @@
 		4435D2FA1E548D02003BD1D9 /* notificationBackgroundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationBackgroundView.xib; path = Notification/notificationBackgroundView.xib; sourceTree = "<group>"; };
 		4435D2FC1E548D3D003BD1D9 /* NotificationUserFollowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationUserFollowing.swift; path = Notification/NotificationUserFollowing.swift; sourceTree = "<group>"; };
 		4435D2FE1E548DF3003BD1D9 /* NotificationBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationBackground.swift; path = Notification/NotificationBackground.swift; sourceTree = "<group>"; };
+		443819501E5C516E00159215 /* NotificationFollowRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationFollowRequestCell.swift; path = Notification/NotificationFollowRequestCell.swift; sourceTree = "<group>"; };
 		44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCommentCell.swift; path = Notification/NotificationCommentCell.swift; sourceTree = "<group>"; };
 		44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationDefaultCell.swift; path = Notification/NotificationDefaultCell.swift; sourceTree = "<group>"; };
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1379,6 +1381,7 @@
 				44081CF31E55E46B006EA74C /* NotificationAcknolwdgementCell.swift */,
 				44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */,
 				44081CF71E55EEC5006EA74C /* NotificationFollowCell.swift */,
+				443819501E5C516E00159215 /* NotificationFollowRequestCell.swift */,
 				44081CF51E55EA5D006EA74C /* NotificationPhotoCell.swift */,
 				44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */,
 			);
@@ -3107,6 +3110,7 @@
 				C27E0F3A1D2A1EF10090880A /* FeedbackViewController.swift in Sources */,
 				C2DCAE411D18063E00B35331 /* NavigationStyle.swift in Sources */,
 				C2C965991CE45A51007BDA34 /* Date&Time.swift in Sources */,
+				443819511E5C516E00159215 /* NotificationFollowRequestCell.swift in Sources */,
 				C20A18FF1D22A67700760BF9 /* AddBuddiesViewController.swift in Sources */,
 				C27F6C051CF06AB10049F012 /* MomentsTab.swift in Sources */,
 				C2DCB2391CE32152000E40DD /* GetFooter.swift in Sources */,

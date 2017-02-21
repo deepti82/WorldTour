@@ -1,23 +1,20 @@
 //
-//  NotificationPhotoCell.swift
+//  NotificationFollowRequestCell.swift
 //  TraveLibro
 //
-//  Created by Wohlig Technology on 16/02/17.
+//  Created by Wohlig Technology on 21/02/17.
 //  Copyright © 2017 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-//NOTE: This is a cell with Header, titleMessage, Photos and footer
-//Example : Andrea Christina has commented on photo in your local life
-//Example : Andrea Christina has added photos of you in On The Go Activity
-
-class NotificationPhotoCell: UITableViewCell {
+class NotificationFollowRequestCell: UITableViewCell {
 
     var _notificationData: JSON? 
     var NFHeader = notificationHeader()
     var NFTitle = NotificationTitle()
-    var NFPhoto = NotificationCommentPhoto()
+    var NFFollowDetails = NotificationFollowingDetails()
+    var NFPermission = NotificationFollowPermission()
     var NFFooter = NotificationFooter()
     
     override func awakeFromNib() {
@@ -48,8 +45,7 @@ class NotificationPhotoCell: UITableViewCell {
         
         var yPos = 10
         var width: Int = Int(self.frame.size.width)
-        width = Int(UIScreen.main.bounds.width)        
-             
+        width = Int(UIScreen.main.bounds.width)
         
         NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: width, height: Int(HEADER_HEIGHT))) as notificationHeader
         self.contentView.addSubview(NFHeader)        
@@ -59,9 +55,13 @@ class NotificationPhotoCell: UITableViewCell {
         self.contentView.addSubview(NFTitle)
         yPos = yPos + Int(NFTitle.frame.size.height)
         
-        NFPhoto = NotificationCommentPhoto(frame: CGRect(x: 0, y: yPos, width: width, height: min((width-10), Int(IMAGE_HEIGHT) ) ))
-        self.contentView.addSubview(NFPhoto)
-        yPos = yPos + Int(NFPhoto.frame.size.height)
+        NFFollowDetails = NotificationFollowingDetails(frame: CGRect(x: 0, y: yPos, width: width, height: 90)) as NotificationFollowingDetails
+        self.contentView.addSubview(NFFollowDetails)
+        yPos = yPos + Int(NFFollowDetails.frame.size.height)
+        
+        NFPermission = NotificationFollowPermission(frame: CGRect(x: 0, y: yPos, width: width, height: 50)) as NotificationFollowPermission
+        self.contentView.addSubview(NFPermission)
+        yPos = yPos + Int(NFPermission.frame.size.height)
         
         NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: Int(FOOTER_HEIGHT)))        
         self.contentView.addSubview(NFFooter)
@@ -71,37 +71,22 @@ class NotificationPhotoCell: UITableViewCell {
         self.contentView.addSubview(NFBackground)
         self.contentView.sendSubview(toBack: NFBackground)
         
+        
         setData(notificationData: notificationData, helper: helper)
-    }
-    
+    }    
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
-        
         _notificationData = notificationData
         
         NFHeader.setHeaderData(data: notificationData)
-
+        
         NFTitle.setMessageLabel(data: notificationData)
         
-        if notificationData["type"] == "journeyMentionComment" ||
-            notificationData["type"] == "journeyComment" ||
-            notificationData["type"] == "journeyLike" ||
-            notificationData["type"] == "journeyAccept" ||
-            notificationData["type"] == "itineraryMentionComment" ||
-            notificationData["type"] == "itineraryLike" ||
-            notificationData["type"] == "itineraryComment" {
-            var imageURL = notificationData["data"]["coverPhoto"].string
-            if imageURL == nil || imageURL == "" {
-                imageURL = notificationData["data"]["startLocationPic"].stringValue
-            }
-            NFPhoto.NFPlayImage.isHidden = true
-            NFPhoto.NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL!)", width: 100))
-        }
-        else{
-            NFPhoto.setPhoto(data: notificationData["data"])
-        }
+        NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
+        NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
         
+        NFPermission.NFRightButton.setTitle("Decline", for: .normal)
+        NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
     }
-
 
 }
