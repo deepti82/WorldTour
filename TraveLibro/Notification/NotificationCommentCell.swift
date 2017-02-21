@@ -35,12 +35,13 @@ class NotificationCommentCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        createView(notificationData: nil, helper: nil)
     }
     
     
     //MARK: - Create View
     
-    func createView(notificationData: JSON, helper: NotificationSubViewController) {
+    func createView(notificationData: JSON?, helper: NotificationSubViewController?) {
         
         var yPos = 10
         var width: Int = Int(self.frame.size.width)
@@ -53,8 +54,6 @@ class NotificationCommentCell: UITableViewCell {
         
         NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: Int(TITLE_HEIGHT))) as NotificationTitle
         self.contentView.addSubview(NFTitle)
-        NFTitle.setMessageLabel(data: notificationData)
-
         yPos = yPos + Int(NFTitle.frame.size.height)
         
         NFMessage = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: (width - 15)))
@@ -69,7 +68,9 @@ class NotificationCommentCell: UITableViewCell {
         self.contentView.addSubview(NFBackground)
         self.contentView.sendSubview(toBack: NFBackground)
         
-        setData(notificationData: notificationData, helper: helper)
+        if notificationData != nil {
+            setData(notificationData: notificationData!, helper: helper!)            
+        }
     }
     
     

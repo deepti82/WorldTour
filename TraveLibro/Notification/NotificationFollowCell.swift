@@ -39,12 +39,13 @@ class NotificationFollowCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        createView(notificationData: nil, helper: nil)
     }
     
     
     //MARK: - Create View
     
-    func createView(notificationData: JSON, helper: NotificationSubViewController) {
+    func createView(notificationData: JSON?, helper: NotificationSubViewController?) {
         
         var yPos = 10
         var width: Int = Int(self.frame.size.width)
@@ -75,7 +76,9 @@ class NotificationFollowCell: UITableViewCell {
         self.contentView.sendSubview(toBack: NFBackground)
         
         
-        setData(notificationData: notificationData, helper: helper)
+        if notificationData != nil {
+            setData(notificationData: notificationData!, helper: helper!)            
+        }
     }    
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {

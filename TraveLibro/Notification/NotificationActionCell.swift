@@ -21,7 +21,6 @@ class NotificationActionCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,12 +37,13 @@ class NotificationActionCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        createView(notificationData: nil, helper: nil)
     }
     
     
     //MARK: - Create View
     
-    func createView(notificationData: JSON, helper: NotificationSubViewController) {
+    func createView(notificationData: JSON?, helper: NotificationSubViewController?) {
         
         var yPos = 10
         var width: Int = Int(self.frame.size.width)
@@ -73,7 +73,9 @@ class NotificationActionCell: UITableViewCell {
         self.contentView.addSubview(NFBackground)
         self.contentView.sendSubview(toBack: NFBackground)
         
-        setData(notificationData: notificationData, helper: helper)
+        if notificationData != nil {
+            setData(notificationData: notificationData!, helper: helper!)            
+        }        
     }    
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
@@ -83,6 +85,12 @@ class NotificationActionCell: UITableViewCell {
         NFHeader.setHeaderData(data: notificationData)
         
         NFTitle.setMessageLabel(data: notificationData)
+        
+        NFPermission.NFLeftButton.removeTarget(helper, action: #selector(helper.journeyEndTabbed(_:)), for: .touchUpInside)
+        NFPermission.NFLeftButton.removeTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
+        
+        NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.journeyEndDeclined(_:)), for: .touchUpInside)
+        NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
         
         if notificationData["type"] == "journeyLeft" {
             

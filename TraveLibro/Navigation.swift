@@ -1379,29 +1379,7 @@ class Navigation {
         } catch let error {
             print("got an error creating the request: \(error)")
         }
-    }
-    
-    func acceptJourney(_ journeyId: String, id: String, inMiddle: Bool, notificationId: String, completion: @escaping ((JSON) -> Void)) {
-        
-        do {
-            
-            let opt = try HTTP.POST(adminUrl + "journey/buddyAccept", parameters: ["uniqueId": journeyId, "user": id, "inMiddle": inMiddle, "_id": notificationId])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
-                }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
-                }
-            }
-        } catch let error {
-            print("got an error creating the request: \(error)")
-        }
-    }
+    }    
     
     func getPlaceId(_ placeId: String, completion: @escaping ((JSON) -> Void)) {
         
@@ -3110,5 +3088,53 @@ class Navigation {
 //            let opt = try HTTP.POST(adminUrl + )
 //        }
 //    }
+    
+    
+    //MARK: - Notification's OnClick Requests
+    
+    func acceptJourney(_ id: String, uniqueId: String, notificationId: String, inMiddle: Bool, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "journey/buddyAccept", parameters: ["user": id,"uniqueId":uniqueId,"_id":notificationId,"inMiddle":inMiddle])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    
+    func declinedJourney(_ id: String, uniqueId: String, notificationId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "journey/buddyReject", parameters: ["user": id,"uniqueId":uniqueId,"_id":notificationId])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
     
 }

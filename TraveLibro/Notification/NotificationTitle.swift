@@ -50,6 +50,9 @@ class NotificationTitle: UIView {
             
         case "postLike":
             str2 = " has liked your "
+        
+        case "postComment":
+            str2 = " has commented on your "
             
         case "photoComment":
             str2 = " has commented on a photo in your "
@@ -166,7 +169,7 @@ class NotificationTitle: UIView {
             notificationType == "journeyLike" ||
             notificationType == "journeyReject" ||
             notificationType == "journeyRequest" ||
-            notificationType != "journeyAccept" ||
+            notificationType == "journeyAccept" ||
             notificationType == "itineraryMentionComment" ||
             notificationType == "itineraryLike" ||
             notificationType == "itineraryComment" {
