@@ -33,7 +33,7 @@
                 <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WyL-Eg-888">
                     <rect key="frame" x="0.0" y="0.0" width="500" height="120"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KJ8-F2-pUc">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_icon" translatesAutoresizingMaskIntoConstraints="NO" id="KJ8-F2-pUc">
                             <rect key="frame" x="25" y="0.0" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="KJ8-F2-pUc" secondAttribute="height" multiplier="1:1" id="3Lo-JR-dD6"/>
@@ -136,4 +136,7 @@
             <point key="canvasLocation" x="80" y="-347"/>
         </view>
     </objects>
+    <resources>
+        <image name="empty_icon" width="80" height="80"/>
+    </resources>
 </document>

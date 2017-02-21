@@ -85,7 +85,7 @@ class NotificationActionCell: UITableViewCell {
         NFTitle.setMessageLabel(data: notificationData)
         
         if notificationData["type"] == "journeyLeft" {
-            //Change message as per notification type
+            
             NFMessage.NFMessageLabel.text = "Would you like to end your journey as well?"
             
             NFPermission.NFLeftButton.setTitle("End", for: .normal)
@@ -94,9 +94,15 @@ class NotificationActionCell: UITableViewCell {
             NFPermission.NFRightButton.setTitle("Decline", for: .normal)
             NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyEndDeclined(_:)), for: .touchUpInside)            
         }
-        else {
-            //Change message as per notification type
-            NFMessage.NFMessageLabel.text = NFTitle.NFMessageLabel.text
+        else if notificationData["type"] == "journeyRequest" {
+            
+            let message = NSMutableAttributedString(string: "Accept ")        
+            let firstName = notificationData["userFrom"]["name"].stringValue        
+            message.append(getBoldString(string: firstName))
+            
+            message.append(getRegularString(string: "'s request to create your travel memories together. "))
+            
+            NFMessage.NFMessageLabel.attributedText = message
             
             NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
             NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)

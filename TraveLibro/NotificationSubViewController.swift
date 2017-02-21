@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 
 class NotificationSubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -14,8 +15,13 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     var whichView: String!
     var notifications: [JSON] = []
     let refreshControl = UIRefreshControl()
+    var currentPageNumber = 0
+    var hasNext = true
     
     @IBOutlet weak var notifyTableView: UITableView!
+    
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +30,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         notifyTableView.backgroundColor = UIColor.clear
         
         getNotification()
+        Toast(text: "Please wait ...").show()
         
         notifyTableView.tableFooterView = UIView()
     }
@@ -33,33 +40,73 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //MARK: - Helper
+    
     func getNotification() {
         
-        request.getNotify(currentUser["_id"].string!, completion: {(response) in
+        currentPageNumber += 1
+        
+        if hasNext {
             
-            DispatchQueue.main.async(execute: {
+            request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
                 
-                if response.error != nil {
+                DispatchQueue.main.async(execute: {
                     
-                    print("error: \(response.error!.localizedDescription)")
+                    if response.error != nil {
+                        
+                        print("error: \(response.error!.localizedDescription)")
+                        
+                    }
+                    else if response["value"].bool! {
+                        
+                        ToastCenter.default.cancelAll()
+                        let newResponse = response["data"].array!
+                        
+                        if newResponse.isEmpty {
+                            self.hasNext = false
+                        }
+                        
+                        if self.notifications.isEmpty {
+                            self.notifications = newResponse
+                        }
+                        else {                        
+                            self.notifications.append(contentsOf: newResponse)
+                        }                    
+                        self.notifyTableView.reloadData()
+                        
+                    }
+                    else {
+                        
+                        print("response error!")
+                        
+                    }
                     
-                }
-                else if response["value"].bool! {
-                    print("hellobuddy")
-                    self.notifications = response["data"].array!
-                    self.notifyTableView.reloadData()
-                    print(self.notifications)
-                }
-                else {
-                    
-                    print("response error!")
-                    
-                }
+                })
                 
             })
-            
-        })
+        }
+    }
+    
+    
+    func canLoadCommentCell(notificationData: JSON) -> Bool {
         
+        var shouldLoadCommentCell = true
+        
+        if (notificationData["data"]["type"].string == "photo") {
+            shouldLoadCommentCell = false
+        }
+        else if ((notificationData["data"]["videos"].array?.count)! > 0) {
+            shouldLoadCommentCell = false
+        }
+        else if ((notificationData["data"]["photos"].array?.count)! > 0) {
+            shouldLoadCommentCell = false
+        }        
+        else if (notificationData["data"]["imageUrl"].stringValue != "") {
+            shouldLoadCommentCell = false
+        }
+        
+        return shouldLoadCommentCell
     }
     
     
@@ -95,14 +142,22 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "photoLike":
             fallthrough
+        case "journeyAccept":
+            fallthrough
         case "journeyMentionComment":
             fallthrough
         case "journeyComment":
             fallthrough
         case "journeyLike":
             fallthrough
+        case "itineraryMentionComment":
+            fallthrough
+        case "itineraryLike":
+            fallthrough
+        case "itineraryComment":
+            fallthrough
         case "postMentionComment":            
-            if cellNotificationData["data"]["thoughts"].stringValue != "" {                
+            if cellNotificationData["data"]["thoughts"].stringValue != "" && canLoadCommentCell(notificationData: cellNotificationData) {                
                 return 390
             }
             return 520
@@ -111,7 +166,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         case "journeyLeft":
             fallthrough            
         case "journeyRequest":            
-            return 330
+            return 360
             
             
         case "journeyComment":
@@ -121,6 +176,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             
         case "userFollowing":
+            fallthrough
+        case "userFollowingRequest":
             return 370
             
             
@@ -155,15 +212,23 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "photoLike":
             fallthrough
+        case "journeyAccept":
+            fallthrough
         case "journeyMentionComment":
             fallthrough
         case "journeyComment":
             fallthrough
         case "journeyLike":
             fallthrough
-        case "postMentionComment":
+        case "itineraryMentionComment":
+            fallthrough
+        case "itineraryLike":
+            fallthrough
+        case "itineraryComment":
+            fallthrough
+        case "postMentionComment":            
             
-            if cellNotificationData["data"]["thoughts"].stringValue != "" {
+            if cellNotificationData["data"]["thoughts"].stringValue != "" && canLoadCommentCell(notificationData: cellNotificationData) {
                 
                 var cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? NotificationCommentCell
                 if cell == nil {
@@ -191,7 +256,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             
         case "journeyLeft":
-            fallthrough            
+            fallthrough
         case "journeyRequest":
             
             var cell = tableView.dequeueReusableCell(withIdentifier: "actionCell", for: indexPath) as? NotificationActionCell
@@ -212,6 +277,19 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             var cell = tableView.dequeueReusableCell(withIdentifier: "followCell", for: indexPath) as? NotificationFollowCell
             if cell == nil {
                 cell = NotificationFollowCell.init(style: .default, reuseIdentifier: "followCell", notificationData: cellNotificationData, helper: self) 
+            }
+            else{
+                cell?.setData(notificationData: cellNotificationData, helper: self)
+            }
+            
+            cell?.backgroundColor = UIColor.clear
+            return cell!
+            
+            
+        case "userFollowingRequest":
+            var cell = tableView.dequeueReusableCell(withIdentifier: "followRequestCell", for: indexPath) as? NotificationFollowRequestCell
+            if cell == nil {
+                cell = NotificationFollowRequestCell.init(style: .default, reuseIdentifier: "followRequestCell", notificationData: cellNotificationData, helper: self) 
             }
             else{
                 cell?.setData(notificationData: cellNotificationData, helper: self)
@@ -259,7 +337,14 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {        
+        if notifications.count > 0 && indexPath.row == (notifications.count - 1) {
+            Toast(text: "Please wait ...").show()
+            DispatchQueue.global().async {
+                self.getNotification()                
+            }
+        }
+    }
     
     //MARK:- Button Action
 
