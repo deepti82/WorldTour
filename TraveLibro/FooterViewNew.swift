@@ -64,36 +64,56 @@ class FooterViewNew: UIView {
     
     
     func gotoOTG(_ sender: UITapGestureRecognizer) {
-        let tlVC = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-        tlVC.isJourney = false
-        if(currentUser["journeyId"].stringValue == "-1") {
-            isJourneyOngoing = false
-            tlVC.showJourneyOngoing(journey: JSON(""))
-            //                self.navigationController?.navigationBar.isHidden = true
-        }
-        globalNavigationController?.pushViewController(tlVC, animated: false)
+        print("user which which user")
+        print(user.getExistingUser())
+        
+        request.getUser(user.getExistingUser(), completion: {(request) in
+            DispatchQueue.main.async {
+                currentUser = request["data"]
+                let tlVC = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+                tlVC.isJourney = false
+                if(currentUser["journeyId"].stringValue == "-1") {
+                    isJourneyOngoing = false
+                    tlVC.showJourneyOngoing(journey: JSON(""))
+                    //                self.navigationController?.navigationBar.isHidden = true
+                }
+                globalNavigationController?.pushViewController(tlVC, animated: false)
+            }
+        })
+        
     }
     
     func gotoFeed(_ sender: UITapGestureRecognizer) {
-        
-        let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-        tlVC.displayData = "activity"
-        globalNavigationController?.pushViewController(tlVC, animated: false)
-        
+        request.getUser(user.getExistingUser(), completion: {(request) in
+            DispatchQueue.main.async {
+                currentUser = request["data"]
+                let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+                tlVC.displayData = "activity"
+                globalNavigationController?.pushViewController(tlVC, animated: false)
+            }
+        })
     }
     
     func openNotifications(_ sender: UITapGestureRecognizer) {
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
-        vc.whichView = "Notify"
-        globalNavigationController?.pushViewController(vc, animated: false)
-        
+        request.getUser(user.getExistingUser(), completion: {(request) in
+            DispatchQueue.main.async {
+                currentUser = request["data"]
+                let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
+                vc.whichView = "Notify"
+                globalNavigationController?.pushViewController(vc, animated: false)
+            }
+        })
         
     }
     
     func goToLocalLife(_ sender : AnyObject) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
-        globalNavigationController?.pushViewController(vc, animated: false)
+        request.getUser(user.getExistingUser(), completion: {(request) in
+            DispatchQueue.main.async {
+                currentUser = request["data"]
+                let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
+                globalNavigationController?.pushViewController(vc, animated: false)
+            }
+        })
     }
     
     

@@ -26,13 +26,13 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var journeysContainerView: UIView!
     @IBOutlet weak var collectionContainer: UIView!
     @IBOutlet weak var tableContainer: UIView!
-    
-    
-    
+    var type = "on-the-go-journey"
+    var journey: [JSON]!
+    var displayData:String = ""
     var newScroll: UIScrollView!
     var backView:UIView!
     var addView: AddActivityNew!
-    
+    var journeyId = ""
     var radioValue: String!
     var firstTime = true
     var verticalLayout: VerticalLayout!
@@ -40,9 +40,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     var whatTab = "Journeys"
     
     var whatEmptyTab = "Journeys"
-    
-    
-    
+    var currentIndex: Int!
+    var feeds: JSON! = []
     var radio:UIImageView!
     var radioTwo:UIImageView!
     var radioThree:UIImageView!
@@ -54,6 +53,12 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         globalMyLifeViewController = self;
         getDarkBackGround(self)
         globalMyLifeController = self
+        
+        let tapRecognizer = UITapGestureRecognizer()
+        tapRecognizer.numberOfTapsRequired = 1
+        tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
+        view.addGestureRecognizer(tapRecognizer)
+        
         let leftButton = UIButton()
         leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
         let arrow = String(format: "%C", faicon["arrow-down"]!)
@@ -134,12 +139,27 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         setDefaults()
     }
     
+    func toggleFullscreen(_ sender: UIButton){
+if type == "on-the-go-journey"{
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "newTL")
+        self.present(controller, animated: true, completion: nil)
+        globalNewTLViewController.toolbarView.isHidden = true
+        globalNewTLViewController.hideVisual.isHidden = true
+        globalNewTLViewController.hideToolBar.isHidden = true
+    
+}else {
+    
+        }
+    }
+    
     func exitMyLife(_ sender: AnyObject ) {
         
         UIView.animate(withDuration: 0.75, animations: { () -> Void in
             UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
             self.navigationController?.popViewController(animated: true)
             UIView.setAnimationTransition(.curlDown, for: self.navigationController!.view!, cache: false)
+            
         })
         
         
@@ -248,6 +268,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
+    
+    
     //    var flag = false
     
     func allRadioChecked(_ sender: AnyObject?) {
@@ -354,6 +376,8 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         var post = Post();
         post.jsonToPost(postJson)
+        
+   
         var darkBlur: UIBlurEffect!
         var blurView: UIVisualEffectView!
         self.backView = UIView();
@@ -639,6 +663,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.addView.typeOfAddActivtiy = "AddPhotosVideos"
         self.newScroll.addSubview(self.addView)
     }
-
     
+
 }

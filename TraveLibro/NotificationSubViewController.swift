@@ -10,7 +10,7 @@ import UIKit
 
 
 class NotificationSubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    var inMiddle: Bool! = true
     var whichView: String!
     var notifications: [JSON] = []
     let refreshControl = UIRefreshControl()
@@ -45,10 +45,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     
                 }
                 else if response["value"].bool! {
-                    
+                    print("hellobuddy")
                     self.notifications = response["data"].array!
                     self.notifyTableView.reloadData()
-                    
+                    print(self.notifications)
                 }
                 else {
                     
@@ -262,31 +262,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     
     //MARK:- Button Action
-    
+
     func journeyAcceptTabbed(_ sender: UIButton) {
         
         print("in the journeyAcceptTabbed")
-        
-        /*request.acceptJourney(notifications[sender.tag]["journeyUnique"].string!, id: currentUser["_id"].string!, isInMiddle: "\(notifications[sender.tag]["inMiddle"])", completion: {(response) in
-            
-            if response.error != nil {
-                
-                print("error: \(response.error!.localizedDescription)")
-                
-            }
-            else if response["value"].bool! {
-                
-                print("response arrived")
-                let tl = self.storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-                self.navigationController?.pushViewController(tl, animated: true)
-                
-            }
-            else {
-                
-                print("response error")
-            }
-            
-        })*/
         
     }
     

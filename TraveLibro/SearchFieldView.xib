@@ -29,7 +29,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="360" height="40"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Search Country" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W7O-51-EDd">
-                            <rect key="frame" x="8" y="0.0" width="305" height="36"/>
+                            <rect key="frame" x="8" y="-2" width="305" height="38"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="305" id="Hlf-6p-2vv"/>
+                                <constraint firstAttribute="height" constant="38" id="ePO-28-VKo"/>
+                            </constraints>
                             <color key="textColor" red="0.13725490200000001" green="0.1764705882" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <textInputTraits key="textInputTraits"/>
@@ -60,8 +64,8 @@
                         <button opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cat-5o-QAY">
                             <rect key="frame" x="321" y="5" width="30" height="30"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="6b5-Lo-sRj"/>
-                                <constraint firstAttribute="height" constant="30" id="lLP-ra-OMA"/>
+                                <constraint firstAttribute="height" constant="30" id="I1B-bn-2mi"/>
+                                <constraint firstAttribute="width" constant="30" id="iHv-Xf-FmJ"/>
                             </constraints>
                             <color key="tintColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
@@ -69,47 +73,32 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="ERu-VR-h6g" firstAttribute="leading" secondItem="cat-5o-QAY" secondAttribute="trailing" constant="8" id="2Ow-dG-LMV"/>
-                        <constraint firstAttribute="bottom" secondItem="ERu-VR-h6g" secondAttribute="bottom" id="91H-8N-AL0"/>
-                        <constraint firstAttribute="trailing" secondItem="NSV-aM-uEQ" secondAttribute="trailing" id="Bmk-Lw-z4h"/>
-                        <constraint firstAttribute="trailing" secondItem="ERu-VR-h6g" secondAttribute="trailing" id="RfV-5P-2Py"/>
-                        <constraint firstItem="NSV-aM-uEQ" firstAttribute="leading" secondItem="EYb-HI-fiX" secondAttribute="leading" id="Spd-Yo-Ybt"/>
-                        <constraint firstItem="W7O-51-EDd" firstAttribute="top" secondItem="EYb-HI-fiX" secondAttribute="top" id="TbV-p5-e0x"/>
-                        <constraint firstAttribute="bottom" secondItem="NSV-aM-uEQ" secondAttribute="bottom" id="Wdt-GM-LUd"/>
-                        <constraint firstAttribute="bottom" secondItem="DQR-CS-Qey" secondAttribute="bottom" id="WvW-S2-PAM"/>
-                        <constraint firstItem="DQR-CS-Qey" firstAttribute="leading" secondItem="EYb-HI-fiX" secondAttribute="leading" id="Ynq-gQ-pzA"/>
+                        <constraint firstAttribute="trailing" secondItem="ERu-VR-h6g" secondAttribute="trailing" id="4pc-El-puh"/>
+                        <constraint firstAttribute="height" constant="40" id="GV1-hm-1yE"/>
+                        <constraint firstItem="NSV-aM-uEQ" firstAttribute="bottom" secondItem="ERu-VR-h6g" secondAttribute="bottom" id="H7b-BQ-PmP"/>
+                        <constraint firstAttribute="trailing" secondItem="NSV-aM-uEQ" secondAttribute="trailing" id="Hyq-ed-ZOC"/>
+                        <constraint firstItem="cat-5o-QAY" firstAttribute="leading" secondItem="W7O-51-EDd" secondAttribute="trailing" constant="8" id="ROF-ym-Agq"/>
+                        <constraint firstItem="NSV-aM-uEQ" firstAttribute="leading" secondItem="EYb-HI-fiX" secondAttribute="leading" id="RaC-wj-wdK"/>
+                        <constraint firstItem="ERu-VR-h6g" firstAttribute="leading" secondItem="cat-5o-QAY" secondAttribute="trailing" constant="8" id="Vjg-GG-h7X"/>
                         <constraint firstItem="NSV-aM-uEQ" firstAttribute="top" secondItem="W7O-51-EDd" secondAttribute="bottom" constant="3" id="ZX0-at-oQl"/>
-                        <constraint firstItem="W7O-51-EDd" firstAttribute="leading" secondItem="EYb-HI-fiX" secondAttribute="leadingMargin" id="f4a-xF-SZr"/>
-                        <constraint firstItem="W7O-51-EDd" firstAttribute="top" secondItem="EYb-HI-fiX" secondAttribute="top" constant="6" id="nzN-NB-nyG"/>
-                        <constraint firstItem="NSV-aM-uEQ" firstAttribute="top" secondItem="cat-5o-QAY" secondAttribute="bottom" constant="4" id="oiF-D3-4bj"/>
-                        <constraint firstItem="cat-5o-QAY" firstAttribute="leading" secondItem="W7O-51-EDd" secondAttribute="trailing" constant="8" id="u5X-eA-5Kg"/>
+                        <constraint firstItem="cat-5o-QAY" firstAttribute="centerY" secondItem="EYb-HI-fiX" secondAttribute="centerY" id="ax5-WY-fGb"/>
+                        <constraint firstAttribute="bottom" secondItem="NSV-aM-uEQ" secondAttribute="bottom" id="b27-ae-5mR"/>
+                        <constraint firstItem="W7O-51-EDd" firstAttribute="leading" secondItem="EYb-HI-fiX" secondAttribute="leadingMargin" id="f7q-hk-iKN"/>
+                        <constraint firstAttribute="width" constant="360" id="ocx-yP-Gvi"/>
+                        <constraint firstItem="NSV-aM-uEQ" firstAttribute="trailing" secondItem="ERu-VR-h6g" secondAttribute="trailing" id="paj-W2-lAR"/>
+                        <constraint firstItem="NSV-aM-uEQ" firstAttribute="bottom" secondItem="DQR-CS-Qey" secondAttribute="bottom" id="uOu-oY-mxK"/>
+                        <constraint firstItem="NSV-aM-uEQ" firstAttribute="leading" secondItem="DQR-CS-Qey" secondAttribute="leading" id="vEN-aq-zyh"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="nzN-NB-nyG"/>
-                        </mask>
-                    </variation>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="EYb-HI-fiX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="2M7-BL-si0"/>
-                <constraint firstItem="EYb-HI-fiX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FME-IN-eRe"/>
-                <constraint firstItem="EYb-HI-fiX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KaY-6y-r06"/>
-                <constraint firstItem="EYb-HI-fiX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LIu-tZ-Mso"/>
-                <constraint firstAttribute="bottom" secondItem="EYb-HI-fiX" secondAttribute="bottom" id="TCq-tq-bbd"/>
-                <constraint firstItem="EYb-HI-fiX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="WNV-QH-kiT"/>
-                <constraint firstItem="EYb-HI-fiX" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="hcK-UU-Ttn"/>
-                <constraint firstAttribute="trailing" secondItem="EYb-HI-fiX" secondAttribute="trailing" id="noQ-Tj-fnD"/>
+                <constraint firstAttribute="trailing" secondItem="EYb-HI-fiX" secondAttribute="trailing" id="Fel-Kg-hi0"/>
+                <constraint firstItem="EYb-HI-fiX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Khy-RP-lBz"/>
+                <constraint firstAttribute="bottom" secondItem="EYb-HI-fiX" secondAttribute="bottom" id="Pd8-sy-wH0"/>
+                <constraint firstItem="EYb-HI-fiX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="o4o-E8-NEV"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="2M7-BL-si0"/>
-                    <exclude reference="WNV-QH-kiT"/>
-                    <exclude reference="hcK-UU-Ttn"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="234" y="388"/>
         </view>
     </objects>

@@ -1381,11 +1381,11 @@ class Navigation {
         }
     }
     
-    func acceptJourney(_ journeyId: String, id: String, isInMiddle: String, completion: @escaping ((JSON) -> Void)) {
+    func acceptJourney(_ journeyId: String, id: String, inMiddle: Bool, notificationId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "journey/buddyAccept", parameters: ["user": id, "uniqueId": journeyId, "inMiddle": isInMiddle])
+            let opt = try HTTP.POST(adminUrl + "journey/buddyAccept", parameters: ["uniqueId": journeyId, "user": id, "inMiddle": inMiddle, "_id": notificationId])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {
@@ -1500,9 +1500,9 @@ class Navigation {
             if type == "travel-life" {
                 params = ["user": user, "type": type, "pagenumber": pageNumber]
             } else if type == "local-life" {
-                params = ["user": user, "token": token, "type": type, "limit": 1, "times": 4]
+                params = ["user": user, "token": token, "type": type, "limit": 1, "times": 6]
             } else {
-                params = ["user": user, "token": token, "type": type, "limit": 20, "times": 4]
+                params = ["user": user, "token": token, "type": type, "limit": 20, "times": 6]
             }
             print(params)
             let jsonData = try params.rawData()

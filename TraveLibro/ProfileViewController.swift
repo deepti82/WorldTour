@@ -1,5 +1,6 @@
 import UIKit
 import DKChainableAnimationKit
+import Toaster
 
 var doRemove: Bool = true
 var globalProfileController:ProfileViewController!
@@ -20,6 +21,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var orangeTab:OrangeButton!
     var footer:FooterViewNew!
     var MAM: MoreAboutMe!
+    var displayData: String = ""
     
     var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
@@ -197,7 +199,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         var imageName = ""
         
         if currentUser != nil {
-            self.title = "My Life"
+            if displayData == "search" {
+                self.title = "\(currentUser["firstName"])'s Profile"
+            }else{
+                self.title = "My Life"
+            }
         
             profileUsername.text = "\(currentUser["name"].string!)"
             imageName = currentUser["profilePicture"].string!
@@ -258,11 +264,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         profile_badge.image = UIImage(named:currentUser["userBadgeName"].stringValue.lowercased())
         
-        
-        
-        
-        
-        
     }
     
     
@@ -278,9 +279,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     func getUser() {
-        request.getUser(user.getExistingUser(), completion: {(request) in
+        var usr = user.getExistingUser()
+        if displayData == "search" {
+            usr = selectedPeople
+        }
+        request.getUser(usr, completion: {(request) in
             DispatchQueue.main.async {
-                currentUser = request["data"]
+//                if self.displayData == "" {
+                    currentUser = request["data"]
+//                }
                 self.onLoaded()
                 self.setCount()
             }
@@ -307,9 +314,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     func gotoOTG(_ sender: UITapGestureRecognizer) {
         
-        
-        
-        
+                
         var isThere = 0
         let vcs = self.navigationController!.viewControllers
         
@@ -391,11 +396,20 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func gotoBucketList() {
         let num = Int(allCount["bucketList_count"].stringValue)
         if(num == 0) {
+            if displayData == "search" {
+                let tstr = Toast(text: "\(currentUser["firstName"])'s bucket is empty.")
+                tstr.show()
+            }else{
             let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
             bucketVC.whichView = "BucketList"
             self.navigationController?.pushViewController(bucketVC, animated: true)
+            }
         } else {
             let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
+            
+            if displayData == "search" {
+                bucketVC.otherUser = "search"
+            }
             bucketVC.whichView = "BucketList"
             self.navigationController?.pushViewController(bucketVC, animated: true)
         }
@@ -405,11 +419,20 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func gotoCountriesVisited() {
         let num = Int(allCount["countriesVisited_count"].stringValue)
         if(num == 0) {
+            if displayData == "search" {
+                let tstr = Toast(text: "\(currentUser["firstName"].stringValue) is not visited any country.")
+                tstr.show()
+            }else{
             let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "emptyPages") as! EmptyPagesViewController
             bucketVC.whichView = "CountriesVisited"
             self.navigationController?.pushViewController(bucketVC, animated: true)
+            }
         } else {
+            
             let bucketVC = self.storyboard?.instantiateViewController(withIdentifier: "bucketList") as! BucketListTableViewController
+            if displayData == "search" {
+                bucketVC.otherUser = "search"
+            }
             bucketVC.whichView = "CountriesVisited"
             self.navigationController?.pushViewController(bucketVC, animated: true)
         }
@@ -423,17 +446,41 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         }
         
         print("Selected item: \((indexPath as NSIndexPath).item)")
-        
+        print(labels)
+        print(labels[0])
         switch (indexPath as NSIndexPath).item {
         case 0:
+            if displayData == "search" {
+                if allCount["following_count"].stringValue == "0" {
+                    let tstr = Toast(text: "\(currentUser["firstName"].stringValue) is not following anybudy.")
+                    tstr.show()
+                }else{
+                    let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
+                    followersVC.whichView = "Following"
+                    self.navigationController?.pushViewController(followersVC, animated: true)
+                }
+                
+            }else{
             let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
             followersVC.whichView = "Following"
             self.navigationController?.pushViewController(followersVC, animated: true)
+            }
             break
         case 1:
+            if displayData == "search" {
+                if allCount["followers_count"].stringValue == "0" {
+                    let tstr = Toast(text: "\(currentUser["firstName"].stringValue) don't have any followers.")
+                    tstr.show()
+                }else{
+                    let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
+                    followersVC.whichView = "Followers"
+                    self.navigationController?.pushViewController(followersVC, animated: true)
+                }
+            }else{
             let followersVC = storyboard?.instantiateViewController(withIdentifier: "followers") as! FollowersViewController
             followersVC.whichView = "Followers"
             self.navigationController?.pushViewController(followersVC, animated: true)
+            }
             break
         case 2:
             gotoCountriesVisited()
@@ -442,21 +489,63 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             gotoBucketList()
             break
         case 4 :
+            if displayData == "search" {
+                if allCount["journeysCreated_count"].stringValue == "0" {
+                    let tstr = Toast(text: "\(currentUser["firstname"]) don't have any Journey.")
+                    tstr.show()
+                }else{
+                    let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
+                    self.navigationController?.pushViewController(journeys, animated: true)
+                }
+            }else{
             let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
             self.navigationController?.pushViewController(journeys, animated: true)
+            }
             break
         case 5:
+            if displayData == "search" {
+                if allCount["journeysCreated_count"].stringValue == "0" {
+                    let tstr = Toast(text: "\(currentUser["firstName"]) don't have any CheckIn's.")
+                    tstr.show()
+                }else{
+                    let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
+                    self.navigationController?.pushViewController(journeys, animated: true)
+                }
+            }else{
             let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
             self.navigationController?.pushViewController(journeys, animated: true)
+            }
             break
         case 6 :
+            if displayData == "search" {
+                if allCount["checkins_count"].stringValue == "0" {
+                    let tstr = Toast(text: "\(currentUser["firstName"].stringValue) don't have any Photo's.")
+                    tstr.show()
+                }else{
+                    let photosVC = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
+                    photosVC.whichView = "All"
+                    self.navigationController?.pushViewController(photosVC, animated: true)
+                }
+            }else{
             let photosVC = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
             photosVC.whichView = "All"
             self.navigationController?.pushViewController(photosVC, animated: true)
+            }
             break
         case 7 :
+            if displayData == "search" {
+                if allCount["reviews_count"].stringValue == "0" {
+                    let tstr = Toast(text: "\(currentUser["firstName"].stringValue) not reviewed any location.")
+                    tstr.show()
+                }else{
+                    let reviewsVC = storyboard?.instantiateViewController(withIdentifier: "multipleTableVC") as! AccordionViewController
+                    self.navigationController?.pushViewController(reviewsVC, animated: true)
+                }
+            }else{
+
             let reviewsVC = storyboard?.instantiateViewController(withIdentifier: "multipleTableVC") as! AccordionViewController
             self.navigationController?.pushViewController(reviewsVC, animated: true)
+            }
             break
         default:
             break
