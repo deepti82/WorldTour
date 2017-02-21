@@ -108,6 +108,8 @@
 		841E43A91E1D1CA4000D2E6B /* UploadingToCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E43A81E1D1CA4000D2E6B /* UploadingToCloud.swift */; };
 		841E43AC1E1D1DD6000D2E6B /* EndJourneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841E43AB1E1D1DD6000D2E6B /* EndJourneyView.xib */; };
 		841E43AE1E1D1DEA000D2E6B /* EndJourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E43AD1E1D1DEA000D2E6B /* EndJourneyView.swift */; };
+		842019C21E5C7EA2001F97E3 /* EndJourneyMyLife.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842019C11E5C7EA2001F97E3 /* EndJourneyMyLife.xib */; };
+		842019C41E5C8641001F97E3 /* EndJourneyMyLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842019C31E5C8641001F97E3 /* EndJourneyMyLife.swift */; };
 		842484F41E139FBB00083115 /* PhotosOTGHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F31E139FBA00083115 /* PhotosOTGHeader.xib */; };
 		842484F61E13A4C000083115 /* PhotoOTGFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842484F51E13A4C000083115 /* PhotoOTGFooter.xib */; };
 		842484F91E13A9E600083115 /* PhotosOTGHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842484F81E13A9E600083115 /* PhotosOTGHeader.swift */; };
@@ -600,6 +602,8 @@
 		841E43A81E1D1CA4000D2E6B /* UploadingToCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadingToCloud.swift; sourceTree = "<group>"; };
 		841E43AB1E1D1DD6000D2E6B /* EndJourneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndJourneyView.xib; sourceTree = "<group>"; };
 		841E43AD1E1D1DEA000D2E6B /* EndJourneyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndJourneyView.swift; sourceTree = "<group>"; };
+		842019C11E5C7EA2001F97E3 /* EndJourneyMyLife.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EndJourneyMyLife.xib; sourceTree = "<group>"; };
+		842019C31E5C8641001F97E3 /* EndJourneyMyLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndJourneyMyLife.swift; sourceTree = "<group>"; };
 		842484F31E139FBA00083115 /* PhotosOTGHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotosOTGHeader.xib; sourceTree = "<group>"; };
 		842484F51E13A4C000083115 /* PhotoOTGFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoOTGFooter.xib; sourceTree = "<group>"; };
 		842484F81E13A9E600083115 /* PhotosOTGHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGHeader.swift; sourceTree = "<group>"; };
@@ -1070,6 +1074,7 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				842019C01E5C7E1E001F97E3 /* EndJourneyMyLife */,
 				4435D2D11E543F7C003BD1D9 /* Notification */,
 				84FF89411E52DFF600FDE8F0 /* Search */,
 				840599861E3CDB65004E0696 /* DropShadow2 */,
@@ -1439,6 +1444,15 @@
 				841E43AD1E1D1DEA000D2E6B /* EndJourneyView.swift */,
 			);
 			name = EndJourneyView;
+			sourceTree = "<group>";
+		};
+		842019C01E5C7E1E001F97E3 /* EndJourneyMyLife */ = {
+			isa = PBXGroup;
+			children = (
+				842019C31E5C8641001F97E3 /* EndJourneyMyLife.swift */,
+				842019C11E5C7EA2001F97E3 /* EndJourneyMyLife.xib */,
+			);
+			name = EndJourneyMyLife;
 			sourceTree = "<group>";
 		};
 		842484F71E13A94F00083115 /* PhotosOTGHeader */ = {
@@ -2873,6 +2887,7 @@
 				842D7A551E1E6F6100FEDCD1 /* Buttons2.xib in Resources */,
 				C2C965961CE458B7007BDA34 /* Date&Time.xib in Resources */,
 				C26B4DEB1D141D9D00213055 /* ConnectWithAgent.xib in Resources */,
+				842019C21E5C7EA2001F97E3 /* EndJourneyMyLife.xib in Resources */,
 				4435D2F11E547F04003BD1D9 /* notificationFooterView.xib in Resources */,
 				C2488AB31D51BC4600FD5306 /* PhotoList.xib in Resources */,
 				C2EA3A0D1CDB1DF500122941 /* TextLabelView.xib in Resources */,
@@ -3296,6 +3311,7 @@
 				C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */,
 				C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
+				842019C41E5C8641001F97E3 /* EndJourneyMyLife.swift in Sources */,
 				841E43AE1E1D1DEA000D2E6B /* EndJourneyView.swift in Sources */,
 				C29767181D50D65200428269 /* ListPhotosViewController.swift in Sources */,
 				C24909B41D49F74B007EB6B4 /* TripSummaryPhotosViewController.swift in Sources */,
