@@ -48,39 +48,55 @@ class NotificationPhotoCell: UITableViewCell {
         
         var yPos = 10
         var width: Int = Int(self.frame.size.width)
-        width = Int(UIScreen.main.bounds.width)
-        
-        let NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: 200))
-        self.contentView.addSubview(NFBackground)
+        width = Int(UIScreen.main.bounds.width)        
+             
         
         NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: width, height: Int(HEADER_HEIGHT))) as notificationHeader
         self.contentView.addSubview(NFHeader)        
         yPos = yPos + Int(NFHeader.frame.size.height)
         
-        NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: 50)) as NotificationTitle
+        NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: Int(TITLE_HEIGHT))) as NotificationTitle
         self.contentView.addSubview(NFTitle)
         yPos = yPos + Int(NFTitle.frame.size.height)
         
-        NFPhoto = NotificationCommentPhoto(frame: CGRect(x: 0, y: yPos, width: width, height: (width/2 - 20)))
+        NFPhoto = NotificationCommentPhoto(frame: CGRect(x: 0, y: yPos, width: width, height: min((width-10), Int(IMAGE_HEIGHT) ) ))
         self.contentView.addSubview(NFPhoto)
         yPos = yPos + Int(NFPhoto.frame.size.height)
         
-        NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: 15))        
+        NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: Int(FOOTER_HEIGHT)))        
         self.contentView.addSubview(NFFooter)
+        yPos = yPos + Int(NFFooter.frame.size.height)
+        
+        let NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: yPos))
+        self.contentView.addSubview(NFBackground)
+        self.contentView.sendSubview(toBack: NFBackground)
         
         setData(notificationData: notificationData, helper: helper)
     }
     
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
-        if NFHeader == nil {
-            createView(notificationData: notificationData, helper: helper)
-        }
+        
         _notificationData = notificationData
         
         NFHeader.setHeaderData(data: notificationData)
-        
+
         NFTitle.setMessageLabel(data: notificationData)
+        
+        if notificationData["type"] == "journeyMentionComment" ||
+            notificationData["type"] == "journeyComment" ||
+            notificationData["type"] == "journeyLike"{
+            var imageURL = notificationData["data"]["coverPhoto"].string
+            if imageURL == nil || imageURL == "" {
+                imageURL = notificationData["data"]["startLocationPic"].stringValue
+            }
+            NFPhoto.NFPlayImage.isHidden = true
+            NFPhoto.NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL!)", width: 100))
+        }
+        else{
+            NFPhoto.setPhoto(data: notificationData["data"])
+        }
+        
     }
 
 

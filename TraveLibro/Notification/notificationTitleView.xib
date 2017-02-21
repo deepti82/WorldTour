@@ -20,7 +20,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Andrea Christina wants to tag you in her On The Go Journey - London Diaries" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkF-Lb-CFS">
-                    <rect key="frame" x="15" y="5" width="470" height="64"/>
+                    <rect key="frame" x="15" y="15" width="470" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -29,9 +30,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="wkF-Lb-CFS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="AaT-7q-LuW"/>
-                <constraint firstItem="wkF-Lb-CFS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Gs5-DM-pEK"/>
+                <constraint firstItem="wkF-Lb-CFS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="Gs5-DM-pEK"/>
                 <constraint firstAttribute="trailing" secondItem="wkF-Lb-CFS" secondAttribute="trailing" constant="15" id="hGJ-KM-Pg7"/>
-                <constraint firstAttribute="bottom" secondItem="wkF-Lb-CFS" secondAttribute="bottom" constant="5" id="kR5-zr-M8D"/>
+                <constraint firstAttribute="bottom" secondItem="wkF-Lb-CFS" secondAttribute="bottom" constant="15" id="kR5-zr-M8D"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="28" y="32"/>

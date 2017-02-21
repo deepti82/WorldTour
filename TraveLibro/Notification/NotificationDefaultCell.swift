@@ -1,17 +1,14 @@
 //
-//  NotificationAcknolwdgementCell.swift
+//  NotificationDefaultCell.swift
 //  TraveLibro
 //
-//  Created by Wohlig Technology on 16/02/17.
+//  Created by Wohlig Technology on 20/02/17.
 //  Copyright © 2017 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-//NOTE: This is a cell with Header, titleMessage and footer
-//Example : Andrea Christina has commented on your On The Go Activity
-
-class NotificationAcknolwdgementCell: UITableViewCell {
+class NotificationDefaultCell: UITableViewCell {
 
     var _notificationData: JSON? 
     var NFHeader = notificationHeader()
@@ -74,6 +71,7 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         
         NFHeader.setHeaderData(data: notificationData)
         
-        NFTitle.setMessageLabel(data: notificationData)
+        NFTitle.NFMessageLabel.text = "Need to change this later TYPE: \(notificationData["type"])"
     }
+
 }

@@ -34,14 +34,106 @@ class NotificationTitle: UIView {
     func setMessageLabel(data: JSON) {
         
         NFMessageLabel.text = ""
-        var message = ""
+        
+        let message = NSMutableAttributedString(string: "")        
         let firstName = data["userFrom"]["name"].stringValue        
-        message = firstName + " wants to tag you in her On The Go Journey"
+        message.append(getBoldString(string: firstName))
+        
+        let notificationType = data["type"].stringValue
+        
+        var str2 = ""
+        
+        switch notificationType {
+            
+        case "postTag":            
+            str2 = " has checked-in with you in an "
+            
+        case "postLike":
+            str2 = " has liked your "
+            
+        case "photoComment":
+            str2 = " has commented on a photo in your "
+            
+        case "photoLike":
+            str2 = " has liked photo "
+            
+        case "userFollowing":
+            str2 = " has accepted your follow request"
+            
+        case "journeyLeft":
+            let gen = data["userFrom"]["gender"].stringValue
+            str2 = " has ended " + (gen == "male" ? "his" : "her")
+            
+        case "userFollowing":
+            str2 = " has started following you."
+            
+        case "journeyMentionComment":
+            str2 = " has mentioned you in a comment On The Go Journey -  "
+            
+        case "journeyComment":            
+            str2 = " has commented on the "
+        
+        case "journeyLike":
+            str2 = " has liked the On The Go Journey - "
+            
+        case "journeyReject":
+            str2 = " has rejected your request to join the "
+            
+        default:
+            str2 = " wants to tag you in her On The Go Journey"
+            break
+        }        
+        
+        message.append(getRegularString(string: str2))
         
         
-        NFMessageLabel.text = message
+        var str3 = ""
+        if notificationType != "userFollowing" && 
+            notificationType != "journeyMentionComment" && 
+            notificationType != "journeyComment" &&
+            notificationType != "journeyLike" &&
+            notificationType != "journeyReject" &&
+            notificationType != "photoLike" { 
+            //Travel type
+            let travelType = data["data"]["type"].string
+            if travelType != nil {
+                if travelType == "local-life" {
+                    str3 = "Local Life Activity"
+                }
+                else if travelType == "on_the_go" {
+                    str3 = "On The Go Activity"
+                }
+            }
+            
+            message.append(getBoldString(string: str3))
+        }
+        
+        
+        var str4 = ""        
+        if notificationType == "journeyComment" {
+            str4 = "On Go Journey "
+        }
+        if notificationType == "journeyReject" {
+            str4 = "On Go Activity - "
+        }        
+        message.append(getBoldString(string: str4))
+        
+        
+        var str5 = ""
+        if notificationType == "journeyMentionComment" ||
+           notificationType == "journeyComment" ||
+           notificationType == "journeyLike" ||
+           notificationType == "journeyReject" {
+            str5 = data["data"]["name"].stringValue
+            
+            message.append(getRedString(string: str5))
+        }
+        
+        
+        NFMessageLabel.attributedText = message
+        NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
+                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))
+        
     }
-    
-    
-
 }
+

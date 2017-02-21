@@ -18,10 +18,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="notificationHeader" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="NFCloseButton" destination="khO-7n-izv" id="4Fk-kS-AhY"/>
                 <outlet property="NFDateLabel" destination="PdG-nb-wco" id="hiM-zx-Y2U"/>
                 <outlet property="NFProfilePicture" destination="KJ8-F2-pUc" id="ady-Oo-JJW"/>
                 <outlet property="NFTimeLabel" destination="e0p-jA-o46" id="X7H-o6-kfc"/>
+                <outlet property="calendarLabel" destination="Aqi-Cj-L7a" id="2Yd-Pg-bnw"/>
+                <outlet property="clockLabel" destination="TPB-gu-ade" id="N38-OS-4pe"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -33,7 +34,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="500" height="120"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KJ8-F2-pUc">
-                            <rect key="frame" x="15" y="0.0" width="100" height="100"/>
+                            <rect key="frame" x="25" y="0.0" width="100" height="100"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="KJ8-F2-pUc" secondAttribute="height" multiplier="1:1" id="3Lo-JR-dD6"/>
                             </constraints>
@@ -44,7 +45,7 @@
                             </userDefinedRuntimeAttributes>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nU2-tQ-5Iw">
-                            <rect key="frame" x="123" y="42" width="307" height="17"/>
+                            <rect key="frame" x="133" y="42" width="297" height="17"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aqi-Cj-L7a">
                                     <rect key="frame" x="0.0" y="5" width="30" height="12"/>
@@ -58,8 +59,8 @@
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuE-2m-UT0">
                                     <rect key="frame" x="106" y="5" width="1" height="15"/>
-                                    <color key="backgroundColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="tintColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                    <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="gjq-qZ-822"/>
                                         <constraint firstAttribute="width" constant="1" id="mhO-4C-HJZ"/>
@@ -111,24 +112,13 @@
                                 <constraint firstItem="zuE-2m-UT0" firstAttribute="top" secondItem="nU2-tQ-5Iw" secondAttribute="top" constant="5" id="yvh-Yg-AsF"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khO-7n-izv">
-                            <rect key="frame" x="472" y="41" width="20" height="20"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="khO-7n-izv" secondAttribute="height" multiplier="1:1" id="KRs-fS-isr"/>
-                                <constraint firstAttribute="width" constant="20" id="ZBT-Mc-IeO"/>
-                            </constraints>
-                            <state key="normal" image="close_fa"/>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="KJ8-F2-pUc" firstAttribute="width" secondItem="WyL-Eg-888" secondAttribute="width" multiplier="0.2" id="1sp-lc-gbJ"/>
-                        <constraint firstAttribute="trailing" secondItem="khO-7n-izv" secondAttribute="trailing" constant="8" id="4NG-yh-MW5"/>
-                        <constraint firstItem="KJ8-F2-pUc" firstAttribute="leading" secondItem="WyL-Eg-888" secondAttribute="leading" constant="15" id="EAP-3K-y7h"/>
+                        <constraint firstItem="KJ8-F2-pUc" firstAttribute="leading" secondItem="WyL-Eg-888" secondAttribute="leading" constant="25" id="EAP-3K-y7h"/>
                         <constraint firstItem="KJ8-F2-pUc" firstAttribute="centerY" secondItem="nU2-tQ-5Iw" secondAttribute="centerY" id="EFG-dO-Cyf"/>
                         <constraint firstAttribute="trailing" secondItem="nU2-tQ-5Iw" secondAttribute="trailing" priority="250" constant="70" id="FiK-Lg-IdK"/>
-                        <constraint firstItem="nU2-tQ-5Iw" firstAttribute="centerY" secondItem="khO-7n-izv" secondAttribute="centerY" id="LmM-aB-4DA"/>
                         <constraint firstItem="KJ8-F2-pUc" firstAttribute="top" secondItem="WyL-Eg-888" secondAttribute="top" id="WaE-M2-EIr"/>
                         <constraint firstItem="nU2-tQ-5Iw" firstAttribute="leading" secondItem="KJ8-F2-pUc" secondAttribute="trailing" constant="8" id="pEB-YE-9Hp"/>
                     </constraints>
@@ -146,7 +136,4 @@
             <point key="canvasLocation" x="80" y="-347"/>
         </view>
     </objects>
-    <resources>
-        <image name="close_fa" width="28" height="28"/>
-    </resources>
 </document>

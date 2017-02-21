@@ -80,7 +80,10 @@ let screenSize = UIScreen.main.bounds
 let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 
-let HEADER_HEIGHT = (screenWidth * 0.2) - 20
+let HEADER_HEIGHT = (screenWidth * 0.2)
+let FOOTER_HEIGHT = 50
+let IMAGE_HEIGHT = screenWidth * 0.8
+let TITLE_HEIGHT = 80
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

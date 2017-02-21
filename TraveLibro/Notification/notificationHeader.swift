@@ -14,7 +14,8 @@ class notificationHeader: UIView {
     @IBOutlet weak var NFProfilePicture: UIImageView!    
     @IBOutlet weak var NFDateLabel: UILabel!    
     @IBOutlet weak var NFTimeLabel: UILabel!
-    @IBOutlet weak var NFCloseButton: UIButton!
+    @IBOutlet weak var calendarLabel: UILabel!    
+    @IBOutlet weak var clockLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,20 +27,29 @@ class notificationHeader: UIView {
     }
     
     func loadViewFromNib() {
+        
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "notificationHeaderView", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        NFProfilePicture.layer.cornerRadius = 10
-        NFProfilePicture.layer.borderWidth = 1
-        NFProfilePicture.layer.borderColor = UIColor.white.cgColor
+        
+       
+        clockLabel.text = String(format: "%C", faicon["clock"]!)
+        calendarLabel.text = String(format: "%C", faicon["calendar"]!)
+        
         self.addSubview(view);
     }
     
     func setHeaderData(data: JSON) {
-        NFProfilePicture.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(data["userFrom"]["profilePicture"])", width: 100))
-        makeTLProfilePicture(NFProfilePicture)
+        
+        NFProfilePicture.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(data["userFrom"]["profilePicture"])", width: 100))        
+                
+        NFProfilePicture.layer.cornerRadius = NFProfilePicture.frame.size.width * 0.30
+        NFProfilePicture.layer.borderWidth = 2
+        NFProfilePicture.layer.borderColor = UIColor.white.cgColor
+        NFProfilePicture.clipsToBounds = true
+        NFProfilePicture.contentMode = UIViewContentMode.scaleAspectFill
         
         NFDateLabel.text = getDateFormat(data["updatedAt"].stringValue, format: "dd MMM, yyyy")
         NFTimeLabel.text = getDateFormat(data["updatedAt"].stringValue, format: "hh.mm a")

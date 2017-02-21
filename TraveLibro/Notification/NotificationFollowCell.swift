@@ -17,7 +17,7 @@ class NotificationFollowCell: UITableViewCell {
     var NFHeader = notificationHeader()
     var NFTitle = NotificationTitle()
     var NFFollowDetails = NotificationFollowingDetails()
-    var NFPermission = NotificationFollowPermission()
+    var NFFollow = NotificationUserFollowing()
     var NFFooter = NotificationFooter()
     
     override func awakeFromNib() {
@@ -50,46 +50,40 @@ class NotificationFollowCell: UITableViewCell {
         var width: Int = Int(self.frame.size.width)
         width = Int(UIScreen.main.bounds.width)
         
-        let NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: 300))
-        self.contentView.addSubview(NFBackground)
-        
         NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: width, height: Int(HEADER_HEIGHT))) as notificationHeader
         self.contentView.addSubview(NFHeader)        
         yPos = yPos + Int(NFHeader.frame.size.height)
         
-        NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: 50)) as NotificationTitle
+        NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: Int(TITLE_HEIGHT))) as NotificationTitle
         self.contentView.addSubview(NFTitle)
         yPos = yPos + Int(NFTitle.frame.size.height)
         
-        NFFollowDetails = NotificationFollowingDetails(frame: CGRect(x: 0, y: yPos, width: width, height: 60)) as NotificationFollowingDetails
+        NFFollowDetails = NotificationFollowingDetails(frame: CGRect(x: 0, y: yPos, width: width, height: 90)) as NotificationFollowingDetails
         self.contentView.addSubview(NFFollowDetails)
         yPos = yPos + Int(NFFollowDetails.frame.size.height)
         
-        NFPermission = NotificationFollowPermission(frame: CGRect(x: 0, y: yPos, width: width, height: 50)) as NotificationFollowPermission
-        self.contentView.addSubview(NFPermission)
-        yPos = yPos + Int(NFPermission.frame.size.height)
+        NFFollow = NotificationUserFollowing(frame: CGRect(x: 0, y: yPos, width: width, height: 50)) as NotificationUserFollowing
+        self.contentView.addSubview(NFFollow)
+        yPos = yPos + Int(NFFollow.frame.size.height)
         
-        NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: 15))        
+        NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: Int(FOOTER_HEIGHT)))        
         self.contentView.addSubview(NFFooter)
+        yPos = yPos + Int(NFFooter.frame.size.height)
+        
+        let NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: yPos))
+        self.contentView.addSubview(NFBackground)
+        self.contentView.sendSubview(toBack: NFBackground)
+        
         
         setData(notificationData: notificationData, helper: helper)
     }    
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
-        if NFHeader == nil {
-            createView(notificationData: notificationData, helper: helper)
-        }
         _notificationData = notificationData
         
         NFHeader.setHeaderData(data: notificationData)
         
-        NFTitle.setMessageLabel(data: notificationData)
-        
-        NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
-        NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.acceptTag(_:)), for: .touchUpInside)
-        
-        NFPermission.NFRightButton.setTitle("Decline", for: .normal)
-        NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.declineTag(_:)), for: .touchUpInside)
+        NFTitle.setMessageLabel(data: notificationData)        
     }
 
 }

@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpf-fI-gGo">
-                    <rect key="frame" x="15" y="5" width="150" height="40"/>
+                    <rect key="frame" x="25" y="5" width="150" height="40"/>
                     <color key="backgroundColor" red="0.95686274509803915" green="0.50196078431372548" blue="0.4823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                     <state key="normal" title="Follow">
@@ -32,12 +32,12 @@
                     </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="qpf-fI-gGo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="RRg-99-2p1"/>
                 <constraint firstAttribute="bottom" secondItem="qpf-fI-gGo" secondAttribute="bottom" constant="5" id="iev-fs-md4"/>
                 <constraint firstItem="qpf-fI-gGo" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.3" id="sfC-Yj-kym"/>
-                <constraint firstItem="qpf-fI-gGo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="vGY-VK-cpb"/>
+                <constraint firstItem="qpf-fI-gGo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="vGY-VK-cpb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="41.5" y="36"/>

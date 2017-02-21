@@ -11,6 +11,7 @@ import UIKit
 class NotificationCommentPhoto: UIView {
 
     @IBOutlet weak var NFPhotoImage: UIImageView!
+    @IBOutlet weak var NFPlayImage: UIImageView!
     @IBOutlet weak var NFLastPhotoImage: UIImageView!
     @IBOutlet weak var NFMoreItemLabel: UILabel!
     
@@ -30,6 +31,35 @@ class NotificationCommentPhoto: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
+    }
+    
+    func setPhoto(data: JSON) {
+        
+        var imageURL = "" 
+        NFPlayImage.isHidden = true
+        
+        if (data["type"].string == "photo") {
+            imageURL = data["name"].stringValue
+        }
+        else if ((data["videos"].array?.count)! > 0) {
+            //Showing img for video
+            imageURL = (data["videos"].arrayValue.first()?.stringValue)!
+            NFPlayImage.isHidden = false
+        }
+        else if ((data["photos"].array?.count)! > 0) {
+            //Showing img for photo
+            imageURL = (data["photos"].arrayValue.first()?.stringValue)!
+        }        
+        else if (data["imageUrl"].stringValue != "") {
+            //Showing img for map
+            imageURL = data["imageUrl"].stringValue
+        }
+        else if (data["thoughts"].stringValue != "") {
+            //Showing img for thought
+            imageURL = data["thoughts"].stringValue
+        }
+        
+        NFPhotoImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(imageURL)", width: 100))
     }
 
 }

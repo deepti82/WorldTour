@@ -546,7 +546,7 @@ class EndJourneyViewController: UIViewController {
                                     self.coverImage = responce["data"][0].stringValue
                                     request.journeyChangeCoverImage(self.coverImage, journeyId: self.journey["_id"].stringValue, completion: { (json) in
                                         DispatchQueue.main.async(execute: {
-                                            self.navigationController?.popViewController(animated: true)
+                                            _ = self.navigationController?.popViewController(animated: true)
                                         })
                                     })
                                 }

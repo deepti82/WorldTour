@@ -13,60 +13,45 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotificationCommentPhoto" customModule="TraveLibro" customModuleProvider="target">
             <connections>
-                <outlet property="NFLastPhotoImage" destination="GBB-mR-f7n" id="xkp-Sg-1GJ"/>
-                <outlet property="NFMoreItemLabel" destination="v2h-3o-VES" id="1JO-SC-ugs"/>
                 <outlet property="NFPhotoImage" destination="Wzf-6A-prz" id="M8j-2h-KUK"/>
+                <outlet property="NFPlayImage" destination="clj-JB-OIc" id="2sI-Ld-pBE"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="485" height="150"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="photobar1" translatesAutoresizingMaskIntoConstraints="NO" id="Wzf-6A-prz">
-                    <rect key="frame" x="15" y="5" width="175" height="140"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="photobar1" translatesAutoresizingMaskIntoConstraints="NO" id="Wzf-6A-prz">
+                    <rect key="frame" x="15" y="5" width="290" height="232"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="Wzf-6A-prz" secondAttribute="height" multiplier="5:4" id="v5H-vS-uvx"/>
+                        <constraint firstAttribute="height" secondItem="Wzf-6A-prz" secondAttribute="width" multiplier="4:5" id="zYd-oL-PTd"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="photobar1" translatesAutoresizingMaskIntoConstraints="NO" id="GBB-mR-f7n">
-                    <rect key="frame" x="198" y="5" width="175" height="140"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_video_play_icon" translatesAutoresizingMaskIntoConstraints="NO" id="clj-JB-OIc">
+                    <rect key="frame" x="131" y="102" width="58" height="39"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" red="0.93818825483322144" green="0.41770917177200317" blue="0.13715940713882446" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="clj-JB-OIc" secondAttribute="height" multiplier="149:99" id="Wm0-Qg-i8L"/>
+                    </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2h-3o-VES">
-                    <rect key="frame" x="216" y="5" width="140" height="140"/>
-                    <color key="backgroundColor" red="0.20216805848726174" green="0.21014435279187815" blue="0.18941542954131796" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="14"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GBB-mR-f7n" secondAttribute="trailing" constant="15" id="JRa-Rf-AGM"/>
-                <constraint firstAttribute="bottom" secondItem="Wzf-6A-prz" secondAttribute="bottom" constant="5" id="Jpl-ZL-Bta"/>
-                <constraint firstItem="Wzf-6A-prz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="LPI-wq-aba"/>
-                <constraint firstItem="Wzf-6A-prz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="NGG-Ca-Muj"/>
-                <constraint firstItem="Wzf-6A-prz" firstAttribute="width" relation="lessThanOrEqual" secondItem="GBB-mR-f7n" secondAttribute="width" id="TeM-xl-672"/>
-                <constraint firstItem="GBB-mR-f7n" firstAttribute="centerY" secondItem="Wzf-6A-prz" secondAttribute="centerY" id="Wm3-u1-EJd"/>
-                <constraint firstItem="v2h-3o-VES" firstAttribute="width" secondItem="GBB-mR-f7n" secondAttribute="width" multiplier="0.8" id="YMT-O7-pYq"/>
-                <constraint firstItem="v2h-3o-VES" firstAttribute="height" secondItem="GBB-mR-f7n" secondAttribute="height" id="ZIv-LP-NqN"/>
-                <constraint firstItem="GBB-mR-f7n" firstAttribute="top" secondItem="Wzf-6A-prz" secondAttribute="top" id="cMU-wR-TqQ"/>
-                <constraint firstItem="GBB-mR-f7n" firstAttribute="leading" secondItem="Wzf-6A-prz" secondAttribute="trailing" constant="8" id="hc5-8X-QQU"/>
-                <constraint firstItem="v2h-3o-VES" firstAttribute="centerX" secondItem="GBB-mR-f7n" secondAttribute="centerX" id="lL5-Yv-eNd"/>
-                <constraint firstItem="v2h-3o-VES" firstAttribute="centerY" secondItem="GBB-mR-f7n" secondAttribute="centerY" id="ogF-zy-Xjj"/>
-                <constraint firstItem="GBB-mR-f7n" firstAttribute="height" secondItem="Wzf-6A-prz" secondAttribute="height" id="rYT-Ni-LZf"/>
+                <constraint firstItem="clj-JB-OIc" firstAttribute="centerX" secondItem="Wzf-6A-prz" secondAttribute="centerX" id="2aV-zR-wnz"/>
+                <constraint firstItem="clj-JB-OIc" firstAttribute="centerY" secondItem="Wzf-6A-prz" secondAttribute="centerY" id="3af-oZ-6TJ"/>
+                <constraint firstItem="clj-JB-OIc" firstAttribute="width" secondItem="Wzf-6A-prz" secondAttribute="width" multiplier="0.2" id="6KM-qw-hkt"/>
+                <constraint firstItem="Wzf-6A-prz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="KPh-Ft-cgS"/>
+                <constraint firstAttribute="trailing" secondItem="Wzf-6A-prz" secondAttribute="trailing" constant="15" id="Siw-6Z-lgE"/>
+                <constraint firstItem="Wzf-6A-prz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="VoR-YA-AFX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="50.5" y="52"/>
+            <point key="canvasLocation" x="-90" y="37"/>
         </view>
-        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="photobar1" id="CHt-9g-hed">
-            <rect key="frame" x="0.0" y="0.0" width="175" height="140"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-        </imageView>
     </objects>
     <resources>
         <image name="photobar1" width="60" height="60"/>
+        <image name="red_video_play_icon" width="142" height="100"/>
     </resources>
 </document>

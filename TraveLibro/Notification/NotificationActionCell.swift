@@ -49,18 +49,15 @@ class NotificationActionCell: UITableViewCell {
         var width: Int = Int(self.frame.size.width)
         width = Int(UIScreen.main.bounds.width)
         
-        let NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: 300))
-        self.contentView.addSubview(NFBackground)
-        
         NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: width, height: Int(HEADER_HEIGHT))) as notificationHeader
         self.contentView.addSubview(NFHeader)        
         yPos = yPos + Int(NFHeader.frame.size.height)
         
-        NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: 50)) as NotificationTitle
+        NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: Int(TITLE_HEIGHT))) as NotificationTitle
         self.contentView.addSubview(NFTitle)
         yPos = yPos + Int(NFTitle.frame.size.height)
         
-        NFMessage = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: 50)) as NotificationTitle
+        NFMessage = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: Int(TITLE_HEIGHT))) as NotificationTitle
         self.contentView.addSubview(NFMessage)
         yPos = yPos + Int(NFMessage.frame.size.height)
         
@@ -68,29 +65,44 @@ class NotificationActionCell: UITableViewCell {
         self.contentView.addSubview(NFPermission)
         yPos = yPos + Int(NFPermission.frame.size.height)
         
-        NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: 15))        
+        NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: Int(FOOTER_HEIGHT)))        
         self.contentView.addSubview(NFFooter)
+        yPos = yPos + Int(NFFooter.frame.size.height)
+        
+        let NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: yPos))
+        self.contentView.addSubview(NFBackground)
+        self.contentView.sendSubview(toBack: NFBackground)
         
         setData(notificationData: notificationData, helper: helper)
     }    
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
-        if NFHeader == nil {
-            createView(notificationData: notificationData, helper: helper)
-        }
+        
         _notificationData = notificationData
         
         NFHeader.setHeaderData(data: notificationData)
         
         NFTitle.setMessageLabel(data: notificationData)
         
-        //Change message as per notification type
-        NFMessage.NFMessageLabel.text = NFTitle.NFMessageLabel.text
-        
-        NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
-        NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.acceptTag(_:)), for: .touchUpInside)
-        
-        NFPermission.NFRightButton.setTitle("Decline", for: .normal)
-        NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.declineTag(_:)), for: .touchUpInside)
+        if notificationData["type"] == "journeyLeft" {
+            //Change message as per notification type
+            NFMessage.NFMessageLabel.text = "Would you like to end your journey as well?"
+            
+            NFPermission.NFLeftButton.setTitle("End", for: .normal)
+            NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyEndTabbed(_:)), for: .touchUpInside)
+            
+            NFPermission.NFRightButton.setTitle("Decline", for: .normal)
+            NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyEndDeclined(_:)), for: .touchUpInside)            
+        }
+        else {
+            //Change message as per notification type
+            NFMessage.NFMessageLabel.text = NFTitle.NFMessageLabel.text
+            
+            NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
+            NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
+            
+            NFPermission.NFRightButton.setTitle("Decline", for: .normal)
+            NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
+        }        
     }
 }

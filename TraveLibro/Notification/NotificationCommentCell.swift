@@ -1,21 +1,19 @@
 //
-//  NotificationAcknolwdgementCell.swift
+//  NotificationCommentCell.swift
 //  TraveLibro
 //
-//  Created by Wohlig Technology on 16/02/17.
+//  Created by Wohlig Technology on 20/02/17.
 //  Copyright © 2017 Wohlig Technology. All rights reserved.
 //
 
 import UIKit
 
-//NOTE: This is a cell with Header, titleMessage and footer
-//Example : Andrea Christina has commented on your On The Go Activity
-
-class NotificationAcknolwdgementCell: UITableViewCell {
+class NotificationCommentCell: UITableViewCell {
 
     var _notificationData: JSON? 
     var NFHeader = notificationHeader()
     var NFTitle = NotificationTitle()
+    var NFMessage = NotificationTitle()
     var NFFooter = NotificationFooter()
     
     override func awakeFromNib() {
@@ -48,13 +46,20 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         var width: Int = Int(self.frame.size.width)
         width = Int(UIScreen.main.bounds.width)        
         
+        
         NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: width, height: Int(HEADER_HEIGHT))) as notificationHeader
         self.contentView.addSubview(NFHeader)        
         yPos = yPos + Int(NFHeader.frame.size.height)
         
         NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: Int(TITLE_HEIGHT))) as NotificationTitle
         self.contentView.addSubview(NFTitle)
+        NFTitle.setMessageLabel(data: notificationData)
+
         yPos = yPos + Int(NFTitle.frame.size.height)
+        
+        NFMessage = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: (width - 15)))
+        self.contentView.addSubview(NFMessage)
+        yPos = yPos + Int(NFMessage.frame.size.height)
         
         NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: Int(FOOTER_HEIGHT)))        
         self.contentView.addSubview(NFFooter)
@@ -75,5 +80,13 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         NFHeader.setHeaderData(data: notificationData)
         
         NFTitle.setMessageLabel(data: notificationData)
+        
+        NFMessage.setMessageLabel(data: notificationData)
+        
+//        self.bringSubview(toFront: NFHeader)
+//        self.bringSubview(toFront: NFTitle)
+//        self.bringSubview(toFront: NFMessage)
+//        self.sendSubview(toBack: self.contentView)
     }
+
 }

@@ -97,6 +97,8 @@
 		4435D2FB1E548D02003BD1D9 /* notificationBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2FA1E548D02003BD1D9 /* notificationBackgroundView.xib */; };
 		4435D2FD1E548D3D003BD1D9 /* NotificationUserFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2FC1E548D3D003BD1D9 /* NotificationUserFollowing.swift */; };
 		4435D2FF1E548DF3003BD1D9 /* NotificationBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2FE1E548DF3003BD1D9 /* NotificationBackground.swift */; };
+		44725D2D1E5ADBB70074D925 /* NotificationCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */; };
+		44725D2F1E5B06580074D925 /* NotificationDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */; };
 		840599831E3CDA60004E0696 /* DropShadow1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599821E3CDA60004E0696 /* DropShadow1.xib */; };
 		840599851E3CDB2B004E0696 /* DropShadow1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840599841E3CDB2B004E0696 /* DropShadow1.swift */; };
 		840599881E3CDBA6004E0696 /* DropShadow2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599871E3CDBA6004E0696 /* DropShadow2.xib */; };
@@ -585,6 +587,8 @@
 		4435D2FA1E548D02003BD1D9 /* notificationBackgroundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationBackgroundView.xib; path = Notification/notificationBackgroundView.xib; sourceTree = "<group>"; };
 		4435D2FC1E548D3D003BD1D9 /* NotificationUserFollowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationUserFollowing.swift; path = Notification/NotificationUserFollowing.swift; sourceTree = "<group>"; };
 		4435D2FE1E548DF3003BD1D9 /* NotificationBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationBackground.swift; path = Notification/NotificationBackground.swift; sourceTree = "<group>"; };
+		44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCommentCell.swift; path = Notification/NotificationCommentCell.swift; sourceTree = "<group>"; };
+		44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationDefaultCell.swift; path = Notification/NotificationDefaultCell.swift; sourceTree = "<group>"; };
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		840599821E3CDA60004E0696 /* DropShadow1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropShadow1.xib; sourceTree = "<group>"; };
@@ -1373,8 +1377,10 @@
 			children = (
 				44081CED1E55B4B6006EA74C /* NotificationActionCell.swift */,
 				44081CF31E55E46B006EA74C /* NotificationAcknolwdgementCell.swift */,
+				44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */,
 				44081CF71E55EEC5006EA74C /* NotificationFollowCell.swift */,
 				44081CF51E55EA5D006EA74C /* NotificationPhotoCell.swift */,
+				44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */,
 			);
 			name = NotificationMainView;
 			sourceTree = "<group>";
@@ -3054,6 +3060,7 @@
 				C24F84DC1D000CF5002EA203 /* MoreAboutMe.swift in Sources */,
 				C2A2E7931D96565F005084A7 /* SearchLocationTableViewController.swift in Sources */,
 				C267302C1D27D49100F2C822 /* SelectGenderViewController.swift in Sources */,
+				44725D2F1E5B06580074D925 /* NotificationDefaultCell.swift in Sources */,
 				C26962E41D377592004C0DE2 /* FeaturedCitiesNewViewController.swift in Sources */,
 				C2D67FF71CE5FD7500454A46 /* CollectionViewController.swift in Sources */,
 				C2BB45F21CFDB39800251E8C /* BucketListTableViewController.swift in Sources */,
@@ -3176,6 +3183,7 @@
 				362FA0CA1E1E78E500267736 /* PostEditPhotosVideos.swift in Sources */,
 				C2A5C1D91CF9BA5E0035EF0E /* TraveLifeVideoPost.swift in Sources */,
 				C24B45651D0AE79A002EA009 /* PopularAgents.swift in Sources */,
+				44725D2D1E5ADBB70074D925 /* NotificationCommentCell.swift in Sources */,
 				C23B3BE01D4248F10075B733 /* EachCityPagerViewController.swift in Sources */,
 				C2823AFE1D45E09C0065A76C /* FooterViewNew.swift in Sources */,
 				842D7A571E1E6FBC00FEDCD1 /* Buttons2.swift in Sources */,

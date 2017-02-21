@@ -10,6 +10,8 @@ import UIKit
 
 class NotificationBackground: UIView {
 
+    @IBOutlet weak var NFBackView: UIView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -23,9 +25,11 @@ class NotificationBackground: UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "notificationBackgroundView", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-        view.frame = bounds
-        view.layer.cornerRadius = 10
+        view.frame = bounds        
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        NFBackView.layer.cornerRadius = 6
+        
         self.addSubview(view);
     }
     

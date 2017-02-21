@@ -10,6 +10,8 @@ import UIKit
 
 class NotificationFooter: UIView {
 
+    @IBOutlet weak var NFReadMark: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()

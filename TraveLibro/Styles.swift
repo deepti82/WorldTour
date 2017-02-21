@@ -73,6 +73,7 @@ func getDarkBackGroundBlur(_ myVC: UIViewController) -> Void {
     bgImage.isUserInteractionEnabled = false
     
     myVC.view.addSubview(bgImage)
+    myVC.view.sendSubview(toBack: bgImage)
     
     //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
     
@@ -420,6 +421,34 @@ func getMonthFormat(_ date: String) -> String {
     return goodDate
     
 }
+
+func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
+    let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+    label.numberOfLines = 0
+    label.lineBreakMode = NSLineBreakMode.byWordWrapping
+    label.font = font
+    label.text = text
+    
+    label.sizeToFit()
+    return label.frame.height
+}
+
+func getRegularString(string: String) -> NSMutableAttributedString {
+    return NSMutableAttributedString(string: string, 
+                              attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)!])
+}
+
+func getBoldString(string: String) -> NSMutableAttributedString {
+    return NSMutableAttributedString(string: string, 
+                              attributes: [NSFontAttributeName: UIFont(name: "Avenir-Black", size: 14)!])
+}
+
+func getRedString(string: String) -> NSMutableAttributedString {
+    return NSMutableAttributedString(string: string, 
+                                     attributes: [NSForegroundColorAttributeName: UIColor.red])
+}
+
+
 
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks
