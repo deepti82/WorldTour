@@ -54,10 +54,10 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         getDarkBackGround(self)
         globalMyLifeController = self
         
-        let tapRecognizer = UITapGestureRecognizer()
-        tapRecognizer.numberOfTapsRequired = 1
-        tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
-        view.addGestureRecognizer(tapRecognizer)
+//        let tapRecognizer = UITapGestureRecognizer()
+//        tapRecognizer.numberOfTapsRequired = 1
+//        tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
+//        view.addGestureRecognizer(tapRecognizer)
         
         let leftButton = UIButton()
         leftButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
@@ -139,19 +139,19 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         setDefaults()
     }
     
-    func toggleFullscreen(_ sender: UIButton){
-if type == "on-the-go-journey"{
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "newTL")
-        self.present(controller, animated: true, completion: nil)
-        globalNewTLViewController.toolbarView.isHidden = true
-        globalNewTLViewController.hideVisual.isHidden = true
-        globalNewTLViewController.hideToolBar.isHidden = true
-    
-}else {
-    
-        }
-    }
+//    func toggleFullscreen(_ sender: UIButton){
+//if type == "on-the-go-journey"{
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let controller = storyboard.instantiateViewController(withIdentifier: "newTL")
+//        self.present(controller, animated: true, completion: nil)
+//        globalNewTLViewController.toolbarView.isHidden = true
+//        globalNewTLViewController.hideVisual.isHidden = true
+//        globalNewTLViewController.hideToolBar.isHidden = true
+//    
+//}else {
+//    
+//        }
+//    }
     
     func exitMyLife(_ sender: AnyObject ) {
         

@@ -356,9 +356,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                 cell.coverImage.layer.cornerRadius = cell.coverImage.frame.width/2
                 cell.coverImage.clipsToBounds = true
                 
-                cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
-                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.section]["data"][indexPath.row]["name"].stringValue, width: 200))
-                cell.albumTitle.attributedText = createHeaderDate(currDate: allData[indexPath.section]["token"].stringValue, count: allData[indexPath.section]["count"].stringValue)
+                cell.coverImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 200))
+                cell.bgImage.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["data"][indexPath.row]["name"].stringValue, width: 200))
+                cell.albumTitle.attributedText = createHeaderDate(currDate: allData[indexPath.row]["token"].stringValue, count: allData[indexPath.row]["count"].stringValue)
                 
                 return cell
             case "travel-life":
