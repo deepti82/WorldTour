@@ -58,6 +58,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var layout: VerticalLayout!
     var refreshControl = UIRefreshControl()
     var isInitialLoad = true
+    var fromOutSide = ""
+    var fromType = ""
     
     @IBAction func addMoreBuddies(_ sender: AnyObject) {
         buddiesStatus = false;
@@ -723,6 +725,39 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         })
         
     }
+
+    func getOneJourney() {
+        request.getJourneyById(fromOutSide, completion: {(response) in
+            DispatchQueue.main.async(execute: {
+                if response.error != nil {
+                    print("error: \(response.error!.localizedDescription)")
+                }
+                else if response["value"].bool! {
+                    self.layout.removeAll()
+                    self.prevPosts = []
+                    self.isInitialLoad = true;
+                    self.detectLocation(nil)
+                    self.latestCity = response["data"]["startLocation"].string!
+                    if self.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                        self.isRefreshing = false
+                    }
+                    isJourneyOngoing = true
+                    self.journeyStart = true
+                    self.myJourney = response["data"]
+                    print(self.myJourney);
+                    self.journeyID = self.myJourney["_id"].stringValue
+                    self.journeyName = self.myJourney["name"].stringValue
+                    self.isInitialLoad = false
+                    self.showJourneyOngoing(journey: response["data"])
+                    self.setTopNavigation(text: "\(response["data"]["name"].stringValue)");
+                }
+            })
+            
+        })
+        
+    }
+
     
     func getAllPosts(_ posts: [JSON]) {
         for post in posts {
@@ -904,6 +939,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         self.navigationController?.navigationBar.tintColor.withAlphaComponent(0.9)
         leftButton.addTarget(self, action: #selector(self.openSideMenu(_:)), for: .touchUpInside)
+        
+        //button from out side
+        let outButton = UIButton()
+        outButton.frame = CGRect(x: 10, y: 10, width: 30, height: 20)
+        outButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        outButton.imageView?.contentMode = .scaleAspectFit
+        outButton.imageView?.clipsToBounds = true
+        outButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        
+        
         UINavigationBar.appearance().backgroundColor = UIColor(hex: "#11d3cb")
         UINavigationBar.appearance().backgroundColor?.withAlphaComponent(0.9)
         let rightButton = UIView()
@@ -929,10 +974,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         //        rightButton.layer.borderColor = UIColor.white.cgColor
         //        rightButton.layer.cornerRadius = rightButton.frame.width / 2
         self.title = text
-        if (myJourney != nil) {
-            self.customNavigationBar(left: leftButton, right: rightButton)
+        if  fromOutSide == "" {
+            if (myJourney != nil) {
+                self.customNavigationBar(left: leftButton, right: rightButton)
+            }else{
+                self.customNavigationBar(left: leftButton, right: nil)
+            }
+
         }else{
-            self.customNavigationBar(left: leftButton, right: nil)
+            self.customNavigationBar(left: outButton, right: nil)
         }
         
     }
@@ -952,8 +1002,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.setTopNavigation(text: "On The Go")
         globalNewTLViewController = self;
         getDarkBackGroundBlue(self)
-        getJourney()
+        if fromOutSide == "" {
+            getJourney()
+        }else{
+            getOneJourney()
+        }
         mainScroll.delegate = self
+        
+        if fromType == "ended-journey" {
+            toolbarView.isHidden = true
+        }
         
         
         self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 1000))
