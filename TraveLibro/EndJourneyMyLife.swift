@@ -16,12 +16,15 @@ class EndJourneyMyLife: UIView {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var placeLabel: UILabel!
+    @IBOutlet weak var blueFlag: UILabel!
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
         calendarIcon.text = String(format: "%C", faicon["calendar"]!)
         clockIcon.text = String(format: "%C", faicon["clock"]!)
         endJourneyMyLifeView.layer.cornerRadius = 5
+        blueFlag.clipsToBounds = true
+        blueFlag.layer.cornerRadius = 20
     }
     
     required init?(coder aDecoder: NSCoder) {

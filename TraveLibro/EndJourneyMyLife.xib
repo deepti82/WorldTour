@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,6 +19,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EndJourneyMyLife" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="blueFlag" destination="8ey-ri-WFo" id="fSn-4K-ojd"/>
                 <outlet property="calendarIcon" destination="0bd-TP-bmu" id="vNh-Ly-6uj"/>
                 <outlet property="clockIcon" destination="mWO-Hn-md2" id="4PN-LW-BHQ"/>
                 <outlet property="dateLabel" destination="24a-uU-CvH" id="UtV-9K-aF7"/>
@@ -43,18 +44,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhN-pR-PH0">
                     <rect key="frame" x="16" y="41" width="343" height="96"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFc-SG-81t">
-                            <rect key="frame" x="0.0" y="14" width="375" height="34"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mumbai" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFc-SG-81t">
+                            <rect key="frame" x="0.0" y="14" width="343" height="34"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="34" id="Wmj-3Y-g4r"/>
-                                <constraint firstAttribute="width" constant="375" id="rmc-Wq-AWT"/>
+                                <constraint firstAttribute="height" constant="34" id="xmU-IS-lyq"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                             <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O4u-NP-Y2K">
-                            <rect key="frame" x="0.0" y="56" width="375" height="20"/>
+                            <rect key="frame" x="0.0" y="56" width="375" height="30"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="DMa-BZ-EYY">
                                     <rect key="frame" x="83" y="0.0" width="187" height="20"/>
@@ -123,14 +123,13 @@
                     <color key="backgroundColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="O4u-NP-Y2K" secondAttribute="trailing" constant="-32" id="0yK-fR-wws"/>
-                        <constraint firstItem="O4u-NP-Y2K" firstAttribute="top" secondItem="hFc-SG-81t" secondAttribute="bottom" constant="8" symbolic="YES" id="5p5-WQ-ga4"/>
-                        <constraint firstItem="O4u-NP-Y2K" firstAttribute="trailing" secondItem="hFc-SG-81t" secondAttribute="trailing" id="9ng-bh-bAI"/>
-                        <constraint firstAttribute="bottom" secondItem="O4u-NP-Y2K" secondAttribute="bottom" constant="20" id="CAj-Xb-c7C"/>
+                        <constraint firstAttribute="bottom" secondItem="O4u-NP-Y2K" secondAttribute="bottom" constant="10" id="CAj-Xb-c7C"/>
                         <constraint firstItem="O4u-NP-Y2K" firstAttribute="centerX" secondItem="yhN-pR-PH0" secondAttribute="centerX" constant="16" id="Ft6-St-7xb"/>
-                        <constraint firstAttribute="trailing" secondItem="hFc-SG-81t" secondAttribute="trailing" constant="-32" id="Io0-PI-SuG"/>
-                        <constraint firstItem="O4u-NP-Y2K" firstAttribute="leading" secondItem="hFc-SG-81t" secondAttribute="leading" id="RlR-Hh-aBb"/>
+                        <constraint firstAttribute="trailing" secondItem="hFc-SG-81t" secondAttribute="trailing" id="KWW-aJ-xDZ"/>
                         <constraint firstItem="O4u-NP-Y2K" firstAttribute="leading" secondItem="yhN-pR-PH0" secondAttribute="leading" id="cD7-Wz-XMb"/>
-                        <constraint firstItem="hFc-SG-81t" firstAttribute="top" secondItem="yhN-pR-PH0" secondAttribute="top" constant="14" id="u1I-cg-cvA"/>
+                        <constraint firstItem="O4u-NP-Y2K" firstAttribute="top" secondItem="hFc-SG-81t" secondAttribute="bottom" constant="8" symbolic="YES" id="hLc-8U-Atf"/>
+                        <constraint firstItem="hFc-SG-81t" firstAttribute="top" secondItem="yhN-pR-PH0" secondAttribute="top" constant="14" id="jaM-by-Sul"/>
+                        <constraint firstItem="hFc-SG-81t" firstAttribute="leading" secondItem="yhN-pR-PH0" secondAttribute="leading" id="oKy-B1-Sf8"/>
                         <constraint firstAttribute="height" constant="96" id="x8b-fA-eFh"/>
                     </constraints>
                 </view>
@@ -142,7 +141,7 @@
                         <constraint firstAttribute="width" constant="40" id="cfx-TC-LC7"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" red="0.073292411863803864" green="0.10042916983366013" blue="0.17095461487770081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flag_icon" translatesAutoresizingMaskIntoConstraints="NO" id="n0U-0M-GmL">
@@ -161,11 +160,11 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="until we meet again!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYI-Wj-IQD">
-                    <rect key="frame" x="0.0" y="266" width="375" height="32"/>
+                    <rect key="frame" x="0.0" y="266" width="375" height="47"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="32" id="QM1-Vh-tXR"/>
+                        <constraint firstAttribute="height" constant="47" id="QM1-Vh-tXR"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="JennaSue" family="Jenna Sue" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="JennaSue" family="Jenna Sue" pointSize="36"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

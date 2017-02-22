@@ -458,6 +458,8 @@
 		FCB2D6951DE4732A0008634B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6941DE4732A0008634B /* QuartzCore.framework */; };
 		FCB2D6991DE4740B0008634B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D6981DE4740B0008634B /* UIKit.framework */; };
 		FCB2D69B1DE474180008634B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB2D69A1DE474180008634B /* WebKit.framework */; };
+		FCB3D1791E5D6FC50041B121 /* OnlyLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB3D1781E5D6FC50041B121 /* OnlyLine.swift */; };
+		FCB3D17B1E5D6FF00041B121 /* OnlyLine.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCB3D17A1E5D6FEF0041B121 /* OnlyLine.xib */; };
 		FCBF88CC1E2E343B0092CB9D /* ActivityFeedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */; };
 		FCBF88CE1E2E58660092CB9D /* ActivityProfileHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCBF88CD1E2E58660092CB9D /* ActivityProfileHeader.xib */; };
 		FCBF88D01E2E588E0092CB9D /* ActivityProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBF88CF1E2E588E0092CB9D /* ActivityProfileHeader.swift */; };
@@ -959,6 +961,8 @@
 		FCB2D6941DE4732A0008634B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FCB2D6981DE4740B0008634B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FCB2D69A1DE474180008634B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FCB3D1781E5D6FC50041B121 /* OnlyLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlyLine.swift; sourceTree = "<group>"; };
+		FCB3D17A1E5D6FEF0041B121 /* OnlyLine.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnlyLine.xib; sourceTree = "<group>"; };
 		FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedsController.swift; sourceTree = "<group>"; };
 		FCBF88CD1E2E58660092CB9D /* ActivityProfileHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityProfileHeader.xib; sourceTree = "<group>"; };
 		FCBF88CF1E2E588E0092CB9D /* ActivityProfileHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityProfileHeader.swift; sourceTree = "<group>"; };
@@ -1223,6 +1227,7 @@
 				FCE877F81E308FC2005EE913 /* ActivityTextHeader */,
 				FC807AD21E3C9B4300609E9B /* TripPhotoLayout */,
 				FC807AD71E3CAB1F00609E9B /* TripPhotoHeader */,
+				FCB3D17C1E5D70520041B121 /* OnlyLine */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2623,6 +2628,15 @@
 			name = CountrySummary;
 			sourceTree = "<group>";
 		};
+		FCB3D17C1E5D70520041B121 /* OnlyLine */ = {
+			isa = PBXGroup;
+			children = (
+				FCB3D1781E5D6FC50041B121 /* OnlyLine.swift */,
+				FCB3D17A1E5D6FEF0041B121 /* OnlyLine.xib */,
+			);
+			name = OnlyLine;
+			sourceTree = "<group>";
+		};
 		FCBF88D11E2E58C30092CB9D /* ActivityProfileHeader */ = {
 			isa = PBXGroup;
 			children = (
@@ -2879,6 +2893,7 @@
 				C26907871CF82DF200F827E6 /* AccountVerified.xib in Resources */,
 				C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */,
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
+				FCB3D17B1E5D6FF00041B121 /* OnlyLine.xib in Resources */,
 				4435D2E71E54740E003BD1D9 /* notificationCommentVideoView.xib in Resources */,
 				C28A92531D0ECB4E00CFEC7A /* FilterBlogs.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
@@ -3414,6 +3429,7 @@
 				842484F91E13A9E600083115 /* PhotosOTGHeader.swift in Sources */,
 				FCE877FF1E30CA6A005EE913 /* ActivityFeedsLayout.swift in Sources */,
 				C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */,
+				FCB3D1791E5D6FC50041B121 /* OnlyLine.swift in Sources */,
 				C2FA1E171D5495870034DE97 /* QuickItinerariesViewController.swift in Sources */,
 				C2A27A491CEDC66B00F74DD1 /* LogInViewController.swift in Sources */,
 				FCCA8F1B1E28B61C00775985 /* TripSummaryCell.swift in Sources */,

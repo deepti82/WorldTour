@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11762"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OnlyLine" customModule="TraveLibro" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbo-un-cwW" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
+                    <rect key="frame" x="177" y="0.0" width="20" height="76"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="vM6-21-kuB"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="hbo-un-cwW" secondAttribute="bottom" id="7Cn-Xt-9VH"/>
+                <constraint firstItem="hbo-un-cwW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Kw-Uc-hHd"/>
+                <constraint firstItem="hbo-un-cwW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Dix-ar-VrM"/>
+                <constraint firstItem="hbo-un-cwW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="mxy-Wk-Y2a"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="-224"/>
+        </view>
+    </objects>
+</document>

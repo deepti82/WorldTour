@@ -4,7 +4,9 @@ import Spring
 
 class PhotosOTG2: VerticalLayout,PlayerDelegate {
     var postTop:Post!
-    var endJourneyView: EndJourneyView!
+    var endJourneyView: EndJourneyMyLife!
+    var endJourneyCard: EndJourneyView!
+    var lines: OnlyLine!
     var header:PhotosOTGHeader!
     var centerView:PhotosOTGView!
     var footerView:PhotoOTGFooter!
@@ -210,10 +212,13 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
             //End of Footer
         }
-        print(post.jsonPost)
-        if post.jsonPost["endTime"] != nil {
-            endJourneyView = EndJourneyView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 300))
-            self.addSubview(endJourneyView)
+        if post.jsonPost != nil {
+            if post.jsonPost["endTime"] != nil {
+                endJourneyView = EndJourneyMyLife(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 329))
+                endJourneyView.placeLabel.text = post.jsonPost["startLocation"].stringValue
+                self.addSubview(endJourneyView)
+            }
+            
         }
         self.layoutSubviews()
     }
