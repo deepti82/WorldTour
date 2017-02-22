@@ -83,7 +83,7 @@ class NotificationPhotoCell: UITableViewCell {
         _notificationData = notificationData
         
         NFHeader.setHeaderData(data: notificationData)
-
+        
         NFTitle.setMessageLabel(data: notificationData)
         
         if notificationData["type"] == "journeyMentionComment" ||

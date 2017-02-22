@@ -25,7 +25,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         getDarkBackGroundBlur(self)
         notifyTableView.backgroundColor = UIColor.clear
         
@@ -33,7 +33,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         notifyTableView.tableFooterView = UIView()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -115,7 +115,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     
     //MARK: - TableView Datasource and Delegates
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         
         return 1
@@ -205,7 +205,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         print("MYNotificationType: \(notificationType) ")
         switch notificationType {
-        
+            
         case "postTag":
             fallthrough            
         case "postLike":
@@ -256,7 +256,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             cell?.backgroundColor = UIColor.clear
             return cell!
-
+            
             
             
         case "journeyLeft":
@@ -276,7 +276,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             cell?.backgroundColor = UIColor.clear
             return cell!
             
-
+            
         case "userFollowing":
             var cell = tableView.dequeueReusableCell(withIdentifier: "followCell", for: indexPath) as? NotificationFollowCell
             if cell == nil {
@@ -350,7 +350,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     //MARK:- Button Action
-
+    
     func journeyAcceptTabbed(_ sender: UIButton) {
         
         print("in the journeyAcceptTabbed indexpath: \(sender.tag)")

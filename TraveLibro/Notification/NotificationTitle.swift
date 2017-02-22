@@ -50,7 +50,7 @@ class NotificationTitle: UIView {
             
         case "postLike":
             str2 = " has liked your "
-        
+            
         case "postComment":
             str2 = " has commented on your "
             
@@ -87,7 +87,7 @@ class NotificationTitle: UIView {
             fallthrough
         case "itineraryComment":
             str2 = " has commented on the "
-        
+            
         case "journeyLike":
             str2 = " has liked the On The Go Journey - "
             
@@ -159,7 +159,7 @@ class NotificationTitle: UIView {
             notificationType == "itineraryComment" {
             str4 = data["data"]["type"].stringValue.capitalized + " - "
         }
-    
+        
         message.append(getBoldString(string: str4))
         
         

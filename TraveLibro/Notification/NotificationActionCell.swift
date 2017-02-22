@@ -86,12 +86,6 @@ class NotificationActionCell: UITableViewCell {
         
         NFTitle.setMessageLabel(data: notificationData)
         
-        NFPermission.NFLeftButton.removeTarget(helper, action: #selector(helper.journeyEndTabbed(_:)), for: .touchUpInside)
-        NFPermission.NFLeftButton.removeTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
-        
-        NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.journeyEndDeclined(_:)), for: .touchUpInside)
-        NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
-        
         if notificationData["type"] == "journeyLeft" {
             
             NFMessage.NFMessageLabel.text = "Would you like to end your journey as well?"
