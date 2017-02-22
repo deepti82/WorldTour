@@ -93,7 +93,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
-    
     func canLoadCommentCell(notificationData: JSON) -> Bool {
         
         var shouldLoadCommentCell = true
@@ -200,7 +199,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         let notificationType = cellNotificationData["type"].stringValue
         
-        print("MYNotificationType: \(notificationType) ")
+        print("MYNotificationType: \(notificationType) \n CellData: \(cellNotificationData)")
         switch notificationType {
             
         case "postTag":
@@ -449,6 +448,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         print("\n tabbedCellData : \(tabbedCellData)")
         
+        gotoEndJourney(journeyID: tabbedCellData["data"]["_id"].stringValue)
+        
     }
     
     func journeyEndDeclined(_ sender: UIButton) {
@@ -481,6 +482,13 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             }
         })
         
+    }
+    
+    func gotoEndJourney(journeyID : String) {
+        let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+        end.journeyId = journeyID
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController!.pushViewController(end, animated: true)
     }
 }
 

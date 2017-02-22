@@ -514,11 +514,15 @@ class EndJourneyViewController: UIViewController {
             self.goBack()
             request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, journeyName: journey["name"].stringValue, completion: {(response) in
                 
+                print("End Journey response : \(response)")
+                
                 request.getUser(user.getExistingUser(), completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
                         currentUser = response["data"]
-                        globalNewTLViewController.removeFromParentViewController()
+                        if globalNewTLViewController != nil {
+                            globalNewTLViewController.removeFromParentViewController()
+                        }
                         tstr = Toast(text: "Journey ended successfully. Have a good life.")
                         tstr.show()
                         //                        self.goBack()

@@ -73,7 +73,7 @@ class NotificationTitle: UIView {
             str2 = " has requested to follow your travel and local activities. "
             
         case "journeyAccept":
-            str2 = " has accepted your journey request. "
+            str2 = " has accepted your On The Go Journey - "
             
         case "journeyLeft":
             let gen = data["userFrom"]["gender"].stringValue
@@ -186,7 +186,7 @@ class NotificationTitle: UIView {
         
         NFMessageLabel.attributedText = message
         NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
-                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))
+                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))        
         
     }
     
