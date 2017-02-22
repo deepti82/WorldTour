@@ -202,6 +202,11 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         case "on-the-go-journey","ended-journey":
             activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
             activityFeedImage.fillData(feed: feed)
+            let tapRecognizer = UITapGestureRecognizer()
+            tapRecognizer.numberOfTapsRequired = 1
+            tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
+            activityFeedImage.addGestureRecognizer(tapRecognizer)
+
             activityFeedImage.clipsToBounds = true
             activityFeedImage.OnTheGOText.isHidden = true
             self.addSubview(activityFeedImage)
@@ -220,6 +225,25 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             videosAndPhotosLayout(feed:feed)
         }
     }
+    
+    func toggleFullscreen(_ sender: UIButton){
+        print("clicked....")
+        if feeds["type"].stringValue == "on-the-go-journey" || feeds["type"].stringValue == "ended-journey"{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+            controller.fromOutSide = feeds["_id"].stringValue
+            controller.fromType = feeds["type"].stringValue
+            globalMyLifeContainerViewController.navigationController!.pushViewController(controller, animated: false)
+            
+//            globalNewTLViewController.toolbarView.isHidden = true
+//            globalNewTLViewController.hideVisual.isHidden = true
+//            globalNewTLViewController.hideToolBar.isHidden = true
+            
+        }else {
+            
+        }
+    }
+
     
     func headerLayout(feed:JSON) {
         
