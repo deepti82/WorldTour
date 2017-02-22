@@ -1139,11 +1139,8 @@ class Navigation {
                 }
                 else
                 {
-                    print("journeydata")
                     json  = JSON(data: response.data)
                     currentJourney = json["data"]
-
-                    print(json)
                     completion(json)
                 }
             }
@@ -1162,11 +1159,8 @@ class Navigation {
                 }
                 else
                 {
-                    print("journeydata")
                     json  = JSON(data: response.data)
                     currentJourney = json["data"]
-                    
-                    print(json)
                     completion(json)
                 }
             }

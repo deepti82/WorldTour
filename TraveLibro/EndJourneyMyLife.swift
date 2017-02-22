@@ -24,7 +24,7 @@ class EndJourneyMyLife: UIView {
         clockIcon.text = String(format: "%C", faicon["clock"]!)
         endJourneyMyLifeView.layer.cornerRadius = 5
         blueFlag.clipsToBounds = true
-        blueFlag.layer.cornerRadius = 20
+        blueFlag.layer.cornerRadius = 22.5
     }
     
     required init?(coder aDecoder: NSCoder) {

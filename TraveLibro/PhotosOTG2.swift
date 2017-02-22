@@ -212,14 +212,14 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
             //End of Footer
         }
-        if post.jsonPost != nil {
-            if post.jsonPost["endTime"] != nil {
-                endJourneyView = EndJourneyMyLife(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 329))
-                endJourneyView.placeLabel.text = post.jsonPost["startLocation"].stringValue
-                self.addSubview(endJourneyView)
-            }
-            
-        }
+//        print("lets go \(jouurneyToShow)")
+//            if jouurneyToShow["endTime"] != nil {
+//                endJourneyView = EndJourneyMyLife(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 329))
+//                endJourneyView.placeLabel.text = jouurneyToShow["startLocation"].stringValue
+//                endJourneyView.dateLabel.text = getDateFormat(jouurneyToShow["endTime"].stringValue, format: "dd MMM, yyyy")
+//                endJourneyView.timeLabel.text = getDateFormat(jouurneyToShow["endTime"].stringValue, format: "hh:mm a")
+//                self.addSubview(endJourneyView)
+//            }
         self.layoutSubviews()
     }
     

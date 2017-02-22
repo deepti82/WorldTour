@@ -33,6 +33,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var addNewView = NewQuickItinerary()
     var buttons1 = Buttons2()
     var changeText = AddBuddiesViewController()
+    var endJourneyView: EndJourneyMyLife!
     
     @IBOutlet weak var hideVisual: UIVisualEffectView!
     @IBOutlet weak var hideToolBar: UIStackView!
@@ -701,6 +702,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
+                    whichJourney = ""
                     self.layout.removeAll()
                     self.prevPosts = []
                     self.isInitialLoad = true;
@@ -733,6 +735,12 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     print("error: \(response.error!.localizedDescription)")
                 }
                 else if response["value"].bool! {
+                    if response["data"]["endTime"] != nil {
+                        whichJourney = "end"
+                    }else{
+                        whichJourney = "otg"
+                    }
+                    jouurneyToShow = response["data"]
                     self.layout.removeAll()
                     self.prevPosts = []
                     self.isInitialLoad = true;
@@ -779,6 +787,15 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             else if !self.prevPosts.contains(post) {
                 self.configurePost(post)
             }
+        }
+        print("lets go \(jouurneyToShow)")
+        if jouurneyToShow["endTime"] != nil {
+            endJourneyView = EndJourneyMyLife(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 329))
+            endJourneyView.placeLabel.text = jouurneyToShow["startLocation"].stringValue
+            endJourneyView.dateLabel.text = getDateFormat(jouurneyToShow["endTime"].stringValue, format: "dd MMM, yyyy")
+            endJourneyView.timeLabel.text = getDateFormat(jouurneyToShow["endTime"].stringValue, format: "hh:mm a")
+            layout.addSubview(endJourneyView)
+            addHeightToLayout(height: endJourneyView.frame.height + 50.0)
         }
     }
     
@@ -2168,7 +2185,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 otgView.journeyCategoryTwo.image = UIImage(named: kindOfJourneyStack[1])
                 otgView.journeyCategoryTwo.isHidden = false
                 otgView.journeyCategoryThree.isHidden = false
-                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
+//                otgView.journeyCategoryThree.image = UIImage(named: kindOfJourneyStack[2])
             }
             
         }
