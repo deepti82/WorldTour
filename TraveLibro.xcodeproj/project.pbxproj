@@ -138,6 +138,12 @@
 		845C432E1E2FCE4200800F51 /* ActivityFeedFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C432D1E2FCE4200800F51 /* ActivityFeedFooter.swift */; };
 		84E61E451E377665009A740F /* OtgCardUITextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E61E441E377665009A740F /* OtgCardUITextView.xib */; };
 		84E61E471E377828009A740F /* OtgCardUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E61E461E377828009A740F /* OtgCardUITextView.swift */; };
+		84F25E971E5D63B300ED7A1E /* detailedItineraryMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F25E961E5D63B300ED7A1E /* detailedItineraryMain.xib */; };
+		84F25E9B1E5D693E00ED7A1E /* detailedItineraryMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25E9A1E5D693E00ED7A1E /* detailedItineraryMain.swift */; };
+		84F25EB21E5D7CE300ED7A1E /* detailedCity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F25EB11E5D7CE300ED7A1E /* detailedCity.xib */; };
+		84F25EB41E5D803F00ED7A1E /* detailedCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25EB31E5D803F00ED7A1E /* detailedCity.swift */; };
+		84F25EB61E5D821000ED7A1E /* detailedItineraryStrip.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F25EB51E5D821000ED7A1E /* detailedItineraryStrip.xib */; };
+		84F25EB91E5D862000ED7A1E /* detailedItineraryStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25EB81E5D862000ED7A1E /* detailedItineraryStrip.swift */; };
 		84FF89431E52E0A300FDE8F0 /* Search.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF89421E52E0A300FDE8F0 /* Search.xib */; };
 		84FF89491E52EAA800FDE8F0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */; };
 		84FF894B1E531B1100FDE8F0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF894A1E531B1100FDE8F0 /* Search.swift */; };
@@ -633,6 +639,12 @@
 		845C432D1E2FCE4200800F51 /* ActivityFeedFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedFooter.swift; sourceTree = "<group>"; };
 		84E61E441E377665009A740F /* OtgCardUITextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OtgCardUITextView.xib; sourceTree = "<group>"; };
 		84E61E461E377828009A740F /* OtgCardUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtgCardUITextView.swift; sourceTree = "<group>"; };
+		84F25E961E5D63B300ED7A1E /* detailedItineraryMain.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = detailedItineraryMain.xib; sourceTree = "<group>"; };
+		84F25E9A1E5D693E00ED7A1E /* detailedItineraryMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedItineraryMain.swift; sourceTree = "<group>"; };
+		84F25EB11E5D7CE300ED7A1E /* detailedCity.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = detailedCity.xib; sourceTree = "<group>"; };
+		84F25EB31E5D803F00ED7A1E /* detailedCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedCity.swift; sourceTree = "<group>"; };
+		84F25EB51E5D821000ED7A1E /* detailedItineraryStrip.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = detailedItineraryStrip.xib; sourceTree = "<group>"; };
+		84F25EB81E5D862000ED7A1E /* detailedItineraryStrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedItineraryStrip.swift; sourceTree = "<group>"; };
 		84FF89421E52E0A300FDE8F0 /* Search.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Search.xib; sourceTree = "<group>"; };
 		84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		84FF894A1E531B1100FDE8F0 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -1076,6 +1088,10 @@
 		1A944E351CCB5A0C007EB5BD /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
+				84F25EB71E5D85BC00ED7A1E /* detailedItineraryStrip */,
+				84F25EB51E5D821000ED7A1E /* detailedItineraryStrip.xib */,
+				84F25EAE1E5D7C8A00ED7A1E /* detailedCity */,
+				84F25E991E5D63E800ED7A1E /* detailItineraryMain */,
 				842019C01E5C7E1E001F97E3 /* EndJourneyMyLife */,
 				4435D2D11E543F7C003BD1D9 /* Notification */,
 				84FF89411E52DFF600FDE8F0 /* Search */,
@@ -1562,6 +1578,32 @@
 				84E61E461E377828009A740F /* OtgCardUITextView.swift */,
 			);
 			name = OtgCardUITextView;
+			sourceTree = "<group>";
+		};
+		84F25E991E5D63E800ED7A1E /* detailItineraryMain */ = {
+			isa = PBXGroup;
+			children = (
+				84F25E961E5D63B300ED7A1E /* detailedItineraryMain.xib */,
+				84F25E9A1E5D693E00ED7A1E /* detailedItineraryMain.swift */,
+			);
+			name = detailItineraryMain;
+			sourceTree = "<group>";
+		};
+		84F25EAE1E5D7C8A00ED7A1E /* detailedCity */ = {
+			isa = PBXGroup;
+			children = (
+				84F25EB11E5D7CE300ED7A1E /* detailedCity.xib */,
+				84F25EB31E5D803F00ED7A1E /* detailedCity.swift */,
+			);
+			name = detailedCity;
+			sourceTree = "<group>";
+		};
+		84F25EB71E5D85BC00ED7A1E /* detailedItineraryStrip */ = {
+			isa = PBXGroup;
+			children = (
+				84F25EB81E5D862000ED7A1E /* detailedItineraryStrip.swift */,
+			);
+			name = detailedItineraryStrip;
 			sourceTree = "<group>";
 		};
 		84FF89411E52DFF600FDE8F0 /* Search */ = {
@@ -2815,6 +2857,7 @@
 				84FF89431E52E0A300FDE8F0 /* Search.xib in Resources */,
 				845C43271E2F8A4100800F51 /* ActivityFeedImageView.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
+				84F25E971E5D63B300ED7A1E /* detailedItineraryMain.xib in Resources */,
 				FCCA8F281E28DCE900775985 /* TripSummaryView.xib in Resources */,
 				1A65E7A21CD72EB3009374DA /* fontawesome-webfont.ttf in Resources */,
 				368A56921E3CDB5C00DC8A19 /* loader2.gif in Resources */,
@@ -2902,6 +2945,7 @@
 				C263E3A71D1E5D2300D274FE /* NewThoughtsView.xib in Resources */,
 				C24F84F01D004E59002EA203 /* NoFollowers.xib in Resources */,
 				4435D2FB1E548D02003BD1D9 /* notificationBackgroundView.xib in Resources */,
+				84F25EB61E5D821000ED7A1E /* detailedItineraryStrip.xib in Resources */,
 				C24870551D0C4458003CB0DD /* HotelTypeSelect.xib in Resources */,
 				842484F61E13A4C000083115 /* PhotoOTGFooter.xib in Resources */,
 				8453CF3D1E30A12400C41F82 /* ActivityDetailItinerary.xib in Resources */,
@@ -2920,6 +2964,7 @@
 				C2AC5D1B1CF32CE0008E5887 /* PopularJourneyView.xib in Resources */,
 				C267301F1D279D7900F2C822 /* AddNewOTG.xib in Resources */,
 				C24F84F71D00546F002EA203 /* NoCountriesVisited.xib in Resources */,
+				84F25EB21E5D7CE300ED7A1E /* detailedCity.xib in Resources */,
 				C26D619A1D43A9FF0036714C /* footerNew.xib in Resources */,
 				841E43A71E1D1C7B000D2E6B /* UploadingToCloud.xib in Resources */,
 				842484F41E139FBB00083115 /* PhotosOTGHeader.xib in Resources */,
@@ -3091,6 +3136,7 @@
 				FCCA8F191E28B5BC00775985 /* TripSummaryView.swift in Sources */,
 				C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */,
 				C23EB1DB1CFEE242005B5CE8 /* LocalLifeRecommendationViewController.swift in Sources */,
+				84F25E9B1E5D693E00ED7A1E /* detailedItineraryMain.swift in Sources */,
 				C25BE1F31CFC06BB00C98DD3 /* LocalLifePostsViewController.swift in Sources */,
 				C24909B11D49D616007EB6B4 /* tripSummaryEach.swift in Sources */,
 				C258A3371D6C74E600664CF7 /* AddNationalityNewViewController.swift in Sources */,
@@ -3117,6 +3163,7 @@
 				845C432E1E2FCE4200800F51 /* ActivityFeedFooter.swift in Sources */,
 				C27F6C011CF03E280049F012 /* ProfileMainView.swift in Sources */,
 				1A944E3A1CCB5B88007EB5BD /* FooterView.swift in Sources */,
+				84F25EB91E5D862000ED7A1E /* detailedItineraryStrip.swift in Sources */,
 				FCE877FC1E3093A4005EE913 /* ActivityHeaderTag.swift in Sources */,
 				843510E41DF7F88100C3D8EE /* QuickIteneraryFour.swift in Sources */,
 				C2DA2B5B1CE6076600F15C5C /* MyCollectionViewCell.swift in Sources */,
@@ -3289,6 +3336,7 @@
 				C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */,
 				C20352371CEF433500A20BB2 /* SideNavigationMenuViewController.swift in Sources */,
 				367B90F51DC23ADF00D76F13 /* ActiveBuilder.swift in Sources */,
+				84F25EB41E5D803F00ED7A1E /* detailedCity.swift in Sources */,
 				FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */,
 				C25207371D096F27008F0E51 /* ExploreDestinationsViewController.swift in Sources */,
 				C28521BA1D365FDF001EF251 /* PagerTabViewController.swift in Sources */,
