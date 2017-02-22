@@ -78,5 +78,7 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         NFHeader.setHeaderData(data: notificationData)
         
         NFTitle.setMessageLabel(data: notificationData)
+        
+        NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
     }
 }

@@ -47,6 +47,9 @@ class NotificationTitle: UIView {
             
         case "postTag":            
             str2 = " has checked-in with you in an "
+            if checkIfComment(notificationData: data) {
+                str2 = " has tagged you in a thought in an "
+            }
             
         case "postLike":
             str2 = " has liked your "
@@ -151,7 +154,8 @@ class NotificationTitle: UIView {
         else if notificationType == "journeyReject" {
             str4 = "On Go Activity - "
         }
-        else if notificationType == "journeyComment" {
+        else if notificationType == "journeyComment" ||
+            notificationType == "photoLike" {
             str4 = "Local Life Activity. "
         }
         else if notificationType == "itineraryMentionComment" ||
@@ -167,6 +171,7 @@ class NotificationTitle: UIView {
         if notificationType == "journeyMentionComment" ||
             notificationType == "journeyComment" ||
             notificationType == "journeyLike" ||
+            notificationType == "journeyLeft" ||
             notificationType == "journeyReject" ||
             notificationType == "journeyRequest" ||
             notificationType == "journeyAccept" ||
@@ -183,6 +188,19 @@ class NotificationTitle: UIView {
         NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
                                       height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))
         
+    }
+    
+    func checkIfComment(notificationData: JSON) -> Bool {
+        
+        var shouldLoadCommentCell = true
+        if (notificationData["data"]["type"].string == "photo") {
+            shouldLoadCommentCell = false
+        }
+        if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {
+            shouldLoadCommentCell = false
+        }
+        
+        return shouldLoadCommentCell
     }
 }
 

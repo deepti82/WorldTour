@@ -104,6 +104,7 @@ class NotificationPhotoCell: UITableViewCell {
             NFPhoto.setPhoto(data: notificationData["data"])
         }
         
+        NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
     }
 
 

@@ -86,7 +86,9 @@ class NotificationFollowCell: UITableViewCell {
         
         NFHeader.setHeaderData(data: notificationData)
         
-        NFTitle.setMessageLabel(data: notificationData)        
+        NFTitle.setMessageLabel(data: notificationData)
+        
+        NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
     }
 
 }
