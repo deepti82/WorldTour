@@ -2255,7 +2255,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             let imageUrl = addedBuddies[i]["profilePicture"].string!
             otgView.buddyStackPictures[i].hnk_setImageFromURL(getImageURL(imageUrl, width: 100))
             makeTLProfilePictureBorderOrange(otgView.buddyStackPictures[i])
-            let isUrl = verifyUrl(imageUrl)
         }
         
         switch countLabel {

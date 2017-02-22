@@ -21,8 +21,7 @@ class UserProfileSettingsViewController: UIViewController, UITableViewDataSource
         super.viewDidLoad()
         
         self.setNavigationBarItem()
-        print("navigation controller: \(self.navigationController)")
-        
+                
         settingsTableView.tableFooterView = UIView()
     }
 

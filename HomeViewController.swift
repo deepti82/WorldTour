@@ -122,6 +122,11 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
 //    func resizeView(offset:CGFloat)
 //    {
 //        self.verticalLayout.layoutSubviews()

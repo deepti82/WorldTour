@@ -56,7 +56,7 @@ class NotificationCommentCell: UITableViewCell {
         self.contentView.addSubview(NFTitle)
         yPos = yPos + Int(NFTitle.frame.size.height)
         
-        NFMessage = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: (width - 15)))
+        NFMessage = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: Int(TITLE_HEIGHT)))
         self.contentView.addSubview(NFMessage)
         yPos = yPos + Int(NFMessage.frame.size.height)
         
@@ -82,12 +82,10 @@ class NotificationCommentCell: UITableViewCell {
         
         NFTitle.setMessageLabel(data: notificationData)
         
-        NFMessage.setMessageLabel(data: notificationData)
+        NFMessage.NFMessageLabel.text = notificationData["data"]["thoughts"].stringValue
         
-//        self.bringSubview(toFront: NFHeader)
-//        self.bringSubview(toFront: NFTitle)
-//        self.bringSubview(toFront: NFMessage)
-//        self.sendSubview(toBack: self.contentView)
+        NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
+        
     }
 
 }

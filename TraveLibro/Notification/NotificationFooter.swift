@@ -29,4 +29,13 @@ class NotificationFooter: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
+    
+    func updateReadStatus(read: String) {
+        if read == "unread" {
+            NFReadMark.tintColor = UIColor.white
+        }
+        else {
+            NFReadMark.tintColor = UIColor.red
+        }
+    }
 }

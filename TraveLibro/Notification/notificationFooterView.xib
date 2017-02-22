@@ -23,7 +23,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="flat_tick" translatesAutoresizingMaskIntoConstraints="NO" id="3LY-U2-D9J">
                     <rect key="frame" x="506" y="15" width="20" height="20"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <color key="tintColor" red="0.93827855587005615" green="0.393074631690979" blue="0.37039768695831299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="dKa-uX-D4c"/>
                         <constraint firstAttribute="width" secondItem="3LY-U2-D9J" secondAttribute="height" id="vLq-e5-dr2"/>

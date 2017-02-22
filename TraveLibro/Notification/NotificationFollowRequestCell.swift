@@ -89,6 +89,8 @@ class NotificationFollowRequestCell: UITableViewCell {
         
         NFPermission.NFRightButton.setTitle("Decline", for: .normal)
         NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
+        
+        NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
     }
 
 }
