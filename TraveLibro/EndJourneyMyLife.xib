@@ -22,6 +22,7 @@
                 <outlet property="calendarIcon" destination="0bd-TP-bmu" id="vNh-Ly-6uj"/>
                 <outlet property="clockIcon" destination="mWO-Hn-md2" id="4PN-LW-BHQ"/>
                 <outlet property="dateLabel" destination="24a-uU-CvH" id="UtV-9K-aF7"/>
+                <outlet property="endJourneyMyLifeView" destination="yhN-pR-PH0" id="SEw-Kq-LBd"/>
                 <outlet property="placeLabel" destination="hFc-SG-81t" id="hYi-FW-adw"/>
                 <outlet property="timeLabel" destination="lxX-1l-gNg" id="t7N-Zj-pXL"/>
             </connections>
@@ -40,7 +41,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhN-pR-PH0">
-                    <rect key="frame" x="0.0" y="41" width="375" height="96"/>
+                    <rect key="frame" x="16" y="41" width="343" height="96"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFc-SG-81t">
                             <rect key="frame" x="0.0" y="14" width="375" height="34"/>
@@ -121,12 +122,12 @@
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="O4u-NP-Y2K" secondAttribute="trailing" id="0yK-fR-wws"/>
+                        <constraint firstAttribute="trailing" secondItem="O4u-NP-Y2K" secondAttribute="trailing" constant="-32" id="0yK-fR-wws"/>
                         <constraint firstItem="O4u-NP-Y2K" firstAttribute="top" secondItem="hFc-SG-81t" secondAttribute="bottom" constant="8" symbolic="YES" id="5p5-WQ-ga4"/>
                         <constraint firstItem="O4u-NP-Y2K" firstAttribute="trailing" secondItem="hFc-SG-81t" secondAttribute="trailing" id="9ng-bh-bAI"/>
                         <constraint firstAttribute="bottom" secondItem="O4u-NP-Y2K" secondAttribute="bottom" constant="20" id="CAj-Xb-c7C"/>
-                        <constraint firstItem="O4u-NP-Y2K" firstAttribute="centerX" secondItem="yhN-pR-PH0" secondAttribute="centerX" id="Ft6-St-7xb"/>
-                        <constraint firstAttribute="trailing" secondItem="hFc-SG-81t" secondAttribute="trailing" id="Io0-PI-SuG"/>
+                        <constraint firstItem="O4u-NP-Y2K" firstAttribute="centerX" secondItem="yhN-pR-PH0" secondAttribute="centerX" constant="16" id="Ft6-St-7xb"/>
+                        <constraint firstAttribute="trailing" secondItem="hFc-SG-81t" secondAttribute="trailing" constant="-32" id="Io0-PI-SuG"/>
                         <constraint firstItem="O4u-NP-Y2K" firstAttribute="leading" secondItem="hFc-SG-81t" secondAttribute="leading" id="RlR-Hh-aBb"/>
                         <constraint firstItem="O4u-NP-Y2K" firstAttribute="leading" secondItem="yhN-pR-PH0" secondAttribute="leading" id="cD7-Wz-XMb"/>
                         <constraint firstItem="hFc-SG-81t" firstAttribute="top" secondItem="yhN-pR-PH0" secondAttribute="top" constant="14" id="u1I-cg-cvA"/>
@@ -194,8 +195,8 @@
                 <constraint firstAttribute="trailing" secondItem="KYI-Wj-IQD" secondAttribute="trailing" id="i22-D8-5GQ"/>
                 <constraint firstItem="0Ii-bC-Qou" firstAttribute="top" secondItem="yhN-pR-PH0" secondAttribute="bottom" constant="-1" id="iOV-CA-eZU"/>
                 <constraint firstItem="yhN-pR-PH0" firstAttribute="top" secondItem="0Dx-lP-XiI" secondAttribute="bottom" constant="2" id="qYp-3B-D1p"/>
-                <constraint firstItem="yhN-pR-PH0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xsV-6z-yB7"/>
-                <constraint firstAttribute="trailing" secondItem="yhN-pR-PH0" secondAttribute="trailing" id="ybs-ji-sUy"/>
+                <constraint firstItem="yhN-pR-PH0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="xsV-6z-yB7"/>
+                <constraint firstAttribute="trailing" secondItem="yhN-pR-PH0" secondAttribute="trailing" constant="16" id="ybs-ji-sUy"/>
                 <constraint firstItem="0Dx-lP-XiI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zKY-uU-XI4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

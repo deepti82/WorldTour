@@ -10,6 +10,7 @@ import UIKit
 
 class EndJourneyMyLife: UIView {
 
+    @IBOutlet weak var endJourneyMyLifeView: UIView!
     @IBOutlet weak var calendarIcon: UILabel!
     @IBOutlet weak var clockIcon: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -20,7 +21,7 @@ class EndJourneyMyLife: UIView {
         loadViewFromNib ()
         calendarIcon.text = String(format: "%C", faicon["calendar"]!)
         clockIcon.text = String(format: "%C", faicon["clock"]!)
-
+        endJourneyMyLifeView.layer.cornerRadius = 5
     }
     
     required init?(coder aDecoder: NSCoder) {
