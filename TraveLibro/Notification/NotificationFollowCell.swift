@@ -64,7 +64,7 @@ class NotificationFollowCell: UITableViewCell {
         self.contentView.addSubview(NFFollowDetails)
         yPos = yPos + Int(NFFollowDetails.frame.size.height)
         
-        NFFollow = NotificationUserFollowing(frame: CGRect(x: 0, y: yPos, width: width, height: 50)) as NotificationUserFollowing
+        NFFollow = NotificationUserFollowing(frame: CGRect(x: 0, y: yPos, width: width, height: 40)) as NotificationUserFollowing
         self.contentView.addSubview(NFFollow)
         yPos = yPos + Int(NFFollow.frame.size.height)
         
@@ -93,6 +93,12 @@ class NotificationFollowCell: UITableViewCell {
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)
         NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
         totalHeight += titleHeight
+        
+        NFFollowDetails.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: DETAILS_HEIGHT)
+        totalHeight += DETAILS_HEIGHT
+        
+        NFFollow.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: BUTTON_HEIGHT)
+        totalHeight += CGFloat(BUTTON_HEIGHT)
         
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)

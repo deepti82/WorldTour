@@ -71,22 +71,26 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                         ToastCenter.default.cancelAll()
                         let newResponse = response["data"].array!
                         
+                        print("New Notification count: \(newResponse.count)")
                         if newResponse.isEmpty {
                             self.hasNext = false
                         }
                         
                         if self.notifications.isEmpty {
                             self.notifications = newResponse
+                            if newResponse.isEmpty {
+                                Toast(text: "No notifications for you....").show()
+                            }
                         }
                         else {                        
-                            self.notifications.append(contentsOf: newResponse)
+                            self.notifications.append(contentsOf: newResponse)                            
                             DispatchQueue.global().async(execute: {
                                 self.getNotification()                                
                             })
                         }
                         
                         if !(newResponse.isEmpty) {
-                            self.notifyTableView.reloadData()
+                            self.notifyTableView.reloadData()                            
                         }                        
                     }
                     else {
@@ -136,6 +140,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         let notificationType = cellNotificationData["type"].stringValue
         
+        let height = currentCellHeight
+        
         switch notificationType {
             
         case "postTag":
@@ -163,30 +169,45 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         case "itineraryComment":
             fallthrough
         case "postMentionComment":
+            if height == CGFloat(0) {
+                return 210
+            }
             return currentCellHeight
             
             
         case "journeyLeft":
             fallthrough            
-        case "journeyRequest":            
+        case "journeyRequest":
+            if height == CGFloat(0) {
+                return 210
+            }
             return currentCellHeight
             
             
         case "journeyComment":
             fallthrough
         case "journeyLike":
+            if height == CGFloat(0) {
+                return 210
+            }
             return currentCellHeight
             
             
         case "userFollowing":
             fallthrough
         case "userFollowingRequest":
+            if height == CGFloat(0) {
+                return 210
+            }
             return currentCellHeight
             
             
         case "userFollowingResponse":
             fallthrough
         case "journeyReject":
+            if height == CGFloat(0) {
+                return 210
+            }
             return currentCellHeight
             
             
@@ -345,6 +366,12 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let cellNotificationData = notifications[indexPath.row]
+        print("\n Selected Notification of type : \(cellNotificationData["type"].stringValue)")
+        print("\n cellData: \(cellNotificationData) \n\n")
+        
+        gotoActivityFeed()
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -380,10 +407,14 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
 //        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
 //        UIView.commitAnimations()
         
-        if notifications.count > 0 && indexPath.row == (notifications.count - 1) {            
-            DispatchQueue.global().async {
-                self.getNotification()                
+        if notifications.count > 0 && indexPath.row == (notifications.count - 1) {
+            
+            if hasNext {
+                Toast(text: "Please wait").show()
             }
+//            DispatchQueue.global().async {
+//                self.getNotification()                
+//            }
         }
     }
     
@@ -553,6 +584,13 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         end.notificationID = notificationId
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController!.pushViewController(end, animated: true)
+    }
+    
+    func gotoActivityFeed() {
+        
+        let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        tlVC.displayData = "activity"
+        globalNavigationController?.pushViewController(tlVC, animated: false)
     }
 }
 

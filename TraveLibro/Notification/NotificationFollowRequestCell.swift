@@ -90,6 +90,9 @@ class NotificationFollowRequestCell: UITableViewCell {
         NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
         totalHeight += titleHeight
         
+        NFFollowDetails.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: DETAILS_HEIGHT)
+        totalHeight += CGFloat(DETAILS_HEIGHT)
+        
         NFPermission.NFLeftButton.isHidden = false
         NFPermission.NFRightButton.isHidden = false
         NFPermission.NFStatusLabel.isHidden = true

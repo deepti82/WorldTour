@@ -1410,7 +1410,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+                    print("\n\n Activity feeds : \(json) \n\n")
                     completion(json)
                 }
             }

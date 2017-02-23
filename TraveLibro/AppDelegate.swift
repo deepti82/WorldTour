@@ -88,6 +88,8 @@ let FOOTER_HEIGHT = CGFloat(30)
 let IMAGE_HEIGHT = screenWidth * 0.6
 let TITLE_HEIGHT = 80
 let BUTTON_HEIGHT = CGFloat(40)
+let DETAILS_HEIGHT = CGFloat(50)
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
