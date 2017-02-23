@@ -9,12 +9,13 @@
 import UIKit
 
 class NotificationCommentCell: UITableViewCell {
-
-    var _notificationData: JSON? 
+    
     var NFHeader = notificationHeader()
     var NFTitle = NotificationTitle()
     var NFMessage = NotificationTitle()
     var NFFooter = NotificationFooter()
+    var NFBackground = NotificationBackground()
+    var totalHeight = CGFloat(0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -64,7 +65,7 @@ class NotificationCommentCell: UITableViewCell {
         self.contentView.addSubview(NFFooter)
         yPos = yPos + Int(NFFooter.frame.size.height)
         
-        let NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: yPos))
+        NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: yPos))
         self.contentView.addSubview(NFBackground)
         self.contentView.sendSubview(toBack: NFBackground)
         
@@ -76,15 +77,27 @@ class NotificationCommentCell: UITableViewCell {
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
         
-        _notificationData = notificationData
+        totalHeight = CGFloat(10)
+        
+        totalHeight += HEADER_HEIGHT
         
         NFHeader.setHeaderData(data: notificationData)
         
-        NFTitle.setMessageLabel(data: notificationData)
+        let titleHeight = NFTitle.setMessageLabel(data: notificationData)
+        NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
+        totalHeight += titleHeight
         
+        let messageHeight = (heightForView(text: notificationData["data"]["thoughts"].stringValue, font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
         NFMessage.NFMessageLabel.text = notificationData["data"]["thoughts"].stringValue
+        NFMessage.NFMessageLabel.sizeToFit()
+        NFMessage.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: messageHeight)        
+        totalHeight += messageHeight
         
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
+        NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)
+        totalHeight += CGFloat(FOOTER_HEIGHT)
+        
+        NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
         
     }
 

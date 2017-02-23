@@ -39,6 +39,8 @@ class EndJourneyViewController: UIViewController {
     var journey: JSON!
     var type = ""
     
+    var notificationID: String?
+    
     @IBAction func changePicture(_ sender: AnyObject) {
         if journeyImages.count > 0 {
             
@@ -481,7 +483,7 @@ class EndJourneyViewController: UIViewController {
                                 
                                 self.coverImage = responce["data"][0].stringValue
                                 
-                                request.endJourney(self.journey["_id"].string!, uniqueId: self.journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: self.journey["buddies"].array!, photo: self.coverImage, journeyName: self.journey["name"].stringValue, completion: {(response) in
+                                request.endJourney(self.journey["_id"].string!, uniqueId: self.journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: self.journey["buddies"].array!, photo: self.coverImage, journeyName: self.journey["name"].stringValue, notificationID: self.notificationID, completion: {(response) in
                                     
                                     print("journey ended toaster")
                                     let tstr = Toast(text: "Journey ended successfully. Have a good life.")
@@ -512,7 +514,7 @@ class EndJourneyViewController: UIViewController {
             var tstr = Toast(text: "Wait a while.....")
             tstr.show()
             self.goBack()
-            request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, journeyName: journey["name"].stringValue, completion: {(response) in
+            request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, journeyName: journey["name"].stringValue, notificationID: self.notificationID, completion: {(response) in
                 
                 print("End Journey response : \(response)")
                 

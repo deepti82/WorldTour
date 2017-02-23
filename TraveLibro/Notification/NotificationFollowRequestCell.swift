@@ -9,13 +9,14 @@
 import UIKit
 
 class NotificationFollowRequestCell: UITableViewCell {
-
-    var _notificationData: JSON? 
+    
     var NFHeader = notificationHeader()
     var NFTitle = NotificationTitle()
     var NFFollowDetails = NotificationFollowingDetails()
     var NFPermission = NotificationFollowPermission()
     var NFFooter = NotificationFooter()
+    var NFBackground = NotificationBackground()
+    var totalHeight = CGFloat(0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -68,7 +69,7 @@ class NotificationFollowRequestCell: UITableViewCell {
         self.contentView.addSubview(NFFooter)
         yPos = yPos + Int(NFFooter.frame.size.height)
         
-        let NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: yPos))
+        NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: yPos))
         self.contentView.addSubview(NFBackground)
         self.contentView.sendSubview(toBack: NFBackground)
         
@@ -78,11 +79,16 @@ class NotificationFollowRequestCell: UITableViewCell {
     }    
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
-        _notificationData = notificationData
+        
+        totalHeight = CGFloat(10)
         
         NFHeader.setHeaderData(data: notificationData)
         
-        NFTitle.setMessageLabel(data: notificationData)
+        totalHeight += HEADER_HEIGHT
+        
+        let titleHeight = NFTitle.setMessageLabel(data: notificationData)
+        NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
+        totalHeight += titleHeight
         
         NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
         NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
@@ -90,7 +96,14 @@ class NotificationFollowRequestCell: UITableViewCell {
         NFPermission.NFRightButton.setTitle("Decline", for: .normal)
         NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
         
+        NFPermission.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: BUTTON_HEIGHT)
+        totalHeight += BUTTON_HEIGHT
+        
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
+        NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)
+        totalHeight += CGFloat(FOOTER_HEIGHT)
+        
+        NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }
 
 }

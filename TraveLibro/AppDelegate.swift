@@ -84,9 +84,10 @@ let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 
 let HEADER_HEIGHT = (screenWidth * 0.2)
-let FOOTER_HEIGHT = 50
-let IMAGE_HEIGHT = screenWidth * 0.8
+let FOOTER_HEIGHT = CGFloat(30)
+let IMAGE_HEIGHT = screenWidth * 0.6
 let TITLE_HEIGHT = 80
+let BUTTON_HEIGHT = CGFloat(40)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

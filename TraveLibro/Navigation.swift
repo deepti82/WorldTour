@@ -1366,7 +1366,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }
@@ -2414,11 +2413,19 @@ class Navigation {
         }
     }
     
-    func endJourney(_ journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON], photo: String, journeyName: String, completion: @escaping ((JSON) -> Void)) {
+    func endJourney(_ journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON], photo: String, journeyName: String, notificationID: String?, completion: @escaping ((JSON) -> Void)) {
         
         do {
+            var params: JSON
             
-            var params: JSON = ["_id": journeyId, "user": user, "uniqueId": uniqueId, "name": userName, "coverPhoto": photo, "journeyName": journeyName]
+            if notificationID == nil {
+                params = ["_id": journeyId, "user": user, "uniqueId": uniqueId, "name": userName, "coverPhoto": photo, "journeyName": journeyName]
+            }
+            else {
+                
+                params = ["_id": journeyId, "user": user, "uniqueId": uniqueId, "name": userName, "coverPhoto": photo, "journeyName": journeyName, "notifyId": notificationID!]
+            }
+            
             params["buddies"] = JSON(buddies)
             
             let jsonData = try params.rawData()

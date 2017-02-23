@@ -31,7 +31,7 @@ class NotificationTitle: UIView {
         self.addSubview(view);
     }
     
-    func setMessageLabel(data: JSON) {
+    func setMessageLabel(data: JSON) -> CGFloat {
         
         NFMessageLabel.text = ""
         
@@ -186,8 +186,9 @@ class NotificationTitle: UIView {
         
         NFMessageLabel.attributedText = message
         NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
-                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))        
+                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))
         
+        return (NFMessageLabel.frame.size.height+CGFloat(10))   //10 is Offset hence added
     }
     
     func checkIfComment(notificationData: JSON) -> Bool {

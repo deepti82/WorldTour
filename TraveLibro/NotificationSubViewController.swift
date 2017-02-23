@@ -16,6 +16,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     let refreshControl = UIRefreshControl()
     var currentPageNumber = 0
     var hasNext = true
+    var currentCellHeight = CGFloat(0)
     
     @IBOutlet weak var notifyTableView: UITableView!
     
@@ -27,12 +28,17 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         self.title = "Notifications"
         
-        getDarkBackGroundBlur(self)
+        getDarkBackGround(self)
         notifyTableView.backgroundColor = UIColor.clear
         
         getNotification()
         
         notifyTableView.tableFooterView = UIView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -102,8 +108,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         }
         if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {
             shouldLoadCommentCell = false
-        }else{
-            print("\n notificationData: \(notificationData) ")
         }
         
         return shouldLoadCommentCell
@@ -156,35 +160,32 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "itineraryComment":
             fallthrough
-        case "postMentionComment":            
-            if cellNotificationData["data"]["thoughts"].stringValue != "" && canLoadCommentCell(notificationData: cellNotificationData) {                
-                return 280
-            }
-            return 520
+        case "postMentionComment":
+            return currentCellHeight
             
             
         case "journeyLeft":
             fallthrough            
         case "journeyRequest":            
-            return 360
+            return currentCellHeight
             
             
         case "journeyComment":
             fallthrough
         case "journeyLike":
-            return 340
+            return currentCellHeight
             
             
         case "userFollowing":
             fallthrough
         case "userFollowingRequest":
-            return 370
+            return currentCellHeight
             
             
         case "userFollowingResponse":
             fallthrough
         case "journeyReject":
-            return 220
+            return currentCellHeight
             
             
         default:
@@ -199,7 +200,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         let notificationType = cellNotificationData["type"].stringValue
         
-        print("MYNotificationType: \(notificationType) \n CellData: \(cellNotificationData)")
         switch notificationType {
             
         case "postTag":
@@ -240,6 +240,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                 }
                 
                 cell?.backgroundColor = UIColor.clear
+                currentCellHeight = (cell?.totalHeight)!
                 return cell!                
             }
             
@@ -250,8 +251,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             else {
                 cell?.setData(notificationData: cellNotificationData, helper: self)
             }
-            
             cell?.backgroundColor = UIColor.clear
+            
+            currentCellHeight = (cell?.totalHeight)!            
+//            tableView.reloadRows(at: [indexPath], with: .none)            
             return cell!
             
             
@@ -271,6 +274,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             cell?.NFPermission.NFRightButton.tag = indexPath.row
             
             cell?.backgroundColor = UIColor.clear
+            currentCellHeight = (cell?.totalHeight)!
             return cell!
             
             
@@ -284,6 +288,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             }
             
             cell?.backgroundColor = UIColor.clear
+            currentCellHeight = (cell?.totalHeight)!
             return cell!
             
             
@@ -297,6 +302,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             }
             
             cell?.backgroundColor = UIColor.clear
+            currentCellHeight = (cell?.totalHeight)!
             return cell!
             
             
@@ -314,6 +320,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             }
             
             cell?.backgroundColor = UIColor.clear
+            currentCellHeight = (cell?.totalHeight)!
             return cell!
             
         default:
@@ -338,7 +345,30 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {        
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        var translation : CATransform3D
+//        
+//        translation = CATransform3DMakeTranslation(0, 480, 0);
+//        
+//        //2. Define the initial state (Before the animation)
+//        cell.layer.shadowColor = UIColor.black.cgColor
+//        cell.layer.shadowOffset = CGSize(width: 10, height: 10)
+//        cell.alpha = 0;
+//        cell.layer.transform = translation;
+//        cell.layer.anchorPoint = CGPoint(x: 0, y: 0.5)        
+//        //!!!FIX for issue #1 Cell position wrong------------
+//        if(cell.layer.position.x != 0){
+//            cell.layer.position = CGPoint(x: 0, y: cell.layer.position.y)
+//        }
+//        
+//        //4. Define the final state (After the animation) and commit the animation
+//        UIView.beginAnimations("translation", context: nil)
+//        UIView.setAnimationDuration(0.8)
+//        cell.layer.transform = CATransform3DIdentity;
+//        cell.alpha = 1;
+//        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+//        UIView.commitAnimations()
+        
         if notifications.count > 0 && indexPath.row == (notifications.count - 1) {            
             DispatchQueue.global().async {
                 self.getNotification()                
@@ -350,7 +380,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func journeyAcceptTabbed(_ sender: UIButton) {
         
-        print("in the journeyAcceptTabbed indexpath: \(sender.tag)")
+        print("in the journeyAcceptTabbed indexpath:\n  \(sender.tag)")
         
         let tabbedCellData = notifications[sender.tag]
         
@@ -448,7 +478,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         print("\n tabbedCellData : \(tabbedCellData)")
         
-        gotoEndJourney(journeyID: tabbedCellData["data"]["_id"].stringValue)
+        gotoEndJourney(journeyID: tabbedCellData["data"]["_id"].stringValue, notificationId: tabbedCellData["_id"].stringValue)
         
     }
     
@@ -484,9 +514,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
-    func gotoEndJourney(journeyID : String) {
+    func gotoEndJourney(journeyID : String, notificationId: String) {
         let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
         end.journeyId = journeyID
+        end.notificationID = notificationId
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController!.pushViewController(end, animated: true)
     }

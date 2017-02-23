@@ -60,8 +60,7 @@ func getDarkBackGround(_ myVC: UIViewController) -> Void {
     bgImage.layer.zPosition = -1
     bgImage.isUserInteractionEnabled = false
     myVC.view.addSubview(bgImage)
-    
-//    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
+    myVC.view.sendSubview(toBack: bgImage)
     
 }
 

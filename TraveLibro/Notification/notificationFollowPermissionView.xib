@@ -22,9 +22,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xg1-OY-sxI">
-                    <rect key="frame" x="62.5" y="5" width="175" height="40"/>
+                    <rect key="frame" x="75" y="5" width="150" height="40"/>
                     <color key="backgroundColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                     <state key="normal" title="Accept">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -33,9 +33,9 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUi-By-iX3">
-                    <rect key="frame" x="257.5" y="5" width="175" height="40"/>
+                    <rect key="frame" x="245" y="5" width="150" height="40"/>
                     <color key="backgroundColor" red="0.53725490196078429" green="0.53725490196078429" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
                     <state key="normal" title="Decline">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -47,7 +47,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="height" secondItem="dUi-By-iX3" secondAttribute="height" id="744-G7-jr6"/>
-                <constraint firstItem="Xg1-OY-sxI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.35" id="CgC-W1-v6H"/>
+                <constraint firstItem="Xg1-OY-sxI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.3" id="CgC-W1-v6H"/>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Sre-hB-uno"/>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" multiplier="0.6" id="WQq-s1-MAT"/>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="width" secondItem="dUi-By-iX3" secondAttribute="width" id="ZC3-8h-WFC"/>
