@@ -145,8 +145,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        if self.comments[indexPath.row]["user"]["_id"].string! == currentUser["_id"].string! {
+        var usr:String = ""
+        let userm = User()
+        if currentUser["_id"].stringValue == userm.getExistingUser() {
+            usr = currentUser["_id"].stringValue
+        }else{
+            usr = userm.getExistingUser()
+        }
+        if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
             let more = UITableViewRowAction(style: .normal, title: " ") { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!

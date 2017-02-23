@@ -1844,7 +1844,7 @@ class Navigation {
         }
     }
     
-    func likePost(_ id: String, userId: String, userName: String, unlike: Bool, completion: @escaping ((JSON) -> Void)) {
+    func likePost(_ id: String, userId: String, unlike: Bool, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
@@ -1852,7 +1852,7 @@ class Navigation {
             
             if !unlike {
                 
-                params = ["uniqueId": id, "user": userId, "name": userName]
+                params = ["uniqueId": id, "user": userId]
             }
             
             print("like post: \(params)")
