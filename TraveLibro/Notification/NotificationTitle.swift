@@ -44,6 +44,9 @@ class NotificationTitle: UIView {
         var str2 = ""
         
         switch notificationType {
+           
+        case "postFirstTime":
+            str2 = " has added a post to "
             
         case "postTag":            
             str2 = " has checked-in with you in an "
@@ -147,7 +150,8 @@ class NotificationTitle: UIView {
         }
         
         
-        var str4 = ""        
+        var str4 = "" 
+        
         if notificationType == "journeyComment" {
             str4 = "On Go Journey "
         }
@@ -166,6 +170,10 @@ class NotificationTitle: UIView {
         
         message.append(getBoldString(string: str4))
         
+        if notificationType == "postFirstTime" {
+            str4 = " for the first time "
+            message.append(getRegularString(string: str4))
+        }
         
         var str5 = ""
         if notificationType == "journeyMentionComment" ||

@@ -29,10 +29,15 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         getDarkBackGround(self)
         notifyTableView.backgroundColor = UIColor.clear
+        notifyTableView.tableFooterView = UIView()
+        
+//        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing")
+        refreshControl.addTarget(self, action: #selector(NotificationSubViewController.pullToRefreshCalled), for: UIControlEvents.valueChanged)
+        notifyTableView.addSubview(refreshControl)
         
         getNotification()
         
-        notifyTableView.tableFooterView = UIView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,9 +53,16 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     //MARK: - Helper
     
+    func pullToRefreshCalled() {        
+        currentPageNumber = 0
+        getNotification()
+    }
+    
     func getNotification() {
         
         currentPageNumber += 1
+        
+        print("\n Fetching data for pageNumber: \(currentPageNumber)")
         
         if hasNext {
             
@@ -67,10 +79,14 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     }
                     else if response["value"].bool! {
                         
+                        if self.refreshControl.isRefreshing {
+                            self.notifications = []
+                            self.refreshControl.endRefreshing()
+                        }
+                        
                         ToastCenter.default.cancelAll()
                         let newResponse = response["data"].array!
                         
-                        print("New Notification count: \(newResponse.count)")
                         if newResponse.isEmpty {
                             self.hasNext = false
                         }
@@ -82,8 +98,13 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                             }
                         }
                         else {                        
-                            self.notifications.append(contentsOf: newResponse)                            
+                            self.notifications.append(contentsOf: newResponse)
+                            print("Will send another request")
                             DispatchQueue.global().async(execute: {
+                                print("Sending another request global")
+                                DispatchQueue.main.async {
+                                    print("Sending another request main")
+                                }                                
                                 self.getNotification()                                
                             })
                         }
@@ -141,6 +162,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         switch notificationType {
             
+        case "postFirstTime":
+            fallthrough
         case "postTag":
             fallthrough            
         case "postLike":
@@ -215,6 +238,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         switch notificationType {
             
+        case "postFirstTime":
+            fallthrough
         case "postTag":
             fallthrough            
         case "postLike":

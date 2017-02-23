@@ -312,8 +312,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
         }
         
-        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
-        vc.whichView = "Notify"
+        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController        
         self.navigationController?.pushViewController(vc, animated: false)
         
         
