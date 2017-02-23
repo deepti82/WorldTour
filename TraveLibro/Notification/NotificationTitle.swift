@@ -99,7 +99,7 @@ class NotificationTitle: UIView {
             
         case "itineraryRequest":
             let gen = data["userFrom"]["gender"].stringValue
-            str2 = " wants to tag you in " + (gen == "male" ? "his" : "her") + " On The Go Journey - "
+            str2 = " wants to tag you in " + (gen == "male" ? "his" : "her") + " itinerary - "
             
         case "itineraryMentionComment":
             str2 = " has mentioned you in a comment On "
@@ -177,7 +177,8 @@ class NotificationTitle: UIView {
             notificationType == "journeyAccept" ||
             notificationType == "itineraryMentionComment" ||
             notificationType == "itineraryLike" ||
-            notificationType == "itineraryComment" {
+            notificationType == "itineraryComment" ||
+            notificationType == "itineraryRequest" {
             str5 = data["data"]["name"].stringValue
             
             message.append(getRedString(string: str5))

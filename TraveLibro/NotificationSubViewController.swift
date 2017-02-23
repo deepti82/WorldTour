@@ -16,7 +16,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     let refreshControl = UIRefreshControl()
     var currentPageNumber = 0
     var hasNext = true
-    var currentCellHeight = CGFloat(0)
+    var currentCellHeight = CGFloat(10)
     
     @IBOutlet weak var notifyTableView: UITableView!
     
@@ -140,8 +140,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         let notificationType = cellNotificationData["type"].stringValue
         
-        let height = currentCellHeight
-        
         switch notificationType {
             
         case "postTag":
@@ -169,50 +167,43 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         case "itineraryComment":
             fallthrough
         case "postMentionComment":
-            if height == CGFloat(0) {
-                return 210
-            }
+            
             return currentCellHeight
             
             
+       
         case "journeyLeft":
             fallthrough            
         case "journeyRequest":
-            if height == CGFloat(0) {
-                return 210
-            }
+            
             return currentCellHeight
             
             
         case "journeyComment":
             fallthrough
         case "journeyLike":
-            if height == CGFloat(0) {
-                return 210
-            }
+            
             return currentCellHeight
             
             
         case "userFollowing":
             fallthrough
         case "userFollowingRequest":
-            if height == CGFloat(0) {
-                return 210
-            }
+            
             return currentCellHeight
             
             
+        case "itineraryRequest":
+            fallthrough
         case "userFollowingResponse":
             fallthrough
         case "journeyReject":
-            if height == CGFloat(0) {
-                return 210
-            }
+
             return currentCellHeight
             
             
         default:
-            return 210
+            return 230
             
         }
     }
@@ -329,8 +320,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             return cell!
             
             
-        case "photoComment":
-            fallthrough
+        case "itineraryRequest":
+            fallthrough        
         case "userFollowingResponse":
             fallthrough
         case "journeyReject":
