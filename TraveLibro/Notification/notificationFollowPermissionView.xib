@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="NFLeftButton" destination="Xg1-OY-sxI" id="QKU-xK-QOk"/>
                 <outlet property="NFRightButton" destination="dUi-By-iX3" id="dlv-4A-tRb"/>
+                <outlet property="NFStatusLabel" destination="PaP-Vi-utX" id="Zay-G8-JJs"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -43,17 +44,31 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
                     </userDefinedRuntimeAttributes>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NotificationStatus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaP-Vi-utX">
+                    <rect key="frame" x="150" y="5" width="200" height="40"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.50196078430000002" blue="0.4823529412" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="height" secondItem="dUi-By-iX3" secondAttribute="height" id="744-G7-jr6"/>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.3" id="CgC-W1-v6H"/>
+                <constraint firstItem="PaP-Vi-utX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Ghz-LK-nbE"/>
+                <constraint firstItem="PaP-Vi-utX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="OU7-hJ-7aV"/>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Sre-hB-uno"/>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" multiplier="0.6" id="WQq-s1-MAT"/>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="width" secondItem="dUi-By-iX3" secondAttribute="width" id="ZC3-8h-WFC"/>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="top" secondItem="dUi-By-iX3" secondAttribute="top" id="b77-tc-VjF"/>
+                <constraint firstItem="PaP-Vi-utX" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="f5q-Zp-CKx"/>
                 <constraint firstAttribute="bottom" secondItem="Xg1-OY-sxI" secondAttribute="bottom" constant="5" id="mr5-Pm-MQ0"/>
                 <constraint firstItem="Xg1-OY-sxI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="nIo-ef-A5e"/>
+                <constraint firstAttribute="bottom" secondItem="PaP-Vi-utX" secondAttribute="bottom" constant="5" id="nKM-Vu-vHi"/>
                 <constraint firstItem="dUi-By-iX3" firstAttribute="leading" secondItem="Xg1-OY-sxI" secondAttribute="trailing" constant="20" id="zwk-tH-gSU"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

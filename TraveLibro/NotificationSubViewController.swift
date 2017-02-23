@@ -83,9 +83,11 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                             DispatchQueue.global().async(execute: {
                                 self.getNotification()                                
                             })
-                        }                    
-                        self.notifyTableView.reloadData()
+                        }
                         
+                        if !(newResponse.isEmpty) {
+                            self.notifyTableView.reloadData()
+                        }                        
                     }
                     else {
                         
@@ -346,6 +348,15 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+//        let cellHeight = cell.frame.size.height
+//        
+//        cell.frame = CGRect(x: 0, y: 0, width: 2, height: 2)
+//        
+//        UIView.animate(withDuration: 0.3) {
+//            cell.frame = CGRect(x: 0, y: 0, width: screenWidth, height: cellHeight)            
+//        }
+        
 //        var translation : CATransform3D
 //        
 //        translation = CATransform3DMakeTranslation(0, 480, 0);
@@ -410,8 +421,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                         else {
                                             Toast(text: response["error"].stringValue).show()
                                         }
-                                        
-                                        self.notifyTableView.reloadData()
                                         
                                     })
                                     
@@ -489,6 +498,30 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         let tabbedCellData = notifications[sender.tag]
         
         print("\n tabbedCellData : \(tabbedCellData)")
+        
+        request.updateNotificationStatus(notificationId: tabbedCellData["_id"].stringValue, answeredStatus: "reject") { (response) in
+            
+            DispatchQueue.main.async(execute: {
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    Toast(text: response["data"].stringValue).show()
+                    
+                }
+                else {
+                    
+                    Toast(text: response["error"].stringValue).show()
+                    
+                }
+                
+                self.notifyTableView.reloadData()
+            })
+        }
         
     }
     

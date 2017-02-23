@@ -1366,6 +1366,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
+                    print(json)
                     completion(json)
                 }
             }
@@ -3121,6 +3122,29 @@ class Navigation {
         do {
             
             let opt = try HTTP.POST(adminUrl + "journey/buddyReject", parameters: ["user": id,"uniqueId":uniqueId,"_id":notificationId])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    
+    func updateNotificationStatus(notificationId: String, answeredStatus: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "notification/updateNotification", parameters: ["_id": notificationId,"answeredStatus":answeredStatus])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

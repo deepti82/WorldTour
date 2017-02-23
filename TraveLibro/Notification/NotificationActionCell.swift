@@ -91,41 +91,64 @@ class NotificationActionCell: UITableViewCell {
         NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
         totalHeight += titleHeight
         
-        if notificationData["type"] == "journeyLeft" {
+        if notificationData["answeredStatus"].stringValue == "" {
             
-            let msg = "Would you like to end your journey as well?"
-            let messageHeight = (heightForView(text: msg, font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
-            NFMessage.NFMessageLabel.text = msg
-            NFMessage.NFMessageLabel.sizeToFit()
-            NFMessage.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: messageHeight)        
-            totalHeight += messageHeight            
+            NFPermission.NFLeftButton.isHidden = false
+            NFPermission.NFRightButton.isHidden = false
+            NFPermission.NFStatusLabel.isHidden = true
             
-            NFPermission.NFLeftButton.setTitle("End", for: .normal)
-            NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyEndTabbed(_:)), for: .touchUpInside)
-            
-            NFPermission.NFRightButton.setTitle("Decline", for: .normal)
-            NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyEndDeclined(_:)), for: .touchUpInside)            
+            if notificationData["type"] == "journeyLeft" {
+                
+                let msg = "Would you like to end your journey as well?"
+                let messageHeight = (heightForView(text: msg, font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
+                NFMessage.NFMessageLabel.text = msg
+                NFMessage.NFMessageLabel.sizeToFit()
+                NFMessage.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: messageHeight)        
+                totalHeight += messageHeight            
+                
+                NFPermission.NFLeftButton.setTitle("End", for: .normal)
+                NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyEndTabbed(_:)), for: .touchUpInside)
+                
+                NFPermission.NFRightButton.setTitle("Decline", for: .normal)
+                NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyEndDeclined(_:)), for: .touchUpInside)            
+            }
+            else if notificationData["type"] == "journeyRequest" {
+                
+                let message = NSMutableAttributedString(string: "Accept ")        
+                let firstName = notificationData["userFrom"]["name"].stringValue        
+                message.append(getBoldString(string: firstName))
+                
+                message.append(getRegularString(string: "'s request to create your travel memories together. "))
+                
+                let messageHeight = (heightForView(text: "Accept"+firstName+"'s request to create your travel memories together.        ", font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
+                NFMessage.NFMessageLabel.attributedText = message
+                NFMessage.NFMessageLabel.sizeToFit()
+                NFMessage.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: messageHeight)
+                totalHeight += messageHeight
+                
+                
+                NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
+                NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
+                
+                NFPermission.NFRightButton.setTitle("Decline", for: .normal)
+                NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
+            }            
         }
-        else if notificationData["type"] == "journeyRequest" {
+        else {
+            NFMessage.frame = CGRect.zero
             
-            let message = NSMutableAttributedString(string: "Accept ")        
-            let firstName = notificationData["userFrom"]["name"].stringValue        
-            message.append(getBoldString(string: firstName))
+            NFPermission.NFLeftButton.isHidden = true
+            NFPermission.NFRightButton.isHidden = true
+            NFPermission.NFStatusLabel.isHidden = false
             
-            message.append(getRegularString(string: "'s request to create your travel memories together. "))
+            if notificationData["type"] == "journeyLeft"{
+                NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "accept" ? "This journey is ended" : "This journey is declined"
+                print(notificationData)
+            }
+            else if notificationData["type"] == "journeyRequest"{
+                NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "reject" ? "This request is Rejected " : "This request is Accepted"
+            }
             
-            let messageHeight = (heightForView(text: "Accept"+firstName+"'s request to create your travel memories together.        ", font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
-            NFMessage.NFMessageLabel.attributedText = message
-            NFMessage.NFMessageLabel.sizeToFit()
-            NFMessage.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: messageHeight)
-            totalHeight += messageHeight
-            
-            
-            NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
-            NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
-            
-            NFPermission.NFRightButton.setTitle("Decline", for: .normal)
-            NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
         }
         
         NFPermission.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: BUTTON_HEIGHT)

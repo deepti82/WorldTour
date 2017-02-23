@@ -90,11 +90,16 @@ class NotificationFollowRequestCell: UITableViewCell {
         NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
         totalHeight += titleHeight
         
+        NFPermission.NFLeftButton.isHidden = false
+        NFPermission.NFRightButton.isHidden = false
+        NFPermission.NFStatusLabel.isHidden = true
+        
         NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
         NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
         
         NFPermission.NFRightButton.setTitle("Decline", for: .normal)
         NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
+        
         
         NFPermission.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: BUTTON_HEIGHT)
         totalHeight += BUTTON_HEIGHT
