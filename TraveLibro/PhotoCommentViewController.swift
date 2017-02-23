@@ -94,7 +94,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             addedHashtags = Array(set2.subtracting(intersection))
             removedHashtags = Array(set1.subtracting(intersection))
             
-            request.editComment(type: type, commentId: addComment["_id"].string!, commentText: editComment.text, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: photoId, completion: {(response) in
+            request.editComment(type: type, commentId: addComment["_id"].string!, commentText: editComment.text, userId: currentUser["_id"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: photoId, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -480,7 +480,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     func setAllComments(_ comment: String) {
         
         if(self.type == "Video" ) {
-            request.commentOnVideos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, videoId: photoId, completion: {(response) in
+            request.commentOnVideos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, hashtags: hashtags, mentions: mentions, videoId: photoId, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -498,7 +498,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
                 })
             })
         } else {
-            request.commentOnPhotos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, photoId: photoId, completion: {(response) in
+            request.commentOnPhotos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: photoId, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     

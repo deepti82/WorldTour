@@ -179,6 +179,12 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
         else {
             //Footer Generation Only
             footerView = PhotoOTGFooter(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 65))
+            if isUserMe(user: currentUser["_id"].stringValue) {
+                footerView.optionButton.isHidden = false
+            }else{
+                footerView.optionButton.isHidden = true
+            }
+
             footerView.PhotoOtg = self;
             footerView.postTop = self.postTop;
             footerView.setLikeCount(post.post_likeCount)
@@ -212,14 +218,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
             
             //End of Footer
         }
-//        print("lets go \(jouurneyToShow)")
-//            if jouurneyToShow["endTime"] != nil {
-//                endJourneyView = EndJourneyMyLife(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 329))
-//                endJourneyView.placeLabel.text = jouurneyToShow["startLocation"].stringValue
-//                endJourneyView.dateLabel.text = getDateFormat(jouurneyToShow["endTime"].stringValue, format: "dd MMM, yyyy")
-//                endJourneyView.timeLabel.text = getDateFormat(jouurneyToShow["endTime"].stringValue, format: "hh:mm a")
-//                self.addSubview(endJourneyView)
-//            }
+
         self.layoutSubviews()
     }
     

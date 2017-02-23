@@ -122,6 +122,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     
     override func viewDidLoad() {
+        print("my user oooouuu.")
+        print(user.getExistingUser())
         super.viewDidLoad()
         self.title = ""
 //        scrollImage.isScrollEnabled =  true

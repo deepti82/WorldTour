@@ -83,6 +83,7 @@ class PhotoOTGFooter: UIView {
             }
     
     @IBAction func sendComments(_ sender: UIButton) {
+        print("comment clicked")
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = postTop.post_uniqueId
         comment.otherId = postTop.post_ids

@@ -52,7 +52,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             addedHashtags = Array(set2.subtracting(intersection))
             removedHashtags = Array(set1.subtracting(intersection))
             if addComment.text != "" {
-                request.editComment(type: "post", commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: "", completion: {(response) in
+                request.editComment(type: "post", commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: "", completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
@@ -156,7 +156,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             let moreImage = UIImageView(image: UIImage(named: "edit.png"))
             moreImage.contentMode = .center
-            more.backgroundColor = UIColor(patternImage: moreImage.image!)
+//            more.backgroundColor = UIColo r(patternImage: moreImage.image!)
             
             let favorite = UITableViewRowAction(style: .normal, title: " ") { action, index in
                 print("delete button tapped")
@@ -184,8 +184,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 
             }
-            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 80))
-            favoriteImage.image = UIImage(named: "delete.png")
+            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 40))
+            favoriteImage.image = UIImage(named: "cross_icon")
             favoriteImage.contentMode = .center
             favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
             
@@ -338,7 +338,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func setAllComments(_ comment: String) {
         
-        request.commentOnPost(id: postId, postId: otherId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, completion: {(response) in
+        var usr:String = ""
+        let userm = User()
+        if currentUser["_id"].stringValue == userm.getExistingUser() {
+            usr = currentUser["_id"].stringValue
+        }else{
+            usr = userm.getExistingUser()
+        }
+        request.commentOnPost(id: postId, postId: otherId, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 
