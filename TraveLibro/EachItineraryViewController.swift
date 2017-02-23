@@ -18,12 +18,13 @@ import UIKit
 //  }
 //}
 
-
+var globalDetailedItineraryViewController: EachItineraryViewController!
 class EachItineraryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var prevSelectedTab: UIButton?
-    
-    
+    var editJson: JSON!
+    var fromOutSide: String!
+    @IBOutlet weak var photosButton: UIButton!
     @IBOutlet weak var tabSeven: UIButton!
     @IBOutlet weak var tabSix: UIButton!
     @IBOutlet weak var tabFive: UIButton!
@@ -73,7 +74,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        photosButton.layer.cornerRadius = 5
         makeTabs(tabSeven)
         makeTabs(tabSix)
         makeTabs(tabFive)
@@ -82,6 +83,20 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         makeTabs(tabOne)
         
         tabSeven.removeFromSuperview()
+        print("currentUser")
+        print(currentUser["_id"])
+        
+        request.getItinerary(currentUser["_id"].stringValue, completion: { (json) in
+            DispatchQueue.main.async(execute: {
+                if(json["value"].boolValue) {
+                    self.editJson = json["data"];
+                    print("datadata")
+                   print(json["data"])
+                    print(self.editJson)
+                }
+            })
+        })
+    
     }
 
     override func didReceiveMemoryWarning() {

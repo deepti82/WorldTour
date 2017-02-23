@@ -252,10 +252,28 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 528))
             activityDetailItinerary.fillData(feed: feed)
             self.addSubview(activityDetailItinerary)
+            let tapRecognizer = UITapGestureRecognizer()
+            tapRecognizer.numberOfTapsRequired = 1
+            tapRecognizer.addTarget(self, action: #selector(self.showDetailItinerary))
+            activityDetailItinerary.addGestureRecognizer(tapRecognizer)
+
         default:
             print("default")
             videosAndPhotosLayout(feed:feed)
         }
+    }
+    
+    func showDetailItinerary(_ sender: UIButton){
+        
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
+            controller.fromOutSide = feeds["_id"].stringValue
+            
+            print(feeds["_id"])
+            print(feeds["type"])
+        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.pushViewController(controller, animated: true)
+        
     }
     
     func headerLayout(feed:JSON) {

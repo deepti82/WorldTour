@@ -144,6 +144,7 @@
 		84F25EB41E5D803F00ED7A1E /* detailedCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25EB31E5D803F00ED7A1E /* detailedCity.swift */; };
 		84F25EB61E5D821000ED7A1E /* detailedItineraryStrip.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F25EB51E5D821000ED7A1E /* detailedItineraryStrip.xib */; };
 		84F25EB91E5D862000ED7A1E /* detailedItineraryStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25EB81E5D862000ED7A1E /* detailedItineraryStrip.swift */; };
+		84F25EBB1E5DA07700ED7A1E /* DetailedItineraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F25EBA1E5DA07700ED7A1E /* DetailedItineraryViewController.swift */; };
 		84FF89431E52E0A300FDE8F0 /* Search.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF89421E52E0A300FDE8F0 /* Search.xib */; };
 		84FF89491E52EAA800FDE8F0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */; };
 		84FF894B1E531B1100FDE8F0 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF894A1E531B1100FDE8F0 /* Search.swift */; };
@@ -647,6 +648,7 @@
 		84F25EB31E5D803F00ED7A1E /* detailedCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedCity.swift; sourceTree = "<group>"; };
 		84F25EB51E5D821000ED7A1E /* detailedItineraryStrip.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = detailedItineraryStrip.xib; sourceTree = "<group>"; };
 		84F25EB81E5D862000ED7A1E /* detailedItineraryStrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedItineraryStrip.swift; sourceTree = "<group>"; };
+		84F25EBA1E5DA07700ED7A1E /* DetailedItineraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedItineraryViewController.swift; sourceTree = "<group>"; };
 		84FF89421E52E0A300FDE8F0 /* Search.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Search.xib; sourceTree = "<group>"; };
 		84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		84FF894A1E531B1100FDE8F0 /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
@@ -1965,6 +1967,7 @@
 		C25443511CD7392000C2C6CD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				84F25EBA1E5DA07700ED7A1E /* DetailedItineraryViewController.swift */,
 				84FF894C1E53476A00FDE8F0 /* SearchTableViewController.swift */,
 				84FF89481E52EAA800FDE8F0 /* SearchViewController.swift */,
 				841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */,
@@ -3167,6 +3170,7 @@
 				C24F84E71D00252F002EA203 /* SettingsViewController.swift in Sources */,
 				843510E61DF7F8A300C3D8EE /* QuickIteneraryFive.swift in Sources */,
 				C2FF64891D82F8DD00F3866A /* AddActivityOTG.swift in Sources */,
+				84F25EBB1E5DA07700ED7A1E /* DetailedItineraryViewController.swift in Sources */,
 				367B90F91DC23ADF00D76F13 /* StringTrimExtension.swift in Sources */,
 				C256499A1D48EE5E0046E36D /* SummarySubViewController.swift in Sources */,
 				362DAD461E34972000329C9A /* LocalLifePost.swift in Sources */,

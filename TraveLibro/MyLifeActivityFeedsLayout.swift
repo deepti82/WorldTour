@@ -220,6 +220,9 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityDetailItinerary.fillData(feed: feed)
 //            self.activityDetailItinerary.addSubview(textTag)
             self.addSubview(activityDetailItinerary)
+//            let tapRecognizer = UITapGestureRecognizer()
+//            tapRecognizer.numberOfTapsRequired = 1
+//            tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary))
         default:
             print("default")
             videosAndPhotosLayout(feed:feed)
@@ -233,6 +236,9 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             let controller = storyboard.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
             controller.fromOutSide = feeds["_id"].stringValue
             controller.fromType = feeds["type"].stringValue
+            
+            print(feeds["_id"])
+            print(feeds["type"])
             globalMyLifeContainerViewController.navigationController!.pushViewController(controller, animated: false)
             
 //            globalNewTLViewController.toolbarView.isHidden = true
@@ -244,6 +250,12 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         }
     }
 
+//    func showDetailedItinerary(_ sender: UITapGestureRecognizer){
+//        if feeds["type"].stringValue == "detail-itinerary"{
+//            
+//        }
+//    }
+    
     
     func headerLayout(feed:JSON) {
         

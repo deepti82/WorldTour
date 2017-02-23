@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="detailedCostLabel" destination="y2K-hL-Jb8" id="3tn-9T-D6j"/>
                 <outlet property="detailedCountryScroll" destination="SnO-W7-21I" id="Wwa-Cg-4kU"/>
+                <outlet property="detailedCountryView" destination="hj0-Mu-hKx" id="1Sz-kc-Nhd"/>
                 <outlet property="detailedCoverImage" destination="wCg-YW-02C" id="cgr-9T-GdS"/>
                 <outlet property="detailedDurationLabel" destination="rSo-3u-Mbx" id="wc6-bv-eLv"/>
                 <outlet property="detailedKindOfJourneyOne" destination="WOY-tw-2QS" id="m2i-UD-gdF"/>

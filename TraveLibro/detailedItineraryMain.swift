@@ -10,6 +10,7 @@ import UIKit
 
 class detailedItineraryMain: UIView {
 
+    @IBOutlet weak var detailedCountryView: UIView!
     @IBOutlet weak var detailedDurationLabel: UILabel!
     @IBOutlet weak var detailedCostLabel: UILabel!
     @IBOutlet weak var detailedKindOfJourneyThree: UIImageView!
