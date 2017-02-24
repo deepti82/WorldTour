@@ -34,7 +34,8 @@ class EndJourneyViewController: UIViewController {
     var currentTime: String!
     var endJourney:EndJourneyView!
     var countriesVisited: [JSON] = []
-    
+    var imageView1: UIImageView!
+     var loader = LoadingOverlay()
     var journeyId:String = ""
     var journey: JSON!
     var type = ""
@@ -164,7 +165,7 @@ class EndJourneyViewController: UIViewController {
         endJourney.changePhotoButton.addTarget(self, action: #selector(changePicture(_:)), for: .touchUpInside)
         transparentCardWhite(endJourney.journeyCoverPic)
         endJourney.journeyCoverPic.image = UIImage(named: "logo-default")
-        
+
         //        endJourney.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
         //        endJourney.clockIcon.text = String(format: "%C", faicon["clock"]!)
         
@@ -264,7 +265,7 @@ class EndJourneyViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBgNew")!)
         
         //  END VERTICAL LAYOUT
-        
+        loader.showOverlay(rateCountriesScroll)
         getJourney();
         self.title = "End Journey"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
@@ -434,16 +435,16 @@ class EndJourneyViewController: UIViewController {
     
     
     func randomImage() {
-        
         let randomIndex = Int(arc4random_uniform(UInt32(journeyImages.count)))
         self.coverImage = journeyImages[randomIndex]
         makeCoverPicture(image: journeyImages[randomIndex])
-        
+       
     }
     
     func makeCoverPicture (image: String) {
         DispatchQueue.main.async(execute: {
             self.endJourney.journeyCoverPic.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(image)&width=500")!)
+            self.loader.hideOverlayView()
             //            let imageString = self.journey["startLocationPic"].string!
             //            print(imageString);
             //            if imageString.contains("http") {
@@ -465,6 +466,7 @@ class EndJourneyViewController: UIViewController {
         coverImageImg = image
         DispatchQueue.main.async(execute: {
             self.endJourney.journeyCoverPic.image = image
+            
         })
     }
     
@@ -576,7 +578,7 @@ class EndJourneyViewController: UIViewController {
     
     
     
-    var loader = LoadingOverlay()
+   
     
     func goBack() {
         

@@ -20,7 +20,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var loadStatus: Bool = true
     var mainFooter: FooterViewNew!
     var displayData: String = ""
-    
+    var loader = LoadingOverlay()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         layout = VerticalLayout(width: screenWidth)
         activityScroll.addSubview(layout)
         getActivity(pageNumber: pageno)
-        
+        loader.showOverlay(self.view)
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
@@ -76,6 +76,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
 
     
     func getActivity(pageNumber: Int) {
+       
         print("yaaaho")
         print(pageNumber)
         if displayData == "activity" {
@@ -85,6 +86,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     if request["data"] != "" {
                         self.loadStatus = true
                         for post in request["data"].array! {
+                             self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
                             checkIn.scrollView = self.activityScroll
