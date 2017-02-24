@@ -128,11 +128,13 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     func canLoadCommentCell(notificationData: JSON) -> Bool {
         
         var shouldLoadCommentCell = true
-        
-        if (notificationData["data"]["type"].string == "photo") {
+        if(notificationData["data"]["showMap"].boolValue == true){
             shouldLoadCommentCell = false
         }
-        if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {
+        else if (notificationData["data"]["type"].string == "photo") {
+            shouldLoadCommentCell = false
+        }
+        else if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {
             shouldLoadCommentCell = false
         }
         
@@ -497,6 +499,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                         
                                         DispatchQueue.main.async(execute: {
                                             
+                                            Toast(text: "Please wait..").show()
                                             if response.error != nil {
                                                 
                                                 print("error: \(response.error!.localizedDescription)")
@@ -505,6 +508,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                             else if response["value"].bool! {
                                                 
                                                 Toast(text: response["data"].stringValue).show()
+                                                self.refreshControl.beginRefreshing()
+                                                self.pullToRefreshCalled()
                                                 
                                             }
                                             else {
@@ -513,7 +518,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                                 
                                             }
                                             
-                                            self.notifyTableView.reloadData()
                                         })
                                         
             }
@@ -549,6 +553,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             DispatchQueue.main.async(execute: {
                 
+                Toast(text: "Please wait..").show()
+                
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
@@ -557,6 +563,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                 else if response["value"].bool! {
                     
                     Toast(text: response["data"].stringValue).show()
+                    self.refreshControl.beginRefreshing()
+                    self.pullToRefreshCalled()
                     
                 }
                 else {
@@ -564,8 +572,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     Toast(text: response["error"].stringValue).show()
                     
                 }
-                
-                self.notifyTableView.reloadData()
             })
         }
         
