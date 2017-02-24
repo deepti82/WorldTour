@@ -226,9 +226,9 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             activityDetailItinerary.fillData(feed: feed)
 //            self.activityDetailItinerary.addSubview(textTag)
             self.addSubview(activityDetailItinerary)
-//            let tapRecognizer = UITapGestureRecognizer()
-//            tapRecognizer.numberOfTapsRequired = 1
-//            tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary))
+            let tapRecognizer = UITapGestureRecognizer()
+            tapRecognizer.numberOfTapsRequired = 1
+            tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary))
         default:
             print("default")
             videosAndPhotosLayout(feed:feed)
@@ -271,12 +271,12 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
         }
     }
-
-//    func showDetailedItinerary(_ sender: UITapGestureRecognizer){
-//        if feeds["type"].stringValue == "detail-itinerary"{
-//            
-//        }
-//    }
+    
+    func showDetailedItinerary(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
+        globalMyLifeContainerViewController.navigationController!.pushViewController(controller, animated: false)
+    }
     
     
     func headerLayout(feed:JSON) {
@@ -320,6 +320,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
 //
         }
     }
+    
     func setText(text: String) {
         textHeader.headerText.text = text
     }

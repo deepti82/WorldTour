@@ -1463,6 +1463,25 @@ class Navigation {
         }
     }
 
+    func getHomePage(completion: @escaping ((JSON) -> Void)) {
+        do {
+            let opt = try HTTP.POST(adminUrl + "config/homePage", parameters: [])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+
     
     func getMomentLife(_ user: String, pageNumber: Int, type: String, token: String, completion: @escaping ((JSON) -> Void)) {
         

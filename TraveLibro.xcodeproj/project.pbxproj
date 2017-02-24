@@ -438,6 +438,8 @@
 		FC0B9A9C1E20BD00005D9206 /* QuickCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9A9B1E20BD00005D9206 /* QuickCity.swift */; };
 		FC0B9A9F1E23BE13005D9206 /* TextBoxContainer.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC0B9A9E1E23BE13005D9206 /* TextBoxContainer.xib */; };
 		FC0B9AA11E23BE2E005D9206 /* TextBoxContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0B9AA01E23BE2E005D9206 /* TextBoxContainer.swift */; };
+		FC13D1CE1E603073008FC77D /* SearchElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC13D1CD1E603073008FC77D /* SearchElement.swift */; };
+		FC13D1D01E60309D008FC77D /* SearchElement.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC13D1CF1E60309D008FC77D /* SearchElement.xib */; };
 		FC3248CD1DEDACD600ACDF85 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */; };
 		FC49DCFA1DE6D04D00B0DEF3 /* ImgLyKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */; };
 		FC807AD11E3C9B3300609E9B /* TripPhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */; };
@@ -940,6 +942,8 @@
 		FC0B9A9B1E20BD00005D9206 /* QuickCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickCity.swift; sourceTree = "<group>"; };
 		FC0B9A9E1E23BE13005D9206 /* TextBoxContainer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextBoxContainer.xib; sourceTree = "<group>"; };
 		FC0B9AA01E23BE2E005D9206 /* TextBoxContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextBoxContainer.swift; sourceTree = "<group>"; };
+		FC13D1CD1E603073008FC77D /* SearchElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchElement.swift; sourceTree = "<group>"; };
+		FC13D1CF1E60309D008FC77D /* SearchElement.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchElement.xib; sourceTree = "<group>"; };
 		FC3248CC1DEDACD600ACDF85 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		FC49DCF91DE6D04D00B0DEF3 /* ImgLyKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLyKitViewController.swift; sourceTree = "<group>"; };
 		FC807AD01E3C9B3300609E9B /* TripPhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripPhotoLayout.swift; sourceTree = "<group>"; };
@@ -1226,6 +1230,7 @@
 				FC807AD21E3C9B4300609E9B /* TripPhotoLayout */,
 				FC807AD71E3CAB1F00609E9B /* TripPhotoHeader */,
 				FCB3D17C1E5D70520041B121 /* OnlyLine */,
+				FC13D1D11E6035F6008FC77D /* SearchElement */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -2599,6 +2604,15 @@
 			name = TextBoxContainer;
 			sourceTree = "<group>";
 		};
+		FC13D1D11E6035F6008FC77D /* SearchElement */ = {
+			isa = PBXGroup;
+			children = (
+				FC13D1CD1E603073008FC77D /* SearchElement.swift */,
+				FC13D1CF1E60309D008FC77D /* SearchElement.xib */,
+			);
+			name = SearchElement;
+			sourceTree = "<group>";
+		};
 		FC807AD21E3C9B4300609E9B /* TripPhotoLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -2867,6 +2881,7 @@
 				4435D2F91E548A91003BD1D9 /* notificationUserFollowingView.xib in Resources */,
 				84FF89431E52E0A300FDE8F0 /* Search.xib in Resources */,
 				845C43271E2F8A4100800F51 /* ActivityFeedImageView.xib in Resources */,
+				FC13D1D01E60309D008FC77D /* SearchElement.xib in Resources */,
 				C24F84E01D0017BB002EA203 /* ResetPassword.xib in Resources */,
 				84F25E971E5D63B300ED7A1E /* detailedItineraryMain.xib in Resources */,
 				FCCA8F281E28DCE900775985 /* TripSummaryView.xib in Resources */,
@@ -3265,6 +3280,7 @@
 				C23B3BE01D4248F10075B733 /* EachCityPagerViewController.swift in Sources */,
 				C2823AFE1D45E09C0065A76C /* FooterViewNew.swift in Sources */,
 				842D7A571E1E6FBC00FEDCD1 /* Buttons2.swift in Sources */,
+				FC13D1CE1E603073008FC77D /* SearchElement.swift in Sources */,
 				C2E697B71D3E541500E76F1E /* FCMainViewController.swift in Sources */,
 				C2756C4F1D059F1E0083CEBD /* EditProfileViewController.swift in Sources */,
 				C258A33B1D6C889700664CF7 /* ExistingAccountPopup.swift in Sources */,

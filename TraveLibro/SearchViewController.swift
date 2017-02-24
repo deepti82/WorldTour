@@ -14,9 +14,11 @@ class SearchViewController: UIViewController {
     @IBOutlet var SearchView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("in search view controller")
         getDarkBackGround(self)
         search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: SearchView.frame.width - 20 , height: 30))
         search.searchField.returnKeyType = .done
+
         SearchView.addSubview(search)
   
         transparentCardWhite(SearchView)
@@ -31,6 +33,7 @@ class SearchViewController: UIViewController {
 
         
         let searchView = Search(frame: CGRect(x: 0, y: 105, width: self.view.frame.width, height: self.view.frame.height))
+        searchView.setData()
         self.view.addSubview(searchView)
         setTopNavigation("Search")
         // Do any additional setup after loading the view.

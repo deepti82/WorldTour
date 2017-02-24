@@ -103,7 +103,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
             })
         }else{
             print("in hash clicked")
-            request.getHashData(currentUser["_id"].stringValue, pageNumber: pageNumber, search: selectedHash, completion: {(request) in
+            let userr = User()
+            request.getHashData(userr.getExistingUser(), pageNumber: pageNumber, search: selectedHash, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     if request["data"] != "" {
                         self.loadStatus = true
