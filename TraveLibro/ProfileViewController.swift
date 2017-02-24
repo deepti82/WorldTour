@@ -125,6 +125,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     
     override func viewDidLoad() {
+        print("my user oooouuu.")
+        print(user.getExistingUser())
         super.viewDidLoad()
         
         loader = UIView(frame:CGRect(x: 100, y: 200, width: mainProfileView.frame.size.width/2, height: mainProfileView.frame.size.height/2))
@@ -319,8 +321,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
         }
         
-        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
-        vc.whichView = "Notify"
+        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController        
         self.navigationController?.pushViewController(vc, animated: false)
         
         

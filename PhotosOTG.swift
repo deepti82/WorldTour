@@ -67,7 +67,7 @@ class PhotosOTG: UIView {
         
         print("send likes: \(sender.tag) \(hasLiked)")
         print("post_uniqueId " + postTop.post_ids)
-        request.likePost(postTop.post_uniqueId, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+        request.likePost(postTop.post_uniqueId, userId: currentUser["_id"].string!, unlike: hasLiked, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")

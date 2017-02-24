@@ -408,7 +408,7 @@ class ActivityFeedFooterBasic: UIView {
             }
         }else{
             
-            request.likePost(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+            request.likePost(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, unlike: hasLiked, completion: {(response) in
                 DispatchQueue.main.async(execute: {
                     if response.error != nil {
                         print("error: \(response.error!.localizedDescription)")

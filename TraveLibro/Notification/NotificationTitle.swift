@@ -31,7 +31,7 @@ class NotificationTitle: UIView {
         self.addSubview(view);
     }
     
-    func setMessageLabel(data: JSON) {
+    func setMessageLabel(data: JSON) -> CGFloat {
         
         NFMessageLabel.text = ""
         
@@ -44,6 +44,9 @@ class NotificationTitle: UIView {
         var str2 = ""
         
         switch notificationType {
+           
+        case "postFirstTime":
+            str2 = " has added a post to "
             
         case "postTag":            
             str2 = " has checked-in with you in an "
@@ -99,7 +102,7 @@ class NotificationTitle: UIView {
             
         case "itineraryRequest":
             let gen = data["userFrom"]["gender"].stringValue
-            str2 = " wants to tag you in " + (gen == "male" ? "his" : "her") + " On The Go Journey - "
+            str2 = " wants to tag you in " + (gen == "male" ? "his" : "her") + " itinerary - "
             
         case "itineraryMentionComment":
             str2 = " has mentioned you in a comment On "
@@ -147,7 +150,8 @@ class NotificationTitle: UIView {
         }
         
         
-        var str4 = ""        
+        var str4 = "" 
+        
         if notificationType == "journeyComment" {
             str4 = "On Go Journey "
         }
@@ -166,6 +170,10 @@ class NotificationTitle: UIView {
         
         message.append(getBoldString(string: str4))
         
+        if notificationType == "postFirstTime" {
+            str4 = " for the first time "
+            message.append(getRegularString(string: str4))
+        }
         
         var str5 = ""
         if notificationType == "journeyMentionComment" ||
@@ -177,7 +185,8 @@ class NotificationTitle: UIView {
             notificationType == "journeyAccept" ||
             notificationType == "itineraryMentionComment" ||
             notificationType == "itineraryLike" ||
-            notificationType == "itineraryComment" {
+            notificationType == "itineraryComment" ||
+            notificationType == "itineraryRequest" {
             str5 = data["data"]["name"].stringValue
             
             message.append(getRedString(string: str5))
@@ -186,8 +195,9 @@ class NotificationTitle: UIView {
         
         NFMessageLabel.attributedText = message
         NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
-                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))        
+                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))
         
+        return (NFMessageLabel.frame.size.height+CGFloat(10))   //10 is Offset hence added
     }
     
     func checkIfComment(notificationData: JSON) -> Bool {

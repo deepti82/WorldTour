@@ -83,6 +83,7 @@ class PhotoOTGFooter: UIView {
             }
     
     @IBAction func sendComments(_ sender: UIButton) {
+        print("comment clicked")
         let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
         comment.postId = postTop.post_uniqueId
         comment.otherId = postTop.post_ids
@@ -200,7 +201,14 @@ class PhotoOTGFooter: UIView {
         else {
             sender.tag = 1
         }
-        request.likePost(postTop.jsonPost["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, completion: {(response) in
+        var usr:String = ""
+        let userm = User()
+        if currentUser["_id"].stringValue == userm.getExistingUser() {
+            usr = currentUser["_id"].stringValue
+        }else{
+            usr = userm.getExistingUser()
+        }
+        request.likePost(postTop.jsonPost["uniqueId"].stringValue, userId: usr, unlike: hasLiked, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")

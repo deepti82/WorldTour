@@ -20,15 +20,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDd-9q-awo">
-                    <rect key="frame" x="8" y="30" width="484" height="260"/>
+                    <rect key="frame" x="2" y="30" width="496" height="265"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="rDd-9q-awo" secondAttribute="bottom" constant="10" id="0U1-eK-vYs"/>
-                <constraint firstItem="rDd-9q-awo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="aV0-9O-bpV"/>
-                <constraint firstAttribute="trailing" secondItem="rDd-9q-awo" secondAttribute="trailing" constant="8" id="bd3-hD-efi"/>
+                <constraint firstAttribute="bottom" secondItem="rDd-9q-awo" secondAttribute="bottom" constant="5" id="0U1-eK-vYs"/>
+                <constraint firstItem="rDd-9q-awo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="aV0-9O-bpV"/>
+                <constraint firstAttribute="trailing" secondItem="rDd-9q-awo" secondAttribute="trailing" constant="2" id="bd3-hD-efi"/>
                 <constraint firstItem="rDd-9q-awo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="el2-9c-Xe3"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

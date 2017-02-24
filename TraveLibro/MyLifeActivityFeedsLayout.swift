@@ -212,6 +212,12 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(activityFeedImage)
         case "quick-itinerary":
             activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 590))
+            
+            let tapRecognizer = UITapGestureRecognizer()
+            tapRecognizer.numberOfTapsRequired = 1
+            tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
+            activityQuickItinerary.addGestureRecognizer(tapRecognizer)
+            
             activityQuickItinerary.fillData(feed: feed)
             self.addSubview(activityQuickItinerary)
             
@@ -244,6 +250,22 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
 //            globalNewTLViewController.toolbarView.isHidden = true
 //            globalNewTLViewController.hideVisual.isHidden = true
 //            globalNewTLViewController.hideToolBar.isHidden = true
+            
+        }else {
+            
+        }
+    }
+    func gotoDetail(_ sender: UIButton){
+        print("clicked....")
+        if feeds["type"].stringValue == "on-the-go-journey" || feeds["type"].stringValue == "ended-journey"{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+            controller.fromOutSide = feeds["_id"].stringValue
+            controller.fromType = feeds["type"].stringValue
+            
+            print(feeds["_id"])
+            print(feeds["type"])
+            globalMyLifeContainerViewController.navigationController!.pushViewController(controller, animated: false)
             
         }else {
             

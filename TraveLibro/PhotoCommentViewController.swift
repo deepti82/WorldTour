@@ -94,7 +94,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
             addedHashtags = Array(set2.subtracting(intersection))
             removedHashtags = Array(set1.subtracting(intersection))
             
-            request.editComment(type: type, commentId: addComment["_id"].string!, commentText: editComment.text, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: photoId, completion: {(response) in
+            request.editComment(type: type, commentId: addComment["_id"].string!, commentText: editComment.text, userId: currentUser["_id"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: photoId, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -207,7 +207,15 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        if self.comments[indexPath.row]["user"]["_id"].string! == currentUser["_id"].string! {
+        var usr:String = ""
+        let userm = User()
+        if currentUser["_id"].stringValue == userm.getExistingUser() {
+            usr = currentUser["_id"].stringValue
+        }else{
+            usr = userm.getExistingUser()
+        }
+        
+        if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
             let more = UITableViewRowAction(style: .normal, title: "            ") { action, index in
                 print("edit button tapped")
@@ -478,9 +486,15 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func setAllComments(_ comment: String) {
-        
+        var usr:String = ""
+        let userm = User()
+        if currentUser["_id"].stringValue == userm.getExistingUser() {
+            usr = currentUser["_id"].stringValue
+        }else{
+            usr = userm.getExistingUser()
+        }
         if(self.type == "Video" ) {
-            request.commentOnVideos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, videoId: photoId, completion: {(response) in
+            request.commentOnVideos(id: otherId, postId: postId, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, videoId: photoId, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -498,7 +512,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
                 })
             })
         } else {
-            request.commentOnPhotos(id: otherId, postId: postId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, photoId: photoId, completion: {(response) in
+            request.commentOnPhotos(id: otherId, postId: postId, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, photoId: photoId, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     

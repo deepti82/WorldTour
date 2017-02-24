@@ -387,6 +387,15 @@ extension UIImageView {
     
 }
 
+func isUserMe(user:String) -> Bool {
+    let loggedInUser = User()
+    if user == loggedInUser.getExistingUser() {
+        return true
+    }else{
+        return false
+    }
+}
+
 func log(_ message: String, _ filename: String = #file, _ line: Int = #line, _ function: String = #function) {
     print("\((filename as NSString).lastPathComponent):\(line) \(function):\r\(message)\n\n")
 }

@@ -33,6 +33,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         request.getMomentJourney(pageNumber: pageNumber, type: type,completion: {(request) in
             DispatchQueue.main.async(execute: {
                 if request["data"] != nil && request["value"].boolValue {
+                    print(request["data"])
                     for post in request["data"].array! {
                         if(shouldChangeVal) {
                             self.timeTag.changeTime(feed: post)

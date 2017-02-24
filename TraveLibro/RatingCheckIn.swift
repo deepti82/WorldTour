@@ -55,33 +55,36 @@ class RatingCheckIn: UIView {
     }
     
     @IBAction func ratePost(_ sender: Any) {
-        let tapout = UITapGestureRecognizer(target: self, action: #selector(RatingCheckIn.reviewTapOut(_:)))
-        
-        backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
-        backgroundReview.addGestureRecognizer(tapout)
-        backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
-        globalNavigationController.topViewController?.view.addSubview(backgroundReview)
-        globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
-
-        let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
-        rating.post = photosOtg.postTop
-        rating.checkIn = self
-        rating.json = self.review
-        print("get Review \(rating.json)")
-        if review != nil  {
-            rating.starCount = Int(review["rating"].stringValue)!
-            rating.ratingDisplay(rating.json)
-
-        }else{
-            rating.starCount = 1
-
+        if isUserMe(user: currentUser["_id"].stringValue) {
+            let tapout = UITapGestureRecognizer(target: self, action: #selector(RatingCheckIn.reviewTapOut(_:)))
+            
+            backgroundReview = UIView(frame: (globalNavigationController.topViewController?.view.frame)!)
+            backgroundReview.addGestureRecognizer(tapout)
+            backgroundReview.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+            globalNavigationController.topViewController?.view.addSubview(backgroundReview)
+            globalNavigationController.topViewController?.view.bringSubview(toFront: backgroundReview)
+            
+            let rating = AddRating(frame: CGRect(x: 0, y: 0, width: width - 40, height: 335))
+            rating.post = photosOtg.postTop
+            rating.checkIn = self
+            rating.json = self.review
+            print("get Review \(rating.json)")
+            if review != nil  {
+                rating.starCount = Int(review["rating"].stringValue)!
+                rating.ratingDisplay(rating.json)
+                
+            }else{
+                rating.starCount = 1
+                
+            }
+            
+            rating.center = backgroundReview.center
+            rating.layer.cornerRadius = 5
+            rating.clipsToBounds = true
+            rating.navController = globalNavigationController
+            backgroundReview.addSubview(rating)
         }
         
-        rating.center = backgroundReview.center
-        rating.layer.cornerRadius = 5
-        rating.clipsToBounds = true
-        rating.navController = globalNavigationController
-        backgroundReview.addSubview(rating)
     }
     
     func reviewTapOut(_ sender: UITapGestureRecognizer) {

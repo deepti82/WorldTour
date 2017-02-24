@@ -52,7 +52,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             addedHashtags = Array(set2.subtracting(intersection))
             removedHashtags = Array(set1.subtracting(intersection))
             if addComment.text != "" {
-                request.editComment(type: "post", commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: "", completion: {(response) in
+                request.editComment(type: "post", commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: "", completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
@@ -145,8 +145,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        if self.comments[indexPath.row]["user"]["_id"].string! == currentUser["_id"].string! {
+        var usr:String = ""
+        let userm = User()
+        if currentUser["_id"].stringValue == userm.getExistingUser() {
+            usr = currentUser["_id"].stringValue
+        }else{
+            usr = userm.getExistingUser()
+        }
+        if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
             let more = UITableViewRowAction(style: .normal, title: "edit") { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
@@ -158,6 +164,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             moreImage.contentMode = .center
             moreImage.backgroundColor = mainOrangeColor
             more.backgroundColor = mainOrangeColor
+
             
             let favorite = UITableViewRowAction(style: .normal, title: "delete") { action, index in
                 print("delete button tapped")
@@ -185,8 +192,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 
             }
-            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 80))
-            favoriteImage.image = UIImage(named: "trashtranswhite")
+            let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 40))
+            favoriteImage.image = UIImage(named: "cross_icon")
             favoriteImage.contentMode = .center
             favoriteImage.backgroundColor = mainOrangeColor
             favorite.backgroundColor = mainOrangeColor
@@ -340,7 +347,14 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func setAllComments(_ comment: String) {
         
-        request.commentOnPost(id: postId, postId: otherId, userId: currentUser["_id"].string!, commentText: comment, userName: currentUser["name"].string!, hashtags: hashtags, mentions: mentions, completion: {(response) in
+        var usr:String = ""
+        let userm = User()
+        if currentUser["_id"].stringValue == userm.getExistingUser() {
+            usr = currentUser["_id"].stringValue
+        }else{
+            usr = userm.getExistingUser()
+        }
+        request.commentOnPost(id: postId, postId: otherId, userId: usr, commentText: comment, hashtags: hashtags, mentions: mentions, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 

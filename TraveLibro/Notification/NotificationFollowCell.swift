@@ -12,13 +12,14 @@ import UIKit
 //Example : Andrea Christina has requested to follow your travel and local activities
 
 class NotificationFollowCell: UITableViewCell {
-
-    var _notificationData: JSON? 
+    
     var NFHeader = notificationHeader()
     var NFTitle = NotificationTitle()
     var NFFollowDetails = NotificationFollowingDetails()
     var NFFollow = NotificationUserFollowing()
     var NFFooter = NotificationFooter()
+    var NFBackground = NotificationBackground()
+    var totalHeight = CGFloat(0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,7 +64,7 @@ class NotificationFollowCell: UITableViewCell {
         self.contentView.addSubview(NFFollowDetails)
         yPos = yPos + Int(NFFollowDetails.frame.size.height)
         
-        NFFollow = NotificationUserFollowing(frame: CGRect(x: 0, y: yPos, width: width, height: 50)) as NotificationUserFollowing
+        NFFollow = NotificationUserFollowing(frame: CGRect(x: 0, y: yPos, width: width, height: 40)) as NotificationUserFollowing
         self.contentView.addSubview(NFFollow)
         yPos = yPos + Int(NFFollow.frame.size.height)
         
@@ -71,7 +72,7 @@ class NotificationFollowCell: UITableViewCell {
         self.contentView.addSubview(NFFooter)
         yPos = yPos + Int(NFFooter.frame.size.height)
         
-        let NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: yPos))
+        NFBackground = NotificationBackground(frame: CGRect(x: 0, y: 0, width: width, height: yPos))
         self.contentView.addSubview(NFBackground)
         self.contentView.sendSubview(toBack: NFBackground)
         
@@ -82,13 +83,28 @@ class NotificationFollowCell: UITableViewCell {
     }    
     
     func setData(notificationData: JSON, helper: NotificationSubViewController) {
-        _notificationData = notificationData
+        
+        totalHeight = CGFloat(10)
         
         NFHeader.setHeaderData(data: notificationData)
         
-        NFTitle.setMessageLabel(data: notificationData)
+        totalHeight += HEADER_HEIGHT
+        
+        let titleHeight = NFTitle.setMessageLabel(data: notificationData)
+        NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
+        totalHeight += titleHeight
+        
+        NFFollowDetails.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: DETAILS_HEIGHT)
+        totalHeight += DETAILS_HEIGHT
+        
+        NFFollow.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: BUTTON_HEIGHT)
+        totalHeight += CGFloat(BUTTON_HEIGHT)
         
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
+        NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)
+        totalHeight += CGFloat(FOOTER_HEIGHT)
+        
+        NFBackground.frame = CGRect(x: 0, y: 0, width: screenWidth, height: totalHeight)
     }
 
 }

@@ -9,8 +9,7 @@
 import UIKit
 
 class NotificationDefaultCell: UITableViewCell {
-
-    var _notificationData: JSON? 
+    
     var NFHeader = notificationHeader()
     var NFTitle = NotificationTitle()
     var NFFooter = NotificationFooter()
@@ -68,9 +67,7 @@ class NotificationDefaultCell: UITableViewCell {
     }
     
     
-    func setData(notificationData: JSON, helper: NotificationSubViewController) {
-        
-        _notificationData = notificationData
+    func setData(notificationData: JSON, helper: NotificationSubViewController) {        
         
         NFHeader.setHeaderData(data: notificationData)
         

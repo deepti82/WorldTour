@@ -87,8 +87,6 @@
 		4435D2DF1E545FB5003BD1D9 /* notificationFollowPermissionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2DE1E545FB5003BD1D9 /* notificationFollowPermissionView.xib */; };
 		4435D2E11E54659A003BD1D9 /* notificationFollowingDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2E01E54659A003BD1D9 /* notificationFollowingDetailsView.xib */; };
 		4435D2E31E546F85003BD1D9 /* NotificationFollowingDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2E21E546F85003BD1D9 /* NotificationFollowingDetails.swift */; };
-		4435D2E71E54740E003BD1D9 /* notificationCommentVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2E61E54740E003BD1D9 /* notificationCommentVideoView.xib */; };
-		4435D2E91E54777E003BD1D9 /* NotificationCommentVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2E81E54777E003BD1D9 /* NotificationCommentVideo.swift */; };
 		4435D2ED1E547873003BD1D9 /* notificationCommentPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2EC1E547873003BD1D9 /* notificationCommentPhotoView.xib */; };
 		4435D2EF1E547E24003BD1D9 /* NotificationCommentPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2EE1E547E24003BD1D9 /* NotificationCommentPhoto.swift */; };
 		4435D2F11E547F04003BD1D9 /* notificationFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2F01E547F04003BD1D9 /* notificationFooterView.xib */; };
@@ -590,8 +588,6 @@
 		4435D2DE1E545FB5003BD1D9 /* notificationFollowPermissionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationFollowPermissionView.xib; path = Notification/notificationFollowPermissionView.xib; sourceTree = "<group>"; };
 		4435D2E01E54659A003BD1D9 /* notificationFollowingDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationFollowingDetailsView.xib; path = Notification/notificationFollowingDetailsView.xib; sourceTree = "<group>"; };
 		4435D2E21E546F85003BD1D9 /* NotificationFollowingDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationFollowingDetails.swift; path = Notification/NotificationFollowingDetails.swift; sourceTree = "<group>"; };
-		4435D2E61E54740E003BD1D9 /* notificationCommentVideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationCommentVideoView.xib; path = Notification/notificationCommentVideoView.xib; sourceTree = "<group>"; };
-		4435D2E81E54777E003BD1D9 /* NotificationCommentVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCommentVideo.swift; path = Notification/NotificationCommentVideo.swift; sourceTree = "<group>"; };
 		4435D2EC1E547873003BD1D9 /* notificationCommentPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationCommentPhotoView.xib; path = Notification/notificationCommentPhotoView.xib; sourceTree = "<group>"; };
 		4435D2EE1E547E24003BD1D9 /* NotificationCommentPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCommentPhoto.swift; path = Notification/NotificationCommentPhoto.swift; sourceTree = "<group>"; };
 		4435D2F01E547F04003BD1D9 /* notificationFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationFooterView.xib; path = Notification/notificationFooterView.xib; sourceTree = "<group>"; };
@@ -1382,8 +1378,6 @@
 		4435D2F41E5482A2003BD1D9 /* NotificationMudules */ = {
 			isa = PBXGroup;
 			children = (
-				4435D2E61E54740E003BD1D9 /* notificationCommentVideoView.xib */,
-				4435D2E81E54777E003BD1D9 /* NotificationCommentVideo.swift */,
 				4435D2EC1E547873003BD1D9 /* notificationCommentPhotoView.xib */,
 				4435D2EE1E547E24003BD1D9 /* NotificationCommentPhoto.swift */,
 				4435D2F01E547F04003BD1D9 /* notificationFooterView.xib */,
@@ -2900,7 +2894,6 @@
 				C29634EA1D06F01300E9DF71 /* SearchLocation.xib in Resources */,
 				C23EB1CB1CFEB008005B5CE8 /* CheckInLocalLife.xib in Resources */,
 				FCB3D17B1E5D6FF00041B121 /* OnlyLine.xib in Resources */,
-				4435D2E71E54740E003BD1D9 /* notificationCommentVideoView.xib in Resources */,
 				C28A92531D0ECB4E00CFEC7A /* FilterBlogs.xib in Resources */,
 				1A944E381CCB5AFA007EB5BD /* FooterView.xib in Resources */,
 				1A65E7AC1CD72F1F009374DA /* Avenir-Roman.ttf in Resources */,
@@ -3377,7 +3370,6 @@
 				C2A27A3E1CEDAF4C00F74DD1 /* SignInViewController.swift in Sources */,
 				C20939011D11557B00CBA70F /* HomeViewController.swift in Sources */,
 				C24870531D0C35C0003CB0DD /* HotelsCustomHeader.swift in Sources */,
-				4435D2E91E54777E003BD1D9 /* NotificationCommentVideo.swift in Sources */,
 				4435D2E31E546F85003BD1D9 /* NotificationFollowingDetails.swift in Sources */,
 				C234B0601D79A67600397FE5 /* UIViewControllerExtension.swift in Sources */,
 				C2823B051D464E800065A76C /* startOTGView.swift in Sources */,
@@ -3599,7 +3591,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/.build/debug Sources/CSQLite/";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3734,6 +3726,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

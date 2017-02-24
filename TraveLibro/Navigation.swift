@@ -1410,7 +1410,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
+                    print("\n\n Activity feeds : \(json) \n\n")
                     completion(json)
                 }
             }
@@ -1844,7 +1844,7 @@ class Navigation {
         }
     }
     
-    func likePost(_ id: String, userId: String, userName: String, unlike: Bool, completion: @escaping ((JSON) -> Void)) {
+    func likePost(_ id: String, userId: String, unlike: Bool, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
@@ -1852,7 +1852,7 @@ class Navigation {
             
             if !unlike {
                 
-                params = ["uniqueId": id, "user": userId, "name": userName]
+                params = ["uniqueId": id, "user": userId]
             }
             
             print("like post: \(params)")
@@ -1941,11 +1941,11 @@ class Navigation {
     }
     
     
-    func commentOnPost(id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
+    func commentOnPost(id: String, postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "post", "hashtag" : hashtags, "tagUser": []] as [String : Any]
+            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "type": "post", "hashtag" : hashtags, "tagUser": []] as [String : Any]
               
             print("set comment params: \(params)")
             
@@ -1967,11 +1967,11 @@ class Navigation {
         }
     }
     
-    func commentOnPhotos(id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: [String], mentions: [String], photoId: String, completion: @escaping ((JSON) -> Void)) {
+    func commentOnPhotos(id: String, postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], photoId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "photo", "hashtag" : hashtags, "photo": photoId] as [String : Any]
+            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "type": "photo", "hashtag" : hashtags, "photo": photoId] as [String : Any]
             
             print("set photo comment params: \(params)")
             
@@ -1993,11 +1993,11 @@ class Navigation {
         }
     }
     
-    func commentOnVideos(id: String, postId: String, userId: String, commentText: String, userName: String, hashtags: [String], mentions: [String], videoId: String, completion: @escaping ((JSON) -> Void)) {
+    func commentOnVideos(id: String, postId: String, userId: String, commentText: String, hashtags: [String], mentions: [String], videoId: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "name": userName, "type": "video", "hashtag" : hashtags, "video":videoId] as [String : Any]
+            let params = ["uniqueId": id, "post": postId, "user":  userId, "text": commentText, "type": "video", "hashtag" : hashtags, "video":videoId] as [String : Any]
             
             print("set photo comment params: \(params)")
             
@@ -2414,11 +2414,19 @@ class Navigation {
         }
     }
     
-    func endJourney(_ journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON], photo: String, journeyName: String, completion: @escaping ((JSON) -> Void)) {
+    func endJourney(_ journeyId: String, uniqueId: String, user: String, userName: String, buddies: [JSON], photo: String, journeyName: String, notificationID: String?, completion: @escaping ((JSON) -> Void)) {
         
         do {
+            var params: JSON
             
-            var params: JSON = ["_id": journeyId, "user": user, "uniqueId": uniqueId, "name": userName, "coverPhoto": photo, "journeyName": journeyName]
+            if notificationID == nil {
+                params = ["_id": journeyId, "user": user, "uniqueId": uniqueId, "name": userName, "coverPhoto": photo, "journeyName": journeyName]
+            }
+            else {
+                
+                params = ["_id": journeyId, "user": user, "uniqueId": uniqueId, "name": userName, "coverPhoto": photo, "journeyName": journeyName, "notifyId": notificationID!]
+            }
+            
             params["buddies"] = JSON(buddies)
             
             let jsonData = try params.rawData()
@@ -2782,16 +2790,17 @@ class Navigation {
         
     }
     
-    func editComment(type: String, commentId: String, commentText: String, userId:  String, userName: String, hashtag: [String], addedHashtags: [String], removedHashtags: [String], photoId:String, completion: @escaping ((JSON) -> Void)) {
+    func editComment(type: String, commentId: String, commentText: String, userId:  String, hashtag: [String], addedHashtags: [String], removedHashtags: [String], photoId:String, completion: @escaping ((JSON) -> Void)) {
         print("my type")
         print(type)
         
+        
         do {
-            var params = ["type":type, "_id": commentId, "text": commentText, "user": userId, "name": userName, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
+            var params = ["type":type, "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags] as [String: Any]
             if type == "Photo" {
-                params = ["type":"photo", "_id": commentId, "text": commentText, "user": userId, "name": userName, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "photo": photoId] as [String: Any]
+                params = ["type":"photo", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "photo": photoId] as [String: Any]
             } else {
-                params = ["type":"video", "_id": commentId, "text": commentText, "user": userId, "name": userName, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "video": photoId] as [String: Any]
+                params = ["type":"video", "_id": commentId, "text": commentText, "user": userId, "hashtag": hashtag, "addHashtag": addedHashtags, "removeHashtag": removedHashtags, "video": photoId] as [String: Any]
             }
             
             let opt = try HTTP.POST(adminUrl + "comment/editComment", parameters: params)
@@ -3114,6 +3123,29 @@ class Navigation {
         do {
             
             let opt = try HTTP.POST(adminUrl + "journey/buddyReject", parameters: ["user": id,"uniqueId":uniqueId,"_id":notificationId])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    
+    func updateNotificationStatus(notificationId: String, answeredStatus: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "notification/updateNotification", parameters: ["_id": notificationId,"answeredStatus":answeredStatus])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

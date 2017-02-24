@@ -1889,7 +1889,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         otgView = startOTGView(frame: CGRect(x: 0, y: 50, width: mainScroll.frame.width, height: mainScroll.frame.height))
         
-        
         otgView.shoewImage.alpha = 0
         otgView.bonVoyageLabel.alpha = 0
         otgView.lineOne.alpha = 0
