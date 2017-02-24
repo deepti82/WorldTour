@@ -422,6 +422,20 @@ func getMonthFormat(_ date: String) -> String {
     
 }
 
+func loader(_ view: UIView) {
+    let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    imageView1.backgroundColor = UIColor.white
+    imageView1.image = UIImage.gif(name: "loader")
+    imageView1.contentMode = UIViewContentMode.center
+    view.addSubview(imageView1)
+ 
+}
+
+//func removeLoader(View: UIImage) {
+//    
+//}
+
+
 func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
     let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
     label.numberOfLines = 0

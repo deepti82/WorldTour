@@ -148,17 +148,18 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         if self.comments[indexPath.row]["user"]["_id"].string! == currentUser["_id"].string! {
             
-            let more = UITableViewRowAction(style: .normal, title: " ") { action, index in
+            let more = UITableViewRowAction(style: .normal, title: "edit") { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
                 self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
                 self.editComment = self.comments[indexPath.row]
                 self.isEdit = true
             }
-            let moreImage = UIImageView(image: UIImage(named: "edit.png"))
+            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite"))
             moreImage.contentMode = .center
-            more.backgroundColor = UIColor(patternImage: moreImage.image!)
+            moreImage.backgroundColor = mainOrangeColor
+            more.backgroundColor = mainOrangeColor
             
-            let favorite = UITableViewRowAction(style: .normal, title: " ") { action, index in
+            let favorite = UITableViewRowAction(style: .normal, title: "delete") { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
                     
@@ -185,9 +186,10 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
             }
             let favoriteImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 80))
-            favoriteImage.image = UIImage(named: "delete.png")
+            favoriteImage.image = UIImage(named: "trashtranswhite")
             favoriteImage.contentMode = .center
-            favorite.backgroundColor = UIColor(patternImage: favoriteImage.image!)
+            favoriteImage.backgroundColor = mainOrangeColor
+            favorite.backgroundColor = mainOrangeColor
             
             return [more, favorite]
         }
