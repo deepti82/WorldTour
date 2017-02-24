@@ -26,13 +26,13 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
     let locationManager = CLLocationManager()
     var locValue:CLLocationCoordinate2D!
     var layout:VerticalLayout!
-    
+    var loader = LoadingOverlay()
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGround(self)
         layout = VerticalLayout(width:screenWidth)
         scrollView.addSubview(layout)
- 
+        loader.showOverlay(self.view)
         setTopNavigation(text: nearMeType);
         self.detectLocation(UIButton())
         globalLocalLifeInside = self
@@ -292,6 +292,7 @@ class LocalLifePostsViewController: UIViewController, UIScrollViewDelegate, CLLo
                             print(self.allLocalLife)
                             print("ISitFromHere?")
                             self.addPostLayout(local);
+                            self.loader.hideOverlayView()
                         }
                     }
                 })

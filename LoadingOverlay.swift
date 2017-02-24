@@ -13,8 +13,8 @@ extension UIViewController {
     
     open class LoadingOverlay {
     
-        var overlayView = UIView()
-        var activityIndicator = UIActivityIndicatorView()
+        var loader = UIView()
+        var imageView1 = UIImageView()
         
         class var shared: LoadingOverlay {
             struct Static {
@@ -26,28 +26,21 @@ extension UIViewController {
         func showOverlay(_ view: UIView) {
             
             print("show loader")
-            overlayView = UIView(frame: view.frame)
-            overlayView.center = view.center
-            overlayView.backgroundColor = UIColor(white: 0x444444, alpha: 0.7)
-            overlayView.clipsToBounds = true
-            overlayView.layer.cornerRadius = 10
-            overlayView.layer.zPosition = 10000
+            loader = UIView(frame:CGRect(x: 100, y: 200, width: view.frame.size.width/2, height: view.frame.size.height/2))
+            view.addSubview(loader)
+            let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width/2, height: view.frame.size.height/2))
+//            imageView1.backgroundColor = UIColor.white
+            imageView1.image = UIImage.gif(name: "loader")
+            imageView1.contentMode = .center
+            loader.addSubview(imageView1)
             
-            activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-            activityIndicator.activityIndicatorViewStyle = .whiteLarge
-            activityIndicator.center = overlayView.center
-            
-            overlayView.addSubview(activityIndicator)
-            view.addSubview(overlayView)
-            
-            activityIndicator.startAnimating()
         }
         
         func hideOverlayView() {
             
             print("hide overlay")
-            activityIndicator.stopAnimating()
-            overlayView.removeFromSuperview()
+            
+            loader.removeFromSuperview()
         }
         
     }

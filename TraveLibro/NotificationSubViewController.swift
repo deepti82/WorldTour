@@ -10,8 +10,7 @@ import UIKit
 import Toaster
 
 class NotificationSubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var inMiddle: Bool! = true
-    var whichView: String!
+    
     var notifications: [JSON] = []
     let refreshControl = UIRefreshControl()
     var currentPageNumber = 0
@@ -30,10 +29,15 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         getDarkBackGround(self)
         notifyTableView.backgroundColor = UIColor.clear
+        notifyTableView.tableFooterView = UIView()
+        
+//        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing")
+        refreshControl.addTarget(self, action: #selector(NotificationSubViewController.pullToRefreshCalled), for: UIControlEvents.valueChanged)
+        notifyTableView.addSubview(refreshControl)
         
         getNotification()
         
-        notifyTableView.tableFooterView = UIView()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,9 +53,16 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     //MARK: - Helper
     
+    func pullToRefreshCalled() {        
+        currentPageNumber = 0
+        getNotification()
+    }
+    
     func getNotification() {
         
         currentPageNumber += 1
+        
+        print("\n Fetching data for pageNumber: \(currentPageNumber)")
         
         if hasNext {
             
@@ -68,10 +79,14 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     }
                     else if response["value"].bool! {
                         
+                        if self.refreshControl.isRefreshing {
+                            self.notifications = []
+                            self.refreshControl.endRefreshing()
+                        }
+                        
                         ToastCenter.default.cancelAll()
                         let newResponse = response["data"].array!
                         
-                        print("New Notification count: \(newResponse.count)")
                         if newResponse.isEmpty {
                             self.hasNext = false
                         }
@@ -83,8 +98,13 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                             }
                         }
                         else {                        
-                            self.notifications.append(contentsOf: newResponse)                            
+                            self.notifications.append(contentsOf: newResponse)
+                            print("Will send another request")
                             DispatchQueue.global().async(execute: {
+                                print("Sending another request global")
+                                DispatchQueue.main.async {
+                                    print("Sending another request main")
+                                }                                
                                 self.getNotification()                                
                             })
                         }
@@ -108,11 +128,13 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     func canLoadCommentCell(notificationData: JSON) -> Bool {
         
         var shouldLoadCommentCell = true
-        
-        if (notificationData["data"]["type"].string == "photo") {
+        if(notificationData["data"]["showMap"].boolValue == true){
             shouldLoadCommentCell = false
         }
-        if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {
+        else if (notificationData["data"]["type"].string == "photo") {
+            shouldLoadCommentCell = false
+        }
+        else if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {
             shouldLoadCommentCell = false
         }
         
@@ -142,6 +164,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         switch notificationType {
             
+        case "postFirstTime":
+            fallthrough
         case "postTag":
             fallthrough            
         case "postLike":
@@ -216,6 +240,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
         switch notificationType {
             
+        case "postFirstTime":
+            fallthrough
         case "postTag":
             fallthrough            
         case "postLike":
@@ -473,6 +499,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                         
                                         DispatchQueue.main.async(execute: {
                                             
+                                            Toast(text: "Please wait..").show()
                                             if response.error != nil {
                                                 
                                                 print("error: \(response.error!.localizedDescription)")
@@ -481,6 +508,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                             else if response["value"].bool! {
                                                 
                                                 Toast(text: response["data"].stringValue).show()
+                                                self.refreshControl.beginRefreshing()
+                                                self.pullToRefreshCalled()
                                                 
                                             }
                                             else {
@@ -489,7 +518,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                                 
                                             }
                                             
-                                            self.notifyTableView.reloadData()
                                         })
                                         
             }
@@ -525,6 +553,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             DispatchQueue.main.async(execute: {
                 
+                Toast(text: "Please wait..").show()
+                
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
@@ -533,6 +563,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                 else if response["value"].bool! {
                     
                     Toast(text: response["data"].stringValue).show()
+                    self.refreshControl.beginRefreshing()
+                    self.pullToRefreshCalled()
                     
                 }
                 else {
@@ -540,8 +572,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     Toast(text: response["error"].stringValue).show()
                     
                 }
-                
-                self.notifyTableView.reloadData()
             })
         }
         
@@ -585,161 +615,3 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     }
 }
 
-/*
-class simpleNotifyTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var profile: UIImageView!
-    //@IBOutlet weak var username: UILabel!
-    @IBOutlet weak var actionText: UILabel!
-    @IBOutlet weak var timeAgo: UILabel!
-    @IBOutlet weak var clockIcon: UILabel!
-    @IBOutlet weak var calendarIcon: UILabel!
-    @IBOutlet weak var calendarText: UILabel!
-    @IBOutlet weak var clockText: UILabel!
-    @IBOutlet weak var imageForNotify: UIImageView!
-    
-}
-
-class NotifyBigTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var profile: UIImageView!
-    @IBOutlet weak var notifyText: UITextView!
-    @IBOutlet weak var acceptButton: UIButton!
-    @IBOutlet weak var declineButton: UIButton!
-    @IBOutlet weak var calendarIcon: UILabel!
-    @IBOutlet weak var calendarText: UILabel!
-    @IBOutlet weak var clockIcon: UILabel!
-    @IBOutlet weak var clockText: UILabel!
-    
-}
-
-class messageNotifyTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var profile: UIImageView!
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var messageText: UILabel!
-    @IBOutlet weak var timeAgo: UILabel!
-    @IBOutlet weak var imageForMessage: UIImageView!
-    @IBOutlet weak var calenderIcon: UILabel!
-    @IBOutlet weak var clockIcon: UILabel!
-    @IBOutlet weak var calenderText: UILabel!
-    @IBOutlet weak var clockText: UILabel!
-    
-}
-*/
-
-
-/* func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
- 
- tableView.estimatedRowHeight = 145
- tableView.rowHeight = UITableViewAutomaticDimension
- tableView.allowsSelection = false
- 
- let dateFormatter = DateFormatter()
- let timeFormatter = DateFormatter()
- dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
- let date = dateFormatter.date(from: notifications[indexPath.row]["createdAt"].string!)
- dateFormatter.dateFormat = "dd MMM, yyyy"
- timeFormatter.dateFormat = "hh:mm a"
- 
- let getImageUrl = adminUrl + "upload/readFile?file=123"
- 
- 
- if notifications[(indexPath as NSIndexPath).row]["type"].string! == "request" {
- 
- let cell = tableView.dequeueReusableCell(withIdentifier: "bigCell") as! NotifyBigTableViewCell
- cell.acceptButton.tag = (indexPath as NSIndexPath).row
- cell.notifyText.text = notifications[(indexPath as NSIndexPath).row]["message"].string!
- cell.clockIcon.text = String(format: "%C", faicon["clock"]!)
- cell.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
- cell.acceptButton.addTarget(self, action: #selector(NotificationSubViewController.acceptTag(_:)), for: .touchUpInside)
- cell.declineButton.addTarget(self, action: #selector(NotificationSubViewController.declineTag(_:)), for: .touchUpInside)
- 
- cell.profile.image = nil
- cell.profile.hnk_setImageFromURL(URL(string:getImageUrl)!)
- makeTLProfilePicture(cell.profile)
- 
- 
- cell.calendarText.text = "\(dateFormatter.string(from: date!))"
- cell.clockText.text = "\(timeFormatter.string(from: date!))"
- 
- cell.acceptButton.layer.cornerRadius = 3.0
- cell.declineButton.layer.cornerRadius = 3.0
- cell.acceptButton.clipsToBounds = true
- cell.declineButton.clipsToBounds = true
- 
- return cell
- 
- //            if indexPath.row == 0 {
- //                
- //                
- //            }
- //            
- //            let cell = tableView.dequeueReusableCellWithIdentifier("simpleCell") as! simpleNotifyTableViewCell
- //            cell.clockIcon.text = String(format: "%C", faicon["clock"]!)
- //            cell.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
- //            return cell
- 
- }
- 
- if notifications[(indexPath as NSIndexPath).row]["type"].string! == "post" {
- let cell = tableView.dequeueReusableCell(withIdentifier: "simpleCell") as! simpleNotifyTableViewCell
- cell.profile.image = nil
- 
- cell.profile.hnk_setImageFromURL(URL(string:getImageUrl)!)
- makeTLProfilePicture(cell.profile)
- 
- cell.calendarText.text = "\(dateFormatter.string(from: date!))"
- cell.clockText.text = "\(timeFormatter.string(from: date!))"
- 
- cell.actionText.text = notifications[indexPath.row]["message"].string!
- cell.timeAgo.isHidden = true
- cell.clockIcon.text = String(format: "%C", faicon["clock"]!)
- cell.calendarIcon.text = String(format: "%C", faicon["calendar"]!)
- cell.imageForNotify.isHidden = true
- return cell
- }
- 
- //if notifications[(indexPath as NSIndexPath).row]["type"].string! == "message" {
- let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as! messageNotifyTableViewCell
- cell.profile.image = nil
- 
- cell.profile.hnk_setImageFromURL(URL(string:getImageUrl)!)
- makeTLProfilePicture(cell.profile)
- 
- cell.calenderText.text = "\(dateFormatter.string(from: date!))"
- cell.clockText.text = "\(timeFormatter.string(from: date!))"
- 
- cell.clockIcon.text = String(format: "%C", faicon["clock"]!)
- cell.calenderIcon.text = String(format: "%C", faicon["calendar"]!)
- cell.imageForMessage.isHidden = true
- cell.timeAgo.isHidden = true
- //            cell.messageText.text = notifications[indexPath.row]["message"].string!
- return cell
- //}
- 
- } */
-
-//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        
-//        let header = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 25))
-//        header.backgroundColor = UIColor.whiteColor()
-//        
-//        let label = UILabel(frame: CGRect(x: 10, y: 0, width: 100, height: 22))
-//        label.center.y = header.frame.height/2
-//        label.font = avenirFont
-//        label.textColor = UIColor.darkGrayColor()
-//        
-//        if section == 0 {
-//            
-//            label.text = "RECENT"
-//        }
-//        
-//        else {
-//            
-//            label.text = "OLDER"
-//        }
-//        header.addSubview(label)
-//        
-//        return header
-//    }

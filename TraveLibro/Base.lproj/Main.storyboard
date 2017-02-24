@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -5160,7 +5160,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="soT-wA-yMX" firstAttribute="leading" secondItem="Ffi-Y7-cB6" secondAttribute="trailing" constant="33" id="2GD-SO-7ZN"/>
                             <constraint firstItem="Ffi-Y7-cB6" firstAttribute="leading" secondItem="PyY-Di-jez" secondAttribute="leading" id="2Ve-UT-IQQ"/>
@@ -8012,7 +8012,7 @@
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="cy1-qo-BdH">
                                                             <rect key="frame" x="2" y="0.0" width="50" height="50"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="12N-PW-JLJ"/>
+                                                                <constraint firstAttribute="width" constant="50" id="GuV-Og-Xyf"/>
                                                                 <constraint firstAttribute="height" constant="50" id="WL9-Uu-MGh"/>
                                                                 <constraint firstAttribute="width" constant="50" id="eyw-x3-UEp"/>
                                                             </constraints>
@@ -8190,7 +8190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F89-Za-90i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3048.8000000000002" y="4099.7001499250382"/>
+            <point key="canvasLocation" x="3056.8000000000002" y="4099.7001499250382"/>
         </scene>
         <!--Each City Pager View Controller-->
         <scene sceneID="lMp-77-VbT">
@@ -10282,7 +10282,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98o-sd-2pD">
                                                     <rect key="frame" x="0.0" y="0.0" width="165" height="165"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c9L-hh-PQe">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="c9L-hh-PQe">
                                                             <rect key="frame" x="8" y="10" width="153" height="147"/>
                                                             <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </imageView>

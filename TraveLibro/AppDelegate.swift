@@ -83,7 +83,7 @@ let screenSize = UIScreen.main.bounds
 let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 
-let HEADER_HEIGHT = (screenWidth * 0.2)
+let HEADER_HEIGHT = (screenWidth * 0.15)
 let FOOTER_HEIGHT = CGFloat(30)
 let IMAGE_HEIGHT = screenWidth * 0.6
 let TITLE_HEIGHT = 80

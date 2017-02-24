@@ -1,6 +1,8 @@
 import UIKit
 import DKChainableAnimationKit
 import Toaster
+import SwiftGifOrigin
+
 
 var doRemove: Bool = true
 var globalProfileController:ProfileViewController!
@@ -16,13 +18,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     @IBOutlet weak var isPhotographer: UILabel!
     @IBOutlet weak var moreAboutMe: UILabel!
     var myLifeVC:MyLifeViewController!
-    
     var profile: ProfilePicFancy!
     var orangeTab:OrangeButton!
     var footer:FooterViewNew!
     var MAM: MoreAboutMe!
     var displayData: String = ""
-    
+    var imageView1: UIImageView!
+    var loader: UIView!
     var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
     
@@ -67,7 +69,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)        
+        super.viewWillAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -116,6 +118,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 }
             }
             profileCollectionView.reloadData()
+            
         }
         
     }
@@ -125,13 +128,21 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         print("my user oooouuu.")
         print(user.getExistingUser())
         super.viewDidLoad()
+        
+        loader = UIView(frame:CGRect(x: 100, y: 200, width: mainProfileView.frame.size.width/2, height: mainProfileView.frame.size.height/2))
+        view.addSubview(loader)
+        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: mainProfileView.frame.size.width/2, height: mainProfileView.frame.size.height/2))
+        imageView1.backgroundColor = UIColor.white
+        imageView1.image = UIImage.gif(name: "loader")
+        imageView1.contentMode = .center
+        loader.addSubview(imageView1)
         self.title = ""
 //        scrollImage.isScrollEnabled =  true
 //        scrollImage.contentSize.width = 10000
 //        scrollViewWillBeginDragging(collectionView)
         myLifeVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
         
-        if traitCollection.forceTouchCapability == .available {
+                if traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: view)
         }
         
@@ -179,19 +190,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     
     func onLoaded() {
-        
+        loader?.removeFromSuperview()
         self.allCount = currentUser
-        
-        
         
         profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
         profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
-        
         footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
         self.view.addSubview(footer)
-
-        
         
         profilePicture.isHidden = true
         
@@ -270,7 +276,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         
         
         profile_badge.image = UIImage(named:currentUser["userBadgeName"].stringValue.lowercased())
-        
+
     }
     
     
@@ -281,6 +287,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     
     override func viewDidAppear(_ animated: Bool) {
+        
         globalNavigationController = self.navigationController
         self.getUser()
     }
@@ -297,8 +304,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //                }
                 self.onLoaded()
                 self.setCount()
+                
             }
         });
+       
     }
     
     func openNotifications(_ sender: UITapGestureRecognizer) {
@@ -312,8 +321,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
         }
         
-        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
-        vc.whichView = "Notify"
+        let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController        
         self.navigationController?.pushViewController(vc, animated: false)
         
         

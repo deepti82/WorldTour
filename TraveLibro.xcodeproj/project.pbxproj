@@ -102,6 +102,7 @@
 		840599851E3CDB2B004E0696 /* DropShadow1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840599841E3CDB2B004E0696 /* DropShadow1.swift */; };
 		840599881E3CDBA6004E0696 /* DropShadow2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599871E3CDBA6004E0696 /* DropShadow2.xib */; };
 		8405998A1E3CDC4C004E0696 /* DropShadow2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840599891E3CDC4C004E0696 /* DropShadow2.swift */; };
+		840E256F1E5EF423003220FE /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840E256E1E5EF423003220FE /* LoaderViewController.swift */; };
 		841C9C461E14FAA6004E4CDD /* PhotosOTGController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */; };
 		841E43A71E1D1C7B000D2E6B /* UploadingToCloud.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841E43A61E1D1C7B000D2E6B /* UploadingToCloud.xib */; };
 		841E43A91E1D1CA4000D2E6B /* UploadingToCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E43A81E1D1CA4000D2E6B /* UploadingToCloud.swift */; };
@@ -606,6 +607,7 @@
 		840599841E3CDB2B004E0696 /* DropShadow1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadow1.swift; sourceTree = "<group>"; };
 		840599871E3CDBA6004E0696 /* DropShadow2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropShadow2.xib; sourceTree = "<group>"; };
 		840599891E3CDC4C004E0696 /* DropShadow2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadow2.swift; sourceTree = "<group>"; };
+		840E256E1E5EF423003220FE /* LoaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
 		841C9C451E14FAA6004E4CDD /* PhotosOTGController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosOTGController.swift; sourceTree = "<group>"; };
 		841E43A61E1D1C7B000D2E6B /* UploadingToCloud.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadingToCloud.xib; sourceTree = "<group>"; };
 		841E43A81E1D1CA4000D2E6B /* UploadingToCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadingToCloud.swift; sourceTree = "<group>"; };
@@ -2087,6 +2089,7 @@
 				FCA9E4211E00145B00F0845A /* QuickIteneraryTableViewController.swift */,
 				FCDF490C1E26054700ED9A32 /* QuickPhotosCollectionViewController.swift */,
 				FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */,
+				840E256E1E5EF423003220FE /* LoaderViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -3388,6 +3391,7 @@
 				C2823B051D464E800065A76C /* startOTGView.swift in Sources */,
 				C248704F1D0C25B9003CB0DD /* ExploreHotelsViewController.swift in Sources */,
 				C24B456B1D0AF674002EA009 /* EachMustDo.swift in Sources */,
+				840E256F1E5EF423003220FE /* LoaderViewController.swift in Sources */,
 				C25F48861CF310FB00C6C28C /* MomentsTableViewController.swift in Sources */,
 				3AEEB00B1CE7017E0085EEF5 /* Rating.swift in Sources */,
 				842019C41E5C8641001F97E3 /* EndJourneyMyLife.swift in Sources */,
@@ -3603,7 +3607,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/.build/debug Sources/CSQLite/";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3738,6 +3742,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

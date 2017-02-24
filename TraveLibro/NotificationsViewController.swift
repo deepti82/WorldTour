@@ -23,13 +23,11 @@ class NotificationsViewController: UIViewController {
         
         var controllerArray : [UIViewController] = []
         
-        let controller = storyboard!.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
-        controller.whichView = "Notify"
+        let controller = storyboard!.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController        
         controller.title = "Notifications"
         controllerArray.append(controller)
         
-        let controllerTwo = storyboard!.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
-        controllerTwo.whichView = "Messages"
+        let controllerTwo = storyboard!.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController        
         controllerTwo.title = "Messages"
         controllerArray.append(controllerTwo)
         

@@ -97,10 +97,10 @@ class NotificationFollowRequestCell: UITableViewCell {
         NFPermission.NFRightButton.isHidden = false
         NFPermission.NFStatusLabel.isHidden = true
         
-        NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
+        NFPermission.NFLeftButton.setTitle("ACCEPT", for: .normal)
         NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
         
-        NFPermission.NFRightButton.setTitle("Decline", for: .normal)
+        NFPermission.NFRightButton.setTitle("DECLINE", for: .normal)
         NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
         
         

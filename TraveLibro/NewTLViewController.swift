@@ -23,7 +23,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     var myJourney: JSON!
     var isJourney = false
-    
+    var imageView1: UIImageView!
+    var loader: UIView!
     var height: CGFloat!
     var otgView:startOTGView!
     var showDetails = false
@@ -1010,6 +1011,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
@@ -2071,7 +2074,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)
             
             request.addNewOTG(journeyName, userId: currentUser["_id"].string!, startLocation: locationData, kindOfJourney: journeyCategories, timestamp: currentTime, lp: locationPic, completion: {(response) in
-                
+//                self.loader.removeFromSuperview()
                 DispatchQueue.main.async(execute: {
                     
                     if response.error != nil {

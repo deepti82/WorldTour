@@ -33,8 +33,8 @@
                 <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WyL-Eg-888">
                     <rect key="frame" x="0.0" y="0.0" width="500" height="120"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_icon" translatesAutoresizingMaskIntoConstraints="NO" id="KJ8-F2-pUc">
-                            <rect key="frame" x="25" y="0.0" width="100" height="100"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="KJ8-F2-pUc">
+                            <rect key="frame" x="20" y="0.0" width="75" height="75"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="KJ8-F2-pUc" secondAttribute="height" multiplier="1:1" id="3Lo-JR-dD6"/>
                             </constraints>
@@ -45,10 +45,10 @@
                             </userDefinedRuntimeAttributes>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nU2-tQ-5Iw">
-                            <rect key="frame" x="133" y="42" width="297" height="17"/>
+                            <rect key="frame" x="105" y="29" width="325" height="17"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aqi-Cj-L7a">
-                                    <rect key="frame" x="0.0" y="5" width="24.5" height="12"/>
+                                    <rect key="frame" x="0.0" y="5" width="25" height="12"/>
                                     <color key="tintColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="12" id="Jgl-lR-B0D"/>
@@ -58,7 +58,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuE-2m-UT0">
-                                    <rect key="frame" x="89" y="5" width="1" height="15"/>
+                                    <rect key="frame" x="90" y="5" width="1" height="15"/>
                                     <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     <constraints>
@@ -67,7 +67,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPB-gu-ade">
-                                    <rect key="frame" x="95" y="5" width="24.5" height="12"/>
+                                    <rect key="frame" x="96" y="5" width="25" height="12"/>
                                     <color key="tintColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="12" id="5ct-Uv-KlU"/>
@@ -77,7 +77,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan 2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PdG-nb-wco">
-                                    <rect key="frame" x="29.5" y="5" width="54.5" height="12"/>
+                                    <rect key="frame" x="30" y="5" width="55" height="12"/>
                                     <color key="tintColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="12" id="X4m-Se-t3M"/>
@@ -87,7 +87,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:20 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0p-jA-o46">
-                                    <rect key="frame" x="124.5" y="5" width="42.5" height="12"/>
+                                    <rect key="frame" x="126" y="5" width="43" height="12"/>
                                     <color key="tintColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="12" id="Crh-cS-GPp"/>
@@ -115,12 +115,12 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="KJ8-F2-pUc" firstAttribute="width" secondItem="WyL-Eg-888" secondAttribute="width" multiplier="0.2" id="1sp-lc-gbJ"/>
-                        <constraint firstItem="KJ8-F2-pUc" firstAttribute="leading" secondItem="WyL-Eg-888" secondAttribute="leading" constant="25" id="EAP-3K-y7h"/>
+                        <constraint firstItem="KJ8-F2-pUc" firstAttribute="width" secondItem="WyL-Eg-888" secondAttribute="width" multiplier="0.15" id="1sp-lc-gbJ"/>
+                        <constraint firstItem="KJ8-F2-pUc" firstAttribute="leading" secondItem="WyL-Eg-888" secondAttribute="leading" constant="20" id="EAP-3K-y7h"/>
                         <constraint firstItem="KJ8-F2-pUc" firstAttribute="centerY" secondItem="nU2-tQ-5Iw" secondAttribute="centerY" id="EFG-dO-Cyf"/>
                         <constraint firstAttribute="trailing" secondItem="nU2-tQ-5Iw" secondAttribute="trailing" priority="250" constant="70" id="FiK-Lg-IdK"/>
                         <constraint firstItem="KJ8-F2-pUc" firstAttribute="top" secondItem="WyL-Eg-888" secondAttribute="top" id="WaE-M2-EIr"/>
-                        <constraint firstItem="nU2-tQ-5Iw" firstAttribute="leading" secondItem="KJ8-F2-pUc" secondAttribute="trailing" constant="8" id="pEB-YE-9Hp"/>
+                        <constraint firstItem="nU2-tQ-5Iw" firstAttribute="leading" secondItem="KJ8-F2-pUc" secondAttribute="trailing" constant="10" id="pEB-YE-9Hp"/>
                     </constraints>
                 </view>
             </subviews>
@@ -137,6 +137,6 @@
         </view>
     </objects>
     <resources>
-        <image name="empty_icon" width="80" height="80"/>
+        <image name="logo-default" width="600" height="600"/>
     </resources>
 </document>

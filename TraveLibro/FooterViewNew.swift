@@ -98,8 +98,7 @@ class FooterViewNew: UIView {
         request.getUser(user.getExistingUser(), completion: {(request) in
             DispatchQueue.main.async {
                 currentUser = request["data"]
-                let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController
-                vc.whichView = "Notify"
+                let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController                
                 globalNavigationController?.pushViewController(vc, animated: false)
             }
         })

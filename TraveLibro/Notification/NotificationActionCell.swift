@@ -106,10 +106,10 @@ class NotificationActionCell: UITableViewCell {
                 NFMessage.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: messageHeight)        
                 totalHeight += messageHeight            
                 
-                NFPermission.NFLeftButton.setTitle("End", for: .normal)
+                NFPermission.NFLeftButton.setTitle("END", for: .normal)
                 NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyEndTabbed(_:)), for: .touchUpInside)
                 
-                NFPermission.NFRightButton.setTitle("Decline", for: .normal)
+                NFPermission.NFRightButton.setTitle("DECLINE", for: .normal)
                 NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyEndDeclined(_:)), for: .touchUpInside)            
             }
             else if notificationData["type"] == "journeyRequest" {
@@ -127,10 +127,10 @@ class NotificationActionCell: UITableViewCell {
                 totalHeight += messageHeight
                 
                 
-                NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
+                NFPermission.NFLeftButton.setTitle("ACCEPT", for: .normal)
                 NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
                 
-                NFPermission.NFRightButton.setTitle("Decline", for: .normal)
+                NFPermission.NFRightButton.setTitle("DECLINE", for: .normal)
                 NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
             }            
         }
