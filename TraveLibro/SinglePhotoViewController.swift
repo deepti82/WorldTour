@@ -31,6 +31,10 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     var commentCount:Int = 0
     var hasLiked: Bool!
     
+    var whichView = ""
+    
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loader.showOverlay(self.view)
@@ -77,7 +81,12 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
         
         currentIndex = index
         
-        getPost(postId!)
+        if whichView == "detail_itinerary" {
+            getSinglePhoto(photos[index]["_id"].stringValue)
+        }
+        else {
+            getPost(postId!)
+        }
         
     }
 
@@ -130,7 +139,16 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             })
         }
         else {
-            request.postPhotosLike(photos[currentIndex!]["_id"].string!, postId: postId!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
+            
+            var val = ""
+            if whichView == "detail_itinerary" {
+                val = photos[currentIndex]["itinerary"].stringValue
+            }
+            else {
+                val = postId
+            }
+            
+            request.postPhotosLike(photos[currentIndex!]["_id"].string!, postId: val, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
                     
@@ -172,7 +190,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     
     @IBAction func sendComment(_ sender: UIButton) {
         let comment = storyboard?.instantiateViewController(withIdentifier: "photoComment") as! PhotoCommentViewController
-        comment.postId = postId!
+        comment.postId = (whichView == "detail_itinerary" ? photos[currentIndex]["itinerary"].stringValue : postId!)
         comment.commentText = self.commentText
         if singlePhotoJSON != nil {
             comment.otherId = singlePhotoJSON["name"].string!
@@ -218,13 +236,13 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
                 self.getSinglePhoto("")
             }
         }else{
-        if currentIndex < 0 {
-            currentIndex = Int(currentIndex) + 1
-        } else {
-            print(photos)
-            print(photos[currentIndex])
-            self.getSinglePhoto(photos[currentIndex!]["_id"].string!)
-        }
+            if currentIndex < 0 {
+                currentIndex = Int(currentIndex) + 1
+            } else {
+                print(photos)
+                print(photos[currentIndex])
+                self.getSinglePhoto(photos[currentIndex!]["_id"].string!)
+            }
         }
     }
     
@@ -302,16 +320,16 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             self.imageCaption.text = data["caption"].string!
         }
         
-//        if data["like"].array!.contains(JSON(user.getExistingUser())) {
-//            
-//            self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
-//            self.likeButton.tintColor = UIColor.white
-//            self.hasLiked = true
-//        } else {
-//            
-//            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
-//            self.hasLiked = false
-//        }
+        if data["like"].array!.contains(JSON(user.getExistingUser())) {
+            
+            self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeButton.tintColor = UIColor.white
+            self.hasLiked = true
+        } else {
+            
+            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+            self.hasLiked = false
+        }
         
         if(data["likeCount"].int != nil) {
             self.likeCount = data["likeCount"].int!
@@ -345,15 +363,15 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
         }
         
         
-//        if (data["likeDone"].bool != nil && data["likeDone"].bool! ) {
-//            self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
-//            self.likeButton.tintColor = UIColor.white
-//            self.hasLiked = true
-//        }
-//        else {
-//            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
-//            self.hasLiked = false
-//        }
+        if (data["likeDone"].bool != nil && data["likeDone"].bool! ) {
+            self.likeButton.setImage(UIImage(named: "favorite-heart-button")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            self.likeButton.tintColor = UIColor.white
+            self.hasLiked = true
+        }
+        else {
+            self.likeButton.setImage(UIImage(named: "likeButton"), for: .normal)
+            self.hasLiked = false
+        }
         
         if(data["likeCount"].int != nil) {
             self.likeCount = data["likeCount"].int!
@@ -385,7 +403,15 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
         if photoId == "" {
             self.fromPhotoFunction(data: allDataFromMyLife[self.currentIndex])
         }else{
-        request.getOnePostPhotos(photoId, singlePost["user"]["_id"].string!, completion: {(response) in
+            print("singlePost \(singlePost)")
+            var val = ""
+            if whichView == "detail_itinerary" {
+                val = currentUser["_id"].stringValue
+            }
+            else {
+                val = singlePost["user"]["_id"].string!
+            }
+        request.getOnePostPhotos(photoId, val, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
                 

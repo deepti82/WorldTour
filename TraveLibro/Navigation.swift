@@ -3095,6 +3095,7 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
+                    print("\n\n Itinerary : \(json) \n\n")
                     completion(json)
                 }
             }

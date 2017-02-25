@@ -11,6 +11,7 @@ import Toaster
 
 class NotificationSubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var mainFooter: FooterViewNew!
     var notifications: [JSON] = []
     let refreshControl = UIRefreshControl()
     var currentPageNumber = 0
@@ -24,7 +25,13 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loader.showOverlay(self.view)
+
+        loader.showOverlay(self.view)        
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
+        self.mainFooter.layer.zPosition = 5
+        self.view.addSubview(self.mainFooter)
+        
+
         self.title = "Notifications"
         
         getDarkBackGround(self)
@@ -42,7 +49,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -612,6 +618,33 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
         tlVC.displayData = "activity"
         globalNavigationController?.pushViewController(tlVC, animated: false)
+    }
+    
+    
+    //MARK: - Scroll Delagtes
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            hideHeaderAndFooter(true);
+        }
+        else{
+            hideHeaderAndFooter(false);
+        }
+        
+    }
+    
+    func hideHeaderAndFooter(_ isShow:Bool) {
+        if(isShow) {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            
+            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+        } else {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            
+            self.mainFooter.frame.origin.y = self.view.frame.height - 70
+            
+        }
     }
 }
 

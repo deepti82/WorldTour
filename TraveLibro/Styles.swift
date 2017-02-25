@@ -461,7 +461,49 @@ func getRedString(string: String) -> NSMutableAttributedString {
                                      attributes: [NSForegroundColorAttributeName: UIColor.red])
 }
 
+func convertDateFormate(dateStr : String) -> String{
+    
+    let globalDateFormatter = DateFormatter()
+    globalDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSZ"
+    let date = globalDateFormatter.date(from: dateStr)
+    
+    // Day
+    let calendar = Calendar.current
+    let anchorComponents = calendar.dateComponents([.day, .month, .year], from: date!)
+    
+    // Formate    
+    globalDateFormatter.dateFormat = "MMMM, yy"
+    let newDate = globalDateFormatter.string(from: date!)
+    
+    var day  = "\(anchorComponents.day!)"
+    switch (day) {
+    case "1" , "21" , "31":
+        day.append("st")
+    case "2" , "22":
+        day.append("nd")
+    case "3" ,"23":
+        day.append("rd")
+    default:
+        day.append("th")
+    }
+    return day + " " + newDate
+}
 
+func getPlainTextFromHTMLContentText(str : String?) -> String {
+    
+    if str != nil && str != "" {
+        do {
+            let regex =  "<[^>]+>"
+            let expr = try NSRegularExpression(pattern: regex, options: NSRegularExpression.Options.caseInsensitive)
+            let replacement = expr.stringByReplacingMatches(in: str!, options: [], range: NSMakeRange(0, (str!.characters.count)), withTemplate: "")
+            return replacement
+            //replacement is the result
+        } catch {
+            // regex was bad!
+        }
+    }
+    return ""
+}
 
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks

@@ -90,9 +90,10 @@ let TITLE_HEIGHT = 80
 let BUTTON_HEIGHT = CGFloat(40)
 let DETAILS_HEIGHT = CGFloat(50)
 
+let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels-1", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDelegate {
     
     var window: UIWindow?
     
@@ -138,8 +139,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
             nvc.navigationBar.barStyle = .blackTranslucent
             nvc.navigationBar.isTranslucent = true
+            nvc.delegate = self
             
-        } else {
+        } 
+        else {
             request.getUser(user.getExistingUser(), completion: {(request) in
                 DispatchQueue.main.async {
                     currentUser = request["data"]
@@ -160,9 +163,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
                     nvc.navigationBar.barStyle = .blackTranslucent
                     nvc.navigationBar.isTranslucent = true
+                    nvc.delegate = self
                 }
             })
-        }        
+        }
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -252,6 +256,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        print("\n Controllers : \(navigationController.viewControllers)")
+        var prevVC = UIViewController()
+        if (navigationController.viewControllers.count > 1 ) {
+            prevVC = navigationController.viewControllers[navigationController.viewControllers.count - 1]
+            prevVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+    }
+    
+    
     
 }
 
