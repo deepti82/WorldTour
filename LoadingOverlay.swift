@@ -26,12 +26,13 @@ extension UIViewController {
         func showOverlay(_ view: UIView) {
             
             print("show loader")
-            loader = UIView(frame:CGRect(x: 100, y: 200, width: view.frame.size.width/2, height: view.frame.size.height/2))
+            loader = UIView(frame:CGRect(x: 0, y: 0, width: 100, height: 100))
             view.addSubview(loader)
-            let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width/2, height: view.frame.size.height/2))
-//            imageView1.backgroundColor = UIColor.white
+            loader.center = view.center
+            let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+            imageView1.backgroundColor = UIColor.white
             imageView1.image = UIImage.gif(name: "loader")
-            imageView1.contentMode = .center
+            imageView1.contentMode = .scaleAspectFit
             loader.addSubview(imageView1)
             
         }

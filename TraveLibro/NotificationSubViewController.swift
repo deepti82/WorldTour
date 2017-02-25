@@ -16,7 +16,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     var currentPageNumber = 0
     var hasNext = true
     var currentCellHeight = CGFloat(10)
-    
+    var loader = LoadingOverlay()
     @IBOutlet weak var notifyTableView: UITableView!
     
     
@@ -24,7 +24,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loader.showOverlay(self.view)
         self.title = "Notifications"
         
         getDarkBackGround(self)
@@ -69,7 +69,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             Toast(text: "Please wait ...").show()
             
             request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
-                
+                self.loader.hideOverlayView()
                 DispatchQueue.main.async(execute: {
                     
                     if response.error != nil {

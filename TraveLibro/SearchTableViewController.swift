@@ -10,7 +10,7 @@ import UIKit
 import DKChainableAnimationKit
 
 class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate, UISearchResultsUpdating {
-    
+    var loader = LoadingOverlay()
     var searchController: UISearchController!
     @IBOutlet weak var hashtagsTable: UITableView!
     @IBOutlet weak var searchTable: UITableView!
@@ -29,6 +29,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     var newSearch:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        loader.showOverlay(self.view)
         print(newSearch)
         transparentCardWhite(selectStrip)
         sliderView.isHidden = false
@@ -93,6 +94,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
         }}
     
     func searchPeople(search: String) {
+        loader.hideOverlayView()
         loadStatus = false
         if search != "" {
             request.getPeopleSearch(currentUser["_id"].stringValue, search: search, pageNumber: self.page, completion:{(request) in
@@ -125,15 +127,17 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func searchHashtags(search: String) {
+        loader.hideOverlayView()
         loadStatus = false
         if search != "" {
             request.getHashtagSearch(search, pageNumber: page, completion:{(request) in
                 if request["data"].count > 0 {
+                    self.loader.hideOverlayView()
                     if self.page == 1 {
                         self.allData = []
                         self.allData = request["data"].array!
                     }else{
-                        
+                        self.loader.showOverlay(self.view)
                         for city in request["data"].array! {
                             self.allData.append(city)
                             

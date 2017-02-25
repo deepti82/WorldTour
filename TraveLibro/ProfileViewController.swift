@@ -7,7 +7,7 @@ import SwiftGifOrigin
 var doRemove: Bool = true
 var globalProfileController:ProfileViewController!
 class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UIViewControllerPreviewingDelegate {
-
+   
     @IBOutlet weak var scrollImage: UIScrollView!
     @IBOutlet weak var countryName: UILabel!
     @IBOutlet weak var livesInStack: UIStackView!
@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var MAM: MoreAboutMe!
     var displayData: String = ""
     var imageView1: UIImageView!
-    var loader: UIView!
+    var loader = LoadingOverlay()
     var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
     dynamic var profileViewYPosition: CGFloat = 0
     
@@ -129,13 +129,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         print(user.getExistingUser())
         super.viewDidLoad()
         
-        loader = UIView(frame:CGRect(x: 100, y: 200, width: mainProfileView.frame.size.width/2, height: mainProfileView.frame.size.height/2))
-        view.addSubview(loader)
-        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: mainProfileView.frame.size.width/2, height: mainProfileView.frame.size.height/2))
-        imageView1.backgroundColor = UIColor.white
-        imageView1.image = UIImage.gif(name: "loader")
-        imageView1.contentMode = .center
-        loader.addSubview(imageView1)
+        loader.showOverlay(self.view)
         self.title = ""
 //        scrollImage.isScrollEnabled =  true
 //        scrollImage.contentSize.width = 10000
@@ -190,7 +184,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     
     
     func onLoaded() {
-        loader?.removeFromSuperview()
+        self.loader.hideOverlayView()
         self.allCount = currentUser
         
         profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
