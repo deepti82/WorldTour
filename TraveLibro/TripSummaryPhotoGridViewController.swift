@@ -13,7 +13,7 @@ import Spring
 
 
 class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackControllerDelegate, PlayerDelegate, UICollectionViewDelegateFlowLayout {
-    
+    var loader = LoadingOverlay()
     var journeyId = ""
     var myPhotos: [String] = []
     var videos: JSON = []
@@ -21,11 +21,11 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     var type = ""
     var videoContainer:VideoView!
     var player:Player!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        loader.showOverlay(self.view)
         getJourneyPhotos()
         
     }
@@ -63,7 +63,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
                             self.videos = response["data"]["videos"]
                         }
                         self.collectionView!.reloadData()
-                        
+                        self.loader.hideOverlayView()
                     }
                     else {
                         

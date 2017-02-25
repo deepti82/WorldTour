@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 var globalNearMe:NearMeListViewController!
 class NearMeListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
-    
+    var loader = LoadingOverlay()
     var city: String!
     var nearMeType: String!
     var ratingIndex: Int!
@@ -27,6 +27,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         getDarkBackGround(self)
+        loader.showOverlay(self.view)
         navigationController?.hidesBarsOnSwipe = false
         //nearMeListTableView.isHidden = true
         setTopNavigation(nearMeType)
@@ -69,6 +70,7 @@ class NearMeListViewController: UIViewController, UITableViewDataSource, UITable
                         
                         self.nearMeListJSON = response["data"].array!
                         self.nearMeListTableView.reloadData()
+                    self.loader.hideOverlayView()
                     }
                     else {
                         print("response error")

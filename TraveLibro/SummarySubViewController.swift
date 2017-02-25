@@ -11,7 +11,7 @@ import UIKit
 
 class SummarySubViewController: UIViewController, UIScrollViewDelegate {
 
-   
+    var loader = LoadingOverlay()
     var labels: [JSON] = []
     var images = ["restaurantsandbars", "leaftrans", "hotels-1", "shopping-1", "nature_checkin", "sightstrans", "museumstrans", "zootrans", "religious-1", "cinematrans", "planetrans", "othersdottrans", "city_icon"]
     var journeyId = ""
@@ -24,7 +24,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGround(self)
-
+        loader.showOverlay(self.view)
         createNavigation()
         tripScroll.delegate = self
         self.cellSubview = VerticalLayout(width: 300)
@@ -140,6 +140,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func getCount() {
+        loader.hideOverlayView()
         request.getTripSummaryCount("tripSummary", journeyId: journeyId, userId: currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 print(response["data"])
