@@ -3509,7 +3509,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -6602,7 +6602,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TL-ak-Fv5">
-                                <rect key="frame" x="0.0" y="65" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uI1-E4-tcw">
                                         <rect key="frame" x="0.0" y="5" width="131" height="30"/>
@@ -6643,17 +6643,14 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Traveller Found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlf-hU-nVM">
-                                <rect key="frame" x="0.0" y="113" width="375" height="37"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="82"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="0.97104974509999997" green="0.9750611347" blue="0.98709530339999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LvD-WD-w8s">
-                                <rect key="frame" x="0.0" y="106" width="375" height="561"/>
+                                <rect key="frame" x="0.0" y="61" width="375" height="606"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80239207469999996" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="561" id="k2v-cj-87d"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="search" rowHeight="82" id="9nI-H6-uxz" customClass="searchPeople" customModule="TraveLibro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="82"/>
@@ -6729,7 +6726,7 @@
                             <constraint firstItem="LvD-WD-w8s" firstAttribute="leading" secondItem="7TL-ak-Fv5" secondAttribute="leading" id="RvU-vy-c40"/>
                             <constraint firstItem="LvD-WD-w8s" firstAttribute="bottom" secondItem="lpA-ic-Kjy" secondAttribute="top" id="SEo-23-vey"/>
                             <constraint firstItem="lpA-ic-Kjy" firstAttribute="top" secondItem="Hlf-hU-nVM" secondAttribute="bottom" constant="517" id="aoU-aT-yuV"/>
-                            <constraint firstItem="7TL-ak-Fv5" firstAttribute="centerX" secondItem="TlN-bW-6yf" secondAttribute="centerX" id="iBT-k9-keK"/>
+                            <constraint firstItem="7TL-ak-Fv5" firstAttribute="top" secondItem="apX-6N-M5U" secondAttribute="bottom" id="j3l-Xn-m5W"/>
                         </constraints>
                     </view>
                     <connections>
