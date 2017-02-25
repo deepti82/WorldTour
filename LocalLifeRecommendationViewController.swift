@@ -24,14 +24,14 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     var whichView = "noView"
     var locValue:CLLocationCoordinate2D!
     var json:JSON!
-    
+    var loader = LoadingOverlay()
     @IBOutlet weak var thisScroll: UIScrollView!
     var layout:VerticalLayout!
     
     @IBOutlet weak var plusButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loader.hideOverlayView()
         let i = PostImage()
         i.uploadPhotos()
         
@@ -434,7 +434,7 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        loader.hideOverlayView()
         if manager.location?.coordinate != nil {
             locValue = manager.location!.coordinate
             print(locValue);

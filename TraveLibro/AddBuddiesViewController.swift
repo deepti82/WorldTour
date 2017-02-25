@@ -14,7 +14,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var buddiesCollectionView: UICollectionView!
     @IBOutlet weak var buddiesTableView: UITableView!
     @IBOutlet weak var allFriends: UILabel!
-    
+    var loader = LoadingOverlay()
     var buddies:[Buddy]!
     var friendsTag:UIImageView!
     var friendsCount:UIButton!
@@ -55,6 +55,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loader.showOverlay(self.view)
         //        moveUp()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         print("which view: \(buddiesStatus)")
@@ -152,8 +153,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             request.getBuddySearch(currentUser["_id"].string!, searchtext: searchText, completion: {(response) in
                 DispatchQueue.main.async(execute: {
-                    
-                    
+                    self.loader.hideOverlayView()
+                
                     
                     if response.error != nil {
                         print("error; \(response.error!.localizedDescription)")

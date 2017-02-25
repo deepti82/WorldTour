@@ -24,7 +24,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var myJourney: JSON!
     var isJourney = false
     var imageView1: UIImageView!
-    var loader: UIView!
+    var loader = LoadingOverlay()
     var height: CGFloat!
     var otgView:startOTGView!
     var showDetails = false
@@ -697,6 +697,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getJourney() {
+        self.loader.hideOverlayView()
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
@@ -1011,8 +1012,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        loader.showOverlay(self.view)
         ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
@@ -2069,7 +2069,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func showDetailsFn(isEdit: Bool) {
         
         if !isJourneyOngoing {
-            
             self.journeyName = otgView.nameJourneyTF.text!
             height = 40.0
             mainScroll.animation.thenAfter(0.5).makeY(mainScroll.frame.origin.y - height).animate(0.5)

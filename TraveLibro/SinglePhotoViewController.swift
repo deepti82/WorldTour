@@ -259,7 +259,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
         } else {
             
         request.getOneJourneyPost(id: postId, completion: {(response) in
-            
             DispatchQueue.main.async(execute: {
                 
                 if response.error != nil {
@@ -382,6 +381,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     }
     
     func getSinglePhoto(_ photoId: String) {
+       loader.hideOverlayView()
         if photoId == "" {
             self.fromPhotoFunction(data: allDataFromMyLife[self.currentIndex])
         }else{
