@@ -75,8 +75,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             Toast(text: "Please wait ...").show()
             
             request.getNotify(currentUser["_id"].string!, pageNumber: currentPageNumber,  completion: {(response) in
-                self.loader.hideOverlayView()
+                
                 DispatchQueue.main.async(execute: {
+                    self.loader.hideOverlayView()
                     
                     if response.error != nil {
                         
@@ -138,6 +139,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             shouldLoadCommentCell = false
         }
         else if (notificationData["data"]["type"].string == "photo") {
+            shouldLoadCommentCell = false
+        }
+        else if (notificationData["data"]["type"].string == "video") {
             shouldLoadCommentCell = false
         }
         else if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {

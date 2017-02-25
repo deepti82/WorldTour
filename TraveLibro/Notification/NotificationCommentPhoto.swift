@@ -36,10 +36,13 @@ class NotificationCommentPhoto: UIView {
     func setPhoto(data: JSON) {
         
         var imageURL = "" 
-        NFPlayImage.isHidden = true
+        NFPlayImage.isHidden = true        
         
         if (data["type"].string == "photo") {
             imageURL = data["name"].stringValue
+        }
+        else if (data["type"].string == "video") {
+            imageURL = data["thumbnail"].stringValue
         }
         else if ((data["videos"].array?.count)! > 0) {
             //Showing img for video

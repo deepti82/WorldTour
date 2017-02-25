@@ -91,6 +91,8 @@ class NotificationPhotoCell: UITableViewCell {
         NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
         totalHeight += titleHeight
         
+        NFPhoto.NFPhotoImage.image = UIImage(named: "logo-default")
+        
         NFPhoto.frame = CGRect(x: 0, y: totalHeight-CGFloat(10), width: screenWidth, height: IMAGE_HEIGHT)
         if notificationData["type"] == "journeyMentionComment" ||
             notificationData["type"] == "journeyComment" ||
