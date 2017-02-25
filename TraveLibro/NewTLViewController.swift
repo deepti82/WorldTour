@@ -1745,6 +1745,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
+                    
                 } else if response["value"].bool! {
                     print("edited date time response")
                     self.journeyDateChanged(date: "\(self.dateSelected)T\(self.timeSelected).000Z")

@@ -31,7 +31,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var cityName = ""
     var selectedView = 1
     var loadStatus:Bool = true
-    
+    var loader = LoadingOverlay()
     
     
     override func viewDidLoad() {

@@ -26,14 +26,14 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     var videos:[JSON]!
     var singlePost: JSON!
     var allDataFromMyLife: [JSON] = []
-    
+    var loader = LoadingOverlay()
     var likeCount:Int = 0
     var commentCount:Int = 0
     var hasLiked: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loader.showOverlay(self.view)
         print("current post \(postId!) \(index!)")
         
         let leftButton = UIButton(frame: CGRect(x: 20, y: 30, width: 30, height: 30))
