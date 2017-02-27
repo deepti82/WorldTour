@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogInView" customModule="TraveLibro" customModuleProvider="target">
             <connections>
                 <outlet property="fbButton" destination="rpu-Cz-L1X" id="e62-Ks-G8y"/>
                 <outlet property="googleButton" destination="voY-fl-hF0" id="zyi-vG-gMH"/>
-                <outlet property="igButton" destination="clS-oF-gHI" id="oLt-U6-u1e"/>
                 <outlet property="logInButton" destination="Guu-nG-DDS" id="yQu-KM-2fV"/>
                 <outlet property="nameField" destination="tHb-Aa-c8A" id="Fej-38-fj6"/>
                 <outlet property="passwordField" destination="bUx-2b-yYe" id="rCU-yv-i6Z"/>
-                <outlet property="twitterButton" destination="T3B-3R-qfo" id="Dmw-5u-9Ic"/>
                 <outletCollection property="socialLoginButtons" destination="rpu-Cz-L1X" collectionClass="NSMutableArray" id="0ox-pA-4Le"/>
-                <outletCollection property="socialLoginButtons" destination="T3B-3R-qfo" collectionClass="NSMutableArray" id="Okn-Kw-dlb"/>
-                <outletCollection property="socialLoginButtons" destination="clS-oF-gHI" collectionClass="NSMutableArray" id="Nfo-a8-Vwz"/>
                 <outletCollection property="socialLoginButtons" destination="voY-fl-hF0" collectionClass="NSMutableArray" id="Xuf-4O-yvT"/>
             </connections>
         </placeholder>
@@ -37,13 +37,13 @@
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Guu-nG-DDS">
                     <rect key="frame" x="8" y="164" width="384" height="60"/>
-                    <color key="backgroundColor" red="1" green="0.40784314274787903" blue="0.34509804844856262" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="1" green="0.40784314274787903" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="xrL-4f-fYL"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                     <state key="normal" title="Login">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bUx-2b-yYe">
@@ -59,42 +59,31 @@
                     <rect key="frame" x="295" y="127" width="97" height="29"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                     <state key="normal" title="Forgot Password?">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Login Via" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwH-o7-Tm9">
                     <rect key="frame" x="155" y="248" width="90" height="22"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Ji-Fr-Ac2">
-                    <rect key="frame" x="85" y="278" width="230" height="50"/>
+                    <rect key="frame" x="95" y="278" width="210" height="100"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpu-Cz-L1X">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="calibratedRGB"/>
+                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                            <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="50" id="f0G-py-X9B"/>
-                                <constraint firstAttribute="height" constant="50" id="shj-2f-HxC"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="i9N-Tk-pDt"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="nms-NK-9fO"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                             <state key="normal" image="facebook_icon"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3B-3R-qfo">
-                            <rect key="frame" x="60" y="0.0" width="50" height="50"/>
-                            <color key="backgroundColor" red="0.0" green="0.67450980392156867" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
-                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                            <state key="normal" image="twitter_icon"/>
-                        </button>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clS-oF-gHI">
-                            <rect key="frame" x="120" y="0.0" width="50" height="50"/>
-                            <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                            <state key="normal" image="instagram" backgroundImage="igBg"/>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voY-fl-hF0">
-                            <rect key="frame" x="180" y="0.0" width="50" height="50"/>
-                            <color key="backgroundColor" red="0.86666667461395264" green="0.29411765933036804" blue="0.22352941334247589" alpha="1" colorSpace="calibratedRGB"/>
+                            <rect key="frame" x="110" y="0.0" width="100" height="100"/>
+                            <color key="backgroundColor" red="0.86666667461395264" green="0.29411765933036804" blue="0.22352941334247589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                             <state key="normal" image="google_plus_icon"/>
                         </button>
@@ -132,8 +121,5 @@
     <resources>
         <image name="facebook_icon" width="60" height="60"/>
         <image name="google_plus_icon" width="60" height="60"/>
-        <image name="igBg" width="213" height="108"/>
-        <image name="instagram" width="100" height="100"/>
-        <image name="twitter_icon" width="60" height="60"/>
     </resources>
 </document>

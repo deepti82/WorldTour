@@ -87,7 +87,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func viewDidLoad() {
-        loader.showOverlay(self.view)
+//        loader.showOverlay(self.view)
         super.viewDidLoad()
         getAllComments()
         setTopNavigation("Comment")
@@ -156,17 +156,16 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
-            let more = UITableViewRowAction(style: .normal, title: "edit") { action, index in
+            let more = UITableViewRowAction(style: .normal, title: String(format: "%C", faicon["edit"]!)) { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
                 self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
                 self.editComment = self.comments[indexPath.row]
                 self.isEdit = true
             }
-            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite"))
-            moreImage.contentMode = .center
-            moreImage.backgroundColor = mainOrangeColor
-            more.backgroundColor = mainOrangeColor
-
+//            let moreImage = UIImageView(image: UIImage(named: "penciltranswhite"))
+//            moreImage.contentMode = .center
+//            moreImage.backgroundColor = mainOrangeColor
+//            more.backgroundColor = UIColor(patternImage: UIImage(named: "penciltranswhite")!)
             
             let favorite = UITableViewRowAction(style: .normal, title: "delete") { action, index in
                 print("delete button tapped")
@@ -385,6 +384,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         request.getComments(otherId, userId: currentUser["_id"].string!, pageno: 1, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
+                
+                self.loader.hideOverlayView()
                 
                 if response.error != nil {
                     

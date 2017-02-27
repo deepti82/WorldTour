@@ -34,18 +34,12 @@ class SignInPageViewController: UIViewController {
         pageView.loginButton.addTarget(self, action: #selector(SignInPageViewController.gotoLogin(_:)), for: .touchUpInside)
         pageView.facebookButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), for: .touchUpInside)
         pageView.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), for: .touchUpInside)
-        pageView.twitterButton.addTarget(self, action: #selector(SignInPageViewController.twitterSignUp(_:)), for: .touchUpInside)
-        pageView.instagramButton.addTarget(self, action: #selector(SignInPageViewController.igSignUp(_:)), for: .touchUpInside)
         
         let fbTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.facebookSignUp(_:)))
-        let googleTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.googleSignUp(_:)))
-        let twitterTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.twitterSignUp(_:)))
-        let igTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.igSignUp(_:)))
+        let googleTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.googleSignUp(_:)))       
         
         pageView.facebookLabel.addGestureRecognizer(fbTap)
         pageView.googleLabel.addGestureRecognizer(googleTap)
-        pageView.twitterLabel.addGestureRecognizer(twitterTap)
-        pageView.instagramLabel.addGestureRecognizer(igTap)
         
 //        pageView.loginBigButton.addTarget(self, action: #selector(SignInPageViewController.signedUp(_:)), forControlEvents: .TouchUpInside)
 //        pageView.textField2.secureTextEntry = true
@@ -79,19 +73,7 @@ class SignInPageViewController: UIViewController {
         
         social.googleLogin()
         
-    }
-    
-    func twitterSignUp(_ sender: AnyObject) {
-        
-        social.twitterLogin()
-        
-    }
-    
-    func igSignUp(_ sender: AnyObject) {
-        
-//        social.googleLogin()
-        
-    }
+    }   
     
     
 //    func textFieldShouldReturn(textField: UITextField) -> Bool {

@@ -85,7 +85,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         
         self.navigationController?.isNavigationBarHidden = true
         
-        let signInFooter = SignInToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height - 140, width: self.view.frame.size.width, height: 140))
+        let signInFooter = SignInToolbar(frame: CGRect(x: 0 , y: self.view.frame.size.height - 140, width: 290, height: 140))
+        signInFooter.center = CGPoint(x: self.view.center.x, y: signInFooter.center.y)
         self.view.addSubview(signInFooter)
         
         ipTextField.delegate = self
@@ -95,7 +96,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate,PlayerDelegate
         signInFooter.signInButton.addTarget(self, action: #selector(SignInViewController.loginButtonTapped(_:)), for: .touchUpInside)
         signInFooter.googleButton.addTarget(self, action: #selector(SignInViewController.googleSignIn(_:)), for: .touchUpInside)
         signInFooter.fbButton.addTarget(self, action: #selector(SignInViewController.facebookSignIn(_:)), for: .touchUpInside)
-        signInFooter.twitterButton.addTarget(self, action: #selector(SignInViewController.twitterSignIn(_:)), for: .touchUpInside)
+//        signInFooter.twitterButton.addTarget(self, action: #selector(SignInViewController.twitterSignIn(_:)), for: .touchUpInside)
         
         profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         

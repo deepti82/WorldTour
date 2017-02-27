@@ -31,7 +31,7 @@ class AddRating: UIView, UITextViewDelegate {
     var activityJson: JSON!
     var checkView: String = ""
     var postId = ""
-    
+    var loader = LoadingOverlay()
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
     let imageArr = ["disapointed", "sad", "good", "superface", "love"]
     var navController = UINavigationController()

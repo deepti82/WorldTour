@@ -42,9 +42,6 @@ class LogInViewController: UIViewController {
         
         logIn.fbButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), for: .touchUpInside)
         logIn.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), for: .touchUpInside)
-        logIn.twitterButton.addTarget(self, action: #selector(SignInPageViewController.twitterSignUp(_:)), for: .touchUpInside)
-        logIn.igButton.addTarget(self, action: #selector(SignInPageViewController.igSignUp(_:)), for: .touchUpInside)
-        
         
     }
     

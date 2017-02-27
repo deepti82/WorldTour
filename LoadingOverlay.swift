@@ -24,7 +24,7 @@ extension UIViewController {
         }
         
         func showOverlay(_ view: UIView) {
-            
+            hideOverlayView()
             print("show loader")
             loader = UIView(frame:CGRect(x: 0, y: 0, width: 100, height: 100))
             view.addSubview(loader)
@@ -40,8 +40,11 @@ extension UIViewController {
         func hideOverlayView() {
             
             print("hide overlay")
-            
+            if loader != nil {
             loader.removeFromSuperview()
+            }else {
+                //
+            }
         }
         
     }

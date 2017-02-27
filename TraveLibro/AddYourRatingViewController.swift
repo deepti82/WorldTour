@@ -15,7 +15,7 @@ class AddYourRatingViewController: UIViewController {
     var reviews: [JSON] = []
     var orangeLine: drawLine!
     var scroll: UIScrollView! = nil
-    
+    var loader = LoadingOverlay()
     override func viewDidLoad() {
         super.viewDidLoad()
 //        getBackGround(self)

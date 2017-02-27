@@ -35,15 +35,15 @@ class SignInToolbar: UIView {
         gplusImage.image = UIImage(named: "google_plus_icon")
         googleButton.addSubview(gplusImage)
         
-        let twitterImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        twitterImage.center = CGPoint(x: twitterButton.frame.width/2 - 3.5, y: twitterButton.frame.height/2)
-        twitterImage.image = UIImage(named: "twitter_icon")
-        twitterButton.addSubview(twitterImage)
+//        let twitterImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+//        twitterImage.center = CGPoint(x: twitterButton.frame.width/2 - 3.5, y: twitterButton.frame.height/2)
+//        twitterImage.image = UIImage(named: "twitter_icon")
+//        twitterButton.addSubview(twitterImage)
         
-        let instagramImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        instagramImage.center = CGPoint(x: igButton.frame.width/2 - 3.5, y: igButton.frame.height/2)
-        instagramImage.image = UIImage(named: "instagram")
-        igButton.addSubview(instagramImage)
+//        let instagramImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+//        instagramImage.center = CGPoint(x: igButton.frame.width/2 - 3.5, y: igButton.frame.height/2)
+//        instagramImage.image = UIImage(named: "instagram")
+//        igButton.addSubview(instagramImage)
         
         for button in toolbarButtons {
             

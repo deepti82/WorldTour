@@ -18,7 +18,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         TheScrollView.delegate = self
         layout = VerticalLayout(width: self.view.frame.width);
         TheScrollView.addSubview(layout)
-        loader.showOverlay(self.view)
+//        loader.showOverlay(self.view)
         timeTag = TimestampTagViewOnScroll(frame: CGRect(x: 0, y: 100, width: screenWidth + 8, height: 40))
         timeTag.alpha = 0.8
         self.view.addSubview(timeTag)
@@ -33,8 +33,8 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
             self.layout.removeAll()
         }
         request.getMomentJourney(pageNumber: pageNumber, type: type,completion: {(request) in
-            globalMyLifeViewController.loader.hideOverlayView()
             DispatchQueue.main.async(execute: {
+                self.loader.hideOverlayView()
                 if request["data"] != nil && request["value"].boolValue {
                     print(request["data"])
                     for post in request["data"].array! {

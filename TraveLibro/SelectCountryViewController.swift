@@ -215,7 +215,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         request.getAllCountries({(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
                 if response.error != nil {
                     
                     print("error: \(response.error?.localizedDescription)")
@@ -276,7 +276,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         request.addCountriesVisited(currentUser["_id"].string!, list: listFormat, countryVisited: selectedYear, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
                 if response.error != nil {
                     
                     print("error- \(response.error!.code): \(response.error!.localizedDescription)")

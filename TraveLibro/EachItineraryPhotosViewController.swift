@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Toaster
 
-class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var arrowDown: UIButton!
     
     @IBOutlet weak var itineraryNameLabel: UILabel!
+    
+    @IBOutlet weak var photosCollectionView: UICollectionView!
     
     var selectedItinerary:JSON!
     var photoJSON : [JSON] = []
@@ -20,8 +23,14 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        photosCollectionView.delegate = self
+        
         itineraryNameLabel.text = (selectedItinerary["name"].stringValue)
         photoJSON = (selectedItinerary["photos"].arrayValue)
+        
+        if (photoJSON.count == 0) {
+            Toast(text: "No photos in \(selectedItinerary["name"].stringValue) itinerary").show()
+        }
         
         let arrow = String(format: "%C", faicon["arrow-down"]!)
         arrowDown.setTitle(arrow, for: UIControlState())
@@ -39,10 +48,34 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         
     }
     
+    //MARK: - CollectionView Delegates
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return photoJSON.count
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if shouldShowBigImage(position: indexPath.row) {
+            return CGSize(width: (collectionView.frame.size.width - 2), height: collectionView.frame.size.width * 0.5)
+        }
+        
+        return CGSize(width: (collectionView.frame.size.width/3 - 3), height: (collectionView.frame.size.width/3 - 3))       
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,6 +99,15 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
             singlePhotoController.postId = "unknown"
             print("globalNavigationController: \(globalNavigationController)")
             globalNavigationController.pushViewController(singlePhotoController, animated: true)
+        }
+    }
+    
+    func shouldShowBigImage(position: Int) -> Bool {
+        if position == 0 || position % 4 == 0 {
+            return true
+        }
+        else {
+            return false
         }
     }
 }

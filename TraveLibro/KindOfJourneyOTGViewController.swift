@@ -31,7 +31,7 @@ class KindOfJourneyOTGViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loader.showOverlay(self.view)
+//        loader.showOverlay(self.view)
         self.setTopNavigation(text: "Kind of Journey");
         getBackGround(self)
         

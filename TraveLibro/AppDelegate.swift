@@ -31,7 +31,7 @@ let avenirBold = UIFont(name: "Avenir-Medium", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 
 var faicon = [String: UInt32]()
-
+var loader = LoadingOverlay()
 var profileViewY:CGFloat = 45
 var whichView: String!
 var emailIcon: String!
@@ -173,7 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         createMenuView()
-        AppDelegate.getDatabase()
+        _ = AppDelegate.getDatabase()
         OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1")
         
         faicon["clock"] = 0xf017
