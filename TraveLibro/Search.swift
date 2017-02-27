@@ -98,7 +98,7 @@ class Search: UIView {
         }
         
         self.horizontalScrollBlogger.layoutSubviews()
-        self.PopularItinerariesScroll.contentSize = CGSize(width: self.popularBloggersScroll.frame.width, height: self.horizontalScrollBlogger.frame.height)
+        self.popularBloggersScroll.contentSize = CGSize(width: self.horizontalScrollBlogger.frame.width, height: self.horizontalScrollBlogger.frame.height)
         
     }
 
