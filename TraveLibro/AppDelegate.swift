@@ -72,6 +72,8 @@ var globalPostImage:[PostImage] = []
 var currentJourney:JSON = []
 var selectedHash:String = ""
 var selectedPeople:String = ""
+var selectedQuickI:String = ""
+var selectedDetail:String = ""
 var whichJourney:String = ""
 var jouurneyToShow:JSON = []
 

@@ -69,10 +69,19 @@ class SearchElement: UIView {
             profile.displayData = "search"
             globalNavigationController.pushViewController(profile, animated: true)
         }else{
-            selectedPeople = feeds["_id"].stringValue
-            let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-            profile.displayData = "search"
-            globalNavigationController.pushViewController(profile, animated: true)
+            
+            request.getItinerary(feeds["_id"].stringValue, completion: {(request) in
+                DispatchQueue.main.async(execute: {
+                selectedQuickI = self.feeds["_id"].stringValue
+                quickItinery = request["data"]
+//                selectedPeople = feeds["_id"].stringValue
+                let profile = storyboard.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
+                    profile.selectedQuick = request["data"]["photos"]
+                globalNavigationController.pushViewController(profile, animated: true)
+                })
+            })
+            
+            
         }
         
         

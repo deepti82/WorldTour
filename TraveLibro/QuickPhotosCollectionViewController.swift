@@ -14,6 +14,7 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
     @IBOutlet weak var downButton: UIButton!
     @IBOutlet weak var quickCollectionView: UICollectionView!
     @IBOutlet weak var noOfPhotos: UILabel!
+    var selectedQuick:JSON = []
     override func viewDidLoad() {
         super.viewDidLoad()
         quickCollectionView.delegate = self
@@ -21,7 +22,13 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
         downButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 14)
         let arrow = String(format: "%C", faicon["arrow-down"]!)
         downButton.setTitle(arrow, for: UIControlState())
-        noOfPhotos.text = "Photo(\(globalPostImage.count))"
+        if selectedQuickI != "" {
+            noOfPhotos.text = "Photo(\(self.selectedQuick.count))"
+
+        }else{
+            noOfPhotos.text = "Photo(\(globalPostImage.count))"
+
+        }
         let statusBar = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 20))
         statusBar.layer.zPosition = -1
         statusBar.backgroundColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
@@ -51,12 +58,22 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if selectedQuickI != "" {
+            return selectedQuick.count
+        }else{
         return globalPostImage.count
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QCell", for: indexPath) as! quickCell
+        if selectedQuickI != "" {
+            cell.qPhoto.hnk_setImageFromURL(getImageURL(selectedQuick[indexPath.row]["name"].stringValue, width: 200))
+
+        }else{
+        
         cell.qPhoto.image = globalPostImage[indexPath.row].image
+        }
     
         return cell
     }

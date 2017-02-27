@@ -13,6 +13,7 @@ class QuickItineraryPreviewViewController: UIViewController {
     
     @IBOutlet weak var previewScroll: UIScrollView!
     var previewLayout: VerticalLayout!
+    var selectedQuick: JSON = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +98,7 @@ class QuickItineraryPreviewViewController: UIViewController {
     func showPhoto(_ sender: UITapGestureRecognizer) {
         
         let TLVC = storyboard!.instantiateViewController(withIdentifier: "quickPhotos") as! QuickPhotosCollectionViewController
+        TLVC.selectedQuick = self.selectedQuick
         navigationController?.present(TLVC, animated: true, completion: nil)
     
     }
@@ -125,7 +127,13 @@ class QuickItineraryPreviewViewController: UIViewController {
         rightButton.titleLabel?.font = avenirBold
         rightButton.addTarget(self, action: #selector(QuickItineraryPreviewViewController.donePage(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 20, y: 8, width: 45, height: 30)
-        self.customNavigationBar(left: leftButton, right: rightButton)
+        if selectedQuick == "" {
+            self.customNavigationBar(left: leftButton, right: rightButton)
+
+        }else{
+            self.customNavigationBar(left: leftButton, right: nil)
+
+        }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     

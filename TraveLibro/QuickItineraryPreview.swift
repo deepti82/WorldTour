@@ -51,7 +51,11 @@ class QuickItineraryPreview: UIView {
                 let oneButton = UIButton(frame: CGRect(x: 10, y: 0, width: 200, height: self.countryScroll.frame.height))
                 oneButton.backgroundColor = UIColor.clear
                 oneButton.titleLabel!.font = avenirFont
-                oneButton.setTitle("\(n["name"].string!)", for: UIControlState())
+                if n["name"] != nil {
+                    oneButton.setTitle("\(n["name"].string!)", for: UIControlState())
+                }else{
+                    oneButton.setTitle("\(n["country"]["name"].string!)", for: UIControlState())
+                }
                 oneButton.setTitleColor(mainBlueColor, for: UIControlState())
                 oneButton.layer.cornerRadius = 5
                 oneButton.layer.borderColor = UIColor.darkGray.cgColor
@@ -75,7 +79,13 @@ class QuickItineraryPreview: UIView {
         if self.json["countryVisited"].count != 0 {
             for n in json["countryVisited"].array! {
                 for (i,m) in n["cityVisited"] {
-                    self.cityScroll.text = self.cityScroll.text! + m["name"].stringValue + " | "
+                    if m["name"] != nil {
+                        self.cityScroll.text = self.cityScroll.text! + m["name"].stringValue + " | "
+
+                    }else{
+                        self.cityScroll.text = self.cityScroll.text! + m["city"]["name"].stringValue + " | "
+
+                    }
                 }
             }
             var name = self.cityScroll.text
