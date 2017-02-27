@@ -51,7 +51,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var arrowDownButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        loader.showOverlay(self.view)
+//        loader.showOverlay(self.view)
         globalMyLifeViewController = self;
         getDarkBackGround(self)
         globalMyLifeController = self

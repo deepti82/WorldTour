@@ -41,6 +41,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     override func viewDidLoad() {
         getDarkBackGround(self)
+        loader.showOverlay(self.view)
         super.viewDidLoad()
         globalMyLifeMomentsViewController = self
         setTopNavigation("Photos")
@@ -82,7 +83,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         if momentType == "all" || momentType == "local-life" {
             request.getTokenMoment(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
                 DispatchQueue.main.async {
-                    
+                    loader.hideOverlayView()
                     if request["data"].count > 0 {
                         self.loadStatus = true
                         if pageno == 1 {
@@ -130,7 +131,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
 
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: review, completion: {(request) in
             DispatchQueue.main.async {
-                
+                loader.hideOverlayView()
                 if request["data"].count > 0 {
                     self.loadStatus = true
                     
@@ -167,6 +168,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         request.getMomentLife(currentUser["_id"].stringValue, pageNumber: pageno, type: type, token: token, completion: {(request) in
             
             DispatchQueue.main.async {
+                loader.hideOverlayView()
                 if type == "travel-life"{
                     
                     if request["data"].count > 0 {

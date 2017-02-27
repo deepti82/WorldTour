@@ -36,6 +36,7 @@ class SignInFullView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        loginStack.isHidden = true
         
 //        let attributes = [
 //            NSForegroundColorAttributeName: UIColor.whiteColor(),

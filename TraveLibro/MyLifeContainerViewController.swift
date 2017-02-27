@@ -33,8 +33,8 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
             self.layout.removeAll()
         }
         request.getMomentJourney(pageNumber: pageNumber, type: type,completion: {(request) in
-            globalMyLifeViewController.loader.hideOverlayView()
             DispatchQueue.main.async(execute: {
+                self.loader.hideOverlayView()
                 if request["data"] != nil && request["value"].boolValue {
                     print(request["data"])
                     for post in request["data"].array! {

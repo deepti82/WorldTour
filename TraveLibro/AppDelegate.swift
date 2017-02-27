@@ -31,7 +31,7 @@ let avenirBold = UIFont(name: "Avenir-Medium", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
 
 var faicon = [String: UInt32]()
-
+var loader = LoadingOverlay()
 var profileViewY:CGFloat = 45
 var whichView: String!
 var emailIcon: String!
