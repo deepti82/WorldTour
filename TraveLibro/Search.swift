@@ -23,6 +23,10 @@ class Search: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
+        popularJourneyScroll.contentSize.width = 1000
+        popularJourneyScroll.isScrollEnabled = true
+        PopularItinerariesScroll.isScrollEnabled = true
+        PopularItinerariesScroll.contentSize = CGSize(width: 2000, height: 0)
            }
     
     required init?(coder aDecoder: NSCoder) {

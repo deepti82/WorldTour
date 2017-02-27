@@ -46,7 +46,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
             request.journeyTypeData(journeyId, type: type, userId: currentUser["_id"].string!, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
-                    
+                    self.loader.hideOverlayView()
                     if response.error != nil {
                         
                         print("error: \(response.error!.localizedDescription)")

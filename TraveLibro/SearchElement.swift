@@ -17,6 +17,7 @@ class SearchElement: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+<<<<<<< HEAD
         loadViewFromNib ()
         
         
@@ -26,6 +27,15 @@ class SearchElement: UIView {
 //        tapRecognizer.numberOfTapsRequired = 1
 //        tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
 //        self.image.addGestureRecognizer(tapRecognizer)
+=======
+        loadViewFromNib ()        
+        let tapRecognizer = UITapGestureRecognizer()
+        tapRecognizer.numberOfTapsRequired = 1
+        tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
+        self.image.addGestureRecognizer(tapRecognizer)
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+>>>>>>> origin/level-3-
         
     }
     

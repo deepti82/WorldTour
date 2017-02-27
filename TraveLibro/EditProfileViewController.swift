@@ -18,7 +18,7 @@ class EditProfileViewController: UIViewController, UITableViewDataSource, UITabl
     var keyboardUp = false
     var pickerImage: UIImage?
     var currentTextField:UITextField?
-    
+    var loader = LoadingOverlay()
     private var shouldSave  = true
     
     var editedValues: [String: Any] = [:]

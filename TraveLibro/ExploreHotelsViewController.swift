@@ -16,7 +16,7 @@ class ExploreHotelsViewController: UIViewController, UITableViewDelegate, UITabl
     var hotels: HotelTypeSelect!
     var city = ""
     var data: [JSON] = []
-    
+    var loader = LoadingOverlay()
     
     let hotelNames = ["The Taj Mahal Palace", "Trident, Nariman Point", "The Taj Mahal Palace", "Trident, Nariman Point", "The Taj Mahal Palace", "Trident, Nariman Point"]
     let labelName = ["Must Do's", "Hotels", "Restaurants", "Popular Agents"]

@@ -13,7 +13,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     let imagePicker = UIImagePickerController()
     var uploadView: AddDisplayPic!
     var tempImage: UIImage!
-    
+    var loader = LoadingOverlay()
     var kindOfJourney: [String] = []
     var youUsuallyGo: String = ""
     var preferToTravel: [String] = []
@@ -23,7 +23,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGroundBlur(self)
-        
+        loader.showOverlay(self.view)
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
@@ -184,7 +184,7 @@ class SetProfilePictureViewController: UIViewController, UIImagePickerController
         request.uploadPhotos(URL(string: exportFilePath)!, localDbId: nil, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
                 if response.error != nil {
                     
                     print("error: \(response.error?.localizedDescription)")

@@ -16,7 +16,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     var searchFieldView: SearchFieldView!
     var selectedYear: String!
     var alreadySelected: [JSON]!
-    
+    var loader = LoadingOverlay()
     internal var whichView: String!
     
     @IBOutlet weak var mainTableView: UITableView!
@@ -31,7 +31,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loader.showOverlay(self.view)
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
@@ -117,7 +117,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
             request.getAllCountries({(response) in
                 
                 DispatchQueue.main.async(execute: {
-                    
+                    self.loader.hideOverlayView()
                     if response.error != nil {
                         
                         print("error: \(response.error?.localizedDescription)")
@@ -314,7 +314,7 @@ class SelectCountryViewController: UIViewController, UITableViewDataSource, UITa
         request.updateBucketList(currentUser["_id"].string!, list: selectedCountries, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
                 if response.error != nil {
                     
                     print("error- \(response.error!.code): \(response.error!.localizedDescription)")

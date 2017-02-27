@@ -143,6 +143,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
         loader.hideOverlayView()
         request.getTripSummaryCount("tripSummary", journeyId: journeyId, userId: currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
+                self.loader.hideOverlayView()
                 print(response["data"])
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")

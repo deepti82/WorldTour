@@ -6577,7 +6577,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htT-12-Cvm">
-                                <rect key="frame" x="0.0" y="65" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="cST-OB-dkm"/>
                                 </constraints>
@@ -6586,9 +6586,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="htT-12-Cvm" firstAttribute="leading" secondItem="XFd-Wm-ATx" secondAttribute="leading" id="G8m-Em-CRq"/>
-                            <constraint firstItem="htT-12-Cvm" firstAttribute="centerX" secondItem="XFd-Wm-ATx" secondAttribute="centerX" id="L3A-Zb-Ogy"/>
-                            <constraint firstItem="n8a-1f-VAf" firstAttribute="top" secondItem="htT-12-Cvm" secondAttribute="bottom" constant="562" id="TbT-xu-YmG"/>
-                            <constraint firstItem="htT-12-Cvm" firstAttribute="centerY" secondItem="XFd-Wm-ATx" secondAttribute="centerY" constant="-248.5" id="dSl-E6-y5v"/>
+                            <constraint firstItem="htT-12-Cvm" firstAttribute="top" secondItem="NRn-sG-row" secondAttribute="bottom" id="N7S-WY-bh5"/>
                             <constraint firstAttribute="trailing" secondItem="htT-12-Cvm" secondAttribute="trailing" id="ebK-h8-hwN"/>
                         </constraints>
                     </view>

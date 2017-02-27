@@ -26,7 +26,9 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     var editJson: JSON?
     var currentShowingCountry: JSON?
     var fromOutSide: String!
-    
+
+    var loader = LoadingOverlay()
+
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet weak var theTableView: UITableView!
     
