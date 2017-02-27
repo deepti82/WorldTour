@@ -206,6 +206,9 @@ class NotificationTitle: UIView {
         if (notificationData["data"]["type"].string == "photo") {
             shouldLoadCommentCell = false
         }
+        if (notificationData["data"]["type"].string == "video") {
+            shouldLoadCommentCell = false
+        }
         if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {
             shouldLoadCommentCell = false
         }

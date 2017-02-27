@@ -27,6 +27,15 @@ class Itineraries: UIView {
     @IBOutlet weak var stackViewDetailTwo: UIImageView!
     @IBOutlet weak var stackViewDetailThree: UIImageView!
     
+    @IBOutlet weak var itineraryName: UILabel!
+    @IBOutlet weak var itineraryDates: UILabel!
+    @IBOutlet weak var itineraryCost: UILabel!
+    @IBOutlet weak var itineraryCompleteCount: UILabel!    
+    @IBOutlet weak var itineraryTypeStack: UIStackView!
+    @IBOutlet weak var itineraryTypeOne: UIImageView!
+    @IBOutlet weak var itineraryTypeTwo: UIImageView!    
+    @IBOutlet weak var itineraryTypeThree: UIImageView!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
@@ -68,6 +77,63 @@ class Itineraries: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
+    }
+    
+    
+    //MARK: - SetData
+    
+    func setItineraryData(editJson : JSON) {
+        profileIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["creator"]["profilePicture"].stringValue)", width: 100))
+        profileName.text = "By " + editJson["creator"]["name"].stringValue
+        coverImage.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(editJson["coverPhoto"].stringValue)", width: 100))
+        daysLabel.text = editJson["duration"].stringValue + " days"
+        
+        itineraryName.text = editJson["name"].stringValue
+        itineraryCost.text = editJson["currency"].stringValue + " " + editJson["cost"].stringValue
+        itineraryDates.text = convertDateFormate(dateStr: editJson["startTime"].stringValue) + " to " + convertDateFormate(dateStr: editJson["endTime"].stringValue)
+        
+        itineraryTypeStack.isHidden = false
+        
+        if editJson["itineraryType"][0] != nil {
+            itineraryTypeOne.isHidden = false
+            itineraryTypeOne.image = UIImage(named: editJson["itineraryType"][0].stringValue.lowercased())
+        }
+        if editJson["itineraryType"][1] != nil {
+             itineraryTypeTwo.isHidden = false
+             itineraryTypeTwo.image = UIImage(named: editJson["itineraryType"][1].stringValue.lowercased())
+        }
+        if editJson["itineraryType"][2] != nil {
+            itineraryTypeThree.isHidden = false
+            itineraryTypeThree.image = UIImage(named: editJson["itineraryType"][2].stringValue.lowercased())
+        }
+        
+        
+//        if editJson["itineraryType"].array!.count >= 3 {
+//            
+//            itineraryTypeOne.image = UIImage(named: categoryImage(categories[0].stringValue) )
+//            itineraryTypeTwo.image = UIImage(named: categoryImage(categories[1].stringValue))
+//            itineraryTypeThree.image = UIImage(named: categoryImage(categories[2].stringValue))
+//            
+//        }
+//        else if editJson["itineraryType"].array!.count == 2 {
+//            
+//            itineraryTypeOne.image = UIImage(named: categoryImage(categories[0].stringValue) )
+//            itineraryTypeTwo.image = UIImage(named: categoryImage(categories[1].stringValue))
+//            itineraryTypeThree.isHidden = true
+//            
+//        }
+//        else if editJson["itineraryType"].array!.count == 1 {
+//            
+//            itineraryTypeOne.image = UIImage(named: categoryImage(categories[0].stringValue) )
+//            itineraryTypeTwo.isHidden = true
+//            itineraryTypeThree.isHidden = true
+//            
+//        }
+//        else {
+//            
+//            itineraryTypeStack.isHidden = true
+//            
+//        }
     }
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -17,6 +17,14 @@
                 <outlet property="daysLabel" destination="sLH-Jz-NzF" id="1LY-Si-1MI"/>
                 <outlet property="feedbackStack" destination="ONO-5O-ESx" id="ndd-ur-kgG"/>
                 <outlet property="gradientView" destination="fDh-rd-WlE" id="zIS-oS-PEG"/>
+                <outlet property="itineraryCompleteCount" destination="xWJ-Tp-g10" id="yNN-6B-ypS"/>
+                <outlet property="itineraryCost" destination="GV2-TO-iaB" id="cGq-Dv-OSW"/>
+                <outlet property="itineraryDates" destination="yGB-UJ-1Qd" id="OEa-2e-U23"/>
+                <outlet property="itineraryName" destination="Kyy-CH-de7" id="Tuf-rL-2en"/>
+                <outlet property="itineraryTypeOne" destination="JQQ-Ru-SmT" id="7gd-ad-w70"/>
+                <outlet property="itineraryTypeStack" destination="3it-rc-SWm" id="TVz-FS-2BW"/>
+                <outlet property="itineraryTypeThree" destination="Ioe-xI-gQY" id="PQt-4n-EC0"/>
+                <outlet property="itineraryTypeTwo" destination="s53-bi-HM6" id="UZY-qw-lhO"/>
                 <outlet property="likeStack" destination="wj5-Ap-gt6" id="5fC-av-MCZ"/>
                 <outlet property="options" destination="dZs-3t-70c" id="ms9-Iv-ix9"/>
                 <outlet property="profileIcon" destination="vqz-GO-RRW" id="O3a-YO-AvC"/>
@@ -80,7 +88,7 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graph" translatesAutoresizingMaskIntoConstraints="NO" id="7OH-w2-SrM">
+                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graph" translatesAutoresizingMaskIntoConstraints="NO" id="7OH-w2-SrM">
                             <rect key="frame" x="332" y="8" width="60" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="60" id="FuN-fj-yTc"/>
@@ -93,13 +101,13 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWJ-Tp-g10">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWJ-Tp-g10">
                             <rect key="frame" x="347.5" y="30" width="27.5" height="19.5"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEV-2E-dt7">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEV-2E-dt7">
                             <rect key="frame" x="329" y="71" width="63" height="19.5"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

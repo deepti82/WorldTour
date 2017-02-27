@@ -89,6 +89,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                              self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                            checkIn.feeds = post
                             checkIn.scrollView = self.activityScroll
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self
@@ -113,6 +114,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         for post in request["data"].array! {
                             self.feeds.arrayObject?.append(post)
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                            checkIn.feeds = post
                             checkIn.scrollView = self.activityScroll
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self

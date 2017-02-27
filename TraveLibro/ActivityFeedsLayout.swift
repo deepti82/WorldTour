@@ -265,12 +265,9 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func showDetailItinerary(_ sender: UIButton){
         
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
-            controller.fromOutSide = feeds["_id"].stringValue
-            
-            print(feeds["_id"])
-            print(feeds["type"])
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
+        controller.fromOutSide = feeds["_id"].stringValue        
         globalNavigationController?.setNavigationBarHidden(false, animated: true)
         globalNavigationController?.pushViewController(controller, animated: true)
         

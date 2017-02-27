@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="photobar1" translatesAutoresizingMaskIntoConstraints="NO" id="Wzf-6A-prz">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="Wzf-6A-prz">
                     <rect key="frame" x="15" y="5" width="290" height="240"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red_video_play_icon" translatesAutoresizingMaskIntoConstraints="NO" id="clj-JB-OIc">
@@ -50,7 +50,7 @@
         </view>
     </objects>
     <resources>
-        <image name="photobar1" width="60" height="60"/>
+        <image name="logo-default" width="600" height="600"/>
         <image name="red_video_play_icon" width="142" height="100"/>
     </resources>
 </document>

@@ -15,6 +15,7 @@ class MoreAboutTrip: UIView {
     @IBOutlet weak var dayDescription: UITextView!
     @IBOutlet weak var dayNumberLabel: UILabel!
     @IBOutlet weak var mainTitle: UILabel!
+    @IBOutlet weak var topSpaceContraint: NSLayoutConstraint!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
