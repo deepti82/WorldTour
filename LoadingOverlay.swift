@@ -30,7 +30,7 @@ extension UIViewController {
             view.addSubview(loader)
             loader.center = view.center
             let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-            imageView1.backgroundColor = UIColor.white
+//            imageView1.backgroundColor = UIColor.white
             imageView1.image = UIImage.gif(name: "loader")
             imageView1.contentMode = .scaleAspectFit
             loader.addSubview(imageView1)

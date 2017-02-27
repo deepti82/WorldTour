@@ -19,7 +19,7 @@ class KindOfJourneyOTGViewController: UIViewController {
     var selectedIndexG3 = 1
     var selectedCategories: JSON = []
     var journeyID = ""
-    
+    var loader = LoadingOverlay()
     var isEdit = false
     
     var backVC: NewTLViewController!
@@ -31,7 +31,7 @@ class KindOfJourneyOTGViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loader.showOverlay(self.view)
         self.setTopNavigation(text: "Kind of Journey");
         getBackGround(self)
         
@@ -103,7 +103,7 @@ class KindOfJourneyOTGViewController: UIViewController {
             request.kindOfJourney(journeyID, kindOfJourney: backVC.journeyCategories, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
                 if response.error != nil {
                     print("error: \(response.error?.localizedDescription)")
                 }

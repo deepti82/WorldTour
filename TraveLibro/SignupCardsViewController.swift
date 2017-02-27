@@ -3,7 +3,7 @@ import UIKit
 var checkBoxNumber: Int!
 
 class SignupCardsViewController: UIViewController {
-    
+    var loader = LoadingOverlay()
     var pageIndex = 0
     var cardTitle: String = ""
     var cardDescription: String = "Lorem Ipsum is simply dummy text of the printing and typesetting industry"
@@ -13,7 +13,7 @@ class SignupCardsViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        loader.showOverlay(self.view)
         getUser()
         
         checkBoxNumber = Int(checkBoxes)
@@ -66,7 +66,7 @@ class SignupCardsViewController: UIViewController {
         request.getUser(currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
                 if response.error != nil {
                     
                     print("response: \(response.error?.localizedDescription)")

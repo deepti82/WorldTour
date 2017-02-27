@@ -24,10 +24,11 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     var verticalLayout: VerticalLayout!
     var viewAdded = false
     
-    
+    var loader = LoadingOverlay()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        loader.showOverlay(self.view)
         cityView.underlined()
         countryView.underlined()
         cityVisited.layer.zPosition = 10
@@ -146,6 +147,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     }
        
     func getCountry() {
+        
         request.getAllCountries({(request) in
             self.countries = request["data"]
 //            self.cityTableView.reloadData()

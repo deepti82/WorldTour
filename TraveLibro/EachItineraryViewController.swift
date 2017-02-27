@@ -24,6 +24,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     var prevSelectedTab: UIButton?
     var editJson: JSON!
     var fromOutSide: String!
+    var loader = LoadingOverlay()
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet weak var tabSeven: UIButton!
     @IBOutlet weak var tabSix: UIButton!

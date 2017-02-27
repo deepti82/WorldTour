@@ -19,7 +19,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     var mentionSuggestions: [JSON] = []
     
     var type = "Photo"
-    
+    var loader = LoadingOverlay()
     var commentText: UILabel!
     
     var hashtagSuggestions: [JSON] = []
@@ -35,7 +35,7 @@ class PhotoCommentViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loader.showOverlay(self.view)
         setTopNavigation("Comment")
         
         getAllComments()

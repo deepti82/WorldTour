@@ -35,6 +35,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     var journeyId = ""
     var radioValue: String!
     var firstTime = true
+    var loader = LoadingOverlay()
     var verticalLayout: VerticalLayout!
     let titleLabels = ["November 2015 (25)", "October 2015 (25)", "September 2015 (25)", "August 2015 (25)"]
     var whatTab = "Journeys"
@@ -50,6 +51,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var arrowDownButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        loader.showOverlay(self.view)
         globalMyLifeViewController = self;
         getDarkBackGround(self)
         globalMyLifeController = self
@@ -175,7 +177,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     func showJourneys(_ sender: UIButton) {
         whatEmptyTab = "Journeys"
         var start = 0;
-        
+        loader.hideOverlayView()
         // where to check review
         whatEmptyTab = "Journeys"
         reviewsButton.layer.zPosition = -1
@@ -189,7 +191,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func showMoments(_ sender: UIButton) {
-        
+        loader.hideOverlayView()
         whatEmptyTab = "Moments"
         journeysButton.layer.zPosition = -1
         reviewsButton.layer.zPosition = 1
@@ -202,7 +204,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func showReviews(_ sender: UIButton) {
-        
+        loader.hideOverlayView()
         whatEmptyTab = "Reviews"
         momentsButton.layer.zPosition = -1
         journeysButton.layer.zPosition = 1
@@ -255,12 +257,14 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     //    var flag = false
     
     func allRadioChecked(_ sender: AnyObject?) {
+         loader.hideOverlayView()
         radio.image = UIImage(named: "radio_checked_all")
         radioTwo.image = UIImage(named: "radio_for_button")
         radioThree.image = UIImage(named: "radio_for_button")
         
         switch whatEmptyTab {
         case "Journeys":
+           
             globalMyLifeContainerViewController.loadData("all", pageNumber: 1);
         case "Moments":
             globalMyLifeMomentsViewController.page = 1
@@ -278,6 +282,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func travelLifeRadioChecked(_ sender: AnyObject?) {
+        
         radio.image = UIImage(named: "radio_for_button")
         radioTwo.image = UIImage(named: "radio_checked_travel_life")
         radioThree.image = UIImage(named: "radio_for_button")

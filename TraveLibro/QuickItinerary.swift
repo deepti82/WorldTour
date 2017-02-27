@@ -14,7 +14,7 @@ public class QuickItinerary {
     let post = Table("QuickItinerary")
     var jsonPost:JSON!
     var imageArr:[PostImage] = []
-    
+    var loader = LoadingOverlay()
     let id = Expression<Int64>("id")
     let quickJson = Expression<String>("quickJson")
     let status = Expression<Bool>("status")

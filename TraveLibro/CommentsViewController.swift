@@ -21,7 +21,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var previousHashtags: [String] = []
     var editComment: JSON!
     var footerView: PhotoOTGFooter!
-    
+    var loader = LoadingOverlay()
     @IBOutlet weak var mentionSuggestionsTable: UITableView!
     @IBOutlet weak var hashTagSuggestionsTable: UITableView!
     @IBOutlet weak var containerTwo: UIView!
@@ -54,6 +54,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             if addComment.text != "" {
                 request.editComment(type: "post", commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: "", completion: {(response) in
                     DispatchQueue.main.async(execute: {
+//                        self.loader.hideOverlayView()
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
                         }
@@ -86,6 +87,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func viewDidLoad() {
+        loader.showOverlay(self.view)
         super.viewDidLoad()
         getAllComments()
         setTopNavigation("Comment")

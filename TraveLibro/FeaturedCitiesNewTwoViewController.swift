@@ -12,7 +12,7 @@ import UIKit
 class FeaturedCitiesNewTwoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var featuredCityTableView: UITableView!
-    
+    var laoder = LoadingOverlay()
     var whichView: String!
     let cityNames = ["Agra", "Amritsar"]
     let cityImages = ["taj_mahal", "amritsar"]

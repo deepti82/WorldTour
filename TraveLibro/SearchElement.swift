@@ -20,6 +20,8 @@ class SearchElement: UIView {
         tapRecognizer.numberOfTapsRequired = 1
         tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
         self.image.addGestureRecognizer(tapRecognizer)
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         
     }
     
