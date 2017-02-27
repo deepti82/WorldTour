@@ -16,7 +16,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         print("in search view controller")
         getDarkBackGround(self)
-        search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: SearchView.frame.width - 20 , height: 30))
+        search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: self.view.frame.width - 20 , height: 30))
         search.searchField.returnKeyType = .done
 
         SearchView.addSubview(search)
