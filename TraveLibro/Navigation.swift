@@ -1151,6 +1151,8 @@ class Navigation {
     
     func getJourneyById(_ id: String, completion: @escaping ((JSON) -> Void)) {
         do {
+            print("User: \(currentUser["_id"])")
+            print("_ID: \(id)")
             let opt = try HTTP.POST(adminUrl + "journey/getoneApp", parameters: ["user": currentUser["_id"],"_id":id])
             var json = JSON(1);
             opt.start {response in
@@ -1465,7 +1467,7 @@ class Navigation {
 
     func getHomePage(completion: @escaping ((JSON) -> Void)) {
         do {
-            let opt = try HTTP.POST(adminUrl + "config/homePage", parameters: [])
+            let opt = try HTTP.POST(adminUrl + "config/searchPage", parameters: [])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

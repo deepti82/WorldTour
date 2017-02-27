@@ -43,6 +43,7 @@ class SearchElement: UIView {
     func setData(data:JSON, tabs:String) {
         print("set data clicked")
         feeds = data
+        index = tabs
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toggleFullscreen(_:)))
         self.addGestureRecognizer(tapGestureRecognizer)
@@ -50,9 +51,10 @@ class SearchElement: UIView {
     
     func toggleFullscreen(_ sender: AnyObject){
         print("clicked....")
+        print(feeds)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
+        if index == "journey" {
         let controller = storyboard.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
         controller.fromOutSide = feeds["_id"].stringValue
         controller.fromType = feeds["type"].stringValue
@@ -61,6 +63,18 @@ class SearchElement: UIView {
         print(feeds["type"])
 
         globalNavigationController.pushViewController(controller, animated: true)
+        }else if index == "user" {
+            selectedPeople = feeds["_id"].stringValue
+            let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            profile.displayData = "search"
+            globalNavigationController.pushViewController(profile, animated: true)
+        }else{
+            selectedPeople = feeds["_id"].stringValue
+            let profile = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            profile.displayData = "search"
+            globalNavigationController.pushViewController(profile, animated: true)
+        }
+        
         
     }
 }
