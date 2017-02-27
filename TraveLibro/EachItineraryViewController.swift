@@ -27,7 +27,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     var currentShowingCountry: JSON?
     var fromOutSide: String!
 
-    var loader = LoadingOverlay()
+    var loader: LoadingOverlay? = LoadingOverlay()
 
     @IBOutlet weak var photosButton: UIButton!
     @IBOutlet weak var theTableView: UITableView!
@@ -100,11 +100,16 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         cityLabels = [" "]
         dayLabels = [" "]        
         
+        if loader != nil {
+            loader?.showOverlay(self.view)
+        }
+        
         let inset = photosButton.imageEdgeInsets        
         photosButton.imageEdgeInsets = UIEdgeInsets(top: inset.top, left: 10, bottom: inset.bottom, right: (photosButton.frame.size.width - (photosButton.frame.size.height - (inset.top + inset.bottom))) - 15)        
         request.getItinerary(fromOutSide, completion: { (json) in
             DispatchQueue.main.async(execute: {
-                if(json["value"].boolValue) {
+                self.loader?.hideOverlayView()
+                if(json["value"].boolValue) {                    
                     self.editJson = json["data"];
                     self.allButtons = [self.tab_0, self.tab_1, self.tab_2, self.tab_3, self.tab_4, self.tab_more]
                     self.setCountryTabs()

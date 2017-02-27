@@ -12,10 +12,14 @@ class SearchViewController: UIViewController {
     
     var search: SearchFieldView!
     @IBOutlet var SearchView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         print("in search view controller")
         getDarkBackGround(self)
+        
+        scrollView.isScrollEnabled = true
+        
         search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: self.view.frame.width - 20 , height: 30))
         search.searchField.returnKeyType = .done
 
@@ -32,9 +36,9 @@ class SearchViewController: UIViewController {
         search.SearchView.addGestureRecognizer(tapout)
 
         
-        let searchView = Search(frame: CGRect(x: 0, y: 105, width: self.view.frame.width, height: self.view.frame.height))
+        let searchView = Search(frame: CGRect(x: 0, y: 105, width: self.view.frame.width, height: (self.view.frame.height - 105)))
         searchView.setData()
-        self.view.addSubview(searchView)
+        self.scrollView.addSubview(searchView)
         setTopNavigation("Search")
         // Do any additional setup after loading the view.
     }
