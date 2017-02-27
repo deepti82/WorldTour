@@ -13,13 +13,19 @@ class SearchElement: UIView {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var imageLable: UILabel!
     var index = ""
+    var feeds:JSON = []
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        loadViewFromNib ()        
-        let tapRecognizer = UITapGestureRecognizer()
-        tapRecognizer.numberOfTapsRequired = 1
-        tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
-        self.image.addGestureRecognizer(tapRecognizer)
+        loadViewFromNib ()
+        
+        
+        
+        
+//        let tapRecognizer = UITapGestureRecognizer()
+//        tapRecognizer.numberOfTapsRequired = 1
+//        tapRecognizer.addTarget(self, action: #selector(self.toggleFullscreen))
+//        self.image.addGestureRecognizer(tapRecognizer)
         
     }
     
@@ -36,19 +42,27 @@ class SearchElement: UIView {
         self.addSubview(view)
     }
     
-    func setData(data:JSON) {
+    func setData(data:JSON, tabs:String) {
+        print("set data clicked")
+        feeds = data
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(self.toggleFullscreen(_:)))
+        self.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    func toggleFullscreen(_ sender: UIButton){
+    func toggleFullscreen(_ sender: AnyObject){
         print("clicked....")
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
         let controller = storyboard.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-//        controller.fromOutSide = feeds["_id"].stringValue
-//        controller.fromType = feeds["type"].stringValue
-//        
-//        print(feeds["_id"])
-//        print(feeds["type"])
-        globalMyLifeContainerViewController.navigationController!.pushViewController(controller, animated: false)
+        controller.fromOutSide = feeds["_id"].stringValue
+        controller.fromType = feeds["type"].stringValue
+        
+        print(feeds["_id"])
+        print(feeds["type"])
+
+        globalNavigationController.pushViewController(controller, animated: true)
         
     }
 }
