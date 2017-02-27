@@ -234,6 +234,10 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         return 45
     }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
         if (indexPath as NSIndexPath).row != 0 && cityLabels[(indexPath as NSIndexPath).row] != "little more" && cityLabels[(indexPath as NSIndexPath).row] != "Ate At" && cityLabels[(indexPath as NSIndexPath).row] != "Stayed At" && cityLabels[(indexPath as NSIndexPath).row] != "Must Do's" && cityLabels[(indexPath as NSIndexPath).row] != "little more" {

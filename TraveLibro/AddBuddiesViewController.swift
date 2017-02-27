@@ -140,7 +140,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             if(searchText != "") {
                 self.allFriendsJson = []
                 for buddy in self.oldBuddies {
-                    var str = buddy["name"].stringValue;
+                    let str = buddy["name"].stringValue;
 
                     if str.localizedCaseInsensitiveContains(searchText) {
                         self.allFriendsJson.append(buddy)

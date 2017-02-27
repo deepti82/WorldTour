@@ -86,6 +86,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     }
                     else if response["value"].bool! {
                         
+                        
                         if self.refreshControl.isRefreshing {
                             self.notifications = []
                             self.refreshControl.endRefreshing()
@@ -106,6 +107,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                         }
                         else {                        
                             self.notifications.append(contentsOf: newResponse)
+                        }
+                        
+                        if self.hasNext {
                             print("Will send another request")
                             DispatchQueue.global().async(execute: {
                                 print("Sending another request global")
