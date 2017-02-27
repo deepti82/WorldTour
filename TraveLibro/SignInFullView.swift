@@ -37,7 +37,11 @@ class SignInFullView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         loginStack.isHidden = true
+        facebookButton.imageView?.contentMode = .scaleAspectFit
+        facebookButton.clipsToBounds = true
         
+        googleButton.imageView?.contentMode = .scaleAspectFit
+        googleButton.clipsToBounds = true
 //        let attributes = [
 //            NSForegroundColorAttributeName: UIColor.whiteColor(),
 //            NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 14)!

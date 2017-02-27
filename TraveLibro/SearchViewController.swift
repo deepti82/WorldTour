@@ -22,7 +22,7 @@ class SearchViewController: UIViewController {
         
         search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: self.view.frame.width - 20 , height: 30))
         search.searchField.returnKeyType = .done
-
+        scrollView.contentSize = CGSize(width: 0, height: 2000)
         SearchView.addSubview(search)
   
         transparentCardWhite(SearchView)

@@ -45,12 +45,12 @@
                     </variation>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ThA-U9-Fhv">
-                    <rect key="frame" x="10" y="184" width="380" height="190"/>
+                    <rect key="frame" x="10" y="205" width="380" height="190"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48h-uC-mHb">
                             <rect key="frame" x="0.0" y="0.0" width="380" height="90"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-fh-Q1A">
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-fh-Q1A">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="90"/>
                                     <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -76,13 +76,13 @@
                                 </label>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="90" id="GBz-Yk-5w6"/>
+                                <constraint firstAttribute="height" constant="90" id="gXp-KZ-LxR"/>
                             </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7vv-RY-Jbl">
                             <rect key="frame" x="0.0" y="100" width="380" height="90"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM4-ql-gyK">
+                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM4-ql-gyK">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="90"/>
                                     <color key="backgroundColor" red="0.8666666666666667" green="0.29411764705882354" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
@@ -111,15 +111,15 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AAY-U4-wox">
-                    <rect key="frame" x="83" y="394" width="239" height="22"/>
+                    <rect key="frame" x="83" y="220" width="239" height="22"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEA-zw-tPc">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEA-zw-tPc">
                             <rect key="frame" x="0.0" y="0.0" width="184" height="22"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-o3-7Em">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-o3-7Em">
                             <rect key="frame" x="194" y="0.0" width="45" height="22"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                             <state key="normal" title="Log in">
@@ -138,11 +138,11 @@
                 <constraint firstItem="AAY-U4-wox" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="83" id="9yI-Zh-8Mg"/>
                 <constraint firstItem="KaA-bs-Eb3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BZD-uo-Lr1"/>
                 <constraint firstAttribute="bottom" secondItem="KaA-bs-Eb3" secondAttribute="bottom" id="F3w-1e-Akc"/>
-                <constraint firstItem="AAY-U4-wox" firstAttribute="top" secondItem="ThA-U9-Fhv" secondAttribute="bottom" constant="20" id="F7G-XR-ZNn"/>
+                <constraint firstItem="AAY-U4-wox" firstAttribute="top" secondItem="ThA-U9-Fhv" secondAttribute="bottom" constant="-175" id="F7G-XR-ZNn"/>
                 <constraint firstItem="KaA-bs-Eb3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LzU-ZT-WqC"/>
+                <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ORy-rn-otc"/>
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PHu-0s-vnx"/>
                 <constraint firstAttribute="trailing" secondItem="KaA-bs-Eb3" secondAttribute="trailing" id="Rbb-Qv-RuY"/>
-                <constraint firstItem="ThA-U9-Fhv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="184" id="coA-ID-rE3"/>
                 <constraint firstAttribute="bottom" secondItem="KaA-bs-Eb3" secondAttribute="bottom" id="qr2-Sb-czy"/>
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="w54-xa-PhW"/>
             </constraints>
