@@ -26,6 +26,7 @@ class Search: UIView {
         popularJourneyScroll.contentSize.width = 1000
         popularJourneyScroll.isScrollEnabled = true
         PopularItinerariesScroll.isScrollEnabled = true
+        popularBloggersScroll.isScrollEnabled = true
         PopularItinerariesScroll.contentSize = CGSize(width: 2000, height: 0)
            }
     
@@ -69,8 +70,10 @@ class Search: UIView {
             
             element = SearchElement(frame: CGRect(x: 5, y: 0, width: 140, height: 150))
             element.imageLable.text = iti.1["name"].stringValue
+
             element.image.hnk_setImageFromURL(getImageURL(iti.1["coverPhoto"].stringValue, width: 140))
-            element.image.backgroundColor = UIColor.clear
+            //element.image.backgroundColor = UIColor.clear
+
             horizontalScrollItinerary.addSubview(element)
         }
         
@@ -83,8 +86,10 @@ class Search: UIView {
          for iti in data {
         element = SearchElement(frame: CGRect(x: 5, y: 0, width: 140, height: 150))
             element.imageLable.text = iti.1["name"].stringValue
+
             element.image.hnk_setImageFromURL(getImageURL(iti.1["startLocationPic"].stringValue, width: 140))
-             element.image.backgroundColor = UIColor.clear
+             //element.image.backgroundColor = UIColor.clear
+
         horizontalScrollJourney.addSubview(element)
         }
         
