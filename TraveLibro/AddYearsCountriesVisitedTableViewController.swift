@@ -23,12 +23,13 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
     var filteredArray: [String]!
     
     var shouldShowSearchResults = false
-    
+    var loader = LoadingOverlay()
     var selectedYears: [String] = []
     var currentYear: Int = 0
     var previousYear: Int = 1960
     override func viewDidLoad() {
         super.viewDidLoad()
+        loader.showOverlay(self.view)
         getDarkBackGround(self)
         trialVariable = []
         let calendar = NSCalendar.current
@@ -167,7 +168,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
         cell.accessoryType = .checkmark
         
         if (indexPath as NSIndexPath).row % 2 == 0 {
-            
+            cell.backgroundColor = UIColor.white.withAlphaComponent(0.6)
 //            cell.backgroundColor = mainOrangeColor.withAlphaComponent(0.1)
             
         }
@@ -306,7 +307,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
         request.addCountriesVisited(currentUser["_id"].string!, list: listFormat, countryVisited: selectedCountry, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
                 if response.error != nil {
                     
                     print("error- \(response.error!.code): \(response.error!.localizedDescription)")

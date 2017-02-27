@@ -87,7 +87,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func viewDidLoad() {
-        loader.showOverlay(self.view)
+//        loader.showOverlay(self.view)
         super.viewDidLoad()
         getAllComments()
         setTopNavigation("Comment")

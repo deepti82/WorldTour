@@ -32,7 +32,7 @@ class AddRatingCountries: UIView, UITextViewDelegate {
     var journeyData: JSON!
     var i = 3
     var backgroundSuperview: UIView!
-    
+    var loader = LoadingOverlay()
     
     var endJourney:EndJourneyViewController!
     

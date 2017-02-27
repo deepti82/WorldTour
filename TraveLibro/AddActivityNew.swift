@@ -98,7 +98,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
     var photosGroupId = 0
     var photosToBeUploaded: [PhotoUpload] = []
     
-
+    var loader = LoadingOverlay()
     var photosAddedMore = false
     var selectPhotosCount = 0
     

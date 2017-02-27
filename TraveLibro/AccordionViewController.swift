@@ -21,7 +21,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var allData:[JSON] = []
     var pagenumber:Int = 1
     var empty: EmptyScreenView!
-    
+    var loader = LoadingOverlay()
     var whichView = "All"
     var reviewType = "all"
     var country = ""
@@ -31,11 +31,12 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
     var cityName = ""
     var selectedView = 1
     var loadStatus:Bool = true
-    var loader = LoadingOverlay()
+   
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loader.showOverlay(self.view)
         //        getDarkBackGround(self)
         globalAccordionViewController = self
         setTopNavigation("Reviews")
@@ -135,6 +136,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         print("GetReviewByLoc")
         request.getReviewByLoc(currentUser["_id"].stringValue, location: location, id: id, completion: {(request) in
             DispatchQueue.main.async {
+                self.loader.hideOverlayView()
                 self.allData = []
                 self.allData.append(self.getHeaderJSON())
                 
@@ -173,6 +175,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         print("getReview")
         request.getReview(currentUser["_id"].stringValue, country: country, city: city, category: category, pageNumber: pageno, completion: {(request) in
             DispatchQueue.main.async {
+                self.loader.hideOverlayView()
                 if request["data"].count > 0 {
                     if pageno == 1 {
                         self.allData = []
@@ -207,6 +210,7 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         print("getmylifereview")
         request.getMyLifeReview(currentUser["_id"].stringValue, pageNumber: pageno, type: type, completion: {(request) in
             DispatchQueue.main.async {
+                self.loader.hideOverlayView()
                 if request["data"].count > 0 {
                     if pageno == 1 {
                         self.allData = request["data"].array!

@@ -22,42 +22,42 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="XpZ-TS-wqR">
-                    <rect key="frame" x="0.0" y="220" width="375" height="150"/>
+                    <rect key="frame" x="0.0" y="219.5" width="375" height="150"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="m6A-oz-TJG"/>
                     </constraints>
                 </scrollView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Itineraries" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2x-Je-ZgF">
-                    <rect key="frame" x="0.0" y="192" width="158" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Itineraries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2x-Je-ZgF">
+                    <rect key="frame" x="8" y="192" width="158" height="19.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="158" id="8PV-il-FkJ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="248" text="Popular Bloggers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftL-JM-846">
-                    <rect key="frame" x="0.0" y="378" width="158" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="248" text="Popular Bloggers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftL-JM-846">
+                    <rect key="frame" x="8" y="377.5" width="158" height="19.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="158" id="oIJ-Nb-tG4"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ace-fp-pTO">
-                    <rect key="frame" x="0.0" y="406" width="375" height="150"/>
+                    <rect key="frame" x="0.0" y="405" width="375" height="150"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="Fk9-BL-wVk"/>
                     </constraints>
                 </scrollView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Journey" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xv6-LL-uDY">
-                    <rect key="frame" x="0.0" y="0.0" width="158" height="34"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular Journey" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xv6-LL-uDY">
+                    <rect key="frame" x="8" y="0.0" width="158" height="34"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="158" id="Drt-Uk-BdX"/>
                         <constraint firstAttribute="height" constant="34" id="bJL-e4-mt8"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -71,16 +71,16 @@
             <constraints>
                 <constraint firstItem="Ace-fp-pTO" firstAttribute="top" secondItem="ftL-JM-846" secondAttribute="bottom" constant="8" symbolic="YES" id="3Qt-K8-AER"/>
                 <constraint firstItem="ftL-JM-846" firstAttribute="top" secondItem="XpZ-TS-wqR" secondAttribute="bottom" constant="8" id="4M3-7k-X11"/>
+                <constraint firstItem="XpZ-TS-wqR" firstAttribute="leading" secondItem="mS8-lu-shk" secondAttribute="leading" id="4YF-97-QBR"/>
+                <constraint firstItem="ftL-JM-846" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="8e1-zQ-1Tg"/>
                 <constraint firstItem="mS8-lu-shk" firstAttribute="trailing" secondItem="Ace-fp-pTO" secondAttribute="trailing" id="Bf3-LR-8Am"/>
-                <constraint firstItem="XpZ-TS-wqR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CPZ-ji-XsK"/>
                 <constraint firstAttribute="trailing" secondItem="mS8-lu-shk" secondAttribute="trailing" id="ETh-Iv-oOf"/>
-                <constraint firstItem="Ace-fp-pTO" firstAttribute="leading" secondItem="ftL-JM-846" secondAttribute="leading" id="Fen-Ig-GtF"/>
-                <constraint firstItem="A2x-Je-ZgF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Gqj-Di-cIU"/>
-                <constraint firstItem="Ace-fp-pTO" firstAttribute="leading" secondItem="XpZ-TS-wqR" secondAttribute="leading" id="LsB-YD-ZYU"/>
                 <constraint firstItem="mS8-lu-shk" firstAttribute="top" secondItem="Xv6-LL-uDY" secondAttribute="bottom" id="NhO-s0-wDK"/>
-                <constraint firstItem="Xv6-LL-uDY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Onf-b7-vUF"/>
                 <constraint firstItem="Xv6-LL-uDY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="V0G-Up-ToK"/>
                 <constraint firstItem="mS8-lu-shk" firstAttribute="trailing" secondItem="XpZ-TS-wqR" secondAttribute="trailing" id="X3n-Jh-4i1"/>
+                <constraint firstItem="A2x-Je-ZgF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="i5h-mq-JD9"/>
+                <constraint firstItem="XpZ-TS-wqR" firstAttribute="leading" secondItem="Ace-fp-pTO" secondAttribute="leading" id="iau-ud-BVM"/>
+                <constraint firstItem="Xv6-LL-uDY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="j1j-sA-oAs"/>
                 <constraint firstItem="A2x-Je-ZgF" firstAttribute="top" secondItem="mS8-lu-shk" secondAttribute="bottom" constant="8" id="tB5-SX-PQB"/>
                 <constraint firstItem="XpZ-TS-wqR" firstAttribute="top" secondItem="A2x-Je-ZgF" secondAttribute="bottom" constant="8" id="tIF-1I-wAw"/>
                 <constraint firstItem="mS8-lu-shk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vXJ-Nr-Gq9"/>

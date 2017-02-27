@@ -11,10 +11,10 @@ class BucketListTableViewController: UITableViewController  {
     //    var countriesVisited: [JSON] = []
     var isComingFromEmptyPages = false
     var otherUser: String = ""
-    
+    var loader = LoadingOverlay()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loader.showOverlay(self.view)
         getDarkBackGround(self)
         
         let leftButton = UIButton()
@@ -82,7 +82,7 @@ class BucketListTableViewController: UITableViewController  {
         request.getBucketList(currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
                 if response.error != nil {
                     
                     print("error - \(response.error?.code): \(response.error?.localizedDescription)")
@@ -120,7 +120,7 @@ class BucketListTableViewController: UITableViewController  {
         request.getCountriesVisited(currentUser["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                self.loader.hideOverlayView()
                 if response.error != nil {
                     
                     print("error - \(response.error?.code): \(response.error?.localizedDescription)")

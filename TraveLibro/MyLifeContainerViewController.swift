@@ -18,7 +18,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         TheScrollView.delegate = self
         layout = VerticalLayout(width: self.view.frame.width);
         TheScrollView.addSubview(layout)
-        loader.showOverlay(self.view)
+//        loader.showOverlay(self.view)
         timeTag = TimestampTagViewOnScroll(frame: CGRect(x: 0, y: 100, width: screenWidth + 8, height: 40))
         timeTag.alpha = 0.8
         self.view.addSubview(timeTag)

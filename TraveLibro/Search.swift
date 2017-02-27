@@ -67,9 +67,10 @@ class Search: UIView {
     func setItinerary(data: JSON) {
         for iti in data {
             
-            element = SearchElement(frame: CGRect(x: 5, y: 0, width: 171, height: 150))
+            element = SearchElement(frame: CGRect(x: 5, y: 0, width: 140, height: 150))
             element.imageLable.text = iti.1["name"].stringValue
-            element.image.hnk_setImageFromURL(getImageURL(iti.1["coverPhoto"].stringValue, width: 200))
+            element.image.hnk_setImageFromURL(getImageURL(iti.1["coverPhoto"].stringValue, width: 140))
+            element.image.backgroundColor = UIColor.clear
             horizontalScrollItinerary.addSubview(element)
         }
         
@@ -80,10 +81,10 @@ class Search: UIView {
     
     func setJourney(data: JSON) {
          for iti in data {
-        element = SearchElement(frame: CGRect(x: 5, y: 0, width: 171, height: 150))
+        element = SearchElement(frame: CGRect(x: 5, y: 0, width: 140, height: 150))
             element.imageLable.text = iti.1["name"].stringValue
-            element.image.hnk_setImageFromURL(getImageURL(iti.1["startLocationPic"].stringValue, width: 200))
-            
+            element.image.hnk_setImageFromURL(getImageURL(iti.1["startLocationPic"].stringValue, width: 140))
+             element.image.backgroundColor = UIColor.clear
         horizontalScrollJourney.addSubview(element)
         }
         
@@ -94,10 +95,10 @@ class Search: UIView {
     
     func setBloggers(data: JSON) {
         for iti in data {
-        element = SearchElement(frame: CGRect(x: 5, y: 0, width: 171, height: 150))
+        element = SearchElement(frame: CGRect(x: 5, y: 0, width: 140, height: 150))
             element.imageLable.text = iti.1["name"].stringValue
-            element.image.hnk_setImageFromURL(getImageURL(iti.1["profilePicture"].stringValue, width: 200))
-
+            element.image.hnk_setImageFromURL(getImageURL(iti.1["profilePicture"].stringValue, width: 140))
+            element.image.backgroundColor = UIColor.clear
         horizontalScrollBlogger.addSubview(element)
         }
         

@@ -5,7 +5,7 @@ import CoreLocation
 import Toaster
 
 class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, UITextFieldDelegate {
-    
+    var loader = LoadingOverlay()
     var places: [JSON] = []
     let locationManager = CLLocationManager()
     var locValue:CLLocationCoordinate2D!
