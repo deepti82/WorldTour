@@ -1465,7 +1465,7 @@ class Navigation {
 
     func getHomePage(completion: @escaping ((JSON) -> Void)) {
         do {
-            let opt = try HTTP.POST(adminUrl + "config/homePage", parameters: [])
+            let opt = try HTTP.POST(adminUrl + "config/searchPage", parameters: [])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

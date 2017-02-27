@@ -22,7 +22,7 @@
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="3wp-gL-tTg">
                     <rect key="frame" x="0.0" y="0.0" width="140" height="150"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="KHe-EL-Nrf"/>
                         <constraint firstAttribute="width" constant="140" id="y3U-b7-2RJ"/>
@@ -35,7 +35,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="CzS-AG-4ci" secondAttribute="bottom" id="2RW-iO-LHz"/>
                 <constraint firstAttribute="bottom" secondItem="3wp-gL-tTg" secondAttribute="bottom" id="TCi-dq-f6U"/>
