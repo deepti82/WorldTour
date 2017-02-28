@@ -38,7 +38,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         self.view.addSubview(footer)
         
         
-        let footerAbove = previewBase(frame: CGRect(x: 0, y: self.view.frame.height - 95, width: self.view.frame.width, height: 40))
+        let footerAbove = previewBase(frame: CGRect(x: 0, y: self.view.frame.height - 95, width: self.view.frame.width, height: 25))
         footerAbove.layer.zPosition = 900
         footerAbove.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.showPhoto(_:))))
 
@@ -127,7 +127,8 @@ class QuickItineraryPreviewViewController: UIViewController {
         rightButton.titleLabel?.font = avenirBold
         rightButton.addTarget(self, action: #selector(QuickItineraryPreviewViewController.donePage(_:)), for: .touchUpInside)
         rightButton.frame = CGRect(x: 20, y: 8, width: 45, height: 30)
-        if selectedQuick == "" {
+        print("selected status \(selectedQuickI)")
+        if selectedQuickI == "" {
             self.customNavigationBar(left: leftButton, right: rightButton)
 
         }else{

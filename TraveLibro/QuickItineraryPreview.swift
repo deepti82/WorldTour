@@ -29,11 +29,9 @@ class QuickItineraryPreview: UIView {
     @IBOutlet weak var cityScroller: UIScrollView!
     var json:JSON!
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib()
-        
         
         self.qiView.layer.cornerRadius = 5
         self.qiView.clipsToBounds = true
@@ -67,8 +65,6 @@ class QuickItineraryPreview: UIView {
             horizontal.layoutSubviews()
             self.countryScroll.contentSize = CGSize(width: self.horizontal.frame.width, height: self.horizontal.frame.height)
         }
-//
-        
     }
     
     func generateCity () {
@@ -101,6 +97,7 @@ class QuickItineraryPreview: UIView {
     }
     
     required init?(coder aDecoder: NSCoder) {
+        
         super.init(coder: aDecoder)
         
     }
