@@ -54,11 +54,11 @@ class PopularJourneyView: UIView {
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         likeLabel.text = String(format: "%C", faicon["likes"]!)
-        commentLabelFA.text = String(format: "%C", faicon["comments"]!)
+       
         commentButton.tintColor = mainBlueColor
         likeButton.tintColor = mainBlueColor
         TitleLabelView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        followHideShow.isHidden = true
+//        followHideShow.isHidden = true
         mainPhoto.layer.zPosition = -10
         
         cardView.layer.cornerRadius = 5
