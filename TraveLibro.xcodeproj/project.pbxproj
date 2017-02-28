@@ -95,6 +95,7 @@
 		4435D2FB1E548D02003BD1D9 /* notificationBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2FA1E548D02003BD1D9 /* notificationBackgroundView.xib */; };
 		4435D2FD1E548D3D003BD1D9 /* NotificationUserFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2FC1E548D3D003BD1D9 /* NotificationUserFollowing.swift */; };
 		4435D2FF1E548DF3003BD1D9 /* NotificationBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2FE1E548DF3003BD1D9 /* NotificationBackground.swift */; };
+		446FDD231E6535EC00C09EFB /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FDD221E6535EC00C09EFB /* EmptyTableViewCell.swift */; };
 		44725D2D1E5ADBB70074D925 /* NotificationCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */; };
 		44725D2F1E5B06580074D925 /* NotificationDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */; };
 		447492251E5D535300039D56 /* NotificationFollowRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447492241E5D535200039D56 /* NotificationFollowRequestCell.swift */; };
@@ -406,8 +407,6 @@
 		C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DCB3731CE7470F006E5CBD /* AddRating.xib */; };
 		C2DCB3771CE7473A006E5CBD /* AddRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB3761CE7473A006E5CBD /* AddRating.swift */; };
 		C2DCB3791CE75365006E5CBD /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB3781CE75365006E5CBD /* NotificationsViewController.swift */; };
-		C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DCB37A1CE759F5006E5CBD /* NotificationsHeader.xib */; };
-		C2DCB37D1CE75AB2006E5CBD /* NotificationsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DCB37C1CE75AB2006E5CBD /* NotificationsHeader.swift */; };
 		C2DD03241CEAFDD4001878DD /* SayBye.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2DD03231CEAFDD4001878DD /* SayBye.xib */; };
 		C2DD03261CEB008C001878DD /* SayBye.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD03251CEB008C001878DD /* SayBye.swift */; };
 		C2DD03281CEB4D0F001878DD /* ImageMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD03271CEB4D0F001878DD /* ImageMask.swift */; };
@@ -598,6 +597,7 @@
 		4435D2FA1E548D02003BD1D9 /* notificationBackgroundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationBackgroundView.xib; path = Notification/notificationBackgroundView.xib; sourceTree = "<group>"; };
 		4435D2FC1E548D3D003BD1D9 /* NotificationUserFollowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationUserFollowing.swift; path = Notification/NotificationUserFollowing.swift; sourceTree = "<group>"; };
 		4435D2FE1E548DF3003BD1D9 /* NotificationBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationBackground.swift; path = Notification/NotificationBackground.swift; sourceTree = "<group>"; };
+		446FDD221E6535EC00C09EFB /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyTableViewCell.swift; path = PopularJourney/EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCommentCell.swift; path = Notification/NotificationCommentCell.swift; sourceTree = "<group>"; };
 		44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationDefaultCell.swift; path = Notification/NotificationDefaultCell.swift; sourceTree = "<group>"; };
 		447492241E5D535200039D56 /* NotificationFollowRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationFollowRequestCell.swift; path = Notification/NotificationFollowRequestCell.swift; sourceTree = "<group>"; };
@@ -911,8 +911,6 @@
 		C2DCB3731CE7470F006E5CBD /* AddRating.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddRating.xib; sourceTree = "<group>"; };
 		C2DCB3761CE7473A006E5CBD /* AddRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRating.swift; sourceTree = "<group>"; };
 		C2DCB3781CE75365006E5CBD /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
-		C2DCB37A1CE759F5006E5CBD /* NotificationsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotificationsHeader.xib; path = ../NotificationsHeader.xib; sourceTree = "<group>"; };
-		C2DCB37C1CE75AB2006E5CBD /* NotificationsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationsHeader.swift; path = ../NotificationsHeader.swift; sourceTree = "<group>"; };
 		C2DD03231CEAFDD4001878DD /* SayBye.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SayBye.xib; path = ../SayBye.xib; sourceTree = "<group>"; };
 		C2DD03251CEB008C001878DD /* SayBye.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SayBye.swift; sourceTree = "<group>"; };
 		C2DD03271CEB4D0F001878DD /* ImageMask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageMask.swift; sourceTree = "<group>"; };
@@ -1179,7 +1177,6 @@
 				C2535F0B1D252E3F00F6B22D /* NewThoughtsView */,
 				C24F84FE1D005A95002EA203 /* NoCountriesVisited */,
 				C24F84F51D005440002EA203 /* NoFollowers */,
-				C2A6E2711CE9E7EE00D3F845 /* NotificationsHeader */,
 				C2ABDBB61CEC5AAE00D7542E /* OnlyPhoto */,
 				1A944E3B1CCB5D79007EB5BD /* OrangeButton */,
 				C23EB1D21CFECF72005B5CE8 /* PhotoBar */,
@@ -1943,6 +1940,7 @@
 			children = (
 				C2AC5D1A1CF32CE0008E5887 /* PopularJourneyView.xib */,
 				C2504E7E1CF3376100A84D78 /* PopularJourneyView.swift */,
+				446FDD221E6535EC00C09EFB /* EmptyTableViewCell.swift */,
 			);
 			name = PopularJourneyView;
 			sourceTree = "<group>";
@@ -2399,15 +2397,6 @@
 				C2A6E25A1CE9C27000D3F845 /* TimelineScroll.swift */,
 			);
 			name = TimelineScroll;
-			sourceTree = "<group>";
-		};
-		C2A6E2711CE9E7EE00D3F845 /* NotificationsHeader */ = {
-			isa = PBXGroup;
-			children = (
-				C2DCB37A1CE759F5006E5CBD /* NotificationsHeader.xib */,
-				C2DCB37C1CE75AB2006E5CBD /* NotificationsHeader.swift */,
-			);
-			name = NotificationsHeader;
 			sourceTree = "<group>";
 		};
 		C2ABDBB51CEC5A9C00D7542E /* StatusView */ = {
@@ -2938,7 +2927,6 @@
 				FCDF49081E25586C00ED9A32 /* previewBase.xib in Resources */,
 				841E43AC1E1D1DD6000D2E6B /* EndJourneyView.xib in Resources */,
 				3AEEB0091CE6F64F0085EEF5 /* Rating.xib in Resources */,
-				C2DCB37B1CE759F5006E5CBD /* NotificationsHeader.xib in Resources */,
 				C2FF64871D82ED0900F3866A /* AddActivityOTG.xib in Resources */,
 				3AFB01C61DDC30DA00BCD523 /* AddRatingCountries.xib in Resources */,
 				C2A5C1D51CF9A7F90035EF0E /* MoreAboutMe.xib in Resources */,
@@ -3333,7 +3321,6 @@
 				C2873E8E1D9E90580001431B /* BuddyLeaves.swift in Sources */,
 				C23EBC301D7FF49000D040DB /* AddYearsCountriesVisitedTableViewController.swift in Sources */,
 				C24F84EB1D0045A1002EA203 /* ReportProblem.swift in Sources */,
-				C2DCB37D1CE75AB2006E5CBD /* NotificationsHeader.swift in Sources */,
 				C20A18F41D224EF400760BF9 /* CheckInSearchViewController.swift in Sources */,
 				C20A18F61D225E9C00760BF9 /* CategoriseCheckInViewController.swift in Sources */,
 				C28A92471D0E95ED00CFEC7A /* PopularBloggersViewController.swift in Sources */,
@@ -3444,6 +3431,7 @@
 				C24909BC1D4A3E41007EB6B4 /* AddPostsOTGView.swift in Sources */,
 				842484F91E13A9E600083115 /* PhotosOTGHeader.swift in Sources */,
 				FCE877FF1E30CA6A005EE913 /* ActivityFeedsLayout.swift in Sources */,
+				446FDD231E6535EC00C09EFB /* EmptyTableViewCell.swift in Sources */,
 				C2823B011D4625830065A76C /* NotificationSubViewController.swift in Sources */,
 				FCB3D1791E5D6FC50041B121 /* OnlyLine.swift in Sources */,
 				C2FA1E171D5495870034DE97 /* QuickItinerariesViewController.swift in Sources */,

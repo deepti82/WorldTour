@@ -14,12 +14,24 @@ class PopularJourneyView: UIView {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var mainPhoto: UIImageView!
     @IBOutlet weak var likeLabel: UILabel!
-    @IBOutlet weak var flag3: UIImageView!
-    @IBOutlet weak var flag2: UIImageView!
-    @IBOutlet weak var flag1: UIImageView!
+    
     @IBOutlet weak var clockLabel: UILabel!
-    @IBOutlet weak var calendarLabel: UILabel!
+    @IBOutlet weak var calendarLabel: UILabel!    
+    @IBOutlet weak var journeyStartTime: UILabel!
+    @IBOutlet weak var journetStartDate: UILabel!
+    @IBOutlet weak var journeyCreatorLabel: UILabel!
+    @IBOutlet weak var journeyCreatorImage: UIImageView!
+    
     @IBOutlet weak var TitleLabelView: UIView!
+    @IBOutlet weak var journeyTitleLabel: UILabel!
+    @IBOutlet weak var journeyDescription: UILabel!
+    
+    @IBOutlet weak var flag1: UIImageView!
+    @IBOutlet weak var flag2: UIImageView!
+    @IBOutlet weak var flag3: UIImageView!
+    
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var commentsLabel: UILabel!
     
     @IBAction func followButton(_ sender: AnyObject) {
         
@@ -30,21 +42,6 @@ class PopularJourneyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
-        flag3.layer.cornerRadius = self.flag3.frame.size.height/2
-        flag3.clipsToBounds = true
-        flag3.layer.borderColor = UIColor.white.cgColor
-        flag3.layer.borderWidth = CGFloat(1.5)
-        
-        flag2.layer.cornerRadius = self.flag2.frame.size.height/2
-        flag2.clipsToBounds = true
-        flag2.layer.borderColor = UIColor.white.cgColor
-        flag2.layer.borderWidth = CGFloat(1.5)
-        
-        flag1.layer.cornerRadius = self.flag1.frame.size.height/2
-        flag1.clipsToBounds = true
-        flag1.layer.borderColor = UIColor.white.cgColor
-        flag1.layer.borderWidth = CGFloat(1.5)
         
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)

@@ -232,7 +232,8 @@ class ActivityFeedFooter: UIView {
                     }
                 })
             })
-        }else if (postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
+        }
+        else if (postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
             request.likeStartEnd(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, journey: postTop["_id"].stringValue, completion: {(response) in
                 DispatchQueue.main.async(execute: {
                     if response.error != nil {

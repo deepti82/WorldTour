@@ -109,17 +109,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                             self.notifications.append(contentsOf: newResponse)
                         }
                         
-                        if self.hasNext {
-                            print("Will send another request")
-                            DispatchQueue.global().async(execute: {
-                                print("Sending another request global")
-                                DispatchQueue.main.async {
-                                    print("Sending another request main")
-                                }                                
-                                self.getNotification()                                
-                            })
-                        }
-                        
                         if !(newResponse.isEmpty) {
                             self.notifyTableView.reloadData()                            
                         }                        
@@ -395,6 +384,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -438,14 +431,10 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
 //        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
 //        UIView.commitAnimations()
         
-        if notifications.count > 0 && indexPath.row == (notifications.count - 1) {
-            
+        if notifications.count > 0 && indexPath.row == (notifications.count - 1) {            
             if hasNext {
-                Toast(text: "Please wait").show()
+                self.getNotification()
             }
-//            DispatchQueue.global().async {
-//                self.getNotification()                
-//            }
         }
     }
     

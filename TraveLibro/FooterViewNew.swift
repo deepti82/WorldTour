@@ -63,6 +63,8 @@ class FooterViewNew: UIView {
     }
     
     
+    //MARK:- Footer Actions
+    
     func gotoOTG(_ sender: UITapGestureRecognizer) {
         print("user which which user")
         print(user.getExistingUser())
