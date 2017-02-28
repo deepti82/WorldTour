@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Spring
 
 class PopularJourneyView: UIView {
 
@@ -33,6 +34,8 @@ class PopularJourneyView: UIView {
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
     
+    @IBOutlet weak var commentButton: SpringButton!
+    @IBOutlet weak var likeButton: SpringButton!
     @IBAction func followButton(_ sender: AnyObject) {
         
         follow.setTitle("Following", for: UIControlState())
@@ -68,4 +71,9 @@ class PopularJourneyView: UIView {
         self.addSubview(view);
     }
 
+    @IBAction func likeButtonTap(_ sender: Any) {
+    }
+    
+    @IBAction func commentButtonTap(_ sender: Any) {
+    }
 }
