@@ -170,6 +170,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         }
     }
     
+    
+    //MARK:- Application Delegates
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         createMenuView()
         _ = AppDelegate.getDatabase()
@@ -208,6 +211,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         emailIcon = String(format: "%C", faicon["email"]!)
         facebookIcon = String(format: "%C", faicon["facebook"]!)
         whatsAppIcon = String(format: "%C", faicon["whatsapp"]!)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showLoginView(sender:)), name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.white
@@ -265,6 +270,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             prevVC = navigationController.viewControllers[navigationController.viewControllers.count - 1]
             prevVC.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
+    }
+    
+    
+    //MARK: - Notification Observer
+    
+    func showLoginView(sender: Any)  {
+        
+        print("\n showing loging view controller")
+        
+        let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+        
+        let nvc = UINavigationController(rootViewController: signInVC)
+        
+        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+        
+        self.window?.rootViewController = slideMenuController
+        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+        nvc.navigationBar.barStyle = .blackTranslucent
+        nvc.navigationBar.isTranslucent = true
+        nvc.delegate = self
     }
     
     

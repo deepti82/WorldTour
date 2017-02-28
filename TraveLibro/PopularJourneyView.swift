@@ -71,9 +71,44 @@ class PopularJourneyView: UIView {
         self.addSubview(view);
     }
 
-    @IBAction func likeButtonTap(_ sender: Any) {
+    @IBAction func likeButtonTap(_ sender: UIButton) {
+        
+        if currentUser != nil {
+            likeButton.animation = "pop"
+            likeButton.velocity = 2
+            likeButton.force = 2
+            likeButton.damping = 10
+            likeButton.curve = "spring"
+            likeButton.animateTo()
+            
+            print("like button tapped \(sender.titleLabel!.text)")
+            
+            var hasLiked = false
+            if sender.tag == 1 {
+                hasLiked = true
+                sender.tag = 0
+            }
+            else {
+                sender.tag = 1
+            }
+            
+            print("\n hasLiked: \(hasLiked)")
+        }
+            
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
     
-    @IBAction func commentButtonTap(_ sender: Any) {
+    @IBAction func commentButtonTap(_ sender: UIButton) {
+        
+        if currentUser != nil {
+            //Do some action
+        }
+            
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+        
     }
 }
