@@ -26,7 +26,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
     var videos:[JSON]!
     var singlePost: JSON!
     var allDataFromMyLife: [JSON] = []
-    var loader = LoadingOverlay()
     var likeCount:Int = 0
     var commentCount:Int = 0
     var hasLiked: Bool!
@@ -104,7 +103,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             request.postVideoLike(videos[currentIndex!]["_id"].string!, postId: postId!, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
-                    
+                    loader.hideOverlayView()
                     if response.error != nil {
                         
                         print("error: \(response.error!.localizedDescription)")
@@ -151,7 +150,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             request.postPhotosLike(photos[currentIndex!]["_id"].string!, postId: val, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked!, completion: {(response) in
                 
                 DispatchQueue.main.async(execute: {
-                    
+                    loader.hideOverlayView()
                     if response.error != nil {
                         
                         print("error: \(response.error!.localizedDescription)")
@@ -278,7 +277,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
             
         request.getOneJourneyPost(id: postId, completion: {(response) in
             DispatchQueue.main.async(execute: {
-                
+                loader.hideOverlayView()
                 if response.error != nil {
                     
                     print("response: \(response.error?.localizedDescription)")
@@ -414,7 +413,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
         request.getOnePostPhotos(photoId, val, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                loader.hideOverlayView()
                 if response.error != nil {
                     print("response: \(response.error?.localizedDescription)")
                 }
@@ -449,7 +448,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate {
         request.getOnePostVideos(photoId, singlePost["user"]["_id"].string!, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                loader.hideOverlayView()
                 if response.error != nil {
                     print("response: \(response.error?.localizedDescription)")
                 }

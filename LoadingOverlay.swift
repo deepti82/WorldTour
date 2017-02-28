@@ -11,7 +11,7 @@ import UIKit
 
 extension UIViewController {
     
-    open class LoadingOverlay {
+    open class Loader {
     
         var loader = UIView()
         var imageView1 = UIImageView()

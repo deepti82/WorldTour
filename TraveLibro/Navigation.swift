@@ -2358,7 +2358,7 @@ class Navigation {
         }
     }
     func changeDateTimeLocal(_ id: String, date: String, completion: @escaping ((JSON) -> Void)) {
-        
+        loader.hideOverlayView()
         do {
             
             let params = ["_id": id, "date": date, "type": "changeDateTime", "user": currentUser["_id"].stringValue]
@@ -3038,7 +3038,7 @@ class Navigation {
     }
     
     func journeyChangeEndTime(_ date: String,journeyId: String, completion: @escaping ((JSON) -> Void)) {
-        
+        loader.hideOverlayView()
         var json = JSON(1);
         let params = ["user":currentUser["_id"].stringValue, "_id":journeyId,"endTime":date]
         do {

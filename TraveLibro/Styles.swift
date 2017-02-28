@@ -160,8 +160,8 @@ class LeftPaddedText:  UITextField {
 
 open class LoadingOverlay{
     
-    var overlayView = UIView()
-    var activityIndicator = UIActivityIndicatorView()
+    var loader = UIView()
+    var imageView1 = UIImageView()
     
     class var shared: LoadingOverlay {
         struct Static {
@@ -170,27 +170,28 @@ open class LoadingOverlay{
         return Static.instance
     }
     
-    open func showOverlay(_ view: UIView) {
+    func showOverlay(_ view: UIView) {
+        hideOverlayView()
+        print("show loader")
+        loader = UIView(frame:CGRect(x: 0, y: 0, width: 100, height: 100))
+        view.addSubview(loader)
+        loader.center = view.center
+        let imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        //            imageView1.backgroundColor = UIColor.white
+        imageView1.image = UIImage.gif(name: "loader")
+        imageView1.contentMode = .scaleAspectFit
+        loader.addSubview(imageView1)
         
-        overlayView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        overlayView.center = view.center
-        overlayView.backgroundColor = UIColor(white: 0x444444, alpha: 0.7)
-        overlayView.clipsToBounds = true
-        overlayView.layer.cornerRadius = 10
-        
-        activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
-        activityIndicator.center = CGPoint(x: overlayView.bounds.width / 2, y: overlayView.bounds.height / 2)
-        
-        overlayView.addSubview(activityIndicator)
-        view.addSubview(overlayView)
-        
-        activityIndicator.startAnimating()
     }
     
-    open func hideOverlayView() {
-        activityIndicator.stopAnimating()
-        overlayView.removeFromSuperview()
+    func hideOverlayView() {
+        
+        print("hide overlay")
+        if loader != nil {
+            loader.removeFromSuperview()
+        }else {
+            //
+        }
     }
 }
 

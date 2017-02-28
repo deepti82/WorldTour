@@ -35,7 +35,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     var journeyId = ""
     var radioValue: String!
     var firstTime = true
-    var loader = LoadingOverlay()
+    
     var verticalLayout: VerticalLayout!
     let titleLabels = ["November 2015 (25)", "October 2015 (25)", "September 2015 (25)", "August 2015 (25)"]
     var whatTab = "Journeys"
@@ -51,7 +51,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var arrowDownButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loader.showOverlay(self.view)
+        loader.showOverlay(self.view)
         globalMyLifeViewController = self;
         getDarkBackGround(self)
         globalMyLifeController = self
@@ -177,7 +177,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     func showJourneys(_ sender: UIButton) {
         whatEmptyTab = "Journeys"
         var start = 0;
-        loader.hideOverlayView()
+        
         // where to check review
         whatEmptyTab = "Journeys"
         reviewsButton.layer.zPosition = -1
@@ -191,7 +191,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func showMoments(_ sender: UIButton) {
-        loader.hideOverlayView()
+        
         whatEmptyTab = "Moments"
         journeysButton.layer.zPosition = -1
         reviewsButton.layer.zPosition = 1
@@ -204,7 +204,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func showReviews(_ sender: UIButton) {
-        loader.hideOverlayView()
+        
         whatEmptyTab = "Reviews"
         momentsButton.layer.zPosition = -1
         journeysButton.layer.zPosition = 1
@@ -560,6 +560,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func doneButtonJourney(_ sender: UIButton){
+        
         request.journeyChangeEndTime("\(dateSelected) \(timeSelected)", journeyId: currentPhotoFooter2.postTop["_id"].stringValue) { (response) in
             
         }
@@ -569,6 +570,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
 
 
     func doneButton(_ sender: UIButton){
+        loader.hideOverlayView()
         request.changeDateTimeLocal(currentPhotoFooter.postTop["_id"].stringValue, date: "\(dateSelected) \(timeSelected)", completion: {(response) in
 //            self.getJourney()
         })
