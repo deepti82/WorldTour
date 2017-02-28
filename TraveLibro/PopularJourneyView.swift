@@ -53,9 +53,8 @@ class PopularJourneyView: UIView {
        makeBuddiesTLProfilePicture(journeyCreatorImage)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)
-        likeLabel.text = String(format: "%C", faicon["likes"]!)
-//        commentLabelFA.text = String(format: "%C", faicon["comments"]!)
-//        commentButton.tintColor = mainBlueColor
+        likeLabel.text = String(format: "%C", faicon["likes"]!)       
+        commentButton.tintColor = mainBlueColor
         likeButton.tintColor = mainBlueColor
         TitleLabelView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
 //        followHideShow.isHidden = true
