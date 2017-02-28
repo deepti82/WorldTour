@@ -21,7 +21,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var previousHashtags: [String] = []
     var editComment: JSON!
     var footerView: PhotoOTGFooter!
-    var loader = LoadingOverlay()
     @IBOutlet weak var mentionSuggestionsTable: UITableView!
     @IBOutlet weak var hashTagSuggestionsTable: UITableView!
     @IBOutlet weak var containerTwo: UIView!
@@ -54,7 +53,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             if addComment.text != "" {
                 request.editComment(type: "post", commentId: editComment["_id"].string!, commentText: addComment.text, userId: currentUser["_id"].string!, hashtag: hashtags, addedHashtags: addedHashtags, removedHashtags: removedHashtags, photoId: "", completion: {(response) in
                     DispatchQueue.main.async(execute: {
-//                        self.loader.hideOverlayView()
+//                        loader.hideOverlayView()
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
                         }
@@ -204,16 +203,16 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         else {
             
-            let share = UITableViewRowAction(style: .normal, title: "           ") { action, index in
+            let share = UITableViewRowAction(style: .normal, title: "reply") { action, index in
                 print("reply button tapped")
                 
                 let userTag = "@\(self.comments[indexPath.row]["user"]["urlSlug"].string!)"
                 self.addComment.text = userTag
                 
             }
-            share.backgroundColor = UIColor(patternImage: UIImage(named: "reply")!)
+//            share.backgroundColor = UIColor(patternImage: UIImage(named: "reply")!)
             
-            let report = UITableViewRowAction(style: .normal, title: "          ") { action, index in
+            let report = UITableViewRowAction(style: .normal, title: "report") { action, index in
                 print("report button tapped")
                 let actionSheet: UIAlertController = UIAlertController(title: "Why are you reporting this comment?", message: nil, preferredStyle: .actionSheet)
                 //actionSheet.view.tintColor = UIColor.red
@@ -235,7 +234,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 actionSheet.addAction(abusiveActionButton)
                 self.present(actionSheet, animated: true, completion: nil)
             }
-            report.backgroundColor = UIColor(patternImage: UIImage(named: "report")!)
+//            report.backgroundColor = UIColor(patternImage: UIImage(named: "report")!)
             
             return [share, report]
         }
@@ -385,7 +384,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             
             DispatchQueue.main.async(execute: {
                 
-                self.loader.hideOverlayView()
+                loader.hideOverlayView()
                 
                 if response.error != nil {
                     

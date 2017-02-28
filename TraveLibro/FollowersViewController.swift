@@ -17,7 +17,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var followerTable: UITableView!
    
-    var loader = LoadingOverlay()
     var whichView: String!
     var searchController: UISearchController!
     var shouldShowSearchResults = false
@@ -71,7 +70,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     func getFollowing() {
         
         print("inside following function")
-        self.loader.hideOverlayView()
         request.getFollowing(currentUser["_id"].string!, searchText: searchText, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
@@ -85,6 +83,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                     print("\(response["data"]["following"])")
                     followers = response["data"]["following"].array!
                     self.followerTable.reloadData()
+                    loader.hideOverlayView()
                 }
                 else {
                     
@@ -100,7 +99,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     }
     
     func getFollowers() {
-        self.loader.hideOverlayView()
+        
         print("inside following function")
         request.getFollowers(currentUser["_id"].string!, completion: {(response) in
             
@@ -116,7 +115,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                     print("\(response["data"]["following"])")
                     followers = response["data"]["followers"].array!
                     self.followerTable.reloadData()
-                    
+                    loader.hideOverlayView()
                 }
                 else {
                     

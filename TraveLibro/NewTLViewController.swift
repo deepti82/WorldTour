@@ -24,7 +24,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var myJourney: JSON!
     var isJourney = false
     var imageView1: UIImageView!
-    var loader = LoadingOverlay()
+    
     var height: CGFloat!
     var otgView:startOTGView!
     var showDetails = false
@@ -697,9 +697,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func getJourney() {
-        self.loader.hideOverlayView()
+        loader.hideOverlayView()
         request.getJourney(currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
+                
+                loader.hideOverlayView()
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
                 }
