@@ -10,7 +10,6 @@ import UIKit
 import DKChainableAnimationKit
 
 class SearchTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate, UISearchResultsUpdating {
-    var loader = LoadingOverlay()
     var searchController: UISearchController!
     @IBOutlet weak var hashtagsTable: UITableView!
     @IBOutlet weak var searchTable: UITableView!
@@ -88,15 +87,16 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     func refreshUI() {
         DispatchQueue.main.async {
+            
             self.searchTable.reloadData()
             //        self.searchController.searchResultsController?.reloadInputViews()
             //        self.searchController.searchResultsTableView.reloadData()
         }}
     
     func searchPeople(search: String) {
-        loader.hideOverlayView()
         loadStatus = false
         if search != "" {
+            loader.hideOverlayView()
             request.getPeopleSearch(currentUser["_id"].stringValue, search: search, pageNumber: self.page, completion:{(request) in
                 if request["data"].count > 0 {
                     if self.page == 1 {
@@ -112,6 +112,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
                     self.page = self.page + 1
                     self.loadStatus = true
                     self.refreshUI()
+                    
                 }else{
                     self.loadStatus = false
                 }
@@ -127,17 +128,18 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func searchHashtags(search: String) {
-        loader.hideOverlayView()
+       
         loadStatus = false
         if search != "" {
+            loader.hideOverlayView()
             request.getHashtagSearch(search, pageNumber: page, completion:{(request) in
                 if request["data"].count > 0 {
-                    self.loader.hideOverlayView()
+                   
                     if self.page == 1 {
                         self.allData = []
                         self.allData = request["data"].array!
                     }else{
-                        self.loader.showOverlay(self.view)
+                        
                         for city in request["data"].array! {
                             self.allData.append(city)
                             
@@ -146,6 +148,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
                     self.page = self.page + 1
                     self.loadStatus = true
                     self.refreshUI()
+                    loader.hideOverlayView()
                 }else{
                     self.loadStatus = false
                 }
@@ -182,6 +185,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     
     @IBAction func people(_ sender: Any) {
+        loader.showOverlay(self.view)
         sliderView.isHidden = false
         hashTagSlide.isHidden = true
         selectedStatus = "people"
@@ -191,7 +195,7 @@ class SearchTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     @IBAction func hashtags(_ sender: UIButton) {
-        
+        loader.showOverlay(self.view)
         hashTagSlide.isHidden = false
         sliderView.isHidden = true
         selectedStatus = "hashtags"
