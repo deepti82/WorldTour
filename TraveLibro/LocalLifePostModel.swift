@@ -159,10 +159,7 @@ public class LocalLifePostModel {
         catch {
             
         }
-        
-        
         return allPosts
-        
     }
     
     func getAllPost(postid:Int64) -> [LocalLifePostModel] {
@@ -276,7 +273,73 @@ public class LocalLifePostModel {
         return goodDate
     }
     
-    
+    func getAllJson() -> [JSON] {
+        var retJson:[JSON] = []
+        do {
+            var check = false;
+            let query = post.select(id,type,userId,journeyId,thoughts,location,category,city,country,latitude,longitude,date,buddyDb)
+            for post in try db.prepare(query) {
+                check = true
+                let p = LocalLifePostModel();
+                
+                var postID = post[id]
+                
+                p.post_id = Int(post[id])
+                p.post_type = String(post[type])
+                p.post_userId = String(post[userId])
+                p.post_journeyId = String(post[journeyId])
+                p.post_thoughts = String(post[thoughts])
+                p.post_location = String(post[location])
+                p.post_category = String(post[category])
+                p.post_city = String(post[city])
+                p.post_country = String(post[country])
+                p.post_latitude = String(post[latitude])
+                p.post_longitude = String(post[longitude])
+                p.post_date = String(post[date])
+                p.buddiesStr = String(post[buddyDb])
+                
+                let actualId = Int(post[id]) + 20000
+                
+                let i = PostImage();
+                p.imageArr = i.getAllImages(postNo: Int64(actualId))
+                
+                var photosJson:[JSON] = []
+                
+                for img in p.imageArr {
+                    photosJson.append(img.parseJson())
+                }
+                
+                
+                let v = PostVideo();
+                p.videoArr = v.getAll(postNo: Int64(actualId))
+                
+                var vidoesJson:[JSON] = []
+                
+                for vid in p.videoArr {
+                    vidoesJson.append(vid.parseJson())
+                }
+                
+                let checkInJson:JSON = ["location":p.post_location,"category":p.post_category,"city":p.post_city,"country":p.post_country,"lat":p.post_latitude,"long":p.post_longitude]
+                
+                var params:JSON = ["type":"local-life", "thoughts":p.post_thoughts,"user": p.post_userId,"date":p.post_date]
+                
+                if let data = p.buddiesStr.data(using: String.Encoding.utf8) {
+                    params["buddies"] = JSON(data:data)
+                }
+                
+                params["checkIn"] = checkInJson
+                params["photos"] = JSON(photosJson)
+                params["videos"] = JSON(vidoesJson)
+                retJson.append(params)
+            }
+            
+        }
+        catch {
+            print("There is an error");
+        }
+
+        return retJson
+    }
     
     func uploadPost() {
         do {

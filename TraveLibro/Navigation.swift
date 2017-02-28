@@ -1413,7 +1413,12 @@ class Navigation {
                 {
                     json  = JSON(data: response.data)
                     print("\n\n Activity feeds : \(json) \n\n")
+                    
                     completion(json)
+                    let ll = LocalLifePostModel()
+                    let newJson:[JSON] = ll.getAllJson();
+                    print(newJson);
+                    
                 }
             }
         } catch let error {
