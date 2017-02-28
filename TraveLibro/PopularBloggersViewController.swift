@@ -7,24 +7,87 @@
 //
 
 import UIKit
+import Toaster
 
 class PopularBloggersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var allUsers: [JSON] = []
+    var pagenum = 1
+    var loader = LoadingOverlay()
+    var hasNext = true
+    
+    @IBOutlet weak var userTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setNavigationBarItem()
         
+        loader.showOverlay(self.view)
+        
+        getPopulerUser(pageNum : pagenum )
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //MARK: - GetUsers
+    func getPopulerUser(pageNum : Int) {
+        
+        request.getPopularUsers(pagenumber: pageNum) { (response) in
+            
+            DispatchQueue.main.async(execute: {
+                self.loader.hideOverlayView()
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    let newResponse = response["data"].array!
+                    
+                    if newResponse.isEmpty {
+                        self.hasNext = false
+                    }
+                    
+                    if self.allUsers.isEmpty {
+                        self.allUsers = newResponse
+                        if newResponse.isEmpty {
+                            Toast(text: "No notifications for you....").show()
+                        }
+                    }
+                    else {                        
+                        self.allUsers.append(contentsOf: newResponse)
+                    }
+                    
+                    if !(newResponse.isEmpty) {
+                        self.userTableView.reloadData()                            
+                    }                        
+                }
+                else {
+                    
+                    print("response error!")
+                    
+                }
+                
+            })
+            
+        }
+        
+    }
+    
+    
+    //MARK: - Tableview Delegates and Datasource
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 4
+        return allUsers.count
         
     }
     
@@ -38,25 +101,31 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         cell.videoIcon.tintColor = mainBlueColor
         cell.locationIcon.tintColor = mainBlueColor
         cell.selectionStyle = .none
+        
+        let cellData = allUsers[indexPath.row]        
+        
+        cell.userIcon.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(cellData["profilePicture"].stringValue)", width: 100))
+        
+        cell.userIcon.layer.masksToBounds = false
+        cell.userIcon.layer.borderColor = UIColor.clear.cgColor
+        cell.userIcon.layer.cornerRadius = cell.userIcon.frame.size.width/2
+        cell.userIcon.clipsToBounds = true
+        
+        cell.userName.text = cellData["name"].stringValue
+       
+        cell.photoCountLabel.text = cellData["photos_count"].stringValue
+        cell.videoCountLabel.text = cellData["videos_count"].stringValue
+        cell.bucketListCount.text = cellData["checkins_count"].stringValue
+        
+        cell.countryVisitedCountLabel.text =  "Countries visited : " + cellData["countriesVisited_count"].stringValue
+        cell.journeyCountLabel.text =  "Journeys : " + cellData["journeysCreated_count"].stringValue        
+        cell.followerCountLabel.text = "Followers : " + cellData["followers_count"].stringValue
+        
+        cell.userBadgeImage.image = UIImage(named:cellData["userBadgeName"].stringValue.lowercased())
+        
         return cell
         
     }
-    
-//    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        
-//        return 2
-//        
-//    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -67,5 +136,17 @@ class PopularBloggerTableViewCell: UITableViewCell {
     @IBOutlet weak var cameraIcon: UIImageView!
     @IBOutlet weak var videoIcon: UIImageView!
     @IBOutlet weak var locationIcon: UIImageView!
+    
+    @IBOutlet weak var userIcon: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var photoCountLabel: UILabel!
+    @IBOutlet weak var videoCountLabel: UILabel!
+    @IBOutlet weak var bucketListCount: UILabel!
+    
+    @IBOutlet weak var countryVisitedCountLabel: UILabel!
+    @IBOutlet weak var followerCountLabel: UILabel!
+    @IBOutlet weak var journeyCountLabel: UILabel!
+    
+    @IBOutlet weak var userBadgeImage: UIImageView!
     
 }

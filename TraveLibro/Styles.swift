@@ -447,6 +447,12 @@ func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
     return label.frame.height
 }
 
+func getWidthOfText(text:String, font:UIFont) -> CGFloat{
+    let fontAttributes = [NSFontAttributeName: font]
+    let size = (text as NSString).size(attributes: fontAttributes)
+    return size.width
+}
+
 func getRegularString(string: String) -> NSMutableAttributedString {
     return NSMutableAttributedString(string: string, 
                               attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)!])

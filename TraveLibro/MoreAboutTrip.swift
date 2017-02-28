@@ -8,7 +8,6 @@
 
 import UIKit
 
-var heightMoreABoutTrip: Int = 0
 
 class MoreAboutTrip: UIView {
 
@@ -21,12 +20,8 @@ class MoreAboutTrip: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-        heightMoreABoutTrip = 600
-        
         dayNumberLabel.layer.cornerRadius = 5
         dayNumberLabel.clipsToBounds = true
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

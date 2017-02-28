@@ -85,8 +85,10 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             sender.backgroundColor = mainOrangeColor
             prevSelectedTab = sender
             
-            setItineraryFor(countryIndex: selectedCountry)
-        }        
+            if selectedCountry != 999 {
+                setItineraryFor(countryIndex: selectedCountry)
+            }
+        }
     }
     
     
@@ -104,9 +106,11 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             loader?.showOverlay(self.view)
         }
         
-        let inset = photosButton.imageEdgeInsets        
-        photosButton.imageEdgeInsets = UIEdgeInsets(top: inset.top, left: 10, bottom: inset.bottom, right: (photosButton.frame.size.width - (photosButton.frame.size.height - (inset.top + inset.bottom))) - 15)
-        
+        let width = photosButton.frame.size.height - 20         
+        let inset = photosButton.imageEdgeInsets       
+
+        photosButton.imageEdgeInsets = UIEdgeInsets(top: inset.top, left: 10, bottom: inset.bottom, right: photosButton.frame.size.width - (width + 10))       
+
         request.getItinerary(fromOutSide, completion: { (json) in
             DispatchQueue.main.async(execute: {
                 self.loader?.hideOverlayView()
@@ -200,7 +204,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             let selectedCity = (currentShowingCountry?["cityVisited"].arrayValue)?[isSelectedIndex! - 1]
             
             let childCellTwo = tableView.dequeueReusableCell(withIdentifier: "childCellTwo") as! ItineraryAccordionChildCellDescriptionTableViewCell
-            let sub = MoreAboutTrip(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 300))
+            let sub = MoreAboutTrip(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height:(heightForView(text: getPlainTextFromHTMLContentText(str: selectedCity?["description"].stringValue), font: UIFont(name: "Avenir-Medium", size: 14)!, width: screenWidth) + 70)))
             sub.dayNumberLabel.removeFromSuperview()
             sub.dayDescription.text = getPlainTextFromHTMLContentText(str: selectedCity?["description"].stringValue)
             childCellTwo.descriptionCell.addSubview(sub)
@@ -220,20 +224,17 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if (indexPath as NSIndexPath).row == 0 {
-            
-            return 400
-            
+        if (indexPath as NSIndexPath).row == 0 {            
+            return 400            
         }
             
-        else if cityLabels[(indexPath as NSIndexPath).row] == "Stayed At" ||  cityLabels[(indexPath as NSIndexPath).row] == "Ate At" || cityLabels[(indexPath as NSIndexPath).row] == "Must Do" {
-            
+        else if cityLabels[(indexPath as NSIndexPath).row] == "Stayed At" ||  cityLabels[(indexPath as NSIndexPath).row] == "Ate At" || cityLabels[(indexPath as NSIndexPath).row] == "Must Do's" {
             return 60
         }
         
         else if cityLabels[(indexPath as NSIndexPath).row] == "little more" {
             let selectedCity = (currentShowingCountry?["cityVisited"].arrayValue)?[isSelectedIndex! - 1]
-            let height = heightForView(text: (selectedCity?["description"].stringValue)!, font: UIFont(name: "Avenir-Medium", size: 14)!, width: screenWidth)
+            let height = heightForView(text: getPlainTextFromHTMLContentText(str: selectedCity?["description"].stringValue), font: UIFont(name: "Avenir-Medium", size: 14)!, width: screenWidth)
             return height + 70
         }
         
@@ -241,6 +242,10 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        
+        if (indexPath as NSIndexPath).row != 0 && cityLabels[(indexPath as NSIndexPath).row] != "little more" && cityLabels[(indexPath as NSIndexPath).row] != "Ate At" && cityLabels[(indexPath as NSIndexPath).row] != "Stayed At" && cityLabels[(indexPath as NSIndexPath).row] != "Must Do's" && cityLabels[(indexPath as NSIndexPath).row] != "little more" {
+            return true            
+        }
         return false
     }
     
@@ -304,10 +309,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
                 dayLabels.insert(childCellArray[j], at: index + 1 + j)
             }
             print("city labels: \(cityLabels)")
-            print("day labels: \(dayLabels)")
             theTableView.reloadData()
-            
-            
         }
             
         else if(isExpanded == false) {
@@ -351,7 +353,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         let allCountries = editJson?["countryVisited"].arrayValue        
-        countryButtonsStackWidthConstraint.constant = CGFloat((allCountries?.count)!) * (screenWidth * 0.2 - (CGFloat((allCountries?.count)!) * 5.0))        
+        countryButtonsStackWidthConstraint.constant = CGFloat((allCountries?.count)!) * (screenWidth * 0.30 - (CGFloat((allCountries?.count)!) * 5.0))        
         
         if (allCountries?.count)! > 0 {
             
@@ -361,9 +363,20 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
                 let country = allCountries?[i]
                 
                 allButtons[i].isHidden = false
-                allButtons[i].setTitle(country?["country"]["name"].stringValue.capitalized, for: .normal)
-                allButtons[i].tag = i
                 makeTabs(allButtons[i])
+                
+                if i < (allButtons.count - 1) {                    
+                    allButtons[i].setTitle(country?["country"]["name"].stringValue.capitalized, for: .normal)
+                    allButtons[i].tag = i
+                }
+                else if (i == (allButtons.count - 1) ) {
+                    allButtons[i].setTitle(" + 1 ", for: .normal)
+                    allButtons[i].tag = 999
+                }
+                else {
+                    allButtons[i].setTitle(country?["country"]["name"].stringValue.capitalized, for: .normal)
+                    allButtons[i].tag = i
+                }
             }
             
             //Show first country data by default

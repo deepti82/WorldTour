@@ -31,6 +31,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
         super.viewDidLoad()
         //loader.showOverlay(self.view)
         getDarkBackGround(self)
+        tableView.backgroundColor = UIColor(patternImage: UIImage(named: "darkBgNew")!)
         trialVariable = []
         let calendar = NSCalendar.current
         let dateFormatterMonth = DateFormatter()

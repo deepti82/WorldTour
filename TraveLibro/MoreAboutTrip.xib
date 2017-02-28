@@ -44,8 +44,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WCm-LF-qIp">
-                            <rect key="frame" x="8" y="0.0" width="368" height="560"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="8" y="0.0" width="368" height="555"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
@@ -53,7 +52,7 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="WCm-LF-qIp" secondAttribute="trailing" constant="8" id="DcU-4D-pxr"/>
-                        <constraint firstAttribute="bottom" secondItem="WCm-LF-qIp" secondAttribute="bottom" id="Y8j-jk-MZh"/>
+                        <constraint firstAttribute="bottom" secondItem="WCm-LF-qIp" secondAttribute="bottom" constant="5" id="Y8j-jk-MZh"/>
                         <constraint firstItem="MCF-2K-tEz" firstAttribute="leading" secondItem="pnN-j1-pmb" secondAttribute="leading" constant="-12" id="uzE-4Z-f1o"/>
                         <constraint firstItem="WCm-LF-qIp" firstAttribute="leading" secondItem="pnN-j1-pmb" secondAttribute="leading" constant="8" id="vc3-h5-ybh"/>
                         <constraint firstItem="MCF-2K-tEz" firstAttribute="top" secondItem="pnN-j1-pmb" secondAttribute="top" constant="8" id="wxj-BU-gyg"/>
