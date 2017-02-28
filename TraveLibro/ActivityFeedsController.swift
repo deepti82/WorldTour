@@ -98,6 +98,19 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     if request["data"] != "" {
                         self.loadStatus = true
                         
+                        for post in request["quickItinerary"].array! {
+                            self.loader.hideOverlayView()
+                            self.feeds.arrayObject?.append(post)
+                            let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                            checkIn.feeds = post
+                            checkIn.scrollView = self.activityScroll
+                            checkIn.createProfileHeader(feed: post)
+                            checkIn.activityFeed = self
+                            self.layout.addSubview(checkIn)
+                            self.addHeightToLayout()
+                            
+                        }
+                        
                         for post in request["localLife"].array! {
                             self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
