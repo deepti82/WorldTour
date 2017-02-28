@@ -90,15 +90,27 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
 
     
     func getActivity(pageNumber: Int) {
-       
-        print("yaaaho")
-        print(pageNumber)
+
         if displayData == "activity" {
             print("in activity")
             request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     if request["data"] != "" {
                         self.loadStatus = true
+                        
+                        for post in request["localLife"].array! {
+                            self.loader.hideOverlayView()
+                            self.feeds.arrayObject?.append(post)
+                            let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
+                            checkIn.feeds = post
+                            checkIn.scrollView = self.activityScroll
+                            checkIn.createProfileHeader(feed: post)
+                            checkIn.activityFeed = self
+                            self.layout.addSubview(checkIn)
+                            self.addHeightToLayout()
+                            
+                        }
+                        
                         for post in request["data"].array! {
                              self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)

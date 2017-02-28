@@ -1302,7 +1302,7 @@ class Navigation {
         
         let jsonData = try! params.rawData()
         // create post request
-        let url = URL(string: adminUrl + "itinerary/saveQuickItinerary")!
+        let url = URL(string: adminUrl + "itinerary/saveQuickItinerary69")!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -1412,13 +1412,20 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print("\n\n Activity feeds : \(json) \n\n")
                     
-                    completion(json)
                     let ll = LocalLifePostModel()
-                    let newJson:[JSON] = ll.getAllJson();
-                    print(newJson);
+                    let qi = QuickItinerary()
                     
+                    var newJson:[JSON] = [];
+                    var newQi:[JSON] = [];
+                    if(pageNumber <= 1) {
+                        newJson = ll.getAllJson()
+                        newQi = qi.getAll()
+                    }
+                    
+                    json["localLife"] = JSON(newJson);
+                    json["quickItinerary"] = JSON(newQi);
+                    completion(json)
                 }
             }
         } catch let error {
@@ -2985,8 +2992,10 @@ class Navigation {
             dateFormatter.dateStyle = .medium
             
         }
-        
-        let goodDate = dateFormatter.string(from: date!)
+        let goodDate = "";
+        if(date != nil) {
+            let goodDate = dateFormatter.string(from: date!)
+        }
         return goodDate
     }
     
