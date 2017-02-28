@@ -56,7 +56,7 @@ class Search: UIView {
     func setData() {
         request.getHomePage(completion: {(request) in
             DispatchQueue.main.async(execute: {
-
+            loader.hideOverlayView()
             self.data = request["data"]
             self.setItinerary(data: self.data["itinerary"])
                 self.setJourney(data: self.data["journey"])

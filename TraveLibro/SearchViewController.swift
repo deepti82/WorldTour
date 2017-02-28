@@ -18,7 +18,7 @@ class SearchViewController: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         print("in search view controller")
         getDarkBackGround(self)
-        
+        loader.showOverlay(self.view)
         scrollView.isScrollEnabled = true
         scrollView.contentSize = CGSize(width: 0, height: 750)
         search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: self.view.frame.width - 20 , height: 30))
