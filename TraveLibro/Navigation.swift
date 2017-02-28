@@ -1299,7 +1299,6 @@ class Navigation {
         params["itineraryType"] = itineraryType
         params["countryVisited"] = countryVisited
         
-        
         let jsonData = try! params.rawData()
         // create post request
         let url = URL(string: adminUrl + "itinerary/saveQuickItinerary69")!
@@ -1425,6 +1424,8 @@ class Navigation {
                     
                     json["localLife"] = JSON(newJson);
                     json["quickItinerary"] = JSON(newQi);
+                    print(newQi);
+                    print(json["data"][0]);
                     completion(json)
                 }
             }

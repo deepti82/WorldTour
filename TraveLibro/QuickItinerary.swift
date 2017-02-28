@@ -70,7 +70,7 @@ public class QuickItinerary {
                 for img in p.imageArr {
                     photosJson.append(img.parseJson())
                 }
-                
+                quickItinery["type"] = JSON("quick-itinerary");
                 quickItinery["photos"] = JSON(photosJson)
                 retVal.append(quickItinery)
 
@@ -120,7 +120,6 @@ public class QuickItinerary {
                     }
                     else if response["value"].bool! {
                         do {
-                            print(response);
                             let singlePhoto = self.post.filter(self.id == postID)
                             try db.run(singlePhoto.delete())
                             i.deletePhotos(Int64(actualId));
