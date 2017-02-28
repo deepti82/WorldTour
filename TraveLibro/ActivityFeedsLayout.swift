@@ -263,7 +263,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(activityDetailItinerary)
             let tapRecognizer = UITapGestureRecognizer()
             tapRecognizer.numberOfTapsRequired = 1
-            tapRecognizer.addTarget(self, action: #selector(self.showDetailItinerary))
+            tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary(_:)))
             activityDetailItinerary.addGestureRecognizer(tapRecognizer)
 
         default:
