@@ -11,6 +11,7 @@ import Spring
 
 class PopularJourneyView: UIView {
 
+    @IBOutlet weak var followHideShow: UIButton!
     @IBOutlet weak var follow: UIButton!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var mainPhoto: UIImageView!
@@ -27,6 +28,7 @@ class PopularJourneyView: UIView {
     @IBOutlet weak var journeyTitleLabel: UILabel!
     @IBOutlet weak var journeyDescription: UILabel!
     
+    @IBOutlet weak var commentLabelFA: UILabel!
     @IBOutlet weak var flag1: UIImageView!
     @IBOutlet weak var flag2: UIImageView!
     @IBOutlet weak var flag3: UIImageView!
@@ -45,13 +47,18 @@ class PopularJourneyView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadViewFromNib ()
-        
+        makeTLProfilePictureBorderWhiteCorner(flag1)
+        makeTLProfilePictureBorderWhiteCorner(flag2)
+        makeTLProfilePictureBorderWhiteCorner(flag3)
+       makeBuddiesTLProfilePicture(journeyCreatorImage)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         likeLabel.text = String(format: "%C", faicon["likes"]!)
-        
+//        commentLabelFA.text = String(format: "%C", faicon["comments"]!)
+//        commentButton.tintColor = mainBlueColor
+        likeButton.tintColor = mainBlueColor
         TitleLabelView.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-        
+//        followHideShow.isHidden = true
         mainPhoto.layer.zPosition = -10
         
         cardView.layer.cornerRadius = 5

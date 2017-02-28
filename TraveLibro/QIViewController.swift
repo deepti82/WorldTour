@@ -201,6 +201,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
 //                    self.callBackViewC()
         
         let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
+        selectedQuickI = ""
         self.navigationController?.pushViewController(itineraryVC, animated: true)
         
 //                    let next = self.storyboard?.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController

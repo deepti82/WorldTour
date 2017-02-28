@@ -14,13 +14,15 @@ class PopularJourneysViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var journeyTableView: UITableView!
     var allJourneys: [JSON] = []
     var currentPageNum = 1
-    
+    var mainFooter: FooterViewNew!
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
+        self.mainFooter.layer.zPosition = 5
+        self.view.addSubview(self.mainFooter)
         getDarkBackGround(self)
         journeyTableView.backgroundColor = UIColor.clear
         journeyTableView.tableFooterView = UIView()
@@ -105,7 +107,30 @@ class PopularJourneysViewController: UIViewController, UITableViewDelegate, UITa
         cell?.backgroundColor = UIColor.clear
         return cell!
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            hideHeaderAndFooter(true);
+        }
+        else{
+            hideHeaderAndFooter(false);
+        }
+        
+    }
     
+    func hideHeaderAndFooter(_ isShow:Bool) {
+        if(isShow) {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            
+            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+        } else {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            
+            self.mainFooter.frame.origin.y = self.view.frame.height - 70
+            
+        }
+    }
+
 
 }
 
