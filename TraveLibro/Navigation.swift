@@ -3093,6 +3093,7 @@ class Navigation {
     func getItinerary (_ id: String, completion: @escaping ((JSON) -> Void)) {
         var json = JSON(1);
         let params = ["user":currentUser["_id"].stringValue, "_id":id]
+        print(params)
         do {
             let opt = try HTTP.POST(adminUrl + "itinerary/getOneApp", parameters: params)
             opt.start { response in
@@ -3194,26 +3195,97 @@ class Navigation {
     
     //MARK: - fetch popular items
     
-    func getPopularJourney(pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+    func getPopularJourney(userId: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
+            var params: JSON
             
-            let opt = try HTTP.POST(adminUrl + "journey/getPopularJourney", parameters: ["pagenumber": pagenumber])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+            if userId == nil {
+                params = ["pagenumber": pagenumber]
+            }else{
+                params = ["user": userId, "pagenumber": pagenumber]
+            }
+            
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "journey/getPopularJourney")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
                 }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
                 }
             }
+            
+            task.resume()
+            
         } catch let error {
             print("got an error creating the request: \(error)")
         }
+    
+    }
+    func getPopularItinerary(userId: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON
+            
+            if userId == nil {
+                params = ["pagenumber": pagenumber]
+            }else{
+                params = ["user": userId, "pagenumber": pagenumber]
+            }
+            
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "itinerary/getPopularItinerary")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
     }
     
     

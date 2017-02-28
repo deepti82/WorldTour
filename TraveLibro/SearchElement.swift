@@ -69,17 +69,19 @@ class SearchElement: UIView {
             profile.displayData = "search"
             globalNavigationController.pushViewController(profile, animated: true)
         }else{
-            
-            request.getItinerary(feeds["_id"].stringValue, completion: {(request) in
-                DispatchQueue.main.async(execute: {
-                selectedQuickI = self.feeds["_id"].stringValue
-                quickItinery = request["data"]
-//                selectedPeople = feeds["_id"].stringValue
-                let profile = storyboard.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
-                    profile.selectedQuick = request["data"]["photos"]
-                globalNavigationController.pushViewController(profile, animated: true)
-                })
-            })
+            if feeds["type"].stringValue == "quick-itinerary" {
+                
+                        selectedQuickI = self.feeds["_id"].stringValue
+                        let profile = storyboard.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
+                        globalNavigationController.pushViewController(profile, animated: true)
+
+            }else{
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
+                controller.fromOutSide = feeds["_id"].stringValue
+                globalNavigationController?.setNavigationBarHidden(false, animated: true)
+                globalNavigationController?.pushViewController(controller, animated: true)
+            }
             
             
         }
