@@ -70,14 +70,9 @@ class Search: UIView {
             
             element = SearchElement(frame: CGRect(x: 8, y: 0, width: 140, height: 170))
             element.imageLable.text = iti.1["name"].stringValue
-<<<<<<< HEAD
+            
             element.image.hnk_setImageFromURL(getImageURL(iti.1["coverPhoto"].stringValue, width: 200))
             element.setData(data: iti.1, tabs: "itinerary")
-=======
-
-            element.image.hnk_setImageFromURL(getImageURL(iti.1["coverPhoto"].stringValue, width: 140))
-            //element.image.backgroundColor = UIColor.clear
->>>>>>> origin/level-3-
 
             horizontalScrollItinerary.addSubview(element)
         }
@@ -91,15 +86,8 @@ class Search: UIView {
          for iti in data {
         element = SearchElement(frame: CGRect(x: 8, y: 0, width: 140, height: 170))
             element.imageLable.text = iti.1["name"].stringValue
-<<<<<<< HEAD
             element.image.hnk_setImageFromURL(getImageURL(iti.1["startLocationPic"].stringValue, width: 200))
             element.setData(data: iti.1, tabs: "journey")
-=======
-
-            element.image.hnk_setImageFromURL(getImageURL(iti.1["startLocationPic"].stringValue, width: 140))
-             //element.image.backgroundColor = UIColor.clear
-
->>>>>>> origin/level-3-
         horizontalScrollJourney.addSubview(element)
         }
         
@@ -112,13 +100,8 @@ class Search: UIView {
         for iti in data {
         element = SearchElement(frame: CGRect(x: 8, y: 0, width: 140, height: 170))
             element.imageLable.text = iti.1["name"].stringValue
-<<<<<<< HEAD
             element.image.hnk_setImageFromURL(getImageURL(iti.1["profilePicture"].stringValue, width: 200))
             element.setData(data: iti.1, tabs: "user")
-=======
-            element.image.hnk_setImageFromURL(getImageURL(iti.1["profilePicture"].stringValue, width: 140))
-            element.image.backgroundColor = UIColor.clear
->>>>>>> origin/level-3-
         horizontalScrollBlogger.addSubview(element)
         }
         
