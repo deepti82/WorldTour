@@ -395,6 +395,17 @@ func makeTLProfilePictureBorderWhiteCorner(_ image: UIImageView) {
     
 }
 
+func makeSideNavigation(_ image: UIImageView) {
+    
+    image.layer.cornerRadius = (45/100) * image.frame.width
+    //image.layer.borderWidth = 2.0
+    //image.layer.borderColor = UIColor.white.cgColor
+    image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFill
+    
+}
+
+
 
 func getDateFormat(_ date: String, format: String) -> String {
     
