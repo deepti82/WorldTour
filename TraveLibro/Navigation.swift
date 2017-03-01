@@ -2993,9 +2993,9 @@ class Navigation {
             dateFormatter.dateStyle = .medium
             
         }
-        let goodDate = "";
+        var goodDate = "";
         if(date != nil) {
-            let goodDate = dateFormatter.string(from: date!)
+            goodDate = dateFormatter.string(from: date!)
         }
         return goodDate
     }
