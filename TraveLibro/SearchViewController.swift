@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
         getDarkBackGround(self)
         loader.showOverlay(self.view)
         scrollView.isScrollEnabled = true
-        scrollView.contentSize = CGSize(width: 0, height: 750)
+       
         search = SearchFieldView(frame: CGRect(x: 10, y: 8, width: self.view.frame.width - 20 , height: 30))
         search.searchField.returnKeyType = .done
         
@@ -36,9 +36,11 @@ class SearchViewController: UIViewController {
         let tapout = UITapGestureRecognizer(target: self, action: #selector(self.searchTable(_:)))
         search.SearchView.addGestureRecognizer(tapout)
 
+        scrollView.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        scrollView.autoresizingMask = UIViewAutoresizing.flexibleHeight
         
-        let searchView = Search(frame: CGRect(x: 0, y: 105, width: self.view.frame.width, height: 614))
-    
+        let searchView = Search(frame: CGRect(x: 0, y: 105, width: self.view.frame.width, height: 675))
+        scrollView.contentSize = CGSize(width: 0, height: 800)
         searchView.setData()
         self.scrollView.addSubview(searchView)
         

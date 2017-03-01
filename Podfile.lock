@@ -36,6 +36,7 @@ PODS:
   - imglyKit (5.0.6)
   - OneSignal (2.3.4)
   - Player (0.2.2)
+  - SABlurImageView (3.0.0)
   - Simplicity (2.0.1)
   - Spring (1.0.3)
   - SQLite.swift (0.11.2):
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - imglyKit (~> 5.0)
   - OneSignal
   - Player (~> 0.2.0)
+  - SABlurImageView
   - Simplicity
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - SQLite.swift (~> 0.11.2)
@@ -116,6 +118,7 @@ SPEC CHECKSUMS:
   imglyKit: b78152c784cdcdf64297de33ad474bd7f13c7de9
   OneSignal: c8f0d08ffa30fcf751c97a29639725877027e788
   Player: 5cff076cc9f13b51f56b6fb7bed24431569b8102
+  SABlurImageView: 7003ca28ded502c984846374a117f88a287d9faf
   Simplicity: 58ce0c6569baf45e48ccd25432274ae899097517
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   SQLite.swift: 670c3e9e0a806bbfd56a3de5d530768dc0e6fe7c
@@ -127,6 +130,6 @@ SPEC CHECKSUMS:
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: bf03f51fbba5640bfd630fa09da86f317117a19b
+PODFILE CHECKSUM: 6ce2861c4209c39c4730f891b37ada852cffeaa7
 
 COCOAPODS: 1.0.1

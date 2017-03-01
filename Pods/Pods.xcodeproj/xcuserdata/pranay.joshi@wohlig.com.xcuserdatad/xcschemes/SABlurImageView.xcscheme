@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5DEE5ED2387225415D9DDE4738EF9CFF'
-               BlueprintName = 'Spring'
+               BlueprintIdentifier = '6FC5FCAC2B5A65C0859DC843FC1B91B8'
+               BlueprintName = 'SABlurImageView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Spring.framework'>
+               BuildableName = 'SABlurImageView.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
