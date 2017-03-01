@@ -231,7 +231,8 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y == (scrollView.contentSize.height - scrollView.frame.size.height) {
+        
+        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
             if loadStatus {
                 print("in load more of data.")
                 pageno = pageno + 1
