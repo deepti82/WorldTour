@@ -11,6 +11,8 @@ import Toaster
 
 class NotificationSubViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+//    var lastContentOffset = CGFloat(0)
+    
     var mainFooter: FooterViewNew!
     var notifications: [JSON] = []
     let refreshControl = UIRefreshControl()
@@ -37,9 +39,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         getDarkBackGround(self)
         notifyTableView.backgroundColor = UIColor.clear
         notifyTableView.tableFooterView = UIView()
-        
-//        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing")
+
         refreshControl.addTarget(self, action: #selector(NotificationSubViewController.pullToRefreshCalled), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = lightOrangeColor
         notifyTableView.addSubview(refreshControl)
         
         getNotification()
@@ -82,6 +84,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     if response.error != nil {
                         
                         print("error: \(response.error!.localizedDescription)")
+                        self.refreshControl.endRefreshing()
                         
                     }
                     else if response["value"].bool! {
@@ -116,6 +119,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                     else {
                         
                         print("response error!")
+                        self.refreshControl.endRefreshing()
                         
                     }
                     
@@ -402,10 +406,12 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         
 //        let cellHeight = cell.frame.size.height
 //        
-//        cell.frame = CGRect(x: 0, y: 0, width: 2, height: 2)
+//        cell.frame = CGRect(x: 0, y: 0, width: cell.frame.size.width, height: 2)
+//        cell.alpha = 0
 //        
 //        UIView.animate(withDuration: 0.3) {
-//            cell.frame = CGRect(x: 0, y: 0, width: screenWidth, height: cellHeight)            
+//            cell.frame = CGRect(x: 0, y: 0, width: screenWidth, height: cellHeight)
+//            cell.alpha = 1
 //        }
         
 //        var translation : CATransform3D
@@ -425,12 +431,12 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
 //        
 //        //4. Define the final state (After the animation) and commit the animation
 //        UIView.beginAnimations("translation", context: nil)
-//        UIView.setAnimationDuration(0.8)
+//        UIView.setAnimationDuration(0.5)
 //        cell.layer.transform = CATransform3DIdentity;
 //        cell.alpha = 1;
 //        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
 //        UIView.commitAnimations()
-        
+//        
         if notifications.count > 0 && indexPath.row == (notifications.count - 1) {            
             if hasNext {
                 self.getNotification()
@@ -620,7 +626,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     //MARK: - Scroll Delagtes
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {        
         
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             hideHeaderAndFooter(true);

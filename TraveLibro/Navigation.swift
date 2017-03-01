@@ -932,7 +932,6 @@ class Navigation {
         do {
             
             let params = ["user": userId, "_id": followUserId]
-            print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/followUser", parameters: params)
             var json = JSON(1);
@@ -958,7 +957,6 @@ class Navigation {
         do {
             
             let params = ["_id": userId]
-            print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/getFollowers", parameters: params)
             var json = JSON(1);
@@ -984,7 +982,6 @@ class Navigation {
         do {
             
             let params = ["_id": unFollowId, "user": userId]
-            print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/unFollowUser", parameters: params)
             var json = JSON(1);
@@ -1010,7 +1007,6 @@ class Navigation {
         do {
             
             let params = ["_id": userId, "search": searchText]
-            print("params: \(params)")
             
             let opt = try HTTP.POST(adminUrl + "user/getFollowing", parameters: params)
             var json = JSON(1);
@@ -3300,23 +3296,48 @@ class Navigation {
     func getPopularUsers(pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
+            var params: JSON
             
-            let opt = try HTTP.POST(adminUrl + "user/getPopularUser", parameters: ["pagenumber": pagenumber])
-            var json = JSON(1);
-            opt.start {response in
-                if let err = response.error {
-                    print("error: \(err.localizedDescription)")
+            if currentUser != nil {
+                params = ["user":currentUser["_id"].stringValue, "pagenumber": pagenumber]
+            }
+            else {
+                params = ["pagenumber": pagenumber]
+            }
+            
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "user/getPopularUser")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
                 }
-                else
-                {
-                    json  = JSON(data: response.data)
-                    print(json)
-                    completion(json)
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
                 }
             }
+            
+            task.resume()
+            
         } catch let error {
             print("got an error creating the request: \(error)")
         }
+        
     }
     
     

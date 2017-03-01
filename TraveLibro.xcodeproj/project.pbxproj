@@ -79,6 +79,9 @@
 		44081CF41E55E46B006EA74C /* NotificationAcknolwdgementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44081CF31E55E46B006EA74C /* NotificationAcknolwdgementCell.swift */; };
 		44081CF61E55EA5D006EA74C /* NotificationPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44081CF51E55EA5D006EA74C /* NotificationPhotoCell.swift */; };
 		44081CF81E55EEC5006EA74C /* NotificationFollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44081CF71E55EEC5006EA74C /* NotificationFollowCell.swift */; };
+		443225AA1E668332008AB156 /* locallife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A71E668332008AB156 /* locallife.mp4 */; };
+		443225AB1E668332008AB156 /* mylife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A81E668332008AB156 /* mylife.mp4 */; };
+		443225AC1E668332008AB156 /* travellife.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 443225A91E668332008AB156 /* travellife.mp4 */; };
 		4435D2D31E54407B003BD1D9 /* notificationHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2D21E54407B003BD1D9 /* notificationHeaderView.xib */; };
 		4435D2D51E5448D7003BD1D9 /* notificationTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2D41E5448D7003BD1D9 /* notificationTitleView.xib */; };
 		4435D2D91E545A22003BD1D9 /* notificationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2D81E545A22003BD1D9 /* notificationHeader.swift */; };
@@ -581,6 +584,9 @@
 		44081CF31E55E46B006EA74C /* NotificationAcknolwdgementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationAcknolwdgementCell.swift; path = Notification/NotificationAcknolwdgementCell.swift; sourceTree = "<group>"; };
 		44081CF51E55EA5D006EA74C /* NotificationPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPhotoCell.swift; path = Notification/NotificationPhotoCell.swift; sourceTree = "<group>"; };
 		44081CF71E55EEC5006EA74C /* NotificationFollowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationFollowCell.swift; path = Notification/NotificationFollowCell.swift; sourceTree = "<group>"; };
+		443225A71E668332008AB156 /* locallife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = locallife.mp4; sourceTree = "<group>"; };
+		443225A81E668332008AB156 /* mylife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = mylife.mp4; sourceTree = "<group>"; };
+		443225A91E668332008AB156 /* travellife.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = travellife.mp4; sourceTree = "<group>"; };
 		4435D2D21E54407B003BD1D9 /* notificationHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationHeaderView.xib; path = Notification/notificationHeaderView.xib; sourceTree = "<group>"; };
 		4435D2D41E5448D7003BD1D9 /* notificationTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationTitleView.xib; path = Notification/notificationTitleView.xib; sourceTree = "<group>"; };
 		4435D2D81E545A22003BD1D9 /* notificationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = notificationHeader.swift; path = Notification/notificationHeader.swift; sourceTree = "<group>"; };
@@ -1067,6 +1073,9 @@
 				1A944E0E1CCB4567007EB5BD /* Assets.xcassets */,
 				368A568F1E3CD6E600DC8A19 /* loader.gif */,
 				368A56911E3CDB5C00DC8A19 /* loader2.gif */,
+				443225A71E668332008AB156 /* locallife.mp4 */,
+				443225A81E668332008AB156 /* mylife.mp4 */,
+				443225A91E668332008AB156 /* travellife.mp4 */,
 				1A944E101CCB4567007EB5BD /* LaunchScreen.storyboard */,
 				1A944E131CCB4567007EB5BD /* Info.plist */,
 			);
@@ -2851,6 +2860,7 @@
 				C22138F11D546EB6008D9DEE /* QuickItineraryTwo.xib in Resources */,
 				C20939071D1180D100CBA70F /* JennaSue.ttf in Resources */,
 				C2E159B91D74068000A5B721 /* EmptyScreenView.xib in Resources */,
+				443225AB1E668332008AB156 /* mylife.mp4 in Resources */,
 				4435D2DF1E545FB5003BD1D9 /* notificationFollowPermissionView.xib in Resources */,
 				C20939061D1180C100CBA70F /* DJB My Mood Ring Says Blah.ttf in Resources */,
 				845C43221E2F857A00800F51 /* ActivityFeedThoughts.xib in Resources */,
@@ -2921,6 +2931,7 @@
 				C27F6C031CF06A130049F012 /* MomentsTab.xib in Resources */,
 				C24F85051D0065E2002EA203 /* CardCheckBoxes.xib in Resources */,
 				8453CF421E30AFAF00C41F82 /* ActivityFeedQuickItinerary.xib in Resources */,
+				443225AA1E668332008AB156 /* locallife.mp4 in Resources */,
 				C23EB1DD1CFEED9B005B5CE8 /* EndLocalLife.xib in Resources */,
 				C2DCB3741CE7470F006E5CBD /* AddRating.xib in Resources */,
 				C269077D1CF819BA00F827E6 /* GenderInfo.xib in Resources */,
@@ -2937,6 +2948,7 @@
 				C24F84E91D004304002EA203 /* ReportProblem.xib in Resources */,
 				1A4CA11E1CCE180C00EE9A90 /* AddCircle.xib in Resources */,
 				C2A27A401CEDAF9100F74DD1 /* SignInToolbar.xib in Resources */,
+				443225AC1E668332008AB156 /* travellife.mp4 in Resources */,
 				1A944E3D1CCB5D92007EB5BD /* OrangeButton.xib in Resources */,
 				FCE877F51E308F70005EE913 /* ActivityTextHeader.xib in Resources */,
 				1A944E471CCB8C8B007EB5BD /* JourneyTitleView.xib in Resources */,

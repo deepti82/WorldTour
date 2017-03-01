@@ -56,6 +56,10 @@ class LogInView: UIView {
         super.init(coder: aDecoder)
     }
     
+    @IBAction func loginButtonTabbed(_ sender: Any) {
+        
+    }
+    
     func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "LogInView", bundle: bundle)
