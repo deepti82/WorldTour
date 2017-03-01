@@ -46,6 +46,41 @@ public class QuickItinerary {
     
     func getAll() -> [JSON] {
         var retVal:[JSON] = []
+        
+        do {
+            var check = false;
+            let query = post.select(id,quickJson,status)
+            for post1 in try db.prepare(query) {
+                check = true
+                let p = LocalLifePostModel();
+                
+                var postID = post1[id]
+                
+                let id_temp = Int(post1[id])
+                var quickItinery:JSON = JSON(data: (String(post1[quickJson])?.data(using: .utf8))! )
+                let status_temp = Bool(post1[status])
+                
+                let actualId = Int(post1[id]) + 30000
+                
+                let i = PostImage();
+                p.imageArr = i.getAllImages(postNo: Int64(actualId))
+                
+                var photosJson:[JSON] = []
+                
+                for img in p.imageArr {
+                    photosJson.append(img.parseJson())
+                }
+                quickItinery["type"] = JSON("quick-itinerary");
+                quickItinery["photos"] = JSON(photosJson)
+                retVal.append(quickItinery)
+
+            }
+        }
+        catch {
+            print("There is an error");
+        }
+
+        
         return retVal
     }
     
@@ -85,7 +120,6 @@ public class QuickItinerary {
                     }
                     else if response["value"].bool! {
                         do {
-                            print(response);
                             let singlePhoto = self.post.filter(self.id == postID)
                             try db.run(singlePhoto.delete())
                             i.deletePhotos(Int64(actualId));

@@ -1299,10 +1299,9 @@ class Navigation {
         params["itineraryType"] = itineraryType
         params["countryVisited"] = countryVisited
         
-        
         let jsonData = try! params.rawData()
         // create post request
-        let url = URL(string: adminUrl + "itinerary/saveQuickItinerary")!
+        let url = URL(string: adminUrl + "itinerary/saveQuickItinerary69")!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -1412,13 +1411,22 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print("\n\n Activity feeds : \(json) \n\n")
                     
-                    completion(json)
                     let ll = LocalLifePostModel()
-                    let newJson:[JSON] = ll.getAllJson();
-                    print(newJson);
+                    let qi = QuickItinerary()
                     
+                    var newJson:[JSON] = [];
+                    var newQi:[JSON] = [];
+                    if(pageNumber <= 1) {
+                        newJson = ll.getAllJson()
+                        newQi = qi.getAll()
+                    }
+                    
+                    json["localLife"] = JSON(newJson);
+                    json["quickItinerary"] = JSON(newQi);
+                    print(newQi);
+                    print(json["data"][0]);
+                    completion(json)
                 }
             }
         } catch let error {
@@ -2380,7 +2388,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }
@@ -2986,8 +2993,10 @@ class Navigation {
             dateFormatter.dateStyle = .medium
             
         }
-        
-        let goodDate = dateFormatter.string(from: date!)
+        var goodDate = "";
+        if(date != nil) {
+            goodDate = dateFormatter.string(from: date!)
+        }
         return goodDate
     }
     
@@ -3093,6 +3102,7 @@ class Navigation {
     func getItinerary (_ id: String, completion: @escaping ((JSON) -> Void)) {
         var json = JSON(1);
         let params = ["user":currentUser["_id"].stringValue, "_id":id]
+        print(params)
         do {
             let opt = try HTTP.POST(adminUrl + "itinerary/getOneApp", parameters: params)
             opt.start { response in
@@ -3194,11 +3204,104 @@ class Navigation {
     
     //MARK: - fetch popular items
     
-    func getPopularJourney(pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+    func getPopularJourney(userId: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON
+            
+            if userId == nil {
+                params = ["pagenumber": pagenumber]
+            }else{
+                params = ["user": userId, "pagenumber": pagenumber]
+            }
+            
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "journey/getPopularJourney")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    
+    }
+    func getPopularItinerary(userId: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON
+            
+            if userId == nil {
+                params = ["pagenumber": pagenumber]
+            }else{
+                params = ["user": userId, "pagenumber": pagenumber]
+            }
+            
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "itinerary/getPopularItinerary")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    func getPopularUsers(pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let opt = try HTTP.POST(adminUrl + "journey/getPopularJourney", parameters: ["pagenumber": pagenumber])
+            let opt = try HTTP.POST(adminUrl + "user/getPopularUser", parameters: ["pagenumber": pagenumber])
             var json = JSON(1);
             opt.start {response in
                 if let err = response.error {

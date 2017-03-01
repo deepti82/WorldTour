@@ -229,6 +229,7 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             let tapRecognizer = UITapGestureRecognizer()
             tapRecognizer.numberOfTapsRequired = 1
             tapRecognizer.addTarget(self, action: #selector(self.showDetailedItinerary))
+            activityDetailItinerary.addGestureRecognizer(tapRecognizer)
         default:
             print("default")
             videosAndPhotosLayout(feed:feed)
@@ -267,15 +268,21 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             print(feeds["type"])
             globalMyLifeContainerViewController.navigationController!.pushViewController(controller, animated: false)
             
-        }else {
-            
+        } else if feeds["type"].stringValue == "quick-itinerary" {
+            selectedQuickI = self.feeds["_id"].stringValue
+            let profile = storyboard.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
+            globalNavigationController.pushViewController(profile, animated: true)
         }
     }
     
     func showDetailedItinerary(_ sender: UIButton) {
+        print("detail itinerary clicked \(feeds["_id"].stringValue)")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
-        globalMyLifeContainerViewController.navigationController!.pushViewController(controller, animated: false)
+        controller.fromOutSide = feeds["_id"].stringValue
+        globalNavigationController?.setNavigationBarHidden(false, animated: true)
+        globalNavigationController?.pushViewController(controller, animated: true)
+
     }
     
     

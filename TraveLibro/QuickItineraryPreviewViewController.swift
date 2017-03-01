@@ -14,37 +14,8 @@ class QuickItineraryPreviewViewController: UIViewController {
     @IBOutlet weak var previewScroll: UIScrollView!
     var previewLayout: VerticalLayout!
     var selectedQuick: JSON = []
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print(quickItinery)
-        print(currentUser)
-        self.title = "Itinerary Preview"
-        
-        
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
-        footer.layer.zPosition = 1000
-        
-        footer.layer.shadowColor = UIColor.black.cgColor
-        footer.layer.shadowOpacity = 0.5
-        footer.layer.shadowOffset = CGSize.zero
-        footer.layer.shadowRadius = 10
-        
-        footer.feedView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.goToFeed(_:))))
-        footer.notifyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoNotifications(_:))))
-        footer.LLView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoLocalLife(_:))))
-        footer.TLView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoTravelLife(_:))))
-        footer.backgroundColor = UIColor.white
-        self.view.addSubview(footer)
-        
-        
-        let footerAbove = previewBase(frame: CGRect(x: 0, y: self.view.frame.height - 95, width: self.view.frame.width, height: 25))
-        footerAbove.layer.zPosition = 900
-        footerAbove.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.showPhoto(_:))))
-
-        self.view.addSubview(footerAbove)
-        
-        
+    
+    func loadPreview() {
         let prev = QuickItineraryPreview(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 837))
         //        self.view.addSubview(prev)
         
@@ -93,6 +64,49 @@ class QuickItineraryPreviewViewController: UIViewController {
         previewScroll.addSubview(previewLayout)
         previewLayout.addSubview(prev)
         scrollChange()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print(quickItinery)
+        print(currentUser)
+        self.title = "Itinerary Preview"
+        
+        
+        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
+        footer.layer.zPosition = 1000
+        
+        footer.layer.shadowColor = UIColor.black.cgColor
+        footer.layer.shadowOpacity = 0.5
+        footer.layer.shadowOffset = CGSize.zero
+        footer.layer.shadowRadius = 10
+        
+        footer.feedView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.goToFeed(_:))))
+        footer.notifyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoNotifications(_:))))
+        footer.LLView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoLocalLife(_:))))
+        footer.TLView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoTravelLife(_:))))
+        footer.backgroundColor = UIColor.white
+        self.view.addSubview(footer)
+        
+        
+        let footerAbove = previewBase(frame: CGRect(x: 0, y: self.view.frame.height - 95, width: self.view.frame.width, height: 25))
+        footerAbove.layer.zPosition = 900
+        footerAbove.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.showPhoto(_:))))
+
+        self.view.addSubview(footerAbove)
+        
+        if selectedQuickI == "" {
+            loadPreview()
+        }else{
+            request.getItinerary(selectedQuickI, completion: {(request) in
+                DispatchQueue.main.async(execute: {
+                    quickItinery = request["data"]
+                    self.selectedQuick = request["data"]["photos"]
+                    self.loadPreview()
+                })
+            })
+        }
+        
     }
     
     func showPhoto(_ sender: UITapGestureRecognizer) {

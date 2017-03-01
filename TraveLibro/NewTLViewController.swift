@@ -735,6 +735,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func getOneJourney() {
         request.getJourneyById(fromOutSide, completion: {(response) in
             DispatchQueue.main.async(execute: {
+                loader.hideOverlayView()
+
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
                 }
@@ -1014,7 +1016,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loader.showOverlay(self.view)
+//        loader.showOverlay(self.view)
         ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
@@ -2560,6 +2562,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                     (response) in
                     
                     DispatchQueue.main.async(execute: {
+                        loader.hideOverlayView()
                         if (response.error != nil) {
                             print("error: \(response.error?.localizedDescription)")
                         }

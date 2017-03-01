@@ -48,7 +48,7 @@ class PopularJourneysViewController: UIViewController, UITableViewDelegate, UITa
         
         print("\n fetching data for : \(currentPageNum)")
         
-        request.getPopularJourney(pagenumber: currentPageNum) { (response) in
+        request.getPopularJourney(userId: currentUser["_id"].stringValue, pagenumber: currentPageNum) { (response) in
             
             print("\n Popular journey response : \(response)")
             

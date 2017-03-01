@@ -88,7 +88,8 @@ public class PostImage {
                 p.caption = String(photo[captions])
                 p.serverUrl = String(photo[url])
                 p.imageUrl = getDocumentsDirectory().appendingPathComponent( photo[localUrl] )
-                var imageData = NSData(contentsOf: p.imageUrl)
+                let imageData = NSData(contentsOf: p.imageUrl)
+                
                 p.image = UIImage(data: imageData as! Data)!
                 allImages.append(p)
             }

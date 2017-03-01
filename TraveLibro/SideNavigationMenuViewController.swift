@@ -23,7 +23,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var myProfileViewController: UIViewController!
     var signOutViewController: UIViewController!
     
-    let labels = ["Popular Journeys", "Explore Destinations", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
+    let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
     
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var backgroundImage: SABlurImageView!
@@ -37,8 +37,22 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         loginLabel.isHidden = true
         backgroundImage!.addBlurEffect(30, times: 1)
+
+        
+//        let bgImage = UIImageView(frame:self.view.frame)
+//        bgImage.image = UIImage(named: "darkBgNew")
+//        bgImage.layer.zPosition = -1
+//        bgImage.isUserInteractionEnabled = false
+//        self.view.addSubview(bgImage)
+//        self.view.sendSubview(toBack: bgImage)
+        
+        
+        
+        
+
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
         
         profile = ProfilePicFancy(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
@@ -54,10 +68,12 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         let homeController = storyboard!.instantiateViewController(withIdentifier: "Home") as! HomeViewController
         self.homeController = UINavigationController(rootViewController: homeController)
         
-        let PJController = storyboard!.instantiateViewController(withIdentifier: "popularJourneys") as! PopularJourneysViewController
+        let PJController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        PJController.displayData = "popular"
         self.popJourneysController = UINavigationController(rootViewController: PJController)
         
-        let EDController = storyboard!.instantiateViewController(withIdentifier: "exploreDestinations") as! ExploreDestinationsViewController
+        let EDController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        EDController.displayData = "popitinerary"
         self.exploreDestinationsController = UINavigationController(rootViewController: EDController)
         
         let PBController = storyboard!.instantiateViewController(withIdentifier: "popularBloggers") as! PopularBloggersViewController
