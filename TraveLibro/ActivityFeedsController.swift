@@ -44,6 +44,12 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         i.uploadPhotos()
 
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        globalNavigationController = self.navigationController
+    }
+    
     func openSideMenu(_ sender: AnyObject) {
         self.slideMenuController()?.addLeftGestures()
         self.slideMenuController()?.toggleLeft()

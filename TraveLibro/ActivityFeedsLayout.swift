@@ -339,7 +339,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     
     func gotoDetail(_ sender: UIButton){
         print("in quick itinerary")
+        print(globalNavigationController)
             selectedQuickI = self.feeds["_id"].stringValue
+        
+
+        
             let profile = storyboard.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
             globalNavigationController.pushViewController(profile, animated: true)
     }
