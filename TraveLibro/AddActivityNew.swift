@@ -395,8 +395,8 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
                 }
                 
                 builder.configureToolStackController(){toolSck in
-                    toolSck.mainToolbarBackgroundColor = UIColor.white
-                    toolSck.secondaryToolbarBackgroundColor = UIColor.white
+                    toolSck.mainToolbarBackgroundColor = mainBlueColor
+                    toolSck.secondaryToolbarBackgroundColor = mainBlueColor
                     toolSck.useNavigationControllerForNavigationButtons = true
                     toolSck.useNavigationControllerForTitles = true
                 }
@@ -414,6 +414,13 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         let takeVideoGallery = UIAlertAction(title: "Gallery", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             let imagePickerController = UIImagePickerController()
+            imagePickerController.navigationBar.isTranslucent = true
+            imagePickerController.navigationBar.barTintColor = mainBlueColor
+            imagePickerController.navigationBar.tintColor = UIColor.white
+            imagePickerController.navigationBar.titleTextAttributes = [
+                NSForegroundColorAttributeName : UIColor.white
+            ] // Title color
+            
             imagePickerController.sourceType = .photoLibrary
             imagePickerController.allowsEditing = true
             imagePickerController.videoMaximumDuration = 60.0
@@ -685,6 +692,13 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
             let imagePickerController = UIImagePickerController()
             if(self.typeOfAddActivtiy == "CreateLocalLife") {
                 imagePickerController.delegate = globalLocalLife as! (UIImagePickerControllerDelegate & UINavigationControllerDelegate)?
+                imagePickerController.navigationBar.isTranslucent = true
+                imagePickerController.navigationBar.barTintColor = mainBlueColor
+                imagePickerController.navigationBar.tintColor = UIColor.white
+                imagePickerController.navigationBar.titleTextAttributes = [
+                    NSForegroundColorAttributeName : UIColor.white
+                ] // Title color
+
                 self.finalImageTag.tintColor = UIColor(hex: "#11d3cb")
                 self.videoTagFinal.tintColor = UIColor(hex: "#11d3cb")
             } else {
@@ -698,6 +712,15 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         let photoLibrary = UIAlertAction(title: "Photos Library", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             let multipleImage = BSImagePickerViewController()
+            
+            multipleImage.navigationBar.isTranslucent = true
+            multipleImage.navigationBar.barTintColor = mainBlueColor
+            multipleImage.navigationBar.tintColor = UIColor.white
+            multipleImage.navigationBar.titleTextAttributes = [
+                NSForegroundColorAttributeName : UIColor.white
+            ] // Title color
+
+            
             globalNavigationController?.topViewController?.bs_presentImagePickerController(multipleImage, animated: true, select: { (asset: PHAsset) -> Void in
                 print("Selected: \(asset)")
             }, deselect: { (asset: PHAsset) -> Void in

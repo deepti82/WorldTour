@@ -179,7 +179,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         createMenuView()
         _ = AppDelegate.getDatabase()
+        
+        
+        
+        UINavigationBar.appearance().backgroundColor = mainBlueColor
+        UIBarButtonItem.appearance().tintColor = UIColor.white
+        
+//        UIButton.appearance().
+        
         OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1")
+        
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1", handleNotificationReceived:             { (notification) in
+            let payload: OSNotificationPayload? = notification?.payload
+            
+            
+            let fullMessage: String? = payload?.body
+            
+            print("Recived no" + fullMessage!)
+            
+            print("Received Notification - \(notification?.payload.notificationID) - \(notification?.payload.title)")
+            
+        }, handleNotificationAction: nil, settings: [kOSSettingsKeyAutoPrompt : false, kOSSettingsKeyInAppAlerts : false])
         
         faicon["clock"] = 0xf017
         faicon["calendar"] = 0xf073
