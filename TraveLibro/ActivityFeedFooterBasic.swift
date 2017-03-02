@@ -68,10 +68,16 @@ class ActivityFeedFooterBasic: UIView {
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
-        
+
+        let tapout1 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooterBasic.showLike(_:)))
+        tapout1.numberOfTapsRequired = 1
+        likeViewLabel.addGestureRecognizer(tapout1)
         
         
     }
+    
+    
+    
     var photoCount = 0
     var videoCount = 0
     
@@ -99,6 +105,7 @@ class ActivityFeedFooterBasic: UIView {
             lineView.isHidden = true
         }
         
+        
         if feed["review"][0] != nil && feed["review"].count > 0 {
             ratingStack.isHidden = false
             rateThisButton.isHidden = true
@@ -119,6 +126,14 @@ class ActivityFeedFooterBasic: UIView {
         }
         
         
+    }
+    
+    
+    func showLike(_ sender: UITapGestureRecognizer) {
+        print("in footer tap out")
+        let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeTableViewController
+                feedVC.postId = postTop["_id"].stringValue
+        globalNavigationController.pushViewController(feedVC, animated: true)
     }
     
     @IBAction func rateThisClicked(_ sender: UIButton) {

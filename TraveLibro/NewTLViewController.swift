@@ -62,6 +62,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var isInitialLoad = true
     var fromOutSide = ""
     var fromType = ""
+    let userm = User()
+
     
     @IBAction func addMoreBuddies(_ sender: AnyObject) {
         buddiesStatus = false;
@@ -1019,7 +1021,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         loader.showOverlay(self.view)
         
-//        let userm = User()
 //        if currentUser["_id"].stringValue == userm.getExistingUser() {
 //            addPostsButton.isHidden = false
 //        }else{
@@ -1042,9 +1043,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         }
         mainScroll.delegate = self
         
-        if fromType == "ended-journey" {
-            toolbarView.isHidden = true
-        }
         
         
         self.infoView = TripInfoOTG(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 1000))
@@ -2305,7 +2303,18 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         infoButton.isHidden = true
         addPostsButton.isHidden = false
 //        otgView.lineThree.isHidden = false
-        toolbarView.isHidden = false
+        
+                if currentUser["_id"].stringValue == userm.getExistingUser() {
+                    if fromType == "ended-journey" {
+                        toolbarView.isHidden = true
+                    }else{
+
+                    toolbarView.isHidden = false
+                    }
+                }else{
+                    toolbarView.isHidden = true
+                }
+
         
     }
     

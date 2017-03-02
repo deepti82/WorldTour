@@ -113,13 +113,13 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         var cityName = ""
         
-        print("city name: \(cityTextField.text), \(currentUser["_id"])")
+        print("city name: \(cityTextField.text), \(currentUser["_id"]), \(currentUser["homeCity"].string)")
         
         if cityTextField.text != "" {
             
             cityName = cityTextField.text!
             
-            if cityTextField.text != currentUser["homeCity"].string!{
+            if currentUser["homeCity"].string == nil || cityTextField.text != currentUser["homeCity"].string!{
                 request.editUser(currentUser["_id"].string!, editField: "homeCity", editFieldValue: cityName, completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {

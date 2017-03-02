@@ -112,6 +112,12 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         return allUsers.count
         
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPeople = allUsers[indexPath.row]["_id"].stringValue
+        let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+        profile.displayData = "search"
+        self.navigationController!.pushViewController(profile, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

@@ -23,6 +23,7 @@ class LikeTableViewController: UITableViewController {
     func loadLikes(page:Int) {
         request.getLikes(userId: currentUser["_id"].stringValue, post: postId, pagenumber: pagenumber, completion: {(request) in
             self.data = request["data"]["like"]
+            self.tableView.reloadData()
         })
     }
     

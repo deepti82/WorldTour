@@ -48,7 +48,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         super.viewDidLoad()
 
         loginLabel.isHidden = true
-        backgroundImage!.addBlurEffect(30, times: 1)
+        
 
         
 //        let bgImage = UIImageView(frame:self.view.frame)
@@ -135,12 +135,16 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
             if (isUrl) {
                 profilePicture.hnk_setImageFromURL(URL(string:imageName)!)
                 profile.image.hnk_setImageFromURL(URL(string:imageName)!)
+                backgroundImage.hnk_setImageFromURL(URL(string:imageName)!)
+
             } else {
                 let getImageUrl = URL(string:adminUrl + "upload/readFile?file=" + imageName + "&width=500")
                 profilePicture.hnk_setImageFromURL(getImageUrl!)
                 profile.image.hnk_setImageFromURL(getImageUrl!)
+                backgroundImage.hnk_setImageFromURL(getImageUrl!)
             }
             makeTLProfilePicture(profilePicture)
+            backgroundImage!.addBlurEffect(30, times: 1)
         }        
     }
     
