@@ -1018,7 +1018,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loader.showOverlay(self.view)
         
 //        if currentUser["_id"].stringValue == userm.getExistingUser() {
@@ -1075,7 +1074,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         
         mainScroll.clipsToBounds = true
         
-        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 60, height: 60))
+        self.addPostsButton = UIButton(frame: CGRect(x: self.view.frame.width - 80, y: self.view.frame.height - 120, width: 65, height: 65))
 //        self.addPostsButton.layer.cornerRadius = 30
         let origImage = UIImage(named: "darkgreycircle");
         let tintedImage = origImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
@@ -1088,7 +1087,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        transparentOrangeButton(self.addPostsButton)
         self.addPostsButton.setImage(UIImage(named: "plus"), for: .normal)
         self.addPostsButton.imageView?.contentMode = .scaleAspectFit
-        self.addPostsButton.imageEdgeInsets = UIEdgeInsetsMake(22, 22, 22, 22)
+        self.addPostsButton.imageEdgeInsets = UIEdgeInsetsMake(25, 25, 25, 25)
         self.addPostsButton.addTarget(self, action: #selector(NewTLViewController.addPosts(_:)), for: .touchUpInside)
         
         self.addPostsButton.layer.zPosition = 5
@@ -1909,6 +1908,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView.lineOne.alpha = 0
         otgView.startJourneyButton.alpha = 0
         otgView.lineTwo.alpha = 0
+         otgView.bonVoyageLabel.animation.rotate(355).makeX(238).animate(0.1)
         
         otgView.shoewImage.animation.delay(0.2).makeAlpha(1.0).moveY(-25).animateWithCompletion(0.5, {
             print("shoeImage")
@@ -2000,9 +2000,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
         otgView.drawLineView3.isHidden = false
+        otgView.bonVoyageLabel.isHidden = true
         if textField == otgView.nameJourneyTF {
             
-            setTopNavigation(text: "Kind of Journey");
+            setTopNavigation(text: "Select Kind of Journey");
             otgView.closeBuddies.isHidden = true
             otgView.cityView.isHidden = false
             otgView.cityImage.isHidden = false
@@ -2026,7 +2027,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             //            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
             
-            otgView.bonVoyageLabel.isHidden = false
+            otgView.bonVoyageLabel.isHidden = true
             
         }
         return false
@@ -2040,6 +2041,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     
     func startOTGJourney(_ sender: UIButton) {
+        otgView.bonVoyageLabel.isHidden = true
         setTopNavigation(text: "Name Your Journey");
         otgView.frame.origin.y = 300
         otgView.nameJourneyTF.becomeFirstResponder()
@@ -2074,6 +2076,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         //        showDetailsFn()
         otgView.drawLineView3.isHidden = true
         otgView.drawLineView4.isHidden = false
+        otgView.bonVoyageLabel.isHidden = true
         
     }
     
@@ -2221,7 +2224,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         print(self.journeyName)
         request.addBuddiesOTG(json, userId: currentUser["_id"].stringValue , userName: currentUser["name"].stringValue, journeyId: self.journeyId, inMiddle: inMiddle, journeyName: self.journeyName, completion: { (json) in
             self.otgView.drawLineView4.isHidden = true
-            
+            self.otgView.bonVoyageLabel.isHidden = true
+            self.otgView.bonVoyageLabel.isHidden = true
         })
     }
     

@@ -114,7 +114,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-Tw-WNK">
-                    <rect key="frame" x="80" y="5" width="190" height="59"/>
+                    <rect key="frame" x="80" y="0.0" width="190" height="59"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKH-4u-web">
                             <rect key="frame" x="94" y="0.0" width="2" height="59"/>
@@ -192,12 +192,12 @@
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="8Sd-Tw-WNK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="1X5-uN-tYc"/>
+                <constraint firstItem="8Sd-Tw-WNK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1X5-uN-tYc"/>
                 <constraint firstItem="gP7-LO-s7L" firstAttribute="leading" secondItem="8ms-aO-Ww0" secondAttribute="trailing" constant="-8" id="3Eo-Si-sbk"/>
                 <constraint firstItem="omO-vk-ce0" firstAttribute="leading" secondItem="FAH-cp-FRl" secondAttribute="trailing" constant="-5" id="42Q-sK-fFL"/>
                 <constraint firstAttribute="trailing" secondItem="wbj-3m-z2P" secondAttribute="trailing" id="L0K-iT-kgC"/>
                 <constraint firstAttribute="bottom" secondItem="wbj-3m-z2P" secondAttribute="bottom" id="QHz-hp-vk7"/>
-                <constraint firstAttribute="bottom" secondItem="8Sd-Tw-WNK" secondAttribute="bottom" constant="6" id="V0P-N9-jnh"/>
+                <constraint firstAttribute="bottom" secondItem="8Sd-Tw-WNK" secondAttribute="bottom" constant="11" id="V0P-N9-jnh"/>
                 <constraint firstItem="8Sd-Tw-WNK" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aDt-pa-Fu1"/>
                 <constraint firstItem="wbj-3m-z2P" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="vMU-3R-Dia"/>
                 <constraint firstItem="wbj-3m-z2P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yfk-AP-csc"/>

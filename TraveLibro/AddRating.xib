@@ -80,7 +80,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGJ-P4-tMG">
                     <rect key="frame" x="148.5" y="163.5" width="103.5" height="19.5"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <color key="textColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Fill Me In..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Tq2-m8-HGG">

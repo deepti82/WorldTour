@@ -109,7 +109,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
         
-        getBackGround(self)
+        getDarkBackGround(self)
         search.searchField.addTarget(self, action: #selector(AddBuddiesViewController.getSearchResults(_:)), for: .editingChanged)
         addedBuddies.textColor = mainOrangeColor
         peopleImage.tintColor = mainOrangeColor

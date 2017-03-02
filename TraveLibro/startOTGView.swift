@@ -66,6 +66,8 @@ class startOTGView: UIView {
         }
         startJourneyButton.layer.cornerRadius = 5
         
+//        bonVoyageLabel.animation.rotate(350).makeX(238).animate(0.1)
+        
         transparentOrangeButton(startJourneyButton)
         transparentOrangeView(cityDetails)
         transparentWhiteButton(addBuddiesButton)
@@ -94,7 +96,7 @@ class startOTGView: UIView {
         nameJourneyView.layer.shadowOffset = CGSize(width: 2, height: 1)
         nameJourneyView.layer.shadowOpacity = 0.5
         nameJourneyView.layer.shadowRadius = 1.0
-        
+        nameJourneyTF.attributedPlaceholder = NSMutableAttributedString(string:"Name Your Journey", attributes: [NSFontAttributeName:UIFont(name: "Avenir-Heavy", size: 18)!])
         optionsButton.tintColor = UIColor.white
 //        calendarIcon.text = String(format: "%C", faicon["calendar"]!)
 //        clockIcon.text = String(format: "%C", faicon["clock"]!)
@@ -127,11 +129,14 @@ class startOTGView: UIView {
         
         
         
+        closeBuddies.tintColor = UIColor(hex: "#2c3757")
+        closeBuddies.imageView?.contentMode = .scaleAspectFit
+        closeBuddies.clipsToBounds = true
         
-        closeBuddies.layer.cornerRadius = 15
-        closeBuddies.titleLabel?.textAlignment = .center
-        closeBuddies.layer.borderWidth = 1.0
-        closeBuddies.layer.borderColor = UIColor(colorLiteralRed: 35/255, green: 45/255, blue: 74/255, alpha: 1.0).cgColor
+//        closeBuddies.layer.cornerRadius = 15
+//        closeBuddies.titleLabel?.textAlignment = .center
+//        closeBuddies.layer.borderWidth = 1.0
+//        closeBuddies.layer.borderColor = UIColor(colorLiteralRed: 35/255, green: 45/255, blue: 74/255, alpha: 1.0).cgColor
         
         
 //        addBuddiesButton.layer.borderColor = UIColor.white.cgColor
@@ -171,6 +176,8 @@ class startOTGView: UIView {
     }
     
     @IBAction func startOTGAnimation(_ sender: SpringButton) {
+        startJourneyButton.animation = "squeezeLeft"
+        startJourneyButton.duration = 5.0
         shoewImage.animation = "squeeze"
         shoewImage.duration = 1.0
         shoewImage.animate()

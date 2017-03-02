@@ -160,7 +160,7 @@ extension UIViewController {
         self.navigationController?.toolbar.barTintColor = UIColor(colorLiteralRed: 48/255, green: 53/255, blue: 87/255, alpha: 0.9)
         self.navigationController?.navigationBar.barStyle = .black
         
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Medium", size: 18)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 18)!]
         
         if left != nil {
             let leftBarButton = UIBarButtonItem()

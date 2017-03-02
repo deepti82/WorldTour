@@ -33,7 +33,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         super.viewDidLoad()
 //        loader.showOverlay(self.view)
         self.setTopNavigation(text: "Kind of Journey");
-        getBackGround(self)
+        getDarkBackGround(self)
         
         let allControllers = self.navigationController?.viewControllers
         backVC = allControllers![allControllers!.count - 2] as! NewTLViewController
@@ -51,7 +51,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), for: .touchUpInside)
-            button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+//            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
             
         }
         
@@ -67,7 +67,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
-            button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+//            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
             
         }
         
@@ -81,7 +81,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), for: .touchUpInside)
-            button.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+//            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
             
         }
         
