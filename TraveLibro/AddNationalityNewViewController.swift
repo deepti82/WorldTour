@@ -227,7 +227,12 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                 })
             }
             else {
-                self.popVC(UIButton())
+                if isFromSettings != nil && isFromSettings == true {
+                    self.popVC(UIButton())
+                }
+                else {
+                    self.chooseCity(sender)
+                }
             }
             
         }

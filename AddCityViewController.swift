@@ -146,8 +146,12 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                 })
             }
             else{
-                self.popVC(UIButton())
-            }
+                if isFromSettings != nil && isFromSettings == true {
+                    self.popVC(UIButton())
+                }
+                else {
+                    self.selectGender(sender)
+                }            }
             
         } else {
             alert(message: "Please Select City.", title: "Select City")

@@ -1301,7 +1301,7 @@ class Navigation {
         
         let jsonData = try! params.rawData()
         // create post request
-        let url = URL(string: adminUrl + "itinerary/saveQuickItinerary69")!
+        let url = URL(string: adminUrl + "itinerary/saveQuickItinerary")!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -3296,6 +3296,51 @@ class Navigation {
         }
         
     }
+
+    func getLikes(userId: String, post: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON
+            
+            
+                params = ["user": userId, "_id": post, "pagenumber": pagenumber]
+            
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "post/getPostLikes")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("response: \(JSON(result))")
+                    completion(JSON(result))
+                    
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+
     
     func getPopularUsers(pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         

@@ -28,6 +28,7 @@ public class QuickItinerary {
     }
     
     func save(_ quickItinerary:JSON,imageArr:[PostImage],statusVal:Bool) {
+        print("save clicked")
         let photoinsert = self.post.insert(
             self.quickJson <- quickItinerary.rawString()!,
             self.status <- statusVal

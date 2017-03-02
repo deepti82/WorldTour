@@ -1014,7 +1014,17 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loader.showOverlay(self.view)
+        
+//        let userm = User()
+//        if currentUser["_id"].stringValue == userm.getExistingUser() {
+//            addPostsButton.isHidden = false
+//        }else{
+//            addPostsButton.isHidden = true
+//        }
+
+        
         ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
@@ -2256,9 +2266,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func showBuddies() {
         
         for i in 0 ..< addedBuddies.count {
+            if i < 3 {
             let imageUrl = addedBuddies[i]["profilePicture"].string!
             otgView.buddyStackPictures[i].hnk_setImageFromURL(getImageURL(imageUrl, width: 100))
             makeTLProfilePictureBorderOrange(otgView.buddyStackPictures[i])
+            }
         }
         
         switch countLabel {

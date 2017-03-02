@@ -58,6 +58,7 @@ class PhotoOTGFooter: UIView {
         optionButton.tintColor = mainBlueColor
         commentIcon.tintColor = mainBlueColor
         likeButton.contentMode = .scaleAspectFit
+        likeViewLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.showLike(_:))))
 //        footerColorView.layer.borderWidth = 1.0
 //        footerColorView.layer.borderColor = UIColor.black.cgColor
         
@@ -81,6 +82,16 @@ class PhotoOTGFooter: UIView {
         
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
             }
+    
+    func showLike (_ sender: UITapGestureRecognizer? = nil) {
+        
+        let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeTableViewController
+//        feedVC.postId = postTop["_id"].stringValue
+        globalNavigationController.pushViewController(feedVC, animated: true)
+        
+    }
+
+    
     
     @IBAction func sendComments(_ sender: UIButton) {
         print("comment clicked")
