@@ -1016,7 +1016,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
         loader.showOverlay(self.view)
         

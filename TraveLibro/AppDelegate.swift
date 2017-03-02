@@ -122,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         let mainViewController = storyboard.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         
-        let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+//        let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
@@ -135,7 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         if user.getExistingUser() == "" {
             
-            nvc = UINavigationController(rootViewController: signInVC)
+            nvc = UINavigationController(rootViewController: PJController)
             
             let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
             
