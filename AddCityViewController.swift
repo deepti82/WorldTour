@@ -157,7 +157,6 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                 
                 }
             }
-
             
         } else {
             alert(message: "Please Select City.", title: "Select City")

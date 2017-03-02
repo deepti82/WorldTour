@@ -1026,10 +1026,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //            addPostsButton.isHidden = true
 //        }
 
-        
-
-//        loader.showOverlay(self.view)
-
         ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
