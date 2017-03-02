@@ -236,7 +236,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     func addPhotoToLayout(_ post: Post, startIndex: Int) {
         centerView.horizontalScrollForPhotos.removeAll()
         for i in startIndex ..< post.imageArr.count {
-            let photosButton = UIImageView(frame: CGRect(x: 10, y: 5, width: 87, height: 87))
+            let photosButton = UIImageView(frame: CGRect(x: 6, y: 5, width: 87, height: 87))
             photosButton.image = UIImage(named: "logo-default")
             photosButton.contentMode = UIViewContentMode.scaleAspectFill
             if(post.post_isOffline) {

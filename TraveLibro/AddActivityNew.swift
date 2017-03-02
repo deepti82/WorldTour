@@ -118,10 +118,10 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         super.init(frame: frame)
         loadViewFromNib ()
         makeFAButton("fbSquare", button: facebookShare)
-        makeFAButton("whatsapp", button: whatsappShare)
+        
         makeFAButton("googleSquare", button: googleShare)
         makeFAButton("twitterSquare", button: twitterShare)
-        makeFAButton("whatsapp", button: moreOptions)
+        
         makeFAButton("edit", button: editCategory)
         
         horizontal = HorizontalLayout(height: locationHorizontalScroll.frame.height)
