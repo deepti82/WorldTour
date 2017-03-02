@@ -35,7 +35,6 @@
                 <outlet property="locationHorizontalScroll" destination="iq7-dL-Dqp" id="Vxd-KX-Kbz"/>
                 <outlet property="locationTag" destination="XUO-Me-yGq" id="Ial-Wz-bIe"/>
                 <outlet property="locationView" destination="VXQ-PW-bYX" id="pHc-SM-skL"/>
-                <outlet property="moreOptions" destination="MiR-Zp-fad" id="tUF-lB-lGx"/>
                 <outlet property="photoScroll" destination="rLJ-tm-RUv" id="qH2-c2-96R"/>
                 <outlet property="photoTag" destination="tWP-Xu-eyz" id="6AM-gC-Trm"/>
                 <outlet property="photosButton" destination="5rB-xD-i1a" id="rUV-id-Q9r"/>
@@ -60,7 +59,6 @@
                 <outlet property="videosFinalView" destination="hS0-gT-IGp" id="maS-ig-jrH"/>
                 <outlet property="videosInitialView" destination="5am-Wy-Zjj" id="AXQ-fv-Ok1"/>
                 <outlet property="viewContainerView" destination="rBK-Fe-PPS" id="E5w-9A-dyQ"/>
-                <outlet property="whatsappShare" destination="6ro-cc-PTU" id="cRx-Zy-XE8"/>
                 <outletCollection property="photosCollection" destination="RKu-9k-3hr" collectionClass="NSMutableArray" id="Dj9-v3-HlA"/>
                 <outletCollection property="photosCollection" destination="96F-AJ-npm" collectionClass="NSMutableArray" id="Fnm-Bf-ks8"/>
                 <outletCollection property="photosCollection" destination="iHN-0N-VmI" collectionClass="NSMutableArray" id="vDI-jR-x87"/>
@@ -69,11 +67,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="952"/>
+            <rect key="frame" x="0.0" y="0.0" width="400" height="972"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vYv-ZD-NnK">
-                    <rect key="frame" x="125" y="916.5" width="151" height="35"/>
+                    <rect key="frame" x="125" y="927" width="151" height="35"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="151" id="a6A-db-lXj"/>
                         <constraint firstAttribute="height" constant="35" id="gxH-lY-YRX"/>
@@ -84,50 +82,34 @@
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share On" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSh-Jn-unO">
-                    <rect key="frame" x="163" y="800" width="75.5" height="25"/>
+                    <rect key="frame" x="162.5" y="800" width="75.5" height="25"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="txv-38-x7m">
-                    <rect key="frame" x="34" y="849" width="332" height="60"/>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="txv-38-x7m">
+                    <rect key="frame" x="75" y="849" width="250" height="70"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9x-np-zvE">
-                            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="45"/>
-                            <state key="normal" title="Button">
-                                <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ro-cc-PTU">
-                            <rect key="frame" x="68" y="0.0" width="60" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="0ZF-Ee-489"/>
+                                <constraint firstAttribute="width" constant="70" id="gQU-pi-WJF"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="45"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMo-fu-Icw">
-                            <rect key="frame" x="136" y="0.0" width="60" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="60" id="Q93-6W-HqM"/>
-                            </constraints>
+                            <rect key="frame" x="90" y="0.0" width="70" height="70"/>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="45"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDb-hl-Qfq">
-                            <rect key="frame" x="204" y="0.0" width="60" height="60"/>
-                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="45"/>
-                            <state key="normal" title="Button">
-                                <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiR-Zp-fad">
-                            <rect key="frame" x="272" y="0.0" width="60" height="60"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="60" id="Jj0-mk-djc"/>
-                            </constraints>
+                            <rect key="frame" x="180" y="0.0" width="70" height="70"/>
                             <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="45"/>
                             <state key="normal" title="Button">
                                 <color key="titleColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -575,7 +557,7 @@
                     <exclude reference="f0N-zJ-iqX"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="258" y="383"/>
+            <point key="canvasLocation" x="258" y="393"/>
         </view>
     </objects>
     <resources>
