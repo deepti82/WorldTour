@@ -37,7 +37,7 @@ class VideoView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
         
-        toggleSound.setTitle(String(format: "%C",0xf026), for: UIControlState())
+        toggleSound.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
         toggleSound.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         toggleSound.clipsToBounds = true
         toggleSound.layer.cornerRadius = 5
@@ -52,7 +52,7 @@ class VideoView: UIView {
         } else {
             defaultMute = true;
             player.muted = defaultMute
-            toggleSound.setTitle(String(format: "%C",0xf026), for: UIControlState())
+            toggleSound.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
         }
     }
 }
