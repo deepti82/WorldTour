@@ -1874,15 +1874,46 @@ class Navigation {
         }
     }
     
+    func likePost(_ id: String, userId: String, unlike: Bool,postId: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            var params = ["uniqueId": id, "user": userId, "unlike": unlike,"name":"","post":postId] as [String : Any]
+            
+            if !unlike {
+                
+                params = ["uniqueId": id, "user": userId,"name":"","post":postId]
+            }
+            
+            print("like post: \(params)")
+            
+            let opt = try HTTP.POST(adminUrl + "post/updateLikePost", parameters: [params])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
     func likePost(_ id: String, userId: String, unlike: Bool, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            var params = ["uniqueId": id, "user": userId, "unlike": unlike] as [String : Any]
+            var params = ["uniqueId": id, "user": userId, "unlike": unlike,"name":""] as [String : Any]
             
             if !unlike {
                 
-                params = ["uniqueId": id, "user": userId]
+                params = ["uniqueId": id, "user": userId,"name":""]
             }
             
             print("like post: \(params)")

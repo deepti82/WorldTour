@@ -204,14 +204,30 @@ class PhotoOTGFooter: UIView {
         
         print("like button tapped \(sender.titleLabel!.text)")
         
-        var hasLiked = false
+        var unLike = false
         if sender.tag == 1 {
-            hasLiked = true
+            unLike = true
             sender.tag = 0
         }
         else {
             sender.tag = 1
         }
+        if !unLike {
+            self.setLikeSelected(true)
+            self.likeCount = self.likeCount + 1
+            self.setLikeCount(self.likeCount)
+        }
+        else {
+            self.setLikeSelected(false)
+            if self.likeCount <= 0 {
+                self.likeCount = 0
+            } else {
+                self.likeCount = self.likeCount - 1
+            }
+            self.setLikeCount(self.likeCount)
+        }
+        
+        
         var usr:String = ""
         let userm = User()
         if currentUser["_id"].stringValue == userm.getExistingUser() {
@@ -219,13 +235,12 @@ class PhotoOTGFooter: UIView {
         }else{
             usr = userm.getExistingUser()
         }
-        request.likePost(postTop.jsonPost["uniqueId"].stringValue, userId: usr, unlike: hasLiked, completion: {(response) in
+        request.likePost(postTop.jsonPost["uniqueId"].stringValue, userId: usr, unlike: unLike,postId: postTop.jsonPost["_id"].stringValue, completion: {(response) in
+            print(response);
             DispatchQueue.main.async(execute: {
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
-                }
-                else if response["value"].bool! {
-                    if sender.tag == 1 {
+                    if unLike {
                         self.setLikeSelected(true)
                         self.likeCount = self.likeCount + 1
                         self.setLikeCount(self.likeCount)
@@ -239,6 +254,10 @@ class PhotoOTGFooter: UIView {
                         }
                         self.setLikeCount(self.likeCount)
                     }
+                    
+                }
+                else if response["value"].bool! {
+                    
                 }
                 else {
                     
