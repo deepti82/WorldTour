@@ -22,8 +22,11 @@ class LikeTableViewController: UITableViewController {
 
     func loadLikes(page:Int) {
         request.getLikes(userId: currentUser["_id"].stringValue, post: postId, pagenumber: pagenumber, completion: {(request) in
+            DispatchQueue.main.async(execute: {
+
             self.data = request["data"]["like"]
             self.tableView.reloadData()
+            })
         })
     }
     
@@ -35,7 +38,7 @@ class LikeTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,6 +50,7 @@ class LikeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "likeCell", for: indexPath)
         cell.imageView?.hnk_setImageFromURL(getImageURL(self.data[indexPath.row]["profilePicture"].stringValue, width: 200))
         cell.textLabel?.text = self.data[indexPath.row]["name"].stringValue
+        cell.detailTextLabel?.text = self.data[indexPath.row]["urlSlug"].stringValue
         // Configure the cell...
 
         return cell

@@ -15,6 +15,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("in loaded")
         
         layout = HorizontalLayout(height: videoScrollView.frame.height)
         
@@ -43,6 +44,10 @@ class LogInViewController: UIViewController {
         logIn.fbButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), for: .touchUpInside)
         logIn.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), for: .touchUpInside)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("in appear")
     }
     
     func facebookSignUp(_ sender: AnyObject) {
