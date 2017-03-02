@@ -1016,7 +1016,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD
+
         
         loader.showOverlay(self.view)
         
@@ -1028,9 +1028,9 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
 //        }
 
         
-=======
+
 //        loader.showOverlay(self.view)
->>>>>>> origin/level-3-
+
         ToastView.appearance().backgroundColor = endJourneyColor
 
         self.layout = VerticalLayout(width: view.frame.size.width)
