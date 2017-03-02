@@ -488,17 +488,11 @@ class EndJourneyViewController: UIViewController {
                                 request.endJourney(self.journey["_id"].string!, uniqueId: self.journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: self.journey["buddies"].array!, photo: self.coverImage, journeyName: self.journey["name"].stringValue, notificationID: self.notificationID, completion: {(response) in
                                     
                                     print("journey ended toaster")
-                                    let tstr = Toast(text: "Journey ended successfully. Have a good life.")
-                                    tstr.show()
+//                                    let tstr = Toast(text: "Journey ended successfully. Have a good life.")
+//                                    tstr.show()
+                                    self.goBack()
+
                                     
-                                    request.getUser(user.getExistingUser(), completion: {(response) in
-                                        
-                                        DispatchQueue.main.async(execute: {
-                                            currentUser = response["data"]
-                                            
-                                            //                                            self.goBack()
-                                        })
-                                    })
                                 })
                             }
                         })
@@ -515,7 +509,7 @@ class EndJourneyViewController: UIViewController {
         }else{
             var tstr = Toast(text: "Wait a while.....")
             tstr.show()
-            self.goBack()
+            
             request.endJourney(journey["_id"].string!, uniqueId: journey["uniqueId"].string!, user: currentUser["_id"].string!, userName: currentUser["name"].string!, buddies: journey["buddies"].array!, photo: coverImage, journeyName: journey["name"].stringValue, notificationID: self.notificationID, completion: {(response) in
                 
                 print("End Journey response : \(response)")
@@ -523,12 +517,13 @@ class EndJourneyViewController: UIViewController {
                 request.getUser(user.getExistingUser(), completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
+                        self.goBack()
                         currentUser = response["data"]
                         if globalNewTLViewController != nil {
                             globalNewTLViewController.removeFromParentViewController()
                         }
-                        tstr = Toast(text: "Journey ended successfully. Have a good life.")
-                        tstr.show()
+//                        tstr = Toast(text: "Journey ended successfully. Have a good life.")
+//                        tstr.show()
                         //                        self.goBack()
                     })
                 })
@@ -582,8 +577,10 @@ class EndJourneyViewController: UIViewController {
     
     func goBack() {
         
-        let selectGenderVC = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        self.navigationController?.pushViewController(selectGenderVC, animated: true)
+        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        tlVC.displayData = "activity"
+        
+        self.navigationController?.pushViewController(tlVC, animated: false)
     }
     
     

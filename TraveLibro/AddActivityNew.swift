@@ -793,7 +793,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
     func addPhotoToLayout() {
         self.horizontalScrollForPhotos.removeAll()
         for i in 0 ..< imageArr.count {
-            let photosButton = UIButton(frame: CGRect(x: 5, y: 0, width: 65, height: 65))
+            let photosButton = UIButton(frame: CGRect(x: 6, y: 0, width: 65, height: 65))
             photosButton.setImage(imageArr[i].image, for: .normal)
             photosButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
             photosButton.layer.cornerRadius = 5.0
@@ -803,7 +803,7 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
             self.horizontalScrollForPhotos.addSubview(photosButton)
         }
         if(self.typeOfAddActivtiy != "EditActivity") {
-            let addMorePhotosButton = UIButton(frame: CGRect(x: 5, y: 0, width: 65, height: 65))
+            let addMorePhotosButton = UIButton(frame: CGRect(x: 6, y: 0, width: 65, height: 65))
             addMorePhotosButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
             addMorePhotosButton.setImage(UIImage(named: "add_fa_icon"), for: .normal)
             addMorePhotosButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)

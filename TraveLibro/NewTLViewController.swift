@@ -1207,7 +1207,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     var isRefreshing = false
     
     func refresh(_ sender: AnyObject) {
-        var isRefreshing = true
+        isRefreshing = true
         getJourney()
     }
     
