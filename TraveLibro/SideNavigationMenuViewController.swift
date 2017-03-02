@@ -172,7 +172,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
-//        cell.backgroundColor = mainBlueColor
+//         cell.backgroundColor = mainBlueColor
         cell.menuLabel.textColor = mainGreenColor
         
         switch((indexPath as NSIndexPath).row)
