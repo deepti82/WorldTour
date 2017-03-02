@@ -191,18 +191,18 @@ class EndJourneyViewController: UIViewController {
         if buddies.count >= 3 {
             
             endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
-            makeTLProfilePictureBorderOrange(endJourney.buddiesImages[0])
+            makeBuddiesTLProfilePicture(endJourney.buddiesImages[0])
             endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
-            makeTLProfilePictureBorderOrange(endJourney.buddiesImages[1])
+            makeBuddiesTLProfilePicture(endJourney.buddiesImages[1])
             endJourney.buddyCount.text = "+\(buddies.count - 2)"
             
         }
         else if buddies.count == 2 {
             
             endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
-            makeTLProfilePictureBorderOrange(endJourney.buddiesImages[0])
+            makeBuddiesTLProfilePicture(endJourney.buddiesImages[0])
             endJourney.buddiesImages[1].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[1]["profilePicture"])")!)
-            makeTLProfilePictureBorderOrange(endJourney.buddiesImages[1])
+            makeBuddiesTLProfilePicture(endJourney.buddiesImages[1])
             endJourney.buddyCount.isHidden = true
             
         }
@@ -210,7 +210,7 @@ class EndJourneyViewController: UIViewController {
             
             endJourney.buddiesImages[0].hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(buddies[0]["profilePicture"])")!)
             print(endJourney.buddiesImages[0])
-            makeTLProfilePictureBorderOrange(endJourney.buddiesImages[0])
+            makeBuddiesTLProfilePicture(endJourney.buddiesImages[0])
             endJourney.buddiesImages[1].isHidden = true
             endJourney.buddyCount.isHidden = true
             

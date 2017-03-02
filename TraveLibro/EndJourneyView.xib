@@ -172,27 +172,22 @@
                     <color key="backgroundColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZJu-hI-GQV">
-                    <rect key="frame" x="227" y="308" width="140" height="40"/>
+                    <rect key="frame" x="197" y="298" width="170" height="50"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="N5A-pH-Dhz">
-                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="4iq-DS-Smr"/>
-                                <constraint firstAttribute="height" constant="40" id="xhr-s2-kIi"/>
-                            </constraints>
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="M0x-Vg-Vxv">
-                            <rect key="frame" x="50" y="0.0" width="40" height="40"/>
+                            <rect key="frame" x="60" y="0.0" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="Fmb-eJ-oam"/>
-                                <constraint firstAttribute="width" constant="40" id="dHD-6Z-V1h"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="6id-wc-Zc7"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="V1d-8M-Bkt"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQO-En-R4n">
-                            <rect key="frame" x="100" y="0.0" width="40" height="40"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQO-En-R4n">
+                            <rect key="frame" x="120" y="0.0" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="Znp-wR-I60"/>
-                                <constraint firstAttribute="height" constant="40" id="vbt-xX-BOK"/>
+                                <constraint firstAttribute="width" constant="50" id="YCv-qJ-gwA"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -202,6 +197,7 @@
                     <constraints>
                         <constraint firstItem="OQO-En-R4n" firstAttribute="leading" secondItem="M0x-Vg-Vxv" secondAttribute="trailing" constant="10" id="2g2-W2-goh"/>
                         <constraint firstAttribute="trailing" secondItem="OQO-En-R4n" secondAttribute="trailing" id="nd1-9N-d8b"/>
+                        <constraint firstAttribute="height" constant="50" id="rJY-Hl-1Aq"/>
                     </constraints>
                 </stackView>
             </subviews>

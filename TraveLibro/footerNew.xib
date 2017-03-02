@@ -149,7 +149,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ms-aO-Ww0">
-                            <rect key="frame" x="115" y="0.0" width="85" height="57"/>
+                            <rect key="frame" x="110" y="0.0" width="85" height="57"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="local_life_icon" translatesAutoresizingMaskIntoConstraints="NO" id="fKj-pB-sz8">
                                     <rect key="frame" x="27" y="3" width="30" height="30"/>
@@ -177,7 +177,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.1137254902" green="0.1529411765" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="8ms-aO-Ww0" secondAttribute="trailing" id="8jE-t3-HGR"/>
+                        <constraint firstAttribute="trailing" secondItem="8ms-aO-Ww0" secondAttribute="trailing" constant="5" id="8jE-t3-HGR"/>
                         <constraint firstItem="omO-vk-ce0" firstAttribute="leading" secondItem="8Sd-Tw-WNK" secondAttribute="leading" id="9pF-F7-a2u"/>
                         <constraint firstAttribute="bottom" secondItem="omO-vk-ce0" secondAttribute="bottom" constant="-2" id="CXB-tX-UOj"/>
                         <constraint firstItem="kKH-4u-web" firstAttribute="centerX" secondItem="8Sd-Tw-WNK" secondAttribute="centerX" id="DZj-oe-o2f"/>
