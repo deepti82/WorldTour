@@ -337,48 +337,59 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
     }
     
+    
+    //MARK: - GestureRecognizers
+    
     func gotoDetail(_ sender: UIButton){
-        print("in quick itinerary")
-        print(globalNavigationController)
+        if currentUser != nil {
+            print("in quick itinerary")
             selectedQuickI = self.feeds["_id"].stringValue
-        
-
-        
             let profile = storyboard.instantiateViewController(withIdentifier: "previewQ") as! QuickItineraryPreviewViewController
             globalNavigationController.pushViewController(profile, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
     
     func showDetailedItinerary(_ sender: UIButton) {
-        print("detail itinerary clicked \(feeds["_id"].stringValue)")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
-        controller.fromOutSide = feeds["_id"].stringValue
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
-        globalNavigationController?.pushViewController(controller, animated: true)
-        
+        if currentUser != nil {            
+            print("detail itinerary clicked \(feeds["_id"].stringValue)")
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "EachItineraryViewController") as! EachItineraryViewController
+            controller.fromOutSide = feeds["_id"].stringValue
+            globalNavigationController?.setNavigationBarHidden(false, animated: true)
+            globalNavigationController?.pushViewController(controller, animated: true)            
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
-
-
     
     func toggleFullscreen(_ sender: UIButton){
         print("clicked....")
-        if feeds["type"].stringValue == "on-the-go-journey" || feeds["type"].stringValue == "ended-journey"{
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-            controller.fromOutSide = feeds["_id"].stringValue
-            controller.fromType = feeds["type"].stringValue
-            
-            print(feeds["_id"])
-            print(feeds["type"])
-            globalActivityFeedsController.navigationController!.pushViewController(controller, animated: false)
-            
-            //            globalNewTLViewController.toolbarView.isHidden = true
-            //            globalNewTLViewController.hideVisual.isHidden = true
-            //            globalNewTLViewController.hideToolBar.isHidden = true
-            
-        }else {
-            
+        if currentUser != nil {
+            if feeds["type"].stringValue == "on-the-go-journey" || feeds["type"].stringValue == "ended-journey"{
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+                controller.fromOutSide = feeds["_id"].stringValue
+                controller.fromType = feeds["type"].stringValue
+                
+                print(feeds["_id"])
+                print(feeds["type"])
+                globalActivityFeedsController.navigationController!.pushViewController(controller, animated: false)
+                
+                //            globalNewTLViewController.toolbarView.isHidden = true
+                //            globalNewTLViewController.hideVisual.isHidden = true
+                //            globalNewTLViewController.hideToolBar.isHidden = true
+                
+            }else {
+                
+            }            
         }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }        
     }
     
     func setText(text: String) {

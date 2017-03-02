@@ -145,13 +145,12 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         cell.userBadgeImage.image = UIImage(named:cellData["userBadgeName"].stringValue.lowercased())
         
-        if(currentUser != nil) {
-            cell.followButton.isHidden = false
+        if(currentUser != nil) {            
             cell.followButton.tag = indexPath.row
             cell.followButton.setTitle((cellData["following"].intValue == 0) ? "Follow" : "Following", for: .normal)
         }
         else {
-            cell.followButton.isHidden = true
+            cell.followButton.setTitle("Follow", for: .normal)
         }
         
         return cell
@@ -169,22 +168,18 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     @IBAction func followButtonClicked(_ sender: UIButton) {
         
-        if currentUser == nil {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
-        }
-        else {
+        if currentUser != nil {
             if sender.titleLabel?.text == "Follow" {
                 request.followUser(currentUser["_id"].string!, followUserId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in                
                     DispatchQueue.main.async(execute: {
                         
-
+                        
                         if response.error != nil {
                             print("error: \(response.error!.localizedDescription)")
                         }
                         else if response["value"].bool! {                            
                             self.refreshControl.beginRefreshing()
                             self.pullToRefreshCalled()
-//                            sender.setTitle("Following", for: .normal)
                         }
                         else {
                             print("error: \(response["error"])")
@@ -202,14 +197,16 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                             print("response arrived!")
                             self.refreshControl.beginRefreshing()
                             self.pullToRefreshCalled()
-//                            sender.setTitle("Follow", for: .normal)
                         }
                         else {                            
                             print("error: \(response["error"])")
                         }
                     })
                 })
-            }
+            }            
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)            
         }        
     }
 }
