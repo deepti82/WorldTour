@@ -11,7 +11,7 @@ import UIKit
 
 class SummarySubViewController: UIViewController, UIScrollViewDelegate {
 
-    var loader = LoadingOverlay()
+   
     var labels: [JSON] = []
     var images = ["restaurantsandbars", "leaftrans", "hotels-1", "shopping-1", "nature_checkin", "sightstrans", "museumstrans", "zootrans", "religious-1", "cinematrans", "planetrans", "othersdottrans", "city_icon"]
     var journeyId = ""
@@ -140,10 +140,9 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func getCount() {
-        loader.hideOverlayView()
         request.getTripSummaryCount("tripSummary", journeyId: journeyId, userId: currentUser["_id"].string!, completion: {(response) in
             DispatchQueue.main.async(execute: {
-                self.loader.hideOverlayView()
+                loader.hideOverlayView()
                 print(response["data"])
                 if response.error != nil {
                     print("error: \(response.error!.localizedDescription)")
@@ -291,7 +290,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
     
     func createLayout() {
         //  TOP VIEW
-        let tripView = TripSummaryView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 144))
+        let tripView = TripSummaryView(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 144))
         tripView.allData = tripCountData
         tripView.likes.text = tripCountData["likeCount"].stringValue
         

@@ -72,12 +72,18 @@ class ActivityFeedFooter: UIView {
     }
     
     @IBAction func sendComments(_ sender: UIButton) {
-        let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
-        comment.postId = postTop["uniqueId"].stringValue
-        comment.otherId = postTop["_id"].stringValue
         
-        globalNavigationController?.setNavigationBarHidden(false, animated: true)
-        globalNavigationController?.pushViewController(comment, animated: true)
+        if currentUser != nil {
+            let comment = storyboard?.instantiateViewController(withIdentifier: "CommentsVC") as! CommentsViewController
+            comment.postId = postTop["uniqueId"].stringValue
+            comment.otherId = postTop["_id"].stringValue
+            
+            globalNavigationController?.setNavigationBarHidden(false, animated: true)
+            globalNavigationController?.pushViewController(comment, animated: true)
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
     }
     
     
@@ -189,77 +195,84 @@ class ActivityFeedFooter: UIView {
     
     @IBAction func sendLikes(_ sender: UIButton) {
         
-        likeButton.animation = "pop"
-        likeButton.velocity = 2
-        likeButton.force = 2
-        likeButton.damping = 10
-        likeButton.curve = "spring"
-        likeButton.animateTo()
-        
-        print("like button tapped \(sender.titleLabel!.text)")
-        
-        var hasLiked = false
-        if sender.tag == 1 {
-            hasLiked = true
-            sender.tag = 0
+        if currentUser != nil {
+            
+            likeButton.animation = "pop"
+            likeButton.velocity = 2
+            likeButton.force = 2
+            likeButton.damping = 10
+            likeButton.curve = "spring"
+            likeButton.animateTo()
+            
+            print("like button tapped \(sender.titleLabel!.text)")
+            
+            var hasLiked = false
+            if sender.tag == 1 {
+                hasLiked = true
+                sender.tag = 0
+            }
+            else {
+                sender.tag = 1
+            }
+            
+            if (postTop["type"].stringValue == "quick-itinerary" || postTop["type"].stringValue == "detail-itinerary") {
+                request.likeItinerary(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, itinerary: postTop["_id"].stringValue, completion: {(response) in
+                    DispatchQueue.main.async(execute: {
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            if sender.tag == 1 {
+                                self.setLikeSelected(true)
+                                self.likeCount = self.likeCount + 1
+                                self.setLikeCount(self.likeCount)
+                            } else {
+                                self.setLikeSelected(false)
+                                if self.likeCount <= 0 {
+                                    self.likeCount = 0
+                                } else {
+                                    self.likeCount = self.likeCount - 1
+                                }
+                                self.setLikeCount(self.likeCount)
+                            }
+                        } else {
+                            
+                        }
+                    })
+                })
+            }
+            else if (postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
+                request.likeStartEnd(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, journey: postTop["_id"].stringValue, completion: {(response) in
+                    DispatchQueue.main.async(execute: {
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            if sender.tag == 1 {
+                                self.setLikeSelected(true)
+                                self.likeCount = self.likeCount + 1
+                                self.setLikeCount(self.likeCount)
+                            } else {
+                                self.setLikeSelected(false)
+                                if self.likeCount <= 0 {
+                                    self.likeCount = 0
+                                } else {
+                                    self.likeCount = self.likeCount - 1
+                                }
+                                self.setLikeCount(self.likeCount)
+                            }
+                        }
+                        else {
+                            
+                        }
+                    })
+                })
+            }            
         }
         else {
-            sender.tag = 1
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
         
-        if (postTop["type"].stringValue == "quick-itinerary" || postTop["type"].stringValue == "detail-itinerary") {
-            request.likeItinerary(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, itinerary: postTop["_id"].stringValue, completion: {(response) in
-                DispatchQueue.main.async(execute: {
-                    if response.error != nil {
-                        print("error: \(response.error!.localizedDescription)")
-                    }
-                    else if response["value"].bool! {
-                        if sender.tag == 1 {
-                            self.setLikeSelected(true)
-                            self.likeCount = self.likeCount + 1
-                            self.setLikeCount(self.likeCount)
-                        } else {
-                            self.setLikeSelected(false)
-                            if self.likeCount <= 0 {
-                                self.likeCount = 0
-                            } else {
-                                self.likeCount = self.likeCount - 1
-                            }
-                            self.setLikeCount(self.likeCount)
-                        }
-                    } else {
-                        
-                    }
-                })
-            })
-        }
-        else if (postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
-            request.likeStartEnd(postTop["uniqueId"].stringValue, userId: currentUser["_id"].string!, userName: currentUser["name"].string!, unlike: hasLiked, journey: postTop["_id"].stringValue, completion: {(response) in
-                DispatchQueue.main.async(execute: {
-                    if response.error != nil {
-                        print("error: \(response.error!.localizedDescription)")
-                    }
-                    else if response["value"].bool! {
-                        if sender.tag == 1 {
-                            self.setLikeSelected(true)
-                            self.likeCount = self.likeCount + 1
-                            self.setLikeCount(self.likeCount)
-                        } else {
-                            self.setLikeSelected(false)
-                            if self.likeCount <= 0 {
-                                self.likeCount = 0
-                            } else {
-                                self.likeCount = self.likeCount - 1
-                            }
-                            self.setLikeCount(self.likeCount)
-                        }
-                    }
-                    else {
-                        
-                    }
-                })
-            })
-        }
     }
     
     @IBAction func optionClick(_ sender: UIButton) {

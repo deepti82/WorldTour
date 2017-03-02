@@ -146,12 +146,25 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                 })
             }
             else{
+<<<<<<< HEAD
                 if isFromSettings != nil && isFromSettings == true {
                     self.popVC(UIButton())
                 }
                 else {
                     self.selectGender(sender)
                 }            }
+=======
+                
+                if isFromSettings != nil && isFromSettings == true {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        self.popVC(UIButton())
+                    }
+                }
+                else {
+                    self.selectGender(sender)
+                }
+            }
+>>>>>>> origin/level-3-
             
         } else {
             alert(message: "Please Select City.", title: "Select City")

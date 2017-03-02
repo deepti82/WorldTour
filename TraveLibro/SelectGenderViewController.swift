@@ -1,11 +1,11 @@
 import UIKit
 
 class SelectGenderViewController: UIViewController {
-    var loader = LoadingOverlay()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getDarkBackGroundBlur(self)
-        loader.showOverlay(self.view)
+//        loader.showOverlay(self.view)
         
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
@@ -50,14 +50,14 @@ class SelectGenderViewController: UIViewController {
         //Add edit data request here
         
         if genderValue == nil {
-            
+            loader.hideOverlayView()
             genderValue = ""
         }
         
         request.editUser(currentUser["_id"].string!, editField: "gender", editFieldValue: genderValue, completion: {(response) in
-            self.loader.hideOverlayView()
+            
             DispatchQueue.main.async(execute: {
-                
+                loader.hideOverlayView()
                 if response.error != nil {
                     
                     print("response: \(response.error?.localizedDescription)")

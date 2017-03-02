@@ -22,6 +22,7 @@ target 'TraveLibro' do
   pod 'OneSignal'
   pod 'SwiftGifOrigin', '~> 1.6.1'
   pod 'iCarousel', '~> 1.8'
+  pod "SABlurImageView"
 end
 
 

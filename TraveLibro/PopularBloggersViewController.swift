@@ -15,6 +15,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     var pagenum = 1
     var loader = LoadingOverlay()
     var hasNext = true
+    let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var userTableView: UITableView!
     
@@ -23,7 +24,13 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         self.setNavigationBarItem()
         
+        getDarkBackGround(self)
+        
         loader.showOverlay(self.view)
+        
+        refreshControl.addTarget(self, action: #selector(PopularBloggersViewController.pullToRefreshCalled), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = lightOrangeColor
+        userTableView.addSubview(refreshControl)
         
         getPopulerUser(pageNum : pagenum )
     }
@@ -35,20 +42,35 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     }
     
     
+    //MARK: - Helpers
+    
+    func pullToRefreshCalled() {        
+        pagenum = 1
+        getPopulerUser(pageNum: pagenum)
+    }
+    
+    
     //MARK: - GetUsers
     func getPopulerUser(pageNum : Int) {
+        
+        print("\n Fetching popular users from page : \(pageNum)")
         
         request.getPopularUsers(pagenumber: pageNum) { (response) in
             
             DispatchQueue.main.async(execute: {
                 self.loader.hideOverlayView()
                 
-                if response.error != nil {
-                    
+                if response.error != nil {                    
                     print("error: \(response.error!.localizedDescription)")
-                    
+                    self.refreshControl.endRefreshing()
                 }
+                    
                 else if response["value"].bool! {
+                    
+                    if self.refreshControl.isRefreshing {
+                        self.allUsers = []
+                        self.refreshControl.endRefreshing()
+                    }
                     
                     let newResponse = response["data"].array!
                     
@@ -70,10 +92,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
                         self.userTableView.reloadData()                            
                     }                        
                 }
-                else {
                     
+                else {                    
                     print("response error!")
-                    
+                    self.refreshControl.endRefreshing()                    
                 }
                 
             })
@@ -123,10 +145,73 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         
         cell.userBadgeImage.image = UIImage(named:cellData["userBadgeName"].stringValue.lowercased())
         
+        if(currentUser != nil) {
+            cell.followButton.isHidden = false
+            cell.followButton.tag = indexPath.row
+            cell.followButton.setTitle((cellData["following"].intValue == 0) ? "Follow" : "Following", for: .normal)
+        }
+        else {
+            cell.followButton.isHidden = true
+        }
+        
         return cell
         
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+                
+        if allUsers.count > 0 && indexPath.row == (allUsers.count - 1) {            
+            if hasNext {
+                getPopulerUser(pageNum: (pagenum + 1))
+            }
+        }
+    }
+    
+    @IBAction func followButtonClicked(_ sender: UIButton) {
+        
+        if currentUser == nil {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        }
+        else {
+            if sender.titleLabel?.text == "Follow" {
+                request.followUser(currentUser["_id"].string!, followUserId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in                
+                    DispatchQueue.main.async(execute: {
+                        
+
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {                            
+                            self.refreshControl.beginRefreshing()
+                            self.pullToRefreshCalled()
+//                            sender.setTitle("Following", for: .normal)
+                        }
+                        else {
+                            print("error: \(response["error"])")
+                        }
+                    })
+                })
+            }
+            else{
+                request.unfollow(currentUser["_id"].string!, unFollowId: allUsers[sender.tag]["_id"].stringValue, completion: {(response) in
+                    DispatchQueue.main.async(execute: {
+                        if response.error != nil {
+                            print("error: \(response.error!.localizedDescription)")
+                        }
+                        else if response["value"].bool! {
+                            print("response arrived!")
+                            self.refreshControl.beginRefreshing()
+                            self.pullToRefreshCalled()
+//                            sender.setTitle("Follow", for: .normal)
+                        }
+                        else {                            
+                            print("error: \(response["error"])")
+                        }
+                    })
+                })
+            }
+        }        
+    }
 }
 
 
@@ -149,4 +234,5 @@ class PopularBloggerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var userBadgeImage: UIImageView!
     
+    @IBOutlet weak var followButton: UIButton!
 }

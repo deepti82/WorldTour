@@ -1,5 +1,5 @@
 import UIKit
-
+import SABlurImageView
 var initialLogin = true
 
 class SideNavigationMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -25,16 +25,22 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
     
+    @IBOutlet weak var loginLabel: UILabel!
+    @IBOutlet weak var backgroundImage: SABlurImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileNew: UIView!
     @IBAction func SettingsTap(_ sender: AnyObject) {
         self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
-    }
+            }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        loginLabel.isHidden = true
+        backgroundImage!.addBlurEffect(30, times: 1)
+
         
 //        let bgImage = UIImageView(frame:self.view.frame)
 //        bgImage.image = UIImage(named: "darkBgNew")
@@ -46,11 +52,14 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         
         
+
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
         
         profile = ProfilePicFancy(frame: CGRect(x: 0, y: 0, width: profileNew.frame.width, height: profileNew.frame.height))
         profileNew.addSubview(profile)
-        
+        profile.waves.isHidden = true
+        makeSideNavigation(profile.image)
+
         updateProfilePicture()
         
         let settingsVC = storyboard!.instantiateViewController(withIdentifier: "UserProfileSettings") as! UserProfileSettingsViewController
@@ -146,7 +155,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
-        cell.backgroundColor = mainBlueColor
+//        cell.backgroundColor = mainBlueColor
         cell.menuLabel.textColor = mainGreenColor
         
         switch((indexPath as NSIndexPath).row)
@@ -179,7 +188,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
-        cell.backgroundColor = mainGreenColor
+//        cell.backgroundColor = mainGreenColor
         cell.menuLabel.textColor = mainBlueColor
         
     }

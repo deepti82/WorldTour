@@ -83,7 +83,7 @@ class ActivityProfileHeader: UIView {
         }else{
             followButton.setTitle("Follow", for: .normal)
         }
-        if(feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
+        if((currentUser != nil) && feed["user"]["_id"].stringValue == currentUser["_id"].stringValue) {
             followButton.isHidden = true
         }
         

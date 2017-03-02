@@ -68,7 +68,7 @@ class Search: UIView {
     func setItinerary(data: JSON) {
         for iti in data {
             
-            element = SearchElement(frame: CGRect(x: 8, y: 0, width: 140, height: 170))
+            element = SearchElement(frame: CGRect(x: 8, y: 0, width: 150, height: 190))
             element.imageLable.text = iti.1["name"].stringValue
             
             element.image.hnk_setImageFromURL(getImageURL(iti.1["coverPhoto"].stringValue, width: 200))
@@ -84,7 +84,7 @@ class Search: UIView {
     
     func setJourney(data: JSON) {
          for iti in data {
-        element = SearchElement(frame: CGRect(x: 8, y: 0, width: 140, height: 170))
+        element = SearchElement(frame: CGRect(x: 8, y: 0, width: 150, height: 190))
             element.imageLable.text = iti.1["name"].stringValue
             element.image.hnk_setImageFromURL(getImageURL(iti.1["startLocationPic"].stringValue, width: 200))
             element.setData(data: iti.1, tabs: "journey")
@@ -98,7 +98,7 @@ class Search: UIView {
     
     func setBloggers(data: JSON) {
         for iti in data {
-        element = SearchElement(frame: CGRect(x: 8, y: 0, width: 140, height: 170))
+        element = SearchElement(frame: CGRect(x: 8, y: 0, width: 150, height: 190))
             element.imageLable.text = iti.1["name"].stringValue
             element.image.hnk_setImageFromURL(getImageURL(iti.1["profilePicture"].stringValue, width: 200))
             element.setData(data: iti.1, tabs: "user")
