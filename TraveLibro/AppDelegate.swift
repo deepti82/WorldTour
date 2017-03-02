@@ -16,6 +16,7 @@ let cache = Shared.dataCache
 let contactsObject = CNContactStore()
 let mainBlueColor = UIColor(hex: "#2c3757") // #232D4A
 let mainGreyColor = UIColor(red: 42/255, green: 42/255, blue:42/255,alpha:1)
+let lightGreyColor = UIColor(hex:"#a7a7a7")
 let navBlueColor = UIColor(red: 21/255, green: 25/255, blue: 54/255, alpha: 1) // #151936
 let mainOrangeColor = UIColor(red: 252/255, green: 103/255, blue: 89/255, alpha: 1) // #336759
 let mainOrangeTransparentColor = UIColor(red: 252/255, green: 103/255, blue: 89/255, alpha: 0.9)
