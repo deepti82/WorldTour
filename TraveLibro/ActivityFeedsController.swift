@@ -149,11 +149,13 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     }
                 })
             })
-        }else if displayData == "popular" {
+        }
+        else if displayData == "popular" {
             let userr = User()
 
             request.getPopularJourney(userId: userr.getExistingUser(), pagenumber: pageNumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
+                    self.loader.hideOverlayView()
                     if request["data"] != "" {
                         self.loadStatus = true
                         for post in request["data"].array! {
@@ -166,8 +168,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             self.layout.addSubview(checkIn)
                             self.addHeightToLayout()
                             
-                        }
-                        
+                        }                        
                         self.addHeightToLayout()
                     }else{
                         self.loadStatus = false
@@ -175,11 +176,13 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                 })
             })
 
-        }else if displayData == "popitinerary" {
+        }
+        else if displayData == "popitinerary" {
             let userr = User()
             
             request.getPopularItinerary(userId: userr.getExistingUser(), pagenumber: pageNumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
+                    self.loader.hideOverlayView()
                     if request["data"] != "" {
                         self.loadStatus = true
                         for post in request["data"].array! {
@@ -200,11 +203,13 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     }
                 })
             })
-        }else{
+        }
+        else{
             print("in hash clicked")
             let userr = User()
             request.getHashData(userr.getExistingUser(), pageNumber: pageNumber, search: selectedHash, completion: {(request) in
                 DispatchQueue.main.async(execute: {
+                    self.loader.hideOverlayView()
                     if request["data"] != "" {
                         self.loadStatus = true
                         for post in request["data"].array! {

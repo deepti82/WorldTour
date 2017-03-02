@@ -126,8 +126,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
+
         let PJController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
         PJController.displayData = "popular"        
+
         
         leftViewController.mainViewController = nvc
         
@@ -278,19 +280,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     func showLoginView(sender: Any)  {
         
-        print("\n showing loging view controller")
+        let checkAlertController = UIAlertController(title: "Error", message: "Please login first for doing any action", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+        let DestructiveAction = UIAlertAction(title: "Cancel", style: .destructive) {
+            (result : UIAlertAction) -> Void in
+            //Cancel Action
+        }
         
-        let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+        // Replace UIAlertActionStyle.Default by UIAlertActionStyle.default
+        let okAction = UIAlertAction(title: "Login", style: UIAlertActionStyle.default) {
+            (result : UIAlertAction) -> Void in
+            //Login Action
+            
+            print("\n showing loging view controller")
+            
+            let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+            
+            let nvc = UINavigationController(rootViewController: signInVC)
+            
+            let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+            
+            self.window?.rootViewController = slideMenuController
+            nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
+            nvc.navigationBar.barStyle = .blackTranslucent
+            nvc.navigationBar.isTranslucent = true
+            nvc.delegate = self
+        }
         
-        let nvc = UINavigationController(rootViewController: signInVC)
+        checkAlertController.addAction(DestructiveAction)
+        checkAlertController.addAction(okAction)
+        print("globalNavigationController: \(globalNavigationController)")
+        globalNavigationController.visibleViewController?.present(checkAlertController, animated: true, completion: nil)
         
-        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
         
-        self.window?.rootViewController = slideMenuController
-        nvc.navigationBar.barTintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 0.1)
-        nvc.navigationBar.barStyle = .blackTranslucent
-        nvc.navigationBar.isTranslucent = true
-        nvc.delegate = self
+        
     }
     
     

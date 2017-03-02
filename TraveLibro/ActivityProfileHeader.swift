@@ -97,52 +97,56 @@ class ActivityProfileHeader: UIView {
     }
     
     @IBAction func followClick(_ sender: UIButton) {
-        
-        if followButton.titleLabel?.text == "Follow" {
-            request.followUser(currentUser["_id"].string!, followUserId: currentFeed["postCreator"]["_id"].stringValue, completion: {(response) in
-                
-                DispatchQueue.main.async(execute: {
-                
-                if response.error != nil {
+        if currentUser != nil {
+            if followButton.titleLabel?.text == "Follow" {
+                request.followUser(currentUser["_id"].string!, followUserId: currentFeed["postCreator"]["_id"].stringValue, completion: {(response) in
                     
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    print("response arrived!")
-                    self.followButton.setTitle("Following", for: .normal)
-                    
-                    
-                }
-                else {
-                    
-                    print("error: \(response["error"])")
-                    
-                }
+                    DispatchQueue.main.async(execute: {
+                        
+                        if response.error != nil {
+                            
+                            print("error: \(response.error!.localizedDescription)")
+                            
+                        }
+                        else if response["value"].bool! {
+                            
+                            print("response arrived!")
+                            self.followButton.setTitle("Following", for: .normal)
+                            
+                            
+                        }
+                        else {
+                            
+                            print("error: \(response["error"])")
+                            
+                        }
+                    })
                 })
-            })
-        }else{
-            request.unfollow(currentUser["_id"].string!, unFollowId: currentFeed["postCreator"]["_id"].stringValue, completion: {(response) in
-                DispatchQueue.main.async(execute: {
-                if response.error != nil {
-                    
-                    print("error: \(response.error!.localizedDescription)")
-                    
-                }
-                else if response["value"].bool! {
-                    
-                    print("response arrived!")
-                    self.followButton.setTitle("Follow", for: .normal)
-                    
-                }
-                else {
-                    
-                    print("error: \(response["error"])")
-                    
-                }
+            }else{
+                request.unfollow(currentUser["_id"].string!, unFollowId: currentFeed["postCreator"]["_id"].stringValue, completion: {(response) in
+                    DispatchQueue.main.async(execute: {
+                        if response.error != nil {
+                            
+                            print("error: \(response.error!.localizedDescription)")
+                            
+                        }
+                        else if response["value"].bool! {
+                            
+                            print("response arrived!")
+                            self.followButton.setTitle("Follow", for: .normal)
+                            
+                        }
+                        else {
+                            
+                            print("error: \(response["error"])")
+                            
+                        }
+                    })
                 })
-            })
+            }
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
     }
     

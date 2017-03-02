@@ -276,149 +276,156 @@ class ActivityFeedFooter: UIView {
     }
     
     @IBAction func optionClick(_ sender: UIButton) {
-        let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        if(self.type == "MyLifeFeeds") {
+        if currentUser != nil {
             
-            if(postTop["type"].stringValue == "detail-itinerary") {
-                let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
-                {action -> Void in
-                    let alert = UIAlertController(title: "Edit Itinerary", message: "You can only edit your Itinerary on Web.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
-                }
-                actionSheetControllerIOS8.addAction(editActionButton)
-                
-//                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-//                {action -> Void in
-//                }
-//                actionSheetControllerIOS8.addAction(changeCoverActionButton)
-                
-//                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
-//                {action -> Void in
-//                }
-//                actionSheetControllerIOS8.addAction(deleteActionButton)
-                
-                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                { action -> Void in
-                    
-                }
-                actionSheetControllerIOS8.addAction(cancel)
-            }
+            let actionSheetControllerIOS8: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             
-            if(postTop["type"].stringValue == "quick-itinerary") {
-                let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
-                {action -> Void in
-                    let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
-                    itineraryVC.editID = self.postTop["_id"].stringValue
-                    globalMyLifeContainerViewController.navigationController?.pushViewController(itineraryVC, animated: true)
-                }
-                actionSheetControllerIOS8.addAction(editActionButton)
+            if(self.type == "MyLifeFeeds") {
                 
-//                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-//                {action -> Void in
-//                }
-//                actionSheetControllerIOS8.addAction(changeCoverActionButton)
-                
-                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
-                {action -> Void in
-                }
-                actionSheetControllerIOS8.addAction(deleteActionButton)
-                
-                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                { action -> Void in
-                    
-                }
-                actionSheetControllerIOS8.addAction(cancel)
-            }
-            if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
-                
-                let changeNameActionButton: UIAlertAction = UIAlertAction(title: "Change Journey Name", style: .default)
-                {action -> Void in
-                    
-                    
-                    //1. Create the alert controller.
-                    let alert = UIAlertController(title: "", message: "Change Journey Name", preferredStyle: .alert)
-                    //2. Add the text field. You can configure it however you need.
-                    alert.addTextField { (textField) in
-                        textField.text = self.postTop["name"].stringValue
+                if(postTop["type"].stringValue == "detail-itinerary") {
+                    let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
+                    {action -> Void in
+                        let alert = UIAlertController(title: "Edit Itinerary", message: "You can only edit your Itinerary on Web.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
                     }
+                    actionSheetControllerIOS8.addAction(editActionButton)
                     
-                    // 3. Grab the value from the text field, and print it when the user clicks OK.
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
-                        let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-                        print("Text field: \(textField?.text)")
-                        request.journeyChangeName((textField?.text)!, journeyId: self.postTop["_id"].stringValue, completion: { response  in
-                            print(response);
-                        })
-                    }))
+                    //                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                    //                {action -> Void in
+                    //                }
+                    //                actionSheetControllerIOS8.addAction(changeCoverActionButton)
+                    
+                    //                let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
+                    //                {action -> Void in
+                    //                }
+                    //                actionSheetControllerIOS8.addAction(deleteActionButton)
                     
                     let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
                     { action -> Void in
                         
                     }
-                    alert.addAction(cancel)
+                    actionSheetControllerIOS8.addAction(cancel)
+                }
+                
+                if(postTop["type"].stringValue == "quick-itinerary") {
+                    let editActionButton: UIAlertAction = UIAlertAction(title: "Edit", style: .default)
+                    {action -> Void in
+                        let itineraryVC = storyboard?.instantiateViewController(withIdentifier: "qiPVC") as! QIViewController
+                        itineraryVC.editID = self.postTop["_id"].stringValue
+                        globalMyLifeContainerViewController.navigationController?.pushViewController(itineraryVC, animated: true)
+                    }
+                    actionSheetControllerIOS8.addAction(editActionButton)
                     
-                    // 4. Present the alert.
-                    globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
+                    //                let changeCoverActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                    //                {action -> Void in
+                    //                }
+                    //                actionSheetControllerIOS8.addAction(changeCoverActionButton)
+                    
+                    let deleteActionButton: UIAlertAction = UIAlertAction(title: "Delete", style: .destructive)
+                    {action -> Void in
+                    }
+                    actionSheetControllerIOS8.addAction(deleteActionButton)
+                    
+                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    { action -> Void in
+                        
+                    }
+                    actionSheetControllerIOS8.addAction(cancel)
+                }
+                if(postTop["type"].stringValue == "ended-journey" || postTop["type"].stringValue == "on-the-go-journey") {
+                    
+                    let changeNameActionButton: UIAlertAction = UIAlertAction(title: "Change Journey Name", style: .default)
+                    {action -> Void in
+                        
+                        
+                        //1. Create the alert controller.
+                        let alert = UIAlertController(title: "", message: "Change Journey Name", preferredStyle: .alert)
+                        //2. Add the text field. You can configure it however you need.
+                        alert.addTextField { (textField) in
+                            textField.text = self.postTop["name"].stringValue
+                        }
+                        
+                        // 3. Grab the value from the text field, and print it when the user clicks OK.
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+                            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+                            print("Text field: \(textField?.text)")
+                            request.journeyChangeName((textField?.text)!, journeyId: self.postTop["_id"].stringValue, completion: { response  in
+                                print(response);
+                            })
+                        }))
+                        
+                        let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                        { action -> Void in
+                            
+                        }
+                        alert.addAction(cancel)
+                        
+                        // 4. Present the alert.
+                        globalMyLifeContainerViewController.present(alert, animated: true, completion: nil)
+                        
+                    }
+                    actionSheetControllerIOS8.addAction(changeNameActionButton)
+                    
+                    let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Change End Journey Date", style: .default)
+                    {action -> Void in
+                        globalMyLifeViewController.changeDateAndTimeEndJourney(self)
+                    }
+                    
+                    if(self.postTop["endTime"].string != nil) {
+                        actionSheetControllerIOS8.addAction(changeDateActionButton)
+                    }
+                    
+                    let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countries", style: .default)
+                    {action -> Void in
+                        let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+                        end.journeyId = self.postTop["_id"].stringValue
+                        end.type = "MyLife"
+                        globalMyLifeContainerViewController.navigationController?.pushViewController(end, animated: true)
+                    }
+                    actionSheetControllerIOS8.addAction(crateCountriesActionButton)
+                    
+                    let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
+                    {action -> Void in
+                        let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
+                        end.journeyId = self.postTop["_id"].stringValue
+                        end.type = "MyLife"
+                        globalMyLifeContainerViewController.navigationController?.pushViewController(end, animated: true)
+                    }
+                    actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
+                    
+                    let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    { action -> Void in
+                        
+                    }
+                    actionSheetControllerIOS8.addAction(cancel)
+                    
+                    //                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .destructive)
+                    //                {action -> Void in
+                    //                }
+                    //                actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
                     
                 }
-                actionSheetControllerIOS8.addAction(changeNameActionButton)
-                
-                let changeDateActionButton: UIAlertAction = UIAlertAction(title: "Change End Journey Date", style: .default)
-                {action -> Void in
-                    globalMyLifeViewController.changeDateAndTimeEndJourney(self)
-                }
-                
-                if(self.postTop["endTime"].string != nil) {
-                    actionSheetControllerIOS8.addAction(changeDateActionButton)
-                }
-                
-                let crateCountriesActionButton: UIAlertAction = UIAlertAction(title: "Rate Countries", style: .default)
-                {action -> Void in
-                    let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
-                    end.journeyId = self.postTop["_id"].stringValue
-                    end.type = "MyLife"
-                    globalMyLifeContainerViewController.navigationController?.pushViewController(end, animated: true)
-                }
-                actionSheetControllerIOS8.addAction(crateCountriesActionButton)
-                
-                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Change Cover Photo", style: .default)
-                {action -> Void in
-                    let end = storyboard!.instantiateViewController(withIdentifier: "endJourney") as! EndJourneyViewController
-                    end.journeyId = self.postTop["_id"].stringValue
-                    end.type = "MyLife"
-                    globalMyLifeContainerViewController.navigationController?.pushViewController(end, animated: true)
-                }
-                actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
-                
-                let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel)
-                { action -> Void in
-                    
-                }
-                actionSheetControllerIOS8.addAction(cancel)
-                
-//                let changeCoverCountriesActionButton: UIAlertAction = UIAlertAction(title: "Delete Journey", style: .destructive)
-//                {action -> Void in
-//                }
-//                actionSheetControllerIOS8.addAction(changeCoverCountriesActionButton)
-                
             }
+            else {
+                let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+                }
+                let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(UnFollow)
+                actionSheetControllerIOS8.addAction(cancelActionButton)
+                let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
+                {action -> Void in
+                }
+                actionSheetControllerIOS8.addAction(reportActionButton)
+            }
+            globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)            
         }
         else {
-            let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
-            }
-            let UnFollow: UIAlertAction = UIAlertAction(title: "UnFollow", style: .default)
-            {action -> Void in
-            }
-            actionSheetControllerIOS8.addAction(UnFollow)
-            actionSheetControllerIOS8.addAction(cancelActionButton)
-            let reportActionButton: UIAlertAction = UIAlertAction(title: "Report", style: .default)
-            {action -> Void in
-            }
-            actionSheetControllerIOS8.addAction(reportActionButton)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
-        globalNavigationController.topViewController?.present(actionSheetControllerIOS8, animated: true, completion: nil)
     }
     
     

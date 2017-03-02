@@ -25,15 +25,24 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
     
+    @IBOutlet weak var profileViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var userBadgeLabel: UILabel!
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var backgroundImage: SABlurImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var profileNew: UIView!
+   
     @IBAction func SettingsTap(_ sender: AnyObject) {
-        self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
-            }
+        if currentUser != nil {
+            self.slideMenuController()?.changeMainViewController(self.settingsViewController, close: true)
+        }            
+    }
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +56,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
 //        bgImage.layer.zPosition = -1
 //        bgImage.isUserInteractionEnabled = false
 //        self.view.addSubview(bgImage)
-//        self.view.sendSubview(toBack: bgImage)
-        
-        
-        
-        
+//        self.view.sendSubview(toBack: bgImage)        
 
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfilePicture), name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
         
@@ -107,7 +112,19 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
    }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)                
+        super.viewWillAppear(animated)
+        if currentUser != nil {
+//            profileViewHeightConstraint.constant = 207
+            settingsButton.isHidden = false
+            profileName.isHidden = false
+            userBadgeLabel.isHidden = false
+        }
+        else {
+//            profileViewHeightConstraint.constant = 165
+            settingsButton.isHidden = true
+            profileName.isHidden = true
+            userBadgeLabel.isHidden = true
+        }
     }   
     
     func updateProfilePicture() {
@@ -124,13 +141,13 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 profile.image.hnk_setImageFromURL(getImageUrl!)
             }
             makeTLProfilePicture(profilePicture)
-        }
+        }        
     }
     
     @IBAction func profileTap(_ sender: AnyObject) {
-        
-        self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)
-        
+        if currentUser != nil {
+            self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)            
+        }
     }
 
     override func didReceiveMemoryWarning() {
