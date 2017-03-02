@@ -14,10 +14,10 @@ class EditSettingsViewController: UIViewController {
     internal var whichView = "noView"
     var report:ReportProblem = ReportProblem()
     var MAMtextView = MoreAboutMe()
-    var loader = LoadingOverlay()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loader.showOverlay(self.view)
+       
         self.automaticallyAdjustsScrollViewInsets = false
         
         print("view: \(whichView)")
@@ -101,7 +101,6 @@ class EditSettingsViewController: UIViewController {
             request.reportProblem(currentUser["_id"].stringValue, problemMessage: self.report.theTextView.text) { (response) in
                 
                 DispatchQueue.main.async(execute: {
-                    self.loader.hideOverlayView()
                     if response.error != nil {
                         print("error: \(response.error?.localizedDescription)")
                     } else {

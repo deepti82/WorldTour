@@ -397,7 +397,7 @@ func makeTLProfilePictureBorderWhiteCorner(_ image: UIImageView) {
 
 func makeSideNavigation(_ image: UIImageView) {
     
-    image.layer.cornerRadius = (40/100) * image.frame.width
+    image.layer.cornerRadius = (41/100) * image.frame.width
     //image.layer.borderWidth = 2.0
     //image.layer.borderColor = UIColor.white.cgColor
     image.clipsToBounds = true
