@@ -146,7 +146,15 @@ class AddCityViewController: UIViewController, UITableViewDelegate, UITableViewD
                 })
             }
             else{
-                self.popVC(UIButton())
+                
+                if isFromSettings != nil && isFromSettings == true {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        self.popVC(UIButton())
+                    }
+                }
+                else {
+                    self.selectGender(sender)
+                }
             }
             
         } else {
