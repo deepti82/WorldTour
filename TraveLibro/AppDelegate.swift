@@ -14,7 +14,7 @@ let cache = Shared.dataCache
 
 
 let contactsObject = CNContactStore()
-let mainBlueColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1) // #232D4A
+let mainBlueColor = UIColor(hex: "#2c3757") // #232D4A
 let mainGreyColor = UIColor(red: 42/255, green: 42/255, blue:42/255,alpha:1)
 let navBlueColor = UIColor(red: 21/255, green: 25/255, blue: 54/255, alpha: 1) // #151936
 let mainOrangeColor = UIColor(red: 252/255, green: 103/255, blue: 89/255, alpha: 1) // #336759
@@ -187,7 +187,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
 //        UIButton.appearance().
         
-        OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1")
+//        OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1")
         
         OneSignal.initWithLaunchOptions(launchOptions, appId: "bf8baf0a-dcfb-4a30-a0c1-ee67cae2feb1", handleNotificationReceived:             { (notification) in
             let payload: OSNotificationPayload? = notification?.payload
