@@ -83,7 +83,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IfS-Jb-lY3" customClass="SpringButton" customModule="Spring">
-                    <rect key="frame" x="75" y="121.5" width="250" height="55"/>
+                    <rect key="frame" x="75" y="122" width="250" height="55"/>
                     <color key="backgroundColor" red="1" green="0.40784313729999999" blue="0.34509803919999998" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="55" id="6ce-JI-VJs"/>
@@ -167,7 +167,7 @@
                             <rect key="frame" x="0.0" y="68" width="400" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zV2-Ih-s2k">
-                                    <rect key="frame" x="30.5" y="4" width="339" height="0.0"/>
+                                    <rect key="frame" x="31" y="4" width="339" height="0.0"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="339" id="YhG-eS-eBT"/>
                                     </constraints>
@@ -359,7 +359,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="w68-wP-wuc"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                     <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Add Buddies">
                         <color key="titleColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

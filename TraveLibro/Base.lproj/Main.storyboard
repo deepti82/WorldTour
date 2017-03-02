@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VtJ-Bg-RGy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -3549,7 +3549,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HEf-Pa-zSZ">
-                                        <rect key="frame" x="95" y="245" width="154" height="30"/>
+                                        <rect key="frame" x="94.5" y="245" width="154" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="more about me... " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1F-gD-cCl">
                                                 <rect key="frame" x="0.0" y="0.0" width="124" height="30"/>
@@ -4513,9 +4513,8 @@
                                                     <constraint firstAttribute="width" constant="60" id="MES-td-Zf6"/>
                                                     <constraint firstAttribute="height" constant="60" id="tah-rw-Q9w"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                <state key="normal" title="adventure" image="adventure" backgroundImage="grey1"/>
+                                                <state key="normal" title="adventure" image="adventure_icon" backgroundImage="grey1"/>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -4531,7 +4530,6 @@
                                                     <constraint firstAttribute="width" constant="60" id="4eF-dA-Hcg"/>
                                                     <constraint firstAttribute="height" constant="60" id="ZKq-yS-H1u"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="backpacking" image="backpacking" backgroundImage="grey1"/>
                                             </button>
@@ -4546,7 +4544,6 @@
                                                     <constraint firstAttribute="height" constant="60" id="eMS-X2-Mkn"/>
                                                     <constraint firstAttribute="width" constant="60" id="wg4-9z-lAN"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="business" image="business_new" backgroundImage="grey1"/>
                                             </button>
@@ -4566,7 +4563,6 @@
                                                     <constraint firstAttribute="height" constant="60" id="KOs-oT-TDl"/>
                                                     <constraint firstAttribute="width" constant="60" id="MvB-wF-pWd"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="religious" image="religious" backgroundImage="grey1"/>
                                             </button>
@@ -4581,7 +4577,6 @@
                                                     <constraint firstAttribute="width" constant="60" id="4ca-sH-EId"/>
                                                     <constraint firstAttribute="height" constant="60" id="TG9-K2-Yca"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="romance" image="romance_new" backgroundImage="grey1"/>
                                             </button>
@@ -4601,7 +4596,6 @@
                                                     <constraint firstAttribute="height" constant="60" id="1Du-4v-9jr"/>
                                                     <constraint firstAttribute="width" constant="60" id="hwn-Ku-SmS"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="budget" image="luxury" backgroundImage="grey1"/>
                                             </button>
@@ -4611,7 +4605,7 @@
                                                     <constraint firstAttribute="height" constant="22" id="8EQ-MA-3da"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4621,7 +4615,6 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQE-F1-7cY">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="luxury" image="luxury_new" backgroundImage="grey1"/>
                                             </button>
@@ -4631,7 +4624,7 @@
                                                     <constraint firstAttribute="height" constant="22" id="7hU-qZ-2Gj"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4650,7 +4643,6 @@
                                                     <constraint firstAttribute="width" constant="60" id="TtI-HD-Z0H"/>
                                                     <constraint firstAttribute="height" constant="60" id="bun-ab-mCB"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="family" image="family" backgroundImage="grey1"/>
                                             </button>
@@ -4660,7 +4652,7 @@
                                                     <constraint firstAttribute="height" constant="22" id="oCX-qx-u1O"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4674,7 +4666,6 @@
                                                     <constraint firstAttribute="height" constant="60" id="81J-C8-3lL"/>
                                                     <constraint firstAttribute="width" constant="60" id="QLH-Sn-zXt"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="friends" image="friends" backgroundImage="grey1"/>
                                             </button>
@@ -4684,7 +4675,7 @@
                                                     <constraint firstAttribute="height" constant="22" id="UdM-p8-6IG"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4698,7 +4689,6 @@
                                                     <constraint firstAttribute="width" constant="60" id="jUC-is-Rlr"/>
                                                     <constraint firstAttribute="height" constant="60" id="n1L-CC-JiV"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="solo" image="solo" backgroundImage="grey1"/>
                                             </button>
@@ -4708,7 +4698,7 @@
                                                     <constraint firstAttribute="height" constant="22" id="IbU-BS-2FA"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -4727,7 +4717,6 @@
                                                     <constraint firstAttribute="width" constant="60" id="MBj-cc-3fb"/>
                                                     <constraint firstAttribute="height" constant="60" id="us6-Fx-GFB"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="partner" image="partner" backgroundImage="grey1"/>
                                             </button>
@@ -4742,7 +4731,6 @@
                                                     <constraint firstAttribute="height" constant="60" id="OFh-YI-N1e"/>
                                                     <constraint firstAttribute="width" constant="60" id="nSV-5X-J1L"/>
                                                 </constraints>
-                                                <color key="tintColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                                 <state key="normal" title="colleague" image="colleague" backgroundImage="grey1"/>
                                             </button>
@@ -4781,7 +4769,7 @@
                                     <constraint firstAttribute="width" constant="67" id="AMF-jt-tVo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adventure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJE-mE-aIs">
@@ -4791,7 +4779,7 @@
                                     <constraint firstAttribute="height" constant="22" id="tfd-57-Hf0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Backpacking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzR-5f-PPS">
@@ -4800,7 +4788,7 @@
                                     <constraint firstAttribute="height" constant="22" id="W8H-gp-16g"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Business" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcC-yo-7Ry">
@@ -4810,7 +4798,7 @@
                                     <constraint firstAttribute="width" constant="60" id="rTU-X9-Wo4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Better Half" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dHf-8h-71t">
@@ -4819,8 +4807,8 @@
                                     <constraint firstAttribute="width" constant="82" id="4z5-AN-kv5"/>
                                     <constraint firstAttribute="height" constant="22" id="fHe-3s-AbE"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Colleague" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9d-9c-DPR">
@@ -4828,8 +4816,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="Fp5-xw-Kys"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Romance Getaway" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="soT-wA-yMX">
@@ -4838,7 +4826,7 @@
                                     <constraint firstAttribute="width" constant="149" id="gDF-ZQ-eNu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -11583,6 +11571,7 @@
         <image name="add_nationality" width="108" height="108"/>
         <image name="add_people" width="60" height="60"/>
         <image name="adventure" width="100" height="100"/>
+        <image name="adventure_icon" width="67" height="60"/>
         <image name="album_style1" width="300" height="300"/>
         <image name="album_style2" width="300" height="300"/>
         <image name="arrow_down" width="100" height="100"/>

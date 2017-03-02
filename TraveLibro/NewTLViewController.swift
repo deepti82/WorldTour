@@ -2272,7 +2272,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             if i < 3 {
             let imageUrl = addedBuddies[i]["profilePicture"].string!
             otgView.buddyStackPictures[i].hnk_setImageFromURL(getImageURL(imageUrl, width: 100))
-            makeTLProfilePictureBorderOrange(otgView.buddyStackPictures[i])
+            makeBuddiesTLProfilePicture(otgView.buddyStackPictures[i])
             }
         }
         

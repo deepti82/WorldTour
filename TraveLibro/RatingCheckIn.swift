@@ -23,10 +23,8 @@ class RatingCheckIn: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         rateCheckInLabel.shadowColor = UIColor.black
-        rateCheckInLabel.shadowOffset = CGSize(width: 0.5, height: 0.5)
-        rateCheckInLabel.layer.shadowOpacity = 0.6
-        rateCheckInLabel.layer.shadowRadius = 1.0
-//        rateCheckInLabel.layer.shadowOpacity = 0.3
+        rateCheckInLabel.shadowOffset = CGSize(width: 2, height: 2)
+        //        journeyName.layer.shadowOpacity = 0.
         rateCheckInLabel.layer.masksToBounds = true
         line.backgroundColor = UIColor.clear
         rateCheckInButton.imageEdgeInsets = UIEdgeInsetsMake(15, 15, 15, 15)

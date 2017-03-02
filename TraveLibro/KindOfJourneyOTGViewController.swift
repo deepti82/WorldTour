@@ -31,6 +31,7 @@ class KindOfJourneyOTGViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 //        loader.showOverlay(self.view)
         self.setTopNavigation(text: "Kind of Journey");
         getDarkBackGround(self)
@@ -51,7 +52,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupOne(_:)), for: .touchUpInside)
-//            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+           button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
             
         }
         
@@ -67,7 +68,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupTwo(_:)), for: .touchUpInside)
-//            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
             
         }
         
@@ -81,7 +82,7 @@ class KindOfJourneyOTGViewController: UIViewController {
                 }
             }
             button.addTarget(self, action: #selector(KindOfJourneyOTGViewController.selectGroupThree(_:)), for: .touchUpInside)
-//            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
+            button.imageView?.tintColor = UIColor(red: 35/255, green: 45/255, blue: 74/255, alpha: 1)
             
         }
         
@@ -156,7 +157,7 @@ class KindOfJourneyOTGViewController: UIViewController {
             
             backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
             print("element removed: \(backVC.journeyCategories)")
-            sender.setBackgroundImage(UIImage(named: "graybox"), for: .normal)
+            sender.setBackgroundImage(UIImage(named: "grey1"), for: .normal)
             sender.tag = 0
         }
         
@@ -185,7 +186,7 @@ class KindOfJourneyOTGViewController: UIViewController {
             
         else {
             backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
-            sender.setBackgroundImage(UIImage(named: "graybox"), for: .normal)
+            sender.setBackgroundImage(UIImage(named: "grey1"), for: .normal)
             sender.tag = 0
             
         }
@@ -201,7 +202,7 @@ class KindOfJourneyOTGViewController: UIViewController {
             
         else {
             backVC.journeyCategories = backVC.journeyCategories.filter { $0 != sender.titleLabel?.text }
-            sender.setBackgroundImage(UIImage(named: "graybox"), for: .normal)
+            sender.setBackgroundImage(UIImage(named: "grey1"), for: .normal)
             sender.tag = 0
             
         }
