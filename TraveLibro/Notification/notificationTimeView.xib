@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="fontawesome-webfont.ttf">
+            <string>FontAwesome</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NotificationTime" customModule="TraveLibro" customModuleProvider="target">
+            <connections>
+                <outlet property="calendarLabel" destination="Wg6-Eo-5rX" id="pQW-H3-X1E"/>
+                <outlet property="clockLabel" destination="nTO-LU-sc6" id="m4u-Pw-js4"/>
+                <outlet property="dateLabel" destination="tbO-fP-POv" id="KUz-3X-a23"/>
+                <outlet property="timeLabel" destination="xTN-CQ-HfB" id="3t6-B2-MPx"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="387" height="27"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ccg-Ib-sSF">
+                    <rect key="frame" x="0.0" y="5" width="300" height="17"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wg6-Eo-5rX">
+                            <rect key="frame" x="0.0" y="5" width="25" height="12"/>
+                            <color key="tintColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="E9S-nx-Pmn"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="10"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fuq-7C-XqY">
+                            <rect key="frame" x="90" y="5" width="1" height="15"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="9Wk-YX-gNC"/>
+                                <constraint firstAttribute="height" constant="15" id="9lW-eT-Vr2"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTO-LU-sc6">
+                            <rect key="frame" x="96" y="5" width="25" height="12"/>
+                            <color key="tintColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="f16-G5-2Kw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="10"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan 2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbO-fP-POv">
+                            <rect key="frame" x="30" y="5" width="55" height="12"/>
+                            <color key="tintColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="cf8-w8-8rv"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
+                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:20 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTN-CQ-HfB">
+                            <rect key="frame" x="126" y="5" width="43" height="12"/>
+                            <color key="tintColor" red="0.79018511410000003" green="0.79690548819999996" blue="0.82812736509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="vQ9-hb-dEK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Wg6-Eo-5rX" firstAttribute="leading" secondItem="Ccg-Ib-sSF" secondAttribute="leading" id="0wB-vR-PGf"/>
+                        <constraint firstItem="fuq-7C-XqY" firstAttribute="top" secondItem="Ccg-Ib-sSF" secondAttribute="top" constant="5" id="6ST-ov-Y0h"/>
+                        <constraint firstItem="tbO-fP-POv" firstAttribute="leading" secondItem="Wg6-Eo-5rX" secondAttribute="trailing" constant="5" id="7ET-eE-2gR"/>
+                        <constraint firstItem="xTN-CQ-HfB" firstAttribute="top" secondItem="Ccg-Ib-sSF" secondAttribute="top" constant="5" id="TaB-Pa-UFO"/>
+                        <constraint firstItem="xTN-CQ-HfB" firstAttribute="leading" secondItem="nTO-LU-sc6" secondAttribute="trailing" constant="5" id="bzm-Xq-XVn"/>
+                        <constraint firstItem="Wg6-Eo-5rX" firstAttribute="top" secondItem="Ccg-Ib-sSF" secondAttribute="top" constant="5" id="cZt-c8-yhf"/>
+                        <constraint firstAttribute="width" constant="300" id="dH7-8T-Ehr"/>
+                        <constraint firstItem="fuq-7C-XqY" firstAttribute="leading" secondItem="tbO-fP-POv" secondAttribute="trailing" constant="5" id="hDk-Yq-RDv"/>
+                        <constraint firstAttribute="height" constant="17" id="ieA-d6-HmZ"/>
+                        <constraint firstItem="tbO-fP-POv" firstAttribute="top" secondItem="Ccg-Ib-sSF" secondAttribute="top" constant="5" id="tf3-Nc-q94"/>
+                        <constraint firstItem="nTO-LU-sc6" firstAttribute="leading" secondItem="fuq-7C-XqY" secondAttribute="trailing" constant="5" id="vDh-ED-GfC"/>
+                        <constraint firstItem="nTO-LU-sc6" firstAttribute="top" secondItem="Ccg-Ib-sSF" secondAttribute="top" constant="5" id="z1Y-FT-vX2"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Ccg-Ib-sSF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="2vN-G4-9Qx"/>
+                <constraint firstItem="Ccg-Ib-sSF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MOW-4c-NWN"/>
+                <constraint firstAttribute="bottom" secondItem="Ccg-Ib-sSF" secondAttribute="bottom" constant="5" id="t1I-oo-8xr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-21.5" y="-259.5"/>
+        </view>
+    </objects>
+</document>

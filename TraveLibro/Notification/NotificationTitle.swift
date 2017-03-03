@@ -46,11 +46,33 @@ class NotificationTitle: UIView {
         switch notificationType {
            
         case "postFirstTime":
-            str2 = " has added a post to "
+            str2 = " has started a "
             
-        case "postTag":            
+        case "postTag":
+            print("\n\n Data : \(data) ")
             str2 = " has checked-in with you in an "
-            if checkIfComment(notificationData: data) {
+            if (data["data"]["type"].string == "photo") {
+                str2 = " has uploaded a photo to "
+            }
+            else if (data["data"]["type"].string == "video") {
+                str2 = " has uploaded a video to "
+            }
+            else if ((data["data"]["videos"].array?.count)! > 0) {
+                str2 = " has uploaded a video to "
+            }
+            else if ((data["data"]["photos"].array?.count)! > 0) {
+                str2 = " has uploaded a photo to "
+            }        
+            else if data["data"]["showMap"].boolValue && data["data"]["checkIn"]["location"] != "" {
+                let gen = data["userFrom"]["gender"].stringValue
+                str2 = " has checked-in with you at \(data["data"]["checkIn"]["location"].stringValue) in \((gen == "male" ? "his" : "her")) "                
+            }
+            else if (data["thoughts"].stringValue != "") {
+                //Showing img for thought
+                str2 = " has tagged you in a thought in an "
+            }
+//            str2 = " has checked-in with you in an "
+            else if checkIfComment(notificationData: data) {
                 str2 = " has tagged you in a thought in an "
             }
             
@@ -136,13 +158,13 @@ class NotificationTitle: UIView {
             let travelType = data["data"]["type"].string
             if travelType != nil {
                 if travelType == "local-life" {
-                    str3 = "Local Life Activity. "
+                    str3 = "Local Life Activity "
                 }
                 else if travelType == "on_the_go" {
-                    str3 = "On The Go Activity. "
+                    str3 = "On The Go Activity "
                 }
                 else if travelType == "travel-life" {
-                    str3 = "Travel Life Activity. "
+                    str3 = "Travel Life Activity "
                 }
             }
             
@@ -171,7 +193,7 @@ class NotificationTitle: UIView {
         message.append(getBoldString(string: str4))
         
         if notificationType == "postFirstTime" {
-            str4 = " for the first time "
+            str4 = " for first time "
             message.append(getRegularString(string: str4))
         }
         
@@ -195,7 +217,7 @@ class NotificationTitle: UIView {
         
         NFMessageLabel.attributedText = message
         NFMessageLabel.frame = CGRect(x: NFMessageLabel.frame.origin.x, y: NFMessageLabel.frame.origin.y, width: NFMessageLabel.frame.size.width,
-                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width))
+                                      height: heightForView(text: (firstName + str2 + str3 + str4 + str5 + "offset  ") , font: NFMessageLabel.font, width: NFMessageLabel.frame.size.width) + 10)
         
         return (NFMessageLabel.frame.size.height+CGFloat(10))   //10 is Offset hence added
     }
@@ -206,10 +228,10 @@ class NotificationTitle: UIView {
         if (notificationData["data"]["type"].string == "photo") {
             shouldLoadCommentCell = false
         }
-        if (notificationData["data"]["type"].string == "video") {
+        else if (notificationData["data"]["type"].string == "video") {
             shouldLoadCommentCell = false
         }
-        if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {
+        else if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {
             shouldLoadCommentCell = false
         }
         

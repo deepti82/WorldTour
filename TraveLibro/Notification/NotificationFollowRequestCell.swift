@@ -12,9 +12,10 @@ class NotificationFollowRequestCell: UITableViewCell {
     
     var NFHeader = notificationHeader()
     var NFTitle = NotificationTitle()
-    var NFFollowDetails = NotificationFollowingDetails()
+//    var NFFollowDetails = NotificationFollowingDetails()
     var NFPermission = NotificationFollowPermission()
     var NFFooter = NotificationFooter()
+    var NFTime = NotificationTime()
     var NFBackground = NotificationBackground()
     var totalHeight = CGFloat(0)
     
@@ -49,21 +50,24 @@ class NotificationFollowRequestCell: UITableViewCell {
         var width: Int = Int(self.frame.size.width)
         width = Int(UIScreen.main.bounds.width)
         
-        NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: width, height: Int(HEADER_HEIGHT))) as notificationHeader
+        NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: Int(HEADER_HEIGHT), height: Int(HEADER_HEIGHT))) as notificationHeader
         self.contentView.addSubview(NFHeader)        
-        yPos = yPos + Int(NFHeader.frame.size.height)
+//        yPos = yPos + Int(NFHeader.frame.size.height)
         
         NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: Int(TITLE_HEIGHT))) as NotificationTitle
         self.contentView.addSubview(NFTitle)
         yPos = yPos + Int(NFTitle.frame.size.height)
         
-        NFFollowDetails = NotificationFollowingDetails(frame: CGRect(x: 0, y: yPos, width: width, height: 90)) as NotificationFollowingDetails
-        self.contentView.addSubview(NFFollowDetails)
-        yPos = yPos + Int(NFFollowDetails.frame.size.height)
+//        NFFollowDetails = NotificationFollowingDetails(frame: CGRect(x: 0, y: yPos, width: width, height: 90)) as NotificationFollowingDetails
+//        self.contentView.addSubview(NFFollowDetails)
+//        yPos = yPos + Int(NFFollowDetails.frame.size.height)
         
         NFPermission = NotificationFollowPermission(frame: CGRect(x: 0, y: yPos, width: width, height: 50)) as NotificationFollowPermission
         self.contentView.addSubview(NFPermission)
-        yPos = yPos + Int(NFPermission.frame.size.height)
+        yPos = yPos + Int(NFPermission.frame.size.height)        
+        
+        NFTime = NotificationTime(frame: CGRect.zero) as NotificationTime
+        self.contentView.addSubview(NFTime)
         
         NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: Int(FOOTER_HEIGHT)))        
         self.contentView.addSubview(NFFooter)
@@ -83,15 +87,14 @@ class NotificationFollowRequestCell: UITableViewCell {
         totalHeight = CGFloat(10)
         
         NFHeader.setHeaderData(data: notificationData)
-        
-        totalHeight += HEADER_HEIGHT
+        let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)
-        NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
+        NFTitle.frame = CGRect(x: xPos, y: 10, width: screenWidth - xPos, height: titleHeight)
         totalHeight += titleHeight
         
-        NFFollowDetails.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: DETAILS_HEIGHT)
-        totalHeight += CGFloat(DETAILS_HEIGHT)
+//        NFFollowDetails.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: DETAILS_HEIGHT)
+//        totalHeight += CGFloat(DETAILS_HEIGHT)
         
         NFPermission.NFLeftButton.isHidden = false
         NFPermission.NFRightButton.isHidden = false
@@ -101,11 +104,13 @@ class NotificationFollowRequestCell: UITableViewCell {
         NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
         
         NFPermission.NFRightButton.setTitle("DECLINE", for: .normal)
-        NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
+        NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)        
         
-        
-        NFPermission.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: BUTTON_HEIGHT)
+        NFPermission.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: BUTTON_HEIGHT)
         totalHeight += BUTTON_HEIGHT
+        
+        NFTime.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: TIME_HEIGHT)
+        NFTime.setTimeData(date: notificationData["updatedAt"].stringValue)
         
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)

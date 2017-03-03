@@ -3225,6 +3225,27 @@ class Navigation {
         }
     }
     
+    func respondToItineraryRequest(notificationId: String, itineraryID: String, answeredStatus: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            
+            let opt = try HTTP.POST(adminUrl + "itinerary/itineraryStatus", parameters: ["user":currentUser["_id"].stringValue, "_id": itineraryID, "notifyId":notificationId, "answeredStatus":answeredStatus])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
     
     
     //MARK: - Fetch popular items

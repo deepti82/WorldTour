@@ -86,11 +86,9 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(self.mainPhoto)
             self.mainPhoto.contentMode = UIViewContentMode.scaleAspectFill
             self.mainPhoto.clipsToBounds = true
-            self.mainPhoto.image = UIImage(named: "logo-default")
-        
+            self.mainPhoto.image = UIImage(named: "logo-default")        
             self.addSubview(mainPhoto)
-            let heightForBlur = 10;
-            var thumbStr = "";
+            
             let imgStr = getImageURL(feed["name"].stringValue, width: 300)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in
@@ -121,8 +119,10 @@ class TripPhotoLayout: VerticalLayout, PlayerDelegate {
                 self.mainPhoto.tag = 0
                 
                 self.layoutSubviews()
-                self.tripListView.addHeightToLayout()
                 
+                if self.tripListView != nil{
+                    self.tripListView.addHeightToLayout()                    
+                }                
             })
         
         

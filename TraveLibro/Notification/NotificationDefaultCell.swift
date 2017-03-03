@@ -45,7 +45,7 @@ class NotificationDefaultCell: UITableViewCell {
         var width: Int = Int(self.frame.size.width)
         width = Int(UIScreen.main.bounds.width)        
         
-        NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: width, height: Int(HEADER_HEIGHT))) as notificationHeader
+        NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: Int(HEADER_HEIGHT), height: Int(HEADER_HEIGHT))) as notificationHeader
         self.contentView.addSubview(NFHeader)        
         yPos = yPos + Int(NFHeader.frame.size.height)
         

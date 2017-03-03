@@ -25,18 +25,20 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.collectionView?.delegate = self
         loader.showOverlay(self.view)
         getJourneyPhotos()
         
+        
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        // Set up desired width
-
-        var cell = collectionView.cellForItem(at: indexPath as IndexPath) as! gridCollectionViewCell
-        var size = CGSize(width: 10, height: 10)
-        return size
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        // Set up desired width
+//
+//        _ = collectionView.cellForItem(at: indexPath as IndexPath) as! gridCollectionViewCell
+//        let size = CGSize(width: 10, height: 10)
+//        return size
+//    }
     
     func getJourneyPhotos() {
         
@@ -86,6 +88,8 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         
     }
     
+    //MARK: - CollectionView Delegates and Datasource
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         return 1
@@ -102,7 +106,27 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if shouldShowBigImage(position: indexPath.row) {
+            return CGSize(width: (collectionView.frame.size.width - 2), height: collectionView.frame.size.width * 0.5)
+        }
+        
+        return CGSize(width: (collectionView.frame.size.width/3 - 3), height: (collectionView.frame.size.width/3 - 3))       
+    }
     
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }    
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -136,10 +160,6 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
             cell.addSubview(self.videoContainer)
 
         }
-        
-        
-        
-        
         return cell
         
     }

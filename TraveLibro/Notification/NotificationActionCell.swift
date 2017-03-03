@@ -18,6 +18,7 @@ class NotificationActionCell: UITableViewCell {
     var NFPermission = NotificationFollowPermission()
     var NFFooter = NotificationFooter()
     var NFBackground = NotificationBackground()
+    var NFTime = NotificationTime()    
     var totalHeight = CGFloat(0)
     
     override func awakeFromNib() {
@@ -50,7 +51,7 @@ class NotificationActionCell: UITableViewCell {
         var width: Int = Int(self.frame.size.width)
         width = Int(UIScreen.main.bounds.width)
         
-        NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: width, height: Int(HEADER_HEIGHT))) as notificationHeader
+        NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: Int(HEADER_HEIGHT), height: Int(HEADER_HEIGHT))) as notificationHeader
         self.contentView.addSubview(NFHeader)        
         yPos = yPos + Int(NFHeader.frame.size.height)
         
@@ -65,6 +66,9 @@ class NotificationActionCell: UITableViewCell {
         NFPermission = NotificationFollowPermission(frame: CGRect(x: 0, y: yPos, width: width, height: Int(BUTTON_HEIGHT))) as NotificationFollowPermission
         self.contentView.addSubview(NFPermission)
         yPos = yPos + Int(NFPermission.frame.size.height)
+        
+        NFTime = NotificationTime(frame: CGRect.zero) as NotificationTime
+        self.contentView.addSubview(NFTime)
         
         NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: Int(FOOTER_HEIGHT)))        
         self.contentView.addSubview(NFFooter)
@@ -84,11 +88,10 @@ class NotificationActionCell: UITableViewCell {
         totalHeight = CGFloat(10)
         
         NFHeader.setHeaderData(data: notificationData)
-        
-        totalHeight += HEADER_HEIGHT
+        let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)
-        NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
+        NFTitle.frame = CGRect(x: xPos, y: 10, width: screenWidth - xPos, height: titleHeight)
         totalHeight += titleHeight
         
         if notificationData["answeredStatus"].stringValue == "" {
@@ -100,10 +103,10 @@ class NotificationActionCell: UITableViewCell {
             if notificationData["type"] == "journeyLeft" {
                 
                 let msg = "Would you like to end your journey as well?"
-                let messageHeight = (heightForView(text: msg, font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
+                let messageHeight = (heightForView(text: msg, font: NFMessage.NFMessageLabel.font, width: screenWidth - xPos) + CGFloat(10))
                 NFMessage.NFMessageLabel.text = msg
-                NFMessage.NFMessageLabel.sizeToFit()
-                NFMessage.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: messageHeight)        
+                NFMessage.NFMessageLabel.frame = CGRect(x: 0, y: 0, width: screenWidth - xPos - 10, height: messageHeight)
+                NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight)        
                 totalHeight += messageHeight            
                 
                 NFPermission.NFLeftButton.setTitle("END", for: .normal)
@@ -120,19 +123,27 @@ class NotificationActionCell: UITableViewCell {
                 
                 message.append(getRegularString(string: "'s request to create your travel memories together. "))
                 
-                let messageHeight = (heightForView(text: "Accept"+firstName+"'s request to create your travel memories together.        ", font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
+                let messageHeight = (heightForView(text: "Accept "+firstName+"'s request to create your travel memories together.        ", font: NFMessage.NFMessageLabel.font, width: screenWidth) + CGFloat(10))
                 NFMessage.NFMessageLabel.attributedText = message
-                NFMessage.NFMessageLabel.sizeToFit()
-                NFMessage.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: messageHeight)
+                NFMessage.NFMessageLabel.frame = CGRect(x: 0, y: 0, width: screenWidth - xPos - 10, height: messageHeight) 
+                NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight + 10)                
                 totalHeight += messageHeight
-                
                 
                 NFPermission.NFLeftButton.setTitle("ACCEPT", for: .normal)
                 NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
                 
                 NFPermission.NFRightButton.setTitle("DECLINE", for: .normal)
                 NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
-            }            
+            }
+            else if notificationData["type"] == "itineraryRequest" {                 
+                NFMessage.frame = CGRect.zero
+                
+                NFPermission.NFLeftButton.setTitle("ACCEPT", for: .normal)
+                NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.itineraryAcceptTabbed(_:)), for: .touchUpInside)
+                
+                NFPermission.NFRightButton.setTitle("DECLINE", for: .normal)
+                NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.itineraryDeclinedTabbed(_:)), for: .touchUpInside)
+            }
         }
         else {
             NFMessage.frame = CGRect.zero
@@ -142,17 +153,22 @@ class NotificationActionCell: UITableViewCell {
             NFPermission.NFStatusLabel.isHidden = false
             
             if notificationData["type"] == "journeyLeft"{
-                NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "accept" ? "This journey is ended" : "This journey is declined"
+                NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "accept" ? " Ended " : " Declined "
                 print(notificationData)
             }
             else if notificationData["type"] == "journeyRequest"{
-                NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "reject" ? "This request is Rejected " : "This request is Accepted"
+                NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "reject" ? " Rejected " : " Accepted "
             }
-            
+            else if notificationData["type"] == "itineraryRequest"{
+                NFPermission.NFStatusLabel.text = notificationData["answeredStatus"].stringValue == "reject" ? " Rejected " : " Accepted "
+            } 
         }
         
-        NFPermission.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: BUTTON_HEIGHT)
+        NFPermission.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: BUTTON_HEIGHT)
         totalHeight += BUTTON_HEIGHT
+        
+        NFTime.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: TIME_HEIGHT)
+        NFTime.setTimeData(date: notificationData["updatedAt"].stringValue)
         
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)

@@ -535,6 +535,15 @@ func getPlainTextFromHTMLContentText(str : String?) -> String {
     return ""
 }
 
+func shouldShowBigImage(position: Int) -> Bool {
+    if position == 0 || position % 4 == 0 {
+        return true
+    }
+    else {
+        return false
+    }
+}
+
 //LoadingOverlay.shared.showOverlay(self.view)
 ////To to long tasks
 //LoadingOverlay.shared.hideOverlayView()

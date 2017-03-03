@@ -85,11 +85,12 @@ let screenWidth = screenSize.width
 let screenHeight = screenSize.height
 
 let HEADER_HEIGHT = (screenWidth * 0.15)
-let FOOTER_HEIGHT = CGFloat(30)
-let IMAGE_HEIGHT = screenWidth * 0.6
+let FOOTER_HEIGHT = CGFloat(35)
+let IMAGE_HEIGHT = (screenWidth * 0.20)
 let TITLE_HEIGHT = 80
 let BUTTON_HEIGHT = CGFloat(40)
 let DETAILS_HEIGHT = CGFloat(50)
+let TIME_HEIGHT = CGFloat(27)
 
 let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels-1", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
 

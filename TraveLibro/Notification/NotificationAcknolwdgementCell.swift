@@ -16,6 +16,7 @@ class NotificationAcknolwdgementCell: UITableViewCell {
     var NFHeader = notificationHeader()
     var NFTitle = NotificationTitle()
     var NFFooter = NotificationFooter()
+    var NFTime = NotificationTime()    
     var NFBackground = NotificationBackground()
     var totalHeight = CGFloat(0)
     
@@ -50,13 +51,16 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         var width: Int = Int(self.frame.size.width)
         width = Int(UIScreen.main.bounds.width)        
         
-        NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: width, height: Int(HEADER_HEIGHT))) as notificationHeader
+        NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: Int(HEADER_HEIGHT), height: Int(HEADER_HEIGHT))) as notificationHeader
         self.contentView.addSubview(NFHeader)        
-        yPos = yPos + Int(NFHeader.frame.size.height)
+//        yPos = yPos + Int(NFHeader.frame.size.height)
         
-        NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: Int(TITLE_HEIGHT))) as NotificationTitle
+        NFTitle = NotificationTitle(frame: CGRect.zero) as NotificationTitle
         self.contentView.addSubview(NFTitle)
-        yPos = yPos + Int(NFTitle.frame.size.height)
+        yPos = yPos + Int(NFTitle.frame.size.height)       
+        
+        NFTime = NotificationTime(frame: CGRect.zero) as NotificationTime
+        self.contentView.addSubview(NFTime)       
         
         NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: Int(FOOTER_HEIGHT)))        
         self.contentView.addSubview(NFFooter)
@@ -77,12 +81,14 @@ class NotificationAcknolwdgementCell: UITableViewCell {
         totalHeight = CGFloat(10)
         
         NFHeader.setHeaderData(data: notificationData)
-        
-        totalHeight += HEADER_HEIGHT
+        let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)
-        NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
+        NFTitle.frame = CGRect(x: xPos, y: 10, width: screenWidth - xPos, height: titleHeight)        
         totalHeight += titleHeight
+        
+        NFTime.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: TIME_HEIGHT)
+        NFTime.setTimeData(date: notificationData["updatedAt"].stringValue)
         
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)

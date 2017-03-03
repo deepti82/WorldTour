@@ -28,6 +28,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        createNavigation()
+        
         loader.showOverlay(self.view)        
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
         self.mainFooter.layer.zPosition = 5
@@ -129,20 +131,23 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
-    func canLoadCommentCell(notificationData: JSON) -> Bool {
+    func canLoadCommentCell(data: JSON) -> Bool {
         
         var shouldLoadCommentCell = true
-        if(notificationData["data"]["showMap"].boolValue == true){
+        if (data["data"]["type"].string == "photo") {
             shouldLoadCommentCell = false
         }
-        else if (notificationData["data"]["type"].string == "photo") {
+        else if (data["data"]["type"].string == "video") {
             shouldLoadCommentCell = false
         }
-        else if (notificationData["data"]["type"].string == "video") {
+        else if ((data["data"]["videos"].array?.count)! > 0) {
             shouldLoadCommentCell = false
         }
-        else if (notificationData["data"]["photos"].array?.count)! > 0 || (notificationData["data"]["videos"].array?.count)! > 0 {
+        else if ((data["data"]["photos"].array?.count)! > 0) {
             shouldLoadCommentCell = false
+        }        
+        else if data["data"]["showMap"].boolValue && data["data"]["checkIn"]["location"] != "" {
+            shouldLoadCommentCell = false                
         }
         
         return shouldLoadCommentCell
@@ -275,7 +280,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             fallthrough
         case "postMentionComment":            
             
-            if cellNotificationData["data"]["thoughts"].stringValue != "" && canLoadCommentCell(notificationData: cellNotificationData) {
+            if cellNotificationData["data"]["thoughts"].stringValue != "" && canLoadCommentCell(data: cellNotificationData) {
                 print("\n CellData: \(cellNotificationData)")
                 
                 var cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath) as? NotificationCommentCell
@@ -306,6 +311,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             
             
             
+        case "itineraryRequest":
+            fallthrough
         case "journeyLeft":
             fallthrough
         case "journeyRequest":
@@ -325,18 +332,18 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             return cell!
             
             
-        case "userFollowing":
-            var cell = tableView.dequeueReusableCell(withIdentifier: "followCell", for: indexPath) as? NotificationFollowCell
-            if cell == nil {
-                cell = NotificationFollowCell.init(style: .default, reuseIdentifier: "followCell", notificationData: cellNotificationData, helper: self) 
-            }
-            else{
-                cell?.setData(notificationData: cellNotificationData, helper: self)
-            }
-            
-            cell?.backgroundColor = UIColor.clear
-            currentCellHeight = (cell?.totalHeight)!
-            return cell!
+//        case "userFollowing":
+//            var cell = tableView.dequeueReusableCell(withIdentifier: "followCell", for: indexPath) as? NotificationFollowCell
+//            if cell == nil {
+//                cell = NotificationFollowCell.init(style: .default, reuseIdentifier: "followCell", notificationData: cellNotificationData, helper: self) 
+//            }
+//            else{
+//                cell?.setData(notificationData: cellNotificationData, helper: self)
+//            }
+//            
+//            cell?.backgroundColor = UIColor.clear
+//            currentCellHeight = (cell?.totalHeight)!
+//            return cell!
             
             
         case "userFollowingRequest":
@@ -353,8 +360,8 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             return cell!
             
             
-        case "itineraryRequest":
-            fallthrough        
+        case "userFollowing":
+            fallthrough
         case "userFollowingResponse":
             fallthrough
         case "journeyReject":
@@ -448,11 +455,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func journeyAcceptTabbed(_ sender: UIButton) {
         
-        print("in the journeyAcceptTabbed indexpath:\n  \(sender.tag)")
-        
         let tabbedCellData = notifications[sender.tag]
-        
-        print("\n tabbedCellData : \(tabbedCellData)")
         
         if tabbedCellData["answeredStatus"].stringValue == "" {
         
@@ -460,8 +463,6 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                   uniqueId: tabbedCellData["data"]["journeyUnique"].stringValue,
                                   notificationId: tabbedCellData["_id"].stringValue,
                                   inMiddle: tabbedCellData["data"]["inMiddle"].boolValue) { (response) in
-                                    
-                                    print("\n Response : \(response)")
                                     
                                     DispatchQueue.main.async(execute: {
                                         
@@ -476,35 +477,31 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                             self.gotoOTG()                                        
                                         }
                                         else {
-                                            Toast(text: response["error"].stringValue).show()
+                                            let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
+                                            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                                                (result : UIAlertAction) -> Void in
+                                                //Cancel Action
+                                            }
+                                            
+                                            errorAlert.addAction(DestructiveAction)
+                                            self.navigationController?.present(errorAlert, animated: true, completion: nil)
                                         }
                                         
                                     })
                                     
             }
-        }
-        
-        else{
-            Toast(text: (tabbedCellData["answeredStatus"].stringValue == "reject" ? "This request is already rejected " : "This request is already accepted")).show()
-        }
-        
+        }        
     }
     
     func journeyDeclineTabbed(_ sender: UIButton) {
         
-        print("in the journeyDeclineTabbed indexpath: \(sender.tag)")
-        
         let tabbedCellData = notifications[sender.tag]
-        
-        print("\n tabbedCellData : \(tabbedCellData)")
         
         if tabbedCellData["answeredStatus"].stringValue == "" {
             
             request.declinedJourney(currentUser["_id"].stringValue, 
                                     uniqueId: tabbedCellData["data"]["journeyUnique"].stringValue,
                                     notificationId: tabbedCellData["_id"].stringValue) { (response) in
-                                        
-                                        print("\n Response : \(response)")
                                         
                                         DispatchQueue.main.async(execute: {
                                             
@@ -530,21 +527,12 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
                                         })
                                         
             }
-        }
-        
-        else{
-            Toast(text: (tabbedCellData["answeredStatus"].stringValue == "reject" ? "This request is already rejected " : "This request is already accepted")).show()
-        }
-        
+        }        
     }
     
     func journeyEndTabbed(_ sender: UIButton) {
         
-        print("in the journeyEndTabbed indexpath: \(sender.tag)")
-        
         let tabbedCellData = notifications[sender.tag]
-        
-        print("\n tabbedCellData : \(tabbedCellData)")
         
         gotoEndJourney(journeyID: tabbedCellData["data"]["_id"].stringValue, notificationId: tabbedCellData["_id"].stringValue)
         
@@ -552,11 +540,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func journeyEndDeclined(_ sender: UIButton) {
         
-        print("in the journeyEndDeclined indexpath: \(sender.tag)")
-        
         let tabbedCellData = notifications[sender.tag]
-        
-        print("\n tabbedCellData : \(tabbedCellData)")
         
         request.updateNotificationStatus(notificationId: tabbedCellData["_id"].stringValue, answeredStatus: "reject") { (response) in
             
@@ -585,6 +569,74 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         }
         
     }
+    
+    func itineraryAcceptTabbed(_ sender: UIButton) {
+        
+        print("in the itineraryAcceptTabbed indexpath: \(sender.tag)")
+        
+        let tabbedCellData = notifications[sender.tag]
+        
+        print("\n tabbedCellData : \(tabbedCellData)")
+        
+        request.respondToItineraryRequest(notificationId: tabbedCellData["_id"].stringValue, itineraryID: tabbedCellData["data"]["_id"].stringValue, answeredStatus: "accept") { (response) in
+            DispatchQueue.main.async(execute: {
+                
+                Toast(text: "Please wait..").show()
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    Toast(text: response["data"].stringValue).show()
+                    self.refreshControl.beginRefreshing()
+                    self.pullToRefreshCalled()
+                    
+                }
+                else {
+                    
+                    Toast(text: response["error"].stringValue).show()
+                    
+                }
+            })
+        }
+    }
+    
+    func itineraryDeclinedTabbed(_ sender: UIButton) {
+        
+        print("in the itineraryAcceptTabbed indexpath: \(sender.tag)")
+        
+        let tabbedCellData = notifications[sender.tag]
+        
+        print("\n tabbedCellData : \(tabbedCellData)")
+        
+        request.respondToItineraryRequest(notificationId: tabbedCellData["_id"].stringValue, itineraryID: tabbedCellData["data"]["_id"].stringValue, answeredStatus: "reject") { (response) in
+            DispatchQueue.main.async(execute: {
+                
+                Toast(text: "Please wait..").show()
+                
+                if response.error != nil {
+                    
+                    print("error: \(response.error!.localizedDescription)")
+                    
+                }
+                else if response["value"].bool! {
+                    
+                    Toast(text: response["data"].stringValue).show()
+                    self.refreshControl.beginRefreshing()
+                    self.pullToRefreshCalled()
+                    
+                }
+                else {
+                    
+                    Toast(text: response["error"].stringValue).show()
+                    
+                }
+            })
+        }        
+    }    
     
     
     //MARK: - Button Action Helpers
@@ -648,6 +700,19 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
             self.mainFooter.frame.origin.y = self.view.frame.height - 65
             
         }
+    }
+    
+    func createNavigation() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: nil)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 

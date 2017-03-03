@@ -18,6 +18,7 @@ class NotificationPhotoCell: UITableViewCell {
     var NFTitle = NotificationTitle()
     var NFPhoto = NotificationCommentPhoto()
     var NFFooter = NotificationFooter()
+    var NFTime = NotificationTime()
     var NFBackground = NotificationBackground()
     var totalHeight = CGFloat(0)
     
@@ -53,17 +54,20 @@ class NotificationPhotoCell: UITableViewCell {
         width = Int(UIScreen.main.bounds.width)        
              
         
-        NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: width, height: Int(HEADER_HEIGHT))) as notificationHeader
+        NFHeader = notificationHeader(frame: CGRect(x: 0, y: yPos, width: Int(HEADER_HEIGHT), height: Int(HEADER_HEIGHT))) as notificationHeader
         self.contentView.addSubview(NFHeader)        
-        yPos = yPos + Int(NFHeader.frame.size.height)
+//        yPos = yPos + Int(NFHeader.frame.size.height)        
         
-        NFTitle = NotificationTitle(frame: CGRect(x: 0, y: yPos, width: width, height: Int(TITLE_HEIGHT))) as NotificationTitle
+        NFTitle = NotificationTitle(frame: CGRect.zero) as NotificationTitle
         self.contentView.addSubview(NFTitle)
         yPos = yPos + Int(NFTitle.frame.size.height)
         
-        NFPhoto = NotificationCommentPhoto(frame: CGRect(x: 0, y: yPos, width: width, height: min((width-10), Int(IMAGE_HEIGHT) ) ))
+        NFPhoto = NotificationCommentPhoto(frame: CGRect(x: screenWidth - IMAGE_HEIGHT - CGFloat(30), y: CGFloat(5), width: IMAGE_HEIGHT, height: IMAGE_HEIGHT))
         self.contentView.addSubview(NFPhoto)
         yPos = yPos + Int(NFPhoto.frame.size.height)
+        
+        NFTime = NotificationTime(frame: CGRect.zero) as NotificationTime
+        self.contentView.addSubview(NFTime)
         
         NFFooter = NotificationFooter(frame: CGRect(x: 0, y: yPos, width: width, height: Int(FOOTER_HEIGHT)))        
         self.contentView.addSubview(NFFooter)
@@ -84,16 +88,14 @@ class NotificationPhotoCell: UITableViewCell {
         totalHeight = CGFloat(10)
         
         NFHeader.setHeaderData(data: notificationData)
-        
-        totalHeight += HEADER_HEIGHT
+        let xPos = NFHeader.frame.origin.x + NFHeader.frame.size.width
         
         let titleHeight = NFTitle.setMessageLabel(data: notificationData)
-        NFTitle.frame = CGRect(x: 0, y: NFTitle.frame.origin.y, width: screenWidth, height: titleHeight)        
-        totalHeight += titleHeight
+        NFTitle.frame = CGRect(x: xPos, y: 10, width: screenWidth - xPos - IMAGE_HEIGHT, height: titleHeight)        
         
         NFPhoto.NFPhotoImage.image = UIImage(named: "logo-default")
         
-        NFPhoto.frame = CGRect(x: 0, y: totalHeight-CGFloat(10), width: screenWidth, height: IMAGE_HEIGHT)
+        NFPhoto.frame = CGRect(x: screenWidth - IMAGE_HEIGHT, y: CGFloat(10), width: IMAGE_HEIGHT, height: IMAGE_HEIGHT)
         if notificationData["type"] == "journeyMentionComment" ||
             notificationData["type"] == "journeyComment" ||
             notificationData["type"] == "journeyLike" ||
@@ -112,6 +114,9 @@ class NotificationPhotoCell: UITableViewCell {
             NFPhoto.setPhoto(data: notificationData["data"])
         }        
         totalHeight += IMAGE_HEIGHT
+        
+        NFTime.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: TIME_HEIGHT)
+        NFTime.setTimeData(date: notificationData["updatedAt"].stringValue)        
         
         NFFooter.updateReadStatus(read: notificationData["status"].stringValue)
         NFFooter.frame = CGRect(x: 0, y: totalHeight, width: screenWidth, height: FOOTER_HEIGHT)

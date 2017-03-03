@@ -102,14 +102,6 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         }
     }
     
-    func shouldShowBigImage(position: Int) -> Bool {
-        if position == 0 || position % 4 == 0 {
-            return true
-        }
-        else {
-            return false
-        }
-    }
 }
 
 

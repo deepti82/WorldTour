@@ -102,6 +102,8 @@
 		44725D2D1E5ADBB70074D925 /* NotificationCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */; };
 		44725D2F1E5B06580074D925 /* NotificationDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */; };
 		447492251E5D535300039D56 /* NotificationFollowRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447492241E5D535200039D56 /* NotificationFollowRequestCell.swift */; };
+		44B17E911E691D4700CA8F0C /* notificationTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44B17E901E691D4700CA8F0C /* notificationTimeView.xib */; };
+		44B17E931E691DE700CA8F0C /* NotificationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B17E921E691DE700CA8F0C /* NotificationTime.swift */; };
 		840599831E3CDA60004E0696 /* DropShadow1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599821E3CDA60004E0696 /* DropShadow1.xib */; };
 		840599851E3CDB2B004E0696 /* DropShadow1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840599841E3CDB2B004E0696 /* DropShadow1.swift */; };
 		840599881E3CDBA6004E0696 /* DropShadow2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840599871E3CDBA6004E0696 /* DropShadow2.xib */; };
@@ -609,6 +611,8 @@
 		44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCommentCell.swift; path = Notification/NotificationCommentCell.swift; sourceTree = "<group>"; };
 		44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationDefaultCell.swift; path = Notification/NotificationDefaultCell.swift; sourceTree = "<group>"; };
 		447492241E5D535200039D56 /* NotificationFollowRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationFollowRequestCell.swift; path = Notification/NotificationFollowRequestCell.swift; sourceTree = "<group>"; };
+		44B17E901E691D4700CA8F0C /* notificationTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationTimeView.xib; path = Notification/notificationTimeView.xib; sourceTree = "<group>"; };
+		44B17E921E691DE700CA8F0C /* NotificationTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationTime.swift; path = Notification/NotificationTime.swift; sourceTree = "<group>"; };
 		68BDE9BB1A9237C6DAC3ABB1 /* Pods-TraveLibro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraveLibro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraveLibro/Pods-TraveLibro.debug.xcconfig"; sourceTree = "<group>"; };
 		7C9DA33B215F40A9D4891CAE /* Pods_TraveLibroTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraveLibroTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		840599821E3CDA60004E0696 /* DropShadow1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropShadow1.xib; sourceTree = "<group>"; };
@@ -1397,6 +1401,8 @@
 				4435D2EE1E547E24003BD1D9 /* NotificationCommentPhoto.swift */,
 				4435D2F01E547F04003BD1D9 /* notificationFooterView.xib */,
 				4435D2F21E548111003BD1D9 /* NotificationFooter.swift */,
+				44B17E901E691D4700CA8F0C /* notificationTimeView.xib */,
+				44B17E921E691DE700CA8F0C /* NotificationTime.swift */,
 				4435D2D21E54407B003BD1D9 /* notificationHeaderView.xib */,
 				4435D2D81E545A22003BD1D9 /* notificationHeader.swift */,
 				4435D2D41E5448D7003BD1D9 /* notificationTitleView.xib */,
@@ -2985,6 +2991,7 @@
 				842484F61E13A4C000083115 /* PhotoOTGFooter.xib in Resources */,
 				8453CF3D1E30A12400C41F82 /* ActivityDetailItinerary.xib in Resources */,
 				C2A5C1D71CF9B09E0035EF0E /* TraveLifeVideoPost.xib in Resources */,
+				44B17E911E691D4700CA8F0C /* notificationTimeView.xib in Resources */,
 				C27F6BFD1CF037C60049F012 /* ProfileMainView.xib in Resources */,
 				368A56901E3CD6E600DC8A19 /* loader.gif in Resources */,
 				FCCA8F171E28AE7200775985 /* TripSummaryCell.xib in Resources */,
@@ -3225,6 +3232,7 @@
 				C22138F31D547846008D9DEE /* QuickItineraryTwo.swift in Sources */,
 				C248704C1D0BF05B003CB0DD /* MoreAboutTrip.swift in Sources */,
 				FCDF490A1E255A1C00ED9A32 /* previewBase.swift in Sources */,
+				44B17E931E691DE700CA8F0C /* NotificationTime.swift in Sources */,
 				C24F84F41D0052B9002EA203 /* EmptyPagesViewController.swift in Sources */,
 				841E43A91E1D1CA4000D2E6B /* UploadingToCloud.swift in Sources */,
 				C2DCB36C1CE7043C006E5CBD /* TripSummaryItinerary.swift in Sources */,

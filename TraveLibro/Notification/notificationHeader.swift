@@ -12,10 +12,6 @@ class notificationHeader: UIView {
 
     
     @IBOutlet weak var NFProfilePicture: UIImageView!    
-    @IBOutlet weak var NFDateLabel: UILabel!    
-    @IBOutlet weak var NFTimeLabel: UILabel!
-    @IBOutlet weak var calendarLabel: UILabel!    
-    @IBOutlet weak var clockLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,12 +28,7 @@ class notificationHeader: UIView {
         let nib = UINib(nibName: "notificationHeaderView", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-       
-        clockLabel.text = String(format: "%C", faicon["clock"]!)
-        calendarLabel.text = String(format: "%C", faicon["calendar"]!)
-        
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]        
         self.addSubview(view);
     }
     
@@ -47,12 +38,9 @@ class notificationHeader: UIView {
                 
         NFProfilePicture.layer.cornerRadius = NFProfilePicture.frame.size.width * 0.30
         NFProfilePicture.layer.borderWidth = 2
-        NFProfilePicture.layer.borderColor = UIColor.white.cgColor
+        NFProfilePicture.layer.borderColor = UIColor.lightGray.cgColor
         NFProfilePicture.clipsToBounds = true
         NFProfilePicture.contentMode = UIViewContentMode.scaleAspectFill
-        
-        NFDateLabel.text = getDateFormat(data["updatedAt"].stringValue, format: "dd MMM, yyyy")
-        NFTimeLabel.text = getDateFormat(data["updatedAt"].stringValue, format: "hh.mm a")
     }
 
 }
