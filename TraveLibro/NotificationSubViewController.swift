@@ -572,11 +572,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     
     func itineraryAcceptTabbed(_ sender: UIButton) {
         
-        print("in the itineraryAcceptTabbed indexpath: \(sender.tag)")
-        
         let tabbedCellData = notifications[sender.tag]
-        
-        print("\n tabbedCellData : \(tabbedCellData)")
         
         request.respondToItineraryRequest(notificationId: tabbedCellData["_id"].stringValue, itineraryID: tabbedCellData["data"]["_id"].stringValue, answeredStatus: "accept") { (response) in
             DispatchQueue.main.async(execute: {
@@ -604,13 +600,9 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
-    func itineraryDeclinedTabbed(_ sender: UIButton) {
-        
-        print("in the itineraryAcceptTabbed indexpath: \(sender.tag)")
+    func itineraryDeclinedTabbed(_ sender: UIButton) {        
         
         let tabbedCellData = notifications[sender.tag]
-        
-        print("\n tabbedCellData : \(tabbedCellData)")
         
         request.respondToItineraryRequest(notificationId: tabbedCellData["_id"].stringValue, itineraryID: tabbedCellData["data"]["_id"].stringValue, answeredStatus: "reject") { (response) in
             DispatchQueue.main.async(execute: {

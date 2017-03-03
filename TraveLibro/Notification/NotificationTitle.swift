@@ -49,7 +49,7 @@ class NotificationTitle: UIView {
             str2 = " has started a "
             
         case "postTag":
-            print("\n\n Data : \(data) ")
+            
             str2 = " has checked-in with you in an "
             if (data["data"]["type"].string == "photo") {
                 str2 = " has uploaded a photo to "
@@ -67,11 +67,9 @@ class NotificationTitle: UIView {
                 let gen = data["userFrom"]["gender"].stringValue
                 str2 = " has checked-in with you at \(data["data"]["checkIn"]["location"].stringValue) in \((gen == "male" ? "his" : "her")) "                
             }
-            else if (data["thoughts"].stringValue != "") {
-                //Showing img for thought
+            else if (data["thoughts"].stringValue != "") {                
                 str2 = " has tagged you in a thought in an "
             }
-//            str2 = " has checked-in with you in an "
             else if checkIfComment(notificationData: data) {
                 str2 = " has tagged you in a thought in an "
             }

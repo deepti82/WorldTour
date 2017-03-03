@@ -170,9 +170,19 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         
         if fromView == "endJourney" {
             let cell = collectionView.cellForItem(at: indexPath) as! gridCollectionViewCell
-            let photoEditViewController = PhotoEditViewController(photo: cell.photo.image!)
-            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)
-            toolStackController.delegate = self
+            
+            let conf = Configuration(builder: { (builder) in
+                builder.configurePhotoEditorViewController({ (photoOptionBuilder) in
+                    
+                    photoOptionBuilder.actionButtonConfigurationClosure = { cell, action in
+                        cell.tintColor = UIColor.white 
+                    }                    
+                })
+            })
+            
+            let photoEditViewController = PhotoEditViewController(photo: cell.photo.image!, configuration: conf)
+            let toolStackController = ToolStackController(photoEditViewController: photoEditViewController)            
+            toolStackController.delegate = self            
             toolStackController.navigationItem.title = "Editor"
             toolStackController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: photoEditViewController, action: #selector(PhotoEditViewController.save(_:)))
             let nvc = UINavigationController(rootViewController: toolStackController)
