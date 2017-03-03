@@ -196,6 +196,8 @@ class QuickItineraryPreviewViewController: UIViewController {
             
             let qi = QuickItinerary()
             qi.save(quickItinery, imageArr: globalPostImage, statusVal: false)
+            
+            self.goToActivity()
         }
         
         actionSheet.addAction(saveActionButton)
@@ -203,10 +205,18 @@ class QuickItineraryPreviewViewController: UIViewController {
         let publishActionButton: UIAlertAction = UIAlertAction(title: "Publish", style: .destructive) { action -> Void in
             var qi = QuickItinerary()
             qi.save(quickItinery, imageArr: globalPostImage, statusVal: true)
+            self.goToActivity()
         }
         
         actionSheet.addAction(publishActionButton)
         self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func goToActivity() {
+        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        tlVC.displayData = "activity"
+        
+        self.navigationController?.pushViewController(tlVC, animated: false)
     }
     
 }

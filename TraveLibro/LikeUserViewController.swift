@@ -98,8 +98,37 @@ class LikeUserViewController: UITableViewController {
 
 class LikeCell: UITableViewCell {
     
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var profile: UIImageView!
-    @IBOutlet weak var slug: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var urlSlurg: UILabel!
+    
+    var parent = FollowersViewController()
+    
+    @IBAction func followTap(_ sender: UIButton) {
+        
+        if sender.tag == 0 {
+            
+            print("profile name follow: \(profileName.text)")
+            parent.followUser(profileName.text!)
+            sender.tag = 1
+            sender.setImage(UIImage(named:"following"), for: .normal)
+            sender.contentMode = .scaleAspectFit
+            sender.clipsToBounds = true
+            sender.isSelected = true
+            
+        }
+            
+        else {
+            print("profile name unfollow: \(profileName.text)")
+            parent.unFollowUser(profileName.text!)
+            sender.tag = 0
+            sender.setImage(UIImage(named:"follow"), for: .normal)
+            sender.contentMode = .scaleAspectFit
+            sender.clipsToBounds = true
+            sender.isSelected = false
+            
+        }
+    }
     
 }
