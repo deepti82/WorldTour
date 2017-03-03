@@ -41,9 +41,6 @@
                     <state key="normal" title="X">
                         <color key="titleColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <connections>
-                        <action selector="deleteCity:" destination="-1" eventType="touchUpInside" id="IGF-LT-aN1"/>
-                    </connections>
                 </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYH-dg-Acf">
                     <rect key="frame" x="127" y="8" width="42" height="21"/>

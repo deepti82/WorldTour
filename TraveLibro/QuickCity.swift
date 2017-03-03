@@ -20,16 +20,18 @@ class QuickCity: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         deleteOut.setTitle(String(format: "%C", faicon["trash"]!), for: UIControlState())
+        
+        deleteOut.addTarget(self, action: #selector(self.deleteCity(_:)), for: .touchUpInside)
+
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
-    @IBAction func deleteCity(_ sender: UIButton) {
+    func deleteCity(_ sender:AnyObject) {
     print("delette city")
         quickItinery["countryVisited"][self.countryTag]["cityVisited"].arrayObject?.remove(at: self.cityTag)
-        selectedCity.arrayObject?.remove(at: self.cityTag)
+//        selectedCity.arrayObject?.remove(at: self.cityTag)
         parentView.createLayout()
         
     }
