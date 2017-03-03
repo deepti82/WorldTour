@@ -11,7 +11,7 @@ import AVKit
 import AVFoundation
 import Haneke
 import Toaster
-
+import Spring
 
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
@@ -1586,8 +1586,8 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         buddy.center.x = self.view.center.x
         let profileImage = adminUrl + "upload/readFile?width=250&file=" + post["user"]["profilePicture"].stringValue
         buddy.profileImage.hnk_setImageFromURL(URL(string:profileImage)!)
-        buddy.joinJourneytext.text = "\(post["user"]["name"]) has joined this journey"
-        makeBuddiesTLProfilePicture(buddy.profileImage)
+        buddy.joinJourneytext.text = "\(post["user"]["name"])"
+        HiBye(buddy.profileImage)
         layout.addSubview(buddy)
         addHeightToLayout(height: buddy.frame.height + 20.0)
         
@@ -1904,11 +1904,11 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         otgView = startOTGView(frame: CGRect(x: 0, y: 50, width: mainScroll.frame.width, height: mainScroll.frame.height))
         
         otgView.shoewImage.alpha = 0
-        otgView.bonVoyageLabel.alpha = 0
+//        otgView.bonVoyageLabel.alpha = 0
         otgView.lineOne.alpha = 0
         otgView.startJourneyButton.alpha = 0
         otgView.lineTwo.alpha = 0
-         otgView.bonVoyageLabel.animation.rotate(355).makeX(238).animate(0.1)
+//         otgView.bonVoyageLabel.
         
         otgView.shoewImage.animation.delay(0.2).makeAlpha(1.0).moveY(-25).animateWithCompletion(0.5, {
             print("shoeImage")
@@ -2000,7 +2000,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startMonitoringSignificantLocationChanges()
         otgView.drawLineView3.isHidden = false
-        otgView.bonVoyageLabel.isHidden = true
+//        otgView.bonVoyageLabel.isHidden = true
         if textField == otgView.nameJourneyTF {
             
             setTopNavigation(text: "Select Kind of Journey");
@@ -2027,7 +2027,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             //            self.otgView.cityImage.hnk_setImageFromURL(URL(string: self.locationPic)!)
             
-            otgView.bonVoyageLabel.isHidden = true
+//            otgView.bonVoyageLabel.isHidden = true
             
         }
         return false

@@ -97,7 +97,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             
         }
         
-        search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.frame.width - 70 , height: 30))
+        search = SearchFieldView(frame: CGRect(x: 45, y: 8, width: searchView.frame.width - 60 , height: 30))
         search.searchField.returnKeyType = .done
         searchView.addSubview(search)
         

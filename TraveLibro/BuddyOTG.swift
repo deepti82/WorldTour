@@ -22,14 +22,18 @@ class BuddyOTG: UIView {
         drawLine.backgroundColor = UIColor.clear
         
         timestamp.shadowColor = UIColor.black
-        timestamp.shadowOffset = CGSize(width: 0.5, height: 0.5)
-        timestamp.layer.shadowOpacity = 0.6
-        timestamp.layer.shadowRadius = 1.0
+        timestamp.shadowOffset = CGSize(width: 1, height: 1)
+        timestamp.layer.masksToBounds = true
+       
+        
+
         
         clockTime.shadowColor = UIColor.black
-        clockTime.shadowOffset = CGSize(width: 0.5, height: 0.5)
-        clockTime.layer.shadowOpacity = 0.6
-        clockTime.layer.shadowRadius = 1.0
+        clockTime.shadowOffset = CGSize(width: 1, height: 1)
+        clockTime.layer.masksToBounds = true
+        
+        
+
         lineSeparator.layer.zPosition = 10
         calendarLabel.text = String(format: "%C", faicon["clock"]!)
         clockLabel.text = String(format: "%C", faicon["calendar"]!)

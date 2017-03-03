@@ -33,14 +33,20 @@ class SayBye: UIView {
         calendarIcon.text = String(format: "%C", faicon["calendar"]!)
        clockIcon.text = String(format: "%C", faicon["clock"]!)
 //
-          clockTime.shadowColor = UIColor.black
-        clockTime.shadowOffset = CGSize(width: 0.5, height: 0.5)
-        clockTime.layer.shadowOpacity = 0.6
+        clockTime.shadowColor = UIColor.black
+        clockTime.shadowOffset = CGSize(width: 1, height: 1)
+        //        journeyName.layer.shadowOpacity = 0.
+        clockTime.layer.masksToBounds = true
+
+        
         clockTime.layer.shadowRadius = 1.0
         
         timestamp.shadowColor = UIColor.black
-        timestamp.shadowOffset = CGSize(width: 0.1, height: 0.5)
-        timestamp.layer.shadowOpacity = 0.6
+        timestamp.shadowOffset = CGSize(width: 1, height: 1)
+        //        journeyName.layer.shadowOpacity = 0.
+        timestamp.layer.masksToBounds = true
+
+       
         timestamp.layer.shadowRadius = 1.0
 
 //        timestamp.textColor = UIColor(red: 105/255, green: 147/255, blue: 171/255, alpha: 1)

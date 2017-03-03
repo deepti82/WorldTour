@@ -258,6 +258,17 @@ func makeBuddiesTLProfilePicture(_ image: UIImageView) {
     
 }
 
+func HiBye(_ image: UIImageView) {
+    
+    image.layer.cornerRadius = (35/100) * image.frame.width
+    image.layer.borderWidth = 2.0
+    image.layer.borderColor = UIColor(hex: "#868686").cgColor
+    image.clipsToBounds = true
+    image.contentMode = UIViewContentMode.scaleAspectFill
+    
+}
+
+
 func noColor(_ image: UIImageView) {
     
     image.layer.cornerRadius = (37/100) * image.frame.width
