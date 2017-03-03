@@ -8,11 +8,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInFullView" customModule="TraveLibro" customModuleProvider="target">
             <connections>
+                <outlet property="autoMigrateLabel" destination="Fa6-XJ-6Kd" id="oUA-WR-Ze9"/>
                 <outlet property="facebookButton" destination="e9O-fh-Q1A" id="Y3Y-dw-1xV"/>
                 <outlet property="facebookLabel" destination="gpE-TY-2ut" id="hMu-7c-iGF"/>
                 <outlet property="facebookStack" destination="48h-uC-mHb" id="8Iq-zz-8Xq"/>
@@ -21,6 +24,9 @@
                 <outlet property="googleStack" destination="7vv-RY-Jbl" id="qAc-FP-VCv"/>
                 <outlet property="loginButton" destination="2Mv-o3-7Em" id="nAx-Gi-Ike"/>
                 <outlet property="loginStack" destination="AAY-U4-wox" id="FuP-cT-CFV"/>
+                <outlet property="messageLabel" destination="dvg-8r-M4F" id="ryg-fj-uIz"/>
+                <outlet property="profileImage" destination="E6W-NK-2ZL" id="VmP-qc-zXu"/>
+                <outlet property="requestLabel" destination="9cv-S5-Y4W" id="UQq-TR-E7G"/>
                 <outlet property="tncFooter" destination="KaA-bs-Eb3" id="9px-V2-NMq"/>
             </connections>
         </placeholder>
@@ -30,28 +36,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By creating an account, you agree to TraveLibro’s Terms of Service, Privacy Policy and Content Policies." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaA-bs-Eb3" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="540" width="400" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="69" id="P9s-rW-2nN"/>
-                        <constraint firstAttribute="height" constant="60" id="oIv-zw-tbg"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="417" width="400" height="36"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="P9s-rW-2nN"/>
-                        </mask>
-                    </variation>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ThA-U9-Fhv">
-                    <rect key="frame" x="10" y="205" width="380" height="190"/>
+                    <rect key="frame" x="10" y="217" width="380" height="150"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48h-uC-mHb">
-                            <rect key="frame" x="0.0" y="0.0" width="380" height="90"/>
+                            <rect key="frame" x="0.0" y="0.0" width="380" height="70"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-fh-Q1A">
-                                    <rect key="frame" x="0.0" y="0.0" width="60" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="70"/>
                                     <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="bCI-Gp-ijI"/>
@@ -60,12 +57,12 @@
                                     <state key="normal" image="facebook_icon"/>
                                 </button>
                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up via Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpE-TY-2ut" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                                    <rect key="frame" x="60" y="0.0" width="320" height="90"/>
+                                    <rect key="frame" x="60" y="0.0" width="320" height="70"/>
                                     <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="315" id="GLc-jK-XxJ"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <variation key="default">
@@ -75,15 +72,12 @@
                                     </variation>
                                 </label>
                             </subviews>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="90" id="gXp-KZ-LxR"/>
-                            </constraints>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7vv-RY-Jbl">
-                            <rect key="frame" x="0.0" y="100" width="380" height="90"/>
+                            <rect key="frame" x="0.0" y="80" width="380" height="70"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM4-ql-gyK">
-                                    <rect key="frame" x="0.0" y="0.0" width="60" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="70"/>
                                     <color key="backgroundColor" red="0.8666666666666667" green="0.29411764705882354" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="eOn-iV-6Xr"/>
@@ -92,12 +86,12 @@
                                     <state key="normal" image="google_plus_icon"/>
                                 </button>
                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up via Google Plus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFa-xN-QOy" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                                    <rect key="frame" x="60" y="0.0" width="320" height="90"/>
+                                    <rect key="frame" x="60" y="0.0" width="320" height="70"/>
                                     <color key="backgroundColor" red="0.86666667461395264" green="0.29411765933036804" blue="0.22352941334247589" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="325" id="bgc-sx-8ak"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <variation key="default">
@@ -110,11 +104,11 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="190" id="OeM-h6-EN9"/>
+                        <constraint firstAttribute="height" constant="150" id="OeM-h6-EN9"/>
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AAY-U4-wox">
-                    <rect key="frame" x="80.5" y="405" width="239" height="22"/>
+                    <rect key="frame" x="81" y="387" width="239" height="22"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEA-zw-tPc">
                             <rect key="frame" x="0.0" y="0.0" width="184" height="22"/>
@@ -136,26 +130,62 @@
                         <constraint firstAttribute="width" constant="239" id="mub-bB-iyk"/>
                     </constraints>
                 </stackView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="E6W-NK-2ZL">
+                    <rect key="frame" x="160" y="20" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="E6W-NK-2ZL" secondAttribute="height" multiplier="1:1" id="FUV-dq-NGo"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Yash, We have updated the app for quicker and faster log-in process." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-8r-M4F">
+                    <rect key="frame" x="80" y="110" width="240" height="38.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please link youe existing account to the either of the options." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cv-S5-Y4W">
+                    <rect key="frame" x="80" y="158.5" width="240" height="38.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account will automitically be linked to your log-in choice and all existing data migrated." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fa6-XJ-6Kd">
+                    <rect key="frame" x="56" y="417" width="288" height="27.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <constraints>
+                <constraint firstItem="Fa6-XJ-6Kd" firstAttribute="centerX" secondItem="9cv-S5-Y4W" secondAttribute="centerX" id="1Kx-wt-obJ"/>
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="3VE-Nu-BhG"/>
-                <constraint firstItem="KaA-bs-Eb3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BZD-uo-Lr1"/>
-                <constraint firstAttribute="bottom" secondItem="KaA-bs-Eb3" secondAttribute="bottom" id="F3w-1e-Akc"/>
-                <constraint firstItem="KaA-bs-Eb3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LzU-ZT-WqC"/>
-                <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ORy-rn-otc"/>
+                <constraint firstItem="dvg-8r-M4F" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.6" id="3np-h3-26d"/>
+                <constraint firstItem="KaA-bs-Eb3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4Zb-Hm-w2q"/>
+                <constraint firstItem="9cv-S5-Y4W" firstAttribute="centerX" secondItem="dvg-8r-M4F" secondAttribute="centerX" id="8rz-me-9kz"/>
+                <constraint firstItem="dvg-8r-M4F" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Azu-BL-MpT"/>
+                <constraint firstItem="Fa6-XJ-6Kd" firstAttribute="top" secondItem="AAY-U4-wox" secondAttribute="bottom" constant="8" id="FCs-bJ-beY"/>
+                <constraint firstItem="E6W-NK-2ZL" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.2" id="LJH-Q2-ccY"/>
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PHu-0s-vnx"/>
-                <constraint firstAttribute="trailing" secondItem="KaA-bs-Eb3" secondAttribute="trailing" id="Rbb-Qv-RuY"/>
-                <constraint firstAttribute="bottom" secondItem="KaA-bs-Eb3" secondAttribute="bottom" id="qr2-Sb-czy"/>
+                <constraint firstItem="9cv-S5-Y4W" firstAttribute="width" secondItem="dvg-8r-M4F" secondAttribute="width" id="Xzb-kl-Fc5"/>
+                <constraint firstItem="E6W-NK-2ZL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="crm-DT-zQU"/>
+                <constraint firstItem="dvg-8r-M4F" firstAttribute="top" secondItem="E6W-NK-2ZL" secondAttribute="bottom" constant="10" id="gz6-pG-4b9"/>
+                <constraint firstAttribute="trailing" secondItem="KaA-bs-Eb3" secondAttribute="trailing" id="luj-im-UOK"/>
                 <constraint firstItem="AAY-U4-wox" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rdz-i2-Xsg"/>
-                <constraint firstItem="AAY-U4-wox" firstAttribute="top" secondItem="ThA-U9-Fhv" secondAttribute="bottom" constant="10" id="sLv-Yh-Xwe"/>
+                <constraint firstItem="Fa6-XJ-6Kd" firstAttribute="width" secondItem="9cv-S5-Y4W" secondAttribute="width" multiplier="1.2" id="sFZ-cC-CXk"/>
+                <constraint firstItem="AAY-U4-wox" firstAttribute="top" secondItem="ThA-U9-Fhv" secondAttribute="bottom" constant="20" id="sLv-Yh-Xwe"/>
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="w54-xa-PhW"/>
+                <constraint firstItem="E6W-NK-2ZL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="w5f-5L-qGD"/>
+                <constraint firstItem="9cv-S5-Y4W" firstAttribute="top" secondItem="dvg-8r-M4F" secondAttribute="bottom" constant="10" id="wvh-hQ-cTp"/>
+                <constraint firstItem="KaA-bs-Eb3" firstAttribute="top" secondItem="AAY-U4-wox" secondAttribute="bottom" constant="8" id="ziV-a5-nfz"/>
+                <constraint firstItem="ThA-U9-Fhv" firstAttribute="top" secondItem="9cv-S5-Y4W" secondAttribute="bottom" constant="20" id="zrQ-il-seT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="w54-xa-PhW"/>
-                    <exclude reference="LzU-ZT-WqC"/>
                 </mask>
             </variation>
         </view>
@@ -163,5 +193,6 @@
     <resources>
         <image name="facebook_icon" width="60" height="60"/>
         <image name="google_plus_icon" width="60" height="60"/>
+        <image name="logo-default" width="600" height="600"/>
     </resources>
 </document>

@@ -6,6 +6,7 @@ import SwiftGifOrigin
 import AVKit
 
 var currentUser: JSON!
+var loggedInUser : JSON!
 let social = SocialLoginClass()
 var profileVC: ProfileViewController!
 var nationalityPage: AddNationalityNewViewController!

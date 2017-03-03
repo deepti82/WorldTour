@@ -8,25 +8,22 @@
 
 import UIKit
 
-class SignInFullView: UIView {
-
-    @IBOutlet weak var twitterLabel: LeftPaddedLabel!
-    @IBOutlet weak var twitterButton: UIButton!
+class SignInFullView: UIView {    
     @IBOutlet weak var googleLabel: LeftPaddedLabel!
     @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var facebookLabel: LeftPaddedLabel!
     @IBOutlet weak var tncFooter: LeftPaddedLabel!
-//    @IBOutlet weak var loginBigButton: UIButton!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var instagramButton: UIButton!
-    @IBOutlet weak var instagramLabel: LeftPaddedLabel!
+    @IBOutlet weak var loginButton: UIButton!    
     
     @IBOutlet weak var facebookStack: UIStackView!
-    @IBOutlet weak var twitterStack: UIStackView!
     @IBOutlet weak var googleStack: UIStackView!
-    @IBOutlet weak var instagramStack: UIStackView!
     @IBOutlet weak var loginStack: UIStackView!
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var requestLabel: UILabel!
+    @IBOutlet weak var autoMigrateLabel: UILabel!
     
 //    @IBOutlet weak var textField1: UITextField!
 //    @IBOutlet weak var textField2: UITextField!

@@ -12,6 +12,7 @@ class LogInViewController: UIViewController {
 
     @IBOutlet weak var videoScrollView: UIScrollView!
     var layout:HorizontalLayout!
+    var logIn = LogInView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,17 +38,15 @@ class LogInViewController: UIViewController {
         self.customNavigationBar(left: leftButton, right: nil)
     
         
-        let logIn = LogInView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 400))
+        logIn = LogInView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 450))
         logIn.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
         self.view.addSubview(logIn)
         
+        
+        logIn.logInButton.addTarget(self, action: #selector(LogInViewController.loginTabbed(_:)), for: .touchUpInside)
         logIn.fbButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), for: .touchUpInside)
         logIn.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), for: .touchUpInside)
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        print("in appear")
     }
     
     func facebookSignUp(_ sender: AnyObject) {
@@ -62,16 +61,41 @@ class LogInViewController: UIViewController {
         
     }
     
-    func twitterSignUp(_ sender: AnyObject) {
+    func loginTabbed(_ sender: AnyObject) {
+        print("\n loginTabbed ")      
         
-        social.twitterLogin()
+        let emailTxt = logIn.emailTxt.text //"testuser@mailinator.com" //logIn.nameField.text!
+        let passwordTxt =  logIn.passwordTxt.text //"testuser1" //logIn.passwordField.text!
         
-    }
-    
-    func igSignUp(_ sender: AnyObject) {
-        
-        //        social.googleLogin()
-        
+        if emailTxt != "" && passwordTxt != "" {
+            
+            request.loginUser(email: emailTxt!, password: passwordTxt!) { (response) in
+                
+                DispatchQueue.main.async(execute: {
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        //Signup on Success
+                        let signUpFullVC = self.storyboard?.instantiateViewController(withIdentifier: "signUpTwo") as! SignInPageViewController
+                        loggedInUser = response["data"]
+                        self.navigationController?.pushViewController(signUpFullVC, animated: true)
+                    }
+                    else {                    
+                        print("response error!")
+                    }                    
+                })                
+            }            
+        }
+        else {
+            let errorAlert = UIAlertController(title: "Error", message: "Please fill email and password properly", preferredStyle: UIAlertControllerStyle.alert)
+            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                (result : UIAlertAction) -> Void in
+                //Cancel Action
+            }            
+            errorAlert.addAction(DestructiveAction)
+            self.navigationController?.present(errorAlert, animated: true, completion: nil)
+        }        
     }
 
     override func didReceiveMemoryWarning() {

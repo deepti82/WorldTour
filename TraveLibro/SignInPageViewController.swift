@@ -12,7 +12,7 @@ import UIKit
 class SignInPageViewController: UIViewController {
     
     var keyboardUp = false
-    var params = [String: String]()
+//    var params = [String: String]()
     var pageView: SignInFullView!
     
     override func viewDidLoad() {
@@ -31,6 +31,7 @@ class SignInPageViewController: UIViewController {
         
         pageView = SignInFullView(frame: CGRect(x: 0, y: 60, width: self.view.frame.size.width, height: self.view.frame.size.height - 60))
         self.view.addSubview(pageView)
+        
         pageView.loginButton.addTarget(self, action: #selector(SignInPageViewController.gotoLogin(_:)), for: .touchUpInside)
         pageView.facebookButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), for: .touchUpInside)
         pageView.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), for: .touchUpInside)
@@ -39,7 +40,7 @@ class SignInPageViewController: UIViewController {
         let googleTap = UITapGestureRecognizer(target: self, action: #selector(SignInPageViewController.googleSignUp(_:)))       
         
         pageView.facebookLabel.addGestureRecognizer(fbTap)
-        pageView.googleLabel.addGestureRecognizer(googleTap)
+        pageView.googleLabel.addGestureRecognizer(googleTap)        
         
 //        pageView.loginBigButton.addTarget(self, action: #selector(SignInPageViewController.signedUp(_:)), forControlEvents: .TouchUpInside)
 //        pageView.textField2.secureTextEntry = true
@@ -62,6 +63,42 @@ class SignInPageViewController: UIViewController {
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
 //        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setData()
+    }
+    
+    func setData() {
+        print("\n LoggedInUser : \(loggedInUser)")
+        
+        if loggedInUser != nil {
+            //Existing User
+            print("\n Existing user")
+            pageView.profileImage.isHidden = false
+            pageView.messageLabel.isHidden = false
+            pageView.requestLabel.isHidden = false
+            pageView.loginStack.isHidden = true
+            pageView.autoMigrateLabel.isHidden = false
+            pageView.tncFooter.isHidden = true
+            
+            let url = loggedInUser["profilePicture"].stringValue
+            pageView.profileImage.hnk_setImageFromURL(NSURL(string: url) as! URL)
+            pageView.messageLabel.text = "Hi \(loggedInUser["name"]), We have updated the app for quicker and faster log-in process."            
+        }
+        else {
+            //New User
+            print("\n New user")
+            pageView.profileImage.isHidden = true
+            pageView.messageLabel.isHidden = true
+            pageView.requestLabel.isHidden = true
+            pageView.loginStack.isHidden = false
+            pageView.autoMigrateLabel.isHidden = true
+            pageView.tncFooter.isHidden = false                        
+        }        
+    }
+    
+    //MARK: - Button actions
     
     func facebookSignUp(_ sender: AnyObject) {
         

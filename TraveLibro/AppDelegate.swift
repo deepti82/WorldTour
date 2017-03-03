@@ -127,10 +127,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         let nationality = storyboard.instantiateViewController(withIdentifier: "nationalityNew") as!AddNationalityNewViewController
         
-
         let PJController = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-        PJController.displayData = "popular"        
-
+        PJController.displayData = "popular"
         
         leftViewController.mainViewController = nvc
         
@@ -312,8 +310,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             (result : UIAlertAction) -> Void in
             //Login Action
             
-            print("\n showing loging view controller")
-            
             let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
             
             let nvc = UINavigationController(rootViewController: signInVC)
@@ -330,15 +326,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         checkAlertController.addAction(DestructiveAction)
         checkAlertController.addAction(okAction)
         print("globalNavigationController: \(globalNavigationController)")
-        globalNavigationController.visibleViewController?.present(checkAlertController, animated: true, completion: nil)
-        
-        
-        
+        globalNavigationController.topViewController?.present(checkAlertController, animated: true, completion: nil)
     }
     
-    
-    
 }
+
 
 func addTopBorder(_ color: UIColor, view: UIView, borderWidth: CGFloat) {
     let border = CALayer()

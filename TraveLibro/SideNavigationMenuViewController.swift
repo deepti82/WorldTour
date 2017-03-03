@@ -23,7 +23,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var myProfileViewController: UIViewController!
     var signOutViewController: UIViewController!
     
-    let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Blogs", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
+    let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
     
     @IBOutlet weak var profileViewHeightConstraint: NSLayoutConstraint!
     
@@ -163,6 +163,11 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SideMenuTableViewCell
         cell.menuLabel.text = labels[(indexPath as NSIndexPath).item]
+        
+        if indexPath.row == 6 && !(currentUser != nil) {     // Login/Logout Option
+            cell.menuLabel.text = "Login"            
+        }
+        
         cell.selectionStyle = .none
         return cell
         
@@ -186,23 +191,37 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         case 1:
             self.slideMenuController()?.changeMainViewController(self.exploreDestinationsController, close: true)
         case 2:
-            self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)
+            self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
         case 3:
-            self.slideMenuController()?.changeMainViewController(self.blogsController, close: true)
-        case 4:
             self.slideMenuController()?.changeMainViewController(self.inviteFriendsController, close: true)
-        case 5:
+        case 4:
             self.slideMenuController()?.changeMainViewController(self.rateUsController, close: true)
+        case 5:
+            if currentUser != nil {
+                self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
+            }
+            else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            }            
         case 6:
-            self.slideMenuController()?.changeMainViewController(self.feedbackController, close: true)
-        case 7:
-            user.dropTable()
-            
+            if currentUser != nil {
+                user.dropTable()
+            }
             self.slideMenuController()?.changeMainViewController(self.signOutViewController, close: true)
-        case 8:
-            self.slideMenuController()?.changeMainViewController(self.localLifeController, close: true)
+        case 7:
+            if currentUser != nil {
+                self.slideMenuController()?.changeMainViewController(self.localLifeController, close: true)
+            }
+            else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            }
         default:
-            self.slideMenuController()?.changeMainViewController(self.homeController, close: true)
+            if currentUser != nil {
+                self.slideMenuController()?.changeMainViewController(self.homeController, close: true)
+            }
+            else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            }
         }
     }
     

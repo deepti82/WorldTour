@@ -91,7 +91,6 @@ class Navigation {
         do {
             let opt = try HTTP.POST(adminBackendUrl + "reportProblems/save", parameters: params)
             opt.start { response in
-                print("started response: \(response)")
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }
@@ -113,7 +112,6 @@ class Navigation {
             let opt = try HTTP.POST(adminUrl + "user/editUser", parameters: params)
             //            print("request: \(opt)")
             opt.start { response in
-                print("started response: \(response)")
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }
@@ -136,7 +134,7 @@ class Navigation {
             let opt = try HTTP.POST(adminUrl + "user/getOne", parameters: params)
             //            print("request: \(opt)")
             opt.start { response in
-                print("started response: \(response)")
+//                print("started response: \(response)")
                 if let err = response.error {
                     print("error: \(err.localizedDescription)")
                 }
@@ -3229,7 +3227,7 @@ class Navigation {
     
     
     
-    //MARK: - fetch popular items
+    //MARK: - Fetch popular items
     
     func getPopularJourney(userId: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         
@@ -3277,6 +3275,7 @@ class Navigation {
         }
     
     }
+    
     func getPopularItinerary(userId: String, pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         
         do {
@@ -3367,7 +3366,6 @@ class Navigation {
         }
         
     }
-
     
     func getPopularUsers(pagenumber: Int, completion: @escaping ((JSON) -> Void)) {
         
@@ -3403,6 +3401,77 @@ class Navigation {
                     let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
                     completion(JSON(result))
                     
+                } catch {
+                    print("Error: \(error)")
+                }
+            }
+            
+            task.resume()
+            
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+        
+    }
+    
+    
+    //MARK: - Existing User Login API's
+    
+    func loginUser(email: String, password: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let opt = try HTTP.POST(adminUrl + "user/loginApp", parameters: ["email": email,"password":password])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
+    
+    func changeLogin(id: String, facebookID: String?, googleID: String?, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            var params: JSON = []
+            
+            if facebookID != nil {
+                params = ["_id":id, "facebookID": facebookID!]
+            }
+            else if googleID != nil {
+                params = ["_id":id, "googleID": googleID!]
+            }
+            
+            let jsonData = try params.rawData()
+            
+            // create post request
+            let url = URL(string: adminUrl + "user/changeLoginApp")!
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            // insert json data to the request
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                if error != nil{
+                    print("Error -> \(error)")
+                    return
+                }
+                
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                    print("\n changeLogin response : \(result)")
+                    completion(JSON(result))                    
                 } catch {
                     print("Error: \(error)")
                 }
