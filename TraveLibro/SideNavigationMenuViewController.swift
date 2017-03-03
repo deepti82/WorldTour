@@ -143,6 +143,10 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 profile.image.hnk_setImageFromURL(getImageUrl!)
                 backgroundImage.hnk_setImageFromURL(getImageUrl!)
             }
+            if currentUser["homeCountry"] != nil {
+                profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
+            }
+            
             makeTLProfilePicture(profilePicture)
             backgroundImage!.addBlurEffect(30, times: 1)
         }        

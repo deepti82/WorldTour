@@ -203,7 +203,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         MAM.backgroundColor = UIColor.clear
         MAMatterView!.addSubview(MAM)
         
-        var imageName = ""
+        var imageName = ""        
         
         if currentUser != nil {
             if displayData == "search" {
@@ -217,6 +217,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             
             if currentUser["homeCountry"] != nil {
                 countryName.text = currentUser["homeCountry"]["name"].string!
+                profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
             }
             
             if currentUser["homeCity"] != nil {

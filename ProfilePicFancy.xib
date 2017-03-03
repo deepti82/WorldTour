@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -37,22 +37,22 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPQ-Vy-YQ8">
-                    <rect key="frame" x="167" y="91" width="34" height="20"/>
+                    <rect key="frame" x="167" y="90.5" width="34" height="20"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indian_flag_new" translatesAutoresizingMaskIntoConstraints="NO" id="BeR-6U-Upq">
-                    <rect key="frame" x="124" y="81" width="43" height="39"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="BeR-6U-Upq">
+                    <rect key="frame" x="124" y="85" width="43" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="39" id="aZu-UC-vft"/>
+                        <constraint firstAttribute="height" constant="30" id="aZu-UC-vft"/>
                         <constraint firstAttribute="width" constant="43" id="tPx-lQ-Wxs"/>
                     </constraints>
                 </imageView>
             </subviews>
             <constraints>
                 <constraint firstItem="AQy-h2-FAf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-10" id="FC5-Y9-MGk"/>
-                <constraint firstAttribute="bottom" secondItem="BeR-6U-Upq" secondAttribute="bottom" id="GqX-SH-1DJ"/>
+                <constraint firstAttribute="bottom" secondItem="BeR-6U-Upq" secondAttribute="bottom" constant="5" id="GqX-SH-1DJ"/>
                 <constraint firstItem="LYd-ac-rIV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Joe-GO-HWd"/>
                 <constraint firstItem="AQy-h2-FAf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-15" id="ZW1-YN-UnL"/>
                 <constraint firstItem="ZPQ-Vy-YQ8" firstAttribute="leading" secondItem="BeR-6U-Upq" secondAttribute="trailing" id="mAo-iv-jff"/>
@@ -66,7 +66,6 @@
         </view>
     </objects>
     <resources>
-        <image name="indian_flag_new" width="70" height="70"/>
         <image name="logo-default" width="600" height="600"/>
         <image name="onlyWaves" width="138" height="138"/>
     </resources>

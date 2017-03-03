@@ -212,6 +212,7 @@ class AddNationalityNewViewController: UIViewController, UIPickerViewDelegate {
                                 }
                                 else {
                                     Toast(text: "User's nation updated").show()
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentUserUpdated"), object: nil)
                                     self.popVC(UIButton())
                                 }
                             } else {
