@@ -130,9 +130,11 @@ class ActivityFeedFooterBasic: UIView {
     
     
     func showLike(_ sender: UITapGestureRecognizer) {
-        print("in footer tap out")
-        let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeTableViewController
-                feedVC.postId = postTop["_id"].stringValue
+        print("in footer tap out \(postTop)")
+        let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
+        feedVC.postId = postTop["_id"].stringValue
+        feedVC.type = postTop["type"].stringValue
+        feedVC.title = postTop["name"].stringValue
         globalNavigationController.pushViewController(feedVC, animated: true)
     }
     

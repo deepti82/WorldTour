@@ -484,6 +484,7 @@
 		FCE877FA1E309386005EE913 /* ActivityHeaderTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = FCE877F91E309386005EE913 /* ActivityHeaderTag.xib */; };
 		FCE877FC1E3093A4005EE913 /* ActivityHeaderTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */; };
 		FCE877FF1E30CA6A005EE913 /* ActivityFeedsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE877FE1E30CA6A005EE913 /* ActivityFeedsLayout.swift */; };
+		FCEB1BFA1E69447C00418812 /* LikeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEB1BF91E69447C00418812 /* LikeUserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -992,6 +993,7 @@
 		FCE877F91E309386005EE913 /* ActivityHeaderTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityHeaderTag.xib; sourceTree = "<group>"; };
 		FCE877FB1E3093A4005EE913 /* ActivityHeaderTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHeaderTag.swift; sourceTree = "<group>"; };
 		FCE877FE1E30CA6A005EE913 /* ActivityFeedsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedsLayout.swift; sourceTree = "<group>"; };
+		FCEB1BF91E69447C00418812 /* LikeUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeUserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2100,6 +2102,7 @@
 				FCBF88CB1E2E343B0092CB9D /* ActivityFeedsController.swift */,
 				840E256E1E5EF423003220FE /* LoaderViewController.swift */,
 				FCB571941E66DBF2002D4C30 /* LikeTableViewController.swift */,
+				FCEB1BF91E69447C00418812 /* LikeUserViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -3441,6 +3444,7 @@
 				843510E21DF7F86400C3D8EE /* QuickIteneraryThree.swift in Sources */,
 				C2A36D041DF930DC0091AD56 /* QuickItineraryPreviewViewController.swift in Sources */,
 				C23EB1E51CFF07EA005B5CE8 /* AddPostsLocalLife.swift in Sources */,
+				FCEB1BFA1E69447C00418812 /* LikeUserViewController.swift in Sources */,
 				C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */,
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,
 				C25297261DF00E92007A8571 /* Extensions.swift in Sources */,

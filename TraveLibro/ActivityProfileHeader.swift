@@ -97,9 +97,10 @@ class ActivityProfileHeader: UIView {
     }
     
     @IBAction func followClick(_ sender: UIButton) {
+        print("in follow clicked \(currentFeed)")
         if currentUser != nil {
             if followButton.titleLabel?.text == "Follow" {
-                request.followUser(currentUser["_id"].string!, followUserId: currentFeed["postCreator"]["_id"].stringValue, completion: {(response) in
+                request.followUser(currentUser["_id"].string!, followUserId: currentFeed["user"]["_id"].stringValue, completion: {(response) in
                     
                     DispatchQueue.main.async(execute: {
                         
@@ -123,7 +124,7 @@ class ActivityProfileHeader: UIView {
                     })
                 })
             }else{
-                request.unfollow(currentUser["_id"].string!, unFollowId: currentFeed["postCreator"]["_id"].stringValue, completion: {(response) in
+                request.unfollow(currentUser["_id"].string!, unFollowId: currentFeed["user"]["_id"].stringValue, completion: {(response) in
                     DispatchQueue.main.async(execute: {
                         if response.error != nil {
                             

@@ -68,7 +68,18 @@ class ActivityFeedFooter: UIView {
         commentButton.imageView?.contentMode = .scaleAspectFit
         likeButton.imageView?.contentMode = .scaleAspectFit        
         self.likeHeart.text = String(format: "%C", faicon["likes"]!)
+        let tapout1 = UITapGestureRecognizer(target: self, action: #selector(ActivityFeedFooter.showLike(_:)))
+        tapout1.numberOfTapsRequired = 1
+        likeViewLabel.addGestureRecognizer(tapout1)
         
+    }
+    func showLike(_ sender: UITapGestureRecognizer) {
+        print("in footer tap out \(postTop)")
+        let feedVC = storyboard!.instantiateViewController(withIdentifier: "likeTable") as! LikeUserViewController
+        feedVC.postId = postTop["_id"].stringValue
+        feedVC.type = postTop["type"].stringValue
+        feedVC.title = postTop["name"].stringValue
+        globalNavigationController.pushViewController(feedVC, animated: true)
     }
     
     @IBAction func sendComments(_ sender: UIButton) {

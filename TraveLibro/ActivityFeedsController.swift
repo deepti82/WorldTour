@@ -105,6 +105,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                         self.loadStatus = true
                         
                         for post in request["quickItinerary"].array! {
+                            
                             self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
