@@ -167,9 +167,9 @@
                             <rect key="frame" x="0.0" y="68" width="400" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zV2-Ih-s2k">
-                                    <rect key="frame" x="31" y="4" width="339" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="4" width="400" height="0.0"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="339" id="YhG-eS-eBT"/>
+                                        <constraint firstAttribute="width" constant="400" id="YhG-eS-eBT"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -194,13 +194,16 @@
                             <color key="tintColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="z2V-7e-khq" firstAttribute="centerX" secondItem="zV2-Ih-s2k" secondAttribute="centerX" id="08P-hR-hMG"/>
+                                <constraint firstItem="zV2-Ih-s2k" firstAttribute="leading" secondItem="dfr-Js-I8N" secondAttribute="leading" id="9YO-bY-Je1"/>
                                 <constraint firstItem="zV2-Ih-s2k" firstAttribute="centerX" secondItem="dfr-Js-I8N" secondAttribute="centerX" id="BR8-3b-8nE"/>
                                 <constraint firstAttribute="height" constant="50" id="M2d-fd-960"/>
                                 <constraint firstItem="uDU-BI-qyt" firstAttribute="top" secondItem="dfr-Js-I8N" secondAttribute="top" constant="13" id="eHx-N8-XBy"/>
                                 <constraint firstItem="z2V-7e-khq" firstAttribute="top" secondItem="zV2-Ih-s2k" secondAttribute="bottom" constant="-4" id="lHU-mX-Hhs"/>
                                 <constraint firstItem="zV2-Ih-s2k" firstAttribute="top" secondItem="dfr-Js-I8N" secondAttribute="top" constant="4" id="rE4-kh-eBE"/>
                                 <constraint firstAttribute="bottom" secondItem="uDU-BI-qyt" secondAttribute="bottom" constant="12" id="t7Z-SZ-K1Y"/>
+                                <constraint firstItem="z2V-7e-khq" firstAttribute="centerX" secondItem="zV2-Ih-s2k" secondAttribute="centerX" id="tP8-ys-E9s"/>
                                 <constraint firstAttribute="trailing" secondItem="uDU-BI-qyt" secondAttribute="trailing" constant="16" id="unj-AP-DVo"/>
+                                <constraint firstAttribute="trailing" secondItem="zV2-Ih-s2k" secondAttribute="trailing" id="yeb-at-lJ2"/>
                             </constraints>
                         </view>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWW-f4-BJZ">
@@ -407,6 +410,7 @@
                 <constraint firstItem="dgM-iP-oY1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="43a-3z-b3g"/>
                 <constraint firstItem="dgM-iP-oY1" firstAttribute="top" secondItem="W5e-5K-0xm" secondAttribute="bottom" constant="45" id="9uS-3G-KUz"/>
                 <constraint firstItem="n7C-a2-fLC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="A8Q-Eb-QHd"/>
+                <constraint firstItem="zV2-Ih-s2k" firstAttribute="centerX" secondItem="n7C-a2-fLC" secondAttribute="centerX" id="Avs-Dj-xPS"/>
                 <constraint firstItem="Aqf-8y-8EK" firstAttribute="top" secondItem="aZc-x0-efS" secondAttribute="bottom" constant="35" id="CNS-dl-bGa"/>
                 <constraint firstAttribute="trailing" secondItem="nL6-3q-GMr" secondAttribute="trailing" constant="4" id="Eu0-Sj-Aq0"/>
                 <constraint firstItem="IfS-Jb-lY3" firstAttribute="top" secondItem="aZc-x0-efS" secondAttribute="bottom" constant="36.5" id="FWS-Cd-qYb"/>

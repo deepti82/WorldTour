@@ -227,11 +227,11 @@ class AddActivityNew: SpringView, UITextViewDelegate, PlayerDelegate, UITextFiel
         button.setTitleColor(mainBlueColor, for: .normal)
         button.sizeToFit()
         button.frame.size.width = button.frame.size.width + 15
-        button.frame.size.height = 24
+        button.frame.size.height = 22
 //        button.titleLabel?.textColor = UIColor(hex: "#424242")
 //        button.titleLabel?.tintColor = UIColor.black
         button.layer.cornerRadius = 5
-        button.layer.borderColor = lightGreyColor.cgColor
+        button.layer.borderColor = mainBlueColor.cgColor
         button.layer.borderWidth = 1.0
         locationHorizontalScroll.contentSize.width += button.frame.width + 10
     }

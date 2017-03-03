@@ -47,7 +47,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.setNavigationBarItem()
         
-        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
+        let footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65
+, width: self.view.frame.width, height: 65))
         footer.layer.zPosition = 1000
         footer.feedView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.goToFeed(_:))))
         footer.notifyView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIViewController.gotoNotifications(_:))))

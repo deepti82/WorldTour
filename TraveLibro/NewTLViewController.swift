@@ -1093,7 +1093,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         self.addPostsButton.layer.zPosition = 5
         self.view.addSubview(self.addPostsButton)
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         self.mainFooter.travelLifeIcon.tintColor = mainOrangeColor
@@ -1150,7 +1150,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                 }
                 UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
                     self.addPostsButton.frame.origin.y = self.view.frame.height - 120
-                    self.mainFooter.frame.origin.y = self.view.frame.height - 70
+                    self.mainFooter.frame.origin.y = self.view.frame.height - 65
                 }, completion: nil)
             }
         }

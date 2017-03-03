@@ -20,7 +20,7 @@ class PopularJourneysViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
         self.mainFooter.layer.zPosition = 5
         self.view.addSubview(self.mainFooter)
         getDarkBackGround(self)
@@ -126,7 +126,7 @@ class PopularJourneysViewController: UIViewController, UITableViewDelegate, UITa
         } else {
             self.navigationController?.setNavigationBarHidden(false, animated: true)
             
-            self.mainFooter.frame.origin.y = self.view.frame.height - 70
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65
             
         }
     }

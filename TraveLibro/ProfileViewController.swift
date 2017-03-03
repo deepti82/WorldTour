@@ -190,7 +190,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
         profile = ProfilePicFancy(frame: CGRect(x: 10, y: 0, width: profileView.frame.width, height: profileView.frame.height))
         profile.backgroundColor = UIColor.clear
         profileView.addSubview(profile)
-        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
+        footer = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
         self.view.addSubview(footer)
         
         profilePicture.isHidden = true

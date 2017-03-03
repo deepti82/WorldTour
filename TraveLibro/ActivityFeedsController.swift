@@ -34,7 +34,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         loader.showOverlay(self.view)
         
         if displayData != "popular" && displayData != "popitinerary" {
-            self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 70, width: self.view.frame.width, height: 70))
+            self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
             self.mainFooter.layer.zPosition = 5
             self.view.addSubview(self.mainFooter)
         }
@@ -285,7 +285,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         } else {
                 self.navigationController?.setNavigationBarHidden(false, animated: true)
 
-            self.mainFooter.frame.origin.y = self.view.frame.height - 70
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65
 
         }
     }

@@ -194,6 +194,7 @@
                 <constraint firstAttribute="trailing" secondItem="A0e-Q5-EUW" secondAttribute="trailing" constant="14" id="DKO-SA-rOm"/>
                 <constraint firstItem="A0e-Q5-EUW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="EPC-DC-Kqy"/>
                 <constraint firstItem="A0e-Q5-EUW" firstAttribute="trailing" secondItem="hTK-AH-Yaz" secondAttribute="trailing" constant="1" id="HYs-V3-HvR"/>
+                <constraint firstAttribute="trailing" secondItem="eLF-mr-ZG6" secondAttribute="trailing" id="JGS-dP-IpF"/>
                 <constraint firstItem="z24-8B-nCF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KXe-QY-aun"/>
                 <constraint firstItem="A0e-Q5-EUW" firstAttribute="leading" secondItem="hTK-AH-Yaz" secondAttribute="leading" constant="1" id="LBV-am-9yx"/>
                 <constraint firstItem="A0e-Q5-EUW" firstAttribute="centerX" secondItem="1LT-LG-HMP" secondAttribute="centerX" constant="1" id="O72-u8-Ujd"/>
@@ -205,6 +206,7 @@
                 <constraint firstAttribute="bottom" secondItem="z24-8B-nCF" secondAttribute="bottom" id="l9B-Js-iFU"/>
                 <constraint firstItem="hTK-AH-Yaz" firstAttribute="top" secondItem="A0e-Q5-EUW" secondAttribute="bottom" constant="1" id="q6h-yr-orX"/>
                 <constraint firstItem="eLF-mr-ZG6" firstAttribute="leading" secondItem="z24-8B-nCF" secondAttribute="leading" id="urU-wZ-tLS"/>
+                <constraint firstItem="eLF-mr-ZG6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="y9c-2f-agP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="871.5" y="-386"/>

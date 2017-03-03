@@ -429,7 +429,7 @@ extension NewTLViewController {
             addNewView.layer.zPosition = 1000
             addNewView.profilePicture.contentMode = .scaleAspectFill
             addNewView.profilePicture.hnk_setImageFromURL(URL(string:"\(adminUrl)upload/readFile?file=\(currentUser["profilePicture"])&width=500")!)
-            makeTLProfilePicture(addNewView.profilePicture)
+            makeTLProfilePictureNew(addNewView.profilePicture)
             addNewView.profileName.text = currentUser["name"].string!
             self.view.addSubview(addNewView)
             addNewView.otgJourneyButton.addTarget(self, action: #selector(NewTLViewController.newOtg(_:)), for: .touchUpInside)
