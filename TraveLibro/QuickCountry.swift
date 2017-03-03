@@ -22,7 +22,8 @@ class QuickCountry: UIView {
         deleteOut.setTitle(String(format: "%C", faicon["trash"]!), for: UIControlState())
     }
     
-    @IBAction func deleteCountry(_ sender: Any) {
+    @IBAction func deleteCountry(_ sender: UIButton) {
+        print("delete")
         quickItinery["countryVisited"].arrayObject?.remove(at: self.countryTag)
         selectedCountry = []
         selectedCity = []
@@ -31,6 +32,7 @@ class QuickCountry: UIView {
     }
     
     @IBAction func editCountry(_ sender: UIButton) {
+        print("edit")
         selectedCountry = quickItinery["countryVisited"][self.countryTag]
         selectedCity = quickItinery["countryVisited"][self.countryTag]["cityVisited"]
         parentView.fillText()
