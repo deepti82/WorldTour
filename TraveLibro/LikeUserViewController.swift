@@ -86,10 +86,10 @@ class LikeUserViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "likeCell", for: indexPath) as! LikeCell
-        cell.name.text = self.data[indexPath.row]["name"].stringValue
-        cell.profile.hnk_setImageFromURL(getImageURL(self.data[indexPath.row]["profilePicture"].stringValue, width: 300))
-        cell.slug.text = self.data[indexPath.row]["urlSlug"].stringValue
-        makeTLProfilePicture(cell.profile)
+        cell.profileName.text = self.data[indexPath.row]["name"].stringValue
+        cell.profileImage.hnk_setImageFromURL(getImageURL(self.data[indexPath.row]["profilePicture"].stringValue, width: 300))
+        cell.urlSlurg.text = self.data[indexPath.row]["urlSlug"].stringValue
+        makeTLProfilePicture(cell.profileImage)
         return cell
     }
     

@@ -11513,12 +11513,12 @@
         <scene sceneID="Zll-qO-LCK">
             <objects>
                 <tableViewController storyboardIdentifier="likeTable" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kif-WX-aRf" customClass="LikeUserViewController" customModule="TraveLibro" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vv4-TL-TQz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" id="vv4-TL-TQz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="likeCell" rowHeight="55" id="LpX-jp-IJy" customClass="FollowersCell" customModule="TraveLibro" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="likeCell" rowHeight="55" id="LpX-jp-IJy" customClass="LikeCell" customModule="TraveLibro" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LpX-jp-IJy" id="AaP-QU-rRc">
@@ -11557,7 +11557,7 @@
                                                 <color key="titleColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="followTap:" destination="LpX-jp-IJy" eventType="touchUpInside" id="CiU-Yr-GKB"/>
+                                                <action selector="followTap:" destination="LpX-jp-IJy" eventType="touchUpInside" id="5d6-hK-o00"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -11577,10 +11577,10 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="followButton" destination="xhq-ce-1Kz" id="TOd-cr-7XT"/>
-                                    <outlet property="profileImage" destination="WFJ-Xx-d2I" id="8bJ-IH-uKg"/>
-                                    <outlet property="profileName" destination="zXA-hh-T4G" id="EFN-S7-0JW"/>
-                                    <outlet property="urlSlurg" destination="OFc-IA-TiN" id="J5J-gb-ZrQ"/>
+                                    <outlet property="followButton" destination="xhq-ce-1Kz" id="HuG-8E-ERk"/>
+                                    <outlet property="profileImage" destination="WFJ-Xx-d2I" id="ZIz-fd-Jdk"/>
+                                    <outlet property="profileName" destination="zXA-hh-T4G" id="yhO-j6-fht"/>
+                                    <outlet property="urlSlurg" destination="OFc-IA-TiN" id="uvd-fi-VFx"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
