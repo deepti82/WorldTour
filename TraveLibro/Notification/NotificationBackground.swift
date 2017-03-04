@@ -28,7 +28,7 @@ class NotificationBackground: UIView {
         view.frame = bounds        
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        NFBackView.layer.cornerRadius = 6
+        NFBackView.layer.cornerRadius = 5
         
         self.addSubview(view);
     }

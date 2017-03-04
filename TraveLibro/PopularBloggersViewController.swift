@@ -122,6 +122,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "popularCell") as! PopularBloggerTableViewCell
+        cell.cellBackgroundView.layer.cornerRadius = 5
         cell.titleTag.layer.cornerRadius = 5
         cell.titleTag.layer.borderColor = mainBlueColor.cgColor
         cell.titleTag.layer.borderWidth = 1.5
@@ -220,6 +221,7 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
 
 class PopularBloggerTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var cellBackgroundView: UIView!
     @IBOutlet weak var titleTag: UIView!
     @IBOutlet weak var cameraIcon: UIImageView!
     @IBOutlet weak var videoIcon: UIImageView!
