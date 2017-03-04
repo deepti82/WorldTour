@@ -33,10 +33,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
         getDarkBackGround(self)
         tableView.backgroundColor = UIColor(patternImage: UIImage(named: "darkBgNew")!)
         trialVariable = []
-        let calendar = NSCalendar.current
-        let dateFormatterMonth = DateFormatter()
-        let dateFormatter = DateFormatter()
-        let components = calendar.dateComponents([.month , .year], from: date as Date)
+        let dateFormatter = DateFormatter()        
         dateFormatter.dateFormat = "yyyy"
         currentYear = Int(dateFormatter.string(from: date as Date))!
         let leftButton = UIButton()
@@ -48,7 +45,7 @@ class AddYearsCountriesVisitedTableViewController: UITableViewController {
         rightButton.setTitle("Save", for: UIControlState())
         rightButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 15)
         rightButton.addTarget(self, action: #selector(SelectCountryViewController.saveCountriesVisited(_:)), for: .touchUpInside)
-        rightButton.frame = CGRect(x: 10, y: 0, width: 70, height: 30)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
         self.customNavigationTextBar(left: leftButton, right: rightButton, text: "Countries Visited")
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
 
