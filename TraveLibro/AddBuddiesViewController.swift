@@ -115,8 +115,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         peopleImage.tintColor = mainOrangeColor
         buddiesTableView.backgroundColor = UIColor.clear
         buddiesCollectionView.backgroundColor = UIColor.clear
-        search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: [NSForegroundColorAttributeName: UIColor.white])
-        search.searchField.attributedPlaceholder = NSMutableAttributedString(string:"Search buddies", attributes: [NSFontAttributeName:UIFont(name: "Avenir-Roman", size: 18)!])
+        search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search a Friend", attributes: [NSForegroundColorAttributeName: UIColor.white])
         search.leftLine.backgroundColor = mainOrangeColor
         search.rightLine.backgroundColor = mainOrangeColor
         search.bottomLine.backgroundColor = mainOrangeColor
