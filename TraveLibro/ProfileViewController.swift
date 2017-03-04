@@ -6,7 +6,7 @@ import SwiftGifOrigin
 
 var doRemove: Bool = true
 var globalProfileController:ProfileViewController!
-class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UIViewControllerPreviewingDelegate {
+class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIViewControllerPreviewingDelegate {
    
     @IBOutlet weak var scrollImage: UIScrollView!
     @IBOutlet weak var countryName: UILabel!
@@ -140,6 +140,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
             registerForPreviewing(with: self, sourceView: view)
         }
         
+        profileCollectionView.delegate = self
         globalProfileController = self
         transparentCardWhite(mainProfileView)
         profileUsername.adjustsFontSizeToFitWidth = true
@@ -366,6 +367,26 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func search(_ sender: AnyObject) {
         let searchVC = storyboard?.instantiateViewController(withIdentifier: "Search") as! SearchViewController
         globalNavigationController.pushViewController(searchVC, animated: true)
+    }
+    
+    //MARK: - Collection View Delagtes and Datasource
+    
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: (collectionView.frame.size.width/3 - 3), height: (collectionView.frame.size.width/3 - 3))
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
