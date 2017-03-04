@@ -7629,7 +7629,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manan Vora" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBs-Du-HtF">
                                                     <rect key="frame" x="51" y="15" width="97" height="25"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
-                                                    <color key="textColor" red="0.13725490870000001" green="0.1764705926" blue="0.29019609089999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="hnD-ct-suO">
@@ -7698,14 +7698,13 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hC8-Qe-ECv">
                                                     <rect key="frame" x="10" y="5" width="60" height="65"/>
                                                     <subviews>
-                                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fq-Mh-3AP">
-                                                            <rect key="frame" x="46" y="0.0" width="15" height="15"/>
+                                                        <button opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fq-Mh-3AP">
+                                                            <rect key="frame" x="40" y="0.0" width="15" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="15" id="Id5-rZ-OmV"/>
                                                                 <constraint firstAttribute="width" constant="15" id="Z1x-em-IWb"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="14"/>
-                                                            <state key="normal">
+                                                            <state key="normal" image="ic_cancel_tl-1">
                                                                 <color key="titleColor" red="0.2941176593" green="0.79607844350000001" blue="0.73333334920000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </state>
                                                         </button>
@@ -7741,7 +7740,7 @@
                                                         <constraint firstItem="6fq-Mh-3AP" firstAttribute="top" secondItem="hC8-Qe-ECv" secondAttribute="top" id="Kdz-qn-SdN"/>
                                                         <constraint firstAttribute="bottom" secondItem="cm4-48-nQ5" secondAttribute="bottom" constant="-10" id="hoa-f8-sRq"/>
                                                         <constraint firstItem="cy1-qo-BdH" firstAttribute="centerY" secondItem="hC8-Qe-ECv" secondAttribute="centerY" constant="-7.5" id="jSl-9h-HYk"/>
-                                                        <constraint firstAttribute="trailing" secondItem="6fq-Mh-3AP" secondAttribute="trailing" constant="-1" id="wZo-bT-OEU"/>
+                                                        <constraint firstAttribute="trailing" secondItem="6fq-Mh-3AP" secondAttribute="trailing" constant="5" id="wZo-bT-OEU"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
@@ -7774,7 +7773,7 @@
                                     <constraint firstAttribute="width" constant="100" id="Jzl-f7-lDP"/>
                                     <constraint firstAttribute="height" constant="21" id="s78-88-2wV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -7783,7 +7782,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="137" id="0ar-cv-KcQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -7836,7 +7835,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can only add buddies who follows you, to this journey." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="413-mm-6xC">
                                 <rect key="frame" x="18" y="230" width="339" height="21"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -11639,6 +11638,7 @@
         <image name="green_bg_new_small" width="60" height="60"/>
         <image name="grey1" width="74" height="77"/>
         <image name="halfnhalfbgGray" width="100" height="100"/>
+        <image name="ic_cancel_tl-1" width="23" height="21"/>
         <image name="india_gate" width="1097" height="734"/>
         <image name="indian_flag_new" width="70" height="70"/>
         <image name="info_circle" width="500" height="500"/>

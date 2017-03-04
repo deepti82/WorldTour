@@ -403,12 +403,6 @@
                             <real key="value" value="7"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="y">
-                            <real key="value" value="-25"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="scaleY">
-                            <real key="value" value="-25"/>
-                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>

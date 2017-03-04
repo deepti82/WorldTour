@@ -1986,6 +1986,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
                 self.view.frame.origin.y += 216
+                print("helololol")
                 print(keyboardSize.height)
             }
         }

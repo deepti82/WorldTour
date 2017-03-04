@@ -115,7 +115,8 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         peopleImage.tintColor = mainOrangeColor
         buddiesTableView.backgroundColor = UIColor.clear
         buddiesCollectionView.backgroundColor = UIColor.clear
-        search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+        search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search buddies", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        search.searchField.attributedPlaceholder = NSMutableAttributedString(string:"Search buddies", attributes: [NSFontAttributeName:UIFont(name: "Avenir-Roman", size: 18)!])
         search.leftLine.backgroundColor = mainOrangeColor
         search.rightLine.backgroundColor = mainOrangeColor
         search.bottomLine.backgroundColor = mainOrangeColor
@@ -219,25 +220,25 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             print("inside if statement")
             
             cell.buddyProfileImage.hnk_setImageFromURL(URL(string:imageUrl)!)
-            makeTLProfilePicture(cell.buddyProfileImage)
+            makeBuddiesTLProfilePicture(cell.buddyProfileImage)
             
         } else if imageUrl != "" {
             
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
             cell.buddyProfileImage.hnk_setImageFromURL(URL(string:getImageUrl)!)
-            makeTLProfilePicture(cell.buddyProfileImage)
+            makeBuddiesTLProfilePicture(cell.buddyProfileImage)
             
         }
         
         cell.tintColor = UIColor(red: 241/255, green: 242/255, blue: 242/255, alpha: 1)
         if indexPath.row % 2 == 0 {
             
-            cell.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+            cell.backgroundColor = UIColor.white.withAlphaComponent(0.8)
             
         }
         else {
             
-            cell.backgroundColor = UIColor.white.withAlphaComponent(0.7)
+            cell.backgroundColor = UIColor.white.withAlphaComponent(0.8)
             
         }
         
@@ -321,7 +322,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         if isUrl && imageUrl != "" {
             
             cell.buddyDp.hnk_setImageFromURL(URL(string: imageUrl)!)
-            makeTLProfilePictureBorderWhite(cell.buddyDp)
+            makeBuddiesTLProfilePicture(cell.buddyDp)
             
         }
             
@@ -330,7 +331,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             let getImageUrl = adminUrl + "upload/readFile?file=" + imageUrl + "&width=100"
             
             cell.buddyDp.hnk_setImageFromURL(URL(string: getImageUrl)!)
-            makeTLProfilePictureBorderWhite(cell.buddyDp)
+            makeBuddiesTLProfilePicture(cell.buddyDp)
             
         }
         
