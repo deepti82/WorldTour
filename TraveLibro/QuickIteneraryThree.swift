@@ -59,15 +59,14 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         print("heightscroll\(quickScroll)")
         print("blurblurblur\(blurBG)")
         
-        
         createLayout();
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         viewAdded = false
         fillText()
-        
-        
     }
     
     func fillText() {
@@ -84,14 +83,17 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    
     func createLayout() {
         countryVisited.text = ""
         cityVisited.text = ""
         fillText()
         verticalLayout.removeAll()
+        
         for (n,i) in quickItinery["countryVisited"] {
             
-            let quickCountry = QuickCountry(frame: CGRect(x: 0, y: 3, width: self.quickScroll.frame.width, height: 30))
+            let quickCountry = QuickCountry(frame: CGRect(x: 0, y: 3, width: 327, height: 30))
             
             quickCountry.countryName.text = i["name"].stringValue
             quickCountry.tag = Int(n)!
@@ -100,7 +102,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
             verticalLayout.addSubview(quickCountry)
             
             for (no,ob) in i["cityVisited"] {
-                let quickCity = QuickCity(frame: CGRect(x: 0, y: 3, width: self.quickScroll.frame.width, height: 30))
+                let quickCity = QuickCity(frame: CGRect(x: 0, y: 3, width: 327, height: 30))
                 quickCity.parentView = self
                 quickCity.cityName.text = ob["name"].stringValue
                 quickCity.countryTag = Int(n)!

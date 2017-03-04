@@ -3550,48 +3550,54 @@ class Navigation {
     
     func changeLogin(id: String, facebookID: String?, googleID: String?, completion: @escaping ((JSON) -> Void)) {
         
-        do {
-            var params: JSON = []
+        OneSignal.idsAvailable {(_ userId, _ pushToken) in
+            let deviceId = userId
             
-            if facebookID != nil {
-                params = ["_id":id, "facebookID": facebookID!]
-            }
-            else if googleID != nil {
-                params = ["_id":id, "googleID": googleID!]
-            }
-            
-            let jsonData = try params.rawData()
-            
-            // create post request
-            let url = URL(string: adminUrl + "user/changeLoginApp")!
-            let request = NSMutableURLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            // insert json data to the request
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-            
-            
-            let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
-                if error != nil{
-                    print("Error -> \(error)")
-                    return
+            do {
+                var params: JSON = []
+                
+                if facebookID != nil {
+                    params = ["_id":id, "facebookID": facebookID!, "deviceId":deviceId!]
+                }
+                else if googleID != nil {
+                    params = ["_id":id, "googleID": googleID!, "deviceId":deviceId!]
                 }
                 
-                do {
-                    let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
-                    print("\n changeLogin response : \(result)")
-                    completion(JSON(result))                    
-                } catch {
-                    print("Error: \(error)")
+                let jsonData = try params.rawData()
+                
+                // create post request
+                let url = URL(string: adminUrl + "user/changeLoginApp")!
+                let request = NSMutableURLRequest(url: url)
+                request.httpMethod = "POST"
+                
+                // insert json data to the request
+                request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+                request.httpBody = jsonData
+                
+                
+                let task = URLSession.shared.dataTask(with: request as URLRequest) {data, response, error in
+                    if error != nil{
+                        print("Error -> \(error)")
+                        return
+                    }
+                    
+                    do {
+                        let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:AnyObject]
+                        print("\n changeLogin response : \(result)")
+                        completion(JSON(result))                    
+                    } catch {
+                        print("Error: \(error)")
+                    }
                 }
+                
+                task.resume()
+                
+            } catch let error {
+                print("got an error creating the request: \(error)")
             }
             
-            task.resume()
-            
-        } catch let error {
-            print("got an error creating the request: \(error)")
         }
+        
         
     }
     

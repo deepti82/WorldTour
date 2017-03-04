@@ -11,7 +11,7 @@ import Toaster
 
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     internal var dataSourceOption: String = ""
-    internal var labels = ["Cellular and WiFi", "WiFi", "Cellular"]
+    internal var labels = ["Cellular and WiFi", "WiFi"]
     let localLoggedInUser = user.getUser(currentUser["_id"].stringValue)
     
     var selectedOption = ""
@@ -28,7 +28,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         print("NSLayoutConstraint: \(heightConstraintTable)")
         
         if dataSourceOption == "dataUploadOptions" {
-            labels = ["Cellular and WiFi", "WiFi", "Cellular"]
+            labels = ["Cellular and WiFi", "WiFi"]
         }
         else {
             labels = ["Public - Everyone", "Private - My Followers"]
