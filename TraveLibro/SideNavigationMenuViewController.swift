@@ -1,5 +1,6 @@
 import UIKit
 import SABlurImageView
+import Toaster
 var initialLogin = true
 
 class SideNavigationMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -197,7 +198,8 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         case 2:
             self.slideMenuController()?.changeMainViewController(self.popBloggersController, close: true)        
         case 3:
-            self.slideMenuController()?.changeMainViewController(self.inviteFriendsController, close: true)
+            self.shareButtonClicked(sender: cell)
+//            self.slideMenuController()?.changeMainViewController(self.inviteFriendsController, close: true)
         case 4:
             self.slideMenuController()?.changeMainViewController(self.rateUsController, close: true)
         case 5:
@@ -235,6 +237,24 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
 //        cell.backgroundColor = mainGreenColor
         cell.menuLabel.textColor = mainBlueColor
         
+    }
+    
+    //MARK: - Invite
+    
+    func shareButtonClicked(sender: SideMenuTableViewCell) {
+        ToastCenter.default.cancelAll()
+        let textToShare = "Check out this application. This is awesome life :) "
+        
+        if let myWebsite = NSURL(string: "http://travelibro.com/") {
+            let objectsToShare = [textToShare, myWebsite] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            //Excluded Activities Code
+            activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll]
+            
+            activityVC.popoverPresentationController?.sourceView = sender
+            self.present(activityVC, animated: true, completion: nil)
+        }
     }
 
 }
