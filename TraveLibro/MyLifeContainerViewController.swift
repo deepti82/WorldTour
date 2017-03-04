@@ -7,7 +7,9 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
     var isInitalLoad = true
     var empty: EmptyScreenView!
     var timeTag:TimestampTagViewOnScroll!
-   
+    var pageNumber = 1
+    var hasNext: Bool = true
+    var isLoading: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +24,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         timeTag.alpha = 0.8
         self.view.addSubview(timeTag)
         
-        self.loadData("all", pageNumber: 1)
+        self.loadData("all", pageNumber: pageNumber)
     }
     
     func loadData(_ type:String,pageNumber:Int) {
@@ -33,6 +35,7 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
         }
         request.getMomentJourney(pageNumber: pageNumber, type: type,completion: {(request) in
             DispatchQueue.main.async(execute: {
+                self.isLoading = false
                 loader.hideOverlayView()
                 if request["data"] != nil && request["value"].boolValue {
                     print(request["data"])
@@ -46,6 +49,9 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
                         checkIn.createProfileHeader(feed: post)
                         checkIn.activityFeed = self
                         self.layout.addSubview(checkIn)
+                    }
+                    if request["data"].array?.count == 0 {
+                        self.hasNext = false
                     }
                     self.addHeightToLayout()
                 }
@@ -66,12 +72,21 @@ class MyLifeContainerViewController: UIViewController,UIScrollViewDelegate {
        
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+            if hasNext && !isLoading {
+                isLoading = true
+                pageNumber += 1
+                print("load data for page : \(pageNumber)")
+                loadData("all", pageNumber: pageNumber)
+            }
+        }
+        
         for postView in layout.subviews {
             if(postView is MyLifeActivityFeedsLayout) {
                 let photosOtg = postView as! MyLifeActivityFeedsLayout
                 if(photosOtg.videoContainer != nil) {
                     photosOtg.videoToPlay()
-                    
                 }
             }
         }

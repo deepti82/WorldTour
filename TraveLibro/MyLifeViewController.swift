@@ -49,6 +49,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var followButton: UIButton!
     @IBOutlet weak var arrowDownButton: UIButton!
+    
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loader.showOverlay(self.view)
@@ -136,12 +139,19 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         setDefaults()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    //MARK: - Actions
     
     func exitMyLife(_ sender: AnyObject ) {
         
         UIView.animate(withDuration: 0.75, animations: { () -> Void in
             UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
-            self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
             UIView.setAnimationTransition(.curlDown, for: self.navigationController!.view!, cache: false)
             
         })
@@ -149,12 +159,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
-    
-    
     func setDefaults() {
-        whatEmptyTab = "Journeys"
-        var start = 0;
         
+        whatEmptyTab = "Journeys"
         
         whatEmptyTab = "Journeys"
         reviewsButton.layer.zPosition = -1
@@ -176,7 +183,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func showJourneys(_ sender: UIButton) {
         whatEmptyTab = "Journeys"
-        var start = 0;
         
         // where to check review
         whatEmptyTab = "Journeys"
@@ -327,11 +333,6 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         default: break
             
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func viewBorder(_ sender: UIView) {

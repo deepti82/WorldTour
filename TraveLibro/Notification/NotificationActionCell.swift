@@ -94,6 +94,15 @@ class NotificationActionCell: UITableViewCell {
         NFTitle.frame = CGRect(x: xPos, y: 10, width: screenWidth - xPos, height: titleHeight)
         totalHeight += titleHeight
         
+        NFPermission.NFLeftButton.removeTarget(helper, action: #selector(helper.journeyEndTabbed(_:)), for: .touchUpInside)
+        NFPermission.NFLeftButton.removeTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
+        NFPermission.NFLeftButton.removeTarget(helper, action: #selector(helper.itineraryAcceptTabbed(_:)), for: .touchUpInside)
+        
+        NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.journeyEndDeclined(_:)), for: .touchUpInside)
+        NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
+        NFPermission.NFRightButton.removeTarget(helper, action: #selector(helper.itineraryDeclinedTabbed(_:)), for: .touchUpInside)
+        
+        
         if notificationData["answeredStatus"].stringValue == "" {
             
             NFPermission.NFLeftButton.isHidden = false

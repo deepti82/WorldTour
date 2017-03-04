@@ -346,6 +346,8 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
     
     func setCountryTabs() {
         
+        self.title = editJson?["name"].stringValue
+        
         photosButton.setTitle((editJson?["name"].stringValue)! + " Photos", for: .normal)
         
         for button in allButtons {

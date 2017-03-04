@@ -36,7 +36,7 @@ class notificationHeader: UIView {
         
         NFProfilePicture.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(data["userFrom"]["profilePicture"])", width: 100))        
                 
-        NFProfilePicture.layer.cornerRadius = NFProfilePicture.frame.size.width * 0.30
+        NFProfilePicture.layer.cornerRadius = 8
         NFProfilePicture.layer.borderWidth = 2
         NFProfilePicture.layer.borderColor = UIColor.lightGray.cgColor
         NFProfilePicture.clipsToBounds = true

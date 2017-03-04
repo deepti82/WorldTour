@@ -137,21 +137,21 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Yash, We have updated the app for quicker and faster log-in process." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-8r-M4F">
-                    <rect key="frame" x="80" y="110" width="240" height="38.5"/>
+                    <rect key="frame" x="60" y="110" width="280" height="38.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please link youe existing account to the either of the options." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cv-S5-Y4W">
-                    <rect key="frame" x="80" y="158.5" width="240" height="38.5"/>
+                    <rect key="frame" x="60" y="158.5" width="280" height="38.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account will automitically be linked to your log-in choice and all existing data migrated." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fa6-XJ-6Kd">
-                    <rect key="frame" x="56" y="417" width="288" height="27.5"/>
+                    <rect key="frame" x="32" y="417" width="336" height="27.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -161,7 +161,7 @@
             <constraints>
                 <constraint firstItem="Fa6-XJ-6Kd" firstAttribute="centerX" secondItem="9cv-S5-Y4W" secondAttribute="centerX" id="1Kx-wt-obJ"/>
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="3VE-Nu-BhG"/>
-                <constraint firstItem="dvg-8r-M4F" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.6" id="3np-h3-26d"/>
+                <constraint firstItem="dvg-8r-M4F" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.7" id="3np-h3-26d"/>
                 <constraint firstItem="KaA-bs-Eb3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4Zb-Hm-w2q"/>
                 <constraint firstItem="9cv-S5-Y4W" firstAttribute="centerX" secondItem="dvg-8r-M4F" secondAttribute="centerX" id="8rz-me-9kz"/>
                 <constraint firstItem="dvg-8r-M4F" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Azu-BL-MpT"/>
