@@ -3548,7 +3548,7 @@ class Navigation {
         }
     }
     
-    func changeLogin(id: String, facebookID: String?, googleID: String?, completion: @escaping ((JSON) -> Void)) {
+    func changeLogin(id: String, email: String, facebookID: String?, googleID: String?, completion: @escaping ((JSON) -> Void)) {
         
         OneSignal.idsAvailable {(_ userId, _ pushToken) in
             let deviceId = userId
@@ -3557,10 +3557,10 @@ class Navigation {
                 var params: JSON = []
                 
                 if facebookID != nil {
-                    params = ["_id":id, "facebookID": facebookID!, "deviceId":deviceId!]
+                    params = ["_id":id, "facebookID": facebookID!, "deviceId":deviceId!, "email": email]
                 }
                 else if googleID != nil {
-                    params = ["_id":id, "googleID": googleID!, "deviceId":deviceId!]
+                    params = ["_id":id, "googleID": googleID!, "deviceId":deviceId!, "email": email]
                 }
                 
                 let jsonData = try params.rawData()
@@ -3601,5 +3601,25 @@ class Navigation {
         
     }
     
+    func forgotPassword(email: String, completion: @escaping ((JSON) -> Void)) {
+        
+        do {
+            let opt = try HTTP.POST(adminUrl + "user/forgotPassword", parameters: ["email": email])
+            var json = JSON(1);
+            opt.start {response in
+                if let err = response.error {
+                    print("error: \(err.localizedDescription)")
+                }
+                else
+                {
+                    json  = JSON(data: response.data)
+                    print(json)
+                    completion(json)
+                }
+            }
+        } catch let error {
+            print("got an error creating the request: \(error)")
+        }
+    }
     
 }

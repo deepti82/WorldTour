@@ -11,9 +11,13 @@ import UIKit
 
 class SignInPageViewController: UIViewController {
     
+    
     var keyboardUp = false
 //    var params = [String: String]()
     var pageView: SignInFullView!
+    
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +70,19 @@ class SignInPageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.userChangeLoginFailed(notification:)), name: NSNotification.Name(rawValue: "USER_MIGRATE_FAILED"), object: nil)        
         setData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     func setData() {
@@ -74,6 +90,9 @@ class SignInPageViewController: UIViewController {
         
         if loggedInUser != nil {
             //Existing User
+            
+            self.title = "Login"
+            
             print("\n Existing user")
             pageView.profileImage.isHidden = false
             pageView.messageLabel.isHidden = false
@@ -82,19 +101,28 @@ class SignInPageViewController: UIViewController {
             pageView.autoMigrateLabel.isHidden = false
             pageView.tncFooter.isHidden = true
             
+            pageView.googleLabel.text = "       Connect with Google+"
+            pageView.facebookLabel.text = "       Connect with Facebook"
+            
             let url = loggedInUser["profilePicture"].stringValue
             pageView.profileImage.hnk_setImageFromURL(NSURL(string: url) as! URL)
             pageView.messageLabel.text = "Hi \(loggedInUser["name"]), We have updated the app for quicker and faster log-in process."            
         }
         else {
             //New User
+            
+            self.title = "Sign up"
+            
             print("\n New user")
             pageView.profileImage.isHidden = true
             pageView.messageLabel.isHidden = true
             pageView.requestLabel.isHidden = true
             pageView.loginStack.isHidden = false
             pageView.autoMigrateLabel.isHidden = true
-            pageView.tncFooter.isHidden = false                        
+            pageView.tncFooter.isHidden = false
+            
+            pageView.googleLabel.text = "       Sign up via Google+"
+            pageView.facebookLabel.text = "       Sign up via Facebook"
         }        
     }
     
@@ -265,10 +293,7 @@ class SignInPageViewController: UIViewController {
 //        }
 //    }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
     func gotoLogin(_ sender: UIButton) {
         
@@ -276,5 +301,19 @@ class SignInPageViewController: UIViewController {
         self.navigationController?.pushViewController(logInVC, animated: true)
         
     }
-
+    
+    
+    //MARK: - User Migrate failed
+    
+    func userChangeLoginFailed(notification : Notification) {
+        print("\n user change login failed : \(notification.object)")
+        
+        let errorAlert = UIAlertController(title: "Error", message: "Something went wrong. Please try after sometimes.", preferredStyle: UIAlertControllerStyle.alert)
+        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+            (result : UIAlertAction) -> Void in
+        }            
+        errorAlert.addAction(DestructiveAction)
+        self.navigationController?.present(errorAlert, animated: true, completion: nil)
+    }
+    
 }

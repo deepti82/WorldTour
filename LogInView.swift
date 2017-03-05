@@ -14,6 +14,7 @@ class LogInView: UIView {
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var logInButton: UIButton!
+    @IBOutlet weak var forgotPassword: UIButton!
     
     @IBOutlet weak var fbButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
@@ -24,24 +25,15 @@ class LogInView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         
-//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.nameField.frame.height))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 60))
+        emailTxt.leftView = paddingView
+        emailTxt.leftViewMode = UITextFieldViewMode.always
         
-//        logInButton.backgroundColor = mainOrangeColor
+        let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 60))
+        passwordTxt.leftView = paddingView2
+        passwordTxt.leftViewMode = UITextFieldViewMode.always
+
         logInButton.layer.cornerRadius = 5
-        
-//        nameField.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-//        nameField.borderStyle = .none
-//        nameField.textColor = UIColor.white
-////        nameField.attributedPlaceholder = NSAttributedString(string: "  Email Id", attributes:attributes)
-//        nameField.leftView = paddingView
-//        nameField.leftViewMode = .always
-//        
-//        passwordField.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-//        passwordField.borderStyle = .none
-//        passwordField.textColor = UIColor.white
-////        passwordField.attributedPlaceholder = NSAttributedString(string: "  Password", attributes:attributes)
-//        passwordField.leftView = paddingView
-//        passwordField.leftViewMode = .always
         
         for button in socialLoginButtons {
             button.layer.cornerRadius = 5.0
@@ -61,4 +53,5 @@ class LogInView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view);
     }
+    
 }

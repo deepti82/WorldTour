@@ -118,22 +118,18 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         sideTableView.reloadData()
         
-        if currentUser != nil {
-//            profileViewHeightConstraint.constant = 207
-            settingsButton.isHidden = false
-            profileName.isHidden = false
+        if currentUser != nil {            
             userBadgeLabel.isHidden = false
         }
-        else {
-//            profileViewHeightConstraint.constant = 165
-            settingsButton.isHidden = true
-            profileName.isHidden = true
+        else {            
+            profileName.text = "Login / Sign up"
             userBadgeLabel.isHidden = true
         }
     }   
     
     func updateProfilePicture() {
-        if currentUser != nil {            
+        if currentUser != nil {
+            profile.flag.isHidden = false
             profileName.text = currentUser["name"].stringValue
             imageName = currentUser["profilePicture"].stringValue
             let isUrl = verifyUrl(imageName)
@@ -148,13 +144,16 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 profile.image.hnk_setImageFromURL(getImageUrl!)
                 backgroundImage.hnk_setImageFromURL(getImageUrl!)
             }
-            if currentUser["homeCountry"] != nil {
+            if currentUser["homeCountry"] != nil {                
                 profile.flag.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(currentUser["homeCountry"]["flag"].stringValue)", width: 100))
             }
             
             makeTLProfilePicture(profilePicture)
             backgroundImage!.addBlurEffect(30, times: 1)
-        }        
+        }
+        else {
+            profile.flag.isHidden = true
+        }
     }
     
     @IBAction func profileTap(_ sender: AnyObject) {

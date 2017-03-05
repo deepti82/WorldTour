@@ -94,6 +94,8 @@ let TIME_HEIGHT = CGFloat(27)
 
 let categoryImages = ["restaurant_checkin", "nature_checkin", "landmarks_checkin", "museums_landmarks", "adventure_icon", "aqua_checkin", "shopping", "beach_checkin", "cinema_checkin", "hotels-1", "planetrans", "reg", "othersdottrans", "city_icon", "health_beauty", "emergency", "essential", "entertainment"]
 
+var globalNavigationController:UINavigationController!
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDelegate {
     
@@ -145,6 +147,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             nvc.navigationBar.isTranslucent = true
             nvc.delegate = self
             
+//            globalNavigationController = nvc
+            
         } 
         else {
             request.getUser(user.getExistingUser(), completion: {(request) in
@@ -168,6 +172,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
                     nvc.navigationBar.barStyle = .blackTranslucent
                     nvc.navigationBar.isTranslucent = true
                     nvc.delegate = self
+                    
+//                    globalNavigationController = nvc
                 }
             })
         }
@@ -326,8 +332,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         checkAlertController.addAction(DestructiveAction)
         checkAlertController.addAction(okAction)
-        print("globalNavigationController: \(globalNavigationController)")
-        globalNavigationController.topViewController?.present(checkAlertController, animated: true, completion: nil)
+        print("\n globalNavigationController: \(globalNavigationController.visibleViewController) \n")
+        globalNavigationController.visibleViewController?.present(checkAlertController, animated: true, completion: nil)
     }
     
 }

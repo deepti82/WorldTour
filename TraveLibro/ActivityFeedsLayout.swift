@@ -388,7 +388,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             }            
         }
         else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":0] )
         }        
     }
     

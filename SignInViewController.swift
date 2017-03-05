@@ -27,6 +27,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     var player2:Player!
     var player3:Player!
     
+    var pageControl = UIPageControl()
+    
     var videoHeight:CGFloat!
     var horizontal:HorizontalLayout!
     
@@ -34,6 +36,21 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadData()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     func loadData() {
@@ -46,7 +63,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
           
         
         imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
-        imageView1.backgroundColor = UIColor.white
+        imageView1.backgroundColor = UIColor.clear
         imageView1.image = UIImage.gif(name: "loader")
         imageView1.contentMode = UIViewContentMode.center
         imageView1.center = self.view.center
@@ -58,11 +75,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player1.playbackLoops = true
         self.player1.muted = true
         self.player1.fillMode = "AVLayerVideoGravityResizeAspectFill"
+        self.player1.playFromBeginning()
 //        guard let path = Bundle.main.path(forResource: "travellife", ofType:"mp4") else {
 //            debugPrint("travellife.mp4 not found")
 //            return
-//        }        
-//        self.player1.setUrl(URL(string: path)!)        
+//        }
+//        self.player1.setUrl(URL(string: path)!)
+//        print("\n Path1: \(path)")
         self.player1.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/travellife.mp4")!)        
         imageView1.addSubview(self.player1.view)
         
@@ -72,7 +91,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView2.image = UIImage.gif(name: "loader")
-        imageView2.backgroundColor = UIColor.white
+        imageView2.backgroundColor = UIColor.clear
         imageView2.contentMode = UIViewContentMode.center
         imageView2.center = self.view.center
         self.player2 = Player()
@@ -87,14 +106,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
 //            debugPrint("locallife.mp4 not found")
 //            return
 //        }
-//        print("\n \(URL(fileURLWithPath: path2))")
+//        print("\n \(path2)")
 //        self.player2.setUrl(URL(fileURLWithPath: path2))
         imageView2.addSubview(self.player2.view)
         self.horizontal.addSubview(imageView2)
         
         
         imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
-        imageView3.backgroundColor = UIColor.white
+        imageView3.backgroundColor = UIColor.clear
         imageView3.image = UIImage.gif(name: "loader")
         imageView3.contentMode = UIViewContentMode.center
         imageView3.center = self.view.center
@@ -122,7 +141,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         videoToPlay()
         
-        let signInFooter = SignInToolbar(frame: CGRect(x: 0 , y: self.view.frame.size.height - 140, width: 290, height: 140))
+        let signInFooter = SignInToolbar(frame: CGRect(x: 0 , y: screenHeight - 80, width: screenWidth, height: 80))
         signInFooter.center = CGPoint(x: self.view.center.x, y: signInFooter.center.y)
         self.view.addSubview(signInFooter)
         
@@ -131,9 +150,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         signInFooter.signUp.addTarget(self, action: #selector(SignInViewController.goToSignUp(_:)), for: .touchUpInside)
         signInFooter.signInButton.addTarget(self, action: #selector(SignInViewController.loginButtonTapped(_:)), for: .touchUpInside)
-        signInFooter.googleButton.addTarget(self, action: #selector(SignInViewController.googleSignIn(_:)), for: .touchUpInside)
-        signInFooter.fbButton.addTarget(self, action: #selector(SignInViewController.facebookSignIn(_:)), for: .touchUpInside)
-        //        signInFooter.twitterButton.addTarget(self, action: #selector(SignInViewController.twitterSignIn(_:)), for: .touchUpInside)
+        
+        
+        pageControl = UIPageControl(frame: CGRect(x: 0, y: signInFooter.frame.origin.y - 30, width: screenWidth, height: 30))
+        pageControl.currentPage = 0
+        pageControl.currentPageIndicatorTintColor = UIColor.white
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.numberOfPages = 3
+        self.view.addSubview(pageControl)
+            
         
         profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         
@@ -142,21 +167,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         navigation = self.navigationController
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        loadData()
-    }
-    
     func addToLayout() {
         self.horizontal.layoutSubviews()
         self.videoScrollView.contentSize = CGSize(width: self.horizontal.frame.width, height: self.horizontal.frame.height)
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
@@ -174,18 +187,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         }
         return true
     }
-   
-    func googleSignIn(_ sender: UIButton) {
-        social.googleLogin()
-    }
     
-    func facebookSignIn(_ sender: UIButton) {
-        social.facebookLogin()
-    }
     
-    func twitterSignIn(_ sender: UIButton) {
-        social.twitterLogin()
-    }
+    //MARK: - Button Actions
     
     func goToSignUp(_ sender: AnyObject) {
         print("storyboard: \(self.navigationController)")
@@ -198,10 +202,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.navigationController?.pushViewController(logInVC, animated: true)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
     
     
     //MARK: - Player Delegates
@@ -245,11 +246,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     //MARK: - Play 
     
     func videoToPlay ()  {
-        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
+        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)        
         player1.stop()
         player2.stop()
         player3.stop()
         let i = Int(pageNumber)
+        pageControl.currentPage = i
         print("\n videoToPlay \(i)");
         switch(i) {
         case 0:

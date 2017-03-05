@@ -9,11 +9,17 @@
 import UIKit
 import Toaster
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var videoScrollView: UIScrollView!
     var layout:HorizontalLayout!
     var logIn = LogInView()
+    var forgotView = ForgotPassword()
+    var emailTxtField = UITextField()
+    var loader = LoadingOverlay() 
+    
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +49,27 @@ class LogInViewController: UIViewController {
         logIn.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
         self.view.addSubview(logIn)
         
+        logIn.emailTxt.delegate = self
+        logIn.passwordTxt.delegate = self
         
         logIn.logInButton.addTarget(self, action: #selector(LogInViewController.loginTabbed(_:)), for: .touchUpInside)
         logIn.fbButton.addTarget(self, action: #selector(SignInPageViewController.facebookSignUp(_:)), for: .touchUpInside)
         logIn.googleButton.addTarget(self, action: #selector(SignInPageViewController.googleSignUp(_:)), for: .touchUpInside)
+        logIn.forgotPassword.addTarget(self, action: #selector(LogInViewController.forgotPasswordTabbed(_:)), for: .touchUpInside)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        logIn.emailTxt.text = ""
+        logIn.passwordTxt.text = ""
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)        
+    }
+    
+    //MARK: - Button Actions
     
     func facebookSignUp(_ sender: AnyObject) {
         
@@ -64,6 +85,9 @@ class LogInViewController: UIViewController {
     
     func loginTabbed(_ sender: AnyObject) {
         print("\n loginTabbed ")      
+        
+        logIn.emailTxt.resignFirstResponder()
+        logIn.passwordTxt.resignFirstResponder()
         
         let emailTxt = logIn.emailTxt.text //"testuser@mailinator.com" //logIn.nameField.text!
         let passwordTxt =  logIn.passwordTxt.text //"testuser1" //logIn.passwordField.text!
@@ -83,8 +107,13 @@ class LogInViewController: UIViewController {
                         self.navigationController?.pushViewController(signUpFullVC, animated: true)
                     }
                     else {                    
-                        print("response error!")
-                        Toast(text: "Error").show()
+                        let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            self.logIn.passwordTxt.text = ""
+                        }            
+                        errorAlert.addAction(DestructiveAction)
+                        self.navigationController?.present(errorAlert, animated: true, completion: nil)
                     }                    
                 })                
             }            
@@ -99,10 +128,100 @@ class LogInViewController: UIViewController {
             self.navigationController?.present(errorAlert, animated: true, completion: nil)
         }        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func forgotPasswordTabbed(_ sender: AnyObject) {
+        
+        forgotView = ForgotPassword(frame: self.view.frame)
+        
+        forgotView.backgroundView.layer.cornerRadius = 5.0
+        forgotView.emailIDTxtField.delegate = self
+        
+        forgotView.cancelButton.addTarget(self, action: #selector(self.dismissForgotPassword), for: .touchUpInside)
+        forgotView.confirmButton.addTarget(self, action: #selector(self.requestForgotPassword), for: .touchUpInside)
+        
+        forgotView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: screenHeight)
+        self.view.addSubview(forgotView)
+        
+        UIView.animate(withDuration: 0.5) {
+            self.forgotView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)            
+        }        
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()        
+    }
+    
+    func requestForgotPassword() {
+            
+        let emailStr = forgotView.emailIDTxtField.text
+        
+        if emailStr != "" {
+            loader.showOverlay(self.view)
+            
+            request.forgotPassword(email: emailStr!) { (response) in
+                print("\n Response : \(response)")
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    self.loader.hideOverlayView()
+                    
+                    if response.error != nil {
+                        print("error: \(response.error!.localizedDescription)")
+                    }
+                    else if response["value"].bool! {
+                        
+                        self.dismissForgotPassword()
+                        
+                        let mailAlert = UIAlertController(title: "", message: response["data"]["comment"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            //Cancel Action
+                        }            
+                        mailAlert.addAction(DestructiveAction)
+                        self.navigationController?.present(mailAlert, animated: true, completion: nil)
+                    }
+                    else {                    
+                        let mailErrorAlert = UIAlertController(title: "Error", message: "Something went wrong. Please try after sometime", preferredStyle: UIAlertControllerStyle.alert)
+                        let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                            (result : UIAlertAction) -> Void in
+                            //Cancel Action
+                        }            
+                        mailErrorAlert.addAction(DestructiveAction)
+                        self.navigationController?.present(mailErrorAlert, animated: true, completion: nil)
+                    }
+                })
+            }
+        }
+        else {
+            
+            let errorAlert = UIAlertController(title: "", message: "Please input Email Id ", preferredStyle: UIAlertControllerStyle.alert)
+            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                (result : UIAlertAction) -> Void in
+            }
+            errorAlert.addAction(DestructiveAction)
+            self.navigationController?.present(errorAlert, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func dismissForgotPassword() {
+        UIView.animate(withDuration: 1) {
+            self.forgotView.frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: screenHeight)
+            self.forgotView.removeFromSuperview()
+        }
+        
+    }
+    
+    
+    //MARK: - Dismiss Keyboard
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        logIn.emailTxt.resignFirstResponder()
+        logIn.passwordTxt.resignFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }    
 }

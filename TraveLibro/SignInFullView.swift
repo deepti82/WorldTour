@@ -39,6 +39,14 @@ class SignInFullView: UIView {
         
         googleButton.imageView?.contentMode = .scaleAspectFit
         googleButton.clipsToBounds = true
+        
+        profileImage.layer.cornerRadius = (30/100) * profileImage.frame.width
+        profileImage.layer.borderWidth = 2.0
+        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.clipsToBounds = true
+        profileImage.contentMode = UIViewContentMode.scaleAspectFill
+        
+        
 //        let attributes = [
 //            NSForegroundColorAttributeName: UIColor.whiteColor(),
 //            NSFontAttributeName : UIFont(name: "Avenir-Roman", size: 14)!

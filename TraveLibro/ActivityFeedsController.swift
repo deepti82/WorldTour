@@ -34,12 +34,9 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         getActivity(pageNumber: pageno)
         loader.showOverlay(self.view)
         
-        if displayData != "popular" && displayData != "popitinerary" {
-            self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
-            self.mainFooter.layer.zPosition = 5
-            self.view.addSubview(self.mainFooter)
-        }
-        
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        self.mainFooter.layer.zPosition = 5
+        self.view.addSubview(self.mainFooter)
         
         let i = PostImage()
         i.uploadPhotos()
@@ -260,18 +257,14 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                     feeds.videoToPlay()
                 }
             }
-        }
+        }        
         
-        if displayData != "popular" && displayData != "popitinerary" {
-            if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-                hideHeaderAndFooter(true);
-            }
-            else{
-                hideHeaderAndFooter(false);
-            }
-
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            hideHeaderAndFooter(true);
         }
-        
+        else{
+            hideHeaderAndFooter(false);
+        }
     }
     
     override func didReceiveMemoryWarning() {

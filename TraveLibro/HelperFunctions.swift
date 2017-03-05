@@ -54,7 +54,7 @@ class SocialLoginClass: UIViewController {
                         print(json)
                         
                         if loggedInUser != nil {
-                            request.changeLogin(id: loggedInUser["_id"].stringValue, facebookID: nil, googleID: json["id"].string!, completion: { (response) in
+                            request.changeLogin(id: loggedInUser["_id"].stringValue, email: json["emails"][0]["value"].string!, facebookID: nil, googleID: json["id"].string!, completion: { (response) in
                                 
                                 DispatchQueue.main.async(execute: {
                                     
@@ -106,6 +106,10 @@ class SocialLoginClass: UIViewController {
                                             })
                                             
                                         })
+                                    }
+                                    
+                                    else {
+                                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "USER_MIGRATE_FAILED"), object: response)
                                     }
                                 })
                             })                            
@@ -197,7 +201,7 @@ class SocialLoginClass: UIViewController {
                         }
                         
                         if loggedInUser != nil {
-                            request.changeLogin(id: loggedInUser["_id"].stringValue, facebookID: json["id"].string!, googleID: nil, completion: { (responsess) in
+                            request.changeLogin(id: loggedInUser["_id"].stringValue, email: email, facebookID: json["id"].string!, googleID: nil, completion: { (responsess) in
                                 
                                 DispatchQueue.main.async(execute: {
                                     
@@ -247,6 +251,10 @@ class SocialLoginClass: UIViewController {
                                             })
                                             
                                         })
+                                    }
+                                    
+                                    else {
+                                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "USER_MIGRATE_FAILED"), object: response)
                                     }
                                 })
                             })                        

@@ -16,7 +16,6 @@ import Spring
 var isJourneyOngoing = false
 var TLLoader = UIActivityIndicatorView()
 var userLocation: CLLocationCoordinate2D!
-var globalNavigationController:UINavigationController!
 var globalNewTLViewController:NewTLViewController!
 
 class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate, UIScrollViewDelegate {

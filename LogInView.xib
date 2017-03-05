@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="emailTxt" destination="HVq-p4-zhd" id="wOy-tc-Gzc"/>
                 <outlet property="fbButton" destination="rpu-Cz-L1X" id="e62-Ks-G8y"/>
+                <outlet property="forgotPassword" destination="8i9-n6-luR" id="5bd-Qh-6l1"/>
                 <outlet property="googleButton" destination="voY-fl-hF0" id="zyi-vG-gMH"/>
                 <outlet property="logInButton" destination="Guu-nG-DDS" id="yQu-KM-2fV"/>
                 <outlet property="passwordTxt" destination="Vng-w3-nUV" id="Fg7-sv-64o"/>
@@ -26,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Guu-nG-DDS">
-                    <rect key="frame" x="8" y="184" width="388" height="60"/>
+                    <rect key="frame" x="8" y="201" width="388" height="60"/>
                     <color key="backgroundColor" red="1" green="0.40784314274787903" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="xrL-4f-fYL"/>
@@ -37,66 +38,76 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8i9-n6-luR">
-                    <rect key="frame" x="299" y="147" width="97" height="29"/>
+                    <rect key="frame" x="299" y="164" width="97" height="29"/>
+                    <gestureRecognizers/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
                     <state key="normal" title="Forgot Password?">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Login Via" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwH-o7-Tm9">
-                    <rect key="frame" x="157" y="268" width="90" height="22"/>
+                    <rect key="frame" x="157" y="285" width="90" height="22"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Ji-Fr-Ac2">
-                    <rect key="frame" x="97" y="298" width="210" height="100"/>
+                    <rect key="frame" x="142" y="315" width="120" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpu-Cz-L1X">
-                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpu-Cz-L1X">
+                            <rect key="frame" x="0.0" y="0.0" width="55" height="50"/>
                             <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="i9N-Tk-pDt"/>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="nms-NK-9fO"/>
-                            </constraints>
                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                             <state key="normal" image="facebook_icon"/>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voY-fl-hF0">
-                            <rect key="frame" x="110" y="0.0" width="100" height="100"/>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voY-fl-hF0">
+                            <rect key="frame" x="65" y="0.0" width="55" height="50"/>
                             <color key="backgroundColor" red="0.86666667461395264" green="0.29411765933036804" blue="0.22352941334247589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                             <state key="normal" image="google_plus_icon"/>
                         </button>
                     </subviews>
-                </stackView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVq-p4-zhd">
-                    <rect key="frame" x="8" y="35" width="388" height="50"/>
-                    <color key="backgroundColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="6vv-ug-lK1"/>
+                        <constraint firstAttribute="width" constant="120" id="TnU-KO-Yvi"/>
+                        <constraint firstAttribute="height" constant="50" id="W53-R6-uth"/>
+                    </constraints>
+                </stackView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HVq-p4-zhd">
+                    <rect key="frame" x="8" y="35" width="388" height="60"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="6vv-ug-lK1"/>
                     </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vng-w3-nUV">
-                    <rect key="frame" x="8" y="89" width="388" height="50"/>
-                    <color key="backgroundColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="8" y="96" width="388" height="60"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </textField>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="8i9-n6-luR" secondAttribute="trailing" constant="8" id="52m-pL-cz6"/>
                 <constraint firstItem="Guu-nG-DDS" firstAttribute="top" secondItem="8i9-n6-luR" secondAttribute="bottom" constant="8" id="80A-4j-Cq3"/>
                 <constraint firstItem="TwH-o7-Tm9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="F10-zE-99R"/>
-                <constraint firstItem="Vng-w3-nUV" firstAttribute="top" secondItem="HVq-p4-zhd" secondAttribute="bottom" constant="4" id="LRG-Rl-egK"/>
+                <constraint firstItem="Vng-w3-nUV" firstAttribute="top" secondItem="HVq-p4-zhd" secondAttribute="bottom" constant="1" id="LRG-Rl-egK"/>
                 <constraint firstAttribute="trailing" secondItem="Guu-nG-DDS" secondAttribute="trailing" constant="8" id="Ltr-82-bbO"/>
                 <constraint firstItem="HVq-p4-zhd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="MPa-9w-dZM"/>
                 <constraint firstItem="3Ji-Fr-Ac2" firstAttribute="top" secondItem="TwH-o7-Tm9" secondAttribute="bottom" constant="8" id="Y0x-ih-E2Q"/>
-                <constraint firstAttribute="bottom" secondItem="3Ji-Fr-Ac2" secondAttribute="bottom" constant="22" id="bQa-tI-DWo"/>
                 <constraint firstItem="HVq-p4-zhd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="hZj-dh-kNm"/>
                 <constraint firstAttribute="trailing" secondItem="Vng-w3-nUV" secondAttribute="trailing" constant="8" id="hsT-rl-iBd"/>
                 <constraint firstItem="3Ji-Fr-Ac2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ixF-O2-s3m"/>

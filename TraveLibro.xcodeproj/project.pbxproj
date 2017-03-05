@@ -98,6 +98,8 @@
 		4435D2FB1E548D02003BD1D9 /* notificationBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435D2FA1E548D02003BD1D9 /* notificationBackgroundView.xib */; };
 		4435D2FD1E548D3D003BD1D9 /* NotificationUserFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2FC1E548D3D003BD1D9 /* NotificationUserFollowing.swift */; };
 		4435D2FF1E548DF3003BD1D9 /* NotificationBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435D2FE1E548DF3003BD1D9 /* NotificationBackground.swift */; };
+		443757C91E6C0152007C0851 /* forgotPasswordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443757C81E6C0152007C0851 /* forgotPasswordView.xib */; };
+		443757CB1E6C0551007C0851 /* ForgotPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443757CA1E6C0551007C0851 /* ForgotPassword.swift */; };
 		446FDD231E6535EC00C09EFB /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446FDD221E6535EC00C09EFB /* EmptyTableViewCell.swift */; };
 		44725D2D1E5ADBB70074D925 /* NotificationCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */; };
 		44725D2F1E5B06580074D925 /* NotificationDefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */; };
@@ -607,6 +609,8 @@
 		4435D2FA1E548D02003BD1D9 /* notificationBackgroundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = notificationBackgroundView.xib; path = Notification/notificationBackgroundView.xib; sourceTree = "<group>"; };
 		4435D2FC1E548D3D003BD1D9 /* NotificationUserFollowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationUserFollowing.swift; path = Notification/NotificationUserFollowing.swift; sourceTree = "<group>"; };
 		4435D2FE1E548DF3003BD1D9 /* NotificationBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationBackground.swift; path = Notification/NotificationBackground.swift; sourceTree = "<group>"; };
+		443757C81E6C0152007C0851 /* forgotPasswordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = forgotPasswordView.xib; sourceTree = "<group>"; };
+		443757CA1E6C0551007C0851 /* ForgotPassword.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPassword.swift; sourceTree = "<group>"; };
 		446FDD221E6535EC00C09EFB /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyTableViewCell.swift; path = PopularJourney/EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		44725D2C1E5ADBB70074D925 /* NotificationCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCommentCell.swift; path = Notification/NotificationCommentCell.swift; sourceTree = "<group>"; };
 		44725D2E1E5B06580074D925 /* NotificationDefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationDefaultCell.swift; path = Notification/NotificationDefaultCell.swift; sourceTree = "<group>"; };
@@ -2334,6 +2338,8 @@
 			children = (
 				C2A27A441CEDC1F100F74DD1 /* LogInView.xib */,
 				C2A27A461CEDC27600F74DD1 /* LogInView.swift */,
+				443757C81E6C0152007C0851 /* forgotPasswordView.xib */,
+				443757CA1E6C0551007C0851 /* ForgotPassword.swift */,
 			);
 			name = LogInView;
 			sourceTree = "<group>";
@@ -2878,6 +2884,7 @@
 				845C43221E2F857A00800F51 /* ActivityFeedThoughts.xib in Resources */,
 				C2889D3A1DB0E91700B302AF /* ShowRating.xib in Resources */,
 				1A65E7AB1CD72F1F009374DA /* Avenir-Medium.ttf in Resources */,
+				443757C91E6C0152007C0851 /* forgotPasswordView.xib in Resources */,
 				C26730271D27A84C00F2C822 /* QuickItineraryOne.xib in Resources */,
 				4435D2D51E5448D7003BD1D9 /* notificationTitleView.xib in Resources */,
 				C26907821CF826B900F827E6 /* LocationTextField.xib in Resources */,
@@ -3456,6 +3463,7 @@
 				C2803BC81CF426A8007A906E /* BlogViewViewController.swift in Sources */,
 				C2DD03261CEB008C001878DD /* SayBye.swift in Sources */,
 				C25297261DF00E92007A8571 /* Extensions.swift in Sources */,
+				443757CB1E6C0551007C0851 /* ForgotPassword.swift in Sources */,
 				C24909BC1D4A3E41007EB6B4 /* AddPostsOTGView.swift in Sources */,
 				842484F91E13A9E600083115 /* PhotosOTGHeader.swift in Sources */,
 				FCE877FF1E30CA6A005EE913 /* ActivityFeedsLayout.swift in Sources */,

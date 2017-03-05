@@ -69,54 +69,75 @@ class FooterViewNew: UIView {
         print("user which which user")
         print(user.getExistingUser())
         
-        request.getUser(user.getExistingUser(), completion: {(request) in
-            DispatchQueue.main.async {
-                currentUser = request["data"]
-                let tlVC = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
-                tlVC.isJourney = false
-                if(currentUser["journeyId"].stringValue == "-1") {
-                    isJourneyOngoing = false
-                    tlVC.showJourneyOngoing(journey: JSON(""))
-                    //                self.navigationController?.navigationBar.isHidden = true
+        if currentUser != nil {
+            
+            request.getUser(user.getExistingUser(), completion: {(request) in
+                DispatchQueue.main.async {
+                    currentUser = request["data"]
+                    let tlVC = storyboard!.instantiateViewController(withIdentifier: "newTL") as! NewTLViewController
+                    tlVC.isJourney = false
+                    if(currentUser["journeyId"].stringValue == "-1") {
+                        isJourneyOngoing = false
+                        tlVC.showJourneyOngoing(journey: JSON(""))
+                        //                self.navigationController?.navigationBar.isHidden = true
+                    }
+                    globalNavigationController?.pushViewController(tlVC, animated: false)
                 }
-                globalNavigationController?.pushViewController(tlVC, animated: false)
-            }
-        })
+            })
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":2])
+        }
+        
         
     }
     
     func gotoFeed(_ sender: UITapGestureRecognizer) {
-        request.getUser(user.getExistingUser(), completion: {(request) in
-            DispatchQueue.main.async {
-                currentUser = request["data"]
-                let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
-                tlVC.displayData = "activity"
-                globalNavigationController?.pushViewController(tlVC, animated: false)
-            }
-        })
+        
+        if currentUser != nil {
+            request.getUser(user.getExistingUser(), completion: {(request) in
+                DispatchQueue.main.async {
+                    currentUser = request["data"]
+                    let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+                    tlVC.displayData = "activity"
+                    globalNavigationController?.pushViewController(tlVC, animated: false)
+                }
+            })            
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":0])
+        }
     }
     
     func openNotifications(_ sender: UITapGestureRecognizer) {
-        request.getUser(user.getExistingUser(), completion: {(request) in
-            DispatchQueue.main.async {
-                currentUser = request["data"]
-                let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController                
-                globalNavigationController?.pushViewController(vc, animated: false)
-            }
-        })
-        
+        if currentUser != nil {
+            request.getUser(user.getExistingUser(), completion: {(request) in
+                DispatchQueue.main.async {
+                    currentUser = request["data"]
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "notifySub") as! NotificationSubViewController                
+                    globalNavigationController?.pushViewController(vc, animated: false)
+                }
+            })            
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":0])
+        }
     }
     
     func goToLocalLife(_ sender : AnyObject) {
-        request.getUser(user.getExistingUser(), completion: {(request) in
-            DispatchQueue.main.async {
-                currentUser = request["data"]
-                let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
-                globalNavigationController?.pushViewController(vc, animated: false)
-            }
-        })
+        
+        if currentUser != nil {
+            request.getUser(user.getExistingUser(), completion: {(request) in
+                DispatchQueue.main.async {
+                    currentUser = request["data"]
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "localLife") as! LocalLifeRecommendationViewController
+                    globalNavigationController?.pushViewController(vc, animated: false)
+                }
+            })            
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":1])
+        }        
     }
-    
-    
     
 }
