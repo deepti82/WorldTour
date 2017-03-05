@@ -133,7 +133,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSA-eC-le0">
                                             <rect key="frame" x="0.0" y="0.0" width="62" height="37"/>
                                             <color key="tintColor" red="0.066666666666666666" green="0.82745098039215681" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -159,42 +159,39 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItY-yF-83P">
-                                    <rect key="frame" x="8" y="10" width="20" height="30.5"/>
+                                    <rect key="frame" x="8" y="26" width="20" height="25"/>
                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="22"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9uV-0Q-Inc">
-                                    <rect key="frame" x="8" y="45" width="95" height="25"/>
+                                    <rect key="frame" x="8" y="56" width="65" height="15"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adventure" translatesAutoresizingMaskIntoConstraints="NO" id="Gqz-ch-f7y">
-                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="h5k-vN-5Rh"/>
-                                                <constraint firstAttribute="width" constant="25" id="mXd-ii-wGn"/>
+                                                <constraint firstAttribute="width" constant="15" id="ktb-38-kUs"/>
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backpacking" translatesAutoresizingMaskIntoConstraints="NO" id="u5L-bf-LuZ">
-                                            <rect key="frame" x="35" y="0.0" width="25" height="25"/>
+                                            <rect key="frame" x="25" y="0.0" width="15" height="15"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="ntP-b6-MCd"/>
-                                                <constraint firstAttribute="width" constant="25" id="yhB-u5-qwa"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="RDJ-SL-Z8h"/>
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="luxury" translatesAutoresizingMaskIntoConstraints="NO" id="T3h-g9-Nxc">
-                                            <rect key="frame" x="70" y="0.0" width="25" height="25"/>
+                                            <rect key="frame" x="50" y="0.0" width="15" height="15"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="4Sk-6D-Fpl"/>
-                                                <constraint firstAttribute="width" constant="25" id="pQz-G2-V5i"/>
-                                            </constraints>
                                         </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="15" id="faa-Nx-Zb3"/>
+                                    </constraints>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlz-ag-Rzg">
-                                    <rect key="frame" x="228" y="48.5" width="12" height="19.5"/>
+                                    <rect key="frame" x="8" y="8" width="12" height="20"/>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -204,13 +201,15 @@
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="pCX-Kl-can" secondAttribute="bottom" constant="-20" id="8qo-rv-1t9"/>
                                 <constraint firstAttribute="trailing" secondItem="pCX-Kl-can" secondAttribute="trailing" constant="20" id="A1E-zq-7hp"/>
-                                <constraint firstItem="jlz-ag-Rzg" firstAttribute="top" secondItem="ItY-yF-83P" secondAttribute="bottom" constant="8" id="A2R-96-VY3"/>
+                                <constraint firstItem="jlz-ag-Rzg" firstAttribute="top" secondItem="ItY-yF-83P" secondAttribute="bottom" constant="-43" id="A2R-96-VY3"/>
                                 <constraint firstItem="ItY-yF-83P" firstAttribute="leading" secondItem="BIF-HR-asB" secondAttribute="leading" constant="8" id="A5g-Ow-Ydp"/>
-                                <constraint firstItem="jlz-ag-Rzg" firstAttribute="leading" secondItem="BIF-HR-asB" secondAttribute="leading" constant="228" id="AdR-Ig-bUF"/>
+                                <constraint firstItem="jlz-ag-Rzg" firstAttribute="leading" secondItem="BIF-HR-asB" secondAttribute="leading" constant="8" id="AdR-Ig-bUF"/>
                                 <constraint firstAttribute="height" constant="78" id="Cg1-2U-TN1"/>
-                                <constraint firstItem="9uV-0Q-Inc" firstAttribute="top" secondItem="jlz-ag-Rzg" secondAttribute="bottom" constant="-22.5" id="H7o-O0-dmT"/>
-                                <constraint firstItem="ItY-yF-83P" firstAttribute="top" secondItem="BIF-HR-asB" secondAttribute="top" constant="10" id="UUs-4M-lFZ"/>
+                                <constraint firstItem="9uV-0Q-Inc" firstAttribute="top" secondItem="jlz-ag-Rzg" secondAttribute="bottom" constant="28" id="H7o-O0-dmT"/>
+                                <constraint firstItem="ItY-yF-83P" firstAttribute="top" secondItem="BIF-HR-asB" secondAttribute="top" constant="26" id="UUs-4M-lFZ"/>
+                                <constraint firstItem="9uV-0Q-Inc" firstAttribute="top" secondItem="ItY-yF-83P" secondAttribute="bottom" constant="5" id="mAu-fV-rvV"/>
                                 <constraint firstItem="9uV-0Q-Inc" firstAttribute="leading" secondItem="BIF-HR-asB" secondAttribute="leading" constant="8" id="rDj-aD-YC9"/>
+                                <constraint firstAttribute="bottom" secondItem="9uV-0Q-Inc" secondAttribute="bottom" constant="7" id="yMM-BJ-mQ2"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -242,7 +241,7 @@
                                 <constraint firstAttribute="height" constant="1" id="tQL-JZ-I9t"/>
                             </constraints>
                         </view>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fAp-ce-CRi">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fAp-ce-CRi">
                             <rect key="frame" x="8" y="24" width="359" height="407"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>

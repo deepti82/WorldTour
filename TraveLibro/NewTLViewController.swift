@@ -1972,7 +1972,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
             
             //            if !keyboardHidden {
             if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
+                self.view.frame.origin.y -= 258
                 //                keyboardHidden = true
                 //            }
                 print("keyboardchange karde")
@@ -1984,7 +1984,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += 216
+                self.view.frame.origin.y += keyboardSize.height
                 print("helololol")
                 print(keyboardSize.height)
             }

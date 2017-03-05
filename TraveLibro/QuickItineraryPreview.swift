@@ -36,7 +36,7 @@ class QuickItineraryPreview: UIView {
         self.qiView.layer.cornerRadius = 5
         self.qiView.clipsToBounds = true
         
-        self.userPhoto.layer.cornerRadius = 20
+        HiBye(userPhoto)
         self.userPhoto.clipsToBounds = true
         quickTypeOne.tintColor = UIColor.white
         quickTypeTwo.tintColor = UIColor.white
