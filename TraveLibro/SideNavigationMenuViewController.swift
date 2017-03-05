@@ -7,7 +7,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     var imageName = ""
     
-    var profile:ProfilePicFancy! = ProfilePicFancy() 
+    var profile:ProfilePicFancy! = ProfilePicFancy()
     
     var mainViewController: UIViewController!
     var homeController:UIViewController!
@@ -28,6 +28,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     @IBOutlet weak var profileViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var sideTableView: UITableView!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var userBadgeLabel: UILabel!
     @IBOutlet weak var loginLabel: UILabel!
@@ -114,6 +115,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        sideTableView.reloadData()
+        
         if currentUser != nil {
 //            profileViewHeightConstraint.constant = 207
             settingsButton.isHidden = false

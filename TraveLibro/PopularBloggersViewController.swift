@@ -11,11 +11,13 @@ import Toaster
 
 class PopularBloggersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableTopConstraint: NSLayoutConstraint!
     var allUsers: [JSON] = []
     var pagenum = 1
     var loader = LoadingOverlay()
     var hasNext = true
     let refreshControl = UIRefreshControl()
+    var mainFooter: FooterViewNew!
     
     @IBOutlet weak var userTableView: UITableView!
     
@@ -27,6 +29,10 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         getDarkBackGround(self)
         
         loader.showOverlay(self.view)
+        
+        self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
+        self.mainFooter.layer.zPosition = 5
+        self.view.addSubview(self.mainFooter)
         
         refreshControl.addTarget(self, action: #selector(PopularBloggersViewController.pullToRefreshCalled), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = lightOrangeColor
@@ -215,6 +221,37 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)            
         }        
+    }
+    
+    
+    //MARK: - Scroll Delagtes
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            hideHeaderAndFooter(true);
+        }
+        else{
+            hideHeaderAndFooter(false);
+        }
+        
+    }
+    
+    func hideHeaderAndFooter(_ isShow:Bool) {
+        if(isShow) {
+            tableTopConstraint.constant = 0
+            
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            
+            self.mainFooter.frame.origin.y = self.view.frame.height + 95
+        } else {
+            tableTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)! + 21
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            
+            self.mainFooter.frame.origin.y = self.view.frame.height - 65
+            
+        }
     }
 }
 

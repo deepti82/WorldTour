@@ -13,6 +13,7 @@ var globalActivityFeedsController:ActivityFeedsController!
 
 class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
+    @IBOutlet weak var scrollTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityScroll: UIScrollView!
     var layout: VerticalLayout!
     var feeds: JSON! = []
@@ -279,11 +280,15 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     func hideHeaderAndFooter(_ isShow:Bool) {
         if(isShow) {
+            scrollTopConstraint.constant = 0
+            
             self.navigationController?.setNavigationBarHidden(true, animated: true)
 
             self.mainFooter.frame.origin.y = self.view.frame.height + 95
         } else {
-                self.navigationController?.setNavigationBarHidden(false, animated: true)
+            scrollTopConstraint.constant = (self.navigationController?.navigationBar.frame.size.height)!
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
 
             self.mainFooter.frame.origin.y = self.view.frame.height - 65
 

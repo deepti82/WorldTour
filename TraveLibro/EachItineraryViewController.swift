@@ -106,10 +106,7 @@ class EachItineraryViewController: UIViewController, UITableViewDataSource, UITa
             loader?.showOverlay(self.view)
         }
         
-        let width = photosButton.frame.size.height - 20         
-        let inset = photosButton.imageEdgeInsets       
-
-        photosButton.imageEdgeInsets = UIEdgeInsets(top: inset.top, left: 10, bottom: inset.bottom, right: photosButton.frame.size.width - (width + 10))       
+        photosButton.contentEdgeInsets = UIEdgeInsetsMake(0, 50, 0, 0)
 
         request.getItinerary(fromOutSide, completion: { (json) in
             DispatchQueue.main.async(execute: {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Toaster
 
 class LogInViewController: UIViewController {
 
@@ -83,6 +84,7 @@ class LogInViewController: UIViewController {
                     }
                     else {                    
                         print("response error!")
+                        Toast(text: "Error").show()
                     }                    
                 })                
             }            
