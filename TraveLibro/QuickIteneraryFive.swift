@@ -35,9 +35,10 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
             transparentCardWhite(photosGalleryFirstView)
             transparentCardWhite(photoGallerySecondView)
             photosAddMore.clipsToBounds = true
-            photosAddMore.layer.cornerRadius = 15
-            addTripPhotos.layer.cornerRadius = 15
+            photosAddMore.layer.cornerRadius = 5
+            addTripPhotos.layer.cornerRadius = 5
             addTripPhotos.clipsToBounds = true
+            
     }
 
     override func didReceiveMemoryWarning() {

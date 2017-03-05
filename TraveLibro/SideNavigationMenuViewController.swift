@@ -50,7 +50,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         super.viewDidLoad()
 
         loginLabel.isHidden = true
-        backgroundImage.addBlurEffect(30) 
+        backgroundImage.addBlurEffect(80)
 
         
 //        let bgImage = UIImageView(frame:self.view.frame)

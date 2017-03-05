@@ -28,6 +28,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cityVisited.attributedPlaceholder = NSAttributedString(string:  "Add Country", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+        countryVisited.attributedPlaceholder = NSAttributedString(string:  "Add Country", attributes: [NSForegroundColorAttributeName: mainBlueColor])
 //        loader.showOverlay(self.view)
         cityView.underlined()
         countryView.underlined()

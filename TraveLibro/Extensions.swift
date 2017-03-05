@@ -81,8 +81,8 @@ extension UIView {
         
         
         borderBottom.borderWidth = width
-        borderLeft.borderWidth = width
-        borderRight.borderWidth = width
+        borderLeft.borderWidth = width1
+        borderRight.borderWidth = width1
         
         self.layer.addSublayer(borderBottom)
         self.layer.addSublayer(borderLeft)

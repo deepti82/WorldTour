@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -37,7 +37,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="408"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="414"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z7m-z0-VR5">
@@ -100,10 +100,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Jf-xS-F3Z">
-                    <rect key="frame" x="0.0" y="358" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="358" width="375" height="64"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6C-ZG-Kli">
-                            <rect key="frame" x="167" y="4" width="42" height="42"/>
+                            <rect key="frame" x="166" y="11" width="42" height="42"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="42" id="6Ho-55-FcM"/>
                                 <constraint firstAttribute="width" constant="42" id="g8z-eD-v1b"/>
@@ -113,7 +113,7 @@
                             <state key="normal" image="camera_icon" backgroundImage="greenHalfNew"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Cover Photo?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvQ-Ec-ZOC">
-                            <rect key="frame" x="20" y="15.5" width="139" height="19.5"/>
+                            <rect key="frame" x="8" y="23" width="139" height="19.5"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -122,8 +122,8 @@
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="g6C-ZG-Kli" firstAttribute="centerX" secondItem="4Jf-xS-F3Z" secondAttribute="centerX" id="9w6-NS-0zH"/>
-                        <constraint firstAttribute="height" constant="50" id="Lef-aq-auf"/>
-                        <constraint firstItem="g6C-ZG-Kli" firstAttribute="leading" secondItem="vvQ-Ec-ZOC" secondAttribute="trailing" constant="8" id="NGI-D7-0U1"/>
+                        <constraint firstAttribute="height" constant="64" id="Lef-aq-auf"/>
+                        <constraint firstItem="g6C-ZG-Kli" firstAttribute="leading" secondItem="vvQ-Ec-ZOC" secondAttribute="trailing" constant="19" id="NGI-D7-0U1"/>
                         <constraint firstItem="g6C-ZG-Kli" firstAttribute="centerY" secondItem="4Jf-xS-F3Z" secondAttribute="centerY" id="V8q-pi-f02"/>
                         <constraint firstItem="vvQ-Ec-ZOC" firstAttribute="centerY" secondItem="4Jf-xS-F3Z" secondAttribute="centerY" id="X3d-Rd-OMI"/>
                     </constraints>
@@ -221,7 +221,7 @@
                 <constraint firstItem="Z7m-z0-VR5" firstAttribute="trailing" secondItem="59V-h0-f4K" secondAttribute="trailing" constant="-5" id="uUA-Fd-Evw"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="26.5" y="-77"/>
+            <point key="canvasLocation" x="26.5" y="-74"/>
         </view>
     </objects>
     <resources>
