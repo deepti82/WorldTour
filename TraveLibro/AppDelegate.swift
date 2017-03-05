@@ -241,7 +241,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         facebookIcon = String(format: "%C", faicon["facebook"]!)
         whatsAppIcon = String(format: "%C", faicon["whatsapp"]!)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.showLoginView(sender:)), name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showLoginView(notification:)), name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.white
@@ -304,7 +304,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
     
     //MARK: - Notification Observer
     
-    func showLoginView(sender: Any)  {
+    func showLoginView(notification: Notification)  {
+        
+        print("\n Notification object : \(notification.object)")
+       
+        var showpage = 0 
+        
+        if let info = notification.object as? Dictionary<String,Int> {
+            if let s = info["type"] {
+                showpage = s
+            }
+        }
         
         let checkAlertController = UIAlertController(title: "Error", message: "Please login first for doing any action", preferredStyle: UIAlertControllerStyle.alert) //Replace UIAlertControllerStyle.Alert by UIAlertControllerStyle.alert
         let DestructiveAction = UIAlertAction(title: "Cancel", style: .destructive) {
@@ -318,6 +328,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
             //Login Action
             
             let signInVC = storyboard.instantiateViewController(withIdentifier: "SignUpOne") as! SignInViewController
+            signInVC.showPage = showpage
             
             let nvc = UINavigationController(rootViewController: signInVC)
             

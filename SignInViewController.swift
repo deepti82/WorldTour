@@ -13,8 +13,10 @@ var nationalityPage: AddNationalityNewViewController!
 var navigation: UINavigationController!
 var signInVC: SignInViewController!
 
-
 class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegate, UIScrollViewDelegate {
+    
+    var showPage = 0
+    
     
     @IBOutlet weak var videoScrollView: UIScrollView!
     @IBOutlet weak var ipTextField: UITextField!    
@@ -46,6 +48,26 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         super.viewDidAppear(animated)
         
         loadData()
+        
+        print("\n\n Showpage : \(showPage)")
+        
+        switch showPage {
+        case 0:
+            videoScrollView.scrollRectToVisible(imageView1.frame, animated: true)
+            
+        case 1: 
+            videoScrollView.scrollRectToVisible(imageView2.frame, animated: true)
+            
+        case 2:
+            videoScrollView.scrollRectToVisible(imageView3.frame, animated: true)
+            
+        default:
+            break
+        }
+        
+        
+        videoToPlay()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -139,8 +161,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         self.navigationController?.isNavigationBarHidden = true
         
-        videoToPlay()
-        
         let signInFooter = SignInToolbar(frame: CGRect(x: 0 , y: screenHeight - 80, width: screenWidth, height: 80))
         signInFooter.center = CGPoint(x: self.view.center.x, y: signInFooter.center.y)
         self.view.addSubview(signInFooter)
@@ -153,7 +173,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         
         pageControl = UIPageControl(frame: CGRect(x: 0, y: signInFooter.frame.origin.y - 30, width: screenWidth, height: 30))
-        pageControl.currentPage = 0
+        pageControl.currentPage = showPage
         pageControl.currentPageIndicatorTintColor = UIColor.white
         pageControl.pageIndicatorTintColor = UIColor.lightGray
         pageControl.numberOfPages = 3
@@ -255,10 +275,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         print("\n videoToPlay \(i)");
         switch(i) {
         case 0:
-            print("\n player1: \(player1)")
+//            print("\n player1: \(player1)")
             player1.playFromBeginning()
         case 1:
-            print("\n player2 : \(player2.playbackState)")
+//            print("\n player2 : \(player2.playbackState)")
             player2.playFromBeginning()
         case 2:
             player3.playFromBeginning()
