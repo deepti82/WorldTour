@@ -219,7 +219,8 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
                     self.showNoData(show: false)
                 }
                 
-                
+                self.mainView.reloadData()
+
             }
             
         })

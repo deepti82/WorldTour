@@ -489,12 +489,13 @@ func getWidthOfText(text:String, font:UIFont) -> CGFloat{
 
 func getRegularString(string: String) -> NSMutableAttributedString {
     return NSMutableAttributedString(string: string, 
-                              attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)!])
+                              attributes: [NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 14)!, NSForegroundColorAttributeName: mainBlueColor])
 }
 
 func getBoldString(string: String) -> NSMutableAttributedString {
     return NSMutableAttributedString(string: string, 
-                              attributes: [NSFontAttributeName: UIFont(name: "Avenir-Black", size: 14)!])
+                              attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!, NSForegroundColorAttributeName: mainBlueColor])
+    
 }
 
 func getRedString(string: String) -> NSMutableAttributedString {

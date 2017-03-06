@@ -525,7 +525,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     let tstr = Toast(text: "\(currentUser["firstname"]) don't have any Journey.")
                     tstr.show()
                 }else{
-                    let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
+                    let journeys = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+                    journeys.whatEmptyTab = "Journeys"
                     self.navigationController?.pushViewController(journeys, animated: true)
                 }
             }else{
@@ -554,8 +555,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     let tstr = Toast(text: "\(currentUser["firstName"].stringValue) don't have any Photo's.")
                     tstr.show()
                 }else{
-                    let photosVC = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
-                    photosVC.whichView = "All"
+                    let photosVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+                    photosVC.whatEmptyTab = "Moments"
                     self.navigationController?.pushViewController(photosVC, animated: true)
                 }
             }else{
@@ -570,13 +571,14 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     let tstr = Toast(text: "\(currentUser["firstName"].stringValue) not reviewed any location.")
                     tstr.show()
                 }else{
-                    let reviewsVC = storyboard?.instantiateViewController(withIdentifier: "multipleTableVC") as! AccordionViewController
+                    let reviewsVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+                    reviewsVC.whatEmptyTab = "Reviews"
                     self.navigationController?.pushViewController(reviewsVC, animated: true)
                 }
             }else{
 
             let reviewsVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-                reviewsVC.whatEmptyTab = "Reviews"
+            reviewsVC.whatEmptyTab = "Reviews"
             self.navigationController?.pushViewController(reviewsVC, animated: true)
             }
             break

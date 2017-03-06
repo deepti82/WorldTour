@@ -98,7 +98,25 @@ class MoreAboutMe: UIView {
         }
         let holidayType = currentUser["travelConfig"]["holidayType"][0].stringValue
         
-        mainTextView.text = "\(name) loves to travel and explore \(kindOfHolidayFinal). \(pronoun) usually goes \(usuallyGo). \(preferStatement). \(name)'s ideal holiday type is \(holidayType)."
+        let MessageString = NSMutableAttributedString()
+        
+        MessageString.append(getBoldString(string: name))
+        
+        MessageString.append(getRegularString(string: " loves to travel and explore "))
+        
+        MessageString.append(getBoldString(string: "\(kindOfHolidayFinal). "))
+
+        
+        MessageString.append(getRegularString(string: "\(pronoun) usually goes "))
+
+        MessageString.append(getBoldString(string: "\(usuallyGo). \(preferStatement). \(name)'s"))
+
+        
+        MessageString.append(getRegularString(string: " ideal holiday type is "))
+        
+        MessageString.append(getBoldString(string: "\(holidayType)."))
+        
+        mainTextView.attributedText = MessageString
     }
 
 }
