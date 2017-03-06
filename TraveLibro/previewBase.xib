@@ -31,22 +31,27 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WOM-R6-ZDT">
                     <rect key="frame" x="20" y="0.0" width="335" height="51"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Itinerary Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gv-EE-uAm">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Itinerary Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gv-EE-uAm">
                             <rect key="frame" x="0.0" y="0.0" width="335" height="43"/>
                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                             <color key="textColor" red="0.98697105929999995" green="0.99956106259999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="highlightedColor" red="0.3413611352" green="0.82557433840000005" blue="0.7822966576" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photos_icon" translatesAutoresizingMaskIntoConstraints="NO" id="RIo-0E-eGN">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photos_icon" translatesAutoresizingMaskIntoConstraints="NO" id="RIo-0E-eGN">
                             <rect key="frame" x="84" y="8" width="25" height="25"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="Tiv-LZ-kqs"/>
+                                <constraint firstAttribute="height" constant="25" id="UtW-rI-MDe"/>
+                            </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.1137254902" green="0.1529411765" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="4Gv-EE-uAm" secondAttribute="trailing" id="2tE-ae-hYr"/>
                         <constraint firstItem="4Gv-EE-uAm" firstAttribute="leading" secondItem="WOM-R6-ZDT" secondAttribute="leading" id="KMF-mu-WMK"/>
+                        <constraint firstItem="RIo-0E-eGN" firstAttribute="centerY" secondItem="WOM-R6-ZDT" secondAttribute="centerY" constant="-5" id="KSh-8h-Qrh"/>
                         <constraint firstAttribute="bottom" secondItem="4Gv-EE-uAm" secondAttribute="bottom" constant="8" id="dtf-cI-5S4"/>
+                        <constraint firstItem="RIo-0E-eGN" firstAttribute="centerX" secondItem="WOM-R6-ZDT" secondAttribute="centerX" constant="-71" id="kfD-Xz-tnY"/>
                         <constraint firstItem="4Gv-EE-uAm" firstAttribute="top" secondItem="WOM-R6-ZDT" secondAttribute="top" id="upf-ML-PxF"/>
                     </constraints>
                 </view>

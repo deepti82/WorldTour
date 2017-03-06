@@ -42,7 +42,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
         tapRecognizer.addTarget(self, action: #selector(self.didTapView))
         self.view.addGestureRecognizer(tapRecognizer)
 
-        
+         tripTitle.attributedPlaceholder = NSAttributedString(string:  "Trip Title", attributes: [NSForegroundColorAttributeName: mainBlueColor])
         quickItinery = ["title": "", "year": "", "month": "", "duration": ""]
         
         durationTextField.delegate = self
