@@ -89,7 +89,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         self.view.addSubview(footer)
         
         
-        let footerAbove = previewBase(frame: CGRect(x: 0, y: self.view.frame.height - 100, width: self.view.frame.width, height: 40))
+        let footerAbove = previewBase(frame: CGRect(x: 0, y: self.view.frame.height - 105, width: self.view.frame.width, height: 40))
         footerAbove.layer.zPosition = 900
         footerAbove.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.showPhoto(_:))))
 
