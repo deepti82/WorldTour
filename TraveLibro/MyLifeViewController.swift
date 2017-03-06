@@ -161,9 +161,9 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func setDefaults() {
         
-        whatEmptyTab = "Journeys"
+//        whatEmptyTab = "Journeys"
         
-        whatEmptyTab = "Journeys"
+//        whatEmptyTab = "Journeys"
         reviewsButton.layer.zPosition = -1
         momentsButton.layer.zPosition = 1
         journeysButton.layer.zPosition = 3
@@ -177,11 +177,22 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         radioTwo.image = UIImage(named: "radio_for_button")
         radioThree.image = UIImage(named: "radio_for_button")
         
+        switch whatEmptyTab {
+        case "Journeys":
+            showJourneys(UIButton.self)
+        case "Moments":
+            showMoments(UIButton.self)
+        case "Reviews":
+            showReviews(UIButton.self)
+        default:
+            showJourneys(UIButton.self)
+        }
+        
         
     }
     
     
-    func showJourneys(_ sender: UIButton) {
+    func showJourneys(_ sender: AnyObject?) {
         whatEmptyTab = "Journeys"
         
         // where to check review
@@ -196,7 +207,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         allRadioChecked(sender);
     }
     
-    func showMoments(_ sender: UIButton) {
+    func showMoments(_ sender: AnyObject?) {
         
         whatEmptyTab = "Moments"
         journeysButton.layer.zPosition = -1
@@ -209,7 +220,7 @@ class MyLifeViewController: UIViewController, UIGestureRecognizerDelegate {
         allRadioChecked(sender);
     }
     
-    func showReviews(_ sender: UIButton) {
+    func showReviews(_ sender: AnyObject?) {
         
         whatEmptyTab = "Reviews"
         momentsButton.layer.zPosition = -1

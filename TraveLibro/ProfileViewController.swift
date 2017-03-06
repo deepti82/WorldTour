@@ -135,7 +135,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        scrollImage.contentSize.width = 10000
 //        scrollViewWillBeginDragging(collectionView)
         myLifeVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
-        
+        myLifeVC.whatEmptyTab = "Journeys"
                 if traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: view)
         }
@@ -529,7 +529,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     self.navigationController?.pushViewController(journeys, animated: true)
                 }
             }else{
-            let journeys = storyboard?.instantiateViewController(withIdentifier: "allJourneysCreated") as! AllJourneysViewController
+            let journeys = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+                journeys.whatEmptyTab = "Journeys"
             self.navigationController?.pushViewController(journeys, animated: true)
             }
             break
@@ -558,8 +559,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                     self.navigationController?.pushViewController(photosVC, animated: true)
                 }
             }else{
-            let photosVC = storyboard?.instantiateViewController(withIdentifier: "multipleCollectionVC") as! MyLifeMomentsViewController
-            photosVC.whichView = "All"
+            let photosVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+            photosVC.whatEmptyTab = "Moments"
             self.navigationController?.pushViewController(photosVC, animated: true)
             }
             break
@@ -574,7 +575,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 }
             }else{
 
-            let reviewsVC = storyboard?.instantiateViewController(withIdentifier: "multipleTableVC") as! AccordionViewController
+            let reviewsVC = storyboard?.instantiateViewController(withIdentifier: "myLife") as! MyLifeViewController
+                reviewsVC.whatEmptyTab = "Reviews"
             self.navigationController?.pushViewController(reviewsVC, animated: true)
             }
             break
