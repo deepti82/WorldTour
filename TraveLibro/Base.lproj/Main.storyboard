@@ -4899,6 +4899,17 @@
                         <outletCollection property="groupThreeCategoryButtons" destination="qIC-dE-HiH" collectionClass="NSMutableArray" id="CQK-GX-UrY"/>
                         <outletCollection property="groupThreeCategoryButtons" destination="80T-Jk-Clv" collectionClass="NSMutableArray" id="NXe-Uy-WBK"/>
                         <outletCollection property="kindOfJourneyLabels" destination="xJE-mE-aIs" collectionClass="NSMutableArray" id="3eb-Rj-zKB"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="zzR-5f-PPS" collectionClass="NSMutableArray" id="3og-mj-c1P"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="fcC-yo-7Ry" collectionClass="NSMutableArray" id="u0d-Nw-pYr"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="soT-wA-yMX" collectionClass="NSMutableArray" id="whN-FL-Wp3"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="Ffi-Y7-cB6" collectionClass="NSMutableArray" id="Arg-l6-hnY"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="SrZ-kE-urr" collectionClass="NSMutableArray" id="KlQ-61-qRo"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="ipf-fy-ITI" collectionClass="NSMutableArray" id="0Cu-QI-0Yp"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="44q-af-FeR" collectionClass="NSMutableArray" id="gcQ-c4-E2n"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="TP1-E6-fDc" collectionClass="NSMutableArray" id="XmX-aX-rQh"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="hjB-Sd-5xe" collectionClass="NSMutableArray" id="Twh-99-Hl4"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="F9d-9c-DPR" collectionClass="NSMutableArray" id="mZ7-Om-Icy"/>
+                        <outletCollection property="kindOfJourneyLabels" destination="dHf-8h-71t" collectionClass="NSMutableArray" id="WmN-fA-d1j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8La-xr-kH1" userLabel="First Responder" sceneMemberID="firstResponder"/>

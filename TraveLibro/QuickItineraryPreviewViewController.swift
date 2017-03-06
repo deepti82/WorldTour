@@ -140,7 +140,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         rightButton.setTitleColor(navGreen, for: .normal)
         rightButton.titleLabel?.font = avenirBold
         rightButton.addTarget(self, action: #selector(QuickItineraryPreviewViewController.donePage(_:)), for: .touchUpInside)
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 20)!]
         rightButton.frame = CGRect(x: 20, y: 8, width: 45, height: 30)
         print("selected status \(selectedQuickI)")
         if selectedQuickI == "" {
