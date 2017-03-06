@@ -22,6 +22,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     @IBOutlet weak var videoScrollView: UIScrollView!
     @IBOutlet weak var ipTextField: UITextField!    
     
+    var playBtn: UIButton!
+    
     var imageView1: UIImageView!
     var imageView2: UIImageView!
     var imageView3: UIImageView!
@@ -80,7 +82,28 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             
         default:
             break
-        }        
+        }
+        
+                
+        //Add play button [custumization]
+        
+        playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 75))
+        playBtn.backgroundColor = UIColor.clear
+        playBtn.center = imageView1.center
+        
+        playBtn.setTitle("Play full video", for: .normal)        
+        playBtn.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)!
+        playBtn.setTitleColor(UIColor.white, for: .normal)
+        
+        playBtn.setImage(UIImage(named: "video_play_icon"), for: .normal)
+        
+        playBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 20, 0)
+        playBtn.titleEdgeInsets = UIEdgeInsetsMake(55, 0, 20, 0)
+        
+        playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
+        
+        playBtn.isHidden = true
+        self.view.addSubview(playBtn)
         
         videoToPlay()
     }
@@ -112,7 +135,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player1.playbackLoops = false
         self.player1.muted = true
         self.player1.fillMode = "AVLayerVideoGravityResizeAspectFill"
-        self.player1.playFromBeginning()        
+//        self.player1.playFromBeginning()        
         let path = Bundle.main.path(forResource: "travellife", ofType:"mp4")       
         self.player1.setUrl(NSURL(fileURLWithPath: path!) as URL)
         imageView1.addSubview(self.player1.view)
@@ -225,63 +248,40 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         videoToPlay()
     }
     
-    /*
-    func playerPlaybackDidEnd(_ player: Player) {        
-        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
-        print("Player ended : \(pageNumber)")
-//        player.view.removeFromSuperview()
+   
+    func playerPlaybackDidEnd(_ player: Player) {
         
-        let i = Int(pageNumber)
-        switch(i) {
+        if playBtn != nil {
+            let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
+            print("Player ended : \(pageNumber)")
+            
+            let i = Int(pageNumber)
+            switch(i) {
             case 0:
                 if player1.playbackState == PlaybackState.stopped {
-                    let playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
-                    playBtn.backgroundColor = UIColor.red
-                    playBtn.center = imageView1.center
-                    playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
-                    playBtn.imageView?.image = UIImage(named: "video_play_icon")
-                    player1.view.addSubview(playBtn)
+                    playBtn.isHidden = false
                 }
-                            
+                
             case 1:
                 if player2.playbackState == PlaybackState.stopped {                    
-                    let playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
-                    playBtn.backgroundColor = UIColor.red
-                    playBtn.center = imageView2.center
-                    playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
-                    playBtn.imageView?.image = UIImage(named: "video_play_icon")
-                    imageView2.addSubview(playBtn)
+                    playBtn.isHidden = false
                 }
-            
+                
             case 2:
                 if player3.playbackState == PlaybackState.stopped {
-                    let playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
-                    playBtn.backgroundColor = UIColor.red
-                    playBtn.center = imageView3.center
-                    playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
-                    playBtn.imageView?.image = UIImage(named: "video_play_icon")
-                    imageView3.addSubview(playBtn)
+                    playBtn.isHidden = false
                 }
-            
+                
             default: break
-        }
+            }
+        }        
     }
- */
+
     
     //MARK: - Play 
     
     func videoToPlay ()  {
         let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
-
-        if player1.playbackState == PlaybackState.playing {
-            player1.stop()
-        }
-        if player2.playbackState == PlaybackState.playing {
-            player2.stop()
-        }
-        if player3.playbackState == PlaybackState.playing {
-            player3.stop()
-        }
         
         let i = Int(pageNumber)
         pageControl.currentPage = i
@@ -300,7 +300,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     }
     
     func playAgain(){
-        print("\n play Again")
+        
+        playBtn.isHidden = true
+        
         let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
         let i = Int(pageNumber)
         
@@ -321,6 +323,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     //MARK: - Scroll Delegates
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        playBtn.isHidden = true
         videoToPlay()
     }
 }
