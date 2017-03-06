@@ -33,7 +33,7 @@ class AddRating: UIView, UITextViewDelegate {
     var postId = ""
     var loader = LoadingOverlay()
     let moodArr = ["Disappointed", "Sad", "Good", "Super", "In Love"]
-    let imageArr = ["disapointed", "sad", "good", "superface", "love"]
+    let imageArr = ["disapointed", "sad", "good", "superface1", "love"]
     var navController = UINavigationController()
     
     func popToaster(text:String) {

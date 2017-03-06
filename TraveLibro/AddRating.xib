@@ -34,12 +34,17 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disappointed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wby-OA-ctG">
-                    <rect key="frame" x="157.5" y="96" width="85" height="19.5"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                    <rect key="frame" x="151" y="96" width="100" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="4BQ-wd-jsa"/>
+                        <constraint firstAttribute="height" constant="17" id="P0V-mP-1uy"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                    <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="E9T-mf-xXu">
-                    <rect key="frame" x="117.5" y="123.5" width="165" height="25"/>
+                    <rect key="frame" x="118" y="121" width="165" height="25"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfc-oD-eGb">
                             <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
@@ -78,13 +83,13 @@
                     </subviews>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGJ-P4-tMG">
-                    <rect key="frame" x="148.5" y="163.5" width="103.5" height="19.5"/>
+                    <rect key="frame" x="148.5" y="161" width="103.5" height="19.5"/>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                     <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Fill Me In..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Tq2-m8-HGG">
-                    <rect key="frame" x="16" y="191" width="368" height="90"/>
+                    <rect key="frame" x="16" y="188.5" width="368" height="90"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="90" id="qi2-fx-sS0"/>
@@ -103,13 +108,13 @@
                     <state key="normal" image="disapointed" backgroundImage="green_bg_new_small"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zT3-pM-mLS">
-                    <rect key="frame" x="150" y="301" width="100" height="30"/>
+                    <rect key="frame" x="160" y="298.5" width="80" height="30"/>
                     <color key="backgroundColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="O20-Ih-g0X"/>
                         <constraint firstAttribute="height" constant="30" id="lO6-g8-6md"/>
-                        <constraint firstAttribute="width" constant="100" id="s3d-zr-Ewm"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                     <state key="normal" title="POST">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
@@ -132,12 +137,14 @@
                 <constraint firstItem="E9T-mf-xXu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Wnc-VA-TpQ"/>
                 <constraint firstItem="rW4-KQ-hBv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="d4l-eO-G0l"/>
                 <constraint firstItem="RGJ-P4-tMG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fkl-cx-FKT"/>
+                <constraint firstItem="zT3-pM-mLS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ghp-xQ-GQ9"/>
                 <constraint firstItem="Tq2-m8-HGG" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hcf-QH-5z2"/>
                 <constraint firstItem="zT3-pM-mLS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nJD-YO-Nqx"/>
                 <constraint firstItem="zT3-pM-mLS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="oHU-iV-SjA"/>
                 <constraint firstItem="zT3-pM-mLS" firstAttribute="top" secondItem="Tq2-m8-HGG" secondAttribute="bottom" constant="20" id="pAZ-rS-5oD"/>
                 <constraint firstItem="rW4-KQ-hBv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tsV-3K-1vt"/>
                 <constraint firstItem="Tq2-m8-HGG" firstAttribute="top" secondItem="RGJ-P4-tMG" secondAttribute="bottom" constant="8" symbolic="YES" id="u4y-CR-H6c"/>
+                <constraint firstItem="zT3-pM-mLS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="uEd-ya-FOJ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
