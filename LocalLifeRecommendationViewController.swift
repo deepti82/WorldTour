@@ -339,10 +339,15 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
         if(self.addView.imageArr.count > 0 || self.addView.videoURL != nil || thoughts.characters.count > 0 || location.characters.count > 0) {
             let po = post.setPost(currentUser["_id"].string!, JourneyId: "", Type: "local-life", Date: self.currentTime, Location: location, Category: category, Latitude: lat, Longitude: lng, Country: self.addView.currentCountry, City: self.addView.currentCity, thoughts: thoughts, buddies: buddies!, imageArr: self.addView.imageArr,videoURL:self.addView.videoURL, videoCaption:self.addView.videoCaption)
             
-            let i = PostImage()
-            i.uploadPhotos()
-            self.addView.postButton.isHidden = true
+            goToActivity();
         }
+    }
+    
+    func goToActivity() {
+        let tlVC = self.storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        tlVC.displayData = "activity"
+        
+        self.navigationController?.pushViewController(tlVC, animated: false)
     }
     
     func hideAddActivity() {

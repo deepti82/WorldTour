@@ -22,6 +22,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var mainFooter: FooterViewNew!
     var displayData: String = ""
     var loader = LoadingOverlay()
+    var uploadingView:UploadingToCloud!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,23 +109,40 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
                             self.feeds.arrayObject?.append(post)
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
                             checkIn.feeds = post
+                            print("post post : \(post)")
+
                             checkIn.scrollView = self.activityScroll
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self
+                            self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                            self.uploadingView.backgroundColor = endJourneyColor
+
                             self.layout.addSubview(checkIn)
+                            self.layout.addSubview(self.uploadingView)
                             self.addHeightToLayout()
                             
                         }
                         
-                        for post in request["localLife"].array! {
+                        for var post in request["localLife"].array! {
                             self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
+                            
+                            print("ininininin  \(currentUser)")
+                            post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
+                            post["offline"] = true
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
                             checkIn.feeds = post
+                            print("post post : \(post)")
                             checkIn.scrollView = self.activityScroll
                             checkIn.createProfileHeader(feed: post)
                             checkIn.activityFeed = self
+                            
+                            self.uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+                            self.uploadingView.backView.backgroundColor = endJourneyColor
+                            self.uploadingView.uploadText.textColor = mainBlueColor
                             self.layout.addSubview(checkIn)
+                            self.layout.addSubview(self.uploadingView)
+
                             self.addHeightToLayout()
                             
                         }

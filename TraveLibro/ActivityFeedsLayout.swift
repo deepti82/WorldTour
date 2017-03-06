@@ -43,7 +43,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
         middleLayoout(feed:feed)
         
-        footerLayout(feed:feed)
+        if !feed["offline"].boolValue {
+            footerLayout(feed:feed)
+
+        }
+        
         
         self.layoutSubviews()
     }

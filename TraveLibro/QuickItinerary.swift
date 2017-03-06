@@ -140,6 +140,7 @@ public class QuickItinerary {
             if(!check) {
                 if globalNewTLViewController != nil {
                     globalNewTLViewController.getJourney()
+//                    goToActivity()
                 }
             }
         }
@@ -147,5 +148,12 @@ public class QuickItinerary {
             print("There is an error");
         }
         
+    }
+    func goToActivity() {
+        
+        let tlVC = storyboard!.instantiateViewController(withIdentifier: "activityFeeds") as! ActivityFeedsController
+        tlVC.displayData = "activity"
+        
+        globalNavigationController.pushViewController(tlVC, animated: false)
     }
 }
