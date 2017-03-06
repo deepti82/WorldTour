@@ -167,6 +167,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //MARK: - Tableview Delegates and Datasource
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SideMenuTableViewCell
@@ -222,7 +225,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
                 self.slideMenuController()?.changeMainViewController(self.localLifeController, close: true)
             }
             else {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":1])
             }
         default:
             if currentUser != nil {

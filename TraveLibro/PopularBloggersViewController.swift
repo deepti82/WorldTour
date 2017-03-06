@@ -21,6 +21,8 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
     
     @IBOutlet weak var userTableView: UITableView!
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +41,11 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         userTableView.addSubview(refreshControl)
         
         getPopulerUser(pageNum : pagenum )
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        globalNavigationController = self.navigationController
     }
     
 
@@ -118,12 +125,6 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
         return allUsers.count
         
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedPeople = allUsers[indexPath.row]["_id"].stringValue
-        let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
-        profile.displayData = "search"
-        self.navigationController!.pushViewController(profile, animated: true)
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -176,6 +177,18 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
             if hasNext {
                 getPopulerUser(pageNum: (pagenum + 1))
             }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if currentUser != nil {
+            selectedPeople = allUsers[indexPath.row]["_id"].stringValue
+            let profile = self.storyboard!.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
+            profile.displayData = "search"
+            self.navigationController!.pushViewController(profile, animated: true)            
+        }
+        else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }
     }
     
@@ -252,6 +265,19 @@ class PopularBloggersViewController: UIViewController, UITableViewDataSource, UI
             self.mainFooter.frame.origin.y = self.view.frame.height - 65
             
         }
+    }
+    
+    func createNavigation() {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        let leftButton = UIButton()
+        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+        
+        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: nil)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 

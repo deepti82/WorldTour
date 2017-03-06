@@ -16,6 +16,7 @@ var signInVC: SignInViewController!
 class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegate, UIScrollViewDelegate {
     
     var showPage = 0
+    var shouldShowNavBar = false
     
     
     @IBOutlet weak var videoScrollView: UIScrollView!
@@ -38,6 +39,24 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getDarkBackGroundBlur(self)
+        
+        if shouldShowNavBar {
+            self.navigationController?.isNavigationBarHidden = false
+            
+            let leftButton = UIButton()
+            leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
+            leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
+            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            
+            self.customNavigationBar(left: leftButton, right: nil)
+            
+            self.title = "Travel"
+        }
+        else {
+            self.navigationController?.isNavigationBarHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,8 +67,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         super.viewDidAppear(animated)
         
         loadData()
-        
-        print("\n\n Showpage : \(showPage)")
         
         switch showPage {
         case 0:
@@ -63,11 +80,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             
         default:
             break
-        }
-        
+        }        
         
         videoToPlay()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -94,17 +109,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player1.delegate = self
         self.player1.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player1.view.clipsToBounds = true
-        self.player1.playbackLoops = true
+        self.player1.playbackLoops = false
         self.player1.muted = true
         self.player1.fillMode = "AVLayerVideoGravityResizeAspectFill"
-        self.player1.playFromBeginning()
-//        guard let path = Bundle.main.path(forResource: "travellife", ofType:"mp4") else {
-//            debugPrint("travellife.mp4 not found")
-//            return
-//        }
-//        self.player1.setUrl(URL(string: path)!)
-//        print("\n Path1: \(path)")
-        self.player1.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/travellife.mp4")!)        
+        self.player1.playFromBeginning()        
+        let path = Bundle.main.path(forResource: "travellife", ofType:"mp4")       
+        self.player1.setUrl(NSURL(fileURLWithPath: path!) as URL)
         imageView1.addSubview(self.player1.view)
         
         
@@ -120,16 +130,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player2.delegate = self
         self.player2.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player2.view.clipsToBounds = true
-        self.player2.playbackLoops = true
+        self.player2.playbackLoops = false
         self.player2.muted = true        
         self.player2.fillMode = "AVLayerVideoGravityResizeAspectFill"
-        self.player2.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/locallife.mp4")!)
-//        guard let path2 = Bundle.main.path(forResource: "locallife", ofType:"mp4") else {
-//            debugPrint("locallife.mp4 not found")
-//            return
-//        }
-//        print("\n \(path2)")
-//        self.player2.setUrl(URL(fileURLWithPath: path2))
+        let path2 = Bundle.main.path(forResource: "locallife", ofType:"mp4")       
+        self.player2.setUrl(NSURL(fileURLWithPath: path2!) as URL)
         imageView2.addSubview(self.player2.view)
         self.horizontal.addSubview(imageView2)
         
@@ -143,23 +148,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player3.delegate = self
         self.player3.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player3.view.clipsToBounds = true
-        self.player3.playbackLoops = true
+        self.player3.playbackLoops = false
         self.player3.muted = true
         self.player3.fillMode = "AVLayerVideoGravityResizeAspectFill"
-        self.player3.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/mylife.mp4")!)
-//        guard let path3 = Bundle.main.path(forResource: "mylife", ofType:"mp4") else {
-//            debugPrint("mylife.mp4 not found")
-//            return
-//        }        
-//        self.player2.setUrl(URL(string: path3)!)
+        let path3 = Bundle.main.path(forResource: "mylife", ofType:"mp4")       
+        self.player3.setUrl(NSURL(fileURLWithPath: path3!) as URL)
         imageView3.addSubview(self.player3.view)
         self.horizontal.addSubview(imageView3)
         
         addToLayout();
-        
-        getDarkBackGroundBlur(self)
-        
-        self.navigationController?.isNavigationBarHidden = true
         
         let signInFooter = SignInToolbar(frame: CGRect(x: 0 , y: screenHeight - 80, width: screenWidth, height: 80))
         signInFooter.center = CGPoint(x: self.view.center.x, y: signInFooter.center.y)
@@ -175,7 +172,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         pageControl = UIPageControl(frame: CGRect(x: 0, y: signInFooter.frame.origin.y - 30, width: screenWidth, height: 30))
         pageControl.currentPage = showPage
         pageControl.currentPageIndicatorTintColor = UIColor.white
-        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.pageIndicatorTintColor = UIColor.darkGray
         pageControl.numberOfPages = 3
         self.view.addSubview(pageControl)
             
@@ -221,9 +218,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         let logInVC = storyboard?.instantiateViewController(withIdentifier: "logIn") as! LogInViewController
         self.navigationController?.pushViewController(logInVC, animated: true)
     }
-
-    
-    
     
     //MARK: - Player Delegates
     
@@ -231,45 +225,64 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         videoToPlay()
     }
     
-    func playerPlaybackDidEnd(_ player: Player) {
-//        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
-//        print("\n Player ended : \(pageNumber)")
-////        player.view.removeFromSuperview()
-//        
-//        let i = Int(pageNumber)        
-//        switch(i) {
-//            case 0:
-//                let playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
-//                playBtn.backgroundColor = UIColor.red
-//                playBtn.center = imageView1.center
-//                playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
-//                playBtn.imageView?.image = UIImage(named: "video_play_icon")
-//                imageView1.addSubview(playBtn)            
-//            case 1:
-//                let playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
-//                playBtn.backgroundColor = UIColor.red
-//                playBtn.center = imageView2.center
-//                playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
-//                playBtn.imageView?.image = UIImage(named: "video_play_icon")
-//                imageView2.addSubview(playBtn) 
-//            case 2:
-//                let playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
-//                playBtn.backgroundColor = UIColor.red
-//                playBtn.center = imageView3.center
-//                playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
-//                playBtn.imageView?.image = UIImage(named: "video_play_icon")
-//                imageView3.addSubview(playBtn) 
-//            default: break
-//        }
+    /*
+    func playerPlaybackDidEnd(_ player: Player) {        
+        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
+        print("Player ended : \(pageNumber)")
+//        player.view.removeFromSuperview()
+        
+        let i = Int(pageNumber)
+        switch(i) {
+            case 0:
+                if player1.playbackState == PlaybackState.stopped {
+                    let playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
+                    playBtn.backgroundColor = UIColor.red
+                    playBtn.center = imageView1.center
+                    playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
+                    playBtn.imageView?.image = UIImage(named: "video_play_icon")
+                    player1.view.addSubview(playBtn)
+                }
+                            
+            case 1:
+                if player2.playbackState == PlaybackState.stopped {                    
+                    let playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
+                    playBtn.backgroundColor = UIColor.red
+                    playBtn.center = imageView2.center
+                    playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
+                    playBtn.imageView?.image = UIImage(named: "video_play_icon")
+                    imageView2.addSubview(playBtn)
+                }
+            
+            case 2:
+                if player3.playbackState == PlaybackState.stopped {
+                    let playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 44))
+                    playBtn.backgroundColor = UIColor.red
+                    playBtn.center = imageView3.center
+                    playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
+                    playBtn.imageView?.image = UIImage(named: "video_play_icon")
+                    imageView3.addSubview(playBtn)
+                }
+            
+            default: break
+        }
     }
+ */
     
     //MARK: - Play 
     
     func videoToPlay ()  {
-        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)        
-        player1.stop()
-        player2.stop()
-        player3.stop()
+        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
+
+        if player1.playbackState == PlaybackState.playing {
+            player1.stop()
+        }
+        if player2.playbackState == PlaybackState.playing {
+            player2.stop()
+        }
+        if player3.playbackState == PlaybackState.playing {
+            player3.stop()
+        }
+        
         let i = Int(pageNumber)
         pageControl.currentPage = i
         print("\n videoToPlay \(i)");

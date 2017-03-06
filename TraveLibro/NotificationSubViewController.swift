@@ -30,7 +30,7 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        createNavigation()
+        self.setNavigationBarItem()
         
         loader.showOverlay(self.view)        
         self.mainFooter = FooterViewNew(frame: CGRect(x: 0, y: self.view.frame.height - 65, width: self.view.frame.width, height: 65))
@@ -699,17 +699,5 @@ class NotificationSubViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
-    func createNavigation() {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        let leftButton = UIButton()
-        leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
-        leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-        
-        leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
-        self.customNavigationBar(left: leftButton, right: nil)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-    }
 }
 
