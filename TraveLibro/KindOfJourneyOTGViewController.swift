@@ -24,6 +24,7 @@ class KindOfJourneyOTGViewController: UIViewController {
     
     var backVC: NewTLViewController!
     
+    @IBOutlet var kindOfJourneyLabels: [UILabel]!
     @IBOutlet var groupThreeCategoryButtons: [UIButton]!
     @IBOutlet var groupTwoCategoryButtons: [UIButton]!
     @IBOutlet var groupOneCategoryButtons: [UIButton]!
@@ -31,6 +32,13 @@ class KindOfJourneyOTGViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for labels in kindOfJourneyLabels{
+            labels.shadowColor = UIColor.black
+            labels.shadowOffset = CGSize(width: 2, height: 2)
+            labels.layer.masksToBounds = true
+
+        }
         
 //        loader.showOverlay(self.view)
         self.setTopNavigation(text: "Kind of Journey");
