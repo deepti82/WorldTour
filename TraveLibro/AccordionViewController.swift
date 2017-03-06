@@ -126,7 +126,6 @@ class AccordionViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    
     func goBack(_ sender:AnyObject) {
         self.navigationController!.popViewController(animated: true)
     }

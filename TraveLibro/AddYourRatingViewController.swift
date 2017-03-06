@@ -106,8 +106,8 @@ class AddYourRatingViewController: UIViewController {
             
             
         }
-        
-        getStars(rating, stars: post["rating"].int!)
+        print(post["rating"].intValue)
+        getStars(rating, stars: post["rating"].intValue)
         addHeightToLayout(rating.frame.height)
         layout.addSubview(rating)
         
