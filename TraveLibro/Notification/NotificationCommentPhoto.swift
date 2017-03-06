@@ -30,6 +30,8 @@ class NotificationCommentPhoto: UIView {
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        NFPhotoImage.layer.cornerRadius = 8.0
         self.addSubview(view);
     }
     

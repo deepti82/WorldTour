@@ -118,10 +118,10 @@ class NotificationActionCell: UITableViewCell {
                 NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight)        
                 totalHeight += messageHeight            
                 
-                NFPermission.NFLeftButton.setTitle("END", for: .normal)
+                NFPermission.NFLeftButton.setTitle("End", for: .normal)
                 NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyEndTabbed(_:)), for: .touchUpInside)
                 
-                NFPermission.NFRightButton.setTitle("DECLINE", for: .normal)
+                NFPermission.NFRightButton.setTitle("Decline", for: .normal)
                 NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyEndDeclined(_:)), for: .touchUpInside)            
             }
             else if notificationData["type"] == "journeyRequest" {
@@ -138,19 +138,19 @@ class NotificationActionCell: UITableViewCell {
                 NFMessage.frame = CGRect(x: xPos, y: totalHeight, width: screenWidth - xPos, height: messageHeight + 10)                
                 totalHeight += messageHeight
                 
-                NFPermission.NFLeftButton.setTitle("ACCEPT", for: .normal)
+                NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
                 NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.journeyAcceptTabbed(_:)), for: .touchUpInside)
                 
-                NFPermission.NFRightButton.setTitle("DECLINE", for: .normal)
+                NFPermission.NFRightButton.setTitle("Decline", for: .normal)
                 NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.journeyDeclineTabbed(_:)), for: .touchUpInside)
             }
             else if notificationData["type"] == "itineraryRequest" {                 
                 NFMessage.frame = CGRect.zero
                 
-                NFPermission.NFLeftButton.setTitle("ACCEPT", for: .normal)
+                NFPermission.NFLeftButton.setTitle("Accept", for: .normal)
                 NFPermission.NFLeftButton.addTarget(helper, action: #selector(helper.itineraryAcceptTabbed(_:)), for: .touchUpInside)
                 
-                NFPermission.NFRightButton.setTitle("DECLINE", for: .normal)
+                NFPermission.NFRightButton.setTitle("Decline", for: .normal)
                 NFPermission.NFRightButton.addTarget(helper, action: #selector(helper.itineraryDeclinedTabbed(_:)), for: .touchUpInside)
             }
         }
