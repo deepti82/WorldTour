@@ -86,6 +86,7 @@ class ActivityFeedFooterBasic: UIView {
         //  RATING
         if feed["type"].stringValue == "travel-life" {
             localLifeTravelImage.image = UIImage(named: "travel_life")
+            localLifeTravelImage.tintColor = mainOrangeColor
             
         }else{
             localLifeTravelImage.image = UIImage(named: "local_life")
