@@ -90,17 +90,43 @@ func getDarkBackGroundBlue(_ myVC: UIViewController) {
     
     
     myVC.view.addSubview(bgImage)
-    
+    myVC.view.sendSubview(toBack: bgImage)
     
     let blackView = UIView(frame: myVC.view.frame)
     blackView.backgroundColor = UIColor.black
     blackView.alpha = 0.3
-    
     myVC.view.addSubview(blackView)
+    myVC.view.sendSubview(toBack: blackView)
     
     //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
     
 }
+
+func getDarkBackGroundNew(_ myVC: UIViewController) {
+    
+    let bgImage = UIImageView(frame: myVC.view.frame)
+    bgImage.image = UIImage(named: "darkBgNew")
+    bgImage.layer.zPosition = -1
+    bgImage.isUserInteractionEnabled = false
+    
+    //    bgImage.image = bgImage.image?.withRenderingMode(.alwaysTemplate)
+    //    bgImage.tintColor = UIColor(colorLiteralRed: 0/255, green: 0/255, blue: 0/255, alpha: 0.1)
+    
+    
+    myVC.view.addSubview(bgImage)
+//    myVC.view.sendSubview(toBack: bgImage)
+    
+    let blackView = UIView(frame: myVC.view.frame)
+    blackView.backgroundColor = UIColor.black
+    blackView.alpha = 0.3
+    myVC.view.addSubview(blackView)
+//    myVC.view.sendSubview(toBack: blackView)
+    
+    //    myVC.view.backgroundColor = UIColor(patternImage: UIImage(named: "darkBg")!)
+    
+}
+
+
 
 //func getBackGroundProfile(_ myVc: UIViewController) {
 //    

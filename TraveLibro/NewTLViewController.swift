@@ -1033,7 +1033,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         i.uploadPhotos()
         self.setTopNavigation(text: "On The Go")
         globalNewTLViewController = self;
-        getDarkBackGroundBlue(self)
+        getDarkBackGroundNew(self)
         if fromOutSide == "" {
             getJourney()
         }else{
@@ -1732,6 +1732,10 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
         doneButton.addTarget(self, action: #selector(NewTLViewController.doneButton(_:)), for: .touchUpInside) // set button click event
         cancelButton.addTarget(self, action: #selector(NewTLViewController.cancelButton(_:)), for: .touchUpInside) // set button click event
         
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(_:)))
+        
+//        view.addGestureRecognizer(tap)
+        
         self.datePickerView.addTarget(self, action: #selector(NewTLViewController.handleDatePicker(_:)), for: .valueChanged)
         
         self.handleDatePicker(self.datePickerView) // Set the date on start.
@@ -1963,16 +1967,16 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     
     //    var keyboardHidden = false
     
-    var viewHeight = 0
+//    var viewHeight = 0
     
     func keyboardWillShow(_ notification: Notification) {
-        view.frame.origin.y = CGFloat(viewHeight)
+//        view.frame.origin.y = CGFloat(viewHeight)
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             
             
             //            if !keyboardHidden {
             if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= 258
+                self.view.frame.origin.y -= keyboardSize.height
                 //                keyboardHidden = true
                 //            }
                 print("keyboardchange karde")
@@ -1983,13 +1987,14 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
     }
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
+            
                 self.view.frame.origin.y += keyboardSize.height
                 print("helololol")
                 print(keyboardSize.height)
-            }
+
         }
     }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         otgView.locationLabel.resignFirstResponder()

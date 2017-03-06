@@ -34,7 +34,7 @@ class KindOfJourneyOTGViewController: UIViewController {
         
 //        loader.showOverlay(self.view)
         self.setTopNavigation(text: "Kind of Journey");
-        getDarkBackGround(self)
+        getDarkBackGroundBlue(self)
         
         let allControllers = self.navigationController?.viewControllers
         backVC = allControllers![allControllers!.count - 2] as! NewTLViewController

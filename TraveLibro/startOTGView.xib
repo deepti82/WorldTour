@@ -108,7 +108,7 @@
                     </connections>
                 </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exploring United Kingdom" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aqf-8y-8EK">
-                    <rect key="frame" x="62.5" y="120" width="275" height="55"/>
+                    <rect key="frame" x="63" y="120" width="275" height="55"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="275" id="Mxd-cR-43V"/>
                         <constraint firstAttribute="height" constant="55" id="ubu-dH-wIR"/>

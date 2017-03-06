@@ -55,6 +55,17 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDarkBackGroundBlue(self)
+        addedBuddies.shadowColor = UIColor.black
+        addedBuddies.shadowOffset = CGSize(width: 2, height: 2)
+        addedBuddies.layer.masksToBounds = true
+
+        
+        allFriends.shadowColor = UIColor.black
+        allFriends.shadowOffset = CGSize(width: 2, height: 2)
+        allFriends.layer.masksToBounds = true
+
+        
         loader.showOverlay(self.view)
         //        moveUp()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -70,7 +81,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
             addedBuddies.text = "Trip Buddies"
         }
         
-        allFriends.textColor = mainOrangeColor
+        allFriends.textColor = UIColor.white
         self.title = "Add Buddies"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 18)!]
         addedBuddies.layer.zPosition = 100
@@ -109,13 +120,13 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
         
-        getDarkBackGround(self)
+        
         search.searchField.addTarget(self, action: #selector(AddBuddiesViewController.getSearchResults(_:)), for: .editingChanged)
-        addedBuddies.textColor = mainOrangeColor
+        addedBuddies.textColor = UIColor.white
         peopleImage.tintColor = mainOrangeColor
         buddiesTableView.backgroundColor = UIColor.clear
         buddiesCollectionView.backgroundColor = UIColor.clear
-        search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search a Friend", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        search.searchField.attributedPlaceholder = NSAttributedString(string:  "Search", attributes: [NSForegroundColorAttributeName: UIColor.white])
         search.leftLine.backgroundColor = mainOrangeColor
         search.rightLine.backgroundColor = mainOrangeColor
         search.bottomLine.backgroundColor = mainOrangeColor
@@ -337,7 +348,7 @@ class AddBuddiesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
         cell.removeBuddyButton.setTitleColor(mainOrangeColor, for: UIControlState())
-        cell.buddyName.textColor = mainBlueColor
+        cell.buddyName.textColor = UIColor.white
         
         cell.removeBuddyButton.layer.zPosition = 10
         if  cell.removeBuddyButton.tag == 0 {
