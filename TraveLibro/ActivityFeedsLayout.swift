@@ -246,7 +246,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
     func middleLayoout(feed:JSON) {
         switch feed["type"].stringValue {
         case "on-the-go-journey","ended-journey":
-            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 572))
+            activityFeedImage = ActivityFeedImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
             activityFeedImage.fillData(feed: feed)
             let tapRecognizer = UITapGestureRecognizer()
             tapRecognizer.numberOfTapsRequired = 1
@@ -257,7 +257,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             self.addSubview(activityFeedImage)
         case "quick-itinerary":
-            activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 590))
+            activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
             let tapRecognizer = UITapGestureRecognizer()
             tapRecognizer.numberOfTapsRequired = 1
             tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
@@ -266,7 +266,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(activityQuickItinerary)
             
         case "detail-itinerary":
-            activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 528))
+            activityDetailItinerary = ActivityDetailItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
             activityDetailItinerary.fillData(feed: feed)
             self.addSubview(activityDetailItinerary)
             let tapRecognizer = UITapGestureRecognizer()

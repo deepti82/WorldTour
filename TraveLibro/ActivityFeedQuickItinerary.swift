@@ -53,7 +53,7 @@ class ActivityFeedQuickItinerary: UIView {
     }
     
     func fillData(feed:JSON) {
-        
+        print(feed)
         activityFeedYear.text = feed["month"].stringValue + " " + feed["year"].stringValue
         activityFeedYear.sizeToFit()
         activityFeedDaysCount.text = feed["duration"].stringValue
@@ -101,7 +101,7 @@ class ActivityFeedQuickItinerary: UIView {
         }
 
         
-        activityFeedItineraryName.text = feed["title"].stringValue
+        activityFeedItineraryName.text = feed["name"].stringValue
         
         if feed["coverPhoto"] != nil && feed["coverPhoto"] != "" {
             activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["coverPhoto"])", width: 300))
