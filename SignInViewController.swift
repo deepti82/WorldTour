@@ -25,7 +25,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     @IBOutlet weak var toggleSound: UIButton!
     @IBOutlet weak var videoScrollView: UIScrollView!
     @IBOutlet weak var ipTextField: UITextField!    
-    
+    var toggleSoundButton: UIButton!
     var playBtn: UIButton!
     var videoLabel: UILabel!
     
@@ -132,7 +132,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         playBtn.isHidden = true
         self.view.addSubview(playBtn)
         
-//        toggleSoundButton = UIButton(frame)
+//        toggleSoundButton = UIButton(frame: CGRect(x: self.view.frame.maxX - 32, y: self.view.frame.maxX - 40, width: 40, height: 32))
+//        toggleSoundButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
+//        toggleSoundButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+//        toggleSoundButton.clipsToBounds = true
+//        toggleSoundButton.layer.cornerRadius = 5
         
         videoToPlay()
     }
