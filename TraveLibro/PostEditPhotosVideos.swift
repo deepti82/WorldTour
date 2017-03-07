@@ -46,13 +46,15 @@ public class PostEditPhotosVideos {
     
     func uploadPostPhotosVideos() {
         do {
+            
+            print("in in in ininin")
             var check = false;
             let query = addPhotosVideos_db.select(id_db,uniqueId_db,buddyDb)
                 .limit(1)
             for post in try db.prepare(query) {
                 check = true
                 let str = String(post[uniqueId_db])
-                var params:JSON = [ "uniqueId" : str,"type": "addPhotosVideos" ]
+                var params:JSON = [ "uniqueId" : str,"type": "addPhotosVideos","user": currentUser["_id"].stringValue]
                 let actualId = Int(post[id_db]) + 10000
                 
                 let i = PostImage();
