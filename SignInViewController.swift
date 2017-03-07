@@ -22,7 +22,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     var shouldShowNavBar = false
     
     
-    @IBOutlet weak var toggleSound: UIButton!
+    
     @IBOutlet weak var videoScrollView: UIScrollView!
     @IBOutlet weak var ipTextField: UITextField!    
     var toggleSoundButton: UIButton!
@@ -46,11 +46,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        toggleSound.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
-        toggleSound.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        toggleSound.clipsToBounds = true
-        toggleSound.layer.cornerRadius = 5
         
        
         getDarkBackGroundBlur(self)
@@ -107,8 +102,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         case 0:
             videoScrollView.scrollRectToVisible(imageView1.frame, animated: true)
             
+            
         case 1: 
             videoScrollView.scrollRectToVisible(imageView2.frame, animated: true)
+           
             
         case 2:
             videoScrollView.scrollRectToVisible(imageView3.frame, animated: true)
@@ -131,11 +128,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         playBtn.isHidden = true
         self.view.addSubview(playBtn)
         
-//        toggleSoundButton = UIButton(frame: CGRect(x: self.view.frame.maxX - 32, y: self.view.frame.maxX - 40, width: 40, height: 32))
-//        toggleSoundButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
-//        toggleSoundButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-//        toggleSoundButton.clipsToBounds = true
-//        toggleSoundButton.layer.cornerRadius = 5
+        toggleSoundButton = UIButton(frame: CGRect(x: self.view.frame.maxX - 40, y: self.view.frame.maxY - 112, width: 40, height: 32))
+        
+         toggleSoundButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 32)
+        toggleSoundButton.setTitle(String(format: "%C",0xf028) + "⨯", for: .normal)
+        toggleSoundButton.addTarget(self, action: #selector(SignInViewController.touchButtonTap(_:)), for: .touchUpInside)
+        toggleSoundButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        toggleSoundButton.clipsToBounds = true
+        toggleSoundButton.layer.cornerRadius = 5
+        self.view.addSubview(toggleSoundButton)
         
         videoToPlay()
     }
@@ -276,6 +277,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     func playerReady(_ player: Player) {
         print("\n Player ready called")
+        
         videoToPlay()
     }
    
@@ -324,14 +326,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
 //            videoLabel.attributedText = travelLifeText   
             videoLabel.text = "Travel Life"
             player1.playFromBeginning()
+            
         case 1:
 //            videoLabel.attributedText = localLifeText  
             videoLabel.text = "Local Life"
             player2.playFromBeginning()
+            
         case 2:
 //            videoLabel.attributedText = myLifeText   
             videoLabel.text = "My Life"
             player3.playFromBeginning()
+            
         default: break
         }
     }
@@ -357,20 +362,19 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
 
     //MARK: - Scroll Delegates
     
-    @IBAction func toggleSoundtap(_ sender: UIButton) {
-        
+//    @IBAction func toggleSoundtap(_ sender: UIButton) {
+    func touchButtonTap(_ sender: UIButton){
         if(defaultMute) {
             defaultMute = false;
             player1.muted = defaultMute
-            toggleSound.setTitle(String(format: "%C",0xf028), for: UIControlState())
+           
         } else {
             defaultMute = true;
             player1.muted = defaultMute
-            toggleSound.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
+            
         }
     }
 
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         playBtn.isHidden = true
         videoToPlay()
