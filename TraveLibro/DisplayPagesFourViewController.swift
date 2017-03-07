@@ -116,7 +116,7 @@ class DisplayPagesFourViewController: UIViewController {
         print("your ideal holiday: \(yourIdeal)")
         
         
-        let req = ["kindOfHoliday":kindOfJourney,"usuallyGo":youUsuallyGo,"preferToTravel":preferToTravel,"holidayType":yourIdeal] as [String : Any]
+        let req = ["kindOfHoliday":kindOfJourney,"usuallyGo":[youUsuallyGo],"preferToTravel":preferToTravel,"holidayType":yourIdeal] as [String : Any]
 //
         request.addCard(currentUser["_id"].string!, editFieldValue: req, completion: {(responce) in
             DispatchQueue.main.async(execute: {
