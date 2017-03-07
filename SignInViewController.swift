@@ -86,9 +86,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         videoLabel.font = NAVIGATION_FONT
         videoLabel.numberOfLines = 0
         videoLabel.lineBreakMode = .byWordWrapping
-        videoLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
-        videoLabel.layer.shadowOpacity = 1
-        videoLabel.layer.shadowRadius = 10
+        videoLabel.shadowColor = UIColor.black
+        videoLabel.shadowOffset = CGSize(width: 2, height: 2)
+        videoLabel.layer.masksToBounds = true
         videoLabel.text = ""
         self.view.addSubview(videoLabel)
     }
@@ -124,9 +124,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         playBtn.backgroundColor = UIColor.clear
         playBtn.center = imageView1.center
         playBtn.imageView?.tintColor = mainBlueColor
-        playBtn.setTitle(String(format: "%C", faicon["videoPlay"]!), for: .normal)
+        playBtn.setTitle(String(format: "%C",0xf144), for: .normal)
+        playBtn.titleLabel?.font = UIFont(name: "FontAwesome", size: 65)
+
         playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
-        
         playBtn.isHidden = true
         self.view.addSubview(playBtn)
         
@@ -288,19 +289,19 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             switch(i) {
             case 0:
                 if player1.playbackState == PlaybackState.stopped {
-                    playBtn.tintColor = mainOrangeColor
+                    playBtn.titleLabel?.textColor = mainOrangeColor
                     playBtn.isHidden = false
                 }
                 
             case 1:
                 if player2.playbackState == PlaybackState.stopped {
-                    playBtn.tintColor = mainGreenColor
+                    playBtn.titleLabel?.textColor = mainGreenColor
                     playBtn.isHidden = false
                 }
                 
             case 2:
                 if player3.playbackState == PlaybackState.stopped {
-                    playBtn.tintColor = UIColor.white
+                    playBtn.titleLabel?.textColor = UIColor.white
                     playBtn.isHidden = false
                 }
                 
@@ -321,15 +322,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         switch(i) {
         case 0:
 //            videoLabel.attributedText = travelLifeText   
-            videoLabel.text = "TRAVEL LIFE"
+            videoLabel.text = "Travel Life"
             player1.playFromBeginning()
         case 1:
 //            videoLabel.attributedText = localLifeText  
-            videoLabel.text = "LOCAL LIFE"
+            videoLabel.text = "Local Life"
             player2.playFromBeginning()
         case 2:
 //            videoLabel.attributedText = myLifeText   
-            videoLabel.text = "MY LIFE"
+            videoLabel.text = "My Life"
             player3.playFromBeginning()
         default: break
         }
