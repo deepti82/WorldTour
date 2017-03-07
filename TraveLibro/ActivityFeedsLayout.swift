@@ -4,7 +4,7 @@
 //
 //  Created by Jagruti  on 19/01/17.
 //  Copyright © 2017 Wohlig Technology. All rights reserved.
-//
+
 
 import UIKit
 import Player
@@ -45,7 +45,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
         
         if !feed["offline"].boolValue {
             footerLayout(feed:feed)
-
         }
         
         

@@ -18,6 +18,7 @@ public class QuickItinerary {
     let id = Expression<Int64>("id")
     let quickJson = Expression<String>("quickJson")
     let status = Expression<Bool>("status")
+
     
     init() {
         try! db.run(post.create(ifNotExists: true) { t in
@@ -141,7 +142,10 @@ public class QuickItinerary {
                 if globalNewTLViewController != nil {
                     globalNewTLViewController.getJourney()
 //                    goToActivity()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
+
                 }
+                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
             }
         }
         catch {

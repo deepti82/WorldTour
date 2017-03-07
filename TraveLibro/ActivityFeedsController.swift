@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 var globalActivityFeedsController:ActivityFeedsController!
 
@@ -20,7 +21,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     var pageno = 1
     var loadStatus: Bool = true
     var mainFooter: FooterViewNew!
-    var displayData: String = ""
+    var displayData: String = "activity"
     var loader = LoadingOverlay()
     var uploadingView:UploadingToCloud!
     
@@ -46,7 +47,14 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(globalActivityFeedsController.demonote(_:)), name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
+
         globalNavigationController = self.navigationController
+    }
+    func demonote(_ notification: Notification) {
+        print("notification called")
+        displayData = "activity"
+        getActivity(pageNumber: 1)
     }
     
     func openSideMenu(_ sender: AnyObject) {
@@ -92,21 +100,28 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-
+    
+    
+    
     
     func getActivity(pageNumber: Int) {
-
+print("notification called \(displayData)")
         if displayData == "activity" {
             print("in activity")
             request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request) in
                 DispatchQueue.main.async(execute: {
                     if request["data"] != "" {
+                        if pageNumber == 1 {
+                            self.layout.removeAll()
+                        }
                         self.loadStatus = true
                         
-                        for post in request["quickItinerary"].array! {
+                        for var post in request["quickItinerary"].array! {
                             
                             self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
+                            post["user"] = ["name":currentUser["name"].stringValue, "profilePicture":currentUser["profilePicture"].stringValue]
+                            post["offline"] = true
                             let checkIn = ActivityFeedsLayout(width: self.view.frame.width)
                             checkIn.feeds = post
                             print("post post : \(post)")

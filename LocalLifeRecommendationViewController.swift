@@ -361,7 +361,6 @@ class LocalLifeRecommendationViewController: UIViewController, UIImagePickerCont
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        
 //        print(info["UIImagePickerControllerMediaType"]);
         let mediaType = info["UIImagePickerControllerMediaType"] as? String
         if(mediaType == "public.image") {
