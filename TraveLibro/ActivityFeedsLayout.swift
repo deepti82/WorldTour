@@ -109,6 +109,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(mainPhoto)
             let heightForBlur = 10;
             var thumbStr = "";
+            print("ooouuuu \(feed)")
             let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 300)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in
@@ -132,7 +133,11 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
                 }
                 
                 self.mainPhoto.frame.size.width = self.frame.width
-                self.mainPhoto.hnk_setImageFromURL(imgStr)
+                if feed["photos"][0]["name"].stringValue == "" {
+                    self.mainPhoto.image = UIImage(named: "logo-default")
+                }else{
+                    self.mainPhoto.hnk_setImageFromURL(imgStr)
+                }
                 self.mainPhoto.isUserInteractionEnabled = true
                 let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(PhotosOTG2.openSinglePhoto(_:)))
                 self.mainPhoto.addGestureRecognizer(tapGestureRecognizer)

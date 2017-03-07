@@ -96,8 +96,10 @@ class ActivityFeedImageView: UIView {
         
         if feed["coverPhoto"] != nil && feed["coverPhoto"] != "" {
             ImageChange.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["coverPhoto"])", width: 100))
-        }else{
+        }else if feed["startLocationPic"] != nil && feed["startLocationPic"] != "" {
             ImageChange.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["startLocationPic"])", width: 100))
+        }else{
+            ImageChange.image = UIImage(named: "logo-default")
         }
         
     }

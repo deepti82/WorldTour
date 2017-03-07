@@ -142,7 +142,7 @@ public class QuickItinerary {
                 if globalNewTLViewController != nil {
                     globalNewTLViewController.getJourney()
 //                    goToActivity()
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
+//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)
 
                 }
                  NotificationCenter.default.post(name: NSNotification.Name(rawValue: "UPLOAD_ITINERARY"), object: nil)

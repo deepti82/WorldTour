@@ -109,7 +109,13 @@ class ActivityFeedQuickItinerary: UIView {
             if feed["photos"] != nil && feed["photos"] != "" {
                 activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["photos"][0]["name"])", width: 300))
             }else{
-            activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["startLocationPic"])", width: 300))
+                if feed["startLocationPic"] != nil && feed["startLocationPic"] != "" {
+                    activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["startLocationPic"])", width: 300))
+
+                }else{
+                    activityQuickCoverPic.image = UIImage(named: "logo-default")
+
+                }
             }
         }
         
