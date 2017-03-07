@@ -34,10 +34,10 @@ class SignInFullView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         loginStack.isHidden = true
-        facebookButton.imageView?.contentMode = .scaleAspectFit
+        facebookButton.imageView?.contentMode = .scaleAspectFill
         facebookButton.clipsToBounds = true
         
-        googleButton.imageView?.contentMode = .scaleAspectFit
+        googleButton.imageView?.contentMode = .scaleAspectFill
         googleButton.clipsToBounds = true
         
         profileImage.layer.cornerRadius = (30/100) * profileImage.frame.width
@@ -45,6 +45,9 @@ class SignInFullView: UIView {
         profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.clipsToBounds = true
         profileImage.contentMode = UIViewContentMode.scaleAspectFill
+        
+        
+//        autoMigrateLabel.attributedText = 
         
         
 //        let attributes = [

@@ -111,7 +111,7 @@ class SignInPageViewController: UIViewController {
         else {
             //New User
             
-            self.title = "Sign up"
+            self.title = "Sign Up"
             
             print("\n New user")
             pageView.profileImage.isHidden = true

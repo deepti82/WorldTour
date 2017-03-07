@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -35,10 +35,61 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By creating an account, you agree to TraveLibro’s Terms of Service, Privacy Policy and Content Policies." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaA-bs-Eb3" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="412" width="400" height="36"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaA-bs-Eb3" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="412" width="400" height="38.5"/>
+                    <attributedString key="attributedText">
+                        <fragment content="By creating an account, you agree to TraveLibro’s                       ">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="Avenir-Roman"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Terms">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="Avenir-Heavy"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                <integer key="NSUnderline" value="1"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" and ">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="Avenir-Roman"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Conditions">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="Avenir-Heavy"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                <integer key="NSUnderline" value="1"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" and ">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="Avenir-Roman"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="Privacy Policy">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="Avenir-Heavy"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=".">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="Avenir-Roman"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ThA-U9-Fhv">
@@ -51,6 +102,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                     <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
+                                        <constraint firstAttribute="width" secondItem="e9O-fh-Q1A" secondAttribute="height" multiplier="1:1" id="ZjO-rW-LRi"/>
                                         <constraint firstAttribute="width" constant="70" id="bCI-Gp-ijI"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="15" minY="12" maxX="15" maxY="12"/>
@@ -62,7 +114,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="315" id="GLc-jK-XxJ"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <variation key="default">
@@ -80,6 +132,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                     <color key="backgroundColor" red="0.8666666666666667" green="0.29411764705882354" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
+                                        <constraint firstAttribute="width" secondItem="KM4-ql-gyK" secondAttribute="height" multiplier="1:1" id="JvT-fs-eEF"/>
                                         <constraint firstAttribute="width" constant="70" id="eOn-iV-6Xr"/>
                                     </constraints>
                                     <inset key="imageEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
@@ -91,7 +144,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="325" id="bgc-sx-8ak"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                     <variation key="default">
@@ -130,13 +183,6 @@
                         <constraint firstAttribute="width" constant="239" id="mub-bB-iyk"/>
                     </constraints>
                 </stackView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="E6W-NK-2ZL">
-                    <rect key="frame" x="162.5" y="20" width="75" height="75"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="E6W-NK-2ZL" secondAttribute="height" multiplier="1:1" id="FUV-dq-NGo"/>
-                        <constraint firstAttribute="width" constant="75" id="LN2-Nf-agq"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Yash, We have updated the app for quicker and faster log-in process." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-8r-M4F">
                     <rect key="frame" x="60" y="105" width="280" height="38.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -151,13 +197,27 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account will automitically be linked to your log-in choice and all existing data migrated." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fa6-XJ-6Kd">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fa6-XJ-6Kd">
                     <rect key="frame" x="32" y="412" width="336" height="33"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Your account will automitically be linked to your log-in choice and all existing data migrated.">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="12" name="Avenir-Roman"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="E6W-NK-2ZL">
+                    <rect key="frame" x="155" y="7" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="E6W-NK-2ZL" secondAttribute="height" multiplier="1:1" id="FUV-dq-NGo"/>
+                        <constraint firstAttribute="width" constant="90" id="LN2-Nf-agq"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <constraints>
                 <constraint firstItem="Fa6-XJ-6Kd" firstAttribute="centerX" secondItem="9cv-S5-Y4W" secondAttribute="centerX" id="1Kx-wt-obJ"/>
@@ -170,13 +230,13 @@
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PHu-0s-vnx"/>
                 <constraint firstItem="9cv-S5-Y4W" firstAttribute="width" secondItem="dvg-8r-M4F" secondAttribute="width" id="Xzb-kl-Fc5"/>
                 <constraint firstItem="E6W-NK-2ZL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="crm-DT-zQU"/>
-                <constraint firstItem="dvg-8r-M4F" firstAttribute="top" secondItem="E6W-NK-2ZL" secondAttribute="bottom" constant="10" id="gz6-pG-4b9"/>
+                <constraint firstItem="dvg-8r-M4F" firstAttribute="top" secondItem="E6W-NK-2ZL" secondAttribute="bottom" constant="8" id="gz6-pG-4b9"/>
                 <constraint firstAttribute="trailing" secondItem="KaA-bs-Eb3" secondAttribute="trailing" id="luj-im-UOK"/>
                 <constraint firstItem="AAY-U4-wox" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rdz-i2-Xsg"/>
                 <constraint firstItem="Fa6-XJ-6Kd" firstAttribute="width" secondItem="9cv-S5-Y4W" secondAttribute="width" multiplier="1.2" id="sFZ-cC-CXk"/>
                 <constraint firstItem="AAY-U4-wox" firstAttribute="top" secondItem="ThA-U9-Fhv" secondAttribute="bottom" constant="20" id="sLv-Yh-Xwe"/>
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="w54-xa-PhW"/>
-                <constraint firstItem="E6W-NK-2ZL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="w5f-5L-qGD"/>
+                <constraint firstItem="E6W-NK-2ZL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="w5f-5L-qGD"/>
                 <constraint firstItem="9cv-S5-Y4W" firstAttribute="top" secondItem="dvg-8r-M4F" secondAttribute="bottom" constant="10" id="wvh-hQ-cTp"/>
                 <constraint firstItem="KaA-bs-Eb3" firstAttribute="top" secondItem="AAY-U4-wox" secondAttribute="bottom" constant="8" id="ziV-a5-nfz"/>
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="top" secondItem="9cv-S5-Y4W" secondAttribute="bottom" constant="20" id="zrQ-il-seT"/>
