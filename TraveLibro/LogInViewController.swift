@@ -106,12 +106,21 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                         loggedInUser = response["data"]
                         self.navigationController?.pushViewController(signUpFullVC, animated: true)
                     }
-                    else {                    
-                        let errorAlert = UIAlertController(title: "Error", message: response["error"].stringValue, preferredStyle: UIAlertControllerStyle.alert)
+                    else {
+                        var errorMsg = ""
+                        let serverMessage = response["error"]["message"].stringValue
+                        errorMsg = serverMessage == "Wrong Email" ? "Please check your Email Id" : "Incorrect username or password"
+                        
+                        let errorAlert = UIAlertController(title: "Error", message: errorMsg, preferredStyle: UIAlertControllerStyle.alert)
                         let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
                             (result : UIAlertAction) -> Void in
-                            self.logIn.passwordTxt.text = ""
-                        }            
+                            if serverMessage == "Wrong Email" {
+                                self.logIn.emailTxt.text = ""
+                            }
+                            else if serverMessage == "Wrong Passsword" {
+                                self.logIn.passwordTxt.text = ""
+                            }
+                        }
                         errorAlert.addAction(DestructiveAction)
                         self.navigationController?.present(errorAlert, animated: true, completion: nil)
                     }                    
