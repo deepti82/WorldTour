@@ -34,10 +34,10 @@ class SignInFullView: UIView {
         super.init(frame: frame)
         loadViewFromNib ()
         loginStack.isHidden = true
-        facebookButton.imageView?.contentMode = .scaleAspectFill
+        facebookButton.imageView?.contentMode = .scaleAspectFit
         facebookButton.clipsToBounds = true
         
-        googleButton.imageView?.contentMode = .scaleAspectFill
+        googleButton.imageView?.contentMode = .scaleAspectFit
         googleButton.clipsToBounds = true
         
         profileImage.layer.cornerRadius = (30/100) * profileImage.frame.width
