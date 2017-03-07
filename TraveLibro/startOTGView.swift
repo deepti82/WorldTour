@@ -13,6 +13,7 @@ class startOTGView: UIView {
     
     @IBOutlet weak var drawLineView4: drawLine!
   
+    @IBOutlet weak var cityImageHeight: NSLayoutConstraint!
     @IBOutlet weak var drawLineView3: drawLine!
     @IBOutlet weak var drawLine3: drawLine!
     @IBOutlet weak var youAreIn: UIImageView!

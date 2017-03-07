@@ -17,6 +17,7 @@
                 <outlet property="buddyStack" destination="nL6-3q-GMr" id="AWL-o5-iYf"/>
                 <outlet property="cityDetails" destination="dfr-Js-I8N" id="bWO-15-lLZ"/>
                 <outlet property="cityImage" destination="vov-Dh-v4k" id="vRd-9y-358"/>
+                <outlet property="cityImageHeight" destination="Osr-QD-W5L" id="6V2-vr-naa"/>
                 <outlet property="cityView" destination="t7r-hX-X00" id="j69-ht-iSQ"/>
                 <outlet property="closeBuddies" destination="lhn-pK-LF4" id="tiW-hJ-Lqx"/>
                 <outlet property="detectHide" destination="zQk-8k-xJp" id="s3E-UH-FaM"/>
@@ -176,7 +177,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2V-7e-khq">
-                                    <rect key="frame" x="200" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="188" y="0.0" width="0.0" height="0.0"/>
                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="11"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -193,7 +194,7 @@
                             <color key="backgroundColor" red="1" green="0.4039215686" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" red="0.98823529480000005" green="0.31372550129999999" blue="0.27843138579999999" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="z2V-7e-khq" firstAttribute="centerX" secondItem="zV2-Ih-s2k" secondAttribute="centerX" id="08P-hR-hMG"/>
+                                <constraint firstItem="z2V-7e-khq" firstAttribute="centerX" secondItem="zV2-Ih-s2k" secondAttribute="centerX" constant="-12" id="08P-hR-hMG"/>
                                 <constraint firstItem="zV2-Ih-s2k" firstAttribute="leading" secondItem="dfr-Js-I8N" secondAttribute="leading" id="9YO-bY-Je1"/>
                                 <constraint firstItem="zV2-Ih-s2k" firstAttribute="centerX" secondItem="dfr-Js-I8N" secondAttribute="centerX" id="BR8-3b-8nE"/>
                                 <constraint firstAttribute="height" constant="50" id="M2d-fd-960"/>
@@ -201,7 +202,7 @@
                                 <constraint firstItem="z2V-7e-khq" firstAttribute="top" secondItem="zV2-Ih-s2k" secondAttribute="bottom" constant="-4" id="lHU-mX-Hhs"/>
                                 <constraint firstItem="zV2-Ih-s2k" firstAttribute="top" secondItem="dfr-Js-I8N" secondAttribute="top" constant="4" id="rE4-kh-eBE"/>
                                 <constraint firstAttribute="bottom" secondItem="uDU-BI-qyt" secondAttribute="bottom" constant="12" id="t7Z-SZ-K1Y"/>
-                                <constraint firstItem="z2V-7e-khq" firstAttribute="centerX" secondItem="zV2-Ih-s2k" secondAttribute="centerX" id="tP8-ys-E9s"/>
+                                <constraint firstItem="z2V-7e-khq" firstAttribute="centerX" secondItem="zV2-Ih-s2k" secondAttribute="centerX" constant="-12" id="tP8-ys-E9s"/>
                                 <constraint firstAttribute="trailing" secondItem="uDU-BI-qyt" secondAttribute="trailing" constant="16" id="unj-AP-DVo"/>
                                 <constraint firstAttribute="trailing" secondItem="zV2-Ih-s2k" secondAttribute="trailing" id="yeb-at-lJ2"/>
                             </constraints>

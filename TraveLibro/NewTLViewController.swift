@@ -2108,7 +2108,6 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                         
                         if !isEdit {
                             
-                            
                             self.setTopNavigation(text: "Add Buddies");
                             
                             self.otgView.selectCategoryButton.isHidden = true
