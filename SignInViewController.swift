@@ -167,7 +167,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         let path = Bundle.main.path(forResource: "travellife", ofType:"mp4")       
         self.player1.setUrl(NSURL(fileURLWithPath: path!) as URL)
         imageView1.addSubview(self.player1.view)
-         videoScrollView.bringSubview(toFront: toggleSound)
+//         videoScrollView.bringSubview(toFront: toggleSound)
         self.horizontal.addSubview(imageView1)
         
         
