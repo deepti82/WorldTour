@@ -36,7 +36,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaA-bs-Eb3" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="448" width="400" height="38.5"/>
+                    <rect key="frame" x="0.0" y="428" width="400" height="38.5"/>
                     <attributedString key="attributedText">
                         <fragment content="By creating an account, you agree to TraveLibro’s                       ">
                             <attributes>
@@ -58,6 +58,7 @@
                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <font key="NSFont" size="14" name="Avenir-Roman"/>
                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                <integer key="NSUnderline" value="1"/>
                             </attributes>
                         </fragment>
                         <fragment content="Conditions">
@@ -68,7 +69,15 @@
                                 <integer key="NSUnderline" value="1"/>
                             </attributes>
                         </fragment>
-                        <fragment content=" and ">
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="14" name="Avenir-Roman"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                <integer key="NSUnderline" value="1"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="and ">
                             <attributes>
                                 <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <font key="NSFont" size="14" name="Avenir-Roman"/>
@@ -94,13 +103,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ThA-U9-Fhv">
-                    <rect key="frame" x="10" y="248" width="380" height="150"/>
+                    <rect key="frame" x="10" y="248" width="380" height="130"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48h-uC-mHb">
-                            <rect key="frame" x="0.0" y="0.0" width="380" height="70"/>
+                            <rect key="frame" x="0.0" y="0.0" width="380" height="60"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9O-fh-Q1A">
-                                    <rect key="frame" x="0.0" y="0.0" width="91" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="78" height="60"/>
                                     <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="e9O-fh-Q1A" secondAttribute="height" multiplier="1.3:1" id="ZjO-rW-LRi"/>
@@ -109,10 +118,11 @@
                                     <state key="normal" image="facebook_icon"/>
                                 </button>
                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Sign up via Facebook" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpE-TY-2ut" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                                    <rect key="frame" x="91" y="0.0" width="289" height="70"/>
+                                    <rect key="frame" x="78" y="0.0" width="302" height="60"/>
                                     <color key="backgroundColor" red="0.23529411852359772" green="0.35294118523597717" blue="0.60000002384185791" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="315" id="GLc-jK-XxJ"/>
+                                        <constraint firstAttribute="height" constant="60" id="uJ7-nx-vH4"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -126,10 +136,10 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7vv-RY-Jbl">
-                            <rect key="frame" x="0.0" y="80" width="380" height="70"/>
+                            <rect key="frame" x="0.0" y="70" width="380" height="60"/>
                             <subviews>
                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM4-ql-gyK">
-                                    <rect key="frame" x="0.0" y="0.0" width="91" height="70"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="78" height="60"/>
                                     <color key="backgroundColor" red="0.8666666666666667" green="0.29411764705882354" blue="0.22352941176470587" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="KM4-ql-gyK" secondAttribute="height" multiplier="1.3:1" id="JvT-fs-eEF"/>
@@ -138,7 +148,7 @@
                                     <state key="normal" image="google_plus_icon"/>
                                 </button>
                                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    Sign up via Google+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFa-xN-QOy" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                                    <rect key="frame" x="91" y="0.0" width="289" height="70"/>
+                                    <rect key="frame" x="78" y="0.0" width="302" height="60"/>
                                     <color key="backgroundColor" red="0.86666667461395264" green="0.29411765933036804" blue="0.22352941334247589" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="325" id="bgc-sx-8ak"/>
@@ -155,12 +165,9 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="150" id="OeM-h6-EN9"/>
-                    </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AAY-U4-wox">
-                    <rect key="frame" x="81" y="418" width="239" height="22"/>
+                    <rect key="frame" x="81" y="398" width="239" height="22"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEA-zw-tPc">
                             <rect key="frame" x="0.0" y="0.0" width="184" height="22"/>
@@ -197,7 +204,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account will automitically be linked to your log-in choice and all existing data migrated." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fa6-XJ-6Kd">
-                    <rect key="frame" x="32" y="448" width="336" height="38.5"/>
+                    <rect key="frame" x="32" y="428" width="336" height="38.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
