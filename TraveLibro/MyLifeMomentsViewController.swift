@@ -12,7 +12,7 @@ import Toaster
 var globalMyLifeMomentsViewController:MyLifeMomentsViewController!
 
 
-class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     let titleLabels = ["November 2015, (25)", "October 2015, (25)", "September 2015, (25)", "August 2015, (25)", "July 2015, (25)"]
     let Month = "November 2015"
@@ -264,6 +264,9 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //MARK: - Collection Delegates and Datasource
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         print("insideView \(insideView)")
         print("momeentType \(momentType)")
@@ -300,11 +303,18 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        
         
         if insideView == "Monthly" {
-            return CGSize(width: 110, height: 110)
-        }else{
+            if shouldShowBigImage(position: indexPath.row) {
+                return CGSize(width: collectionView.frame.size.width - 32, height: (collectionView.frame.size.width - 32) * 0.5)
+            }
+            
+            return CGSize(width: (collectionView.frame.size.width - 32)/3 - 2, height: (collectionView.frame.size.width - 32)/3 - 2)
+        }
+        else{
             switch momentType {
             case "all":
                 return CGSize(width: 30, height: 30)
@@ -315,10 +325,20 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
             default:
                 break
             }
+            return CGSize(width: 150, height: 75)
         }
-        
-        return CGSize(width: 150, height: 75)
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -456,7 +476,7 @@ class MyLifeMomentsViewController: UIViewController, UICollectionViewDelegate, U
         page = 1
         if insideView == "Monthly" {
             let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-            singlePhotoController.mainImage?.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
+//            singlePhotoController.mainImage?.hnk_setImageFromURL(getImageURL(allData[indexPath.row]["name"].stringValue, width: 200))
             singlePhotoController.index = indexPath.row
             print("in console \(allData[indexPath.row]["type"].stringValue)")
             singlePhotoController.type = allData[indexPath.row]["type"].stringValue
