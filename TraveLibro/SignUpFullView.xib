@@ -36,7 +36,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaA-bs-Eb3" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="428" width="400" height="38.5"/>
+                    <rect key="frame" x="0.0" y="415" width="400" height="38.5"/>
                     <attributedString key="attributedText">
                         <fragment content="By creating an account, you agree to TraveLibro’s                       ">
                             <attributes>
@@ -103,7 +103,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ThA-U9-Fhv">
-                    <rect key="frame" x="10" y="248" width="380" height="130"/>
+                    <rect key="frame" x="10" y="235" width="380" height="130"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="48h-uC-mHb">
                             <rect key="frame" x="0.0" y="0.0" width="380" height="60"/>
@@ -167,7 +167,7 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AAY-U4-wox">
-                    <rect key="frame" x="81" y="398" width="239" height="22"/>
+                    <rect key="frame" x="81" y="385" width="239" height="22"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEA-zw-tPc">
                             <rect key="frame" x="0.0" y="0.0" width="184" height="22"/>
@@ -175,11 +175,18 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-o3-7Em">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Mv-o3-7Em">
                             <rect key="frame" x="194" y="0.0" width="45" height="22"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                            <state key="normal" title="Log in">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Log in">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="16" name="Avenir-Roman"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                             </state>
                         </button>
                     </subviews>
@@ -190,28 +197,28 @@
                     </constraints>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi Yash, We have updated the app for quicker and faster log-in process." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-8r-M4F">
-                    <rect key="frame" x="60" y="130" width="280" height="44"/>
+                    <rect key="frame" x="60" y="120" width="280" height="49"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please link youe existing account to the either of the options." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cv-S5-Y4W">
-                    <rect key="frame" x="60" y="184" width="280" height="44"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Please link youe existing account to the either of the options." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cv-S5-Y4W">
+                    <rect key="frame" x="60" y="179" width="280" height="44"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account will automitically be linked to your log-in choice and all existing data migrated." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fa6-XJ-6Kd">
-                    <rect key="frame" x="32" y="428" width="336" height="38.5"/>
+                    <rect key="frame" x="32" y="385" width="336" height="38.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="E6W-NK-2ZL">
-                    <rect key="frame" x="155" y="30" width="90" height="90"/>
+                    <rect key="frame" x="155" y="25" width="90" height="90"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="E6W-NK-2ZL" secondAttribute="height" multiplier="1:1" id="FUV-dq-NGo"/>
                         <constraint firstAttribute="width" constant="90" id="LN2-Nf-agq"/>
@@ -225,20 +232,22 @@
                 <constraint firstItem="KaA-bs-Eb3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4Zb-Hm-w2q"/>
                 <constraint firstItem="9cv-S5-Y4W" firstAttribute="centerX" secondItem="dvg-8r-M4F" secondAttribute="centerX" id="8rz-me-9kz"/>
                 <constraint firstItem="dvg-8r-M4F" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Azu-BL-MpT"/>
-                <constraint firstItem="dvg-8r-M4F" firstAttribute="top" secondItem="E6W-NK-2ZL" secondAttribute="bottom" constant="10" id="C28-ng-AP4"/>
-                <constraint firstItem="Fa6-XJ-6Kd" firstAttribute="top" secondItem="AAY-U4-wox" secondAttribute="bottom" constant="8" id="FCs-bJ-beY"/>
+                <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BUe-PY-YXF"/>
+                <constraint firstItem="dvg-8r-M4F" firstAttribute="top" secondItem="E6W-NK-2ZL" secondAttribute="bottom" constant="5" id="C28-ng-AP4"/>
+                <constraint firstItem="Fa6-XJ-6Kd" firstAttribute="top" secondItem="AAY-U4-wox" secondAttribute="bottom" constant="-22" id="FCs-bJ-beY"/>
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PHu-0s-vnx"/>
                 <constraint firstItem="9cv-S5-Y4W" firstAttribute="width" secondItem="dvg-8r-M4F" secondAttribute="width" id="Xzb-kl-Fc5"/>
                 <constraint firstItem="E6W-NK-2ZL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="crm-DT-zQU"/>
+                <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ent-zT-x4o"/>
                 <constraint firstAttribute="trailing" secondItem="KaA-bs-Eb3" secondAttribute="trailing" id="luj-im-UOK"/>
                 <constraint firstItem="AAY-U4-wox" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="rdz-i2-Xsg"/>
                 <constraint firstItem="Fa6-XJ-6Kd" firstAttribute="width" secondItem="9cv-S5-Y4W" secondAttribute="width" multiplier="1.2" id="sFZ-cC-CXk"/>
                 <constraint firstItem="AAY-U4-wox" firstAttribute="top" secondItem="ThA-U9-Fhv" secondAttribute="bottom" constant="20" id="sLv-Yh-Xwe"/>
                 <constraint firstItem="ThA-U9-Fhv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="w54-xa-PhW"/>
                 <constraint firstItem="9cv-S5-Y4W" firstAttribute="top" secondItem="dvg-8r-M4F" secondAttribute="bottom" constant="10" id="wvh-hQ-cTp"/>
-                <constraint firstItem="E6W-NK-2ZL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="zLT-2c-rS4"/>
+                <constraint firstItem="E6W-NK-2ZL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="zLT-2c-rS4"/>
                 <constraint firstItem="KaA-bs-Eb3" firstAttribute="top" secondItem="AAY-U4-wox" secondAttribute="bottom" constant="8" id="ziV-a5-nfz"/>
-                <constraint firstItem="ThA-U9-Fhv" firstAttribute="top" secondItem="9cv-S5-Y4W" secondAttribute="bottom" constant="20" id="zrQ-il-seT"/>
+                <constraint firstItem="ThA-U9-Fhv" firstAttribute="top" secondItem="9cv-S5-Y4W" secondAttribute="bottom" constant="12" id="zrQ-il-seT"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

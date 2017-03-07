@@ -131,7 +131,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         toggleSoundButton = UIButton(frame: CGRect(x: self.view.frame.maxX - 40, y: self.view.frame.maxY - 112, width: 40, height: 32))
         
          toggleSoundButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 32)
-        toggleSoundButton.setTitle(String(format: "%C",0xf028) + "⨯", for: .normal)
+        toggleSoundButton.setTitle(String(format: "%C",0xf028), for: UIControlState())
         toggleSoundButton.addTarget(self, action: #selector(SignInViewController.touchButtonTap(_:)), for: .touchUpInside)
         toggleSoundButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         toggleSoundButton.clipsToBounds = true
