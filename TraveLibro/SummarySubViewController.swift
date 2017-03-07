@@ -290,7 +290,7 @@ class SummarySubViewController: UIViewController, UIScrollViewDelegate {
     
     func createLayout() {
         //  TOP VIEW
-        let tripView = TripSummaryView(frame: CGRect(x: 0, y: 40, width: self.view.frame.width, height: 144))
+        let tripView = TripSummaryView(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 144))
         tripView.allData = tripCountData
         tripView.likes.text = tripCountData["likeCount"].stringValue
         

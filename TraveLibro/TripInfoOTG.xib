@@ -124,7 +124,7 @@
                                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                            <state key="normal" image="video" backgroundImage="bluebox"/>
+                                                            <state key="normal" image="photos_new" backgroundImage="bluebox"/>
                                                         </button>
                                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TE9-0z-bAK">
                                                             <rect key="frame" x="47" y="8" width="25" height="25"/>
@@ -172,7 +172,7 @@
                                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <inset key="imageEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                                            <state key="normal" image="photos_new" backgroundImage="bluebox"/>
+                                                            <state key="normal" image="video" backgroundImage="bluebox"/>
                                                         </button>
                                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJZ-sC-SVO">
                                                             <rect key="frame" x="47" y="8" width="25" height="25"/>

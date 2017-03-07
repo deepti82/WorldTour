@@ -112,7 +112,7 @@
                                         </fragment>
                                         <fragment content="01">
                                             <attributes>
-                                                <color key="NSColor" red="0.34509804844856262" green="0.34509804844856262" blue="0.34509804844856262" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="NSColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <font key="NSFont" size="26" name="Avenir-Roman"/>
                                                 <font key="NSOriginalFont" size="24" name="Avenir-Roman"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>

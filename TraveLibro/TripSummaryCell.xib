@@ -38,7 +38,7 @@
                         <constraint firstAttribute="height" constant="30" id="UcK-TO-sbx"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" red="0.17254901960784313" green="0.21568627450980393" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kql-gg-geE">
