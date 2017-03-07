@@ -3428,27 +3428,48 @@
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ElK-Yv-sYf">
                                 <rect key="frame" x="88" y="319" width="200" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="hQm-Le-VD3"/>
+                                    <constraint firstAttribute="width" constant="200" id="BNM-CY-4ME"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="db4-O9-QtJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0AH-oF-fK5">
+                                        <rect key="frame" x="335" y="635" width="40" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="2e2-aS-uid"/>
+                                            <constraint firstAttribute="width" constant="40" id="Iwb-Fu-CQD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="22"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="toggleSoundtap:" destination="qS8-Ff-1hL" eventType="touchUpInside" id="cfg-Ry-xTb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="0AH-oF-fK5" firstAttribute="top" secondItem="db4-O9-QtJ" secondAttribute="top" priority="250" constant="635" id="Ggo-Qq-pk8"/>
+                                    <constraint firstItem="0AH-oF-fK5" firstAttribute="leading" secondItem="db4-O9-QtJ" secondAttribute="leading" priority="250" constant="335" id="MDk-Gn-mFx"/>
+                                    <constraint firstAttribute="trailing" secondItem="0AH-oF-fK5" secondAttribute="trailing" id="X6x-mn-Vwg"/>
+                                    <constraint firstAttribute="bottom" secondItem="0AH-oF-fK5" secondAttribute="bottom" constant="85" id="lTF-Jc-cUW"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="db4-O9-QtJ" firstAttribute="top" secondItem="3yv-kO-7xX" secondAttribute="top" id="G27-w9-4qP"/>
-                            <constraint firstAttribute="trailing" secondItem="db4-O9-QtJ" secondAttribute="trailing" id="PwE-on-Rl8"/>
-                            <constraint firstItem="db4-O9-QtJ" firstAttribute="leading" secondItem="3yv-kO-7xX" secondAttribute="leading" id="ebj-5p-waW"/>
-                            <constraint firstItem="ElK-Yv-sYf" firstAttribute="centerX" secondItem="3yv-kO-7xX" secondAttribute="centerX" id="p50-r8-WlB"/>
-                            <constraint firstItem="jf6-OA-Igt" firstAttribute="top" secondItem="db4-O9-QtJ" secondAttribute="bottom" id="qY5-PC-BSO"/>
-                            <constraint firstItem="ElK-Yv-sYf" firstAttribute="centerY" secondItem="3yv-kO-7xX" secondAttribute="centerY" id="wLN-Xe-gfY"/>
+                            <constraint firstItem="db4-O9-QtJ" firstAttribute="bottom" secondItem="jf6-OA-Igt" secondAttribute="top" id="5mE-Bb-Znv"/>
+                            <constraint firstItem="db4-O9-QtJ" firstAttribute="centerX" secondItem="ElK-Yv-sYf" secondAttribute="centerX" id="6XJ-w9-EX3"/>
+                            <constraint firstItem="db4-O9-QtJ" firstAttribute="top" secondItem="3yv-kO-7xX" secondAttribute="top" id="hXA-fD-p6e"/>
+                            <constraint firstItem="db4-O9-QtJ" firstAttribute="leading" secondItem="3yv-kO-7xX" secondAttribute="leading" id="msU-YR-d6z"/>
+                            <constraint firstAttribute="trailing" secondItem="db4-O9-QtJ" secondAttribute="trailing" id="qcM-Xo-hL0"/>
+                            <constraint firstItem="db4-O9-QtJ" firstAttribute="centerY" secondItem="ElK-Yv-sYf" secondAttribute="centerY" id="z1p-15-E8t"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ipTextField" destination="ElK-Yv-sYf" id="yNu-MD-PaX"/>
+                        <outlet property="toggleSound" destination="0AH-oF-fK5" id="DFS-5r-xh8"/>
                         <outlet property="videoScrollView" destination="db4-O9-QtJ" id="Ti5-Ve-u1I"/>
                     </connections>
                 </viewController>
@@ -8124,7 +8145,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcP-sI-UDv">
                                         <rect key="frame" x="336" y="10" width="31" height="30"/>
                                         <state key="normal" title="Post">
-                                            <color key="titleColor" red="0.0" green="0.8666666666666667" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="0.40392156862745099" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="sendComment:" destination="9vX-3Y-IS9" eventType="touchUpInside" id="89Y-0I-c03"/>

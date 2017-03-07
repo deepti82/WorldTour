@@ -17,11 +17,12 @@ var signInVC: SignInViewController!
 //var myLifeText: NSMutableAttributedString!
 
 class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegate, UIScrollViewDelegate {
-    
+    var defaultMute = true
     var showPage = 0
     var shouldShowNavBar = false
     
     
+    @IBOutlet weak var toggleSound: UIButton!
     @IBOutlet weak var videoScrollView: UIScrollView!
     @IBOutlet weak var ipTextField: UITextField!    
     
@@ -46,6 +47,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        toggleSound.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
+        toggleSound.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        toggleSound.clipsToBounds = true
+        toggleSound.layer.cornerRadius = 5
+        
+       
         getDarkBackGroundBlur(self)
         
 //        travelLifeText = getColorString(string: "TRAVEL\n", font: NAVIGATION_FONT!, color: mainOrangeColor)
@@ -125,6 +132,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         playBtn.isHidden = true
         self.view.addSubview(playBtn)
         
+//        toggleSoundButton = UIButton(frame)
+        
         videoToPlay()
     }
     
@@ -140,7 +149,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         videoScrollView.delegate = self
         self.horizontal = HorizontalLayout(height: videoHeight)
         self.videoScrollView.addSubview(horizontal)
-          
         
         imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView1.backgroundColor = UIColor.clear
@@ -159,8 +167,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         let path = Bundle.main.path(forResource: "travellife", ofType:"mp4")       
         self.player1.setUrl(NSURL(fileURLWithPath: path!) as URL)
         imageView1.addSubview(self.player1.view)
-        
-        
+         videoScrollView.bringSubview(toFront: toggleSound)
         self.horizontal.addSubview(imageView1)
         
         
@@ -346,6 +353,20 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     }
 
     //MARK: - Scroll Delegates
+    
+    @IBAction func toggleSoundtap(_ sender: UIButton) {
+        
+        if(defaultMute) {
+            defaultMute = false;
+            player1.muted = defaultMute
+            toggleSound.setTitle(String(format: "%C",0xf028), for: UIControlState())
+        } else {
+            defaultMute = true;
+            player1.muted = defaultMute
+            toggleSound.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
+        }
+    }
+
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         playBtn.isHidden = true
