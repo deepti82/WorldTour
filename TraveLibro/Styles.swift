@@ -529,6 +529,18 @@ func getRedString(string: String) -> NSMutableAttributedString {
                                      attributes: [NSForegroundColorAttributeName: UIColor.red])
 }
 
+func addImage(imageName: String) -> NSMutableAttributedString {
+    let attachment:NSTextAttachment = NSTextAttachment()    
+    attachment.image = UIImage(named: imageName)
+    attachment.bounds = CGRect(x: 0, y: 0, width: 25, height: 25)
+    return NSAttributedString(attachment: attachment) as! NSMutableAttributedString
+}
+
+func getColorString(string: String, font: UIFont, color: UIColor) -> NSMutableAttributedString {
+    return NSMutableAttributedString(string: string, 
+                                     attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: color])
+}
+
 func convertDateFormate(dateStr : String) -> String{
     
     let globalDateFormatter = DateFormatter()

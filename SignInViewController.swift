@@ -12,6 +12,9 @@ var profileVC: ProfileViewController!
 var nationalityPage: AddNationalityNewViewController!
 var navigation: UINavigationController!
 var signInVC: SignInViewController!
+//var localLifeText: NSMutableAttributedString!
+//var travelLifeText: NSMutableAttributedString!
+//var myLifeText: NSMutableAttributedString!
 
 class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegate, UIScrollViewDelegate {
     
@@ -23,6 +26,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     @IBOutlet weak var ipTextField: UITextField!    
     
     var playBtn: UIButton!
+    var videoLabel: UILabel!
     
     var imageView1: UIImageView!
     var imageView2: UIImageView!
@@ -44,25 +48,49 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         getDarkBackGroundBlur(self)
         
+//        travelLifeText = getColorString(string: "TRAVEL\n", font: NAVIGATION_FONT!, color: mainOrangeColor)
+//        travelLifeText.append(addImage(imageName: "travel_life"))
+//        travelLifeText.append(getColorString(string: " LIFE ", font: NAVIGATION_FONT!, color: UIColor.white))
+//        
+//        localLifeText = getColorString(string: "LOCAL\n", font: NAVIGATION_FONT!, color: mainGreenColor)
+//        localLifeText.append(addImage(imageName: "local_life"))
+//        localLifeText.append(getColorString(string: " LIFE ", font: NAVIGATION_FONT!, color: UIColor.white))
+//        
+//        myLifeText = getColorString(string: "MY\n", font: NAVIGATION_FONT!, color: mainOrangeColor)
+//        myLifeText.append(addImage(imageName: "travel_life"))
+//        myLifeText.append(getColorString(string: " LIFE ", font: NAVIGATION_FONT!, color: UIColor.white))
+        
         if shouldShowNavBar {
-            self.navigationController?.isNavigationBarHidden = false
             
             let leftButton = UIButton()
             leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
             leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
-            leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            leftButton.frame = CGRect(x: 10, y: 20, width: 30, height: 30)
+            leftButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+            leftButton.layer.shadowOpacity = 0.5
+            leftButton.layer.shadowRadius = 5
+            self.view.addSubview(leftButton)
             
-            self.customNavigationBar(left: leftButton, right: nil)
+            videoLabel = UILabel(frame: CGRect(x: 0, y: 20, width: screenWidth, height: 30))
+            videoLabel.textAlignment = .center
+            videoLabel.backgroundColor = UIColor.clear
+            videoLabel.textColor = UIColor.white
+            videoLabel.font = NAVIGATION_FONT
+            videoLabel.numberOfLines = 0
+            videoLabel.lineBreakMode = .byWordWrapping
+            videoLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
+            videoLabel.layer.shadowOpacity = 1
+            videoLabel.layer.shadowRadius = 10
+            videoLabel.text = ""
+            self.view.addSubview(videoLabel)
             
             self.title = "Travel"
-        }
-        else {
-            self.navigationController?.isNavigationBarHidden = true
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,19 +115,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
                 
         //Add play button [custumization]
         
-        playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 75))
+        playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 65))
         playBtn.backgroundColor = UIColor.clear
         playBtn.center = imageView1.center
-        
-        playBtn.setTitle("Play full video", for: .normal)        
-        playBtn.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)!
-        playBtn.setTitleColor(UIColor.white, for: .normal)
-        
+        playBtn.imageView?.tintColor = mainBlueColor
         playBtn.setImage(UIImage(named: "video_play_icon"), for: .normal)
-        
-        playBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 20, 0)
-        playBtn.titleEdgeInsets = UIEdgeInsetsMake(55, 0, 20, 0)
-        
         playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
         
         playBtn.isHidden = true
@@ -245,6 +265,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     //MARK: - Player Delegates
     
     func playerReady(_ player: Player) {
+        print("\n Player ready called")
         videoToPlay()
     }
     
@@ -288,12 +309,16 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         print("\n videoToPlay \(i)");
         switch(i) {
         case 0:
-//            print("\n player1: \(player1)")
+//            videoLabel.attributedText = travelLifeText   
+            videoLabel.text = "TRAVEL LIFE"
             player1.playFromBeginning()
         case 1:
-//            print("\n player2 : \(player2.playbackState)")
+//            videoLabel.attributedText = localLifeText  
+            videoLabel.text = "LOCAL LIFE"
             player2.playFromBeginning()
         case 2:
+//            videoLabel.attributedText = myLifeText   
+            videoLabel.text = "MY LIFE"
             player3.playFromBeginning()
         default: break
         }
@@ -308,13 +333,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         switch(i) {
             case 0:
-                self.player1.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/travellife.mp4")!)
+                self.player1.setUrl(URL(string: "https://www.youtube.com/watch?v=90BSVKX9YwI")!)
                 player1.playFromBeginning()
             case 1:
-                self.player2.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/locallife.mp4")!)
+                self.player2.setUrl(URL(string: "https://www.youtube.com/watch?v=Efb7c3NonKE")!)
                 player2.playFromBeginning()
             case 2:
-                self.player3.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/mylife.mp4")!)
+                self.player3.setUrl(URL(string: "https://www.youtube.com/watch?v=5_GTrAZ2mow")!)
                 player3.playFromBeginning()
             default: break
         }

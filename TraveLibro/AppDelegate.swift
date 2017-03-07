@@ -30,6 +30,7 @@ let navOrange = UIColor(red: 255/255, green: 103/255, blue: 89/255, alpha: 1) //
 let avenirFont = UIFont(name: "Avenir-Roman", size: 14)
 let avenirBold = UIFont(name: "Avenir-Medium", size: 14)
 let FontAwesomeFont = UIFont(name: "FontAwesome", size: 14)
+let NAVIGATION_FONT = UIFont(name: "Avenir-Roman", size: 18)
 
 var faicon = [String: UInt32]()
 var profileViewY:CGFloat = 45
