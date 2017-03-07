@@ -77,22 +77,20 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             leftButton.layer.shadowOpacity = 0.5
             leftButton.layer.shadowRadius = 5
             self.view.addSubview(leftButton)
-            
-            videoLabel = UILabel(frame: CGRect(x: 0, y: 20, width: screenWidth, height: 30))
-            videoLabel.textAlignment = .center
-            videoLabel.backgroundColor = UIColor.clear
-            videoLabel.textColor = UIColor.white
-            videoLabel.font = NAVIGATION_FONT
-            videoLabel.numberOfLines = 0
-            videoLabel.lineBreakMode = .byWordWrapping
-            videoLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
-            videoLabel.layer.shadowOpacity = 1
-            videoLabel.layer.shadowRadius = 10
-            videoLabel.text = ""
-            self.view.addSubview(videoLabel)
-            
-            self.title = "Travel"
         }
+        
+        videoLabel = UILabel(frame: CGRect(x: 0, y: 20, width: screenWidth, height: 30))
+        videoLabel.textAlignment = .center
+        videoLabel.backgroundColor = UIColor.clear
+        videoLabel.textColor = UIColor.white
+        videoLabel.font = NAVIGATION_FONT
+        videoLabel.numberOfLines = 0
+        videoLabel.lineBreakMode = .byWordWrapping
+        videoLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
+        videoLabel.layer.shadowOpacity = 1
+        videoLabel.layer.shadowRadius = 10
+        videoLabel.text = ""
+        self.view.addSubview(videoLabel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,7 +124,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         playBtn.backgroundColor = UIColor.clear
         playBtn.center = imageView1.center
         playBtn.imageView?.tintColor = mainBlueColor
-        playBtn.setImage(UIImage(named: "video_play_icon"), for: .normal)
+        playBtn.setTitle(String(format: "%C", faicon["videoPlay"]!), for: .normal)
         playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
         
         playBtn.isHidden = true
@@ -279,7 +277,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         print("\n Player ready called")
         videoToPlay()
     }
-    
    
     func playerPlaybackDidEnd(_ player: Player) {
         
@@ -291,16 +288,19 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             switch(i) {
             case 0:
                 if player1.playbackState == PlaybackState.stopped {
+                    playBtn.tintColor = mainOrangeColor
                     playBtn.isHidden = false
                 }
                 
             case 1:
-                if player2.playbackState == PlaybackState.stopped {                    
+                if player2.playbackState == PlaybackState.stopped {
+                    playBtn.tintColor = mainGreenColor
                     playBtn.isHidden = false
                 }
                 
             case 2:
                 if player3.playbackState == PlaybackState.stopped {
+                    playBtn.tintColor = UIColor.white
                     playBtn.isHidden = false
                 }
                 
@@ -336,23 +336,21 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     }
     
     func playAgain(){
-        
-        playBtn.isHidden = true
-        
+        print("\n play Again")
         let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
         let i = Int(pageNumber)
         
         switch(i) {
-            case 0:
-                self.player1.setUrl(URL(string: "https://www.youtube.com/watch?v=90BSVKX9YwI")!)
-                player1.playFromBeginning()
-            case 1:
-                self.player2.setUrl(URL(string: "https://www.youtube.com/watch?v=Efb7c3NonKE")!)
-                player2.playFromBeginning()
-            case 2:
-                self.player3.setUrl(URL(string: "https://www.youtube.com/watch?v=5_GTrAZ2mow")!)
-                player3.playFromBeginning()
-            default: break
+        case 0:
+            self.player1.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/travellife.mp4")!)
+            player1.playFromBeginning()
+        case 1:
+            self.player2.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/locallife.mp4")!)
+            player2.playFromBeginning()
+        case 2:
+            self.player3.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/mylife.mp4")!)
+            player3.playFromBeginning()
+        default: break
         }
     }
 
@@ -376,4 +374,5 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         playBtn.isHidden = true
         videoToPlay()
     }
+
 }
