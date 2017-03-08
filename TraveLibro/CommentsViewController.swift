@@ -130,6 +130,10 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
      addCommentLabel.isHidden = true
     }
     
+    func textViewDidEndEditing(_ textView: UITextView) {
+        addCommentLabel.isHidden = false
+    }
+    
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
