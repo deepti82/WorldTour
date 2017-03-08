@@ -95,7 +95,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         currentIndex = index
         
-        print("\n allDataFromMyLife : \(allDataFromMyLife) \n")
         if postId == "" {
             photos = allDataFromMyLife
         }
@@ -119,7 +118,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         
         
         if whichView == "detail_itinerary" {
-            print("\n\n PHOTOS::: \n\(photos) \n\n")
             getSinglePhoto(photos[currentIndex]["_id"].stringValue)
         }
         else {
@@ -276,7 +274,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                 currentIndexCopy = Int(currentIndexCopy) - 1
             } else {	
                 if !(carouselDict.allKeys.contains(value: photos[currentIndexCopy]["_id"].string!)) {
-                    print("in swipe left : \(currentIndex) fetching : \(photos[currentIndexCopy]["_id"].string!)")
+                    print("in swipe left : \(currentIndex!) fetching : \(photos[currentIndexCopy]["_id"].string!)")
                     self.getSinglePhoto(photos[currentIndexCopy]["_id"].string!)
                 }
             }
@@ -297,7 +295,7 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                 currentIndexCopy = Int(currentIndex) + 1
             } else {
                 if !(carouselDict.allKeys.contains(value: photos[currentIndexCopy]["_id"].string!)) {
-                    print("in swipe right : \(currentIndex) fetching : \(photos[currentIndexCopy]["_id"].string!)")
+                    print("in swipe right : \(currentIndex!) fetching : \(photos[currentIndexCopy]["_id"].string!)")
                     self.getSinglePhoto(photos[currentIndexCopy]["_id"].string!)
                 }
             }
@@ -529,8 +527,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
                         self.carouselDict.setObject(data, forKey: photoId as NSCopying)
 //                        print("\n\n self.carouselDataArray : \(self.carouselDict)")
 //                        self.singlePhotoJSON = response["data"]
-                        
-                        print("\n Reload on carousel called")
                         self.carouselView.reloadData()
                         
                         if self.carouselView.isHidden {
@@ -646,15 +642,6 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             self.loadMore()
         }
     }
-    
-    func carouselDidEndDecelerating(_ carousel: iCarousel) {
-        print("carouselDidEndDecelerating")
-    }
-    
-    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        print("\n Carousal didSelect : \(index)")
-    }
-    
     
     
     //MARK: - Blur effect

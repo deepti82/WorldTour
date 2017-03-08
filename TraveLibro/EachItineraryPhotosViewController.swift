@@ -100,8 +100,6 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let selectedCell = self.collectionView(collectionView, cellForItemAt: indexPath) as! EachItineraryMomentCollectionViewCell
-        
         let singlePhotoController = self.storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
 //        singlePhotoController.mainImage?.image = selectedCell.photo.image
         singlePhotoController.index = indexPath.row

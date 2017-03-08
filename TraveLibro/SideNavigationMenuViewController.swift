@@ -160,6 +160,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         if currentUser != nil {
             self.slideMenuController()?.changeMainViewController(self.myProfileViewController, close: true)            
         }
+        else{
+            self.slideMenuController()?.changeMainViewController(self.signOutViewController, close: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -193,7 +196,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
         
         let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
 //         cell.backgroundColor = mainBlueColor
-        cell.menuLabel.textColor = mainGreenColor
+//        cell.menuLabel.textColor = mainGreenColor
         
         switch((indexPath as NSIndexPath).row)
         {
@@ -239,9 +242,9 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
+//        let cell = tableView.cellForRow(at: indexPath) as! SideMenuTableViewCell
 //        cell.backgroundColor = mainGreenColor
-        cell.menuLabel.textColor = mainBlueColor
+//        cell.menuLabel.textColor = mainBlueColor
         
     }
     

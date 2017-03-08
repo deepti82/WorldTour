@@ -42,6 +42,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     var videoHeight:CGFloat!
     var horizontal:HorizontalLayout!
     
+    var loader = LoadingOverlay()
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -105,7 +107,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             
         case 1: 
             videoScrollView.scrollRectToVisible(imageView2.frame, animated: true)
-           
+            
             
         case 2:
             videoScrollView.scrollRectToVisible(imageView3.frame, animated: true)
@@ -114,7 +116,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             break
         }
         
-                
+        
         //Add play button [custumization]
         
         playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 65))
@@ -123,22 +125,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         playBtn.imageView?.tintColor = mainBlueColor
         playBtn.setTitle(String(format: "%C",0xf144), for: .normal)
         playBtn.titleLabel?.font = UIFont(name: "FontAwesome", size: 65)
-
+        
         playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
         playBtn.isHidden = true
         self.view.addSubview(playBtn)
         
-        toggleSoundButton = UIButton(frame: CGRect(x: self.view.frame.maxX - 40, y: self.view.frame.maxY - 112, width: 40, height: 32))
-        
-         toggleSoundButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 32)
-        toggleSoundButton.setTitle(String(format: "%C",0xf028), for: UIControlState())
-        toggleSoundButton.addTarget(self, action: #selector(SignInViewController.touchButtonTap(_:)), for: .touchUpInside)
-        toggleSoundButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        toggleSoundButton.clipsToBounds = true
-        toggleSoundButton.layer.cornerRadius = 5
-        self.view.addSubview(toggleSoundButton)
-        
         videoToPlay()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -156,7 +153,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView1.backgroundColor = UIColor.clear
-        imageView1.image = UIImage.gif(name: "loader")
+//        imageView1.image = nil
         imageView1.contentMode = UIViewContentMode.center
         imageView1.center = self.view.center
         
@@ -173,7 +170,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         
         imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
-        imageView2.image = UIImage.gif(name: "loader")
+//        imageView2.image = nil  //UIImage.gif(name: "loader")
         imageView2.backgroundColor = UIColor.clear
         imageView2.contentMode = UIViewContentMode.center
         imageView2.center = self.view.center
@@ -191,7 +188,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView3.backgroundColor = UIColor.clear
-        imageView3.image = UIImage.gif(name: "loader")
+//        imageView3.image = nil
         imageView3.contentMode = UIViewContentMode.center
         imageView3.center = self.view.center
         self.player3 = Player()
@@ -224,6 +221,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         pageControl.pageIndicatorTintColor = UIColor.darkGray
         pageControl.numberOfPages = 3
         self.view.addSubview(pageControl)
+        
+        toggleSoundButton = UIButton(frame: CGRect(x: self.view.frame.maxX - 60, y: pageControl.frame.origin.y, width: 40, height: 32))
+        toggleSoundButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 32)        
+        toggleSoundButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
+        toggleSoundButton.addTarget(self, action: #selector(SignInViewController.touchButtonTap(_:)), for: .touchUpInside)
+        toggleSoundButton.backgroundColor = UIColor.clear
+        toggleSoundButton.clipsToBounds = true
+        toggleSoundButton.layer.cornerRadius = 5
+        self.view.addSubview(toggleSoundButton)
             
         
         profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
@@ -272,7 +278,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     func playerReady(_ player: Player) {
         print("\n Player ready called")
-        
+        loader.hideOverlayView()
         videoToPlay()
     }
    
@@ -311,6 +317,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     //MARK: - Play 
     
     func videoToPlay ()  {
+        
         let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
         
         let i = Int(pageNumber)
@@ -339,38 +346,67 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     func playAgain(){
         print("\n play Again")
         
+        loader.showOverlay(self.view)
+        
         playBtn.isHidden = true
         
-        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
-        let i = Int(pageNumber)
-        
-        switch(i) {
-        case 0:
-            self.player1.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/travellife.mp4")!)
-            player1.playFromBeginning()
-        case 1:
-            self.player2.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/locallife.mp4")!)
-            player2.playFromBeginning()
-        case 2:
-            self.player3.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/mylife.mp4")!)
-            player3.playFromBeginning()
-        default: break
+        if isConnectedToNetwork() {
+            let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
+            let i = Int(pageNumber)
+            
+            switch(i) {
+            case 0:
+                self.player1.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/travellife.mp4")!)
+                player1.playFromBeginning()
+            case 1:
+                self.player2.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/locallife.mp4")!)
+                player2.playFromBeginning()
+            case 2:
+                self.player3.setUrl(URL(string: "https://storage.googleapis.com/intro-videos/mylife.mp4")!)
+                player3.playFromBeginning()
+            default: break
+            }
         }
+        else{
+            loader.hideOverlayView()
+            let errorAlert = UIAlertController(title: "Error", message: "Please check your internet connection", preferredStyle: UIAlertControllerStyle.alert)
+            let DestructiveAction = UIAlertAction(title: "Ok", style: .destructive) {
+                (result : UIAlertAction) -> Void in
+                //Cancel Action
+            }            
+            errorAlert.addAction(DestructiveAction)
+            self.navigationController?.present(errorAlert, animated: true, completion: nil)
+        }       
     }
 
     //MARK: - Scroll Delegates
     
 //    @IBAction func toggleSoundtap(_ sender: UIButton) {
     func touchButtonTap(_ sender: UIButton){
+        
         if(defaultMute) {
-            defaultMute = false;
-            player1.muted = defaultMute
-           
-        } else {
-            defaultMute = true;
-            player1.muted = defaultMute
-            
+            defaultMute = false
+            toggleSoundButton.setTitle(String(format: "%C",0xf028), for: UIControlState())            
         }
+        else {
+            defaultMute = true
+            toggleSoundButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
+        }
+        
+        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
+        let i = Int(pageNumber)
+        
+        switch(i) {
+        case 0:
+            player1.muted = defaultMute
+        case 1:
+            player2.muted = defaultMute
+        case 2:
+            player3.muted = defaultMute
+        default: break
+        }
+        
+        
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

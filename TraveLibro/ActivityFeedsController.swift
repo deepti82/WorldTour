@@ -53,8 +53,10 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     }
     func demonote(_ notification: Notification) {
         print("notification called")
-        displayData = "activity"
-        getActivity(pageNumber: 1)
+        if currentUser != nil{
+            displayData = "activity"
+            getActivity(pageNumber: 1)
+        }
     }
     
     func openSideMenu(_ sender: AnyObject) {
