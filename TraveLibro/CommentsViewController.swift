@@ -130,6 +130,8 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
      addCommentLabel.isHidden = true
     }
     
+    
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         addCommentLabel.isHidden = false
     }
@@ -270,7 +272,9 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var textVar = ""
     
     func textViewDidChange(_ textView: UITextView) {
-        
+        if textView.text == "" {
+            addCommentLabel.isHidden = false
+        }
         let commentText = textView.text.components(separatedBy: " ")
         textVar = commentText.last!
         if textVar.contains("#") {

@@ -22,7 +22,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wy8-pa-px8">
                     <rect key="frame" x="20" y="0.0" width="335" height="1"/>
-                    <color key="backgroundColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="At8-vW-Wek"/>
                     </constraints>
