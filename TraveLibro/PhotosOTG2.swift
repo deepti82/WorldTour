@@ -224,7 +224,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     
     func openSingleVideo(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-        singlePhotoController.mainImage?.image = sender.image
+//        singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.type = "Video"
         singlePhotoController.postId = self.postTop.post_ids
@@ -263,7 +263,7 @@ class PhotosOTG2: VerticalLayout,PlayerDelegate {
     
     func openSinglePhoto(_ sender: AnyObject) {
         let singlePhotoController = storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-        singlePhotoController.mainImage?.image = sender.image
+//        singlePhotoController.mainImage?.image = sender.image
         singlePhotoController.index = sender.view.tag
         singlePhotoController.postId = postTop.post_ids
         globalNavigationController.pushViewController(singlePhotoController, animated: true)

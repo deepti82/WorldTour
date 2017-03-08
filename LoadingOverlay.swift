@@ -38,8 +38,6 @@ extension UIViewController {
         }
         
         func hideOverlayView() {
-            
-            print("hide overlay")
             if loader != nil {
             loader.removeFromSuperview()
             }else {

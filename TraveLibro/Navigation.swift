@@ -2229,9 +2229,7 @@ class Navigation {
         
         do {
             
-            let params = ["_id": id, "user": userId]
-            
-            print("get one post photos params: \(params)")
+            let params = ["_id": id, "user": userId]            
             
             let opt = try! HTTP.POST(adminUrl + "postphotos/getOne", parameters: params)
             var json = JSON(1)
@@ -2245,9 +2243,7 @@ class Navigation {
                     
                 else
                 {
-                    print("making json")
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }
@@ -2260,9 +2256,7 @@ class Navigation {
         
         do {
             
-            let params = ["_id": id, "user": userId]
-            
-            print("get one post photos params: \(params)")
+            let params = ["_id": id, "user": userId]            
             
             let opt = try! HTTP.POST(adminUrl + "postvideos/getOne", parameters: params)
             var json = JSON(1)
@@ -2297,8 +2291,6 @@ class Navigation {
                 params = ["photoId": photoId, "postId": postId, "user": userId, "name": userName, "unlike": unlike] as [String : Any]
             }
             
-            print("get one post photos params: \(params)")
-            
             let opt = try HTTP.POST(adminUrl + "postphotos/updateLikePost", parameters: params)
             var json = JSON(1)
             
@@ -2331,9 +2323,7 @@ class Navigation {
             
             if unlike {
                 params = ["videoId": photoId, "postId": postId, "user": userId, "name": userName, "unlike": unlike] as [String : Any]
-            }
-            
-            print("get one post photos params: \(params)")
+            }           
             
             let opt = try HTTP.POST(adminUrl + "postvideos/updateLikePost", parameters: params)
             var json = JSON(1)

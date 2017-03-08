@@ -60,10 +60,10 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if shouldShowBigImage(position: indexPath.row) {
-            return CGSize(width: (collectionView.frame.size.width - 2), height: collectionView.frame.size.width * 0.5)
+            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.5)
         }
         
-        return CGSize(width: (collectionView.frame.size.width/3 - 3), height: (collectionView.frame.size.width/3 - 3))       
+        return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/2 - 3))       
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -90,13 +90,14 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         
         let selectedCell = self.collectionView(collectionView, cellForItemAt: indexPath) as! EachItineraryMomentCollectionViewCell
         
+        let singlePhotoController = self.storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
+//        singlePhotoController.mainImage?.image = selectedCell.photo.image
+        singlePhotoController.index = indexPath.row
+        singlePhotoController.whichView = "detail_itinerary"
+        singlePhotoController.photos = self.photoJSON
+        singlePhotoController.postId = "unknown"
+        
         self.dismiss(animated: true) {
-            let singlePhotoController = self.storyboard?.instantiateViewController(withIdentifier: "singlePhoto") as! SinglePhotoViewController
-            singlePhotoController.mainImage?.image = selectedCell.photo.image
-            singlePhotoController.index = indexPath.row
-            singlePhotoController.whichView = "detail_itinerary"
-            singlePhotoController.photos = self.photoJSON
-            singlePhotoController.postId = "unknown"
             print("globalNavigationController: \(globalNavigationController)")
             globalNavigationController.pushViewController(singlePhotoController, animated: true)
         }
