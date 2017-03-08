@@ -28,7 +28,10 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cityVisited.attributedPlaceholder = NSAttributedString(string:  "Add Country", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+        print("internet connection")
+        print(isConnectedToNetwork())
+        
+        cityVisited.attributedPlaceholder = NSAttributedString(string:  "Add City", attributes: [NSForegroundColorAttributeName: mainBlueColor])
         countryVisited.attributedPlaceholder = NSAttributedString(string:  "Add Country", attributes: [NSForegroundColorAttributeName: mainBlueColor])
 //        loader.showOverlay(self.view)
         cityView.underlined()
@@ -68,7 +71,14 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewAdded = false
+        showInternetStrip()
         fillText()
+        
+    }
+    
+    func showInternetStrip() {
+         var uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+        self.view.addSubview(uploadingView)
     }
     
     func fillText() {

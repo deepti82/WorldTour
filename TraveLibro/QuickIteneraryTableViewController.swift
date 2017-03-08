@@ -20,7 +20,9 @@ class QuickIteneraryTableViewController: UITableViewController, UISearchBarDeleg
     var searchController:UISearchDisplayController!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        searchController.isActive = true
+
+//        self.searchController.searchBar.becomeFirstResponder()
         if selectedStatus == "country" {
             request.getAllCountries({(request) in
                 DispatchQueue.main.async(execute: {
