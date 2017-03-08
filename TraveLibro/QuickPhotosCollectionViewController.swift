@@ -49,10 +49,26 @@ class QuickPhotosCollectionViewController: UIViewController, UICollectionViewDel
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if shouldShowBigImage(position: indexPath.row) {
+            return CGSize(width: (collectionView.frame.size.width), height: collectionView.frame.size.width * 0.5)
+        }
         
-        return CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
+        return CGSize(width: (collectionView.frame.size.width/3 - 2), height: (collectionView.frame.size.width/2 - 3))       
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
     }
 
 
