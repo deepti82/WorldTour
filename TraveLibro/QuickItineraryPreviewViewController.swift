@@ -23,7 +23,11 @@ class QuickItineraryPreviewViewController: UIViewController {
         prev.userPhoto.hnk_setImageFromURL(URL(string: getImageUrl)!)
         
         prev.userName.text? = currentUser["firstName"].stringValue + " " + currentUser["lastName"].stringValue
-        prev.quickTitle.text? = quickItinery["title"].stringValue
+        if quickItinery["title"] != nil {
+            prev.quickTitle.text? = quickItinery["title"].stringValue
+        }else{
+            prev.quickTitle.text? = quickItinery["name"].stringValue
+        }
         prev.duration.text? = quickItinery["duration"].stringValue
         prev.dateTime.text? = quickItinery["month"].stringValue + " " + quickItinery["year"].stringValue
         prev.quickDescription.text? = quickItinery["description"].stringValue
@@ -111,14 +115,29 @@ class QuickItineraryPreviewViewController: UIViewController {
         
     }
     
-    func showPhoto(_ sender: UITapGestureRecognizer) {
-        if self.selectedQuick.count == 0 {
-            let tstr = Toast(text: "No Photos.")
-            tstr.show()
-        }else{
+    func showQuickPhotos() {
         let TLVC = storyboard!.instantiateViewController(withIdentifier: "quickPhotos") as! QuickPhotosCollectionViewController
         TLVC.selectedQuick = self.selectedQuick
         navigationController?.present(TLVC, animated: true, completion: nil)
+    }
+    
+    func showPhoto(_ sender: UITapGestureRecognizer) {
+        if selectedQuickI == "" {
+            if globalPostImage.count == 0 {
+                let tstr = Toast(text: "No Photos.")
+                tstr.show()
+            }else{
+                showQuickPhotos()
+            }
+            
+        }else{
+            if self.selectedQuick.count == 0 {
+                let tstr = Toast(text: "No Photos.")
+                tstr.show()
+            }else{
+                showQuickPhotos()
+            }
+        
         }
     
     }
@@ -153,10 +172,13 @@ class QuickItineraryPreviewViewController: UIViewController {
             self.customNavigationBar(left: leftButton, right: rightButton)
 
         }else{
-            if !selectedQuick["status"].boolValue && currentUser["id"].stringValue == user.getExistingUser() {
-                
+            let userm = User()
+            print(selectedQuick)
+            if (!quickItinery["status"].boolValue) && (currentUser["_id"].stringValue == userm.getExistingUser()) {
+                print(" in if")
                 self.customNavigationBar(left: leftButton, right: rightButton)
             }else{
+                print("in else")
             self.customNavigationBar(left: leftButton, right: nil)
             }
 
@@ -211,8 +233,9 @@ class QuickItineraryPreviewViewController: UIViewController {
             
             self.goToActivity()
         }
-        
-        actionSheet.addAction(saveActionButton)
+//        if selectedQuickI != "" && !quickItinery["status"].boolValue {
+            actionSheet.addAction(saveActionButton)
+//        }
         
         let publishActionButton: UIAlertAction = UIAlertAction(title: "Publish", style: .destructive) { action -> Void in
             var qi = QuickItinerary()
