@@ -379,6 +379,41 @@ func isConnectedToNetwork() -> Bool {
 }
 
 
+func categoryImage(_ str: String) -> String {
+    var retStr = ""
+    switch str {
+        
+    case "adventure":
+        retStr =  "adventure"
+    case "backpacking":
+        retStr =  "backpacking"
+    case "business":
+        retStr = "business_new"
+    case "religious":
+        retStr = "religious"
+    case "romance":
+        retStr = "romance_new"
+    case "budget":
+        retStr = "luxury"
+    case "luxury":
+        retStr = "luxury_new"
+    case "family":
+        retStr = "family"
+    case "friends":
+        retStr = "friends"
+    case "solo":
+        retStr = "solo"
+    case "partner":
+        retStr = "partner"
+    case "colleague":
+        retStr = "colleague"
+    default:
+        retStr = ""
+    }
+    return retStr
+}
+
+
 
 func addTopBorder(_ color: UIColor, view: UIView, borderWidth: CGFloat) {
     let border = CALayer()

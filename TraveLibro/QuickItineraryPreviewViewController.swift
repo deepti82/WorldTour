@@ -31,21 +31,22 @@ class QuickItineraryPreviewViewController: UIViewController {
         prev.generateCity()
         
         if quickItinery["itineraryType"].count >= 3 {
-            prev.quickType[0].image = UIImage(named: quickItinery["itineraryType"][0].stringValue)
-            prev.quickType[1].image = UIImage(named: quickItinery["itineraryType"][1].stringValue)
-            prev.quickType[2].image = UIImage(named: quickItinery["itineraryType"][2].stringValue)
+            
+            prev.quickType[0].image = UIImage(named: categoryImage(quickItinery["itineraryType"][0].stringValue))
+            prev.quickType[1].image = UIImage(named: categoryImage(quickItinery["itineraryType"][1].stringValue))
+            prev.quickType[2].image = UIImage(named: categoryImage(quickItinery["itineraryType"][2].stringValue))
             
         }
         else if quickItinery["itineraryType"].count == 2 {
             
-            prev.quickType[0].image = UIImage(named: quickItinery["itineraryType"][0].stringValue)
-            prev.quickType[1].image = UIImage(named: quickItinery["itineraryType"][1].stringValue)
+            prev.quickType[0].image = UIImage(named: categoryImage(quickItinery["itineraryType"][0].stringValue))
+            prev.quickType[1].image = UIImage(named: categoryImage(quickItinery["itineraryType"][1].stringValue))
             prev.quickType[2].isHidden = true
             
         }
         else if quickItinery["itineraryType"].count == 1 {
             
-            prev.quickType[0].image = UIImage(named: quickItinery["itineraryType"][0].stringValue)
+            prev.quickType[0].image = UIImage(named: categoryImage(quickItinery["itineraryType"][0].stringValue))
             prev.quickType[1].isHidden = true
             prev.quickType[2].isHidden = true
             
@@ -102,6 +103,7 @@ class QuickItineraryPreviewViewController: UIViewController {
                 DispatchQueue.main.async(execute: {
                     quickItinery = request["data"]
                     self.selectedQuick = request["data"]["photos"]
+                    self.createNavigation()
                     self.loadPreview()
                 })
             })
@@ -110,10 +112,14 @@ class QuickItineraryPreviewViewController: UIViewController {
     }
     
     func showPhoto(_ sender: UITapGestureRecognizer) {
-        
+        if self.selectedQuick.count == 0 {
+            let tstr = Toast(text: "No Photos.")
+            tstr.show()
+        }else{
         let TLVC = storyboard!.instantiateViewController(withIdentifier: "quickPhotos") as! QuickPhotosCollectionViewController
         TLVC.selectedQuick = self.selectedQuick
         navigationController?.present(TLVC, animated: true, completion: nil)
+        }
     
     }
     
@@ -137,7 +143,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         
         let rightButton = UIButton()
         rightButton.setTitle("Done", for: .normal)
-        rightButton.setTitleColor(navGreen, for: .normal)
+        rightButton.setTitleColor(UIColor.white, for: .normal)
         rightButton.titleLabel?.font = avenirBold
         rightButton.addTarget(self, action: #selector(QuickItineraryPreviewViewController.donePage(_:)), for: .touchUpInside)
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 20)!]
@@ -147,7 +153,12 @@ class QuickItineraryPreviewViewController: UIViewController {
             self.customNavigationBar(left: leftButton, right: rightButton)
 
         }else{
+            if !selectedQuick["status"].boolValue && currentUser["id"].stringValue == user.getExistingUser() {
+                
+                self.customNavigationBar(left: leftButton, right: rightButton)
+            }else{
             self.customNavigationBar(left: leftButton, right: nil)
+            }
 
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)

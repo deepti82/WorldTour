@@ -108,7 +108,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
 print("notification called \(displayData)")
         if displayData == "activity" {
             print("in activity")
-            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request) in
+            request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in
                 DispatchQueue.main.async(execute: {
                     if request["data"] != "" {
                         if pageNumber == 1 {
@@ -116,7 +116,7 @@ print("notification called \(displayData)")
                         }
                         self.loadStatus = true
                         
-                        for var post in request["quickItinerary"].array! {
+                        for var post in quickJsons {
                             
                             self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
@@ -138,7 +138,7 @@ print("notification called \(displayData)")
                             
                         }
                         
-                        for var post in request["localLife"].array! {
+                        for var post in localLifeJsons {
                             self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
                             
@@ -161,7 +161,7 @@ print("notification called \(displayData)")
                             self.addHeightToLayout()
                             
                         }
-                        
+                        if isConnectedToNetwork() {
                         for post in request["data"].array! {
                              self.loader.hideOverlayView()
                             self.feeds.arrayObject?.append(post)
@@ -173,6 +173,7 @@ print("notification called \(displayData)")
                             self.layout.addSubview(checkIn)
                             self.addHeightToLayout()
                             
+                        }
                         }
                         
                         self.addHeightToLayout()
@@ -274,7 +275,7 @@ print("notification called \(displayData)")
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+        if isConnectedToNetwork() {
         if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height) {
             if loadStatus {
                 print("in load more of data.")
@@ -282,7 +283,7 @@ print("notification called \(displayData)")
                 getActivity(pageNumber: pageno)
             }
         }
-        
+        }
         for postView in layout.subviews {
             if(postView is ActivityFeedsLayout) {
                 let feeds = postView as! ActivityFeedsLayout
@@ -290,7 +291,8 @@ print("notification called \(displayData)")
                     feeds.videoToPlay()
                 }
             }
-        }        
+        }
+            
         
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             hideHeaderAndFooter(true);

@@ -109,7 +109,6 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             self.addSubview(mainPhoto)
             let heightForBlur = 10;
             var thumbStr = "";
-            print("ooouuuu \(feed)")
             let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 300)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in
@@ -257,6 +256,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             self.addSubview(activityFeedImage)
         case "quick-itinerary":
+//            print("moto : \(feed)")
             activityQuickItinerary = ActivityFeedQuickItinerary(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 500))
             let tapRecognizer = UITapGestureRecognizer()
             tapRecognizer.numberOfTapsRequired = 1

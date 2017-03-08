@@ -217,8 +217,18 @@ class MyLifeActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             tapRecognizer.numberOfTapsRequired = 1
             tapRecognizer.addTarget(self, action: #selector(self.gotoDetail))
             activityQuickItinerary.addGestureRecognizer(tapRecognizer)
-            
+            print("my fffffff \(feed)")
             activityQuickItinerary.fillData(feed: feed)
+            
+            if !feed["status"].boolValue {
+                let headerTag = ActivityHeaderTag(frame: CGRect(x: 0, y: 90, width: screenWidth, height: 30))
+                headerTag.tagParent.backgroundColor = UIColor.clear
+                headerTag.colorTag(feed: feed)
+                headerTag.tagLine.isHidden = true
+                self.activityQuickItinerary.addSubview(headerTag)
+            }
+            
+            
             self.addSubview(activityQuickItinerary)
             
         case "detail-itinerary":

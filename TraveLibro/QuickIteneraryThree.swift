@@ -20,6 +20,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var blurBG: UIView!
     @IBOutlet weak var countryView: UIView!
     @IBOutlet weak var cityView: UIView!
+    var uploadingView: UploadingToCloud!
 //    let verticalLayout = VerticalLayout(width: 300)
     var verticalLayout: VerticalLayout!
     var viewAdded = false
@@ -77,8 +78,18 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     }
     
     func showInternetStrip() {
-         var uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 23))
+        
+        print(isConnectedToNetwork())
+        
+        if uploadingView != nil {
+            uploadingView.removeFromSuperview()
+        }
+        if !isConnectedToNetwork() {
+          uploadingView = UploadingToCloud(frame: CGRect(x: 0, y: 64, width: self.view.frame.width, height: 23))
+            uploadingView.uploadText.text = "No internet connection."
         self.view.addSubview(uploadingView)
+        }
+        
     }
     
     func fillText() {

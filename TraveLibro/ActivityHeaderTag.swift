@@ -24,9 +24,12 @@ class ActivityHeaderTag: UIView {
         
     }
     func colorTag(feed:JSON) {
+        
         if feed["type"].stringValue == "travel-life" {
             self.tagText.text = "Travel Life"
 //            self.tagView.backgroundColor = mainOrangeColor
+        }else if feed["type"].stringValue == "quick-itinerary" {
+            self.tagText.text = "Unpublished"
         }else{
             self.tagText.text = "  Local Life"
             self.tagText.textColor = UIColor(hex: "#303557")

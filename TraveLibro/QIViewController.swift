@@ -83,7 +83,13 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         print(changedIndex)
         inx = changedIndex
         self.setViewControllers([viewControllers1[inx]], direction: UIPageViewControllerNavigationDirection.reverse, animated: true, completion: nil)
-        let tsrt = Toast(text: "Please enter \(key)")
+        var mss = ""
+        if key == "0duration" {
+            mss = "Day's can not be 0."
+        }else{
+            mss = "Please enter \(key)"
+        }
+        let tsrt = Toast(text: mss)
         tsrt.show()
         createNavigation()
         
@@ -146,40 +152,31 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         print(quickItinery)
         var check = true
         
-//        for (key, itm) in quickItinery {
-//            if(check){
-//            switch key {
-//            case "title", "month", "year", "duration":
-//                if itm == "" {
-//                    self.changeView(changedIndex: 0, key: key)
-//                    check = false
-//                }
-//                break
-//            case "itineraryType":
-//                if itm.count == 0 {
-//                    self.changeView(changedIndex: 1, key: key)
-//                    check = false
-//                }
-//                break
-//            case "countryVisited":
-//                if itm.count == 0 {
-//                    self.changeView(changedIndex: 2, key: key)
-//                    check = false
-//                }
-//                break
-//            case "description":
-//                if itm == "" {
-//                    self.changeView(changedIndex: 3, key: key)
-//                    check = false
-//                }
-//                break
-//            default: break
-//            }
-//        }
-//        }
-//        if check {
+        for (key, itm) in quickItinery {
+            if(check){
+            switch key {
+            case "title", "month", "year", "duration":
+                if itm == "" {
+                    self.changeView(changedIndex: 0, key: key)
+                    check = false
+                } else if key == "duration" && itm == 0 {
+                    self.changeView(changedIndex: 0, key: "0duration")
+                    check = false
+                }
+                break
+            case "countryVisited":
+                if itm.count == 0 {
+                    self.changeView(changedIndex: 2, key: key)
+                    check = false
+                }
+                break
+            default: break
+            }
+        }
+        }
+        if check {
             saveItinerary()
-//        }
+        }
             }
     
     func saveItinerary() {

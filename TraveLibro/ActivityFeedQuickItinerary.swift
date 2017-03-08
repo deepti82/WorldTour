@@ -53,7 +53,6 @@ class ActivityFeedQuickItinerary: UIView {
     }
     
     func fillData(feed:JSON) {
-        print(feed)
         activityFeedYear.text = feed["month"].stringValue + " " + feed["year"].stringValue
         activityFeedYear.sizeToFit()
         activityFeedDaysCount.text = feed["duration"].stringValue
@@ -104,15 +103,17 @@ class ActivityFeedQuickItinerary: UIView {
         activityFeedItineraryName.text = feed["name"].stringValue
         
         if feed["coverPhoto"] != nil && feed["coverPhoto"] != "" {
-            activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["coverPhoto"])", width: 300))
+            activityQuickCoverPic.hnk_setImageFromURL(getImageURL(feed["coverPhoto"].stringValue, width: 300))
         }else{
             if feed["photos"] != nil && feed["photos"] != "" {
-                activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["photos"][0]["name"])", width: 300))
+                activityQuickCoverPic.hnk_setImageFromURL(getImageURL(feed["photos"][0]["name"].stringValue, width: 300))
             }else{
                 if feed["startLocationPic"] != nil && feed["startLocationPic"] != "" {
-                    activityQuickCoverPic.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(feed["startLocationPic"])", width: 300))
+
+                    activityQuickCoverPic.hnk_setImageFromURL(getImageURL(feed["startLocationPic"].stringValue, width: 300))
 
                 }else{
+
                     activityQuickCoverPic.image = UIImage(named: "logo-default")
 
                 }
