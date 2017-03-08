@@ -51,8 +51,12 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     //MARK: - CollectionView Delegates
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return photoJSON.count
+        if selectedQuickI != "" {
+            return photoJSON.count
+        }else{
+            return globalPostImage.count
+
+        }
         
     }
     
@@ -81,7 +85,15 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! EachItineraryMomentCollectionViewCell        
-        cell.photo.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(photoJSON[indexPath.row]["name"].stringValue)", width: 100))
+        
+        if selectedQuickI != "" {
+            cell.photo.hnk_setImageFromURL(getImageURL(photoJSON[indexPath.row]["name"].stringValue, width: 200))
+            
+        }else{
+            
+            cell.photo.image = globalPostImage[indexPath.row].image
+        }
+        
         return cell
         
     }
@@ -102,7 +114,6 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
             globalNavigationController.pushViewController(singlePhotoController, animated: true)
         }
     }
-    
 }
 
 
