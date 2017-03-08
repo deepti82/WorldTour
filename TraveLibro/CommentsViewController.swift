@@ -444,7 +444,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.urlSlug.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
             cell.titleLabel.text = mentionSuggestions[indexPath.row]["name"].string!
             cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(mentionSuggestions[indexPath.row]["profilePicture"])", width: 100))
-            makeTLProfilePictureBorderOrange(cell.profilePhoto)
+            HiBye(cell.profilePhoto)
             
             return cell
         case 1:

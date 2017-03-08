@@ -2613,7 +2613,7 @@ class NewTLViewController: UIViewController, UITextFieldDelegate, CLLocationMana
                             let curDate = Date()
                             let localDate = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "dd-MM-yyyy", date: self.currentTime, isDate: true)
                             let localTime = self.changeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", getFormat: "h:mm a", date: self.currentTime, isDate: false)
-                            self.otgView.timestampDate.text = "\(localDate)   |   \(localTime)" //self.currentTime
+                            self.otgView.timestampDate.text = "\(localDate) | \(localTime)" //self.currentTime
                             
                             
                             //                        self.otgView.timestampDate.text = self.currentTime

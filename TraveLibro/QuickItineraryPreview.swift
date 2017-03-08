@@ -69,9 +69,9 @@ class QuickItineraryPreview: UIView {
     
     func generateCity () {
 
-        self.cityScroll = UILabel(frame: CGRect(x: 0, y: 0, width: 1000, height: cityScroller.frame.height))
+        self.cityScroll = UILabel(frame: CGRect(x: 0, y: 10, width: 1000, height: cityScroller.frame.height))
         self.cityScroll.text = ""
-        self.cityScroll.font = avenirFont
+        self.cityScroll.font = UIFont(name: "Avenir-Roman", size: 16)
         if self.json["countryVisited"].count != 0 {
             for n in json["countryVisited"].array! {
                 for (i,m) in n["cityVisited"] {

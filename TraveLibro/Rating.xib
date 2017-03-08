@@ -39,12 +39,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gDE-6v-4jE">
                     <rect key="frame" x="0.0" y="35" width="400" height="91"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9b-qI-EhI">
-                            <rect key="frame" x="16" y="30" width="368" height="0.0"/>
-                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
-                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iBj-3n-r4D">
                             <rect key="frame" x="16" y="73" width="157.5" height="10"/>
                             <subviews>
@@ -130,18 +124,28 @@
                                 </imageView>
                             </subviews>
                         </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9b-qI-EhI">
+                            <rect key="frame" x="16" y="49" width="368" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="wSm-sK-NwD"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80239207469999996" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="iBj-3n-r4D" firstAttribute="leading" secondItem="c9b-qI-EhI" secondAttribute="leading" id="20E-3g-rjo"/>
-                        <constraint firstItem="c9b-qI-EhI" firstAttribute="top" secondItem="ZKZ-QL-pIT" secondAttribute="bottom" constant="-19" id="6Yr-UV-WAq"/>
+                        <constraint firstItem="c9b-qI-EhI" firstAttribute="top" secondItem="ZKZ-QL-pIT" secondAttribute="bottom" id="6Yr-UV-WAq"/>
                         <constraint firstAttribute="bottom" secondItem="iBj-3n-r4D" secondAttribute="bottom" constant="8" id="I9y-Wv-YqH"/>
                         <constraint firstAttribute="trailing" secondItem="ztF-ws-nNS" secondAttribute="trailing" constant="8" id="LcO-m8-ZPK"/>
                         <constraint firstItem="ztF-ws-nNS" firstAttribute="leading" secondItem="gDE-6v-4jE" secondAttribute="leadingMargin" constant="8" id="Oq0-2A-OJ3"/>
                         <constraint firstItem="c9b-qI-EhI" firstAttribute="trailing" secondItem="gDE-6v-4jE" secondAttribute="trailingMargin" constant="-8" id="ZAd-F7-qqD"/>
-                        <constraint firstItem="iBj-3n-r4D" firstAttribute="top" secondItem="c9b-qI-EhI" secondAttribute="bottom" constant="43" id="c0f-Mv-fyG"/>
+                        <constraint firstItem="iBj-3n-r4D" firstAttribute="top" secondItem="c9b-qI-EhI" secondAttribute="bottom" constant="2" id="c0f-Mv-fyG"/>
                         <constraint firstItem="c9b-qI-EhI" firstAttribute="leading" secondItem="gDE-6v-4jE" secondAttribute="leading" constant="16" id="kR3-MQ-f1z"/>
                         <constraint firstItem="ZKZ-QL-pIT" firstAttribute="leading" secondItem="gDE-6v-4jE" secondAttribute="leading" constant="16" id="mPC-0D-NpC"/>
+                        <constraint firstItem="ztF-ws-nNS" firstAttribute="top" secondItem="gDE-6v-4jE" secondAttribute="top" constant="11" id="rjL-yH-Qeg"/>
                         <constraint firstItem="ZKZ-QL-pIT" firstAttribute="top" secondItem="ztF-ws-nNS" secondAttribute="bottom" constant="1" id="xNE-9g-4gY"/>
                     </constraints>
                 </view>
