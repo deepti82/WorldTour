@@ -21,6 +21,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     var previousHashtags: [String] = []
     var editComment: JSON!
     var footerView: PhotoOTGFooter!
+    @IBOutlet weak var addCommentLabel: UILabel!
     @IBOutlet weak var mentionSuggestionsTable: UITableView!
     @IBOutlet weak var hashTagSuggestionsTable: UITableView!
     @IBOutlet weak var containerTwo: UIView!
@@ -35,6 +36,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         mentions = []
         addComment.delegate = self
         addComment.resignFirstResponder()
+        
         let commentText = addComment.text.components(separatedBy: " ")
         for eachText in commentText {
             if eachText.contains("#") {
@@ -124,6 +126,10 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+     addCommentLabel.isHidden = true
+    }
+    
     func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
@@ -155,7 +161,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
-            let more = UITableViewRowAction(style: .normal, title: String(format: "%C", 0xf0c9)) { action, index in
+            let more = UITableViewRowAction(style: .normal, title: "edit") { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
                 self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
                 self.editComment = self.comments[indexPath.row]
