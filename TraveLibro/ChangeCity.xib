@@ -30,7 +30,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Msm-rY-hfg" customClass="drawLine" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="145" y="6" width="10" height="35"/>
+                    <rect key="frame" x="145" y="6" width="10" height="32"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="10" id="slX-qR-g7v"/>
@@ -147,7 +147,7 @@
                 <constraint firstItem="Msm-rY-hfg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fr7-ew-dVY"/>
                 <constraint firstAttribute="bottom" secondItem="lX2-Sk-H2O" secondAttribute="bottom" constant="20" id="mMw-3o-9fJ"/>
                 <constraint firstItem="lX2-Sk-H2O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uLL-og-QGH"/>
-                <constraint firstItem="fVH-GC-MmM" firstAttribute="top" secondItem="Msm-rY-hfg" secondAttribute="bottom" constant="14" id="xaX-0k-OSN"/>
+                <constraint firstItem="fVH-GC-MmM" firstAttribute="top" secondItem="Msm-rY-hfg" secondAttribute="bottom" constant="17" id="xaX-0k-OSN"/>
                 <constraint firstAttribute="trailing" secondItem="lX2-Sk-H2O" secondAttribute="trailing" constant="8" id="yBf-i6-YBz"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

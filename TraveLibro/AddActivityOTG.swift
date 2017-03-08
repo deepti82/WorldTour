@@ -55,7 +55,7 @@ class AddActivityOTG: UIView {
         postButton.layer.borderColor = UIColor.white.cgColor
         postButton.layer.borderWidth = 2.0
         
-        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
+        let darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame.size.height = self.frame.height
         blurView.frame.size.width = self.frame.width
