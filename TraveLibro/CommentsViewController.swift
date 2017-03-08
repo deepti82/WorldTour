@@ -33,7 +33,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         hashTagSuggestionsTable.isHidden = true
         hashtags = []
         mentions = []
-        
+        addComment.delegate = self
         addComment.resignFirstResponder()
         let commentText = addComment.text.components(separatedBy: " ")
         for eachText in commentText {
@@ -155,7 +155,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         if self.comments[indexPath.row]["user"]["_id"].string! == usr {
             
-            let more = UITableViewRowAction(style: .normal, title: String(format: "%C", faicon["edit"]!)) { action, index in
+            let more = UITableViewRowAction(style: .normal, title: String(format: "%C", 0xf0c9)) { action, index in
                 self.addComment.text = self.comments[indexPath.row]["text"].string!
                 self.previousHashtags = self.getHashtagsFromText(oldText: self.comments[indexPath.row]["text"].string!)
                 self.editComment = self.comments[indexPath.row]
@@ -165,7 +165,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
 //            moreImage.contentMode = .center
 //            moreImage.backgroundColor = mainOrangeColor
 //            more.backgroundColor = UIColor(patternImage: UIImage(named: "penciltranswhite")!)
-            
             let favorite = UITableViewRowAction(style: .normal, title: "delete") { action, index in
                 print("delete button tapped")
                 request.deleteComment(commentId: self.comments[indexPath.row]["_id"].string!, completion: {(response) in
@@ -331,6 +330,7 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
                 else if response["value"].bool! {
                     
                     self.mentionSuggestions = response["data"].array!
+                    print("datamention\(self.mentionSuggestions)")
                     self.mentionSuggestionsTable.reloadData()
                     
                 }
@@ -409,7 +409,6 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch tableView.tag {
         case 2:
             return mentionSuggestions.count
@@ -428,7 +427,11 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
         switch tableView.tag {
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellTwo") as! MentionSuggestionsTableViewCell
-            cell.titleLabel.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
+            cell.urlSlug.text = mentionSuggestions[indexPath.row]["urlSlug"].string!
+            cell.titleLabel.text = mentionSuggestions[indexPath.row]["name"].string!
+            cell.profilePhoto.hnk_setImageFromURL(getImageURL("\(adminUrl)upload/readFile?file=\(mentionSuggestions[indexPath.row]["profilePicture"])", width: 100))
+            makeTLProfilePictureBorderOrange(cell.profilePhoto)
+            
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! SuggestionsTableViewCell
@@ -439,6 +442,11 @@ class CommentsViewController: UIViewController, UITableViewDataSource, UITableVi
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CommentTableViewCell
             cell.profileName.text = comments[indexPath.row]["user"]["name"].string!
             cell.profileComment.text = comments[(indexPath as NSIndexPath).row]["text"].string!
+            if textVar.contains("@"){
+                cell.profileComment.font = UIFont(name: "Avenir-Heavy", size: 14)
+            }else {
+                print("hello")
+            }
             DispatchQueue.main.async(execute: {
                 cell.profileImage.image = UIImage(named: "logo-default")
                 cell.profileImage.hnk_setImageFromURL(URL(string: "\(adminUrl)upload/readFile?file=\(self.comments[indexPath.row]["user"]["profilePicture"])&width=100")!)
@@ -512,6 +520,8 @@ class CommentTableViewCell: UITableViewCell {
 
 class MentionSuggestionsTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var profilePhoto: UIImageView!
+    @IBOutlet weak var urlSlug: UILabel!
 }
 
 class SuggestionsTableViewCell: UITableViewCell {
