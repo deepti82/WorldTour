@@ -21,6 +21,16 @@ class QuickItineraryPreviewViewController: UIViewController {
         
         let getImageUrl = adminUrl + "upload/readFile?file=" + currentUser["profilePicture"].stringValue + "&width=100"
         prev.userPhoto.hnk_setImageFromURL(URL(string: getImageUrl)!)
+        if selectedQuickI != "" {
+            if quickItinery["coverPhoto"] != nil {
+                prev.displayPiture.hnk_setImageFromURL(getImageURL(quickItinery["coverPhoto"].stringValue, width: 200))
+            }
+        }else{
+            if globalPostImage.count != 0 {
+                prev.displayPiture.image = globalPostImage[0].image
+
+            }
+        }
         
         prev.userName.text? = currentUser["firstName"].stringValue + " " + currentUser["lastName"].stringValue
         if quickItinery["title"] != nil {
@@ -187,7 +197,11 @@ class QuickItineraryPreviewViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    
+    func alertControllerBackgroundTapped()
+    {
+        print("back clicked")
+        self.dismiss(animated: true, completion: nil)
+    }
     func donePage(_ sender: UIButton) {
         let actionSheet: UIAlertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         
@@ -203,6 +217,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         
         actionSheet.setValue(MessageString, forKey: "attributedMessage")
         
+       
         
         let saveActionButton: UIAlertAction = UIAlertAction(title: "Save", style: .default) { action -> Void in
             
@@ -244,8 +259,17 @@ class QuickItineraryPreviewViewController: UIViewController {
             self.goToActivity()
         }
         
+        let cancelActionButton: UIAlertAction = UIAlertAction(title: "Cancel", style: .destructive) { action -> Void in
+            actionSheet.dismiss(animated: true, completion: nil)
+
+        }
+        
         actionSheet.addAction(publishActionButton)
-        self.present(actionSheet, animated: true, completion: nil)
+        actionSheet.addAction(cancelActionButton)
+        self.present(actionSheet, animated: true, completion: {
+            actionSheet.view.superview?.isUserInteractionEnabled = true
+            actionSheet.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+        })
     }
     
     func goToActivity() {

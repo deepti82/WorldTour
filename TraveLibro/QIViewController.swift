@@ -24,6 +24,7 @@ class QIViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         self.title = "Quick Itinerary"
         getDarkBackGround(self)
         self.delegate = self
+        globalPostImage = []
         self.dataSource = self
         ToastView.appearance().backgroundColor = mainOrangeColor
 

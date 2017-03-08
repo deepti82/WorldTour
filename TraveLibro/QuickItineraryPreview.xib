@@ -57,7 +57,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TMk-kL-aHd">
                     <rect key="frame" x="0.0" y="48" width="375" height="325"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="india_gate" translatesAutoresizingMaskIntoConstraints="NO" id="uGM-ah-bNv">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="uGM-ah-bNv">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="325"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SnY-i5-x5x">
@@ -292,7 +292,6 @@
         <image name="adventure" width="100" height="100"/>
         <image name="backpacking" width="100" height="100"/>
         <image name="bluebox" width="130" height="130"/>
-        <image name="india_gate" width="1097" height="734"/>
         <image name="logo-default" width="600" height="600"/>
         <image name="luxury" width="100" height="100"/>
     </resources>
