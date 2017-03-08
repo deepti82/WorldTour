@@ -30,12 +30,12 @@ class AddYourRatingViewController: UIViewController {
         
         getReviews()
         
-        let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
-        profileImage.center.x = self.view.frame.width/2
-        profileImage.image = UIImage(named: "logo-default")
-        profileImage.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: 100))
-        makeTLProfilePicture(profileImage)
-        layout.addSubview(profileImage)
+//        let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
+//        profileImage.center.x = self.view.frame.width/2
+//        profileImage.image = UIImage(named: "logo-default")
+//        profileImage.hnk_setImageFromURL(getImageURL(currentUser["profilePicture"].stringValue, width: 100))
+//        makeTLProfilePicture(profileImage)
+//        layout.addSubview(profileImage)
         
         print("layout height: \(layout.frame.height)")
         
@@ -45,6 +45,16 @@ class AddYourRatingViewController: UIViewController {
         scroll.addSubview(layout)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("navigationBar")
+        navigationController?.navigationBar.isTranslucent = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+         navigationController?.navigationBar.isTranslucent = true
+    }
+    
     func createNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         

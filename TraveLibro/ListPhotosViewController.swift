@@ -28,7 +28,6 @@ class ListPhotosViewController: UIViewController {
         getBackGround(self)
         getJourneyPhotos()
         globalListPhotosViewController = self
-        loader.showOverlay(self.view)
         layout = VerticalLayout(width: self.view.frame.width)
         
 //        let profileImage = UIImageView(frame: CGRect(x: 0, y: 85, width: 100, height: 100))
@@ -44,6 +43,15 @@ class ListPhotosViewController: UIViewController {
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("navigationBar")
+        self.navigationController?.navigationBar.isTranslucent = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
     
     func getJourneyPhotos() {
         loader.hideOverlayView()

@@ -26,7 +26,7 @@ class TripSummaryPhotoGridViewController: UICollectionViewController, ToolStackC
         super.viewDidLoad()
         
         self.collectionView?.delegate = self
-        loader.showOverlay(self.view)
+//        loader.showOverlay(self.view)
         getJourneyPhotos()
         
         
