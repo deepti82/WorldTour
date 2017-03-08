@@ -115,6 +115,7 @@ class QuickItineraryPreviewViewController: UIViewController {
         
     }
     
+<<<<<<< HEAD
     func showQuickPhotos() {
         let TLVC = storyboard!.instantiateViewController(withIdentifier: "quickPhotos") as! QuickPhotosCollectionViewController
         TLVC.selectedQuick = self.selectedQuick
@@ -138,8 +139,22 @@ class QuickItineraryPreviewViewController: UIViewController {
                 showQuickPhotos()
             }
         
+=======
+    func showPhoto(_ sender: UITapGestureRecognizer) {        
+        if quickItinery != nil {
+            if self.selectedQuick.count == 0 {
+                Toast(text: "No Photos.").show()
+            }
+            else{
+                let modalContent = self.storyboard?.instantiateViewController(withIdentifier: "itineraryPhotos") as! EachItineraryPhotosViewController
+                modalContent.selectedItinerary = quickItinery
+                modalContent.modalPresentationStyle = .fullScreen
+                _ = modalContent.popoverPresentationController
+                
+                self.present(modalContent, animated: true, completion: nil)
+            }
+>>>>>>> origin/level-3-
         }
-    
     }
     
     override func didReceiveMemoryWarning() {

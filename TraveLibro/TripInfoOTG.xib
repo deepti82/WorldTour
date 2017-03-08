@@ -21,15 +21,15 @@
                 <outlet property="mustDoCount" destination="kcx-8v-DCy" id="DPn-Jl-kbs"/>
                 <outlet property="nearMeButton" destination="ZPf-pN-oep" id="JHc-zG-Bl9"/>
                 <outlet property="nearMeCount" destination="ENs-p9-jQ0" id="beD-d4-2DQ"/>
-                <outlet property="photosButton" destination="HS7-JG-0h0" id="6ao-K0-ijH"/>
-                <outlet property="photosCount" destination="mJZ-sC-SVO" id="GFD-PU-Mcr"/>
+                <outlet property="photosButton" destination="uwg-1h-9Ch" id="iYd-3q-RQU"/>
+                <outlet property="photosCount" destination="TE9-0z-bAK" id="3yW-b6-fz1"/>
                 <outlet property="ratingCount" destination="N8A-4T-N0v" id="PLO-eD-o6q"/>
                 <outlet property="restaurantCount" destination="eQl-Xb-Crx" id="tRq-gf-2xB"/>
                 <outlet property="restaurantsButton" destination="vx3-od-ahO" id="gid-Lg-RIx"/>
                 <outlet property="reviewsButton" destination="R8Q-JB-YqS" id="Te2-Je-mZC"/>
                 <outlet property="summaryButton" destination="Qcu-zf-1fZ" id="Kkv-0F-OZx"/>
-                <outlet property="videosButton" destination="uwg-1h-9Ch" id="47M-VM-UMh"/>
-                <outlet property="videosCount" destination="TE9-0z-bAK" id="o8l-z0-3ZF"/>
+                <outlet property="videosButton" destination="HS7-JG-0h0" id="fHB-uT-wHF"/>
+                <outlet property="videosCount" destination="mJZ-sC-SVO" id="84E-hN-yLF"/>
                 <outletCollection property="notifications" destination="ENs-p9-jQ0" collectionClass="NSMutableArray" id="K18-35-Puv"/>
                 <outletCollection property="notifications" destination="haP-5L-L3Y" collectionClass="NSMutableArray" id="Dp3-qV-vUI"/>
                 <outletCollection property="notifications" destination="eQl-Xb-Crx" collectionClass="NSMutableArray" id="JNE-rp-gLh"/>

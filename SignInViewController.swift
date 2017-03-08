@@ -167,11 +167,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player1.playbackLoops = false
         self.player1.muted = true
         self.player1.fillMode = "AVLayerVideoGravityResizeAspectFill"
-//        self.player1.playFromBeginning()        
-        let path = Bundle.main.path(forResource: "travellife", ofType:"mp4")       
-        self.player1.setUrl(NSURL(fileURLWithPath: path!) as URL)
+        self.player1.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "travellife", ofType:"mp4"))!) as URL)
         imageView1.addSubview(self.player1.view)
-//         videoScrollView.bringSubview(toFront: toggleSound)
         self.horizontal.addSubview(imageView1)
         
         
@@ -186,9 +183,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player2.view.clipsToBounds = true
         self.player2.playbackLoops = false
         self.player2.muted = true        
-        self.player2.fillMode = "AVLayerVideoGravityResizeAspectFill"
-        let path2 = Bundle.main.path(forResource: "locallife", ofType:"mp4")       
-        self.player2.setUrl(NSURL(fileURLWithPath: path2!) as URL)
+        self.player2.fillMode = "AVLayerVideoGravityResizeAspectFill"              
+        self.player2.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "locallife", ofType:"mp4"))!) as URL)
         imageView2.addSubview(self.player2.view)
         self.horizontal.addSubview(imageView2)
         
@@ -204,9 +200,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player3.view.clipsToBounds = true
         self.player3.playbackLoops = false
         self.player3.muted = true
-        self.player3.fillMode = "AVLayerVideoGravityResizeAspectFill"
-        let path3 = Bundle.main.path(forResource: "mylife", ofType:"mp4")       
-        self.player3.setUrl(NSURL(fileURLWithPath: path3!) as URL)
+        self.player3.fillMode = "AVLayerVideoGravityResizeAspectFill"              
+        self.player3.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "mylife", ofType:"mp4"))!) as URL)
         imageView3.addSubview(self.player3.view)
         self.horizontal.addSubview(imageView3)
         
@@ -343,6 +338,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     
     func playAgain(){
         print("\n play Again")
+        
+        playBtn.isHidden = true
+        
         let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
         let i = Int(pageNumber)
         
@@ -378,6 +376,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         playBtn.isHidden = true
         videoToPlay()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print("scrollViewDidEndDecelerating")
+        
+        self.player1.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "travellife", ofType:"mp4"))!) as URL)
+        self.player2.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "locallife", ofType:"mp4"))!) as URL)
+        self.player3.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "mylife", ofType:"mp4"))!) as URL)
     }
 
 }

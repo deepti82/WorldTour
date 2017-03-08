@@ -105,7 +105,7 @@ class ActivityFeedsController: UIViewController, UIScrollViewDelegate {
     
     
     func getActivity(pageNumber: Int) {
-print("notification called \(displayData)")
+        print("notification called \(displayData)")
         if displayData == "activity" {
             print("in activity")
             request.getActivityFeeds(currentUser["_id"].stringValue, pageNumber: pageNumber, completion: {(request, localLifeJsons,quickJsons) in

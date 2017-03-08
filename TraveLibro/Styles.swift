@@ -52,7 +52,6 @@ func segueFromPagerStrip(_ vc: UINavigationController, nextVC: UIViewController)
     
 }
 
-
 func getDarkBackGround(_ myVC: UIViewController) -> Void {
     
     let bgImage = UIImageView(frame: myVC.view.frame)
@@ -211,8 +210,6 @@ open class LoadingOverlay{
     }
     
     func hideOverlayView() {
-        
-        print("hide overlay")
         if loader != nil {
             loader.removeFromSuperview()
         }else {
