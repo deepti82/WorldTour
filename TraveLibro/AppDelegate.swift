@@ -311,7 +311,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UINavigationControllerDel
         
         print("\n Notification object : \(notification.object)")
        
-        var showpage = 0 
+        var showpage = 2 
         
         if let info = notification.object as? Dictionary<String,Int> {
             if let s = info["type"] {

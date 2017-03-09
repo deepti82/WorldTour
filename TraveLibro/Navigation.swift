@@ -950,11 +950,11 @@ class Navigation {
         }
     }
     
-    func getFollowers(_ userId: String, completion: @escaping ((JSON) -> Void)) {
+    func getFollowers(_ userId: String, searchText: String, completion: @escaping ((JSON) -> Void)) {
         
         do {
             
-            let params = ["_id": userId]
+            let params = ["_id": userId, "search": searchText]
             
             let opt = try HTTP.POST(adminUrl + "user/getFollowers", parameters: params)
             var json = JSON(1);
@@ -1016,7 +1016,6 @@ class Navigation {
                 else
                 {
                     json  = JSON(data: response.data)
-                    print(json)
                     completion(json)
                 }
             }

@@ -106,9 +106,8 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             
             
             
-            self.addSubview(mainPhoto)
-            let heightForBlur = 10;
-            var thumbStr = "";
+            self.addSubview(mainPhoto)           
+            
             let imgStr = getImageURL(feed["photos"][0]["name"].stringValue, width: 300)
             
             cache.fetch(URL: imgStr).onSuccess({ (data) in
@@ -396,7 +395,7 @@ class ActivityFeedsLayout: VerticalLayout, PlayerDelegate {
             }            
         }
         else {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: ["type":0] )
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NO_LOGGEDIN_USER_FOUND"), object: nil)
         }        
     }
     

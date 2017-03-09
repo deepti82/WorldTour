@@ -613,9 +613,8 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
         }
         
 //        currentImageView.center = carousel.center        
-        if currentJson != nil {
-            let mainImageString = "\(adminUrl)upload/readFile?file=\((currentJson?["name"].stringValue)!)"
-            currentImageView.hnk_setImageFromURL(NSURL(string:mainImageString) as! URL)
+        if currentJson != nil {            
+            currentImageView.hnk_setImageFromURL(getImageURL((currentJson?["name"].stringValue)!, width: Int(carousel.frame.size.width*0.8)))
         }
         
         return currentImageView

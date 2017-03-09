@@ -24,7 +24,7 @@ class SideNavigationMenuViewController: UIViewController, UITableViewDataSource,
     var myProfileViewController: UIViewController!
     var signOutViewController: UIViewController!
     
-    let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life", "My Profile"]
+    let labels = ["Popular Journeys", "Popular Itinerary", "Popular Bloggers", "Invite Friends", "Rate Us", "Feedback", "Log Out", "Local Life"]
     
     @IBOutlet weak var profileViewHeightConstraint: NSLayoutConstraint!
     

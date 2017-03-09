@@ -4,24 +4,25 @@ import UIKit
 
 var followers: [JSON] = []
 
-class FollowersViewController: UIViewController, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
-
-
-    @IBOutlet weak var followersDefaultText: UILabel!
-    @IBOutlet var shareButtons: [UIButton]!
-    @IBOutlet weak var mailShare: UIButton!
-    @IBOutlet weak var whatsappShare: UIButton!
-    @IBOutlet weak var facebookShare: UIButton!
-    @IBOutlet weak var shareView: UIView!
-    @IBOutlet weak var seperatorView: UIView!
-    @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+class FollowersViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+    
     @IBOutlet weak var followerTable: UITableView!
    
     var whichView: String!
-    var searchController: UISearchController!
+    
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var headerText: UILabel!    
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchViewHeightConstraint: NSLayoutConstraint!
+    
+    var customSearch: SearchFieldView!
     var shouldShowSearchResults = false
     var filter: [JSON]!
     var searchText = ""
+    var followersMainCopy: [JSON] = []
+    
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,37 +34,35 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
+        
         self.setOnlyLeftNavigationButton(leftButton)
         
-        
-        
-        for button in shareButtons {
-            
-            button.layer.cornerRadius = 5
-            
-        }
+        followerTable.delegate = self
+        followerTable.dataSource = self
+        followerTable.tableFooterView = UIView(frame: CGRect.zero)
         
         if whichView == "Following" {
             self.title = "Following"
-            mailShare.setTitle(String(format: "%C", faicon["envelop"]!), for: UIControlState())
-            whatsappShare.setTitle(String(format: "%C", faicon["whatsapp"]!), for: UIControlState())
-//            facebookShare.setTitle(String(format: "%C", faicon["fbSquare"]!), for: UIControlState())
+            headerText.text = "Following(counting)"
             configureSearchController()
             getFollowing()
             
-        } else if whichView == "No Followers" {
-            shareView.removeFromSuperview()
-            seperatorView.removeFromSuperview()
+        } 
+        else if whichView == "No Followers" {
+            
             followerTable.removeFromSuperview()
+            searchView.removeFromSuperview()
+            headerText.removeFromSuperview()
+            
             let nofollow = NoFollowers(frame: CGRect(x: 0, y: 75, width: self.view.frame.width, height: 250))
             self.view.addSubview(nofollow)
-            followersDefaultText.isHidden = true
-        } else {
-            mailShare.setTitle(String(format: "%C", faicon["email"]!), for: UIControlState())
-            whatsappShare.setTitle(String(format: "%C", faicon["whatsapp"]!), for: UIControlState())
-//            facebookShare.setTitle(String(format: "%C", faicon["facebook"]!), for: UIControlState())
+            
+        } 
+        else {
+//            searchViewHeightConstraint.constant = 0
+            configureSearchController()            
             getFollowers()
-            followersDefaultText.isHidden = true
+            headerText.text = "Followers(counting)"
         }
     }
     
@@ -74,14 +73,17 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             
             DispatchQueue.main.async(execute: {
                 
+                self.headerText.text = "Following(0))"
+                
                 if response.error != nil {
                     
                     print("response: \(response.error!.localizedDescription)")
                     
                 }
                 else if response["value"].bool! {
-                    print("\(response["data"]["following"])")
+                    print("SearchText :\(self.searchText) && RESULT : \n \(response["data"]["following"])")                    
                     followers = response["data"]["following"].array!
+                    self.headerText.text = "Following(\(followers.count))"
                     self.followerTable.reloadData()
                     loader.hideOverlayView()
                 }
@@ -101,10 +103,10 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     func getFollowers() {
         
         print("inside following function")
-        request.getFollowers(currentUser["_id"].string!, completion: {(response) in
+        request.getFollowers(currentUser["_id"].string!, searchText: searchText, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                
+                self.headerText.text = "Following(0)"
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
@@ -114,6 +116,8 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                     
                     print("\(response["data"]["following"])")
                     followers = response["data"]["followers"].array!
+                    self.followersMainCopy = response["data"]["followers"].array!
+                    self.headerText.text = "Followers(\(followers.count))"
                     self.followerTable.reloadData()
                     loader.hideOverlayView()
                 }
@@ -122,73 +126,103 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
                     print("response error: \(response["error"])")
                     
                 }
-                
             })
             
         })
         
     }
-
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-        searchController.dimsBackgroundDuringPresentation = true
-        shouldShowSearchResults = true
-        followerTable.reloadData()
-        
-    }
+    
+    //MARK: - Search
     
     func configureSearchController() {
         
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = true
-        searchController.searchBar.delegate = self
-        searchController.searchBar.sizeToFit()
-        followerTable.tableHeaderView = searchController.searchBar
+        customSearch = SearchFieldView(frame: CGRect(x: 10, y: 10, width: searchView.frame.width, height: 30))
+        customSearch.leftLine.backgroundColor = mainOrangeColor
+        customSearch.rightLine.backgroundColor = mainOrangeColor
+        customSearch.bottomLine.backgroundColor = mainOrangeColor
+        customSearch.searchButton.tintColor = mainOrangeColor
+        customSearch.backgroundColor = UIColor.clear
+        customSearch.searchField.returnKeyType = .done
+        customSearch.searchField.autocorrectionType = .no
+        customSearch.searchButton.isUserInteractionEnabled = true
+        customSearch.searchButton.addTarget(self, action: #selector(FollowersViewController.searchButtonClicked(sender:)), for: .touchUpInside)
+        customSearch.searchField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        customSearch.searchField.delegate = self
+        searchView.addSubview(customSearch)
+        searchView.clipsToBounds = true
         
+        if whichView == "Following" {
+            customSearch.searchField.placeholder = "Search interesting people to follow their inspirational stories..."
+        }
+        else if whichView == "Followers" {
+            customSearch.searchField.placeholder = "Search Followers"
+        }        
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        headerHeightConstraint.constant = 0
+        shouldShowSearchResults = true       
+    }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        headerHeightConstraint.constant = 30
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        customSearch.searchField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidChange(_ textField: UITextField) {
         
-        shouldShowSearchResults = false
+        searchText = textField.text!
+        if whichView == "Following" {
+            getFollowing()
+        }else{
+            getFollowers()
+//            searchFollowersLocaly()
+        }
         followerTable.reloadData()
         
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+    func searchButtonClicked(sender: UIButton) {
         if !shouldShowSearchResults {
             
             shouldShowSearchResults = true
             followerTable.reloadData()
             
         }
-        
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.resignFirstResponder()
+        customSearch.searchField.resignFirstResponder()
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
+    func searchFollowersLocaly() {
         
-        searchController.dimsBackgroundDuringPresentation = false
-        searchText = searchController.searchBar.text!
-        if whichView == "Following" {
+    }
+    
+    //MARK: - Tableview Delegates and Datasource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if shouldShowSearchResults && filter != nil {
             
-            getFollowing()
+            return filter.count
         }else{
-            getFollowers()
-            followersDefaultText.isHidden = true
+            
+            return followers.count
         }
-        followerTable.reloadData()
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FollowersCell
-        self.addStylingToButton(cell.followButton)
         cell.followButton.isSelected = false
         
+        if filter != nil {
+            print("\n celldata : \(filter[indexPath.row])")
+        }
+
         if filter != nil && shouldShowSearchResults {
             print("in ONE")
             cell.profileName.text = filter[(indexPath as NSIndexPath).row]["name"].string!
@@ -197,63 +231,53 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             setImage(cell.profileImage, imageName: image)
             
             
-            if filter[(indexPath as NSIndexPath).row]["following"].boolValue {
+            if filter[indexPath.row]["following"].intValue == 1 {
                 cell.followButton.tag = 1
                 cell.followButton.setImage(UIImage(named:"following"), for: .normal)
-                cell.followButton.contentMode = .scaleAspectFit
-                cell.followButton.clipsToBounds = true
-                cell.followButton.isSelected = true
-            }else{
+            }
+            else if filter[indexPath.row]["following"].intValue == 0 {
                 cell.followButton.tag = 0
                 cell.followButton.setImage(UIImage(named:"follow"), for: .normal)
-                cell.followButton.contentMode = .scaleAspectFit
-                cell.followButton.clipsToBounds = true
-                cell.followButton.isSelected = true
+            }
+            else if filter[indexPath.row]["following"].intValue == 2 {
+                cell.followButton.tag = 2
+                cell.followButton.setImage(UIImage(named:"requested"), for: .normal)
             }
             
+            cell.followButton.contentMode = .scaleAspectFit
+            cell.followButton.clipsToBounds = true
+            cell.followButton.isSelected = true
             
             
-        } else if followers.count != 0 {
+        }
+            
+        else if followers.count != 0 {
             print("in TWO")
-            
             cell.profileName.text = followers[(indexPath as NSIndexPath).row]["name"].string!
             cell.urlSlurg.text = "@\(followers[(indexPath as NSIndexPath).row]["urlSlug"].string!)"
             if followers[(indexPath as NSIndexPath).row]["profilePicture"] != nil {
-                print("yaaa hoooo")
                 print(followers[(indexPath as NSIndexPath).row]["profilePicture"].string!)
                 let image = followers[(indexPath as NSIndexPath).row]["profilePicture"].string!
                 setImage(cell.profileImage, imageName: image)
             }
             
-            
-            if followers[(indexPath as NSIndexPath).row]["following"].boolValue {
-                
+            if followers[indexPath.row]["following"].intValue == 1 {
                 cell.followButton.tag = 1
-//                cell.followButton.backgroundColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1)
-//                let followTick = UIImageView(frame: CGRect(x: -18, y: 4, width: 12, height: 12))
-//                followTick.image = UIImage(named: "correct-signal")
-//                cell.followButton.titleLabel?.addSubview(followTick)
-//                cell.followButton.setTitle("Following", for: UIControlState())
-//                cell.followButton.setTitleColor(UIColor.white, for: UIControlState())
-//                cell.followButton.contentHorizontalAlignment = .right
-//                cell.followButton.titleLabel?.textAlignment = .center
                 cell.followButton.setImage(UIImage(named:"following"), for: .normal)
-                cell.followButton.contentMode = .scaleAspectFit
-                cell.followButton.clipsToBounds = true
-                cell.followButton.isSelected = true
-            }else{
+            }
+            else if followers[indexPath.row]["following"].intValue == 0 {
                 cell.followButton.tag = 0
                 cell.followButton.setImage(UIImage(named:"follow"), for: .normal)
-                cell.followButton.contentMode = .scaleAspectFit
-                cell.followButton.clipsToBounds = true
-                cell.followButton.isSelected = true
-
-                cell.followButton.isSelected = true
+            }
+            else if followers[indexPath.row]["following"].intValue == 2 {
+                cell.followButton.tag = 2
+                cell.followButton.setImage(UIImage(named:"requested"), for: .normal)
             }
             
-            
+            cell.followButton.contentMode = .scaleAspectFit
+            cell.followButton.clipsToBounds = true
+            cell.followButton.isSelected = true
         }
-
         
         return cell
         
@@ -262,7 +286,6 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
     func setImage(_ imageView: UIImageView, imageName: String) {
         
         let isUrl = verifyUrl(imageName)
-        print("isUrl: \(isUrl)")
         
         if imageName == "" {
             
@@ -270,7 +293,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             makeTLProfilePictureFollowers(imageView)
             
         }
-        
+            
         else if isUrl {
             imageView.hnk_setImageFromURL(URL(string: imageName)!)
             makeTLProfilePictureFollowers(imageView)
@@ -278,34 +301,13 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UISearch
             
         else {
             
-            let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"
-            
-            print("getImageUrl: \(getImageUrl)")
-            
+            let getImageUrl = adminUrl + "upload/readFile?file=" + imageName + "&width=100"            
             imageView.hnk_setImageFromURL(URL(string: getImageUrl)!)
             makeTLProfilePictureFollowers(imageView)
         }
-    }
+    }    
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if shouldShowSearchResults && filter != nil {
-            
-            return filter.count
-        }else{
-        
-        return followers.count
-        }
-        
-    }
-    
-    func addStylingToButton(_ sender: UIButton) {
-        
-//        sender.layer.borderColor = UIColor(red: 44/255, green: 55/255, blue: 87/255, alpha: 1).cgColor
-////        sender.layer.borderWidth = 1.0
-//          sender.layer.cornerRadius = 5
-        
-    }
+    //MARK: - Follow Actions
     
     func followUser(_ followName: String) {
         
@@ -409,7 +411,7 @@ class FollowersCell: UITableViewCell {
             
         }
             
-        else {
+        else if sender.tag == 1 {
             print("profile name unfollow: \(profileName.text)")
             parent.unFollowUser(profileName.text!)
             sender.tag = 0
@@ -418,6 +420,10 @@ class FollowersCell: UITableViewCell {
             sender.clipsToBounds = true
             sender.isSelected = false
             
+        }
+        
+        else if sender.tag == 2 {            
+            //Nothing should happen
         }
     }
     

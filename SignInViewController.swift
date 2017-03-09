@@ -88,6 +88,25 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         videoLabel.layer.masksToBounds = true
         videoLabel.text = ""
         self.view.addSubview(videoLabel)
+        
+        
+        pageControl = UIPageControl()
+        pageControl.currentPage = showPage
+        pageControl.currentPageIndicatorTintColor = UIColor.white
+        pageControl.pageIndicatorTintColor = UIColor.darkGray
+        pageControl.numberOfPages = 3
+        self.view.addSubview(pageControl)
+        
+        
+        toggleSoundButton = UIButton()
+        toggleSoundButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 32)        
+        toggleSoundButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
+        toggleSoundButton.addTarget(self, action: #selector(SignInViewController.touchButtonTap(_:)), for: .touchUpInside)
+        toggleSoundButton.backgroundColor = UIColor.clear
+        toggleSoundButton.clipsToBounds = true
+        toggleSoundButton.layer.cornerRadius = 5
+        self.view.addSubview(toggleSoundButton)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,24 +119,25 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         loadData()
         
-        switch showPage {
-        case 0:
-            videoScrollView.scrollRectToVisible(imageView1.frame, animated: true)
-            
-            
-        case 1: 
-            videoScrollView.scrollRectToVisible(imageView2.frame, animated: true)
-            
-            
-        case 2:
-            videoScrollView.scrollRectToVisible(imageView3.frame, animated: true)
-            
-        default:
-            break
+        UIView.animate(withDuration: 2) {
+            switch self.showPage {
+            case 0:
+                self.videoScrollView.scrollRectToVisible(self.imageView1.frame, animated: true)
+                
+                
+            case 1: 
+                self.videoScrollView.scrollRectToVisible(self.imageView2.frame, animated: true)
+                
+                
+            case 2:
+                self.videoScrollView.scrollRectToVisible(self.imageView3.frame, animated: true)
+                
+            default:
+                break
+            }            
         }
         
-        
-        //Add play button [custumization]
+        //play button [custumization]
         
         playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 65))
         playBtn.backgroundColor = UIColor.clear
@@ -214,23 +234,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         signInFooter.signUp.addTarget(self, action: #selector(SignInViewController.goToSignUp(_:)), for: .touchUpInside)
         signInFooter.signInButton.addTarget(self, action: #selector(SignInViewController.loginButtonTapped(_:)), for: .touchUpInside)
         
+        pageControl.frame = CGRect(x: 0, y: signInFooter.frame.origin.y - 30, width: screenWidth, height: 30)
         
-        pageControl = UIPageControl(frame: CGRect(x: 0, y: signInFooter.frame.origin.y - 30, width: screenWidth, height: 30))
-        pageControl.currentPage = showPage
-        pageControl.currentPageIndicatorTintColor = UIColor.white
-        pageControl.pageIndicatorTintColor = UIColor.darkGray
-        pageControl.numberOfPages = 3
-        self.view.addSubview(pageControl)
-        
-        toggleSoundButton = UIButton(frame: CGRect(x: self.view.frame.maxX - 60, y: pageControl.frame.origin.y, width: 40, height: 32))
-        toggleSoundButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 32)        
-        toggleSoundButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
-        toggleSoundButton.addTarget(self, action: #selector(SignInViewController.touchButtonTap(_:)), for: .touchUpInside)
-        toggleSoundButton.backgroundColor = UIColor.clear
-        toggleSoundButton.clipsToBounds = true
-        toggleSoundButton.layer.cornerRadius = 5
-        self.view.addSubview(toggleSoundButton)
-            
+        toggleSoundButton.frame = CGRect(x: self.view.frame.maxX - 60, y: pageControl.frame.origin.y, width: 40, height: 32)
         
         profileVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileViewController
         
