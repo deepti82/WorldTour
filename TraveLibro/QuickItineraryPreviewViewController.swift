@@ -132,12 +132,12 @@ class QuickItineraryPreviewViewController: UIViewController {
     }
     
     func showQuickPhotos() {
-    let modalContent = self.storyboard?.instantiateViewController(withIdentifier: "itineraryPhotos") as! EachItineraryPhotosViewController
-    modalContent.selectedItinerary = quickItinery
-    modalContent.modalPresentationStyle = .fullScreen
-    _ = modalContent.popoverPresentationController
-    
-    self.present(modalContent, animated: true, completion: nil)
+        let modalContent = self.storyboard?.instantiateViewController(withIdentifier: "itineraryPhotos") as! EachItineraryPhotosViewController
+        modalContent.selectedItinerary = quickItinery
+        modalContent.modalPresentationStyle = .fullScreen
+        _ = modalContent.popoverPresentationController
+        
+        self.present(modalContent, animated: true, completion: nil)
     }
     
     func showPhoto(_ sender: UITapGestureRecognizer) {

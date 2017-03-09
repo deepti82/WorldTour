@@ -12,16 +12,12 @@ var profileVC: ProfileViewController!
 var nationalityPage: AddNationalityNewViewController!
 var navigation: UINavigationController!
 var signInVC: SignInViewController!
-//var localLifeText: NSMutableAttributedString!
-//var travelLifeText: NSMutableAttributedString!
-//var myLifeText: NSMutableAttributedString!
 
 class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegate, UIScrollViewDelegate {
-    var defaultMute = true
+    
+    var defaultMute = false
     var showPage = 0
     var shouldShowNavBar = false
-    
-    
     
     @IBOutlet weak var videoScrollView: UIScrollView!
     @IBOutlet weak var ipTextField: UITextField!    
@@ -42,27 +38,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     var videoHeight:CGFloat!
     var horizontal:HorizontalLayout!
     
+    var signInFooter: SignInToolbar!    
     var loader = LoadingOverlay()
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
        
-        getDarkBackGroundBlur(self)
-        
-//        travelLifeText = getColorString(string: "TRAVEL\n", font: NAVIGATION_FONT!, color: mainOrangeColor)
-//        travelLifeText.append(addImage(imageName: "travel_life"))
-//        travelLifeText.append(getColorString(string: " LIFE ", font: NAVIGATION_FONT!, color: UIColor.white))
-//        
-//        localLifeText = getColorString(string: "LOCAL\n", font: NAVIGATION_FONT!, color: mainGreenColor)
-//        localLifeText.append(addImage(imageName: "local_life"))
-//        localLifeText.append(getColorString(string: " LIFE ", font: NAVIGATION_FONT!, color: UIColor.white))
-//        
-//        myLifeText = getColorString(string: "MY\n", font: NAVIGATION_FONT!, color: mainOrangeColor)
-//        myLifeText.append(addImage(imageName: "travel_life"))
-//        myLifeText.append(getColorString(string: " LIFE ", font: NAVIGATION_FONT!, color: UIColor.white))
+        getDarkBackGroundBlur(self)        
         
         if shouldShowNavBar {
             
@@ -100,12 +84,23 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         toggleSoundButton = UIButton()
         toggleSoundButton.titleLabel?.font = UIFont(name: "FontAwesome", size: 32)        
-        toggleSoundButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
+        toggleSoundButton.setTitle(String(format: "%C",0xf028), for: UIControlState())
         toggleSoundButton.addTarget(self, action: #selector(SignInViewController.touchButtonTap(_:)), for: .touchUpInside)
         toggleSoundButton.backgroundColor = UIColor.clear
         toggleSoundButton.clipsToBounds = true
         toggleSoundButton.layer.cornerRadius = 5
         self.view.addSubview(toggleSoundButton)
+        
+        //play button [custumization]
+        
+        playBtn = UIButton()
+        playBtn.backgroundColor = UIColor.clear
+        playBtn.imageView?.tintColor = mainBlueColor
+        playBtn.setTitle(String(format: "%C",0xf144), for: .normal)
+        playBtn.titleLabel?.font = UIFont(name: "FontAwesome", size: 65)        
+        playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
+        playBtn.isHidden = true
+        self.view.addSubview(playBtn)
         
     }
     
@@ -121,13 +116,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         UIView.animate(withDuration: 2) {
             switch self.showPage {
+                
             case 0:
                 self.videoScrollView.scrollRectToVisible(self.imageView1.frame, animated: true)
                 
-                
             case 1: 
                 self.videoScrollView.scrollRectToVisible(self.imageView2.frame, animated: true)
-                
                 
             case 2:
                 self.videoScrollView.scrollRectToVisible(self.imageView3.frame, animated: true)
@@ -137,18 +131,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             }            
         }
         
-        //play button [custumization]
-        
-        playBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 65))
-        playBtn.backgroundColor = UIColor.clear
+        playBtn.frame = CGRect(x: 0, y: 0, width: 100, height: 65)
         playBtn.center = imageView1.center
-        playBtn.imageView?.tintColor = mainBlueColor
-        playBtn.setTitle(String(format: "%C",0xf144), for: .normal)
-        playBtn.titleLabel?.font = UIFont(name: "FontAwesome", size: 65)
-        
-        playBtn.addTarget(self, action: #selector(self.playAgain), for: .touchUpInside)
-        playBtn.isHidden = true
-        self.view.addSubview(playBtn)
         
         videoToPlay()
     }
@@ -156,11 +140,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        showPage = pageControl.currentPage
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func loadData() {
@@ -173,7 +157,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         imageView1 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView1.backgroundColor = UIColor.clear
-//        imageView1.image = nil
         imageView1.contentMode = UIViewContentMode.center
         imageView1.center = self.view.center
         
@@ -182,7 +165,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player1.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player1.view.clipsToBounds = true
         self.player1.playbackLoops = false
-        self.player1.muted = true
+        self.player1.muted = defaultMute
         self.player1.fillMode = "AVLayerVideoGravityResizeAspectFill"
         self.player1.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "travellife", ofType:"mp4"))!) as URL)
         imageView1.addSubview(self.player1.view)
@@ -190,7 +173,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         
         imageView2 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
-//        imageView2.image = nil  //UIImage.gif(name: "loader")
         imageView2.backgroundColor = UIColor.clear
         imageView2.contentMode = UIViewContentMode.center
         imageView2.center = self.view.center
@@ -199,7 +181,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player2.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player2.view.clipsToBounds = true
         self.player2.playbackLoops = false
-        self.player2.muted = true        
+        self.player2.muted = defaultMute        
         self.player2.fillMode = "AVLayerVideoGravityResizeAspectFill"              
         self.player2.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "locallife", ofType:"mp4"))!) as URL)
         imageView2.addSubview(self.player2.view)
@@ -208,7 +190,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         imageView3 = UIImageView(frame: CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight))
         imageView3.backgroundColor = UIColor.clear
-//        imageView3.image = nil
         imageView3.contentMode = UIViewContentMode.center
         imageView3.center = self.view.center
         self.player3 = Player()
@@ -216,7 +197,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         self.player3.view.frame = CGRect(x: 0, y: 0, width: videoWidth, height: videoHeight)
         self.player3.view.clipsToBounds = true
         self.player3.playbackLoops = false
-        self.player3.muted = true
+        self.player3.muted = defaultMute
         self.player3.fillMode = "AVLayerVideoGravityResizeAspectFill"              
         self.player3.setUrl(NSURL(fileURLWithPath: (Bundle.main.path(forResource: "mylife", ofType:"mp4"))!) as URL)
         imageView3.addSubview(self.player3.view)
@@ -224,7 +205,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         addToLayout();
         
-        let signInFooter = SignInToolbar(frame: CGRect(x: 0 , y: screenHeight - 80, width: screenWidth, height: 80))
+        signInFooter = SignInToolbar(frame: CGRect(x: 0 , y: screenHeight - 80, width: screenWidth, height: 80))
         signInFooter.center = CGPoint(x: self.view.center.x, y: signInFooter.center.y)
         self.view.addSubview(signInFooter)
         
@@ -328,20 +309,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
         
         let i = Int(pageNumber)
         pageControl.currentPage = i
-        print("\n videoToPlay \(i)");
+        
         switch(i) {
-        case 0:
-//            videoLabel.attributedText = travelLifeText   
+        case 0:   
             videoLabel.text = "Travel Life"
             player1.playFromBeginning()
             
-        case 1:
-//            videoLabel.attributedText = localLifeText  
+        case 1:  
             videoLabel.text = "Local Life"
             player2.playFromBeginning()
             
-        case 2:
-//            videoLabel.attributedText = myLifeText   
+        case 2:   
             videoLabel.text = "My Life"
             player3.playFromBeginning()
             
@@ -399,20 +377,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate, PlayerDelegat
             toggleSoundButton.setTitle(String(format: "%C",0xf026) + "⨯", for: UIControlState())
         }
         
-        let pageNumber = round(videoScrollView.contentOffset.x / videoScrollView.frame.size.width)
-        let i = Int(pageNumber)
-        
-        switch(i) {
-        case 0:
-            player1.muted = defaultMute
-        case 1:
-            player2.muted = defaultMute
-        case 2:
-            player3.muted = defaultMute
-        default: break
-        }
-        
-        
+        player1.muted = defaultMute
+        player2.muted = defaultMute
+        player3.muted = defaultMute
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
