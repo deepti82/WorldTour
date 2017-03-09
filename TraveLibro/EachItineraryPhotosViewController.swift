@@ -26,11 +26,18 @@ class EachItineraryPhotosViewController: UIViewController, UICollectionViewDataS
         photosCollectionView.delegate = self
         
         itineraryNameLabel.text = (selectedItinerary["name"].stringValue)
+        if selectedQuickI != "" {
+            itineraryNameLabel.text = "Photo(\(self.photoJSON.count))"
+            
+        }else{
+            itineraryNameLabel.text = "Photo(\(globalPostImage.count))"
+            
+        }
         photoJSON = (selectedItinerary["photos"].arrayValue)
         
-        if (photoJSON.count == 0) {
-            Toast(text: "No photos in \(selectedItinerary["name"].stringValue) itinerary").show()
-        }
+//        if (photoJSON.count == 0) {
+//            Toast(text: "No photos in \(selectedItinerary["name"].stringValue) itinerary").show()
+//        }
         
         let arrow = String(format: "%C", faicon["arrow-down"]!)
         arrowDown.setTitle(arrow, for: UIControlState())

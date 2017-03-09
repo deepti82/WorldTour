@@ -21,6 +21,11 @@ class QuickItineraryPreviewViewController: UIViewController {
         
         let getImageUrl = adminUrl + "upload/readFile?file=" + currentUser["profilePicture"].stringValue + "&width=100"
         prev.getGradiant()
+        prev.gradiantLayer = CAGradientLayer()
+        prev.gradiantLayer.frame.size = prev.displayPiture.frame.size
+        prev.gradiantLayer.colors = [UIColor.black, UIColor.white]
+        prev.displayPiture.layer.addSublayer(prev.gradiantLayer)
+
         prev.userPhoto.hnk_setImageFromURL(URL(string: getImageUrl)!)
         if selectedQuickI != "" {
             if quickItinery["coverPhoto"] != nil {
