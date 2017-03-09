@@ -4340,7 +4340,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="joi-oZ-2OB"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="15" minimumInteritemSpacing="5" id="tON-JG-wXb">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="5" id="tON-JG-wXb">
                                     <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -4354,17 +4354,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="TeA-HT-XPj">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-default" translatesAutoresizingMaskIntoConstraints="NO" id="TeA-HT-XPj">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="TeA-HT-XPj" secondAttribute="trailing" id="PLd-y6-RNR"/>
-                                            <constraint firstItem="TeA-HT-XPj" firstAttribute="top" secondItem="WBL-hw-uN9" secondAttribute="top" id="ZGB-Yz-pHg"/>
-                                            <constraint firstAttribute="bottom" secondItem="TeA-HT-XPj" secondAttribute="bottom" id="tHp-jA-1xJ"/>
-                                            <constraint firstItem="TeA-HT-XPj" firstAttribute="leading" secondItem="WBL-hw-uN9" secondAttribute="leading" id="va1-CV-ZAP"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="addImagesCollection" destination="TeA-HT-XPj" id="WDy-KC-VUr"/>
                                         </connections>
@@ -4403,16 +4398,16 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Jl-qg-lw2">
-                                <rect key="frame" x="286" y="479" width="86" height="35"/>
+                                <rect key="frame" x="332" y="479" width="40" height="40"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PCA-Ip-p6T">
-                                    <rect key="frame" x="0.0" y="0.0" width="86" height="35"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjf-9e-Otk">
-                                            <rect key="frame" x="6" y="3" width="74" height="30"/>
+                                            <rect key="frame" x="5" y="5" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="12"/>
-                                            <state key="normal" title="Edit/Filter">
+                                            <fontDescription key="fontDescription" name="FontAwesome" family="FontAwesome" pointSize="15"/>
+                                            <state key="normal">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -4422,8 +4417,8 @@
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="86" id="NV7-7k-lFa"/>
-                                    <constraint firstAttribute="height" constant="35" id="uFC-pD-Q0A"/>
+                                    <constraint firstAttribute="width" constant="40" id="NV7-7k-lFa"/>
+                                    <constraint firstAttribute="height" constant="40" id="uFC-pD-Q0A"/>
                                 </constraints>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
@@ -4463,6 +4458,7 @@
                             <constraint firstItem="NEB-XP-wm5" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" constant="-20" id="2Xu-AW-l3R"/>
                             <constraint firstItem="PzD-u4-CXn" firstAttribute="top" secondItem="j8S-iC-Vrv" secondAttribute="bottom" constant="23" id="6J8-Rg-bjT"/>
                             <constraint firstItem="9dW-MF-wYe" firstAttribute="top" secondItem="LCy-tX-WXI" secondAttribute="bottom" id="6Pc-9f-aQf"/>
+                            <constraint firstItem="2Jl-qg-lw2" firstAttribute="leading" secondItem="UUf-Ov-6Gc" secondAttribute="leading" id="8FB-cB-trU"/>
                             <constraint firstItem="NEB-XP-wm5" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="8wC-Cy-pIa"/>
                             <constraint firstAttribute="trailing" secondItem="nuv-wQ-qXR" secondAttribute="trailing" id="9ga-Ch-EbL"/>
                             <constraint firstItem="j8S-iC-Vrv" firstAttribute="top" secondItem="UUf-Ov-6Gc" secondAttribute="bottom" constant="-40" id="BF4-gN-hJr"/>
@@ -4471,7 +4467,7 @@
                             <constraint firstItem="nuv-wQ-qXR" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" id="J7u-9K-PdX"/>
                             <constraint firstAttribute="trailing" secondItem="UUf-Ov-6Gc" secondAttribute="trailing" constant="3" id="Nhl-DE-Rjd"/>
                             <constraint firstItem="j8S-iC-Vrv" firstAttribute="leading" secondItem="vpb-lr-1yP" secondAttribute="leading" constant="4" id="Reb-Dw-emO"/>
-                            <constraint firstItem="UUf-Ov-6Gc" firstAttribute="top" secondItem="2Jl-qg-lw2" secondAttribute="bottom" constant="7" id="Tpz-JH-Lzj"/>
+                            <constraint firstItem="UUf-Ov-6Gc" firstAttribute="top" secondItem="2Jl-qg-lw2" secondAttribute="bottom" constant="2" id="Tpz-JH-Lzj"/>
                             <constraint firstAttribute="trailing" secondItem="LCy-tX-WXI" secondAttribute="trailing" id="W3c-Cy-cff"/>
                             <constraint firstItem="LCy-tX-WXI" firstAttribute="top" secondItem="S05-Ej-r05" secondAttribute="bottom" id="aIA-NM-Z6E"/>
                             <constraint firstItem="2Jl-qg-lw2" firstAttribute="trailing" secondItem="UUf-Ov-6Gc" secondAttribute="trailing" id="c6R-L5-rd8"/>

@@ -148,7 +148,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     
     override func viewDidLoad() {
         self.view.bringSubview(toFront: editImageButton)
-//        editImageButton.setTitle(String(format: "%C",faicon["magic"]!), for: .normal)
+        editImageButton.setTitle(String(format: "%C",faicon["magic"]!), for: .normal)
         super.viewDidLoad()
         isEditedImage = false
         print("new controller")
