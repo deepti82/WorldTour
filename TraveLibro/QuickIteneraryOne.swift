@@ -44,7 +44,7 @@ class QuickIteneraryOne: UIViewController, UIPickerViewDelegate, UIPickerViewDat
 
 //         tripTitle.attributedPlaceholder = NSAttributedString(string:  "Trip Title", attributes: [NSForegroundColorAttributeName: mainBlueColor])
         quickItinery = ["title": "", "year": "", "month": "", "duration": ""]
-        
+        tripTitle.autocapitalizationType = .words
         durationTextField.delegate = self
         pickerView.dataSource = self
         pickerView.delegate = self
