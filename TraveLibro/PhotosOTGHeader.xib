@@ -45,7 +45,7 @@
                     <rect key="frame" x="0.0" y="40" width="375" height="63"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oys-D0-d9b">
-                            <rect key="frame" x="158.5" y="38" width="1" height="10"/>
+                            <rect key="frame" x="159" y="38" width="1" height="10"/>
                             <color key="backgroundColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -85,13 +85,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Jan 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fid-yH-MEf">
-                            <rect key="frame" x="96" y="38" width="54.5" height="14"/>
+                            <rect key="frame" x="96" y="38" width="55" height="14"/>
                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="10"/>
                             <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wh2-Li-LqP">
-                            <rect key="frame" x="167.5" y="38" width="12" height="12"/>
+                            <rect key="frame" x="168" y="38" width="12" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="RMw-sJ-UTo"/>
                                 <constraint firstAttribute="width" constant="12" id="gZJ-TU-10Z"/>
@@ -112,7 +112,7 @@
                             <state key="normal" image="location_icon"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:20 pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUH-xH-sbU">
-                            <rect key="frame" x="187.5" y="38" width="45" height="14"/>
+                            <rect key="frame" x="188" y="38" width="45" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="4hk-Pg-ZNi"/>
                                 <constraint firstAttribute="height" constant="14" id="fzV-FW-Ut4"/>

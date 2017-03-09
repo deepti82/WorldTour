@@ -51,6 +51,9 @@ class PhotosOTGHeader: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
         
+        whatPostIcon.imageView?.contentMode = .scaleAspectFit
+        whatPostIcon.clipsToBounds = true
+        
         clockLabel.text = String(format: "%C", faicon["clock"]!)
         calendarLabel.text = String(format: "%C", faicon["calendar"]!)
 //        lineUp.backgroundColor = UIColor.clear
