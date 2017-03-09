@@ -37,6 +37,13 @@ class QuickItineraryPreview: UIView {
         
         
         
+        gradiantLayer = CAGradientLayer()
+        gradiantLayer.frame.size = displayPiture.frame.size
+        gradiantLayer.colors = [UIColor.black, UIColor.white]
+        displayPiture.layer.addSublayer(gradiantLayer)
+
+        
+        
         self.qiView.layer.cornerRadius = 5
         self.qiView.clipsToBounds = true
         
@@ -73,7 +80,7 @@ class QuickItineraryPreview: UIView {
     
     func getGradiant() {
         gradiantLayer = CAGradientLayer()
-        gradiantLayer.frame = displayPiture.bounds
+        gradiantLayer.frame.size = displayPiture.frame.size
         gradiantLayer.colors = [UIColor.black, UIColor.white]
         displayPiture.layer.addSublayer(gradiantLayer)
     }
@@ -122,6 +129,7 @@ class QuickItineraryPreview: UIView {
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(view)
+        getGradiant()
         
     }
 

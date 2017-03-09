@@ -21,6 +21,11 @@ class QuickItineraryPreviewViewController: UIViewController {
         
         let getImageUrl = adminUrl + "upload/readFile?file=" + currentUser["profilePicture"].stringValue + "&width=100"
         prev.getGradiant()
+        prev.gradiantLayer = CAGradientLayer()
+        prev.gradiantLayer.frame.size = prev.displayPiture.frame.size
+        prev.gradiantLayer.colors = [UIColor.black, UIColor.white]
+        prev.displayPiture.layer.addSublayer(prev.gradiantLayer)
+
         prev.userPhoto.hnk_setImageFromURL(URL(string: getImageUrl)!)
         if selectedQuickI != "" {
             if quickItinery["coverPhoto"] != nil {
@@ -127,12 +132,12 @@ class QuickItineraryPreviewViewController: UIViewController {
     }
     
     func showQuickPhotos() {
-    let modalContent = self.storyboard?.instantiateViewController(withIdentifier: "itineraryPhotos") as! EachItineraryPhotosViewController
-    modalContent.selectedItinerary = quickItinery
-    modalContent.modalPresentationStyle = .fullScreen
-    _ = modalContent.popoverPresentationController
-    
-    self.present(modalContent, animated: true, completion: nil)
+        let modalContent = self.storyboard?.instantiateViewController(withIdentifier: "itineraryPhotos") as! EachItineraryPhotosViewController
+        modalContent.selectedItinerary = quickItinery
+        modalContent.modalPresentationStyle = .fullScreen
+        _ = modalContent.popoverPresentationController
+        
+        self.present(modalContent, animated: true, completion: nil)
     }
     
     func showPhoto(_ sender: UITapGestureRecognizer) {

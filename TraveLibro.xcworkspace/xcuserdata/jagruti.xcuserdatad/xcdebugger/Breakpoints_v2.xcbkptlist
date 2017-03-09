@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TraveLibro/QuickItineraryPreviewViewController.swift"
-            timestampString = "510752955.486737"
+            timestampString = "510755832.010725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "alertControllerBackgroundTapped()"
             landmarkType = "7">
          </BreakpointContent>

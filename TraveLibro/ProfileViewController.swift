@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var displayData: String = ""
     var imageView1: UIImageView!
     var loader = LoadingOverlay()
-    var labels = ["0 Following", "0 Followers", "0 Countries Visited", "0 Bucket List", "0 Journeys", "0 Check Ins", "0 Photos", "0 Reviews"]
+    var labels = [["count":"0","text":"Following         "], ["count":"0","text":"Followers        "], ["count":"0","text":"Countries Visited"], ["count":"0","text":"Bucket List"], ["count":"0","text":"Journeys"], ["count":"0","text":"Check Ins"], ["count":"0","text":"Photos"], ["count":"0","text":"Reviews"]]
     dynamic var profileViewYPosition: CGFloat = 0
     
     fileprivate var kvoContext: UInt8 = 0
@@ -90,28 +90,28 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
                 
                 switch i {
                 case 0:
-                    labels[0] = allCount["following_count"].stringValue + " Following"
+                    labels[0]["count"] = allCount["following_count"].stringValue
                     break
                 case 1:
-                    labels[1] = allCount["followers_count"].stringValue + " Followers"
+                    labels[1]["count"] = allCount["followers_count"].stringValue
                     break
                 case 2:
-                    labels[2] = allCount["countriesVisited_count"].stringValue + " Countries Visited"
+                    labels[2]["count"] = allCount["countriesVisited_count"].stringValue
                     break
                 case 3:
-                    labels[3] = allCount["bucketList_count"].stringValue + " Bucket List"
+                    labels[3]["count"] = allCount["bucketList_count"].stringValue
                     break
                 case 4:
-                    labels[4] = allCount["journeysCreated_count"].stringValue + " Journeys"
+                    labels[4]["count"] = allCount["journeysCreated_count"].stringValue
                     break
                 case 5:
-                    labels[5] = allCount["checkins_count"].stringValue + " Check Ins"
+                    labels[5]["count"] = allCount["checkins_count"].stringValue
                     break
                 case 6:
-                    labels[6] = allCount["photos_count"].stringValue + " Photos"
+                    labels[6]["count"] = allCount["photos_count"].stringValue
                     break
                 case 7:
-                    labels[7] = allCount["reviews_count"].stringValue + " Reviews"
+                    labels[7]["count"] = allCount["reviews_count"].stringValue
                     break
                 default:
                     break
@@ -392,26 +392,27 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         
-        let myValues = labels[(indexPath as NSIndexPath).item]
-        let valueArray = myValues.characters.split{$0 == " "}.map(String.init)
-        
-        let textOne = NSAttributedString(string: valueArray[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
-        let textTwo = NSMutableAttributedString(string: valueArray[1], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-        
-        if valueArray.count > 2 {
-            let textThree = NSAttributedString(string: valueArray[2], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
-            textTwo.append(NSAttributedString(string: " "))
-            textTwo.append(textThree)
-        }
-        
-        let fullText = NSMutableAttributedString(attributedString: textOne)
-        fullText.append(NSAttributedString(string: "\n"))
-        fullText.append(textTwo)
+//        let myValues = labels[(indexPath as NSIndexPath).item]
+//        let valueArray = myValues.characters.split{$0 == " "}.map(String.init)
+//        
+//        let textOne = NSAttributedString(string: valueArray[0], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 14)!])
+//        let textTwo = NSMutableAttributedString(string: valueArray[1], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+//        
+//        if valueArray.count > 2 {
+//            let textThree = NSAttributedString(string: valueArray[2], attributes: [NSFontAttributeName: UIFont(name: "Avenir-Roman", size: 14)!])
+//            textTwo.append(NSAttributedString(string: " "))
+//            textTwo.append(textThree)
+//        }
+//        
+//        let fullText = NSMutableAttributedString(attributedString: textOne)
+//        fullText.append(NSAttributedString(string: "\n"))
+//        fullText.append(textTwo)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProfileDetailCell
-        cell.infoLabel.attributedText = fullText
+        cell.infoLabel.text = labels[indexPath.row]["text"]
+        cell.countLabel.text = labels[indexPath.row]["count"]
         cell.infoLabel.layer.zPosition = 50000
-        cell.infoLabel.adjustsFontSizeToFitWidth = true
+//        cell.infoLabel.adjustsFontSizeToFitWidth = true
         if (indexPath as NSIndexPath).row == labels.count - 1 {
             cell.separatorView.isHidden = true
         }
@@ -618,5 +619,6 @@ class ProfileDetailCell: UICollectionViewCell {
     
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
+    @IBOutlet weak var countLabel: UILabel!
     
 }

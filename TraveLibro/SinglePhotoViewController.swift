@@ -607,8 +607,8 @@ class SinglePhotoViewController: UIViewController,PlayerDelegate, iCarouselDeleg
             currentImageView.image = UIImage(named: "logo-default")
             currentImageView.backgroundColor = UIColor.clear
             currentImageView.tag = 999
-            currentImageView.layer.borderColor = UIColor.white.cgColor
-            currentImageView.layer.borderWidth = 2.0
+            currentImageView.layer.borderColor = UIColor.lightGray.cgColor
+            currentImageView.layer.borderWidth = 0.5
             currentImageView.layer.cornerRadius = 5.0
         }
         

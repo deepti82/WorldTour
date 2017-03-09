@@ -126,7 +126,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
                         })
                     }
                     self.photosAdded(assets: img11)
-                    self.addCaption(1);
+                    
 
                 }
             }, completion: nil)
@@ -140,6 +140,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
             imageArr.append(postImg);
             globalPostImage.append(postImg)
         }
+        self.addCaption(1);
         self.photoGallerySecondView.isHidden = false
         self.photosGalleryFirstView.isHidden = true
         self.photosCollection.reloadData()
