@@ -148,7 +148,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     
     override func viewDidLoad() {
         self.view.bringSubview(toFront: editImageButton)
-//        editImageButton.setTitle(String(format: "%C",faicon["magic"]!), for: .normal)
+        editImageButton.setTitle(String(format: "%C",faicon["magic"]!), for: .normal)
         super.viewDidLoad()
         isEditedImage = false
         print("new controller")
@@ -307,7 +307,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
         }
 
         if(imageArr[currentImageIndex].caption == "") {
-            captionTextView.text = "Add a caption..."
+            captionTextView.text = "  Add a caption..."
         } else {
             captionTextView.text = imageArr[currentImageIndex].caption
         }
@@ -345,7 +345,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
         if string == "\n" {
             captionTextView.resignFirstResponder()
             if captionTextView.text == "" {
-                captionTextView.text = "Add a caption..."
+                captionTextView.text = "  Add a caption..."
             }
             return true
         }
@@ -353,7 +353,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if captionTextView.text == "Add a caption..." {
+        if captionTextView.text == "  Add a caption..." {
             captionTextView.text = ""
         }
     }
@@ -402,7 +402,7 @@ class AddCaptionsViewController: UIViewController, UITextFieldDelegate, ToolStac
         if let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
                 print("height dikha\(keyboardSize.height)")
-                self.view.frame.origin.y += 216.0
+                self.view.frame.origin.y += keyboardSize.height
             }
         }
     }
