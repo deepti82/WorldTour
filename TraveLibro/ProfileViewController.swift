@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
     var displayData: String = ""
     var imageView1: UIImageView!
     var loader = LoadingOverlay()
-    var labels = [["count":"0","text":"Following         "], ["count":"0","text":"Followers        "], ["count":"0","text":"Countries Visited"], ["count":"0","text":"Bucket List"], ["count":"0","text":"Journeys"], ["count":"0","text":"Check Ins"], ["count":"0","text":"Photos"], ["count":"0","text":"Reviews"]]
+    var labels = [["count":"0","text":"Following"], ["count":"0","text":"Followers"], ["count":"0","text":"Countries Visited"], ["count":"0","text":"Bucket List"], ["count":"0","text":"Journeys"], ["count":"0","text":"Check Ins"], ["count":"0","text":"Photos"], ["count":"0","text":"Reviews"]]
     dynamic var profileViewYPosition: CGFloat = 0
     
     fileprivate var kvoContext: UInt8 = 0
@@ -409,8 +409,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate,UICollec
 //        fullText.append(textTwo)
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProfileDetailCell
+        
         cell.infoLabel.text = labels[indexPath.row]["text"]
         cell.countLabel.text = labels[indexPath.row]["count"]
+        cell.infoLabel.sizeToFit()
+        cell.infoLabel.frame.size.width = 77;
+        cell.infoLabel.textAlignment = .center
         cell.infoLabel.layer.zPosition = 50000
 //        cell.infoLabel.adjustsFontSizeToFitWidth = true
         if (indexPath as NSIndexPath).row == labels.count - 1 {

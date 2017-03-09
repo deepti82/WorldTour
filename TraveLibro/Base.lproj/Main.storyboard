@@ -3523,15 +3523,18 @@
                                                                 <constraint firstAttribute="width" constant="1" id="U7B-V2-NQ4"/>
                                                             </constraints>
                                                         </view>
+
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Following" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9t-75-nru">
                                                             <rect key="frame" x="1" y="30" width="77" height="45"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="45" id="TSW-Tt-9xh"/>
+                                                                <constraint firstAttribute="width" constant="80" id="fDe-oW-qKq"/>
+                                                                <constraint firstAttribute="height" constant="22" id="n8G-rp-Cjw"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
                                                             <color key="textColor" red="0.17254901959999999" green="0.2156862745" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qF-1h-fvi">
                                                             <rect key="frame" x="0.0" y="8" width="79" height="22"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
@@ -3541,21 +3544,18 @@
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstItem="S9t-75-nru" firstAttribute="leading" secondItem="80x-4F-M48" secondAttribute="leading" constant="1" id="16C-ce-BBw"/>
-                                                    <constraint firstItem="4qF-1h-fvi" firstAttribute="leading" secondItem="80x-4F-M48" secondAttribute="leading" id="3fa-HK-Ug4"/>
-                                                    <constraint firstItem="S9t-75-nru" firstAttribute="top" secondItem="4qF-1h-fvi" secondAttribute="bottom" id="5fm-TB-LlZ"/>
                                                     <constraint firstAttribute="trailingMargin" secondItem="HQ7-EY-wVl" secondAttribute="trailing" id="9lN-4y-rnw"/>
-                                                    <constraint firstAttribute="bottom" secondItem="S9t-75-nru" secondAttribute="bottom" id="YO0-SJ-XM2"/>
-                                                    <constraint firstItem="HQ7-EY-wVl" firstAttribute="leading" secondItem="S9t-75-nru" secondAttribute="trailing" constant="1" id="Yny-O4-OUC"/>
+                                                    <constraint firstItem="4qF-1h-fvi" firstAttribute="leading" secondItem="80x-4F-M48" secondAttribute="leading" id="I5f-ou-zi5"/>
+                                                    <constraint firstItem="S9t-75-nru" firstAttribute="leading" secondItem="80x-4F-M48" secondAttribute="leading" constant="3" id="Lhm-by-uHd"/>
+                                                    <constraint firstItem="S9t-75-nru" firstAttribute="top" secondItem="4qF-1h-fvi" secondAttribute="bottom" id="Ztg-Fr-2w5"/>
                                                     <constraint firstAttribute="bottomMargin" secondItem="HQ7-EY-wVl" secondAttribute="bottom" constant="4" id="fSh-iE-aBC"/>
                                                     <constraint firstItem="6yC-Dx-Dqr" firstAttribute="top" secondItem="80x-4F-M48" secondAttribute="top" id="gGn-37-mNc"/>
                                                     <constraint firstItem="HQ7-EY-wVl" firstAttribute="top" secondItem="80x-4F-M48" secondAttribute="topMargin" constant="4" id="jE2-Lz-VGV"/>
                                                     <constraint firstAttribute="trailing" secondItem="6yC-Dx-Dqr" secondAttribute="trailing" id="jFS-Un-xJY"/>
                                                     <constraint firstAttribute="trailingMargin" secondItem="HQ7-EY-wVl" secondAttribute="trailing" constant="-8" id="jgU-7x-KeF"/>
-                                                    <constraint firstItem="HQ7-EY-wVl" firstAttribute="leading" secondItem="4qF-1h-fvi" secondAttribute="trailing" id="jjw-cB-EjZ"/>
                                                     <constraint firstAttribute="bottom" secondItem="6yC-Dx-Dqr" secondAttribute="bottom" id="n7G-CS-Z03"/>
                                                     <constraint firstItem="6yC-Dx-Dqr" firstAttribute="leading" secondItem="80x-4F-M48" secondAttribute="leading" id="xEa-pv-9rR"/>
-                                                    <constraint firstItem="4qF-1h-fvi" firstAttribute="top" secondItem="80x-4F-M48" secondAttribute="top" constant="8" id="xLn-4q-2ra"/>
+                                                    <constraint firstItem="4qF-1h-fvi" firstAttribute="top" secondItem="80x-4F-M48" secondAttribute="top" constant="8" id="yjU-W7-J4X"/>
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
