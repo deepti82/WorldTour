@@ -14,8 +14,8 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cityVisitedButton: UIButton!
     @IBOutlet weak var countryVisitedButton: UIButton!
     @IBOutlet weak var addCountry: UIButton!
-    @IBOutlet weak var cityVisited: UITextField!
-    @IBOutlet weak var countryVisited: UITextField!
+    @IBOutlet weak var cityVisited: UILabel!
+    @IBOutlet weak var countryVisited: UILabel!
     @IBOutlet weak var quickScroll: UIScrollView!
     @IBOutlet weak var blurBG: UIView!
     @IBOutlet weak var countryView: UIView!
@@ -31,10 +31,10 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         print("internet connection")
         print(isConnectedToNetwork())
-        
-        cityVisited.attributedPlaceholder = NSAttributedString(string:  "Add City", attributes: [NSForegroundColorAttributeName: mainBlueColor])
-        countryVisited.attributedPlaceholder = NSAttributedString(string:  "Add Country", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+    
 //        loader.showOverlay(self.view)
+        cityPlaceholder()
+        countryPlaceholder()
         cityView.underlined()
         countryView.underlined()
         cityVisited.layer.zPosition = 10
@@ -55,11 +55,18 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         self.quickScroll.addSubview(self.verticalLayout)
         
         //        getCountry()
+        
+        let tapout1 = UITapGestureRecognizer(target: self, action: #selector(self.cityClicked(_:)))
+        tapout1.numberOfTapsRequired = 1
+        cityVisited.addGestureRecognizer(tapout1)
+        
+        let tapout2 = UITapGestureRecognizer(target: self, action: #selector(self.countryClicked(_:)))
+        tapout2.numberOfTapsRequired = 1
+        countryVisited.addGestureRecognizer(tapout2)
+        
         addCountry.layer.cornerRadius = 5
         addCountry.addTarget(self, action: #selector(addCountryFunction(_:)), for: .touchUpInside)
 //        showCountryCityVisited.addSubview(verticalLayout)
-        cityVisited.delegate = self
-        countryVisited.delegate = self
         transparentCardWhite(blurBG)
         
         print("heightscroll\(quickScroll)")
@@ -67,6 +74,27 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         
         createLayout();
         
+    }
+    
+    func cityPlaceholder() {
+        cityVisited.attributedText = NSAttributedString(string:  "Add City", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+    }
+
+    func countryPlaceholder() {
+        countryVisited.attributedText = NSAttributedString(string:  "Add Country", attributes: [NSForegroundColorAttributeName: mainBlueColor])
+    }
+
+    
+    func cityClicked(_ sender: UITapGestureRecognizer) {
+        selectedStatus = "city"
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+        self.present(next, animated: true, completion: nil)
+    }
+    
+    func countryClicked(_ sender: UITapGestureRecognizer) {
+        selectedStatus = "country"
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
+        self.present(next, animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,21 +124,21 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         if selectedCountry.count != 0 {
             countryVisited.text = selectedCountry["name"].string
         }else{
-            countryVisited.text = ""
+            countryPlaceholder()
         }
         
         if selectedCity.count != 0 {
             cityVisited.text = createCity(cities: selectedCity)
         } else {
-            cityVisited.text = ""
+            cityPlaceholder()
         }
     }
     
     
     
     func createLayout() {
-        countryVisited.text = ""
-        cityVisited.text = ""
+        cityPlaceholder()
+        countryPlaceholder()
         fillText()
         verticalLayout.removeAll()
         
@@ -156,21 +184,7 @@ class QuickIteneraryThree: UIViewController, UITextFieldDelegate {
         
         return a
     }
-    
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("on text field")
-        if textField.tag == 1 {
-            selectedStatus = "country"
-            let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
-            self.present(next, animated: true, completion: nil)
-        }else{
-            selectedStatus = "city"
-            let next = self.storyboard?.instantiateViewController(withIdentifier: "QITableView") as! QuickIteneraryTableViewController
-            self.present(next, animated: true, completion: nil)
-        }
-    }
-       
+
     func getCountry() {
         
         request.getAllCountries({(request) in
