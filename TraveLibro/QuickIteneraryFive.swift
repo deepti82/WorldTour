@@ -111,9 +111,6 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
                 
             },  cancel: { (assets: [PHAsset]) -> Void in
                 
-                
-                
-                
                 print("Cancel: \(assets)")
                 }, finish: { (assets: [PHAsset]) -> Void in
                     
@@ -129,7 +126,7 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
                         })
                     }
                     self.photosAdded(assets: img11)
-                    
+                    self.addCaption(1);
 
                 }
             }, completion: nil)

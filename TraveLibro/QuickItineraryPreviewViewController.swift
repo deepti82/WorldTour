@@ -172,9 +172,8 @@ class QuickItineraryPreviewViewController: UIViewController {
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         let rightButton = UIButton()
+        rightButton.titleLabel?.font = UIFont(name: "avenirBold", size: 20)
         rightButton.setTitle("Done", for: .normal)
-        rightButton.setTitleColor(UIColor.white, for: .normal)
-        rightButton.titleLabel?.font = avenirBold
         rightButton.addTarget(self, action: #selector(QuickItineraryPreviewViewController.donePage(_:)), for: .touchUpInside)
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Avenir-Medium", size: 20)!]
         rightButton.frame = CGRect(x: 20, y: 8, width: 45, height: 30)
