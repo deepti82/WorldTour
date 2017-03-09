@@ -26,14 +26,25 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         getDarkBackGround(self)
+        
         followers = []
+        
         loader.showOverlay(self.view)
+        
         let leftButton = UIButton()
         leftButton.setImage(UIImage(named: "arrow_prev"), for: UIControlState())
         leftButton.addTarget(self, action: #selector(self.popVC(_:)), for: .touchUpInside)
         leftButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
+        let rightButton = UIButton()
+        rightButton.setTitle("Invite", for: .normal)
+        rightButton.setTitleColor(mainGreenColor, for: .normal)
+        rightButton.addTarget(self, action: #selector(FollowersViewController.inviteButtonClicked(sender:)), for: .touchUpInside)
+        rightButton.frame = CGRect(x: 0, y: 0, width: 50, height: 30)
+        
+        self.customNavigationBar(left: leftButton, right: rightButton)
         
         self.setOnlyLeftNavigationButton(leftButton)
         
@@ -43,7 +54,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
         if whichView == "Following" {
             self.title = "Following"
-            headerText.text = "Following(counting)"
+            headerText.text = "Following (counting)"
             configureSearchController()
             getFollowing()
             
@@ -62,7 +73,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
 //            searchViewHeightConstraint.constant = 0
             configureSearchController()            
             getFollowers()
-            headerText.text = "Followers(counting)"
+            headerText.text = "Followers (counting)"
         }
     }
     
@@ -73,7 +84,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
             
             DispatchQueue.main.async(execute: {
                 
-                self.headerText.text = "Following(0))"
+                self.headerText.text = "Following (0))"
                 
                 if response.error != nil {
                     
@@ -83,7 +94,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                 else if response["value"].bool! {
                     print("SearchText :\(self.searchText) && RESULT : \n \(response["data"]["following"])")                    
                     followers = response["data"]["following"].array!
-                    self.headerText.text = "Following(\(followers.count))"
+                    self.headerText.text = "Following (\(followers.count))"
                     self.followerTable.reloadData()
                     loader.hideOverlayView()
                 }
@@ -106,7 +117,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         request.getFollowers(currentUser["_id"].string!, searchText: searchText, completion: {(response) in
             
             DispatchQueue.main.async(execute: {
-                self.headerText.text = "Following(0)"
+                self.headerText.text = "Following (0)"
                 if response.error != nil {
                     
                     print("error: \(response.error!.localizedDescription)")
@@ -117,7 +128,7 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
                     print("\(response["data"]["following"])")
                     followers = response["data"]["followers"].array!
                     self.followersMainCopy = response["data"]["followers"].array!
-                    self.headerText.text = "Followers(\(followers.count))"
+                    self.headerText.text = "Followers (\(followers.count))"
                     self.followerTable.reloadData()
                     loader.hideOverlayView()
                 }
@@ -386,6 +397,23 @@ class FollowersViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
 
+    //MARK: - Invite
+    
+    func inviteButtonClicked(sender: UIButton) {
+        
+        let textToShare = "Check out this application. This is awesome life :) "
+        
+        if let myWebsite = NSURL(string: "http://travelibro.com/") {
+            let objectsToShare = [textToShare, myWebsite] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            //Excluded Activities Code
+            activityVC.excludedActivityTypes = [UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.saveToCameraRoll]
+            
+            activityVC.popoverPresentationController?.sourceView = sender
+            self.present(activityVC, animated: true, completion: nil)
+        }
+    }
 }
 
 class FollowersCell: UITableViewCell {

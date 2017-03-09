@@ -36,7 +36,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KaA-bs-Eb3" customClass="LeftPaddedLabel" customModule="TraveLibro" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="415" width="400" height="38.5"/>
+                    <rect key="frame" x="0.0" y="415" width="400" height="39"/>
                     <attributedString key="attributedText">
                         <fragment content="By creating an account, you agree to TraveLibro’s                       ">
                             <attributes>
@@ -211,7 +211,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account will automitically be linked to your log-in choice and all existing data migrated." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fa6-XJ-6Kd">
-                    <rect key="frame" x="32" y="385" width="336" height="38.5"/>
+                    <rect key="frame" x="32" y="385" width="336" height="39"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
