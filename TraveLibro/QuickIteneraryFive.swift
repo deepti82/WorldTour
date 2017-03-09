@@ -91,6 +91,13 @@ class QuickIteneraryFive: UIViewController, UICollectionViewDataSource, UICollec
         
         let multipleImage = BSImagePickerViewController()
         multipleImage.maxNumberOfSelections = 20
+        multipleImage.navigationBar.isTranslucent = true
+        multipleImage.navigationBar.barTintColor = mainBlueColor
+        multipleImage.navigationBar.tintColor = UIColor.white
+        multipleImage.navigationBar.titleTextAttributes = [
+            NSForegroundColorAttributeName : UIColor.white
+        ] // Title color
+
         
         self.bs_presentImagePickerController(multipleImage, animated: true,
                                              select: { (asset: PHAsset) -> Void in
